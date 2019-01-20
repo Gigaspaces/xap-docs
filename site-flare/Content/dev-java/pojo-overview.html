@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>POJO Support</h1>
-        <p>The XAP interface fully supports POJOs. In terms of preconditions, your POJO classes must follow the JavaBeans conventions (have a no-argument constructor) and declare a getter and setter to every field you want saved on the Space. The POJO class doesn't have to implement <code>java.io.Serializable</code>, but its properties must. This is necessary because the POJOs fields are extracted when written to the Space, and stored in a special tuple format that enables the Space to index and analyze them more easily. Therefore the actual POJO is not sent over the network, but rather its properties.</p>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> interface fully supports POJOs. In terms of preconditions, your POJO classes must follow the JavaBeans conventions (have a no-argument constructor) and declare a getter and setter to every field you want saved on the Space. The POJO class doesn't have to implement <code>java.io.Serializable</code>, but its properties must. This is necessary because the POJOs fields are extracted when written to the Space, and stored in a special tuple format that enables the Space to index and analyze them more easily. Therefore the actual POJO is not sent over the network, but rather its properties.</p>
         <h1><a name="metadata">&#160;</a>Metadata</h1>
         <p>When writing POJOs to the Space, you can provide some metadata about the POJO's class to the Space, using Java 5 annotations or an XML configuration. This overview uses annotation to provide metadata. For a complete reference to POJO annotations and XML configuration, refer to the <a href="modeling-your-data.html">POJO Metadata</a> section.</p>
         <p>Here is an overview of the most commonly used POJO annotations:</p>
@@ -33,7 +33,7 @@
             <p>When using annotations and the gs.xml file to define metadata, the metadata in the gs.xml will be used and the annotations will be ignored. <span class="tc-bold">It is not recommended to use the two metadata definitions for a Space class at the same time</span>.</p>
         </div>
         <h2><a name="primitives-vs-wrapper-classes-for-pojo-properties">&#160;</a>Primitives vs. Wrapper Classes for POJO Properties</h2>
-        <p>XAP supports both primitives (<code>int</code>, <code>long</code>, <code>double</code>, <code>float</code>, etc.), and primitive wrappers (<code>java.lang.Integer</code>, <code>java.lang.Double</code>, etc.). In general, it is recommended that you use the primitive wrapper. This enables you to use the <code>null</code> values as a wildcard when using template matching.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports both primitives (<code>int</code>, <code>long</code>, <code>double</code>, <code>float</code>, etc.), and primitive wrappers (<code>java.lang.Integer</code>, <code>java.lang.Double</code>, etc.). In general, it is recommended that you use the primitive wrapper. This enables you to use the <code>null</code> values as a wildcard when using template matching.</p>
         <p>If you use primitives, make sure you define the following for your POJO class:</p>
         <ul>
             <li>The <code>null</code> value for the property - primitive types are not nullable, therefore you must indicate to the Space a value that is treated as <code>null</code>. This is important for template matching (see below), where null values are considered as wildcards, and do not restrict the search.</li>
@@ -80,7 +80,7 @@ public class Person {
             <li>A POJO class must implement the <code>Serializable</code>  interface if used as a parameter for a remote call (<a href="space-based-remoting-overview.html">Space Based Remoting</a>).</li>
         </ul>
         <h2><a name="controlling-space-class-fields-introduction">&#160;</a>Controlling Space Class Fields Introduction</h2>
-        <p>To force XAP to ignore a POJO field when the Space class is introduced to the Space, use one of the following:</p>
+        <p>To force <MadCap:variable name="General.ProductNameXAP" /> to ignore a POJO field when the Space class is introduced to the Space, use one of the following:</p>
         <ul>
             <li><code>@SpaceExclude</code> annotation on the getter method for the fields you don't want included as part of the Space class.</li>
             <li><code>@SpaceClass(includeProperties=IncludeProperties.EXPLICIT)</code> class-level annotation and use the <code>@SpaceProperty()</code> with each getter method for fields that should be considered part of the Space class.</li>
@@ -103,7 +103,7 @@ public class Person {
         </div>
         <h1><a name="jini-entry">&#160;</a>Jini Entry</h1>
         <div class="tc-admon-important">
-            <p>The XAP POJO <span class="tc-bold">should not</span> implement the <code>net.jini.core.entry.Entry</code> interface. When doing so a <span class="tc-bold">different handling is performed</span> for the object, ignoring all XAP POJO annotations/XML decorations.</p>
+            <p>The <MadCap:variable name="General.ProductNameXAP" /> POJO <span class="tc-bold">should not</span> implement the <code>net.jini.core.entry.Entry</code> interface. When doing so a <span class="tc-bold">different handling is performed</span> for the object, ignoring all <MadCap:variable name="General.ProductNameXAP" /> POJO annotations/XML decorations.</p>
         </div>
     </body>
 </html>

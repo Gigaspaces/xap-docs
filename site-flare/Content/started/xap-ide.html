@@ -29,7 +29,7 @@ Java HotSpot(TM) Client VM (build 11.0-b16, mixed mode, sharing)
         <h1><a name="installing-a-proper-jdk-java-development-kit">&#160;</a>Installing a Proper JDK (Java Development Kit)</h1>
         <ol>
             <li>To install JDK 1.6, download and install <a href="http://java.sun.com/javase/downloads/index.jsp"><span class="tc-bold">JDK 6 Update X</span></a><a name="1">&#160;</a></li>
-            <li><span class="tc-bold">Download and unzip the latest XAP release</span> from the <a href="http://www.gigaspaces.com/LatestProductVersion">downloads page</a>.
+            <li><span class="tc-bold">Download and unzip the latest <MadCap:variable name="General.ProductNameXAP" /> release</span> from the <a href="http://www.gigaspaces.com/LatestProductVersion">downloads page</a>.
  <a name="2">&#160;</a></li>
             <li><span class="tc-bold">Install a Java IDE</span>. If you don't have an IDE installed, you can <a href="http://www.eclipse.org/downloads">download and unzip the Eclipse IDE for Java Developers</a>, or the <a href="http://www.jetbrains.com/idea/download/index.html">IntelliJ IDEA</a> IDE (we recommend the Ultimate Edition because of its excellent Spring framework support). If you're using Eclipse, it is also recommended to install the <a href="http://www.springsource.com/developer/sts">Spring Tool Suite plugin for Eclipse</a>.</li>
         </ol>
@@ -56,27 +56,27 @@ Java HotSpot(TM) Client VM (build 11.0-b16, mixed mode, sharing)
             <li>Close the remaining windows.</li>
         </ol>
         <h1><a name="classpath">&#160;</a>Classpath</h1>
-        <p>The XAP libraries are located under <code>XAP_HOME/lib</code>. There are three sub-directories:</p>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> libraries are located under <code>XAP_HOME/lib</code>. There are three sub-directories:</p>
         <ul>
             <li><code>lib/required</code> - JAR files that are required for any GigaSpaces application.</li>
             <li><code>lib/optional</code> - JAR files that enable additional capabilities, such as servlet api.</li>
-            <li><code>lib/platform</code> - JAR files that are used only by the XAP platform.</li>
+            <li><code>lib/platform</code> - JAR files that are used only by the <MadCap:variable name="General.ProductNameXAP" /> platform.</li>
         </ul>
         <h2><a name="compilation">&#160;</a>Compilation</h2>
-        <p>In order to compile and run XAP applications, all the JAR files under the <code>XAP_HOME/lib/required</code> directory should be included in your compile and run time classpaths. Additional JAR files that you may need for development are located at <code>XAP_HOME/lib/optional</code>.</p>
+        <p>In order to compile and run <MadCap:variable name="General.ProductNameXAP" /> applications, all the JAR files under the <code>XAP_HOME/lib/required</code> directory should be included in your compile and run time classpaths. Additional JAR files that you may need for development are located at <code>XAP_HOME/lib/optional</code>.</p>
         <h2><a name="runtime-processing-unit">&#160;</a>Runtime - Processing Unit</h2>
-        <p>When an application is deployed as a Processing Unit, there is no need to add XAP-specific JAR files to the Processing Unit classpath. If such are added under the Processing Unit's <code>lib</code> directory, the system will remove those JAR files and  replace them with the system's JARs for compatibility.</p>
+        <p>When an application is deployed as a Processing Unit, there is no need to add <MadCap:variable name="General.ProductNameXAP" />-specific JAR files to the Processing Unit classpath. If such are added under the Processing Unit's <code>lib</code> directory, the system will remove those JAR files and  replace them with the system's JARs for compatibility.</p>
         <h2><a name="runtime-standalone">&#160;</a>Runtime - Standalone</h2>
-        <p>When running a standalone client that accesses XAP, ensure that all the JARs located under the <code>XAP_HOME/lib/required</code> directory are part of the JVM's classpath. This also holds true for remote Space clients that are used from another JVM (such as a standalone web container). If your client is a JEE web application that is not running within the XAP runtime environment, or more specifically a GSC, you must include these JARs in your application's <code>WEB-INF/lib</code> directory.</p>
+        <p>When running a standalone client that accesses <MadCap:variable name="General.ProductNameXAP" />, ensure that all the JARs located under the <code>XAP_HOME/lib/required</code> directory are part of the JVM's classpath. This also holds true for remote Space clients that are used from another JVM (such as a standalone web container). If your client is a JEE web application that is not running within the <MadCap:variable name="General.ProductNameXAP" /> runtime environment, or more specifically a GSC, you must include these JARs in your application's <code>WEB-INF/lib</code> directory.</p>
         <h1><a name="maven">&#160;</a>Maven</h1>
-        <p>XAP is Maven-friendly. It is built using Maven, which can be easily used by developers constructing XAP applications.</p>
-        <p>The main dependency required to use XAP is <code>xap-openspaces</code>.</p><pre><code class="language-xml"> &lt;dependency&gt;
+        <p><MadCap:variable name="General.ProductNameXAP" /> is Maven-friendly. It is built using Maven, which can be easily used by developers constructing <MadCap:variable name="General.ProductNameXAP" /> applications.</p>
+        <p>The main dependency required to use <MadCap:variable name="General.ProductNameXAP" /> is <code>xap-openspaces</code>.</p><pre><code class="language-xml"> &lt;dependency&gt;
    &lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;
    &lt;artifactId&gt;xap-openspaces&lt;/artifactId&gt;
    &lt;version&gt;[%=Versions.maven-version%]&lt;/version&gt;
  &lt;/dependency&gt;
 </code></pre>
-        <p>XAP artifacts are currently not published in Maven Central Repo, therefore you must configure a repository:</p><pre><code class="language-xml"> &lt;repository&gt;
+        <p><MadCap:variable name="General.ProductNameXAP" /> artifacts are currently not published in Maven Central Repo, therefore you must configure a repository:</p><pre><code class="language-xml"> &lt;repository&gt;
     &lt;id&gt;org.openspaces&lt;/id&gt;
     &lt;url&gt;http://maven-repository.openspaces.org&lt;/url&gt;
  &lt;/repository&gt;

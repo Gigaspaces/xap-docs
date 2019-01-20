@@ -11,7 +11,7 @@
         </ul>
         <p>A better approach is to create an iterator that iterates over the matching entries one at a time. Under the hood, the server returns results in batches, and when the client's buffer is exhausted the next batch is implicitly returned from the server.</p>
         <div class="tc-admon-note">
-            <p>This page describes the new space iterator, which is intended to replace the old <code>GSIterator</code> starting from XAP version 10.1. Information about the old GSIterator is available <a href="query-paging-support-old.html">here</a>.</p>
+            <p>This page describes the new space iterator, which is intended to replace the old <code>GSIterator</code> starting from <MadCap:variable name="General.ProductNameXAP" /> version 10.1. Information about the old GSIterator is available <a href="query-paging-support-old.html">here</a>.</p>
         </div>
         <h1><a name="usage">&#160;</a>Usage</h1>
         <p>Use the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.html">GigaSpace</a> <code>iterator(template)</code> method to create an iterator of all the objects in the space which match the template (either <a href="query-sql.html">SQLQuery</a> or <a href="query-template-matching.html">template</a>). This results in a <code>SpaceIterator&lt;T&gt;</code> which implements both <code>Iterator&lt;T&gt;</code> and <code>Iterable&lt;T&gt;</code>, so a simple <a href="https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.html">for-each loop</a> can be used to iterate the results. For example:</p><pre><code class="language-java">private void demoIterator(GigaSpace gigaSpace) {

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
 <h1>Administration API</h1>
   
 
-<p>The Service Grid Admin API provides a way to administer and monitor all of the XAP services and components, using a simple API. The Admin API provides information and the ability to operate on the currently running Service Grid Agents, Service Grid Managers, Service Grid Containers, Lookup Services, Processing Units, and Spaces.</p>
+<p>The Service Grid Admin API provides a way to administer and monitor all of the <MadCap:variable name="General.ProductNameXAP" /> services and components, using a simple API. The Admin API provides information and the ability to operate on the currently running Service Grid Agents, Service Grid Managers, Service Grid Containers, Lookup Services, Processing Units, and Spaces.</p>
 
 <p>The following code examples show how the Admin API can be used to display information on the currently deployed services/components:</p>
 
@@ -200,7 +200,7 @@ foreach (IMachine machine in admin.Machines)
 
 <h1><a name="domain-model">&#160;</a>Domain Model</h1>
 
-<p>The Service Grid Admin Domain Model has representation to the main actors at different XAP levels. They include:</p>
+<p>The Service Grid Admin Domain Model has representation to the main actors at different <MadCap:variable name="General.ProductNameXAP" /> levels. They include:</p>
 
 <table>
 <thead>
@@ -298,7 +298,7 @@ foreach (IMachine machine in admin.Machines)
 
 <tr>
 <td align="left">VirtualMachine</td>
-<td align="left">Virtual Machine (JVM) that is currently running at least one XAP component/service.</td>
+<td align="left">Virtual Machine (JVM) that is currently running at least one <MadCap:variable name="General.ProductNameXAP" /> component/service.</td>
 <td align="left">- Get the Grid Service Agent (if it exists).<br/>- Get the Grid Service Manager (if it exists).<br/>- Get the Grid Service Container (if it exists).<br/>- Get all the Processing Unit instances that are running within the Virtual Machine.<br/>- Register for Processing Unit instance addition and removal events.<br/>- Get all the Space instances that are running within the Virtual Machine.<br/>- Register for Space instance addition and removal events.<br/>- Get the details of the Virtual Machine (min/max memory, and so on).<br/>- Get the statistics of the Virtual Machine (heap used, and so on).<br/>- Register for statistics change events (if monitoring).</td>
 </tr>
 
@@ -310,7 +310,7 @@ foreach (IMachine machine in admin.Machines)
 
 <tr>
 <td align="left">Machine</td>
-<td align="left">Actual Machine (identified by its host address) running one or more XAP components/services in one or more Virtual Machines. Associated with one operating system.</td>
+<td align="left">Actual Machine (identified by its host address) running one or more <MadCap:variable name="General.ProductNameXAP" /> components/services in one or more Virtual Machines. Associated with one operating system.</td>
 <td align="left">- Get all the Grid Service Agents running on the machine.<br/>- Get all the Grid Service Containers running on the machine.<br/>- Get all the Grid Service Managers running on the machine.<br/>- Get all the Virtual Machines running on the machine.<br/>- Get all the Processing Unit instances running on the machine.<br/>- Register for Processing Unit instance addition and removal events from the machine.<br/>- Get all the Space instances running on themMachine.<br/>- Register for Space instances addition and removal events from the machine.<br/>- Get the operating system the machine is running on.</td>
 </tr>
 
@@ -322,7 +322,7 @@ foreach (IMachine machine in admin.Machines)
 
 <tr>
 <td align="left">OperatingSystem</td>
-<td align="left">The operating system that the XAP components/services are running on. Associated with one machine.</td>
+<td align="left">The operating system that the <MadCap:variable name="General.ProductNameXAP" /> components/services are running on. Associated with one machine.</td>
 <td align="left">- Get the details of the operating system.<br/>- Get the operating system statistics.<br/>- Register for statistics change events (if monitoring).</td>
 </tr>
 
@@ -334,7 +334,7 @@ foreach (IMachine machine in admin.Machines)
 
 <tr>
 <td align="left">Transport</td>
-<td align="left">Communication layer each XAP component/service uses.</td>
+<td align="left">Communication layer each <MadCap:variable name="General.ProductNameXAP" /> component/service uses.</td>
 <td align="left">- Get the transport details (host, port).<br/>- Get the transport statistics.<br/>- Register for transport statistics change events (if monitoring).</td>
 </tr>
 

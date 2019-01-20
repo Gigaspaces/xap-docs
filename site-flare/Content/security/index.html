@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Security</h1>
-        <p>This section provides an understanding of GigaSpaces Security features, where they fit in the GigaSpaces architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements. XAP Security provides comprehensive support for securing your data, services, or both. GigaSpaces provides a set of authorities granting privileged access to data, and for performing operations on services.</p>
+        <p>This section provides an understanding of GigaSpaces Security features, where they fit in the GigaSpaces architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements. <MadCap:variable name="General.ProductNameXAP" /> Security provides comprehensive support for securing your data, services, or both. GigaSpaces provides a set of authorities granting privileged access to data, and for performing operations on services.</p>
         <div class="tc-admon-note">
             <p>Some security features are part of the open source edition, while others are only available with the commercial (licensed) editions.</p>
         </div>
@@ -27,7 +27,7 @@
         <p>You can also configure auditing for operations on the data grid, and secure the SSL transport layer.</p>
         <p>The open source editions do not include a security implementation. A <a href="security-ref-impl.html">reference implementation</a> is provided instead.</p>
         <h1><a name="security-implementations-for-commercial-editions">&#160;</a>Security Implementations for Commercial Editions</h1>
-        <p>The commercial editions of XAP and InsightEdge come with an Admin API that can be used for administration and monitoring. Additionally, the following interfaces can also be used:</p>
+        <p>The commercial editions of <MadCap:variable name="General.ProductNameXAP" /> and InsightEdge come with an Admin API that can be used for administration and monitoring. Additionally, the following interfaces can also be used:</p>
         <ul>
             <li>
                 <p>GigaSpaces Management Center</p>
@@ -52,13 +52,13 @@
             <p>Refer to <a href="../admin/admin-tools.html">Administration Tools</a> for details about the configuration options.</p>
         </div>
         <h2><a name="securable-layers">&#160;</a>Securable Layers</h2>
-        <p>XAP security can be applied in three separate layers. You can enable security for any of the layers individually, or you can enable all of them for maximum security.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> security can be applied in three separate layers. You can enable security for any of the layers individually, or you can enable all of them for maximum security.</p>
         <ul>
             <li>
                 <p>The <a href="securing-your-data.html">data layer</a> - You can declare a secured Space or Processing Unit.</p>
             </li>
             <li>
-                <p>The <a href="securing-the-grid-services.html">grid layer</a> - You can declare the data grid as secured. Includes the grid components (GSA, GSM, GSC, XAP Manager).</p>
+                <p>The <a href="securing-the-grid-services.html">grid layer</a> - You can declare the data grid as secured. Includes the grid components (GSA, GSM, GSC, <MadCap:variable name="General.ProductNameXAP" /> Manager).</p>
             </li>
             <li>
                 <p>The <a href="securing-the-transport-layer-using-ssl.html">transport layer</a> - Provides a generic network filter with SSL support.</p>
@@ -74,7 +74,7 @@
                 <p><a href="security-configurations-ext.html">Grid components</a> - Includes configuration options for the grid components.</p>
             </li>
             <li>
-                <p><a href="../admin/tools-web-ui.html#security">Web Management Console</a> - Includes configurations for authenticating with secure XAP components.</p>
+                <p><a href="../admin/tools-web-ui.html#security">Web Management Console</a> - Includes configurations for authenticating with secure <MadCap:variable name="General.ProductNameXAP" /> components.</p>
             </li>
             <li>
                 <p><a href="../admin/admin-rest-manager-api.html#security">REST Manager API</a> - Includes security and SSL configurations for secured RESTful API support.<br /></p>
@@ -82,10 +82,10 @@
         </ul>
         <p>When no property file is configured, there is a fallback implementation mainly used for testing or to get you started.
 This implementation stores the user credentials in a local file and can be used to demonstrate that security has been applied.</p>
-        <p>Refer to the following sections for more information about the XAP security implementations:</p>
+        <p>Refer to the following sections for more information about the <MadCap:variable name="General.ProductNameXAP" /> security implementations:</p>
         <ul>
             <li>
-                <p>To read more about the XAP file-based configuration options, refer to <a href="default-file-based-security-implementation-ext.html">Default File-Based Security</a>.</p>
+                <p>To read more about the <MadCap:variable name="General.ProductNameXAP" /> file-based configuration options, refer to <a href="default-file-based-security-implementation-ext.html">Default File-Based Security</a>.</p>
             </li>
             <li>
                 <p>To write your own implementation, refer to <a href="security-ref-impl.html">Reference Implementation</a>, which uses MongoDB.</p>

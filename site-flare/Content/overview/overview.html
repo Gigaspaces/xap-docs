@@ -3,15 +3,15 @@
     <head>
     </head>
     <body>
-        <h1>InsightEdge Platform with XAP Core</h1>
+        <h1><MadCap:variable name="General.ProductNameIEP" /> with <MadCap:variable name="General.ProductNameXAP" /> Core</h1>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/Product_Architecture1.png" alt="archi_overview.jpg" class="tc-picture100" />
             </p>
         </div>
         <h1><a name="in-memory-data-grid">&#160;</a>In-Memory Data Grid</h1>
-        <p>GigaSpaces XAP is the core in-memory data grid for the InsightEdge Platform. XAP is designed to support ultra-low latency and high-throughput applications that follow <a href="space-based-architecture.html">Space-Based Architecture</a> design patterns. XAP is based on GigaSpaces' Spring-based <a href="product-architecture.html#openspaces">OpenSpaces Framework</a> as the primary development environment, and uses the GigaSpaces space-based runtime to deliver core middleware facilities: messaging, data caching and parallelization.</p>
-        <p>The following is a brief overview of some XAP data grid capabilities.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> is the core in-memory data grid for the InsightEdge Platform. <MadCap:variable name="General.ProductNameXAP" /> is designed to support ultra-low latency and high-throughput applications that follow <a href="space-based-architecture.html">Space-Based Architecture</a> design patterns. <MadCap:variable name="General.ProductNameXAP" /> is based on <MadCap:variable name="General.CompanyName" />' Spring-based <a href="product-architecture.html#openspaces">OpenSpaces Framework</a> as the primary development environment, and uses the <MadCap:variable name="General.CompanyName" /> space-based runtime to deliver core middleware facilities: messaging, data caching and parallelization.</p>
+        <p>The following is a brief overview of some <MadCap:variable name="General.ProductNameXAP" /> data grid capabilities.</p>
         <p><span class="tc-bold">Data Modeling</span>
         </p>
         <ul>
@@ -88,9 +88,9 @@
                 </p>
             </li>
         </ul>
-        <p>Applications running on XAP can be scaled out linearly, because XAP uses the <a href="space-based-architecture.html">Space-Based Architecture</a> (SBA) as a primary design pattern. With SBA, applications are built out of a set of self-sufficient units, known as Processing Units (PU). These units are completely independent of each other, so that the application can scale indefinitely without increasing complexity, just by adding more units. SBA is based on the <a href="http://en.wikipedia.org/wiki/Tuple_space" target="_blank">Tuple Space</a> paradigm; it follows many of the principles of <a href="http://en.wikipedia.org/wiki/Service-Oriented_Architecture" target="_blank">Service-Oriented Architecture</a> and <a href="http://en.wikipedia.org/wiki/Event_Driven_Architecture" target="_blank">Event-Driven Architecture</a>, as well as elements of <a href="http://en.wikipedia.org/wiki/Grid_computing" target="_blank">grid computing</a>.</p>
+        <p>Applications running on the data grid can be scaled out linearly, because <MadCap:variable name="General.ProductNameXAP" /> uses the <a href="space-based-architecture.html">Space-Based Architecture</a> (SBA) as a primary design pattern. With SBA, applications are built out of a set of self-sufficient units, known as Processing Units (PU). These units are completely independent of each other, so that the application can scale indefinitely without increasing complexity, just by adding more units. SBA is based on the <a href="http://en.wikipedia.org/wiki/Tuple_space" target="_blank">Tuple Space</a> paradigm; it follows many of the principles of <a href="http://en.wikipedia.org/wiki/Service-Oriented_Architecture" target="_blank">Service-Oriented Architecture</a> and <a href="http://en.wikipedia.org/wiki/Event_Driven_Architecture" target="_blank">Event-Driven Architecture</a>, as well as elements of <a href="http://en.wikipedia.org/wiki/Grid_computing" target="_blank">grid computing</a>.</p>
         <h1><a name="applications-and-microservices">&#160;</a>Applications and Microservices</h1>
-        <p>Applications deployed on XAP are very much like JEE distributed server-side applications. Each application is composed of one or more scalable modules, and contains one or more business logic code components, domain model objects (entries), in-memory data storage, messaging, and event processing code.</p>
+        <p>Applications deployed on the data grid are very much like JEE distributed server-side applications. Each application is composed of one or more scalable modules, and contains one or more business logic code components, domain model objects (entries), in-memory data storage, messaging, and event processing code.</p>
         <p>A module in SBA is called a <a href="../dev-java/the-processing-unit-overview.html">Processing Unit</a>. This is the smallest unit for cross-cluster scaling. From a technical standpoint, a Processing Unit is a collection of classes and a configuration file, packaged as a single unit of scale.</p>
         <p><span class="tc-bold">Processing Unit</span>:</p>
         <ul>
@@ -119,7 +119,7 @@
         <p>The services will usually operate on data that is stored within the same space partition, providing memory access within the same process address space. This mode of interaction allows the minimal latency possible, as data is accessed by reference, as opposed to serialization required for out-of-process communication.</p>
         <p>Processing units can be deployed through the <a href="../admin/gigaspaces-management-center.html">GigaSpaces Management Center</a>, <a href="../admin/web-management-console.html">Web Management Console</a>, <a href="../admin/tools-cli.html">Command Line Interface</a> and <a href="../admin/admin-rest-manager-api.html">REST Manager API</a>.</p>
         <h1><a name="analytics-and-big-data">&#160;</a>Analytics and Big Data</h1>
-        <p>The InsightEdge platform provides a first-class integration between Apache Spark and any data grid capability. This allows hybrid/transactional analytics processing by co-locating Spark jobs in-place with low-latency data grid applications. The platform includes a full Spark distribution that is managed by a highly-available clustering tier that provides auto-healing, as well as local and geographical redundancy. The following is a sample of available InsightEdge analytics capabilities:</p>
+        <p>The <MadCap:variable name="General.ProductNameIEP" /> provides a first-class integration between Apache Spark and any data grid capability. This allows hybrid/transactional analytics processing by co-locating Spark jobs in-place with low-latency data grid applications. The platform includes a full Spark distribution that is managed by a highly-available clustering tier that provides auto-healing, as well as local and geographical redundancy. The following is a sample of available <MadCap:variable name="General.ProductNameIE" /> analytics capabilities:</p>
         <ul>
             <li>
                 <p><a href="../started/insightedge-zeppelin.html">Interactive Data Analytics Web UI</a>
@@ -151,13 +151,13 @@
             </li>
         </ul>
         <h1><a name="distributed-sql-and-visualization-bi">&#160;</a>Distributed SQL and Visualization (BI)</h1>
-        <p>The InsightEdge Enterprise edition provides a <a href="../dev-java/sql-client.html">SQL-99 query engine</a> for <code>read-only</code> operations. The purpose of this query engine is to provide business intelligence developers and grid administrators with a mechanism to perform interactive data analysis through vizualization tools (such as: Tableau, QlikView and MicroStrategy).</p>
+        <p>The <MadCap:variable name="General.ProductNameIEP" /> (Enterprise edition) provides a <a href="../dev-java/sql-client.html">SQL-99 query engine</a> for <code>read-only</code> operations. The purpose of this query engine is to provide business intelligence developers and grid administrators with a mechanism to perform interactive data analysis through vizualization tools (such as: Tableau, QlikView and MicroStrategy).</p>
         <h1><a name="cluster-management">&#160;</a>Cluster Management</h1>
-        <p>All components and applications in the platform are managed, deployed, and monitored through a highly available, resilient service discovery that comprises the <a href="the-runtime-environment.html">XAP service grid</a> and <a href="https://zookeeper.apache.org/" target="_blank">Apache ZooKeeper</a>. The combination is responsible for system health monitoring, service discovery, and resource orchestration, as well as other low-level services for scaling your workloads across your data center or cloud.</p>
+        <p>All components and applications in the platform are managed, deployed, and monitored through a highly available, resilient service discovery that comprises the <a href="the-runtime-environment.html">service grid</a> and <a href="https://zookeeper.apache.org/" target="_blank">Apache ZooKeeper</a>. The combination is responsible for system health monitoring, service discovery, and resource orchestration, as well as other low-level services for scaling your workloads across your data center or cloud.</p>
         <h1><a name="rest-orchestration">&#160;</a>REST Orchestration</h1>
-        <p>In addition to the management center, and web and command line interfaces, GigaSpaces provides a <a href="../admin/xap-manager-rest.html">grid management API</a> interface exposed through the standard HTTP REST protocol. This REST interface can be called from your custom management and administration scripts to support different deployment and provisioning lifecycle operations. In addition, the REST Manager API provides a <a href="../admin/xap-manager-rest-pluggable.html">plug-in provider</a> to implement your own orchestration/integration endpoints.</p>
+        <p>In addition to the management center, and web and command line interfaces, <MadCap:variable name="General.CompanyName" /> provides a <a href="../admin/xap-manager-rest.html">grid management API</a> interface exposed through the standard HTTP REST protocol. This REST interface can be called from your custom management and administration scripts to support different deployment and provisioning lifecycle operations. In addition, the REST Manager API provides a <a href="../admin/xap-manager-rest-pluggable.html">plug-in provider</a> to implement your own orchestration/integration endpoints.</p>
         <h1><a name="management-and-monitoring">&#160;</a>Management and Monitoring</h1>
-        <p>GigaSpaces provides several components for monitoring and troubleshooting your XAP or InsightEdge Enterprise deployments. These include:</p>
+        <p><MadCap:variable name="General.CompanyName" /> provides several components for monitoring and troubleshooting your <MadCap:variable name="General.ProductNameXAP" /> or <MadCap:variable name="General.ProductNameIE" /> Enterprise deployments. These include:</p>
         <ul>
             <li>
                 <p><a href="../admin/tools-desktop-ui.html">GigaSpaces Management Center</a>
@@ -181,6 +181,6 @@
             </li>
         </ul>
         <h1><a name="security-and-auditing">&#160;</a>Security and Auditing</h1>
-        <p>GigaSpaces provides security features that allow the administrators to implement security controls across any component. Security management in GigaSpaces consists of security controls to access the entire platform stack, from <a href="../security/securing-the-transport-layer-using-ssl.html">SSL encryption of data traffic</a> to <a href="../security/securing-xap-components.html">role-based authentication/authorization</a> for deployment, data access and provisioning.</p>
+        <p><MadCap:variable name="General.CompanyName" /> provides security features that allow the administrators to implement security controls across any component. Security management in <MadCap:variable name="General.CompanyName" /> products consists of security controls to access the entire platform stack, from <a href="../security/securing-the-transport-layer-using-ssl.html">SSL encryption of data traffic</a> to <a href="../security/securing-xap-components.html">role-based authentication/authorization</a> for deployment, data access and provisioning.</p>
     </body>
 </html>

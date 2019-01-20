@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -7,7 +7,7 @@
 
 <p>When executing a query operation on the space, there's an overhead incurred by translating the query to an internal representation (in object templates the properties values are extracted using reflection, in <a href="query-sql.html">SQLQuery</a> the expression string is parsed to an expression tree). If the same query is executed over and over again without modification, that overhead can be removed by using <span class="tc-bold">prepared templates</span>.</p>
 
-<p>The <code>ISpaceProxy</code> interface provides a method called <code>Snapshot</code> which receives a template or query , translates it to an internal XAP query structure and returns a reference to that structure as <code>IPreparedTemplate&lt;T&gt;</code>. That reference can then be used with any of the proxy's query operations to execute queries on the space in a more efficient manner, since there's no need to translate or parse the query.</p>
+<p>The <code>ISpaceProxy</code> interface provides a method called <code>Snapshot</code> which receives a template or query , translates it to an internal <MadCap:variable name="General.ProductNameXAP" /> query structure and returns a reference to that structure as <code>IPreparedTemplate&lt;T&gt;</code>. That reference can then be used with any of the proxy's query operations to execute queries on the space in a more efficient manner, since there's no need to translate or parse the query.</p>
 
 <div class="tc-admon-note">
   

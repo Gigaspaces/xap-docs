@@ -7,7 +7,7 @@
         <p>The <code>SQLQuery</code> class is used to query the Space using SQL-like syntax. The query statement includes only the <code>WHERE</code> statement part - the selection aspect of a SQL statement is embedded in other parameters for a SQL query.</p>
         <div class="tc-admon-note">
             <p>For the full documentation of the class's methods and constructors, see the <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">API documentation</a>.</p>
-            <p>The XAP open source SQL functionality is not SQL-99 compliant. SQL-99 compliant functionality is available in the InsightEdge Enterprise edition. For more information, see the <a href="sql-query-intro.html">In-Grid SQL Query</a> page.</p>
+            <p>The <MadCap:variable name="General.ProductNameXAP" /> open source SQL functionality is not SQL-99 compliant. SQL-99 compliant functionality is available in the InsightEdge Enterprise edition. For more information, see the <a href="sql-query-intro.html">In-Grid SQL Query</a> page.</p>
         </div>
         <h1><a name="examples">&#160;</a>Examples</h1>
         <p>A <code>SQLQuery</code> is composed from the <span class="tc-bold">type</span> of entry to query and an <span class="tc-bold">expression</span> in a SQL syntax.</p>
@@ -177,7 +177,7 @@ query.setParameter(2,collection);
             <p>Parameter assignment to the <code>SQLQuery</code> instance is not thread-safe. If the query is intended to be executed on multiple threads which may change the parameters, it is recommended to use different <code>SQLQuery</code> instances. This has an analogue in JDBC, because <code>PreparedStatement</code> is not thread-safe either.</p>
         </div>
         <h1><a name="nested-properties">&#160;</a>Nested Properties</h1>
-        <p>XAP SQL syntax contains various extensions to support matching nested properties, maps, collections and arrays.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> SQL syntax contains various extensions to support matching nested properties, maps, collections and arrays.</p>
         <p>Some examples:</p><pre><code class="language-java">// Query for a Person who lives in New York:
 ... = new SQLQuery&lt;Person&gt;(Person.class, "address.city = 'New York'");
 // Query for a Dealer which sales a Honda:
@@ -242,7 +242,7 @@ space-config.QueryProcessor.time_format
             <p>Internally, dates are stored as a <span class="tc-bold">TimeStamp</span>. This means that both time (hour/min/sec) and date (year/month/day) information is available for date range queries.</p>
         </div>
         <h1><a name="java-8-dates">&#160;</a>Java 8 Dates</h1>
-        <p>XAP supports the <code>LocalDate</code>, <code>LocalTime</code> and <code>LocalDateTime</code> classes. The following Space properties must be defined in order to use the classes in queries:</p><pre><code class="language-xml">    &lt;os-core:embedded-space id="space" space-name="sandboxSpace"&gt;
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports the <code>LocalDate</code>, <code>LocalTime</code> and <code>LocalDateTime</code> classes. The following Space properties must be defined in order to use the classes in queries:</p><pre><code class="language-xml">    &lt;os-core:embedded-space id="space" space-name="sandboxSpace"&gt;
         &lt;os-core:properties&gt;
             &lt;props&gt;
                 &lt;prop key="space-config.QueryProcessor.date_format"&gt;yyyy-MM-dd HH:mm:ss&lt;/prop&gt;
@@ -441,7 +441,7 @@ MyClass[] result = gigaspace.readMultiple(query);
         <p>When having an <span class="tc-bold">AND</span> query or a template that use two or more fields for matching, a <a href="indexing-compound.html">Compound Index</a> may boost the query execution time. The Compound Index should be defined on multiple properties for a specific Space class, and is used implicitly when a SQL Query or a <a href="query-template-matching.html">Template</a> uses these properties.</p>
         <h2><a name="re-using-sqlquery">&#160;</a>Re-using SQLQuery</h2>
         <p>Constructing an <code>SQLQuery</code> instance is a relatively expensive operation. When possible, use <code>SQLQuery.setParameters</code> and <code>SQLQuery.setParameter</code> to modify an existing query instead of creating a new one. However, remember that <code>SQLQuery</code> is not thread-safe.
-XAP reuses <code>SQLQuery</code> objects by using a bounded cache mechanism - when using <code>SQLQuery.setParameter</code> as described above,  the queries are fetched from the cache without the penalty of recreating <code>SQLQuery</code> objects. The cache size can be modified by setting the <code>com.gs.queryCache.cacheSize</code> system property to the required value (the default value is 1,000).</p>
+<MadCap:variable name="General.ProductNameXAP" /> reuses <code>SQLQuery</code> objects by using a bounded cache mechanism - when using <code>SQLQuery.setParameter</code> as described above,  the queries are fetched from the cache without the penalty of recreating <code>SQLQuery</code> objects. The cache size can be modified by setting the <code>com.gs.queryCache.cacheSize</code> system property to the required value (the default value is 1,000).</p>
         <h2><a name="minimize-or-usage">&#160;</a>Minimize OR usage</h2>
         <p>When using the <code>OR</code> logical operator together with the <code>AND</code> logical operator as part of your query, you can speed up the query execution by minimizing the number of <code>OR</code> conditions in the query. For example:</p><pre><code class="language-java">(A = 'X' OR A = 'Y') AND (B &gt; '2000-10-1' AND B &lt; '2003-11-1')
 </code></pre>
@@ -490,7 +490,7 @@ A query is considered complex if it contains one or more of the following:</p>
         <h1><a name="interface-classes">&#160;</a>Interface Classes</h1>
         <p><code>SQLQuery</code> supports concrete classes, derived classes and abstract classes. Interface classes are <span class="tc-bold">not supported</span>.</p>
         <h1><a name="reserved-words">&#160;</a>Reserved Words</h1>
-        <p>The following are reserved keywords in the XAP SQL syntax:</p>
+        <p>The following are reserved keywords in the <MadCap:variable name="General.ProductNameXAP" /> SQL syntax:</p>
         <ul>
             <li>
                 <p>alter add all and asc avg between by create call drop desc bit tinyint</p>

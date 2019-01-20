@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
 <h1>Property Storage Type</h1>
   
 
-<p>XAP's PBS (Portable Binary Serialization) is the underlying technology used to serialize and transport non Java objects from the client side to the space side. It is highly optimized serialization technology allowing a .NET or C++ client to communicate with the space in very efficiency manner.</p>
+<p><MadCap:variable name="General.ProductNameXAP" />'s PBS (Portable Binary Serialization) is the underlying technology used to serialize and transport non Java objects from the client side to the space side. It is highly optimized serialization technology allowing a .NET or C++ client to communicate with the space in very efficiency manner.</p>
 
 <p>To control Space Class field serialization you should use the <a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_Metadata_StorageType.htm">StorageType</a> attribute.
 Example:</p>
@@ -67,7 +67,7 @@ Example:</p>
 
 <ul>
 <li><code>Binary</code> is supposed to be the fastest (almost) always, because the server side doesn't need to deserialize/serialize on write/read.</li>
-<li><code>BinaryCustom</code> is somewhat slower in most cases than Binary, because <code>PBS</code> serialization is customized for XAP whereas .NET serialization is more generic. However, on the space side, the data is still stored as a blob.</li>
+<li><code>BinaryCustom</code> is somewhat slower in most cases than Binary, because <code>PBS</code> serialization is customized for <MadCap:variable name="General.ProductNameXAP" /> whereas .NET serialization is more generic. However, on the space side, the data is still stored as a blob.</li>
 <li><code>Object</code> and <code>Document</code> serialization are usually the slower because the space have to fully deserialize the blob and reconstruct the pojo or the document.</li>
 <li><code>Compressed</code> is slower on one hand because compression takes time, but faster on the other because network traffic is reduced and the data is stored in the space as a blob and is not deserialized.</li>
 </ul>

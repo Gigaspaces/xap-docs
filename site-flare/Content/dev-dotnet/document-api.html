@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
 <h1>Document API</h1>
   
 
-<p>The XAP document API exposes the space as <a href="http://en.wikipedia.org/wiki/Document-oriented_database" target="_blank" >Document Store</a>. A document, which is represented by the class <code>SpaceDocument</code>, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, <code>String</code>, <code>Date</code>, other documents, or collections thereof. Most importantly, the Space is aware of the internal structure of a document, and thus can index document properties at any nesting level and expose rich query semantics for retrieving documents.</p>
+<p>The <MadCap:variable name="General.ProductNameXAP" /> document API exposes the space as <a href="http://en.wikipedia.org/wiki/Document-oriented_database" target="_blank" >Document Store</a>. A document, which is represented by the class <code>SpaceDocument</code>, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, <code>String</code>, <code>Date</code>, other documents, or collections thereof. Most importantly, the Space is aware of the internal structure of a document, and thus can index document properties at any nesting level and expose rich query semantics for retrieving documents.</p>
 
 <p>Unlike concrete objects, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic - users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the interface <code>ISpaceTypeDescriptor</code>.</p>
 

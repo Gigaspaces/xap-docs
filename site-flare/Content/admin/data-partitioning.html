@@ -5,9 +5,9 @@
     <body>
         <h1>Data Partitioning</h1>
         <div class="tc-admon-note">
-            <p>Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with XAP Premium).</p>
+            <p>Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with <MadCap:variable name="General.ProductNameXAPPrem" />).</p>
         </div>
-        <p>Load balancing (data partitioning) is essential in any truly scalable architecture, as it enables scaling beyond the physical resources of a single-server machine. In XAP, load balancing is the mechanism used by the clustered proxy to distribute space operations among the different cluster members. Each cluster member can run on a different physical or virtual machine.</p>
+        <p>Load balancing (data partitioning) is essential in any truly scalable architecture, as it enables scaling beyond the physical resources of a single-server machine. In <MadCap:variable name="General.ProductNameXAP" />, load balancing is the mechanism used by the clustered proxy to distribute space operations among the different cluster members. Each cluster member can run on a different physical or virtual machine.</p>
         <p>A clustered proxy for a partitioned data grid holds logical references to all space members in the cluster. The references are "logical", in the sense that no active connection to a space member is opened until it is needed. This is illustrated in the following diagram:</p>
         <div class="tc-align-center">
             <p>

@@ -14,7 +14,7 @@
 First, we define the Notifier Container.</p><pre><code class="language-csharp">using System;
 
 using GigaSpaces.Core.Events;
-using GigaSpaces.XAP.Events.Notify;
+using GigaSpaces.<MadCap:variable name="General.ProductNameXAP" />.Events.Notify;
 using GigaSpaces.XAP.Events;
 
 using xaptutorial.model;
@@ -135,7 +135,7 @@ public class AuditListener {
             <p>For more information, see the <a href="../dev-dotnet/event-processing.html">Event Processing</a> page.</p>
         </div>
         <h1><a name="fifo-support">&#160;</a>FIFO Support</h1>
-        <p>Sometimes it is necessary to process events in the order the way they have been created. By default events are not ordered. XAP supports FIFO (First In, First Out) processing of events.  To enable FIFO operations you can turn on FIFO support for classes which will participate in such operations.</p>
+        <p>Sometimes it is necessary to process events in the order the way they have been created. By default events are not ordered. <MadCap:variable name="General.ProductNameXAP" /> supports FIFO (First In, First Out) processing of events.  To enable FIFO operations you can turn on FIFO support for classes which will participate in such operations.</p>
         <p>Here is an example how you can enable FIFO support for a class using the <code>[SpaceClass]</code> annotation:</p><pre><code class="language-csharp">using System;
 
 using GigaSpaces.Core.Metadata;
@@ -161,7 +161,7 @@ namespace xaptutorial.model
         </div>
         <h1><a name="master-worker-pattern">&#160;</a>Master Worker Pattern</h1>
         <p>The Master-Worker Pattern (sometimes called the Master-Slave or the Map-Reduce pattern) is used for parallel processing. It follows a simple approach that allows applications to perform simultaneous processing across multiple machines or processes via a <code>Master</code> and multiple <code>Workers</code>.
-In GigaSpaces XAP, you can implement the Master-Worker pattern using several methods:</p>
+In <MadCap:variable name="General.ProductNameXAP" />, you can implement the Master-Worker pattern using several methods:</p>
         <ul>
             <li><a href="/sbp/map-reduce-pattern-executors-example.html">Task Executors</a> - best for a scenario where the processing activity is collocated with the data (the data is stored within the same space as the tasks being executed).</li>
             <li><a href="../dev-dotnet/polling-container-overview.html">Polling Containers</a> - in this case the processing activity runs in a separate machine/VM from the space. This approach should be used when the processing activity consumes a relatively large amount of CPU and takes a large amount of time.</li>

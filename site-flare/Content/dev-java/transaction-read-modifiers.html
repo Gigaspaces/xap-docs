@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Read Modifiers</h1>
-        <p>XAP <code>ReadModifiers</code> class (see <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/client/ReadModifiers.html">Javadoc</a>) provides static methods and constants to decode read-type modifiers. The sets of modifiers are represented as integers with distinct bit positions representing different modifiers.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> <code>ReadModifiers</code> class (see <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/client/ReadModifiers.html">Javadoc</a>) provides static methods and constants to decode read-type modifiers. The sets of modifiers are represented as integers with distinct bit positions representing different modifiers.</p>
         <p>Four main types of modifiers can be used:</p>
         <ul>
             <li><code>REPEATABLE_READ</code> - default modifier</li>
@@ -27,13 +27,13 @@
             <p><code>REPEATABLE_READ</code>, <code>DIRTY_READ</code>, and <code>READ_COMMITTED</code> are mutually exclusive (i.e. can't be used together). <code>EXCLUSIVE_READ_LOCK</code> can be joined with any of them.</p>
         </div>
         <p>These modifiers can be set either at the proxy level - <code>IJSpace.setReadModifiers(int)</code>, or at the operation level (e.g. using one of <code>IJSpace</code> read <code>readIfExists</code> <code>readMultiple</code> count methods with a modifiers parameter).</p>
-        <h1><a name="spring-xap-readmodifiers">&#160;</a>Spring - XAP ReadModifiers</h1>
-        <p>The following table describes the mapping between the <a href="http://static.springsource.org/spring/docs/2.0.x/api/org/springframework/transaction/TransactionDefinition.html" target="_blank">Spring TransactionDefinition</a> Mapping to XAP ReadModifiers:</p>
+        <h1><a name="spring-xap-readmodifiers">&#160;</a>Spring - <MadCap:variable name="General.ProductNameXAP" /> ReadModifiers</h1>
+        <p>The following table describes the mapping between the <a href="http://static.springsource.org/spring/docs/2.0.x/api/org/springframework/transaction/TransactionDefinition.html" target="_blank">Spring TransactionDefinition</a> Mapping to <MadCap:variable name="General.ProductNameXAP" /> ReadModifiers:</p>
         <table>
             <thead>
                 <tr>
                     <th align="left">Spring TransactionDefinition</th>
-                    <th align="left">XAP ReadModifiers</th>
+                    <th align="left"><MadCap:variable name="General.ProductNameXAP" /> ReadModifiers</th>
                 </tr>
             </thead>
             <tbody>
@@ -212,7 +212,7 @@ space.read( tmpl, null, ReadModifiers.DIRTY_READ);
                 </tr>
             </tbody>
         </table>
-        <p>Refer to the <a href="transaction-locking-and-blocking.html">Locking and Blocking</a> page for general XAP  locking and blocking rules.</p>
+        <p>Refer to the <a href="transaction-locking-and-blocking.html">Locking and Blocking</a> page for general <MadCap:variable name="General.ProductNameXAP" /> locking and blocking rules.</p>
         <div class="tc-admon-note">
             <ul>
                 <li>To read the original state of a space object that is locked under a transaction (take or update) you should use READ_COMMITTED mode.</li>

@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Web Application Support</h1>
-        <p>XAP's integration with the Service Grid allows you to deploy web applications (packaged as WAR files) onto the Service Grid. The integration is built on top of the <a href="deploying-onto-the-service-grid.html">Service Grid Processing Unit Container</a>.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" />'s integration with the Service Grid allows you to deploy web applications (packaged as WAR files) onto the Service Grid. The integration is built on top of the <a href="deploying-onto-the-service-grid.html">Service Grid Processing Unit Container</a>.</p>
         <p>The integration allows you to make use of the following Service Grid features:</p>
         <ul>
             <li>Dynamic allocation of several instances of a web application (probably fronted by a load balancer).</li>
@@ -86,7 +86,7 @@
             <p>The JEE Class Loader is created lazily when the first web application deployed into the GSC. This eliminates the overhead involved when creating none-web processing units. There can also be several JEE class loaders per web container type, allowing support for both jetty and tomcat (for example) in the future quite easily.</p>
         </div>
         <h1><a name="bootstrap-context-listener">&#160;</a>Bootstrap Context Listener</h1>
-        <p>When deploying a web application to the XAP Service Grid, the <code>web.xml</code> of the web application is automatically changed to include a <code>BootstrapWebApplicationContextListener</code>. The Bootstrap Context Listener provides the following services:</p>
+        <p>When deploying a web application to the <MadCap:variable name="General.ProductNameXAP" /> Service Grid, the <code>web.xml</code> of the web application is automatically changed to include a <code>BootstrapWebApplicationContextListener</code>. The Bootstrap Context Listener provides the following services:</p>
         <ul>
             <li>
                 <p>Automatically puts the <code>ClusterInfo</code> and <code>BeanLevelProperties</code> that the system was deployed with into the web application <code>ServletContext</code>. The <code>ClusterInfo</code> class is put under a context attribute <code>clusterInfo</code>, and the <code>BeanLevelProperties</code> is put under a context attribute named <code>beanLevelProperties</code>.</p>
@@ -154,8 +154,8 @@ spaceConfigurer.destroy();
         <p>The previous section described several ways of starting an embedded Space within the web application. The recommended approach to working with embedded Space, is to work with its clustered proxy (the <code>clustered</code> flag in GigaSpace set to <code>true</code>) for interactions that originate from a web request. This is mainly because the load balancer doesn't know about routing specific classes to each cluster member.</p>
         <p>Event-driven operations should still work with non-clustered embedded Spaces (usually). For example, a web request that results in writing an Order (using the clustered proxy) to the Space, and a polling container that picks it up and processes it asynchronously. The polling container should work with the non-clustered, co-located proxy of the cluster member Space.</p>
         <h1><a name="load-balancer">&#160;</a>Load Balancer</h1>
-        <p>When deploying a highly available web site,  a load balancer is usually used to load balance requests between at least two instances of a web container that actually runs the web application. When using XAP to deploy a web application, running more than one instance of a web application is simple, and also simplifies the manageability and virtualized nature of running web applications.</p>
-        <p>In order to create a single point of view (in terms of clients connecting to a server), a load balancer is usually used. While there are many different types of load balancers (both hardware and software), solving the load balancing problem is not specific to using XAP to deploy the web application. Examples of how to configure load balancers can be found in specific web container sections.</p>
-        <p>XAP also comes with a built-in integration with the Apache httpd load balancer, as described in the <a href="apache-load-balancer-agent.html">Apache Load Balancer Agent</a> section.</p>
+        <p>When deploying a highly available web site,  a load balancer is usually used to load balance requests between at least two instances of a web container that actually runs the web application. When using <MadCap:variable name="General.ProductNameXAP" /> to deploy a web application, running more than one instance of a web application is simple, and also simplifies the manageability and virtualized nature of running web applications.</p>
+        <p>In order to create a single point of view (in terms of clients connecting to a server), a load balancer is usually used. While there are many different types of load balancers (both hardware and software), solving the load balancing problem is not specific to using <MadCap:variable name="General.ProductNameXAP" /> to deploy the web application. Examples of how to configure load balancers can be found in specific web container sections.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> also comes with a built-in integration with the Apache httpd load balancer, as described in the <a href="apache-load-balancer-agent.html">Apache Load Balancer Agent</a> section.</p>
     </body>
 </html>

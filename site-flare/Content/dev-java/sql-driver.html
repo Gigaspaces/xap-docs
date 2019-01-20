@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -371,7 +371,7 @@ XapToEnumerableConverter
 <li>Log level is INFO.</li>
 </ul>
 
-<h2><a name="server-side-logging-xap">&#160;</a>Server-Side Logging (XAP)</h2>
+<h2><a name="server-side-logging-xap">&#160;</a>Server-Side Logging (<MadCap:variable name="General.ProductNameXAP" />)</h2>
 
 <p>In order to change the logging level on the server, use the following runtime property:</p>
 
@@ -388,7 +388,7 @@ XapToEnumerableConverter
 <p>The driver translates SQL queries into Space API calls. It is important to understand which SQL construction driver converts to which Space calls.
 This will allow you to create more sufficient queries.</p>
 
-<p>There are several types of queries. We can first consider the main types of queries and how they are converted into native XAP interactions:</p>
+<p>There are several types of queries. We can first consider the main types of queries and how they are converted into native <MadCap:variable name="General.ProductNameXAP" /> interactions:</p>
 
 <h2><a name="simple-select-with-filters">&#160;</a>Simple Select with Filters</h2>
 
@@ -411,11 +411,11 @@ This will allow you to create more sufficient queries.</p>
 <pre><code class="language-sql">SELECT category, sum(profit) FROM Orders ORDER BY category
 </code></pre>
 
-<p>This query uses the XAP aggregation API, and pushes the aggregation fields and the projections down to the data grid. All the calculations are performed on the server side.</p>
+<p>This query uses the <MadCap:variable name="General.ProductNameXAP" /> aggregation API, and pushes the aggregation fields and the projections down to the data grid. All the calculations are performed on the server side.</p>
 
 <div class="tc-admon-refer">
   
-  <p>For more information about the XAP aggregation API, refer to the <a href="aggregators.html">Aggregation API</a> page.</p>
+  <p>For more information about the <MadCap:variable name="General.ProductNameXAP" /> aggregation API, refer to the <a href="aggregators.html">Aggregation API</a> page.</p>
 </div>
 
 <h2><a name="join-query-algorithms">&#160;</a>Join Query Algorithms</h2>

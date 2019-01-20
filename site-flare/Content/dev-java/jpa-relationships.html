@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
 <h1>JPA Relationships</h1>
   
 
-<p>The XAP JPA relationships model is different than Relational Databases model. In XAP relationships are owned, which means that an owner of a relationship holds the owned entities within itself in Space. For instance, if an Author has a One-to-many relationship with Book, in Space all the Book instances relevant for a specific Author will reside within a Collection in Author.</p>
+<p>The <MadCap:variable name="General.ProductNameXAP" /> JPA relationships model is different than Relational Databases model. In <MadCap:variable name="General.ProductNameXAP" /> relationships are owned, which means that an owner of a relationship holds the owned entities within itself in Space. For instance, if an Author has a One-to-many relationship with Book, in Space all the Book instances relevant for a specific Author will reside within a Collection in Author.</p>
 
 <p>When defining a One-to-one/One-to-many relationship the cascading type should be set to CascadeType.ALL using the relationship's annotation cascade attribute since no-cascading is unsupported.
 Setting cascading globally can also be done in orm.xml:</p>
@@ -249,7 +249,7 @@ Author result = (Author) query.getSingleResult();
 
 <h3><a name="owned-many-to-many-relationship">&#160;</a>Owned Many-to-Many Relationship</h3>
 
-<p>Owned many-to-many relationship is not supported because the XAP data model doesn't permit it.
+<p>Owned many-to-many relationship is not supported because the <MadCap:variable name="General.ProductNameXAP" /> data model doesn't permit it.
 It is possible to implement such a relation by explicitly setting the IDs for each of the relationship participants.</p>
 
 <h3><a name="unowned-relationships">&#160;</a>Unowned Relationships</h3>

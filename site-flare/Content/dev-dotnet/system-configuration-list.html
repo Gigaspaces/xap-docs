@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -7,11 +7,11 @@
 
 <p>This page explains how to configure XAP.NET Grid environment. In general, the default settings provided are good for small development or production environment. You should change these to satisfy your specific environment to increase the GSC capacity , specify lookup service location, specify zones , enable security, specify log files location, etc.</p>
 
-<p>You will find the XAP .NET grid configuration within the <code>GS_HOME\NET v....\Config\Settings.xml</code>. Each machine running XAP .NET grid should have its <code>Settings.xml</code> modified.</p>
+<p>You will find the XAP.NET grid configuration within the <code>GS_HOME\NET v....\Config\Settings.xml</code>. Each machine running XAP.NET grid should have its <code>Settings.xml</code> modified.</p>
 
-<h1><a name="typical-xap-net-grid-setup">&#160;</a>Typical XAP .NET Grid Setup</h1>
+<h1><a name="typical-xap-net-grid-setup">&#160;</a>Typical XAP.NET Grid Setup</h1>
 
-<p>A typical XAP .NET grid setup process involves:</p>
+<p>A typical XAP.NET grid setup process involves:</p>
 
 <p><span class="tc-bold">Step 1</span></p>
 
@@ -19,17 +19,17 @@
 
 <p><span class="tc-bold">Step 2</span></p>
 
-<p>Set the <code>XapNet.Locators</code> to have two machines IP comma separated that will run the lookup service (<code>IP1,IP2</code> or <code>MachineAddress1,MachineAddress2</code>). These machine XAP Agents should be started first!  The <code>XapNet.Locators</code>  should be set only with environments that do not have multicasting enabled or with environments where client applications don't have multicasting enabled between client machine and XAP .NET grid machines.</p>
+<p>Set the <code>XapNet.Locators</code> to have two machines IP comma separated that will run the lookup service (<code>IP1,IP2</code> or <code>MachineAddress1,MachineAddress2</code>). These machine <MadCap:variable name="General.ProductNameXAP" /> Agents should be started first!  The <code>XapNet.Locators</code>  should be set only with environments that do not have multicasting enabled or with environments where client applications don't have multicasting enabled between client machine and XAP.NET grid machines.</p>
 
 <p><span class="tc-bold">Step 3</span></p>
 
 <p>Set the <code>XapNet.Gsc.Memory.Maximum</code> to have the right size.  Usually 20480 (20GB) will be a good number. For example: A machine with 64 GB RAM should have 3 GSCs running , each with 20GB GSC as Maximum size.</p>
 
-<p><span class="tc-bold">Please make sure firewall and any anti-virus SW are DISABLED on XAP .NET Grid machines!</span></p>
+<p><span class="tc-bold">Please make sure firewall and any anti-virus SW are DISABLED on XAP.NET Grid machines!</span></p>
 
 <h1><a name="platform-configuration-properties">&#160;</a>Platform Configuration Properties</h1>
 
-<p>Below common platform configuration properties you should set when you setup your XAP .NET grid:</p>
+<p>Below common platform configuration properties you should set when you setup your XAP.NET grid:</p>
 
 <table>
 <thead>
@@ -43,13 +43,13 @@
 <tbody>
 <tr>
 <td>XapNet.Path</td>
-<td>XAP .NET folder location</td>
+<td>XAP.NET folder location</td>
 <td>$(XapNet.SettingsFile)....</td>
 </tr>
 
 <tr>
 <td>XapNet.Install.Path</td>
-<td>Location of XAP .NET Installation</td>
+<td>Location of XAP.NET Installation</td>
 <td>$(XapNet.Path)..</td>
 </tr>
 
@@ -61,7 +61,7 @@
 
 <tr>
 <td>XapNet.Runtime.Path</td>
-<td>XAP Runtime files Location</td>
+<td><MadCap:variable name="General.ProductNameXAP" /> Runtime files Location</td>
 <td>$(XapNet.Install.Path)\Runtime</td>
 </tr>
 

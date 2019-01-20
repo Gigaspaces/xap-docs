@@ -193,7 +193,7 @@ Entries inserted to blobstore cache: 80.
         </ul>
         <p>Total cache misses = hot data cache misses + cold data cache misses.</p>
         <p>By modifying the custom queries, the cache efficiency (maximizing hits and minimizing misses) can be improved. To keep track of the cache efficiency, key metrics are measured and stored, including hits, total misses, and hot data misses.
-For information about XAP metrics and how to use them, refer to the <a href="metrics-overview.html">Metrics</a> section of this guide.</p>
+For information about <MadCap:variable name="General.ProductNameXAP" /> metrics and how to use them, refer to the <a href="metrics-overview.html">Metrics</a> section of this guide.</p>
         <h2><a name="data-recovery-on-restart">&#160;</a>Data Recovery on Restart</h2>
         <p>The MemoryXtend architecture allows for data persisted on the blobstore to be available for the data grid upon restart. To enable this, you have to enable the <code>persistent</code> option in the blobstore policy.</p><pre><code class="language-xml">  &lt;os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore"&gt;
 </code></pre>
@@ -212,7 +212,7 @@ For information about XAP metrics and how to use them, refer to the <a href="met
         <div class="tc-admon-note">
             <p>Central Storage mode allows you to use MemoryXtend without configuring the Machine-Instance Affinity.</p>
         </div>
-        <p>To ensure that the Service Grid deploys the XAP instances on the correct machines, use <a href="the-sla-overview.html">instance-level SLA</a>. For example:</p>
+        <p>To ensure that the Service Grid deploys the <MadCap:variable name="General.ProductNameXAP" /> instances on the correct machines, use <a href="the-sla-overview.html">instance-level SLA</a>. For example:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Partitioned with a backup SLA" style="padding:10px">
                 <p>The following <code>sla.xml</code> example shows a single partition with a backup where the first instance is provisioned into <code>HostA</code>, and the second instance for the same partition is provisioned into <code>HostB</code>.</p><pre><code class="language-xml">&lt;os-sla:sla&gt;
@@ -255,7 +255,7 @@ For information about XAP metrics and how to use them, refer to the <a href="met
         <h2><a name="last-primary">&#160;</a>Last Primary</h2>
         <p>When a Space instance starts as part of a primary-backup cluster, it undergoes a process called <span class="tc-italic">active election</span> to determine if it should be a primary or a backup instance. Generally speaking, the first instance that is loaded is the primary, and the rest are backups. If a persistent system is restarted in an orderly manner (meaning all the data was flushed to both the primary and backup instances before shutting down), it doesn't matter which instance becomes primary, because they are all identical. However, if both the primary and backup instances crash unexpectedly for some reason and then restart, it is important to ensure that the last instance that was primary before the crash is elected primary again, because it holds a more accurate version of the data.</p>
         <p>To overcome this problem, the Space can be configured with an <span class="tc-italic">attribute store</span> that is updated whenever a new primary Space is elected. When the system restarts, instead of electing the first available instance, the system will wait for the last primary Space to become available and re-elect it. If the last primary Space cannot be restarted, the user can manually remove the last primary entry from the attribute store. This will allow a backup Space to become the primary.</p>
-        <p>The InsightEdge Platform and XAP are bundled with two implementations:</p>
+        <p>The InsightEdge Platform and <MadCap:variable name="General.ProductNameXAP" /> are bundled with two implementations:</p>
         <ul>
             <li>File-based implementation of an attribute store, which can be used in conjunction with an NFS file system to maintain the last primary.</li>
             <li>Storing the last primary automatically in Apache Zookeeper.</li>

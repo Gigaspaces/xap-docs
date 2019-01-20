@@ -27,7 +27,7 @@
 }
 </code></pre>
         <h4><a name="step-2-enable-the-space-class-to-support-optimistic-locking">&#160;</a>Step 2 – Enable the Space Class to Support Optimistic Locking</h4>
-        <p>You should enable the Space class to support the optimistic locking protocol, by including the <code>[SpaceVersion]</code> decoration on an <code>int</code> getter field. This field stores the current object version and is maintained by XAP. See below for an example:</p><pre><code class="language-csharp">    [SpaceClass]
+        <p>You should enable the Space class to support the optimistic locking protocol, by including the <code>[SpaceVersion]</code> decoration on an <code>int</code> getter field. This field stores the current object version and is maintained by <MadCap:variable name="General.ProductNameXAP" />. See below for an example:</p><pre><code class="language-csharp">    [SpaceClass]
     public class Account {
         [SpaceID]
         [SpaceRouting]

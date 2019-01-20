@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -38,7 +38,7 @@ var result = spaceProxy.Take&lt;Person&gt;(query.ToSpaceQuery());
 
 <div class="tc-admon-tip">
   
-  <p>While LINQ is a great syntax for querying a data source, it cannot leverage XAP-specific features (removing results, batching, fifo, transactions, notifications and more). This gap is bridged with <code>ExpressionQuery</code>, which allows you to use LINQ with any space query operation.</p>
+  <p>While LINQ is a great syntax for querying a data source, it cannot leverage <MadCap:variable name="General.ProductNameXAP" />-specific features (removing results, batching, fifo, transactions, notifications and more). This gap is bridged with <code>ExpressionQuery</code>, which allows you to use LINQ with any space query operation.</p>
 </div>
 
 <div class="tc-admon-note">
@@ -67,7 +67,7 @@ var result = spaceProxy.Take&lt;Person&gt;(query.ToSpaceQuery());
 
 <h1><a name="predicates">&#160;</a>Predicates</h1>
 
-<p>The XAP LINQ provider supports various operators, as explained below.
+<p>The <MadCap:variable name="General.ProductNameXAP" /> LINQ provider supports various operators, as explained below.
 For the following code samples, assume the following classes are defined:</p>
 
 <pre><code class="language-csharp">public class Person 
@@ -251,7 +251,7 @@ foreach (var person in query)
 
 <h1><a name="aggregation">&#160;</a>Aggregation</h1>
 
-<p>XAP lets you perform aggregations across the Space.
+<p><MadCap:variable name="General.ProductNameXAP" /> lets you perform aggregations across the Space.
 There is no need to retrieve the entire data set from the Space to the client side , iterate the result set and perform the aggregation.
 The Aggregators allow you to perform the entire aggregation activity at the Space side avoiding any data retrieval back to the client side. Only the result of each aggregation activity performed with each partition is returned back to the client side where all the results are reduced and returned to the client application.</p>
 

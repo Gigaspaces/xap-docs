@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
 <h1>Space-Based Remoting</h1>
   
 
-<p>Remoting allows you to use remote invocations of POJO services, with the Space as the transport layer. Spring provides support for <a href="http://static.springframework.org/spring/docs/2.0.x/reference/remoting.html">various remoting technologies</a>. XAP uses the same concepts to provide remoting, using the Space as the underlying protocol.</p>
+<p>Remoting allows you to use remote invocations of POJO services, with the Space as the transport layer. Spring provides support for <a href="http://static.springframework.org/spring/docs/2.0.x/reference/remoting.html">various remoting technologies</a>. <MadCap:variable name="General.ProductNameXAP" /> uses the same concepts to provide remoting, using the Space as the underlying protocol.</p>
 
 <p>Some benefits of using the Space as the transport layer include:</p>
 
@@ -22,7 +22,7 @@
 
 <p>This section explains when you should choose to use each of the remoting implementations. As far as the calling code is concerned, the choice between the implementations is transparent and requires only configuration changes.</p>
 
-<p>In most cases, you should choose <a href="executor-based-remoting.html">Executor-Based Remoting</a>. It is based on the XAP <a href="task-execution-overview.html">Task Executors</a> feature, and executes the method invocation by submitting a special kind of task that executes on the Space side by calling the invoked service. This option allows for synchronous and asynchronous invocation, map/reduce style invocations, and transparent invocation failover.</p>
+<p>In most cases, you should choose <a href="executor-based-remoting.html">Executor-Based Remoting</a>. It is based on the <MadCap:variable name="General.ProductNameXAP" /> <a href="task-execution-overview.html">Task Executors</a> feature, and executes the method invocation by submitting a special kind of task that executes on the Space side by calling the invoked service. This option allows for synchronous and asynchronous invocation, map/reduce style invocations, and transparent invocation failover.</p>
 
 <p><a href="event-driven-remoting.html">Event-Driven Remoting</a> supports most of the above capabilities, but does not support map/reduce style invocations. In terms of implementation, it's based on the <a href="polling-container-overview.html">Polling Container</a> feature, which means that it writes an invocation entry to the space which is later consumed by a polling container. Once taking the invocation entry from the space, the polling container's event handler delegates the call to the space-side service.</p>
 

@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Task Execution</h1>
-        <p>XAP supports <code>Task</code> execution in an asynchronous manner, co-located with the Space (Processing Unit that started an embedded Space). <code>Tasks</code> can be executed directly on a specific cluster member using routing declarations. <code>Tasks</code> can also be executed in "broadcast" mode on all the primary cluster members concurrently, and reduced to a single result on the client side. <code>Tasks</code> are dynamic in terms of content and class definition. (The <code>Task</code> does not have to be available within the Space classpath.)</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports <code>Task</code> execution in an asynchronous manner, co-located with the Space (Processing Unit that started an embedded Space). <code>Tasks</code> can be executed directly on a specific cluster member using routing declarations. <code>Tasks</code> can also be executed in "broadcast" mode on all the primary cluster members concurrently, and reduced to a single result on the client side. <code>Tasks</code> are dynamic in terms of content and class definition. (The <code>Task</code> does not have to be available within the Space classpath.)</p>
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/Executors_task_flow_basic.jpg" alt="Executors_task_flow_basic.jpg" class="tc-picture50" />
         </div>
@@ -395,7 +395,7 @@ int result = future.get(); // returns the number of active cluster members
         </div>
         <h1><a name="changing-code-without-restarts">&#160;</a>Changing Code without Restarts</h1>
         <p>When executing a task over the Space, the code is loaded from the remote client and cached for future executions. Since the code is cached, modifications are ignored, and users are forced to restart the Space whenever they modify the code.</p>
-        <p>Starting with XAP&#160;version 12.1, you can use the <code>@SupportCodeChange</code> annotation to tell the Space your code has changed. The Space can store multiple versions of the same task. This is ideal for supporting clients using different versions of a task.</p>
+        <p>Starting with <MadCap:variable name="General.ProductNameXAP" /> version 12.1, you can use the <code>@SupportCodeChange</code> annotation to tell the Space your code has changed. The Space can store multiple versions of the same task. This is ideal for supporting clients using different versions of a task.</p>
         <p>For example, start with annotating your task with <code>@SupportCodeChange(id="1")</code>. When the code changes, set the annotation to <code>@SupportCodeChange(id="2")</code>, and the Space will load the new task.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Task version 1" style="padding:10px"><pre><code class="language-java">import org.openspaces.core.executor.Task;

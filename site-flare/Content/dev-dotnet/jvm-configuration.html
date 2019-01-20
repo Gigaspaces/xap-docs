@@ -16,7 +16,7 @@
             </li>
         </ol>
         <div class="tc-admon-note">
-            <p>Many systems define an environment variable called <code>JAVA_HOME</code> which points to the JVM installation, since most java applications and libraries (including GigaSpaces XAP) use <code>JAVA_HOME</code> to locate java. Since the <code>Settings.xml</code> file supports environment variable expansion, it is possible to set &lt;XapNet.Runtime.JavaHome&gt; to <code>%JAVA_HOME%</code>, so you can later on change the jvm location without editing the xml file.</p>
+            <p>Many systems define an environment variable called <code>JAVA_HOME</code> which points to the JVM installation, since most java applications and libraries (including <MadCap:variable name="General.ProductNameXAP" />) use <code>JAVA_HOME</code> to locate java. Since the <code>Settings.xml</code> file supports environment variable expansion, it is possible to set &lt;XapNet.Runtime.JavaHome&gt; to <code>%JAVA_HOME%</code>, so you can later on change the jvm location without editing the xml file.</p>
         </div><a name="JvmSettings">&#160;</a>
         <h1><a name="jvm-settings">&#160;</a>Jvm Settings</h1>
         <p>Unlike .NET applications, which are compiled to executable files, java applications are compiled to <code>.class</code> or <code>.jar</code> files which are executed using the <a href="http://java.sun.com/javase/6/docs/technotes/tools/windows/java.html" target="_blank">Java Application Launcher</a> (<code>java.exe</code>) tool. This tool supports various options which control the way the application is executed, such as memory allocation, garbage collection and more.</p>

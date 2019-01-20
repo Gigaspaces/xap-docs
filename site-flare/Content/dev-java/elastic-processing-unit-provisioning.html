@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -7,7 +7,7 @@
 
 <h1><a name="system-bootstrapping">&#160;</a>System Bootstrapping</h1>
 
-<p>Each machine requires a single running <a href="../overview/the-runtime-environment.html#gsa">GigaSpaces Agent</a>. The example below shows how to start a new XAP agent. The command line parameters instruct the agents to communicate with each other and start the specified amount of managers. It does not start any containers automatically. The EPU starts containers on demand.</p>
+<p>Each machine requires a single running <a href="../overview/the-runtime-environment.html#gsa">GigaSpaces Agent</a>. The example below shows how to start a new <MadCap:variable name="General.ProductNameXAP" /> agent. The command line parameters instruct the agents to communicate with each other and start the specified amount of managers. It does not start any containers automatically. The EPU starts containers on demand.</p>
 
 <p>That means that potentially any machine could be a management machine:</p>
 
@@ -92,7 +92,7 @@ gs-agent.sh --global.lus=1 --global.gsm=1 --global.esm=1
 );
 </code></pre>
 
-<p>When deploying Gigaspaces XAP on the management machine(s) place the plug-in JAR file under <code>/gigaspaces-xap/lib/platform/esm</code> folder. The ESM then loads classes specified by the <code>machineProvisioning</code> configuration. These classes need to implement either <a href="[%=Links.ApiJavaDoc%]/org/openspaces/grid/gsm/machines/plugins/ElasticMachineProvisioning.html">ElasticMachineProvisioning</a> or <a href="[%=Links.ApiJavaDoc%]/org/openspaces/grid/gsm/machines/plugins/NonBlockingElasticMachineProvisioning.html">NonBlockingElasticMachineProvisioning</a>. That class must also implement <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/bean/Bean.html">Bean</a> which has resemblance to the Spring Bean.</p>
+<p>When deploying Gigaspaces <MadCap:variable name="General.ProductNameXAP" /> on the management machine(s) place the plug-in JAR file under <code>/gigaspaces-xap/lib/platform/esm</code> folder. The ESM then loads classes specified by the <code>machineProvisioning</code> configuration. These classes need to implement either <a href="[%=Links.ApiJavaDoc%]/org/openspaces/grid/gsm/machines/plugins/ElasticMachineProvisioning.html">ElasticMachineProvisioning</a> or <a href="[%=Links.ApiJavaDoc%]/org/openspaces/grid/gsm/machines/plugins/NonBlockingElasticMachineProvisioning.html">NonBlockingElasticMachineProvisioning</a>. That class must also implement <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/bean/Bean.html">Bean</a> which has resemblance to the Spring Bean.</p>
 
 <h1><a name="automatic-rebalancing">&#160;</a>Automatic Rebalancing</h1>
 

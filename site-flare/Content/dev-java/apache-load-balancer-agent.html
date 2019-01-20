@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Apache Load Balancer Agent</h1>
-        <p>XAP comes with a built-in utility allowing you to dynamically update an Apache httpd web server load-balancing configuration, based on deployed web applications.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> comes with a built-in utility allowing you to dynamically update an Apache httpd web server load-balancing configuration, based on deployed web applications.</p>
         <p>The integration dynamically creates and updates the  <a href="http://httpd.apache.org/docs/2.2/mod/mod_proxy_balancer.html" target="_blank">mod_proxy_balancer</a> configuration, based on the state of the deployed web applications. Once changes occur (relocation / failover / changes to the number of web application instances), the utility identifies the change, updates the balancer configuration, and sends a soft restart to Apache to take the new configuration into account.</p>
         <p>General information on how to enable the mod_proxy load balancer and configuration can be found in the <a href="https://wiki.eclipse.org/Jetty/Howto/Configure_mod_proxy" target="_blank">Jetty mod_proxy docs</a>. Note, the load balancer actual configuration of specific balancer members are generated automatically as explained below.</p>
         <p>Similar agents can be implemented for other HTTP load-balancers such as <a href="http://www.f5.com" target="_blank">F5</a>, <a href="http://www.radware.com" target="_blank">Radware</a>,<a href="http://www.cisco.com/en/US/products/ps6906" target="_blank">CISCO ACE</a>, <a href="http://www.barracudanetworks.com" target="_blank">Barracuda</a> etc., using the <a href="administration-and-monitoring-overview.html">Administration and Monitoring API</a>. See the <a href="/sbp/web-load-balancer-agent-pu.html">Web Load Balancer Agent PU</a> for details.</p>
@@ -91,12 +91,12 @@ Allow from 127.0.0.1
                 <tr>
                     <td align="left">-groups value</td>
                     <td align="left">Lookup group name (or coma separated group names) to locate the lookup service via multicast discovery protocol. This option is relevant only when the load-balancer machine has multicast connectivity with the GSM machine.</td>
-                    <td align="left">The XAP default group name specified via the <code>XAP_LOOKUP_GROUPS</code> variable.</td>
+                    <td align="left">The <MadCap:variable name="General.ProductNameXAP" /> default group name specified via the <code>XAP_LOOKUP_GROUPS</code> variable.</td>
                 </tr>
                 <tr>
                     <td align="left">-locators value</td>
                     <td align="left">Host machine name(or coma separated host names) or IP(s) running the lookup service.</td>
-                    <td align="left">The XAP default locators specified via the <code>XAP_LOOKUP_LOCATORS</code> variable.</td>
+                    <td align="left">The <MadCap:variable name="General.ProductNameXAP" /> default locators specified via the <code>XAP_LOOKUP_LOCATORS</code> variable.</td>
                 </tr>
             </tbody>
         </table>

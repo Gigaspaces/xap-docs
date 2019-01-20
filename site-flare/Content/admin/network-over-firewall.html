@@ -3,10 +3,10 @@
     <head>
     </head>
     <body>
-        <h1>XAP Over a Firewall</h1>
-        <p>In many scenarios, you need to set up XAP in environments which have a firewall running. This section provides XAPs configuration recommendations for several firewall topologies:</p>
+        <h1><MadCap:variable name="General.ProductNameXAP" /> Over a Firewall</h1>
+        <p>In many scenarios, you need to set up <MadCap:variable name="General.ProductNameXAP" /> in environments which have a firewall running. This section provides XAPs configuration recommendations for several firewall topologies:</p>
         <ul>
-            <li>Basic configuration: XAP cluster (GSM and GSCs) running behind the firewall, with clients connecting through the firewall. Multicast traffic is allowed behind the firewall and unicast-only traffic comes from the clients through the firewall.</li>
+            <li>Basic configuration: <MadCap:variable name="General.ProductNameXAP" /> cluster (GSM and GSCs) running behind the firewall, with clients connecting through the firewall. Multicast traffic is allowed behind the firewall and unicast-only traffic comes from the clients through the firewall.</li>
         </ul>
         <div class="tc-admon-note">
             <p>Basic configuration, suitable for most scenarios, requires mandatory setting of the following properties (these system property settings are described below):</p>
@@ -31,34 +31,34 @@
         </div>
         <ul>
             <li>Same topology as above: All cluster components and clients communicate over unicast only. <span class="tc-bold">Multicast traffic is prohibited</span>.</li>
-            <li>The firewall divides the XAP cluster into zones. Some components (GSCs, GSM) run in one firewall zone, while the rest of the components run in another firewall zone(s). Only unicast traffic is allowed between firewall zones.</li>
+            <li>The firewall divides the <MadCap:variable name="General.ProductNameXAP" /> cluster into zones. Some components (GSCs, GSM) run in one firewall zone, while the rest of the components run in another firewall zone(s). Only unicast traffic is allowed between firewall zones.</li>
         </ul>
         <div class="tc-admon-note">
-            <p>To learn more about XAP port usage, see the <a href="network-ports.html">Port Usage Control</a> page.</p>
+            <p>To learn more about <MadCap:variable name="General.ProductNameXAP" /> port usage, see the <a href="network-ports.html">Port Usage Control</a> page.</p>
         </div>
-        <h1><a name="xap-firewall-settings">&#160;</a>XAP Firewall Settings</h1>
-        <p><span class="tc-bold">To enable all XAP components to work over a firewall and control all network activity through explicitly defined static ports:</span>
+        <h1><a name="xap-firewall-settings">&#160;</a><MadCap:variable name="General.ProductNameXAP" /> Firewall Settings</h1>
+        <p><span class="tc-bold">To enable all <MadCap:variable name="General.ProductNameXAP" /> components to work over a firewall and control all network activity through explicitly defined static ports:</span>
         </p>
         <ol>
             <li>
-                <p>All communications traversing the firewall should be switched to Unicast TCP (use XAP Jini unicast lookup locators and set the <code>-Dcom.gs.multicast.discoveryPort</code> as described in the next section). Jini Multicast discovery should be disabled.<br /></p>
+                <p>All communications traversing the firewall should be switched to Unicast TCP (use <MadCap:variable name="General.ProductNameXAP" /> Jini unicast lookup locators and set the <code>-Dcom.gs.multicast.discoveryPort</code> as described in the next section). Jini Multicast discovery should be disabled.<br /></p>
             </li>
             <li>
                 <p>Specific listener ports of system components should be <span class="tc-bold">statically set</span>.   <br /></p>
             </li>
             <li>
-                <p>Necessary listener <span class="tc-bold">port ranges</span> should be defined per each IP address, where the XAP server components reside.</p>
+                <p>Necessary listener <span class="tc-bold">port ranges</span> should be defined per each IP address, where the <MadCap:variable name="General.ProductNameXAP" /> server components reside.</p>
                 <p>Components such as GSM/Lookup Service, GSC, and Mahalo use a single Webster (HTTPD service) and a single LRMI transport port per component. Accordingly, the same quantity of Webster and LRMI ports should be planned for each IP address where those components reside.</p>
                 <p>Port ranges should be chosen continuously, as Webster and LRMI port bindings are performed sequentially, beginning from the low port number. Each additional component started on the <span class="tc-italic">same machine</span> opens a sequentially higher Webster and LRMI port, beginning from the low port in the defined port range.</p>
             </li>
             <li>
-                <p><span class="tc-bold">Firewall rules for incoming traffic</span> should include opening a TCP port for each statically defined XAP component listener, for each IP address where a XAP component is running (excluding the JMX MBean server).<br /></p>
+                <p><span class="tc-bold">Firewall rules for incoming traffic</span> should include opening a TCP port for each statically defined <MadCap:variable name="General.ProductNameXAP" /> component listener, for each IP address where a <MadCap:variable name="General.ProductNameXAP" /> component is running (excluding the JMX MBean server).<br /></p>
             </li>
             <li>
-                <p><span class="tc-bold">JMX listener ports</span> that are presented in XAP components and assigned by the RMIRegistry mechanism (the default port range begins at 10098; each component opens the next available port) can remain dynamically assigned and should not be opened in the firewall. JMX connections are dedicated to administrative purposes and can be accessed by monitoring tools behind the firewall. The MBeanServer and the RMI lookup are not available outside the firewall. <br /></p>
+                <p><span class="tc-bold">JMX listener ports</span> that are presented in <MadCap:variable name="General.ProductNameXAP" /> components and assigned by the RMIRegistry mechanism (the default port range begins at 10098; each component opens the next available port) can remain dynamically assigned and should not be opened in the firewall. JMX connections are dedicated to administrative purposes and can be accessed by monitoring tools behind the firewall. The MBeanServer and the RMI lookup are not available outside the firewall. <br /></p>
             </li>
             <li>
-                <p>Each static XAP listener port behind the firewall should be mapped by NAT to the static IP address outside of the firewall. XAP clients/servers residing outside of the firewall should be set to work versus statically mapped by NAT listeners outside IP addresses.<br /></p>
+                <p>Each static <MadCap:variable name="General.ProductNameXAP" /> listener port behind the firewall should be mapped by NAT to the static IP address outside of the firewall. <MadCap:variable name="General.ProductNameXAP" /> clients/servers residing outside of the firewall should be set to work versus statically mapped by NAT listeners outside IP addresses.<br /></p>
             </li>
             <li>
                 <p><span class="tc-bold">Mandatory</span> – the range of port numbers (just free unassigned ports allowed) should be above <code>1024</code> and below <code>65536</code>.</p>
@@ -67,7 +67,7 @@
         <div class="tc-admon-note">
             <p>Recommended port ranges - as per IANA standards, port numbers are based on three ranges: System Ports (0-1023), User Ports (1024-49151), and the Dynamic and/or Private Ports (49152-65535). Select your port range from the available user ports or dynamic ports.</p>
         </div>
-        <h2><a name="listener-ports-per-xap-component">&#160;</a>Listener Ports per XAP Component</h2>
+        <h2><a name="listener-ports-per-xap-component">&#160;</a>Listener Ports per <MadCap:variable name="General.ProductNameXAP" /> Component</h2>
         <table>
             <thead>
                 <tr>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -7,7 +7,7 @@
 
 <h1><a name="overview">&#160;</a>Overview</h1>
 
-<p>XAP's data grid clustering, scalability and high availability are based on the following concepts:</p>
+<p><MadCap:variable name="General.ProductNameXAP" />'s data grid clustering, scalability and high availability are based on the following concepts:</p>
 
 <p><span class="tc-bold">Scalability</span></p>
 
@@ -15,7 +15,7 @@
 <li>Data is segmented into <a href="data-partitioning.html">partitions</a>. Each partition includes a primary instance and ZERO or more backup instances. A partition (primary or a backup) is hosted within a single <a href="the-runtime-environment.html">Grid Service Container (GSC)</a>.</li>
 <li>Data access is load balanced across the different partitions, using a routing field or a <a href="../dev-java/routing-in-partitioned-spaces.html">routing value</a> specified as part of the Space object or as part of the read/execute request. This allows the application to control the data distribution in a transparent manner.</li>
 <li>Some operations, such as batch read or <a href="../dev-java/task-execution-overview.html">execute</a>, support <a href="../dev-java/space-based-remoting-overview.html">map-reduce</a> behavior. This allows the application to access multiple partitions in parallel.</li>
-<li>The maximum partition  size is the GSC heap size. XAP supports a large heap size (up to 100GB in RAM). A GSC may host multiple partitions (primary or backup instances).</li>
+<li>The maximum partition  size is the GSC heap size. <MadCap:variable name="General.ProductNameXAP" /> supports a large heap size (up to 100GB in RAM). A GSC may host multiple partitions (primary or backup instances).</li>
 <li>A data grid may have an unlimited number of partitions. In reality, the number of partitions will be of the same magnitude as the number of GSCs or servers that are running the data grid. This allows the data grid to scale dynamically and re-balance itself across additional GSCs.</li>
 <li>The number of data grid partitions is determined at deployment time. The number of GSCs hosting the data grid partitions is dynamic and may change during runtime. It can scale in an <a href="../dev-java/elastic-processing-unit-overview.html">elastic</a> manner when using the ESM.</li>
 </ul>
@@ -42,11 +42,11 @@
 
 <h2><a name="between-two-or-more-replicas">&#160;</a>Between Two or More Replicas</h2>
 
-<p>To ensure continuous high availability, XAP keeps one or more copies of the data.</p>
+<p>To ensure continuous high availability, <MadCap:variable name="General.ProductNameXAP" /> keeps one or more copies of the data.</p>
 
 <p>In asynchronous replication, there may be scenarios where read and write operations hit two different nodes at the same time, and end up reading two separate versions of the same data. There are various algorithms available to handle these scenarios.</p>
 
-<p>XAP uses synchronous backup to avoid the above-described scenario.  The performance overhead of synchronous replication is fixed, and is not related to the size of the cluster (each partition replicates data only to its backup replica). Data replication to the database is kept asynchronous to reduce the overhead of writing to disk.</p>
+<p><MadCap:variable name="General.ProductNameXAP" /> uses synchronous backup to avoid the above-described scenario.  The performance overhead of synchronous replication is fixed, and is not related to the size of the cluster (each partition replicates data only to its backup replica). Data replication to the database is kept asynchronous to reduce the overhead of writing to disk.</p>
 
 <h1><a name="transaction-consistency">&#160;</a>Transaction Consistency</h1>
 
@@ -60,7 +60,7 @@
 
 <h2><a name="primary-failure">&#160;</a>Primary Failure</h2>
 
-<p>XAP keeps one or more replica nodes as a hot backup. The hot backup takes over immediately if a primary node fails. The hot backup nodes use synchronous replication to ensure that there is no data loss before failover takes place.</p>
+<p><MadCap:variable name="General.ProductNameXAP" /> keeps one or more replica nodes as a hot backup. The hot backup takes over immediately if a primary node fails. The hot backup nodes use synchronous replication to ensure that there is no data loss before failover takes place.</p>
 
 <h2><a name="backup-failure">&#160;</a>Backup Failure</h2>
 
@@ -80,7 +80,7 @@
 
 <h2><a name="lookup-discovery-protocol">&#160;</a>Lookup Discovery Protocol</h2>
 
-<p>The XAP cluster discovery mechanism is based on the Jini specification. Services use the discovery protocol to find nodes within the cluster, and to share the cluster state among all the nodes.</p>
+<p>The <MadCap:variable name="General.ProductNameXAP" /> cluster discovery mechanism is based on the Jini specification. Services use the discovery protocol to find nodes within the cluster, and to share the cluster state among all the nodes.</p>
 
 <h1><a name="network-partition-tolerance">&#160;</a>Network Partition Tolerance</h1>
 

@@ -20,11 +20,11 @@
             <p>You can use the <a href="/sbp/universal-deployer.html">GigaSpaces Universal Deployer</a> to deploy complex multi processing unit applications.</p>
         </div>
         <h1><a name="the-deployment-process">&#160;</a>The Deployment Process</h1>
-        <p>Once built according to the processing unit <a href="the-processing-unit-structure-and-configuration.html">directory structure</a>, the processing unit can be deployed via the various deployment tools available in GigaSpaces XAP (<a href="../admin/gigaspaces-management-center.html">UI</a>, <a href="../admin/deploy-command-line-interface.html">CLI</a>, Ant, <a href="../started/installation-maven-overview.html">Maven</a> or the <a href="administration-and-monitoring-overview.html">Admin API</a>).</p>
+        <p>Once built according to the processing unit <a href="the-processing-unit-structure-and-configuration.html">directory structure</a>, the processing unit can be deployed via the various deployment tools available in <MadCap:variable name="General.ProductNameXAP" /> (<a href="../admin/gigaspaces-management-center.html">UI</a>, <a href="../admin/deploy-command-line-interface.html">CLI</a>, Ant, <a href="../started/installation-maven-overview.html">Maven</a> or the <a href="administration-and-monitoring-overview.html">Admin API</a>).</p>
         <p>After you <a href="the-processing-unit-overview.html">package</a> the processing unit and deploy it via one of the deployment tools, the deployment tool uploads it to all the running <a href="../overview/the-runtime-environment.html#gsm">GSMs</a>, where it is extracted and provisioned to the <a href="../overview/the-runtime-environment.html#gsc">GSCs</a>.</p>
         <div class="tc-admon-note">
             <p>The recommended way to deploy the processing unit is by packaging it into a .jar or a .zip archive and specifying the location of the packaged file to the deployment tool in use.</p>
-            <p>However,   XAP also supports the deployment of exploded processing units. (The deployment tool will package the processing unit directories into a jar file automatically). Another option to deploy a processing unit is by placing the exploded processing unit under the deploy directory of each of the GSMs and issuing  a deploy command with the processing unit name (the name of the directory under the deploy directory).</p>
+            <p>However,   <MadCap:variable name="General.ProductNameXAP" /> also supports the deployment of exploded processing units. (The deployment tool will package the processing unit directories into a jar file automatically). Another option to deploy a processing unit is by placing the exploded processing unit under the deploy directory of each of the GSMs and issuing  a deploy command with the processing unit name (the name of the directory under the deploy directory).</p>
         </div>
         <h1><a name="distribution-of-processing-unit-binaries-to-the-running-gscs">&#160;</a>Distribution of Processing Unit Binaries to the Running GSCs</h1>
         <p>By default, when a processing unit instance is provisioned to run on a certain GSC, the GSC downloads the processing unit archive from the GSM into the <code>&lt;XAP Root&gt;/work/processing-units</code> directory (The location of this directory can be overridden via the <code>com.gs.work</code> system property).</p>
@@ -242,7 +242,7 @@ public class PUReatartMain {
 }
 </code></pre>
         <div class="tc-admon-note">
-            <p>The <a href="/sbp/xap-hot-deploy.html">XAP Hot Deploy</a> tool allows business logic running as a PU to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach , placing new PU code on the GSM PU deploy folder and later restart each PU instance.</p>
+            <p>The <a href="/sbp/xap-hot-deploy.html"><MadCap:variable name="General.ProductNameXAP" /> Hot Deploy</a> tool allows business logic running as a PU to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach , placing new PU code on the GSM PU deploy folder and later restart each PU instance.</p>
         </div>
         <h1><a name="application-deployment-and-processing-unit-dependencies-a-name-app-deployment-pu-dependencies-a">&#160;</a>Application Deployment and Processing Unit Dependencies <a name="app-deployment-pu-dependencies"></a></h1>
         <p>An application is a logical abstraction that groups one or more Processing Units. Application allows:</p>
@@ -274,7 +274,7 @@ for (ProcessingUnit pu : dataApp.getProcessingUnits()) {
 </code></pre>
             </div>
             <div title="  Admin API and XML " style="padding:10px">
-                <p>Since XAP v9.0.1 the processing unit dependencies can be described using an XML file.</p><pre><code class="language-java">Admin admin = new AdminFactory().addGroup("myGroup").create();
+                <p>The processing unit dependencies can be described using an XML file.</p><pre><code class="language-java">Admin admin = new AdminFactory().addGroup("myGroup").create();
 //The dist zip file includes feeder.jar and application.xml file
 File application = new File("/opt/gigaspaces/examples/data/dist.zip");
 //Application folders are supported as well

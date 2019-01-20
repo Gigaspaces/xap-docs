@@ -4,8 +4,8 @@
     </head>
     <body>
         <h1>HTTP Session Management</h1>
-        <p>The XAP-Jetty integration comes with a support for storing the <a href="http://download.oracle.com/javaee/1.3/api/javax/servlet/http/HttpSession.html" target="_blank">javax.servlet.http.HttpSession</a> in the Space allowing supporting session replication and failover between different web application instances deployed into XAP containers.</p>
-        <p>The XAP HTTP Session Management provides the following:</p>
+        <p>The <MadCap:variable name="General.ProductNameXAP" />-Jetty integration comes with a support for storing the <a href="http://download.oracle.com/javaee/1.3/api/javax/servlet/http/HttpSession.html" target="_blank">javax.servlet.http.HttpSession</a> in the Space allowing supporting session replication and failover between different web application instances deployed into <MadCap:variable name="General.ProductNameXAP" /> containers.</p>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> HTTP Session Management provides the following:</p>
         <ul>
             <li>
                 <p>Avoid using database as the persistent storage media - Better performance and simplify the deployment</p>
@@ -26,7 +26,7 @@
         <h1><a name="how-to-enable-xap-s-http-session-management">&#160;</a>How to enable HTTP Session Management</h1>
         <p>There are several ways to configure Space session based support, depending on the definition of which Space and how the Space was started.</p>
         <h2><a name="using-the-deploy-property">&#160;</a>Using the Deploy Property</h2>
-        <p>Here is how you can deploy an existing WAR file without changing it (or use Spring) to use XAP HTTP Session Management:</p>
+        <p>Here is how you can deploy an existing WAR file without changing it (or use Spring) to use <MadCap:variable name="General.ProductNameXAP" /> HTTP Session Management:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="CLI" style="padding:10px"><pre><code class="language-java">gs deploy -properties embed://jetty.sessions.spaceUrl=jini://*/*/sessionSpace?useLocalCache myWar.war
 </code></pre>
@@ -92,7 +92,7 @@
             </tbody>
         </table>
         <div class="tc-admon-note">
-            <p>XAP integration implements Jetty <code>SessionManager</code> and <code>SessionIdManager</code> in <code>GigaSesssionManager</code> and <code>GigaSessionIdManager</code>. When setting the <code>jetty.sessions.spaceUrl</code> they get automatically set as the session manager and session id manager of the web app.</p>
+            <p><MadCap:variable name="General.ProductNameXAP" /> integration implements Jetty <code>SessionManager</code> and <code>SessionIdManager</code> in <code>GigaSesssionManager</code> and <code>GigaSessionIdManager</code>. When setting the <code>jetty.sessions.spaceUrl</code> they get automatically set as the session manager and session id manager of the web app.</p>
         </div>
         <h1><a name="deployment-topologies">&#160;</a>Deployment Topologies</h1>
         <p>The HTTP Session support several Deployment Topologies:</p>

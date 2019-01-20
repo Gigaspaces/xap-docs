@@ -11,8 +11,8 @@ As long as there is enough memory resources across the available machines, the d
             <tr>
                 <td style="width:60%;">
                     <ul>
-                        <li>XAP 12<br /></li>
-                        <li>4 VMs - XAP-1 , XAP-2 , XAP-3 , XAP-4<br /></li>
+                        <li><MadCap:variable name="General.ProductNameXAP" /> 12<br /></li>
+                        <li>4 VMs - <MadCap:variable name="General.ProductNameXAP" />-1 , <MadCap:variable name="General.ProductNameXAP" />-2 , <MadCap:variable name="General.ProductNameXAP" />-3 , <MadCap:variable name="General.ProductNameXAP" />-4<br /></li>
                         <li>8 GM RAM , 4 cores each</li>
                     </ul>
                     <p>The Data-Grid cluster:<br />
@@ -35,13 +35,13 @@ As long as there is enough memory resources across the available machines, the d
                         <li>Start 4 VMs</li>
                         <li>Start an agent on each machine. One machine acting as management machine running as well LUS and GSM.</li>
                         <li>Deploy an Elastic PU. With our example we will deploy data grid using offheap storage mode.</li>
-                        <li>Shutdown one VM (XAP-4) to illustrate a full machine failure.</li>
+                        <li>Shutdown one VM (<MadCap:variable name="General.ProductNameXAP" />-4) to illustrate a full machine failure.</li>
                         <li>IMDG Cluster rebalance automatically across 3 existing VMs. As 3 VMs can accommodate entire data set , no data loss. All primary and backup instances still running.</li>
-                        <li>Shutdown another VM (XAP-3).  In this point half of the original grid failed.</li>
+                        <li>Shutdown another VM (<MadCap:variable name="General.ProductNameXAP" />-3).  In this point half of the original grid failed.</li>
                         <li>IMDG Cluster rebalance automatically across 2 existing VMs. As 2 VMs can accommodate entire data set , no data loss. All primary and backup instances still running.</li>
-                        <li>Start VM (XAP-3)</li>
+                        <li>Start VM (<MadCap:variable name="General.ProductNameXAP" />-3)</li>
                         <li>IMDG Cluster rebalance automatically across 3 existing VMs. System increased its CPU capacity.</li>
-                        <li>Start another VM (XAP-4)</li>
+                        <li>Start another VM (<MadCap:variable name="General.ProductNameXAP" />-4)</li>
                         <li>IMDG Cluster rebalance automatically across 4 existing VMs. System increased its CPU capacity to the original size.</li>
                     </ol>
                 </td>
@@ -53,9 +53,9 @@ As long as there is enough memory resources across the available machines, the d
             </tr>
         </table>
         <h1><a name="starting-the-agent">&#160;</a>Starting the agent</h1>
-        <p>Management node (XAP-1)</p><pre><code class="language-bash">./gs-agent.sh --esm=1 --lus=1 --gsm=1
+        <p>Management node (<MadCap:variable name="General.ProductNameXAP" />-1)</p><pre><code class="language-bash">./gs-agent.sh --esm=1 --lus=1 --gsm=1
 </code></pre>
-        <p>Other nodes (XAP-2, XAP-3 , XAP-4)</p><pre><code class="language-bash%">./gs-agent.sh 
+        <p>Other nodes (<MadCap:variable name="General.ProductNameXAP" />-2, <MadCap:variable name="General.ProductNameXAP" />-3 , <MadCap:variable name="General.ProductNameXAP" />-4)</p><pre><code class="language-bash%">./gs-agent.sh 
 </code></pre>
         <h1><a name="elastic-pu">&#160;</a>Elastic PU</h1>
         <h2><a name="the-space-pu-xml">&#160;</a>The Space pu.xml</h2><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -83,7 +83,7 @@ As long as there is enough memory resources across the available machines, the d
         <p>
             <img src="../Resources/Static/attachment_files/epu/example3.png" alt="image" />
         </p>
-        <h1><a name="shutting-down-xap-4">&#160;</a>Shutting down XAP 4</h1>
+        <h1><a name="shutting-down-xap-4">&#160;</a>Shutting down <MadCap:variable name="General.ProductNameXAP" /> 4</h1>
         <p>Lets shut down instance 4. You will see in the web management console, that all instances have been distributed evenly across the rest of the available resources:</p>
         <p>
             <img src="../Resources/Static/attachment_files/epu/example4.png" alt="image" />
@@ -95,7 +95,7 @@ As long as there is enough memory resources across the available machines, the d
                 <img src="../Resources/Static/attachment_files/epu/example5.png" alt="image" />
             </p>
         </div>
-        <h1><a name="shutting-down-xap-3">&#160;</a>Shutting down XAP 3</h1>
+        <h1><a name="shutting-down-xap-3">&#160;</a>Shutting down <MadCap:variable name="General.ProductNameXAP" /> 3</h1>
         <p>Lets shut down instance 3. Again look at the web management console:
 <img src="../Resources/Static/attachment_files/epu/example6.png" alt="image" /></p>
         <p>You can see that all primary and backup instances have been provisioned into the other remaining VM's:</p>
@@ -105,7 +105,7 @@ As long as there is enough memory resources across the available machines, the d
                 <img src="../Resources/Static/attachment_files/epu/example7.png" alt="image" />
             </p>
         </div>
-        <h1><a name="restart-xap-3">&#160;</a>Restart XAP 3</h1>
+        <h1><a name="restart-xap-3">&#160;</a>Restart <MadCap:variable name="General.ProductNameXAP" /> 3</h1>
         <p>Once you restart this instance, you will see that the existing primaries and backup instances are rebalanced over all three servers:</p>
         <p>
             <img src="../Resources/Static/attachment_files/epu/example8.png" alt="image" />
@@ -116,7 +116,7 @@ As long as there is enough memory resources across the available machines, the d
                 <img src="../Resources/Static/attachment_files/epu/example9.png" alt="image" />
             </p>
         </div>
-        <h1><a name="restart-xap-4">&#160;</a>Restart XAP 4</h1>
+        <h1><a name="restart-xap-4">&#160;</a>Restart <MadCap:variable name="General.ProductNameXAP" /> 4</h1>
         <p>Again, you will see that the existing primaries and backup instances are rebalanced over all four servers:</p>
         <p>
             <img src="../Resources/Static/attachment_files/epu/example10.png" alt="image" />

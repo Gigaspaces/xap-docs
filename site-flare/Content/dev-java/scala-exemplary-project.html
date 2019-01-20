@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -7,11 +7,11 @@
 
 <h1><a name="overview">&#160;</a>Overview</h1>
 
-<p>Here is an example project that shows how XAP Scala can be used in a real project and how Scala and Java code might be integrated.</p>
+<p>Here is an example project that shows how <MadCap:variable name="General.ProductNameXAP" /> Scala can be used in a real project and how Scala and Java code might be integrated.</p>
 
 <h1><a name="openspaces-maven-plugin-project">&#160;</a>OpenSpaces Maven plugin project</h1>
 
-<p>The project is based on a template project of <code>basic</code> type from the <code>XAP Maven plugin</code>. A few changes were introduced:</p>
+<p>The project is based on a template project of <code>basic</code> type from the <MadCap:variable name="General.ProductNameXAP" /> Maven plugin. A few changes were introduced:</p>
 
 <ul>
 <li><code>Common</code> module, which implements Space classes,  written in Scala and takes advantage of constructor based properties.</li>
@@ -26,7 +26,7 @@
 <ol>
 <li>JDK in version at least 1.6 is required to build the project.</li>
 <li>The project uses <code>maven</code> build tool.</li>
-<li>To run the project, Scala libraries have to be a accessible for XAP.</li>
+<li>To run the project, Scala libraries have to be a accessible for <MadCap:variable name="General.ProductNameXAP" />.</li>
 </ol>
 
 <p>Please note that Scala is not required to build the project, since requried libraries will be downloaded by <code>maven</code>.</p>
@@ -37,18 +37,18 @@
 <li>Download <a href="https://github.com/Gigaspaces/xap-scala/archive/10.2.0_ga_build13800_07_28_2015.zip">xap-scala</a> and unzip it.</li>
 <li>From the project's main directory <code>$XAP_SCALA</code> run command <code>mvn clean install</code></li>
 <li>From the project's main directory <code>$XAP_SCALA/example/gs-openspaces-scala-example</code> run command <code>mvn clean package</code> - necessary JAR files to deploy on a grid will be created.</li>
-<li>Start XAP Grid Service by running command: <code>$GS_HOME/bin/gs-agent.sh/bat</code></li>
+<li>Start <MadCap:variable name="General.ProductNameXAP" /> Grid Service by running command: <code>$GS_HOME/bin/gs-agent.sh/bat</code></li>
 <li>Run this command: <code>$GS_HOME/tools/maven/installmavenrep.sh/bat</code></li>
 <li>Deploy the project on the grid (from <code>$XAP_SCALA/example/gs-openspaces-scala-example</code>): <code>mvn os:deploy -Dgroups=$XAP_LOOKUP_GROUPS</code>.</li>
 </ol>
 
-<h1><a name="xap-scala-features">&#160;</a>XAP Scala features</h1>
+<h1><a name="xap-scala-features">&#160;</a><MadCap:variable name="General.ProductNameXAP" /> Scala features</h1>
 
 <h2><a name="constructor-based-properties">&#160;</a>Constructor based properties</h2>
 
 <p><code>Common</code> module defines Space classes used by other modules. Please note, that the classes are written in Scala and are used in other Scala and Java modules as well. All of these classes are translated to <code>bytecode</code> and therefore can be used interchangeably.</p>
 
-<p>Sometimes, having immutable state is a desired feature. This requirement is covered in XAP Scala by classes that use constructor based properties, in case of the <code>common</code> module it is the <code>Verification</code> class. It is written only once to the <code>Space</code> and never changed (instances can be removed).</p>
+<p>Sometimes, having immutable state is a desired feature. This requirement is covered in <MadCap:variable name="General.ProductNameXAP" /> Scala by classes that use constructor based properties, in case of the <code>common</code> module it is the <code>Verification</code> class. It is written only once to the <code>Space</code> and never changed (instances can be removed).</p>
 
 <pre><code class="language-scala">case class Verification @SpaceClassConstructor() (
   @BeanProperty
@@ -104,7 +104,7 @@ val unverifiedData = gigaSpace.predicate.readMultiple { data: Data =&gt; data.pr
 
 <div class="tc-admon-note">
   
-  <p>Please note that <code>gigaSpace</code> from the code above is an instance of ScalaEnhancedGigaSpaceWrapper - a wrapper around GigaSpace introduced in XAP Scala.</p>
+  <p>Please note that <code>gigaSpace</code> from the code above is an instance of ScalaEnhancedGigaSpaceWrapper - a wrapper around GigaSpace introduced in <MadCap:variable name="General.ProductNameXAP" /> Scala.</p>
 </div>
 
 <h1><a name="building-scala-and-mixed-java-scala-modules">&#160;</a>Building Scala and mixed Java/Scala modules</h1>

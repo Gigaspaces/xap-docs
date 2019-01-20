@@ -21,16 +21,16 @@
                 <p>The Web Management Console supports generating the following types of dump files:</p>
                 <ul>
                     <li>
-                        <p>Overview (provides time of dump, XAP build and version, license information, number of host machines, number of grid components, service grid information, and host information)</p>
+                        <p>Overview (provides time of dump, <MadCap:variable name="General.ProductNameXAP" /> build and version, license information, number of host machines, number of grid components, service grid information, and host information)</p>
                     </li>
                     <li>
-                        <p>Hosts (complete information dump per host, generated per XAP grid component)</p>
+                        <p>Hosts (complete information dump per host, generated per <MadCap:variable name="General.ProductNameXAP" /> grid component)</p>
                     </li>
                     <li>
                         <p>Containers (container information per host)</p>
                     </li>
                     <li>
-                        <p>Per component (select a specific XAP component from any of the console views)</p>
+                        <p>Per component (select a specific <MadCap:variable name="General.ProductNameXAP" /> component from any of the console views)</p>
                     </li>
                 </ul>
                 <p><span class="tc-bold">To generate a dump file:</span>
@@ -40,7 +40,7 @@
                         <p>From the menu bar, click <span class="tc-bold">Generate Dump</span> and select from the following options:</p>
                         <ol type="a" style="list-style-type: lower-alpha;">
                             <li>
-                                <p><span class="tc-bold">Generate hosts dump</span> - This is the most comprehensive dump file, generated per host with an overview file, summary file, and all information defined by the user per XAP component.</p>
+                                <p><span class="tc-bold">Generate hosts dump</span> - This is the most comprehensive dump file, generated per host with an overview file, summary file, and all information defined by the user per <MadCap:variable name="General.ProductNameXAP" /> component.</p>
                             </li>
                             <li>
                                 <p><span class="tc-bold">Generate GSCs dump only</span> - Partial dump file generated per host of the containers with an overview file, summary file, and all information defined by the user.</p>
@@ -62,7 +62,7 @@
                         <ol type="a">
                             <ol style="list-style-type: lower-alpha;">
                                 <li>
-                                    <p>In the <span class="tc-bold">Cause for dump retrieval</span> box, type a reason for generating the dump file. This text will appear in the summary file for each XAP component.</p>
+                                    <p>In the <span class="tc-bold">Cause for dump retrieval</span> box, type a reason for generating the dump file. This text will appear in the summary file for each <MadCap:variable name="General.ProductNameXAP" /> component.</p>
                                 </li>
                                 <li>In the <span class="tc-bold">Select Dump Types</span> area, check the options for the information you want in the dump file, which provides a summary file plus the following:
     <ul><li><p><span class="tc-bold">JVM Thread Dump</span> - container state and thread information per container. It is recommended to choose this only on a specific host or GSC that a Java heap dump should be generated for.</p></li><li><p><span class="tc-bold">Network Dump</span> - network statistics per container.</p></li><li><p><span class="tc-bold">Log Dump</span> - log files for all services, including those that have been terminated, or only services that are currently running (if the <span class="tc-bold">Only Live Services Log Dump</span> option is checked). This type of dump file is useful for troubleshooting failover scenarios.</p></li><li><p><span class="tc-bold">Processing Unit Dump</span> - pu.xml file per Processing Unit, event container information per Processing Unit instance, and a summary file per Space.</p></li><li><p><span class="tc-bold">JVM Heap Dump</span> - binary heap dump file.</p></li></ul></li>

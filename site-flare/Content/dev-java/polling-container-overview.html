@@ -125,7 +125,7 @@ pollingEventListenerContainer.destroy();
             <p>For more details, refer to <a href="fifo-grouping.html">FIFO Grouping</a>.</p>
         </div>
         <h1><a name="static-template-definition">&#160;</a>Static Template Definition</h1>
-        <p>When performing receive operations, a template is defined. This creates a virtualized subset of data within the Space that matches it. XAP supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. XAP allows the use of <a href="query-sql.html">SQLQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
+        <p>When performing receive operations, a template is defined. This creates a virtualized subset of data within the Space that matches it. <MadCap:variable name="General.ProductNameXAP" /> supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. <MadCap:variable name="General.ProductNameXAP" /> allows the use of <a href="query-sql.html">SQLQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Annotation" style="padding:10px"><pre><code class="language-java">@EventDriven @Polling
 public class SimpleListener {
@@ -347,7 +347,7 @@ public class SimpleListener {
     Object receive(Object template, GigaSpace gigaSpace, long receiveTimeout) throws DataAccessException;
 }
 </code></pre>
-        <p>XAP comes with several built-in receive operation-handler implementations:</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> comes with several built-in receive operation-handler implementations:</p>
         <table>
             <thead>
                 <tr>

@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Admin API</h1>
-        <p>The Admin API provides a way to administer and monitor all of XAP services and components using a simple API. The API provides information and the ability to operate on the currently running <a href="../overview/the-runtime-environment.html#gsa">XAP Agent</a>, <a href="../overview/the-runtime-environment.html#gsm">XAP Manager</a>, <a href="../overview/the-runtime-environment.html#gsc">XAP Container</a>, <a href="../overview/the-runtime-environment.html#lus">Lookup Service</a>, <a href="the-processing-unit-overview.html">Processing Unit</a> and Spaces.</p>
+        <p>The Admin API provides a way to administer and monitor all of <MadCap:variable name="General.ProductNameXAP" /> services and components using a simple API. The API provides information and the ability to operate on the currently running <a href="../overview/the-runtime-environment.html#gsa">XAP Agent</a>, <a href="../overview/the-runtime-environment.html#gsm">XAP Manager</a>, <a href="../overview/the-runtime-environment.html#gsc">XAP Container</a>, <a href="../overview/the-runtime-environment.html#lus">Lookup Service</a>, <a href="the-processing-unit-overview.html">Processing Unit</a> and Spaces.</p>
         <p><span class="tc-bold">Dependencies</span>
         </p>
         <p>In order to use this feature, include the <code>${XAP_HOME}/lib/platform/service-grid/xap-admin.jar</code> file on your classpath or use maven dependencies:</p><pre><code class="language-xml">&lt;dependency&gt;
@@ -271,7 +271,7 @@ public void space() {
         <p>When the <code>Admin</code> is created, it starts to receive discovery events from all the advertised services/components within its lookup groups and lookup locators. The events occur asynchronously and the data model within the Admin API gets initialized in the background with services coming and going.</p>
         <p>This means that just creating the <code>Admin</code> and calling a specific "getter" for a data structure might not return what is currently deployed, and you should wait until the structures are filled. Some components have a <code>waitFor</code> method that allows waiting for a specific number of services to be up. When navigating the data model, the Admin API provides its most up-to-date state of the system it is monitoring.</p>
         <h1><a name="domain-model">&#160;</a>Domain Model</h1>
-        <p>The Admin Domain Model has representation to all the XAP-level main actors. They include:</p>
+        <p>The Admin Domain Model has representation to all the <MadCap:variable name="General.ProductNameXAP" />-level main actors. They include:</p>
         <p>
             <img src="../Resources/Static/attachment_files/admin/admin_domain_model.png" width="569" height="388" />
         </p>
@@ -760,7 +760,7 @@ public void space() {
                 </tr>
                 <tr>
                     <td>Description</td>
-                    <td>A Virtual Machine (JVM) that is currently running at least one XAP component/service.</td>
+                    <td>A Virtual Machine (JVM) that is currently running at least one <MadCap:variable name="General.ProductNameXAP" /> component/service.</td>
                 </tr>
                 <tr>
                     <td>Main Operations</td>
@@ -818,7 +818,7 @@ public void space() {
                 </tr>
                 <tr>
                     <td>Description</td>
-                    <td>Actual Machine (identified by its host address) running one or more XAP components/services in one or more Virtual Machines. Associated with one operating system.</td>
+                    <td>Actual Machine (identified by its host address) running one or more <MadCap:variable name="General.ProductNameXAP" /> components/services in one or more Virtual Machines. Associated with one operating system.</td>
                 </tr>
                 <tr>
                     <td>Main Operations</td>
@@ -876,7 +876,7 @@ public void space() {
                 </tr>
                 <tr>
                     <td>Description</td>
-                    <td>The operating system that XAP components/services are running on. Associated with one Machine.</td>
+                    <td>The operating system that <MadCap:variable name="General.ProductNameXAP" /> components/services are running on. Associated with one Machine.</td>
                 </tr>
                 <tr>
                     <td>Main Operations</td>
@@ -934,7 +934,7 @@ public void space() {
                 </tr>
                 <tr>
                     <td>Description</td>
-                    <td>Communication layer that each XAP component/service uses.</td>
+                    <td>Communication layer that each <MadCap:variable name="General.ProductNameXAP" /> component/service uses.</td>
                 </tr>
                 <tr>
                     <td>Main Operations</td>
@@ -1196,7 +1196,7 @@ Here is an example:</p>
     properties.put("SLA", processingUnit.getNumberOfInstances() + (processingUnit.getNumberOfBackups()&gt;0 ? "," + processingUnit.getNumberOfBackups(): ""));
 </code></pre><a name="servicemonitors">&#160;</a>
         <h1><a name="service-monitors">&#160;</a>Service Monitors</h1>
-        <p>The Admin API allows you to monitor XAP services. The information is available through the <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">ProcessingUnitInstanceStatistics</a>.</p>
+        <p>The Admin API allows you to monitor <MadCap:variable name="General.ProductNameXAP" /> services. The information is available through the <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">ProcessingUnitInstanceStatistics</a>.</p>
         <table>
             <thead>
                 <tr>

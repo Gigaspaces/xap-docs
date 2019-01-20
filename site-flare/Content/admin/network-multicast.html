@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -10,10 +10,10 @@
 <p>The word "multicast" is typically used to refer to IP Multicast, the implementation of the multicast concept on the IP routing level, where routers create optimal spanning tree distribution paths for data grams sent to a multicast destination address in realtime. However, there are also other implementations of the multicast distribution strategy listed below.
 (Source - wikipedia: <a href="http://en.wikipedia.org/wiki/Multicast">http://en.wikipedia.org/wiki/Multicast</a>).</p>
 
-<p>XAP uses multicast in the following cases:</p>
+<p><MadCap:variable name="General.ProductNameXAP" /> uses multicast in the following cases:</p>
 
 <ul>
-<li><a href="../dev-java/deploying-onto-the-service-grid.html">When deploying to the service grid</a> XAP uses multicast to discover the <a href="network-lookup-service-configuration.html">Lookup Service</a>, and register their proxies.</li>
+<li><a href="../dev-java/deploying-onto-the-service-grid.html">When deploying to the service grid</a> <MadCap:variable name="General.ProductNameXAP" /> uses multicast to discover the <a href="network-lookup-service-configuration.html">Lookup Service</a>, and register their proxies.</li>
 <li>Clients use multicast to discover the <a href="network-lookup-service-configuration.html">Lookup Service</a> and look up a matching service proxy (such as the space).</li>
 </ul>
 
@@ -36,7 +36,7 @@ Refer to the <a href="network-multicast-is-available.html">How to Determine Whet
 
 <h1><a name="to-multicast-or-to-not-multicast">&#160;</a>To Multicast or to not Multicast?</h1>
 
-<p>Multicast is not a mandatory with XAP. It is used as a secondary mechanism for lookup service discovery. Unicast is the other mechanism. Both are turned on by default on the client side and on the service grid side (GSM,GSC,LUS).</p>
+<p>Multicast is not a mandatory with <MadCap:variable name="General.ProductNameXAP" />. It is used as a secondary mechanism for lookup service discovery. Unicast is the other mechanism. Both are turned on by default on the client side and on the service grid side (GSM,GSC,LUS).</p>
 
 <p>Multicast is not used with replication , notification , monitoring or any client activity against the space. Disabling multicast discovery means you are loosing dynamicy for the lookup service location. This means if the lookup service fails (very low probably to happen) you will be able to start it only on the machines listed on the <code>XAP_LOOKUP_LOCATORS</code> list. Client <code>locators</code> should have the same list used.</p>
 
@@ -68,7 +68,7 @@ Make sure the <code>/etc/hosts</code> has the machine's IP, together with the IP
   <p>Make sure all network machines can ping each other. You might need to list all the network machines' IPs as part of each machine's <code>hosts</code> file, or have a DHCP server configured.</p>
 </div>
 
-<p>Before running XAP, make sure your network interface supports multicast, and the appropriate routes are properly configured.</p>
+<p>Before running <MadCap:variable name="General.ProductNameXAP" />, make sure your network interface supports multicast, and the appropriate routes are properly configured.</p>
 
 <p>To check if your network interface supports multicast, run the following <code>ifconfig</code>:</p>
 

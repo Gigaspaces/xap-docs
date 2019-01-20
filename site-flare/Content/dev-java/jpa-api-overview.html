@@ -4,13 +4,13 @@
     </head>
     <body>
         <h1>JPA API</h1>
-        <p>The Java Persistency API (JPA) is a Java-programming language framework that manages relational data in applications using the Java platform. XAP's JPA API allows you to use the JPA's functionality and annotations, and to execute JPQL queries on a Space. XAP's JPA implementation is based on <a href="http://openjpa.apache.org/" target="_blank">OpenJPA</a>.</p>
+        <p>The Java Persistency API (JPA) is a Java-programming language framework that manages relational data in applications using the Java platform. <MadCap:variable name="General.ProductNameXAP" />'s JPA API allows you to use the JPA's functionality and annotations, and to execute JPQL queries on a Space. <MadCap:variable name="General.ProductNameXAP" />'s JPA implementation is based on <a href="http://openjpa.apache.org/" target="_blank">OpenJPA</a>.</p>
         <div class="tc-admon-note">
-            <p>We recommend that you <a href="http://download.oracle.com/javaee/6/tutorial/doc/bnbpz.html">familiarize yourself with JPA</a> before reading this section. We also suggest that you review the <a href="/sbp/first-jpa-app.html">XAP PetClinic JPA Tutorial</a>, which describes how a standard JPA application (the Spring PetClinic) can be adapted to XAP JPA and deployed to the XAP runtime environment.</p>
+            <p>We recommend that you <a href="http://download.oracle.com/javaee/6/tutorial/doc/bnbpz.html">familiarize yourself with JPA</a> before reading this section. We also suggest that you review the <a href="/sbp/first-jpa-app.html"><MadCap:variable name="General.ProductNameXAP" /> PetClinic JPA Tutorial</a>, which describes how a standard JPA application (the Spring PetClinic) can be adapted to <MadCap:variable name="General.ProductNameXAP" /> JPA and deployed to the <MadCap:variable name="General.ProductNameXAP" /> runtime environment.</p>
         </div>
-        <h1><a name="xap-jpa-configuration">&#160;</a>XAP JPA Configuration</h1>
+        <h1><a name="xap-jpa-configuration">&#160;</a><MadCap:variable name="General.ProductNameXAP" /> JPA Configuration</h1>
         <h2><a name="openjpa">&#160;</a>OpenJPA</h2>
-        <p>OpenJPA's JAR file is included with the XAP distribution (provided under <code>&lt;XAP root&gt;/lib/optional/jpa</code>), and the XAP-specific JPA implementation classes are part of the OpenSpaces JAR (located under <code>&lt;XAP root&gt;/lib/required/xap-openspaces.jar</code>).
+        <p>OpenJPA's JAR file is included with the <MadCap:variable name="General.ProductNameXAP" /> distribution (provided under <code>&lt;XAP root&gt;/lib/optional/jpa</code>), and the <MadCap:variable name="General.ProductNameXAP" />-specific JPA implementation classes are part of the OpenSpaces JAR (located under <code>&lt;XAP root&gt;/lib/required/xap-openspaces.jar</code>).
 Maven users should define the following dependency in their <code>pom.xml</code> file:</p><pre><code class="language-xml">&lt;dependencies&gt;
   &lt;dependency&gt;
     &lt;groupId&gt;org.apache.openjpa&lt;/groupId&gt;
@@ -20,7 +20,7 @@ Maven users should define the following dependency in their <code>pom.xml</code>
 &lt;/dependencies&gt;
 </code></pre>
         <h2><a name="the-persistence-xml-file">&#160;</a>The persistence.xml File</h2>
-        <p>To enable the XAP JPA implementation, you should specify the following three mandatory properties in your <code>persistence.xml</code> file:</p>
+        <p>To enable the <MadCap:variable name="General.ProductNameXAP" /> JPA implementation, you should specify the following three mandatory properties in your <code>persistence.xml</code> file:</p>
         <ul>
             <li><code>BrokerFactory</code> should be set to <code>abstractstore</code>, which tells OpenJPA that an alternate <code>StoreManager</code> (the layer responsible for interacting with the underlying database) is going to be used.</li>
             <li><code>abstractstore.AbstractStoreManager</code> should be set to <code>org.openspaces.jpa.StoreManager</code>, which tells OpenJPA to use the OpenSpaces <code>StoreManager</code>.</li>
@@ -29,7 +29,7 @@ Maven users should define the following dependency in their <code>pom.xml</code>
         <p>Your <code>persistence.xml</code> file should be placed in any **/META-INF folder in your classpath.</p>
         <h3><a name="brokerfactory-property">&#160;</a>BrokerFactory Property</h3>
         <p>There is no need to set the <code>abstractstore.AbstractStoreManager</code> property. Instead, make sure to set the <code>BrokerFactory</code> property to <code>org.openspaces.jpa.BrokerFactory</code>, as shown in the example below.</p>
-        <p>The following is an example of a XAP JPA <code>persistence.xml</code> configuration file:</p><pre><code class="language-xml">&lt;persistence-unit name="gigaspaces" transaction-type="RESOURCE_LOCAL"&gt;
+        <p>The following is an example of a <MadCap:variable name="General.ProductNameXAP" /> JPA <code>persistence.xml</code> configuration file:</p><pre><code class="language-xml">&lt;persistence-unit name="gigaspaces" transaction-type="RESOURCE_LOCAL"&gt;
     &lt;provider&gt;org.apache.openjpa.persistence.PersistenceProviderImpl&lt;/provider&gt;
     &lt;properties&gt;
             &lt;property name="BrokerFactory" value="abstractstore"/&gt;
@@ -46,7 +46,7 @@ Maven users should define the following dependency in their <code>pom.xml</code>
 &lt;/persistence-unit&gt;
 </code></pre>
         <h3><a name="transaction-read-lock-level">&#160;</a>Transaction Read Lock Level</h3>
-        <p>The default XAP JPA read lock level is set to "read", which is equivalent to XAP's <code>ReadModifiers.REPEATABLE_READ</code>. In order to use <code>ReadModifiers.EXCLUSIVE_READLOCK</code>, the <code>ReadLockLevel</code> property should be set to "write":</p><pre><code class="language-xml">  &lt;property name="ReadLockLevel" value="write"/&gt;
+        <p>The default <MadCap:variable name="General.ProductNameXAP" /> JPA read lock level is set to "read", which is equivalent to <MadCap:variable name="General.ProductNameXAP" />'s <code>ReadModifiers.REPEATABLE_READ</code>. In order to use <code>ReadModifiers.EXCLUSIVE_READLOCK</code>, the <code>ReadLockLevel</code> property should be set to "write":</p><pre><code class="language-xml">  &lt;property name="ReadLockLevel" value="write"/&gt;
 </code></pre>
         <h2><a name="space-connection-injection">&#160;</a>Space Connection Injection</h2>
         <p>Specifying a Space connection URL or a Space instance can be done in one of the ways described below.</p>
@@ -154,21 +154,21 @@ public class JpaService {
             <li>When using Spring, you can <a href="http://static.springsource.org/spring/docs/3.0.x/reference/orm.html#orm-jpa-setup-lcemfb">specify a <code>LoadTimeWeaver</code></a> that will enhance the classes at load time.</li>
         </ul>
         <div class="tc-admon-note">
-            <p>The first option (enhance at build time) is the best in terms of performance and suitability for the XAP runtime environment.For detailed information about how to enhance your entities, refer to the <a href="http://openjpa.apache.org/entity-enhancement.html">OpenJPA Entity Enhancement page</a>.</p>
+            <p>The first option (enhance at build time) is the best in terms of performance and suitability for the <MadCap:variable name="General.ProductNameXAP" /> runtime environment.For detailed information about how to enhance your entities, refer to the <a href="http://openjpa.apache.org/entity-enhancement.html">OpenJPA Entity Enhancement page</a>.</p>
         </div>
-        <h1><a name="xap-jpa-entities">&#160;</a>XAP JPA Entities</h1>
+        <h1><a name="xap-jpa-entities">&#160;</a><MadCap:variable name="General.ProductNameXAP" /> JPA Entities</h1>
         <p>An entity class must meet the following requirements:</p>
         <ul>
             <li>The class must be annotated with the <code>javax.persistence.Entity</code> annotation.</li>
             <li>The class must have a public no-argument constructor (the class may have other constructors).</li>
-            <li>XAP and JPA annotations can only be declared on Getters, NOT on fields.</li>
+            <li><MadCap:variable name="General.ProductNameXAP" /> and JPA annotations can only be declared on Getters, NOT on fields.</li>
         </ul>
         <h3><a name="annotations">&#160;</a>Annotations</h3>
-        <p>XAP JPA Entities must have both JPA and XAP annotations for the following annotations:</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> JPA Entities must have both JPA and <MadCap:variable name="General.ProductNameXAP" /> annotations for the following annotations:</p>
         <table>
             <thead>
                 <tr>
-                    <th align="left">XAP</th>
+                    <th align="left"><MadCap:variable name="General.ProductNameXAP" /></th>
                     <th align="left">JPA</th>
                 </tr>
             </thead>
@@ -183,7 +183,7 @@ public class JpaService {
                 </tr>
             </tbody>
         </table>
-        <p>As with XAP POJOs, you can use the <code>@SpaceIndex</code> &amp; <code>@SpaceRouting</code> annotations with GigaSpaces JPA entities.</p>
+        <p>As with <MadCap:variable name="General.ProductNameXAP" /> POJOs, you can use the <code>@SpaceIndex</code> &amp; <code>@SpaceRouting</code> annotations with GigaSpaces JPA entities.</p>
         <div class="tc-admon-note">
             <p>Indexes should only be declared in the owning entity of a relationship. Examples are available on the <a href="jpa-relationships.html">JPA Relationships</a> page.</p>
         </div>
@@ -276,7 +276,7 @@ public class Owner {
         <h2><a name="non-indexed-fields">&#160;</a>Non-Indexed Fields</h2>
         <p>Non-indexed fields that are not used for queries should be placed within a user-defined class (payload object) and have their getter and setter placed within the payload class. This improves read/write performance because these fields are not introduced to the Space class model.</p>
         <h1><a name="jpa-query-language-jpql">&#160;</a>JPA Query Language (JPQL)</h1>
-        <p>XAP JPA supports a subset of JPQL. Here are a few examples of the supported queries:</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> JPA supports a subset of JPQL. Here are a few examples of the supported queries:</p>
         <p><span class="tc-bold">Querying on Properties of Nested Objects</span>
         </p><pre><code class="language-java">EntityManagerFactory emf = Persistence.createEntityManagerFactory("gigaspaces");
 EntityManager em = emf.createEntityManager();
@@ -295,7 +295,7 @@ em.close();
 emf.close();
 </code></pre>
         <div class="tc-admon-note">
-            <p>When specifying entity names in the XAP JPQL, the full class qualified name should be used as shown in the above examples.</p>
+            <p>When specifying entity names in the <MadCap:variable name="General.ProductNameXAP" /> JPQL, the full class qualified name should be used as shown in the above examples.</p>
         </div>
         <h1><a name="persisting-collection-properties">&#160;</a>Persisting Collection Properties</h1>
         <p>You can make a collection property persistent by using the <code>@ElementCollection</code> annotation. The following example shows an entity with a collection of Integers:</p><pre><code class="language-java">@Entity
@@ -359,7 +359,7 @@ public class Vehicle {
 }
 </code></pre>
         <p>We used the <code>@Enumerated</code> annotation for persisting an Enum property.
-Specifying a value for the <code>@Enumerated.value()</code> attribute has no effect because Enums are saved in XAP as is.</p>
+Specifying a value for the <code>@Enumerated.value()</code> attribute has no effect because Enums are saved in <MadCap:variable name="General.ProductNameXAP" /> as is.</p>
         <h2><a name="enums-in-jpql">&#160;</a>Enums In JPQL</h2>
         <p>You can query according to an Enum property by setting an Enum parameter, or by using the Enum's value in the query string:</p><pre><code class="language-java">EntityManager em = emf.createEntityManager();
 
@@ -373,7 +373,7 @@ Query query2 = em.createQuery("SELECT vehicle FROM com.gigaspaces.objects.Vehicl
 Vehicle result2 = (Vehicle) query2.getSingleResult();
 </code></pre>
         <h1><a name="interoperability">&#160;</a>Interoperability</h1>
-        <p>The XAP JPA implementation is fully interoperable with the XAP native <a href="pojo-overview.html">POJO API</a>.
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> JPA implementation is fully interoperable with the <MadCap:variable name="General.ProductNameXAP" /> native <a href="pojo-overview.html">POJO API</a>.
 For instance, you can persist a JPA entity and read it using the native POJO-driven Space API:</p><pre><code class="language-java">@Entity
 public class Author {
   private Integer id;
@@ -457,13 +457,13 @@ query = new SQLQuery&lt;Author&gt;(Author.class, "books[*].id = 10");
 result = gigaspace.read(query);
 </code></pre>
         <h1><a name="native-query-execution">&#160;</a>Native Query Execution</h1>
-        <p>The XAP JPA native query execution is a powerful feature used to execute the items discussed in the following subsections.</p>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> JPA native query execution is a powerful feature used to execute the items discussed in the following subsections.</p>
         <div class="tc-admon-note">
             <p>For more information on the following topics:</p>
             <ul>
                 <li>SQLQuery syntax-like queries (<a href="query-sql.html">SQLQuery</a>).</li>
-                <li>XAP Tasks (<a href="task-execution-overview.html">Task Execution over the Space</a>).</li>
-                <li>XAP Dynamic Scripts (<a href="task-dynamic-language.html">Dynamic Language Tasks</a>).</li>
+                <li><MadCap:variable name="General.ProductNameXAP" /> Tasks (<a href="task-execution-overview.html">Task Execution over the Space</a>).</li>
+                <li><MadCap:variable name="General.ProductNameXAP" /> Dynamic Scripts (<a href="task-dynamic-language.html">Dynamic Language Tasks</a>).</li>
             </ul>
         </div>
         <h2><a name="sqlquery-execution">&#160;</a>SQLQuery Execution</h2>
@@ -481,7 +481,7 @@ author = (Author) query.getSingleResult();
             <p>For more details about the SQLQuery syntax, refer to the <a href="query-sql.html">SQLQuery</a> page.</p>
         </div>
         <h2><a name="task-execution">&#160;</a>Task Execution</h2>
-        <p>Using XAP's JPA native query API, you can execute tasks over the Space as follows:</p><pre><code class="language-java">// Task definition
+        <p>Using <MadCap:variable name="General.ProductNameXAP" />'s JPA native query API, you can execute tasks over the Space as follows:</p><pre><code class="language-java">// Task definition
 public class MyTask implements Task&lt;Integer&gt; {
 
   @TaskGigaSpace
@@ -536,10 +536,10 @@ Integer result = (Integer) query.getSingleResult(); // Task execution always ret
 </code></pre>
         <p>Another option (instead of using the ApplicationContextAware interface) is to annotate your task with the <code>@AutowireTask</code> annotation, and annotate the <code>EntityManagerFactory</code> property with a <code>@Resource</code> annotation.</p>
         <div class="tc-admon-note">
-            <p>For more information about XAP tasks, refer to <a href="task-execution-overview.html">Task Execution</a>.</p>
+            <p>For more information about <MadCap:variable name="General.ProductNameXAP" /> tasks, refer to <a href="task-execution-overview.html">Task Execution</a>.</p>
         </div>
         <h2><a name="dynamic-script-execution">&#160;</a>Dynamic Script Execution</h2>
-        <p>In addition to task execution, the XAP JPA native query execution also offers the ability to execute dynamic scripts such as Groovy, JavaScript &amp; JRuby over the Space.
+        <p>In addition to task execution, the <MadCap:variable name="General.ProductNameXAP" /> JPA native query execution also offers the ability to execute dynamic scripts such as Groovy, JavaScript &amp; JRuby over the Space.
 Dynamic script execution over the Space is based on task execution and remoting, so your Processing Unit must have a remoting scripting executor service:</p><pre><code class="language-xml">&lt;!-- The service exporter exposing the scripting service --&gt;
 &lt;os-remoting:service-exporter id="serviceExporter"&gt;
      &lt;os-remoting:service ref="scriptingExecutor"/&gt;
@@ -555,9 +555,9 @@ Integer result = (Integer) query.getSingleResult();  // Script execution always 
         <div class="tc-admon-note">
             <p>For more information about dynamic script execution, refer to <a href="task-dynamic-language.html">Dynamic Language Tasks</a>.</p>
         </div>
-        <h1><a name="xap-jpa-limitations">&#160;</a>XAP JPA Limitations</h1>
+        <h1><a name="xap-jpa-limitations">&#160;</a><MadCap:variable name="General.ProductNameXAP" /> JPA Limitations</h1>
         <div class="tc-admon-note">
-            <p>For a list of unsupported JPA features and limitations,  refer to <a href="jpa-limitations.html">XAP JPA Limitations</a>.</p>
+            <p>For a list of unsupported JPA features and limitations,  refer to <a href="jpa-limitations.html"><MadCap:variable name="General.ProductNameXAP" /> JPA Limitations</a>.</p>
         </div>
     </body>
 </html>

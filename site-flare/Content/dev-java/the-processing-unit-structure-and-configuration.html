@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -66,7 +66,7 @@
 
 <p>This means they are not shared between Processing Units on the same JVM, which provides an isolation quality often required for JARs containing the application's proprietary business-logic. On the other hand this option consumes more PermGen memory (due to potentially multiple instances per JVM).</p>
 
-<p>You can place these JARs in each XAP installation in your network, but it is more common to share this folder on your network and point the <code>pu-common</code> directory to the shared location by specifying this location in the <code>com.gs.pu-common</code> system property in each of the GSCs on your network.</p>
+<p>You can place these JARs in each <MadCap:variable name="General.ProductNameXAP" /> installation in your network, but it is more common to share this folder on your network and point the <code>pu-common</code> directory to the shared location by specifying this location in the <code>com.gs.pu-common</code> system property in each of the GSCs on your network.</p>
 
 <p>When a new JAR needs to be loaded, just place the new JAR in <code>pu-common</code> directory and restart the Processing Unit.</p>
 
@@ -91,7 +91,7 @@
 
 <p>This method is recommended for 3rd party libraries that have no requirement for isolation or different versions for different Processing Units, and are upgraded rather infrequently, such as JDBC driver.</p>
 
-<p>You can place these JARs in each XAP installation in your network, but it is more common to share this folder on your network and point the <code>platform/lib/ext</code> directory to the shared location on your network by specifying this location in the <code>com.gigaspaces.lib.platform.ext</code> system property in each of the GSCs on your network.</p>
+<p>You can place these JARs in each <MadCap:variable name="General.ProductNameXAP" /> installation in your network, but it is more common to share this folder on your network and point the <code>platform/lib/ext</code> directory to the shared location on your network by specifying this location in the <code>com.gigaspaces.lib.platform.ext</code> system property in each of the GSCs on your network.</p>
 
 <p>When a new JAR needs to be loaded, place the new JAR in <code>lib/platform/ext</code> directory and restart the relevant GSCs (on which an instance of the Processing Unit was running).</p>
 

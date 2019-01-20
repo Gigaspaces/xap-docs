@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
 <h1>Configuration</h1>
   
 
-<p>XAP provides a framework for collecting and reporting metrics from the distributed runtime environment into a metric repository of your choice, which can then be analysed and used to identity trends in the system behaviour. Before you can start using the metrics framework you will need to first setup and configure InfluxDB &amp; Grafana to work with XAP. You can follow this guide <a href="web-management-monitoring.html">here</a> on how to do this.</p>
+<p><MadCap:variable name="General.ProductNameXAP" /> provides a framework for collecting and reporting metrics from the distributed runtime environment into a metric repository of your choice, which can then be analysed and used to identity trends in the system behaviour. Before you can start using the metrics framework you will need to first setup and configure InfluxDB &amp; Grafana to work with <MadCap:variable name="General.ProductNameXAP" />. You can follow this guide <a href="web-management-monitoring.html">here</a> on how to do this.</p>
 
 <h1><a name="overview">&#160;</a>Overview</h1>
 
 <p>The Metrics framework is composed of <span class="tc-bold">Metrics</span>, <span class="tc-bold">Metric Samplers</span> and <span class="tc-bold">Metric Reporters</span>.</p>
 
-<p>A <span class="tc-bold">Metric</span> is a piece of code which provides a value of something at the current time (e.g. CPU percentage, free memory, active LRMI threads, etc.). XAP is bundled with an abundance of metrics which can be used to monitor its behaviour, and additional metrics can be <a href="metrics-user-defined.html">defined by the user</a>.</p>
+<p>A <span class="tc-bold">Metric</span> is a piece of code which provides a value of something at the current time (e.g. CPU percentage, free memory, active LRMI threads, etc.). <MadCap:variable name="General.ProductNameXAP" /> is bundled with an abundance of metrics which can be used to monitor its behaviour, and additional metrics can be <a href="metrics-user-defined.html">defined by the user</a>.</p>
 
-<p>Each metric is registered in a <span class="tc-bold">Metric Sampler</span>, which periodically samples all its registered metrics and publishes them via one or more <span class="tc-bold">Metric Reporter</span>. XAP can be configured to modify the sample rate of the default sampler or configure additional samplers to provide different granularity for different metrics groups.</p>
+<p>Each metric is registered in a <span class="tc-bold">Metric Sampler</span>, which periodically samples all its registered metrics and publishes them via one or more <span class="tc-bold">Metric Reporter</span>. <MadCap:variable name="General.ProductNameXAP" /> can be configured to modify the sample rate of the default sampler or configure additional samplers to provide different granularity for different metrics groups.</p>
 
-<p>A <span class="tc-bold">Metric Reporter</span> receives a snapshot of metrics values from the sampler and reports them to wherever it wishes. XAP is bundled with an <a href="metrics-influxdb-reporter.html">InfluxDB Reporter</a>, and users can implement additional <a href="metrics-custom-reporter.html">custom reporters</a> as they wish.</p>
+<p>A <span class="tc-bold">Metric Reporter</span> receives a snapshot of metrics values from the sampler and reports them to wherever it wishes. <MadCap:variable name="General.ProductNameXAP" /> is bundled with an <a href="metrics-influxdb-reporter.html">InfluxDB Reporter</a>, and users can implement additional <a href="metrics-custom-reporter.html">custom reporters</a> as they wish.</p>
 
 <h1><a name="configuration">&#160;</a>Configuration</h1>
 

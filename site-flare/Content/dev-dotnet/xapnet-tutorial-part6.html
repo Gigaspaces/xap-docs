@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
 <h1>Transactions and Concurrency</h1>
   
 
-<p>In this part of the tutorial we will introduce you to the transaction processing capabilities of XAP.</p>
+<p>In this part of the tutorial we will introduce you to the transaction processing capabilities of <MadCap:variable name="General.ProductNameXAP" />.</p>
 
-<p>With the XAP .NET transaction model the developer is responsible for explicitly starting and managing the transaction. You obtain an object representing the underlying space transaction by calling <code>GigaSpacesFactory.CreateDistributedTransactionManager</code>. This call returns an implementation of the <code>ITransactionManager</code> interface used to create the transaction using the <code>ITransactionManager.Create()</code>.</p>
+<p>With the XAP.NET transaction model the developer is responsible for explicitly starting and managing the transaction. You obtain an object representing the underlying space transaction by calling <code>GigaSpacesFactory.CreateDistributedTransactionManager</code>. This call returns an implementation of the <code>ITransactionManager</code> interface used to create the transaction using the <code>ITransactionManager.Create()</code>.</p>
 
 <p>Here is an example how you use transactions:</p>
 
@@ -85,7 +85,7 @@ public class AuditListener {
 
 <h1><a name="task-execution">&#160;</a>Task Execution</h1>
 
-<p>Executors fully support transactions similar to other XAP operations. Once an execute operation is executed within a declarative transaction, it will automatically join it. The transaction itself is then passed to the node the task executed on and added declaratively to it. This means that any XAP operation performed within the task execute operation will automatically join the transaction started on the client side.</p>
+<p>Executors fully support transactions similar to other <MadCap:variable name="General.ProductNameXAP" /> operations. Once an execute operation is executed within a declarative transaction, it will automatically join it. The transaction itself is then passed to the node the task executed on and added declaratively to it. This means that any <MadCap:variable name="General.ProductNameXAP" /> operation performed within the task execute operation will automatically join the transaction started on the client side.</p>
 
 <div class="tc-admon-refer">
   
@@ -94,7 +94,7 @@ public class AuditListener {
 
 <h1><a name="remoting-service">&#160;</a>Remoting Service</h1>
 
-<p>Executor remoting supports transactional execution of services. On the client side, if there is an ongoing declarative transaction during the service invocation (a Space based transaction), the service will be executed under the same transaction. The transaction itself is passed to the server and any Space related operations (performed using XAP) will be executed under the same transaction.</p>
+<p>Executor remoting supports transactional execution of services. On the client side, if there is an ongoing declarative transaction during the service invocation (a Space based transaction), the service will be executed under the same transaction. The transaction itself is passed to the server and any Space related operations (performed using <MadCap:variable name="General.ProductNameXAP" />) will be executed under the same transaction.</p>
 
 <div class="tc-admon-refer">
   
@@ -103,15 +103,15 @@ public class AuditListener {
 
 <h1><a name="concurrency">&#160;</a>Concurrency</h1>
 
-<p>Locking of objects occurs in multi-user systems to preserve the integrity of changes, so that changes made by one process do not accidentally overwrite changes made by another process. XAP provides two strategies for locking objects: Optimistic and pessimistic. The focus is on optimistic locking, the preferred strategy in the XAP context.</p>
+<p>Locking of objects occurs in multi-user systems to preserve the integrity of changes, so that changes made by one process do not accidentally overwrite changes made by another process. <MadCap:variable name="General.ProductNameXAP" /> provides two strategies for locking objects: Optimistic and pessimistic. The focus is on optimistic locking, the preferred strategy in the <MadCap:variable name="General.ProductNameXAP" /> context.</p>
 
 <h3><a name="optimistic-locking">&#160;</a>Optimistic Locking</h3>
 
 <p>With optimistic locking, you write your business logic allowing multiple users to read the same object at the same time, but allow only one user to update the object successfully. The assumption is that there will be a relatively large number of users trying to read the same object, but a low probability of having a small number of users trying to update the same object at the same time. In the case of multiple users trying to update the same object at the same time, the one(s) that try to update a non-recent object version fail.</p>
 
-<p>XAP uses a version number for an object to accomplish optimistic locking. When a client makes updates to an object an additional where clause is added to the update operation where the client version number of the object is compared against the version number of the object in space. If the the version number is not the same, the operation is rejected, indicating that the object has been modified by some other client or process.</p>
+<p><MadCap:variable name="General.ProductNameXAP" /> uses a version number for an object to accomplish optimistic locking. When a client makes updates to an object an additional where clause is added to the update operation where the client version number of the object is compared against the version number of the object in space. If the the version number is not the same, the operation is rejected, indicating that the object has been modified by some other client or process.</p>
 
-<p>Here is an example of how optimistic locking is enabled in XAP. First we need to indicate to the space that it will hold versioned objects.</p>
+<p>Here is an example of how optimistic locking is enabled in <MadCap:variable name="General.ProductNameXAP" />. First we need to indicate to the space that it will hold versioned objects.</p>
 
 <pre><code class="language-csharp">public void creatVersionedSpace()
 {
@@ -122,7 +122,7 @@ public class AuditListener {
 }
 </code></pre>
 
-<p>You should enable the Space class to support the optimistic locking, by including the <code>[SpaceVersion]</code> decoration on an int getter field. This field stores the current object version and is maintained by XAP. See below for an example:</p>
+<p>You should enable the Space class to support the optimistic locking, by including the <code>[SpaceVersion]</code> decoration on an int getter field. This field stores the current object version and is maintained by <MadCap:variable name="General.ProductNameXAP" />. See below for an example:</p>
 
 <pre><code class="language-csharp">namespace xaptutorial.model
 {
@@ -168,7 +168,7 @@ using (ITransaction txn = mgr.Create ()) {
 }
 </code></pre>
 
-<p>XAP provides additional read modifiers to denote the isolation level:</p>
+<p><MadCap:variable name="General.ProductNameXAP" /> provides additional read modifiers to denote the isolation level:</p>
 
 <ul>
 <li>RepeatableRead  - default modifier</li>

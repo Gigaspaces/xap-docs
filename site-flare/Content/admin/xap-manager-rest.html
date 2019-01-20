@@ -4,8 +4,8 @@
     </head>
     <body>
         <h1>REST Manager API</h1>
-        <p>The <a href="xap-manager.html">XAP Manager</a> provides a REST Manager API for managing the GigaSpaces application environment.</p>
-        <p>To begin, start a standalone XAP Manager on your machine using the following command:</p>
+        <p>The <a href="xap-manager.html"><MadCap:variable name="General.ProductNameXAP" /> Manager</a> provides a REST Manager API for managing the GigaSpaces application environment.</p>
+        <p>To begin, start a standalone <MadCap:variable name="General.ProductNameXAP" /> Manager on your machine using the following command:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Unix" style="padding:10px"><pre><code class="language-bash">./gs-agent.sh --manager-local
 </code></pre>
@@ -14,9 +14,9 @@
 </code></pre>
             </div>
         </div>
-        <p>After the XAP Manager has started, browse to <a href="http://localhost:8090" target="_blank">localhost:8090</a> and start working with the API.</p>
+        <p>After the <MadCap:variable name="General.ProductNameXAP" /> Manager has started, browse to <a href="http://localhost:8090" target="_blank">localhost:8090</a> and start working with the API.</p>
         <div class="tc-admon-note">
-            <p>You must start a XAP Manager to access the REST Manager API. You can also start a cluster of XAP Managers to ensure high availability. To learn more about the XAP Manager, refer to the <a href="xap-manager.html">XAP Manager</a> topic.</p>
+            <p>You must start a <MadCap:variable name="General.ProductNameXAP" /> Manager to access the REST Manager API. You can also start a cluster of <MadCap:variable name="General.ProductNameXAP" /> Managers to ensure high availability. To learn more about the <MadCap:variable name="General.ProductNameXAP" /> Manager, refer to the <a href="xap-manager.html"><MadCap:variable name="General.ProductNameXAP" /> Manager</a> topic.</p>
         </div>
         <p>The REST Manager API was built with <a href="http://swagger.io/" target="_blank">Swagger</a>. Swagger provides typical information for each operation (parameters, responses, etc.). In addition, you can experiment with it by setting parameters and clicking the <code>Try it out!</code> button from within the documentation. This invokes the operation, and you can see the response code and body, as well as the <code>curl</code> command and request URL that were used to invoke the command. If you are familiar with the older Admin API, most of this is self explanatory. You can also download the <code>yaml</code> specification and use Swagger's <code>Online Editor</code> to generate a client in your favorite language.</p>
         <p>
@@ -34,7 +34,7 @@ The request exposes additional useful information:</p>
         </ul>
         <p>By default, the system keeps up to 100,000 completed requests (configurable), and purges the oldest as needed.</p>
         <h1><a name="processing-unit-deployment-and-upload">&#160;</a>Processing Unit Deployment  and Upload</h1>
-        <p>Deploying a Processing Unit requires uploading a resource (JAR/WAR/ZIP) to the XAP Manager, but due to technical issues we currently can’t include both a binary file and a JSON payload in the same REST operation.
+        <p>Deploying a Processing Unit requires uploading a resource (JAR/WAR/ZIP) to the <MadCap:variable name="General.ProductNameXAP" /> Manager, but due to technical issues we currently can’t include both a binary file and a JSON payload in the same REST operation.
 Instead, there are two operations:</p>
         <ul>
             <li>Upload a resource.</li>
@@ -43,13 +43,13 @@ Instead, there are two operations:</p>
         <p>This also means that when you undeploy a Processing Unit, the resource does not get deleted. If you want to delete it you must execute a separate REST operation (if you want to undeploy/redeploy with the same JAR. there’s no need to remove it).
 Currently you cannot delete/replace a JAR file if a deployed Processing Unit is using it.</p>
         <h1><a name="security">&#160;</a>Security</h1>
-        <p>The REST component is part of the XAP Manager, and inherits the XAP Manager security configuration.
+        <p>The REST component is part of the <MadCap:variable name="General.ProductNameXAP" /> Manager, and inherits the <MadCap:variable name="General.ProductNameXAP" /> Manager security configuration.
 As the REST uses an HTTP protocol, it is best to configure SSL to allow for HTTPS (secure access).</p>
         <p>For more information about using the REST Manager API with security, refer to <a href="admin-rest-manager-api.html#security">REST Manager API - Security</a> section.</p>
         <h1><a name="operations">&#160;</a>Operations</h1>
-        <p>You can perform a wide variety of operations on all of the environment components listed below. The available operations, request parameters and URLs are listed on each relevant page of the local XAP Manager.</p>
+        <p>You can perform a wide variety of operations on all of the environment components listed below. The available operations, request parameters and URLs are listed on each relevant page of the local <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
         <div class="tc-admon-note">
-            <p>You must start a XAP Manager to access the pages using the links below.</p>
+            <p>You must start a <MadCap:variable name="General.ProductNameXAP" /> Manager to access the pages using the links below.</p>
         </div>
         <ul>
             <li>Containers - See the <a href="http://localhost:8090/[%=Versions.rest-version%]/index.html#/Containers">Containers</a> page.</li>

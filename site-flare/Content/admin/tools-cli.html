@@ -4,14 +4,14 @@
     </head>
     <body>
         <h1>Command Line Interface</h1>
-        <p>GigaSpaces provides a Command Line Interface (CLI) tool for administering both XAP and InsightEdge. The CLI is based on the REST Manager API, enabling users to administer local, remote, and cloud-based application environments. In addition to the REST Manager API operations, the CLI supports certain administration tasks in the open source application editions.</p>
-        <p>Users that are administering a XAP environment should use the <code>xap</code> script. Users that are administering InsightEdge should use the <code>insightedge</code> CLI script, which contains all of the actions available with the <code>xap</code> script, plus additional options where relevant for administering InsightEdge components.</p>
+        <p>GigaSpaces provides a Command Line Interface (CLI) tool for administering both <MadCap:variable name="General.ProductNameXAP" /> and InsightEdge. The CLI is based on the REST Manager API, enabling users to administer local, remote, and cloud-based application environments. In addition to the REST Manager API operations, the CLI supports certain administration tasks in the open source application editions.</p>
+        <p>Users that are administering a <MadCap:variable name="General.ProductNameXAP" /> environment should use the <code>xap</code> script. Users that are administering InsightEdge should use the <code>insightedge</code> CLI script, which contains all of the actions available with the <code>xap</code> script, plus additional options where relevant for administering InsightEdge components.</p>
         <p>The image below shows the screen that is displayed when you run the <code>xap</code> script.</p>
         <p>
             <img src="../Resources/Static/attachment_files/admin/xap-cli.png" alt="image" class="tc-picture80" />
         </p>
         <h1><a name="cli-help">&#160;</a>CLI Help</h1>
-        <p>Use the <code>--help</code> command (or <code>-h</code>) to see the syntax of a specified CLI command, or a list of all available commands. The list of commands may vary depending on whether you are running the XAP or the InsightEdge script. For example,
+        <p>Use the <code>--help</code> command (or <code>-h</code>) to see the syntax of a specified CLI command, or a list of all available commands. The list of commands may vary depending on whether you are running the <MadCap:variable name="General.ProductNameXAP" /> or the InsightEdge script. For example,
 the list of commands for <code>insightedge host run-agent --help</code> contains all the actions available under <code>xap host run-agent --help</code>, plus additional options for administering the Spark master and worker components.</p>
         <h1><a name="cli-configuration">&#160;</a>CLI Configuration</h1>
         <p>The CLI connects to the REST Manager API using the name or IP address of the Manager server. Configuration is applied from one of the following:</p>
@@ -60,7 +60,7 @@ the list of commands for <code>insightedge host run-agent --help</code> contains
         </p>
         <p>The <code>MAIN_COMMAND</code> value is different for each product and edition. Use one of the following:</p>
         <ul>
-            <li>XAP open source - <code>org.gigaspaces.cli.commands.Autocomplete</code></li>
+            <li><MadCap:variable name="General.ProductNameXAP" /> open source - <code>org.gigaspaces.cli.commands.Autocomplete</code></li>
             <li>XAP Enterprise - <code>com.gigaspaces.cli.commands.Autocomplete</code></li>
             <li>Insightedge open source - <code>org.insightedge.cli.commands.Autocomplete</code></li>
             <li>Insightedge Enterprise - <code>com.insightedge.cli.commands.Autocomplete</code></li>

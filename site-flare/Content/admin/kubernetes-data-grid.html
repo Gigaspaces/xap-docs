@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -42,7 +42,7 @@
 
 <h2><a name="accessing-the-gigaspaces-helm-charts">&#160;</a>Accessing the GigaSpaces Helm Charts</h2>
 
-<p>The Helm package manager is used for installing InsightEdge and XAP in the Kubernetes environment. Helm makes deploying complex applications more portable, supports automatic rollbacks, and is a familiar pattern for developers that is easy to understand.
+<p>The Helm package manager is used for installing InsightEdge and <MadCap:variable name="General.ProductNameXAP" /> in the Kubernetes environment. Helm makes deploying complex applications more portable, supports automatic rollbacks, and is a familiar pattern for developers that is easy to understand.
 Moreover, since Helm is open source, there are many community charts available with standard configurations for common application services.</p>
 
 <p>Helm supports installing charts in <a href="https://docs.helm.sh/helm/#helm-install">a number of ways</a>. A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository.  The <code>xap</code> and <code>insightedge</code> Helm charts are published in the GigaSpaces Helm chart repository at <code>https://resources.gigaspaces.com/helm-charts</code>.</p>
@@ -144,7 +144,7 @@ Moreover, since Helm is open source, there are many community charts available w
 
 <h1><a name="applying-a-product-license">&#160;</a>Applying a Product License</h1>
 
-<p>The Kubernetes installation comes with a 24-hour trial <code>tryme</code> license, to enable users to perform one-click installation and explore the InsightEdge Platform and XAP functionality. However, if you want a longer trial license, you can apply the evaluation license key that you received in the email that was sent to you after you downloaded your InsightEdge or XAP commercial edition from the Download Center. These instructions are also applicable for applying a your official product license after you purchase a GigaSpaces product.</p>
+<p>The Kubernetes installation comes with a 24-hour trial <code>tryme</code> license, to enable users to perform one-click installation and explore the InsightEdge Platform and <MadCap:variable name="General.ProductNameXAP" /> functionality. However, if you want a longer trial license, you can apply the evaluation license key that you received in the email that was sent to you after you downloaded your InsightEdge or <MadCap:variable name="General.ProductNameXAP" /> commercial edition from the Download Center. These instructions are also applicable for applying a your official product license after you purchase a GigaSpaces product.</p>
 
 <p>When the data grid starts, it checks for a valid license. You can apply the license by setting the <code>pu.license</code> property. For example, to apply the license for InsightEdge, use the following Helm command:</p>
 
@@ -174,7 +174,7 @@ Moreover, since Helm is open source, there are many community charts available w
 
 <div class="tc-admon-note">
   
-  <p>The Kubernetes minikube runs on a single node and therefore doesn't provide anti-affinity, so you may want to evaluate XAP and InsightEdge high-availability behavior on a Kubernetes cluster that contains multiple nodes.</p>
+  <p>The Kubernetes minikube runs on a single node and therefore doesn't provide anti-affinity, so you may want to evaluate <MadCap:variable name="General.ProductNameXAP" /> and InsightEdge high-availability behavior on a Kubernetes cluster that contains multiple nodes.</p>
 </div>
 
 <h2><a name="configuring-high-availability-for-the-platform-manager">&#160;</a>Configuring High Availability for the Platform Manager</h2>
@@ -238,7 +238,7 @@ Moreover, since Helm is open source, there are many community charts available w
 <li>Both data and a function</li>
 </ul>
 
-<p>You can use the event-processing example available with the XAP and InsightEdge software packages to see how data is fed to the function and processed in Processing Units. The example creates the following modules:</p>
+<p>You can use the event-processing example available with the <MadCap:variable name="General.ProductNameXAP" /> and InsightEdge software packages to see how data is fed to the function and processed in Processing Units. The example creates the following modules:</p>
 
 <ul>
 <li>Processor - a Processing Unit with the main task of processing unprocessed data objects. The processing of data objects is accomplished  using both an event container and remoting.</li>
@@ -264,7 +264,7 @@ Moreover, since Helm is open source, there are many community charts available w
 
 <p>The first step in deploying the sample Processing Units to Kubernetes is to build them from the examples directory. The example uses Maven as its build tool, and comes with a build script that runs Maven automatically.</p>
 
-<p>Open a command window and navigate to the following folder in the XAP or InsightEdge package:</p>
+<p>Open a command window and navigate to the following folder in the <MadCap:variable name="General.ProductNameXAP" /> or InsightEdge package:</p>
 
 <pre><code class="language-bash">cd &lt;product home&gt;/examples/data-app/event-processing/
 </code></pre>

@@ -13,7 +13,7 @@
             <li>Maven 3.1+</li>
         </ul>
         <h1><a name="starting-the-local-environment">&#160;</a>Starting the Local Environment</h1>
-        <p>The InsightEdge environment consists of Spark and the XAP data grid. You can use the Command Line Interface tool to start InsightEdge as described below.</p>
+        <p>The InsightEdge environment consists of Spark and the <MadCap:variable name="General.ProductNameXAP" /> data grid. You can use the Command Line Interface tool to start InsightEdge as described below.</p>
         <h2><a name="starting-a-complete-environment">&#160;</a>Starting a Complete Environment</h2>
         <p>To start a complete InsightEdge environment on your local machine, run the following command from the <code>$XAP_HOME/bin</code> directory:</p><pre><code class="language-bash">insightedge host run-agent --auto --gsc=2
 </code></pre>
@@ -22,10 +22,10 @@
             <li>Spark Master UI at <a href="http://localhost:8080" target="_blank">localhost:8080</a><ul><li>URL for submitting spark jobs: <code>spark://127.0.0.1:7077</code></li></ul></li>
             <li>Spark Worker UI at <a href="http://localhost:8081" target="_blank">localhost:8081</a></li>
             <li>Zeppelin UI at <a href="http://localhost:9090" target="_blank">localhost:9090</a></li>
-            <li>XAP service grid:
+            <li><MadCap:variable name="General.ProductNameXAP" /> service grid:
 
-<ul><li>XAP Manager at <a href="http://localhost:8090" target="_blank">localhost:8090</a></li><li>2 Grid Service Containers (GSCs)</li></ul></li>
-            <li>XAP Web Management Console at <a href="http://localhost:8099" target="_blank">localhost:8099</a><br /></li>
+<ul><li><MadCap:variable name="General.ProductNameXAP" /> Manager at <a href="http://localhost:8090" target="_blank">localhost:8090</a></li><li>2 Grid Service Containers (GSCs)</li></ul></li>
+            <li><MadCap:variable name="General.ProductNameXAP" /> Web Management Console at <a href="http://localhost:8099" target="_blank">localhost:8099</a><br /></li>
         </ul>
         <p>Then run the following command to deploy a Space called <code>demo</code> with 2 partitions on those GSCs:</p><pre><code class="language-bash">insightedge space deploy --partitions=2 demo
 </code></pre>

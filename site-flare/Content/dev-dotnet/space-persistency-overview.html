@@ -9,7 +9,7 @@
             <li>Pre-loading data from the persistency layer and lazy load data from the persistency (available when the Space is running in LRU mode).</li>
             <li>Delegating changes within the Space to the persistency layer.</li>
         </ul>
-        <p>XAP Space Persistency provides the <code>AbstractExternalDataSource</code> class, which can be extended and then used to load and store data into an existing data source. Data is <a href="space-persistency-initial-load.html">loaded from the data source</a> during Space initialization, and from then onwards the application works directly with the Space.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> Space Persistency provides the <code>AbstractExternalDataSource</code> class, which can be extended and then used to load and store data into an existing data source. Data is <a href="space-persistency-initial-load.html">loaded from the data source</a> during Space initialization, and from then onwards the application works directly with the Space.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/data-grid-initial-loadNew.jpg" alt="data-grid-initial-loadNew.jpg" class="tc-picture50" />
@@ -34,7 +34,7 @@
             <p>The difference between Synchronous and Asynchronous persistency mode is the way that data is persisted back to the database. In Synchronous mode, data is persisted immediately after the operation is conducted where the client application waits for the <code>ExternalDataSource</code> to confirm the write. In Asynchronous mode (mirror Service), data is persisted in a <span class="tc-bold">reliable</span> asynchronous manner using the mirror Service as a write-behind activity. This mode provides maximum performance.</p>
         </div>
         <h1><a name="space-persistency-api">&#160;</a>Space Persistency API</h1>
-        <p>The Space Persistency API contains an abstract class that should be extended in order to customize the Space persistency functionality. The ability to customize the Space persistency functionality allows XAP to interact with any external application or data source.</p>
+        <p>The Space Persistency API contains an abstract class that should be extended in order to customize the Space persistency functionality. The ability to customize the Space persistency functionality allows <MadCap:variable name="General.ProductNameXAP" /> to interact with any external application or data source.</p>
         <table>
             <thead>
                 <tr>
@@ -80,7 +80,7 @@
         <div class="tc-admon-note">
             <p>For detailed API information, see the <a href="hibernate-space-persistency.html">External Data Source API</a> page.</p>
         </div>
-        <p>XAP comes with a built-in implementation of <code>AbstractExternalDataSource</code> called <a href="hibernate-space-persistency.html">NHibernate Space Persistency</a>.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> comes with a built-in implementation of <code>AbstractExternalDataSource</code> called <a href="hibernate-space-persistency.html">NHibernate Space Persistency</a>.</p>
         <div class="tc-admon-note">
             <p>Refer to <a href="space-persistency-initial-load.html">Space Persistency Initial Load</a> for information on how to allow the Space to pre-load its data.</p>
         </div>

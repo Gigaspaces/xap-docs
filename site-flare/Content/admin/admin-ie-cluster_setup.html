@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -12,16 +12,16 @@
 <p>Your cluster should consist of one master node and several slave nodes for the following configuration:</p>
 
 <ul>
-<li>Master nodes usually host the Spark master and the XAP Manager (for data grid management)</li>
+<li>Master nodes usually host the Spark master and the <MadCap:variable name="General.ProductNameXAP" /> Manager (for data grid management)</li>
 <li>Slave nodes host the Spark workers and data grid cluster members (Processing Unit instances)</li>
 </ul>
 
 <p>There are several environment variables that must be set in order for your InsightEdge cluster to function correctly. The environment variables are located in the <code>&lt;XAP_HOME&gt;/bin/setenv-overrides.sh/bat</code> file, and can be configured as described in the <a href="../started/common-environment-variables.html">Configuration</a> page of the Getting Started guide.</p>
 
 <ul>
-<li><p><code>XAP_MANAGER_SERVERS</code> - Must be configured on each machine and is required for the master node, which starts the XAP Manager along with Apache Zookeeper for high availability. See the <a href="../admin/xap-manager.html">XAP Manager</a> page for more information.</p></li>
+<li><p><code>XAP_MANAGER_SERVERS</code> - Must be configured on each machine and is required for the master node, which starts the <MadCap:variable name="General.ProductNameXAP" /> Manager along with Apache Zookeeper for high availability. See the <a href="../admin/xap-manager.html">XAP Manager</a> page for more information.</p></li>
 
-<li><p><code>XAP_LOOKUP_GROUPS</code> - This property is used to discover XAP components across the network.</p></li>
+<li><p><code>XAP_LOOKUP_GROUPS</code> - This property is used to discover <MadCap:variable name="General.ProductNameXAP" /> components across the network.</p></li>
 
 <li><p><code>XAP_GSC_OPTIONS</code> - Set this value based on the size of the JVMs that will host the Processing Unit instances. For example, you can configure the amount of memory required as <code>-Xmx5g -Xms5g</code>.</p></li>
 </ul>
@@ -34,7 +34,7 @@ The resolution is based on the <code>XAP_MANAGER_SERVERS</code> environment vari
 <pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/insightedge host run-agent --auto
 </code></pre>
 
-<p>This command will run a XAP Manager, Web Management Console, Spark master, Spark worker and the Zeppelin interpreter.</p>
+<p>This command will run a <MadCap:variable name="General.ProductNameXAP" /> Manager, Web Management Console, Spark master, Spark worker and the Zeppelin interpreter.</p>
 
 <p>REST URL - <a href="http://localhost:8090">http://localhost:8090</a>
 Web Management Console - <a href="http://localhost:8099">http://localhost:8099</a>
@@ -44,16 +44,16 @@ Zeppelin - <a href="http://localhost:9090/">http://localhost:9090/</a></p>
 
 <h2><a name="starting-a-master-node">&#160;</a>Starting a Master Node</h2>
 
-<p>Master nodes consist of a XAP Manager and a Spark master. On each master node, run the following:</p>
+<p>Master nodes consist of a <MadCap:variable name="General.ProductNameXAP" /> Manager and a Spark master. On each master node, run the following:</p>
 
 <pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/insightedge host run-agent --manager --spark-master
 </code></pre>
 
 <h2><a name="starting-slave-nodes">&#160;</a>Starting Slave Nodes</h2>
 
-<p>Slave nodes consist of XAP containers and a Spark worker. On each slave node, run the following:</p>
+<p>Slave nodes consist of <MadCap:variable name="General.ProductNameXAP" /> containers and a Spark worker. On each slave node, run the following:</p>
 
-<p>Use <code>--containers=n</code> to put XAP containers on a specific machine. If not specified, no XAP containers will be started.</p>
+<p>Use <code>--containers=n</code> to put <MadCap:variable name="General.ProductNameXAP" /> containers on a specific machine. If not specified, no <MadCap:variable name="General.ProductNameXAP" /> containers will be started.</p>
 
 <pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/insightedge host run-agent --spark-worker [--containers=n]
 </code></pre>

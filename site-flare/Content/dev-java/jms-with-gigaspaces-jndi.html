@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
-<h1>XAP JNDI</h1>
+<h1><MadCap:variable name="General.ProductNameXAP" /> JNDI</h1>
   
 
-<p>XAP runs a JNDI service where JMS objects can be bound by name. The administrator configures JMS destinations in the space configuration file. When the space is started, it creates and binds the configured destinations to JNDI, making them available for use.</p>
+<p><MadCap:variable name="General.ProductNameXAP" /> runs a JNDI service where JMS objects can be bound by name. The administrator configures JMS destinations in the space configuration file. When the space is started, it creates and binds the configured destinations to JNDI, making them available for use.</p>
 
 <p>The application uses a JNDI context to obtain these objects, and to start working with JMS. The context is initialized with the values specified in the <code>jndi.properties</code> file in the GigaSpaces classpath. After obtaining the context, the client calls the <code>context.lookup()</code> method, passing the name of the required resource. If the resource is found in JNDI, it is returned to the client.</p>
 

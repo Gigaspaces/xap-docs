@@ -77,7 +77,7 @@ public class GasStation {
 }
 </code></pre>
         <h1><a name="shapes">&#160;</a>Shapes</h1>
-        <p>XAP supports the following shapes:</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports the following shapes:</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/geo/shapes.png" alt="image" class="tc-picture80" />
@@ -347,7 +347,7 @@ public class LineProperty extends AbstractProperty {
                 <img src="../Resources/Static/attachment_files/geo/geo-fencing.png" alt="image" class="tc-picture30" />
             </p>
         </div>
-        <p>XAP uses Event Containers with Spatial queries to do just that. For example, we want to be notified when a new <code>GasStation</code> appears within a certain radius of my location.</p><pre><code class="language-java">Point location = ShapeFactory.point(0, 0);
+        <p><MadCap:variable name="General.ProductNameXAP" /> uses Event Containers with Spatial queries to do just that. For example, we want to be notified when a new <code>GasStation</code> appears within a certain radius of my location.</p><pre><code class="language-java">Point location = ShapeFactory.point(0, 0);
 double radius = 5.0d;
 SQLQuery&lt;GasStation&gt; query = new SQLQuery(GasStation.class, "location spatial:within ?")
         .setParameter(1, ShapeFactory.circle(location, radius));
@@ -414,9 +414,9 @@ ShapeFactory.parse("{\"type\":\"Circle\",\"coordinates\":[0.0,0.0],\"radius\":5.
 </code></pre>
         <h1><a name="configuration">&#160;</a>Configuration</h1>
         <h2><a name="lucene">&#160;</a>Lucene</h2>
-        <p>XAP uses <a href="https://lucene.apache.org/" target="_blank">Lucene</a> to index spatial shapes. XAP maintains Lucene's best practices by default so there's no need to learn Lucene for using XAP's Spatial API. However, if you're familiar with Lucene and wish to better understand how it's used and what can be modified, this section is for you.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> uses <a href="https://lucene.apache.org/" target="_blank">Lucene</a> to index spatial shapes. <MadCap:variable name="General.ProductNameXAP" /> maintains Lucene's best practices by default so there's no need to learn Lucene for using <MadCap:variable name="General.ProductNameXAP" />'s Spatial API. However, if you're familiar with Lucene and wish to better understand how it's used and what can be modified, this section is for you.</p>
         <h3><a name="store-directory">&#160;</a>Store Directory</h3>
-        <p>Lucene indexing is stored in a <span class="tc-bold">Store Directory</span>. Lucene supports different Store Directory implementations, but recommends using the <a href="https://lucene.apache.org/core/5_3_0/core/org/apache/lucene/store/MMapDirectory.html" target="_blank">MMapDirectory</a>, which is what XAP uses by default.</p>
+        <p>Lucene indexing is stored in a <span class="tc-bold">Store Directory</span>. Lucene supports different Store Directory implementations, but recommends using the <a href="https://lucene.apache.org/core/5_3_0/core/org/apache/lucene/store/MMapDirectory.html" target="_blank">MMapDirectory</a>, which is what <MadCap:variable name="General.ProductNameXAP" /> uses by default.</p>
         <h3><a name="file-system">&#160;</a>File System</h3>
         <p>Lucene indexes are stored in the file system. When used within a processing unit deployed on the service grid, these files are stored within the processing unit working folder, and automatically deleted if/when the processing unit is undeployed. When there's no service grid involved, the files are stored in a unique folder under <code>user.home</code>. This location can be explicitly set using the <code>space-config.spatial.lucene.storage.location</code> space property.</p>
         <h1><a name="indexing">&#160;</a>Indexing</h1>

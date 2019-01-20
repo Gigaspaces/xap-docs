@@ -3,9 +3,9 @@
     <head>
     </head>
     <body>
-        <h1>XAP Considerations</h1>
+        <h1><MadCap:variable name="General.ProductNameXAP" /> Considerations</h1>
         <h1><a name="the-runtime-environment-gsa-lus-gsm-and-gsc">&#160;</a>The Runtime Environment (GSA, LUS, GSM and GSC)</h1>
-        <p>In a dynamic environment where you want to start <a href="../overview/the-runtime-environment.html#gsc">GSCs</a> and <a href="../overview/the-runtime-environment.html#gsm">GSMs</a> remotely, manually, or dynamically, the <a href="../overview/the-runtime-environment.html#gsa">GSA</a> is the only component that should be running on the machine hosting the <a href="../admin/the-runtime-environment.html">XAP runtime environment</a>. This lightweight service acts as an agent and starts a GSC/GSM/LUS when needed.</p>
+        <p>In a dynamic environment where you want to start <a href="../overview/the-runtime-environment.html#gsc">GSCs</a> and <a href="../overview/the-runtime-environment.html#gsm">GSMs</a> remotely, manually, or dynamically, the <a href="../overview/the-runtime-environment.html#gsa">GSA</a> is the only component that should be running on the machine hosting the <a href="../admin/the-runtime-environment.html"><MadCap:variable name="General.ProductNameXAP" /> runtime environment</a>. This lightweight service acts as an agent and starts a GSC/GSM/LUS when needed.</p>
         <p>Plan the initial number of GSCs and GSMs based on the application memory footprint, and the amount of processing you might need. The most basic deployment should include 2 GSMs (running on different machines), 2 lookup services (running on different machines), and 2 GSCs (running on each machine). These host your data Grid or any other application components (services, web servers, Mirror) that you deploy.</p>
         <p>In general, the total amount of GSCs that should be running across the machines hosting the system depends on:</p>
         <ul>
@@ -56,7 +56,7 @@ call gs-agent.bat
             <p>The above LUS configuration will serve up to 50 partitions running on 100 GSCs. For larger environments, you must increase the heap size and perform GC tuning.</p>
         </div>
         <h2><a name="running-multiple-groups">&#160;</a>Running Multiple Groups</h2>
-        <p>You may have a set of LUS/GSM managing GSCs associated to a specific group. To "break" your network into 2 groups, start the GigaSpaces XAP runtime environment as follows:</p>
+        <p>You may have a set of LUS/GSM managing GSCs associated to a specific group. To "break" your network into 2 groups, start the GigaSpaces <MadCap:variable name="General.ProductNameXAP" /> runtime environment as follows:</p>
         <div class="row">
             <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
                 <div title="Step 1. Run gs-agent starting LUS/GSM with GroupX: " style="padding:10px;"><pre><code class="language-bash">export XAP_LOOKUP_GROUPS=GroupX
@@ -86,7 +86,7 @@ gs deploy-space -cluster schema=partitioned total_members=2 spaceY
             </div>
         </div>
         <h2><a name="running-multiple-locators">&#160;</a>Running Multiple Locators</h2>
-        <p>You may have a set of LUS/GSM managing GSCs associated to a specific locator. To "break" your network into 2 groups using different lookup locators, start the GigaSpaces XAP runtime environment as follows:</p>
+        <p>You may have a set of LUS/GSM managing GSCs associated to a specific locator. To "break" your network into 2 groups using different lookup locators, start the <MadCap:variable name="General.ProductNameXAP" /> runtime environment as follows:</p>
         <div class="row">
             <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
                 <div title="Step 1. Run gs-agent starting LUS/GSM with a lookup service listening on port 8888:" style="padding:10px;"><pre><code class="language-bash">export XAP_LUS_OPTIONS=-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=8888
@@ -126,7 +126,7 @@ gs deploy-space -cluster schema=partitioned total_members=2 spaceY
         </div>
         <p>The Lookup Service runs by default as a standalone JVM process started by the GSA. You can also embed it to run together with the GSM. In general, you should run two Lookup Services per system. Running more than two Lpokup Services may cause increased overhead due to the chatting and heartbeat mechanism performed between the services and the lookup service, to signal the existence of the service.</p>
         <h1><a name="zones">&#160;</a>Zones</h1>
-        <p>The <a href="../admin/the-sla-zones.html">XAP zone</a> allows you to "label" a running GSC(s) before starting it. The XAP <span class="tc-bold">zone</span> should be used to isolate applications and a data grid running on the same network. It has been designed to allow users to deploy a processing unit into specific set of GSCs, where they all share the <span class="tc-bold">same set of LUSs and GSMs</span>.</p>
+        <p>The <a href="../admin/the-sla-zones.html">XAP zone</a> allows you to "label" a running GSC(s) before starting it. The <MadCap:variable name="General.ProductNameXAP" /> <span class="tc-bold">zone</span> should be used to isolate applications and a data grid running on the same network. It has been designed to allow users to deploy a processing unit into specific set of GSCs, where they all share the <span class="tc-bold">same set of LUSs and GSMs</span>.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/zones.jpg" alt="image" class="tc-picture100" />
@@ -166,7 +166,7 @@ gs-agent.sh --gsc=2
             </div>
         </div>
         <h1><a name="runtime-file-location">&#160;</a>Runtime File Location</h1>
-        <p>XAP generates some files while the system is running. You can change the location of the generated files using the following system properties:</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> generates some files while the system is running. You can change the location of the generated files using the following system properties:</p>
         <table>
             <thead>
                 <tr>
@@ -219,7 +219,7 @@ gs-agent.sh --gsc=2
                 </tr>
                 <tr>
                     <td align="left">java.util.logging.config.file</td>
-                    <td align="left">It indicates file path to the Java logging file location. Use it to enable finest logging troubleshooting of various GigaSpaces XAP Services. You may control this setting via the <code>XAP_LOGS_CONFIG_FILE</code> environment variable.</td>
+                    <td align="left">It indicates file path to the Java logging file location. Use it to enable finest logging troubleshooting of various <MadCap:variable name="General.ProductNameXAP" /> Services. You may control this setting via the <code>XAP_LOGS_CONFIG_FILE</code> environment variable.</td>
                     <td align="left"><code>&lt;gigaspaces-xap root&gt;\config\log\xap_logging.properties</code>
                     </td>
                 </tr>
@@ -270,9 +270,9 @@ In order to close LRMI threads when closing application, use:LRMIManager.shutdow
 &lt;/os-core:embedded-space&gt;
 </code></pre>
         <h1><a name="distributing-the-primary-spaces">&#160;</a>Distributing the Primary Spaces</h1>
-        <p>By default, when running GSCs on multiple machines and deploying a Space with backups, XAP tries to provision primary Dpaces to all available GSCs across all the machines.
+        <p>By default, when running GSCs on multiple machines and deploying a Space with backups, <MadCap:variable name="General.ProductNameXAP" /> tries to provision primary Dpaces to all available GSCs across all the machines.
 The <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</code> deploy parameters should be set when deploying your data grid, to determine how the deployed Processing Unit (e.g. Space) is provisioned into the different running GSCs.</p>
-        <p>Without setting the <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</code>, XAP might provision a primary and a backup instance of the same partition into GSCs running on the same physical machine. To avoid this behavior, set <code>max-instances-per-vm=1</code> and <code>max-instances-per-machine=1</code>. This ensures that the primary and backup instances of the same partition are provisioned into different GSCs running on different machines. If there is one machine running GSCs and <code>max-instances-per-machine=1</code>, <span class="tc-bold">backup instances are not provisioned</span>.</p>
+        <p>Without setting the <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</code>, <MadCap:variable name="General.ProductNameXAP" /> might provision a primary and a backup instance of the same partition into GSCs running on the same physical machine. To avoid this behavior, set <code>max-instances-per-vm=1</code> and <code>max-instances-per-machine=1</code>. This ensures that the primary and backup instances of the same partition are provisioned into different GSCs running on different machines. If there is one machine running GSCs and <code>max-instances-per-machine=1</code>, <span class="tc-bold">backup instances are not provisioned</span>.</p>
         <p>Here is an example of how to deploy a data grid with 4 partitions, with a backup per partition (total of 8 Spaces), with 2 Spaces per GSC, and the primary and backup running on different machines (even when you have other GSCs running):</p><pre><code class="language-bash">gs deploy-space -cluster schema=partitioned-sync2backup total_members=4,1
    -max-instances-per-vm 2  -max-instances-per-machine 1 MySpace
 </code></pre>
@@ -288,7 +288,7 @@ The <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</c
         </div>
         <h3><a name="rebalancing-dynamic-data-redistribution">&#160;</a>Rebalancing - Dynamic Data Redistribution</h3>
         <h4><a name="automatic-rebalancing">&#160;</a>Automatic Rebalancing</h4>
-        <p>XAP supports automatic discovery, rebalancing (also referred to as Dynamic Redistribution of Data) and expansion/contraction of the IMDG <span class="tc-bold">while the application is running</span>. When deploying an IMDG, the system partitions the data (and the co-located business logic) into logical partitions. You can define the number of logical partitions or let XAP calculate this number.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports automatic discovery, rebalancing (also referred to as Dynamic Redistribution of Data) and expansion/contraction of the IMDG <span class="tc-bold">while the application is running</span>. When deploying an IMDG, the system partitions the data (and the co-located business logic) into logical partitions. You can define the number of logical partitions or let <MadCap:variable name="General.ProductNameXAP" /> calculate this number.</p>
         <p>The logical partitions may initially run on certain containers, and later get relocated to other containers (started after the data grid has been deployed) on other machines, allowing the system to expand and increase its memory and CPU capacity while the application is still running. The number of logical partitions and replicas per partition should be determined at deployment time.  The number of containers hosting the IMDG instances may be changed during runtime.</p>
         <div class="tc-align-center">
             <p>
@@ -305,6 +305,6 @@ The <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</c
             <p>When using the <a href="../dev-java/elastic-processing-unit-overview.html">Elastic Processing Unit</a>, instances will be continuously rebalanced across all available machines.</p>
         </div>
         <h1><a name="log-files">&#160;</a>Log Files</h1>
-        <p>XAP generates log files for each running component . This includes the GSA, GSC, GSM, Lookup Service and client-side components. By default, the log files are created within the <code>&lt;gigaspaces-xap-root&gt;\logs</code> folder. After some time, you may end up with a large number of files that are difficult to maintain and search. it is recommended to back up or delete old log files. You can use the <a href="../admin/logging-backing-custom-policy.html">logging backup policy</a> to manage your log files.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> generates log files for each running component . This includes the GSA, GSC, GSM, Lookup Service and client-side components. By default, the log files are created within the <code>&lt;gigaspaces-xap-root&gt;\logs</code> folder. After some time, you may end up with a large number of files that are difficult to maintain and search. it is recommended to back up or delete old log files. You can use the <a href="../admin/logging-backing-custom-policy.html">logging backup policy</a> to manage your log files.</p>
     </body>
 </html>

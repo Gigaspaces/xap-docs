@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Queue Provider</h1>
-        <p>XAP's queue provider is equivalent to the Mule <a href="https://docs.mulesoft.com/">VM transport</a> and is used for internal communication between services managed by Mule based on the Space. By storing internal Mule messages in the Space using a virtualized queue, inter-service communication becomes highly available and fault-tolerant (in a primary-backup topology).</p>
+        <p><MadCap:variable name="General.ProductNameXAP" />'s queue provider is equivalent to the Mule <a href="https://docs.mulesoft.com/">VM transport</a> and is used for internal communication between services managed by Mule based on the Space. By storing internal Mule messages in the Space using a virtualized queue, inter-service communication becomes highly available and fault-tolerant (in a primary-backup topology).</p>
         <p>When working with Mule and the OpenSpaces Mule integration, each Mule instance can participate in a Space cluster by starting an embedded Space which is a cluster member within the cluster. In this scenario, the queues are actually stored only in the relevant cluster member. In a primary-backup topology, this means that the queue content (the relevant messages that are passed between services) are backed up to the relevant cluster backup member.</p>
         <p>In this case, when the primary instance fails, the backup takes over and become primary, allowing services to continue and process messages without losing any data.</p>
         <div class="tc-admon-note">

@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Notify Container</h1>
-        <p>The notify event container adopts the Space-inherited support for notifications (continuous query), using a XAP unified event session API. If a notification occurs, the <a href="data-event-listener.html">data event listener</a> is invoked with the event. A notify event operation is mainly used when simulating topic semantics.</p>
+        <p>The notify event container adopts the Space-inherited support for notifications (continuous query), using a <MadCap:variable name="General.ProductNameXAP" /> unified event session API. If a notification occurs, the <a href="data-event-listener.html">data event listener</a> is invoked with the event. A notify event operation is mainly used when simulating topic semantics.</p>
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/notify_container_basic.jpg" alt="" title="" class="tc-picture50" />
         </div>
@@ -117,7 +117,7 @@ notifyEventListenerContainer.destroy();
         <p>This behavior should be avoided, as it may throttle the activity or impose large concurrent replication activity (if a backup/replica is running). This in turn can consume a large amount of CPU and network resources within a short period of time. This can be observed with garbage created very quickly, which may cause long pauses due to garbage collection activity.</p>
         <p>To prevent this, the notify listener implementation should have <a href="#batch-events">batching enabled</a>, where minimal write/update/change/removal operations should be conducted (if any). If the listener performs a large number of Space operations, a <a href="polling-container-overview.html#notify-vs-polling-container">polling container</a> should be considered, as this is a more controlled event handler.</p>
         <h1><a name="template-definition">&#160;</a>Template Definition</h1>
-        <p>When performing receive operations a template is defined, creating a virtualized subset of data in the Space that matches it. XAP supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. XAP allows the use of <a href="query-sql.html">SQLQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
+        <p>When performing receive operations a template is defined, creating a virtualized subset of data in the Space that matches it. <MadCap:variable name="General.ProductNameXAP" /> supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. <MadCap:variable name="General.ProductNameXAP" /> allows the use of <a href="query-sql.html">SQLQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Annotation " style="padding:10px"><pre><code class="language-java">@EventDriven @Notify
 public class SimpleListener {
@@ -930,7 +930,7 @@ public class SimpleListener {
                 throws net.jini.core.event.UnknownEventException, java.rmi.RemoteException;
 }
 </code></pre>
-        <p>XAP extends this interface by providing the <code>EntryArrivedRemoteEvent</code>, which holds additional information regarding the event that occurred. The notify container, by default, uses the <code>EntryArrivedRemoteEvent</code> to extract the actual data event represented by the event, and passes it as the first parameter. If access to the <code>EntryArrivedRemoteEvent</code> is still needed, it is passed as the last parameter to the Space data event listener. The following is an example of how it can be used:</p><pre><code class="language-java">public class SimpleListener implements SpaceDataEventListener {
+        <p><MadCap:variable name="General.ProductNameXAP" /> extends this interface by providing the <code>EntryArrivedRemoteEvent</code>, which holds additional information regarding the event that occurred. The notify container, by default, uses the <code>EntryArrivedRemoteEvent</code> to extract the actual data event represented by the event, and passes it as the first parameter. If access to the <code>EntryArrivedRemoteEvent</code> is still needed, it is passed as the last parameter to the Space data event listener. The following is an example of how it can be used:</p><pre><code class="language-java">public class SimpleListener implements SpaceDataEventListener {
 
     public void onEvent(Object data, GigaSpace gigaSpace, TransactionStatus txStatus, Object source) {
         EntryArrivedRemoteEvent entryArrivedRemoteEvent = (EntryArrivedRemoteEvent) source;

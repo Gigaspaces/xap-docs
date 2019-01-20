@@ -81,7 +81,7 @@
         <h2><a name="reconnection">&#160;</a>Reconnection</h2>
         <p>When working with a <span class="tc-bold">remote Space</span>, the Space may become unavailable (due to network problems, Processing Unit relocation, etc.). For information on how such disruptions are handled and configured, refer to <a href="../admin/tuning-proxy-connectivity.html">Proxy Connectivity</a>.</p>
         <h1><a name="local-cache">&#160;</a>Local Cache</h1>
-        <p>XAP supports a <a href="local-cache.html">local cache</a> (near cache) configuration. This provides a front-end, client-side cache that is used with the <code>read</code> operations implicitly. The local cache is loaded on demand or when you perform a <code>read</code> operation, and is updated implicitly by the Space.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports a <a href="local-cache.html">local cache</a> (near cache) configuration. This provides a front-end, client-side cache that is used with the <code>read</code> operations implicitly. The local cache is loaded on demand or when you perform a <code>read</code> operation, and is updated implicitly by the Space.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/devguide/space-local-cache.png" width="521" height="160" />
@@ -115,7 +115,7 @@ GigaSpace localCache = new GigaSpaceConfigurer(localCacheConfigurer).gigaSpace()
             </div>
         </div>
         <h1><a name="local-view">&#160;</a>Local View</h1>
-        <p>XAP supports a <a href="local-view.html">local view</a> configuration. This provides a front-end, client-side cache that is used with any <code>read</code> or <code>readMultiple</code> operations implicitly. The local view is loaded on start, and is updated implicitly by the Space.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports a <a href="local-view.html">local view</a> configuration. This provides a front-end, client-side cache that is used with any <code>read</code> or <code>readMultiple</code> operations implicitly. The local view is loaded on start, and is updated implicitly by the Space.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/devguide/space-local-view.png" width="521" height="160" />
@@ -170,7 +170,7 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
         <h1><a name="resource-cleanup">&#160;</a>Resource Cleanup</h1>
         <p>There are two types of resources associated with Space instances and Space clients that have to be released before shutting down your application.</p>
         <h2><a name="thread-and-memory-resources">&#160;</a>Thread and Memory Resources</h2>
-        <p>If your Space client or embedded Space are running within a Spring-enabled environment (such as the XAP service grid or a standalone Spring application), and are configured in a Spring application context, these resources will be cleaned up automatically when the Spring application context is destroyed. However, if you start the Space client or Space instance programmatically, you must call the <code>SpaceConfigurer close()</code> method when your application no longer uses the Space instance/Space client.</p>
+        <p>If your Space client or embedded Space are running within a Spring-enabled environment (such as the <MadCap:variable name="General.ProductNameXAP" /> service grid or a standalone Spring application), and are configured in a Spring application context, these resources will be cleaned up automatically when the Spring application context is destroyed. However, if you start the Space client or Space instance programmatically, you must call the <code>SpaceConfigurer close()</code> method when your application no longer uses the Space instance/Space client.</p>
         <p>Example:</p><pre><code class="language-java">SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space");
  //....
 spaceProxyConfigurer.close();
@@ -187,8 +187,8 @@ localViewConfigurer.close();
             <p>When using LocalCache and LocalView. you need to call the <code>close()</code> method on their respective configurer.</p>
         </div>
         <h2><a name="communication-resources">&#160;</a>Communication Resources</h2>
-        <p>All communication-related resources in XAP are shared between all the XAP components at the Java classloader level. If you're using the <a href="../admin/the-runtime-environment.html">XAP service grid</a> to run your XAP application, you do not need to handle the cleanup of communication resources explicitly.</p>
-        <p>If your application runs in a standalone environment or another hosted environment (such as a JEE application server), you must explicitly clean up those resources. You have to shut down these resources explicitly when your application no longer uses the XAP components (for example, when it is undeployed from the application server). This is done by calling the static <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/LRMIManager.html">shutdown()</a> method on the LRMIManager.</p>
+        <p>All communication-related resources in <MadCap:variable name="General.ProductNameXAP" /> are shared between all the <MadCap:variable name="General.ProductNameXAP" /> components at the Java classloader level. If you're using the <a href="../admin/the-runtime-environment.html">XAP service grid</a> to run your <MadCap:variable name="General.ProductNameXAP" /> application, you do not need to handle the cleanup of communication resources explicitly.</p>
+        <p>If your application runs in a standalone environment or another hosted environment (such as a JEE application server), you must explicitly clean up those resources. You have to shut down these resources explicitly when your application no longer uses the <MadCap:variable name="General.ProductNameXAP" /> components (for example, when it is undeployed from the application server). This is done by calling the static <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/LRMIManager.html">shutdown()</a> method on the LRMIManager.</p>
         <p>If the JVM process is shut down anyway, you don't have to explicitly shut down the communication resources.</p>
         <p>Example:</p><pre><code class="language-java">SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer("space");
  //....
@@ -237,7 +237,7 @@ LRMIManager.shutdown();
         </div>
         <p>You can configure the Space to be secured using deploy-time properties (bean-level properties), without declaring the security element. The <code>security.username</code> and <code>security.password</code> can be provided, and the Spaces defined within the Processing Unit are automatically secured.</p>
         <div class="tc-admon-note">
-            <p>For more information about how to secure XAP components, refer to the <a href="../security/index.html">Security</a> section of the Administrator guide.</p>
+            <p>For more information about how to secure <MadCap:variable name="General.ProductNameXAP" /> components, refer to the <a href="../security/index.html">Security</a> section of the Administrator guide.</p>
         </div>
         <h1><a name="persistency">&#160;</a>Persistency</h1>
         <p>When constructing a Space, you can provide <a href="space-persistency-overview.html">Space Persistency</a> extensions using Spring-based configuration instead of using the Space schema. The following is an example of how it can be defined:</p>
@@ -312,10 +312,10 @@ LRMIManager.shutdown();
 </code></pre>
             </div>
         </div>
-        <p>The above example uses Spring built-in support for configuring both a custom JDBC <code>DataSource</code> and a Hibernate <code>SessionFactory</code> to define and use the XAP built-in <code>HibernateSpaceDataSource</code>. The XAP data source is then injected into the
+        <p>The above example uses Spring built-in support for configuring both a custom JDBC <code>DataSource</code> and a Hibernate <code>SessionFactory</code> to define and use the <MadCap:variable name="General.ProductNameXAP" /> built-in <code>HibernateSpaceDataSource</code>. The <MadCap:variable name="General.ProductNameXAP" /> data source is then injected into the
 Space construction (note the specific schema change), and causes the Space to use it.</p>
         <div class="tc-admon-note">
-            <p>This configuration can also be used with the XAP <a href="asynchronous-persistency-with-the-mirror.html">Mirror Service</a> deployed as a Processing Unit.</p>
+            <p>This configuration can also be used with the <MadCap:variable name="General.ProductNameXAP" /> <a href="asynchronous-persistency-with-the-mirror.html">Mirror Service</a> deployed as a Processing Unit.</p>
         </div>
         <h1><a name="additional-resources">&#160;</a>Additional Resources</h1>
         <table class="tc-borderless">

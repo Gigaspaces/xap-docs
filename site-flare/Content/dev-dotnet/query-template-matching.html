@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -46,7 +46,7 @@ Person person = spaceProxy.Read(template);
 
 <h1><a name="indexes">&#160;</a>Indexes</h1>
 
-<p>GigaSpaces XAP includes a sophisticated built-in real-time indexing engine (regardless whether the space is persistent or not) that maintains a hash and btree like indexes for each indexed Space Class attribute. If you store a large number of Space objects from the same class type in the space, consider defining one or more indexes for attributes used with template matching or <a href="query-sql.html">SQL Query</a>. Defining indexes will improve the <code>Read/Take/ReadMultiple/TakeMultiple/Clear/Count</code> operations response time significantly. Remember, indexes impact <code>Write</code> and <code>Take</code> operations response time, so choose your indexed fields carefully - each index has an overhead. For more information see <a href="indexing.html">Indexing</a>.</p>
+<p><MadCap:variable name="General.ProductNameXAP" /> includes a sophisticated built-in real-time indexing engine (regardless whether the space is persistent or not) that maintains a hash and btree like indexes for each indexed Space Class attribute. If you store a large number of Space objects from the same class type in the space, consider defining one or more indexes for attributes used with template matching or <a href="query-sql.html">SQL Query</a>. Defining indexes will improve the <code>Read/Take/ReadMultiple/TakeMultiple/Clear/Count</code> operations response time significantly. Remember, indexes impact <code>Write</code> and <code>Take</code> operations response time, so choose your indexed fields carefully - each index has an overhead. For more information see <a href="indexing.html">Indexing</a>.</p>
 
 <h1><a name="inheritance-support">&#160;</a>Inheritance Support</h1>
 

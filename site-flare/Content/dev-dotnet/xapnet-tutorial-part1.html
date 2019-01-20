@@ -19,7 +19,7 @@ ISpaceProxy spaceProxy = new EmbeddedSpaceFactory("xapTutorialSpace").Create();
             <p>For more information, see the <a href="the-space-configuration.html">Configuration</a> page in The Space Interface section.</p>
         </div>
         <p>When a client connects to a Space, a proxy is created that holds a connection which implements the Space API. All client interaction is performed through this proxy.</p>
-        <p>With XAP you can also create a Local Cache and a Local View.</p>
+        <p>With <MadCap:variable name="General.ProductNameXAP" /> you can also create a Local Cache and a Local View.</p>
         <ul>
             <li>
                 <p>Local Cache : This client side cache maintains any object used by the application. The cache data is loaded on demand (lazily), based on the client application's read operations.</p>
@@ -34,7 +34,7 @@ In both cases, updates are performed (objects are added/updated/removed) on the 
             <p>For more information, see the <a href="../dev-dotnet/client-side-caching.html">Client Side Caching</a> section.</p>
         </div>
         <h1><a name="the-space-object">&#160;</a>The Space Object</h1>
-        <p>XAP supports two types of objects that can interact with the Space, PONOs and Documents.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports two types of objects that can interact with the Space, PONOs and Documents.</p>
         <h1><a name="pono">&#160;</a>PONO</h1>
         <p>Any PONO can be used to interact with the Space. The PONO needs to implement a default constructor, setters and getters for every property you want to store in the Space.</p><pre><code class="language-csharp">using System;
 using System.Collections.Generic;
@@ -77,8 +77,8 @@ using GigaSpaces.Core.Metadata;
             <p>For more information, see the <a href="../admin/data-partitioning.html">Data Partitioning</a> page in the Administration guide.</p>
         </div>
         <h1><a name="space-document">&#160;</a>Space Document</h1>
-        <p>The XAP document API exposes the Space as Document Store. A document, which is represented by the class SpaceDocument, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, String, Date, other documents, or collections thereof. Unlike PONOs, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic, users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the class SpaceTypeDescriptor.</p>
-        <p>To create a document we use a Dictionary&lt;String,Object&gt; for its properties. The SpaceDocument object is instantiated by using the type name and properties. XAP provides a special implementation of a Dictionary called  DocumentProperties.</p>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> document API exposes the Space as Document Store. A document, which is represented by the class SpaceDocument, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, String, Date, other documents, or collections thereof. Unlike PONOs, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic, users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the class SpaceTypeDescriptor.</p>
+        <p>To create a document we use a Dictionary&lt;String,Object&gt; for its properties. The SpaceDocument object is instantiated by using the type name and properties. <MadCap:variable name="General.ProductNameXAP" /> provides a special implementation of a Dictionary called  DocumentProperties.</p>
         <p>Here is an example how you can create a SpaceDocument:</p><pre><code class="language-csharp">using System;
 
 using GigaSpaces.Core;
@@ -194,7 +194,7 @@ namespace xaptutorial.model
             <p>For more information, see the <a href="change-api-overview.html">Change API</a> section.</p>
         </div>
         <h1><a name="querying-the-space">&#160;</a>Querying the Space</h1>
-        <p>Now we are ready to query the Space. XAP provides several ways to perform queries against the Space:</p>
+        <p>Now we are ready to query the Space. <MadCap:variable name="General.ProductNameXAP" /> provides several ways to perform queries against the Space:</p>
         <ul>
             <li>Query by ID</li>
             <li>Query by Template</li>
@@ -349,7 +349,7 @@ public SpaceDocument[] readProductsBySQL() {
             <p>For more information, see the <a href="document-api.html">Document API</a> page in the Space Document section.</p>
         </div>
         <h2><a name="linq-queries">&#160;</a>LINQ Queries</h2>
-        <p>XAP includes a custom LINQ provider, which enables developers to take advantage of their existing C# skills to query the Space without learning a new language.  Here is an example :</p><pre><code class="language-csharp">using GigaSpaces.Core.Linq;
+        <p><MadCap:variable name="General.ProductNameXAP" /> includes a custom LINQ provider, which enables developers to take advantage of their existing C# skills to query the Space without learning a new language.  Here is an example :</p><pre><code class="language-csharp">using GigaSpaces.Core.Linq;
 
    var query = from p in spaceProxy.Query&lt;Account&gt;()
             where p.number == "12345"
@@ -366,7 +366,7 @@ public SpaceDocument[] readProductsBySQL() {
         <h2><a name="removing-objects-from-space">&#160;</a>Removing Objects from the Space</h2>
         <p>To remove objects from a Space you can use the take or the clear operation.</p>
         <h3><a name="take-operation">&#160;</a>Take Operation</h3>
-        <p>The take operation returns an object and removes it from the Space. XAP provides several options for the take operation:</p>
+        <p>The take operation returns an object and removes it from the Space. <MadCap:variable name="General.ProductNameXAP" /> provides several options for the take operation:</p>
         <ul>
             <li>Take by ID</li>
             <li>Take by template</li>
@@ -426,7 +426,7 @@ Person oldestPersonInSpace = queryable.MaxEntry(p =&gt; p.Age);
 Person youngestPersonInSpace = queryable.MinEntry(p =&gt; p.Age);
 
 </code></pre>
-        <p>XAP also supports, <code>Compound</code> and <code>Embedded Fields</code>   Aggregation.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> also supports, <code>Compound</code> and <code>Embedded Fields</code>   Aggregation.</p>
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../dev-dotnet/aggregators.html">Aggregators</a> page in the Space Interface section.</p>
         </div>

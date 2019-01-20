@@ -70,7 +70,7 @@ notifyEventListenerContainer.Dispose();
             <p>This mostly applies when working with an embedded Space directly with a cluster member. When working with a clustered Space (performing operations against the whole cluster), the mode of the Space is always primary.</p>
         </div>
         <h1><a name="template-definition">&#160;</a>Template Definition</h1>
-        <p>When performing receive operations, a template is defined, creating a virtualized subset of data in the Space, matching it. XAP supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. XAP allows the use of <a href="query-sql.html">SqlQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
+        <p>When performing receive operations, a template is defined, creating a virtualized subset of data in the Space, matching it. <MadCap:variable name="General.ProductNameXAP" /> supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. <MadCap:variable name="General.ProductNameXAP" /> allows the use of <a href="query-sql.html">SqlQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Using EventListenerContainerFactory " style="padding:10px"><pre><code class="language-csharp">[NotifyEventDriven]
 public class SimpleListener
@@ -311,7 +311,7 @@ notifyEventListenerContainer.IgnoreEventOnNullTake = true;
             </div>
         </div><a name="SpaceDataEventArgs">&#160;</a>
         <h1><a name="space-data-event-args">&#160;</a>Space Data Event Args</h1>
-        <p>The notify container uses the XAP <a href="the-space-notifications.html">data event session API</a> under the hood. When a notification is triggered, it contains <code>SpaceDataEventArgs</code>, which holds more information about the notification itself, such as the template and the DataEventType (for example, whether this notification was triggered by a write or an update operation). When using the notify container, it is possible to receive that additional information as a parameter of the event listener method:</p>
+        <p>The notify container uses the <MadCap:variable name="General.ProductNameXAP" /> <a href="the-space-notifications.html">data event session API</a> under the hood. When a notification is triggered, it contains <code>SpaceDataEventArgs</code>, which holds more information about the notification itself, such as the template and the DataEventType (for example, whether this notification was triggered by a write or an update operation). When using the notify container, it is possible to receive that additional information as a parameter of the event listener method:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Using EventListenerContainerFactory " style="padding:10px"><pre><code class="language-csharp">[NotifyEventDriven]
 public class SimpleListener

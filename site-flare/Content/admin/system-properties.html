@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -57,7 +57,7 @@
 <tbody>
 <tr>
 <td>com.gs.home</td>
-<td>XAP home directory. Not required, if not set explicitly, it is resolved</td>
+<td><MadCap:variable name="General.ProductNameXAP" /> home directory. Not required, if not set explicitly, it is resolved</td>
 <td>XAPHOME</td>
 </tr>
 
@@ -242,7 +242,7 @@
 
 <tr>
 <td>com.gs.transport_protocol<br/>.lrmi.max-threads</td>
-<td>XAP maintains a thread pool on the server side (at the GSC process level), that manages incoming remote requests. This parameter specifies the maximum size of this thread pool.</td>
+<td><MadCap:variable name="General.ProductNameXAP" /> maintains a thread pool on the server side (at the GSC process level), that manages incoming remote requests. This parameter specifies the maximum size of this thread pool.</td>
 <td>128</td>
 <td>Server</td>
 <td>Threads</td>
@@ -251,7 +251,7 @@
 
 <tr>
 <td>com.gs.transport_protocol<br/>.lrmi.min-threads</td>
-<td>XAP maintains a thread pool on the server side that manages incoming remote requests. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the minimum size of this thread pool.</td>
+<td><MadCap:variable name="General.ProductNameXAP" /> maintains a thread pool on the server side that manages incoming remote requests. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the minimum size of this thread pool.</td>
 <td>1</td>
 <td>Server</td>
 <td>Threads</td>
@@ -260,7 +260,7 @@
 
 <tr>
 <td>com.gs.transport_protocol.<br/>lrmi.custom.threadpool.max-threads</td>
-<td>XAP maintains a thread pool on the server side that manages incoming remote requests for Task and Notification invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool.</td>
+<td><MadCap:variable name="General.ProductNameXAP" /> maintains a thread pool on the server side that manages incoming remote requests for Task and Notification invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool.</td>
 <td>128</td>
 <td>Server</td>
 <td>Threads</td>
@@ -269,7 +269,7 @@
 
 <tr>
 <td>com.gs.transport_protocol.<br/>lrmi.custom.threadpool.min-threads</td>
-<td>XAP maintains a thread pool on the server side that manages incoming remote requests for Task and Notification invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the minimum size of this thread pool.</td>
+<td><MadCap:variable name="General.ProductNameXAP" /> maintains a thread pool on the server side that manages incoming remote requests for Task and Notification invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the minimum size of this thread pool.</td>
 <td>1</td>
 <td>Server</td>
 <td>Threads</td>
@@ -278,7 +278,7 @@
 
 <tr>
 <td>com.gs.transport_protocol.<br/>lrmi.system-priority.<br/>threadpool.max-threads</td>
-<td>XAP maintains a thread pool on the server side that manages incoming remote requests for admin invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool.</td>
+<td><MadCap:variable name="General.ProductNameXAP" /> maintains a thread pool on the server side that manages incoming remote requests for admin invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool.</td>
 <td>8</td>
 <td>Server</td>
 <td></td>
@@ -287,7 +287,7 @@
 
 <tr>
 <td>com.gs.transport_protocol.<br/>lrmi.system-priority.<br/>threadpool.min-threads</td>
-<td>XAP maintains a thread pool on the server side that manages incoming remote requests for admin invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool.</td>
+<td><MadCap:variable name="General.ProductNameXAP" /> maintains a thread pool on the server side that manages incoming remote requests for admin invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool.</td>
 <td>1</td>
 <td>Server</td>
 <td></td>
@@ -296,7 +296,7 @@
 
 <tr>
 <td>com.gs.transport_protocol<br/>.lrmi.bind-port</td>
-<td>Server port used for incoming client requests, or notifications from server to client. The server port is set by default to 0, which means next free port. This means that whenever XAP is launched, it allocates one of the available ports. Define a specific port value to enforce a specific port on the space server or client side. You can define a range of ports</td>
+<td>Server port used for incoming client requests, or notifications from server to client. The server port is set by default to 0, which means next free port. This means that whenever <MadCap:variable name="General.ProductNameXAP" /> is launched, it allocates one of the available ports. Define a specific port value to enforce a specific port on the space server or client side. You can define a range of ports</td>
 <td>0</td>
 <td>Server</td>
 <td></td>
@@ -305,7 +305,7 @@
 
 <tr>
 <td>java.rmi.server.hostname</td>
-<td>Binds the XAP Server on a specified network interface. If java.rmi.server.hostname is null the system sets the localhost IP address.</td>
+<td>Binds the <MadCap:variable name="General.ProductNameXAP" /> Server on a specified network interface. If java.rmi.server.hostname is null the system sets the localhost IP address.</td>
 <td>host<br/>name</td>
 <td>Client &amp; Server</td>
 <td></td>
@@ -1121,7 +1121,7 @@ Refer to <a href="space-jmx-management.html">JMX Management</a></p>
 <tr>
 <td>com.gigaspaces.start.httpRoots</td>
 <td>Webster root library locations.</td>
-<td>Default includes XAP libraries, Jini libraries, etc.</td>
+<td>Default includes <MadCap:variable name="General.ProductNameXAP" /> libraries, Jini libraries, etc.</td>
 </tr>
 
 <tr>

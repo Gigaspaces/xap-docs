@@ -4,13 +4,13 @@
     </head>
     <body>
         <h1>Maven Plugin</h1>
-        <p>Maven is a tool used to automate and simplify the development cycle of any Java-based project. The XAP plugin for Maven utilizes Maven to simplify the development cycle of XAP-based applications. You can use this plugin to easily create, compile, package, run unit tests, execute and deploy Processing Units.</p>
+        <p>Maven is a tool used to automate and simplify the development cycle of any Java-based project. The <MadCap:variable name="General.ProductNameXAP" /> plugin for Maven utilizes Maven to simplify the development cycle of <MadCap:variable name="General.ProductNameXAP" />-based applications. You can use this plugin to easily create, compile, package, run unit tests, execute and deploy Processing Units.</p>
         <p>You don't need to be an experienced Maven user to start working with this plugin. This section provides you with everything you need to know in order to start developing Processing Units with the Maven plugin. Experienced Maven users can use the Maven plugin to embed Processing Unit development with their existing development environment.</p>
         <div class="tc-admon-note">
-            <p>The XAP Maven plugin has been tested with Maven 3.0. For further information about maven see: <a href="http://maven.apache.org/what-is-maven.html" target="_blank">apache.org; What is Maven?</a></p>
+            <p>The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin has been tested with Maven 3.0. For further information about maven see: <a href="http://maven.apache.org/what-is-maven.html" target="_blank">apache.org; What is Maven?</a></p>
         </div>
         <h1><a name="prior-to-installation">&#160;</a>Prior to Installation</h1>
-        <p>In order to use the XAP Maven plugin, Maven needs to be installed on the machine. If a Maven installation already exists on the machine, it can be used. If not, XAP comes with a ready-to-use distribution of Maven 3.0, located under: <code>&lt;XAP HOME&gt;/tools/maven/apache-maven-3.2.5</code>.</p>
+        <p>In order to use the <MadCap:variable name="General.ProductNameXAP" /> Maven plugin, Maven needs to be installed on the machine. If a Maven installation already exists on the machine, it can be used. If not, <MadCap:variable name="General.ProductNameXAP" /> comes with a ready-to-use distribution of Maven 3.0, located under: <code>&lt;XAP HOME&gt;/tools/maven/apache-maven-3.2.5</code>.</p>
         <p>All you need to do is add the Maven <code>bin</code> directory to the system <code>PATH</code> variable, and you are ready to go. To test whether the Maven command is accessible, open a command line window, type <code>mvn \-version</code>, and press Enter.
 The following message should be displayed:</p><pre><code class="language-bash">&gt;mvn -version
 
@@ -28,12 +28,12 @@ OS name: "linux", version: "3.13.0-76-generic", arch: "amd64", family: "unix"
             <p>Maven uses repositories: a local repository where all required dependencies (artifacts) are stored for Maven's use, and remote repositories from which Maven downloads required dependencies that are missing in the local repository. If a dependency is missing from the local repository during execution, Maven automatically downloads the missing dependencies from the remote repositories. The download might take a few minutes (progress messages are printed to the console). When the download is finished, Maven returns to its original tasks.</p>
         </div>
         <h1><a name="installation">&#160;</a>Installation</h1>
-        <p>To install the XAP Maven plugin:</p>
+        <p>To install the <MadCap:variable name="General.ProductNameXAP" /> Maven plugin:</p>
         <p>Run the <code>installmavenrep</code> script from the <code>&lt;XAP_HOME&gt;/tools/maven</code> directory:</p><pre><code class="language-bash">D:&lt;XAP Home&gt;\tools\maven&gt;installmavenrep.bat
 </code></pre>
-        <p>This installs the XAP libraries and the XAP Maven plugin into the local Maven repository. Once the installation is finished, the Maven plugin is ready to be used.</p>
+        <p>This installs the <MadCap:variable name="General.ProductNameXAP" /> libraries and the <MadCap:variable name="General.ProductNameXAP" /> Maven plugin into the local Maven repository. Once the installation is finished, the Maven plugin is ready to be used.</p>
         <div class="tc-admon-note">
-            <p>The XAP Maven plugin is installed under: <code>&lt;maven-repository-dir&gt;\org\apache\maven\plugins\xap-maven-plugin</code></p>
+            <p>The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin is installed under: <code>&lt;maven-repository-dir&gt;\org\apache\maven\plugins\xap-maven-plugin</code></p>
         </div>
         <h1><a name="using-available-project-templates">&#160;</a>Using Available Project Templates</h1>
         <p>You may view list of available project templates and their description using the following command:</p><pre><code class="language-bash">mvn xap:create
@@ -60,7 +60,7 @@ OS name: "linux", version: "3.13.0-76-generic", arch: "amd64", family: "unix"
         <p>Use the <code>-Dtemplate=&lt;template&gt;</code> argument to specify a project template. Example:</p><pre><code class="language-bash">mvn xap:create -Dtemplate=persistent-event-processing
 </code></pre>
         <h1><a name="creating-processing-unit-project">&#160;</a>Creating a Processing Unit Project</h1>
-        <p>The XAP Maven plugin can create Processing Unit projects. It generates the resources and the appropriate directory structure, making it easy to immediately start working on the Processing Units. Projects can be created in any directory. Before creating the project change to the directory where the project should be created. To create a Processing Unit project, use the following command-line:</p><pre><code class="language-bash">mvn xap:create
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin can create Processing Unit projects. It generates the resources and the appropriate directory structure, making it easy to immediately start working on the Processing Units. Projects can be created in any directory. Before creating the project change to the directory where the project should be created. To create a Processing Unit project, use the following command-line:</p><pre><code class="language-bash">mvn xap:create
     -DgroupId=&lt;group-id&gt;
     -DartifactId=&lt;artifact-id&gt;
     -Dtemplate=&lt;project-template&gt;
@@ -126,7 +126,7 @@ OS name: "linux", version: "3.13.0-76-generic", arch: "amd64", family: "unix"
 </code></pre>
         <p>This compiles each module and puts the output files under the modules' <span class="tc-italic">target</span> directory.</p>
         <h1><a name="running-processing-unit-modules">&#160;</a>Running Processing Unit Modules</h1>
-        <p>Sometimes, during development, the developer might want to run the Processing Unit module to check its functionality. The XAP Maven plugin allows you to run Processing Unit modules without the need to package them as Processing Unit distributables first. This feature saves time, while evading build phases that are not required for this task.</p>
+        <p>Sometimes, during development, the developer might want to run the Processing Unit module to check its functionality. The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin allows you to run Processing Unit modules without the need to package them as Processing Unit distributables first. This feature saves time, while evading build phases that are not required for this task.</p>
         <div class="tc-admon-note">
             <p>To run modules, they need to be compiled first.</p>
         </div>
@@ -209,7 +209,7 @@ mvn compile xap:run -Dproperties="embed://prop1=value1" -Dmodule=feeder
             </li>
         </ul><a name="overriding">&#160;</a>
         <h2><a name="overriding-space-cluster-configuration">&#160;</a>Overriding Space/Cluster Configuration</h2>
-        <p>If you need to override the configuration of the space or cluster when running the processing units through the XAP plugin and you want to do it by replacing the original configuration files, you can do it by placing the required file in the project's root directory.</p>
+        <p>If you need to override the configuration of the space or cluster when running the processing units through the <MadCap:variable name="General.ProductNameXAP" /> plugin and you want to do it by replacing the original configuration files, you can do it by placing the required file in the project's root directory.</p>
         <p>Examples:
 To change the logging configuration place the new _xap<span class="tc-italic">logging.properties</span> file in the <span class="tc-italic">config/log</span> directory (you may need to create this directory) under the project's root directory.</p>
         <p>To change the security permissions place the new <span class="tc-italic">policy.all</span> file in the <span class="tc-italic">policy</span> directory (you may need to create this directory) under the project's root directory.</p>
@@ -217,7 +217,7 @@ To change the logging configuration place the new _xap<span class="tc-italic">lo
             <p>Those changes apply only when deploying the processing units.</p>
         </div><a name="packaging">&#160;</a>
         <h1><a name="packaging-processing-units">&#160;</a>Packaging Processing Units</h1>
-        <p>In order to deploy Processing Units, you need to package them in a distributable form. The XAP Maven plugin allows you to package two types of distributable supported by XAP: a single JAR archive and an open directory structure.</p>
+        <p>In order to deploy Processing Units, you need to package them in a distributable form. The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin allows you to package two types of distributable supported by <MadCap:variable name="General.ProductNameXAP" />: a single JAR archive and an open directory structure.</p>
         <p>Make sure you are in the directory of the project.
 To package the Processing Units, use the following command-line from the main project directory:</p><pre><code class="language-bash">mvn package
 </code></pre>
@@ -251,7 +251,7 @@ To package the Processing Units, use the following command-line from the main pr
 &gt;mvn package -Dmaven.test.skip
 </code></pre>
         <h1><a name="running-processing-units">&#160;</a>Running Processing Units</h1>
-        <p>After packaging the Processing Units, you might want to test the validity of the assemblies. The XAP Maven plugin makes it possible to run the Processing Units as standalone modules. The Maven plugin includes all the assembly dependencies in the execution classpath, making sure that the Processing Unit finds all the required resources. Managing to run the Processing Unit as a module while failing to run it as a standalone module might imply that a problem exists with the assembly definitions.</p>
+        <p>After packaging the Processing Units, you might want to test the validity of the assemblies. The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin makes it possible to run the Processing Units as standalone modules. The Maven plugin includes all the assembly dependencies in the execution classpath, making sure that the Processing Unit finds all the required resources. Managing to run the Processing Unit as a module while failing to run it as a standalone module might imply that a problem exists with the assembly definitions.</p>
         <p>Make sure you are in the directory of the project.
 To run Processing Units as standalone modules, use the following command-line:</p><pre><code class="language-bash">mvn xap:run-standalone
     -Dcluster=&lt;"cluster-properties"&gt;
@@ -334,7 +334,7 @@ mvn xap:run-standalone -Dproperties="embed://prop1=value1" -Dmodule=feeder
         <p>Overriding the space and cluster configuration is explained in <a href="#overriding">Running Processing Unit Modules</a>.</p>
         <h1><a name="deploying-processing-units">&#160;</a>Deploying Processing Units</h1>
         <p>Processing Units usually run in the Service Grid. In order to deploy a Processing Unit, you first need to package it (see <a href="#packaging">Packaging Processing Units</a>).</p>
-        <p>XAP supports two forms of Processing Unit distributable: A single JAR archive and an open directory structure. The XAP Maven plugin allows you to deploy Processing Units simply – packaged as JAR archives – into the Service Grid.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports two forms of Processing Unit distributable: A single JAR archive and an open directory structure. The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin allows you to deploy Processing Units simply – packaged as JAR archives – into the Service Grid.</p>
         <div class="tc-admon-note">
             <p>When deploying Processing Units, make sure that the Grid Service Manager (GSM) and the Grid Service Container (GSC) are running.</p>
         </div>
@@ -435,7 +435,7 @@ Once your Processing Units are packaged, use the following command-line to deplo
         <p>If the current directory is the main project directory and the <code>module</code> argument is not set, Maven deploys the Processing Unit in the order described <a href="#order">below</a>.</p>
         <p>If the current directory is the main project directory and the <code>module</code> argument is set, only the specified Processing Unit is deployed.</p>
         <h1><a name="undeploying-processing-units">&#160;</a>Undeploying Processing Units</h1>
-        <p>The XAP Maven plugin makes it simple to undeploy Processing Units from the Service Grid. Make sure you are in the directory of the project. To undeploy a Processing Unit from the Service Grid, use the following command-line:</p><pre><code class="language-bash">mvn xap:undeploy
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin makes it simple to undeploy Processing Units from the Service Grid. Make sure you are in the directory of the project. To undeploy a Processing Unit from the Service Grid, use the following command-line:</p><pre><code class="language-bash">mvn xap:undeploy
     -Dgroups=&lt;groups&gt;
     -Dlocators=&lt;locators&gt;
     -Dtimeout=&lt;timeout&gt;
@@ -624,7 +624,7 @@ Under Application click on <span class="tc-bold">Processor</span> and then press
             </li>
         </ol>
         <h1><a name="viewing-persistent-data">&#160;</a>Viewing Persistent Data</h1>
-        <p>When running a Processing Unit that uses persistency, e.g when using the <span class="tc-italic">persistent-event-processing</span> template, one would like to view the persisted data. XAP Maven Plugin makes it easy to start the HSQLDB viewer to immediately view persisted data.</p>
+        <p>When running a Processing Unit that uses persistency, e.g when using the <span class="tc-italic">persistent-event-processing</span> template, one would like to view the persisted data. <MadCap:variable name="General.ProductNameXAP" /> Maven Plugin makes it easy to start the HSQLDB viewer to immediately view persisted data.</p>
         <div class="tc-admon-note">
             <p>The HSQLDB viewer is for monitoring HSQLDB databases only.</p>
         </div>
