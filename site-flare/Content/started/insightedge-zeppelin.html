@@ -3,10 +3,10 @@
     <head>
     </head>
     <body>
-        <h1>Using the InsightEdge Web Notebook</h1>
-        <p>This section describes how to use the interactive Apache Zeppelin Web Notebook with InsightEdge.</p>
+        <h1>Using the <MadCap:variable name="General.ProductNameIE" /> Web Notebook</h1>
+        <p>This section describes how to use the interactive Apache Zeppelin Web Notebook with <MadCap:variable name="General.ProductNameIE" />.</p>
         <h1><a name="starting-the-web-notebook">&#160;</a>Starting the Web Notebook</h1>
-        <p>The InsightEdge Apache Zeppelin web notebook can be started in any of the following ways:</p>
+        <p>The <MadCap:variable name="General.ProductNameIE" /> Apache Zeppelin web notebook can be started in any of the following ways:</p>
         <ul>
             <li>
                 <p>Run the <code>insightedge demo</code> command; the web notebook is started automatically at <a href="http://localhost:9090" target="_blank">localhost:9090</a>.</p>
@@ -21,18 +21,18 @@
                 <img src="../Resources/Static/attachment_files/Zeppelin_examples_100.png" alt="image" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="connecting-a-new-apache-zeppelin-notebook-to-insightedge">&#160;</a>Connecting a New Apache Zeppelin Notebook to InsightEdge</h1>
-        <p>If you want to create a new Apache Zeppelin web notebook instead of using the example notebooks that come packaged with InsightEdge, there are two ways to run a Zeppelin notebook against InsightEdge:</p>
+        <h1><a name="connecting-a-new-apache-zeppelin-notebook-to-insightedge">&#160;</a>Connecting a New Apache Zeppelin Notebook to <MadCap:variable name="General.ProductNameIE" /></h1>
+        <p>If you want to create a new Apache Zeppelin web notebook instead of using the example notebooks that come packaged with <MadCap:variable name="General.ProductNameIE" />, there are two ways to run a Zeppelin notebook against <MadCap:variable name="General.ProductNameIE" />:</p>
         <ul>
             <li>
                 <p>Write a Spark application that reads and writes data to the data grid using the Spark context.</p>
             </li>
             <li>
-                <p>Write an SQL query that is interpreted by the InsightEdge JDBC interpreter (which is run directly against the data grid).</p>
+                <p>Write an SQL query that is interpreted by the <MadCap:variable name="General.ProductNameIE" /> JDBC interpreter (which is run directly against the data grid).</p>
             </li>
         </ul>
         <h2><a name="initializing-the-spark-context">&#160;</a>Initializing the Spark Context</h2>
-        <p>In order to establish the connection between Apache Zeppelin through Apache Spark and then to the data grid, each notebook should start with a paragraph that injects the InsightEdge settings to the Spark context. Important settings include the following properties:</p>
+        <p>In order to establish the connection between Apache Zeppelin through Apache Spark and then to the data grid, each notebook should start with a paragraph that injects the <MadCap:variable name="General.ProductNameIE" /> settings to the Spark context. Important settings include the following properties:</p>
         <ul>
             <li>
                 <p><code>spaceName</code>
@@ -71,8 +71,8 @@
 </code></pre>
             </li>
         </ul>
-        <h2><a name="insightedge-jdbc-interpreter">&#160;</a>InsightEdge JDBC Interpreter</h2>
-        <p>Apache Zeppelin uses interpreters to compile and run paragraphs. The Apache Zeppelin instance that is packaged with InsightEdge comes with a custom JDBC interpreter that enables running SQL queries directly on the data grid using the web notebook.  The queries are executed by the <a href="../dev-java/sql-query-intro.html">InsightEdge SQL Driver</a>.</p>
+        <h2><a name="insightedge-jdbc-interpreter">&#160;</a><MadCap:variable name="General.ProductNameIE" /> JDBC Interpreter</h2>
+        <p>Apache Zeppelin uses interpreters to compile and run paragraphs. The Apache Zeppelin instance that is packaged with <MadCap:variable name="General.ProductNameIE" /> comes with a custom JDBC interpreter that enables running SQL queries directly on the data grid using the web notebook.  The queries are executed by the <a href="../dev-java/sql-query-intro.html">InsightEdge SQL Driver</a>.</p>
         <h3><a name="configuring-the-jdbc-interpreter">&#160;</a>Configuring the JDBC Interpreter</h3>
         <p>The JDBC interpreter connects to the data grid via a JDBC URL. To configure the URL value to point to the data grid, do the following:</p>
         <ol>
@@ -114,7 +114,7 @@
                 <p>"grid_C"</p>
             </li>
         </ul>
-        <p>Configure Apache Zeppelin in the interpreter section to enable querying one or more of these data sources with the InsightEdge JDBC interpreter. The following key/value pairs enable querying the specified data sources:</p>
+        <p>Configure Apache Zeppelin in the interpreter section to enable querying one or more of these data sources with the <MadCap:variable name="General.ProductNameIE" /> JDBC interpreter. The following key/value pairs enable querying the specified data sources:</p>
         <p><span class="tc-bold">grid_A</span> configuration:</p>
         <ul>
             <li>

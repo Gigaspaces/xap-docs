@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
 <h1>Python</h1>
   
 
-<p>InsightEdge has a Python API available via PySpark. Its functionality is limited to the DataFrame API.</p>
+<p><MadCap:variable name="General.ProductNameIE" /> has a Python API available via PySpark. Its functionality is limited to the DataFrame API.</p>
 
 <h1><a name="interactive-use">&#160;</a>Interactive Use</h1>
 
@@ -22,9 +22,9 @@
 
 <h1><a name="command-line-shell">&#160;</a>Command Line Shell</h1>
 
-<p>To start the command line shell, run the <code>./bin/insightedge-pyspark</code> script in the InsightEdge directory.</p>
+<p>To start the command line shell, run the <code>./bin/insightedge-pyspark</code> script in the <MadCap:variable name="General.ProductNameIE" /> directory.</p>
 
-<p>For example, start the InsightEdge demo:</p>
+<p>For example, start the <MadCap:variable name="General.ProductNameIE" /> demo:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="Linux" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/insightedge demo
 </code></pre>
@@ -48,7 +48,7 @@
 
 <h1><a name="saving-and-loading-dataframes-in-python">&#160;</a>Saving and Loading DataFrames in Python</h1>
 
-<p>To operate on InsightEdge DataFrames, use the regular PySpark DataFrame API with the <code>org.apache.spark.sql.insightedge</code> format, and specify Data Grid <code>collection</code> or <code>class</code> options. For example,</p>
+<p>To operate on <MadCap:variable name="General.ProductNameIE" /> DataFrames, use the regular PySpark DataFrame API with the <code>org.apache.spark.sql.insightedge</code> format, and specify Data Grid <code>collection</code> or <code>class</code> options. For example,</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="Python" style="padding:10px"><pre><code class="language-python"># create pyspark.sql.SparkSession
 spark = SparkSession.builder.getOrCreate()
@@ -76,7 +76,7 @@ gridDf.show()
 
 <h1><a name="self-contained-applications">&#160;</a>Self-Contained Applications</h1>
 
-<p>To develop a self-contained submittable application, use the regular PySpark and configure the InsightEdge settings in <code>SparkConf</code>:</p>
+<p>To develop a self-contained submittable application, use the regular PySpark and configure the <MadCap:variable name="General.ProductNameIE" /> settings in <code>SparkConf</code>:</p>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="Python" style="padding:10px"><pre><code class="language-python">from pyspark.conf import SparkConf
 from pyspark.sql import SparkSession

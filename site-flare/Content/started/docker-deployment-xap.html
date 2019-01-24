@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Using Docker</h1>
-        <p>GigaSpaces provides Docker images for both InsightEdge and <MadCap:variable name="General.ProductNameXAP" />. The main benefits of using Docker are:</p>
+        <p>GigaSpaces provides Docker images for both <MadCap:variable name="General.ProductNameIE" /> and <MadCap:variable name="General.ProductNameXAP" />. The main benefits of using Docker are:</p>
         <ul>
             <li>Getting started - If you're already familiar with Docker and taking your first steps with GigaSpaces products, you can simply pull the image and start it instead of setting up the product manually.</li>
             <li>Automation - Docker is designed for automating environment setup; it simplifies environment setup and tear-down, so you can easily create multiple environments for development, testing, staging, and production.</li>
@@ -13,12 +13,12 @@
         <h1><a name="available-docker-images">&#160;</a>Available Docker Images</h1>
         <p>The following Docker images are available on <a href="https://hub.docker.com/r/gigaspaces/">Docker Hub</a>:</p>
         <ul>
-            <li><a href="https://hub.docker.com/r/gigaspaces/insightedge/">gigaspaces/insightedge</a> - Contains the InsightEdge open source edition.</li>
-            <li><a href="https://hub.docker.com/r/gigaspaces/insightedge-enterprise/">gigaspaces/insightedge-enterprise</a> - Contains the InsightEdge Enterprise edition (requires a license key).</li>
+            <li><a href="https://hub.docker.com/r/gigaspaces/insightedge/">gigaspaces/insightedge</a> - Contains the <MadCap:variable name="General.ProductNameIE" /> open source edition.</li>
+            <li><a href="https://hub.docker.com/r/gigaspaces/insightedge-enterprise/">gigaspaces/insightedge-enterprise</a> - Contains the <MadCap:variable name="General.ProductNameIE" /> Enterprise edition (requires a license key).</li>
             <li><a href="https://hub.docker.com/r/gigaspaces/xap/">gigaspaces/xap</a> - Contains the <MadCap:variable name="General.ProductNameXAP" /> open source edition.</li>
             <li><a href="https://hub.docker.com/r/gigaspaces/xap-enterprise/">gigaspaces/xap-enterprise</a> - Contains the <MadCap:variable name="General.ProductNameXAPEnt" /> edition (requires a license key).</li>
         </ul>
-        <p>Each Docker image provides instructions on how to use it. In general, all of the GigaSpaces Docker images can be administered using the GigaSpaces <a href="../admin/tools-cli.html">Command Line Interface (CLI)</a>. Use the <code>--help</code> option to get started and explore the deployed product. For example, to get started with InsightEdge Enterprise, run:</p><pre><code class="language-bash">docker pull gigaspaces/insightedge-enterprise
+        <p>Each Docker image provides instructions on how to use it. In general, all of the GigaSpaces Docker images can be administered using the GigaSpaces <a href="../admin/tools-cli.html">Command Line Interface (CLI)</a>. Use the <code>--help</code> option to get started and explore the deployed product. For example, to get started with <MadCap:variable name="General.ProductNameIE" /> Enterprise, run:</p><pre><code class="language-bash">docker pull gigaspaces/insightedge-enterprise
 docker run gigaspaces/insightedge-enterprise --help
 </code></pre>
     </body>

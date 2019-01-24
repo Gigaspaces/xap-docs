@@ -11,13 +11,13 @@
     this can be done using the data stored in the <MadCap:variable name="General.ProductNameXAP" /> in-memory data grid. <a href="https://www.tableau.com/">Tableau</a>
     can be connected to the data grid via an ODBC-JDBC gateway, in order to retrieve and present the required data in a
     visual format.</p>
-        <p>This topic describes how to set up an integration of Tableau with InsightEdge in a Microsoft Windows environment,
+        <p>This topic describes how to set up an integration of Tableau with <MadCap:variable name="General.ProductNameIE" /> in a Microsoft Windows environment,
     so that the In-Grid SQL Query can be used to retrieve data and display it in a graphic visual representation.</p>
         <h2><a name="architecture">&#160;</a>Architecture</h2>
         <p>Tableau can connect to the data grid using the SQL-99-compatible JDBC driver that is provided with the In-Grid SQL
     Query feature. However, Tableau can only use ODBC as a general connection option, so a third-party ODBC-JDBC
-    connection is needed to convert ODBC requests from Tableau into JDBC requests for the InsightEdge JDBC driver. The
-    Easysoft ODBC-JDBC gateway has been evaluated and certified for use with InsightEdge, and is used in the
+    connection is needed to convert ODBC requests from Tableau into JDBC requests for the <MadCap:variable name="General.ProductNameIE" /> JDBC driver. The
+    Easysoft ODBC-JDBC gateway has been evaluated and certified for use with <MadCap:variable name="General.ProductNameIE" />, and is used in the
     integration described here.</p>
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/sbp/tableau/diagram.png" width="386" height="134" />
@@ -29,27 +29,27 @@
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/sbp/tableau/schema.png" width="389" height="151" />
         </div>
-        <h1><a name="integrating-tableau-with-insightedge">&#160;</a>Integrating Tableau with InsightEdge</h1>
-        <p>In order to integrate Tableau with InsightEdge, you need a data grid that is up and running, and you need access
-    to it. After setting up and starting InsightEdge, do the following to create the necessary environment to integrate
+        <h1><a name="integrating-tableau-with-insightedge">&#160;</a>Integrating Tableau with <MadCap:variable name="General.ProductNameIE" /></h1>
+        <p>In order to integrate Tableau with <MadCap:variable name="General.ProductNameIE" />, you need a data grid that is up and running, and you need access
+    to it. After setting up and starting <MadCap:variable name="General.ProductNameIE" />, do the following to create the necessary environment to integrate
     Tableau and view data:</p>
         <ul>
             <li>
                 <p>Add sample data to the Space.</p>
             </li>
             <li>
-                <p>After InsightEdge has been configured, download and install the ODBC-JDBC gateway, activate it with a trial
+                <p>After <MadCap:variable name="General.ProductNameIE" /> has been configured, download and install the ODBC-JDBC gateway, activate it with a trial
       license, and set it up in Microsoft Windows.</p>
             </li>
             <li>
-                <p>Download and configure Tableau to work with InsightEdge via the ODBC-JDBC gateway.</p>
+                <p>Download and configure Tableau to work with <MadCap:variable name="General.ProductNameIE" /> via the ODBC-JDBC gateway.</p>
             </li>
             <li>
                 <p>Perform a query on the data grid via Tableau, and view the results.</p>
             </li>
         </ul>
-        <h2><a name="configuring-insightedge-locally">&#160;</a>Configuring InsightEdge Locally</h2>
-        <p>Before you deploy the data grid for the purpose of this demo, you should install the InsightEdge <a href="../started/insightedge-first-app.html#project-dependencies">dependencies</a>.</p>
+        <h2><a name="configuring-insightedge-locally">&#160;</a>Configuring <MadCap:variable name="General.ProductNameIE" /> Locally</h2>
+        <p>Before you deploy the data grid for the purpose of this demo, you should install the <MadCap:variable name="General.ProductNameIE" /> <a href="../started/insightedge-first-app.html#project-dependencies">dependencies</a>.</p>
         <h3><a name="deploying-the-data-grid">&#160;</a>Deploying the Data Grid</h3>
         <p>The first step is deploying a data grid and creating a Space.</p>
         <p class="tc-todo">To deploy the data grid on a local machine:</p>
@@ -76,7 +76,7 @@
         <p class="tc-todo">To populate the Space with data:</p>
         <ol>
             <li>
-                <p>Download the <a href="/download_files/sbp/insightedge-sql-demo.rar">InsightEdge SQL demo</a> and unpack it.</p>
+                <p>Download the <a href="/download_files/sbp/insightedge-sql-demo.rar"><MadCap:variable name="General.ProductNameIE" /> SQL demo</a> and unpack it.</p>
             </li>
             <li>
                 <p>Under the extracted "insightedge-sql-demo" folder, build the sample with <code>mvn clean install</code>.</p>
@@ -96,12 +96,12 @@
                 </p>
             </li>
         </ol>
-        <h3><a name="adding-the-insightedge-jdbc-client-jar-to-the-classpath">&#160;</a>Adding the InsightEdge JDBC Client
+        <h3><a name="adding-the-insightedge-jdbc-client-jar-to-the-classpath">&#160;</a>Adding the <MadCap:variable name="General.ProductNameIE" /> JDBC Client
     JAR to the Classpath</h3>
-        <p>When connecting to the data grid, the ODBC-JDBC gateway runs the InsightEdge JDBC custom driver. In order to make
+        <p>When connecting to the data grid, the ODBC-JDBC gateway runs the <MadCap:variable name="General.ProductNameIE" /> JDBC custom driver. In order to make
     the driver visible to the ODBC-JDBC gateway, you have to create a special JAR file for use when configuring the
     gateway in Microsoft Windows.</p>
-        <p class="tc-todo">To generate the InsightEdge JDBC Client JAR:</p>
+        <p class="tc-todo">To generate the <MadCap:variable name="General.ProductNameIE" /> JDBC Client JAR:</p>
         <ol>
             <li>
                 <p>Navigate to <code>$&lt;XAP_HOME&gt;\insightedge\tools\jdbc</code>.</p>
@@ -253,7 +253,7 @@
         <h2><a name="setting-up-tableau">&#160;</a>Setting Up Tableau</h2>
         <p>Download and install the <a href="https://www.tableau.com/" target="_blank">Tableau</a> desktop.</p>
         <p>After the data grid has been populated with the sample data, and the ODBC-JDBC Gateway has been configured to
-    connect to InsightEdge, you can configure Tableau to read the data and display it in a graphic visual format. You
+    connect to <MadCap:variable name="General.ProductNameIE" />, you can configure Tableau to read the data and display it in a graphic visual format. You
     can then query the data grid and see the activity that occurs under the hood when Tableau accesses it as a SQL
     database and reads the requested data.</p>
         <h3><a name="configuring-the-data-source">&#160;</a>Configuring the Data Source</h3>
@@ -294,7 +294,7 @@
         area and select <span class="tc-bold">space</span>.</p>
                 <div class="tc-admon-note">
                     <p>The sample data contains a Space called <span class="tc-bold">space</span>. If you have additional Spaces
-            in your InsightEdge environment, they may appear in this list.</p>
+            in your <MadCap:variable name="General.ProductNameIE" /> environment, they may appear in this list.</p>
                 </div>
                 <p>
                     <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_3.png" width="213" height="267" class="tc-picture30" />
@@ -315,7 +315,7 @@
             <img src="../Resources/Static/attachment_files/sbp/tableau/xap_2.png" width="500" height="324" class="tc-picture80" />
         </div>
         <p>Everything that needs to be configured has been set up, and you can execute queries against the data in the grid.</p>
-        <p class="tc-todo">To query the data in InsightEdge:</p>
+        <p class="tc-todo">To query the data in <MadCap:variable name="General.ProductNameIE" />:</p>
         <ol>
             <li>From the Data tab, drag and drop the <span class="tc-bold">Orders</span> and <span class="tc-bold">Locations</span>
       tables to the data pane.</li>

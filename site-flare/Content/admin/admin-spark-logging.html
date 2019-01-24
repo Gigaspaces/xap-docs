@@ -2,7 +2,7 @@
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
-<h1>Spark Logging for InsightEdge</h1>
+<h1>Spark Logging for <MadCap:variable name="General.ProductNameIE" /></h1>
   
 
 <p>Spark uses log4j to make logging calls.
@@ -12,7 +12,7 @@ For information about the log4j logging framework, refer to the <a href="http://
 
 <p>Log4j configures the logging during initialization, using a logging configuration file that is read at startup. This logging configuration file is in the standard <code>java.util.Properties</code> format.</p>
 
-<h2><a name="insightedge-log4j-default-configuration">&#160;</a>InsightEdge log4j Default Configuration</h2>
+<h2><a name="insightedge-log4j-default-configuration">&#160;</a><MadCap:variable name="General.ProductNameIE" /> log4j Default Configuration</h2>
 
 <p>The default Spark logger configuration file is located under the following directory:</p>
 
@@ -48,7 +48,7 @@ For information about the log4j logging framework, refer to the <a href="http://
 
 <h3><a name="spark-log-message-format">&#160;</a>Spark Log Message Format</h3>
 
-<p>In log4j, the log message format is configured in the <code>*.layout.ConversionPattern</code> property. In InsightEdge, the Spark log message format is configured to match the <MadCap:variable name="General.ProductNameXAP" /> format. Therefore, the ConversionPattern is:</p>
+<p>In log4j, the log message format is configured in the <code>*.layout.ConversionPattern</code> property. In <MadCap:variable name="General.ProductNameIE" />, the Spark log message format is configured to match the <MadCap:variable name="General.ProductNameXAP" /> format. Therefore, the ConversionPattern is:</p>
 
 <pre><code class="language-bash">    log4j.appender.console.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} %p [%c] - %m%n
     log4j.appender.file.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} %p [%c] - %m%n
