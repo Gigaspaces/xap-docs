@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -7,7 +7,7 @@
         <p>In the previous section you have learned about XAP's capabilities as a data store. In this part of the tutorial we will show you how you can deploy an In Memory Data Grid (IMDG) that provides scalability and failover.</p>
         <p>XAP can be used as a scalable application platform on which you can host your Java application, similar to JEE and web containers. However, GigaSpaces XAP's IMDG can also be embedded within another Java application which is not hosted within the XAP platform.
 In this part of the tutorial we will show you how to start a data grid and how you can interact with it.</p>
-        <h1><a name="getting-started">&#160;</a>Getting Started</h1>
+        <h1><a name="getting-started"></a>Getting Started</h1>
         <p>To start a XAP data grid, run the following command:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash">XAP_HOME\bin\gs-agent.bat  
@@ -53,7 +53,7 @@ The GSA is a process manager that can spawn and manage service grid processes (O
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../admin/scripts.html">Scripts</a> page in the Administration guide.</p>
         </div>
-        <h1><a name="connecting-to-a-data-grid">&#160;</a>Connecting to a Data Grid</h1>
+        <h1><a name="connecting-to-a-data-grid"></a>Connecting to a Data Grid</h1>
         <p>In order to create a data grid, you need to first deploy it onto the GigaSpaces infrastructure. It's easy to write some code that connects to an existing data grid, or deploy a new one if the data grid does not exist. In the GigaSpace lingo, a data grid is called a Space, and a data grid node is called a Space Instance. The space is hosted within a Processing Unit (PU), which is the GigaSpaces unit of deployment.</p>
         <p>There are several ways you can deploy a new Data Grid; by command line, with java code embedded in your application and the admin UI. The following snippets shows how to deploy a data grid.</p>
         <p>We want to deploy a data grid that has two primary partitions and one backup for each primary partition.
@@ -102,14 +102,14 @@ Lets assume we have 4 machines available. On all machines we will start a GSA. T
             </div>
         </div>
         <p>When the application write Payment objects into this space, XAP will use the routing information provided (@SpaceRouting) by the Payment class to route the object to the right partition.</p>
-        <h1><a name="interacting-with-the-data-grid">&#160;</a>Interacting with the Data Grid</h1>
+        <h1><a name="interacting-with-the-data-grid"></a>Interacting with the Data Grid</h1>
         <p>Now we are ready to interact with the data grid. All the examples we explored in the first part of the tutorial can be used to interact with the IMDG.</p>
         <p>If you have started the IMDG within your application, you would acquire the space like this:</p><pre><code class="language-java">GigaSpace gigaSpace = pu.waitForSpace().getGigaSpace();
 </code></pre>
         <p>Here is an example how you can connect to the grid from your application:</p><pre><code class="language-java">// Create the Space
 GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("xapTutorialSpace")).gigaSpace();
 </code></pre>
-        <h1><a name="web-management-console">&#160;</a>Web Management Console</h1>
+        <h1><a name="web-management-console"></a>Web Management Console</h1>
         <p>You can start XAP's console and inspect the Data Grid components that have been started. In the XAP distribution you will find the command file to launch the console.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Windows" style="padding:10px"><pre><code class="language-bash">XAP_HOME\bin\gs_webui.bat

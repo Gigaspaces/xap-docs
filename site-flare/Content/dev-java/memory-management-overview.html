@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -16,7 +16,7 @@
             <li>Eviction policy - You can set the <code>ALL IN CACHE</code> or <code>LRU</code> (Least Recently Used) eviction policy, or a custom implementation.</li>
             <li>Memory Manager - Provides options for controlling the JVM that is hosting the Space memory utilization. It allows you to define thresholds for situations where the memory becomes over-utilized.</li>
         </ul>
-        <h1><a name="cache-eviction-policies">&#160;</a>Cache Eviction Policies</h1>
+        <h1><a name="cache-eviction-policies"></a>Cache Eviction Policies</h1>
         <p>The space supports the following two cache eviction policies:</p>
         <ul>
             <li><a href="all-in-cache-cache-policy.html">ALL IN CACHE Policy</a> (code 1) - Assumes the JVM hosting the Space instance has enough heap to hold all data in memory.</li>
@@ -31,7 +31,7 @@
     &lt;/os-core:properties&gt;
 &lt;/os-core:embedded-space&gt;
 </code></pre>
-        <h1><a name="calculating-the-available-memory">&#160;</a>Calculating the Available Memory</h1>
+        <h1><a name="calculating-the-available-memory"></a>Calculating the Available Memory</h1>
         <p>Both the ALL_IN_CACHE and LRU Cache policies calculate the JVM's available memory to determine if there is a need to throw a <code>SpaceMemoryShortageException</code> or to start evicting objects. Calculating the available memory is performed when the following operations are called: <code>abort</code>, <code>changeReplicationState</code>, <code>clear</code>, <code>commit</code>, <code>count</code>, <code>getReplicationStatus</code>, <code>getRuntimeInfo</code>, <code>getSpacePump</code>, <code>getTemplatesInfo</code>, <code>joinReplicationGroup</code>, <code>leaveReplicationGroup</code>, <code>notify</code>, <code>prepare</code>, <code>prepareAndCommit</code>, <code>execute</code>, <code>read</code>, <code>readMultiple</code>, <code>replace</code>, <code>spaceCopy</code>, <code>update</code>, <code>updateMultiple</code>, and <code>write</code>.</p>
         <p>Before throwing <code>SpaceMemoryShortageException</code> or <code>MemoryShortageException</code>, the local cache/local view/Space performs an explicit garbage collection call (<a href="http://download.oracle.com/javase/%7b%7b%25version%20" target="_blank">System.gc()</a>), allowing the JVM to reclaim any unused heap memory. This activity may happen on the client side when running a local cache or a local view, or on the Space side (JVM hosting the GSC).</p>
         <p>The explicit garbage collection call reduces the probability of throwing <code>SpaceMemoryShortageException</code> or <code>MemoryShortageException</code> if the JVM does have some available memory left. Still, such a call might impact the client side (when running local cache/view) or Space-side responsiveness because during the garbage collection activity, JVM threads cannot perform their activities. For clients or Space with a large heap size, this <span class="tc-italic">might</span> introduce a long pause.</p>
@@ -43,7 +43,7 @@
         <div class="tc-admon-note">
             <p>Only do this if you've determined that it is absolutely necessary, because it disables a feature designed to protect your application.</p>
         </div>
-        <h1><a name="handling-large-jvm-heap-sizes">&#160;</a>Handling Large JVM Heap Sizes</h1>
+        <h1><a name="handling-large-jvm-heap-sizes"></a>Handling Large JVM Heap Sizes</h1>
         <p>When configuring the JVM to use large heap sizes (over 10GB), we recommend using the following values:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"&gt;
     &lt;os-core:properties&gt;
         &lt;props&gt;
@@ -59,9 +59,9 @@
         <div class="tc-admon-tip">
             <p>With a large JVM heap size, we recommend using the CMS Garbage collector to prevent long Garbage collector pauses.</p>
         </div>
-        <h1><a name="memory-manager-activity-when-initializing-the-space">&#160;</a>Memory Manager Activity when Initializing the Space</h1>
+        <h1><a name="memory-manager-activity-when-initializing-the-space"></a>Memory Manager Activity when Initializing the Space</h1>
         <p>In this phase of the Space life cycle, the Space checks for the amount of available memory. This is relevant when the Space performs a warm start, such as <code>ExternalDataSource.initialLoad()</code>.</p>
-        <h1><a name="memory-manager-and-transient-objects">&#160;</a>Memory Manager and Transient Objects</h1>
+        <h1><a name="memory-manager-and-transient-objects"></a>Memory Manager and Transient Objects</h1>
         <p>Transient objects are specified using the <code>@SpaceClass (persist=false)</code> decoration. You can specify transient decoration at the class or object level (field method level decoration).
 When using transient objects, note that they are:</p>
         <ul>
@@ -72,9 +72,9 @@ When using transient objects, note that they are:</p>
         <div class="tc-admon-tip">
             <p>Use the transient object option to prevent the Space from evicting objects when running in LRU cache policy mode.</p>
         </div>
-        <h1><a name="memory-manager-s-synchronous-eviction">&#160;</a>Memory Manager's Synchronous Eviction</h1>
+        <h1><a name="memory-manager-s-synchronous-eviction"></a>Memory Manager's Synchronous Eviction</h1>
         <p>LRU eviction can be costly, therefore it is done asynchronously by the memory manager. However, when the amount of used memory reaches a certain threshold, LRU eviction is done by the memory manager synchronously and API calls to the Space are blocked. The synchronous eviction watermark can be set by the <code>space-config.engine.memory_usage.synchronous_eviction_watermark_percentage</code> memory manager parameter.</p>
-        <h1><a name="explicit-eviction-of-objects-from-the-space">&#160;</a>Explicit Eviction of Objects from the Space</h1>
+        <h1><a name="explicit-eviction-of-objects-from-the-space"></a>Explicit Eviction of Objects from the Space</h1>
         <p>Objects can be evicted explicitly from the Space by calling a <code>takeMultiple</code> or <code>clear</code> operation on <a href="the-gigaspace-interface-overview.html">the GigaSpace interface</a>, combined with the <a href="[%=Links.ApiJavaDoc%]/com/j_spaces/core/client/TakeModifiers.html">TakeModifiers.EVICT_ONLY</a> modifier. The <code>clear</code> operation only returns the number of objects actually evicted from the Space. The <code>takeMultiple</code> operation returns the actual objects that were evicted. See the following usage example:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Using clear " style="padding:10px"><pre><code class="language-java">GigaSpace gigaSpace = ...;
@@ -100,13 +100,13 @@ User[] evictedUsers = gigaSpace.takeMultiple(template, Integer.MAX_VALUE, TakeMo
                 <li>The <code>TakeModifiers.EVICT_ONLY</code> is <span class="tc-bold">ignored when used in a transactional operation</span> - A <code>take</code> or <code>clear</code> in the context of a transaction will not result in eviction.</li>
             </ul>
         </div>
-        <h1><a name="exceeding-the-physical-memory-capacity">&#160;</a>Exceeding the Physical Memory Capacity</h1>
+        <h1><a name="exceeding-the-physical-memory-capacity"></a>Exceeding the Physical Memory Capacity</h1>
         <p>The overall Space capacity is not necessarily limited to the capacity of its physical memory. Currently, there are two options for exceeding this limit:</p>
         <ul>
             <li><span class="tc-bold">Using an LRU and <a href="space-persistency-overview.html">Space Persistency</a></span> - in this mode, all the Space data is kept in the database so the Space capacity is dependent on database capacity rather than the memory capacity. The Space maintains (in memory) a partial image of the persistent view in an LRU basis.</li>
             <li><span class="tc-bold">Using <a href="../overview/terminology.html">Partitioned Space</a></span> - in this mode, the Space utilizes the physical memory of multiple JVMs. This means the application using the Space is able to access all the Space instances transparently, as if they were a single Space with a higher memory capacity.</li>
         </ul>
-        <h1><a name="memory-manager-parameters">&#160;</a>Memory Manager Parameters</h1>
+        <h1><a name="memory-manager-parameters"></a>Memory Manager Parameters</h1>
         <p>The following properties are used to control the memory manager.</p>
         <table>
             <thead>

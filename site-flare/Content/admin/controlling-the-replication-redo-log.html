@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -11,11 +11,11 @@
             </p>
         </div>
         <p>A replication packet is either a single non-transactional "destructive" (write/take/update) operation, or a group of these operations that are done under the same transaction. The redo log contains a single list that is kept for all the targets, and for each target a different state is maintained, which represents its position in the redo log. When the cluster is in a normal state, this redo log should remain at some low constant size. However, in certain common scenarios, such as a momentary network disconnection or a burst of high load, the redo log keeps all the pending events that need to be replicated until the source member manages to re-establish connection with the target, or until the replication target manages to catch up with the temporary load. As a result, the redo log size increases and can become quite large, depending on the different cluster usage, which affects the rate of creating replicated events.</p>
-        <h1><a name="configuring-the-redo-log-capacity">&#160;</a>Configuring the Redo Log Capacity</h1>
+        <h1><a name="configuring-the-redo-log-capacity"></a>Configuring the Redo Log Capacity</h1>
         <div class="tc-admon-note">
             <p>The configuration parameters described in this topic have a significant effect on the behavior of the replication mechanism and the overall and performance of the Space cluster. You should carefully evaluate every change you make to their default values, and consult the GigaSpaces support team if needed.</p>
         </div>
-        <h2><a name="redo-log-parameters">&#160;</a>Redo Log Parameters</h2>
+        <h2><a name="redo-log-parameters"></a>Redo Log Parameters</h2>
         <p>You can configure the following parameters to adjust the redo log behavior. You can configure the redo log behavior between Spaces and their mirror, and between replicated Spaces.</p>
         <table>
             <thead>
@@ -126,7 +126,7 @@
         <p>For all of these parameters, -1 specifies unlimited behavior. When the memory capacity is smaller than the entire capacity, if the memory capacity is reached the redo log stores the remaining packets on the disk, which prevents the JVM from running out of memory when the redo log size increases for the reasons mentioned above.</p>
         <p>The redo log capacity for a mirror service must be the same or higher than the redo log capacity for a non-mirror target.</p>
         <p>These defaults are supposed to address the following scenario: a cluster tolerates a 4-5 minute backlog accumulated in the cluster members without being replicated to the mirror, assuming a load of 3,000-5,000 transactions per second on each partition. When the redo log size reaches this size, operations are blocked until the mirror reconnects and/or keeps up with the pace. For a backup Space, the redo log is kept for a short disconnection of 20-30 seconds. Any disconnection longer than that is considered as if the backup is down, and it must do a full recovery. When the connection is re-established, its redo log is dropped without blocking operations.</p>
-        <h2><a name="weight-policy">&#160;</a>Weight Policy</h2>
+        <h2><a name="weight-policy"></a>Weight Policy</h2>
         <p>Transactions are replicated in a single packet (to ensure atomicity), and the packet weight is the sum of the transaction operations it contains. Replication configuration is affected by the weight (size) of the redo log, which is a record of the packets that have accumulated prior to replicating to the target.</p>
         <p>Two policies are available:</p>
         <ul>
@@ -170,11 +170,11 @@ for (int i = 0; i &lt; 10; ++i) {
 }
 ptm.commit(status);
 </code></pre>
-        <h2><a name="redo-log-compaction">&#160;</a>Redo Log Compaction</h2>
+        <h2><a name="redo-log-compaction"></a>Redo Log Compaction</h2>
         <p>Redo log compaction means replacing the full packet with a lightweight discarded packet. The redo log weight is affected by the compaction, so the original packet weight is decreased and the (number-of-discarded-packet * 0.01) is added.</p>
         <p>When the <code>redo-log-compaction</code> parameter is set to <code>mirror</code>, compaction is performed on every packet that has been received by all replication targets except for the mirror, and only for packets of type <code>@SpaceClass(persist=false)</code> (which means the packet should not be persisted to the database).</p>
         <p>To disable compaction, set the <code>redo-log-compaction</code> parameter to <code>none</code>.</p>
-        <h1><a name="handling-a-increasingly-larger-redo-log">&#160;</a>Handling a Increasingly Larger Redo Log</h1>
+        <h1><a name="handling-a-increasingly-larger-redo-log"></a>Handling a Increasingly Larger Redo Log</h1>
         <p>There are two major reasons why the redo log size increases enough that it may indicate or cause a future problem. One cause is long disconnections, and the other is when the target (i.e backup) Space can't keep up with the source (i.e primary) Space. For example, a mirror service that persists the replicated data to a database, where the database is constantly slower than the rate of incoming replicated events.</p>
         <p>The two most common replication targets are:</p>
         <ul>
@@ -190,12 +190,12 @@ ptm.commit(status);
         <p>A mirror can never recover missing packets, therefore it is best to use <code>block-operation</code> mode when the redo log size is exceeded so that changes aren't dropped before reaching the database. Additionally, the redo log capacity for the mirror scenario should be larger for the same reason. If the redo log size reaches this state frequently, it means that the mirror is not handling the load, and the cluster and environment should be examined.</p>
         <p>A backup Space can always fall back to full recovery, so it is reasonable to configure replication in <code>drop-oldest</code> mode. This scenario can also make do with a smaller redo log capacity, which will prevent writing packets to disk when a long disconnection occurs and forces a full recovery by the backup Space. If the redo log size is very large, it may take more time just to replicate the cluster changes, instead of just performing full recovery of the data.</p>
         <p>The <code>redo-log-recovery-capacity</code> parameter is used only when a target Space member is currently recovering from a source Space member (both target and source can never be a mirror Space). When this happens, the redo log size of the source may increase because it holds the replication backlog that accumulated during the recovery process, and we would like it to be larger than the regular capacity. This is done by setting the <code>redo-log-recovery-capacity</code>. If this capacity is reached during a recovery process, new replicated operations are blocked (with the same exception as above) until the redo log size decreases.</p>
-        <h2><a name="handling-dropped-replication-packets">&#160;</a>Handling Dropped Replication Packets</h2>
+        <h2><a name="handling-dropped-replication-packets"></a>Handling Dropped Replication Packets</h2>
         <p>You can configure how a backup replication target behaves when there are missing replication packets, due to packets being dropped when configuring the <code>drop-oldest</code> behavior at its source. An active Space (primary) has no choice but to accept the state when expected replication packets are missing and keep running as usual, namely as an active-active replicated cluster. However, a backup Space can be configured either to ignore missing packets, or when it encounters such a scenario, to change its state to inconsistent. This causes it to be automatically redeployed, which forces a full recovery, thus keeping its state synchronized with the primary Space. This property is configured in the cluster schema replication policy element, by setting <code>on-missing-packets</code> to <code>ignore</code> or <code>recover</code>. A backup Space has this configured to <code>recover</code> by default.</p>
         <div class="tc-admon-note">
             <p>This property only affects Spaces that are not in primary mode. It has no affect on active-active topologies or if <code>on-missing-packets</code> is in <code>ignore</code> mode.</p>
         </div>
-        <h1><a name="recommendations">&#160;</a>Recommendations</h1>
+        <h1><a name="recommendations"></a>Recommendations</h1>
         <ul>
             <li>
                 <p>Configuring an unlimited redo log capacity and a limited memory capacity can create a risky situation if there is a mirror, so this should be done with extreme care. When the redo log capacity is unlimited and the memory capacity is reached, the redo log is kept on the disk if the mirror cannot keep up with the pace. This means that the redo log can increase in size dramatically and become huge without being noticed (other than monitoring the redo log size via management facilities). This can create a very large gap between the cluster state and the database state without any automatic throttling. This may also eventually cause the disk to run out of space.</p>
@@ -204,18 +204,18 @@ ptm.commit(status);
                 <p>When using the <code>drop-oldest</code> replication mode on active-active topologies, or towards a mirror target, missing replication packets will cause differences between cluster members. This should be taken into account.</p>
             </li>
         </ul>
-        <h1><a name="application-specific-tuning">&#160;</a>Application-Specific Tuning</h1>
+        <h1><a name="application-specific-tuning"></a>Application-Specific Tuning</h1>
         <p>When tuning the redo log capacities for your application, you should address the following two aspects:</p>
         <ul>
             <li>Allowed disconnection time</li>
             <li>Memory consumption</li>
         </ul>
         <p>For instance, consider a situation where you have a mirror, and you want the system to have a maximum backlog of the last 5 minutes when a mirror service is down, and after that you want to block new operations. In this case, you should consider what is the expected performance of a single partition per second, for example 5,000 transactions. Multiply this by 5 minutes, which results in a configuration of 1,500,000 <code>redo-log-capacity</code> for the mirror target, and operations getting blocked (<code>block-operations</code>) when this size is reached. Regarding memory consumption, you should have an approximation of the average memory size of each replication packet (single "destructive" transaction/non-transactional operation), for example 1Kb. If you want to hold up to 200Mb of packets in memory, this results in 200,000 packets configured for the <code>redo-log-memory-capacity</code>.</p>
-        <h1><a name="limitations">&#160;</a>Limitations</h1>
+        <h1><a name="limitations"></a>Limitations</h1>
         <p>When EDS is used with the central data source set to false, (which means each cluster member has its own private database), a backup Space recovers from its private database once re-started, and not from its primary Space. Therefore if  <code>drop-oldest</code> replication mode is used, the dropped packets never reach the backup Space and these members remain out of sync.</p>
-        <h1><a name="monitoring-the-redo-log-size">&#160;</a>Monitoring the Redo Log Size</h1>
+        <h1><a name="monitoring-the-redo-log-size"></a>Monitoring the Redo Log Size</h1>
         <p>You can see the redo log size using the GigaSpaces Management Center, the Web Management Console, or the Administration API.</p>
-        <h2><a name="viewing-the-redo-size-in-the-gigaspaces-management-center">&#160;</a>Viewing the Redo Size in the GigaSpaces Management Center</h2>
+        <h2><a name="viewing-the-redo-size-in-the-gigaspaces-management-center"></a>Viewing the Redo Size in the GigaSpaces Management Center</h2>
         <p>To see the redo log size in the GigaSpaces Management Center, enable the redo log size monitoring:</p>
         <p>
             <img src="../Resources/Static/attachment_files/red-log1.jpg" alt="red-log1.jpg" class="tc-picture30" />
@@ -224,7 +224,7 @@ ptm.commit(status);
         <p>
             <img src="../Resources/Static/attachment_files/red-log2.jpg" alt="red-log2.jpg" class="tc-picture100" />
         </p>
-        <h2><a name="viewing-the-redo-size-in-the-web-management-console">&#160;</a>Viewing the Redo Size in the Web Management Console</h2>
+        <h2><a name="viewing-the-redo-size-in-the-web-management-console"></a>Viewing the Redo Size in the Web Management Console</h2>
         <p>To see the redo log size in the Web Management Console:</p>
         <ol>
             <li>
@@ -243,7 +243,7 @@ ptm.commit(status);
                 </p>
             </li>
         </ol>
-        <h2><a name="getting-the-redo-log-using-the-administration-api">&#160;</a>Getting the Redo Log Using the Administration API</h2>
+        <h2><a name="getting-the-redo-log-using-the-administration-api"></a>Getting the Redo Log Using the Administration API</h2>
         <p>The following example shows how to get the redo log size using the Administration API:</p><pre><code class="language-java">Admin   admin = new AdminFactory().createAdmin();
 Space space = admin.getSpaces().waitFor("mySpace", 10, TimeUnit.SECONDS);
 space.waitFor(space.getNumberOfInstances(), SpaceMode.PRIMARY,10 , TimeUnit.SECONDS);
@@ -258,7 +258,7 @@ while(true)
     Thread.sleep(1000);
 }
 </code></pre>
-        <h1><a name="api-example">&#160;</a>API Example</h1>
+        <h1><a name="api-example"></a>API Example</h1>
         <p>The <a href="/download_files/redologDemo.zip">RedoLogTest</a> starts a cluster with a single partition (primary + backup) with mirror enabled and WAN gateway enabled. The mirror and WAN gateway are not running.
 It writes a few entries to the Space and later removes them. A replication filter is active, allowing you to track the activity where Space classes that include <code>replicate=false</code> are not replicated.</p>
         <div class="tc-align-center">

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -17,7 +17,7 @@
             </li>
         </ul>
         <p>When a client needs to contact a server for the first time, it uses a <span class="tc-bold">CredentialsProvider</span> to create a <span class="tc-bold">UserDetails</span> which encapsulates the credentials required for authentication, and send it to the server. The server then uses its <span class="tc-italic">SecurityManager</span> to authenticate the <span class="tc-bold">UserDetails</span> and to obtain its privileges. The server then generates a unique authentication token which is used to cache the user's credentials and privileges, and return it to the client. From this point whenever the client sends a request to that server it binds the authentication token to the request, so the server doesn't need to re-authenticate it.</p>
-        <h1><a name="custom-credentials">&#160;</a>Custom Credentials</h1>
+        <h1><a name="custom-credentials"></a>Custom Credentials</h1>
         <p>The credentials which a client passes to the server for authentication are encapsulated in an interface called <code>UserDetails</code>. <MadCap:variable name="General.ProductNameXAP" /> provides a built-in <code>UserDetails</code> implementation called <code>User</code> which supports username-password authentication patterns. It is recommended to extend the <code>User</code> class instead of directly implementing the <code>UserDetails</code> interface, and override the super class if needed.</p>
         <p>For example, in our demo we only need to add a <code>String</code> payload, hence the following class will suffice:</p><pre><code class="language-java">public class CustomUserDetails extends com.gigaspaces.security.directory.User {
 
@@ -38,7 +38,7 @@
             <p>When a proxy sends a <code>UserDetails</code> instance to the server over the wire, it is implicitly encrypted before serialization and decrypted post de-serialization. This encryption is internal to GigaSpaces and is intended only to secure the transport layer.</p>
             <p>In addition, a custom security implementation may choose to encrypt some/all of the data in the <span class="tc-bold">UserDetails</span> instance (For example, the default file-based security implementation hashes the user password and encrypts the file contents when persisting data to the disk).</p>
         </div>
-        <h1><a name="the-client-side">&#160;</a>The Client Side</h1>
+        <h1><a name="the-client-side"></a>The Client Side</h1>
         <p>A secured proxy is usually configured with a username-password pair, which are implicitly translated to a default <code>UserDetails</code> implementation as discussed above. When custom credentials are required, the proxy can be configured with a <code>CredentialsProvider</code> implementation, which is used to obtain a <code>UserDetails</code> instance whenever the client connects to a new server.</p>
         <p>The custom credentials provider usually stores the required credentials internally and uses them to create a new <code>UserDetails</code> when needed. For example:</p><pre><code class="language-java">public class CustomCredentialsProvider extends CredentialsProvider {
 
@@ -78,7 +78,7 @@
         <div class="tc-admon-note">
             <p>When using the custom credentials provider from the UI or CLI, it is instantiated via the default constructor and initialized via the <code>initialize(properties)</code> method.</p>
         </div>
-        <h2><a name="usage">&#160;</a>Usage</h2>
+        <h2><a name="usage"></a>Usage</h2>
         <p>Custom <code>CredentialsProvider</code> can be provided in several ways, as follows:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="   Namespace " style="padding:10px"><pre><code class="language-xml">&lt;!-- Creating the custom credentials provider --&gt;
@@ -129,7 +129,7 @@ admin.getGridServiceManagers().deploy(new ProcessingUnitDeployment("myPu").userD
 </code></pre>
             </div>
         </div>
-        <h1><a name="the-server-side">&#160;</a>The Server Side</h1>
+        <h1><a name="the-server-side"></a>The Server Side</h1>
         <p>When a secured server receives a request from the client for the first time, it needs to authenticate the <code>UserDetails</code> instance bundled with the request. This is done by invoking the <code>authenticate(UserDetails)</code> method of the <code>SecurityManager</code> component in the server, which is in charge of both authenticating the user and obtaining its privileges set. The default <code>SecurityManager</code> provided in <MadCap:variable name="General.ProductNameXAP" /> is called <code>FileSecurityManager</code>, which (as its name implies) authenticates the <code>UserDetails</code> against a file which stores all the users credentials and privileges.
 Implementing a custom authentication obviously requires replacing this security manager with a custom implementation. In our example:</p><pre><code class="language-java">public class CustomSecurityManager implements com.gigaspaces.security.SecurityManager {
 
@@ -194,15 +194,15 @@ Implementing a custom authentication obviously requires replacing this security 
     }
 }
 </code></pre>
-        <h2><a name="authentication-result">&#160;</a>Authentication Result</h2>
+        <h2><a name="authentication-result"></a>Authentication Result</h2>
         <p>The <code>authenticate</code> method not only validates the credentials are authentic - it also returns the <code>Authority</code> (<MadCap:variable name="General.ProductNameXAP" /> name for privilege) set granted to the user. The <code>authenticate</code> method returns an <code>Authentication</code> instance, which is created using a <code>UserDetails</code> instance which stores the user's authorities. You can choose between using the built-in <code>User</code> class to encapsulate the original credentials with the granted authorities (as shown in the demo implementation), or adjusting your custom user details implementation to store the authorities.</p>
         <div class="tc-admon-note">
             <p>Third-party security repositories usually store privileges as strings,so you may find it convenient to use the <code>AuthorityFactory.create(String)</code> method to load the authorities (if it's being stored in its formal string representation).</p>
         </div>
         <p>Security repositories and administrators often prefer not to map users directly to privileges, but rather to create <span class="tc-bold">roles</span> (e.g. Admins, Managers, Employees), map a role to a set of privileges (e.g. Write, Read) and then map users to roles (this simplifies management of large sets of users). However, <MadCap:variable name="General.ProductNameXAP" /> expects a flat array of <code>Authority</code>. To bridge this gap you can either traverse the roles hierarchy and flatten it, or use the <code>PopulatedRoleAuthority</code> class, which  implicitly flattens the hierarchy for authorization but maintains it for administration.</p>
-        <h2><a name="custom-directorymanager">&#160;</a>Custom DirectoryManager</h2>
+        <h2><a name="custom-directorymanager"></a>Custom DirectoryManager</h2>
         <p>The <code>createDirectoryManager</code> method can be used to implement a custom users-roles directory management component. However, this is not part of the authentication process, but rather an administrative task, hence our demo throws an exception. If you want to learn more, see <a href="custom-user-role-management.html">Custom User-Role Management</a>.</p>
-        <h2><a name="usage-1">&#160;</a>Usage</h2>
+        <h2><a name="usage-1"></a>Usage</h2>
         <p>Custom <code>SecurityManager</code> can be provided in several ways, as follows:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="   Namespace " style="padding:10px"><pre><code class="language-xml">&lt;!-- Configuring a secured space using custom properties --&gt;
@@ -243,7 +243,7 @@ custom-security.server-address = myServer
 </code></pre>
             </div>
         </div>
-        <h1><a name="cli-and-custom-credentials">&#160;</a>CLI and Custom Credentials</h1>
+        <h1><a name="cli-and-custom-credentials"></a>CLI and Custom Credentials</h1>
         <p>Use the <code>-user-details-provider</code> and <code>-user-details-properties</code> arguments to use a custom credentials provider with the CLI.</p>
         <div class="tc-admon-note">
             <p>For a full list of command usage, refer to <a href="../admin/command-line-interface-cli-security.html">Using the CLI in a Secured Environment</a>.</p>
@@ -252,11 +252,11 @@ custom-security.server-address = myServer
 gs&gt; login -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties  username=user1;password=123456;custom-security.server-address=myServer
 gs&gt; ...
 </code></pre>
-        <h1><a name="web-management-console-and-custom-credentials">&#160;</a>Web Management Console and Custom Credentials</h1>
+        <h1><a name="web-management-console-and-custom-credentials"></a>Web Management Console and Custom Credentials</h1>
         <p>Use the <code>-user-details-provider</code> and <code>-user-details-properties</code> arguments to use a custom credentials provider with the Web Management Console. <code>-user-details-properties</code> parameter is optional.</p>
         <p>Run the <code>gs-webui</code> script with these parameters:</p><pre><code class="language-bash">gs-webui(.sh/bat) -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties custom-security.server-address=myServer
 </code></pre>
-        <h1><a name="ui-and-custom-credentials">&#160;</a>UI and Custom Credentials</h1>
+        <h1><a name="ui-and-custom-credentials"></a>UI and Custom Credentials</h1>
         <p>The "Custom Login" option can be accessed using the drop-down menu of the "Security" menu.</p>
         <div class="tc-align-center">
             <p>

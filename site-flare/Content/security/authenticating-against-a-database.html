@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -11,7 +11,7 @@
 &lt;/bean&gt;
 </code></pre>
         <p>In addition, you can optionally configure a <code>PasswordEncoder</code> and a <code>SaltSource</code>. A <code>PasswordEncoder</code> provides encoding and decoding of passwords presented in the <code>UserDetails</code> object that is returned from the configured <code>UserDetailsService</code>. A <code>SaltSource</code> enables the passwords to be populated with a "salt", which enhances the security of the passwords in the authentication repository. For more details, refer to Spring Security reference.</p>
-        <h1><a name="using-an-in-memory-dao">&#160;</a>Using an In-Memory DAO</h1>
+        <h1><a name="using-an-in-memory-dao"></a>Using an In-Memory DAO</h1>
         <p>Spring Security comes with an implementation of UserDetailsService that draws its user information from its Spring configuration. This is perfect when just starting to integrate Spring Security. Here's a sample configuration:</p><pre><code class="language-xml">&lt;sec:user-service&gt;
   &lt;sec:user name="Edward" password="koala" authorities="SpacePrivilege READ ClassFilter eg.cinema.Movie, SpacePrivilege READ ClassFilter eg.cinema.Seat, SpacePrivilege WRITE ClassFilter eg.cinema.Seat" /&gt;
   &lt;sec:user name="Davis" password="dingo" authorities="SpacePrivilege READ ClassFilter eg.cinema.Movie, SpacePrivilege READ ClassFilter eg.cinema.Seat, SpacePrivilege WRITE ClassFilter eg.cinema.Seat" /&gt;
@@ -23,7 +23,7 @@
         <div class="tc-admon-note">
             <p>This Spring Security configuration file can be found under <code>&lt;XAP root&gt;/config/security/in-memory-security-config.xml</code>.</p>
         </div>
-        <h1><a name="declaring-a-jdbc-dao">&#160;</a>Declaring a JDBC DAO</h1>
+        <h1><a name="declaring-a-jdbc-dao"></a>Declaring a JDBC DAO</h1>
         <p>Spring Security also includes <code>JdbcDaoImpl</code>, a <code>UserDetailsService</code> that can obtain authentication information from a JDBC data source. It can be declared in the Spring configuration file as follows:</p><pre><code class="language-xml">&lt;bean id="daoUserDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl"&gt;
     &lt;property name="dataSource" ref="jdbcDataSource" /&gt;
 &lt;/bean&gt;
@@ -90,7 +90,7 @@ create table group_members (
         <div class="tc-admon-note">
             <p>This Spring Security configuration file can be found under <code>&lt;XAP root&gt;/config/security/jdbc-security-config.xml</code>.</p>
         </div>
-        <h1><a name="working-with-encrypted-passwords">&#160;</a>Working with Encrypted Passwords</h1>
+        <h1><a name="working-with-encrypted-passwords"></a>Working with Encrypted Passwords</h1>
         <p>Spring Security's <code>PasswordEncoder</code> interface is used to support the use of passwords which are encoded in some way in persistent storage. This will normally mean that the passwords are "hashed" using a digest algorithm such as MD5 or SHA.</p>
         <p>By default, the <code>DaoAuthenticationProvider</code> uses the <code>PlaintextPasswordEncoder</code>, which means that the password is left unencoded. Here is how to wire <code>DaoAuthenticationProvider</code> to use <span class="tc-bold">MD5</span> encoding:</p><pre><code class="language-xml">&lt;bean id="daoAuthenticationProvider"
     class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"&gt;
@@ -101,7 +101,7 @@ create table group_members (
 &lt;/bean&gt;
 </code></pre>
         <p>You can also set a <span class="tc-italic">salt source</span> for the encoder. For more information, refer to Spring Security reference.</p>
-        <h1><a name="summary">&#160;</a>Summary</h1>
+        <h1><a name="summary"></a>Summary</h1>
         <p>By now you should be familiar with some important concepts:</p>
         <ul>
             <li>

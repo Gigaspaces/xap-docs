@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>JVM Configuration</h1>
-        <p>This page explains how to configure runtime settings for XAP.NET applications. In general, the development phase of a XAP.NET based application does not require runtime tuning settings as the defaults are usually satisfactory. In later testing and production phases, however, it is sometimes required to customize the default configuration.</p><a name="JvmLocation">&#160;</a>
-        <h1><a name="jvm-location">&#160;</a>JVM&#160;Location</h1>
+        <p>This page explains how to configure runtime settings for XAP.NET applications. In general, the development phase of a XAP.NET based application does not require runtime tuning settings as the defaults are usually satisfactory. In later testing and production phases, however, it is sometimes required to customize the default configuration.</p><a name="JvmLocation"></a>
+        <h1><a name="jvm-location"></a>JVM&#160;Location</h1>
         <p>GigaSpaces XAP.NET is bundled with <a href="http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html">Oracle Java SE 8 update 121</a>, aiming to save .NET users the hassle of downloading and installing Java. However, it is quite simple to bind it to a different JVM (For a list of supported JVMs refer to Supported Platforms in the release notes):</p>
         <ol>
             <li>
@@ -17,8 +17,8 @@
         </ol>
         <div class="tc-admon-note">
             <p>Many systems define an environment variable called <code>JAVA_HOME</code> which points to the JVM installation, since most java applications and libraries (including <MadCap:variable name="General.ProductNameXAP" />) use <code>JAVA_HOME</code> to locate java. Since the <code>Settings.xml</code> file supports environment variable expansion, it is possible to set &lt;XapNet.Runtime.JavaHome&gt; to <code>%JAVA_HOME%</code>, so you can later on change the jvm location without editing the xml file.</p>
-        </div><a name="JvmSettings">&#160;</a>
-        <h1><a name="jvm-settings">&#160;</a>Jvm Settings</h1>
+        </div><a name="JvmSettings"></a>
+        <h1><a name="jvm-settings"></a>Jvm Settings</h1>
         <p>Unlike .NET applications, which are compiled to executable files, java applications are compiled to <code>.class</code> or <code>.jar</code> files which are executed using the <a href="http://java.sun.com/javase/6/docs/technotes/tools/windows/java.html" target="_blank">Java Application Launcher</a> (<code>java.exe</code>) tool. This tool supports various options which control the way the application is executed, such as memory allocation, garbage collection and more.</p>
         <p>XAP.NET tools and applications use <a href="http://java.sun.com/javase/6/docs/technotes/guides/jni/index.html" target="_blank">Java Native Interface (JNI)</a> instead of <code>java.exe</code> to launch the JVM and execute java code, and use the Application Configuration File to load JVM settings.</p>
         <p>To configure JVM settings, add a <code>GigaSpaces</code> section to the application configuration file:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
@@ -34,7 +34,7 @@
 &lt;/configuration&gt;
 </code></pre>
         <p>The rest of this section explains and demonstrates the various JVM settings.</p>
-        <h2><a name="jvmcustomoptions">&#160;</a>JvmCustomOptions</h2>
+        <h2><a name="jvmcustomoptions"></a>JvmCustomOptions</h2>
         <p>The <code>JvmCustomOptions</code> section accepts a collection of custom options, similar to <code>java.exe</code> options. For example, this</p><pre><code class="language-java">java.exe -XX:+AggressiveOpts
 </code></pre>
         <p>is equivalent to</p><pre><code class="language-xml">&lt;JvmSettings&gt;
@@ -45,7 +45,7 @@
 </code></pre>
         <p>This element also has an attribute called <code>IgnoreUnrecognized</code>, which determines the behavior when an unrecognized option is encountered: <code>true</code> means ignore that option, <code>false</code> means throw an exception and abort. The default is <code>false</code>.</p>
         <p>In general, this section provides equivalent functionality to <code>java.exe</code> and thus is sufficient. However, since most .NET users are not familiar with common java options, The XAP.NET JVM settings schema provides additional elements which act as aliases and are more readable to non-java users.</p>
-        <h2><a name="jvmdll">&#160;</a>JvmDll</h2>
+        <h2><a name="jvmdll"></a>JvmDll</h2>
         <p>The <code>java.exe</code> tool supports two mutually exclusive modes, called <code>-client</code> and <code>-server</code>, which determine what VM will be loaded. In fact, client and server are different implementations of the JVM residing in two separate <code>jvm.dll</code> files.</p>
         <p>This option cannot be configured in <code>JvmCustomOptions</code> because it is not supported by <code>JNI</code>. Instead, <code>JvmDll</code> comes to the rescue. For example, this</p><pre><code class="language-java">java.exe -server
 </code></pre>
@@ -59,7 +59,7 @@ If <code>Mode</code> is set to <code>Custom</code>, the <code>&lt;XapNet.Runtime
    &lt;JvmDll Mode="Custom" Path="C:\Foo\MyJvm.dll"/&gt;
 &lt;/JvmSettings&gt;
 </code></pre>
-        <h2><a name="jvmmemory">&#160;</a>JvmMemory</h2>
+        <h2><a name="jvmmemory"></a>JvmMemory</h2>
         <p><code>java.exe</code> provides two options to control memory allocation: -Xms determines the initial heap size, and -Xms determines the maximum heap size. The <code>JvmSettings</code> section offers an alias section called <code>JvmMemory</code>. For example:</p><pre><code class="language-xml">&lt;JvmSettings&gt;
    &lt;JvmCustomOptions&gt;
       &lt;add Option="-Xms512m"/&gt;
@@ -72,7 +72,7 @@ If <code>Mode</code> is set to <code>Custom</code>, the <code>&lt;XapNet.Runtime
         <div class="tc-admon-note">
             <p> It is not recommended to define memory settings both as custom options and in the <code>JvmMemory</code> section, since the expected behavior is not clear.</p>
         </div>
-        <h2><a name="jvmclasspath">&#160;</a>JvmClassPath</h2>
+        <h2><a name="jvmclasspath"></a>JvmClassPath</h2>
         <p>The <a href="http://java.sun.com/javase/6/docs/technotes/tools/windows/classpath.html">class path</a> is the path that Java searches for classes and other resource files. It is usually specified as a semicolon-separated list of paths. The <code>JvmSettings</code> offers a more readable solution in the form of <code>JvmClassPath</code>. The following examples are equivalent:</p><pre><code class="language-java">java.exe -classpath C:\Foo;C:\Bar
 </code></pre><pre><code class="language-java">java.exe -Djava.class.path=C:\Foo;C:\Bar
 </code></pre><pre><code class="language-xml">&lt;JvmSettings&gt;
@@ -88,7 +88,7 @@ If <code>Mode</code> is set to <code>Custom</code>, the <code>&lt;XapNet.Runtime
 &lt;/JvmSettings&gt;
 </code></pre>
         <p>In addition to being more readable, the <code>JvmClassPath</code> has another perk: it supports wildcard-expansion. So, for example, we could specify <code>C:\Foo\*.jar</code> and it will be expanded to include all jar files in <code>C:\Foo</code> before being passed to java.</p>
-        <h2><a name="jvmbootclasspath">&#160;</a>JvmBootClassPath</h2>
+        <h2><a name="jvmbootclasspath"></a>JvmBootClassPath</h2>
         <p>Similar to the class path, which determines the location of user classes, the boot class path determines the location of java bootstrap classes. The <code>JvmSettings</code> offers a more readable solution in the form of <code>JvmBootClassPath</code>, similar to <code>JvmClassPath</code>. The following examples are equivalent:</p><pre><code class="language-java">java.exe -Xbootclasspath/p:C:\Foo;C:\Bar
 </code></pre><pre><code class="language-xml">&lt;JvmSettings&gt;
    &lt;JvmCustomOptions&gt;

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -25,11 +25,11 @@
         <div class="tc-admon-note">
             <p><MadCap:variable name="General.ProductNameXAP" /> currently supports only one communication filter, and this filter is applied to all the connections in the JVM.</p>
         </div>
-        <h1><a name="usage">&#160;</a>Usage</h1>
+        <h1><a name="usage"></a>Usage</h1>
         <p>The way to load and enable the communication filter, is by setting the system property <code>com.gs.lrmi.filter.factory</code>. The value should be the <code>communication filter factory</code> class name.</p>
         <p>For example, to use an SSL communication filter, run <MadCap:variable name="General.ProductNameXAP" /> with:</p><pre><code class="language-bash">-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 </code></pre>
-        <h1><a name="default-sslfilterfactory">&#160;</a>Default SSLFilterFactory</h1>
+        <h1><a name="default-sslfilterfactory"></a>Default SSLFilterFactory</h1>
         <p>Since some types of communication filters are not symmetric regarding the client and server, the class <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html" target="_blank">SSLFilterFactory</a> has 2 methods: one to create the communication filter for the client side, and the other for the server side.</p>
         <ul>
             <li>
@@ -101,7 +101,7 @@ However, when you wish to run this code with SSL encryption, you should run it w
         </div>
         <p>Alternatively if you do not need authentication and just wish to encrypt the data you can omit the key store and the password and the server will generate the SSL keys on the fly.</p><pre><code class="language-bash">-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 </code></pre>
-        <h1><a name="choosing-the-encryption-protocol">&#160;</a>Choosing the Encryption Protocol</h1>
+        <h1><a name="choosing-the-encryption-protocol"></a>Choosing the Encryption Protocol</h1>
         <p>It is also possible to select the encryption protocol (<code>TLSv1.1</code>, <code>TLSv1.2</code> etc) by setting the <code>com.gs.lrmi.filter.security.protocol</code> system property to the required protocol.
 In case this property is not set <MadCap:variable name="General.ProductNameXAP" /> will use the generic <code>TLS</code> protocol.</p>
         <div class="tc-admon-tip">

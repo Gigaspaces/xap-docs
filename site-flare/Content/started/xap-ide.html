@@ -1,15 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Setting up your IDE</h1>
-        <p> <a name="0">&#160;</a>
+        <p> <a name="0"></a>
 Follow the instructions in this tutorial to prepare your development environment.</p>
         <div class="tc-admon-note">
             <p><span class="tc-bold">Ensure you have a JDK installed</span>. You will need Java 8 or 11, latest update is recommended.</p>
         </div>
-        <h1><a name="checking-your-jdk-version">&#160;</a>Checking your JDK Version</h1>
+        <h1><a name="checking-your-jdk-version"></a>Checking your JDK Version</h1>
         <p>To check your installed Java version:</p>
         <ol>
             <li>Open a command line window.</li>
@@ -26,14 +26,14 @@ Java HotSpot(TM) Client VM (build 11.0-b16, mixed mode, sharing)
             </li>
         </ol>
         <p>If your installed JDK version is lower then 1.5 or none is installed, see below on how to install one.</p>
-        <h1><a name="installing-a-proper-jdk-java-development-kit">&#160;</a>Installing a Proper JDK (Java Development Kit)</h1>
+        <h1><a name="installing-a-proper-jdk-java-development-kit"></a>Installing a Proper JDK (Java Development Kit)</h1>
         <ol>
-            <li>To install JDK 1.6, download and install <a href="http://java.sun.com/javase/downloads/index.jsp"><span class="tc-bold">JDK 6 Update X</span></a><a name="1">&#160;</a></li>
+            <li>To install JDK 1.6, download and install <a href="http://java.sun.com/javase/downloads/index.jsp"><span class="tc-bold">JDK 6 Update X</span></a><a name="1"></a></li>
             <li><span class="tc-bold">Download and unzip the latest <MadCap:variable name="General.ProductNameXAP" /> release</span> from the <a href="http://www.gigaspaces.com/LatestProductVersion">downloads page</a>.
- <a name="2">&#160;</a></li>
+ <a name="2"></a></li>
             <li><span class="tc-bold">Install a Java IDE</span>. If you don't have an IDE installed, you can <a href="http://www.eclipse.org/downloads">download and unzip the Eclipse IDE for Java Developers</a>, or the <a href="http://www.jetbrains.com/idea/download/index.html">IntelliJ IDEA</a> IDE (we recommend the Ultimate Edition because of its excellent Spring framework support). If you're using Eclipse, it is also recommended to install the <a href="http://www.springsource.com/developer/sts">Spring Tool Suite plugin for Eclipse</a>.</li>
         </ol>
-        <h1><a name="running-the-application-inside-eclipse-ide">&#160;</a>Running the Application inside Eclipse IDE</h1>
+        <h1><a name="running-the-application-inside-eclipse-ide"></a>Running the Application inside Eclipse IDE</h1>
         <ol>
             <li>Start Eclipse. The <span class="tc-bold">Workspace Launcher</span> window opens.</li>
             <li>Write a new workspace name or select one of your existing workspaces, and click <span class="tc-bold">OK</span>.</li>
@@ -55,20 +55,20 @@ Java HotSpot(TM) Client VM (build 11.0-b16, mixed mode, sharing)
             <li>Click <span class="tc-bold">Yes</span> to do a full rebuild.</li>
             <li>Close the remaining windows.</li>
         </ol>
-        <h1><a name="classpath">&#160;</a>Classpath</h1>
+        <h1><a name="classpath"></a>Classpath</h1>
         <p>The <MadCap:variable name="General.ProductNameXAP" /> libraries are located under <code>XAP_HOME/lib</code>. There are three sub-directories:</p>
         <ul>
             <li><code>lib/required</code> - JAR files that are required for any GigaSpaces application.</li>
             <li><code>lib/optional</code> - JAR files that enable additional capabilities, such as servlet api.</li>
             <li><code>lib/platform</code> - JAR files that are used only by the <MadCap:variable name="General.ProductNameXAP" /> platform.</li>
         </ul>
-        <h2><a name="compilation">&#160;</a>Compilation</h2>
+        <h2><a name="compilation"></a>Compilation</h2>
         <p>In order to compile and run <MadCap:variable name="General.ProductNameXAP" /> applications, all the JAR files under the <code>XAP_HOME/lib/required</code> directory should be included in your compile and run time classpaths. Additional JAR files that you may need for development are located at <code>XAP_HOME/lib/optional</code>.</p>
-        <h2><a name="runtime-processing-unit">&#160;</a>Runtime - Processing Unit</h2>
+        <h2><a name="runtime-processing-unit"></a>Runtime - Processing Unit</h2>
         <p>When an application is deployed as a Processing Unit, there is no need to add <MadCap:variable name="General.ProductNameXAP" />-specific JAR files to the Processing Unit classpath. If such are added under the Processing Unit's <code>lib</code> directory, the system will remove those JAR files and  replace them with the system's JARs for compatibility.</p>
-        <h2><a name="runtime-standalone">&#160;</a>Runtime - Standalone</h2>
+        <h2><a name="runtime-standalone"></a>Runtime - Standalone</h2>
         <p>When running a standalone client that accesses <MadCap:variable name="General.ProductNameXAP" />, ensure that all the JARs located under the <code>XAP_HOME/lib/required</code> directory are part of the JVM's classpath. This also holds true for remote Space clients that are used from another JVM (such as a standalone web container). If your client is a JEE web application that is not running within the <MadCap:variable name="General.ProductNameXAP" /> runtime environment, or more specifically a GSC, you must include these JARs in your application's <code>WEB-INF/lib</code> directory.</p>
-        <h1><a name="maven">&#160;</a>Maven</h1>
+        <h1><a name="maven"></a>Maven</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> is Maven-friendly. It is built using Maven, which can be easily used by developers constructing <MadCap:variable name="General.ProductNameXAP" /> applications.</p>
         <p>The main dependency required to use <MadCap:variable name="General.ProductNameXAP" /> is <code>xap-openspaces</code>.</p><pre><code class="language-xml"> &lt;dependency&gt;
    &lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;

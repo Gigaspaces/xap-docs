@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -9,7 +9,7 @@
             <img src="../Resources/Static/attachment_files/space-projections.jpg" alt="space-projections.jpg" class="tc-picture50" />
         </div>
         <p>This approach reduces network overhead, garbage memory generation and CPU overhead due to serialization.</p>
-        <h1><a name="examples">&#160;</a>Examples</h1>
+        <h1><a name="examples"></a>Examples</h1>
         <p>Projection supports using a <a href="query-sql.html">SQLQuery</a> or <a href="query-by-id.html">Id Queries</a>. Below is a simple example reading a <code>Person</code> Object where only the "firstName' and "lastName' properties are returned in the array or results. All other <code>Person</code> properties will not be populated:</p><pre><code class="language-java">public class Person
 {
   ...
@@ -42,11 +42,11 @@ SpaceDocument docresult[] = gigaSpace.readMultiple(docQuery);
     QueryResultType.DOCUMENT).setProjections("user.address.street", "user.address.zipCode");
 SpaceDocument docresult[] = gigaSpace.readMultiple(docQuery);
 </code></pre>
-        <h1><a name="supported-operations">&#160;</a>Supported Operations</h1>
+        <h1><a name="supported-operations"></a>Supported Operations</h1>
         <p>A projection is defined for any operation that returns data from the Space. Therefore id-based or query-based operations support projections. You can use the Projection API with <code>read</code>,<code>take</code>,<code>readById</code>,<code>takeById</code>,<code>readMultiple</code> and <code>takeMultiple</code> operations. When performing a <code>take</code> operation with projection, the entire Object will be removed from the space, but the result returned to the user will contain only the projected properties.</p>
         <p>You can use projections with a <a href="notify-container-overview.html">Notify Container</a>, when subscribing to notifications. You can use it with a <a href="polling-container-overview.html">Polling Container</a>, when consuming Space Objects. You can also create a <a href="local-view.html">Local View</a> with templates or a <code>View</code> using projections. The local view will maintain the relevant objects, but the view of the data will contain only the projected properties.
 Both dynamic and fixed properties can be specified - the syntax is the same. As a result, when providing a property name which is not part of the property set, it will be treated as a dynamic property: That is, if there is no like-named dynamic property present on a query result Object, then the property will be ignored entirely (and no Exception will be thrown). Please note that a result may contain multiple objects, each with a different combination of properties (fixed and/or dynamic) - each object will be treated individually when applying projections to it.</p>
-        <h1><a name="considerations">&#160;</a>Limitations</h1>
+        <h1><a name="considerations"></a>Limitations</h1>
         <ol>
             <li>
                 <p>You can't use a projection on <a href="local-cache.html">Local Cache</a>, as the Local Cache needs to contain fully constructed objects. Reconstructing an Object locally with projection would only negatively impact performance.</p>
@@ -55,7 +55,7 @@ Both dynamic and fixed properties can be specified - the syntax is the same. As 
                 <p>You can't use a projection to query a Local View for the same reason as for Local Cache. However, you can create a Local View with a projection template in which case the Local View will contain the Objects in their projected form.</p>
             </li>
         </ol>
-        <h1><a name="working-examples">&#160;</a>Working Examples</h1>
+        <h1><a name="working-examples"></a>Working Examples</h1>
         <p>The following <a href="https://github.com/GigaSpaces/gs-executor-remoting/" target="_blank">repository</a> contains an integration test that performs projection on a query in the context of <a href="executor-based-remoting.html">Executor Based Remoting</a>. Relevant lines of code (Scala) are available <a href="https://github.com/GigaSpaces/gs-executor-remoting/blob/master/src/test/scala/com/gigaspaces/sbp/WatchRepairSuite.scala#L124" target="_blank">here</a>.</p>
     </body>
 </html>

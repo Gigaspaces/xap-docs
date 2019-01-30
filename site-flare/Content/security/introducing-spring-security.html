@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -9,10 +9,10 @@
         <div class="tc-admon-note">
             <p>For more information, please refer to the <a href="http://static.springsource.org/spring-security/site" target="_blank">Spring Security website</a>.</p>
         </div>
-        <h1><a name="authenticating-users">&#160;</a>Authenticating Users</h1>
+        <h1><a name="authenticating-users"></a>Authenticating Users</h1>
         <p>In Spring Security, the authentication manager assumes the job of establishing a user's identity. An authentication manager is defined by the <code>org.springframework.security.authentication.AuthenticationManager</code> interface. The <code>authenticate</code> method will attempt to authenticate the user using the <code>org.springframework.security.core.Authentication</code> object (which carries the principal and credentials). If successful, the <code>authenticate</code> method returns a complete <code>Authentication</code> object, including information about the user's granted authorities. If authentication fails, an authentication exception will be thrown.</p>
         <p>The <code>AuthenticationManager</code> interface is quite simple and you could easily implement your own <code>AuthenticationManager</code>. But Spring Security comes with <code>org.springframework.security.authentication.ProviderManager</code>, an implementation of <code>AuthenticationManager</code> that is suitable for most situations.</p>
-        <h1><a name="configuring-a-provider-manager">&#160;</a>Configuring a Provider Manager</h1>
+        <h1><a name="configuring-a-provider-manager"></a>Configuring a Provider Manager</h1>
         <p><code>ProviderManager</code> is an authentication manager implementation that delegates responsibility for authentication to one or more authentication providers, as shown in the figure below.</p>
         <p>The purpose of <code>ProviderManager</code> is to enable you to authenticate users against multiple identity management sources. Rather than relying on itself to perform authentication, <code>ProviderManager</code> steps one by one through a collection of authentication providers, until one of them successfully authenticates the user (or until it runs out of providers). This makes it possible for Spring Security to support multiple mechanisms for a single request.</p>
         <div class="tc-align-center">

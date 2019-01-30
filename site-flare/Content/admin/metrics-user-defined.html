@@ -30,7 +30,7 @@ The metric name provided in the annotation is automatically prefixed with <code>
 
 <p>and we want to create a metric for the number of processed requests. We can use one of the following techniques:</p>
 
-<h2><a name="using-annotation">&#160;</a>Using Annotation</h2>
+<h2><a name="using-annotation"></a>Using Annotation</h2>
 
 <p>The simplest option is to use the <code>@ServiceMetric</code> annotation - simply create a method which returns the current value of the metric, and annotate it with <code>@ServiceMetric</code> along with the name you want the metric to be reported with. For example:</p>
 
@@ -50,7 +50,7 @@ The metric name provided in the annotation is automatically prefixed with <code>
 }
 </code></pre>
 
-<h2><a name="using-code">&#160;</a>Using Code</h2>
+<h2><a name="using-code"></a>Using Code</h2>
 
 <p>If annotations are not granular enough (for example, you wish to dynamically register and unregister metrics at runtime), you can explicitly register metrics in your code. For that end:</p>
 
@@ -107,7 +107,7 @@ The metric name provided in the annotation is automatically prefixed with <code>
 }
 </code></pre>
 
-<h1><a name="prefix-and-tags">&#160;</a>Prefix And Tags</h1>
+<h1><a name="prefix-and-tags"></a>Prefix And Tags</h1>
 
 <p>The specified metric name is automatically prefixed with <code>pu_</code> and reported with the processing unit tags, as explained <a href="metrics-bundled.html#processing-unit">here</a>.</p>
 

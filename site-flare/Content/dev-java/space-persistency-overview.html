@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -38,7 +38,7 @@
         <div class="tc-admon-note">
             <p>The difference between Synchronous and Asynchronous persistency mode is the way data is persisted back to the database. In Synchronous mode, data is persisted immediately after the operation is conducted where the client application waits for the <code>SpaceDataSource</code>/<code>SpaceSynchronizationEndpoint</code> to confirm the write. In Asynchronous mode (mirror Service), data is persisted in a <span class="tc-bold">reliable</span> asynchronous manner using the mirror service as a write-behind activity. This mode provides maximum performance.</p>
         </div>
-        <h1><a name="space-persistency-api">&#160;</a>Space Persistency API</h1>
+        <h1><a name="space-persistency-api"></a>Space Persistency API</h1>
         <p>The Space Persistency API contains two abstract classes that should be extended in order to customize the Space persistency functionality.
 The ability to customize the Space persistency functionality allows <MadCap:variable name="General.ProductNameXAP" /> to interact with any external application or data source.</p>
         <table>
@@ -115,9 +115,9 @@ The ability to customize the Space persistency functionality allows <MadCap:vari
         <div class="tc-admon-note">
             <p><MadCap:variable name="General.ProductNameXAP" />'s built in Hibernate Persistency implementation is an extension of the SpaceDataSource and SpaceSynchronizationEndpoint classes. For detailed API information, refer to <a href="space-data-source-api.html">Space Data Source API</a> and <a href="space-synchronization-endpoint-api.html">Space Synchronization Endpoint API</a>.</p>
         </div>
-        <h1><a name="rdbms-space-persistency">&#160;</a>RDBMS Space Persistency</h1>
+        <h1><a name="rdbms-space-persistency"></a>RDBMS Space Persistency</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> comes with a built-in implementation of <code>SpaceDataSource</code> and <code>SpaceSynchronizationEndpoint</code> called <a href="hibernate-space-persistency.html">Hibernate Space Persistency</a>. See <a href="space-persistency-initial-load.html">Space Persistency Initial Load</a> to allow the Space to pre-load its data. You can also use splitter data source <code>SpaceDataSourceSplitter</code>, which allows you to split data sources according to entry type.</p>
-        <h1><a name="nosql-db-space-persistency">&#160;</a>NoSQL DB Space Persistency</h1>
+        <h1><a name="nosql-db-space-persistency"></a>NoSQL DB Space Persistency</h1>
         <p>The <a href="cassandra-space-persistency.html">Cassandra Space Persistency Solution</a> allows applications to push  long-term data into the Cassandra database in an asynchronous manner, without affecting the application response time, and to also load data from the Cassandra database after the <MadCap:variable name="General.ProductNameXAP" /> data grid is started or in a lazy manner when there is a cache miss when reading data from the <MadCap:variable name="General.ProductNameXAP" /> data grid.</p>
         <p>The GigaSpaces Cassandra Space Peristency Solution leverages the <a href="http://www.datastax.com/docs/0.8/dml/using_cql">Cassandra CQL</a>, <a href="http://code.google.com/a/apache-extras.org/p/cassandra-jdbc">Cassandra JDBC Driver</a> and the <a href="http://hector-client.github.com/hector/build/html/index.html">Cassandra Hector Library</a>. Every application's write or take operation against the data grid is delegated into the Mirror service that uses the Cassandra Mirror implementation to push the changes into the Cassandra database.</p>
     </body>

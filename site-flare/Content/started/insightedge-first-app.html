@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -8,7 +8,7 @@
         <div class="tc-admon-note">
             <p>For instructions on how to install a minimum <MadCap:variable name="General.ProductNameIE" /> cluster setup and launch it, refer to <a href="insightedge-local-setup.html">Local Machine Setup</a>.</p>
         </div>
-        <h1><a name="project-dependencies">&#160;</a>Project Dependencies</h1>
+        <h1><a name="project-dependencies"></a>Project Dependencies</h1>
         <p><MadCap:variable name="General.ProductNameIE" /> [%=Versions.xap-version%] runs on Spark [%=Versions.spark-version%] and Scala [%=Versions.scala-version%]. These dependencies will be included when you depend on the <MadCap:variable name="General.ProductNameIE" /> artifacts.</p>
         <p><MadCap:variable name="General.ProductNameIE" /> .jars are not published to Maven Central Repository yet. To install Maven artifacts run the following command from the <code>&lt;XAP HOME&gt;/insightedge/tools/maven</code> directory:</p><pre><code class="language-bash">insightedge-maven
 </code></pre>
@@ -27,7 +27,7 @@ libraryDependencies += "org.gigaspaces.insightedge" % "insightedge-core" % "[%=V
         <div class="tc-admon-note">
             <p><MadCap:variable name="General.ProductNameIE" /> .jars are already packed in the <MadCap:variable name="General.ProductNameIE" /> distribution, and are automatically loaded with your application if you submit them with <code>insightedge-submit</code> script or run the Web Notebook. As such, there is no need to pack them into your uber .jar. However, if you want to run Spark in <code>local[*]</code> mode, the dependencies should be declared with the <code>compile</code> scope.</p>
         </div>
-        <h1><a name="developing-a-spark-application">&#160;</a>Developing a Spark Application</h1>
+        <h1><a name="developing-a-spark-application"></a>Developing a Spark Application</h1>
         <p><MadCap:variable name="General.ProductNameIE" /> provides an extension to the regular Spark API.</p>
         <div class="tc-admon-note">
             <p>Read the <a href="http://spark.apache.org/docs/latest/quick-start.html#self-contained-applications" target="_blank">Self-Contained Applications</a> topic in the Apache Spark documentation if you are new to Spark.</p>
@@ -50,7 +50,7 @@ val sc = new SparkContext(sparkConf)
             <p><code>demo</code> is the default Data Grid name that the demo mode starts automatically.</p>
             <p>When you are running Spark applications from the Web Notebook, <code>InsightEdgeConfig</code> is created implicitly with the properties defined in the Spark interpreter.</p>
         </div>
-        <h1><a name="modeling-data-grid-objects">&#160;</a>Modeling Data Grid Objects</h1>
+        <h1><a name="modeling-data-grid-objects"></a>Modeling Data Grid Objects</h1>
         <p>Create a case class <code>Product.scala</code> to represent a Product entity in the Data Grid:</p><pre><code class="language-scala">import org.insightedge.scala.annotation._
 import scala.beans.{BeanProperty, BooleanBeanProperty}
 
@@ -63,19 +63,19 @@ case class Product(
     def this() = this(-1, null, -1, false)
 }
 </code></pre>
-        <h1><a name="saving-to-the-data-grid">&#160;</a>Saving to the Data Grid</h1>
+        <h1><a name="saving-to-the-data-grid"></a>Saving to the Data Grid</h1>
         <p>To save a Spark RDD,  use the <code>saveToGrid</code> method.</p><pre><code class="language-scala">val rdd = sc.parallelize(1 to 1000).map(i =&gt; Product(i, "Description of product " + i, Random.nextInt(10), Random.nextBoolean()))
 rdd.saveToGrid()
 </code></pre>
-        <h1><a name="loading-and-analyzing-data-from-the-data-grid">&#160;</a>Loading and Analyzing Data from the Data Grid</h1>
+        <h1><a name="loading-and-analyzing-data-from-the-data-grid"></a>Loading and Analyzing Data from the Data Grid</h1>
         <p>Use the <code>gridRdd</code> method of the <code>SparkContext</code> to view Data Grid objects as Spark RDDs.</p><pre><code class="language-scala">val gridRdd = sc.gridRdd[Product]()
 println("total products quantity: " + gridRdd.map(_.quantity).sum())
 </code></pre>
-        <h1><a name="closing-the-spark-context">&#160;</a>Closing the Spark Context</h1>
+        <h1><a name="closing-the-spark-context"></a>Closing the Spark Context</h1>
         <p>When you are done, close the Spark context and all connections to Data Grid with the following command:</p><pre><code class="language-scala">sc.stopInsightEdgeContext()
 </code></pre>
         <p>Under the hood, this will call the regular Spark <code>sc.stop()</code> command, so there is no need to call it manually.</p>
-        <h1><a name="running-your-spark-application">&#160;</a>Running your Spark Application</h1>
+        <h1><a name="running-your-spark-application"></a>Running your Spark Application</h1>
         <p>After you have packaged a .jar, submit the Spark job via <code>insightedge-submit</code> located in <code>&lt;XAP Home&gt;/insightedge/bin</code> instead of <code>spark-submit</code> as follows:</p><pre><code class="language-bash">insightedge-submit --class com.insightedge.spark.example.YourMainClass --master spark://127.0.0.1:7077 path/to/jar/insightedge-examples.jar
 </code></pre>
     </body>

@@ -25,7 +25,7 @@
   <p>Failover might occur during the actual acknowledge action.</p>
 </div>
 
-<h1><a name="notifying-the-client-about-failovers">&#160;</a>Notifying the Client about Failovers</h1>
+<h1><a name="notifying-the-client-about-failovers"></a>Notifying the Client about Failovers</h1>
 
 <p>When working in <span class="tc-bold">synchronous delivery mode</span>, the JMS layer tries to receive a message from the space when the client calls <code>MessageConsumer.receive()</code>. The JMS layer notifies the client about space failover by throwing a <code>TransactionRolledBackException</code> to the user.</p>
 
@@ -33,7 +33,7 @@
 
 <p>When using this interface, The JMS layer can't notify the client about the failure. In this case, when the JMS layer detects failover, it calls the connection's <code>ExceptionListener.onException()</code> method, passing it a <code>SpaceLostException</code> object that describes the problem. Clients should register an <code>ExceptionListener</code> with the connection, and look for the <code>SpaceLostException</code>. Without doing so, in case of a failover, asynchronous <code>MessageConsumers</code> might receive recovered messages without knowing about the failover.</p>
 
-<h1><a name="handling-failovers-with-jms">&#160;</a>Handling Failovers with JMS</h1>
+<h1><a name="handling-failovers-with-jms"></a>Handling Failovers with JMS</h1>
 
 <p>When using asynchronous <code>MessageConsumers</code>, the client should register an <code>ExceptionListener</code> with the connection. When space failure occurs, if a transaction was aborted, the JMS layer sends a <code>SpaceLostException</code> to notify the client.</p>
 
@@ -54,9 +54,9 @@
   <p>The <code>JMSRedelivered</code> header is not set for messages redelivered from a Queue. For more details, see the <a href="jms-known-issues-and-considerations.html">JMS Known Issues and Considerations</a>.</p>
 </div>
 
-<h1><a name="example-scenarios">&#160;</a>Example Scenarios</h1>
+<h1><a name="example-scenarios"></a>Example Scenarios</h1>
 
-<h2><a name="synchronous-consumer">&#160;</a>Synchronous Consumer</h2>
+<h2><a name="synchronous-consumer"></a>Synchronous Consumer</h2>
 
 <ol>
 <li>The client is using a single <span class="tc-bold">synchronous</span> <code>MessageConsumer</code> that receives messages from a Queue, and wants to receive 5 messages and then acknowledge them all.</li>
@@ -75,7 +75,7 @@
   <p>In GigaSpaces 6.0, the <code>JMSRedelivered</code> header is not set for messages redelivered from a Queue. For more details, see the <a href="jms-known-issues-and-considerations.html">Known Issues and Limitations</a>.</p>
 </div>
 
-<h2><a name="asynchronous-consumer">&#160;</a>Asynchronous Consumer</h2>
+<h2><a name="asynchronous-consumer"></a>Asynchronous Consumer</h2>
 
 <ol>
 <li>The client uses a single <span class="tc-bold">asynchronous</span> <code>MessageConsumer</code> that receives messages from a Queue, and wants to receive 5 messages and then acknowledge them all.</li>

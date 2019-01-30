@@ -16,7 +16,7 @@ admin.getElasticServiceManagers().waitForAtLeastOne();
 GridServiceManager gsm = admin.getGridServiceManagers().waitForAtLeastOne();
 </code></pre>
 
-<h1><a name="maximum-memory-capacity">&#160;</a>Maximum Memory Capacity</h1>
+<h1><a name="maximum-memory-capacity"></a>Maximum Memory Capacity</h1>
 
 <p>The EPU deployment requires two important properties:</p>
 
@@ -93,7 +93,7 @@ numberOfPartitions
   <p>The number of Processing Unit partitions cannot be changed without re-deployment of the PU.</p>
 </div>
 
-<h1><a name="maximum-number-of-cpu-cores">&#160;</a>Maximum Number of CPU Cores</h1>
+<h1><a name="maximum-number-of-cpu-cores"></a>Maximum Number of CPU Cores</h1>
 
 <p>In many cases when you should take the number of space operations per second into consideration when scaling the system. The memory utilization will be a secondary factor when calculating the required scale. For example, if the system performs mostly data updates (as opposed to reading data), the CPU resources could be a limiting factor more than the total memory capacity. In these cases use the <code>maxNumberOfCpuCores</code> deployment property. Here is a typical deployment example that includes CPU capacity planning:</p>
 
@@ -134,7 +134,7 @@ numberOfPartitions
 
 <p>In order to evaluate the <code>minNumberOfCpuCoresPerMachine</code>, the deployment communicates with each discovered GigaSpaces agent and collects the number of CPU cores the operating system reports. In case a machine provisioning plugin (cloud) is used, the plugin provides that estimate instead. The <code>minNumberOfCpuCoresPerMachine</code> deployment property can also be explicitly defined.</p>
 
-<h1><a name="explicit-number-of-partitions">&#160;</a>Explicit Number of Partitions</h1>
+<h1><a name="explicit-number-of-partitions"></a>Explicit Number of Partitions</h1>
 
 <p>The <code>numberOfPartitions</code> property allows explicit definition of the number of space partitions. When the <code>numberOfPartitions</code> property is defined then <code>maxMemoryCapacity</code> and <code>maxNumberOfCpuCores</code> should not be defined.</p>
 
@@ -300,7 +300,7 @@ gs&gt; scale -name myPU -memory-capacity 32g
   <p>Having larger number of partitions will provide you better flexibility in terms of having more scaling "check points". Having too many partitions (hundreds) will impact the system performance since in some point this will generate some overhead due to the internal monitoring required for each partition.</p>
 </div>
 
-<h1><a name="deployment-on-a-single-machine-for-development-purposes">&#160;</a>Deployment on a Single Machine (for development purposes)</h1>
+<h1><a name="deployment-on-a-single-machine-for-development-purposes"></a>Deployment on a Single Machine (for development purposes)</h1>
 
 <p>For development and demonstration purposes, it is very convenient to deploy the EPU on a single machine. By default, the minimum number of machines is two (for high availability concerns). This could be changed using the <code>singleMachineDeployment</code> property.</p>
 
@@ -331,7 +331,7 @@ gs&gt; deploy-elastoc-pu -type stateful -file myPU.jar -mcpc 256m -mmc 1024m -sm
 </div>
 </div>
 
-<h1><a name="stateless-web-elastic-processing-units">&#160;</a>Stateless / Web Elastic Processing Units</h1>
+<h1><a name="stateless-web-elastic-processing-units"></a>Stateless / Web Elastic Processing Units</h1>
 
 <p>Stateless Processing Units do not include an embedded space, and therefore are not partitioned. Deployment of stateless processing unit is performed by specifying the required total number of CPU cores. This ensures 1 container per machine.</p>
 
@@ -352,14 +352,14 @@ ProcessingUnit pu = gsm.deploy(
 </div>
 </div>
 
-<h1><a name="command-line-deploy">&#160;</a>Command Line Deploy</h1>
+<h1><a name="command-line-deploy"></a>Command Line Deploy</h1>
 
 <div class="tc-admon-refer">
   
   <p>An Elastic Processing Unit can also be deployed with the <a href="../admin/elastic-deploy-command-line-interface.html">Command Line Interface</a>.</p>
 </div>
 
-<h1><a name="hot-deploy">&#160;</a>Hot Deploy</h1>
+<h1><a name="hot-deploy"></a>Hot Deploy</h1>
 
 <div class="tc-admon-refer">
   

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -9,12 +9,12 @@
         <div class="tc-admon-note">
             <p>In order to interact with a secured grid you need to log in first. See <a href="command-line-interface-cli-security.html">Using the CLI in a Secured Environment</a>.</p>
         </div>
-        <h1><a name="application">&#160;</a>application</h1>
-        <h2><a name="syntax">&#160;</a>Syntax</h2><pre><code class="language-bash">gs&gt; deploy-application [-user xxx -password yyy] [-secured true/false] application_directory_or_zipfile
+        <h1><a name="application"></a>application</h1>
+        <h2><a name="syntax"></a>Syntax</h2><pre><code class="language-bash">gs&gt; deploy-application [-user xxx -password yyy] [-secured true/false] application_directory_or_zipfile
 </code></pre>
-        <h2><a name="description">&#160;</a>Description</h2>
+        <h2><a name="description"></a>Description</h2>
         <p>Deploys an <a href="../dev-java/deploying-onto-the-service-grid.html#app-deployment-pu-dependencies">application</a>, which deploys one or more processing units in dependency order onto the service grid.</p>
-        <h2><a name="options">&#160;</a>Options</h2>
+        <h2><a name="options"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -91,13 +91,13 @@ processor.jar
                 </div>
             </div>
         </div>
-        <h1><a name="undeploy-application">&#160;</a>Undeploy Application</h1>
-        <h2><a name="syntax-1">&#160;</a>Syntax</h2><pre><code class="language-bash">gs&gt; undeploy-application application_name
+        <h1><a name="undeploy-application"></a>Undeploy Application</h1>
+        <h2><a name="syntax-1"></a>Syntax</h2><pre><code class="language-bash">gs&gt; undeploy-application application_name
 </code></pre>
-        <h2><a name="description-1">&#160;</a>Description</h2>
+        <h2><a name="description-1"></a>Description</h2>
         <p>Undeploys an <a href="../dev-java/deploying-onto-the-service-grid.html#app-deployment-pu-dependencies">application</a>
     from the service grid, while respecting pu dependency order.</p>
-        <h2><a name="options-1">&#160;</a>Options</h2>
+        <h2><a name="options-1"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -151,8 +151,8 @@ processor.jar
                 </div>
             </div>
         </div>
-        <h1><a name="deploy-pu">&#160;</a>Deploy PU</h1>
-        <h2><a name="syntax-2">&#160;</a>Syntax</h2><pre><code class="language-bash">gs&gt; deploy [processing unit jar file / directory location / name]
+        <h1><a name="deploy-pu"></a>Deploy PU</h1>
+        <h2><a name="syntax-2"></a>Syntax</h2><pre><code class="language-bash">gs&gt; deploy [processing unit jar file / directory location / name]
 </code></pre>
         <div class="tc-admon-note">
             <p>The <code>deploy</code> command replaces the <code>pudeploy</code> command and is identical to it in terms of
@@ -160,7 +160,7 @@ processor.jar
       <code>pudeploy</code> is still supported but is considered a deprecated command and will be removed in future
       versions.</p>
         </div>
-        <h2><a name="description-2">&#160;</a>Description</h2>
+        <h2><a name="description-2"></a>Description</h2>
         <p>A Processing Unit can be easily deployed onto the Service Grid. In order to deploy a Processing Unit, the
     Processing Unit must follow the <a href="../dev-java/the-processing-unit-structure-and-configuration.html">processing
       unit directory structure</a>.
@@ -171,7 +171,7 @@ processor.jar
             <p>You may use the <a href="/sbp/universal-deployer.html">GigaSpaces Universal Deployer</a> to deploy complex multi
       processing unit applications.</p>
         </div>
-        <h2><a name="third-party-jars-location-and-property-files">&#160;</a>Third Party jars Location and Property Files</h2>
+        <h2><a name="third-party-jars-location-and-property-files"></a>Third Party jars Location and Property Files</h2>
         <p>Third party jars should be placed within one of the following locations:</p>
         <ul>
             <li>
@@ -193,7 +193,7 @@ processor.jar
             </li>
         </ul>
         <p>Property files and other resources should be jared and placed within any of the above locations.</p>
-        <h2><a name="deploy-command-options">&#160;</a>Deploy Command Options</h2>
+        <h2><a name="deploy-command-options"></a>Deploy Command Options</h2>
         <table>
             <thead>
                 <tr>
@@ -356,13 +356,13 @@ processor.jar
                 </div>
             </div>
         </div>
-        <h1><a name="undeploy-app">&#160;</a>Undeploy App</h1>
-        <h2><a name="syntax-3">&#160;</a>Syntax</h2><pre><code class="language-bash">gs&gt; undeploy-application application_name
+        <h1><a name="undeploy-app"></a>Undeploy App</h1>
+        <h2><a name="syntax-3"></a>Syntax</h2><pre><code class="language-bash">gs&gt; undeploy-application application_name
 </code></pre>
-        <h2><a name="description-3">&#160;</a>Description</h2>
+        <h2><a name="description-3"></a>Description</h2>
         <p>Undeploys an <a href="../dev-java/deploying-onto-the-service-grid.html#app-deployment-pu-dependencies">application</a>
     from the service grid, while respecting pu dependency order.</p>
-        <h2><a name="options-2">&#160;</a>Options</h2>
+        <h2><a name="options-2"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -416,11 +416,11 @@ processor.jar
                 </div>
             </div>
         </div>
-        <h1><a name="deploy-memcached">&#160;</a>Deploy Memcached</h1>
-        <h2><a name="syntax-4">&#160;</a>Syntax</h2><pre><code class="language-bash">gs&gt; deploy-memcached [-sla ...] [-cluster ...] [-properties ...] [-user xxx -password yyy] [-secured true/false] space_url
+        <h1><a name="deploy-memcached"></a>Deploy Memcached</h1>
+        <h2><a name="syntax-4"></a>Syntax</h2><pre><code class="language-bash">gs&gt; deploy-memcached [-sla ...] [-cluster ...] [-properties ...] [-user xxx -password yyy] [-secured true/false] space_url
 </code></pre>
-        <h2><a name="description-4">&#160;</a>Description</h2>
-        <h2><a name="options-3">&#160;</a>Options</h2>
+        <h2><a name="description-4"></a>Description</h2>
+        <h2><a name="options-3"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -547,12 +547,12 @@ processor.jar
                 </div>
             </div>
         </div>
-        <h1><a name="deploy-space">&#160;</a>Deploy Space</h1>
-        <h2><a name="syntax-5">&#160;</a>Syntax</h2><pre><code class="language-bash">gs&gt; deploy-space [space name]
+        <h1><a name="deploy-space"></a>Deploy Space</h1>
+        <h2><a name="syntax-5"></a>Syntax</h2><pre><code class="language-bash">gs&gt; deploy-space [space name]
 </code></pre>
-        <h2><a name="description-5">&#160;</a>Description</h2>
+        <h2><a name="description-5"></a>Description</h2>
         <p>A Space only Processing Unit can be easily deployed onto the Service Grid.</p>
-        <h2><a name="options-4">&#160;</a>Options</h2>
+        <h2><a name="options-4"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -672,12 +672,12 @@ processor.jar
                 </div>
             </div>
         </div>
-        <h1><a name="task">&#160;</a>Task</h1>
-        <h2><a name="syntax-6">&#160;</a>Syntax</h2><pre><code class="language-bash">usage: task ant-file [target=target-name]
+        <h1><a name="task"></a>Task</h1>
+        <h2><a name="syntax-6"></a>Syntax</h2><pre><code class="language-bash">usage: task ant-file [target=target-name]
 </code></pre>
-        <h2><a name="description-6">&#160;</a>Description</h2>
+        <h2><a name="description-6"></a>Description</h2>
         <p>The <code>task</code> command submits a task in the form of an Ant configuration file..</p>
-        <h2><a name="options-5">&#160;</a>Options</h2>
+        <h2><a name="options-5"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -699,7 +699,7 @@ processor.jar
                 </tr>
             </tbody>
         </table>
-        <h1><a name="deployment-states">&#160;</a>Deployment States</h1>
+        <h1><a name="deployment-states"></a>Deployment States</h1>
         <p>This is a list of possible deployment states and their meaning.</p>
         <table>
             <thead>
@@ -738,7 +738,7 @@ processor.jar
                 </tr>
             </tbody>
         </table>
-        <h1><a name="hot-deploy">&#160;</a>Hot Deploy</h1>
+        <h1><a name="hot-deploy"></a>Hot Deploy</h1>
         <div class="tc-admon-note">
             <p>The <a href="/sbp/xap-hot-deploy.html">XAP Hot Deploy</a> tool allows business logic running as a PU to be
       refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach ,

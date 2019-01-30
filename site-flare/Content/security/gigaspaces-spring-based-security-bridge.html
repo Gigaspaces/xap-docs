@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -21,7 +21,7 @@ class="org.springframework.security.authentication.ProviderManager"&gt;
 &lt;/bean&gt; 
 ...
 </code></pre>
-        <h1><a name="configuring-the-security-manager">&#160;</a>Configuring the Security Manager</h1>
+        <h1><a name="configuring-the-security-manager"></a>Configuring the Security Manager</h1>
         <p>The Spring security configurations are loaded using Spring's <code>FileSystemXmlApplicationContext</code> taking the context definition files from the file system or from URLs. The location of the configuration file is set using the <code>spring-security-config-location</code> property; if not set, a default <code>security-config.xml</code> is considered (if present).</p>
         <p>As with all GigaSpaces security configurations, they must be placed in a properties file. In order to configure the security manager to use the Spring Security bridge, we set the <code>security-manager.class</code> property along with the expected <code>spring-security-config-location</code> property.</p><pre><code class="language-java">com.gs.security.security-manager.class = org.gigaspaces.security.spring.SpringSecurityManager
 spring-security-config-location = ../config/security/security-config.xml
@@ -30,10 +30,10 @@ spring-security-config-location = ../config/security/security-config.xml
         <div class="tc-admon-note">
             <p>For convenience, the template properties <code>config/security/spring-security.properties</code> can be renamed to <code>security.properties</code> or referenced using a system property (see <a href="security-configurations.html">Security Configurations</a>).</p>
         </div>
-        <h1><a name="logging">&#160;</a>Logging</h1>
+        <h1><a name="logging"></a>Logging</h1>
         <p>Any configurations that are applied can be seen by setting the logging level to CONFIG (see xap_logging.properties):</p><pre><code class="language-java">com.gigaspaces.security.level = CONFIG
 </code></pre>
-        <h1><a name="testing-the-spring-based-security-bridge">&#160;</a>Testing the Spring-based Security Bridge</h1>
+        <h1><a name="testing-the-spring-based-security-bridge"></a>Testing the Spring-based Security Bridge</h1>
         <p>Before launching up a whole full-blown application, you may want to test that the bridge is actually working to your satisfaction. For example, that the users, roles, and authorities are extracted correctly, etc. For this, you don't even need a GigaSpaces instance.</p>
         <p>Here is a sample code, which sets up a GigaSpaces <code>SpringSecurityManager</code> instance by passing it the <code>spring-security-config-location</code> as an explicit property. The security manager calls the <code>authenticate</code> method with "username"/"password" returning (if successful) an <code>Authentication</code> object. This result contains the user details and the populated authorities of this user (all authorities including those extracted from the groups (roles) the user is part of).</p><pre><code class="language-java">import java.util.Arrays;
 import java.util.Properties;
@@ -68,7 +68,7 @@ public class Main {
                 </li>
             </ul>
         </div>
-        <h1><a name="gigaspaces-security-authorities">&#160;</a>GigaSpaces Security Authorities</h1>
+        <h1><a name="gigaspaces-security-authorities"></a>GigaSpaces Security Authorities</h1>
         <p>GigaSpaces provides a set of <a href="security-authorities.html">Security Authorities</a> which can be stored as a String in any external directory. Much like the Spring's Security <code>GrantedAuthority</code> s which translate to and from a String.</p>
         <p>Lets take for example a Box-Office employee which has <code>READ</code> privileges, for class "eg.cinema.Movie".
 We convert the class expression using the <code>WildcardExpressionToFilterConverter</code> methods. This converter takes in an expression, for example a regular expression expressing the permitted classes the employee can read.</p><pre><code class="language-java">System.out.println(new SpaceAuthority(SpacePrivilege.READ,

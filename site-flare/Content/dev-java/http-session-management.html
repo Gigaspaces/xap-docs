@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -23,9 +23,9 @@
                 <p>Non intrusive session management or explicit Data Grid API access for fine grain control - Allows multiple web servers to share the same session in transparent manner</p>
             </li>
         </ul>
-        <h1><a name="how-to-enable-xap-s-http-session-management">&#160;</a>How to enable HTTP Session Management</h1>
+        <h1><a name="how-to-enable-xap-s-http-session-management"></a>How to enable HTTP Session Management</h1>
         <p>There are several ways to configure Space session based support, depending on the definition of which Space and how the Space was started.</p>
-        <h2><a name="using-the-deploy-property">&#160;</a>Using the Deploy Property</h2>
+        <h2><a name="using-the-deploy-property"></a>Using the Deploy Property</h2>
         <p>Here is how you can deploy an existing WAR file without changing it (or use Spring) to use <MadCap:variable name="General.ProductNameXAP" /> HTTP Session Management:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="CLI" style="padding:10px"><pre><code class="language-java">gs deploy -properties embed://jetty.sessions.spaceUrl=jini://*/*/sessionSpace?useLocalCache myWar.war
@@ -40,11 +40,11 @@
 </code></pre>
             </div>
         </div>
-        <h2><a name="using-spring">&#160;</a>Using Spring</h2>
+        <h2><a name="using-spring"></a>Using Spring</h2>
         <p>When deploying, include within the <code>META-INF/spring/pu.properties</code> file the <code>jetty.sessions.spaceUrl</code> property value. This should be set with the space url defining where the sessions will be stored.</p>
         <p>For example, if the session will be stored on a remote clustered Space with local cache, the URL can be: <code>jini://*/*/sessionSpace?useLocalCache</code> (assuming the name of the Space is <span class="tc-italic">sessionSpace</span>). If the session should be stored on a Space that should be started within the web application (in a collocated manner) in a sync_replicated cluster schema (for example), then the url can be <code>/./sessionSpace?cluster_schema=sync_replicated</code> (note, cluster ids will be automatically set based on the number of web applications deployed).</p>
         <p>In case there is already a Space configured within the web application. For example, defined within <code>META-INF/spring/pu.xml</code>, it can be used as the Space where sessions will be stored as well. In this case, the <code>jetty.sessions.spaceUrl</code> can use the special prefix <code>bean</code>. For example, if the Space was defined as a bean with id of <code>sessionSpace</code>, the  <code>jetty.sessions.spaceUrl</code> can be set to <code>bean://sessionSpace</code>.</p>
-        <h1><a name="options">&#160;</a>Options</h1>
+        <h1><a name="options"></a>Options</h1>
         <p>Controlling the session Management done via the following properties:</p>
         <table>
             <thead>
@@ -94,16 +94,16 @@
         <div class="tc-admon-note">
             <p><MadCap:variable name="General.ProductNameXAP" /> integration implements Jetty <code>SessionManager</code> and <code>SessionIdManager</code> in <code>GigaSesssionManager</code> and <code>GigaSessionIdManager</code>. When setting the <code>jetty.sessions.spaceUrl</code> they get automatically set as the session manager and session id manager of the web app.</p>
         </div>
-        <h1><a name="deployment-topologies">&#160;</a>Deployment Topologies</h1>
+        <h1><a name="deployment-topologies"></a>Deployment Topologies</h1>
         <p>The HTTP Session support several Deployment Topologies:</p>
-        <h2><a name="embedded-replicated">&#160;</a>Embedded Replicated</h2>
+        <h2><a name="embedded-replicated"></a>Embedded Replicated</h2>
         <p>Supports only a limited amount of sessions.</p>
         <p>
             <p>
                 <img src="../Resources/Static/attachment_files/session_embedded-replicated.jpg" alt="session_embedded-replicated.jpg" class="tc-picture80" />
             </p>
         </p>
-        <h2><a name="partitioned-replicated">&#160;</a>Partitioned+Replicated</h2>
+        <h2><a name="partitioned-replicated"></a>Partitioned+Replicated</h2>
         <ul>
             <li>
                 <p>Session Data is partitioned across multiple machines.</p>
@@ -115,7 +115,7 @@
                 </p>
             </li>
         </ul>
-        <h2><a name="partitioned-replicated-with-local-cache">&#160;</a>Partitioned+Replicated with Local-Cache</h2>
+        <h2><a name="partitioned-replicated-with-local-cache"></a>Partitioned+Replicated with Local-Cache</h2>
         <ul>
             <li>
                 <p>Support for read mostly scenario via local cache running within the application server memory address.

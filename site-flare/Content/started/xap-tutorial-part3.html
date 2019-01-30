@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -6,7 +6,7 @@
         <h1>Distributed Processing</h1>
         <p>In this part of the tutorial we will introduce you to the different processing services you can run on top of the space.</p>
         <p>XAP includes a set of built-in service components such as Task Execution and Messaging services, each implementing commonly used Enterprise integration patterns. It's purpose is to make the implementation of distributed applications on-top of the space simpler and less intrusive and allow you to easily build highly scalable and performing applications. All services follow the POJO/Spring based abstraction approach which includes dependency injection and annotations.</p>
-        <h1><a name="task-execution">&#160;</a>Task Execution</h1>
+        <h1><a name="task-execution"></a>Task Execution</h1>
         <p>Task Execution provides a fine-grained API for performing ad-hoc parallel execution of user defined tasks. This framework should be used in the following scenarios:</p>
         <ul>
             <li>
@@ -105,7 +105,7 @@
 </code></pre>
             </div>
         </div>
-        <h4><a name="task-routing">&#160;</a>Task Routing</h4>
+        <h4><a name="task-routing"></a>Task Routing</h4>
         <p>By nature, task execution is broadcasted to all partitions in the space. You can route a task directly to one of the partitions of the space. Here is an example demonstrating how to route a task to a partition:</p><pre><code class="language-java">public void executeTaskWithRouting() throws InterruptedException, ExecutionException {
      // Route the task to partion 2
      AsyncFuture&lt;HashSet&lt;Integer&gt;&gt; result = space.execute(task, 2);
@@ -115,7 +115,7 @@
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../dev-java/task-execution-overview.html">Task Execution</a> section in the developer guide.</p>
         </div>
-        <h1><a name="distributed-task">&#160;</a>Distributed Task</h1>
+        <h1><a name="distributed-task"></a>Distributed Task</h1>
         <p>A DistributedTask is a task that ends up executing more than once (concurrently) and returns a result that is a reduced operation of all the different executions.</p>
         <p>In the example below we are creating a distributed task that finds all merchants with a specific category. Once all results are returned to the client, reduce is called and a list of all merchants is created.</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -163,12 +163,12 @@
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../dev-java/aggregators.html">Aggregators</a> page in the Space Interface section of the developer guide.</p>
         </div>
-        <h4><a name="executorbuilder">&#160;</a>ExecutorBuilder</h4>
+        <h4><a name="executorbuilder"></a>ExecutorBuilder</h4>
         <p>The executor builder allows to combine several task executions (both distributed ones and non distributed ones) into a seemingly single execution (with a reduce phase).</p>
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../dev-java/task-execution-overview.html">Task Execution</a> section of the developer guide.</p>
         </div>
-        <h1><a name="space-based-remoting">&#160;</a>Space-Based Remoting</h1>
+        <h1><a name="space-based-remoting"></a>Space-Based Remoting</h1>
         <p>Spring provides support for various remoting technologies. XAP uses the same concepts to provide remoting, using the space as the underlying protocol.</p>
         <p>Why would you use the space as the transport layer include:</p>
         <ul>
@@ -192,12 +192,12 @@
             </li>
         </ul>
         <p>In this tutorial will look at an Executor based Remoting service.</p>
-        <h2><a name="defining-the-contract">&#160;</a>Defining the Contract</h2>
+        <h2><a name="defining-the-contract"></a>Defining the Contract</h2>
         <p>In order to support remoting, the first step is to define the contract between the client and the server. Here is an example of a payment service:</p><pre><code class="language-java">public interface IPaymentProcessor {
     Payment processPayment(Payment data);
 }
 </code></pre>
-        <h2><a name="implement-the-service">&#160;</a>Implementing the Service</h2>
+        <h2><a name="implement-the-service"></a>Implementing the Service</h2>
         <p>Next, an implementation of this contract needs to be provided. This implementation will "live" on the server side. Here is a sample implementation:</p><pre><code class="language-java">@RemotingService
 public class PaymentProcessor implements IPaymentProcessor {
      public Payment processPayment(Payment payment) {
@@ -206,7 +206,7 @@ public class PaymentProcessor implements IPaymentProcessor {
     }
 }
 </code></pre>
-        <h2><a name="exporting-the-service">&#160;</a>Exporting the Service</h2>
+        <h2><a name="exporting-the-service"></a>Exporting the Service</h2>
         <p>The service is exported to the server with the Spring configuration. Here is an example:</p><pre><code class="language-xml">&lt;!-- Scan the packages for annotations / --&gt;
 &lt;context:component-scan base-package="xap.qsg" /&gt;
 
@@ -221,7 +221,7 @@ public class PaymentProcessor implements IPaymentProcessor {
 
 &lt;os-remoting:service-exporter id="serviceExporter" /&gt;
 </code></pre>
-        <h2><a name="client-side-invocation">&#160;</a>Client-Side Invocation</h2>
+        <h2><a name="client-side-invocation"></a>Client-Side Invocation</h2>
         <p>On the client side, the remoting proxy is injected with the @ExecutorProxy annotation:</p><pre><code class="language-java">public class RemoteService {
      @Autowired
      @Qualifier(IRemotingService.SPACE)

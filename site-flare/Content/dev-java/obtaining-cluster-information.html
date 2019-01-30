@@ -9,7 +9,7 @@
 However, in some cases you may want your processing unit to be aware of it.
 This mechanism is also used internally by the platform to maintain the clustering information when deploying a space for example.</p>
 
-<h1><a name="available-cluster-information">&#160;</a>Available Cluster Information</h1>
+<h1><a name="available-cluster-information"></a>Available Cluster Information</h1>
 
 <p>As mentioned above the cluster information is passed to the components of each processing unit instance via an instance of the <code>org.openspaces.core.cluster.ClusterInfo</code> class, which holds the following information:</p>
 
@@ -66,7 +66,7 @@ This mechanism is also used internally by the platform to maintain the clusterin
   <p><code>null</code> value for one of these properties means that they are not applicable for the processing unit instance at hand or the used deployment topology.</p>
 </div>
 
-<h1><a name="obtaining-the-cluster-information">&#160;</a>Obtaining the Cluster Information</h1>
+<h1><a name="obtaining-the-cluster-information"></a>Obtaining the Cluster Information</h1>
 
 <p>A <code>ClusterInfo</code> instance can be injected to the processing unit instances upon their creation.
 There are several ways to enable the injection:</p>
@@ -78,7 +78,7 @@ There are several ways to enable the injection:</p>
 
 <p>Once injected, the processing unit components can access all the information within the <code>ClusterInfo</code> instance and cache it locally for later usage (by saving it as an instance variable for example).</p>
 
-<h1><a name="clusterinfoaware">&#160;</a>ClusterInfoAware</h1>
+<h1><a name="clusterinfoaware"></a>ClusterInfoAware</h1>
 
 <p>GigaSpaces provides the <code>ClusterInfoAware</code> interface, which allows beans to be injected with the <code>ClusterInfo</code> instance. This is similar to Spring's <code>ApplicationContextAware</code> interface, that allows beans to be injected with Spring's <code>ApplicationContext</code> by implementing the interface.
 Here's the <code>ClusterInfoAware</code> interface:</p>
@@ -102,9 +102,9 @@ Here's the <code>ClusterInfoAware</code> interface:</p>
 
 <p>All of the processing unit <a href="deploying-and-running-overview.html">runtime modes</a> provide support for the <code>ClusterInfo</code> and <code>ClusterInfoAware</code> interfaces by default. Built-in GigaSpaces components make use of this feature. User-defined beans can make use of this information as well (for example, to connect to a specific database based on the ID of the processing unit instance).</p>
 
- <a name="ClusterInfoContext">&#160;</a>
+ <a name="ClusterInfoContext"></a>
 
-<h1><a name="clusterinfocontext">&#160;</a>@ClusterInfoContext</h1>
+<h1><a name="clusterinfocontext"></a>@ClusterInfoContext</h1>
 
 <p>Similar to the the <code>ClusterInfoAware</code> interface, this field level annotation allows beans to be injected with the <code>ClusterInfo</code> instance. Here's an example:</p>
 
@@ -117,7 +117,7 @@ Here's the <code>ClusterInfoAware</code> interface:</p>
 }
 </code></pre>
 
-<h1><a name="space-construction-and-clusterinfo">&#160;</a>Space Construction and ClusterInfo</h1>
+<h1><a name="space-construction-and-clusterinfo"></a>Space Construction and ClusterInfo</h1>
 
 <p>The <a href="the-space-configuration.html">Space component</a> implements the <code>ClusterInfoAware</code>, and uses it in order to construct an embedded space by mapping <code>ClusterInfo</code> properties to Space URL properties (if provided). Here is a mapping from <code>ClusterInfo</code> to Space URL properties:</p>
 
@@ -157,7 +157,7 @@ Here's the <code>ClusterInfoAware</code> interface:</p>
 </tbody>
 </table>
 
-<h1><a name="clusterinfo-xml-injection">&#160;</a>ClusterInfo XML Injection</h1>
+<h1><a name="clusterinfo-xml-injection"></a>ClusterInfo XML Injection</h1>
 
 <p>When running the processing unit in any of the <a href="deploying-and-running-overview.html">runtime modes</a>, <code>ClusterInfo</code> can also be used directly within the Spring XML configuration. In a similar manner, properties can be injected. Here is an example of how this can be used:</p>
 
@@ -214,7 +214,7 @@ Here's the <code>ClusterInfoAware</code> interface:</p>
 </tbody>
 </table>
 
-<h1><a name="processing-unit-container-injection">&#160;</a>Processing Unit Container Injection</h1>
+<h1><a name="processing-unit-container-injection"></a>Processing Unit Container Injection</h1>
 
 <p>Each of the <a href="deploying-and-running-overview.html">runtime modes</a> supports the injection of <code>ClusterInfo</code>. However, when running in <a href="running-in-standalone-mode.html">standalone mode</a> or <a href="../started/xap-debug.html">within your IDE</a>, the <code>-cluster</code> parameter controls the clustering aspects of the processing unit instance(s). Below is a list of the parameters you can specify for the standalone and IDE runtime modes, and how they are mapped the <code>ClusterInfo</code> properties:</p>
 

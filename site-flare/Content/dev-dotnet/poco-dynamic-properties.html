@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -10,7 +10,7 @@
         <div class="tc-admon-important">
             <p>Only one property per class can be annotated with <code>[SpaceDynamicProperties]</code>.</p>
         </div>
-        <h1><a name="enabling-dynamic-properties">&#160;</a>Enabling Dynamic Properties</h1>
+        <h1><a name="enabling-dynamic-properties"></a>Enabling Dynamic Properties</h1>
         <p>To enable dynamic properties add a <code>Dictionary&lt;String, Object&gt;</code> property to the relevant class and decorate it with <code>[SpaceDynamicProperties]</code>. For example, the following <span class="tc-bold">Person</span> class has two fixed properties (Name and Id), and an additional <span class="tc-bold">ExtraInfo</span> property used to host the dynamic properties:</p><pre><code class="language-csharp">public class Person
 {
     public String Name { get; set; }
@@ -23,7 +23,7 @@
         <div class="tc-admon-note">
             <p>It is recommended to use the <code>DocumentProperties</code> class to host dynamic properties.</p>
         </div>
-        <h1><a name="using-dynamic-properties">&#160;</a>Using Dynamic Properties</h1>
+        <h1><a name="using-dynamic-properties"></a>Using Dynamic Properties</h1>
         <p>To write an entry with dynamic properties, simply populate them in the dynamic properties property. For example:</p><pre><code class="language-csharp">Person p = new Person();
 p.Id = 7;
 p.Name = "smith";
@@ -51,7 +51,7 @@ foreach (var person in people)
                 </li>
             </ul>
         </div>
-        <h1><a name="indexing">&#160;</a>Indexing</h1>
+        <h1><a name="indexing"></a>Indexing</h1>
         <p>Dynamic properties can be indexed similar to fixed properties.</p>
         <div class="tc-admon-note">
             <p>For more information, see the <a href="indexing-overview.html">Indexing</a> section.</p>

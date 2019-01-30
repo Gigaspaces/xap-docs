@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -11,25 +11,25 @@ If the counter property does not exists, the delta will be set as its initial st
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/change-api-counter.jpg" alt="" title="" class="tc-picture50" />
         </div>
-        <h1><a name="incrementing">&#160;</a>Incrementing</h1>
+        <h1><a name="incrementing"></a>Incrementing</h1>
         <p>Incrementing a Counter done using the <code>ChangeSet().Increment</code> call:</p><pre><code class="language-csharp">ISpaceProxy spaceProxy = // ... obtain a space reference
 String id = "myID";
 IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;(id);
 spaceProxy.Change(idQuery, new ChangeSet().Increment("MyCounter", 1));
 </code></pre>
-        <h1><a name="decrementing">&#160;</a>Decrementing</h1>
+        <h1><a name="decrementing"></a>Decrementing</h1>
         <p>Decrementing a Counter done using the <code>ChangeSet().Decrement</code> call:</p><pre><code class="language-csharp">ISpaceProxy spaceProxy = // ... obtain a space reference
 String id = "myID";
 IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;(id);
 spaceProxy.Change(idQuery, new ChangeSet().Decrement("MyCounter", 1));
 </code></pre>
-        <h1><a name="clearing">&#160;</a>Clearing</h1>
+        <h1><a name="clearing"></a>Clearing</h1>
         <p>Clearing the Counter value done using the <code>ChangeSet().Unset</code> call:</p><pre><code class="language-csharp">ISpaceProxy spaceProxy = // ... obtain a space reference
 String id = "myID";
 IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;(id);
 spaceProxy.Change(idQuery, new ChangeSet().Unset("MyCounter"));
 </code></pre>
-        <h1><a name="getting-the-value">&#160;</a>Getting the Value</h1>
+        <h1><a name="getting-the-value"></a>Getting the Value</h1>
         <p>Getting the Counter value done via the read call:</p><pre><code class="language-csharp">ISpaceProxy spaceProxy = // ... obtain a space reference
 String id = "myID";
 IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;( id);
@@ -56,9 +56,9 @@ int counterValue = wordount.MyCounter;
 //Execute the task on all the primary nodes with in the cluster
 int result = spaceProxy.Execute(task,0);
 </code></pre>
-        <h1><a name="pre-loading">&#160;</a>Pre-Loading</h1>
+        <h1><a name="pre-loading"></a>Pre-Loading</h1>
         <p>When pre-loading the space via the <a href="space-persistency-initial-load.html">External Data Source initial-load</a> you may need to construct Counters data. The <code>initialLoad</code> method allows you to implement the logic to generate the counter data and load it into the space after the actual data been loaded from the external data source (database).</p>
-        <h1><a name="example">&#160;</a>Example</h1>
+        <h1><a name="example"></a>Example</h1>
         <p>With the following example the <code>Counter</code> class wraps the <code>GigaSpace.change</code> operation providing simple <code>increment</code>,<code>decrement</code>,<code>get</code> and <code>unset</code> methods to manage counters. The example using an <a href="document-extending.html">extended SpaceDocument</a> as the space object storing the counters data. To retrieve the counter existing value a <a href="task-execution-overview.html">Task</a> is used. To launch the example run the <code>CounterTest</code> unit test.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title=" CounterTest " style="padding:10px"><pre><code class="language-csharp">public class CounterTest

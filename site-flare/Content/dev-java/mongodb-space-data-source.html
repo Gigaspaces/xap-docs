@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Data Source</h1>
         <p>A MongoDB based implementation of the <a href="space-data-source-api.html">Space Data Source</a>.</p>
-        <h1><a name="library-dependencies">&#160;</a>Library dependencies</h1>
+        <h1><a name="library-dependencies"></a>Library dependencies</h1>
         <p>The MongoDB Space Data Source uses <a href="http://docs.mongodb.org/ecosystem/drivers/java/">MongoDB Driver</a> For communicating with the MongoDB cluster.</p>
         <p>include the following in your <code>pom.xml</code></p><pre><code class="language-xml">    &lt;!-- currently the MongoDB library is not the central maven repository --&gt; 
     &lt;repositories&gt;
@@ -40,7 +40,7 @@
         ...
     &lt;/dependencies&gt;
 </code></pre>
-        <h1><a name="setup">&#160;</a>Setup</h1>
+        <h1><a name="setup"></a>Setup</h1>
         <p>An example of how the MongoDB Space Data Source can be configured for a space that loads data back from MongoDB once initialized and
 also asynchronously persists the data using a mirror (see <a href="mongodb-space-synchronization-endpoint.html">MongoDB Space Synchronization Endpoint</a>)).</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -115,14 +115,14 @@ also asynchronously persists the data using a mirror (see <a href="mongodb-space
             </div>
         </div>
         <div class="tc-admon-note">For more details about different configurations see <a href="space-persistency-overview.html">Space Persistency</a>.</div>
-        <h1><a name="before-you-begin">&#160;</a>Before You Begin</h1>
+        <h1><a name="before-you-begin"></a>Before You Begin</h1>
         <p>Before deploying your Processing Unit, please do the following:</p>
         <ol>
             <li>Copy the <code>xap-mongodb.jar</code> and <code>antlr4-runtime-[%=Versions.antlr4-runtime%].jar</code> from <code>lib\optional\mongodb</code> to <code>lib\optional\pu-common</code>.</li>
             <li>download the following jar and copy it to <code>lib\optional\pu-common</code>:</li>
             <li><code>mongo-java-driver-[%=Versions.mongo-java-driver%].jar</code> from <a href="http://docs.mongodb.org/ecosystem/drivers/java/">mongoDB's website</a> .</li>
         </ol>
-        <h1><a name="mongospacedatasource-properties">&#160;</a>MongoSpaceDataSource Properties</h1>
+        <h1><a name="mongospacedatasource-properties"></a>MongoSpaceDataSource Properties</h1>
         <table>
             <thead>
                 <tr>
@@ -140,12 +140,12 @@ also asynchronously persists the data using a mirror (see <a href="mongodb-space
                 </tr>
             </tbody>
         </table>
-        <h2><a name="considerations">&#160;</a>Considerations</h2>
-        <h3><a name="general-limitations">&#160;</a>General limitations</h3>
+        <h2><a name="considerations"></a>Considerations</h2>
+        <h3><a name="general-limitations"></a>General limitations</h3>
         <ul>
             <li>All classes that belong to types that are to be introduced to the space during the initial metadata load must exist on the classpath of the JVM the Space is running on.</li>
         </ul>
-        <h3><a name="cache-miss-query-limitations">&#160;</a>Cache miss Query limitations</h3>
+        <h3><a name="cache-miss-query-limitations"></a>Cache miss Query limitations</h3>
         <p>Supported queries:</p>
         <ul>
             <li><code>id = 1234</code>
@@ -176,9 +176,9 @@ also asynchronously persists the data using a mirror (see <a href="mongodb-space
         <div class="tc-admon-note">
             <p>Java types Short, Float, BigDecimal and BigInt supported only =,&lt;&gt; queries &gt;,&lt;,&gt;=,&lt;= is not supported.</p>
         </div>
-        <h1><a name="unsupported-queries">&#160;</a>Unsupported Queries</h1>
+        <h1><a name="unsupported-queries"></a>Unsupported Queries</h1>
         <p>Contains is unsupported.</p>
-        <h1><a name="mongo-as-a-service">&#160;</a>Mongo as a Service</h1>
+        <h1><a name="mongo-as-a-service"></a>Mongo as a Service</h1>
         <p>There are some Mongo DB hosting services that run on the cloud, and you can connect to them from your deployment environment for free. For example: <a href="https://mongolab.com">mongolab</a></p>
         <p>In order to configure the connection, you would need to connect using a URI that contains the username and password.</p><pre><code class="language-xml">&lt;bean id="mongoClient"
           class="com.gigaspaces.persistency.MongoClientConnectorBeanFactory"&gt;

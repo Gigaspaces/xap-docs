@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -7,7 +7,7 @@
 
 <p>Defining group names and unicast Locators for Jini Services; searching for available lookup services in the network.</p>
 
-<h1><a name="essential-guidelines">&#160;</a>Essential Guidelines</h1>
+<h1><a name="essential-guidelines"></a>Essential Guidelines</h1>
 
 <p><span class="tc-bold">It is essential to set the <code>groups</code> and <code>locators</code> system properties in the Java process which starts the Lookup Service or Mahalo services</span>. This is required in order to "tell" the Jini service which groups and locators it should join, and which to serve. If these properties are not set, the Lookup Service/Mahalo uses the Jini fallback values and that impact the SLA these services serve with.</p>
 
@@ -22,7 +22,7 @@
   <p>When using multicast please review the following section <a href="network-multicast-is-available.html">How to Determine Whether Multicast is Available</a> and <a href="network-multicast.html">How to Configure Multicast</a>.</p>
 </div>
 
-<h1><a name="setting-up-the-lookup-service-for-multicast-discovery-using-lookup-group">&#160;</a>Setting up the Lookup Service For Multicast Discovery (Using Lookup Group)</h1>
+<h1><a name="setting-up-the-lookup-service-for-multicast-discovery-using-lookup-group"></a>Setting up the Lookup Service For Multicast Discovery (Using Lookup Group)</h1>
 
 <p>Each of the Jini Services (such as the Reggie lookup service or the Mahalo Transaction Manager) registers and advertises using a group name which is defined by the following system property (set in the <code>/bin/setenv.bat file</code>):</p>
 
@@ -43,7 +43,7 @@ set <code>XAP_LOOKUP_GROUPS="gigaspaces-7.0XAPga"</code>.</p>
   <p>If you are looking for a way to use a unicast discovery, please refer to the <a href="network-unicast-discovery.html">How to Configure Unicast Discovery</a> section for more details.</p>
 </div>
 
-<h1><a name="multicast-settings">&#160;</a>Multicast Settings</h1>
+<h1><a name="multicast-settings"></a>Multicast Settings</h1>
 
 <div class="tc-admon-note">
   
@@ -99,7 +99,7 @@ set <code>XAP_LOOKUP_GROUPS="gigaspaces-7.0XAPga"</code>.</p>
   <p>The two multicast addresses allow you to completely separate two different GigaSpaces installations, so lookup services won't communicate with each other (even on the wire level, which is different than the groups, which communicate on the content level).</p>
 </div>
 
-<h1><a name="troubleshooting-the-discovery-group-configuration">&#160;</a>Troubleshooting the Discovery/Group Configuration</h1>
+<h1><a name="troubleshooting-the-discovery-group-configuration"></a>Troubleshooting the Discovery/Group Configuration</h1>
 
 <p>Using the <a href="command-line-interface.html">list LUS </a> CLI option, run from <code>&lt;XAP Root&gt;\bin\gs.bat/sh</code>, you can search for available Jini Lookup Services in the network.
 <code>&lt;XAP Root&gt;\bin\gs.bat/sh</code> list lus</p>
@@ -127,7 +127,7 @@ set <code>XAP_LOOKUP_GROUPS="gigaspaces-7.0XAPga"</code>.</p>
                  e4e64c11ca95
 </code></pre>
 
-<h1><a name="multi-network-card-configuration">&#160;</a>Multi Network Card Configuration</h1>
+<h1><a name="multi-network-card-configuration"></a>Multi Network Card Configuration</h1>
 
 <div class="tc-admon-refer">
   

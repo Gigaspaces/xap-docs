@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -20,7 +20,7 @@
         <div class="tc-admon-note">
             <p>Space operations under transactions will trigger notifications when the transaction commits.</p>
         </div>
-        <h1><a name="notify-example">&#160;</a>Notify Example</h1>
+        <h1><a name="notify-example"></a>Notify Example</h1>
         <p>In the following example we register a listener to receive notifications when an Employee instance is written or update in the space.
 The client registering the listener will receive a copy of the object written in the space as notification. The object in the space will continue to exist.</p><pre><code class="language-java">@EventDriven
 @Notify
@@ -54,7 +54,7 @@ eventListener.destroy();
         <div class="tc-admon-note">
             <p>For more information, see the <a href="notify-container-overview.html">Notify Container</a> page.</p>
         </div>
-        <h1><a name="polling-example">&#160;</a>Polling Example</h1>
+        <h1><a name="polling-example"></a>Polling Example</h1>
         <p>This example works just like the notification example above, except that the object is removed from the space:</p><pre><code class="language-java">
   @EventDriven
   @Polling
@@ -93,7 +93,7 @@ eventListener.destroy();
         <div class="tc-admon-note">
             <p>Fore more information, see the <a href="polling-container-overview.html">Polling Container</a> page.</p>
         </div>
-        <h1><a name="primary-backup">&#160;</a>Primary/Backup</h1>
+        <h1><a name="primary-backup"></a>Primary/Backup</h1>
         <p>When working in clustered mode (schema) that includes a primary/backup schema, several components within the Processing Unit need to be aware of the current space mode and any changes made to it (such as event containers). Using Spring support for application events, two events are defined within OpenSpaces: <code>BeforeSpaceModeChangeEvent</code> and <code>AfterSpaceModeChangeEvent</code>. Both are raised when a space changes its mode from primary to backup or versa, and holds the current space mode.</p>
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/OS_PrimaryBackupCluster.jpg" alt="OS_PrimaryBackupCluster.jpg" class="tc-picture80" />
@@ -128,7 +128,7 @@ spaceConfigurer.destroy();
 </code></pre>
             </div>
         </div>
-        <h3><a name="primary-backup-notifications">&#160;</a>Primary Backup Notifications</h3>
+        <h3><a name="primary-backup-notifications"></a>Primary Backup Notifications</h3>
         <p>A bean can implement the following interfaces to get notified about space mode changes:</p>
         <table>
             <thead>
@@ -289,7 +289,7 @@ Thus, the compareAndSet() method can be used to implement a simple synchronizati
 
 }
 </code></pre>
-        <h1><a name="listening-for-space-mode-changed-events">&#160;</a>Listening for Space Mode Changed Events</h1>
+        <h1><a name="listening-for-space-mode-changed-events"></a>Listening for Space Mode Changed Events</h1>
         <p>When a remote client is interested to receive events when a space instance changing its runtime mode (from primary to backup or vise versa), it should implement the <code>SpaceModeChangedEventListener</code>. See below how:</p>
         <p>Registering for the event using the <a href="administration-and-monitoring-overview.html">Administration API</a>:</p><pre><code class="language-java">Admin admin = new AdminFactory().createAdmin();
 Space space = admin.getSpaces().waitFor(spaceName, 10, TimeUnit.SECONDS);

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -9,31 +9,31 @@ Explain Plan reports on the way in which the query uses indices and how many ent
         <div class="tc-admon-note">
             <p>For detailed information how to assign indexes, see the <a href="indexing-overview.html#index-types">Indexing</a> section.</p>
         </div>
-        <h2><a name="index-information">&#160;</a>Index Information</h2>
+        <h2><a name="index-information"></a>Index Information</h2>
         <ul>
             <li>Indexes that the space considered using and the selected index at each stage of the query.</li>
             <li>Each cluster node may produce a different result.</li>
             <li>Information breakdown by Pojo type.</li>
         </ul>
-        <h2><a name="scanning-information">&#160;</a>Scanning Information</h2>
+        <h2><a name="scanning-information"></a>Scanning Information</h2>
         <ul>
             <li>Number of entries the space scanned in order to find the matching entries and how many entries were matched.</li>
             <li>Each cluster node may produce a different result.</li>
             <li>Information breakdown by Pojo type.</li>
         </ul>
-        <h1><a name="index-types">&#160;</a>Index Types</h1>
+        <h1><a name="index-types"></a>Index Types</h1>
         <p>The index type is determined by the SpaceIndexType enumeration. The index types are:</p>
         <p><span class="tc-bold">NONE</span> - No indexing is used.</p>
         <p><span class="tc-bold">EQUAL</span> - performs equality matching (equal to/not equal to).</p>
         <p><span class="tc-bold">ORDERED</span> - performs ordered matching (bigger than/less than).</p>
         <p><span class="tc-bold">EQUAL_AND_ORDERED</span> - performs both equality and ordered matching, and uses a larger memory footprint than the other indexing types.</p>
-        <h1><a name="usage">&#160;</a>Usage</h1>
+        <h1><a name="usage"></a>Usage</h1>
         <p>The execution plan is initiated by calling the <code>withExplainPlan()</code> method on the <code>SQLQuery</code>. After the query is executed the information is obtained with the <code>query.getExplainPlan()</code> method.</p><pre><code class="language-java">SQLQuery&lt;Person&gt; query = new SQLQuery&lt;Person&gt;(Person.class, "age &gt; 20")
         .withExplainPlan();
 gigaSpace.readMultiple(query);
 ExplainPlan explainPlan = query.getExplainPlan();
 </code></pre>
-        <h1><a name="example">&#160;</a>Example</h1>
+        <h1><a name="example"></a>Example</h1>
         <p>We use a <code>Person</code> class with several properties annotated with <code>@SpaceIndex</code> indicating that we want to use indexes when queries are performed.</p><pre><code class="language-java">import java.util.UUID;
 
 import com.gigaspaces.annotation.pojo.SpaceClass;
@@ -182,7 +182,7 @@ Detailed Execution Information:
 </code></pre>
             </div>
         </div>
-        <h1><a name="limitations">&#160;</a>Limitations</h1>
+        <h1><a name="limitations"></a>Limitations</h1>
         <ul>
             <li>Supported via the Java API. Not supported via the .NET API.</li>
             <li>Supported operations: Read, ReadMultiple, TakeMultiple , count</li>

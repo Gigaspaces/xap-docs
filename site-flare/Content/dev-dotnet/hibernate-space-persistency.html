@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -9,7 +9,7 @@
         <div class="tc-admon-note">
             <p>The NHibernate External Data Source is provided as a reference implementation under <code>&lt;XAP Root&gt;\Practices\ExternalDataSource\NHibernate</code>. You must build the plugin before using it by running the <code>build.bat</code> script.</p>
         </div>
-        <h1><a name="configuration">&#160;</a>Configuration</h1>
+        <h1><a name="configuration"></a>Configuration</h1>
         <p>The external data source configuration is done via the embedded space configuration within <code>pu.config</code> - Add an <code>ExternalDataSource</code> tag and set the <code>Type</code> to the class implementing the external data source (in this case - <code>NHibernateExternalDataSource</code>). For example:</p><pre><code class="language-xml">&lt;ProcessingUnit&gt;
   &lt;EmbeddedSpaces&gt;
     &lt;add Name="space"&gt;
@@ -32,7 +32,7 @@
 &lt;/ProcessingUnit&gt;
 </code></pre>
         <p>In addition to the <code>Type</code>, the <code>ExternalDataSource</code> tag contains properties which are injected at runtime to initialize the actual instance. In this case, the NHibernate Session Factory requires 2 configuration settings: A configuration file and the location of the<code>HBM</code> files. Additional properties can be set to customize the external data source (for example, <code>InitialLoadChuckSize</code>).</p>
-        <h3><a name="nhibernate-session-factory-configuration-file">&#160;</a>NHibernate Session Factory Configuration File</h3>
+        <h3><a name="nhibernate-session-factory-configuration-file"></a>NHibernate Session Factory Configuration File</h3>
         <p>NHibernate requires a session factory that creates new sessions over the database for each operation executed on it. This walkthrough demonstrates a simple configuration file for the session factory, over a MySQL database server into a database named <span class="tc-bold">dotnetpersistency</span>. These parameters are configured in the <code>Connection</code> string property.</p><pre><code class="language-xml">&lt;?xml version="1.0" ?&gt;
 &lt;hibernate-configuration  xmlns="urn:nhibernate-configuration-2.2" &gt;
   &lt;session-factory&gt;
@@ -51,7 +51,7 @@
   &lt;/session-factory&gt;
 &lt;/hibernate-configuration&gt;
 </code></pre>
-        <h3><a name="nhibernate-mapping-file">&#160;</a>NHibernate Mapping File</h3>
+        <h3><a name="nhibernate-mapping-file"></a>NHibernate Mapping File</h3>
         <p>Each persistent class requires a mapping file that defines how to map the object to and from the database. For example, for the following <code>Person</code> class:</p><pre><code class="language-csharp">[SpaceClass(Persist = true)]
 public class Person
 {
@@ -74,7 +74,7 @@ public class Person
             <p>Make sure your PONO <code>[SpaceId]</code> is defined on the same property as the NHibernate <code>[Id]</code>. This is necessary for proper object mapping.</p>
         </div>
         <p>See <a href="modeling-your-data.html">Modeling Your Data</a> for details about these decorations.</p>
-        <h1><a name="properties">&#160;</a>Properties</h1>
+        <h1><a name="properties"></a>Properties</h1>
         <p>The Hibernate Space Persistency implementation includes the following properties:</p>
         <table>
             <thead>

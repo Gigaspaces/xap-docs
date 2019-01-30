@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -19,7 +19,7 @@ In order to use this feature, include the <code>${XAP_HOME}/lib/optional/spatial
         <div class="tc-admon-note">
             <p>For more information on dependencies, see the <a href="../started/maven-artifacts.html">Maven Artifacts</a> page.</p>
         </div>
-        <h1><a name="getting-started">&#160;</a>Getting Started</h1>
+        <h1><a name="getting-started"></a>Getting Started</h1>
         <p>Suppose we want to write an application to locate nearby gas stations.  First, we create a <code>GasStation</code> class which includes the location and address of the gas station:</p>
         <div class="tc-align-center">
             <p>
@@ -76,7 +76,7 @@ public class GasStation {
     }
 }
 </code></pre>
-        <h1><a name="shapes">&#160;</a>Shapes</h1>
+        <h1><a name="shapes"></a>Shapes</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> supports the following shapes:</p>
         <div class="tc-align-center">
             <p>
@@ -142,7 +142,7 @@ import org.openspaces.spatial.shapes.Rectangle;
   Rectangle rectangle = rectangle(-10d, -10d, 10d, 10d);
   Polygon polygon = polygon(point(-10,10), point(0, 10), point(10,-10));
 </code></pre>
-        <h1><a name="queries">&#160;</a>Queries</h1>
+        <h1><a name="queries"></a>Queries</h1>
         <p>Spatial queries are available through the <code>spatial:</code> extension to the <a href="query-sql.html">SQL query syntax</a>. The following operations are supported:</p>
         <table>
             <thead>
@@ -166,7 +166,7 @@ import org.openspaces.spatial.shapes.Rectangle;
                 </tr>
             </tbody>
         </table>
-        <h1><a name="intersect">&#160;</a>Intersect</h1>
+        <h1><a name="intersect"></a>Intersect</h1>
         <p>The intersection between <span class="tc-textblue">shape1</span> and shape2 is not empty, some or all of shape1 overlaps some or all of shape2.</p>
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/geo/intersect.png" alt="image" class="tc-picture80" />
@@ -213,7 +213,7 @@ public class CircleProperty {
 </code></pre>
             </div>
         </div>
-        <h2><a name="spatial-queries">&#160;</a>Spatial Queries</h2><pre><code class="language-java"> public void testIntersect() {
+        <h2><a name="spatial-queries"></a>Spatial Queries</h2><pre><code class="language-java"> public void testIntersect() {
     LineString lineString = lineString(point(20, -10), point(20, 5),point(0,5),point(0,20) );
     SQLQuery&lt;CircleProperty&gt; query = new SQLQuery&lt;CircleProperty&gt;(CircleProperty.class,
                 "boundery spatial:intersects ?").setParameter(1, lineString);
@@ -259,7 +259,7 @@ public class CircleProperty {
     }
  }
 </code></pre>
-        <h2><a name="within">&#160;</a>Within</h2>
+        <h2><a name="within"></a>Within</h2>
         <p><span class="tc-textblue">Shape1</span> is contained within shape2 including its boundaries.</p>
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/geo/within.png" alt="image" class="tc-picture80" />
@@ -325,7 +325,7 @@ public class LineProperty extends AbstractProperty {
 </code></pre>
             </div>
         </div>
-        <h2><a name="spatial-queries-1">&#160;</a>Spatial Queries</h2>
+        <h2><a name="spatial-queries-1"></a>Spatial Queries</h2>
         <p>Will use a spatial query to find the shapes stored in the Space that are within a circle:</p><pre><code class="language-java">public void testWithin() {
 
     Circle circle = circle(point(-0.0d, 0.0d), 15.0d);
@@ -340,7 +340,7 @@ public class LineProperty extends AbstractProperty {
     }
 }
 </code></pre>
-        <h1><a name="geofencing">&#160;</a>Geofencing</h1>
+        <h1><a name="geofencing"></a>Geofencing</h1>
         <p>Geofencing allows automatic alerts to be generated based on the defined coordinates of a geographic area.</p>
         <div class="tc-align-center">
             <p>
@@ -361,7 +361,7 @@ SimpleNotifyEventListenerContainer eventContainer = new SimpleNotifyContainerCon
         }
     }).notifyContainer();
 </code></pre>
-        <h1><a name="wkt-support">&#160;</a>WKT Support</h1>
+        <h1><a name="wkt-support"></a>WKT Support</h1>
         <p>The <code>ShapeFactory</code> also supports parsing <a href="https://en.wikipedia.org/wiki/Well-known_text" target="_blank">WKT</a>.</p>
         <table>
             <thead>
@@ -399,7 +399,7 @@ Shape s4 = ShapeFactory.parse("LINESTRING (1.0 11.0, 2.0 12.0, 3.0 13.0)",ShapeF
 Shape s5 = ShapeFactory.parse("POLYGON ((0.0 0.0, 0.0 5.0, 2.5 2.5, 5.0 5.0, 5.0 0.0, 0.0 0.0))",ShapeFormat.WKT);
 Shape s6 = ShapeFactory.parse("BUFFER (POINT (0.0 0.0), 5.0)",ShapeFormat.WKT);
 </code></pre>
-        <h1><a name="geojson-support">&#160;</a>GeoJson Support</h1>
+        <h1><a name="geojson-support"></a>GeoJson Support</h1>
         <p>The <code>ShapeFactory</code> also supports parsing  <a href="http://geojson.org/" target="_blank">GeoJson</a> strings into shapes. For example:</p>
         <p>Examples:</p><pre><code class="language-java">ShapeFactory.parse("{\"type\":\"Point\",\"coordinates\":[1.0,2.0]}", ShapeFormat.GEOJSON);
 ShapeFactory.parse("{\"type\":\"Polygon\",\"coordinates\": [[[1.0,3.0],[1.0,4.0],[2.0,4.0],[2.0,3.0],[1.0,3.0]]]}",
@@ -412,14 +412,14 @@ ShapeFactory.parse("{\"type\":\"Polygon\",\"coordinates\":[[[0.0,0.0],[0.0,5.0],
                 ShapeFormat.GEOJSON);
 ShapeFactory.parse("{\"type\":\"Circle\",\"coordinates\":[0.0,0.0],\"radius\":5.0}", ShapeFormat.GEOJSON);
 </code></pre>
-        <h1><a name="configuration">&#160;</a>Configuration</h1>
-        <h2><a name="lucene">&#160;</a>Lucene</h2>
+        <h1><a name="configuration"></a>Configuration</h1>
+        <h2><a name="lucene"></a>Lucene</h2>
         <p><MadCap:variable name="General.ProductNameXAP" /> uses <a href="https://lucene.apache.org/" target="_blank">Lucene</a> to index spatial shapes. <MadCap:variable name="General.ProductNameXAP" /> maintains Lucene's best practices by default so there's no need to learn Lucene for using <MadCap:variable name="General.ProductNameXAP" />'s Spatial API. However, if you're familiar with Lucene and wish to better understand how it's used and what can be modified, this section is for you.</p>
-        <h3><a name="store-directory">&#160;</a>Store Directory</h3>
+        <h3><a name="store-directory"></a>Store Directory</h3>
         <p>Lucene indexing is stored in a <span class="tc-bold">Store Directory</span>. Lucene supports different Store Directory implementations, but recommends using the <a href="https://lucene.apache.org/core/5_3_0/core/org/apache/lucene/store/MMapDirectory.html" target="_blank">MMapDirectory</a>, which is what <MadCap:variable name="General.ProductNameXAP" /> uses by default.</p>
-        <h3><a name="file-system">&#160;</a>File System</h3>
+        <h3><a name="file-system"></a>File System</h3>
         <p>Lucene indexes are stored in the file system. When used within a processing unit deployed on the service grid, these files are stored within the processing unit working folder, and automatically deleted if/when the processing unit is undeployed. When there's no service grid involved, the files are stored in a unique folder under <code>user.home</code>. This location can be explicitly set using the <code>space-config.spatial.lucene.storage.location</code> space property.</p>
-        <h1><a name="indexing">&#160;</a>Indexing</h1>
+        <h1><a name="indexing"></a>Indexing</h1>
         <div class="tc-admon-note">
             <p>The performance of Geospatial queries can be vastly improved by indexing shape properties. For detailed information, see the <a href="indexing-geospatial.html">Geospatial Index</a> topic in the Indexing section. </p>
         </div>

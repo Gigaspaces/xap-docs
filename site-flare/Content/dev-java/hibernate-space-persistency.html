@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -11,12 +11,12 @@
             </p>
         </div>
         <p>There are two available implementations.</p>
-        <h2><a name="default-hibernate-space-persistency-implementation">&#160;</a>Default Hibernate Space Persistency Implementation</h2>
+        <h2><a name="default-hibernate-space-persistency-implementation"></a>Default Hibernate Space Persistency Implementation</h2>
         <p><code>DefaultHibernateSpaceDataSource</code> and <code>Default</code> based on <a href="http://docs.jboss.org/hibernate/orm/4.1/javadocs/org/hibernate/Session.html" target="_blank">Hibernate Session</a>.</p>
-        <h2><a name="stateless-hibernate-space-persistency-implementation">&#160;</a>Stateless Hibernate Space Persistency Implementation</h2>
+        <h2><a name="stateless-hibernate-space-persistency-implementation"></a>Stateless Hibernate Space Persistency Implementation</h2>
         <p><code>StatelessHibernateSpaceDataSource</code> and <code>Stateless</code> based on Hibernate <a href="http://docs.jboss.org/hibernate/orm/4.1/javadocs/org/hibernate/StatelessSession.html" target="_blank">StatelessSession</a>. This implementation is faster than the <code>Default Hibernate Space Persistency Implementation</code>, but it does not have first level cache, as well as does not perform any cascading operations (both in read operations as well as dirty operations).</p>
         <p>The <code>Hibernate Space Persistency Implementation</code> is used both with the <a href="direct-persistency.html">Synchronous</a> and the <a href="asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency</a> modes.</p>
-        <h1><a name="configuration">&#160;</a>Configuration</h1>
+        <h1><a name="configuration"></a>Configuration</h1>
         <p>See below example for <code>Hibernate Space Persistency</code> that is configured having a Space connected to a central data source using Hibernate configuration files decorating the Space Classes:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"&gt;
@@ -179,7 +179,7 @@ public class Data {
                 </li>
             </ul>
         </div>
-        <h1><a name="properties">&#160;</a>Properties</h1>
+        <h1><a name="properties"></a>Properties</h1>
         <p>The Hibernate Space Persistency implementation includes the following properties:</p>
         <table>
             <thead>

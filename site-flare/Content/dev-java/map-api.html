@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -21,7 +21,7 @@
             <p>For more information on dependencies, see the <a href="../started/maven-artifacts.html">Maven Artifacts</a> page.</p>
         </div>
         <p>There are multiple runtime configurations you may use when caching your data within the space.</p>
-        <h1><a name="gigamap-with-a-remote-space">&#160;</a>GigaMap with a Remote Space</h1>
+        <h1><a name="gigamap-with-a-remote-space"></a>GigaMap with a Remote Space</h1>
         <p>A client communicating with a remote space performs all its operation via a remote connection. The remote space can be partitioned (with or without backups) or replicated (sync or async replication based).</p>
         <p>&#160;</p>
         <div class="tc-align-center">
@@ -54,7 +54,7 @@ GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
 </code></pre>
             </div>
         </div>
-        <h2><a name="gigamap-with-an-embedded-space">&#160;</a>GigaMap with an Embedded Space</h2>
+        <h2><a name="gigamap-with-an-embedded-space"></a>GigaMap with an Embedded Space</h2>
         <p>A client communicating with a an embedded space performs all its operation via local connection. There is no network overhead when using this approach.</p>
         <div class="tc-align-center">
             <p>
@@ -93,7 +93,7 @@ GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
             </p>
         </div>
         <p>A simple way to use the embedded space in a clustered architecture would be by packaging your application as a Processing Unit and deploy it using the relevant SLA.</p>
-        <h2><a name="gigamap-with-a-local-near-cache">&#160;</a>GigaMap with a Local (Near) Cache</h2>
+        <h2><a name="gigamap-with-a-local-near-cache"></a>GigaMap with a Local (Near) Cache</h2>
         <p>The <code>GigaMap</code> support <a href="local-cache.html">Local Cache</a> (near cache) configuration. This provides a front-end client side cache that will be used with the <code>get</code> operations implicitly. The local cache will be loaded on demand or when you perform a <code>put</code> operation (when the <span class="tc-bold">putFirst</span> option is activated).</p>
         <div class="tc-align-center">
             <p>
@@ -194,9 +194,9 @@ GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
                 </tr>
             </tbody>
         </table>
-        <h1><a name="multiple-gigamaps">&#160;</a>Multiple GigaMaps</h1>
+        <h1><a name="multiple-gigamaps"></a>Multiple GigaMaps</h1>
         <p>You may have several <code>GigaMap</code> used with your application, each with different characteristics , all will be interacting with the same remote space. In this case each <code>GigaMap</code> should use different set of keys. If you want to use same keys for these different maps, each should use a different space.</p>
-        <h1><a name="gigamap-operations">&#160;</a>GigaMap Operations</h1>
+        <h1><a name="gigamap-operations"></a>GigaMap Operations</h1>
         <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaMap.html" target="_blank">GigaMap</a> provides the exact semantic as the <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html" target="_blank">java.util.Map</a> interface: clear, containsKey, put, putAll, get and remove methods. In addition it includes the lock , putAndUnlock , and the unlock methods.</p><pre><code class="language-java">IMap map = // get IMap either by injection or code creation
 GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
 gigaMap.put(key , value);
@@ -205,16 +205,16 @@ Object value = gigaMap.remove(key);
 gigaMap.lock(key);
 gigaMap.unlock(key);
 </code></pre>
-        <h1><a name="time-to-live-ttl">&#160;</a>Time to Live - TTL</h1>
+        <h1><a name="time-to-live-ttl"></a>Time to Live - TTL</h1>
         <p>An entry within the cache is immortal by default. You can specify as part of the put operation a specific time for the entry to be alive within the cache. Once this time elapsed, it will be expired automatically. The time unit to specify the TTL is milliseconds.</p><pre><code class="language-java">GigaMap gigaMap = ...
 gigaMap.put(key , value , 5000);
 </code></pre>
-        <h1><a name="declarative-transactions">&#160;</a>Declarative Transactions</h1>
+        <h1><a name="declarative-transactions"></a>Declarative Transactions</h1>
         <p>There is no need to provide a Jini transaction object for the different map operations. <code>GigaMap</code> with the different OpenSpaces <a href="transaction-overview.html">transaction managers</a> and Spring allow simple declarative definition of transactions. This means that if there is an ongoing transaction running, most operations performed using the <code>GigaMap</code> interface join it, using Spring's rich transaction support.</p>
         <div class="tc-admon-note">
             <p>It is highly recommended to read the <a href="http://static.springframework.org/spring/docs/2.0.x/reference/transaction.html" target="_blank">transaction management chapter</a> in the Spring reference documentation.</p>
         </div>
-        <h2><a name="transaction-provider">&#160;</a>Transaction Provider</h2>
+        <h2><a name="transaction-provider"></a>Transaction Provider</h2>
         <p>OpenSpaces provides a pluggable transaction provider using the following interface:</p><pre><code class="language-java">public interface TransactionProvider {
     Transaction getCurrentTransaction(Object transactionalContext, IJSpace space);
     int getCurrentTransactionIsolationLevel(Object transactionalContext);
@@ -223,7 +223,7 @@ gigaMap.put(key , value , 5000);
         <p>OpenSpaces comes with a default transaction provider implementation, which uses Spring and its transaction manager in order to obtain the currently running transactions, and automatically use them under transactional operations.</p>
         <p><code>GigaMap</code> allows access to current running transactions using the transaction provider. The following code example shows how the <code>put</code> operation can be performed using <code>IMap</code> (users normally won't be required to do so):</p><pre><code class="language-java">gigaMap.getMap().put("key", "value", gigaMap.getCurrentTransaction(), 1000);
 </code></pre>
-        <h2><a name="transaction-isolation-level">&#160;</a>Transaction Isolation Level</h2>
+        <h2><a name="transaction-isolation-level"></a>Transaction Isolation Level</h2>
         <p>GigaSpaces supports three isolation levels: <code>READ_UNCOMMITTED</code>, <code>READ_COMMITTED</code> and <code>REPEATABLE_READ</code> (default). When using <code>GigaMap</code>, the default isolation level it is performed under can be defined in the following manner:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:space-proxy id="space" space-name="mySpace"/&gt;
@@ -272,7 +272,7 @@ public class DefaultFooService implements FooService {
 }
 </code></pre>
         <p>In the above example, any operation performed using <code>GigaMap</code> in the <code>updateFoo</code> method automatically works under the <code>READ_COMMITTED</code> isolation level.</p>
-        <h1><a name="lock-api">&#160;</a>Lock API</h1>
+        <h1><a name="lock-api"></a>Lock API</h1>
         <p>The <code>GigaMap</code> support the Lock API allowing you to establish a distributed lock on a global key. The <code>GigaMap</code> Lock API include the following methods:</p><pre><code class="language-java">LockHandle lock(Object key)
 LockHandle lock(Object key,long lockTimeToLive,long waitingForLockTimeout)
 void unlock(Object key)
@@ -291,7 +291,7 @@ System.out.println("After unLock:Is key "  + key+ " locked:" + gigaMap.isLocked(
         <div class="tc-admon-tip">
             <p>The Lock API using transactions to ensure isolation and data consistency.</p>
         </div>
-        <h1><a name="gigaspace-api-vs-gigamap-api">&#160;</a>GigaSpace API vs. GigaMap API</h1>
+        <h1><a name="gigaspace-api-vs-gigamap-api"></a>GigaSpace API vs. GigaMap API</h1>
         <p>Here is a simple comparison between the GigaMap API vs. the <a href="the-gigaspace-interface-overview.html">GigaSpace API</a>:</p>
         <table>
             <thead>
@@ -470,7 +470,7 @@ System.out.println("After unLock:Is key "  + key+ " locked:" + gigaMap.isLocked(
             </tbody>
         </table>
         <p>* via <code>IMap.getMasterSpace()</code></p>
-        <h1><a name="clustered-flag">&#160;</a>Clustered Flag</h1>
+        <h1><a name="clustered-flag"></a>Clustered Flag</h1>
         <p>When configuring a <code>GigaMap</code> with an embedded clustered space or with a remote clustered space, a clustered <code>GigaMap</code> proxy is created. A clustered proxy is a smart proxy that may perform operations against the entire cluster when needed. The <code>put</code> operation will be routing the key and value to the relevant partition (using the key hashcode to calculate the target partition).</p>
         <p>The <code>get</code> operation will do the same by routing the operation to the relevant partition. The <code>putAll</code> will generate a bucket per partition for all entries that should be placed within the same partition and perform a parallel write to all relevant partition.</p>
         <p>Many times, especially when working with a Processing Unit that starts an embedded space, operations against the space should be performed directly on the cluster member without interacting with the other space cluster members (partitions). This is a core concept of the SBA and Processing Unit, where most if not all the operations should be performed in-memory without leaving the Processing Unit boundaries, when a Processing Unit starts an embedded space.</p>
@@ -516,7 +516,7 @@ IMap clusteredMap = new MapConfigurer(space).clustered(true).createMap();
             </div>
         </div>
         <p>The above example shows a typical scenario where the clustered flag is used. Within a Processing Unit, an application might need to access both the cluster member and the whole cluster directly.</p>
-        <h1><a name="exception-hierarchy">&#160;</a>Exception Hierarchy</h1>
+        <h1><a name="exception-hierarchy"></a>Exception Hierarchy</h1>
         <p>OpenSpaces is built on top of the Spring <a href="http://static.springframework.org/spring/docs/2.0.x/reference/dao.html#dao-exceptions" target="_blank">consistent exception hierarchy</a> by translating all of the different JavaSpaces exceptions and GigaSpaces exceptions into runtime exceptions, consistent with the Spring exception hierarchy. All the different exceptions exist in the <code>org.openspaces.core</code> package.</p>
         <p>OpenSpaces provides a pluggable exception translator using the following interface:</p><pre><code class="language-java">public interface ExceptionTranslator {
     DataAccessException translate(Throwable e);

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -13,7 +13,7 @@
         </ul>
         <p>The web application itself is a pure, JEE-based web application. The application can be the most generic web application, and automatically make use of the Service Grid features. The web application can define a Space (either embedded or remote) very easily (either using Spring or not).</p>
         <p>The web container used behind the scenes is <a href="http://www.eclipse.org/jetty/" target="_blank">Jetty</a>. This page will list the common usage and configuration of web containers. Jetty specific configuration and usage can be found <a href="web-jetty-processing-unit-container.html">here</a>.</p>
-        <h1><a name="deployment">&#160;</a>Deployment</h1>
+        <h1><a name="deployment"></a>Deployment</h1>
         <p>The integration can deploy either a packaged or an exploded WAR file. In order to deploy packaged WAR file, it can be specified using one of the deployment mechanisms (UI/CLI/Programmatic, see more <a href="deploying-onto-the-service-grid.html#deployDirections">here</a>).</p>
         <div class="tc-admon-note">
             <p>The deploy client, the GSMs, and the GSCs can run on different machines.</p>
@@ -38,9 +38,9 @@
         <div class="tc-admon-note">
             <p>The directory where the web applications are extracted (up to the <code>work</code> directory) on the GSC side can be controlled using the <code>com.gs.work</code> system property. The deploy directory location (up to the <code>deploy</code> directory) used on the GSM side can be controlled using the <code>com.gs.deploy</code> system property.</p>
         </div>
-        <h1><a name="web-application-structure">&#160;</a>Web Application Structure</h1>
+        <h1><a name="web-application-structure"></a>Web Application Structure</h1>
         <p>A web application deployed to the Service Grid is just another type of Processing Unit. As such, it inherits all the options that a Processing Unit has, including the ability to define an optional <code>META-INF/spring/pu.xml</code> configuration file as any other Processing Unit. However, that class definitions and libraries that the web application depends on are placed in their standard JEE web application location (i.e. <code>WEB-INF/classes</code> and <code>WEB-INF/lib</code> respectively).</p>
-        <h1><a name="class-loaders">&#160;</a>Class Loaders</h1>
+        <h1><a name="class-loaders"></a>Class Loaders</h1>
         <p>Below is the structure of the class loaders when several web applications are deployed on the Service Grid:</p><pre><code class="language-java">              Bootstrap (Java)
                   |
                System (Java)
@@ -85,7 +85,7 @@
             <p>The Service Class Loader is still used in order to load the JEE container, but it is hidden from the user. The web application class loader is created with its parent class loader being the JEE-container-specific class loader and not the Service Class loader. Users should not worry in this case about the Service Class Loader and how it is used, as the above class loader model provides exactly the same semantics as a plain web container class loader model.</p>
             <p>The JEE Class Loader is created lazily when the first web application deployed into the GSC. This eliminates the overhead involved when creating none-web processing units. There can also be several JEE class loaders per web container type, allowing support for both jetty and tomcat (for example) in the future quite easily.</p>
         </div>
-        <h1><a name="bootstrap-context-listener">&#160;</a>Bootstrap Context Listener</h1>
+        <h1><a name="bootstrap-context-listener"></a>Bootstrap Context Listener</h1>
         <p>When deploying a web application to the <MadCap:variable name="General.ProductNameXAP" /> Service Grid, the <code>web.xml</code> of the web application is automatically changed to include a <code>BootstrapWebApplicationContextListener</code>. The Bootstrap Context Listener provides the following services:</p>
         <ul>
             <li>
@@ -98,9 +98,9 @@
                 <p>If there is an <code>org.springframework.web.context.ContextLoaderListener</code> it is automatically replaced with <code>ProcessingUnitContextLoaderListener</code>. The <code>ProcessingUnitContextLoaderListener</code> is exactly the same as the Spring one, except that it uses the (optional) <code>ApplicationContext</code> loaded from the <code>META-INF/spring/pu.xml</code> as the parent of the created Application Context. It also adds the <code>ClusterInfo</code> and <code>BeanLevelProperties</code> post processors to the created <code>ApplicationContext</code> so they can be injected to any bean requiring it (such as the embedded Space bean).</p>
             </li>
         </ul>
-        <h1><a name="using-a-space">&#160;</a>Using a Space</h1>
+        <h1><a name="using-a-space"></a>Using a Space</h1>
         <p>There are several ways that a Space (and other components) can be used, and configured within a web application. Some common scenarios are listed below.</p>
-        <h2><a name="pure-remote-space">&#160;</a>Pure Remote Space</h2>
+        <h2><a name="pure-remote-space"></a>Pure Remote Space</h2>
         <p>A typical usage pattern is connecting remotely to a Space. The following is an example (either using Spring within the web application Spring context file, or using pure Java code):</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Spring Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:space-proxy id="space" space-name="mySpace" /&gt;
@@ -126,7 +126,7 @@ spaceConfigurer.destroy();
 </code></pre>
             </div>
         </div>
-        <h2><a name="using-pu-xml">&#160;</a>Using pu.xml</h2>
+        <h2><a name="using-pu-xml"></a>Using pu.xml</h2>
         <p>A web application is simply a Processing Unit. This means that a <span class="tc-bold">META-INF/spring/pu.xml</span> can be added, which can be used to define a <a href="the-space-configuration.html">Space</a>. Accessing the beans is relatively simple as they are automatically added to the web application context and can be accessed from there. The key they are stored under is the bean ID that each bean corresponds to.</p>
         <p>The following is an example that starts an embedded Space as part of the web application within the <code>pu.xml</code> (it is the content of the <code>pu.xml</code>).</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -150,10 +150,10 @@ spaceConfigurer.destroy();
         </div>
         <p>The following is an example of a simple JSP that uses it:</p><pre><code class="language-java">GigaSpace gigaSpace = (GigaSpace) getServletContext().getAttribute("clusteredGigaSpace");
 </code></pre>
-        <h1><a name="embedded-space">&#160;</a>Embedded Space</h1>
+        <h1><a name="embedded-space"></a>Embedded Space</h1>
         <p>The previous section described several ways of starting an embedded Space within the web application. The recommended approach to working with embedded Space, is to work with its clustered proxy (the <code>clustered</code> flag in GigaSpace set to <code>true</code>) for interactions that originate from a web request. This is mainly because the load balancer doesn't know about routing specific classes to each cluster member.</p>
         <p>Event-driven operations should still work with non-clustered embedded Spaces (usually). For example, a web request that results in writing an Order (using the clustered proxy) to the Space, and a polling container that picks it up and processes it asynchronously. The polling container should work with the non-clustered, co-located proxy of the cluster member Space.</p>
-        <h1><a name="load-balancer">&#160;</a>Load Balancer</h1>
+        <h1><a name="load-balancer"></a>Load Balancer</h1>
         <p>When deploying a highly available web site,  a load balancer is usually used to load balance requests between at least two instances of a web container that actually runs the web application. When using <MadCap:variable name="General.ProductNameXAP" /> to deploy a web application, running more than one instance of a web application is simple, and also simplifies the manageability and virtualized nature of running web applications.</p>
         <p>In order to create a single point of view (in terms of clients connecting to a server), a load balancer is usually used. While there are many different types of load balancers (both hardware and software), solving the load balancing problem is not specific to using <MadCap:variable name="General.ProductNameXAP" /> to deploy the web application. Examples of how to configure load balancers can be found in specific web container sections.</p>
         <p><MadCap:variable name="General.ProductNameXAP" /> also comes with a built-in integration with the Apache httpd load balancer, as described in the <a href="apache-load-balancer-agent.html">Apache Load Balancer Agent</a> section.</p>

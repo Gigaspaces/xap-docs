@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Working with GSJMSAdmin</h1>
         <p>The <code>GSJMSAdmin</code> class is offered by GigaSpaces to simplify the obtaining of JMS resources. You can use this class to work with or without JNDI.</p>
-        <h1><a name="obtaining-resources-with-gsjmsadmin-without-using-jndi">&#160;</a>Obtaining Resources with GSJMSAdmin without Using JNDI</h1>
+        <h1><a name="obtaining-resources-with-gsjmsadmin-without-using-jndi"></a>Obtaining Resources with GSJMSAdmin without Using JNDI</h1>
         <p>The following methods create connection factories to work against a space specified as a URL or a proxy.</p>
         <p><code>GSJMSAdmin</code> caches the created factories, so the same factory is returned for multiple invocation of methods to the same space.</p><pre><code class="language-java">ConnectionFactory getConnectionFactory(String spaceURL)
 ConnectionFactory getConnectionFactory(IJSpace space)
@@ -27,7 +27,7 @@ Topic getTopic(String name)
         <p>For example, to get the Topic <code>myTopic</code>:</p><pre><code class="language-java">GSJMSAdmin admin = GSJMSAdmin.getInstance();
 Topic topic = admin.getTopic(myTopic);
 </code></pre>
-        <h1><a name="obtaining-resources-with-gsjmsadmin-using-jndi">&#160;</a>Obtaining Resources with GSJMSAdmin Using JNDI</h1>
+        <h1><a name="obtaining-resources-with-gsjmsadmin-using-jndi"></a>Obtaining Resources with GSJMSAdmin Using JNDI</h1>
         <p>You can use <code>GSJMSAdmin</code> to look up JMS resources in JNDI.</p><pre><code class="language-java">Object jndiLookup(String name)
 </code></pre>
         <p>For example, to obtain the Topic <code>MyTopic</code>:</p><pre><code class="language-java">GSJMSAdmin admin = GSJMSAdmin.getInstance();

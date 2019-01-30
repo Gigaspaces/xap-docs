@@ -14,7 +14,7 @@
 
 <p>This section describes how to use the DataFrames API with the Data Grid.</p>
 
-<h1><a name="preparing">&#160;</a>Preparing</h1>
+<h1><a name="preparing"></a>Preparing</h1>
 
 <p>The entry point to Dataset features is Spark <code>SparkSession</code> (replaces the old <code>SQLContext</code>).</p>
 
@@ -30,7 +30,7 @@ import org.insightedge.spark.implicits.all._
 </div>
 </div>
 
-<h1><a name="person-case-class">&#160;</a>Person case class</h1>
+<h1><a name="person-case-class"></a>Person case class</h1>
 
 <p>For the following code snippets, we will use a simple case class named Person.
 This case class can be written to (and loaded from) the Data Grid or an external persisted storage.</p>
@@ -49,7 +49,7 @@ case class Person(
 </div>
 </div>
 
-<h1><a name="creating-dataframes">&#160;</a>Creating DataFrames</h1>
+<h1><a name="creating-dataframes"></a>Creating DataFrames</h1>
 
 <p>RDDs are stored in Data Grid simply as collections of objects of a certain type. You can create DataFrame by such type with the next syntax:</p>
 
@@ -98,7 +98,7 @@ df.show()
   <p>If you want to load DataFrame from <code>SpaceDocuments</code> written form a third-party application, please, refer to <a href="#loading-custom-spacedocuments">section below</a></p>
 </div>
 
-<h1><a name="persisting-dataframes-to-data-grid">&#160;</a>Persisting DataFrames to Data Grid</h1>
+<h1><a name="persisting-dataframes-to-data-grid"></a>Persisting DataFrames to Data Grid</h1>
 
 <p>To write a DataFrame use <code>DataFrame.write</code>. The content of the DataFrame is saved with a specified collection name.
 The behavior of the write operation is controlled by the <code>SaveMode</code>.</p>
@@ -150,7 +150,7 @@ persisted.show()
 
 <p>Persisted DataFrames are shared among multiple Spark jobs and stay alive after the jobs are complete.</p>
 
-<h1><a name="nested-properties">&#160;</a>Nested properties</h1>
+<h1><a name="nested-properties"></a>Nested properties</h1>
 
 <p>Let's enhance <code>Person</code> class with an additional property <code>Address</code> (that has some properties of it's own).</p>
 
@@ -240,7 +240,7 @@ println(countInBuffalo)
   <p>When DataFrame is persisted, nested properties are stored as <code>DocumentProperties</code> in Data Grid</p>
 </div>
 
-<h1><a name="controlling-spark-partitions">&#160;</a>Controlling Spark partitions</h1>
+<h1><a name="controlling-spark-partitions"></a>Controlling Spark partitions</h1>
 
 <p>Similar to RDD in order to control the number of Spark partitions, set the <code>splitCount</code> option:</p>
 
@@ -253,7 +253,7 @@ val df = spark.read.option("splitCount", "4").grid[Person]
 
 <p>The <code>splitCount</code> defines the number of Spark partitions per Data Grid partition. This feature is limited to <code>bucketed</code> grid model. Please, refer to <a href="insightedge-modeling.html">Data Modeling</a> for more details.</p>
 
-<h1><a name="loading-custom-spacedocuments">&#160;</a>Loading custom SpaceDocuments</h1>
+<h1><a name="loading-custom-spacedocuments"></a>Loading custom SpaceDocuments</h1>
 
 <p>If you have a third-party application writing <code>SpaceDocuments</code> into the grid, you have to manually provide a schema for the DataFrame. Nested properties must be supplied with class metadata, so that DataFrame API can properly parse the <code>SpaceDocuments</code> (see the <code>address</code> field in the example below).</p>
 

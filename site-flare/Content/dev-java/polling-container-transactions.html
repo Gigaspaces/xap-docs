@@ -114,7 +114,7 @@ SimplePollingEventListenerContainer pollingContainer configurer = new SimplePoll
 </div>
 </div>
 
-<h1><a name="isolation-timeout">&#160;</a>Isolation &amp; Timeout</h1>
+<h1><a name="isolation-timeout"></a>Isolation &amp; Timeout</h1>
 
 <p>When using transactions with polling container a special care should be taken with timeout values. Transactions started by the polling container can have a timeout value associated with them (if not set will default to the default timeout value of the transaction manager, which is 90 Sec). If setting a specific timeout value, make sure the timeout value is higher than the timeout value for blocking operations and includes the expected execution time of the associated listener.</p>
 

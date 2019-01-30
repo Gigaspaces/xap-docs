@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -6,7 +6,7 @@
         <h1>Notifications</h1>
         <p>It is possible to subscribe to different space events and be notified of changes inside the space that match the event subscription. These notifications are pushed from the space to the proxy, unlike the opposite way, where the proxy executes queries on the space.</p>
         <p>This page demonstrates a basic event usage scenario.</p>
-        <h1><a name="event-registration">&#160;</a>Event Registration</h1>
+        <h1><a name="event-registration"></a>Event Registration</h1>
         <p>Subscribing to an event is done using an <code>IDataEventSession</code> with a [Query Template Types], an event type and a callback method. <code>ISpaceProxy</code> has a default data event session that can be used for subscription.</p>
         <p>The following example demonstrates simple events usage:</p><pre><code class="language-csharp">public class Person
 {
@@ -42,10 +42,10 @@ The DataEventType dictates which type of events to listen for. It's a flag enum 
         <p>When the events are no longer relevant, the registration for the events should be removed, to reduce the load on the space.</p><pre><code class="language-csharp">proxy.DefaultDataEventSession.RemoveListener(registration);
 </code></pre>
         <p>In most cases, using the <code>DefaultDataEventSession</code> is enough, however, in some scenarios the <code>DataEventSession</code> needs to be customized.</p>
-        <h1><a name="event-mechanism-in-general">&#160;</a>Event Mechanism in General</h1>
+        <h1><a name="event-mechanism-in-general"></a>Event Mechanism in General</h1>
         <p>Event registration is done using a supplied [Query Template Types], and a callback method. The registration notify template can be stored in one or more spaces, depending on the template and cluster topology.</p>
         <p>Every time an event occurs in a space, which matches the given template and event type in that space, the event is triggered at the proxy, which activates the callback method. What happens if the space or the proxy is no longer available? What happens if the proxy can't manage the events overload? These issues can be addressed by customizing a data event session, with appropriate behaviors to handle these issues.</p>
-        <h1><a name="customizing-dataeventsession-behavior">&#160;</a>Customizing DataEventSession Behavior</h1>
+        <h1><a name="customizing-dataeventsession-behavior"></a>Customizing DataEventSession Behavior</h1>
         <p>In order to customize the behavior of an <a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_Events_IDataEventSession.htm">IDataEventSession</a>, a new one needs to be created, using a specific <a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_Events_EventSessionConfig.htm">DataEventConfig</a> that configures the behavior. This section describes different scenarios, and how to address them, by customizing the data event session</p><pre><code class="language-csharp">EventSessionConfig eventSessionConfig = new EventSessionConfig();
 //Customize the eventSessionConfig
 ...
@@ -53,7 +53,7 @@ The DataEventType dictates which type of events to listen for. It's a flag enum 
 //Create a customized data event session
 IDataEventSession dataEventSession = proxy.CreateDataEventSession(eventSessionConfig);
 </code></pre>
-        <h2><a name="detecting-an-event-listener-failure-disconnection">&#160;</a>Detecting an Event Listener Failure/Disconnection</h2>
+        <h2><a name="detecting-an-event-listener-failure-disconnection"></a>Detecting an Event Listener Failure/Disconnection</h2>
         <p>An event listener that is registered for an event might be disconnected for the following reasons:</p>
         <ul>
             <li>The space that holds the listener registration template, is no longer available.</li>
@@ -79,7 +79,7 @@ eventSessionConfig.AutoRenewLeaseDuration = 10000;  // deprecated
 eventSessionConfig.AutoRenewRTT = 5000;  // deprecated
 </code></pre>
         </div>
-        <h2><a name="managing-high-notifications-throughput">&#160;</a>Managing High Notifications Throughput</h2>
+        <h2><a name="managing-high-notifications-throughput"></a>Managing High Notifications Throughput</h2>
         <p>When a notification is sent from the space to the client, the callback method is executed inside a thread that belongs to the resource pool of the proxy. As a result, this thread is occupied until the callback method returns. As a good practice, it is recommended to create the callback method that returns as fast as possible, otherwise the resources pool of the proxy can be choked, and cause a <a href="../admin/slow-consumer.html">slow consumer</a> scenario. If the notifications should trigger a long running job, it is better to put this job in a queue, and handle it in a client thread later on.</p>
         <p>It is possible to reduce network traffic, and concurrent threads that handle notifications, by using the batch notification mechanism. Instead of sending each notification separately, notifications are grouped together in the space, and sent as one batch.</p>
         <p><span class="tc-bold">Configuring data event session with batch notifications</span>

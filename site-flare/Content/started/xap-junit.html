@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>JUnit Testing</h1>
         <p>When creating unit tests with XAP you will use an <code>Embedded Space</code> that is internally represented by the <code>IntegratedProcessingUnitContainer</code> class and a reference to this Space will be available through a class implementing the <code>GigaSpace</code> interface. This allows you to read / write objects to that Space just as you normally would in any XAP application.</p>
-        <h1><a name="simple-test">&#160;</a>Simple test</h1>
+        <h1><a name="simple-test"></a>Simple test</h1>
         <p>Here is an example of a simple JUnit test:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Space class" style="padding:10px"><pre><code class="language-java">@SpaceClass
@@ -90,7 +90,7 @@ public class TestXAP {
         <p>
             <br />
         </p>
-        <h1><a name="partition-routing-test">&#160;</a>Partition/Routing test</h1>
+        <h1><a name="partition-routing-test"></a>Partition/Routing test</h1>
         <p>Testing partitioning and routing can be accomplished by using the <code>IntegratedProcessingUnitContainerProvider</code>. You can start multiple partitions by defining with the <code>ClusterInfo</code> the number of members of a cluster.</p>
         <p>In the example below 4 partitions are started.</p><pre><code class="language-java">public class ClusterTest {
 
@@ -133,7 +133,7 @@ public class TestXAP {
             <br />
         </p>
         <p>You can verify that the 4 partitions exists by starting the <a href="../admin/gigaspaces-management-center.html">Management Center</a></p>
-        <h1><a name="lookup-service">&#160;</a>Lookup Service</h1>
+        <h1><a name="lookup-service"></a>Lookup Service</h1>
         <p>The StandaloneProcessingUnitContainer automatically starts an embedded Lookup service. If you intend to use a separate Lookup service you can disable the embedded Lookup service by passing the setting the <code>com.j_spaces.core.container.directory_services.jini_lus.enabled</code> system property to false. This property can also be set within the Space definition:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"&gt;
     &lt;os-core:properties&gt;
       &lt;props&gt;

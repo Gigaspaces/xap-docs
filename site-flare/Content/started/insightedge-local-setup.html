@@ -1,20 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Local Machine Setup</h1>
         <p>This section explains how to start an <MadCap:variable name="General.ProductNameIE" /> environment on a local machine.</p>
-        <h1><a name="prerequisites">&#160;</a>Prerequisites</h1>
+        <h1><a name="prerequisites"></a>Prerequisites</h1>
         <p>Before running <MadCap:variable name="General.ProductNameIE" />, verify that you have the following installed in your environment:</p>
         <ul>
             <li>Java 8 or 11</li>
             <li>Scala 2.11</li>
             <li>Maven 3.1+</li>
         </ul>
-        <h1><a name="starting-the-local-environment">&#160;</a>Starting the Local Environment</h1>
+        <h1><a name="starting-the-local-environment"></a>Starting the Local Environment</h1>
         <p>The <MadCap:variable name="General.ProductNameIE" /> environment consists of Spark and the <MadCap:variable name="General.ProductNameXAP" /> data grid. You can use the Command Line Interface tool to start <MadCap:variable name="General.ProductNameIE" /> as described below.</p>
-        <h2><a name="starting-a-complete-environment">&#160;</a>Starting a Complete Environment</h2>
+        <h2><a name="starting-a-complete-environment"></a>Starting a Complete Environment</h2>
         <p>To start a complete <MadCap:variable name="General.ProductNameIE" /> environment on your local machine, run the following command from the <code>$XAP_HOME/bin</code> directory:</p><pre><code class="language-bash">insightedge host run-agent --auto --gsc=2
 </code></pre>
         <p>This will start the following components on your machine:</p>
@@ -29,10 +29,10 @@
         </ul>
         <p>Then run the following command to deploy a Space called <code>demo</code> with 2 partitions on those GSCs:</p><pre><code class="language-bash">insightedge space deploy --partitions=2 demo
 </code></pre>
-        <h1><a name="stopping-the-local-environment">&#160;</a>Stopping the Local Environment</h1>
+        <h1><a name="stopping-the-local-environment"></a>Stopping the Local Environment</h1>
         <p>To stop the local environment, use the <code>kill-agent</code> command that sends a kill signal to all relevant processes:</p><pre><code class="language-bash">insightedge host kill-agent
 </code></pre>
-        <h1><a name="what-s-next">&#160;</a>What's Next?</h1>
+        <h1><a name="what-s-next"></a>What's Next?</h1>
         <ul>
             <li>To get started with the Apache Zeppelin Web Notebook, see <a href="insightedge-zeppelin.html">Using the InsightEdge Web Notebook</a>.</li>
             <li>To run the examples on your local <MadCap:variable name="General.ProductNameIE" /> environment, see <a href="insightedge-examples.html">Running InsightEdge IDE Examples</a></li>

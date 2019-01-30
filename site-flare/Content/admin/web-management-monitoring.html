@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Using Grafana for Monitoring and Analytics</h1>
-        <h1><a name="overview">&#160;</a>Overview</h1>
+        <h1><a name="overview"></a>Overview</h1>
         <p>Monitoring a production environment of any system requires inspecting many statistics, and <MadCap:variable name="General.ProductNameXAP" /> is no different. The Web Management Console provides various metrics by polling the system's components, but these statistics have a few limitations:</p>
         <ul>
             <li><span class="tc-bold">History</span> - Since statistics are polled and aggregated at runtime in memory, they're limited to a few minutes of history, whereas in production users often need to store metrics for a few days at least.</li>
@@ -18,7 +18,7 @@
         </ul>
         <p>Once enabled, <MadCap:variable name="General.ProductNameXAP" /> reports metrics to InfluxDB, and the Web Management Console provides an embedded Grafana view in the <span class="tc-bold">Monitoring</span> tab, as well as automatic creation of dashboards in Grafana whenever a new Processing Unit is deployed.</p>
         <p>InfluxDB and Grafana are both open-source and free, but are not bundled in <MadCap:variable name="General.ProductNameXAP" /> distribution. Installation is straightforward, as described below. Note that <MadCap:variable name="General.ProductNameXAP" />'s default metrics configuration is set to match the default settings of InfluxDB and Grafana, so if this is your first time we recommend sticking with the defaults to simplify the process.</p>
-        <h1><a name="installing-and-configuring-influxdb">&#160;</a>Installing and Configuring InfluxDB</h1>
+        <h1><a name="installing-and-configuring-influxdb"></a>Installing and Configuring InfluxDB</h1>
         <p>To install InfluxDB (0.9 or later), download from <a href="https://influxdb.com/download/index.html" target="_blank">here</a> and follow the <a href="https://influxdb.com/docs/v0.9/introduction/installation.html" target="_blank">installation instructions</a>.</p>
         <p>To configure InfluxDB,  edit the <span class="tc-bold">metrics.xml</span> file (found under <code>[XAP_HOME]/config/metrics</code>). Change the following part according to your influxDB host (myhost) and database name (mydb) that stores metrics:</p><pre><code class="language-xml">
     &lt;grafana&gt;
@@ -40,7 +40,7 @@
     &lt;/grafana&gt;
 
 </code></pre>
-        <h1><a name="installing-and-configuring-grafana">&#160;</a>Installing and Configuring Grafana</h1>
+        <h1><a name="installing-and-configuring-grafana"></a>Installing and Configuring Grafana</h1>
         <p>To install Grafana (2.5 or later), download from <a href="http://grafana.org/download/" target="_blank">here</a>, and follow the <a href="http://docs.grafana.org/installation/" target="_blank">installation instructions</a>.</p>
         <p>After installation, you need to configure Grafana to work with <MadCap:variable name="General.ProductNameXAP" />'s metrics configuration, which is located at <code>[XAP_HOME]/config/metrics/metrics.xml</code>. Assuming you've installed InfluxDB and Grafana without changing the defaults, all you need to do is uncomment the InfluxDB <code>reporter</code> and <code>grafana</code> elements, as shown below:</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
     &lt;reporters&gt;
@@ -70,21 +70,21 @@
         <div class="tc-admon-note">
             <p>We recommend verifying that the default database exists. Some InfluxDB packages do not automatically create the default <code>mydb</code> database. we recommend you use the InfluxDB <a href="https://influxdb.com/docs/v0.9/tools/web_admin.html">Web Admin</a> or <a href="https://influxdb.com/docs/v0.9/tools/shell.html">shell</a> to check if it exists, and create it if needed. For more information, see <a href="https://influxdb.com/docs/v0.9/introduction/getting_started.html#logging-in-and-creating-your-first-database">Getting Started with InfluxDB</a>.</p>
         </div>
-        <h1><a name="getting-started">&#160;</a>Getting Started</h1>
+        <h1><a name="getting-started"></a>Getting Started</h1>
         <p>AFter you install InfluxDB and Grafana and configure the <code>metrics.xml</code> file, start the Web Management Console and navigate to the <span class="tc-bold">Monitoring</span> tab - you'll see Grafana's home page (you'll probably get a login page on the first time - just type in the default <code>admin</code>/<code>admin</code>, and you'll get the home page):</p>
         <p>
             <img src="../Resources/Static/attachment_files/web-console/monitor.jpg" alt="image" class="tc-picture100" />
         </p>
         <p>Since we haven't deployed anything yet, the <span class="tc-bold">Dashboards</span> list is empty. Go ahead and deploy a space or any other processing unit - you'll notice a default dashboard is created for each processing unit and space, with graphs showing commonly used metrics.</p>
-        <h1><a name="dashboards">&#160;</a>Dashboards</h1>
+        <h1><a name="dashboards"></a>Dashboards</h1>
         <p>
             <img src="../Resources/Static/attachment_files/web-console/monitor1.jpg" alt="image" class="tc-picture100" />
         </p>
-        <h2><a name="default-space-dashboard">&#160;</a>Default Space Dashboard</h2>
+        <h2><a name="default-space-dashboard"></a>Default Space Dashboard</h2>
         <p>
             <img src="../Resources/Static/attachment_files/web-console/monitor2.jpg" alt="image" class="tc-picture100" />
         </p>
-        <h2><a name="default-processing-unit-dashboard">&#160;</a>Default Processing Unit Dashboard</h2>
+        <h2><a name="default-processing-unit-dashboard"></a>Default Processing Unit Dashboard</h2>
         <p>
             <img src="../Resources/Static/attachment_files/web-console/monitor3.jpg" alt="image" class="tc-picture100" />
         </p>

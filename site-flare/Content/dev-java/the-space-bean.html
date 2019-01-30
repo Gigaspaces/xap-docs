@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -9,7 +9,7 @@
 The proxy provides a simpler space API using the <a href="[%=Links.ApiJavaDoc%]/index.html">GigaSpace</a> interface.
 It can be created with a Space Bean and optional parameters.</p>
 
-<h1><a name="embedded-space">&#160;</a>Embedded Space</h1>
+<h1><a name="embedded-space"></a>Embedded Space</h1>
 
 <p>Example:</p>
 
@@ -160,7 +160,7 @@ It can be created with a Space Bean and optional parameters.</p>
 </tbody>
 </table>
 
-<h2><a name="bean-properties">&#160;</a>Bean Properties</h2>
+<h2><a name="bean-properties"></a>Bean Properties</h2>
 
 <table>
 <thead>
@@ -270,7 +270,7 @@ It can be created with a Space Bean and optional parameters.</p>
 </tbody>
 </table>
 
-<h1><a name="remote-space">&#160;</a>Remote Space</h1>
+<h1><a name="remote-space"></a>Remote Space</h1>
 
 <p>Example:</p>
 
@@ -358,7 +358,7 @@ It can be created with a Space Bean and optional parameters.</p>
 </tbody>
 </table>
 
-<h2><a name="properties">&#160;</a>Properties</h2>
+<h2><a name="properties"></a>Properties</h2>
 
 <table>
 <thead>
@@ -384,7 +384,7 @@ It can be created with a Space Bean and optional parameters.</p>
 </tbody>
 </table>
 
-<h1><a name="the-gigaspace-bean">&#160;</a>The GigaSpace Bean</h1>
+<h1><a name="the-gigaspace-bean"></a>The GigaSpace Bean</h1>
 
 <p>The <code>GigaSpace</code> Spring Bean provides a simple way to configure a proxy to be injected into the relevant Bean.</p>
 
@@ -418,7 +418,7 @@ It can be created with a Space Bean and optional parameters.</p>
   <p>The application is always injected with <code>os-core:giga-space</code> bean that wraps always a <code>os-core:space</code>.</p>
 </div>
 
-<h2><a name="properties-1">&#160;</a>Properties</h2>
+<h2><a name="properties-1"></a>Properties</h2>
 
 <p>The <code>GigaSpace</code> Bean can have the following elements:</p>
 
@@ -569,7 +569,7 @@ It can be created with a Space Bean and optional parameters.</p>
 </div>
 </div>
 
-<h2><a name="examples">&#160;</a>Examples</h2>
+<h2><a name="examples"></a>Examples</h2>
 
 <p>Here are some examples on how to configure the Space Bean and the proxy:</p>
 
@@ -628,7 +628,7 @@ It can be created with a Space Bean and optional parameters.</p>
   <p>The application is always injected with <code>os-core:giga-space</code> bean that wraps always a <code>os-core:space</code>.</p>
 </div>
 
-<h1><a name="default-operation-modifiers">&#160;</a>Default Operation Modifiers</h1>
+<h1><a name="default-operation-modifiers"></a>Default Operation Modifiers</h1>
 
 <p>You may configure default modifiers for the different operations in the <code>GigaSpace</code> interface. The default modifiers can be configured in the following manner:</p>
 
@@ -698,7 +698,7 @@ gigaSpace.write(someObject, gigaSpace.getDefaultWriteModifiers().add(WriteModifi
 <li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ChangeModifiers.html">ChangeModifiers</a></li>
 </ul>
 
-<h1><a name="exception-hierarchy">&#160;</a>Exception Hierarchy</h1>
+<h1><a name="exception-hierarchy"></a>Exception Hierarchy</h1>
 
 <p><MadCap:variable name="General.ProductNameXAP" /> is built on top of the Spring <a href="http://static.springframework.org/spring/docs/2.0.x/reference/dao.html#dao-exceptions" target="_blank" >consistent exception hierarchy</a> by translating all of the different JavaSpaces exceptions and GigaSpaces exceptions into runtime exceptions, consistent with the Spring exception hierarchy. All the different exceptions exist in the <code>org.openspaces.core</code> package.</p>
 
@@ -712,7 +712,7 @@ gigaSpace.write(someObject, gigaSpace.getDefaultWriteModifiers().add(WriteModifi
 
 <p>A default implementation of the exception translator is automatically used, which translates most of the relevant exceptions into either Spring data access exceptions, or concrete OpenSpaces runtime exceptions (in the <code>org.openspaces.core</code> package).</p>
 
-<h2><a name="exception-handling-for-batch-operations">&#160;</a>Exception handling for Batch Operations</h2>
+<h2><a name="exception-handling-for-batch-operations"></a>Exception handling for Batch Operations</h2>
 
 <p>Batch operations many throw the following Exceptions. Make sure you catch these and act appropriately:</p>
 
@@ -724,7 +724,7 @@ gigaSpace.write(someObject, gigaSpace.getDefaultWriteModifiers().add(WriteModifi
 <li><a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/core/ClearException.html">ClearException</a></li>
 </ul>
 
-<h1><a name="basic-guidelines">&#160;</a>Basic Guidelines</h1>
+<h1><a name="basic-guidelines"></a>Basic Guidelines</h1>
 
 <ul>
 <li>The variable represents a remote or embedded space proxy (for a single space or clustered) and <span class="tc-bold">should be constructed only</span> once throughout the lifetime of the application process.</li>

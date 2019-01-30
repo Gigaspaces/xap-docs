@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Application Debugging</h1>
         <p>In some cases, you might want to monitor the activity of the JVM running as part of your .NET application. The <a href="http://java.sun.com/j2se/1.5.0/docs/guide/management/jconsole.html">jconsole</a> is a great tool that allows you to troubleshoot the JVM internals.</p>
-        <h1><a name="opening-the-jmx-port">&#160;</a>Opening the JMX Port</h1>
+        <h1><a name="opening-the-jmx-port"></a>Opening the JMX Port</h1>
         <p>The following is used to open the JMX port to view and monitor the JVM loaded into the .NET process memory address.</p>
         <p>Have the following settings as part of your <code>app.config</code> file:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
 &lt;configuration&gt;
@@ -24,7 +24,7 @@
 &lt;/configuration&gt;
 </code></pre>
         <p>See <a href="jvm-configuration.html">.NET JVM Configuration</a> for more details.</p>
-        <h1><a name="viewing-in-jconsole">&#160;</a>Viewing in JConsole</h1>
+        <h1><a name="viewing-in-jconsole"></a>Viewing in JConsole</h1>
         <ol>
             <li>
                 <p>Start <code>jconsole</code> – jconsole is located under the bin directory of the Java home, by default it is under <code>&lt;Installation dir&gt;\Runtime\java\bin</code></p>
@@ -47,7 +47,7 @@
 - <a href="http://java.sun.com/j2se/1.5.0/docs/guide/management/agent.html">Sun - Monitoring and Management Using JMX</a>
 - <a href="http://java.sun.com/j2se/1.5.0/docs/guide/management/jconsole.html">Sun - Using jconsole</a>.</p>
         </div>
-        <h1><a name="viewing-in-jvisualvm">&#160;</a>Viewing in JVisualVM</h1>
+        <h1><a name="viewing-in-jvisualvm"></a>Viewing in JVisualVM</h1>
         <p>As an alternative to viewing in JConsole, you can use JVisualVM.</p>
         <ol>
             <li>

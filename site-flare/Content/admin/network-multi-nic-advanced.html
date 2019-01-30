@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -6,8 +6,8 @@
         <h1>Advanced Configuration</h1>
         <div class="tc-admon-note">
             <p>Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with <MadCap:variable name="General.ProductNameXAPPrem" />).</p>
-        </div><a name="1">&#160;</a>
-        <h1><a name="configuration">&#160;</a>Configuration</h1>
+        </div><a name="1"></a>
+        <h1><a name="configuration"></a>Configuration</h1>
         <p>When loading a <MadCap:variable name="General.ProductNameXAP" /> space (or when using the <code>&lt;XAP Root&gt;\bin\PlatformInfo</code> script), the Network Interface information is displayed. Each network card is identified by its Network Interface name and IP.</p>
         <p>For example, the following information describes 3 network cards: <code>(eth0/192.168.80.145, eth1/212.143.27.76, ipoib0/192.168.60.145)</code></p><pre><code class="language-bash">    Network Interfaces Information:
                  Host Name: [Lab15.gigaspaces.com]
@@ -25,7 +25,7 @@
                  IP Address: 127.0.0.1
 </code></pre>
         <p>For the purpose of this section, the default is set to <code>ipoib0/192.168.60.145</code> and the required configuration is to use the internal connection specified by <code>eth0/192.168.80.145</code></p>
-        <h1><a name="xap-nic-address">&#160;</a>XAP_NIC_ADDRESS</h1>
+        <h1><a name="xap-nic-address"></a>XAP_NIC_ADDRESS</h1>
         <p>There is only one environment variable that needs to be configured when limiting the discovery to a specific Network Interface Card. The <code>XAP_NIC_ADDRESS</code> should specify the interface card IP address or name. <code>XAP_NIC_ADDRESS</code> is the value of <code>java.rmi.server.hostname</code> system property, which needs to be appended to <code>RMI_OPTIONS</code> in the <code>setenv.sh(bat)</code> script. By default, <code>RMI_OPTIONS</code> omits this variable – the <code>java.rmi.server.hostname</code> system property is used to resolve the NIC address for all services, which bind to a specific network interface; for example, Jini unicast discovery lookup host, Webster, etc. More specifically, multicast and unicast discovery both use this property to limit and set the desired network interface card.</p>
         <p>There are multiple ways to specify the <code>XAP_NIC_ADDRESS</code>:</p>
         <p><span class="tc-bold">Specifying an explicit IP address.</span> For example:</p><pre><code class="language-bash">XAP_NIC_ADDRESS=192.168.80.145
@@ -35,12 +35,12 @@
         <p>In the above example, <code>eth0</code> is the interface name and the <code>ip</code> indicates that the registered ip of the interface will be used. It is recommended to use the ip address, however, the host name can also be used by replacing the <code>ip</code> with <code>host</code>.</p>
         <p><span class="tc-bold">Specifying the "local" network interface.</span> For example:</p><pre><code class="language-bash">XAP_NIC_ADDRESS="#local:ip#"
 </code></pre>
-        <p>This is equivalent to <code>InetAddress.getLocalHost().getHostAddress()</code>.</p><a name="2">&#160;</a>
+        <p>This is equivalent to <code>InetAddress.getLocalHost().getHostAddress()</code>.</p><a name="2"></a>
         <p><span class="tc-bold">Specifying a Network Card to Bind the Jini Lookup Service (Reggie or Mahalo).</span>
         </p>
-        <h3><a name="configuring-lookup-service">&#160;</a>Configuring Lookup Service</h3>
+        <h3><a name="configuring-lookup-service"></a>Configuring Lookup Service</h3>
         <p>The lookup service should be configured to run against a specific Network IP Address (for more details, see <a href="network-lookup-service-configuration.html">Jini Lookup Discovery Service Interface</a>). The <code>XAP_NIC_ADDRESS</code> is used to control it.</p>
-        <h3><a name="configuring-server-hostname">&#160;</a>Configuring Server Hostname</h3>
+        <h3><a name="configuring-server-hostname"></a>Configuring Server Hostname</h3>
         <p>The server hostname should be configured to use the <code>XAP_NIC_ADDRESS</code> variable. By default The <code>XAP_NIC_ADDRESS</code> environment variable (exposed as part of the <code>&lt;GigaSpaces Installation&gt;\bin\setenv</code> script) omits the system property <code>java.rmi.server.hostname</code>.</p>
         <p><span class="tc-bold">Append the property to the <code>RMI_OPTIONS</code></span>:</p><pre><code class="language-bash">RMI_OPTIONS="-Djava.rmi.server.hostname=${XAP_NIC_ADDRESS}
 -Djava.rmi.server.logCalls=false ..."
@@ -49,8 +49,8 @@
 -Djava.rmi.server.logCalls=false ..."
 </code></pre>
         <p>The <code>java.rmi.server.hostname</code> system property is used to resolve the NIC address for all services, which bind to a specific network interface, e.g. Jini unicast discovery lookup host, Webster, etc.</p>
-        <p>More specifically, multicast and unicast discovery both use this property to limit and set to the desired network interface card.</p><a name="3">&#160;</a>
-        <h3><a name="limiting-use-to-a-specific-network-interface-multicast-only">&#160;</a>Limiting Use to a Specific Network Interface (Multicast Only)</h3>
+        <p>More specifically, multicast and unicast discovery both use this property to limit and set to the desired network interface card.</p><a name="3"></a>
+        <h3><a name="limiting-use-to-a-specific-network-interface-multicast-only"></a>Limiting Use to a Specific Network Interface (Multicast Only)</h3>
         <div class="tc-admon-note">
             <p>By default, Jini is configured to support multicast over multiple (all) interface cards. The only time you need to change this, is if you want to limit these interface cards.</p>
         </div>
@@ -67,10 +67,10 @@ java.net.NETworkInterface[]{java.net.NETworkInterface.getByName("eth0")};
 </code></pre>
         <div class="tc-admon-refer">
             <p>For more information, refer to <a href="[%=Links.ApiJavaDoc%]/index.html?com/sun/jini/reggie/package-summary.html">Sun Javadoc</a>.</p>
-        </div><a name="4">&#160;</a>
-        <h1><a name="unicast-discovery">&#160;</a>Unicast Discovery</h1>
+        </div><a name="4"></a>
+        <h1><a name="unicast-discovery"></a>Unicast Discovery</h1>
         <p>Unicast discovery can be either used with or without multicast.</p>
-        <h2><a name="using-unicast-to-register-with-a-lookup-service">&#160;</a>Using Unicast to Register With a Lookup Service</h2>
+        <h2><a name="using-unicast-to-register-with-a-lookup-service"></a>Using Unicast to Register With a Lookup Service</h2>
         <p>By default, the cluster member URLs are configured to use <code>jini://*/container_name/space_name</code>, which performs lookup using the multicast protocol. To enable unicast in a clustered environment, specify the exact machine network interface card accessible for discovery.</p>
         <p>When using unicast to register with a lookup service, the lookup host should be set to where the lookup service is running.</p>
         <p>The unicast discovery property is part of your <code>xxx-container-schema.xml</code>:</p><pre><code class="language-xml"> &lt;unicast_discovery&gt;
@@ -107,7 +107,7 @@ Otherwise, to use <code>eth0/192.169.80.145</code> as the unicast discovery chan
         <p>Another simple way to set the unicast discovery is using <code>SpaceURL</code> locators attribute, e.g:
     /./mySpace?locators=123.123.123.111:8877</p>
         <p>The comma-separated list of <code>IP:ports</code> pairs specify the exact machine network interface card by which the Jini lookup service performs discovery.</p>
-        <h2><a name="using-unicast-to-locate-other-cluster-members">&#160;</a>Using Unicast to Locate Other Cluster Members</h2>
+        <h2><a name="using-unicast-to-locate-other-cluster-members"></a>Using Unicast to Locate Other Cluster Members</h2>
         <p>By default the cluster member URLs are configured to use <code>jini://*/container_name/space_name</code> which performs lookup using the multicast protocol.</p>
         <p>To use unicast, specify the exact machine network interface card by which the Jini lookup service performs discovery.</p><pre><code class="language-xml">&lt;member&gt;
    &lt;member-name&gt;container1:space1&lt;/member-name&gt;
@@ -120,8 +120,8 @@ Otherwise, to use <code>eth0/192.169.80.145</code> as the unicast discovery chan
 </code></pre>
         <div class="tc-admon-note">
             <p>You can set the <code>jini://</code> and/or <code>rmi://</code> protocols in the <code>com.gs.cluster.url-protocol-prefix</code> system property.</p>
-        </div><a name="5">&#160;</a>
-        <h1><a name="testing-your-configuration">&#160;</a>Testing Your Configuration</h1>
+        </div><a name="5"></a>
+        <h1><a name="testing-your-configuration"></a>Testing Your Configuration</h1>
         <p>The replicated example, located under <code>&lt;XAP Root&gt;\examples\Advanced\Data_Grid\replicated</code>, can be used to test the above configuration. The example interacts using the <code>setenv</code> and <code>space-instance</code> scripts.</p>
         <p>The <code>XAP_NIC_ADDRESS</code> should be set corresponding at each machine's network interface card.</p>
         <p>For the purpose of the example, <code>node1</code> and <code>node2</code> are loaded at <code>Lab16</code> <code>.gigaspaces.com</code> and <code>Lab17</code> <code>.gigaspaces.com</code> respectively. Both have a network card configured for <code>eth0</code> (spanning IPs <code>192.168.80.145...147</code>). Both nodes should be configured with the corresponding <code>XAP_NIC_ADDRESS</code> property of their own network interface IP address for <code>eth0</code>.</p>
@@ -142,7 +142,7 @@ bin/start-node2 script should set XAP_NIC_ADDRESS with 192.168.80.147
 [ source space: rep_cache_container1:rep_cache  ]
 [ target space: rep_cache_container2:rep_cache   ]
 </code></pre>
-        <h2><a name="discovery-by-unicast">&#160;</a>Discovery by Unicast</h2>
+        <h2><a name="discovery-by-unicast"></a>Discovery by Unicast</h2>
         <p>The configuration for unicast can be added to the <code>setenv</code> script, and should be appended to the <code>space-instance</code> script loading an instance of each node.</p>
         <p>Additionally, you can set the <code>SpaceURL</code> <code>locators</code> attribute.</p>
         <p>setenv:</p><pre><code class="language-bash">UNIX_ENABLED=-Dcom.gs.jini_lus.unicast_discovery.enabled=true
@@ -157,22 +157,22 @@ URL_PREFIX=-Dcom.gs.cluster.url-protocol-prefix=jini://${XAP_NIC_ADDRESS}/
         <p>The <code>&lt;XAP Root&gt;\bin\start-node1</code> and the <code>&lt;XAP Root&gt;\bin\start-node2</code> scripts should set <code>XAP_NIC_ADDRESS</code> as mentioned above.</p>
         <p>Remember that the <code>XAP_NIC_ADDRESS</code> variable is set prior to the call to <code>setExampleEnv</code>, thus overriding the <code>XAP_NIC_ADDRESS</code> set in the <code>setenv</code> script.</p><pre><code class="language-bash">XAP_NIC_ADDRESS=192.168.80.146; export XAP_NIC_ADDRESS
 . setExampleEnv.sh
-</code></pre><a name="6">&#160;</a>
-        <h1><a name="troubleshooting-your-configuration">&#160;</a>Troubleshooting your Configuration</h1>
+</code></pre><a name="6"></a>
+        <h1><a name="troubleshooting-your-configuration"></a>Troubleshooting your Configuration</h1>
         <div class="tc-admon-refer">
             <p>For information on viewing the exact configuration in which the system is currently running, refer to <a href="gigaspaces-browser-managing-space-container.html#configuration">Configuration</a>.</p>
         </div>
-        <h2><a name="logging-with-rmi-options">&#160;</a>Logging with RMI_OPTIONS</h2>
+        <h2><a name="logging-with-rmi-options"></a>Logging with RMI_OPTIONS</h2>
         <p>The <code>RMI_OPTIONS</code> environment variable specifies a system property used for logging calls:</p><pre><code class="language-bash">java.rmi.server.logCalls=false
 </code></pre>
         <p>This property can be set to <code>true</code>, enabling log output to the screen. Both lookup service and lookup registrars can be configured to show which network IP address they are trying to communicate with.</p>
-        <h2><a name="identifying-wrong-configuration">&#160;</a>Identifying Wrong Configuration</h2>
+        <h2><a name="identifying-wrong-configuration"></a>Identifying Wrong Configuration</h2>
         <p>Something similar to the following can indicate a wrong configuration:</p><pre><code class="language-bash">Sep 12, 2005 8:00:13 PM sun.rmi.server.UnicastServerRef logCall
 FINER: RMI TCP Connection(6)-192.168.80.145: [192.168.80.145:
 sun.rmi.transport.DGCImpl[0:0:0, 2]: java.rmi.dgc.Lease
 dirty(java.rmi.server.ObjID[], long, java.rmi.dgc.Lease)]
 </code></pre>
-        <h2><a name="bind-exception">&#160;</a>Bind Exception</h2>
+        <h2><a name="bind-exception"></a>Bind Exception</h2>
         <p>A bind exception could be the cause of a machine trying to bind to a lookup service not on the correctly configured network interface. For example, if <code>node2</code> had its <code>$\{XAP_NIC_ADDRESS\</code>} configured to <code>192.168.80.145</code>, while its own network interface for <code>eth0</code> is <code>192.168.80.147</code>.</p><pre><code class="language-bash">9/13/05 12:13:45 AM | rep_cache_container2 | main | Cannot initialize JoinManager Exception:
 java.rmi.RemoteException: Failed to init. Protocol Registry: java.rmi.RemoteException:
 Failed initialization of LRMI over NIO Protocol Adapter: Cannot assign requested address; nested exception is:

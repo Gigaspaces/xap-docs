@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -23,7 +23,7 @@ By default, operations that failed due-to transaction locks (EntryLockedUnderTra
         <p><span class="tc-bold">Default Behavior</span>
             <br />
 The default behavior states that an operation which failed due-to a transaction lock will be retried 5 times with a time interval of 100ms in-between each retry. If no conflict resolver was specified, the default action for all conflicting operations is "abort' so all conflicting operations will automatically be aborted (if an operation which is a part of a transaction fails, the entire transaction scope will be aborted).</p>
-        <h1><a name="configuration">&#160;</a>Configuration</h1>
+        <h1><a name="configuration"></a>Configuration</h1>
         <p>Configuration is made in the Sink component's element using the "error-handling' sub element. In the following example we'll see how to configure the number of retries to 20 with a time interval of 5 seconds between each retry and set a conflict resolver for the Sink gateway component.</p>
         <p>The conflict resolver implementation should be an extension of "com.gigaspaces.cluster.replication.gateway.conflict.ConflictResolver".</p><pre><code class="language-xml">&lt;!-- gateway Sink component --&gt;
 &lt;os-gateway:sink id="sink" local-gateway-name="NEW-YORK" gateway-lookups="gatewayLookups"
@@ -41,7 +41,7 @@ The default behavior states that an operation which failed due-to a transaction 
 &lt;!-- A conflict resolver implementation --&gt;
 &lt;bean id="conflictResolver" class="com.gigaspaces.gateway.sink.MyConflictResolver" /&gt;
 </code></pre>
-        <h1><a name="conflict-resolver-implementation">&#160;</a>Conflict Resolver Implementation</h1>
+        <h1><a name="conflict-resolver-implementation"></a>Conflict Resolver Implementation</h1>
         <p>Lets examine the following conflict resolver implementation which aborts all conflicts executed from a source named "LONDON" and for other sources aborts on entry version conflict:</p><pre><code class="language-java">public class MyConflictResolver extends com.gigaspaces.cluster.replication.gateway.conflict.ConflictResolver {
 
   @Override
@@ -63,7 +63,7 @@ The default behavior states that an operation which failed due-to a transaction 
 }
 </code></pre>
         <p>We distinguish between two cases when processing DataConflict operations.</p>
-        <h2><a name="single-operations">&#160;</a>Single Operations</h2>
+        <h2><a name="single-operations"></a>Single Operations</h2>
         <p>When a single operation faces a conflict, the DataConflict will only hold this particular so conflict.getOperations() will have one operation in it.</p>
         <p>For example, if our local site LONDON replicates data to a site named NEW-YORK:</p><pre><code class="language-java">// The following is executed on a cluster at LONDON
 londonGigaSpace.write(new Person("John Doe"));
@@ -75,7 +75,7 @@ londonGigaSpace.write(new Person("Jane Doe"));
 // conflicting operations.
 </code></pre>
         <p>In case the conflict resolver didn't resolve an operation (abort or override was not called for this operation) the operation will be aborted.</p>
-        <h2><a name="transactional-operations">&#160;</a>Transactional Operations</h2>
+        <h2><a name="transactional-operations"></a>Transactional Operations</h2>
         <p>When a transaction is committed, its enough that one of the transaction operation had a conflict and all of the transaction operations will be a part of the DataConflict and therefore when calling <code>conflict.getOperations()</code> all of the transaction operations are returned and its possible to identify the conflicting operations using the DataConflictOperation.hasConflict() method.</p>
         <p>For example, We have a local site named LONDON which replicates data to a site named NEW-YORK. We write three Person objects to LONDON which will be replicated to NEW-YORK. If at least one of these operations will fail, all three operations will appear in DataConflict.getOperations()
 when the conflict resolver onDataConflict method will be invoked.</p><pre><code class="language-java">// The following is executed on a cluster at LONDON
@@ -144,7 +144,7 @@ ptm.commit(status);
   }
 }
 </code></pre>
-        <h1><a name="overriding-operations">&#160;</a>Overriding Operations</h1>
+        <h1><a name="overriding-operations"></a>Overriding Operations</h1>
         <p>Overriding conflicting operations has a different behavior for each operation.
 The table below describes override behavior for each case:</p>
         <table>
@@ -178,7 +178,7 @@ The table below describes override behavior for each case:</p>
                 </tr>
             </tbody>
         </table>
-        <h3><a name="changing-entry-data-on-conflict">&#160;</a>Changing Entry Data On Conflict</h3>
+        <h3><a name="changing-entry-data-on-conflict"></a>Changing Entry Data On Conflict</h3>
         <p>It is possible to change the entry data before overriding the conflicting operation. In the following example, we have gateway replication from NEW-YORK to LONDON. We'll attempt to write a Person object to NEW-YORK which already exists in LONDON and we'll change the conflicting Person
 object properties before overriding the operation:</p><pre><code class="language-java">// Write a Person object to NEW-YORK
 Person person = new Person();
@@ -207,7 +207,7 @@ public class MyConflictResolver extends com.gigaspaces.cluster.replication.gatew
   }
 }
 </code></pre>
-        <h1><a name="metadata-conflicts">&#160;</a>Metadata Conflicts</h1>
+        <h1><a name="metadata-conflicts"></a>Metadata Conflicts</h1>
         <p>For both register type descriptor and add indexes conflicts it is not possible to take an action for the conflict
 though you can identify such conflicts using the conflict resolver's onRegisterTypeDescriptorConflict and onAddIndexConflict methods.
 For example:</p><pre><code class="language-java">public class MyConflictResolver extends com.gigaspaces.cluster.replication.gateway.conflict.ConflictResolver {
@@ -223,11 +223,11 @@ For example:</p><pre><code class="language-java">public class MyConflictResolver
   }
 }
 </code></pre>
-        <h1><a name="limitations">&#160;</a>Limitations</h1>
+        <h1><a name="limitations"></a>Limitations</h1>
         <div class="tc-admon-refer">
             <p>Please refer to the <a href="multi-site-replication-limitations.html">Multi-Site Replication Limitations</a> page.</p>
         </div>
-        <h1><a name="example">&#160;</a>Example</h1>
+        <h1><a name="example"></a>Example</h1>
         <p>In this example, the pu.xml adds the required space class with the <code>abortClasses</code> property.
 Whenever the target space has conflicting data in comparison to incoming data, it will call the <code>MyConflictResolver.onDataConflict</code> method
 which will take the following actions:</p>

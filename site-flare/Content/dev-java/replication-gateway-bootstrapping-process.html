@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Bootstrapping Process</h1>
         <p>Bootstrapping a site from another site is a process in which one site space is starting fresh and it is being populated with the data of another site space. This can be useful after a very long disconnection where the replication redo-log in the source spaces that replicates to this site was dropped due to breaching capacity limitations, and the disconnected site should start fresh. Or some initiated downtime due to some maintenance of one site which should bootstrap once it is restarted.</p>
-        <h1><a name="how-it-works">&#160;</a>How It Works</h1>
+        <h1><a name="how-it-works"></a>How It Works</h1>
         <p>A bootstrap of a site is being done via a gateway sink of that site and the gateway sink of the site that the bootstrap should be done from. Therefore, both sites must have a deployed gateway sink.</p>
         <p>The bootstrap target site gateway sink will locate the gateway sink of the bootstrap source site (using the local gateway delegator to that sink) and it will use the bootstrap source site gateway sink in order to initiate a recovery process from each partition primary space instance. All the data that will be received during the bootstrap process into the sink will be inserted to the local space.</p>
         <p>All the changes that are done in the bootstrap source site during this copy process are accumulated at the replication redo-log and will be sent via the bootstrap source site delegator to the bootstrap target site sink once the copy stage is complete. During the bootstrap copy stage, the gateway sink which is being bootstrapped will not be available for replication, and all the remote sites local spaces will have a disconnected replication channel to that gateway sink.</p>
@@ -36,7 +36,7 @@
                 <img src="../Resources/Static/attachment_files/wan-bootstrap-sync.jpg" alt="wan-bootstrap-sync.jpg" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="initiating-a-bootstrap">&#160;</a>Initiating a Bootstrap</h1>
+        <h1><a name="initiating-a-bootstrap"></a>Initiating a Bootstrap</h1>
         <p>Unlike regular space recovery, where a backup or replicated space performs a recovery, a bootstrap has much more implications and therefore it is an administrative command executed by the user on demand.</p>
         <p>The bootstrap is initiated on the local gateway sink of the space's site that needs to be bootstrapped for another site's space. The following conditions should be held before initiating a bootstrap:</p>
         <ol>

@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>MemoryXtend for Off-Heap RAM</h1>
-        <h1><a name="overview">&#160;</a>Overview</h1>
+        <h1><a name="overview"></a>Overview</h1>
         <p>The MemoryXtend off-heap storage driver stores Space objects in RAM, outside the Java heap. This has two benefits:</p>
         <ul>
             <li>Better RAM utilization - Objects are stored off-heap in serialized form, which consumes less memory than the same object would use in a Java heap.</li>
@@ -15,7 +15,7 @@
                 <img src="../Resources/Static/attachment_files/blobstore/ohr3.png" alt="image" class="tc-picture80" />
             </p>
         </div>
-        <h1><a name="basic-configuration">&#160;</a>Basic Configuration</h1>
+        <h1><a name="basic-configuration"></a>Basic Configuration</h1>
         <p>You can create a Space with the MemoryXtend off-heap storage driver via the <code>pu.xml</code> configuration file, or in the code. For example, to create a Space called "mySpace' that can use up to 20GB of off-heap RAM:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="pu.xml" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -56,7 +56,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
         <div class="tc-admon-note">
             <p>For an example of how to configure the on-heap cache properties, see the <a href="memoryxtend-overview.html#on-heap-cache">MemoryXtend overview</a> topic.</p>
         </div>
-        <h2><a name="defining-the-memory-threshold">&#160;</a>Defining the Memory Threshold</h2>
+        <h2><a name="defining-the-memory-threshold"></a>Defining the Memory Threshold</h2>
         <p>In order to use off-heap storage, you must define the amount of memory to allocate, for example. <code>20g</code>. Use the following sizing units:</p>
         <ul>
             <li><code>b</code> - Bytes</li>
@@ -69,7 +69,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
         <div class="tc-admon-important">
             <p>If the used memory is below the configured threshold, then a large write operation may exceed the threshold without being blocked or throwing an exception. Users should take this into account when setting the maximum memory size. This behavior is similar to that of the regular <a href="../dev-java/memory-management-overview.html">memory manager</a>.</p>
         </div>
-        <h1><a name="advanced-configuration">&#160;</a>Advanced Configuration</h1>
+        <h1><a name="advanced-configuration"></a>Advanced Configuration</h1>
         <p>As part of fine-tuning the MemoryXtend functionality, you can control the balance between memory utilization and system performance. This is useful because there are two ways to update the value of an object in the off-heap memory:</p>
         <ul>
             <li>Free up the old memory allocation, and reallocate new memory.</li>
@@ -78,7 +78,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
         <p>Deleting and reallocating memory takes longer then overwriting the same memory area, but if the size of the new value is smaller then the old value, then the overwrite option leaves part of the original allocated memory underutilized. You can use the <code>BLOBSTORE_OFF_HEAP_MIN_DIFF_TO_ALLOCATE_PROP</code> Space property to control when to trade off system performance for maximizing the memory usage.</p>
         <p>This Space property works as follows: if the oldValueSize - newValueSize &gt; blobstore.off-heap.update_threshold, then delete and reallocate memory for the object. Otherwise overwrite the old object value with the new object value.</p>
         <p>The default threshold is 50B.</p>
-        <h2><a name="example">&#160;</a>Example</h2>
+        <h2><a name="example"></a>Example</h2>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="pu.xml" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
@@ -119,7 +119,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 </code></pre>
             </div>
         </div>
-        <h1><a name="monitoring">&#160;</a>Monitoring</h1>
+        <h1><a name="monitoring"></a>Monitoring</h1>
         <p>The amount of used off-heap memory can be tracked using the following:</p>
         <ul>
             <li>Metrics - The <code>space_blobstore_off-heap_used-bytes_total</code> metric, as described on the <a href="metrics-bundled.html#blobstore-operations">Metrics</a> page.</li>

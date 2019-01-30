@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -12,7 +12,7 @@
   <p>For a detailed description of the Geospatial queries refer to <a href="query-geospatial.html">Geospatial Queries</a> for more info.</p>
 </div>
 
-<h1><a name="shapes">&#160;</a>Shapes</h1>
+<h1><a name="shapes"></a>Shapes</h1>
 
 <p>Data Grid supports next shapes, all of them are located at <code>org.openspaces.spatial.shapes</code> package:</p>
 
@@ -59,7 +59,7 @@
 val userLocation = ShapeFactory.point(10, 10)
 </code></pre>
 
-<h1><a name="queries">&#160;</a>Queries</h1>
+<h1><a name="queries"></a>Queries</h1>
 
 <p>Geospatial API currently supports three operations: <code>intersect</code>, <code>within</code> and <code>contains</code>.</p>
 
@@ -102,7 +102,7 @@ val df = sqlContext.read.grid[SpatialData]
 val data = df.filter(df("area") geoContains point(10,10))
 </code></pre>
 
-<h1><a name="indexing">&#160;</a>Indexing</h1>
+<h1><a name="indexing"></a>Indexing</h1>
 
 <p>You can define Geospatial index using the <code>@SpaceSpatialIndex</code> and <code>@SpaceSpatialIndexes</code> annotations:</p>
 
@@ -124,7 +124,7 @@ case class GasStation(
   <p>To read more about indexing fields in Data Grid, refer to <a href="indexing-geospatial.html">Geospatial Index</a></p>
 </div>
 
-<h1><a name="zeppelin-notebook">&#160;</a>Zeppelin Notebook</h1>
+<h1><a name="zeppelin-notebook"></a>Zeppelin Notebook</h1>
 
 <p>A great place to start experimenting with the Geospatial API is the <a href="../started/insightedge-zeppelin.html">Zeppelin notebook</a> - check out the "<MadCap:variable name="General.ProductNameIE" /> GeoSpatial' notebook.</p>
 

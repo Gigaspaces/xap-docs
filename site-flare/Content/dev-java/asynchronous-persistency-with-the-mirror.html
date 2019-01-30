@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -22,7 +22,7 @@
             <li>The Mirror Service Processing Unit Settings</li>
         </ul>
         <p>The above share the <span class="tc-bold">same</span> <a href="space-persistency-overview.html">Space Persistency</a> settings but have different space settings. See the <a href="hibernate-space-persistency.html">Hibernate Space Persistency</a> for details on how to use the built-in <code>HibernateSpaceSynchronizationEndpoint</code>.</p>
-        <h1><a name="the-data-grid-processing-unit">&#160;</a>The Data Grid Processing Unit</h1>
+        <h1><a name="the-data-grid-processing-unit"></a>The Data Grid Processing Unit</h1>
         <p>The <code>cluster-config.mirror-service</code> <code>space</code> settings specify the interaction between the IMDG primary spaces and the Mirror Service. The <code>mirrored="true"</code> <code>space</code> element tag enables the replication mechanism from the IMDG Primary spaces to the Mirror Service. Once <code>mirrored="true"</code> has been specified, all IMDG members will be Mirror aware and will be delegating their activities to the Mirror service. The IMDG primary instance will replicate the operations that have been logged within the primary redo log every <code>interval-millis</code> amount of time or <code>interval-opers</code> amount of operations. Both of these mechanisms are always active and the first one that is breached triggers the replication event.</p>
         <div class="tc-admon-tip">
             <p>If you are not using the <code>mirrored="true"</code> with the Data-Grid PU, you should use the following property instead:
@@ -119,7 +119,7 @@
         <div class="tc-admon-attention">
             <p>Enabling replication into the mirror without starting the Mirror will generate a backlog within the primary space (and backup). Please avoid running in this configuration.</p>
         </div>
-        <h1><a name="the-mirror-processing-unit">&#160;</a>The Mirror Processing Unit</h1>
+        <h1><a name="the-mirror-processing-unit"></a>The Mirror Processing Unit</h1>
         <p>The Mirror Service is constructed using the <code>Mirror</code> tag. The Mirror Service itself is <span class="tc-bold">not</span> a regular Space. It is dispatching the operations which have been replicated from the IMDG primary spaces to the data source (i.e. Database). The Mirror Service should be constructed as a separate processing unit, which includes only its definition.</p>
         <p>The Mirror settings includes the following options:</p>
         <table>
@@ -180,7 +180,7 @@
             <li>The <code>os-sla</code> definition insures that there will be only one Mirror Service instance running.</li>
             <li>The configuration above should exist within the mirror PU pu.xml file.</li>
         </ul>
-        <h2><a name="the-mirror-pu-content">&#160;</a>The Mirror PU Content</h2>
+        <h2><a name="the-mirror-pu-content"></a>The Mirror PU Content</h2>
         <p>The Mirror processing unit structure is shown below:</p><pre><code class="language-java">-- example-mirror
 ------ META-INF
 ---------- spring
@@ -188,7 +188,7 @@
 </code></pre>
         <p>See the <a href="the-processing-unit-structure-and-configuration.html">The Processing Unit Structure and Configuration</a> for more information on the processing unit structure.</p>
         <p>The relevant Hibernate JAR file and its third party dependencies should be available to the mirror processing unit. The jar files should be placed in the processing unit <code>lib</code> directory.</p>
-        <h2><a name="mirror-undeploy">&#160;</a>Mirror Undeploy</h2>
+        <h2><a name="mirror-undeploy"></a>Mirror Undeploy</h2>
         <p>When cluster is un deployed, the mirror service must be un deployed last. This will ensure that all data is persisted properly through mirror async persistency.
 Before primary space is un deployed/redeployed, all data changes are flushed to mirror. This operation is limited by timeout that can be configured using the following property:</p><pre><code class="language-xml">&lt;!-- default value is 5 minutes --&gt;
 &lt;prop
@@ -196,7 +196,7 @@ Before primary space is un deployed/redeployed, all data changes are flushed to 
     300000
 &lt;/prop&gt;
 </code></pre>
-        <h1><a name="optimizing-the-mirror-activity">&#160;</a>Optimizing the Mirror Activity</h1>
+        <h1><a name="optimizing-the-mirror-activity"></a>Optimizing the Mirror Activity</h1>
         <div class="tc-admon-attention">
             <p>The database update rate by the Mirror is a function of the number of IMDG partitions, database update speed with a single thread, database transaction size, network latency between the Mirror and the Database, hibernate overhead (if hibernate is being used as the persistence mechanism), relevant table indexed columns, and the database record size. Also, when distributed transactions are used with the IMDG, this may improve the database update rate (since multiple partitions will be sending their updates to the Mirror, which can batch all cumulative updates to the database), but this will impact the IMDG transaction latency.</p>
         </div>
@@ -222,7 +222,7 @@ To use this optimization you need to set the following space property:</li>
 </code></pre>
         <p>If you are using a custom implementation of the data source you also need to implement how the partial update is persisted.
 See com.gigaspaces.sync.DataSyncOperation for more details.</p>
-        <h1><a name="mirror-monitoring">&#160;</a>Mirror Monitoring</h1>
+        <h1><a name="mirror-monitoring"></a>Mirror Monitoring</h1>
         <p>The activity of the mirror service can be monitored using the <a href="administration-and-monitoring-overview.html#monitoring-the-mirror-service">Administration and monitoring API</a>. This API exposes statistics on operations that were executed by the mirror and can be used to monitor the mirror throughput and health status.</p>
         <p>You may view Mirror and its replication statistics via the <a href="../admin/gigaspaces-management-center.html">GigaSpaces Management Center</a>. Move into the Space Browser tab, click the top tree Spaces icon, right click the table columns title area on the right panel, select the columns you would to view as part of the table and click OK.</p>
         <div class="tc-align-center">

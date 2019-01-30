@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -13,17 +13,17 @@
         <div class="tc-admon-note">
             <p>This page describes the new space iterator, which replaced the <code>GSIterator</code> starting in XAP version 10.2. Information about the GSIterator is available <a href="query-paging-support-old.html">here</a>.</p>
         </div>
-        <h1><a name="usage">&#160;</a>Usage</h1>
+        <h1><a name="usage"></a>Usage</h1>
         <p>Use the <code>GetSpaceIterator(template)</code> to create the iterator. Example:</p><pre><code class="language-java">    // Find and print all persons who are older than 21:
     foreach (var person in spaceProxy.GetSpaceIterator&lt;Person&gt;(new SqlQuery&lt;Person&gt;("Age &gt; 21")))
     {
       Console.WriteLine("Id: " + person.Id + ", Age: " + person.Age);
     }
 </code></pre>
-        <h2><a name="transactions">&#160;</a>Transactions</h2>
+        <h2><a name="transactions"></a>Transactions</h2>
         <p>Iterating through the matched set does not lock the object. Objects that are under transaction and match the specified template will not be included as part of the matched set.</p>
-        <h1><a name="limitations">&#160;</a>Limitations</h1>
-        <p><a name="complex-queries">&#160;</a><b>Complex Queries</b>
+        <h1><a name="limitations"></a>Limitations</h1>
+        <p><a name="complex-queries"></a><b>Complex Queries</b>
         </p>
         <p>The space iterator only supports simple SQL queries.</p>
         <div class="tc-admon-note">

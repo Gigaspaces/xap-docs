@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Advanced Configuration</h1>
-        <h1><a name="custom-mirror-service-name">&#160;</a>Custom Mirror Service Name</h1>
+        <h1><a name="custom-mirror-service-name"></a>Custom Mirror Service Name</h1>
         <p>A Mirror Service can be configured per Space cluster. You can't have multiple Mirror services configured for the same space cluster.</p>
         <div class="tc-admon-tip">
             <p>If you need "multiple mirrors" for the same space cluster you can implement a Mirror Service that will route the data and operations to other multiple "agents" that will persist the data - effectively make the default Mirror act as a dispatcher.</p>
@@ -36,14 +36,14 @@
   &lt;/EmbeddedSpaces&gt;
 &lt;/ProcessingUnit&gt;
 </code></pre>
-        <h1><a name="multiple-mirrors">&#160;</a>Multiple Mirrors</h1>
+        <h1><a name="multiple-mirrors"></a>Multiple Mirrors</h1>
         <p>In some cases you may need to asynchronously persist data both into a relational database and a file, or persist the data into a relational database and transfer some of the data into some other system.</p>
         <p>In such a case you may need to have multiple mirrors. In order to implement this, you should have one base mirror (for example the Hibernate Space Persistency) and extend it to include the extra functionality you may need.</p>
         <div class="tc-admon-note">
             <p>See the <a href="/sbp/mirror-monitor.html">Mirror Monitor</a> for a simple example how such approach should be implemented.</p>
         </div>
-        <h1><a name="usage-scenarios">&#160;</a>Usage Scenarios</h1>
-        <h3><a name="writing-asynchronously-to-the-mirror-data-source">&#160;</a>Writing Asynchronously to the Mirror Data Source</h3>
+        <h1><a name="usage-scenarios"></a>Usage Scenarios</h1>
+        <h3><a name="writing-asynchronously-to-the-mirror-data-source"></a>Writing Asynchronously to the Mirror Data Source</h3>
         <table class="tc-borderless">
             <col />
             <col />
@@ -56,7 +56,7 @@
                 </td>
             </tr>
         </table>
-        <h3><a name="reading-from-the-data-source">&#160;</a>Reading from the Data Source</h3>
+        <h3><a name="reading-from-the-data-source"></a>Reading from the Data Source</h3>
         <table class="tc-borderless">
             <col />
             <col />
@@ -71,7 +71,7 @@
                 </td>
             </tr>
         </table>
-        <h3><a name="partitioning-over-a-central-mirror-data-source">&#160;</a>Partitioning Over a Central Mirror Data Source</h3>
+        <h3><a name="partitioning-over-a-central-mirror-data-source"></a>Partitioning Over a Central Mirror Data Source</h3>
         <table class="tc-borderless">
             <col />
             <col />
@@ -84,8 +84,8 @@
                     <img src="../Resources/Static/attachment_files/IMG104.gif" alt="" title="" class="tc-thumbnail" />
                 </td>
             </tr>
-        </table><a name="dist-txn-mirror">&#160;</a>
-        <h1><a name="considerations-and-known-issues">&#160;</a>Considerations and Known Issues</h1>
+        </table><a name="dist-txn-mirror"></a>
+        <h1><a name="considerations-and-known-issues"></a>Considerations and Known Issues</h1>
         <div class="tc-admon-note">
             <p><a href="space-persistency-advanced-topics.html#limits">Space persistency considerations</a> also apply to the Mirror Service.</p>
         </div>
@@ -98,8 +98,8 @@
             <li>The Mirror Service cannot be clustered. Deploying it as a Processing Unit ensures its high-availability.</li>
             <li>The Mirror does not load data back into the space. The <code>ExternalDataSource</code> implementation of the space should be used to initialize the space when started.</li>
         </ul>
-        <h1><a name="troubleshooting">&#160;</a>Troubleshooting</h1>
-        <h2><a name="log-messages">&#160;</a>Log Messages</h2>
+        <h1><a name="troubleshooting"></a>Troubleshooting</h1>
+        <h2><a name="log-messages"></a>Log Messages</h2>
         <p>The space persistency logging level can be modified as part of the <code>&lt;XAP-Root&gt;\Net vX.x\Config\Log\xap_logging.properties</code> file. By default, it is set to <code>INFO</code>:</p><pre><code class="language-java">com.gigaspaces.persistent.level = INFO
 </code></pre>
         <p>Logging is divided according to <code>Level</code> as follows:</p>
@@ -125,7 +125,7 @@
                 </tr>
             </tbody>
         </table>
-        <h1><a name="failover-handling">&#160;</a>Failover Handling</h1>
+        <h1><a name="failover-handling"></a>Failover Handling</h1>
         <p>This section describes how the GigaSpaces Mirror Service handles different failure scenarios. The following table lists the services involved, and how the failure is handled in the cluster.</p>
         <p>Active services are <span class="tc-textgreen">green</span>, while failed services are <span class="tc-textred">red</span>.</p>
         <table>
@@ -158,7 +158,7 @@
                 </tr>
             </tbody>
         </table>
-        <h1><a name="unlikely-failure-scenarios">&#160;</a>Unlikely Failure Scenarios</h1>
+        <h1><a name="unlikely-failure-scenarios"></a>Unlikely Failure Scenarios</h1>
         <p>The following failure scenarios are highly unlikely. However, it might be useful to understand how such scenarios are handled by GigaSpaces. This is detailed in the table below.</p>
         <p>Active services are <span class="tc-textgreen">green</span>, while failed services are <span class="tc-textred">red</span>.</p>
         <table>

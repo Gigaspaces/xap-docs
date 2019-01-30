@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -32,7 +32,7 @@ The Externalization mechanism stores all the metadata, but writes out only the l
         <p>
             <br />
         </p>
-        <h1><a name="example">&#160;</a>Example</h1>
+        <h1><a name="example"></a>Example</h1>
         <p>Here is an example; the <code>Person</code> class has an <code>Address</code> property that is being externalized.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title=" Person.java " style="padding:10px"><pre><code class="language-java">@SpaceClass
@@ -130,7 +130,7 @@ public class Person {
 </code></pre>
             </div>
         </div>
-        <h1><a name="kryo-serialization">&#160;</a>Kryo Serialization</h1>
+        <h1><a name="kryo-serialization"></a>Kryo Serialization</h1>
         <p><a href="https://github.com/EsotericSoftware/kryo" target="_blank">Kryo</a> is a fast and efficient object graph serialization framework for Java. You can use this framework to serialize your objects with <MadCap:variable name="General.ProductNameXAP" />.
 Using the same example from above, the <code>writeExternal</code>  and <code>readExternal</code> methods of the <code>Address</code> class make use of the <code>KryoSerializers</code>.</p>
         <div class="easyui-tabs" plain="true" data-options="">

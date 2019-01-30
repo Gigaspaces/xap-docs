@@ -12,7 +12,7 @@
   <p>Service Reloading only works when downloading the processing unit to the GSC is disabled (pu.download deploy property should be set to false). For more information on how to do it, see the <a href="deploying-onto-the-service-grid.html#distribution-of-processing-unit-binaries-to-the-running-gscs">Deploying onto the Grid</a> page. For service reloading to work, common classes have to be copied to the <span class="tc-bold">&lt;GigaSpacesRoot&gt;/lib/platform/ext</span> folder.</p>
 </div>
 
-<h1><a name="configuring-reloadable-business-logic">&#160;</a>Configuring Reloadable Business Logic</h1>
+<h1><a name="configuring-reloadable-business-logic"></a>Configuring Reloadable Business Logic</h1>
 
 <p>Lets assume we have business logic that we would like to reload at some point in time after our Processing Unit has been deployed. Here is an example of such business logic:</p>
 
@@ -66,7 +66,7 @@
 &lt;/beans&gt;
 </code></pre>
 
-<h1><a name="reloading-business-logic">&#160;</a>Reloading Business Logic</h1>
+<h1><a name="reloading-business-logic"></a>Reloading Business Logic</h1>
 
 <p>When there is a change in business logic for any beans defined in the refreshable context and these changes are ready to be applied to the cluster, copy the new classes into the GigaSpaces deploy folder of GSM machine(s) and work folder of each cluster node (default location, &lt;GigaSpacesRoot&gt;/work/processing-units/&lt;puInstance&gt;) and execute the reload command as below:</p>
 
@@ -75,7 +75,7 @@
 
 <p>As a result of the above command, all the beans defined in the refreshable context are destroyed and fresh copies of these beans are re-created using the new class definitions in the work folder. Your new version of business logic is now ready without brining down the cluster.</p>
 
-<h1><a name="other-considerations">&#160;</a>Other Considerations</h1>
+<h1><a name="other-considerations"></a>Other Considerations</h1>
 
 <ul>
 <li>Refreshable context works only for business logic changes. You cannot modify the data model using this approach.</li>

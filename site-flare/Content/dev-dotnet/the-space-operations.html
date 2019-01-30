@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -38,7 +38,7 @@
                 <td style="width:45%;" />
             </tr>
         </table>
-        <h1><a name="simpler-api">&#160;</a>Simpler API</h1>
+        <h1><a name="simpler-api"></a>Simpler API</h1>
         <p>The <code>ISpaceProxy</code> interface provides a simpler space API by utilizing generics, and allowing sensible defaults. Here are some examples of the space operations as defined within <code>ISpaceProxy</code>:</p><pre><code class="language-csharp">public interface ISpaceProxy {
     ILeaseContext&lt;T&gt;  Write(T entry);
     T Take&lt;T&gt;(T template);
@@ -50,17 +50,17 @@
     // ......
 }
 </code></pre>
-        <p>In the example above, the take operation can be performed without specifying a timeout. The default take timeout is <code>0</code> (no wait), and can be overridden when configuring the <code>GigaSpace</code> factory. In a similar manner, the read timeout and write lease can be specified.</p><a name="write">&#160;</a>
-        <h1><a name="the-write-operation">&#160;</a>The Write Operation</h1>
+        <p>In the example above, the take operation can be performed without specifying a timeout. The default take timeout is <code>0</code> (no wait), and can be overridden when configuring the <code>GigaSpace</code> factory. In a similar manner, the read timeout and write lease can be specified.</p><a name="write"></a>
+        <h1><a name="the-write-operation"></a>The Write Operation</h1>
         <p>{
 In order to write objects to the Space, you use the write method of the GigaSpace interface. The write method is used to write objects if these are introduced for the first time, or update them if these already exist in the space. In order to override these default semantics, you can use the overloaded write methods which accept update modifiers such as WriteModifiers.UpdateOnly.</p>
-        <h2><a name="pono-example">&#160;</a>PONO Example</h2>
+        <h2><a name="pono-example"></a>PONO Example</h2>
         <p>The following example writes an <code>Employee</code> object into the space:</p><pre><code class="language-csharp">Employee employee = new Employee ("Last Name", 32);
 employee.FirstName="first name";
 ILeaseContext&lt;Employee&gt; lc = spaceProxy.Write(employee);
 Employee e = lc.Object;
 </code></pre>
-        <h2><a name="spacedocument-example">&#160;</a>SpaceDocument Example</h2>
+        <h2><a name="spacedocument-example"></a>SpaceDocument Example</h2>
         <p>Here is an example how you create a SpaceDocument, register it with the space and then write it into the space:</p><pre><code class="language-csharp">// Create the document
 DocumentProperties properties = new DocumentProperties ();
 
@@ -92,10 +92,10 @@ spaceProxy.TypeManager.RegisterTypeDescriptor(typeDescriptor);
 // Write the document into the space
 ILeaseContext&lt;SpaceDocument&gt; lc = spaceProxy.Write (document);
 </code></pre>
-        <h2><a name="time-to-live">&#160;</a>Time To Live (TTL)</h2>
+        <h2><a name="time-to-live"></a>Time To Live (TTL)</h2>
         <p>To write an object into the space with a limited TTL, you should specify a lease value (in milliseconds). The object will expire automatically from the space.</p><pre><code class="language-csharp">spaceProxy.Write(myObject, 10000)
 </code></pre>
-        <h2><a name="write-multiple">&#160;</a>Write Multiple</h2>
+        <h2><a name="write-multiple"></a>Write Multiple</h2>
         <p>When writing a batch of objects into the space, these should be placed into an array to be used by the <code>ISpaceProxy.WriteMultiple</code> operation. The returned array will include the corresponding <code>ILeaseContext</code> object.</p>
         <p>Example</p><pre><code class="language-csharp">Employee[] emps = new Employee[2];
 emps [0] = new Employee ("Last Name A", 10);
@@ -123,7 +123,7 @@ for (int i = 0; i &lt; leaseContexts.Length; i++) {
                 <p>Exception handling - the operation many throw a <a href="[%=Links.ApiDotNetDoc%]/Overload_GigaSpaces_Core_Exceptions_WriteMultipleException__ctor.htm">WriteMultipleException</a>.</p>
             </li>
         </ul>
-        <h2><a name="return-previous-value">&#160;</a>Return Previous Value</h2>
+        <h2><a name="return-previous-value"></a>Return Previous Value</h2>
         <p>When updating an object which already exists in the space, in some scenarios it is useful to get the previous value of the object (before the update). This previous value is returned in result <code>ILeaseContext.Object</code> when using the <code>WriteModifiers.ReturnPrevOnUpdate</code> modifier.</p><pre><code class="language-csharp">Employee employee = new Employee ("Last Name", 32);
 
 ILeaseContext&lt;Employee&gt; lc = spaceProxy.Write(employee,WriteModifiers.ReturnPrevOnUpdate);
@@ -131,18 +131,18 @@ Employee previousValue = lc.Object;
 </code></pre>
         <div class="tc-admon-note">
             <p>Since in most scenarios the previous value is irrelevant, the default behavior is not to return it (i.e. <code>ILeaseContext.Object</code> return null). The <code>WriteModifiers.ReturnPrevOnUpdate</code> modifier is used to indicate the previous value should be returned.</p>
-        </div><a name="asynchronousWrite">&#160;</a>
-        <h2><a name="asynchronous-write">&#160;</a>Asynchronous Write</h2>
+        </div><a name="asynchronousWrite"></a>
+        <h2><a name="asynchronous-write"></a>Asynchronous Write</h2>
         <p>Asynchronous <code>write</code> operation can be implemented using a <a href="task-execution-overview.html">Task</a>, where the <code>Task</code> implementation include a write operation. With this approach the <code>Task</code> is sent to the space and executed in an asynchronous manner. The write operation itself will be completed once both the primary and the backup will acknowledge the operation. This activity will be performed as a background activity from the client perspective.</p>
         <p>Example</p><pre><code class="language-csharp">Employee employee = new Employee ("Last Name", 32);
 spaceProxy.Write(employee,WriteModifiers.OneWay);
 </code></pre>
-        <h2><a name="modifiers">&#160;</a>Modifiers</h2>
+        <h2><a name="modifiers"></a>Modifiers</h2>
         <p>For further details on each of the available modifiers see: <a href="[%=Links.ApiDotNetDoc%]/P_GigaSpaces_Core_ISpaceProxy_WriteModifiers.htm">WriteModifiers</a></p>
         <div class="tc-admon-note">
             <p>Writing an object into a space might generate <a href="notify-container-overview.html">notifications</a> to registered objects.</p>
-        </div><a name="read">&#160;</a>
-        <h1><a name="the-read-operation">&#160;</a>Read Operations</h1>
+        </div><a name="read"></a>
+        <h1><a name="the-read-operation"></a>Read Operations</h1>
         <p>The  read operations query the space for an object that matches the criteria provided.
 If a match is found, a copy of the matching object is returned.
 If no match is found, null is returned. Passing a null reference as the template will match any object.</p>
@@ -190,10 +190,10 @@ Employee e2 = spaceProxy.Read&lt;Employee&gt;(query1);
 SqlQuery&lt;Employee&gt; query2 = new SqlQuery&lt;Employee&gt;("FirstName='first name'");
 Employee e3 = spaceProxy.Read&lt;Employee&gt;(query2);
 
-</code></pre><a name="readMultiple">&#160;</a>
-        <h2><a name="read-multiple">&#160;</a>Read Multiple</h2>
+</code></pre><a name="readMultiple"></a>
+        <h2><a name="read-multiple"></a>Read Multiple</h2>
         <p>The GigaSpace interface provides simple way to perform bulk read operations. You may read a large amount of objects in one call.</p>
-        <h3><a name="examples">&#160;</a>Examples</h3><pre><code class="language-csharp">Employee[] emps = new Employee[2];
+        <h3><a name="examples"></a>Examples</h3><pre><code class="language-csharp">Employee[] emps = new Employee[2];
 emps[0] = new Employee("Last Name A", 31);
 emps[1] = new Employee("Last Name B", 32);
 
@@ -224,8 +224,8 @@ Employee[] employees2 = result.ResultsArray;
             <li>They should be handled with care, since they can return a large data set (potentially all the space data). This might cause an out of memory error in the space and client process. You should use the <a href="query-paging-support.html">Space Iterator</a> to return the result in batches (paging) in such cases.</li>
             <li>They <span class="tc-bold">do not support timeout</span> operations. The simple way to achieve this is by calling the <code>Read</code> operation first with the proper timeout, and if non-null values are returned, perform the batch operation.</li>
             <li>Exception handling - operation many throw a <a href="[%=Links.ApiDotNetDoc%]/Overload_GigaSpaces_Core_Exceptions_ReadMultipleException__ctor.htm">ReadMultipleException</a>.</li>
-        </ul><a name="readIfExists">&#160;</a>
-        <h2><a name="read-if-exists">&#160;</a>ReadIfExists</h2>
+        </ul><a name="readIfExists"></a>
+        <h2><a name="read-if-exists"></a>ReadIfExists</h2>
         <p>A readIfExists operation will return a matching object, or a null if there is currently no matching object in the space.
 If the only possible matches for the template have conflicting locks from one or more other transactions, the timeout value specifies how long the client is willing to wait for interfering transactions to settle before returning a value.
 If at the end of that time no value can be returned that would not interfere with transactional state, null is returned. Note that, due to the remote nature of the space, read and readIfExists may throw a RemoteException if the network or server fails prior to the timeout expiration.</p>
@@ -236,7 +236,7 @@ spaceProxy.Write(employee);
 SqlQuery&lt;Employee&gt; query = new SqlQuery&lt;Employee&gt;("FirstName='first name'");
 Employee e = spaceProxy.ReadIfExists&lt;Employee&gt;(query);
 </code></pre>
-        <h2><a name="asynchronous-read">&#160;</a>Asynchronous Read</h2>
+        <h2><a name="asynchronous-read"></a>Asynchronous Read</h2>
         <p>The GigaSpace interface supports asynchronous (non-blocking) read operations through the ISpaceProxy interface. It is implemented via a call back listener.</p>
         <p>Example:</p><pre><code class="language-csharp">
 private void ReadListener (IAsyncResult&lt;Employee&gt; asyncResult)
@@ -249,7 +249,7 @@ public void asyncRead ()
     spaceProxy.BeginRead&lt;Employee&gt; (new SqlQuery&lt;Employee&gt; ("Id=1"), ReadListener, null);
 }
 </code></pre>
-        <h2><a name="modifiers-1">&#160;</a>Modifiers</h2>
+        <h2><a name="modifiers-1"></a>Modifiers</h2>
         <p>The read operations can be configured with different modifiers.</p>
         <h3>Examples</h3><pre><code class="language-csharp">Employee template = new Employee();
 
@@ -331,7 +331,7 @@ T ReadIfExists&lt;T&gt;(IQuery&lt;T&gt; query,ITransaction tx,long timeout);
                 </tr>
             </tbody>
         </table>
-        <h1><a name="the-take-operation">&#160;</a>Take Operations</h1>
+        <h1><a name="the-take-operation"></a>Take Operations</h1>
         <p>The <code>take</code> operations behave exactly like the corresponding <code>read</code> operations, except that the matching object is <span class="tc-bold">removed from the space on one atomic operation. Two <code>take</code> operations will never return</span> copies of the same object, although if two equivalent objects were in the space the two <code>take</code> operations could return equivalent objects.</p>
         <p>If a <code>take</code> returns a non-null value, the object has been removed from the space, possibly within a transaction. This modifies the claims to once-only retrieval: A take is considered to be successful only if all enclosing transactions commit successfully.
 If an <code>UnusableEntryException</code> is thrown, the take <code>removed</code> the unusable object from the space.
@@ -378,8 +378,8 @@ Employee e2 = spaceProxy.Take&lt;Employee&gt;(query);
 SqlQuery&lt;Employee&gt; query1 = new SqlQuery&lt;Employee&gt;("FirstName='first name'");
 Employee e3 = spaceProxy.Take&lt;Employee&gt;(query);
 
-</code></pre><a name="takeMultiple">&#160;</a>
-        <h2><a name="take-multiple">&#160;</a>Take Multiple</h2>
+</code></pre><a name="takeMultiple"></a>
+        <h2><a name="take-multiple"></a>Take Multiple</h2>
         <p>The GigaSpace interface provides simple way to perform bulk take operations. You may take large amount of objects in one call.</p>
         <div class="tc-admon-note">
             <p>To remove a batch of objects without returning these back into the client use <code>ISPaceProxy.Clear(SqlQuery).</code></p>
@@ -416,7 +416,7 @@ Employee[] employees1 = result1.ResultsArray;
             <li>They should be performed with transactions - this allows the client to roll back the space to its initial state prior the operation was started, in case of a failure.</li>
             <li>They <span class="tc-bold">do not support timeout</span> operations. The simple way to achieve this is by calling the <code>Read</code> operation first with the proper timeout, and if non-null values are returned, perform the batch operation.</li>
         </ul>
-        <h2><a name="take-if-exists">&#160;</a>TakeIfExists</h2>
+        <h2><a name="take-if-exists"></a>TakeIfExists</h2>
         <p>A takeIfExists operation will return a matching object, or a null if there is currently no matching object in the space.
 If the only possible matches for the template have conflicting locks from one or more other transactions, the timeout value specifies how long the client is willing to wait for interfering transactions to settle before returning a value.
 If at the end of that time no value can be returned that would not interfere with transactional state, null is returned.</p>
@@ -426,8 +426,8 @@ spaceProxy.Write(employee);
 
 SqlQuery&lt;Employee&gt; query = new SqlQuery&lt;Employee&gt;("FirstName='first name'");
 Employee e = spaceProxy.TakeIfExists&lt;Employee&gt;(query);
-</code></pre><a name="asynchronousTake">&#160;</a>
-        <h2><a name="asynchronous-take">&#160;</a>Asynchronous Take</h2>
+</code></pre><a name="asynchronousTake"></a>
+        <h2><a name="asynchronous-take"></a>Asynchronous Take</h2>
         <p>The GigaSpace interface supports asynchronous (non-blocking) take operations through the ISpaceProxy interface. It is implemented via a call back listener.</p>
         <h3>Example</h3><pre><code class="language-csharp">
 private void TakeListener (IAsyncResult&lt;Employee&gt; asyncResult)
@@ -440,7 +440,7 @@ public void asyncTake ()
     spaceProxy.BeginTake&lt;Employee&gt; (new SqlQuery&lt;Employee&gt; ("Id=1"), TakeListener, null);
 }
 </code></pre>
-        <h2><a name="modifiers-2">&#160;</a>Modifiers</h2>
+        <h2><a name="modifiers-2"></a>Modifiers</h2>
         <p>The take operations can be configured with different modifiers.</p>
         <p>Examples</p><pre><code class="language-csharp">Employee template = new Employee();
 
@@ -534,8 +534,8 @@ T TakeIfExistsById&lt;T&gt;(IdQuery&lt;T&gt; idQuery,ITransaction tx,long timeou
                     <td align="left" />
                 </tr>
             </tbody>
-        </table><a name="count">&#160;</a>
-        <h1><a name="the-count-operation">&#160;</a>The Count Operation</h1>
+        </table><a name="count"></a>
+        <h1><a name="the-count-operation"></a>The Count Operation</h1>
         <p>You can use <code>ISpaceProxy.Count</code> to count objects in a space.</p>
         <h2>Examples</h2><pre><code class="language-csharp">    ISpaceProxy spaceProxy = GigaSpacesFactory.FindSpace (url);
 
@@ -592,7 +592,7 @@ int Count(ISpaceQuery&lt;T&gt; query);
                 </tr>
             </tbody>
         </table>
-        <h1><a name="the-clear-operation">&#160;</a>The Clear Operation</h1>
+        <h1><a name="the-clear-operation"></a>The Clear Operation</h1>
         <p>You can use <code>ISpaceProxy.Clear</code> to remove objects from the space. When using the clear operation no object/objects are returned.</p>
         <h2>Examples</h2><pre><code class="language-csharp">    ISpaceProxy spaceProxy = GigaSpacesFactory.FindSpace(url);
 
@@ -652,7 +652,7 @@ void Clear(ISpaceQuery&lt;T&gt; query)
                 </tr>
             </tbody>
         </table>
-        <h1><a name="aggregators">&#160;</a>Aggregators</h1>
+        <h1><a name="aggregators"></a>Aggregators</h1>
         <p>There is no need to retrieve the entire data set from the space to the client side , iterate the result set and perform the aggregation. This would be an expensive activity as it might return large amount of data into the client application. The Aggregators allow you to perform the entire aggregation activity at the space side avoiding any data retrieval back to the client side.</p>
         <p>Example:</p>
         <div class="easyui-tabs" plain="true" data-options="">

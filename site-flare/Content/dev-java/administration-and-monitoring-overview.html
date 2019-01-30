@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -16,7 +16,7 @@
         <div class="tc-admon-note">
             <p>For more information on dependencies, see the <a href="../started/maven-artifacts.html">Maven Artifacts</a> page.</p>
         </div>
-        <h1><a name="examples">&#160;</a>Examples</h1>
+        <h1><a name="examples"></a>Examples</h1>
         <p>Tee following code examples show how the Admin API can be used to display information on the currently deployed services/components:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  GSA " style="padding:10px"><pre><code class="language-java">public void gsa() {
@@ -264,13 +264,13 @@ public void space() {
         <div class="tc-admon-note">
             <p>A fully running example of a <a href="/sbp/scaling-agent.html">Scaling Agent</a> is available in the Solutions &amp; Patterns section.</p>
         </div>
-        <h1><a name="admin-construction">&#160;</a>Admin Construction</h1>
+        <h1><a name="admin-construction"></a>Admin Construction</h1>
         <p>The Admin API uses the <code>AdminFactory</code> in order to create <code>Admin</code> instances. After you finish working with the <code>Admin</code>, its <code>Admin#close()</code> method should be called.</p>
         <p>The Admin API discovers all the advertised services from the <a href="../overview/the-runtime-environment.html#lus">Lookup Service</a>. Use the <code>AdminFactory#addGroup</code> to define which lookup groups. The lookup locators can also be used for non-multicast enabled environments using <code>AdminFactory#addLocator</code>. If the services started are secured, the username and password can be set on the Admin API as well.</p>
-        <h1><a name="discovery-process">&#160;</a>Discovery Process</h1>
+        <h1><a name="discovery-process"></a>Discovery Process</h1>
         <p>When the <code>Admin</code> is created, it starts to receive discovery events from all the advertised services/components within its lookup groups and lookup locators. The events occur asynchronously and the data model within the Admin API gets initialized in the background with services coming and going.</p>
         <p>This means that just creating the <code>Admin</code> and calling a specific "getter" for a data structure might not return what is currently deployed, and you should wait until the structures are filled. Some components have a <code>waitFor</code> method that allows waiting for a specific number of services to be up. When navigating the data model, the Admin API provides its most up-to-date state of the system it is monitoring.</p>
-        <h1><a name="domain-model">&#160;</a>Domain Model</h1>
+        <h1><a name="domain-model"></a>Domain Model</h1>
         <p>The Admin Domain Model has representation to all the <MadCap:variable name="General.ProductNameXAP" />-level main actors. They include:</p>
         <p>
             <img src="../Resources/Static/attachment_files/admin/admin_domain_model.png" width="569" height="388" />
@@ -332,7 +332,7 @@ public void space() {
                     </ul>
                 </td>
             </tr>
-        </table><a name="GridServiceAgentLink">&#160;</a>
+        </table><a name="GridServiceAgentLink"></a>
         <table>
             <thead>
                 <tr>
@@ -362,7 +362,7 @@ public void space() {
                     </td>
                 </tr>
             </tbody>
-        </table><a name="GridServiceAgentsLink">&#160;</a>
+        </table><a name="GridServiceAgentsLink"></a>
         <table>
             <thead>
                 <tr>
@@ -391,7 +391,7 @@ public void space() {
                     <td>Register for Grid Service Agent addition (discovery) and removal events.</td>
                 </tr>
             </tbody>
-        </table><a name="GridServiceManagerLink">&#160;</a>
+        </table><a name="GridServiceManagerLink"></a>
         <table>
             <thead>
                 <tr>
@@ -421,7 +421,7 @@ public void space() {
                     </td>
                 </tr>
             </tbody>
-        </table><a name="GridServiceManagersLink">&#160;</a>
+        </table><a name="GridServiceManagersLink"></a>
         <table>
             <thead>
                 <tr>
@@ -450,7 +450,7 @@ public void space() {
                     <td>Register for Grid Service Manager addition (discovery) and removal events.</td>
                 </tr>
             </tbody>
-        </table><a name="GridServiceContainerLink">&#160;</a>
+        </table><a name="GridServiceContainerLink"></a>
         <table>
             <thead>
                 <tr>
@@ -479,7 +479,7 @@ public void space() {
                     <td>Register for Processing Unit instance additions and removal events.</td>
                 </tr>
             </tbody>
-        </table><a name="GridServiceContainersLink">&#160;</a>
+        </table><a name="GridServiceContainersLink"></a>
         <table>
             <thead>
                 <tr>
@@ -508,7 +508,7 @@ public void space() {
                     <td>Register for Grid Service Container addition (discovery) and removal events.</td>
                 </tr>
             </tbody>
-        </table><a name="LookupServiceLink">&#160;</a>
+        </table><a name="LookupServiceLink"></a>
         <table>
             <thead>
                 <tr>
@@ -538,7 +538,7 @@ public void space() {
                     </td>
                 </tr>
             </tbody>
-        </table><a name="LookupServicesLink">&#160;</a>
+        </table><a name="LookupServicesLink"></a>
         <table>
             <thead>
                 <tr>
@@ -567,7 +567,7 @@ public void space() {
                     <td>Register for Lookup Service addition (discovery) and removal events.</td>
                 </tr>
             </tbody>
-        </table><a name="ProcessingUnitLink">&#160;</a>
+        </table><a name="ProcessingUnitLink"></a>
         <table>
             <thead>
                 <tr>
@@ -596,7 +596,7 @@ public void space() {
                     <td>- Register for Processing Unit instance additions and removal events.<br />- Register for Processing Unit instance provision attempts, failures, successes and pending events.<br />- Register for Managing Grid Service Manager change events.<br />- Register for Space correlation events.<br />- Register for deployment status change events.<br />- Register for backup Grid Service Manager change events.</td>
                 </tr>
             </tbody>
-        </table><a name="ProcessingUnitInstanceLink">&#160;</a>
+        </table><a name="ProcessingUnitInstanceLink"></a>
         <table>
             <thead>
                 <tr>
@@ -626,7 +626,7 @@ public void space() {
                     </td>
                 </tr>
             </tbody>
-        </table><a name="ProcessingUnitsLink">&#160;</a>
+        </table><a name="ProcessingUnitsLink"></a>
         <table>
             <thead>
                 <tr>
@@ -655,7 +655,7 @@ public void space() {
                     <td>- Register for Processing Unit deployments and undeployment events.<br />- Register for all Processing Unit instance addition and removal events (across all Processing Units).<br />- Register for all Processing Unit instance provision attempts, failures, success and pending events (across all Processing Units).<br />- Register for Managing Grid Service Manager change events on all Processing Units.<br />- Register for backup Grid Service Manager change events on all Processing Units.</td>
                 </tr>
             </tbody>
-        </table><a name="SpaceLink">&#160;</a>
+        </table><a name="SpaceLink"></a>
         <table>
             <thead>
                 <tr>
@@ -684,7 +684,7 @@ public void space() {
                     <td>- Register for Space instance addition and removal events.<br />- Register for Space instance change mode events (for all Space instances that are part of the Space).<br />- Register for Space instance replication status change events (for all Space instances that are part of the Space).<br />- Register for aggregated Space statistics events (if monitoring).</td>
                 </tr>
             </tbody>
-        </table><a name="SpaceInstanceLink">&#160;</a>
+        </table><a name="SpaceInstanceLink"></a>
         <table>
             <thead>
                 <tr>
@@ -713,7 +713,7 @@ public void space() {
                     <td>- Register for replication status change events.<br />- Register for Space mode change events<br />- Register for Space instance statistics (if monitoring).</td>
                 </tr>
             </tbody>
-        </table><a name="SpacesLink">&#160;</a>
+        </table><a name="SpacesLink"></a>
         <table>
             <thead>
                 <tr>
@@ -742,7 +742,7 @@ public void space() {
                     <td>- Register for Space addition and removal events.<br />- Register for Space instance addition and removal events (across all Spaces).<br />- Register for Space instance mode change events (across all Space instances).<br />- Register for Space instance replication change events (across all Space Instances).<br />- Register for aggregated Space level statistics change events (across all Spaces, if monitoring).<br />- Register for Space instance statistics change events (across all Space Instances, if monitoring).</td>
                 </tr>
             </tbody>
-        </table><a name="VirtualMachineLink">&#160;</a>
+        </table><a name="VirtualMachineLink"></a>
         <table>
             <thead>
                 <tr>
@@ -771,7 +771,7 @@ public void space() {
                     <td>- Register for Processing Unit instance addition and removal events.<br />- Register for Space instance addition and removal events.<br />- Register for statistics change events (if monitoring).</td>
                 </tr>
             </tbody>
-        </table><a name="VirtualMachinesLink">&#160;</a>
+        </table><a name="VirtualMachinesLink"></a>
         <table>
             <thead>
                 <tr>
@@ -800,7 +800,7 @@ public void space() {
                     <td>- Register for Virtual Machine addition and removal events.<br />- Register for aggregated Virtual Machine statistics events (if monitoring).<br />- Register for Virtual Machine level statistics change events (across all Virtual Machines, if monitoring).</td>
                 </tr>
             </tbody>
-        </table><a name="MachineLink">&#160;</a>
+        </table><a name="MachineLink"></a>
         <table>
             <thead>
                 <tr>
@@ -829,7 +829,7 @@ public void space() {
                     <td>- Register for Space instance addition and removal events from the Machine.<br />- Register for Processing Unit instance additions and removals events from the Machine.</td>
                 </tr>
             </tbody>
-        </table><a name="MachinesLink">&#160;</a>
+        </table><a name="MachinesLink"></a>
         <table>
             <thead>
                 <tr>
@@ -858,7 +858,7 @@ public void space() {
                     <td>- Register for Machine addition and removal events.</td>
                 </tr>
             </tbody>
-        </table><a name="OperatingSystemLink">&#160;</a>
+        </table><a name="OperatingSystemLink"></a>
         <table>
             <thead>
                 <tr>
@@ -887,7 +887,7 @@ public void space() {
                     <td>Register for statistics change events (if monitoring).</td>
                 </tr>
             </tbody>
-        </table><a name="OperatingSystemsLink">&#160;</a>
+        </table><a name="OperatingSystemsLink"></a>
         <table>
             <thead>
                 <tr>
@@ -916,7 +916,7 @@ public void space() {
                     <td>- Register for aggregated operating system statistics change events (if monitoring).<br />- Register for operating system level statistics change events (across all operating systems, if monitoring).</td>
                 </tr>
             </tbody>
-        </table><a name="TransportLink">&#160;</a>
+        </table><a name="TransportLink"></a>
         <table>
             <thead>
                 <tr>
@@ -945,7 +945,7 @@ public void space() {
                     <td>Register for transport statistics change events (if monitoring).</td>
                 </tr>
             </tbody>
-        </table><a name="TransportsLink">&#160;</a>
+        </table><a name="TransportsLink"></a>
         <table>
             <thead>
                 <tr>
@@ -978,7 +978,7 @@ public void space() {
         <div class="tc-admon-note">
             <p>The <code>Admin</code> functionality is designed to interact with a service grid deployment. For <code>StandaloneProcessingUnitContainer</code> and <code>IntegratedProcessingUnitContainer</code>, components such as <code>GridServiceAgent</code> and <code>GridServiceManager</code> are not started by default, therefore portions of the Admin functionality aren't available.</p>
         </div>
-        <h1><a name="accessing-the-domain-model">&#160;</a>Accessing the Domain Model</h1>
+        <h1><a name="accessing-the-domain-model"></a>Accessing the Domain Model</h1>
         <p>There are two ways to use the Admin API to access information:</p>
         <ul>
             <li>Call specific "getters" for the data and iterate over them (as shown in the example at the top of the page).</li>
@@ -1017,7 +1017,7 @@ public void space() {
 </code></pre>
         <p>Of course, you can register the same listener on a specific <code>Space</code> topology, or event on a specific <code>SpaceInstance</code>.</p>
         <p>Last, the <code>Admin</code> interface provides a one-stop method called <code>addEventListener</code> that accepts an <code>AdminListener</code>. Most event listeners implement this interface. You can create a class that implements several chosen listener interfaces, call the <code>addEventListener</code> method, and they will automatically be added to their respective components. For example, if our listener implements <code>GridServiceContainerAddedEventListener</code> and <code>GridServiceManagerAddedEventListener</code>, the listener will automatically be added to the <code>GridServiceManagers</code> and <code>GridServiceContainers</code>.</p>
-        <h1><a name="details-and-statistics">&#160;</a>Details and Statistics</h1>
+        <h1><a name="details-and-statistics"></a>Details and Statistics</h1>
         <ul>
             <li>
                 <p>Some components in the Admin API can provide statistics. For example, a <code>SpaceInstance</code> can provide statistics on how many times the read API was called on it. Statistics change over time, and in order to get them either the "getter" for the Statistics can be used, or a statistics listener can be registered for statistics change events.</p>
@@ -1050,7 +1050,7 @@ public void space() {
                 <p>The <code>Admin</code> interface also implements the <code>StatisticsMonitor</code> interface. Calling <code>startMonitor</code> on it will cause all holders to start monitoring. These include <code>Spaces</code>, <code>VirtualMachines</code>, <code>Transports</code>, and <code>OperatingSystems</code>.</p>
             </li>
         </ul>
-        <h1><a name="space-runtime-statistics">&#160;</a>Space Runtime Statistics</h1>
+        <h1><a name="space-runtime-statistics"></a>Space Runtime Statistics</h1>
         <p>The Space maintains statistics information about all the data types (for example, Space class types) it stores, and the amount of Space objects stored in memory for each data type. The following example shows how to retrieve this data. This approach eliminates the need to use the <code>GigaSpace.Count()</code>, which is relatively expensive, with Spaces that store large number of objects.</p>
         <p>If you are monitoring the Space class instance count with a monitoring tool, you should use the approach below rather calling the <code>GigaSpace.Count()</code>.</p><pre><code class="language-java">public static void printAllClassInstanceCountForAllPartitions (Admin admin , String spaceName) throws Exception
 {
@@ -1095,7 +1095,7 @@ static class SpacePartitionsComperator implements Comparator&lt;SpacePartition&g
     }
 }
 </code></pre>
-        <h1><a name="memoryxtend-statistics">&#160;</a>MemoryXtend Statistics</h1>
+        <h1><a name="memoryxtend-statistics"></a>MemoryXtend Statistics</h1>
         <p>If you have a system that utilizes MemoryXtend, you can monitor the performance of the off-heap storage and the external disk storage. For a list of available blobstore operation statistics, see the <a href="../admin/metrics-bundled.html#blobstore-operations">Predefined Metrics</a> page in the Administration guide.</p>
         <p>The following example (relevant for the disk storage driver) demonstrates how to retrieve RocksDB statistics using the Admin API.</p><pre><code class="language-java">
 SpaceInstance spaceInstance =
@@ -1128,7 +1128,7 @@ if (blobStoreStorageStatistics instanceof RocksDBBlobStoreStatistics) {
       }
 }
 </code></pre>
-        <h1><a name="monitoring-the-mirror-service">&#160;</a>Monitoring the Mirror Service</h1>
+        <h1><a name="monitoring-the-mirror-service"></a>Monitoring the Mirror Service</h1>
         <p>You can monitor various aspects of the mirror service using the Admin API.</p>
         <p>The mirror statistics are available using the <code>SpaceInstance</code> statistics. They can be used to monitor the state of the mirror Space and whether or not it is functioning properly. These statistics are relevant only for a mirror Space instance, and are not available for ordinary Space instances. The code below traverses all the Space instances and finds the mirror Space by retrieving the mirror statistics object (if it isn't null, this means it is a mirror Space). It then prints out some of the available statistics.</p><pre><code class="language-java">for (Space space : admin.getSpaces()) {
     System.out.println("Space [" + space.getUid() + "] numberOfInstances [" +
@@ -1155,7 +1155,7 @@ if (blobStoreStorageStatistics instanceof RocksDBBlobStoreStatistics) {
         <div class="tc-admon-note">
             <p>For more information, refer to the API documentation on <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/cluster/replication/async/mirror/MirrorStatistics.html" target="_blank">MirrorStatistics</a>.</p>
         </div>
-        <h1><a name="pu-status-changed-events">&#160;</a>PU Status Changed Events</h1>
+        <h1><a name="pu-status-changed-events"></a>PU Status Changed Events</h1>
         <p>You can receive notifications about the deployment status of a Processing Unit. An event listener can be attached to the Admin API that delivers events describing the current and previous <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">DeploymentStatus</a> of a Processing Unit.
 Here is an example:</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -1186,7 +1186,7 @@ Here is an example:</p>
 </code></pre>
             </div>
         </div>
-        <h1><a name="monitoring-processing-unit-health">&#160;</a>Monitoring Processing Unit Health</h1>
+        <h1><a name="monitoring-processing-unit-health"></a>Monitoring Processing Unit Health</h1>
         <p>For monitoring purposes, the Processing Unit can be queried to show its deployment status, number of actual instances vs. planned, and more details per Processing Unit instance. The planned vs. actual represents the current state, and querying this API returns an updated result each time a scheduled update is done by the underlying Admin. A plan changes on increments, decrements, restarts and relocation of instances.</p><pre><code class="language-java">    ProcessingUnit processingUnit = admin.getProcessingUnits().getProcessingUnit("myProceessingUnitName");
     Properties properties = new Properties();
     properties.put("Name", processingUnit.getName());
@@ -1194,8 +1194,8 @@ Here is an example:</p>
     properties.put("Type", processingUnit.getType());
     properties.put("Actual/Planned", processingUnit.getInstances().length + "/" + processingUnit.getPlannedNumberOfInstances());
     properties.put("SLA", processingUnit.getNumberOfInstances() + (processingUnit.getNumberOfBackups()&gt;0 ? "," + processingUnit.getNumberOfBackups(): ""));
-</code></pre><a name="servicemonitors">&#160;</a>
-        <h1><a name="service-monitors">&#160;</a>Service Monitors</h1>
+</code></pre><a name="servicemonitors"></a>
+        <h1><a name="service-monitors"></a>Service Monitors</h1>
         <p>The Admin API allows you to monitor <MadCap:variable name="General.ProductNameXAP" /> services. The information is available through the <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">ProcessingUnitInstanceStatistics</a>.</p>
         <table>
             <thead>

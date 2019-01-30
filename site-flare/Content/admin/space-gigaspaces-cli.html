@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -7,10 +7,10 @@
         <div class="tc-admon-refer">
             <p>In order to interact with a secured grid you need to login first. See <a href="command-line-interface-cli-security.html">Using the CLI in a Secured Environment</a>.</p>
         </div>
-        <h1><a name="clean">&#160;</a>Clean</h1>
-        <h2><a name="syntax">&#160;</a>Syntax</h2><pre><code>gs&gt; space clean [variable [value]]
+        <h1><a name="clean"></a>Clean</h1>
+        <h2><a name="syntax"></a>Syntax</h2><pre><code>gs&gt; space clean [variable [value]]
 </code></pre>
-        <h2><a name="description">&#160;</a>Description</h2>
+        <h2><a name="description"></a>Description</h2>
         <p>Removes all Entries and templates from the space.</p>
         <p>The <code>space clean</code> command is relevant only for spaces in a started state.</p>
         <div class="tc-admon-note">
@@ -21,7 +21,7 @@
         <div class="tc-admon-note">
             <p>Using <code>-c</code> (or <code>-cluster</code>) with a URL of a clustered space clears <span class="tc-bold">all</span> cluster members.</p>
         </div>
-        <h2><a name="options">&#160;</a>Options</h2>
+        <h2><a name="options"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -66,10 +66,10 @@
                 </div>
             </div>
         </div>
-        <h1><a name="clear">&#160;</a>Clear</h1>
-        <h2><a name="syntax-1">&#160;</a>Syntax</h2><pre><code>gs&gt; space clear [variable [value]]
+        <h1><a name="clear"></a>Clear</h1>
+        <h2><a name="syntax-1"></a>Syntax</h2><pre><code>gs&gt; space clear [variable [value]]
 </code></pre>
-        <h2><a name="description-1">&#160;</a>Description</h2>
+        <h2><a name="description-1"></a>Description</h2>
         <p>Removes all Entries and templates from the space.</p>
         <p>The <code>space clear</code> command is relevant only for spaces in a started state.</p>
         <div class="tc-admon-note">
@@ -80,7 +80,7 @@
         <div class="tc-admon-note">
             <p>Using <code>-c</code> (or <code>-cluster</code>) with a URL of a clustered space clears <span class="tc-bold">all</span> cluster members.</p>
         </div>
-        <h2><a name="options-1">&#160;</a>Options</h2>
+        <h2><a name="options-1"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -125,12 +125,12 @@
                 </div>
             </div>
         </div>
-        <h1><a name="cluster-members">&#160;</a>Cluster Members</h1>
-        <h2><a name="syntax-2">&#160;</a>Syntax</h2><pre><code>gs&gt; space cluster-members [variable [value]]
+        <h1><a name="cluster-members"></a>Cluster Members</h1>
+        <h2><a name="syntax-2"></a>Syntax</h2><pre><code>gs&gt; space cluster-members [variable [value]]
 </code></pre>
-        <h2><a name="description-2">&#160;</a>Description</h2>
+        <h2><a name="description-2"></a>Description</h2>
         <p>This command prints a list of all cluster members (spaces belonging to the specified cluster), including members that are not "alive". The list includes each member's name, whether it is alive or not (<code>is alive</code>), and its URL. Additionally, the command prints out the total number of members (including members that aren't alive), and the total number of live members.</p>
-        <h2><a name="options-2">&#160;</a>Options</h2>
+        <h2><a name="options-2"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -167,17 +167,17 @@
                 </div>
             </div>
         </div>
-        <h1><a name="config">&#160;</a>config</h1>
-        <h2><a name="syntax-3">&#160;</a>Syntax</h2><pre><code>gs&gt; space config [variable [value]]
+        <h1><a name="config"></a>config</h1>
+        <h2><a name="syntax-3"></a>Syntax</h2><pre><code>gs&gt; space config [variable [value]]
 </code></pre>
-        <h2><a name="description-3">&#160;</a>Description</h2>
+        <h2><a name="description-3"></a>Description</h2>
         <p>Displays the specified spaces's configuration details: space configuration, container configuration, cluster configuration, system properties, system environment and variables, Java properties, network interfaces, GigaSpaces build or version.</p>
         <p>You can view the configuration details of spaces in a specific container (see the options below) – specifying a container URL prints a numbered list of all the spaces in that container, and you can choose a space to view by its number, or <code>all</code> (view all spaces).</p>
         <p>Specifying a URL of a clustered space prints a list of all spaces in the cluster, and you can choose a space to view by its number, or <code>all</code> (view all spaces).</p>
         <div class="tc-admon-note">
             <p>Using <code>-c</code> (or <code>-cluster</code>) with a URL of a clustered space displays configuration details of <span class="tc-bold">all</span> cluster members.</p>
         </div>
-        <h2><a name="options-3">&#160;</a>Options</h2>
+        <h2><a name="options-3"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -206,10 +206,10 @@
                 </tr>
             </tbody>
         </table>
-        <h1><a name="connections">&#160;</a>Connections</h1>
-        <h2><a name="syntax-4">&#160;</a>Syntax</h2><pre><code>gs&gt; space connections [variable [value]]
+        <h1><a name="connections"></a>Connections</h1>
+        <h2><a name="syntax-4"></a>Syntax</h2><pre><code>gs&gt; space connections [variable [value]]
 </code></pre>
-        <h2><a name="description-4">&#160;</a>Description</h2>
+        <h2><a name="description-4"></a>Description</h2>
         <p>Displays all live connections to the specified space.</p>
         <div class="tc-admon-note">
             <p>It is also possible to retrieve space connections using the GigaSpaces Management Center <a href="gigaspaces-browser-connection-view.html">Connections view</a>.</p>
@@ -234,7 +234,7 @@
         <div class="tc-admon-note">
             <p>Using <code>-c</code> (or <code>-cluster</code>) with a URL of a clustered space displays live connections of <span class="tc-bold">all</span> cluster members.</p>
         </div>
-        <h2><a name="options-4">&#160;</a>Options</h2>
+        <h2><a name="options-4"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -263,13 +263,13 @@
                 </tr>
             </tbody>
         </table>
-        <h1><a name="copy">&#160;</a>Copy</h1>
-        <h2><a name="syntax-5">&#160;</a>Syntax</h2><pre><code>gs&gt; space copy [source-space-url] [destination-space-url] [options]
+        <h1><a name="copy"></a>Copy</h1>
+        <h2><a name="syntax-5"></a>Syntax</h2><pre><code>gs&gt; space copy [source-space-url] [destination-space-url] [options]
 </code></pre>
-        <h2><a name="description-5">&#160;</a>Description</h2>
+        <h2><a name="description-5"></a>Description</h2>
         <p>Copies all objects from the specified source space to the specified destination space. Specify the source and destination space URL by simply typing these after the <code>copy</code> command – first the source space, and then the destination space.</p>
         <p>The <code>space copy</code> command is relevant only for spaces that are in a started mode.</p>
-        <h2><a name="options-5">&#160;</a>Options</h2>
+        <h2><a name="options-5"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -305,17 +305,17 @@
                 </div>
             </div>
         </div>
-        <h1><a name="list">&#160;</a>List</h1>
-        <h2><a name="syntax-6">&#160;</a>Syntax</h2><pre><code>gs&gt; space list [variable [value]]
+        <h1><a name="list"></a>List</h1>
+        <h2><a name="syntax-6"></a>Syntax</h2><pre><code>gs&gt; space list [variable [value]]
 </code></pre>
-        <h2><a name="description-6">&#160;</a>Description</h2>
+        <h2><a name="description-6"></a>Description</h2>
         <p>Lists spaces in the network. Displays the space URL and if it includes a cluster schema, displays the type of the schema.</p>
         <p>You can list spaces in a specific container (see the options below) – specifying a container URL lists all the spaces in that container.</p>
         <p>Specifying a URL of a clustered space prints a list of all spaces in the cluster, and you can choose a space to see by its number, or <code>all</code> (lists all spaces).</p>
         <div class="tc-admon-note">
             <p>Using <code>\-c</code> (or <code>\-cluster</code>) with a URL of a clustered space lists <span class="tc-bold">all</span> cluster members.</p>
         </div>
-        <h2><a name="options-6">&#160;</a>Options</h2>
+        <h2><a name="options-6"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -366,10 +366,10 @@
                 </div>
             </div>
         </div>
-        <h1><a name="ping">&#160;</a>Ping</h1>
-        <h2><a name="syntax-7">&#160;</a>Syntax</h2><pre><code>gs&gt; space ping [variable [value]]
+        <h1><a name="ping"></a>Ping</h1>
+        <h2><a name="syntax-7"></a>Syntax</h2><pre><code>gs&gt; space ping [variable [value]]
 </code></pre>
-        <h2><a name="description-7">&#160;</a>Description</h2>
+        <h2><a name="description-7"></a>Description</h2>
         <p>Provides a convenient way to test a space. This option does the following:</p>
         <ul>
             <li>
@@ -387,7 +387,7 @@
         <div class="tc-admon-note">
             <p>Using <code>-c</code> (or <code>-cluster</code>) with a URL of a clustered space pings <span class="tc-bold">all</span> cluster members.</p>
         </div>
-        <h2><a name="options-7">&#160;</a>Options</h2>
+        <h2><a name="options-7"></a>Options</h2>
         <table>
             <thead>
                 <tr>
@@ -466,13 +466,13 @@
                 </div>
             </div>
         </div>
-        <h1><a name="sql">&#160;</a>SQL</h1>
-        <h2><a name="syntax-8">&#160;</a>Syntax</h2><pre><code>gs&gt; space sql [variable [value]]
+        <h1><a name="sql"></a>SQL</h1>
+        <h2><a name="syntax-8"></a>Syntax</h2><pre><code>gs&gt; space sql [variable [value]]
 </code></pre>
-        <h2><a name="description-8">&#160;</a>Description</h2>
+        <h2><a name="description-8"></a>Description</h2>
         <p>Queries the space you specified – according to the space URL and SQL query supplied.</p>
         <p>You can query spaces in a specific container (see the options below) – specifying a container URL prints a numbered list of all the spaces in that container, and you can choose a space to query by its number, or all spaces (queries all spaces).</p>
-        <h2><a name="options-8">&#160;</a>Options</h2>
+        <h2><a name="options-8"></a>Options</h2>
         <table>
             <thead>
                 <tr>

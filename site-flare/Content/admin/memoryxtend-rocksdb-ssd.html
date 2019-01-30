@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>MemoryXtend for Disk (SSD/HDD)</h1>
-        <h1><a name="overview">&#160;</a>Overview</h1>
+        <h1><a name="overview"></a>Overview</h1>
         <p>The MemoryXtend disk storage driver delivers built-in, high-speed persistence that leverages local or attached SSD devices, all-flash-arrays (AFA), or any other disk or memory option. It delivers low latency write and read performance, as well as fast data recovery.  The MemoryXtend disk storage driver is based on <a href="http://rocksdb.org/" target="_blank">RocksDB</a>, which is a persistent key/value store optimized for fast storage environments.</p>
-        <h2><a name="architecture-and-components">&#160;</a>Architecture and Components</h2>
+        <h2><a name="architecture-and-components"></a>Architecture and Components</h2>
         <p>When configured for the disk storage driver, the MemoryXtend architecture tiers the storage of each Space partition instance across two components: a Space partition instance (managed JVM heap) and an embedded key/value store (the blobstore) as shown in the diagram below.</p>
         <div class="tc-align-center">
             <p>
@@ -16,10 +16,10 @@
         <div class="tc-admon-note">
             <p><MadCap:variable name="General.ProductNameIE" /> and <MadCap:variable name="General.ProductNameXAP" /> require Read/Write permissions to mounted devices/partitions.</p>
         </div>
-        <h3><a name="space-partition-instance">&#160;</a>Space Partition Instance</h3>
+        <h3><a name="space-partition-instance"></a>Space Partition Instance</h3>
         <p>The Space partition instance is a JVM heap that acts as an LRU cache against the underlying blobstore. This tier in the architecture stores indexes, Space class metadata, transactions, replication redo logs, leases, and statistics.
 Upon a Space read operation, if the object exists in the JVM heap (i.e. a cache <i>hit</i>) it is immediately returned to the Space proxy client. Otherwise, the Space loads it from the underlying blobstore and places it on the JVM heap (known as a cache <i>miss</i>).</p>
-        <h3><a name="blobstore">&#160;</a>Blobstore</h3>
+        <h3><a name="blobstore"></a>Blobstore</h3>
         <p>The blobstore is based on a log-structured merge tree architecture (similar to popular NoSQL databases such as: <a href="https://hbase.apache.org/" target="_blank">HBase</a>, <a href="https://cloud.google.com/bigtable/" target="_blank">BigTable</a>, or <a href="https://cassandra.apache.org/" target="_blank">Cassandra</a>). There are three main components in the blobstore:</p>
         <ul>
             <li><span class="tc-bold">MemTable</span>: An in-memory data structure (residing on off-heap RAM) where all incoming writes are stored. When a MemTable fills up, it is flushed to an SST file on storage.</li>
@@ -27,7 +27,7 @@ Upon a Space read operation, if the object exists in the JVM heap (i.e. a cache 
             <li><span class="tc-bold">Sorted String Table (SST) files</span>: SSTable is a data structure (residing on disk) that efficiently stores a large data footprint while optimizing for high throughput, and sequential read/write workloads. When a MemTable fills up, it is flushed to an SST file on storage and the corresponding WAL file can be deleted.</li>
             <li><span class="tc-bold">Built-in Cache</span>: MemoryXtend comes with a built-in cache. This cache is part of the Space partition tier, and stores objects in their native form.</li>
         </ul>
-        <h1><a name="basic-configuration">&#160;</a>Basic Configuration</h1>
+        <h1><a name="basic-configuration"></a>Basic Configuration</h1>
         <p>Any existing Space can be configured to integrate a blobstore with it. As with a typical Processing Unit, configuration is done using either the <code>pu.xml</code> configuration file, or in the code. For example:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -140,7 +140,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
         <div class="tc-admon-note">
             <p>For an example of how to configure the on-heap cache properties, see the <a href="memoryxtend-overview.html#on-heap-cache">MemoryXtend overview</a> topic.</p>
         </div>
-        <h1><a name="off-heap-cache">&#160;</a>Off-Heap Cache</h1>
+        <h1><a name="off-heap-cache"></a>Off-Heap Cache</h1>
         <p>The data grid can cache the values of indexed fields in the process native (off-heap) memory. This optimizes operations that require only indexed values in order to execute, by fetching the data from off-heap instead of disk. The operations that benefit from this optimization are:</p>
         <ul>
             <li>Read with projection and only indexed fields in query and projection - primary instance optimization</li>
@@ -211,7 +211,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
         <p>When set to FINER, you can see where the entries were fetched from. Look for the following log entry:</p><pre><code class="language-property">2017-11-28 07:57:49,117  FINER [com.gigaspaces.cache] - container [mySpace_container1_1:mySpace] Blobstore- entry loaded from off heap, uid=-1850388785^84^98^0^0
 2017-11-28 07:57:49,117  FINER [com.gigaspaces.cache] - container [mySpace_container1_1:mySpace] Blobstore- entry loaded from disk, uid=-1850388785^84^98^0^0
 </code></pre>
-        <h1><a name="advanced-configuration">&#160;</a>Advanced Configuration</h1>
+        <h1><a name="advanced-configuration"></a>Advanced Configuration</h1>
         <p>As part of fine-tuning the MemoryXtend functionality, you can control the balance between memory utilization and system performance. This is useful because there are two ways to update the value of an object in the off-heap memory:</p>
         <ul>
             <li>Free up the old memory allocation, and reallocate new memory.</li>
@@ -220,7 +220,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
         <p>Deleting and reallocating memory takes longer then overwriting the same memory area, but if the size of the new value is smaller then the old value, then the overwrite option leaves part of the original allocated memory underutilized. You can use the <code>BLOBSTORE_OFF_HEAP_MIN_DIFF_TO_ALLOCATE_PROP</code> Space property to control when to trade off system performance for maximizing the memory usage.</p>
         <p>This Space property works as follows: if the oldValueSize - newValueSize &gt; blobstore.off-heap.update_threshold, then delete and reallocate memory for the object. Otherwise overwrite the old object value with the new object value.</p>
         <p>The default threshold is 50B.</p>
-        <h2><a name="example">&#160;</a>Example</h2>
+        <h2><a name="example"></a>Example</h2>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="pu.xml" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
@@ -261,15 +261,15 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 </code></pre>
             </div>
         </div>
-        <h1><a name="deployment-strategies">&#160;</a>Deployment Strategies</h1>
-        <h2><a name="local-storage">&#160;</a>Local Storage</h2>
+        <h1><a name="deployment-strategies"></a>Deployment Strategies</h1>
+        <h2><a name="local-storage"></a>Local Storage</h2>
         <p>This configuration allows each Space partition instance (primary or backup) to use a machine-local storage device (SSD/HDD). With this approach, data locality is leveraged so that the devices local to the machine are used for reads/writes. The local storage deployment strategy provides an easy way to implement a "local persistent store" (also known as native persistence) pattern.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/blobstore/memoryxtend-local-storage.png" alt="image" class="tc-picture80" />
             </p>
         </div>
-        <h2><a name="central-storage">&#160;</a>Central Storage</h2>
+        <h2><a name="central-storage"></a>Central Storage</h2>
         <p>This deployment strategy works well with <a href="http://en.wikipedia.org/wiki/Storage_area_network" target="_blank">storage area networks (SAN)</a>, which means that the disk drive devices are installed in a remote storage array but behave as if they're attached to the local machine. Most storage networks use the iSCSI or Fibre Channel protocol for communication between servers and disk drive devices. This configuration breaks the coupling between a partition instance and a local machine device, allowing seamless relocation of partitions across data grid machines.</p>
         <div class="tc-align-center">
             <p>
@@ -277,7 +277,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
             </p>
         </div>
         <p>Tiering storage between Space partition instances and attached storage can be applied across one or more storage arrays, as shown in the configurations below:</p>
-        <h3><a name="single-storage-array">&#160;</a>Single Storage Array</h3>
+        <h3><a name="single-storage-array"></a>Single Storage Array</h3>
         <table class="tc-borderless">
             <tr>
                 <td style="width:80%;">
@@ -297,7 +297,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
             </tr>
         </table><pre><code class="language-xml">&lt;blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2,/mnt/db3,/mnt/db4]"/&gt;
 </code></pre>
-        <h3><a name="dual-storage-array">&#160;</a>Dual Storage Array</h3>
+        <h3><a name="dual-storage-array"></a>Dual Storage Array</h3>
         <table class="tc-borderless">
             <tr>
                 <td style="width:80%;">
@@ -317,8 +317,8 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
             </tr>
         </table><pre><code class="language-xml">&lt;blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt1/db1,/mnt1/db2],[/mnt2/db1,/mnt2/db2]"/&gt;
 </code></pre>
-        <h1><a name="performance-tuning">&#160;</a>Performance Tuning</h1>
-        <h2><a name="persistent-data-store-tuning-parameters">&#160;</a>Persistent Data Store Tuning Parameters</h2>
+        <h1><a name="performance-tuning"></a>Performance Tuning</h1>
+        <h2><a name="persistent-data-store-tuning-parameters"></a>Persistent Data Store Tuning Parameters</h2>
         <p>The data grid uses the default DBOptions class <code>com.com.gigaspaces.blobstore.rocksdb.config.XAPDBOptions</code>.</p>
         <div class="tc-admon-note">
             <p>A list of configuration properties can be found in  the <a href="https://github.com/facebook/rocksdb/blob/master/java/src/main/java/org/rocksdb/DBOptionsInterface.java" target="_blank">org.rocksdb.DBOptionsInterface</a> API&#160;documentation.</p>
@@ -360,7 +360,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
                 </tr>
             </tbody>
         </table>
-        <h2><a name="lsm-logic-and-memtables-tuning-parameters">&#160;</a>LSM Logic and MemTables Tuning Parameters</h2>
+        <h2><a name="lsm-logic-and-memtables-tuning-parameters"></a>LSM Logic and MemTables Tuning Parameters</h2>
         <p>Below are the values for the default class <code>com.com.gigaspaces.blobstore.rocksdb.config.XAPColumnFamilyOptions</code>.</p>
         <div class="tc-admon-note">
             <p>A list of configuration properties can be found in  the <a href="https://github.com/facebook/rocksdb/blob/v5.5.1/java/src/main/java/org/rocksdb/AdvancedColumnFamilyOptionsInterface.java">org.rocksdb.ColumnFamilyOptionsInterface</a> API&#160;documentation.</p>
@@ -431,7 +431,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
                 </tr>
             </tbody>
         </table>
-        <h2><a name="examples">&#160;</a>Examples</h2>
+        <h2><a name="examples"></a>Examples</h2>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -14,7 +14,7 @@
                 <img src="../Resources/Static/attachment_files/load_balancing_basic.gif" alt="load_balancing_basic.gif" class="tc-picture50" />
             </p>
         </div>
-        <h1><a name="hash-based-load-balancing">&#160;</a>Hash-Based Load Balancing</h1>
+        <h1><a name="hash-based-load-balancing"></a>Hash-Based Load Balancing</h1>
         <p>This is the <span class="tc-bold">default mode</span> and applicable for most of the application. When using a hash-based load balancing policy, the client proxy spreads new written space objects into relevant cluster space nodes. The relevant space to rout the operation is determined using a space object routing field (also called a routing index) value hash code. This value, together with the number of the cluster partitions, is used to calculate the target space for the operation.</p><pre><code class="language-java">Target partition space ID = safeABS(routing field hashcode) % (# of partitions)
 
 int safeABS( int value)
@@ -35,7 +35,7 @@ int partitionCount = admin.getSpaces().waitFor("MyDataGridName", 5, TimeUnit.SEC
         <div class="tc-admon-important">
             <p>Converting a numeric value to a String and using the string representation as the routing key will give different load balancing in comparison to a numeric value.</p>
         </div>
-        <h1><a name="example">&#160;</a>Example</h1>
+        <h1><a name="example"></a>Example</h1>
         <p>A cluster is defined with 3 partitions, where each partition has one primary and one backup space.</p>
         <div class="tc-align-center">
             <p>
@@ -72,7 +72,7 @@ public class Account
         <div class="tc-admon-tip">
             <p>If the relevant target space or its backup space is not active an error message will be thrown.</p>
         </div>
-        <h2><a name="hash-based-load-balancing-calculator">&#160;</a>Hash-Based Load Balancing Calculator</h2>
+        <h2><a name="hash-based-load-balancing-calculator"></a>Hash-Based Load Balancing Calculator</h2>
         <p>See the below hash-based load balancing calculator that calculates the target space of a given routing value.
 You may change this to use String based routing values or numerical values.</p><pre><code class="language-java">import java.util.Hashtable;
 import java.util.Random;
@@ -133,7 +133,7 @@ Partition 9 has 94 objects
 Routing field values:
 487,935,676,124,....
 </code></pre>
-        <h1><a name="batch-operation-execution-mode">&#160;</a>Batch Operation Execution Mode</h1>
+        <h1><a name="batch-operation-execution-mode"></a>Batch Operation Execution Mode</h1>
         <p>The following table specifies when the different batch operations executed in parallel manner and when in serial manner when the space running in partitioned mode:</p>
         <table>
             <thead>
@@ -211,7 +211,7 @@ Routing field values:
             <li>When calling any of the batch operations with a template and set the routing id in the template (making sure all the space objects go to the same physical space in a cluster) you do not need to use jini transaction. Local transaction will suffice.</li>
             <li>readMultiple/takeMultiple against any single partition is a synchronous call in the associated partition specific client proxy. The space operation is a synchronous operation. It will return as many requested objects as are currently present in the space, up to the number requested. If no objects are matched an empty array is returned.</li>
         </ul>
-        <h1><a name="considerations">&#160;</a>Considerations</h1>
+        <h1><a name="considerations"></a>Considerations</h1>
         <ul>
             <li>The replication scheme does not take into account the <code>IReplicatable</code> (partial replication) and replication matrix.</li>
             <li>All objects with a given routing value will be stored in the <span class="tc-italic">same partition</span>. This means that a given partition <span class="tc-italic">must</span> be able to hold all similarly-routed objects. If the routing value does not have uniform distribution, the partitioning will be uneven. Use a derived routing field (such as ID field) as the routing field value that gives a flat distribution across all nodes, if possible.</li>

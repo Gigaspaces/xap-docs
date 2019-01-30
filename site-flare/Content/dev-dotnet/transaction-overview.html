@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -9,7 +9,7 @@
             <img src="../Resources/Static/attachment_files/tx_manager.jpg" alt="" title="" class="tc-picture50" />
         </div>
         <p>If an error occurs, you have to abort the transaction by calling <code>ITransaction.Abort()</code>. To clean up the transaction resources, call <code>ITransaction.Dispose()</code>.</p>
-        <h1><a name="usage">&#160;</a>Usage</h1>
+        <h1><a name="usage"></a>Usage</h1>
         <p>Suppose we have an order processing system, and we need to validate incoming orders before they continue to be processed. Our code could look something like this:</p><pre><code class="language-csharp">public void ProcessNewOrder(ISpaceProxy space)
 {
     // Get an order which requires processing:
@@ -58,7 +58,7 @@
             <li>The <code>Take</code> and <code>Write</code> operations now use the <code>txn</code> to tell the Space to perform them under that transaction.</li>
         </ol>
         <p>Finally, we now have to provide a transaction manager when invoking <code>ProcessNewOrder()</code>. This can be done by invoking <code>GigaSpacesFactory.CreateDistributedTransactionManager()</code>. It isn't necessary to create a transaction manager each time we create a transaction, so it was left out of the method. The transaction manager is usually created once upon application initialization, and used throughout the application.</p>
-        <h1><a name="timeout">&#160;</a>Timeout</h1>
+        <h1><a name="timeout"></a>Timeout</h1>
         <p>In some circumstances, the application may hang before the transaction is committed or aborted, which means that entries that were affected by the transactions are locked away from other users. To prevent this, create the transaction with a timeout, so that when the timeout expires the transaction is automatically rolled back and all entries are released.</p>
         <p>You can specify a transaction timeout when the transaction is created:</p><pre><code class="language-csharp">// Create a transaction with a 5 minute timeout:
 txnManager.Create(5 ** 60 ** 1000);
@@ -66,7 +66,7 @@ txnManager.Create(5 ** 60 ** 1000);
         <p>Alternatively, you can set the default transaction timeout on the transaction manager:</p><pre><code class="language-csharp">// Set the default transactions timeout to 5 minutes:
 txnManager.DefaultLeaseTime = 5 ** 60 ** 1000;
 </code></pre>
-        <h1><a name="isolation-levels">&#160;</a>Isolation Levels</h1>
+        <h1><a name="isolation-levels"></a>Isolation Levels</h1>
         <p>When performing read operations with transactions, the transaction isolation level can be set using the Read Modifiers:</p>
         <table>
             <thead>
@@ -120,7 +120,7 @@ public void readWithTransaction()
     }
 }
 </code></pre>
-        <h1><a name="viewing-transactions">&#160;</a>Viewing Transactions</h1>
+        <h1><a name="viewing-transactions"></a>Viewing Transactions</h1>
         <div class="tc-admon-note">
             <p>You can view and inspect ongoing Space transactions using the <a href="../admin/gigaspaces-browser-transaction-view.html">GigaSpaces Management Center</a>.</p>
         </div>

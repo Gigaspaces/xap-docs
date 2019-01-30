@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -14,8 +14,8 @@
         <div class="tc-admon-tip">
             <p>The output-filter can be used also to modify the replicated data before it is arriving the target site. When using a <code>SpaceDocument</code> the modified field must be a predefined field described with the document schema (fixed field).</p>
         </div>
-        <h1><a name="using-the-filter">&#160;</a>Using the Filter</h1>
-        <h3><a name="filtering-objects">&#160;</a>Filtering Objects</h3>
+        <h1><a name="using-the-filter"></a>Using the Filter</h1>
+        <h3><a name="filtering-objects"></a>Filtering Objects</h3>
         <p>With the example below a replication filter is used with the source space (output-filter). The New-York space is configured not to replicate the Stock object type to London site. This Stock object type still being replicated to all other location replication targets (backup/mirror) and also to the remote Hong Kong gateway. The filtering can be determined also based on the content of the replicated object or any other custom business logic.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  New York Space " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -67,7 +67,7 @@
 </code></pre>
             </div>
         </div>
-        <h3><a name="filtering-space-events">&#160;</a>Filtering Space Events</h3>
+        <h3><a name="filtering-space-events"></a>Filtering Space Events</h3>
         <p>You can choose which Space events (Take, Lease Expiration etc) are replicated. In the example below we define a filter that prevents the <code>DISCARD</code> and <code>LEASE_EXPIRATION</code> events to be replicated:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Source Space" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;

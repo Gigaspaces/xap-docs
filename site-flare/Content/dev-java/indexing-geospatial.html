@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -25,7 +25,7 @@ against this property:</p><pre><code class="language-java">public class GasStati
         <div class="tc-admon-note">
             <p>See <a href="query-geospatial.html">Geospatial Queries</a>  for more information on how geospatial queries work.</p>
         </div>
-        <h1><a name="nested-index">&#160;</a>Nested Index</h1>
+        <h1><a name="nested-index"></a>Nested Index</h1>
         <p>An index can be defined on a nested property to improve performance of nested queries. Nested properties indexing uses an additional attribute - <code>path()</code>.
 This attribute represents the path of the property within the nested object.</p>
         <p>In the example below, the <code>Point</code> is a property of the class <code>Location</code>  which is a property of <code>GasStation</code>:</p>
@@ -92,7 +92,7 @@ public class Location {
                 .setParameter(1, ShapeFactory.circle(p, 4.5d));
         GasStation station = gigaSpace.read(query);
 </code></pre>
-        <h1><a name="combining-spatial-and-standard-predicates">&#160;</a>Combining Spatial and Standard Predicates</h1>
+        <h1><a name="combining-spatial-and-standard-predicates"></a>Combining Spatial and Standard Predicates</h1>
         <p>Suppose our <code>GasStation</code> class contains a <code>price</code> property as well, and we want to enhance our query and find nearby gas stations whose price is lower than a certain threshold. We can simply add the relevant predicate to the query's criteria:</p><pre><code class="language-java">public GasStation findNearbyGasStation(Point location, int radius, double maxPrice) {
     SQLQuery&lt;GasStation&gt; query = new SQLQuery(GasStation.class, "location spatial:within ? AND price &lt; ?")
         .setParameter(1, ShapeFactory.circle(location, radius))

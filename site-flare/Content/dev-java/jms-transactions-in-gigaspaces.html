@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -13,7 +13,7 @@
 
 <p>Transacted sessions use transactions to consume and to send messages. When the client calls <code>Session.commit()</code>, unacknowledged messages are acknowledged and produced messages are written to the space.</p>
 
-<h1><a name="local-vs-distributed-transactions">&#160;</a>Local vs. Distributed Transactions</h1>
+<h1><a name="local-vs-distributed-transactions"></a>Local vs. Distributed Transactions</h1>
 
 <p>In GigaSpaces JMS, it is possible to use local transactions and distributed transactions (Mahalo).</p>
 
@@ -23,7 +23,7 @@
 
 <p>To overcome this problem, the client can use distributed transactions, that can span over more than one space.</p>
 
-<h2><a name="when-to-use-distributed-transactions">&#160;</a>When to Use Distributed Transactions</h2>
+<h2><a name="when-to-use-distributed-transactions"></a>When to Use Distributed Transactions</h2>
 
 <p>The JMS client uses a cluster that contains more than one space. The session is transacted, and transactions involve more than one destination (for message consumption and/or production):</p>
 
@@ -37,7 +37,7 @@
   <p>You do not need to use distributed transactions when consuming from a Topic, and sending a single message to another destination.</p>
 </div>
 
-<h3><a name="preparing-jms-to-work-with-distributed-transactions">&#160;</a>Preparing JMS to Work with Distributed Transactions</h3>
+<h3><a name="preparing-jms-to-work-with-distributed-transactions"></a>Preparing JMS to Work with Distributed Transactions</h3>
 
 <p>To use Mahalo, you must first enable the Mahalo service in GigaSpaces.</p>
 

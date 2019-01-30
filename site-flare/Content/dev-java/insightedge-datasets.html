@@ -22,7 +22,7 @@ Encoders for most common types are automatically provided by importing <code>spa
 
 <p>This section describes how to use the Dataset API with the Data Grid.</p>
 
-<h1><a name="preparing">&#160;</a>Preparing</h1>
+<h1><a name="preparing"></a>Preparing</h1>
 
 <p>The entry point to Dataset features is Spark <code>SparkSession</code> (replaces the old <code>SQLContext</code>).</p>
 
@@ -39,7 +39,7 @@ import org.insightedge.spark.implicits.all._
 </div>
 </div>
 
-<h1><a name="person-case-class">&#160;</a>Person case class</h1>
+<h1><a name="person-case-class"></a>Person case class</h1>
 
 <p>For the following code snippets, we will use a simple case class named Person.
 This case class can be written to (and loaded from) the Data Grid or an external persisted storage.</p>
@@ -59,7 +59,7 @@ case class Person(
 </div>
 </div>
 
-<h1><a name="creating-datasets">&#160;</a>Creating Datasets</h1>
+<h1><a name="creating-datasets"></a>Creating Datasets</h1>
 
 <p>RDDs are stored in Data Grid simply as collections of objects of a certain type.
 You can create Dataset by such type with the next syntax:</p>
@@ -108,7 +108,7 @@ ds.show()
 </div>
 </div>
 
-<h1><a name="persisting-datasets-to-data-grid">&#160;</a>Persisting Datasets to Data Grid</h1>
+<h1><a name="persisting-datasets-to-data-grid"></a>Persisting Datasets to Data Grid</h1>
 
 <p>To write a Dataset use <code>Dataset.write</code>. The content of the Dataset is saved with a specified collection name.
 The behavior of the write operation is controlled by the <code>SaveMode</code>.</p>
@@ -159,7 +159,7 @@ persisted.show()
 
 <p>Persisted Datasets are shared among multiple Spark jobs and stay alive after the jobs are complete.</p>
 
-<h1><a name="nested-properties">&#160;</a>Nested properties</h1>
+<h1><a name="nested-properties"></a>Nested properties</h1>
 
 <p>Let's enhance <code>Person</code> class with an additional property <code>Address</code> (that has some properties of it's own).
 If you write some <code>Person</code> to a Data Grid, e.g. by persisting an RDD, and then load

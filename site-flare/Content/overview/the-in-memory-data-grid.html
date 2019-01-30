@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>In-Memory Data Grid Layer</h1>
-        <h1><a name="architecture-perspectives">&#160;</a>Architecture Perspectives</h1>
+        <h1><a name="architecture-perspectives"></a>Architecture Perspectives</h1>
         <p>This section describes the <a href="https://www.gigaspaces.com/solution/in-memory-data-grid" target="_blank">In-Memory Data Grid</a> (IMDG) architecture according to the following, in order to provide a comprehensive understanding of its functionality, behavior, and accessibility.</p>
         <ul>
             <li>
@@ -23,14 +23,14 @@
         <div class="tc-admon-note">
             <p>For a general explanation of the GigaSpaces <MadCap:variable name="General.ProductNameXAP" /> product architecture, refer to  <a href="product-architecture.html">XAP Architecture</a>.</p>
         </div>
-        <h1><a name="xap-components-perspective">&#160;</a><MadCap:variable name="General.ProductNameXAP" /> Components Perspective</h1>
+        <h1><a name="xap-components-perspective"></a><MadCap:variable name="General.ProductNameXAP" /> Components Perspective</h1>
         <p>The following diagram shows a component view of <MadCap:variable name="General.ProductNameXAP" />. The main components are described in more detail below.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/XAP Architecture Overview.jpg" alt="XAP Architecture Overview.jpg" class="tc-picture80" />
             </p>
         </div>
-        <h2><a name="openspaces">&#160;</a>OpenSpaces</h2>
+        <h2><a name="openspaces"></a>OpenSpaces</h2>
         <p>OpenSpaces is the primary framework for developing applications in GigaSpaces. OpenSpaces uses Spring as a POJO-driven development infrastructure, and adds runtime and development components for developing POJO-driven EDA/SOA-based applications, and scaling them out simply across a pool of machines, without dependency on a J2EE container.</p>
         <p>To achieve these goals, OpenSpaces adds the following components to the Spring development environment:</p>
         <ul>
@@ -53,7 +53,7 @@
                 <p><a href="../dev-java/transaction-overview.html">Declarative transaction support</a> for GigaSpaces In-Memory Data Grid.</p>
             </li>
         </ul>
-        <h2><a name="core-middleware">&#160;</a>Core Middleware</h2>
+        <h2><a name="core-middleware"></a>Core Middleware</h2>
         <p><MadCap:variable name="General.ProductNameXAP" /> relies on the JavaSpaces (space-based) model as its core middleware, and provides specialized components, implemented as wrapper facades on top of the space implementations, to deliver specific data or messaging semantics. <MadCap:variable name="General.ProductNameXAP" /> exposes both the JavaSpaces API, with different flavors suited to the usage scenario (SQLQuery for data, FIFO for messaging, etc.), and other standard APIs such JCache/JDBC and JMS.</p>
         <p><span class="tc-bold"><MadCap:variable name="General.ProductNameXAP" /> middleware virtualization facilities</span>
         </p>
@@ -103,9 +103,9 @@
                 <p><a href="/sbp/xap-order-management-tutorial.html">Parallel Processing</a> – enables parallel execution of low latency, high-throughput business transactions, using the Master-Worker pattern.</p>
             </li>
         </ul>
-        <h2><a name="sla-driven-container">&#160;</a>SLA-Driven Container</h2>
+        <h2><a name="sla-driven-container"></a>SLA-Driven Container</h2>
         <p>SLA-Driven Containers (known also as Grid Service Containers or GSCs), enable deployment of Processing Units over a dynamic pool of machines, based on SLA definitions. Each container is a Java process which provides a hosting environment for application services bundled in a Processing Unit. The container virtualizes the underlying compute resources, and performs mapping between the application runtime and the underlying resources, based on SLA criteria such as CPU and memory usage, hardware configuration and software resource availability (JVM, DB, etc). It also provides self-healing capabilities for handling failure or scaling events.</p>
-        <h3><a name="sla-driven-in-memory-data-grid">&#160;</a>SLA-Driven In-Memory Data Grid</h3>
+        <h3><a name="sla-driven-in-memory-data-grid"></a>SLA-Driven In-Memory Data Grid</h3>
         <p>With <MadCap:variable name="General.ProductNameXAP" />, IMDG instances are constructed out of space instances. The IMDG can be deployed just like any other service, within a Processing Unit. This provides the option to associate SLA definitions with the IMDG. A common use is to relocate IMDG instances based on memory utilization; another use is to use SLA definitions to handle deployment of different IMDG topologies over the same containers.</p>
         <p>The SLA-Driven Containers can also add self-healing characteristics. When one container crashes, the failed IMDG instances are automatically relocated to the available containers, providing the application with continuous high-availability.</p>
         <div class="tc-align-center">
@@ -113,7 +113,7 @@
                 <img src="../Resources/Static/attachment_files/XAP SLA Container failover.jpg" alt="XAP SLA Container failover.jpg" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="runtime-perspective">&#160;</a>Runtime Perspective</h1>
+        <h1><a name="runtime-perspective"></a>Runtime Perspective</h1>
         <p>From a runtime perspective, a <MadCap:variable name="General.ProductNameXAP" /> cluster is a cluster of machines, each running one or more instances of SLA-Driven Containers. The containers are responsible for exposing the hardware resources to the <MadCap:variable name="General.ProductNameXAP" /> applications.</p>
         <p>An application running with <MadCap:variable name="General.ProductNameXAP" /> is built of multiple Processing Units. The Processing Units are packaged as part of a bundle; bundle structure is compliant with Spring/OSGI. Each bundle contains a deployment descriptor named <code>pu.xml</code>, a Spring application context file with Open Spaces component extensions. This file contains the Processing Unit's SLA definition, as well as associations between the application components, namely the POJO services, the space middleware components, and most commonly, a Data Grid.</p>
         <div class="tc-align-center">
@@ -123,7 +123,7 @@
         </div>
         <p>The application is deployed through a GSM (Grid Service Manager) which performs match-making between the SLA definitions of the application's Processing Unit and the available SLA-Driven Containers. The SLA definitions include the number of instances that need to be deployed, the number of instances that should run per container and across the entire network, and system requirements such as the required JVM version or database version.</p>
         <p>Different applications may have one or more instances of their Processing Units running in the same container at the same time. Even though the applications share the same JVM instance, they are kept isolated through application-specific classloaders.</p>
-        <h1><a name="soa-eda-perspective">&#160;</a>SOA/EDA Perspective</h1>
+        <h1><a name="soa-eda-perspective"></a>SOA/EDA Perspective</h1>
         <p>The Space-Based Architecture (SBA) can be viewed as a special case of SOA/EDA, designed specifically for high-performance stateful applications.</p>
         <div class="tc-align-center">
             <p>
@@ -146,12 +146,12 @@
         </div>
         <p>The services that reside within a Processing Unit are just like any other services in the web services world. Their lifecycle can be managed individually, and they can be deployed and upgraded dynamically without bringing down the entire Processing Unit (assuming they are implemented as OSGI services).</p>
         <p>The services can also be accessed by any other services, whether they reside in the same processing unit or are remote clients. In the case of collocated services, interaction is very efficient, since it is done entirely in-memory. In the case of remote services, Processing Unit services can be accessed in various forms, including the classic remoting topology. The following section describes the different interaction and runtime options for clients interacting with SBA Processing Unit services.
- <a name="client">&#160;</a></p>
-        <h1><a name="remote-client-perspective">&#160;</a>Remote Client Perspective</h1>
+ <a name="client"></a></p>
+        <h1><a name="remote-client-perspective"></a>Remote Client Perspective</h1>
         <p>Applications deployed in <MadCap:variable name="General.ProductNameXAP" /> are distributed across multiple machines. In the classic tier-based approach, remote client interactions were mainly RPC-based, or in some cases message-driven. RPC-based communication assumes direct reference to a remote server. This approach doesn't work in <MadCap:variable name="General.ProductNameXAP" />-based applications, because they span multiple physical machines and change their location during runtime based on the SLA. This lead to a requirement that client interaction with <MadCap:variable name="General.ProductNameXAP" /> applications can be done through a virtualized remote reference, which can keep track of different application instances during runtime, and route client requests to the appropriate instance based on the request type, its content, and so on.</p>
-        <h2><a name="modes-of-interaction">&#160;</a>Modes of Interaction</h2>
+        <h2><a name="modes-of-interaction"></a>Modes of Interaction</h2>
         <p><MadCap:variable name="General.ProductNameXAP" />-based applications enable several modes of communication between the client application and the actual server instances, all relying on the space to enable virtualization of the interaction.</p>
-        <h3><a name="data-driven-interaction">&#160;</a>Data-Driven Interaction</h3>
+        <h3><a name="data-driven-interaction"></a>Data-Driven Interaction</h3>
         <p>Data-driven interaction is common in analytics scenarios. It means that the client application interacts primarily with the application data, by performing queries and updates. The business logic is triggered as a result of this interaction, by means of notifications (the equivalent of database applications) or extended queries (the equivalent of stored procedure).</p>
         <p>In <MadCap:variable name="General.ProductNameXAP" />, this mode of interaction can be achieved in two ways:</p>
         <ul>
@@ -162,7 +162,7 @@
                 <p>Using the wrapper facades provided by GigaSpaces, such as the JCache/Map interface or JDBC driver, which perform this mapping implicitly.</p>
             </li>
         </ul>
-        <h3><a name="message-driven-interaction">&#160;</a>Message-Driven Interaction</h3>
+        <h3><a name="message-driven-interaction"></a>Message-Driven Interaction</h3>
         <p>Message-driven interaction is common in transaction processing scenarios and is based on the Command Pattern (also known as the Master-Worker Pattern). In this pattern, applications interact by sending command messages; services on the server side await these messages and are triggered by their arrival. Ordinarily, the business logic of the services is to interact with the IMDG to retrieve current state information, to reference the data, and finally to synchronize state to enable workflow with other services.</p>
         <p>In <MadCap:variable name="General.ProductNameXAP" />, this mode of interaction can be achieved in two ways:</p>
         <ul>
@@ -173,7 +173,7 @@
                 <p>Using the JMS interface, which is provided as a wrapper on top of the space API, and maps between the JMS operation and the required space operations.</p>
             </li>
         </ul>
-        <h3><a name="rpc-based-interaction">&#160;</a>RPC-Based Interaction</h3>
+        <h3><a name="rpc-based-interaction"></a>RPC-Based Interaction</h3>
         <p>RPC (Remote Procedure Call) is used to invoke business logic method on a remote server. It is different from the message driven interaction in two respects:</p>
         <ul>
             <li>
@@ -188,7 +188,7 @@
         <div class="tc-admon-note">
             <p>For more details, see the <a href="../dev-java/executor-based-remoting.html">Executor Based Remoting</a> page.</p>
         </div>
-        <h2><a name="remote-client-interaction-options">&#160;</a>Remote Client Interaction Options</h2>
+        <h2><a name="remote-client-interaction-options"></a>Remote Client Interaction Options</h2>
         <p>From a runtime perspective, there are several ways remote clients can interact with <MadCap:variable name="General.ProductNameXAP" />-based applications:</p>
         <ul>
             <li>
@@ -210,10 +210,10 @@
             </p>
         </div>
         <p>The Space enables your application to read data from it, and write data to it in various ways. It also deals with various configuration aspects, such as space topologies, persistency to an external data source and memory management facilities.</p>
-        <h1><a name="the-space-as-the-system-of-record">&#160;</a>The Space as the System of Record</h1>
+        <h1><a name="the-space-as-the-system-of-record"></a>The Space as the System of Record</h1>
         <p>One of the unique concepts of GigaSpaces is that its In-Memory-Data-Grid (IMDG or the Space) serves as the system of record for your application.
 This means that all or major parts of your application's data are stored in the space and your data access layer interacts with it via the various space APIs. This allows for ultra-fast read and write performance, while still maintaining a high level of reliability and fault tolerance via data replication to peer space instances in the cluster, and eventual persistency to a relational database if needed.</p>
-        <h1><a name="the-space-as-a-cache">&#160;</a>The Space as a Cache</h1>
+        <h1><a name="the-space-as-a-cache"></a>The Space as a Cache</h1>
         <p>The GigaSpaces IMDG supports a variety of caching scenarios. Using GigaSpaces IMDG as a cache provides the following benefits:</p>
         <ul>
             <li>
@@ -230,22 +230,22 @@ This means that all or major parts of your application's data are stored in the 
             </li>
         </ul>
         <p>The <a href="caching-scenarios.html">Caching Scenarios</a> describes the different caching options GigaSpaces support.</p>
-        <h1><a name="characteristics-of-a-space">&#160;</a>Characteristics of a Space</h1>
+        <h1><a name="characteristics-of-a-space"></a>Characteristics of a Space</h1>
         <p>The space has a number of determining characteristics that should be configured when it is created, as described below:</p>
-        <h2><a name="space-clustering-topology">&#160;</a>Space Clustering Topology</h2>
+        <h2><a name="space-clustering-topology"></a>Space Clustering Topology</h2>
         <p>The space can have a single instance, in which case it runs on a single JVM, or multiple instances, in which case it can run on multiple JVMs.
 When it has multiple instances, the space can run in a number of topologies which determine how the data is distributed across those JVMs. In general, the data can be either <span class="tc-bold">replicated</span>, which means it resides on all of the JVMs in the cluster, or <span class="tc-bold">partitioned</span>, which means that the data is distributed across all of the JVMs, each containing a different subset of it. With a partitioned topology you can also assign one or more backup space instances for each partition.</p>
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/topologies.jpg" alt="topologies.jpg" class="tc-picture80" />
         </div>
-        <h2><a name="master-local-space">&#160;</a>Master-Local Space</h2>
+        <h2><a name="master-local-space"></a>Master-Local Space</h2>
         <p>Regardless of the space's topology, you can also define a "local cache" for space clients, which caches space entries recently used by the client, or a predefined subset of the central space's data (this is often referred to as <span class="tc-bold">Continuous Query</span>).
 The data cached on the client side is kept up-to-date by the server, so whenever another space client changes a space entry that resides in a certain client's local cache, the space makes sure to update that client.</p>
-        <h2><a name="replication-mode">&#160;</a>Replication Mode</h2>
+        <h2><a name="replication-mode"></a>Replication Mode</h2>
         <p>When running multiple space instances, in many cases the data should be replicated from one space instance to another. This can happen in a replicated topology (in which case every change to the data is replicated to all of the space instances that belong to the space) or in a partitioned topology (in this case you choose to have backups for each partition).
 There are two replication modes - synchronous and asynchronous. With synchronous replication, data is replicated to the target instance as it is written. So the client code which writes, updates or deletes data, waits until replication to the target is completed.
 With asynchronous replication, this replication is done in a separate thread, and the calling client does not wait for the replication to complete.</p>
-        <h2><a name="persistency-configuration">&#160;</a>Persistency Configuration</h2>
+        <h2><a name="persistency-configuration"></a>Persistency Configuration</h2>
         <p>The space is an in-memory data grid. As such its capacity is limited to the sum of the memory capacity of all the JVMs on which the space instances run.
 In many cases, you have to deal with larger portions of data, or load a subset of a larger data set, which resides in an external data source such as a relational database, into the space.
 The space supports many <a href="../dev-java/space-persistency-overview.html">persistency options</a>, allowing you to easily configure how it interacts with an external relational database, or a more exotic source of data.
@@ -264,12 +264,12 @@ It supports the following options, from which you can choose:</p>
                 <p>Cache write behind (also known as asynchronous persistency): write data to the external data source asynchronously (yet reliably) to avoid the performance penalty.</p>
             </li>
         </ul>
-        <h2><a name="eviction-policy-and-memory-management">&#160;</a>Eviction Policy and Memory Management</h2>
+        <h2><a name="eviction-policy-and-memory-management"></a>Eviction Policy and Memory Management</h2>
         <p>Since the space is memory-based, it is essential to verify that it does not overflow and crash. The space has a number of <a href="../dev-java/memory-management-overview.html">facilities</a> to manage its memory and make sure it does not overflow.
 The first one is the eviction policy. The space supports two eviction policies: <code>ALL_IN_CACHE</code> and <code>LRU</code> (Least Recently Used). With the <code>LRU</code> policy, the space starts to evict the least used entries when it becomes full. The <code>ALL_IN_CACHE</code> policy never evicts anything from the space.
 The memory manager allows you to define numerous thresholds that control when entries are evicted (in case you use <code>LRU</code>), or when the space simply blocks clients from adding data to it.
 Combined, these two facilities enable you to better control your environment and make sure that the memory of the space instances in your cluster does not overflow.</p>
-        <h2><a name="reactive-programming">&#160;</a>Reactive Programming</h2>
+        <h2><a name="reactive-programming"></a>Reactive Programming</h2>
         <p>GigaSpaces and its Space-Based-Architecture embrace the <a href="http://en.wikipedia.org/wiki/Reactive_programming" target="_blank">reactive programming</a> approach. The following falls under reactive programming with GigaSpaces:</p>
         <ul>
             <li>
@@ -294,7 +294,7 @@ Combined, these two facilities enable you to better control your environment and
                 <p><a href="/sbp/xap-drools-integration.html">Drools Rule Engine Integration</a> - Available from a 3rd party.</p>
             </li>
         </ul>
-        <h1><a name="apis-to-access-the-space">&#160;</a>APIs to Access the Space</h1>
+        <h1><a name="apis-to-access-the-space"></a>APIs to Access the Space</h1>
         <p>The space supports a number of APIs to allow for maximum flexibility to space clients when accessing the space:</p>
         <ul>
             <li>
@@ -316,22 +316,22 @@ Combined, these two facilities enable you to better control your environment and
                 <p>The <a href="../dev-java/jdbc-driver.html">JDBC API</a> allows you to access the space in a similar way to how you would access a relational database (note that it has a number of limitations).</p>
             </li>
         </ul>
-        <h1><a name="services-on-top-of-the-space">&#160;</a>Services on Top of the Space</h1>
+        <h1><a name="services-on-top-of-the-space"></a>Services on Top of the Space</h1>
         <p>Building on top of the core API, the Space also provides higher level services  onto the application. These services, along with the space's basic capabilities, provide the full stack of middleware features that you can build your application with.
 <a href="../dev-java/task-execution-overview.html">The Task Execution API</a> allows you send your code to the space and execute it on one or more  nodes in parallel, accessing the space data on each node locally.
 <a href="../dev-java/messaging-support.html">Event containers</a> use the core API's operations and abstract your code from all the low level details involved in handling the event, such as event registration with the space, transaction initiation, etc. This has the benefit of abstracting your code from the lower level API and allows it to focus on your business logic and the application behavior.
 <a href="../dev-java/space-based-remoting-overview.html">Space-Based Remoting</a> allows you to use the space's messaging and code execution capabilities to enable application clients to invoke space side services transparently, using an application specific interface. Using the space as the transport mechanism for the remote calls, allows for location transparency, high availability and parallel execution of the calls, without changing the client code.</p>
-        <h1><a name="spring-integration">&#160;</a>Spring Integration</h1>
+        <h1><a name="spring-integration"></a>Spring Integration</h1>
         <p>The space APIs are integrated tightly with the <a href="http://www.springframework.org" target="_blank">Spring framework</a>).
 This gives you the ability to use all of the benefits that Spring brings to the table, such as dependency injection, declarative transaction management, and a well defined application life cycle model.
 In addition, the higher level services (remoting and event processing), are also tightly integrated with Spring and follow the Spring framework proven design patterns. <MadCap:variable name="General.ProductNameXAP" /> provides a set of well-defined Spring bindings, utilizing Spring's support for custom namespaces, which allows you to easily create and wire GigaSpaces components within Spring.</p>
-        <h1><a name="the-space-as-the-foundation-for-space-based-architecture">&#160;</a>The Space as the Foundation for Space-Based Architecture</h1>
+        <h1><a name="the-space-as-the-foundation-for-space-based-architecture"></a>The Space as the Foundation for Space-Based Architecture</h1>
         <p>Besides its ability to function as an in-memory data grid, the Space's core features and the services on top of it, form the foundation for <a href="/sbp/a-typical-sba-application.html">Space-Based Architecture (SBA)</a>. By using SBA, you can gain performance and scalability benefits not available with traditional tier-based architectures, even when these include an in-memory data grid, such as the Space.
 The basic unit of scalability in SBA is the <a href="../dev-java/the-processing-unit-overview.html">Processing Unit</a>. The Space can be embedded into the processing unit, or accessed remotely from it. When embedded into the processing unit, local services, such as event handler and service bean exposed remotely over the space, can interact with the local space instance to achieve unparalleled performance and scalability. The Space's built-in support for data partitioning is used to distribute the data and processing across the nodes, and for scaling the application.</p>
         <p>Different applications might have different caching requirements. Some applications require on-demand loading from an external, slower data source, due to limited memory; others use the cache for read-mostly purposes; transactional applications need a cache that handles both write and read operations, maintains consistency and serves as the application's system of record.</p>
         <p>In order to address these different requirements, GigaSpaces provides an in-memory data grid that is policy-driven. Most of the policies do not affect the actual application code, but rather affect the way each data grid instance interacts with other instances.</p>
         <p>This section explains the topologies supported by <MadCap:variable name="General.ProductNameXAP" /> - replicated, partitioned and master-local.</p>
-        <h1><a name="gigaspaces-data-grid-basic-terms">&#160;</a>GigaSpaces Data Grid - Basic Terms</h1>
+        <h1><a name="gigaspaces-data-grid-basic-terms"></a>GigaSpaces Data Grid - Basic Terms</h1>
         <ul>
             <li><span class="tc-bold">Space (data grid) instance</span> - an independent data storage unit. The Space is comprised of all the space instances running on the network.</li>
         </ul>
@@ -394,9 +394,9 @@ The basic unit of scalability in SBA is the <a href="../dev-java/the-processing-
         <div class="tc-admon-note">
             <p>For more details on how to configure the replication mechanisms of the Space, refer to <a href="../admin/replication.html">Replication</a> in the <a href="../admin/index.html">Administration Guide</a>.</p>
         </div>
-        <h1><a name="data-grid-topologies">&#160;</a>Data Grid Topologies</h1>
+        <h1><a name="data-grid-topologies"></a>Data Grid Topologies</h1>
         <p>GigaSpaces <MadCap:variable name="General.ProductNameXAP" /> supports the following data grid topologies:</p>
-        <h3><a name="replicated">&#160;</a>Replicated</h3>
+        <h3><a name="replicated"></a>Replicated</h3>
         <table class="tc-borderless">
             <tr>
                 <td style="width:80%;">
@@ -426,7 +426,7 @@ The basic unit of scalability in SBA is the <a href="../dev-java/the-processing-
                 </td>
             </tr>
         </table>
-        <h3><a name="partitioned">&#160;</a>Partitioned</h3>
+        <h3><a name="partitioned"></a>Partitioned</h3>
         <table class="tc-borderless">
             <tr>
                 <td style="width:80%;">
@@ -459,7 +459,7 @@ The basic unit of scalability in SBA is the <a href="../dev-java/the-processing-
                 </td>
             </tr>
         </table>
-        <h3><a name="local-cache">&#160;</a>Local Cache</h3>
+        <h3><a name="local-cache"></a>Local Cache</h3>
         <table class="tc-borderless">
             <tr>
                 <td style="width:80%;">
@@ -492,7 +492,7 @@ The basic unit of scalability in SBA is the <a href="../dev-java/the-processing-
         <div class="tc-admon-note">
             <p>For more information, refer to Local Cache <a href="../dev-java/local-cache.html">Java version</a> |<a href="../dev-dotnet/local-cache.html"> .NET version</a>.</p>
         </div>
-        <h3><a name="local-view">&#160;</a>Local View</h3>
+        <h3><a name="local-view"></a>Local View</h3>
         <table class="tc-borderless">
             <tr>
                 <td style="width:80%;">
@@ -538,7 +538,7 @@ The basic unit of scalability in SBA is the <a href="../dev-java/the-processing-
             </li>
         </ul>
         <p>The local cache and local view topologies do not need their own schemas, because they are defined on the client side.</p>
-        <h1><a name="split-brain">&#160;</a>Split Brain</h1>
+        <h1><a name="split-brain"></a>Split Brain</h1>
         <div class="tc-admon-important">
             <p>A partitioned space topology with no backups should not be used in production. Running a <MadCap:variable name="General.ProductNameXAP" /> space with no backups may cause split brain and data inconsistency issues.</p>
         </div>

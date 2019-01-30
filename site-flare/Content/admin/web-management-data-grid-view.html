@@ -1,24 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Investigating the Space</h1>
         <p>The Spaces view provides Space and Space instance navigation, for querying data and viewing class metadata. Select a Space or press the arrow to drill down into the Space instances of each Space (cluster).</p>
-        <h1><a name="overview">&#160;</a>Overview</h1>
+        <h1><a name="overview"></a>Overview</h1>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/web-console/data-grid-view.jpg" alt="hosts1.jpg" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="configuration">&#160;</a>Configuration</h1>
+        <h1><a name="configuration"></a>Configuration</h1>
         <p>Basic selected space or space instance configuration. It has following sections: General, Memory Management, Network &amp; Environment and optional Blob Store.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/web-console/data-grid-configuration.jpg" alt="hosts1.jpg" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="query-editor">&#160;</a>Query Editor</h1>
+        <h1><a name="query-editor"></a>Query Editor</h1>
         <p>The Query editor supports SQL queries. For example, to query a specific class:</p><pre><code class="language-java">SELECT * FROM my.company.com.MyPojo WHERE rownum &lt; 1000
 </code></pre>
         <p>In the screenshot below, we also provide the UID column of each object in the Space.</p><pre><code class="language-java">SELECT uid,* FROM com.gigaspaces.sba.trading.model.TradePojo WHERE rownum &lt; 7
@@ -31,7 +31,7 @@ Use the arrows - <span class="tc-bold">back</span> and <span class="tc-bold">for
                 <img src="../Resources/Static/attachment_files/web-console/data-grid-query.jpg" alt="hosts1.jpg" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="space-types">&#160;</a>Space Types</h1>
+        <h1><a name="space-types"></a>Space Types</h1>
         <p>The metadata of the Types in the Space are shown by clicking on the "Types" tab. This lists all the types registered with the Space.
 Displayed for each type are: <span class="tc-bold">instance count</span>, <span class="tc-bold">notify template count</span>, <span class="tc-bold">Space key</span> (index), <span class="tc-bold">Space routing key</span>, and <span class="tc-bold">indexed fields</span>.</p>
         <div class="tc-align-center">
@@ -39,7 +39,7 @@ Displayed for each type are: <span class="tc-bold">instance count</span>, <span 
                 <img src="../Resources/Static/attachment_files/web-console/data-grid-type.jpg" alt="hosts1.jpg" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="object-inspection">&#160;</a>Object Inspection</h1>
+        <h1><a name="object-inspection"></a>Object Inspection</h1>
         <p>Double click on a single result set in the query results table, to show the metadata and values of each result.
 Object inspection shows the <span class="tc-bold">field name</span>, <span class="tc-bold">field type</span>, and <span class="tc-bold">field value</span>. For compound fields, drill down using the arrow toggles.
 For array types, the array length and toString is displayed.</p>
@@ -48,14 +48,14 @@ For array types, the array length and toString is displayed.</p>
                 <img src="../Resources/Static/attachment_files/web-console/data-grid-inspect-object.jpg" alt="hosts1.jpg" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="statistics">&#160;</a>Statistics</h1>
+        <h1><a name="statistics"></a>Statistics</h1>
         <p>The Statistics view provides graphical representation of Space/Space instance operations performed.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/web-console/data-grid-stats_v11_0.jpg" alt="hosts1.jpg" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="gateways">&#160;</a>Gateways</h1>
+        <h1><a name="gateways"></a>Gateways</h1>
         <p>The Gateways view provides information about replication over the WAN between the selected space and target spaces.</p>
         <div class="tc-align-center">
             <p>
@@ -77,7 +77,7 @@ For array types, the array length and toString is displayed.</p>
                 <img src="../Resources/Static/attachment_files/web-console/data-grid-gateway3.jpg" alt="hosts1.jpg" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="local-views">&#160;</a>Local Views</h1>
+        <h1><a name="local-views"></a>Local Views</h1>
         <p>The Local Views panel provides information about client side views (Local Views) in sync with the selected space.</p>
         <div class="tc-align-center">
             <p>
@@ -94,13 +94,13 @@ For array types, the array length and toString is displayed.</p>
                 <img src="../Resources/Static/attachment_files/web-console/local-view3.jpg" alt="ocal_views1_10_0.jpg" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="local-caches">&#160;</a>Local Caches</h1>
+        <h1><a name="local-caches"></a>Local Caches</h1>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/web-console/local-cache.jpg" alt="ocal_views1_10_0.jpg" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="event-containers">&#160;</a>Event Containers</h1>
+        <h1><a name="event-containers"></a>Event Containers</h1>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/web-console/event1.jpg" alt="ocal_views1_10_0.jpg" class="tc-picture100" />
@@ -121,7 +121,7 @@ For array types, the array length and toString is displayed.</p>
                 <img src="../Resources/Static/attachment_files/web-console/event4.jpg" alt="ocal_views1_10_0.jpg" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="inbound-activity">&#160;</a>Inbound Activity</h1>
+        <h1><a name="inbound-activity"></a>Inbound Activity</h1>
         <p>This view displays inbound remote activity generated by clients on space instances of selected above space.</p>
         <div class="tc-align-center">
             <p>
@@ -133,7 +133,7 @@ For array types, the array length and toString is displayed.</p>
                 <img src="../Resources/Static/attachment_files/web-console/inbound-activity2.jpg" alt="inbound-activity-1_10_0" class="tc-picture100" />
             </p>
         </div>
-        <h1><a name="notification-activity">&#160;</a>Notification Activity</h1>
+        <h1><a name="notification-activity"></a>Notification Activity</h1>
         <p>This view displays notification activity sent to clients.</p>
         <div class="tc-align-center">
             <p>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -37,9 +37,9 @@
         <div class="tc-admon-note">
             <p>The Initial Load is supported with the <code>partitioned</code> cluster schema. If you would like to pre-load a clustered space using the Initial-Load without running backups set ZERO as the amount of backups.</p>
         </div>
-        <h1><a name="controlling-the-initial-load">&#160;</a>Controlling the Initial Load</h1>
+        <h1><a name="controlling-the-initial-load"></a>Controlling the Initial Load</h1>
         <p>By default all the entries are loaded from the database into the space, but sometimes only a subset of the data is relevant for the space. This section explains how to control which data is loaded.</p>
-        <h2><a name="initial-load-entries">&#160;</a>Initial Load Entries</h2>
+        <h2><a name="initial-load-entries"></a>Initial Load Entries</h2>
         <p>The <code>SpaceDataSource</code> can be configured to load only specific types by configuring the property <code>initialLoadEntries</code> with a list of fully-qualified type names. For example, to load only entries of type <code>MyEntry</code>:</p><pre><code class="language-xml">&lt;bean id="hibernateSpaceDataSource" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceDataSourceFactoryBean"&gt;
     &lt;property name="sessionFactory" ref="sessionFactory"/&gt;
     &lt;property name="initialLoadEntries"&gt;
@@ -50,7 +50,7 @@
     &lt;/property&gt;
 &lt;/bean&gt;
 </code></pre>
-        <h2><a name="custom-initial-load-queries">&#160;</a>Custom Initial Load Queries</h2>
+        <h2><a name="custom-initial-load-queries"></a>Custom Initial Load Queries</h2>
         <p>A space class can specify a method which determines which data should be loaded into the space (similar to a "where' clause of a SQL query). For example, to load only entries whose <code>foo</code> property is greater than <span class="tc-bold">50</span>:</p><pre><code class="language-java">@SpaceClass
 public class MyClass {
     private Integer foo;
@@ -91,7 +91,7 @@ public class MyClass {
     &lt;/property&gt;
 &lt;/bean&gt;
 </code></pre>
-        <h2><a name="overriding-the-initialdataload-method">&#160;</a>Overriding the initialDataLoad Method</h2>
+        <h2><a name="overriding-the-initialdataload-method"></a>Overriding the initialDataLoad Method</h2>
         <p>To implement your own Initial Load when using the Hibernate <code>SpaceDataSource</code> you can override the <code>initialDataLoad</code> method to construct one or more <code>DefaultScrollableDataIterator</code>. For example:</p><pre><code class="language-java">public class MySpaceDataSource extends DefaultHibernateSpaceDataSource {
     @Override
     public DataIterator&lt;Object&gt; initialDataLoad() {
@@ -105,7 +105,7 @@ public class MyClass {
     }
 }
 </code></pre>
-        <h1><a name="partitioned-cluster">&#160;</a>Partitioned Cluster</h1>
+        <h1><a name="partitioned-cluster"></a>Partitioned Cluster</h1>
         <p>When using a partitioned cluster, each space partition stores a subset of the data, based on the entry routing property hash code value. Each partition performs its own initial load process and checks each loaded entry to verify it belongs to that partition - entries which do not belong are discarded.</p>
         <p>While this process protects the partition from storing irrelevant data, its performance is naive - imagine a cluster with 10 partitions which are evenly distributed: each partition will load the entire database and discard 90% of it, i.e. take roughly x10 times longer to load than actually needed.</p>
         <p>Fortunately, the system has a built-in mechanism which attempts to load only entries relevant to the partition when possible. When a space entry has a routing property with a numeric type mapped to a column in the database, the system automatically generates a custom initial load query to load only entries relevant for the partition based on the routing property. This mechanism can be disabled using the <code>augmentInitialLoadEntries</code> property:</p><pre><code class="language-xml">&lt;bean id="hibernateSpaceDataSource" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceDataSourceFactoryBean"&gt;
@@ -116,7 +116,7 @@ public class MyClass {
         <div class="tc-admon-note">
             <p>This mechanism only works for entries whose routing property type is numeric.</p>
         </div>
-        <h2><a name="custom-initial-load-queries-1">&#160;</a>Custom Initial Load Queries</h2>
+        <h2><a name="custom-initial-load-queries-1"></a>Custom Initial Load Queries</h2>
         <p>When an entry is configured with an explicit custom initial load query using <code>@SpaceInitialLoadQuery</code> as described above, the automatic augmentation is skipped. You can augment the query manually to match only entries for a specific partition:</p><pre><code class="language-java">@SpaceClass
 public class MyClass {
     private Integer routingProperty;
@@ -138,7 +138,7 @@ public class MyClass {
 </code></pre>
         <p>Note that the method annotated with <code>@SpaceInitialLoadQuery</code> can receive a <code>ClusterInfo</code>, which is then used to retrieve the current partition id and total number of partitions to perform the required calculation.</p>
         <p>In addition, if you choose to override the <code>initialDataLoad</code> method, note that the <code>SpaceDataSource</code> implements <code>ClusterInfoAware</code>, therefore you have access to the protected <code>ClusterInfo</code> field.</p>
-        <h1><a name="multi-parallel-initial-load">&#160;</a>Multi-Parallel Initial Load</h1>
+        <h1><a name="multi-parallel-initial-load"></a>Multi-Parallel Initial Load</h1>
         <p>The <code>ConcurrentMultiDataIterator</code> can be used for Multi-Parallel load. This will allow multiple threads to load data into each space primary partition. With the example below 4 threads will be used to load data into the space primary partition , each will handle a different <code>MyDataIterator</code>:</p><pre><code class="language-java">public class MySpaceDataSource extends SpaceDataSource{
 
     public DataIterator&lt;Object&gt; initialDataLoad() {

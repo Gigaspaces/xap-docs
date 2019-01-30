@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -9,7 +9,7 @@
         <div class="tc-admon-refer">
             <p>Please refer to the <a href="network-lookup-service-configuration.html">Lookup Service Configuration</a> or the <a href="network.html">Networking How Tos</a> section for more details.</p>
         </div>
-        <h1><a name="discovery-order">&#160;</a>Discovery Order</h1>
+        <h1><a name="discovery-order"></a>Discovery Order</h1>
         <p>When using the unicast lookup service discovery option, you may specify multiple locators. This means, a client that is looking to bootstrap its space proxy, may search for the proxy location within one or more lookup services that may be running on specific hosts.</p>
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/smart-proxy.png" alt="locators" class="tc-picture100" />
@@ -27,13 +27,13 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new UrlSpaceConfigurer("jini://*/*
 
 Admin admin = new AdminFactory().addLocators(“Host1”, “Host2”).createAdmin();
 </code></pre>
-        <h1><a name="configuring-the-lookup-locators-property">&#160;</a>Configuring the lookup locators property</h1>
+        <h1><a name="configuring-the-lookup-locators-property"></a>Configuring the lookup locators property</h1>
         <p>Services will use the locators property to locate the Jini Lookup Service to lookup other services registered on it. The locators property is configured using the <code>XAP_LOOKUP_LOCATORS</code> environment variable or the <code>-Dcom.gs.jini_lus.locators</code> system property.
 By default it is left blank. It accepts a comma separated list of <code>host:port</code>. This list should include the hosts (and ports) where the Jini Lookup Service (or GSM) is running. The default port is 4174.</p>
         <p>For example, considering the GSM(+LUS) is running on linux-lab1:4174 and linux-lab2:4174 machines:</p><pre><code class="language-bash">-Dcom.gs.jini_lus.locators=linux-lab1:4174,linux-lab2:4174
 </code></pre>
         <p>This will influence the <code>XAP_LOOKUP_LOCATORS</code> environment variable in <code>setenv</code> script, which you may also modify directly.</p>
-        <h1><a name="locating-services-using-locators">&#160;</a>Locating services using locators</h1>
+        <h1><a name="locating-services-using-locators"></a>Locating services using locators</h1>
         <p>Once the services are started with the locators settings, then any client should be able to find a service, using unicast discovery.</p>
         <p>To lookup a Space service using the unicast protocol, add the locators SpaceURL attribute to the space URL string.</p>
         <p>For both <span class="tc-bold">unicast AND multicast discovery</span>, use:</p><pre><code class="language-java">jini://*/./mySpace?locators=linux-lab1:4174,linux-lab2:4174&amp;groups=gigaspaces-[%=Versions.product-version-short%]-XAPPremium-ga
@@ -41,17 +41,17 @@ By default it is left blank. It accepts a comma separated list of <code>host:por
         <div class="tc-admon-important">
             <p>When the locators attribute is used in conjunction with the jini://* prefix and groups attribute, the discovery will be unicast AND multicast.</p>
         </div>
-        <h1><a name="unicast-discovery-only">&#160;</a>Unicast discovery only</h1>
+        <h1><a name="unicast-discovery-only"></a>Unicast discovery only</h1>
         <p>If you want unicast only, you should disable multicast altogether. For unicast discovery only, you should disable multicast using <code>-Dcom.gs.multicast.enabled=false</code> system property, and use:</p><pre><code class="language-java">jini://linux-lab1:4174,linux-lab2:4174/./mySpace?locators=linux-lab1:4174,linux-lab2:4174
 </code></pre>
         <p>For troubleshooting purposes you should verify that the services (spaces, GSC, GSM, processing units etc.) print correct settings for the locators while they initialize. You can turn on the relevant logging if required.</p>
-        <h1><a name="unicast-port">&#160;</a>Unicast Port</h1>
+        <h1><a name="unicast-port"></a>Unicast Port</h1>
         <p>To change the lookup service listening port use the <code>com.sun.jini.reggie.initialUnicastDiscoveryPort</code> system property. The default value is the one assigned to the <code>com.gs.multicast.discoveryPort</code>.</p>
         <p>Set the <code>XAP_LOOKUP_LOCATORS</code> system property in <code>&lt;XAP Root&gt;\bin\setenv.bat/sh</code> to match the port number you defined (in this case, <code>host:1234</code>). That is required if you specify an explicit unicast/locators port, otherwise the service will use the default port if not set explicitly.</p>
         <div class="tc-admon-refer">
             <p>For more information, see the description of the <a href="network-lookup-service-configuration.html#multicast-settings">com.gs.multicast.discoveryPort</a> system property.</p>
         </div>
-        <h1><a name="discovery-intervals">&#160;</a>Discovery Intervals</h1>
+        <h1><a name="discovery-intervals"></a>Discovery Intervals</h1>
         <p>When a lookup service fails and is brought back online, a client (such as a GSC, space or a client with a space proxy) needs to re-discover and federate again.
 In order to make that happen, Jini unicast discovery must retry connections to the remote lookup service.
 The default unicast retry protocol provides a graduating approach, increasing the amount of time to wait before the next discovery attempts are made - upon each invocation, eventually reaching a maximum time interval over which discovery is re-tried.

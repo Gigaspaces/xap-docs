@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -12,7 +12,7 @@
   <p>Currently auditing of operations is limited to Space operations.</p>
 </div>
 
-<h1><a name="configuration">&#160;</a>Configuration</h1>
+<h1><a name="configuration"></a>Configuration</h1>
 
 <p>The configurations should be placed in the logging configuration file <code>&lt;XAP root&gt;/config/log/xap_logging.properties</code>.</p>
 
@@ -69,7 +69,7 @@ com.gigaspaces.security.audit.AuditHandler.formatter = com.gigaspaces.logger.GSS
 com.gigaspaces.security.audit.AuditHandler.filename-pattern = {homedir}/logs/gigaspaces-security-audit-{service}-{host}-{pid}.log
 </code></pre>
 
-<h1><a name="audit-levels">&#160;</a>Audit Levels</h1>
+<h1><a name="audit-levels"></a>Audit Levels</h1>
 
 <table>
 <thead>
@@ -107,7 +107,7 @@ com.gigaspaces.security.audit.AuditHandler.filename-pattern = {homedir}/logs/gig
 </tbody>
 </table>
 
-<h1><a name="example">&#160;</a>Example</h1>
+<h1><a name="example"></a>Example</h1>
 
 <p>In the example below, there are two users "writer" (only privileges to write), and "reader" (only privileges to read).</p>
 
@@ -135,7 +135,7 @@ FINE: Access granted; user [reader] at host [some-pc.gspaces.com/192.168.10.172]
 If you need the data to be audited, you can apply a <a href="../security/securing-your-data.html#space-filters">filter</a>  to achieve this.</p>
 </div>
 
-<h1><a name="custom-auditing">&#160;</a>Custom Auditing</h1>
+<h1><a name="custom-auditing"></a>Custom Auditing</h1>
 
 <p>The <code>java.util.logging.Handler</code> accepts a <code>java.util.logging.LogRecord</code> for logging. An <code>AuditLogRecord</code> is supplied by the security layer containing the <code>AuditDetails</code>. Instead of logging into a file, a custom <code>Handler</code> can capture all the log activity for auditing. By default the <code>java.util.logging.LogRecord.getMessage()</code> of <code>AuditLogRecord</code> contains the audit message (as shown in the sample output above).</p>
 

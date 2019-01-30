@@ -12,7 +12,7 @@
   <p>The uniqueness is enforced per partition and not over the whole cluster.</p>
 </div>
 
-<h1><a name="operation">&#160;</a>Operation</h1>
+<h1><a name="operation"></a>Operation</h1>
 
 <p>When the system encounters a unique constraint violation in one of the index-changing api calls (write/update/change) a  UniqueConstraintViolationException is thrown.</p>
 
@@ -49,7 +49,7 @@
   <p>If the operation(write or update) is performed under a transaction, the unique value check is done when the operation is performed (eager mode) and not when the transaction is committed.</p>
 </div>
 
-<h1><a name="api">&#160;</a>API</h1>
+<h1><a name="api"></a>API</h1>
 
 <p>A unique attribute is added to the <code>[SpaceIndex]</code> annotation. Unique = true will designate a unique constraint.</p>
 
@@ -91,7 +91,7 @@ public class Person
 </div>
 </div>
 
-<h1><a name="consideations">&#160;</a>Consideations</h1>
+<h1><a name="consideations"></a>Consideations</h1>
 
 <ul>
 <li>Supported only with <code>ALL_IN_CACHE</code> cache policy, not supported with LRU and other evict able cache policies</li>

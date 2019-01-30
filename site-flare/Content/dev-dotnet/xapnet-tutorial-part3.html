@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -9,7 +9,7 @@
  <MadCap:variable name="General.ProductNameXAP" /> includes a set of built-in service components such as Task Execution and Messaging services, each implementing commonly used Enterprise integration patterns.
  It's purpose is to make the implementation of distributed applications on-top of the space simpler and less intrusive and allow you to easily build highly scalable and performing applications.</p>
 
-<h1><a name="task-execution">&#160;</a>Task Execution</h1>
+<h1><a name="task-execution"></a>Task Execution</h1>
 
 <p>Task Execution provides a fine-grained API for performing ad-hoc parallel execution of user defined tasks. This framework should be used in the following scenarios:</p>
 
@@ -71,7 +71,7 @@ public class MerchantUserTask : ISpaceTask&lt;HashSet&lt;long?&gt;&gt; {
   <p>A space task needs to be serializable because it is being serialized and reconstructed at the node.</p>
 </div>
 
-<h1><a name="distributed-task">&#160;</a>Distributed Task</h1>
+<h1><a name="distributed-task"></a>Distributed Task</h1>
 
 <p>A DistributedTask is a task that ends up executing more than once (concurrently) and returns a result that is a reduced operation of all the different executions.</p>
 
@@ -130,7 +130,7 @@ public class MerchantByCategoryTask : IDistributedSpaceTask&lt;List&lt;Merchant&
 </div>
 </div>
 
-<h1><a name="asynchronous-task">&#160;</a>Asynchronous Task</h1>
+<h1><a name="asynchronous-task"></a>Asynchronous Task</h1>
 
 <p>A space task can also be executed asynchronously with the corresponding <code>BeginExecute</code> <code>EndExecute</code> method. This follows the standard .NET asynchronous API, once the execution is complete the execute invoker is notified by the async result which is received from the <code>BeginExecute</code> method or to a supplied callback. This will be similar to executing a task in a separate thread, allowing to continue local process while waiting for the result to be calculated at the space nodes.</p>
 

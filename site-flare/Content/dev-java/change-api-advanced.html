@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Advanced Implementations</h1>
-        <h1><a name="change-and-spacesynchronizationendpoint">&#160;</a>Change and SpaceSynchronizationEndpoint</h1>
+        <h1><a name="change-and-spacesynchronizationendpoint"></a>Change and SpaceSynchronizationEndpoint</h1>
         <p>A <code>SpaceSynchronizationEndpoint</code> implementation can make use of the <a href="change-api-overview.html">Change API</a> and support change operation, this way allowing the network utilization to be more optimized by sending only the change set to the mirror service instead of the fully updated object. By default the mirror service starts in a mode which does not support change, hence, any change operation done on the space is being replicated as a regular update to the mirror service. You could provide an implementation that does support change and configure the space to send the supported change operations to the mirror with only the required data to apply the change. Following is an example of how can one obtain the change set from a <code>DataSyncOperation</code>.</p>
         <p>Asynchronous Persistence</p>
         <div class="tc-align-center">
@@ -138,7 +138,7 @@
                 </tr>
             </tbody>
         </table>
-        <h1><a name="obtaining-change-detailed-results">&#160;</a>Obtaining Change Detailed Results</h1>
+        <h1><a name="obtaining-change-detailed-results"></a>Obtaining Change Detailed Results</h1>
         <p>By default, the change result will only contain the number of entries which were changed during the operation. In order to get more details (requires more network traffic) the <code>ChangeModifiers.RETURN_DETAILED_RESULTS</code> should be used. When using this modifier the result will contain the list of entries which were changed including the change affect that took place on each entry. You can use this in order to know what was the affect, for instance what is the value of a numeric property after the increment operation was applied on it.</p><pre><code class="language-java">    GigaSpace space = // ... obtain a space reference
     Uuid id = ...;
     IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(Account.class, id, routing);
@@ -151,7 +151,7 @@
     ...
     }
 </code></pre>
-        <h1><a name="change-and-replication-filters">&#160;</a>Change and Replication Filters</h1>
+        <h1><a name="change-and-replication-filters"></a>Change and Replication Filters</h1>
         <p>When using <a href="../admin/cluster-replication-filters.html">Replication Filter</a>, one can extract the <code>DataSyncChangeSet</code> from the <code>IReplicationFilterEntry</code> in the same way as extracting it from a <code>DataSyncOperation</code> by using the
 <code>ChangeDataSyncOperation</code> class in the following way:</p><pre><code class="language-java">public class MyReplicationFilter implements IReplicationFilter {
   ...
@@ -166,7 +166,7 @@
   }
 }
 </code></pre>
-        <h1><a name="change-and-space-filters">&#160;</a>Change and Space Filters</h1>
+        <h1><a name="change-and-space-filters"></a>Change and Space Filters</h1>
         <p><a href="the-space-filters.html">Space Filter</a> can intercept a <code>FilterOperationCodes.BEFORE_CHANGE</code> and <code>FilterOperationCodes.AFTER_CHANGE</code> events, and in that events the <code>DataSyncChangeSet</code> can be extracted from the ISpaceFilterEntry using the <code>ChangeDataSyncOperation.getChangeSet(IFilterEntry)</code> method.</p>
     </body>
 </html>

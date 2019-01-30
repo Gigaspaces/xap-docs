@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
 <h1>Quiesce Mode</h1>
   
 
-<h1><a name="overview">&#160;</a>Overview</h1>
+<h1><a name="overview"></a>Overview</h1>
 
 <p>This feature adds support for "Quiesce state" (or maintenance mode) for a Processing Unit. If a space is <span class="tc-bold">quiesced</span>, it rejects all data-related operations with an exception, allowing the user to perform maintenance operations.</p>
 
@@ -20,11 +20,11 @@
   <p>Quiesce mode can be also triggered using a CLI (see <a href="quiesce-command-line-interface.html">Quiesce CLI</a>).</p>
 </div>
 
-<h2><a name="uses-for-quiesce-state">&#160;</a>Uses for Quiesce State</h2>
+<h2><a name="uses-for-quiesce-state"></a>Uses for Quiesce State</h2>
 
 <p>There are several scenarios that can benefit from quiesce state. Some of these are described below.</p>
 
-<h3><a name="safe-shutdown">&#160;</a>Safe Shutdown</h3>
+<h3><a name="safe-shutdown"></a>Safe Shutdown</h3>
 
 <p>Use Quiesce state to shut down an application that contains a data grid and a mirror in a safe manner. This ensures that all operations completed on the grid are flushed to the mirror before undeploy.</p>
 
@@ -36,7 +36,7 @@
 <li>Undeploy the space and mirror.</li>
 </ol>
 
-<h3><a name="rolling-system-upgrade">&#160;</a>Rolling System Upgrade</h3>
+<h3><a name="rolling-system-upgrade"></a>Rolling System Upgrade</h3>
 
 <p>Use Quiesce mode to perform a rolling system upgrade on a live system (typically a Processing Unit code upgrade) and avoid inconsistencies related to processing of requests during the upgrade process.</p>
 
@@ -56,7 +56,7 @@
   <p>Review additional use case examples <a href="#usecase">here</a>.</p>
 </div>
 
-<h2><a name="space-behavior-during-quiesce-mode">&#160;</a>Space Behavior During Quiesce Mode</h2>
+<h2><a name="space-behavior-during-quiesce-mode"></a>Space Behavior During Quiesce Mode</h2>
 
 <p>The Space behaves as follows when it is in Quiesce mode:</p>
 
@@ -67,15 +67,15 @@
 <li>The Lease manager is paused, except for extend lease operations, in order to prevent losing notify listener templates.</li>
 </ul>
 
-<h2><a name="security">&#160;</a>Security</h2>
+<h2><a name="security"></a>Security</h2>
 
 <p>In a secure system, <code>Manage PU</code> privileges are required to quiesce/unquiesce a Processing Unit.</p>
 
-<h2><a name="configuration">&#160;</a>Configuration</h2>
+<h2><a name="configuration"></a>Configuration</h2>
 
 <p>The Quiesce feature can be disabled by setting <code>com.gs.engine.disableQuiesceMode</code> to true.</p>
 
-<h2><a name="limitations">&#160;</a>Limitations</h2>
+<h2><a name="limitations"></a>Limitations</h2>
 
 <p>The following limitations and open issues apply to Quiesce mode:</p>
 
@@ -86,7 +86,7 @@
 <li>Replication of the Quiesce state between primary and backup GSM is not yet supported. GSM failover may result in losing the quiesce state of the system. If this happens, you must repeat the quiesce request  in order to re-inform the GSM about the current quiesce state.</li>
 </ul>
 
-<h1><a name="processing-unit-api">&#160;</a>Processing Unit API</h1>
+<h1><a name="processing-unit-api"></a>Processing Unit API</h1>
 
 <p>The following ProcessingUnit interface API is used to trigger and manage Quiesce Mode.</p>
 
@@ -105,9 +105,9 @@ boolean waitFor(QuiesceState desiredState);
 QuiesceDetails getQuiesceDetails();
 </code></pre>
 
- <a name="listener">&#160;</a>
+ <a name="listener"></a>
 
-<h2><a name="quiesce-state-changed-listener">&#160;</a>Quiesce State Changed Listener</h2>
+<h2><a name="quiesce-state-changed-listener"></a>Quiesce State Changed Listener</h2>
 
 <p>A user-defined component (Spring Bean) in a Processing Unit can implement <code>QuiesceStateChangedListener</code> and be aware of quiesce state changed events.</p>
 
@@ -122,11 +122,11 @@ QuiesceDetails getQuiesceDetails();
 }
 </code></pre>
 
- <a name="usecase">&#160;</a>
+ <a name="usecase"></a>
 
-<h2><a name="sample-use-cases">&#160;</a>Sample Use Cases</h2>
+<h2><a name="sample-use-cases"></a>Sample Use Cases</h2>
 
-<h3><a name="safely-undeploy-a-stateful-processing-unit">&#160;</a>Safely Undeploy a Stateful Processing Unit</h3>
+<h3><a name="safely-undeploy-a-stateful-processing-unit"></a>Safely Undeploy a Stateful Processing Unit</h3>
 
 <pre><code class="language-java">QuiesceRequest request = new QuiesceRequest("Jacob: performing safe shutdown in 11:33 AM");
 QuiesceResult result = pu.quiesce(request);
@@ -147,7 +147,7 @@ else {
 
 </code></pre>
 
-<h3><a name="rolling-upgrade-on-a-live-system">&#160;</a>Rolling Upgrade on a Live System</h3>
+<h3><a name="rolling-upgrade-on-a-live-system"></a>Rolling Upgrade on a Live System</h3>
 
 <pre><code class="language-java">QuiesceRequest request = new QuiesceRequest("Jacob: performing hot deploy in 11:33 AM");
 QuiesceResult result = pu.quiesce(request);
@@ -163,16 +163,16 @@ System.out.println("the system was successfully upgraded");
 
 </code></pre>
 
-<h1><a name="rest-api">&#160;</a>REST API</h1>
+<h1><a name="rest-api"></a>REST API</h1>
 
 <p>The following are examples of entering and exiting Quiesce mode using the REST API.</p>
 
-<h2><a name="quiesce">&#160;</a>Quiesce</h2>
+<h2><a name="quiesce"></a>Quiesce</h2>
 
 <pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v1/deployments/myApp/quiesce'
 </code></pre>
 
-<h2><a name="unquiesce">&#160;</a>Unquiesce</h2>
+<h2><a name="unquiesce"></a>Unquiesce</h2>
 
 <pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v1/deployments/myApp/unquiesce'
 </code></pre>

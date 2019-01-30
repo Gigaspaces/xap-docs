@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -16,7 +16,7 @@
                 <img src="../Resources/Static/attachment_files/wan_use_cases.jpg" alt="wan_use_cases.jpg" class="tc-picture80" />
             </p>
         </div>
-        <h2><a name="wan-gateway-features">&#160;</a>WAN Gateway Features</h2>
+        <h2><a name="wan-gateway-features"></a>WAN Gateway Features</h2>
         <p>The <MadCap:variable name="General.ProductNameXAP" /> WAN Gateway features the following:</p>
         <ul>
             <li>Optimized bandwidth and WAN connection usage - With the <MadCap:variable name="General.ProductNameXAP" /> WAN Gateway, every site uses one connection when interacting with remote sites.</li>
@@ -32,7 +32,7 @@
         <div class="tc-admon-note">
             <p>This page describes how to establish replication between multiple Spaces in a typical WAN environment. Each Space is a separate network and there is a need for a designated outbound and inbound gateway machine or machines on each network, in order to interact with the other network(s).</p>
         </div>
-        <h1><a name="supported-toplogies">&#160;</a>Supported Topologies</h1>
+        <h1><a name="supported-toplogies"></a>Supported Topologies</h1>
         <p>This page describes two sample multi-site replication topologies. These are not the only supported topologies. In fact, the permutations of topologies are quite extensive, and discuss two of the more common topologies, which can also serve as a basis for other topologies as required by the user:</p>
         <ul>
             <li>Multi-master with two sites, where each site is active and updates its subset of the data.</li>
@@ -50,7 +50,7 @@
                 <img src="../Resources/Static/attachment_files/wan_topologies.jpg" alt="wan_topologies.jpg" class="tc-picture80" />
             </p>
         </div>
-        <h1><a name="configuring-a-space-with-gateway-targets">&#160;</a>Configuring a Space With Gateway Targets</h1>
+        <h1><a name="configuring-a-space-with-gateway-targets"></a>Configuring a Space With Gateway Targets</h1>
         <p>A replication from one Space to another is basically a replication from a Space to a target gateway. The source Space is decoupled from the target Space. Instead, it is configured to replicate to the target Space's local gateway; the local gateway is in charge of dispatching the incoming replication packets to the relevant target Space. Each Space needs to be made aware of the target gateways to which it replicates the data, by specifying the target gateways in the source Space configuration.</p>
         <p>From the Space's perspective, a replication from one Space to a target gateway is like any other replication channel (such as mirror or backup), and the backlog and confirmation state of the replication channel to the target gateway is kept in the source Space. As a result, the gateway is stateless as far as holding the replication state is concerned, and only the source Space is in charge of the replication progress and state. Each gateway has a unique logical name that usually corresponds to the physical site name (for example, "London" or "New York"). This name is used by remote Spaces that replicate to this Space via its local gateway.</p>
         <p>The following snippet shows how to configure a Space that resides in New York to replicate to two other Spaces, one in London and one in Hong Kong:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
@@ -79,16 +79,16 @@
 &lt;/os-sla:sla&gt;
 </code></pre>
         <p>When there are no backups, running any failure of the primary might cause a loss of data.</p>
-        <h1><a name="configuring-and-deploying-the-gateway">&#160;</a>Configuring and Deploying the Gateway</h1>
+        <h1><a name="configuring-and-deploying-the-gateway"></a>Configuring and Deploying the Gateway</h1>
         <p>A gateway needs to be deployed locally as a Processing Unit in each site, and is composed of two different components; the delegator and the sink. The delegator is in charge of delegating outgoing replication from the local site to a remote gateway, and the sink is in charge of dispatching incoming replication from remote sites into the local Space.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/wan_gatway_archi.jpg" alt="wan_gatway_archi.jpg" class="tc-picture50" />
             </p>
         </div>
-        <h2><a name="gateway-lookup">&#160;</a>Gateway Lookup</h2>
+        <h2><a name="gateway-lookup"></a>Gateway Lookup</h2>
         <p>The different gateway components need to locate each other across the different sites. For example, a delegator needs to locate the sink of the target gateway to which it delegates the replication. This lookup is accomplished via dedicated lookup services that the gateways use to register and locate each other. This lookup process is usually done across the WAN, so the most reasonable way of locating the lookup services is using unicast (multicast is also supported). The following example demonstrates a unicast lookup discovery.</p>
-        <h2><a name="gateway-basic-configuration">&#160;</a>Gateway Basic Configuration</h2>
+        <h2><a name="gateway-basic-configuration"></a>Gateway Basic Configuration</h2>
         <p>Following the above example, here we demonstrate how to configure the local gateway processing unit in New York, which needs to send replication to London and Hong Kong and also receive replication from these two sites.</p><pre><code class="language-xml">&lt;os-gateway:delegator id="delegator"
   local-gateway-name="NEWYORK" gateway-lookups="gatewayLookups"&gt;
   &lt;os-gateway:delegations&gt;
@@ -126,9 +126,9 @@ have no meaning, all sites could designate the same ports as well--&gt;
         <div class="tc-admon-note">
             <p>For full details and available configurations,  refer to <a href="replication-gateway-components.html">Gateway Components</a>.</p>
         </div>
-        <h2><a name="gateway-and-the-mirror-service">&#160;</a>Gateway and the Mirror Service</h2>
+        <h2><a name="gateway-and-the-mirror-service"></a>Gateway and the Mirror Service</h2>
         <p>A gateway and a <a href="asynchronous-persistency-with-the-mirror.html">Mirror Service</a> are two different components, which can co-exist together without affecting each other. A gateway is just another reliable asynchronous target. As such, there is no need to demonstrate the mirror service alongside a gateway because they don't conflict with each other or require any special configuration when used in the same Space cluster.</p>
-        <h2><a name="gateway-and-distributed-transactions">&#160;</a>Gateway and Distributed Transactions</h2>
+        <h2><a name="gateway-and-distributed-transactions"></a>Gateway and Distributed Transactions</h2>
         <p>By default, the gateway preserves the atomicity of distributed transactions (distributed transaction consolidation). This can be disabled by adding the following property to the Space configuration:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="localSpace" gateway-targets="gatewayTargets"&gt;
   &lt;os-core:properties&gt;
     &lt;props&gt;
@@ -186,7 +186,7 @@ In order to prevent this potential delay, you can set a timeout parameter that i
         <div class="tc-admon-attention">
             <p>Setting both <code>dist-tx-wait-timeout-millis</code> and <code>dist-tx-wait-for-opers</code> to unlimited (or to very high value) is risky. The replication backlog may accumulate due to a packet that is unconsolidated, causing the replication process to wait for consolidation that may never occur.</p>
         </div>
-        <h1><a name="master-slave-topology">&#160;</a>Master-Slave Topology</h1>
+        <h1><a name="master-slave-topology"></a>Master-Slave Topology</h1>
         <p>With this architecture, we have a master-slave topology where all data is manipulated in one site, and two other sites read the data but don't update it. In other words, the "other sites" - the slaves - should not replicate data to the other gateways.</p>
         <div class="tc-align-center">
             <p>
@@ -380,7 +380,7 @@ In order to prevent this potential delay, you can set a timeout parameter that i
 </code></pre>
             </div>
         </div>
-        <h1><a name="multi-master-topology">&#160;</a>Multi-Master Topology</h1>
+        <h1><a name="multi-master-topology"></a>Multi-Master Topology</h1>
         <p>With this architecture, we have a multi-master topology where data is generated and manipulated in all sites.</p>
         <div class="tc-align-center">
             <p>
@@ -588,22 +588,22 @@ In order to prevent this potential delay, you can set a timeout parameter that i
         <div class="tc-admon-note">
             <p>The <a href="/sbp/wan-replication-gateway.html">Multi-Master running example</a> page in the Service &amp; Best Practices section includes a three-way setup that replicates data between three sites.</p>
         </div>
-        <h1><a name="filtering-replication-between-gateways">&#160;</a>Filtering Replication Between Gateways</h1>
+        <h1><a name="filtering-replication-between-gateways"></a>Filtering Replication Between Gateways</h1>
         <p>On occasion, there may be data that should not be replicated between sites but should still be replicated locally to the backup or a mirror service. If this is the case, it isn't suitable to specify that the object should not be replicated. A replication channel to a gateway is like any other replication channel, so a custom <a href="../admin/cluster-replication-filters.html">Replication Filter</a> at the source Space can be used to filter the relevant data from being sent to the target gateway. This filtering should be based on the replication target name, in order to identify that the replication filter is called for the correct outgoing replication to the gateway.</p>
         <div class="tc-admon-note">
             <p>For full details and an example, refer to <a href="replication-gateway-filtering.html">Filtering Data</a>.</p>
         </div>
-        <h1><a name="bootstrapping-a-site-from-another-site">&#160;</a>Bootstrapping a Site From Another Site</h1>
+        <h1><a name="bootstrapping-a-site-from-another-site"></a>Bootstrapping a Site From Another Site</h1>
         <p>To bootstrap a site from another site is to restart a site Space from scratch, and to populate it with data from another site Space. This can be useful after a very long disconnection where the replication redo-log in the source Spaces that replicate to this site was dropped due to breaching capacity limitations, and the disconnected site should therefore start fresh. Other reasons include an explicit planned downtime due to site maintenance that leads to a complete system bootstrap upon restart.</p>
         <div class="tc-admon-note">
             <p>For more informaion on how to enable the bootstrap mechanism, refer to <a href="replication-gateway-bootstrapping-process.html">Bootstrapping Process</a>.</p>
         </div>
-        <h1><a name="changing-the-site-topology-during-runtime">&#160;</a>Changing the Site Topology During Runtime</h1>
+        <h1><a name="changing-the-site-topology-during-runtime"></a>Changing the Site Topology During Runtime</h1>
         <p>You may have to modify your site topology during runtime. For example, a new site may be added and the existing sites may have to start replicating to it and receive replication from it. Alternatively, a site may be removed and the existing sites should stop holding replication backlogs for the removed site, and delete it from their list of gateway targets.</p>
         <div class="tc-admon-note">
             <p>For more information on how to add and remove sites during runtime, refer to <a href="changing-multi-site-deployment-during-runtime.html">Changing Deployment during Runtime</a>.</p>
         </div>
-        <h1><a name="additional-resources">&#160;</a>Additional Resources</h1>
+        <h1><a name="additional-resources"></a>Additional Resources</h1>
         <p>The following pages in the Services&#160;&amp; Best Practices section provide more details on the Multi-Site Replication module:</p>
         <ul>
             <li><a href="/sbp/wan-replication-gateway.html#replication-throughput-capacity">Replication Throughput Capacity</a>

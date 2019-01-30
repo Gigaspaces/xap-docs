@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -8,8 +8,8 @@
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/dotnet/Net_polling_notify_cont.jpg" alt="Net_polling_notify_cont.jpg" class="tc-picture50" />
         </div>
-        <p> <a name="DataEventArrived">&#160;</a><a name="DataEventHandler">&#160;</a></p>
-        <h1><a name="dataeventarrived">&#160;</a>DataEventArrived</h1>
+        <p> <a name="DataEventArrived"></a><a name="DataEventHandler"></a></p>
+        <h1><a name="dataeventarrived"></a>DataEventArrived</h1>
         <p>The <code>IEventListenerContainer</code> interface exposes the <code>DataEventArrived</code> event, where the various implementers invoke (according to their internal logic, which determines when a space data event arrived occurs). The event argument contains the <code>data</code> object, which can be any .NET object, that triggered this event. The event subscription is done with a listener method that has the <code>DataEventHandler</code> delegate constraints, which follows the .NET event handler's conventions.</p>
         <p>Here is a simple example of event subscription:</p><pre><code class="language-csharp">IEventListenerContainer&lt;Data&gt; container = // obtain a reference to a container
 
@@ -20,8 +20,8 @@ container.DataEventArrived += MyEventHandler;
     // handle event
 }
 </code></pre>
-        <p>The sender is the actual container that sent this event (Can be casted to IEventListenerContainer), the DataEventArgs contains the argument of the event, such as the event data object, the space proxy the event received from and so on.</p><a name="BatchDataEventArrived">&#160;</a>
-        <h2><a name="batch-event">&#160;</a>Batch Event</h2>
+        <p>The sender is the actual container that sent this event (Can be casted to IEventListenerContainer), the DataEventArgs contains the argument of the event, such as the event data object, the space proxy the event received from and so on.</p><a name="BatchDataEventArrived"></a>
+        <h2><a name="batch-event"></a>Batch Event</h2>
         <p>Sometimes it is better to use batch events, for instance to improve network traffic. This is done by subscribing to the <code>BatchDataEventArrived</code> event. This event invokes a listener method that receives a batch of event data in one invocation. The different implementers of the <code>IEventListenerContainer</code> interface have their own logic of when to use batch events and when to use regular events.</p>
         <p>Here is a simple example of event subscription:</p><pre><code class="language-csharp">IEventListenerContainer&lt;Data&gt; container = // obtain a reference to a container
 
@@ -32,12 +32,12 @@ container.BatchDataEventArrived += MyBatchEventHandler;
     Data[] batch = e.Data;
     // handle event
 }
-</code></pre><a name="EventListenerContainerFactory">&#160;</a>
-        <h1><a name="event-listener-container-factory">&#160;</a>Event Listener Container Factory</h1>
+</code></pre><a name="EventListenerContainerFactory"></a>
+        <h1><a name="event-listener-container-factory"></a>Event Listener Container Factory</h1>
         <p>One of the ways to create an event listener container is to use the <code>EventListenerContainerFactory.CreateContainer</code> method. The factory creates a container from a supplied listener class, which is marked with attributes that are used to configure and create the container. This is demonstrated in the <a href="polling-container-overview.html">Polling Container Component page</a> and the <a href="notify-container-overview.html">Notify Container Component page</a>.</p>
-        <h1><a name="data-event-handler-adapters">&#160;</a>Data Event Handler Adapters</h1>
-        <p>In many scenarios, the event triggers a processing operation and its result should be written or updated back to the space. Since this scenario is very common, there are two built-in adapters that adapt a user method, which has a return value, and then automatically writes (or updates) the result back to the space.</p><a name="eventhandleradapter">&#160;</a>
-        <h2><a name="dynamicmethod-dataeventarrived-adapter">&#160;</a>DynamicMethod DataEventArrived Adapter</h2>
+        <h1><a name="data-event-handler-adapters"></a>Data Event Handler Adapters</h1>
+        <p>In many scenarios, the event triggers a processing operation and its result should be written or updated back to the space. Since this scenario is very common, there are two built-in adapters that adapt a user method, which has a return value, and then automatically writes (or updates) the result back to the space.</p><a name="eventhandleradapter"></a>
+        <h2><a name="dynamicmethod-dataeventarrived-adapter"></a>DynamicMethod DataEventArrived Adapter</h2>
         <p>The <code>DynamicMethodDataEventArrivedAdapter&lt;TData&gt;</code> is an internal class that is used by the <code>EventListenerContainerFactory</code>. This class dynamically creates a wrapper method over user methods that are marked with the <a href="#dataeventhandler-attribute">DataEventHandler attribute</a>. If the user method has a return value which is not null, the wrapper is automatically written to the space, with configurable parameters (see  <a href="#dataeventhandler-attribute">DataEventHandler attribute</a>). This adapter gives you the ability to write the event listening method receiving only the parameters that you need.</p>
         <p>Here are a few examples:</p>
         <p><span class="tc-bold">An event listening method that processes the data, and returns a processed result</span>
@@ -74,8 +74,8 @@ container.BatchDataEventArrived += MyBatchEventHandler;
         </ul>
         <p>The return parameter, if not void, is the result that is written back to the space (when the result is not null).</p>
         <p>For example:</p><pre><code class="language-csharp">public EnrichedData ProcessData(Data event, ISpaceProxy proxy, ITransaction tx, SpaceDataEventArgs&lt;object&gt; args, IEventListenerContainer container)
-</code></pre><a name="DelegateDataEventArrivedAdapter">&#160;</a>
-        <h2><a name="delegate-dataeventarrived-adapter">&#160;</a>Delegate DataEventArrived Adapter</h2>
+</code></pre><a name="DelegateDataEventArrivedAdapter"></a>
+        <h2><a name="delegate-dataeventarrived-adapter"></a>Delegate DataEventArrived Adapter</h2>
         <p>The <code>DelegateDataEventArrivedAdapter&lt;TData, TResult&gt;</code> receives a delegate to a method that receives similar event args as the <code>DataEventHandler</code>, but also returns a result of type <code>TResult</code>. If the result is not null, it is automatically written to the space, with configurable parameters (see <a href="#dataeventhandler-attribute">DataEventHandler attribute</a>). After the adapter is created, its <code>WriteBackDataEventHandler</code> method adapts the supplied method, while adding the write back logic, and it can be used as the delegate when subscribing to the <a href="#DataEventArrived">DataEventArrived event</a>.</p>
         <p>Here is a simple example:</p><pre><code class="language-csharp">IEventListenerContainer&lt;Data&gt; container = // obtain a reference to a container
 
@@ -86,8 +86,8 @@ container.DataEventArrived = new DelegateDataEventArrivedAdapter&lt;Data, Data&g
     // handle event and return processed data to be written back to the space
 }
 </code></pre>
-        <p>The result can also be an array, and the appropriate multiple operation is executed (WriteMultiple or UpdateMultiple).</p><a name="DataEventHandlerAttribute">&#160;</a>
-        <h2><a name="dataeventhandler-attribute">&#160;</a>DataEventHandler attribute</h2>
+        <p>The result can also be an array, and the appropriate multiple operation is executed (WriteMultiple or UpdateMultiple).</p><a name="DataEventHandlerAttribute"></a>
+        <h2><a name="dataeventhandler-attribute"></a>DataEventHandler attribute</h2>
         <p>The DataEventHandler attribute has two roles. The first is to mark a method to be subscribed to the <a href="#DataEventArrived">DataEventArrived event</a>, when using the <a href="#EventListenerContainerFactory">EventListenerContainerFactory</a>. The second role is to determine the write back behavior of the marked method result. This behavior has three configurable parameters:</p>
         <ul>
             <li>WriteOrUpdate – states whether to write or update the result back to the space, or only to write, which means if there's a matching object in the space to the result object, an <code>EntryAlreadyInSpaceException</code> is thrown (the default is true).</li>

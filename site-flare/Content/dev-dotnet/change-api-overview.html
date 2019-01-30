@@ -10,7 +10,7 @@
 <p>Moreover, using this API also can eliminate the need to read the existing object prior to the change operation, because the change operation can specify how to change the existing property without knowing its current value. For instance, implementing atomic counters can be done by increasing a counter property of an integer property by some delta. Another example would be to add a value to a collection, and so on.
 The change API supports transactions in the same way the other Space operation supports it.</p>
 
-<h1><a name="example">&#160;</a>Example</h1>
+<h1><a name="example"></a>Example</h1>
 
 <p>The following example demonstrates how to increment the property "Count' of an object of type "WordCount' with ID "myID' by one.</p>
 
@@ -20,11 +20,11 @@ IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;(id, routing);
 space.Change(idQuery, new ChangeSet().Increment("Count", 1));
 </code></pre>
 
-<h1><a name="the-query-template">&#160;</a>The Query Template</h1>
+<h1><a name="the-query-template"></a>The Query Template</h1>
 
 <p>The change operation can receive any <a href="querying-the-space.html">query template</a> for matching a single or multiple objects that have to be changed by the operation.</p>
 
-<h1><a name="the-change-set">&#160;</a>The Change Set</h1>
+<h1><a name="the-change-set"></a>The Change Set</h1>
 
 <p>The change operation requires a <code>ChangeSet</code> that describes the changes that have to be done after locating the object specified by the query template. The <code>ChangeSet</code> contains a predefined set of operations that can be invoked to alter the object, and the set may contain one or more changes that will be applied sequentially to the object.</p>
 
@@ -55,7 +55,7 @@ IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(id, routing);
 space.Change(idQuery, new ChangeSet().Increment("Balance.Euro", 5.2D));
 </code></pre>
 
-<h2><a name="change-path-specification">&#160;</a>Change Path Specification</h2>
+<h2><a name="change-path-specification"></a>Change Path Specification</h2>
 
 <p>Each operation in the change set acts on a specified string path. This path points to the property that needs to be changed and it has the following semantic:</p>
 
@@ -85,7 +85,7 @@ space.Change(idQuery, new ChangeSet().Increment("Balance.Euro", 5.2D));
 
 <p>In this case, the key euro inside the dictionary behind the balance is increased by 5.2.</p>
 
-<h2><a name="available-change-set-operations">&#160;</a>Available Change Set Operations</h2>
+<h2><a name="available-change-set-operations"></a>Available Change Set Operations</h2>
 
 <table>
 <thead>
@@ -153,13 +153,13 @@ space.Change(idQuery, new ChangeSet().Increment("Balance.Euro", 5.2D));
 </tbody>
 </table>
 
-<h1><a name="using-change-with-the-embedded-model">&#160;</a>Using Change with the Embedded Model</h1>
+<h1><a name="using-change-with-the-embedded-model"></a>Using Change with the Embedded Model</h1>
 
 <p>With the <a href="/sbp/modeling-your-data.html#embedded-vs-non-embedded-relationships">embedded model</a>, updating (as well adding or removing) a nested collection with large number of elements <span class="tc-bold">must use the change API</span> because the default behavior is to replicate the entire Space object and its nested collection elements from the primary to the backup (or other replica primary copies when using the sync-replicated or the async-replicated cluster schema).</p>
 
 <p>The Change API reduces the CPU utilization on the primary side, reduces the serialization overhead, and reduces the garbage collection activity on both the primary and backup. This significantly improves the overall system stability.</p>
 
-<h1><a name="change-result">&#160;</a>Change Result</h1>
+<h1><a name="change-result"></a>Change Result</h1>
 
 <p>The change operations returns a <code>IChangeResult</code> object that provides information regarding the change operation affect.</p>
 
@@ -189,7 +189,7 @@ if (changeResult.NumberOfChangedEntries == 0)
   <p>For more information, refer to <a href="change-api-advanced.html">Change API Advanced</a>.</p>
 </div>
 
-<h1><a name="changeexception">&#160;</a>ChangeException</h1>
+<h1><a name="changeexception"></a>ChangeException</h1>
 
 <p>Upon any error, a <code>ChangeException</code> is thrown containing the following details:</p>
 
@@ -210,7 +210,7 @@ if (changeResult.NumberOfChangedEntries == 0)
 
 <p>The <code>FailedChanges</code> property contains details for objects that failed being changed, such as information about ID, version, and the actual cause for failure. The <code>Errors</code> property contains the general failure reason for executing the change operation that does not apply to a specific object, such as not being able to access the Space.</p>
 
-<h1><a name="multiple-changes-in-a-single-operation">&#160;</a>Multiple Changes in a Single Operation</h1>
+<h1><a name="multiple-changes-in-a-single-operation"></a>Multiple Changes in a Single Operation</h1>
 
 <p>You can apply multiple changes in a single <code>Change</code> operation by setting up multiple operations in the change set. This is done by chaining the changes as follows:</p>
 
@@ -223,7 +223,7 @@ space.Change(idQuery, new ChangeSet().Increment("SomeIntProperty", 1)
 
 <p>The changes are applied to the object sequentially (and atomically), keeping the order applied on the <code>ChangeSet</code>.</p>
 
-<h1><a name="changing-the-object-s-lease">&#160;</a>Changing the Object's Lease</h1>
+<h1><a name="changing-the-object-s-lease"></a>Changing the Object's Lease</h1>
 
 <p>By default, the change operation doesn't modify the existing remaining lease of the changed entries. In order to change the lease, the new lease should be specified in the <code>ChangeSet</code> using the <code>lease</code> operation.</p>
 
@@ -235,7 +235,7 @@ space.Change(idQuery, new ChangeSet().Lease(1000)...);
 
 <p>The above example sets the lease of the changed object to one second from the time the change operation took affect.</p>
 
-<h1><a name="change-with-timeout">&#160;</a>Change with Timeout</h1>
+<h1><a name="change-with-timeout"></a>Change with Timeout</h1>
 
 <p>A timeout can be passed to the <code>change</code> operation. This timeout is only used if any of the objects that have to be changed is locked under a transaction that is not from the current thread context. In this case, all objects that are not locked are changed, and the operation blocks until one of the following things happens (whichever comes first):</p>
 
@@ -269,7 +269,7 @@ catch(ChangeException e)
 }
 </code></pre>
 
-<h1><a name="change-and-optimistic-locking">&#160;</a>Change and Optimistic Locking</h1>
+<h1><a name="change-and-optimistic-locking"></a>Change and Optimistic Locking</h1>
 
 <p>The <code>Change</code> operation has the same semantics as a regular Space <code>Update</code> operation when it comes to <a href="transaction-optimistic-locking.html">Optimistic Locking</a>. It increases the version of the changed object, and the expected version can be specified in the ID query when optimistic locking is required.</p>
 
@@ -303,11 +303,11 @@ catch(ChangeException e)
   <p>In order to prevent constructor overload ambiguity, when using an ID query with version, the Space routing property must also be specified. If the object has no Space routing, its space ID property is the routing property and it should be used, as shown in the previous example.</p>
 </div>
 
-<h1><a name="change-and-notifications">&#160;</a>Change and Notifications</h1>
+<h1><a name="change-and-notifications"></a>Change and Notifications</h1>
 
 <p>Change are delivered as a regular update notification, with the state of the object after the change was applied.</p>
 
-<h1><a name="change-modifiers">&#160;</a>Change Modifiers</h1>
+<h1><a name="change-modifiers"></a>Change Modifiers</h1>
 
 <p>The following modifiers can be used with the change operation:</p>
 
@@ -317,7 +317,7 @@ catch(ChangeException e)
 <li><code>ChangeModifiers.MemoryOnlySearch</code> - Search for matching entries in cache memory only (do not use the underlying external data source). However, any changes done on the matches entries are propagated to the underlying external data source.</li>
 </ol>
 
-<h1><a name="considerations">&#160;</a>Considerations</h1>
+<h1><a name="considerations"></a>Considerations</h1>
 
 <ol>
 <li>When replicated to a gateway and a conflict occurs, change operation only supports the built-in <code>abort</code> resolution, as <code>override</code> in change case can result in an inconsistent state of the object.</li>

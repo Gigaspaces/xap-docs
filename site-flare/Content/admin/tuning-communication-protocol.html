@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -28,26 +28,26 @@
             </tr>
         </table>
         <p>LRMI uses two independent resource pools working collaboratively to allow a client to communicate with a server in a scalable manner: A client connection pool configured via the <code>com.gs.transport_protocol.lrmi.max-conn-pool</code> at the client side and a server connection thread pool configured via the <code>com.gs.transport_protocol.lrmi.max-threads</code> at the server side. You may configure these two pools' sizes and their resource timeouts to provide maximum throughput and low latency when a client communicates with a server. The default LRMI behavior will open a different connection at the client side and start a connection thread at the server side, once a multithreaded client accesses a server component. All client connections may be shared between all the client threads when communicating with the server. All server side connection threads may be shared between all client connections.</p>
-        <h2><a name="client-lrmi-connection-pool">&#160;</a>Client LRMI Connection Pool</h2>
+        <h2><a name="client-lrmi-connection-pool"></a>Client LRMI Connection Pool</h2>
         <p>The client LRMI connection pool is maintained per server component - i.e. by each space partition. For each space partition a client maintains a dedicated connection pool shared between all client threads accessing a specific partition. When having multiple partitions (N) hosted within the same GSC, a client may open maximum of <code>N * com.gs.transport_protocol.lrmi.max-conn-pool</code> connections against the GSC JVM process.</p>
         <p>You may need to change the <code>com.gs.transport_protocol.lrmi.max-conn-pool</code> value (default = 1024) to have a smaller number. The default may be high for applications with multiple partitions.</p><pre><code class="language-bash">Client total # of open connections = com.gs.transport_protocol.lrmi.max-conn-pool * # of partitions
 </code></pre>
         <p>This may result in a very large amount of connections started at the client side resulting in a "Too many open files" error. You should increase the OS' max file descriptors amount by calling the following before running the client application (on UNIX):</p><pre><code class="language-bash">ulimit -n 32000
 </code></pre>
         <p>or by lowering the <code>com.gs.transport_protocol.lrmi.max-conn-pool</code> value.</p>
-        <h2><a name="server-lrmi-connection-thread-pool">&#160;</a>Server LRMI Connection Thread Pool</h2>
+        <h2><a name="server-lrmi-connection-thread-pool"></a>Server LRMI Connection Thread Pool</h2>
         <p>The LRMI connection thread pool is a server side component. It is in charge of executing the incoming LRMI invocations. It is a single thread pool within the JVM that executes all the invocations, from all the clients and all the replication targets.</p>
         <div class="tc-admon-note">
             <p>In some cases you might need to increase the LRMI Connection thread pool maximum size. Without this tuning activity, the system might hang in the case of a large amount of concurrent access. Using a value as <span class="tc-bold">1024</span> for the LRMI Connection Thread Pool should be sufficient for most large scale systems.</p>
         </div>
-        <h2><a name="selector-threads">&#160;</a>Selector Threads</h2>
+        <h2><a name="selector-threads"></a>Selector Threads</h2>
         <p>To increase the concurrency and scalability of the LRMI behavior, multiple NIO channel selectors are used for write and read network traffic activities and is configured via the <code>com.gs.transport_protocol.lrmi.selector.threads</code> property. The same property is used to configure both the write and read selector thread pool size.</p>
         <p>Machines with Multi-Core CPUs can leverage this functionality in an optimal manner. A dedicated thread pool exists for socket write operations and another thread pool for socket read operations. The read selector threads (4 by default) listens for incoming client invocations. They receive the incoming traffic from the network, read the raw data bytes and transfer these to be processed by the LRMI connection thread pool. The write selector threads is used when there is a need to send data back to the client side with asynchronous operations (blocking read/ blocking write/notifications).</p>
-        <h2><a name="min-latency-and-max-throughput">&#160;</a>Min Latency and Max Throughput</h2>
+        <h2><a name="min-latency-and-max-throughput"></a>Min Latency and Max Throughput</h2>
         <p>Both of the resource pools elements might have a different life span. Usually, once a connection is established between a client and a server, it will be open as long as the client is still running. The connection will be terminated once a client is terminated or when the client does not perform any network activity for some time and the connection will be identified as idle. See the watchdog description below for how this behavior should be configured. The same goes for LRMI connection threads, it will be available as long as there are clients accessing the server. A connection thread will return into the pool and the pool will shrink itself once there is any remote activity for some time. This timeout is configured via the <code>com.gs.transport_protocol.lrmi.threadpool.idle_timeout</code>. LRMI threads and connection are used also for server to server communication such as data replication.</p>
         <p>The size of the LRMI connection pool and LRMI thread pool will impact the latency response time for a remote request. Once any of these pools is fully exhausted a client request will be suspended until a free connection or thread becomes available.</p>
-        <p>The number of connections a client should open also depends on the size of the objects being sent across the wire. For a multi-threaded client writing or reading large objects, you may have the same amount of connections established for each client thread. This will ensure minimal latency request duration with maximum throughput.</p><a name="watchdog">&#160;</a>
-        <h2><a name="watchdog">&#160;</a>Watchdog</h2>
+        <p>The number of connections a client should open also depends on the size of the objects being sent across the wire. For a multi-threaded client writing or reading large objects, you may have the same amount of connections established for each client thread. This will ensure minimal latency request duration with maximum throughput.</p><a name="watchdog"></a>
+        <h2><a name="watchdog"></a>Watchdog</h2>
         <p>When reading from a <a href="http://download.oracle.com/javase/%7b%7b%25version%20" target="_blank">NIO SocketChannel</a> and the connection between the client and server fails abnormally, no notification is generated. The most common example of this failure type is the network cable becoming disconnected while performing the read operation. In this case, the read operation is blocked for a long time, without ever knowing that the connection is closed. This can cause several problems, such as exceeding the number of open sockets on the server or causing client read requests to hang.</p>
         <p>Known solutions and problems they may have:</p>
         <ol>
@@ -78,11 +78,11 @@
             <p>When network failure occurs and notify is used, the space tries to resend the notify the number of times specified in the <code>&lt;notifier-retries&gt;</code> property. When using a clustered space, <code>&lt;notifier-retries&gt;</code> is used together with the network failure detection properties.</p>
         </div>
         <p>A value for the <code>com.gs.transport_protocol.lrmi.idle_connection_timeout</code> and the <code>com.gs.transport_protocol.lrmi.request_timeout</code> properties should be determined based on the amount of total clients a system may have and the number of the concurrent activities these clients may have. Small values (100 and 30, respectively) are recommended for systems with very large amounts of clients with high concurrency. High values (900 and 300, respectively) are recommended for system with very small amount of clients with high concurrency.</p>
-        <h2><a name="bind-port">&#160;</a>bind-port</h2>
+        <h2><a name="bind-port"></a>bind-port</h2>
         <p>Once a client communicates with a server component it initially uses a bootstrap port specified as part of the server proxy stored with the lookup service. Once a client opens a connection with a server component a random port is opened at the server side and used to serve the client (private port). You may specify range of ports to be used by the server component to restrict the server from using arbitrary random ports that are not available due to a firewall or some other network restriction. The <code>com.gs.transport_protocol.lrmi.bind-port</code> allows you to configure the available ports to use.</p>
-        <h2><a name="maxbuffersize">&#160;</a>maxBufferSize</h2>
+        <h2><a name="maxbuffersize"></a>maxBufferSize</h2>
         <p>An LRMI connection maintains a buffer that is used when sending TCP packets. This buffer size determines the amount of TCP packets that will be sent to deliver a request. When having requests with large amount of data, you may need to increase the <code>com.gs.transport_protocol.lrmi.maxBufferSize</code> to reduce the amount of packets sent.</p>
-        <h2><a name="client-as-a-server">&#160;</a>Client as a Server</h2>
+        <h2><a name="client-as-a-server"></a>Client as a Server</h2>
         <p>A server component may open a connection back to the client in the following cases:</p>
         <ul>
             <li>When a request includes a class that cannot be found on the server classpath, the GigaSpaces dynamic class loading component requests the missing class to be sent to the server</li>
@@ -91,7 +91,7 @@
             <li>When a change has been done with the service topology (service terminated or added), the lookup service notifies the client (client lookup cache)</li>
         </ul>
         <p>To allow the above, the client must set the <code>java.rmi.server.hostname</code> property with the relevant IP. For a Multi-Homed machines this is a critical setting, since without having this set, the server side might use the wrong IP Address to communicate back with the client.</p>
-        <h1><a name="lrmi-configuration">&#160;</a>LRMI Configuration</h1>
+        <h1><a name="lrmi-configuration"></a>LRMI Configuration</h1>
         <p>The <code>LRMI</code> configuration options set as system properties. They are listed below:</p>
         <table>
             <thead>
@@ -360,7 +360,7 @@
                     </td>
                 </tr>
             </tbody>
-        </table><a name="1">&#160;</a>
+        </table><a name="1"></a>
         <p><span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span>
         </p>
         <p>With a system that may have high concurrency level as a result of a large number of remote clients performing:</p>
@@ -374,20 +374,20 @@
         <p>With a system that may trigger a notify listener (that performs remote space access) or a remote service or a task 128 times, very quickly this would consume the entire LRMI thread pool causing new remote requests (by the listener or any other remote activities) to wait until there would be available LRMI threads to handle incoming requests. This may slow down the application performance dramatically causing existing connections to drop.</p>
         <div class="tc-admon-note">
             <p>If you are using the <span class="tc-bold">notification slow consumer</span> mechanism, refer to <a href="slow-consumer.html#configuration">Slow Consumer</a> for additional LRMI parameters to configure.</p>
-        </div><a name="portrange">&#160;</a>
-        <h2><a name="defining-socket-port-range-per-jvm">&#160;</a>Defining Socket Port Range per JVM</h2>
+        </div><a name="portrange"></a>
+        <h2><a name="defining-socket-port-range-per-jvm"></a>Defining Socket Port Range per JVM</h2>
         <p>You can define port range using the <code>com.gigaspaces.transport.bind-port</code> property, meaning that every JVM acquires a bind port from a defined port range. This functionality is useful when having multiple JVMs on the same machine (clients or servers), and simplifies firewall setup.</p>
         <p>Here is how you can set a listening port range for GSA/GSC/GSM:</p><pre><code class="language-bash">export EXT_JAVA_OPTIONS=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100
-</code></pre><a name="server">&#160;</a>
-        <h2><a name="configuration-with-multi-homed-machines">&#160;</a>Configuration with Multi-Homed Machines</h2>
+</code></pre><a name="server"></a>
+        <h2><a name="configuration-with-multi-homed-machines"></a>Configuration with Multi-Homed Machines</h2>
         <p>When working with a multi-homed machine (a computer with multiple network cards), use the following system property to bind the GigaSpaces Server on a specified network interface:</p><pre><code class="language-bash">-Djava.rmi.server.hostname=&lt;hostname or IP address&gt;
 </code></pre>
         <p>The value of this property represents the host name string that must be associated with the network interface. The default value of this property is the IP address of the local host, in "dotted-quad" format.</p>
-        <h1><a name="monitoring">&#160;</a>Monitoring</h1>
+        <h1><a name="monitoring"></a>Monitoring</h1>
         <p>You can monitor network and usage activity during runtime to track which client is invoking which methods on each space serving remote client requests such as read/write. For more information on monitoring see <a href="monitoring-network-activity.html">Monitoring Network Activity</a>.</p>
-        <h1><a name="troubleshooting">&#160;</a>Troubleshooting</h1>
+        <h1><a name="troubleshooting"></a>Troubleshooting</h1>
         <p>You can troubleshoot the space activity using LRMI logging. You can turn on LRMI logging in the following ways:</p>
-        <h2><a name="offline-mode-via-xap-logging-properties">&#160;</a>Offline Mode via xap_logging.properties</h2>
+        <h2><a name="offline-mode-via-xap-logging-properties"></a>Offline Mode via xap_logging.properties</h2>
         <p>Step 1: Open <code>&lt;XAP Root&gt;/config/log/xap_logging.properties</code></p>
         <p>Step 2: Locate the following line:</p><pre><code class="language-bash">com.gigaspaces.lrmi.level = INFO
 </code></pre>
@@ -404,7 +404,7 @@ Save and close the <code>xap_logging.properties</code> file.</p>
         <p>Step 5:
 Start a space by deploying a data-grid PU or a custom PU with a space. You may also start a space via <code>&lt;XAP Root&gt;/bin/space-instance</code>.</p>
         <p>LRMI communication transport protocol debug messages are displayed.</p>
-        <h2><a name="during-runtime-using-jmx">&#160;</a>During Runtime – Using JMX</h2>
+        <h2><a name="during-runtime-using-jmx"></a>During Runtime – Using JMX</h2>
         <p>Step 1: Start <code>space-instance</code> using the following Java system properties:</p><pre><code class="language-bash">-Dcom.sun.management.jmxremote.port=5001
 -Dcom.sun.management.jmxremote.ssl=false
 -Dcom.sun.management.jmxremote.authenticate=false
@@ -437,7 +437,7 @@ Start a space by deploying a data-grid PU or a custom PU with a space. You may a
         <p>
             <img src="../Resources/Static/attachment_files/lrmi_log3.JPG" alt="lrmi_log3.JPG" class="tc-picture80" />
         </p>
-        <h2><a name="jvm-known-issue">&#160;</a>JVM Known Issue</h2>
+        <h2><a name="jvm-known-issue"></a>JVM Known Issue</h2>
         <p>In some cases you may encounter the following exception:</p><pre><code class="language-bash">CONFIG [com.gigaspaces.grid.gsc]: initialServiceLoadDelay=5000
 Exception in thread "LRMI Connection--pool-1-thread-1" java.lang.NullPointerException
 at sun.nio.ch.PollSelectorImpl.wakeup(PollSelectorImpl.java:84)
@@ -453,7 +453,7 @@ at java.lang.Thread.run(Thread.java:595)
         <div class="tc-admon-note">
             <p>If your client application loses its connection to the server, you can follow a simple procedure to check if the server erased any of your notify templates in the interim. For each notify template, write an Entry to the space that matches the template and see if you receive a notification. If you do not receive a notification, this means that while you were disconnected, new Entries matching the notify template entered the space (you can try to find them – depending on their lease time, they may still exist). As a result, your notify template was erased.</p>
         </div>
-        <h1><a name="monitoring-lrmi-via-the-administration-api">&#160;</a>Monitoring LRMI via the Administration API</h1>
+        <h1><a name="monitoring-lrmi-via-the-administration-api"></a>Monitoring LRMI via the Administration API</h1>
         <p>You may monitor the remote communication activity via the Administration and Monitoring API. You may receive information in real-time about every aspect of the communication and transport activity. The example below demonstrates the usage of the API for consuming this information.</p><pre><code class="language-java">    import java.util.Date;
     import java.util.Set;
     import java.util.concurrent.TimeUnit;

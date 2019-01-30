@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Custom Matching</h1>
-        <h1><a name="overview">&#160;</a>Overview</h1>
+        <h1><a name="overview"></a>Overview</h1>
         <p>Queries are usually indexed and executed using primitive fields (long, float, string, etc.). These fields can be at the root level of the Space object, or embedded within <a href="query-sql.html#nested-properties">nested objects</a> in the Space object. You can construct a query using a template object or SQL, to specify the criteria you want to use when the matching phase is performed within the Space when looking for the relevant objects.</p>
         <p>However, in some cases you may need a custom data type with custom business logic to find matching objects within the Space, instead of the <a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">primitive data type</a> comparison. To allow the Space to invoke your business logic when the matching process is conducted, the <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html">Comparable</a> interface should be implemented for a class that stores the data you want to use with your custom business logic.</p>
         <div class="tc-admon-tip">
@@ -14,7 +14,7 @@
         <div class="tc-admon-note">
             <p>See the <a href="indexing-overview.html">Indexing</a> section for additional information about how to enable the <code>EXTENDED</code> index.</p>
         </div>
-        <h1><a name="vector-compare-example">&#160;</a>Vector Compare Example</h1>
+        <h1><a name="vector-compare-example"></a>Vector Compare Example</h1>
         <p>The following example is a business logic implementation used to query for vector data (an array of Integer values), using the <a href="http://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a> formula:</p>
         <div class="well" style="background:white">
             <img src="../Resources/Static/attachment_files/sbp/EuclideanDistance.jpg" alt="EuclideanDistance.jpg" class="tc-picture30" />

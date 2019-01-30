@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -16,9 +16,9 @@
             <li>Has a big advantage when you want to read a large number of objects, but update only a few of them - or when it is unlikely that objects you want to work with are updated by other users.</li>
             <li>Ensures that updated objects are the most recent ones, while improving the coherency of system behavior.</li>
         </ul>
-        <h1><a name="using-the-optimistic-locking-protocol">&#160;</a>Using the Optimistic Locking Protocol</h1>
+        <h1><a name="using-the-optimistic-locking-protocol"></a>Using the Optimistic Locking Protocol</h1>
         <p>Here are the steps you should execute to update data, using the optimistic locking protocol:</p>
-        <h4><a name="step-1-get-a-space-proxy-in-versioned-mode">&#160;</a>Step 1 – Get a Space Proxy in Versioned Mode</h4>
+        <h4><a name="step-1-get-a-space-proxy-in-versioned-mode"></a>Step 1 – Get a Space Proxy in Versioned Mode</h4>
         <p>Get a space proxy in <code>versioned</code> mode. This can be done using one of the options listed below. You may get remote or embedded space proxies. Make sure the proxy is in optimistic locking mode using the (<code>versioned</code>) option. This can be done using one of the options listed below:</p><pre><code class="language-csharp">public void createVersionedSpace()
 {
     // Create the SpaceProxy to Embedded Space
@@ -26,7 +26,7 @@
     spaceProxy.OptimisticLocking = true;
 }
 </code></pre>
-        <h4><a name="step-2-enable-the-space-class-to-support-optimistic-locking">&#160;</a>Step 2 – Enable the Space Class to Support Optimistic Locking</h4>
+        <h4><a name="step-2-enable-the-space-class-to-support-optimistic-locking"></a>Step 2 – Enable the Space Class to Support Optimistic Locking</h4>
         <p>You should enable the Space class to support the optimistic locking protocol, by including the <code>[SpaceVersion]</code> decoration on an <code>int</code> getter field. This field stores the current object version and is maintained by <MadCap:variable name="General.ProductNameXAP" />. See below for an example:</p><pre><code class="language-csharp">    [SpaceClass]
     public class Account {
         [SpaceID]
@@ -41,9 +41,9 @@
         // ......
     }
 </code></pre>
-        <h4><a name="step-3-read-objects-without-using-a-transaction">&#160;</a>Step 3 – Read Objects without using a Transaction</h4>
+        <h4><a name="step-3-read-objects-without-using-a-transaction"></a>Step 3 – Read Objects without using a Transaction</h4>
         <p>Read objects from the space without using a transaction. You may use the <code>ReadMultiple</code> method to get several objects in one call. Reading objects without using a transaction, allows multiple users to get the same objects at the same time, and allows them to be updated using the optimistic locking protocol. If objects are read using a transaction, no other user can update the objects until the object is committed or rolled back.</p>
-        <h4><a name="step-4-modify-and-update-the-objects">&#160;</a>Step 4 – Modify and Update the Objects</h4>
+        <h4><a name="step-4-modify-and-update-the-objects"></a>Step 4 – Modify and Update the Objects</h4>
         <p>Modify the objects you read from the space and call a <code>Write</code> space operation to update the object within the space.
 Use a transactional with your write operation. You <span class="tc-bold">must</span> use a transaction when you update multiple space objects in the same context. When the write operation is called to update the object, the space does the following:</p>
         <ul>
@@ -59,12 +59,12 @@ Use a transactional with your write operation. You <span class="tc-bold">must</s
                 <img src="../Resources/Static/attachment_files/optimistick_lock2.jpg" alt="optimistick_lock2.jpg" class="tc-picture30" />
             </p>
         </div>
-        <h4><a name="step-5-update-failure">&#160;</a>Step 5 – Update Failure</h4>
+        <h4><a name="step-5-update-failure"></a>Step 5 – Update Failure</h4>
         <p>If you use optimistic locking and your update operation fails, an <code>Exception</code> is thrown. This exception is thrown when you try to write an object whose version ID value does not match the version of the existing object within the space - i.e. you are not using the latest version of the object. You can either roll back or refresh the failed object and try updating it again. This means you should repeat steps 3 and 4 - read the latest committed object from the space, back to the client side and perform the update again. For a fast refresh, you may re-read the object using <code>ReadByID</code> method. Make sure you also provide the <code>SpaceRouting</code> value.</p>
-        <h4><a name="step-6-commit-or-rollback-changes">&#160;</a>Step 6 – Commit or Rollback Changes</h4>
+        <h4><a name="step-6-commit-or-rollback-changes"></a>Step 6 – Commit or Rollback Changes</h4>
         <p>At any time, you can commit or rollback the transaction. If you are using Spring automatic transaction demarcation, the commit is called implicitly once the method that started the transaction is completed.
 By following the above procedure, you get a shorter locking duration, that improves performance and concurrency of access among multiple users to the space object. The object version ID validation that is performed on Write, Take, and WriteMultiple requests, keeps the data within the space consistent.</p>
-        <h1><a name="scenario-example">&#160;</a>Scenario Example</h1>
+        <h1><a name="scenario-example"></a>Scenario Example</h1>
         <p>Suppose that you have two applications, Application_1 and Application_2, which are both working with the same Object A. The following sequence of events describes a simple optimistic locking scenario.</p>
         <table>
             <thead>

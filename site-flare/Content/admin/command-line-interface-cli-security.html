@@ -7,7 +7,7 @@
 
 <p>This page explains how security can be applied to the commands supported by the CLI tool.</p>
 
-<h1><a name="login-logout">&#160;</a>Login/Logout</h1>
+<h1><a name="login-logout"></a>Login/Logout</h1>
 
 <p>The Command Line Interface (CLI) has two modes - an <code>interactive shell</code> mode and a <code>non-interactive</code> mode. The difference in terms of security is the <span class="tc-bold">login</span> stage. When in <code>interactive</code> mode, you can call the <code>login</code> command, supply credentials, and perform operations using this session. But, when in a <code>non-interactive</code> mode, you can execute only one command line at a time - no session is being managed.</p>
 
@@ -37,7 +37,7 @@ gs&gt; ...
 
 <p>To <span class="tc-bold">logout</span> <code>quit</code> the interactive shell.</p>
 
-<h1><a name="deploy-command">&#160;</a>Deploy Command</h1>
+<h1><a name="deploy-command"></a>Deploy Command</h1>
 
 <p>The CLI <code>deploy</code> command accepts a <code>-secured true/false</code> used to deploy a secured Processing Unit with a secured Space. Common when deploying a data-grid.
 In order to pass the user credentials, use <code>-user</code> and <code>-password</code> arguments. This will implicitly deploy a secured Processing Unit, and the credentials will be propagated to the Processing Unit and its internal services.</p>
@@ -70,7 +70,7 @@ gs -user uuu -password ppp deploy -user xxx -password yyy processor
 </div>
 </div>
 
-<h1><a name="undeploy-command">&#160;</a>Undeploy Command</h1>
+<h1><a name="undeploy-command"></a>Undeploy Command</h1>
 
 <p>The CLI <code>undeploy</code> command of a processing unit is done on its managing GSM. If the GSM is not secured, then no credentials are needed.</p>
 
@@ -84,7 +84,7 @@ gs&gt; undeploy processor
 </div>
 </div>
 
-<h1><a name="space-command">&#160;</a>Space Command</h1>
+<h1><a name="space-command"></a>Space Command</h1>
 
 <p>The CLI <code>space</code> commands are basically all the same. They require that the user has sufficient privileges to perform operations on the data.</p>
 

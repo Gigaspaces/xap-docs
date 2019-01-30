@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -10,28 +10,28 @@
         <p>
             <img src="../Resources/Static/attachment_files/admin/xap-cli.png" alt="image" class="tc-picture80" />
         </p>
-        <h1><a name="cli-help">&#160;</a>CLI Help</h1>
+        <h1><a name="cli-help"></a>CLI Help</h1>
         <p>Use the <code>--help</code> command (or <code>-h</code>) to see the syntax of a specified CLI command, or a list of all available commands. The list of commands may vary depending on whether you are running the <MadCap:variable name="General.ProductNameXAP" /> or the <MadCap:variable name="General.ProductNameIE" /> script. For example,
 the list of commands for <code>insightedge host run-agent --help</code> contains all the actions available under <code>xap host run-agent --help</code>, plus additional options for administering the Spark master and worker components.</p>
-        <h1><a name="cli-configuration">&#160;</a>CLI Configuration</h1>
+        <h1><a name="cli-configuration"></a>CLI Configuration</h1>
         <p>The CLI connects to the REST Manager API using the name or IP address of the Manager server. Configuration is applied from one of the following:</p>
         <ul>
             <li>The first server configured in the <code>XAP_MANAGER_SERVERS</code> environment variable.</li>
             <li>The server configured using <code>--server</code> command line option.</li>
             <li>The <code>localhost</code> as the server to connect to (if none of the above was applied).</li>
         </ul>
-        <h1><a name="autocomplete-functionality">&#160;</a>Autocomplete Functionality</h1>
-        <h2><a name="overview">&#160;</a>Overview</h2>
+        <h1><a name="autocomplete-functionality"></a>Autocomplete Functionality</h1>
+        <h2><a name="overview"></a>Overview</h2>
         <p>Bash completion in the CLI is available for Linux and MacOS X users. After activating the autocomplete feature (as explained below), navigate to <code>&lt;XAP-HOME&gt;/bin</code> and type <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>. This will complete the command sequence, or list all the available completions if there are multiple options.</p>
-        <h3><a name="macos-x-users-only">&#160;</a>MacOS X Users Only</h3>
+        <h3><a name="macos-x-users-only"></a>MacOS X Users Only</h3>
         <p>If you are using the CLI in a MacOS X environment, the autocomplete script will only work if bash version 4 is installed on your machine. After installing the required bash version, add the shell to the allowed shells and make it the default shell.</p>
         <p>When using autocomplete, type <code>./xap [TAB][TAB]</code> or <code>./insightedge [TAB][TAB]</code>.</p>
         <div class="tc-admon-note">
             <p>You can add xap as an alias to the <code>.bash_profile</code>, in order to simplify using autocomplete.</p>
         </div>
-        <h2><a name="activating-the-autocomplete-feature">&#160;</a>Activating the Autocomplete Feature</h2>
+        <h2><a name="activating-the-autocomplete-feature"></a>Activating the Autocomplete Feature</h2>
         <p>The autocomplete script is located in <code>&lt;XAP-HOME&gt;/tools/cli</code>. There are two ways to install autocomplete.</p>
-        <h3><a name="method-1-install-only-for-the-current-bash-console">&#160;</a>Method 1 - Install Only for the Current Bash Console</h3>
+        <h3><a name="method-1-install-only-for-the-current-bash-console"></a>Method 1 - Install Only for the Current Bash Console</h3>
         <ol>
             <li>Go to <code>&lt;XAP-HOME&gt;/tools/cli</code> and source the completion script: <code>source xap-autocomplete</code> or <code>source insightedge-autocomplete</code>.</li>
             <li>Go to <code>&lt;XAP-HOME&gt;/bin</code> and type: <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>.</li>
@@ -39,7 +39,7 @@ the list of commands for <code>insightedge host run-agent --help</code> contains
         <div class="tc-admon-note">
             <p>When you leave the bash session, autocomplete stops working.</p>
         </div>
-        <h3><a name="method-2-permanent-installation">&#160;</a>Method 2 - Permanent Installation</h3>
+        <h3><a name="method-2-permanent-installation"></a>Method 2 - Permanent Installation</h3>
         <ol>
             <li>Place the <code>xap-autocomplete</code> or <code>insightedge-autocomplete</code> file in a <code>bash_completion.d</code> folder. The folder may appear in the following locations: <code>/etc/bash_completion.d</code> <code>/usr/local/etc/bash_completion.d</code> <code>~/bash_completion.d</code> (create one if absent).</li>
             <li>(MacOS X users only) Edit the <code>~/.bash_profile</code> and add the following code: <code>source /usr/local/etc/bash_completion.d/xap-autocomplete</code></li>
@@ -53,7 +53,7 @@ the list of commands for <code>insightedge host run-agent --help</code> contains
                 <li>You can add a bash alias, for example: <code>alias xap = "cd &lt;XAP-HOME&gt;/bin &amp;&amp; xap"</code></li>
             </ol>
         </div>
-        <h2><a name="customizing-the-autocomplete-feature">&#160;</a>Customizing the Autocomplete Feature</h2>
+        <h2><a name="customizing-the-autocomplete-feature"></a>Customizing the Autocomplete Feature</h2>
         <p>If you want to generate a new autocomplete script (for example, if you changed the name of the xap or insightedge script) do so as follows:</p>
         <p>Go to <code>&lt;XAP-HOME&gt;/tools/cli</code> and run the following command:</p>
         <p><code>java -cp "../../lib/required/*:*" MAIN_COMMAND ALIAS</code>
@@ -67,7 +67,7 @@ the list of commands for <code>insightedge host run-agent --help</code> contains
         </ul>
         <p><code>ALIAS</code> is optional; use it if you changed the name of the command.</p>
         <p>After running <code>java -cp "../../lib/required/*:*" MAIN_COMMAND ALIAS</code>, the autocomplete script will appear in <code>&lt;XAP-HOME&gt;/tools/cli</code>.</p>
-        <h1><a name="running-a-local-manager-server">&#160;</a>Running a Local Manager Server</h1>
+        <h1><a name="running-a-local-manager-server"></a>Running a Local Manager Server</h1>
         <p>To run a local Manager server and a web browser client, type <code>xap host run-agent --auto</code> or <code>insightedge host run-agent --auto</code>.</p>
         <p>To view a list of the running agents, type <code>xap host list</code> or <code>insightedge host list</code>.</p>
         <div class="tc-admon-note">

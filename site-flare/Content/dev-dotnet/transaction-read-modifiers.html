@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -25,7 +25,7 @@
 
 <p>These modifiers can be set either at the proxy level - <code>proxy.ReadModifiers= int</code>, or at the operation level (e.g. using one of  read/<code>ReadIfExists</code>/<code>ReadMultiple</code>/count methods with a modifiers parameter).</p>
 
-<h1><a name="repeatable-read">&#160;</a>Repeatable Read</h1>
+<h1><a name="repeatable-read"></a>Repeatable Read</h1>
 
 <p><code>RepeatableRead</code> is the default modifier, defined by the JavaSpaces specification.</p>
 
@@ -33,14 +33,14 @@
 
 <p>Transactions using the <code>RepeatableRead</code> isolation level wait until the object that is write-locked by other transactions are unlocked before they acquire their own locks. This prevents them from reading "dirty" data. In addition, because other transactions cannot update or delete an object that is locked by a transaction using the <code>RepeatableRead</code> isolation level, non-repeatable read situations are avoided.</p>
 
-<h1><a name="dirty-read">&#160;</a>Dirty Read</h1>
+<h1><a name="dirty-read"></a>Dirty Read</h1>
 
 <p>The JavaSpaces specification defines the visibility of object for read operations as follows:
 A read operation performed under a <code>null</code> transaction can only access space objects that are not write-locked by non-null transactions. In other words, space objects that were written or taken by active transactions (transactions that have not been committed or rolled back) are not visible to the user performing a read operation.</p>
 
 <p>Sometimes it is desirable for non-transactional read operations to have full visibility of the objects in the space. The <code>DirtyRead</code> modifier, once set, enables read/<code>readIfExists</code>/<code>readMultiple</code>/count operations under a <code>null</code> transaction to have this complete visibility.</p>
 
-<h2><a name="code-example">&#160;</a>Code Example</h2>
+<h2><a name="code-example"></a>Code Example</h2>
 
 <pre><code class="language-csharp">// write something under txn X and commit, making it publicly visible
 proxy.Write( something, txnX, long.MaxValue);
@@ -57,7 +57,7 @@ proxy.Read( tmpl, null, ReadModifiers.DirtyRead);
 // Note: using the same txn (txn Y) will return matches that are visible under the transaction
 </code></pre>
 
-<h1><a name="read-committed">&#160;</a>Read Committed</h1>
+<h1><a name="read-committed"></a>Read Committed</h1>
 
 <p>The <code>ReadCommitted</code> modifier enables a read-committed isolation level in read operations.</p>
 
@@ -75,7 +75,7 @@ proxy.Read( tmpl, null, ReadModifiers.DirtyRead);
 
 <p><code>ReadIfExists</code> has less space objects to wait for, unless these are new objects under an uncommitted transaction.</p>
 
-<h2><a name="locking-and-blocking-rules">&#160;</a>Locking and Blocking Rules</h2>
+<h2><a name="locking-and-blocking-rules"></a>Locking and Blocking Rules</h2>
 
 <table>
 <thead>
@@ -227,7 +227,7 @@ proxy.Read( tmpl, null, ReadModifiers.DirtyRead);
 </ul>
 </div>
 
-<h2><a name="code-example-1">&#160;</a>Code Example</h2>
+<h2><a name="code-example-1"></a>Code Example</h2>
 
 <p>The examples below assumes you are using <code>ISpaceProxy</code> interface.</p>
 
@@ -246,7 +246,7 @@ proxy.Read( user, txnZ, ReadModifiers.ReadCommitted);
 // Note: using the same txn (txn Y) will return matches that are visible under the transaction
 </code></pre>
 
-<h1><a name="exclusive-read-lock">&#160;</a>Exclusive Read Lock</h1>
+<h1><a name="exclusive-read-lock"></a>Exclusive Read Lock</h1>
 
 <p>The Exclusive Read Lock is similar to select for update SQL for RDBMS, or update lock with ODBMS.</p>
 
@@ -263,7 +263,7 @@ proxy.Read( user, txnZ, ReadModifiers.ReadCommitted);
 
 <p>The exclusive read lock is supported in a clustered environment when using the Jini Transaction Manager.</p>
 
-<h2><a name="code-example-2">&#160;</a>Code Example</h2>
+<h2><a name="code-example-2"></a>Code Example</h2>
 
 <pre><code class="language-csharp">public void exclusiveReadLock()
 {

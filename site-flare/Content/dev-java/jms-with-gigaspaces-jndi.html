@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -9,7 +9,7 @@
 
 <p>The application uses a JNDI context to obtain these objects, and to start working with JMS. The context is initialized with the values specified in the <code>jndi.properties</code> file in the GigaSpaces classpath. After obtaining the context, the client calls the <code>context.lookup()</code> method, passing the name of the required resource. If the resource is found in JNDI, it is returned to the client.</p>
 
-<h1><a name="obtaining-connectionfactory-instances-from-jndi">&#160;</a>Obtaining ConnectionFactory Instances from JNDI</h1>
+<h1><a name="obtaining-connectionfactory-instances-from-jndi"></a>Obtaining ConnectionFactory Instances from JNDI</h1>
 
 <p>It is not possible to configure connection factories.</p>
 
@@ -41,7 +41,7 @@ InitialContext context = new InitialContext();
 QueueConnectionFactory factory = (QueueConnectionFactory)context.lookup("GigaSpaces;ContainerName;SpaceName;GSQueueConnectionFactoryImpl");
 </code></pre>
 
-<h1><a name="configuring-jms-destinations">&#160;</a>Configuring JMS Destinations</h1>
+<h1><a name="configuring-jms-destinations"></a>Configuring JMS Destinations</h1>
 
 <p>To enable JMS services in GigaSpaces JNDI, change the space schema file as follows:</p>
 
@@ -78,7 +78,7 @@ GigaSpaces;ContainerName;spaceName;jms;destinations;MyQueue
 GigaSpaces;ContainerName;spaceName;jms;destinations;TempQueue
 </code></pre>
 
-<h1><a name="obtaining-jms-destinations-from-jndi">&#160;</a>Obtaining JMS Destinations from JNDI</h1>
+<h1><a name="obtaining-jms-destinations-from-jndi"></a>Obtaining JMS Destinations from JNDI</h1>
 
 <p>The application uses a JNDI context to get the destinations from JNDI.</p>
 

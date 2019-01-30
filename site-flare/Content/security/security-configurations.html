@@ -15,7 +15,7 @@
 }
 </code></pre>
 
-<h2><a name="security-properties-file">&#160;</a>Security Properties File</h2>
+<h2><a name="security-properties-file"></a>Security Properties File</h2>
 
 <p>The <code>security.properties</code> file is looked for in the classpath or in the classpath under <code>config/security</code>.
 If all of the components will be requiring the same security configuration, then this is all you need.</p>
@@ -31,17 +31,17 @@ For example:</p>
 <pre><code class="language-java">com.gs.security.security-manager.class=my.company.MySecurityManagerImpl
 </code></pre>
 
-<h3><a name="space-security-configuration-file">&#160;</a>Space - Security Configuration file</h3>
+<h3><a name="space-security-configuration-file"></a>Space - Security Configuration file</h3>
 
 <p>For a standalone space, the default Space security configuration file is <code>&lt;space-name&gt;-security.properties</code>. You can include the security properties as part of the custom properties being passed to the space <code>/./space?properties=myCustomProps</code>.</p>
 
-<h3><a name="space-processing-unit-security-configuration-file">&#160;</a>Space Processing Unit - Security Configuration file</h3>
+<h3><a name="space-processing-unit-security-configuration-file"></a>Space Processing Unit - Security Configuration file</h3>
 
 <p>The default Space Processing Unit security configuration file is <code>/META-INF/spring/pu.properties</code>. This is equivalent to custom properties being passed to the Space. This allows you to configure different configurations for different Processing Units. Thus, having a Processing Unit Cluster point to a specific security directory.</p>
 
 <p>It is possible to separate the security configurations from the Processing Unit configurations, by placing the configurations in <code>/META-INF/spring/&lt;Space name&gt;-security.properties</code> file.</p>
 
-<h3><a name="configure-using-a-system-property">&#160;</a>Configure using a System property</h3>
+<h3><a name="configure-using-a-system-property"></a>Configure using a System property</h3>
 
 <p>An alternative is the System Property override.</p>
 

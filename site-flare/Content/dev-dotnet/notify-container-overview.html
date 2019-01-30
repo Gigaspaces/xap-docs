@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -64,12 +64,12 @@ notifyEventListenerContainer.Dispose();
             </div>
         </div>
         <p>The above example registers with the Space for write notifications using the provided template, which can be any .NET object (in this case, a <code>Data</code> object with its processed flag set to <code>false</code>). If a notification occurs, the <code>SimpleListener</code> is invoked. Registration for notifications is performed on the supplied Space proxy.</p>
-        <h1><a name="primary-backup">&#160;</a>Primary/Backup</h1>
+        <h1><a name="primary-backup"></a>Primary/Backup</h1>
         <p>The notify event container registers for notifications only when the relevant Space it is working against is in primary mode. When the Space is in backup mode, no registration occurs. If the Space moves from backup mode to primary mode, the container registers for notifications, and if it moved to backup mode, the registrations are canceled.</p>
         <div class="tc-admon-note">
             <p>This mostly applies when working with an embedded Space directly with a cluster member. When working with a clustered Space (performing operations against the whole cluster), the mode of the Space is always primary.</p>
         </div>
-        <h1><a name="template-definition">&#160;</a>Template Definition</h1>
+        <h1><a name="template-definition"></a>Template Definition</h1>
         <p>When performing receive operations, a template is defined, creating a virtualized subset of data in the Space, matching it. <MadCap:variable name="General.ProductNameXAP" /> supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. <MadCap:variable name="General.ProductNameXAP" /> allows the use of <a href="query-sql.html">SqlQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Using EventListenerContainerFactory " style="padding:10px"><pre><code class="language-csharp">[NotifyEventDriven]
@@ -103,7 +103,7 @@ notifyEventListenerContainer.Template = query;
 </code></pre>
             </div>
         </div>
-        <h1><a name="masking-notifications">&#160;</a>Masking Notifications</h1>
+        <h1><a name="masking-notifications"></a>Masking Notifications</h1>
         <p>The notify container allows you to mask which operations should cause notifications when performed against the Space. By default (if none is defined), notifications are sent for write operations. The operations are <code>write</code> (an entry matching the template has been written to the Space), <code>update</code> (an entry matching the template has been updated in the Space), <code>take</code> (an entry matching the template has been taken from the Space), <code>lease expiration</code> (an entry matching the template lease has been expired), and <code>all</code>. The following is an example of the notify container configured to trigger notifications for both write and update operations:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Using EventListenerContainerFactory " style="padding:10px"><pre><code class="language-csharp">[NotifyEventDriven(NotifyType = DataEventType.Write | DataEventType.Update)]
@@ -134,7 +134,7 @@ notifyEventListenerContainer.NotifyType = DataEventType.Write | DataEventType.Up
 </code></pre>
             </div>
         </div>
-        <h1><a name="batch-events">&#160;</a>Batch Events</h1>
+        <h1><a name="batch-events"></a>Batch Events</h1>
         <p>The notify container, through the unified event API, allows batching of notifications. Batching causes the Space to accumulate the notifications, and when a certain amount of time has passed or a certain size is reached, causes the events to be raised to the client. Batching is very useful when working with a remote Space, since it reduces the network round-trip operations. Moreover, when using Batch notification, it is possible (but not mandatory) to work with the <a href="event-listener-container.html#BatchDataEventArrived">BatchDataEventArrived</a> instead, and handle a batch of notifications at once.</p>
         <p>The following is an example of batching, where if the number of notifications has passed 10, or the time passed is 5 seconds (since the last batch was sent), a batch of notifications is sent to the client:</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -184,7 +184,7 @@ notifyEventListenerContainer.BatchDataEventArrived += new DelegateDataEventArriv
 </code></pre>
             </div>
         </div>
-        <h1><a name="fifo-events">&#160;</a>FIFO Events</h1>
+        <h1><a name="fifo-events"></a>FIFO Events</h1>
         <p>The notify event container can register for events or notifications, and have the events delivered in a FIFO order.</p>
         <div class="tc-admon-note">
             <p>For full FIFO support, the actual template also has to be marked as FIFO. For more details, refer to the <a href="fifo-support.html">FIFO Support</a> section.</p>
@@ -232,7 +232,7 @@ notifyEventListenerContainer.EventSessionConfig = sessionConfig;
 </code></pre>
             </div>
         </div>
-        <h1><a name="durable-notifications">&#160;</a>Durable Notifications</h1>
+        <h1><a name="durable-notifications"></a>Durable Notifications</h1>
         <p>Durable notification allows configuring the notify container to withstand failover and short network disconnections with no notifications lost.</p>
         <p>The following is an example of how Durable Notifications can be configured with the notify container:</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -277,7 +277,7 @@ notifyEventListenerContainer.EventSessionConfig = sessionConfig;
 </code></pre>
             </div>
         </div>
-        <h1><a name="take-on-notify">&#160;</a>Take on Notify</h1>
+        <h1><a name="take-on-notify"></a>Take on Notify</h1>
         <p>The notify event container can be configured to automatically perform a take on the notification data event. It can also be further configured to filter out events if the take operation returns <code>null</code>. (This usually happens when several clients receive this event, and only one succeeds with the take.)</p>
         <p>The notify container can be configured as follows:</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -309,8 +309,8 @@ notifyEventListenerContainer.PerformTakeOnNotify = true;
 notifyEventListenerContainer.IgnoreEventOnNullTake = true;
 </code></pre>
             </div>
-        </div><a name="SpaceDataEventArgs">&#160;</a>
-        <h1><a name="space-data-event-args">&#160;</a>Space Data Event Args</h1>
+        </div><a name="SpaceDataEventArgs"></a>
+        <h1><a name="space-data-event-args"></a>Space Data Event Args</h1>
         <p>The notify container uses the <MadCap:variable name="General.ProductNameXAP" /> <a href="the-space-notifications.html">data event session API</a> under the hood. When a notification is triggered, it contains <code>SpaceDataEventArgs</code>, which holds more information about the notification itself, such as the template and the DataEventType (for example, whether this notification was triggered by a write or an update operation). When using the notify container, it is possible to receive that additional information as a parameter of the event listener method:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Using EventListenerContainerFactory " style="padding:10px"><pre><code class="language-csharp">[NotifyEventDriven]
@@ -358,7 +358,7 @@ notifyEventListenerContainer.Dispose();
                 </div>
             </div>
         </div>
-        <h1><a name="queued-event-handling">&#160;</a>Queued Event Handling</h1>
+        <h1><a name="queued-event-handling"></a>Queued Event Handling</h1>
         <p>When a notification is received, it occurs asynchronously in a separate thread. That thread is part of the Space proxy resource pool that is in charge of receiving and executing notifications code. As a result, special care should be taken when the event listening method execution is not very short, because it could hold the proxy resource for too long and eventually exhaust it, which causes notifications to get lost. If the event listening method needs to execute code that takes some time, it is recommended to use the <code>QueuedEventHandling</code> feature.</p>
         <p>When this feature is enabled, each event that is received is put into a queue, and the notifying thread is released immediately. The queue is processed by a different thread or threads. Doing this keeps the proxy resource pool free. The number of threads that are processing the events together, can be determined using the <code>QueuedEventHandlersPoolSize</code> property. The queue size limit is configured using the <code>QueuedEventsSizeLimitProperty</code>. When the limit is reached, the notify thread blocks until it can insert the event into the queue. This is done in order to avoid the client running out of memory when it process events too slowly, and the queue keeps accumulating.</p>
         <p>The notify container can be configured as follows:</p>
@@ -409,14 +409,14 @@ notifyEventListenerContainer.CloneEventListenersPerThread = true;
 </code></pre>
             </div>
         </div>
-        <h1><a name="handling-exceptions">&#160;</a>Handling Exceptions</h1>
+        <h1><a name="handling-exceptions"></a>Handling Exceptions</h1>
         <p>During the life-cycle of the polling container, two types of exceptions might be thrown:</p>
         <ul>
             <li>User Exception</li>
             <li>Container Exception</li>
         </ul>
         <p>A User Exception is an exception that occurs during the invocation of the user event listener. A Container Exception is an exception that occurs anywhere else during the life-cycle of the container (for example, during the receive or trigger operation handler).</p>
-        <h2><a name="subscribing-to-the-containerexceptionoccurred-event">&#160;</a>Subscribing to the ContainerExceptionOccurred Event</h2>
+        <h2><a name="subscribing-to-the-containerexceptionoccurred-event"></a>Subscribing to the ContainerExceptionOccurred Event</h2>
         <p>It is possible to be notified when a container exception occurs by subscribing to the ContainerExceptionOccurred event, and getting a reference to the exception.</p>
         <p>The following is an example of how to subscribe to this event:</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -445,7 +445,7 @@ notifyEventListenerContainer.ContainerExceptionOccured += ExceptionHandler;
 </code></pre>
             </div>
         </div>
-        <h2><a name="subscribing-to-the-userexceptionoccured-event">&#160;</a>Subscribing to the UserExceptionOccured Event</h2>
+        <h2><a name="subscribing-to-the-userexceptionoccured-event"></a>Subscribing to the UserExceptionOccured Event</h2>
         <p>It is possible to be notified when a user exception occurs by subscribing to the UserExceptionOccurred event. This arguments of this event contain the entire <code>DataEventArgs</code> of the original <code>DataEventArrived</code>. By default, any event that is thrown inside the event listener scope results in transaction rollback if the container is set to be transactional. This can be overridden if the user exception handler sets the event state to "ignored".</p>
         <p>The following is an example of how to subscribe to this event:</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -474,7 +474,7 @@ notifyEventListenerContainer.UserExceptionOccured += ExceptionHandler;
 </code></pre>
             </div>
         </div>
-        <h1><a name="default-values-of-notify-container-configuration-parameters">&#160;</a>Default Values of Notify Container Configuration Parameters</h1>
+        <h1><a name="default-values-of-notify-container-configuration-parameters"></a>Default Values of Notify Container Configuration Parameters</h1>
         <p>The default values for all of the notify container configuration parameters, such as <code>perform-take-on-notify</code>, <code>ignore-event-on-null-take</code>, and others can be found in the API docs. Each property has a corresponding Default&lt;property name&gt; const field that sets the default value of the property.</p>
     </body>
 </html>

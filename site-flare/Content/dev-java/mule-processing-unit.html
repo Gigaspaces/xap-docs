@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Processing Unit</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> allows to configure, package and deploy a <a href="the-processing-unit-overview.html">Processing Unit</a>. The OpenSpaces Mule integration allows you to run a pure Mule application (with or without OpenSpaces special extension points and transports) as a Processing Unit.</p>
-        <h1><a name="configuration">&#160;</a>Configuration</h1>
+        <h1><a name="configuration"></a>Configuration</h1>
         <p>In order to run Mule as a Processing Unit within the <code>pu.xml</code> file (which is a Spring application context), the following needs to be defined:</p><pre><code class="language-xml">&lt;bean class="org.openspaces.esb.mule.pu.OpenSpacesMuleContextLoader"&gt;
     &lt;property name="location" value="/META-INF/spring/mule.xml"/&gt;
 &lt;/bean&gt;
 </code></pre>
         <p>In the example above, the <code>OpenSpacesMuleContextLoader</code> loads a Mule application as defined in the <code>mule.xml</code> configuration file. The <code>location</code> parameter is optional and defaults to the value specified in the example above.</p>
-        <h1><a name="packaging">&#160;</a>Packaging</h1>
+        <h1><a name="packaging"></a>Packaging</h1>
         <p>Packaging of the Processing Unit should follow the <a href="the-processing-unit-structure-and-configuration.html">Processing Unit structure</a>.</p>
         <div class="tc-admon-note">
             <p>When deploying a Processing Unit into the <a href="deploying-onto-the-service-grid.html">SLA-driven container</a>, Mule JAR files should be "installed" into the <MadCap:variable name="General.ProductNameXAP" /> installation (on each node). The following minimum set of JARs need to be copied into <code>&lt;XAP Root&gt;\lib\platform\mule</code> (if the Mule directory does not exists, create it).</p>
@@ -36,7 +36,7 @@
         <div class="tc-admon-note">
             <p>The required mule jar files can also be placed within the processing unit <code>lib</code> directory, without "installing" mule into each GSC node installation.</p>
         </div>
-        <h4><a name="packaging-for-mule-example">&#160;</a>Packaging for Mule example</h4>
+        <h4><a name="packaging-for-mule-example"></a>Packaging for Mule example</h4>
         <p>In the <a href="/sbp/mule-esb-example.html">Mule ESB example</a>, the following jars are required and should be placed under &lt;XAP Root&gt;\lib\platform\mule</p><pre><code class="language-bash">commons-beanutils-1.8.0.jar
 commons-cli-1.2.jar
 commons-io-1.4.jar
@@ -64,7 +64,7 @@ quartz-1.8.5.jar
 uuid-3.4.0.jar
 wrapper-3.2.3.jar
 </code></pre>
-        <h1><a name="running-deploying">&#160;</a>Running/Deploying</h1>
+        <h1><a name="running-deploying"></a>Running/Deploying</h1>
         <p>Once the Processing Unit is packaged, it can be run using the different options that come with OpenSpaces:</p>
         <ul>
             <li><a href="running-in-standalone-mode.html">Standalone</a>

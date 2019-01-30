@@ -215,7 +215,7 @@
 
 <p>The space filter business logic impacts the space responsiveness to client requests - please make sure your filter implementation will not involve heavy business logic. With concurrent access into the space, all clients share the <span class="tc-bold">same filter instance</span> object where the space engine access the same filter object on behalf of each client. Every non-thread safe attributes you use as part of the filter implementation will be thread-safe protected.</p>
 
-<h1><a name="example">&#160;</a>Example</h1>
+<h1><a name="example"></a>Example</h1>
 
 <p>The following example illustrates a space Filter POJO and a Bean that performs some space operations:</p>
 
@@ -534,7 +534,7 @@ afterAllNotifyTrigger called  Class Message - Object ID:1 data:AAAA
 </div>
 </div></div>
 
-<h1><a name="advanced-options">&#160;</a>Advanced Options</h1>
+<h1><a name="advanced-options"></a>Advanced Options</h1>
 
 <p>A filter is an instance of a class that implements the <code>ISpaceFilter</code> interface (<code>com.j_spaces.core.filters.ISpaceFilter</code>; see <a href="[%=Links.ApiJavaDoc%]/com/j_spaces/core/filters/ISpaceFilter.html">Javadoc</a>.</p>
 
@@ -543,7 +543,7 @@ afterAllNotifyTrigger called  Class Message - Object ID:1 data:AAAA
   <p>When performing operations using transactions (write, update, or take with a transaction object), the space filter callbacks are called when the operation is called, and not when the transaction commit/rollback is called.</p>
 </div>
 
-<h2><a name="ispacefilter-interface">&#160;</a>ISpaceFilter Interface</h2>
+<h2><a name="ispacefilter-interface"></a>ISpaceFilter Interface</h2>
 
 <table>
 <thead>
@@ -576,7 +576,7 @@ afterAllNotifyTrigger called  Class Message - Object ID:1 data:AAAA
 </tbody>
 </table>
 
-<h2><a name="filteroperationcodes">&#160;</a>FilterOperationCodes</h2>
+<h2><a name="filteroperationcodes"></a>FilterOperationCodes</h2>
 
 <p>The <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/filters/FilterOperationCodes.html">FilterOperationCodes</a> class includes the all the filter code you may use.</p>
 
@@ -601,15 +601,15 @@ afterAllNotifyTrigger called  Class Message - Object ID:1 data:AAAA
 <li><p><code>AFTER_ALL_NOTIFY_TRIGGER</code> – after all notify trigger operations, indicates that all notify templates that are matched to the current Entry event were triggered, and returned or failed.</p></li>
 </ul>
 
-<h2><a name="space-filter-invocation-with-backup-replica-space">&#160;</a>Space Filter invocation with backup/replica Space</h2>
+<h2><a name="space-filter-invocation-with-backup-replica-space"></a>Space Filter invocation with backup/replica Space</h2>
 
 <p>The space filter context is <code>null</code> for a filter called as a result of a replication event. For secured space, you can use this as indication to know if this operation originated by a client call or replication event.</p>
 
-<h2><a name="ispacefilterentry-interface">&#160;</a>ISpaceFilterEntry Interface</h2>
+<h2><a name="ispacefilterentry-interface"></a>ISpaceFilterEntry Interface</h2>
 
 <p>The <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/filters/entry/ISpaceFilterEntry.html">ISpaceFilterEntry</a> represents an Entry instance passed to the <code>ISpaceFilter</code> process method implementation. The <code>ISpaceFilterEntry</code> class extends the <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/filters/entry/IFilterEntry.html">IFilterEntry</a> that extends the <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/IGSEntry.html">IGSEntry</a> which includes methods that allow you to access the Entry values, class name and other Entry object properties. The <code>ISpaceFilterEntry</code> class does not include the <code>Entry Class</code> methods. To convert the <code>ISpaceFilterEntry</code> class to your Entry object, you should call the <code>ISpaceFilterEntry.getEntry(IJSpace space)</code> method or the <code>ISpaceFilterEntry.getExternalEntry(IJSpace space)</code> method.</p>
 
-<h2><a name="modifying-written-space-object-or-template">&#160;</a>Modifying Written Space Object or Template</h2>
+<h2><a name="modifying-written-space-object-or-template"></a>Modifying Written Space Object or Template</h2>
 
 <p>You may modify the written Entry field values before the Entry is stored in the space, using the <code>BEFORE_WRITE</code> event, or you can modify the template field values used when performing a search for a matching Entry, using the <code>BEFORE_READ</code> event. This allows you to truncate an unnecessary Entry field value, or replace it with some enriched data.</p>
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -17,12 +17,12 @@
 </ul>
 </div>
 
-<h1><a name="querying-the-data-grid-with-the-insightedge-jdbc-interpreter">&#160;</a>Querying the Data Grid with the <MadCap:variable name="General.ProductNameIE" /> JDBC Interpreter</h1>
+<h1><a name="querying-the-data-grid-with-the-insightedge-jdbc-interpreter"></a>Querying the Data Grid with the <MadCap:variable name="General.ProductNameIE" /> JDBC Interpreter</h1>
 
 <p>Zeppelin uses interpreters to compile and run paragraphs. <MadCap:variable name="General.ProductNameIE" /> Zeppelin comes with a custom JDBC interpreter, that enables running SQL queries on the data grid in notebooks.
 The queries are executed by the <a href="../dev-java/sql-query-intro.html"><MadCap:variable name="General.ProductNameIE" /> SQL Driver</a>.</p>
 
-<h2><a name="configuring-the-jdbc-interpreter">&#160;</a>Configuring the JDBC Interpreter</h2>
+<h2><a name="configuring-the-jdbc-interpreter"></a>Configuring the JDBC Interpreter</h2>
 
 <p>The JDBC interpreter connects to the data grid via a JDBC URL. To configure the URL value to point to the data grid in the Kubernetes environment, do the following:</p>
 
@@ -33,7 +33,7 @@ The queries are executed by the <a href="../dev-java/sql-query-intro.html"><MadC
 <li>Save the changes you made to the interpreter.</li>
 </ol>
 
-<h2><a name="querying-the-data-grid-in-notebooks">&#160;</a>Querying the Data Grid in Notebooks</h2>
+<h2><a name="querying-the-data-grid-in-notebooks"></a>Querying the Data Grid in Notebooks</h2>
 
 <p>When the JDBC interpreter is properly configured, Zeppelin paragraphs that are bound to the <code>%insightedge_jdbc</code> interpreter can run SQL queries directly on the data grid.</p>
 

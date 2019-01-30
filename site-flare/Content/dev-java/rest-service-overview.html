@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -9,18 +9,18 @@
         <div class="tc-admon-note">
             <p>The REST service is not supported with embedded space thus we recommend using it as a separate processing unit.</p>
         </div>
-        <h1><a name="deploment-options">&#160;</a>Deployment Options</h1>
-        <h2><a name="deploy-via-cli">&#160;</a>Deploy via CLI</h2>
+        <h1><a name="deploment-options"></a>Deployment Options</h1>
+        <h2><a name="deploy-via-cli"></a>Deploy via CLI</h2>
         <p>For information on how to use the CLI, see the <a href="../admin/tools-cli.html">Command Line Interface</a> page in the Administration guide.</p>
-        <h2><a name="deploy-using-a-template">&#160;</a>Deploy Using a Template</h2>
+        <h2><a name="deploy-using-a-template"></a>Deploy Using a Template</h2>
         <p>A pre-configured processing unit template is provided and can be found at <code>{XAP_HOME}/deploy/templates/rest</code>.</p>
-        <h2><a name="deploy-rest-service-as-part-of-a-custom-processing-unit">&#160;</a>Deploy REST Service as Part of a Custom Processing Unit</h2>
+        <h2><a name="deploy-rest-service-as-part-of-a-custom-processing-unit"></a>Deploy REST Service as Part of a Custom Processing Unit</h2>
         <p>A REST Service can be started as part of a custom processing unit by specifying the <code>&lt;os-core:rest &gt;</code> annotation as follows:</p><pre><code class="language-xml">&lt;os-core:space-proxy id="theSpace" space-name="theGigaSpace"&gt;
 &lt;os-core:rest id="mySpaceRestService" giga-space="theGigaSpace" port="8081" /&gt;
 </code></pre>
         <p>or</p><pre><code class="language-xml">&lt;os-core:rest id="mySpaceRestService" space-name="mySpace" port="8081" lookup-groups="myGroups" /&gt;
 </code></pre>
-        <h4><a name="os-core-rest-attributes">&#160;</a>&lt;os-core:rest&gt; attributes</h4>
+        <h4><a name="os-core-rest-attributes"></a>&lt;os-core:rest&gt; attributes</h4>
         <table>
             <thead>
                 <tr>
@@ -58,7 +58,7 @@
             </tbody>
         </table>
         <p>*giga-space and space-name attributes can not be used together.</p>
-        <h1><a name="date-support">&#160;</a>Date Support</h1>
+        <h1><a name="date-support"></a>Date Support</h1>
         <p>Date string is parsed with a different parser from <MadCap:variable name="General.ProductNameXAP" />'s parser. Therefore, a date format must be defined.</p>
         <p>We provide a default format <code>yyyy-MM-dd HH:mm:ss</code> but you can override it by providing the <code>rest.datetime_format</code> property in the deployment step or by specify it in the pu.xml:</p><pre><code class="language-xml">&lt;os-core:rest id="mySpaceRestService" space-name="mySpace" port="8081" lookup-groups="myGroups"&gt;
   &lt;os-core:properties&gt;
@@ -68,7 +68,7 @@
   &lt;/os-core:properties&gt;
 &lt;/os-core:rest&gt;
 </code></pre>
-        <h1><a name="nested-spacedocument">&#160;</a>Nested SpaceDocument</h1>
+        <h1><a name="nested-spacedocument"></a>Nested SpaceDocument</h1>
         <p>The REST API supports writing nested SpaceDocument.</p>
         <p>The JSON representation is:</p><pre><code class="language-json">{
   "typeName": "theTypeOfTheNestedObject-SpaceDocument",
@@ -80,13 +80,13 @@
   }
 }
 </code></pre>
-        <h1><a name="api-and-playground">&#160;</a>API and Playground</h1>
+        <h1><a name="api-and-playground"></a>API and Playground</h1>
         <p>Once the REST Processing Unit is deployed, you can browse the API and test its methods by accessing the main page at: <code>http://&lt;rest-instance-host-address&gt;:&lt;rest-port&gt;/</code>.</p>
         <p>The page should look like:</p>
         <p>
             <img src="../Resources/Static/attachment_files/rest-api-jsondoc.png" alt="rest-api-jsondoc.png" class="tc-picture100" />
         </p>
-        <h1><a name="limitations">&#160;</a>Limitations</h1>
+        <h1><a name="limitations"></a>Limitations</h1>
         <ul>
             <li>
                 <p>In case that the ports were in use, the deployment will fail.</p>
@@ -104,11 +104,11 @@
                 <p>Currently there is no support for connecting to a secured space.</p>
             </li>
         </ul>
-        <h1><a name="removed-apis">&#160;</a>Removed APIs</h1>
+        <h1><a name="removed-apis"></a>Removed APIs</h1>
         <p>The REST service was a dependant project until version 10.1.0.
 Since then, it is an official part of the product.</p>
         <p>Tasks API were removed, Pojo and Document API were merged with no support for Pojo writing.</p>
-        <h1><a name="war-deployment-and-customization">&#160;</a>WAR Deployment and Customization</h1>
+        <h1><a name="war-deployment-and-customization"></a>WAR Deployment and Customization</h1>
         <p>Another option is to deploy the REST service as <a href="web-application-overview.html">Web Processing Unit</a>.</p>
         <p>In order to do so, you will need to do the following:</p>
         <ol>

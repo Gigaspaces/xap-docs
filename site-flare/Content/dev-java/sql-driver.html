@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
@@ -7,15 +7,15 @@
 
 <p>The JDBC Driver is broadly compatible with the SQL-99 Core specification. It allows database-driven applications to interact with the Space via SQL read queries. The driver performs query optimization if needed and translates the SQL query into Space operations.</p>
 
-<h1><a name="installation">&#160;</a>Installation</h1>
+<h1><a name="installation"></a>Installation</h1>
 
 <p>Include all the JAR files from the <code>&lt;XAP-HOME&gt;\insightedge\lib\jdbc</code> and <code>&lt;XAP-HOME&gt;\lib\required</code> directories in your project.</p>
 
-<h1><a name="usage">&#160;</a>Usage</h1>
+<h1><a name="usage"></a>Usage</h1>
 
 <p>The JDBC driver can query either <a href="pojo-overview.html">POJOs</a> or <a href="document-overview.html">Space Documents</a>.</p>
 
-<h2><a name="pojo-support">&#160;</a>POJO Support</h2>
+<h2><a name="pojo-support"></a>POJO Support</h2>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="Person" style="padding:10px"><pre><code class="language-java">import java.util.UUID;
 
@@ -119,7 +119,7 @@ public class Person {
 </div>
 </div>
 
-<h2><a name="space-document-support">&#160;</a>Space Document Support</h2>
+<h2><a name="space-document-support"></a>Space Document Support</h2>
 
 <div class="easyui-tabs" plain="true" data-options=""><div title="Program" style="padding:10px"><pre><code class="language-java">public class DocumentTest {
 
@@ -203,7 +203,7 @@ Category :Aviation
   <p>For more information about Space documents, refer to the <a href="document-api.html">Document API</a> page.</p>
 </div>
 
-<h1><a name="jdbc-url">&#160;</a>JDBC URL</h1>
+<h1><a name="jdbc-url"></a>JDBC URL</h1>
 
 <p>In order to connect to the Space with JDBC driver, you need to specify the JDBC connection URL. The general format of the URL is:
 <code>jdbc:insightedge:url=&lt;space_url&gt;;&lt;url_properties&gt;</code></p>
@@ -280,7 +280,7 @@ Category :Aviation
 <pre><code class="language-bash">jdbc:insightedge:url=jini://LookupServiceHostname/*/mySpace;user=admin;password=admin
 </code></pre>
 
-<h1><a name="explain-plan">&#160;</a>Explain Plan</h1>
+<h1><a name="explain-plan"></a>Explain Plan</h1>
 
 <p>In order to get the query execution plan, you can use <code>EXPLAIN PLAN FOR</code> keywords. For example:</p>
 
@@ -337,7 +337,7 @@ XapToEnumerableConverter
 </div>
 </div>
 
-<h1><a name="table-mapping">&#160;</a>Table Mapping</h1>
+<h1><a name="table-mapping"></a>Table Mapping</h1>
 
 <p>The JDBC driver can query either Space classes or Space documents. When querying the Space class, the class package is stripped and only the class name is used. If there are several classes with the same name but in different packages in the classpath, the full class name needs to be specified by replacing the package separator (.) with (_).</p>
 
@@ -349,16 +349,16 @@ XapToEnumerableConverter
 <p>When querying Space documents, the table name is equal to document name. The table name is case sensitive.
 <br/></p>
 
-<h1><a name="indexing">&#160;</a>Indexing</h1>
+<h1><a name="indexing"></a>Indexing</h1>
 
 <div class="tc-admon-refer">
   
   <p>Query performance can be greatly improved by indexing. For more information about indexing, refer to the <a href="indexing-overview.html">Indexing</a> section.</p>
 </div>
 
-<h1><a name="logging">&#160;</a>Logging</h1>
+<h1><a name="logging"></a>Logging</h1>
 
-<h2><a name="client-side-logging-driver">&#160;</a>Client-Side logging (Driver)</h2>
+<h2><a name="client-side-logging-driver"></a>Client-Side logging (Driver)</h2>
 
 <p>The logging granularity can be set using the JDBC URL parameter. The level can be configured with one of the following options: TRACE, DEBUG, INFO, WARN, ERROR, ALL or OFF.</p>
 
@@ -371,7 +371,7 @@ XapToEnumerableConverter
 <li>Log level is INFO.</li>
 </ul>
 
-<h2><a name="server-side-logging-xap">&#160;</a>Server-Side Logging (<MadCap:variable name="General.ProductNameXAP" />)</h2>
+<h2><a name="server-side-logging-xap"></a>Server-Side Logging (<MadCap:variable name="General.ProductNameXAP" />)</h2>
 
 <p>In order to change the logging level on the server, use the following runtime property:</p>
 
@@ -383,14 +383,14 @@ XapToEnumerableConverter
   <p>For more information on how to set logging levels, refer to the <a href="../admin/logging-overview.html">Logging</a> section of the Administration guide.</p>
 </div>
 
-<h1><a name="the-driver">&#160;</a>The Driver</h1>
+<h1><a name="the-driver"></a>The Driver</h1>
 
 <p>The driver translates SQL queries into Space API calls. It is important to understand which SQL construction driver converts to which Space calls.
 This will allow you to create more sufficient queries.</p>
 
 <p>There are several types of queries. We can first consider the main types of queries and how they are converted into native <MadCap:variable name="General.ProductNameXAP" /> interactions:</p>
 
-<h2><a name="simple-select-with-filters">&#160;</a>Simple Select with Filters</h2>
+<h2><a name="simple-select-with-filters"></a>Simple Select with Filters</h2>
 
 <p>Consider the following query:</p>
 
@@ -404,7 +404,7 @@ This will allow you to create more sufficient queries.</p>
   <p>For more information about SQL support in the data grid, refer to the <a href="query-sql.html">SQL Query</a> page.</p>
 </div>
 
-<h2><a name="query-with-aggregator">&#160;</a>Query with Aggregator</h2>
+<h2><a name="query-with-aggregator"></a>Query with Aggregator</h2>
 
 <p>Consider the following query:</p>
 
@@ -418,7 +418,7 @@ This will allow you to create more sufficient queries.</p>
   <p>For more information about the <MadCap:variable name="General.ProductNameXAP" /> aggregation API, refer to the <a href="aggregators.html">Aggregation API</a> page.</p>
 </div>
 
-<h2><a name="join-query-algorithms">&#160;</a>Join Query Algorithms</h2>
+<h2><a name="join-query-algorithms"></a>Join Query Algorithms</h2>
 
 <p>The JDBC driver has two join algorithms, <code>Hash Join</code> and  <code>Nested Loop Join</code>. They use the distributed tasks to execute the join. Considering two join tables, the larger table is used as the <code>probe</code> table, while the smaller is used as the <code>build</code> table.</p>
 
@@ -432,7 +432,7 @@ This will allow you to create more sufficient queries.</p>
 
 <p>In order to turn off the server side join execution and run all calculations on the client side, set the <code>disableServerSideJoins=false</code> url parameter.</p>
 
-<h1><a name="limitations">&#160;</a>Limitations</h1>
+<h1><a name="limitations"></a>Limitations</h1>
 
 <ul>
 <li>The JDBC driver was not designed for low latency operations.</li>

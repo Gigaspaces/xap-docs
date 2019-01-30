@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Interacting with the Space</h1>
         <p>In this part of the tutorial we will demonstrate how to create a Space and how you can interact with it. We will also demonstrate how you can improve your Space search performance by using indexes and returning partial results.</p>
-        <h1><a name="creating-a-space">&#160;</a>Creating a Space</h1>
+        <h1><a name="creating-a-space"></a>Creating a Space</h1>
         <p>Let's create a Space called "xapTutorialSpace' that is co-located within an application. This type of Space is called embedded Space.</p>
         <p>Here is an example how you start an embedded Space:</p><pre><code class="language-csharp">using GigaSpaces.Core;
 
@@ -33,9 +33,9 @@ In both cases, updates are performed (objects are added/updated/removed) on the 
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../dev-dotnet/client-side-caching.html">Client Side Caching</a> section.</p>
         </div>
-        <h1><a name="the-space-object">&#160;</a>The Space Object</h1>
+        <h1><a name="the-space-object"></a>The Space Object</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> supports two types of objects that can interact with the Space, PONOs and Documents.</p>
-        <h1><a name="pono">&#160;</a>PONO</h1>
+        <h1><a name="pono"></a>PONO</h1>
         <p>Any PONO can be used to interact with the Space. The PONO needs to implement a default constructor, setters and getters for every property you want to store in the Space.</p><pre><code class="language-csharp">using System;
 using System.Collections.Generic;
 
@@ -60,7 +60,7 @@ using GigaSpaces.Core.Metadata;
     }
 }
 </code></pre>
-        <h2><a name="the-spaceid">&#160;</a>The SpaceId</h2>
+        <h2><a name="the-spaceid"></a>The SpaceId</h2>
         <p>The Space generates a unique identifier (UID) for every object in one of the following ways:</p>
         <ul>
             <li>When a Space object has no SpaceId attribute declared, the Space auto-generates a UID for the object.</li>
@@ -70,13 +70,13 @@ using GigaSpaces.Core.Metadata;
         <div class="tc-admon-note">
             <p>For more information, see the <a href="poco-object-id.html">Space Object ID</a> page in the Data Modeling section.</p>
         </div>
-        <h2><a name="defining-routing">&#160;</a>Defining Routing</h2>
+        <h2><a name="defining-routing"></a>Defining Routing</h2>
         <p>Partitioning is used when the total number of objects is too big to be stored in a single Space. In this case we will divide the data into several partitions. By designating an attribute on the Space class as a partitioning key, the Space proxy will then know to which partition a particular instance of the Space class belongs to. The Space proxy uses the entry's routing attribute hash code to determine the corresponding partition for it.</p>
         <div class="tc-admon-note">
             <p>The routing attribute can be explicitly set using the <code>[SpaceRouting]</code> annotation for PONO entries or via the SpaceTypeDescriptorBuilder for document entries. If the routing attribute is not explicitly set, the Space id attribute is used for routing. If the Space id attribute is not defined, the first indexed attribute (alphabetically) is used for routing, otherwise the first attribute (alphabetically) is used for routing.</p>
             <p>For more information, see the <a href="../admin/data-partitioning.html">Data Partitioning</a> page in the Administration guide.</p>
         </div>
-        <h1><a name="space-document">&#160;</a>Space Document</h1>
+        <h1><a name="space-document"></a>Space Document</h1>
         <p>The <MadCap:variable name="General.ProductNameXAP" /> document API exposes the Space as Document Store. A document, which is represented by the class SpaceDocument, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, String, Date, other documents, or collections thereof. Unlike PONOs, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic, users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the class SpaceTypeDescriptor.</p>
         <p>To create a document we use a Dictionary&lt;String,Object&gt; for its properties. The SpaceDocument object is instantiated by using the type name and properties. <MadCap:variable name="General.ProductNameXAP" /> provides a special implementation of a Dictionary called  DocumentProperties.</p>
         <p>Here is an example how you can create a SpaceDocument:</p><pre><code class="language-csharp">using System;
@@ -127,9 +127,9 @@ namespace xaptutorial.model
             <p>It is possible to write a PONO to the Space and read it back as a document, and vice versa. This scenario is useful when you want to read or modify PONO objects without loading the concrete C# classes.</p>
             <p>For more information, see the <a href="document-object-interoperability.html">Interoperability</a> page in the Space Document section.</p>
         </div>
-        <h1><a name="interacting-with-the-space">&#160;</a>Interacting with the Space</h1>
+        <h1><a name="interacting-with-the-space"></a>Interacting with the Space</h1>
         <p>All Space operations are relevant to both the PONO and Document.</p>
-        <h2><a name="writing-an-object-to-space">&#160;</a>Writing an Object to the Space</h2>
+        <h2><a name="writing-an-object-to-space"></a>Writing an Object to the Space</h2>
         <p>When writing an object to the Space, the object is created in Space if it does not exist. If it already exists in Space it will be updated. This is the default behavior of the write operation.</p><pre><code class="language-csharp">public void writeUser() {
      User user = new User();
      user.Id= 1L;
@@ -171,7 +171,7 @@ namespace xaptutorial.model
         <div class="tc-admon-note">
             <p>For more information, see the <a href="the-space-operations.html">Operations</a> page in The Space Interface section.</p>
         </div>
-        <h2><a name="updating-an-object-in-space">&#160;</a>Updating an Object the Space</h2>
+        <h2><a name="updating-an-object-in-space"></a>Updating an Object the Space</h2>
         <p>When you want to update only a couple of attributes on an object in Space, you can use the change operation and update specific fields or even nested fields or modify collections and maps without having to supply the entire collection or map for the operation. With the following change operation example it is not necessary to read the object first from the Space to update it. The Change API reduces a normal two step operation to a one step operation. This operation can vastly improve performance when you have an object with many attributes and you only need to update one or a couple of attributes.</p><pre><code class="language-csharp">public void changeSet() {
     User user = new User();
     user.Id=1L;
@@ -193,14 +193,14 @@ namespace xaptutorial.model
         <div class="tc-admon-note">
             <p>For more information, see the <a href="change-api-overview.html">Change API</a> section.</p>
         </div>
-        <h1><a name="querying-the-space">&#160;</a>Querying the Space</h1>
+        <h1><a name="querying-the-space"></a>Querying the Space</h1>
         <p>Now we are ready to query the Space. <MadCap:variable name="General.ProductNameXAP" /> provides several ways to perform queries against the Space:</p>
         <ul>
             <li>Query by ID</li>
             <li>Query by Template</li>
             <li>Query by SQL</li>
         </ul>
-        <h2><a name="query-by-id">&#160;</a>Query by ID</h2>
+        <h2><a name="query-by-id"></a>Query by ID</h2>
         <p>This is the simplest and fasted way to retrieve objects from the Space.</p>
         <p>Here is an example of a query by ID:</p><pre><code class="language-csharp">public User findUserById() {
     return proxy.ReadById&lt;User&gt;(1L);
@@ -213,7 +213,7 @@ namespace xaptutorial.model
     return result.ResultsArray;
 }
 </code></pre>
-        <h2><a name="query-by-template">&#160;</a>Query by Template</h2>
+        <h2><a name="query-by-template"></a>Query by Template</h2>
         <p>Template matching (match by example) is a simple way to query the Space. The template is a PONO of the desired entry type, and the attributes which are set on the template (i.e. not null) are matched against the respective attributes of entries of the same type in the Space. Attributes with null values are ignored (not matched).</p>
         <p>The following examples assume the default constructor of the User class initializes all its attributes to null.</p>
         <p>Read an entry of type User where the name is "John Doe':</p><pre><code class="language-csharp">public User findUserByTemplate() {
@@ -231,7 +231,7 @@ namespace xaptutorial.model
         <div class="tc-admon-note">
             <p>Template Matching support inheritance relationships, so that entries of a sub-class are visible in the context of the super class, but not the other way around.</p>
         </div>
-        <h2><a name="sql-query">&#160;</a>SQL Query</h2>
+        <h2><a name="sql-query"></a>SQL Query</h2>
         <p>The SQLQuery class is used to query the Space with an SQL-like syntax. The query statement includes only the WHERE statement part. An SQLQuery is composed from the class of entry to query and an expression in SQL syntax.</p><pre><code class="language-csharp">public User[] sqlFindUsersByName() {
     SqlQuery&lt;User&gt; query = new SqlQuery&lt;User&gt;("Name = 'John Doe'");
     return proxy.ReadMultiple&lt;User&gt;(query);
@@ -252,7 +252,7 @@ public User[] sqlFindUsersByNameLike() {
 
 }
 </code></pre>
-        <h2><a name="parameterized-queries">&#160;</a>Parameterized Queries</h2>
+        <h2><a name="parameterized-queries"></a>Parameterized Queries</h2>
         <p>You can separate the values for the SQL criteria expression by placing a "?' symbol instead of the actual value in the expression. When executing the query, the conditions that includes "?' are replaced with the corresponding parameter values supplied via the setParameter  method.</p>
         <p>For example:</p><pre><code class="language-csharp">public User[] sqlParameterFindUsersByName() {
     SqlQuery&lt;User&gt; query = new SqlQuery&lt;User&gt;("Name = ?")
@@ -267,7 +267,7 @@ public User[] sqlParameterFindUsersByNameAndCreditLimit() {
     return proxy.ReadMultiple&lt;User&gt;(query);
 }
 </code></pre>
-        <h2><a name="nested-property-queries">&#160;</a>Nested Property Queries</h2>
+        <h2><a name="nested-property-queries"></a>Nested Property Queries</h2>
         <p>Many times a class has embedded classes as attributes. You can query for attributes within the embedded classes. Matching a nested attribute is done by specifying a Path which describes how to obtain its value. For example, our user class has an embedded attribute of an Address that has a zipCode attribute.</p>
         <div class="tc-admon-note">
             <p>By default, nested objects are kept in a binary form inside the Space. In order to support nested matching, the relevant property should be stored as document, or as object if it is in an interoperability scenario and it has a corresponding Java class.</p>
@@ -306,7 +306,7 @@ public User[] sqlParameterFindUsersByNameAndCreditLimit() {
     return proxy.ReadMultiple&lt;User&gt;(query);
 }
 </code></pre>
-        <h2><a name="nested-collections">&#160;</a>Nested Collections</h2>
+        <h2><a name="nested-collections"></a>Nested Collections</h2>
         <p>It is possible to query embedded collections. Our user class has a collection groups that he belongs to. We can query the Space for all users that belong to a certain group:</p><pre><code class="language-csharp">public User[] findUsersByGroup() {
     SqlQuery&lt;User&gt; sqlQuery = new SqlQuery&lt;User&gt;( "Groups[*].Id = 1");
     return proxy.ReadMultiple&lt;User&gt;(sqlQuery);
@@ -316,7 +316,7 @@ public User[] sqlParameterFindUsersByNameAndCreditLimit() {
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../dev-dotnet/query-sql.html">SQL Query</a> page in the Querying the Space section.</p>
         </div>
-        <h2><a name="query-returning-partial-results">&#160;</a>Query Returning Partial Results</h2>
+        <h2><a name="query-returning-partial-results"></a>Query Returning Partial Results</h2>
         <p>In some cases when querying the Space for objects only specific attributes of an objects are required and not the entire object (delta read). For that purpose the Projection API can be used where you can specify which attributes are of interest and the Space will only populate these attributes with the actual data when the result is returned back to the user. This approach reduces network overhead and can vastly improve performance.</p>
         <p>In this example below we are just interested in the name attribute of the user object:</p><pre><code class="language-csharp">public User[] findUsersByNameAndProjection() {
     SqlQuery&lt;User&gt; query = new SqlQuery&lt;User&gt;( "Name = ?"){Projections = new []{"Name"}};
@@ -325,7 +325,7 @@ public User[] sqlParameterFindUsersByNameAndCreditLimit() {
     return proxy.ReadMultiple&lt;User&gt;(query);
 }
 </code></pre>
-        <h2><a name="document-queries">&#160;</a>Document Queries</h2>
+        <h2><a name="document-queries"></a>Document Queries</h2>
         <p>You can also query the Space for documents. Just like the PONO queries, you can use query by ID, template and SQLQuery.</p>
         <p>Here are some examples how you can query the Space for documents:</p><pre><code class="language-csharp">public SpaceDocument readProductById() {
     SpaceDocument template = new SpaceDocument("Product");
@@ -348,7 +348,7 @@ public SpaceDocument[] readProductsBySQL() {
         <div class="tc-admon-note">
             <p>For more information, see the <a href="document-api.html">Document API</a> page in the Space Document section.</p>
         </div>
-        <h2><a name="linq-queries">&#160;</a>LINQ Queries</h2>
+        <h2><a name="linq-queries"></a>LINQ Queries</h2>
         <p><MadCap:variable name="General.ProductNameXAP" /> includes a custom LINQ provider, which enables developers to take advantage of their existing C# skills to query the Space without learning a new language.  Here is an example :</p><pre><code class="language-csharp">using GigaSpaces.Core.Linq;
 
    var query = from p in spaceProxy.Query&lt;Account&gt;()
@@ -363,9 +363,9 @@ public SpaceDocument[] readProductsBySQL() {
         <div class="tc-admon-note">
             <p>For more information, see the <a href="query-linq.html">LINQ</a> page in the Querying the Space section.</p>
         </div>
-        <h2><a name="removing-objects-from-space">&#160;</a>Removing Objects from the Space</h2>
+        <h2><a name="removing-objects-from-space"></a>Removing Objects from the Space</h2>
         <p>To remove objects from a Space you can use the take or the clear operation.</p>
-        <h3><a name="take-operation">&#160;</a>Take Operation</h3>
+        <h3><a name="take-operation"></a>Take Operation</h3>
         <p>The take operation returns an object and removes it from the Space. <MadCap:variable name="General.ProductNameXAP" /> provides several options for the take operation:</p>
         <ul>
             <li>Take by ID</li>
@@ -389,7 +389,7 @@ public User[] takeUsersBySQL() {
    return spaceProxy.TakeMultiple&lt;User&gt;(query);
 }
 </code></pre>
-        <h3><a name="clear-operation">&#160;</a>Clear Operation</h3>
+        <h3><a name="clear-operation"></a>Clear Operation</h3>
         <p>The clear operation removes objects from a Space without returning them.
 Here are some examples:</p><pre><code class="language-csharp">public void clearUserByTemplate() {
      User template = new User();
@@ -407,7 +407,7 @@ public void clearAllObjectInSpace() {
      spaceProxy.Clear(null);
 }
 </code></pre>
-        <h3><a name="aggregation">&#160;</a>Aggregation</h3>
+        <h3><a name="aggregation"></a>Aggregation</h3>
         <p>The Aggregators allow you to perform the entire aggregation activity at the Space side avoiding any data retrieval back to the client side. Only the result of each aggregation activity performed with each partition is returned back to the client side where all the results are reduced and returned to the client application.</p><pre><code class="language-csharp">using GigaSpaces.Core.Linq;
 
 ...
@@ -430,11 +430,11 @@ Person youngestPersonInSpace = queryable.MinEntry(p =&gt; p.Age);
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../dev-dotnet/aggregators.html">Aggregators</a> page in the Space Interface section.</p>
         </div>
-        <h1><a name="indexing">&#160;</a>Indexing</h1>
+        <h1><a name="indexing"></a>Indexing</h1>
         <p>To improve performance, it is possible to index one or more attributes for an object. The Space maintains additional data for indexed attributes, which shortens the time required to determine a match resulting in improved performance. However, indexes consume more resources and impacts the write operations performance.</p>
-        <h2><a name="inheritance">&#160;</a>Inheritance</h2>
+        <h2><a name="inheritance"></a>Inheritance</h2>
         <p>By default, a properties index is inherited in sub classes (i.e. if an attribute is indexed in a super class, it is also indexed in a sub class). If you need to change the index type of an attribute in a subclass you can override the attribute and annotate it with <code>[SpaceIndex]</code> using the requested index type (to disable indexing use NONE).</p>
-        <h2><a name="basic-index">&#160;</a>Basic Index</h2>
+        <h2><a name="basic-index"></a>Basic Index</h2>
         <p>There are three basic index types provided:</p>
         <ul>
             <li><span class="tc-bold">EQUAL</span> - performs equality matching (equal to/not equal to).</li>
@@ -483,7 +483,7 @@ using GigaSpaces.Core.Metadata;
     }
 }
 </code></pre>
-        <h2><a name="compound-indexing">&#160;</a>Compound Indexing</h2>
+        <h2><a name="compound-indexing"></a>Compound Indexing</h2>
         <p>A Compound Index is a Space index composed from several attributes or nested attributes. Each attribute of a compound index is called a segment and each segment is described by its path.</p>
         <p>Here is an example of a compound index:</p><pre><code class="language-csharp">using System;
 using System.Collections.Generic;
@@ -509,7 +509,7 @@ SqlQuery&lt;User&gt; query = new SqlQuery&lt;User&gt;("Name = 'John Doe' AND Cre
         <div class="tc-admon-note">
             <p>For more information, see the <a href="indexing-overview.html">Indexing</a> section.</p>
         </div>
-        <h1><a name="best-practice">&#160;</a>Best Practices</h1>
+        <h1><a name="best-practice"></a>Best Practices</h1>
         <p>When you code your Space classes make sure that:</p>
         <ul>
             <li>

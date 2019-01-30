@@ -9,9 +9,9 @@
 
 <p>Note that in such a configuration, the different spaces defined as partitions are not aware of each other ("Share Nothing") - the client proxy is the one that is aware of the partitioned space configuration.</p>
 
- <a name="Defining">&#160;</a>
+ <a name="Defining"></a>
 
-<h1><a name="defining-a-routing-property">&#160;</a>Defining a Routing Property</h1>
+<h1><a name="defining-a-routing-property"></a>Defining a Routing Property</h1>
 
 <p><span class="tc-bold">Partitioning</span> is used when the total data set is too big to be stored in a single space, and we want to divide the data into two or more groups (partitions). In order to do that, the proxy needs to know how to partition the data, i.e. which entry belongs in which partition.</p>
 
@@ -41,9 +41,9 @@ int safeABS( int value)
 
 <p>However, note that all objects with a given routing value will be stored on the <span class="tc-italic">same partition</span>. This means that a given partition <span class="tc-italic">must</span> be able to hold all similarly-routed objects. If the routing value is weighted too far in a given direction (i.e., the distribution is very uneven, with one value having 90% of the data set, for example) the partitioning will be uneven. It's best to use a derived routing field that gives a flat distribution across all nodes, if possible.</p>
 
- <a name="Writing">&#160;</a>
+ <a name="Writing"></a>
 
-<h1><a name="writing-new-objects-with-a-collocated-business-logic">&#160;</a>Writing New Objects with a Collocated Business Logic</h1>
+<h1><a name="writing-new-objects-with-a-collocated-business-logic"></a>Writing New Objects with a Collocated Business Logic</h1>
 
 <p>When writing new objects from a collocated business logic with a partitioned space, the routing field must "match" the collocated space instance. When writing new objects from a collocated business logic with a partitioned space, the routing field must "match" the collocated space instance.</p>
 
@@ -52,9 +52,9 @@ int safeABS( int value)
   <p>See the section about <a href="../admin/clustered-vs-non-clustered-proxies.html#writing-new-objects-from-co-located-business-logic">Writing New Objects from Co-located Business Logic</a>  on the Clustered vs Non-Clustered Proxies page for details.</p>
 </div>
 
- <a name="Writing">&#160;</a>
+ <a name="Writing"></a>
 
-<h1><a name="writing-to-a-partitioned-space">&#160;</a>Writing To a Partitioned Space</h1>
+<h1><a name="writing-to-a-partitioned-space"></a>Writing To a Partitioned Space</h1>
 
 <p>As explained above, in <a href="#defining-a-routing-property">Defining a Routing Property</a>, when a proxy is asked to write an entry it extracts the routing property value to determine the relevant partition ID and forwards the entry to that partition. If the routing property value is null, an exception will be thrown indicating the proxy cannot write the entry because it does not know the target partition.</p>
 
@@ -64,9 +64,9 @@ int safeABS( int value)
 
 <p>An auto-generated ID property can be used for routing as well - the proxy detects that routing is auto-generated, selects a partition using a round-robin approach and forwards the entry to that partition. The space embeds the partition ID in the auto-generated ID value, so if the entry is later updated the proxy will extract the partition ID from the ID value and route the entry to the correct partition. Note that auto-generated routing is only valid in conjunction with auto-generated ID, and cannot be used to route other entries.</p>
 
- <a name="Querying">&#160;</a>
+ <a name="Querying"></a>
 
-<h1><a name="querying-a-partitioned-space">&#160;</a>Querying a Partitioned Space</h1>
+<h1><a name="querying-a-partitioned-space"></a>Querying a Partitioned Space</h1>
 
 <p>When a proxy is asked to execute a query (template, SQL or id) on a partitioned space, it first checks if the query contains a routing value. If it does, the query is executed only on the relevant partition, otherwise it is broadcast to the entire cluster.</p>
 
@@ -79,7 +79,7 @@ int safeABS( int value)
 <p>FIFO ordering is maintained per partition. If a FIFO query is broadcasted to the entire cluster the results are not guaranteed to be FIFO ordered.</p>
 </div>
 
-<h1><a name="initializing-a-partitioned-space">&#160;</a>Initializing a Partitioned Space</h1>
+<h1><a name="initializing-a-partitioned-space"></a>Initializing a Partitioned Space</h1>
 
 <p>When initializing a partitioned space, it is possible to load only the data you need for a specific partition.</p>
 
@@ -88,7 +88,7 @@ int safeABS( int value)
   <p>For more details, see <a href="space-persistency-initial-load.html">Space Persistency Initial Load</a>.</p>
 </div>
 
-<h1><a name="non-partitioned-operations">&#160;</a>Non-Partitioned Operations</h1>
+<h1><a name="non-partitioned-operations"></a>Non-Partitioned Operations</h1>
 
 <p>The <code>clean</code> and <code>snapshot</code> operations are not partition-aware, i.e. they are executed on a default partition that the proxy selects implicitly, and not broadcast to the entire cluster.</p>
 
