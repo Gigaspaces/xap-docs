@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -16,6 +16,19 @@
             <p>Intel's Optane DC is not yet available in the market, so to use the GigaSpaces PMEM driver you need to emulate PMEM on your machine. For information on how to do this, see the section on <a href="https://pmem.io/2016/02/22/pm-emulation.html">how to emulate Persistent Memory</a> on Intel's Persistent Memory Programming project website.</p>
             <p>If you would like to receive early access to the Optane PC hardware for evaluation purposes, contact us to <a href="https://www.gigaspaces.com/request-demo">request a demo</a> via the GigaSpaces website.</p>
         </div>
+        <h1>Prerequisites</h1>
+        <h2>Driver Mode</h2>
+        <p>Intel's Optane DC&#160;PMEM&#160;array supports two modes, Memory mode and App Direct mode. In Memory mode, Optane works like DRAM, where data is gone when the system is powered down. In App Direct mode, the data remains stored even when the system is powered down.</p>
+        <p>The MemoryXtend PMEM&#160;driver uses Intel's App Direct mode. Ensure that this is the mode set in the <span class="tc-highlight">???.</span></p>
+        <div class="tc-admon-note">
+            <p>For more information about the different PMEM modes, see this <a href="https://software.intel.com/en-us/blogs/2018/10/30/new-software-development-opportunities-with-big-affordable-persistent-memory" target="_blank">Intel blog</a>.</p>
+        </div>
+        <h2>Direct Access (DAX)</h2>
+        <p>In order for the MemoryXtend PMEM&#160;driver to work properly, DAX must be enabled in the kernel.</p>
+        <div class="tc-admon-note">
+            <p>For more information about DAX, see this explanation of <a href="https://www.kernel.org/doc/Documentation/filesystems/dax.txt" target="_blank">Direct Access for files</a>.</p>
+        </div>
+        <p>&#160;</p>
         <h1><a name="basic-configuration"></a>Basic Configuration</h1>
         <div class="tc-admon-note">
             <p>The PMEM storage driver dose not currently support persistence mode.</p>
