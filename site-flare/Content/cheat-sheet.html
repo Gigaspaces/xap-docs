@@ -4,17 +4,25 @@
     </head>
     <body>
         <h1> Cheat Sheet for GigaSpaces Documentation</h1>
-        <h2>Styles</h2>
+        <h1>Styles (Lists, Code, Images)</h1>
         <p>We apply styles to paragraphs in order to format text. Use the following styles when you write or update documentation.</p>
-        <h3>Headings</h3>
-        <p>We use three heading styles (h1, h2, and h3 -- see the headings above). Headings are used to indicate a hierarchical order to information. Don't use a heading style just to emphasize text.  </p>
-        <h3>Bulleted and Numbered Lists</h3>
+        <h2>Headings</h2>
+        <p>We generally use three heading styles (h1, h2, and h3). Headings are used to indicate a hierarchical order to information. Don't use a heading style just to emphasize text. </p>
+        <p>HTML:</p><pre>&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;</pre>
+        <h2>Bulleted and Numbered Lists</h2>
         <p>The following is a simple bulleted list:</p>
         <ul>
             <li>Bullet point 1</li>
             <li>Bullet point 2</li>
             <li>Bullet point 3</li>
         </ul>
+        <p>HTML:</p><pre>&lt;ul&gt;
+    &lt;li&gt;Bullet point 1&lt;/li&gt;
+    &lt;li&gt;Bullet point 2&lt;/li&gt;
+    &lt;li&gt;Bullet point 3&lt;/li&gt;
+&lt;/ul&gt;</pre>
         <p>The following is a bulleted list with related content for each bullet:</p>
         <ul>
             <li>
@@ -32,34 +40,21 @@
                 </p>
             </li>
         </ul>
-        <h3>Image Styles</h3>
-        <p>You can assign a size to an image, so that it sits nicely on the page.</p>
-        <p>Unsized image:</p>
-        <p>
-            <img src="Resources/Static/attachment_files/danger-noodle.jpg" />
-        </p>
-        <p>Image is set to the maximum width of the natural image size or the max-width of the viewport (area of the website page where it appears):</p>
-        <p>
-            <img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-picture100" />
-        </p>
-        <p>Image is set to 80% of the natural image size or the width of the viewport (area of the website page where it appears):</p>
-        <p>
-            <img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-picture80" />
-        </p>
-        <p>Image is set to 50% of the natural image size or the width of the viewport (area of the website page where it appears):</p>
-        <p>
-            <img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-picture50" />
-        </p>
-        <p>Image is set to 30% of the natural image size or the width of the viewport (area of the website page where it appears):</p>
-        <p>
-            <img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-picture30" />
-        </p>
-        <p>Image is set as a thumbnail. Click it to view full size.</p>
-        <p>
-            <img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-thumbnail" />
-        </p>
-        <p>Use this style to add icons to a line of text, for example to show a button like this <img src="Resources/Static/attachment_files/Viewing Space Interrelations4.gif" class="tc-pictureinline" />that the user sees in a UI. </p>
-        <p>Code Blocks</p>
+        <p>HTML:</p><pre>&lt;ul&gt;
+     &lt;li&gt;
+         &lt;p&gt;Bullet point 1&lt;/p&gt;
+        &lt;p&gt;Related text that explains an important point for this list item.&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;p&gt;Bullet point 2&lt;/p&gt;
+        &lt;p&gt;Related text that explains an important point for this list item.&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;p&gt;Bullet point 3&lt;/p&gt;
+        &lt;p&gt;&lt;img src="Resources/Static/attachment_files/customlogin-properties-new.png" /&gt;&lt;/p&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</pre>
+        <h2>Code Blocks</h2>
         <p>We have built-in styles for the following code languages.</p>
         <p>Plain code:</p><pre><code>// Create a document template using the POJO class name:
 SpaceDocument template = new SpaceDocument(MyPojo.class.getName());
@@ -101,19 +96,63 @@ SpaceDocument template = new SpaceDocument(MyPojo.class.getName());
 // Count all entries matching the template:
 int count = gigaSpace.count(template);
 </code></pre>
-        <h2>Spans</h2>
+        <p>Use the following HTML tags to enclose your code block, and specify the code language using the code class. If you are adding plain code, omit the class.</p>
+        <div class="tc-admon-important">
+            <p>Flare doesn't support the use of tabbing to create spaces. Use the space bar only.</p>
+        </div><pre>&lt;/p&gt;&lt;pre&gt;&lt;code<span class="tc-highlight"> class="language-java"</span>&gt;// Create a document template using the POJO class name:
+SpaceDocument template = new SpaceDocument(MyPojo.class.getName());
+// Count all entries matching the template:
+int count = gigaSpace.count(template);
+&lt;/code&gt;&lt;/pre&gt;</pre>
+        <h2>Images</h2>
+        <p>There are multiple image styles so that you can assign a size to an image. This will ensure that it sits nicely on the page, or in the line of text where you want it to appear.</p>
+        <p>Unsized image:</p>
+        <p>
+            <img src="Resources/Static/attachment_files/danger-noodle.jpg" />
+        </p>
+        <p>HTML:</p><pre>&lt;p&gt;&lt;img src="Resources/Static/attachment_files/danger-noodle.jpg" /&gt;&lt;/p&gt;</pre>
+        <p>Image is set to the maximum width of the natural image size or the max-width of the viewport (area of the website page where it appears):</p>
+        <p>
+            <img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-picture100" />
+        </p>
+        <p>HTML:</p><pre> &lt;p&gt;&lt;img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-picture100" /&gt;&lt;/p&gt;</pre>
+        <p>Image is set to 80% of the natural image size or the width of the viewport (area of the website page where it appears):</p>
+        <p>
+            <img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-picture80" />
+        </p>
+        <p>HTML:</p><pre>&lt;p&gt;&lt;img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-picture80" /&gt;&lt;/p&gt;</pre>
+        <p>Image is set to 50% of the natural image size or the width of the viewport (area of the website page where it appears):</p>
+        <p>
+            <img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-picture50" />
+        </p>
+        <p>HTML:</p><pre>&lt;p&gt;&lt;img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-picture50" /&gt;&lt;/p&gt;</pre>
+        <p>Image is set to 30% of the natural image size or the width of the viewport (area of the website page where it appears):</p>
+        <p>
+            <img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-picture30" />
+        </p>
+        <p>HTML:</p><pre>&lt;p&gt;&lt;img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-picture30" /&gt;&lt;/p&gt;</pre>
+        <p>Image is set as a thumbnail. Click it to view full size.</p>
+        <p>
+            <img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-thumbnail" />
+        </p>
+        <p>HTML:</p><pre xml:space="preserve">&lt;p&gt;&lt;img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-thumbnail" /&gt;&lt;/p&gt;</pre>
+        <p>Use this tag (embedded in your sentence) to add images within a line of text, for example to show an icon like this <img src="Resources/Static/attachment_files/Viewing Space Interrelations4.gif" class="tc-pictureinline" /> that the user might see in a UI, or a button image. </p>
+        <p>HTML:</p><pre>&lt;img src="Resources/Static/attachment_files/Viewing Space Interrelations4.gif" class="tc-pictureinline" /&gt;</pre>
+        <h1>Spans (Local Formatting)</h1>
         <p>Use a span to apply local formatting to words within a paragraph, like bold and italic.</p>
-        <p>Bold:&#160;<span class="tc-bold">Bold</span></p>
-        <p>Italic: <span class="tc-italic">Italic</span></p>
-        <p>Monospace: <code>monospace</code>,</p>
+        <p>Bold: <span class="tc-bold">Bold</span>, Italic: <span class="tc-italic">Italic</span>, Monospace: <code>monospace</code></p>
+        <p>HTML:</p><pre xml:space="preserve"> &lt;p&gt;Bold: &lt;span class="tc-bold"&gt;Bold&lt;/span&gt;, Italic: &lt;span class="tc-italic"&gt;Italic&lt;/span&gt;, Monospace: &lt;code&gt;monospace&lt;/code&gt;&lt;/p&gt;</pre>
         <p>Colored text:&#160;<span class="tc-textblue">blue text</span>, <span class="tc-textgreen">green text</span>, <span class="tc-textred">red text</span></p>
+        <p>HTML:</p><pre xml:space="preserve">&lt;p&gt;Colored text: &lt;span class="tc-textblue"&gt;blue text&lt;/span&gt;, &lt;span class="tc-textgreen"&gt;green text&lt;/span&gt;, &lt;span class="tc-textred"&gt;red text&lt;/span&gt;&lt;/p&gt;</pre>
         <p>Text with awesomefont icons - can be used in tables instead of the Note and Important boxes (apply the span to the entire line of text and the icon will display at the beginning):</p>
-        <p> <span class="tc-iconexcl">exclamation Use this for information that may affect application performance, for example a note in a table.</span></p>
+        <p> <span class="tc-iconexcl">exclamation Use this for information that may affect application performance, for example a note in a table.</span> </p>
+        <p>HTML:</p><pre>&lt;p&gt; &lt;span class="tc-iconexcl"&gt;exclamation Use this for information that may affect application performance, for example a note in a table.&lt;/span&gt; &lt;/p&gt;</pre>
         <p><span class="tc-iconinfo">info Use this for information that may be helpful to the user.</span>
         </p>
-        <h2>Divs</h2>
+        <p>HTML:</p><pre>&lt;p&gt;&lt;span class="tc-iconinfo"&gt;info Use this for information that may be helpful to the user.&lt;/span&gt;&lt;/p&gt;</pre>
+        <h1>Divs (Notes, Tabs, Etc.)</h1>
         <p>We use divs to wrap information (text, code, lists) in Tip, Note, Attention, and Important box. We also use divs for tabs and accordions.</p>
-        <h3>Note Options</h3>
+        <h2>Note Options</h2>
         <div class="tc-admon-tip">
             <p>This is parenthetical information that might help the user do something faster or more easily.</p>
         </div>
@@ -126,7 +165,19 @@ int count = gigaSpace.count(template);
         <div class="tc-admon-important">
             <p>This is very important information that the user should know because it will definitely impact application performance in a negative way.</p>
         </div>
-        <h3>Tabs </h3>
+        <p>HTML:</p><pre>&lt;div class="tc-admon-tip"&gt;
+     &lt;p&gt;This is parenthetical information that might help the user do something faster or more easily.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="tc-admon-note"&gt;
+    &lt;p&gt;This is useful information that the user will definitely find helpful, but it's a side point to the main information in the paragraph above it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="tc-admon-attention"&gt;
+    &lt;p&gt;This is important information that the user should know because it may affect application performance.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="tc-admon-important"&gt;
+    &lt;p&gt;This is very important information that the user should know because it will definitely impact application performance in a negative way.&lt;/p&gt;
+&lt;/div&gt;</pre>
+        <h2>Tabs </h2>
         <p>Use tabs when you want to provide code samples in different languages for the same functionality.</p>
         <div class="easyui-tabs" plain="true">
             <div title="Tab 1">
@@ -142,7 +193,21 @@ int count = gigaSpace.count(template);
                 <p>para 6</p>
             </div>
         </div>
-        <h3>Accordions</h3>
+        <p>HTML:</p><pre>&lt;div class="easyui-tabs" plain="true"&gt;
+    &lt;div title="Tab 1"&gt;
+        &lt;p&gt;para 1&lt;/p&gt;
+        &lt;p&gt;para 2&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div title="Tab 2"&gt;
+        &lt;p&gt;para 3&lt;/p&gt;
+        &lt;p&gt;para 4&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div title="Tab 3"&gt;
+        &lt;p&gt;para 5&lt;/p&gt;
+        &lt;p&gt;para 6&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <h2>Accordions</h2>
         <p>Use the accordion style when you want to add extra information that's not critical but may be interesting or helpful, similar to a note or tip but longer and more detailed.</p>
         <div class="easyui-accordion">
             <div title="Acc 1">
@@ -154,7 +219,17 @@ int count = gigaSpace.count(template);
                 <p>para 4</p>
             </div>
         </div>
-        <h2>Tables</h2>
+        <p>HTML:</p><pre>&lt;div class="easyui-accordion"&gt;
+    &lt;div title="Acc 1"&gt;
+        &lt;p&gt;para 1&lt;/p&gt;
+        &lt;p&gt;para 2&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div title="Acc 2"&gt;
+        &lt;p&gt;para 3&lt;/p&gt;
+        &lt;p&gt;para 4&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+        <h1>Tables</h1>
         <p>This is a standard table with no header row:</p>
         <table style="width: 100%;" class="tc-standard">
             <col />
@@ -178,8 +253,30 @@ int count = gigaSpace.count(template);
                 </tr>
             </tbody>
         </table>
+        <p>HTML:</p><pre>&lt;table style="width: 100%;" class="tc-standard"&gt;
+    &lt;col /&gt;
+    &lt;col /&gt;
+    &lt;col /&gt;
+    &lt;tbody&gt;
+         &lt;tr&gt;
+            &lt;td&gt;cell 1&lt;/td&gt;
+            &lt;td&gt;cell 2&lt;/td&gt;
+            &lt;td&gt;cell 3&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;cell 1A&lt;/td&gt;
+            &lt;td&gt;cell 2A&lt;/td&gt;
+            &lt;td&gt;cell 3A&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;cell 1B&lt;/td&gt;
+            &lt;td&gt;cell 2B&lt;/td&gt;
+            &lt;td&gt;cell 3B&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</pre>
         <p>This is a standard table with a header row:</p>
-        <table style="width: 100%;border-top-left-radius: 3px;border-top-right-radius: 3px;border-bottom-right-radius: 3px;border-bottom-left-radius: 3px;border-left-style: solid;border-left-width: 1px;border-left-color: #ccc;border-right-style: solid;border-right-width: 1px;border-right-color: #ccc;border-top-style: solid;border-top-width: 1px;border-top-color: #ccc;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #ccc;" class="tc-standard">
+        <table style="width: 100%;" class="tc-standard">
             <col />
             <col />
             <col />
@@ -208,6 +305,30 @@ int count = gigaSpace.count(template);
                 </tr>
             </tbody>
         </table>
+        <p>HTML:</p><pre>&lt;table style="width: 100%;" class="tc-standard"&gt;
+    &lt;col /&gt;
+    &lt;col /&gt;
+    &lt;col /&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;&amp;#160;&lt;/th&gt;
+            &lt;th&gt;&amp;#160;&lt;/th&gt;
+            &lt;th&gt;&amp;#160;&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&amp;#160;&lt;/td&gt;
+            &lt;td&gt;&amp;#160;&lt;/td&gt;
+            &lt;td&gt;&amp;#160;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&amp;#160;&lt;/td&gt;
+            &lt;td&gt;&amp;#160;&lt;/td&gt;
+            &lt;td&gt;&amp;#160;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</pre>
         <p>this is a table with no borders - use it to format content in the page, for example to place an image alongside a block of text:</p>
         <table style="width: 100%;" class="tc-borderless">
             <col />
@@ -221,22 +342,44 @@ int count = gigaSpace.count(template);
                 </tr>
             </tbody>
         </table>
-        <h2>Conditions and Variables</h2>
+        <p>HTML:</p><pre>&lt;table style="width: 100%;" class="tc-borderless"&gt;
+    &lt;col /&gt;
+    &lt;col /&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;sample text about the danger noodle, which should be avoided at all costs so that you don't actually put yourself in danger.&lt;/td&gt;
+            &lt;td&gt;
+                &lt;img src="Resources/Static/attachment_files/danger-noodle.jpg" class="tc-picture80" /&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</pre>
+        <h1>Versioning (Conditions and Variables)</h1>
         <p>We use conditions instead of branching the documentation for each new version. We use variables instead of short codes to keep things like version numbers and product/feature names up to date.</p>
-        <h3>Conditions</h3>
+        <h2>Conditions</h2>
         <p>If you are adding information that is version specific, you must make sure to condition it for that version. You can apply a condition to a word, paragraph, or a complete topic. We use the following methodology to condition per version - born (introduced in this version), died (removed in this version), and only (specific to this version). </p>
-        <p>This is how to condition <MadCap:conditionalText MadCap:conditions="Version.14-2-born">content that you added to a sentence</MadCap:conditionalText> or <MadCap:conditionalText MadCap:conditions="Version.14-2-died">content that you need to remove from a sentence</MadCap:conditionalText>.</p>
+        <p>This is <MadCap:conditionalText MadCap:conditions="Version.14-2-born">what you added</MadCap:conditionalText> because of new development.</p>
+        <p>HTML:</p><pre xml:space="preserve">&lt;p&gt;This is &lt;MadCap:conditionalText MadCap:conditions="Version.14-2-born"&gt;what you added &lt;/MadCap:conditionalText&gt; because of new development.&lt;/p&gt;</pre>
+        <p>This is <MadCap:conditionalText MadCap:conditions="Version.14-2-died">what you are hiding in this version</MadCap:conditionalText> because it was removed.</p>
+        <p>HTML:</p><pre>&lt;p&gt;This is &lt;MadCap:conditionalText MadCap:conditions="Version.14-2-died"&gt;what you are hiding in this version&lt;/MadCap:conditionalText&gt; because it was removed.&lt;/p&gt;</pre>
         <p MadCap:conditions="Version.14-0-only">This is how to condition a paragraph in a topic. </p>
-        <h3>Variables</h3>
-        <p>Don't hard-code things like software versions in the text or in code samples (for things that are included in our product package). </p>
-        <p>Add the variable in the body of the sentence, for example <MadCap:variable name="General.ProductNameIE" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
+        <p>HTML:</p><pre>&lt;p MadCap:conditions="Version.14-0-only"&gt;This is how to condition a paragraph in a topic. &lt;/p&gt;</pre>
+        <h2>Variables</h2>
+        <p>Don't hard-code things like software versions in the text or in code samples (for third-party software or other items that are included in our product package). </p>
+        <p>Add the variable in the sentence, for example <MadCap:variable name="General.ProductNameIE" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
+        <p>HTML:</p><pre>&lt;p&gt;Add the variable in the sentence, for example &lt;MadCap:variable name="General.ProductNameIE" /&gt; release &lt;MadCap:variable name="Versions.product-version-short" /&gt;.&lt;/p&gt;</pre>
         <p>For a complete list of version variables and their values, see the <a href="https://github.com/Gigaspaces/xap-docs/blob/master/site-flare/Project/VariableSets/Versions.flvar">Versions.flvar</a> file.</p>
-        <h2>Links</h2>
+        <h1>Links</h1>
         <p>Use hyperlinks for external links (to the Github, other websites, etc.), and cross references for internal links (to another topic on the doc website).</p>
         <p>Hyperlink that opens in a new browser tab: This is a cool <a href="http://insult.dream40.org/" target="_blank">external link</a>.</p>
+        <p>HTML:</p><pre>&lt;p&gt;This is a cool &lt;a href="http://insult.dream40.org/" target="_blank"&gt;external link&lt;/a&gt;.&lt;/p&gt;</pre>
         <p>Cross reference that opens a different page of the doc website in the same tab: <MadCap:xref href="cheat-sheet2.html"> Cheat Sheet 2</MadCap:xref></p>
+        <p>HTML:</p><pre>&lt;p&gt;Cross reference to different page of the doc website: &lt;MadCap:xref href="cheat-sheet2.html"&gt; Cheat Sheet 2&lt;/MadCap:xref&gt;&lt;/p&gt;</pre>
         <p>To add a link to a JIRA, update the JIRA-Id in the MadCap:snippetVarables: <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13438," /></p>
+        <p>HTML:</p><pre>&lt;p&gt;update the JIRA-Id in the MadCap:snippetVarables: &lt;MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13438," /&gt;&lt;/p&gt;</pre>
         <p>To add a link to the XAP.NET API documentation, update the href and the name of the API:&#160;<a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_ISpaceProxy.htm" target="_blank">ISpaceProxy</a></p>
+        <p>HTML:</p><pre>&lt;a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_ISpaceProxy.htm" target="_blank"&gt;ISpaceProxy&lt;/a&gt;</pre>
         <p>To add a link to the Java API documentation, update the href and the name of the API:&#160;<a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaMap.html" target="_blank">GigaMap</a></p>
+        <p>HTML:</p><pre>&lt;a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaMap.html" target="_blank"&gt;GigaMap&lt;/a&gt;</pre>
     </body>
 </html>
