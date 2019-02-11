@@ -21,7 +21,7 @@ The desktop preparation process for deploying KubeGrid in Minishift involves the
 1. Configure Minishift to work with Oracle VirtualBox.
 1. Set up the OpenShift container environment.
 
-After the desktop has been prepared, you can follow the instructions in the [Deploying a Data Grid in Kubernetes](https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html topic to deploy KubeGrid on Minishift.
+After the desktop has been prepared, you can follow the instructions in the [Deploying a Data Grid in Kubernetes](https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html) topic to deploy KubeGrid on Minishift.
 
 # Prerequisites
 
@@ -116,22 +116,40 @@ To set up the OC environment:
 	
 1. Log out of the OC environment by typing: oc logout
 1. Log into the OC environment as an administrator by typing oc login, using the following credentials: 
-	- username: admin
-	- password: admin
+	- username: `admin`
+	- password: `admin`
 	
-1. Type the following command to enable the OpenShift addons: minishift addons apply admin-user
+1. Type the following command to enable the OpenShift addons:
+
+	```
+	minishift addons apply admin-user
+	```
+	
 1. Type the following commands to grant user permissions:
 
-	- oc adm policy add-cluster-role-to-user cluster-admin -z default --namespace default
- - oc adm policy add-cluster-role-to-user cluster-admin -z default --namespace kube-system
+	```
+	oc adm policy add-cluster-role-to-user cluster-admin -z default --namespace default
+	oc adm policy add-cluster-role-to-user cluster-admin -z default --namespace kube-system
+	```
  
 1. If you are installing the data grid only, skip this step. If you are installing InsightEdge, type the following commands:
-	- oc create serviceaccount spark
-	- oc create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark --namespace=default
-	
-1. Type the following to specify the Kubernetes default namespace: oc project default
-1. Type the following command to launch Helm: helm init
 
+	```
+	oc create serviceaccount spark
+	oc create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark --namespace=default
+	```
+	
+1. Type the following to specify the Kubernetes default namespace:
+
+	```
+	oc project default
+	```
+	
+1. Type the following command to launch Helm:
+
+	```
+	helm init
+	```
 
 # Deploying KubeGrid
 
@@ -139,16 +157,16 @@ Now that the desktop environment is prepared, you can install the InsightEdge de
 
 To deploy KubeGrid and the InsightEdge demo:
 
-- Type the following command to access the insightedge GigaSpaces charts for the XAP data grid and InsightEdge:
+1. Type the following command to access the insightedge GigaSpaces charts for the XAP data grid and InsightEdge:
 
 	```
 	helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
 	```
 	
-After adding the GigaSpaces Helm repo, install the required chart(s) by referencing the chart name and product package version. For example, to install InsightEdge, use the following command:
+1. After adding the GigaSpaces Helm repo, install the required chart(s) by referencing the chart name and product package version. For example, to install InsightEdge, use the following command:
 
-```
-helm install gigaspaces/insightedge --version=14.0.1 --name demo
-```
+	```
+	helm install gigaspaces/insightedge --version=14.0.1 --name demo
+	```
 
 For more information about InsightEdge KubeGrid deployment options, see the [Deploying a Data Grid in Kubernetes](https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html) topic.
