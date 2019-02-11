@@ -27,6 +27,7 @@
         <h2>Installing the Azure CLI</h2>
         <p>In order to create your resource group and the AKS&#160;cluster, you need to use the Azure CLI. Installation instructions for this command line interface are available on the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest" target="_blank">Microsoft website</a>. Follow the set of instructions that suits your specific development environment.</p>
         <p>After the CLI is installed, log into Azure using the following command:</p><pre><code>az login</code></pre>
+        <p>The Azure CLI&#160;command will open the Azure web browser, where you can log in with your credentials.</p>
         <div class="tc-admon-note">
             <p>For more information about the Azure CLI&#160;commands, refer to the relevant <a href="https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest" target="_blank">Microsoft help page</a>.</p>
         </div>
@@ -35,7 +36,7 @@
         <ul>
             <li>
                 <p>Type the following Azure CLI&#160;command, assigning a group name (for example, <code>InsightEdgeAKSGroup</code>) and your general geographical location (for example, <code>eastus</code>).</p><pre><code>az group create --name &lt;group-name&gt; --location &lt;group-location&gt;</code></pre>
-                <p>The output you get after executing the above command should look as follows:</p><pre><code>{
+                <p>The output you get after executing the above command should contain the following information:</p><pre><code>{
   "id": "/subscriptions/&lt;guid&gt;/resourceGroups/&lt;myResourceGroup&gt;",
   "location": "&lt;myLocationGroup&gt;",
   "managedBy": null,
@@ -51,21 +52,20 @@
         <p>The next step in preparing the AKS environment is to create a new cluster that will host the KubeGrid instance.</p>
         <ul>
             <li>
-                <p>Type the following command to create a cluster with 3 nodes. You must specify the group name (for example, <code>InsightEdgeAKSGroup</code>) and the cluster name (for example, <code>InsightEdgeAKSCluster</code>).</p><pre><code>az aks create --resource-group &lt;group-name&gt; --name &lt;cluster-name&gt; --node-count 3 --enable-addons monitoring --generate-ssh-key</code>s</pre>
+                <p>Type the following command to create a cluster with 3 nodes. You must specify the resource group name (for example, <code>InsightEdgeAKSGroup</code>) and assign a cluster name (for example, <code>InsightEdgeAKSCluster</code>).</p><pre><code>az aks create --resource-group &lt;group-name&gt; --name &lt;cluster-name&gt; --node-count 3 --enable-addons monitoring --generate-ssh-key</code>s</pre>
             </li>
         </ul>
         <p>You can use the Azure portal to check your AKS resource group, and to verify that your cluster is up and running.</p>
         <h1>Deploying Kubernetes on the AKS Cluster</h1>
         <p>After you set up your Azure AKS environment, you have to deploy Kubernetes on the AKS cluster by configuring kubectl to connect to the cluster, and setting up a Tiller service account (the Helm server-side, in-cluster component).</p>
         <h2>Configuring Kubectl</h2>
-        <p>In order to use the AKS cluster to host Kubernetes and KubeGrid, kubectl needs to be able to connect to the cluster. </p>
+        <p>In order to use the AKS cluster you created to host Kubernetes and KubeGrid, kubectl needs to be able to connect to the cluster. </p>
         <div class="tc-admon-note">
             <p>If you don't have kubectl installed, follow the instructions in the <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl" target="_blank">Kubernetes documentation</a> to install it.</p>
         </div>
         <ol>
             <li>
-                <p>Type the following command to connect kubectl to the AKS cluster. You must specify the group name (for example, <code>InsightEdgeAKSGroup</code>) and the cluster name (for example, <code>InsightEdgeAKSCluster</code>).</p>
-                <p>&#160;</p><pre><code>az aks get-credentials --resource-group &lt;group-name&gt; --name &lt;cluster-name&gt;</code></pre>
+                <p>Type the following command to connect kubectl to the AKS cluster. You must specify the group name (for example, <code>InsightEdgeAKSGroup</code>) and the cluster name (for example, <code>InsightEdgeAKSCluster</code>).</p><pre><code>az aks get-credentials --resource-group &lt;group-name&gt; --name &lt;cluster-name&gt;</code></pre>
             </li>
             <li>
                 <p>Verify the connection to the AKS&#160;cluster in kubectl by typing the following command. </p><pre><code>kubectl get nodes</code></pre>
@@ -76,13 +76,13 @@
             </li>
         </ol>
         <h2>Creating a Service Account for Helm</h2>
-        <p>The last step before being able to deploy KubeGrid on AKS in creating a service account for Helm in Azure and installing Tiller on the cluster.</p>
+        <p>In addtion to configuring kubectl, you need to create a service account for Helm in Azure.</p>
         <ol>
             <li>
                 <p>Create a <code>helm-rbac.yaml </code>file in an accessible location.</p>
             </li>
             <li>
-                <p>Paste the following content into the file, which specifies that you are creating a Kubernetes service account with ClusterRole role binding that includes administrator privileges on the cluster.</p><pre><code>apiVersion: v1
+                <p>Paste the following content into the file, which specifies that you are creating a Tiller service account with ClusterRole role binding that includes administrator privileges on the cluster.</p><pre><code>apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: tiller
@@ -106,64 +106,90 @@ subjects:
             </li>
         </ol>
         <h2>Deploying Tiller in the AKS Cluster</h2>
-        <p>Lastly, you need to deploy Tiller in the cluster so you can interact directly with the Kubernetes API&#160;server to administer the Kubernetes resources.</p>
+        <p>The final step in setting up the environment is deploying Tiller in the cluster so you can interact directly with the Kubernetes API&#160;server to administer the Kubernetes resources.</p>
         <div class="tc-admon-note">
             <p>If you don't have Helm installed, follow the instructions in the <a href="https://docs.helm.sh/using_helm/#quickstart-guide" target="_blank">Helm documentation</a> to install it.</p>
         </div>
-        <p>&#160;</p>
-        <p>&#160;</p>
+        <ol>
+            <li>
+                <p>Type the following command to add a basic Tiller deployment to the AKS cluster:</p><pre><code>helm init --service-account tiller</code></pre>
+                <p>The output should show all the artifacts that are created for Tiller, the URLs for the stable repo and local repo, and confirm that HELM_HOME has been configured. You should also see the following confirmation message.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/kubernetes/tiller-install-aks.png" class="tc-picture80" />
+                </p>
+            </li>
+            <li>Verify that Helm is running by typing <code>helm search </code>at the prompt. This should generate a list of all the contents of the stable repo with their details.</li>
+        </ol>
         <h1>Deploying KubeGrid on Azure AKS</h1>
         <div class="tc-admon-note">
             <p>This page provides general information on how to deploy KubeGrid in a Kubernetes cluster. For detailed installation and configuration instructions, see <MadCap:xref href="kubernetes-data-grid.html">Deploying a Data Grid in Kubernetes</MadCap:xref>.</p>
         </div>
-        <p>Use the following command to fetch the GigaSpaces Helm charts and unpack them locally:</p><pre><code>helm fetch gigaspaces/insightedge --version=14.0 --untar</code></pre>
-        <p>You should also verify that your KubeGrid EKS cluster is active using the Amazon EKS console, and that the KubeGrid and worker nodes were created using the CloudFormation console.</p>
+        <p>Type the following command to add the GigaSpaces Helm charts to the Helm repo:</p><pre><code>helm repo add gigaspaces https://resousrces.gigaspaces.com/helm-charts</code></pre>
+        <p>Type the following command to fetch the GigaSpaces Helm charts and unpack them locally:</p><pre><code>helm fetch gigaspaces/insightedge --version=14.0 --untar</code></pre>
         <h2>Installing KubeGrid </h2>
-        <p>In order to ensure that <MadCap:variable name="General.ProductNameIE" /> will work properly in the Amazon EKS environment, the default service type (<code>NodePort</code>) in the  manager and  zeppelin Helm charts must be changed to <code>LoadBalancer</code> before applying the Helm install command.</p>
-        <p class="tc-todo">To install <MadCap:variable name="General.ProductNameIE" />:</p>
+        <p>If you want a public IP address for Apache Zeppelin when working with <MadCap:variable name="General.ProductNameIE" /> in the AKS environment, the default service type (<code>NodePort</code>) in the   zeppelin Helm chart must be changed to <code>LoadBalancer</code> before applying the Helm install command.</p>
         <ol>
-            <li>Modify the Helm charts:</li>
-            <ol style="list-style-type: lower-alpha;">
-                <li>
-                    <p>Open the <code>insightedge-manager</code> values.yaml file, and change the service type from NodePort to LoadBalancer. The chart should look like this:</p><pre><code class="language-xml"># service: Platform Manager service configuration.
+            <li>
+                <p>To modify the Helm chart, open the <code>insightedge-zeppelin</code> values.yaml file  and change the service type from <code>NodePort </code>to <code>LoadBalancer</code>. The chart should look like this:</p><pre><code class="language-xml"># service: Zeppelin service configuration.
 service:
    # type: Service type.	
    type: LoadBalancer</code></pre>
-                </li>
-                <li>Make this same change in the <code>insightedge-zeppelin </code>values.yaml file.</li>
-                <li>Save both files.</li>
-            </ol>
-            <li>
-                <p>Type the following command to deploy <MadCap:variable name="General.ProductNameIE" /> in Amazon EKS:</p><pre><code class="language-xml">helm install insightedge --name demo --set pu.partitions=2,pu.ha=true</code></pre>
             </li>
-        </ol>
-        <h2>Verifying the KubeGrid Installation</h2>
-        <p>After installing <MadCap:variable name="General.ProductNameIE" />, best practice is to check that the Kubernetes services have external IP&#160;addresses, verify that <MadCap:variable name="General.ProductNameIE" /> is up and running, and that you can open the Apache Zeppelin web notebook. </p>
-        <p class="tc-todo">To verify the <MadCap:variable name="General.ProductNameIE" /> installation:</p>
-        <ol>
             <li>
-                <p>Check that the Kubernetes services have external IP&#160;addresses so the pods can communicate. Type the following command:</p><pre><code>kubectl get svc</code></pre>
-                <p>You should see output that looks similar to this:</p>
+                <p>Save the file.</p>
+            </li>
+            <li>
+                <p>Type the following command to deploy <MadCap:variable name="General.ProductNameIE" /> in AKS:</p><pre><code class="language-xml">helm install insightedge --name demo</code></pre>
+                <p>You should see the following output:</p>
                 <p>
-                    <img src="../Resources/Static/attachment_files/kubernetes/kubectl-get-svc-output.png" class="tc-picture100" />
+                    <img src="../Resources/Static/attachment_files/kubernetes/insightedge-demo-installed.png" class="tc-picture80" />
                 </p>
             </li>
             <li>
-                <p>Copy the <MadCap:variable name="General.ProductNameIE" /> Manager IP&#160;address to a browser window and add the port number (8090). The Rest Manager API&#160;screen should load.</p>
-                <p>&#160;</p>
+                <p>It can take several minutes for the Zeppelin pod to get its external IP address. To monitor, type the following command:</p><pre><code>kubectl get services --watch</code></pre>
+                <p>When the IP&#160;address is available, you will see the following:</p>
                 <p>
-                    <img src="../Resources/Static/attachment_files/kubernetes/eks-rest-manager.png" class="tc-picture100" />
+                    <img src="../Resources/Static/attachment_files/kubernetes/zeppelin-external-ip-address.png" />
                 </p>
             </li>
-            <li>Perform a simple test by using one of the REST APIs, for example <code>GET/spaces</code>. </li>
             <li>
-                <p>Copy the <MadCap:variable name="General.ProductNameIE" /> Zeppelin IP&#160;address into the browser window and add the port (9090). The <MadCap:variable name="General.ProductNameIE" /> Apache Zeppelin web notebook should load.</p>
+                <p>Copy the  Zeppelin IP&#160;address into the browser window and add the port (9090). The <MadCap:variable name="General.ProductNameIE" /> Apache Zeppelin web notebook should load.</p>
                 <p>
                     <img src="../Resources/Static/attachment_files/kubernetes/eks-zeppelin.png" class="tc-picture100" />
                 </p>
             </li>
         </ol>
         <h2>Deploying the Kubernetes Dashboard</h2>
-        <p>The last step is deploying the Kubernetes dashboard in Amazon EKS, so you can properly administer your Kubernetes-based <MadCap:variable name="General.CompanyName" /> application. See the Amazon <a href="https://docs.aws.amazon.com/en_us/eks/latest/userguide/dashboard-tutorial.html" target="_blank">dashboard tutorial page</a> for instructions.</p>
+        <p>You may want to deploy the Kubernetes dashboard in AKS, so you can properly administer your Kubernetes-based <MadCap:variable name="General.CompanyName" /> application.</p>
+        <ol>
+            <li>
+                <p>Type the following command to create a service account for hte dashboard:</p><pre><code>kubectl create serviceaccount kubernetes-dashboard -n kube-system</code></pre>
+            </li>
+            <li>
+                <p>Define the ClusterRole for the service account with the following command:</p><pre><code>kubectl create clusterrolebinding kubernetes-dashboard -n kube-system --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard</code></pre>
+            </li>
+            <li>
+                <p>To create port forwarding to your local host, type the following command:</p><pre><code>az aks browse --resource-group &lt;group-name&gt; --name &lt;cluster-name&gt;</code></pre>
+            </li>
+            <li>
+                <p>If you see warnings, you may not have sufficient rights. Type <code>http://localhost:8001/#!/login</code> in your browser to access the Kubernetes dashboard login page.</p>
+            </li>
+            <li>
+                <p>Select <span class="tc-bold">Token </span>authorization in the login window. </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/kubernetes/kubernetes-dashboard-signin.png" class="tc-picture50" />
+                </p>
+            </li>
+            <li>
+                <p>In the command window, type the following to get a token for secure sign-in:</p><pre><code>kubectl get secret $(kubectl get serviceaccount kubernetes-dashboard -n kube-system -o jsonpath="{.secrets[0].name}") -n kube-system -o jsonpath="{.data.token}" | base64 --decode</code></pre>
+            </li>
+            <li>
+                <p>Copy the token from the command window into the <span class="tc-bold">Enter token</span> field, then click <span class="tc-bold">Sign in</span>.</p>
+                <p>The Kubernetes dashboard opens, where you can view the details of your <MadCap:variable name="General.ProductNameIE" /> deployment.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/kubernetes/kubernetes-dashboard-insightedge-aks.png" class="tc-picture100" />
+                </p>
+            </li>
+        </ol>
     </body>
 </html>
