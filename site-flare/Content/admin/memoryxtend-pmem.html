@@ -17,14 +17,13 @@
             <p>If you would like to receive early access to the Optane PC hardware for evaluation purposes, contact us to <a href="https://www.gigaspaces.com/request-demo">request a demo</a> via the GigaSpaces website.</p>
         </div>
         <h1>Prerequisites</h1>
-        <h2>Driver Mode</h2>
-        <p>Intel's Optane DC&#160;PMEM&#160;array supports two modes, Memory mode and App Direct mode. In Memory mode, Optane works like DRAM, where data is gone when the system is powered down. In App Direct mode, the data remains stored even when the system is powered down.</p>
-        <p>The MemoryXtend PMEM&#160;driver uses Intel's App Direct mode. Ensure that this is the mode set in the <span class="tc-highlight">???.</span></p>
+        <h2>Hardware Mode</h2>
+        <p>Intel's Optane DC&#160;PMEM&#160;array supports two modes, Memory mode and App Direct mode. The MemoryXtend PMEM&#160;driver uses Intel's App Direct mode. Ensure that the PMEM&#160;array is set to App Direct mode so that it will work with the MemoryXtend PMEM driver.</p>
         <div class="tc-admon-note">
             <p>For more information about the different PMEM modes, see this <a href="https://software.intel.com/en-us/blogs/2018/10/30/new-software-development-opportunities-with-big-affordable-persistent-memory" target="_blank">Intel blog</a>.</p>
         </div>
         <h2>Direct Access (DAX)</h2>
-        <p>In order for the MemoryXtend PMEM&#160;driver to work properly, DAX must be enabled in the kernel.</p>
+        <p>In order for the MemoryXtend PMEM&#160;driver to work properly, you must mount the PMEM array to a DAX-enabled system.</p>
         <div class="tc-admon-note">
             <p>For more information about DAX, see this explanation of <a href="https://www.kernel.org/doc/Documentation/filesystems/dax.txt" target="_blank">Direct Access for files</a>.</p>
         </div>
@@ -33,7 +32,7 @@
         <div class="tc-admon-note">
             <p>The PMEM storage driver dose not currently support persistence mode.</p>
         </div>
-        <p>You can create a Space that utilizes the MemoryXtend PMEM storage driver via the <code>pu.xml</code> configuration file, or in the code. For example, to create a Space called "mySpace' with a PMEM memory pool of 20GB to be allocated at /tmp/pu-local-storage-pool.txt:</p>
+        <p>You can create a Space that utilizes the MemoryXtend PMEM storage driver via the <code>pu.xml</code> configuration file, or in the code. For example, to create a Space called "mySpace' with a PMEM memory pool of 20GB to be allocated at /mnt/pmem0/pu-local-storage-pool.txt (the path in the file name should point to a file in the DAX&#160;file system):</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="pu.xml" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
@@ -46,7 +45,7 @@
        http://www.openspaces.org/schema/pmem-blob-store http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/pmem-blob-store/openspaces-pmem-blob-store.xsd"&gt;
 
 
-    &lt;blob-store:pmem-blob-store id="myBlobStore" memory-pool-size="20GB" file-name="/tmp/pu-local-storage-pool.txt"/&gt;
+    &lt;blob-store:pmem-blob-store id="myBlobStore" memory-pool-size="20GB" file-name="/mnt/pmem0/pu-local-storage-pool.txt"/&gt;
 
     &lt;os-core:embedded-space id="space" name="MySpace"&gt;
         &lt;!-- cache-entries-percentage=0 in order to make sure that objects are written to the ssd--&gt;
@@ -61,7 +60,7 @@
             <div title="Java" style="padding:10px"><pre><code class="language-java">// Create off-heap storage driver:
 BlobStoreStorageHandler blobStore = new PmemBlobStoreConfigurer()
         blobStore.setMemoryPoolSize("20GB");
-        blobStore.setFileName("/tmp/pu-local-storage-pool.txt");
+        blobStore.setFileName("/mnt/pmem0/pu-local-storage-pool.txt");
         blobStore.setVerbose(false);
         .create();
 // Create space with that storage driver:
