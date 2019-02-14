@@ -25,11 +25,11 @@
         <h1>Setting Up the AKS&#160;Environment</h1>
         <p>Before you can install KubeGrid, you need to set up the AKS&#160;environment so that you have a Kubernetes cluster that can host your <MadCap:variable name="General.CompanyName" /> platform with full connectivity. This involves the first three steps mentioned above.</p>
         <h2>Installing the Azure CLI</h2>
-        <p>In order to create your resource group and the AKS&#160;cluster, you need to use the Azure CLI. Installation instructions for this command line interface are available on the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest" target="_blank">Microsoft website</a>. Follow the set of instructions that suits your specific development environment.</p>
+        <p>In order to create your resource group and the AKS&#160;cluster, you need to use the Azure CLI. Installation instructions for this command line interface are available on the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest" target="_blank">Microsoft website</a>. Follow the set of instructions that suits your specific development environment (native, not running in a Docker container).</p>
         <p>After the CLI is installed, log into Azure using the following command:</p><pre><code>az login</code></pre>
         <p>The Azure CLI&#160;command will open the Azure web browser, where you can log in with your credentials.</p>
         <div class="tc-admon-note">
-            <p>For more information about the Azure CLI&#160;commands, refer to the relevant <a href="https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest" target="_blank">Microsoft help page</a>.</p>
+            <p>For more information about the Azure CLI&#160;commands, refer to the <a href="https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest" target="_blank">Microsoft Azure CLI help page</a>.</p>
         </div>
         <h2>Creating a Resource Group </h2>
         <p>You need to create a resource group for the AKS cluster where you will install KubeGrid. </p>
@@ -163,7 +163,7 @@ service:
         <p>You may want to deploy the Kubernetes dashboard in AKS, so you can properly administer your Kubernetes-based <MadCap:variable name="General.CompanyName" /> application.</p>
         <ol>
             <li>
-                <p>Type the following command to create a service account for hte dashboard:</p><pre><code>kubectl create serviceaccount kubernetes-dashboard -n kube-system</code></pre>
+                <p>Type the following command to create a service account for the dashboard:</p><pre><code>kubectl create serviceaccount kubernetes-dashboard -n kube-system</code></pre>
             </li>
             <li>
                 <p>Define the ClusterRole for the service account with the following command:</p><pre><code>kubectl create clusterrolebinding kubernetes-dashboard -n kube-system --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard</code></pre>
