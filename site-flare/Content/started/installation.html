@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -14,6 +14,9 @@
         <p><MadCap:variable name="General.ProductNameIE" />/<MadCap:variable name="General.ProductNameXAP" /> locates Java via the standard <code>JAVA_HOME</code> or <code>PATH</code> environment variables.</p>
         <h1><a name="installation"></a>Installation</h1>
         <p>To install <MadCap:variable name="General.ProductNameIE" /> or <MadCap:variable name="General.ProductNameXAP" />, download and unzip the application package to the location of your choice. Unzipping the file creates a <code>&lt;XAP_HOME&gt;</code> directory (e.g. <code>[%=Versions.gshome-directory-oss%]</code>).</p>
+        <div class="tc-admon-tip">
+            <p>If you are downloading the package to a Linux machine or a Mac, best practice is to unzip the package via the CLI to avoid problems with read/write permissions on the files.</p>
+        </div>
         <div class="tc-admon-important">
             <p>Do not use a path with spaces (such as <code>C:\Program Files\xap</code>). In some scenarios they may break.</p>
             <p>Linux users: Make sure all <code>sh</code> files in the <code>/bin</code> and <code>/examples</code> folders are in executable mode, so you can run them from your machine.
