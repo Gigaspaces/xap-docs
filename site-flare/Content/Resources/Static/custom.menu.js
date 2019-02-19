@@ -30,6 +30,6 @@ var buttonsData = [
 ];
 
 var topicBanner = {
-  old: '<div class="tc-topic-banner"><p>This page describes an older version of the product. The latest stable version is <a href="/xap/14.0">14.0</a>.</p></div>',
+  old: '<div class="tc-topic-banner"><p><font size="+1">This page describes an older version of the product. The latest stable version is <a href="/xap/14.0">14.0</a>.</font></p></div>',
   preview: '<div class="tc-topic-banner preview"><p>This page describes the beta version of the product. The latest stable version is <a href="/xap/14.0">14.0</a>.</p></div>'
 };
