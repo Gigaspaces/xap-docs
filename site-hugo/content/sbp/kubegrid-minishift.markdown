@@ -8,7 +8,7 @@ weight: 90
 
 |Author|Product Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|:----------:|
-| Dharma Prakesh and Dixson Huie| 14.0 | February 2019| | |
+| Dharma Prakash and Dixson Huie| 14.0 | February 2019| | |
 
 # Overview
  
