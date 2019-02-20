@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Runtime&#160;Terms and Concepts</h1>
+        <h2><a name="processing-unit-container"></a>Processing Unit Container</h2>
+        <p>A container that hosts a Processing Unit. The Processing Unit can run only inside a hosting Processing Unit Container.</p>
+        <h2><a name="types-of-processing-unit-containers"></a>Types of Processing Unit Containers</h2>
+        <h3><a name="integrated-processing-unit-container"></a>Integrated Processing Unit Container</h3>
+        <p>A container that runs the Processing Unit inside an IDE (e.g. IntelliJ IDEA, Eclipse).</p>
+        <h3><a name="service-grid-processing-unit-container-sla-driven-container"></a>Service Grid Processing Unit Container (SLA-Driven Container)</h3>
+        <p>A Processing Unit Container that runs within a Grid Service Container. It enables running the Processing Unit within a service grid, which provides self-healing and SLA capabilities to components deployed on it.</p>
+        <h3><a name="service-grid"></a>Service Grid</h3>
+        <p>A set of Grid Service Containers (GSCs) managed by a Grid Service Manager. The containers host various deployments of Processing Units and data grids.
+Each container can be run on a separate physical machine.</p>
+        <h3><a name="grid-service-container-gsc"></a>Grid Service Container (GSC)</h3>
+        <p>A service grid component that hosts Processing Unit instances. A machine can run one or more GSC processes. Each GSC communicates with a manager component (GSM). The GSC receives requests to start/stop a Processing Unit instance, and sends information about the machine that runs it (operating system, processor architecture, current memory and CPU stats), the software installed on it, and the status of Processing Unit instances currently running on it.</p>
+        <h3><a name="grid-service-manager-gsm"></a>Grid Service Manager (GSM)</h3>
+        <p>The GSM is a service grid component that manages a set of Grid Service Containers (GSCs). A GSM has an API for deploying/undeploying Processing Units. When a GSM is instructed to deploy a Processing Unit, it finds an appropriate, available GSC and tells that GSC to run an instance of that Processing Unit. It then continuously monitors that Processing Unit instance to verify that it is alive, and that the SLA is not breached.</p>
+    </body>
+</html>

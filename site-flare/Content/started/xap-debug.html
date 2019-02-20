@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
-        <h1>Debugging</h1>
+        <h1>Debugging a <MadCap:variable name="General.CompanyName" />-Based Application</h1>
+        <h2>Testing and Debugging the Processing Unit</h2>
         <p>As part of your development process, you may want to run/debug your processing unit within your IDE, or create unit tests (with JUnit for example) to tests in isolation certain aspects of it.</p>
         <p>The Integrated processing unit container allows you to run a processing unit within such "embedded" environment. It's implementation class is <a href="[%=Links.ApiJavaDoc%]/org/openspaces/pu/container/integrated/IntegratedProcessingUnitContainer.html" target="_blank">IntegratedProcessingUnitContainer</a>.</p>
         <p>The Integrated Processing Unit Container is built around Spring's <code>ApplicationContext</code> with several extensions relevant to GigaSpaces, such as <a href="../dev-java/obtaining-cluster-information.html">ClusterInfo</a>.</p>
         <p>The Integrated Processing Unit Container runs directly in your IDE using its <code>main()</code> method, or can be started by another class in your code by using the <code>ProcessingUnitContainerProvider</code> abstraction.</p>
-        <h1><a name="integratedprocessingunitcontainer"></a>IntegratedProcessingUnitContainer</h1>
+        <h3><a name="integratedprocessingunitcontainer"></a>IntegratedProcessingUnitContainer</h3>
         <p>The <code>IntegratedProcessingUnitContainer</code> class provides an executable <code>main()</code> method, allowing the IDE to run it directly via a simple Java application configuration. The <code>main()</code> method uses the <code>IntegratedProcessingUnitContainerProvider</code> class and program arguments in order to create the <code>IntegratedProcessingUnitContainer</code>. The following is a list of all the possible program arguments that can be specified to the <code>IntegratedProcessingUnitContainer</code>:</p>
         <table>
             <thead>
@@ -36,7 +37,7 @@
                 </tr>
             </tbody>
         </table>
-        <h1><a name="example"></a>Example</h1>
+        <h3><a name="example"></a>Example</h3>
         <p>To run a clustered PU with an embedded space with 2 partitions and a backup for each partition , having a separate eclipse configuration (and a hosting JVM) for each cluster member , have 3 run configuration each have the following:</p><pre><code class="language-bash">-cluster schema=partitioned total_members=2,1 id=1
 </code></pre><pre><code class="language-bash">-cluster schema=partitioned total_members=2,1 id=2
 </code></pre><pre><code class="language-bash">-cluster schema=partitioned total_members=2,1 backup_id=1 id=1
@@ -47,7 +48,7 @@ You can terminate any of the primary instances to test failover scenario.</p>
         <div class="tc-admon-note">
             <p>You can run the Integrated Processing Unit Container without actually specifying the instance id (and backup id). In this case, the container will automatically start all the relevant instances that form a complete cluster based on the _total<span class="tc-italic">members</span> parameter provided.</p>
         </div>
-        <h1><a name="using-integratedprocessingunitcontainer-in-the-ide"></a>Using IntegratedProcessingUnitContainer in the IDE</h1>
+        <h3><a name="using-integratedprocessingunitcontainer-in-the-ide"></a>Using IntegratedProcessingUnitContainer in the IDE</h3>
         <p>The main usage of the <code>IntegratedProcessingUnitContainer</code> is to execute processing units in your IDE.
 The following screenshot displays the <span class="tc-bold">Create, manage, and run configurations</span> Eclipse dialog for executing the processor processing unit:</p>
         <div class="tc-align-center">
@@ -71,7 +72,7 @@ The following screenshot displays the <span class="tc-bold">Create, manage, and 
             <p>To set the lookup locators:</p><pre><code class="language-bash">-Dcom.gs.jini_lus.locators=${env_var:XAP_LOOKUP_LOCATORS}
 </code></pre>
         </div>
-        <h1><a name="starting-an-integratedprocessingunitcontainer-programmatically"></a>Starting an IntegratedProcessingUnitContainer Programmatically</h1>
+        <h3><a name="starting-an-integratedprocessingunitcontainer-programmatically"></a>Starting an IntegratedProcessingUnitContainer Programmatically</h3>
         <p>The integrated processing unit container can be created programmatically using the <code>IntegratedProcessingUnitContainerProvider</code> class. This is very useful when writing unit and integration tests (though Spring's own mock library can also be used for testing using pure Spring application context).</p>
         <p>Here is an example of using a <code>IntegratedProcessingUnitContainerProvider</code> in order to create one:</p><pre><code class="language-java">IntegratedProcessingUnitContainerProvider provider = new IntegratedProcessingUnitContainerProvider();
 // provide cluster information for the specific PU instance
