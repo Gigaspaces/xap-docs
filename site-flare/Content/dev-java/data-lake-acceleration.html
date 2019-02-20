@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Data Lake Acceleration</h1>
+        <h1>Overview</h1>
+        <p>Big data adoption in enterprises is increasing all the time, with no sign of stopping. The Apache Spark MLlib&#160;and&#160;Tensorflow&#160;are among the most-adopted big data analytics platforms, while Cloudera,&#160;Amazon EMR,&#160;Hortonworks, and&#160;MapR&#160;are popular big data distributions. Patching all these technologies together into the classic Lambda architecture presents a number of customer challenges. </p>
+        <ul>
+            <li>Increasing system complexity - traditional Lambda architectures simply keep adding components as new technologies come into play, which slows down queries and is difficult to maintain.</li>
+            <li>Data freshness - New data may only be accessible to users once every X hours, which is too slow to make real-time decisions.</li>
+            <li>One-way, immutable data flow - If data contains a lot of update operations, and big data platforms such as HDFS and Parquet don't support data updates, all ingestion jobs needed to create new snapshots.</li>
+        </ul>
+        <p>AnalyticsXtreme operationalizes your data lake for real-time analytics. Your data is available for immediate searching, queries, and running analytics; there is a single logical view for hot, warm and cold data. The hot data resides on the XAP data grid, while cold (historical) data can be stored on any big-data platform such as HDFS or Amazon S3. Additionally, the hot data is mutable, supporting real-time updates. The data becomes immutable when it is stored on the external big data platform.</p>
+        <p>This approach enables fast access to frequently used historical data, and applications can access any data - hot, warm, or cold - via a unified layer using Spark MLlib for analytics and Spark SQL for queries. AnalyticsXtreme provides automatic life cycle management, handling the underlying data movement, optimization and deletion using an internal data life cycle policy.</p>
+        <h1>Implementation</h1>
+        <p>AnalyticsXtreme was designed to ???</p>
+        <p>You can use AnalyticsXtreme in the following architectures.</p>
+        <p>&#160;</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lambda/analyticsxtreme-speed-layer.png" class="tc-picture80" />
+            </p>
+        </div>
+        <p>&#160;</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lambda/analyticsxtreme-speed-batch-layer2.png" class="tc-picture80" />
+            </p>
+        </div>
+        <p>&#160;</p>
+        <h1>Configuring the Data Life Cycle Policy</h1>
+        <p>Storage/FS:  HDFS/S3 (for batch layer)</p>
+        <p>Format: Avro/Parquet (columnar) (Alon)</p>
+        <p>Date &amp; Time: last N h</p>
+        <p>Partition: by hour</p>
+        <p>Primary: by ID (this is the key)</p>
+        <p>Size: up to NNNGB</p>
+        <p>Deletion: Every N hours</p>
+        <h1>Using the XXX API</h1>
+        <p>&#160;</p>
+        <h1>Supported Query Languages</h1>
+        <p>Spark</p>
+        <p>SQL</p>
+        <p>JDBC (for BI tools like Tableau)</p>
+        <p>Gaps: Join (Ayelet)</p>
+        <h1>Limitations</h1>
+        <p>&#160;</p>
+    </body>
+</html>
