@@ -1,4 +1,4 @@
-@namespace MadCap url(http://www.madcapsoftware.com/Schemas/MadCap.xsd);
+﻿@namespace MadCap url(http://www.madcapsoftware.com/Schemas/MadCap.xsd);
 .title-bar-container {
   height: 90px!important;
 }
@@ -323,15 +323,26 @@ ul.sidenav li.is-accordion-submenu-parent[aria-expanded="true"]>a span.submenu-t
 
 /* Topic Banner */
 .tc-topic-banner {
-  border: solid .5px #00c0f3;
+  border: solid 1px #000000;
   margin-top: 10px;
   padding: 8px;
 }
+.tc-topic-banner.old {
+  border-color: #f7941e;
+  border-width: 1.5px;
+}
 .tc-topic-banner.preview {
   border-color: #bfd730;
+  border-width: .5px;
 }
 .tc-topic-banner p {
   font-style: italic;
   margin: 0px;
   text-align: center;
+}
+.tc-topic-banner.old p {
+  font-size: 1rem;
+}
+.tc-topic-banner.preview p {
+  /* placeholder */
 }
