@@ -6,7 +6,7 @@
       debug: false,
       domain: "\.gigaspaces\.com",
       isIframe: window.self !== window.top,
-      prodVer: (new RegExp(/\/(\d+?[\.\d]*?)\//).test(location.href)) ? location.href.match(/\/(\d+?[\.\d]*?)\//)[1] : null,
+      prodVer: (new RegExp(/\/(\d+?[\.\d]*?|latest)\//).test(location.href)) ? location.href.match(/\/(\d+?[\.\d]*?|latest)\//)[1] : null,
       scrollToTopMin: 200
     },
     log: function () {
@@ -42,7 +42,7 @@
     methods: {
       breadcrumb: function () {
         if (new RegExp(/^.*?\/\d+?[\.\d]*?\//).test(location.href)) {
-          var prodVerUrl = location.href.match(/(^.*?\/\d+?[\.\d]*?)\//)[0];
+          var prodVerUrl = location.href.match(/(^.*?\/\d+?[\.\d]*?|latest)\//)[0];
           $('<a href="/"><i class="fa fa-home fa-lg"></i></a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span><a href="' + prodVerUrl + '" class="MCBreadcrumbsLink">' + _self.props.prodVer + '</a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>').prependTo('.breadcrumbs');
         }
         $('.title-bar-container')
