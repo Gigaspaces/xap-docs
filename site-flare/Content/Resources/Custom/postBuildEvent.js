@@ -33,7 +33,7 @@ function processBuildFolder(srcFolder) {
   var sVersion = srcFolder.Name.replace("InsightEdge-", "");
   var sOutputPath = srcFolder.ParentFolder.ParentFolder.ParentFolder.ParentFolder + "\\output";
   //var sDstPath = sOutputPath + "\\xap\\" + sVersion;
-  var sDstPath = sOutputPath + sVersion;
+  var sDstPath = sOutputPath + "\\" + (sVersion === "14.0" ? "xap\\" + sVersion : sVersion);
   log("Copying " + srcFolder + " to " + sDstPath);
   fso.CopyFolder(srcFolder.Path, sDstPath);
   var dstFolder = fso.GetFolder(sDstPath);
