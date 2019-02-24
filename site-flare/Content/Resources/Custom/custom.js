@@ -98,6 +98,7 @@
 
         vMenu = menuStart.replace('MENU_ID', 'version-menu');
         for (var v in versionData) {
+          if (versionData[v].hide) continue;
           mLabel = versionData[v].label || v;
           mTarget = versionData[v].target || '_self';
           if (v == _self.props.prodVer) {
@@ -109,7 +110,6 @@
             }
           } else
             vMenu += '<li><a href="' + versionData[v].url + '" target="' + mTarget + '">' + mLabel + '</a></li>';
-
         }
         vMenu += menuEnd;
         $(vMenu).appendTo('.logo-wrapper');

@@ -1,7 +1,7 @@
 ﻿var versionData = {
   '14.2': { 'url': '/14.2', 'label': '14.2 (early access)', 'topicBanner': 'preview' },
   'latest': { 'url': '/latest', 'label': '14.0 (latest stable)' },
-  '14.0': { 'url': '/xap/14.0', 'label': '14.0' },
+  '14.0': { 'url': '/xap/14.0', 'label': '14.0', 'hide': true },
   '12.3': { 'url': '/xap/12.3', 'topicBanner': 'old' },
   '12.2': { 'url': '/xap/12.2', 'topicBanner': 'old' },
   '12.1': { 'url': '/xap121.html', 'topicBanner': 'old' },
