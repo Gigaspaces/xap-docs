@@ -1,7 +1,7 @@
 (function (w) {
   var _self = {
     props: {
-      version: '1.0.2',
+      version: '1.0.3',
       prefix: 'TOPNAV:::',
       debug: false,
       domain: "\.gigaspaces\.com",
@@ -34,16 +34,23 @@
           clearInterval(id);
           _self.methods.sidebar();
         }, 1000);
-        _self.methods.breadcrumb();
-        _self.methods.scrollToTop();
         _self.methods.generateNavItems();
+        _self.methods.scrollToTop();
       });
     },
     methods: {
       breadcrumb: function () {
         if (new RegExp(/^.*?\/(:?\d+?[\.\d]*?|latest)\//).test(location.href)) {
           var prodVerUrl = location.href.match(/(^.*?\/\d+?[\.\d]*?|latest)\//)[0];
-          $('<a href="/"><i class="fa fa-home fa-lg"></i></a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span><a href="' + prodVerUrl + '" class="MCBreadcrumbsLink">' + versionData[_self.props.prodVer].label + '</a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>').prependTo('.breadcrumbs');
+          console.log('BREADCRUMB::prodVerUrl:', prodVerUrl);
+          var breadcrumbPrefix = '<a href="/"><i class="fa fa-home fa-lg"></i></a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>';
+          console.log('BREADCRUMB::Children:', $('.breadcrumbs').children().length);
+          if (location.href.substr(-5) == '.html')
+            var breadcrumbPrefixVersion = '<a href="' + prodVerUrl + '" class="MCBreadcrumbsLink">' + versionData[_self.props.prodVer].label + '</a> <span class="MCBreadcrumbsDivider"> &gt;&gt; </span>';
+          else
+            var breadcrumbPrefixVersion = '<span class="MCBreadcrumbsSelf">' + versionData[_self.props.prodVer].label + '</span>';
+
+          $(breadcrumbPrefix + breadcrumbPrefixVersion).prependTo('.breadcrumbs');
         }
         $('.title-bar-container')
           .append($('.breadcrumbs'));
@@ -75,6 +82,8 @@
         });
       },
       buildNavItems: function () {
+        _self.methods.breadcrumb();
+
         var vMenu = null,
           rMenu = null;
         var mLabel, mTarget;
