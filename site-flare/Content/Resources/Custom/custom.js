@@ -33,8 +33,8 @@
           if (!$('.sideContent .menu .selected').length) return;
           clearInterval(id);
           _self.methods.sidebar();
-          _self.methods.breadcrumb();
         }, 1000);
+        _self.methods.breadcrumb();
         _self.methods.scrollToTop();
         _self.methods.generateNavItems();
       });
@@ -43,7 +43,7 @@
       breadcrumb: function () {
         if (new RegExp(/^.*?\/(:?\d+?[\.\d]*?|latest)\//).test(location.href)) {
           var prodVerUrl = location.href.match(/(^.*?\/\d+?[\.\d]*?|latest)\//)[0];
-          $('<a href="/"><i class="fa fa-home fa-lg"></i></a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span><a href="' + prodVerUrl + '" class="MCBreadcrumbsLink">' + _self.props.prodVer + '</a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>').prependTo('.breadcrumbs');
+          $('<a href="/"><i class="fa fa-home fa-lg"></i></a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span><a href="' + prodVerUrl + '" class="MCBreadcrumbsLink">' + versionData[_self.props.prodVer].label + '</a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>').prependTo('.breadcrumbs');
         }
         $('.title-bar-container')
           .append($('.breadcrumbs'));
