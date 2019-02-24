@@ -102,7 +102,6 @@
           mTarget = versionData[v].target || '_self';
           if (v == _self.props.prodVer) {
             vMenu = vMenu.replace('MENU_LABEL', mLabel);
-            if (versionData[v].hide) continue;
             
             /* Add topic banner */
             var bannerType = versionData[v].topicBanner;
