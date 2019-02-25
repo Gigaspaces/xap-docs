@@ -33,4 +33,3 @@ This page contains early access information for XAP and InsightEdge 14.2.0, whic
 - {{% jira id="GS-13714" %}}: Executing a SQL query with a function on an indexed field returned incorrect results.
 - {{% jira id="GS-13777" %}}: Processing Unit remains in UNDEPLOYED state although all instances have terminated.
 - {{% jira id="GS-13741" %}}: Aggregation operation ignores transactions.
-- {{% jira id="GS-13724" %}}: ServiceDiscoveryManager not exiting lookup loop when serviceItems.length >= minMatches.
