@@ -15,6 +15,7 @@ echo *** Publishing output ***
 if "%1"=="" (
   echo echo Publishing skipped - destination not defined
 ) else (
+  copy static\%1 output
   if "%1"=="staging" set DOCS_BUCKET=docs-staging.gigaspaces.com
   if "%1"=="production" set DOCS_BUCKET=docs.gigaspaces.com-v2
   if not defined DOCS_BUCKET (
