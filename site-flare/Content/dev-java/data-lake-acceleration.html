@@ -4,6 +4,7 @@
     </head>
     <body>
         <h1>Data Lake Acceleration</h1>
+        <p MadCap:conditions="Default.DoNotShow"><MadCap:variable name="General.ProductNameIE" /> only</p>
         <h1>Overview</h1>
         <p>Big data adoption in enterprises is increasing all the time, with no sign of stopping. The Apache Spark MLlib&#160;and&#160;Tensorflow&#160;are among the most-adopted big data analytics platforms, while Cloudera,&#160;Amazon EMR,&#160;Hortonworks, and&#160;MapR&#160;are popular big data distributions. Patching all these technologies together into the classic Lambda architecture presents a number of customer challenges. </p>
         <ul>
@@ -11,24 +12,16 @@
             <li>Data freshness - New data may only be accessible to users once every X hours, which is too slow to make real-time decisions.</li>
             <li>One-way, immutable data flow - If data contains a lot of update operations, and big data platforms such as HDFS and Parquet don't support data updates, all ingestion jobs needed to create new snapshots.</li>
         </ul>
-        <p>AnalyticsXtreme operationalizes your data lake for real-time analytics. Your data is available for immediate searching, queries, and running analytics; there is a single logical view for hot, warm and cold data. The hot data resides on the XAP data grid, while cold (historical) data can be stored on any big-data platform such as HDFS or Amazon S3. Additionally, the hot data is mutable, supporting real-time updates. The data becomes immutable when it is stored on the external big data platform.</p>
+        <p>AnalyticsXtreme is a data lake accelerator that  operationalizes your data lake for real-time analytics, which can run simultaneously on both real-time, mutable streaming data and on historical data that is stored on data lakes based on Hadoop, Amazon S3 or Azure Blob Storage, as well as data warehouses such as Snowflake, without requiring a separate data load procedure or data duplication.  Moving from on-premise to the cloud, or changing technology stacks for example from Cloudera to Amazon S3, is seamless to machine learning applications; increasing flexibility while reducing development and maintenance. </p>
+        <p>With AnalyticsXtreme, your data is available for immediate searching, queries, and running analytics; there is a single logical view for hot, warm and cold data. The hot data resides on the XAP data grid, while cold (historical) data can be stored on any big-data platform such as HDFS or Amazon S3. Additionally, the hot data is mutable, supporting real-time updates. The data becomes immutable when it is stored on the external big data platform.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lambda/AnalyticsXtreme.png" class="tc-picture80" />
+            </p>
+        </div>
         <p>This approach enables fast access to frequently used historical data, and applications can access any data - hot, warm, or cold - via a unified layer using Spark MLlib for analytics and Spark SQL for queries. AnalyticsXtreme provides automatic life cycle management, handling the underlying data movement, optimization and deletion using an internal data life cycle policy.</p>
         <h1>Implementation</h1>
         <p>AnalyticsXtreme was designed to ???</p>
-        <p>You can use AnalyticsXtreme in the following architectures.</p>
-        <p>&#160;</p>
-        <div class="tc-align-center">
-            <p>
-                <img src="../Resources/Static/attachment_files/lambda/analyticsxtreme-speed-layer.png" class="tc-picture80" />
-            </p>
-        </div>
-        <p>&#160;</p>
-        <div class="tc-align-center">
-            <p>
-                <img src="../Resources/Static/attachment_files/lambda/analyticsxtreme-speed-batch-layer2.png" class="tc-picture80" />
-            </p>
-        </div>
-        <p>&#160;</p>
         <h1>Configuring the Data Life Cycle Policy</h1>
         <p>Storage/FS:  HDFS/S3 (for batch layer)</p>
         <p>Date &amp; Time: last N h</p>
@@ -40,8 +33,6 @@
         <p>Format: Avro/Parquet (columnar) (Alon)</p>
         <p>All formats that are supported by Spark, such as Parquet, AVRO, etc.</p>
         <h1>Using the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;Driver</h1>
-        <p><span class="tc-highlight">is this the new name for the In-Grid SQL Query?</span>
-        </p>
         <p>&#160;</p>
         <h2>Supported Query Languages</h2>
         <p>Spark</p>
