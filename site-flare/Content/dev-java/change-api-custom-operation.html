@@ -52,9 +52,9 @@ See below an example of a change operation which multiplies an integer property 
         return newValue;
     }));
 </code></pre>
-        <h2 MadCap:conditions="Version.14-2-born"><a name="Disablin"></a>Disabling the Path Caching</h2>
-        <MadCap:snippetBlock src="../Resources/Snippets/Content/DevGuide/path-cache-disable.flsnp" />
-        <p>The following code example shows how to invoks the <code>disablePathCaching()</code> method on any mutator instance (inherited from the <code>SpaceEntryPathMutator </code>class). </p><pre MadCap:conditions="Version.14-2-born"><code>ChangeSet changeSet = new ChangeSet().custom( 
+        <h2 MadCap:conditions="Version.14-2-born"><a name="Disabling-the-path-caching"></a>Disabling the Path Caching</h2>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/DevGuide/path-cache-disable.flsnp" MadCap:conditions="Version.14-2-born" />
+        <p MadCap:conditions="Version.14-2-born">The following code example shows how to invoks the <code>disablePathCaching()</code> method on any mutator instance (inherited from the <code>SpaceEntryPathMutator </code>class). </p><pre MadCap:conditions="Version.14-2-born"><code>ChangeSet changeSet = new ChangeSet().custom( 
         new IncrementSpaceEntryMutator("myMapField.myTestKey2",0.1).disablePathCaching() ); 
 gigaSpace.change(new IdQuery&lt;&gt;(MyTestObject.class, 1L, 1L ), changeSet);</code> </pre>
         <p MadCap:conditions="Version.14-2-born">When implemented as demonstrated in the above code, any path that is provided by <code>IncrementSpaceEntryMutator </code>won't be cached.</p>

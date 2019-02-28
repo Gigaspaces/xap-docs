@@ -213,7 +213,7 @@ ChangeSet changeSet = new ChangeSet().increment(path1, 0.1 )
         .decrement(path2, 0.45 ).disablePathCaching(path1,path2); 
 gigaSpace.change(spaceQuery, changeSet);</code></pre>
         <div class="tc-admon-note" MadCap:conditions="Version.14-2-born">
-            <p MadCap:conditions="Version.14-2-born">If you are using the custom change operation, use the disable caching method described in the <a href="change-api-custom-operation.html#Disablin">Custom Change</a> topic.</p>
+            <p MadCap:conditions="Version.14-2-born">If you are using the custom change operation, use the disable caching method described in the <a href="change-api-custom-operation.html#Disabling-the-path-caching">Custom Change</a> topic.</p>
         </div>
         <h1><a name="multiple-changes-in-a-single-operation"></a>Multiple Changes in a Single Operation</h1>
         <p>Multiple changes can be applied in one <code>change</code> operation by setting up multiple operations in the change set. Do this by chaining the changes as follows:</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
