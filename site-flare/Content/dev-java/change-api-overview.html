@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Change API</h1>
         <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.html" target="_blank">GigaSpace.change</a> and the <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">ChangeSet</a> allows updating existing objects in Space, by specifying only the required change instead of passing the entire updated object.</p>
-        <h3><a name="additional-resources"></a>Additional Resources</h3>
+        <h3>Additional Resources</h3>
         <MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://www.youtube.com/watch?v=k2zGdUi_ntU," />
         <p>The <code>GigaSpace.change</code> and the <code>ChangeSet</code>  allow updating existing objects in the Space, by specifying only the required change instead of passing the entire updated object.
 This reduces the required network traffic between the client and the Space, and the network traffic generated from replicating changes between Space instances (for example, between the primary Space instance and its backup).</p>
@@ -13,7 +13,7 @@ This reduces the required network traffic between the client and the Space, and 
             <img src="../Resources/Static/attachment_files/change-api.jpg" alt="" title="" class="tc-picture80" />
         </div>
         <p>Moreover, using this API also can prevent having to read the existing object prior to the change operation, because the change operation can specify how to change the existing property without knowing its current value. For instance, implementing atomic <a href="the-space-counters.html">Counters</a> can be done by increasing a counter property of an integer property by some delta. Another example is adding a value to a collection.
-The change API supports <a href="transaction-overview.html">transactions</a> in the same way the other Space operation supports it, using a transactional <code>GigaSpace</code> instance.</p><a name="change"></a>
+The change API supports <a href="transaction-overview.html">transactions</a> in the same way the other Space operation supports it, using a transactional <code>GigaSpace</code> instance.</p>
         <h1><a name="example"></a>Example</h1>
         <p>The following example demonstrates how to increment by one the <code>count</code> property of an object of type <code>WordCount</code>, with ID <code>myID</code>.</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
 String id = "myID";
@@ -204,7 +204,17 @@ if (changeResult.getNumberOfChangedEntries() == 0)
         <p>The <code>getNumSuccesfullChanges</code> property contains the number of entries that were successfully changed.</p>
         <p>The <code>getSuccesfullChanges</code> property contains details about objects that were successfully changed, just like the <code>ChangeResult.getResults</code> property. This property can only be used if the change operation was executed using the <code>ChangeModifiers.RETURN_DETAILED_RESULTS</code> modifier.</p>
         <p>The <code>getFailedChanges</code> property contains details about objects for whom the change operation failed. These details include information about ID, version, and the actual cause for failure.</p>
-        <p>The <code>getErrors</code> property contains the general reasons for failed change operations that do not apply to a specific object, such as not being able to access the Space.</p><a name="changeMultiple"></a>
+        <p>The <code>getErrors</code> property contains the general reasons for failed change operations that do not apply to a specific object, such as not being able to access the Space.</p>
+        <h2 MadCap:conditions="Version.14-2-born">Disabling the Path Caching</h2>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/DevGuide/path-cache-disable.flsnp" MadCap:conditions="Version.14-2-born" />
+        <p MadCap:conditions="Version.14-2-born">The following code example shows how to define exactly which paths shouldn't be cached for the entire <code>ChangeSet</code>, which then affects the mutators that are provided.</p><pre MadCap:conditions="Version.14-2-born"><code>String path1 = "myMapField.myTestKey1"; 
+String path2 = "myMapField.myTestKey2"; 
+ChangeSet changeSet = new ChangeSet().increment(path1, 0.1 ) 
+        .decrement(path2, 0.45 ).disablePathCaching(path1,path2); 
+gigaSpace.change(spaceQuery, changeSet);</code></pre>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-2-born">
+            <p MadCap:conditions="Version.14-2-born">If you are using the custom change operation, use the disable caching method described in the <a href="change-api-custom-operation.html#Disablin">Custom Change</a> topic.</p>
+        </div>
         <h1><a name="multiple-changes-in-a-single-operation"></a>Multiple Changes in a Single Operation</h1>
         <p>Multiple changes can be applied in one <code>change</code> operation by setting up multiple operations in the change set. Do this by chaining the changes as follows:</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
 IdQuery&lt;MyPojo&gt; idQuery = new IdQuery&lt;MyPojo&gt;(MyPojo.class, id, routing);
