@@ -13,33 +13,38 @@
             <li>One-way, immutable data flow - If data contains a lot of update operations, and big data platforms such as HDFS and Parquet don't support data updates, all ingestion jobs needed to create new snapshots.</li>
         </ul>
         <p>AnalyticsXtreme is a data lake accelerator that  operationalizes your data lake for real-time analytics, which can run simultaneously on both real-time, mutable streaming data and on historical data that is stored on data lakes based on Hadoop, Amazon S3 or Azure Blob Storage, as well as data warehouses such as Snowflake, without requiring a separate data load procedure or data duplication.  Moving from on-premise to the cloud, or changing technology stacks for example from Cloudera to Amazon S3, is seamless to machine learning applications; increasing flexibility while reducing development and maintenance. </p>
-        <p>With AnalyticsXtreme, your data is available for immediate searching, queries, and running analytics; there is a single logical view for hot, warm and cold data. The hot data resides on the XAP data grid, while cold (historical) data can be stored on any big-data platform such as HDFS or Amazon S3. Additionally, the hot data is mutable, supporting real-time updates. The data becomes immutable when it is stored on the external big data platform.</p>
+        <p>With AnalyticsXtreme, your data is available for immediate searching, queries, and running analytics; there is a single logical view for hot, warm and cold data. The hot data resides on the data grid, while cold (historical) data can be stored on any big-data platform such as HDFS or Amazon S3. Additionally, the hot data is mutable, supporting real-time updates. The data becomes immutable when it is stored on the external big data platform.</p>
+        <p>This approach enables fast access to frequently used historical data, and applications can access any data - hot, warm, or cold - via a unified layer using Spark SQL or JDBC. AnalyticsXtreme provides automatic life cycle management, handling the underlying data movement, optimization and deletion using an internal data life cycle policy.</p>
+        <h1>Implementation</h1>
+        <p MadCap:conditions="Default.DoNotShow">AnalyticXtreme (get from Niv)</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/lambda/AnalyticsXtreme.png" class="tc-picture80" />
+                <img src="../Resources/Static/attachment_files/lambda/AnalyticsXtreme.png" class="tc-picture50" />
             </p>
         </div>
-        <p>This approach enables fast access to frequently used historical data, and applications can access any data - hot, warm, or cold - via a unified layer using Spark MLlib for analytics and Spark SQL for queries. AnalyticsXtreme provides automatic life cycle management, handling the underlying data movement, optimization and deletion using an internal data life cycle policy.</p>
-        <h1>Implementation</h1>
-        <p>AnalyticsXtreme was designed to ???</p>
         <h1>Configuring the Data Life Cycle Policy</h1>
-        <p>Storage/FS:  HDFS/S3 (for batch layer)</p>
-        <p>Date &amp; Time: last N h</p>
-        <p>Partition: by hour</p>
-        <p>Primary: by ID (this is the key)</p>
-        <p>Size: up to NNNGB</p>
-        <p>Deletion: Every N hours</p>
+        <p>You can configure the following properties for the data life cycle policy:</p>
+        <ul>
+            <li>Storage/FS:  HDFS/S3 (for batch layer)</li>
+            <li>Date &amp; Time: last N h</li>
+            <li>Partition: by hour</li>
+            <li>Primary: by ID (key)</li>
+            <li>Size: up to NNN GB</li>
+            <li>Deletion: Every N hours</li>
+        </ul>
         <h2>Supported Data Formats</h2>
-        <p>Format: Avro/Parquet (columnar) (Alon)</p>
-        <p>All formats that are supported by Spark, such as Parquet, AVRO, etc.</p>
+        <p>AnalyticsXtreme supports all the data formats that are supported by Spark, such as Parquet, AVRO, etc.</p>
         <h1>Using the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;Driver</h1>
-        <p>&#160;</p>
+        <p MadCap:conditions="Default.DoNotShow">(Get from Niv)</p>
+        <p>TBD</p>
         <h2>Supported Query Languages</h2>
-        <p>Spark</p>
-        <p>SQL</p>
-        <p>JDBC (for BI tools like Tableau)</p>
-        <p>Gaps: Join (Ayelet)</p>
+        <ul>
+            <li>Spark</li>
+            <li>SQL</li>
+            <li>JDBC</li>
+        </ul>
         <h1>Limitations</h1>
+        <p>Gaps: Join (Ayelet)</p>
         <p>&#160;</p>
     </body>
 </html>
