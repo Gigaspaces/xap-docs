@@ -13,8 +13,9 @@
             <li>One-way, immutable data flow - If data contains a lot of update operations, and big data platforms such as HDFS and Parquet don't support data updates, all ingestion jobs needed to create new snapshots.</li>
         </ul>
         <p>AnalyticsXtreme is a data lake accelerator that  operationalizes your data lake for real-time analytics, which can run simultaneously on both real-time, mutable streaming data and on historical data that is stored on data lakes based on Hadoop, Amazon S3 or Azure Blob Storage, as well as data warehouses such as Snowflake, without requiring a separate data load procedure or data duplication.  Moving from on-premise to the cloud, or changing technology stacks for example from Cloudera to Amazon S3, is seamless to machine learning applications; increasing flexibility while reducing development and maintenance. </p>
-        <p>With AnalyticsXtreme, your data is available for immediate searching, queries, and running analytics; there is a single logical view for hot, warm and cold data. The hot data resides on the data grid, while cold (historical) data can be stored on any big-data platform such as HDFS or Amazon S3. Additionally, the hot data is mutable, supporting real-time updates. The data becomes immutable when it is stored on the external big data platform.</p>
-        <p>This approach enables fast access to frequently used historical data, and applications can access any data - hot, warm, or cold - via a unified layer using Spark SQL or JDBC. AnalyticsXtreme provides automatic life cycle management, handling the underlying data movement, optimization and deletion using an internal data life cycle policy.</p>
+        <p>With AnalyticsXtreme, your data is available for immediate searching, queries, and running analytics; there is a single logical view for hot, warm and cold data. The hot data resides on <MadCap:variable name="General.ProductNameIE" />'s in-memory data grid, while cold (historical) data can be stored on any big-data platform such as HDFS or Amazon S3. Additionally, the hot data is mutable, supporting real-time updates. The data becomes immutable when it is stored on the external big data platform.</p>
+        <p>This approach enables fast access to frequently used historical data, and applications can access any data - hot, warm, or cold - via a unified layer using Spark SQL or JDBC. You can easily integrate BI&#160;tools such as <a href="tableau.html">Tableau</a>, Looker, and PowerBI.</p>
+        <p> AnalyticsXtreme provides automatic life cycle management, handling the underlying data movement, optimization and deletion using an internal data life cycle policy.</p>
         <h1>Implementation</h1>
         <p MadCap:conditions="Default.DoNotShow">AnalyticXtreme (get from Niv)</p>
         <div class="tc-align-center">
@@ -33,7 +34,7 @@
             <li>Deletion: Every N hours</li>
         </ul>
         <h2>Supported Data Formats</h2>
-        <p>AnalyticsXtreme supports all the data formats that are supported by Spark, such as Parquet, AVRO, etc.</p>
+        <p>AnalyticsXtreme supports all the data formats that are supported by Apache Spark, such as Apache Parquet and Apache Avro.</p>
         <h1>Using the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;Driver</h1>
         <p MadCap:conditions="Default.DoNotShow">(Get from Niv)</p>
         <p>TBD</p>
@@ -44,7 +45,7 @@
             <li>JDBC</li>
         </ul>
         <h1>Limitations</h1>
-        <p>Gaps: Join (Ayelet)</p>
+        <p MadCap:conditions="Default.DoNotShow">Gaps: Join (Ayelet)</p>
         <p>&#160;</p>
     </body>
 </html>
