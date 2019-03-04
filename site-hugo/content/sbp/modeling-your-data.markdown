@@ -1,85 +1,91 @@
 ---
 type: post
-title:  Modeling your data
+title:  Modeling your Data in a Distributed Environment
 categories: SBP
 parent: data-access-patterns.html
-weight: 1550
+weight: 10
 ---
 
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-| Shay Hassidim| 9.7 | March 2015|    |    |
+| Shay Hassidim| 9.7 | March 2015|    | [Space data model examples](/download_files//sbp/Space-Data-Model-Example.zip) |
 
 
 
-# Moving from Centralized to Distributed Data Model
+# Moving from a Centralized to a Distributed Data Model
 
-When moving from a centralized into a distributed data store, your data needs to be partitioned across multiple nodes (AKA partitions). Implementing the partitioning mechanism technically is not a hard task; however, planning the distribution of your data for scalability and performance, requires some thinking.
+When moving from a centralized into a distributed data store, your data must be partitioned across multiple nodes (or partitions). Implementing the partitioning mechanism isn't a technically difficult task; however, planning the distribution of your data for scalability and performanc, requires some forethought.
 
-There are several questions which need to be answered when planning for data partitioning:
+There are several questions that should be answered when planning your data partitioning:
 
-Question 1. What is the information I should store in memory? The answer to this question is not a technical one, and should not be mistakenly confused with the structure of the data. This is in essence a business question: How much the data will it grow over time? For how long should you keep it?
+**Question 1**
 
-We recommend using the following table for this process:
+*What information I should store in memory?*
+
+The answer to this question is not technical, and should not be confused with the structure of the data. This is in essence a business question; how much the data will it grow over time, and for how long should it be kept? 
+
+You can use the following table to estimate the answer:
 
 
-|Data item|Estimated Quantity|Expected Growth|Estimated Object Size|
+|Data Item|Estimated Quantity|Expected Growth|Estimated Object Size|
 |:--------|:-----------------|:--------------|:--------------------|
 |Data Type A|100K|10%|2K|
 |Data Type B|200K|20%|4K|
 
-Once you have identified the size and expected growth of your data, you can start thinking about partitioning it; however, there's more to consider before doing that.
+After you have identified the size and expected growth of your data, you can start thinking about partitioning it.
 
-Question 2. What are my application's use cases? While you might be used to model your data by the logical relationship of your data items, in the case of distributed data, you need to think differently. The rule of thumb here is to avoid cross cluster relationships as much as possible, since they will lead to cross cluster queries and updates which are usually much less scalable and fast than their local counterparts.
+**Question 2**
 
-Thinking in terms of traditional relationships ("one to one", "one to many" and "many to many"), is deceiving with distributed data. The first question to ask is: How many different associations does each entity have?
+*What are my application's use cases?*
 
-If an entity is associated with several containers (parent entities), it can't be embedded within the containing entity. It might be also impossible to store it with all of its containers on the same partition. We have mentioned the concept of embedded relationships above, let us now explain this concept's implications on your application.
+A common approach is to model data according to the logical relationship of the data items. However, for distributed data a different approach is needed. The rule of thumb is to avoid cross-cluster relationships as much as possible, because they can lead to cross-cluster queries and updates that are usually much less scalable and slower than their local counterparts.
+
+It is deceptive to think in terms of traditional relationships ("one to one", "one to many" and "many to many") with distributed data. The first issue to consider is how many different associations each entity has. If an entity is associated with several containers (parent entities), that entity can't be embedded within the containing entity. It might be also impossible to store the entity with all of its containers on the same partition.
+
+To answer this question effectively, you need to understand the implications of embedded relationships regarding your application. This concept is explained in further detail below.
 
 # The Space Data Store
 
-A space may store many type of entities. A space can be compared to a database that may have many tables, in the same way a space may have many space classes. Practically there is no limit to the number of Entities (space classes or data types) you may store within a given space cluster. Each space class may have unlimited number of instances (space objects or entries).
+A Space can store many type of entities. The Space can be compared to a database that can contain many tables, in the same way that a Space can contain many space classes. Practically speaking, there is no limit to the number of entities (Space classes or data types) you can store within a given Space cluster. Each Space class can contain an unlimited number of instances (Space objects or entries).
 
 {{%align center%}}
 ![in-line-cache.jpg](/attachment_files/in-line-cache.jpg)
 {{%/align%}}
 
-Unlike legacy caching products that promote a Map per Entity approach storage model, with the space data modeling approach, you can treat your entire application objects naturally having one global In-Memory data source regardless their data type.
+Unlike legacy caching products that promote a Map-per-Entity storage model, with the Space data modeling approach you can treat all your application objects naturally, having one global in-memory data source regardless of their data type.
 
 # Embedded vs. Non-Embedded Relationships
 
 ## Embedded Relationships
 
-With Embedded Relationships a parent object physically contains the associated object(s) and there is a **strong** lifecycle dependency between them - once you delete the containing object, you also delete all of its contained objects. With this type of object association, you are always ensuring a local transaction since the entire object graph is stored in the same entry within the Space.
+With Embedded Relationships, a parent object physically contains the associated object(s) and there is a **strong** lifecycle dependency between them; when you delete the parent object, you also delete all of its contained objects. With this type of object association, all transactions are local because the entire object graph is stored in the same entry within the Space.
 
 {{%align center %}}
 ![model_embed.jpg](/attachment_files/model_embed.jpg)
 {{%/align%}}
 
-### Embedded Relationships Data Retrieval Flow
+### Embedded Relationship Data Retrieval Flow
 
-Fetching objects from the space when using the Embedded Relationships model done by using a [SQLQuery]({{%latestjavaurl%}}/query-sql.html) with the `readMultiple` call or the [IteratorBuilder]({{%latestjavaurl%}}/query-paging-support.html) when having large set of objects where the [SQLQuery]({{%latestjavaurl%}}/query-sql.html) predicate using root level or embedded objects properties. With a single `SQLQuery` you may specify a query that span objects from different data types related to each other contained in each other. The embedded objects may be elements within an array or any type of collection (List , Map) or just a simple referenced object.
+When using the Embedded Relationship model, fetching objects from the Space is done using a [SQLQuery]({{%latestjavaurl%}}/query-sql.html) with the `readMultiple` call, or the [IteratorBuilder]({{%latestjavaurl%}}/query-paging-support.html) when you have large sets of objects where the [SQLQuery]({{%latestjavaurl%}}/query-sql.html) predicate uses root level or embedded object properties. With a single `SQLQuery`, you can specify a query that spans objects from different data types related to each other or contained in each other. The embedded objects can be elements within an array, any type of collection (List, Map), or just a simple referenced object.
 
-### Updating Embedded objects
+### Updating Embedded Objects
 
-With earlier versions of XAP, when updating an object you had to read the entire object back to the client, get a property value, update it and later write back the object to the space. If you had to update a property within an embedded object, you had to navigate the object graph, access the property within the embedded object and update it before writing the entire space object. When having an object with many properties or many nested embedded objects, updating data may impose an overhead as it involves serialization of large amount of properties.
+The [Change API]({{%latestjavaurl%}}/change-api.html) allows you to modify a specific property(s) within the root space object (or any embedded object) without reading the entire object graph in an atomic manner. This optimizes the amount of data transferred between the client and the primary Space, and also between the primary and backup instances when replicating updates.
 
-Starting with XAP 9.0 the [Change API]({{%latestjavaurl%}}/change-api.html) allows you to overcome this limitation and modify a specific property(s) within the root space object or any embedded object without reading the entire object graph in an atomic manner. This optimizes the amount of data transferred between the client and the primary space and also between the primary and backup when replicating updates.
-
-With the embedded model, updating (as well adding or removing) a nested collection with large number of elements **must use the change API** since the default behavior would be to replicate the entire space object and its nested collection elements from the primary to the backup (or other replica primary copies when using the sync-replicate or the async-replicated cluster schema). The Change API reduces the CPU utilization at the primary side, reduce the serialization overhead and reduce the garbage collection activity both at the primary and backup. This improves the overall system stability significantly.
+With the embedded model, updating (as well adding or removing) a nested collection with large number of elements **must use the Change API**, because the default behavior is to replicate the entire Space object and its nested collection elements from the primary instance to the backup (or other replica primary copies when using the sync-replicate or the async-replicated cluster schema). The Change API reduces CPU utilization on the primary side, the serialization overhead, and the garbage collection activity on both the primary and backup instances, which significantly improves overall system stability.
 
 ## Non-Embedded Relationships
 
-With Non-Embedded Relationships a parent object is associated with a number of other objects, so you can navigate from one object to others. However, there is no life cycle dependency between them, so if you delete the referencing object (parent), you don't automatically delete the referenced (child) object(s). The association is therefore manifested in storing the child IDs in the parent rather than storing the actual associated object itself. This type of relationship means that you might want to access the child object separately  without accessing their parent objects. This approach avoid the need to duplicate child object in case these are references by more than a single parent object. This approach might enforce you to perform multiple space operations when accessing the entire parent-child graph across multiple space cluster partitions.
+With Non-Embedded Relationships a parent object is associated with a number of other objects, so you can navigate from one object to others. However, there is no life cycle dependency between them, so if you delete the referencing object (parent), you don't automatically delete the referenced (child) object(s). The association is therefore manifested in storing the child IDs in the parent rather than storing the actual associated object itself. This type of relationship means that you may want to access the child object separately without accessing their parent objects. This approach avoids the need to duplicate child objects if there are references from multiple parent objects. This approach may force you to perform multiple Space operations when accessing the entire parent-child graph across multiple Space cluster partitions.
 
 {{%align center%}}
 ![model_non_embed.jpg](/attachment_files/model_non_embed.jpg)
 {{%/align%}}
 
-### Non-Embedded Relationships Data Retrieval Flow
+### Non-Embedded Relationship Data Retrieval Flow
 
-The following describes the different data modeling options available with Non-Embedded Relationships:
+The following topics describe the different data modeling options available with Non-Embedded Relationships.
 
 {{%align center%}}
 ![space-data-modeling-options.jpg](/attachment_files/space-data-modeling-options.jpg)
@@ -88,29 +94,29 @@ The following describes the different data modeling options available with Non-E
 
 #### Parent-First Data Retrieval Flow
 
-With this approach you first retrieve an initial set of "root space objects" usually using a [SQLQuery]({{%latestjavaurl%}}/query-sql.html) or a [template]({{%latestjavaurl%}}/query-template-matching.html) with the `readMultiple` call or the [IteratorBuilder]({{%latestjavaurl%}}/query-paging-support.html) when having large set of objects and later using some meta data stored within these root space objects such as the ID or IDs of related objects and their routing field value (when having these distributed across remote multiple partitions) to fetch the related (child) objects. Fetching these should use the `readById` or `readByIds` calls. Both the `readById` or `readByIds` allows you to provide the routing field value avoiding the need to search the entire cluster for matching objects. You may also use the [Change API]({{%latestjavaurl%}}/change-api.html) call to modify specific child objects without even reading these first.
+With this approach you first retrieve an initial set of "root space objects", usually using a [SQLQuery]({{%latestjavaurl%}}/query-sql.html) or a [template]({{%latestjavaurl%}}/query-template-matching.html) with the `readMultiple` call or the [IteratorBuilder]({{%latestjavaurl%}}/query-paging-support.html) if you have a large set of objects. After that, you use metadata stored within these root space objects, such as the ID or IDs of related objects, and their routing field values (if they are distributed across remote multiple partitions) to fetch the related (child) objects using the `readById` or `readByIds` calls. Both `readById` and `readByIds` allow you to provide the routing field value, so there is no need to search the entire cluster for matching objects. You can also use the [Change API]({{%latestjavaurl%}}/change-api.html) call to modify specific child objects without reading them first.
 
 #### Child-First Data Retrieval Flow
 
-With this approach you access the referenced (child) objects directly and from these access their parent object. With this flow the child object store the parent object ID (and routing field value). You query the space for child objects via some property(s) using a [SQLQuery]({{%latestjavaurl%}}/query-sql.html) or a [template]({{%latestjavaurl%}}/query-template-matching.html) with the `readMultiple` call , iterate over the child objects result set collecting getting the parent IDs and via the `readByIds` call read all relevant parent objects.
+With this approach the child object stores the parent object ID (and routing field value). You can access the referenced (child) objects directly, and from them you can access their parent object. You can query the Space for child objects via specific properties using a [SQLQuery]({{%latestjavaurl%}}/query-sql.html) or a [template]({{%latestjavaurl%}}/query-template-matching.html) with the `readMultiple` call, iterate over the child object result set to collect the parent IDs, and read all relevant parent objects via the `readByIds` call .
 
 {{% tip %}}
-Since version 9.5, XAP supports projections where you can read specific properties (delta read) instead of reading the entire space object content. This may optimize the data retrieval flow.
+The data grid supports projections where you can read specific properties (delta read) instead of reading the entire Space object content. This may optimize the data retrieval flow.
 {{% /tip %}}
 
 #### Parent-Child Bi-Directional Data Retrieval Flow
 
-An hybrid approach of the Parent-First and Child-First involves having both the Parent storing the ID of the child objects and also having the child objects storing the ID of the parent object. With this approach you may choose the right data retrieval flow based on the business logic requirements which provide greater flexibility. Such model allows navigating from a child object to its sibling child via the common parent via 2 simple space calls. The downside of this approach is redundant meta-data maintained in memory and extra updates required when data is deleted and a transaction which space more objects. This impacts system concurrency level.
+This is a hybrid approach of the Parent-First and Child-First flows, in which the parent stores the ID of the child objects and the child objects store the ID of the parent object. This enables you to choose the appropriate data retrieval flow based on the business logic requirements, which provides greater flexibility. The bi-directional model allows navigating from a child object to its sibling child via the common parent via two simple Space calls. The downside of this approach is redundant metadata maintained in memory, and extra updates required when data is deleted and a transaction which space more objects. This also affects the system concurrency level.
 
-# Moving from Database Centric to Space Model
+# Moving from a Database-Centric to a Space Model
 
-Many times you have an existing application that has been evolved around a database as its sole system of record. In such a case you might be using Hibernate (or some other mapping layer) to bridge between the Object model your application is using and the relational model the database is using. In some other cases you might be using JDBC API to access the database.
+If you have an existing application that evolved with a database as its sole system of record, you may be using Hibernate (or some other mapping layer) to bridge between the object model your application uses and the relational model the database  uses. In other cases, you may be using a JDBC API to access the database.
 
-To leverage the space data modeling approach you will need to adapt your existing application entities to use the right data access routines. The Entity class should be modified to leverage the space data model and API. When the application using Hibernate for example, the changes can be done in a relatively transparent manner to the application itself. The [Moving from Hibernate to Space](/sbp/moving-from-hibernate-to-space.html) provides simple guide how to perform these changes at the Data Access Objects (DAO). You might be able to automate this process via auto-code generation or byte code manipulation.
+To leverage the Space data modeling approach, you must adapt your existing application entities to use the appropriate data access routines. The entity class should be modified to leverage the Space data model and API. If your application uses Hibernate for example, the changes can be done in a way that is relatively transparent to the application itself. The [Moving from Hibernate to Space](/sbp/moving-from-hibernate-to-space.html) topic explains how to perform these changes in the Data Access Objects (DAO). You may also be able to automate this process via auto-code generation or byte code manipulation.
 
-# The Author and the Book Example
+# Author and Book Example
 
-With the following example we have the **Author** and the **Book** entities. Here is how the original **Author** and the **Book** Entities looks like:
+In the following example, we have **Author** and **Book** entities. This is how the original **Author** and the **Book** Entities look:
 
 
 |Author|Book|
@@ -120,36 +126,36 @@ With the following example we have the **Author** and the **Book** entities. Her
 
 ## Example Code
 
-You can [download](/download_files//sbp/Space-Data-Model-Example.zip) the code used with the example below. See `MainEmbeddedOne2Many` , `MainEmbeddedOne2One` , `MainNonEmbeddedOne2Many` , `MainNonEmbeddedOne2One` and `MainJDBC` demonstrating each scenario 	described below.
+You can [download](/download_files//sbp/Space-Data-Model-Example.zip) the code used with the examples below. See `MainEmbeddedOne2Many`, `MainEmbeddedOne2One`, `MainNonEmbeddedOne2Many`, `MainNonEmbeddedOne2One`, and `MainJDBC` that demonstrate each scenario described below.
 
 ## Remote vs. Collocated Client
 
-The examples below can be used with a client accessing a remote space or a "collocated client" running within the space - e.g. a [DistributedTask]({{%latestjavaurl%}}/task-execution-over-the-space.html) implementation or a [service]({{%latestjavaurl%}}/executor-based-remoting.html) method invoked in a broadcast mode. The collocated client will reduce the serialization and network overhead. When using the collocated client approach with the non-embedded model you should use the same [routing field]({{%latestjavaurl%}}/routing-in-partitioned-spaces.html) value for associated objects (parent-child).
+The examples below can be used with a client accessing a remote space or a co-located client running within the Space, such as a [DistributedTask]({{%latestjavaurl%}}/task-execution-over-the-space.html) implementation or a [service]({{%latestjavaurl%}}/executor-based-remoting.html) method invoked in a broadcast mode. The co-located client reduces the serialization and network overhead. When using the co-located client approach with the non-embedded model, you should use the same [routing field]({{%latestjavaurl%}}/routing-in-partitioned-spaces.html) value for associated objects (parent-child).
 
 ## One-to-One Relationship
 
-With this example there is One-to-One relationship between the **Author** and the **Book** entity - An Author may have one Book.
+With this example, there is a one-to-one relationship between the **Author** and the **Book** entity; An author may have one (1) book.
 
-Users may search for:
+Users can search for:
 
-- All **Book** titles written by an **Author** with a specific last name (there may be multiple matching Authors).
-- An Author with a specific **Book**.
+- All **Book** titles written by an **Author** with a specific last name (there may be multiple matching authors).
+- An **Author** with a specific **Book**.
 
 
-When using JDBC to query for all the **Books** an **Author** with a specific last name your SQL query would look like this:
+When using JDBC to query for all the **Books** related to an **Author** with a specific last name, the SQL query will look like this:
 
 
 ```java
 select Book.id , Author.id,Author.lastName from Book, Author WHERE Author.lastName='AuthorX' AND Book.authorId = Author.id
 ```
 
-The main problem with this approach is the execution time. The more **Books** or **Authors** you have the time to execute the query will grow. Using the Space API with the embedded and non-embedded model will provide much better performance that will not be affected when having large amount of **Books** or **Authors** .
+The main problem with this approach is the execution time. The more **Books** or **Authors** you have, the greater the time required to execute the query. Using the Space API with the embedded and non-embedded model provides much better performance, which isn't affected if there are many **Books** or **Authors**.
 
-Let's compare the JDBC approach to the embedded and non-embedded model:
+We can compare the JDBC approach to the embedded and non-embedded models.
 
 ### Embedded Model
 
-With the embedded model the root Space object is the **Author**. It has a **Book** object embedded. The representation of these Entities looks like this:
+In the embedded model, the root Space object is the **Author**, and has a **Book** object embedded. The representation of these entities looks like this:
 
 {{% accordion %}}
 {{% accord title="Java"%}}
@@ -263,7 +269,7 @@ public class Book
 See the how the book **Title** property is indexed within **Author** class.
 {{% /tip %}}
 
-To query for all the **Books** written by an **Author** with a specific last name your query code would look like this:
+To query for all the **Books** written by an **Author** with a specific last name, the query code should look like this:
 
 {{%tabs%}}
 
@@ -302,7 +308,7 @@ return books;
 {{% /tabs %}}
 
 
-To query for an **Author** with a specific **Book** title the query would look like this:
+To query for an **Author** with a specific **Book** title, the query should look like this:
 
 {{%tabs%}}
 {{%tab "  Java "%}}
@@ -333,7 +339,7 @@ return authors;
 
 ### Non-Embedded Model
 
-With the non-Embedded model the **Author** and the **Book** would look like this - See how the ID of the Book is stored within the Author rather the Book object itself. It is stored as a separate Space object:
+With the non-embedded model, the **Author** and the **Book** entities look like this; the ID of the book is stored within the author, rather than in the book object itself. It is stored as a separate Space object:
 
 {{% accordion  %}}
 {{% accord title="Java"%}}
@@ -457,7 +463,7 @@ public class Book
 {{% /accordion %}}
 
 
-To query for all the **Books** written by an **Author** with a specific last name your query code would look like this - See how the **readById** is used:
+To query for all the **Books** written by an **Author** with a specific last name, the query code should look like this (see how the **readById** call is used):
 
 {{%tabs%}}
 
@@ -500,11 +506,11 @@ return books;
 
 {{% /tabs %}}
 
-{{% tip %}}
-See the [Id Queries]({{%latestjavaurl%}}/query-by-id.html) page for more details how `readById` can be used.
-{{% /tip %}}
+{{% note %}}
+See the [ID Queries]({{%latestjavaurl%}}/query-by-id.html) topic for more information on how the `readById` call can be used.
+{{% /note %}}
 
-To query for a specific **Author** with a specific **Book** title the query code would look like this:
+To query for a specific **Author** with a specific **Book** title, the query code should look like this:
 
 {{%tabs%}}
 
@@ -559,28 +565,27 @@ return authors;
 
 ## One-to-Many Relationship
 
-With this example there is One-to-Many relationship between the **Author** and the **Book** entity - An Author may write many Books.
+In this example, there is one-to-many relationship between the **Author** and the **Book** entities; an author may write many books.
 
-Users may search for:
+Users can search for:
 
-- All **Book** titles written by an **Author** with a specific last name (there may be multiple matching Authors).
-- An Author with a specific **Book**.
+- All **Book** titles written by an **Author** with a specific last name (there may be multiple matching authors).
+- An **Author** with a specific **Book**.
 
-
-When using JDBC to query for all the **Books** an **Author** with a specific last name your query code would look like this:
+When using JDBC to query for all the **Books** related to an **Author** with a specific last name, the query code should look like this:
 
 
 ```java
 select Book.id , Author.id,Author.lastName from Book, Author WHERE Author.lastName='AuthorX' AND Book.authorId = Author.id
 ```
 
-The main problem with this approach is the execution time. The more **Books** or **Authors** you have the time to execute the query will grow. Using the Space API with the embedded and non-embedded model will provide much better performance that will not be affected when having large amount of **Books** or **Authors** .
+The main problem with this approach is the execution time. The more **Books** or **Authors** you have, the greater the time required to execute the query. Using the Space API with the embedded and non-embedded model provides much better performance, which isn't affected if there are many **Books** or **Authors**.
 
-Let's compare the JDBC approach to the embedded and non-embedded model:
+We can compare the JDBC approach with the embedded and non-embedded models.
 
 ### Embedded Model
 
-With the embedded model the root Space object is the **Author**. It has a **Book** collection embedded. The representation of these Entities looks like this:
+In the embedded model the root Space object is the **Author**, and it has a **Book** collection embedded. The representation of these entities looks like this:
 
 {{% accordion  3%}}
 {{% accord title="Java"%}}
@@ -684,10 +689,10 @@ public class Book
 {{% /accordion %}}
 
 {{% tip %}}
-See the how the book **Title** property is indexed within **Author** class.
+See the how the book **Title** property is indexed within the **Author** class.
 {{% /tip %}}
 
-To query for all the **Books** written by an **Author** with a specific last name your query code would look like this:
+To query for all the **Books** written by an **Author** with a specific last name, the query code should look like this:
 
 {{%tabs%}}
 
@@ -726,7 +731,7 @@ return books;
 {{% /tabs %}}
 
 
-To query for an **Author** with a specific **Book** title the query would look like this:
+To query for an **Author** with a specific **Book** title, the query should look like this:
 
 {{%tabs%}}
 
@@ -758,7 +763,7 @@ return authors;
 
 ### Non-Embedded Model
 
-With the non-Embedded model the **Author** and the **Book** would look like this - See how the IDs of the Books are stored within the Author object rather than the Books themselves. These are stored as separate Space objects:
+In the non-embedded model, the **Author** and the **Book** look like this; the IDs of the books are stored within the author object rather than in the books themselves. These are stored as separate Space objects:
 
 {{% accordion  %}}
 {{% accord title="Java"%}}
@@ -879,7 +884,7 @@ public class Book
 {{% /accordion %}}
 
 
-To query for all the **Books** written by an **Author** with a specific last name your query code would look like this - See how the **readByIds** is used:
+To query for all the **Books** written by an **Author** with a specific last name, the query code should look like this (see how the **readByIds** call is used):
 
 {{%tabs%}}
 {{%tab "  Java "%}}
@@ -925,11 +930,11 @@ return books;
 
 {{% /tabs %}}
 
-{{% tip %}}
-See the [Id Queries]({{%latestjavaurl%}}/query-by-id.html) page for more details how `readByIds` can be used.
-{{% /tip %}}
+{{% note %}}
+See the [ID Queries]({{%latestjavaurl%}}/query-by-id.html) topic for more information about how the `readByIds` call can be used.
+{{% /note %}}
 
-To query for a specific **Author** with a specific **Book** title the query would look like this:
+To query for a specific **Author** with a specific **Book** title, the query should look like this:
 
 {{%tabs%}}
 {{%tab "  Java "%}}
@@ -981,27 +986,27 @@ return authors;
 
 ## Many-to-Many Relationship
 
-With this example there is Many-to-Many relationship between the **Author** and the **Book** entity - an Author may write many Books, a Book may be written by many Authors.
+In this example, there is many-to-many relationship between the **Author** and the **Book** entity; an author may write many books, and a book may be written by multiple authors.
 
-Users may search for:
+Users can search for:
 
-- All **Book** titles written by an **Author** with a specific last name (there may be multiple matching Authors).
-- An Author with a specific **Book**.
+- All **Book** titles written by an **Author** with a specific last name (there may be multiple matching authors).
+- An **Author** with a specific **Book**.
 
-To model this in SQL, you would need an additional table that would link an Author and his or her Books (or in other words a Book and its Authors) - each entry in such a table would contain a foreign key to Author table and a foreign key to Book table. When using JDBC to query for all the **Books** written by an **Author** with a specific last name your SQL query would look like this:
+To model this in SQL, you need an additional table that links an author with the related books (or in other words, a book and its authors). Each entry in this table contains a foreign key to the Author table, and a foreign key to the Book table. When using JDBC to query for all the **Books** written by an **Author** with a specific last name, the SQL query should look like this:
 
 
 ```java
 select Book.id, Author.id, Author.lastName from Book, Author, AuthorBookLink WHERE Author.lastName='AuthorX' AND Author.id = AuthorBookLink.authorId AND AuthorBookLink.bookId = Book.id
 ```
 
-The main problem with this approach is the execution time. The more Books or Authors you have the time to execute the query will grow. Using the Space API with the non-embedded model will provide much better performance that will not be affected when having large amount of Books or Authors.
+The main problem with this approach is the execution time. The more **Books** or **Authors** you have, the greater the time required to execute the query. Using the Space API with the non-embedded model provides much better performance, which isn't affected if there are many **Books** or **Authors**.
 
-Let's compare the JDBC approach to the embedded and non-embedded model:
+We can compare the JDBC approach to the embedded and non-embedded model.
 
 ### Embedded Model
 
-With the embedded model the root Space object is the **Author**. It has a **Book** collection embedded. The representation of these Entities looks like this:
+In the embedded model, the root Space object is the **Author** and it has a **Book** collection embedded. The representation of these entities looks like this:
 
 {{% accordion %}}
 {{% accord title="Java"%}}
@@ -1106,7 +1111,7 @@ public class Book
 
 ### Non-Embedded Model
 
-With the non-Embedded model the **Author** and the **Book** would look like this. Note that there additional entity expressing relation between **Author** and **Book** - **AuthorBookLink**. In this model **Books** are stored as separate Space objects:
+In the non-embedded model, the **Author** and the **Book** look like this. Note that there additional entities expressing a relationship between **Author** and **Book**; **AuthorBookLink**. In this model, **Books** are stored as separate Space objects:
 
 {{% accordion%}}
 {{% accord title="Java"%}}
@@ -1257,31 +1262,32 @@ public class AuthorBookLink
 
 {{% /accordion %}}
 
-{{% tip %}}
-See the [Id Queries]({{%latestjavaurl%}}/query-by-id.html) page for more details how `readByIds` can be used.
-{{% /tip %}}
+{{% note %}}
+See the [ID Queries]({{%latestjavaurl%}}/query-by-id.html) topic for more information on how the `readByIds` call can be used.
+{{% /note %}}
 
 {{% tip %}}
-**More Examples**
-See the [SQLQuery]({{%latestjavaurl%}}/query-sql.html) section for details about embedded entities query and indexing.
-See the [Parent Child Relationship](./parent-child-relationship.html) for an example for non-embedded relationships.
+More examples are available in the [SQLQuery]({{%latestjavaurl%}}/query-sql.html) topic, which provides details about query and indexing embedded entities. Additionally, the [Parent Child Relationship](./parent-child-relationship.html) page contains an example of non-embedded relationships.
 {{% /tip %}}
 
 
 ## Real World Example
 
-In the [Pet Clinic application](http://www.openspaces.org/display/DAE/GigaSpaces+PetClinic) that is based on the [Spring pet clinic sample](https://github.com/spring-projects/spring-petclinic), a Pet is only associated with an Owner. We can therefore store each Pet with its owner on the same partition. We can even embed the Pet object within the physical Owner entry.
+In the [Pet Clinic application](http://www.openspaces.org/display/DAE/GigaSpaces+PetClinic) that is based on the [Spring pet clinic sample](https://github.com/spring-projects/spring-petclinic), a **Pet** is only associated with an **Owner**. We can therefore store each **Pet** with its **Owner** on the same partition. We can even embed the **Pet** object within the physical **Owner** entry.
 
 {{%align center%}}
 ![petclinic_class_model.gif](/attachment_files/petclinic_class_model.gif)
 {{%/align%}}
 
-However, if a Pet would have been associated with a Vet as well, we could have certainly not embedded the Pet in the Vet physical entry (without duplicating each Pet entry) and could not even store the Pet and its Vet in the same partition.
+However, if a **Pet** is also associated with a **Vet**, we can't embed the **Pet** in the **Vet** physical entry (without duplicating each Pet entry), and can't even store the **Pet** and its **Vet** in the same partition.
 
-# Thumb Rules for Choosing Embedded Relationships
+# Guidelines for Choosing Embedded Relationships
 
-- Embed when an entity is meaningful only with the context of its containing object. For example, in the petclinic application - a Pet has a meaning only when it has an Owner. A Pet in itself is meaningless without an Owner in this specific application. There is no business scenario for transferring a Pet from owner to owner or admitting a Pet to a Vet without the owner.
-- Embedding may sometimes mean duplicating your data. For example, if you want to reference a certain Visit from both the Pet and Vet class, you'll need to have duplicate Visit entries. So let's look into duplication:
-    - Duplication means preferring scalability over footprint - the reason to duplicate is to avoid cluster wide transactions and in many cases it's the only way to partition your object in a scalable manner.
-    - Duplication means higher memory consumption: While memory is considered a commodity and low cost today, duplication has a bigger price to pay - you might have two space objects that contain the same data.
-    - Duplication means more lenient consistency. When you add a Visit to a Pet and Vet for example, you need to update them both. You can do it in one (potentially distributed) transaction, or in two separate transactions, which will scale better but be less consistent. This may be sufficient for many types of applications (e.g. social networks), where losing a post, although undesired, does not incur significant damage. In contrast, this is not feasible for financial applications where every operation should be accounted for.
+- Embed when an entity is meaningful only with the context of its containing object. For example, in the Pet Clinic application, the **Pet** entity has a meaning only when it is associated with an **Owner**. A **Pet** by itself is meaningless without an **Owner** in this specific application. There is no business scenario for transferring a **Pet** from one**Owner** to another **Owner**, or for admitting a **Pet** to a **Vet** without an **Owner**.
+- Embedding may sometimes mean duplicating your data. For example, if you want to reference a certain **Visit** from both the **Pet** and **Vet** classes, you'll need duplicate **Visit** entries.
+
+Regarding duplication:
+
+- Duplication means preferring scalability over footprint. The reason for duplicating is to avoid cluster-wide transactions and in many cases, it is the only way to partition your object in a scalable manner.
+- Duplication means higher memory consumption. While memory is considered a low-cost commodity today, duplication has a hidden cost because you may have two Sspace objects that contain the same data.
+- Duplication means more lenient consistency. When you add a **Visit** to a **Pet** and a **Vet**, for example, you must update them both. You can do this in one (potentially distributed) transaction, or in two separate transactions, which will scale better but be less consistent. This may be sufficient for many types of applications, such as on social networks where losing a post, although undesired, does not incur significant damage. In contrast, this is not feasible for financial applications where every operation must be accounted for.

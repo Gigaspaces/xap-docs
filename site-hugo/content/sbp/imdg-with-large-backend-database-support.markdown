@@ -1,9 +1,9 @@
 ---
 type: post
-title:  IMDG with Large Backend Database Support
+title:  Data Grid with Large Backend Database Support
 categories: SBP
 parent: data-access-patterns.html
-weight: 800
+weight: 25
 ---
 
 

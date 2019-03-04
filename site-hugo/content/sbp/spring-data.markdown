@@ -3,7 +3,7 @@ type: post
 title:  XAP Spring Data
 categories: SBP
 parent: data-access-patterns.html
-weight: 30
+weight: 40
 ---
 
 
