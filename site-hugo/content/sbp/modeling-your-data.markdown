@@ -128,7 +128,7 @@ In the following example, we have **Author** and **Book** entities. This is how 
 
 You can [download](/download_files//sbp/Space-Data-Model-Example.zip) the code used with the examples below. See `MainEmbeddedOne2Many`, `MainEmbeddedOne2One`, `MainNonEmbeddedOne2Many`, `MainNonEmbeddedOne2One`, and `MainJDBC` that demonstrate each scenario described below.
 
-## Remote vs. Collocated Client
+## Remote vs. Co-located Client
 
 The examples below can be used with a client accessing a remote space or a co-located client running within the Space, such as a [DistributedTask]({{%latestjavaurl%}}/task-execution-over-the-space.html) implementation or a [service]({{%latestjavaurl%}}/executor-based-remoting.html) method invoked in a broadcast mode. The co-located client reduces the serialization and network overhead. When using the co-located client approach with the non-embedded model, you should use the same [routing field]({{%latestjavaurl%}}/routing-in-partitioned-spaces.html) value for associated objects (parent-child).
 
