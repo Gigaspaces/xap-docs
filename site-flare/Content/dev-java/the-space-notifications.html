@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Notifications</h1>
-        <p>Some of the space operations can generate notifications when they are executed. Notifications are also generated when working in clustered mode (schema) that includes a primary/backup schema. A listener can be defined to receive these notifications.</p>
-        <p>The following space operations may trigger notifications:</p>
+        <p>Some of the sSpace operations can generate notifications when they are executed. Notifications are also generated when working in clustered mode (schema) that includes a primary/backup schema. A listener can be defined to receive these notifications.</p>
+        <p>The following Space operations may trigger notifications:</p>
         <ul>
             <li>
                 <p><code>write()</code>, <code>writeMultiple()</code></p>
@@ -21,8 +21,8 @@
             <p>Space operations under transactions will trigger notifications when the transaction commits.</p>
         </div>
         <h1><a name="notify-example"></a>Notify Example</h1>
-        <p>In the following example we register a listener to receive notifications when an Employee instance is written or update in the space.
-The client registering the listener will receive a copy of the object written in the space as notification. The object in the space will continue to exist.</p><pre><code class="language-java">@EventDriven
+        <p>In the following example we register a listener to receive notifications when an Employee instance is written or update in the Space.
+The client registering the listener will receive a copy of the object written in the Space as notification. The object in the Space will continue to exist.</p><pre><code class="language-java">@EventDriven
 @Notify
 @NotifyType(write = true, update = true)
 @TransactionalEvent
@@ -55,7 +55,7 @@ eventListener.destroy();
             <p>For more information, see the <a href="notify-container-overview.html">Notify Container</a> page.</p>
         </div>
         <h1><a name="polling-example"></a>Polling Example</h1>
-        <p>This example works just like the notification example above, except that the object is removed from the space:</p><pre><code class="language-java">
+        <p>This example works just like the notification example above, except that the object is removed from the Space:</p><pre><code class="language-java">
   @EventDriven
   @Polling
   @NotifyType(write = true, update = true)
@@ -93,12 +93,109 @@ eventListener.destroy();
         <div class="tc-admon-note">
             <p>Fore more information, see the <a href="polling-container-overview.html">Polling Container</a> page.</p>
         </div>
-        <h1><a name="primary-backup"></a>Primary/Backup</h1>
-        <p>When working in clustered mode (schema) that includes a primary/backup schema, several components within the Processing Unit need to be aware of the current space mode and any changes made to it (such as event containers). Using Spring support for application events, two events are defined within OpenSpaces: <code>BeforeSpaceModeChangeEvent</code> and <code>AfterSpaceModeChangeEvent</code>. Both are raised when a space changes its mode from primary to backup or versa, and holds the current space mode.</p>
-        <div class="tc-align-center">
-            <img src="../Resources/Static/attachment_files/OS_PrimaryBackupCluster.jpg" alt="OS_PrimaryBackupCluster.jpg" class="tc-picture80" />
+        <h1><a name="primary-backup"></a>Detecting the Current Space Status</h1>
+        <h2>Co-Located Applications</h2>
+        <p>When working in clustered mode (schema) that includes a primary/backup schema, several components within the Processing Unit need to be aware of the current Space mode and status, along with any changes that are made to it (such as event containers). A bean that is located in a stateful Processing Unit can use the  SpaceStatus listener to be notified about any changes in Space mode or status. This API&#160;sends an event any time there is a change in the state of the Space.</p>
+        <p>The listener sends an event contains the following information about the SpaceMode and SuspendType.</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2"><span class="tc-italic">SpaceMode</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Backup</td>
+                    <td>The Space mode has changed to Backup.</td>
+                </tr>
+                <tr>
+                    <td>Primary</td>
+                    <td>The Space mode has changed to Primary.</td>
+                </tr>
+                <tr>
+                    <td>None</td>
+                    <td>The Space is currently being initialized, and is not yet in a mode.</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><span class="tc-italic">SuspendType</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>None</td>
+                    <td>The Space is up and running normally.</td>
+                </tr>
+                <tr>
+                    <td>Quiesce</td>
+                    <td>The Space is in maintenance mode and will reject all data-related operations with an exception.</td>
+                </tr>
+                <tr>
+                    <td>Demoted</td>
+                    <td>The Space was formerly in Primary mode, and is now in Backup mode.</td>
+                </tr>
+                <tr>
+                    <td>Disconnected</td>
+                    <td>The Space is not available due to a connection issue.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>To enable the SpaceStatus listener, add the following to the pu.xml file.</p><pre><code>&lt;os-core:annotation-support/&gt;</code></pre>
+        <h3>Adding A Listener by Annotation</h3>
+        <p>To add a listener by annotation, you need to create a Spring bean with a method that receives only one parameter of type <code>SpaceStatusChangedEvent</code>.</p>
+        <p>Example:</p><pre><code>import com.gigaspaces.server.space.suspend.SuspendType;
+import com.gigaspaces.cluster.activeelection.SpaceMode;
+import org.openspaces.core.space.status.SpaceStatusChangedEvent;
+import org.openspaces.core.space.status.SpaceStatusChanged;
+
+
+public class MyListenerByAnnotation {
+
+   @SpaceStatusChanged
+   public void myMethod(SpaceStatusChangedEvent event) {
+		// Fetch and handle suspend type from event
+       SuspendType suspendType = event.getSuspendType();
+       handleSuspendType(suspendType);
+
+
+	// Fetch and  handle space mode from event
+		spaceMode = event.getSpaceMode();
+       handleSpaceMode(spaceMode);
+   }
+
+}</code></pre>
+        <h3>Adding a Listener by Interface</h3>
+        <p>To add a listener by interface, you need to create a bean that implements the interface <code>SpaceStatusChangedListenerByInterface</code>.</p>
+        <p>Example:</p><pre><code>import com.gigaspaces.server.space.suspend.SuspendType;
+import com.gigaspaces.cluster.activeelection.SpaceMode;
+import org.openspaces.core.space.status.SpaceStatusChangedEvent;
+import org.openspaces.core.space.status.SpaceStatusChangedEventListener;
+
+public class MyListenerByInterface implements SpaceStatusChangedEventListener {
+
+   @Override
+   public void onSuspendTypeChanged(SpaceStatusChangedEvent event) {
+// Fetch and handle suspend type from event
+       SuspendType suspendType = event.getSuspendType();
+       handleSuspendType(suspendType);
+
+// Fetch and  handle space mode from event
+       SpaceMode spaceMode = event.getSpaceMode();
+       handleSpaceMode(spaceMode);
+   }
+
+}</code></pre>
+        <h3>Using @PostPrimary for Primary Backup Notifications</h3>
+        <div class="tc-admon-attention">
+            <p>The <code>SpaceStatus </code>listener described above, which was introduced in version 14.01, provides expanded functionality and is the preferred method for detecting Space status changes. <code>@PostPrimary</code> is still supported but will be deprecated in a future version.</p>
         </div>
-        <p>Custom beans that need to be aware of the space mode (for example, working directly against a cluster member, i.e. not using a clustered proxy of the space, and performing operations against the space only when it is in primary mode) can implement the Spring <code>ApplicationListener</code> and check for the mentioned events.</p>
+        <p>Using Spring support for application events, two events are defined within OpenSpaces: <code>BeforeSpaceModeChangeEvent</code> and <code>AfterSpaceModeChangeEvent</code>. Both are raised when a Space changes its mode, for example from primary to backup or vice versa, and holds the current Space mode.</p>
+        <p>Custom beans that need to be aware of the Space mode (for example, working directly against a cluster member, i.e. not using a clustered proxy of the Space, and performing operations against the Space only when it is in primary mode) can implement the Spring <code>ApplicationListener</code> and check for the mentioned events.</p>
         <div class="tc-admon-note">
             <p>OpenSpaces also provides the <a href="space-mode-context-loader.html">Space Mode Context Loader</a>, which can load the Spring application context when it has become primary, and unload it when it moves to backup.</p>
         </div>
@@ -128,8 +225,7 @@ spaceConfigurer.destroy();
 </code></pre>
             </div>
         </div>
-        <h3><a name="primary-backup-notifications"></a>Primary Backup Notifications</h3>
-        <p>A bean can implement the following interfaces to get notified about space mode changes:</p>
+        <p>A bean can implement the following interfaces to get notified about Space mode changes:</p>
         <table>
             <thead>
                 <tr>
@@ -178,7 +274,7 @@ spaceConfigurer.destroy();
 
 }
 </code></pre>
-        <p>If the bean does not implement any of the interfaces above, another option is to annotate the bean's methods that need to be invoked when a space mode changes.</p>
+        <p>If the bean does not implement any of the interfaces above, another option is to annotate the bean's methods that need to be invoked when a Space mode changes.</p>
         <table>
             <thead>
                 <tr>
@@ -236,7 +332,7 @@ spaceConfigurer.destroy();
 </code></pre>
             </div>
         </div>
-        <p>When there is more than one Proxy (e.g: embedded, remote, ...), the following should be done in order to be sure that the Primary Backup Notifications arrived from the current Space instance:</p><pre><code class="language-java">class MyBean {
+        <p>When there is more than one Proxy (e.g: embedded, remote, ...), the following should be done in order to be sure that the Primary/ Backup Notifications arrived from the current Space instance:</p><pre><code class="language-java">class MyBean {
 
     @Resource(name="gigaSpace")
     private GigaSpace gigaSpace;
@@ -260,10 +356,10 @@ spaceConfigurer.destroy();
 
 }
 </code></pre>
-        <p>The method compareAndSet() allows you to compare the current value of the AtomicBoolean to an expected value.
+        <p>The method <code>compareAndSet()</code> allows you to compare the current value of the AtomicBoolean to an expected value.
 If the current value is equal to the expected value, a new value can be set on the AtomicBoolean.
-The compareAndSet() method is atomic, so only a single thread can execute it at the same time.
-Thus, the compareAndSet() method can be used to implement a simple synchronization like lock.</p><pre><code class="language-java">class MyBean {
+The <code>compareAndSet()</code> method is atomic, so only a single thread can execute it at the same time.
+Thus, the <code>compareAndSet()</code> method can be used to implement a simple synchronization like lock.</p><pre><code class="language-java">class MyBean {
 
     @Resource(name="gigaSpace")
     private GigaSpace gigaSpace;
@@ -289,15 +385,15 @@ Thus, the compareAndSet() method can be used to implement a simple synchronizati
 
 }
 </code></pre>
-        <h1><a name="listening-for-space-mode-changed-events"></a>Listening for Space Mode Changed Events</h1>
-        <p>When a remote client is interested to receive events when a space instance changing its runtime mode (from primary to backup or vise versa), it should implement the <code>SpaceModeChangedEventListener</code>. See below how:</p>
-        <p>Registering for the event using the <a href="administration-and-monitoring-overview.html">Administration API</a>:</p><pre><code class="language-java">Admin admin = new AdminFactory().createAdmin();
+        <h1><a name="listening-for-space-mode-changed-events"></a>Remote Clients</h1>
+        <p>When a remote client is interested to receive events when a Space instance changing its runtime mode (from primary to backup or vice versa), it should implement the <code>SpaceModeChangedEventListener</code>. </p>
+        <p>For example, see the following example about registering for the event using the <a href="administration-and-monitoring-overview.html">Administration API</a>:</p><pre><code class="language-java">Admin admin = new AdminFactory().createAdmin();
 Space space = admin.getSpaces().waitFor(spaceName, 10, TimeUnit.SECONDS);
 SpaceModeChangedEventManager modeManager =  space.getSpaceModeChanged();
 MySpaceModeListener spaceModeListener = new MySpaceModeListener (space);
 modeManager.add(spaceModeListener);
 </code></pre>
-        <p>The <code>MySpaceModeListener</code> should implement the <code>SpaceModeChangedEventListener</code> - see below simple example:</p><pre><code class="language-java">public class MySpaceModeListener implements SpaceModeChangedEventListener{
+        <p>The <code>MySpaceModeListener</code> should implement the <code>SpaceModeChangedEventListener</code> - see the following example:</p><pre><code class="language-java">public class MySpaceModeListener implements SpaceModeChangedEventListener{
 
     Space space ;
     public MySpaceModeListener (Space space)
