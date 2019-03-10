@@ -112,12 +112,12 @@ eventListener.destroy();
                     </td>
                 </tr>
                 <tr>
-                    <td>Backup</td>
-                    <td>The Space mode has changed to Backup.</td>
-                </tr>
-                <tr>
                     <td>Primary</td>
                     <td>The Space mode has changed to Primary.</td>
+                </tr>
+                <tr>
+                    <td>Backup</td>
+                    <td>The Space mode has changed to Backup.</td>
                 </tr>
                 <tr>
                     <td>None</td>
@@ -132,12 +132,12 @@ eventListener.destroy();
                     <td>The Space is up and running normally.</td>
                 </tr>
                 <tr>
-                    <td>Quiesce</td>
-                    <td>The Space is in maintenance mode and will reject all data-related operations with an exception.</td>
+                    <td>Quiesced</td>
+                    <td>The Space is in maintenance mode. Operations are blocked until this Space  becomes active <a href="../admin/system-properties.html#space-proxy-router">within the timeout period</a>, and operations can again be performed.</td>
                 </tr>
                 <tr>
-                    <td>Demoted</td>
-                    <td>The Space was formerly in Primary mode, and is now in Backup mode.</td>
+                    <td>Demoting</td>
+                    <td>The Space was formerly in Primary mode, and is being demoted to Backup mode. Operations are blocked until the primary Space becomes active <a href="../admin/system-properties.html#space-proxy-router">within the timeout period</a>, and operations can again be performed.</td>
                 </tr>
                 <tr>
                     <td>Disconnected</td>
