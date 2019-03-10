@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -43,7 +43,7 @@ GigaSpace gigaSpaceClustered;
 </code></pre>
         <p>Here is how the clustered proxy is constructed:</p><pre><code class="language-java">@SpaceStatusChanged
 public void onSpaceStatusChange(SpaceStatusChangedEvent event) {
-    if (event.getSpaceMode() == SpaceMode.PRIMARY && event.getSuspendType() == SuspendType.NONE) {
+    if (event.getSpaceMode() == SpaceMode.PRIMARY and event.getSuspendType() == SuspendType.NONE) {
         gigaSpaceClustered=gigaSpaceEmbedNonClustered.getClustered();
         ...
     }
@@ -133,7 +133,7 @@ ClusterInfo clusterInfo;
 public void onSpaceStatusChange(SpaceStatusChangedEvent event) {
     String preMes = "From Service - partition " + clusterInfo.getInstanceId();
     System.out.println(preMes+ " - Cluster info " + clusterInfo);
-    if (event.getSpaceMode() == SpaceMode.PRIMARY && event.getSuspendType() == SuspendType.NONE) {
+    if (event.getSpaceMode() == SpaceMode.PRIMARY and event.getSuspendType() == SuspendType.NONE) {
         System.out.println(preMes + " writing object using embedded Non-Clustered proxy");
         Data d = new Data();
         // We write a single dummy object to the local partition. Since the ID is also the routing field we are OK.
@@ -309,7 +309,7 @@ public void eventListener(Data event) {
 public void onSpaceStatusChange(SpaceStatusChangedEvent event) {
     String preMes = "From Notify Container - partition " + clusterInfo.getInstanceId() ;
     System.out.println(preMes+ " - Cluster info " + clusterInfo);
-    if (event.getSpaceMode() == SpaceMode.PRIMARY && event.getSuspendType() == SuspendType.NONE) {
+    if (event.getSpaceMode() == SpaceMode.PRIMARY and event.getSuspendType() == SuspendType.NONE) {
         System.out.println(preMes+ " Getting Remote Clustered proxy from the embedded Non-Clustered");
         gigaSpaceClustered= gigaSpaceEmbedNonClustered.getClustered();
     }
