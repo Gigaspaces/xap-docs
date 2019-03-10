@@ -10,6 +10,28 @@ This page contains early access information for XAP and InsightEdge 14.2.0, whic
 
 {{%tip "Disclaimer"%}} Early access builds are provided as is, and should not be used in production. The latest stable release is version 14.0.1.<br>[Download](https://www.gigaspaces.com/download-center) | [Documentation](/xap/14.0/)</br>{{%/tip%}}
 
+# 14.2.0 M11 (Mar-10-2019)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.2.0/gigaspaces-insightedge-14.2.0-m11-b20411.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.2.0/gigaspaces-insightedge-enterprise-14.2.0-m11-b20411.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap-14.2.0-m10-b20411.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap-enterprise-14.2.0-m11-b20411.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap.net-14.2.0-m11-b20411.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13761" %}}: Parse Java version more generically to support future releases (>11).
+- {{% jira id="GS-13792" %}}: Auto-disable Sigar on Windows when Java version is 9 or higher.
+- {{% jira id="GS-13790" %}}: Remove Java distribution from XAP.NET package.
+- {{% jira id="GS-13785" %}}: Improved the PU resource upload REST call to include the resource URL in the response body.
+- {{% jira id="GS-13786" %}}: Added a new CLI command to upload a Processing Unit resource.
+
+### Resolved Issues
+
+N/A
+
 # 14.2.0 M10 (Mar-03-2019)
 
 ## Download Links

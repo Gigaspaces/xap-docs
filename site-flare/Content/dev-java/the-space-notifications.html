@@ -190,9 +190,9 @@ public class MyListenerByInterface implements SpaceStatusChangedEventListener {
    }
 
 }</code></pre>
-        <h3>Using @PostPrimary for Primary Backup Notifications</h3>
+        <h3>Using @PostPrimary for Primary/Backup Notifications</h3>
         <div class="tc-admon-attention">
-            <p>The <code>SpaceStatus </code>listener described above, which was introduced in version 14.01, provides expanded functionality and is the preferred method for detecting Space status changes. <code>@PostPrimary</code> is still supported but will be deprecated in a future version.</p>
+            <p>The <code>SpaceStatus </code>listener described above, which was introduced in version 14.0.1, provides expanded functionality and is the preferred method for detecting Space status changes. <code>@PostPrimary</code> is still supported but will be deprecated in a future version.</p>
         </div>
         <p>Using Spring support for application events, two events are defined within OpenSpaces: <code>BeforeSpaceModeChangeEvent</code> and <code>AfterSpaceModeChangeEvent</code>. Both are raised when a Space changes its mode, for example from primary to backup or vice versa, and holds the current Space mode.</p>
         <p>Custom beans that need to be aware of the Space mode (for example, working directly against a cluster member, i.e. not using a clustered proxy of the Space, and performing operations against the Space only when it is in primary mode) can implement the Spring <code>ApplicationListener</code> and check for the mentioned events.</p>
