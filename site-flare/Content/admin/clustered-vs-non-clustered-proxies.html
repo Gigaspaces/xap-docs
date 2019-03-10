@@ -41,10 +41,12 @@ GigaSpace gigaSpaceClustered;
 ...
 }
 </code></pre>
-        <p>Here is how the clustered proxy is constructed:</p><pre><code class="language-java">@PostPrimary
-public void postPrimary() {
-gigaSpaceClustered=gigaSpaceEmbedNonClustered.getClustered();
-...
+        <p>Here is how the clustered proxy is constructed:</p><pre><code class="language-java">@SpaceStatusChanged
+public void onSpaceStatusChange(SpaceStatusChangedEvent event) {
+    if (event.getSpaceMode() == SpaceMode.PRIMARY && event.getSuspendType() == SuspendType.NONE) {
+        gigaSpaceClustered=gigaSpaceEmbedNonClustered.getClustered();
+        ...
+    }
 }
 </code></pre>
         <p>An example of a <code>DistributedTask</code> implementation with a clustered and non-clustered proxy:</p><pre><code class="language-java">public class MyTask implements ClusterInfoAware , DistributedTask&lt;Integer, Integer&gt;{
@@ -105,7 +107,7 @@ this.id = id;
 &lt;os-remoting:annotation-support /&gt;
 &lt;os-remoting:service-exporter id="serviceExporter" /&gt;
 </code></pre>
-        <p>Our Service using the <a href="../dev-java/the-space-notifications.html">@PostPrimary</a> to decorate the method that constructs the clustered proxy from the non-clustered proxy and also the <a href="../dev-java/obtaining-cluster-information.html">@ClusterInfoContext</a> that provides information about the cluster topology and the local partition ID.</p>
+        <p>Our Service using the <a href="../dev-java/the-space-notifications.html">@SpaceStatusChanged</a> to decorate the method that constructs the clustered proxy from the non-clustered proxy and also the <a href="../dev-java/obtaining-cluster-information.html">@ClusterInfoContext</a> that provides information about the cluster topology and the local partition ID.</p>
         <p>Here is how the service interface looks like:</p><pre><code class="language-java">public interface IMyService {
 public String myMethod(@Routing Integer routing);
 }
@@ -117,7 +119,6 @@ import org.openspaces.core.GigaSpace;
 import org.openspaces.core.cluster.ClusterInfo;
 import org.openspaces.core.cluster.ClusterInfoContext;
 import org.openspaces.core.context.GigaSpaceContext;
-import org.openspaces.core.space.mode.PostPrimary;
 
 @RemotingService
 public class MyService implements IMyService{
@@ -128,19 +129,20 @@ GigaSpace gigaSpaceClustered;
 @ClusterInfoContext
 ClusterInfo clusterInfo;
 
-@PostPrimary
-public void postPrimary() {
-String preMes = "From Service - partition " + clusterInfo.getInstanceId() ;
-System.out.println(preMes+ " - Cluster info " + clusterInfo);
-System.out.println(preMes + " writing object using embedded Non-Clustered proxy" );
-Data d = new Data();
-// We write a single dummy object to the local partition. Since the ID is also the routing field we are OK.
-d.setId(clusterInfo.getInstanceId()-1); // Partition id = InstanceId - 1
-gigaSpaceEmbedNonClustered.write(d);
-
-System.out.println(preMes+ " Getting Remote Clustered proxy from the embedded Non-Clustered");
-gigaSpaceClustered=gigaSpaceEmbedNonClustered.getClustered();
-System.out.println(preMes+ " - gigaSpaceEmbed - total visible objects:" + gigaSpaceEmbedNonClustered.count(null));
+@SpaceStatusChanged
+public void onSpaceStatusChange(SpaceStatusChangedEvent event) {
+    String preMes = "From Service - partition " + clusterInfo.getInstanceId();
+    System.out.println(preMes+ " - Cluster info " + clusterInfo);
+    if (event.getSpaceMode() == SpaceMode.PRIMARY && event.getSuspendType() == SuspendType.NONE) {
+        System.out.println(preMes + " writing object using embedded Non-Clustered proxy");
+        Data d = new Data();
+        // We write a single dummy object to the local partition. Since the ID is also the routing field we are OK.
+        d.setId(clusterInfo.getInstanceId()-1); // Partition id = InstanceId - 1
+        gigaSpaceEmbedNonClustered.write(d);
+        System.out.println(preMes+ " Getting Remote Clustered proxy from the embedded Non-Clustered");
+        gigaSpaceClustered=gigaSpaceEmbedNonClustered.getClustered();
+        System.out.println(preMes+ " - gigaSpaceEmbed - total visible objects:" + gigaSpaceEmbedNonClustered.count(null));
+    }
 }
 
 public String myMethod(Integer routing)
@@ -266,7 +268,7 @@ From Task Execute - partition 2 gigaSpaceRemote - total visible objects:2
 &lt;os-core:giga-space-context/&gt;
 &lt;context:component-scan base-package="com.test"/&gt;
 </code></pre>
-        <p>Our Event Container (notify container) uses the <a href="../dev-java/the-space-notifications.html#primary-backup-notifications">@PostPrimary</a> to decorate the method that constructs the clustered proxy from the non-clustered proxy and also the <a href="../dev-java/obtaining-cluster-information.html">@ClusterInfoContext</a> that provides information about the cluster topology and the local partition ID.</p>
+        <p>Our Event Container (notify container) uses the <a href="../dev-java/the-space-notifications.html#primary-backup-notifications">@SpaceStatusChanged</a> to decorate the method that constructs the clustered proxy from the non-clustered proxy and also the <a href="../dev-java/obtaining-cluster-information.html">@ClusterInfoContext</a> that provides information about the cluster topology and the local partition ID.</p>
         <p>Here is how the event container looks:</p><pre><code class="language-java">package com.test;
 
 import org.openspaces.core.GigaSpace;
@@ -274,7 +276,6 @@ import org.openspaces.core.cluster.ClusterInfo;
 import org.openspaces.core.cluster.ClusterInfoAware;
 import org.openspaces.core.cluster.ClusterInfoContext;
 import org.openspaces.core.context.GigaSpaceContext;
-import org.openspaces.core.space.mode.PostPrimary;
 import org.openspaces.events.EventDriven;
 import org.openspaces.events.EventTemplate;
 import org.openspaces.events.adapter.SpaceDataEvent;
@@ -304,13 +305,14 @@ public void eventListener(Data event) {
  gigaSpaceEmbedNonClustered.count(null);
 }
 
-@PostPrimary
-public void postPrimary() {
- String preMes = "From Notify Container - partition " + clusterInfo.getInstanceId() ;
- System.out.println(preMes+ " - Cluster info " + clusterInfo);
- System.out.println(preMes+ " Getting Remote Clustered proxy from the embedded Non-Clustered");
- gigaSpaceClustered= gigaSpaceEmbedNonClustered.getClustered();
-}
+@SpaceStatusChanged
+public void onSpaceStatusChange(SpaceStatusChangedEvent event) {
+    String preMes = "From Notify Container - partition " + clusterInfo.getInstanceId() ;
+    System.out.println(preMes+ " - Cluster info " + clusterInfo);
+    if (event.getSpaceMode() == SpaceMode.PRIMARY && event.getSuspendType() == SuspendType.NONE) {
+        System.out.println(preMes+ " Getting Remote Clustered proxy from the embedded Non-Clustered");
+        gigaSpaceClustered= gigaSpaceEmbedNonClustered.getClustered();
+    }
 }
 </code></pre><pre><code class="language-java">GigaSpace space = new GigaSpaceConfigurer(new SpaceProxyConfigurer("space")).gigaSpace();
 Data d = new Data();
