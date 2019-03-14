@@ -10,6 +10,26 @@ This page contains early access information for XAP and InsightEdge 14.2.0, whic
 
 {{%tip "Disclaimer"%}} Early access builds are provided as is, and should not be used in production. The latest stable release is version 14.0.1.<br>[Download](https://www.gigaspaces.com/download-center) | [Documentation](/xap/14.0/)</br>{{%/tip%}}
 
+# 14.2.0 M12 (Mar-17-2019)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.2.0/gigaspaces-insightedge-14.2.0-m12-b20412.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.2.0/gigaspaces-insightedge-enterprise-14.2.0-m12-b20412.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap-14.2.0-m12-b20412.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap-enterprise-14.2.0-m12-b20412.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap.net-14.2.0-m12-b204121.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13795" %}}: Upgrade Apache ZooKeeper to 3.4.13.
+- {{% jira id="GS-13768" %}}: Decouple the Hibernate integration and put in a separate module.
+- {{% jira id="GS-13793" %}}: When killing a process in Microsoft Windows, automatically kill any child processes recursively.
+
+### Resolved Issues
+
+N/A
+
 # 14.2.0 M11 (Mar-10-2019)
 
 ## Download Links
