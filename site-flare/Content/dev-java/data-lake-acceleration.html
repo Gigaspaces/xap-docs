@@ -24,14 +24,148 @@
             </p>
         </div>
         <h1>Configuring the Data Life Cycle Policy</h1>
-        <p>You can configure the following properties for the data life cycle policy:</p>
+        <h2>Global Properties</h2>
+        <p>The global configuration contains a list of DataLifecyclePolicy properties, as well as the following parameters that are set for the entire application:</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                    <th>Unit</th>
+                    <th>Default Value</th>
+                    <th>Required/Optional</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>verbose </td>
+                    <td>Increases the log levels for both the client and the server to provide verbose information (useful for troubleshooting).</td>
+                    <td>True/False</td>
+                    <td>False</td>
+                    <td>Optional</td>
+                </tr>
+                <tr>
+                    <td>evictionPollingInterval </td>
+                    <td>Polling interval for querying and evicting each policy.</td>
+                    <td>Minutes (m)</td>
+                    <td>1 m</td>
+                    <td>Optional</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Table (Object) Properties</h2>
+        <p>The DataLifecyclePolicy table contains the following parameters.</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                    <th>Unit</th>
+                    <th>Default Value</th>
+                    <th>Required/Optional</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>tableName *</td>
+                    <td>Name of the table/type/class to which this policy applies.</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>Required</td>
+                </tr>
+                <tr>
+                    <td>timeColumn** </td>
+                    <td>Name of column/property/field that contains the time data used to manage this policy.</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>Required</td>
+                </tr>
+                <tr>
+                    <td>timeFormat </td>
+                    <td>Time format for the data in the timeColumn parameter.</td>
+                    <td>&#160;</td>
+                    <td>by java</td>
+                    <td>Optional</td>
+                </tr>
+                <tr>
+                    <td>speedPeriod </td>
+                    <td>Time period or fixed timestamp.</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>Required</td>
+                </tr>
+                <tr>
+                    <td>batchDataSource </td>
+                    <td>endpoint for querying the batch layer</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>Required</td>
+                </tr>
+                <tr>
+                    <td>batchDataTarget </td>
+                    <td>endpoint for feeding data to the batch layer</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>Required</td>
+                </tr>
+                <tr>
+                    <td>mutabilityPeriod </td>
+                    <td>Period of time during which data can be updated.</td>
+                    <td>
+                        <p> Duration in minutes (m) or </p>
+                        <p>% of speedPeriod.</p>
+                    </td>
+                    <td>80%</td>
+                    <td>Optional</td>
+                </tr>
+                <tr>
+                    <td>batchFeedInterval </td>
+                    <td>Data is fed from the Space (speed layer) to the batch layer in these time-based intervals at the end of the speedPeriod, after the mutabilityPeriod has expired.</td>
+                    <td>Minutes (m)</td>
+                    <td>1 m</td>
+                    <td>Optional</td>
+                </tr>
+                <tr>
+                    <td>batchFeedSize </td>
+                    <td>Maximum data entries per batch feed interval.</td>
+                    <td>&#160;</td>
+                    <td>
+                        <p>1000 </p>
+                    </td>
+                    <td>Optional</td>
+                </tr>
+                <tr>
+                    <td>evictionBuffer </td>
+                    <td>Additional waiting period before evicting data from the Space (speed layer)&#160;after it was fed to the batch layer, so that long queries and clock differences won't cause errors or generate exceptions. </td>
+                    <td>
+                        <p>Duration in minutes (m), or </p>
+                        <p>% of speedPeriod.</p>
+                    </td>
+                    <td>10 m</td>
+                    <td>Optional</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>* This correlates to an object or JSON in the object store.</p>
+        <p>** This correlates to a property or entity in an object or JSON.</p>
+        <p MadCap:conditions="Default.DoNotShow">You can configure the following properties for the data life cycle policy:</p>
         <ul>
-            <li>Storage/FS:  HDFS/S3 (for batch layer)</li>
-            <li>Date &amp; Time: last N h</li>
-            <li>Partition: by hour</li>
-            <li>Primary: by ID (key)</li>
-            <li>Size: up to NNN GB</li>
-            <li>Deletion: Every N hours</li>
+            <li MadCap:conditions="Default.DoNotShow">Storage/FS:  HDFS/S3 (for batch layer)</li>
+            <li MadCap:conditions="Default.DoNotShow">Date &amp; Time: last N h</li>
+            <li MadCap:conditions="Default.DoNotShow">Partition: by hour</li>
+            <li MadCap:conditions="Default.DoNotShow">Primary: by ID (key)</li>
+            <li MadCap:conditions="Default.DoNotShow">Size: up to NNN GB</li>
+            <li MadCap:conditions="Default.DoNotShow">Deletion: Every N hours</li>
         </ul>
         <h2>Supported Data Formats</h2>
         <p>AnalyticsXtreme supports all the data formats that are supported by Apache Spark, such as Apache Parquet and Apache Avro.</p>
