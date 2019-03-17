@@ -16,7 +16,7 @@ This page contains early access information for XAP and InsightEdge 14.2.0, whic
 
 * \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.2.0/gigaspaces-insightedge-14.2.0-m12-b20412.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.2.0/gigaspaces-insightedge-enterprise-14.2.0-m12-b20412.zip)\] 
 
-* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap-14.2.0-m12-b20412.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap-enterprise-14.2.0-m12-b20412.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap.net-14.2.0-m12-b204121.msi)\]
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap-14.2.0-m12-b20412.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap-enterprise-14.2.0-m12-b20412.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap.net-14.2.0-m12-b20412.msi)\]
 
 ## Changelog
 
