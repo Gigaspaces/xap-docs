@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -6,16 +6,14 @@
         <h1>Tableau Integration</h1>
         <h1><a name="overview"></a>Overview</h1>
         <p>Organizations often require quick insight into data to understand the business impact, and don't want to waste
-    valuable time consulting their corporate IT team. With the <a href="sql-query-intro.html">In-Grid SQL Query</a>
-    feature,
+    valuable time consulting their corporate IT team. With the <a href="sql-query-intro.html">InsightEdge JDBC driver</a><![CDATA[   ]]>,
     this can be done using the data stored in the <MadCap:variable name="General.ProductNameXAP" /> in-memory data grid. <a href="https://www.tableau.com/">Tableau</a>
     can be connected to the data grid via an ODBC-JDBC gateway, in order to retrieve and present the required data in a
     visual format.</p>
         <p>This topic describes how to set up an integration of Tableau with <MadCap:variable name="General.ProductNameIE" /> in a Microsoft Windows environment,
-    so that the In-Grid SQL Query can be used to retrieve data and display it in a graphic visual representation.</p>
+    so that the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;driver can be used to retrieve data and display it in a graphic visual representation.</p>
         <h2><a name="architecture"></a>Architecture</h2>
-        <p>Tableau can connect to the data grid using the SQL-99-compatible JDBC driver that is provided with the In-Grid SQL
-    Query feature. However, Tableau can only use ODBC as a general connection option, so a third-party ODBC-JDBC
+        <p>Tableau can connect to the data grid using the <MadCap:variable name="General.ProductNameIE" /> JDBC driver. However, Tableau can only use ODBC as a general connection option, so a third-party ODBC-JDBC
     connection is needed to convert ODBC requests from Tableau into JDBC requests for the <MadCap:variable name="General.ProductNameIE" /> JDBC driver. The
     Easysoft ODBC-JDBC gateway has been evaluated and certified for use with <MadCap:variable name="General.ProductNameIE" />, and is used in the
     integration described here.</p>
@@ -54,11 +52,11 @@
         <p>The first step is deploying a data grid and creating a Space.</p>
         <p class="tc-todo">To deploy the data grid on a local machine:</p>
         <ol>
-            <li>Run the following scripts from the <code>$&lt;XAP_HOME&gt;\tools\maven</code> directory:
-
-      <ul><li><p>installmavenrep.bat</p></li><li><p>insightedge-maven.cmd</p></li></ul></li>
+            <li>From the <code>$&lt;XAP_HOME&gt;\tools\maven</code> directory, run the <code>installmavenrep.bat </code>script.</li>
+            <li>From the <code>$&lt;XAP_HOME&gt;insightedge\tools\maven</code> directory, run the <code>insightedge-maven.cmd </code>script.
+      </li>
             <li>
-                <p>Navigate to the <code>$&lt;XAP_HOME&gt;\bin</code> directory and launch a cmd window.</p>
+                <p>Navigate to the <code>$&lt;XAP_HOME&gt;\bin</code> directory and launch a command window.</p>
             </li>
             <li>
                 <p>Type <code>insightedge host run-agent --auto --gsc=2</code> to create a data grid.</p>
@@ -76,7 +74,7 @@
         <p class="tc-todo">To populate the Space with data:</p>
         <ol>
             <li>
-                <p>Download the <a href="/download_files/sbp/insightedge-sql-demo.rar"><MadCap:variable name="General.ProductNameIE" /> SQL demo</a> and unpack it.</p>
+                <p>Download the <a href="/download_files/sbp/insightedge-sql-demo.rar">InsightEdge SQL demo</a> and unpack it.</p>
             </li>
             <li>
                 <p>Under the extracted "insightedge-sql-demo" folder, build the sample with <code>mvn clean install</code>.</p>
@@ -98,7 +96,7 @@
         </ol>
         <h3><a name="adding-the-insightedge-jdbc-client-jar-to-the-classpath"></a>Adding the <MadCap:variable name="General.ProductNameIE" /> JDBC Client
     JAR to the Classpath</h3>
-        <p>When connecting to the data grid, the ODBC-JDBC gateway runs the <MadCap:variable name="General.ProductNameIE" /> JDBC custom driver. In order to make
+        <p>When connecting to the data grid, the ODBC-JDBC gateway runs the <MadCap:variable name="General.ProductNameIE" /> JDBC driver. In order to make
     the driver visible to the ODBC-JDBC gateway, you have to create a special JAR file for use when configuring the
     gateway in Microsoft Windows.</p>
         <p class="tc-todo">To generate the <MadCap:variable name="General.ProductNameIE" /> JDBC Client JAR:</p>
@@ -265,7 +263,8 @@
                 <p>Click <span class="tc-bold">Connect</span> in the Tableau desktop, and select <span class="tc-bold">Other
           Database (ODBC)</span> as the data source.</p>
                 <p>
-        <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_0.png" width="243" height="245" class="tc-picture50" /></p>
+                    <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_0.png" width="243" height="245" class="tc-picture50" />
+                </p>
             </li>
             <li>
                 <p>In the Other Databases (ODBC) window, configure the options as follows:</p>
