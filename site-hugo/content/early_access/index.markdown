@@ -10,6 +10,24 @@ This page contains early access information for XAP and InsightEdge 14.2.0, whic
 
 {{%tip "Disclaimer"%}} Early access builds are provided as is, and should not be used in production. The latest stable release is version 14.0.1.<br>[Download](https://www.gigaspaces.com/download-center) | [Documentation](/xap/14.0/)</br>{{%/tip%}}
 
+# 14.2.0 RC1 (Mar-24-2019)
+
+## Download Links
+
+* \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.2.0/gigaspaces-insightedge-14.2.0-rc1-b20413.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.2.0/gigaspaces-insightedge-enterprise-14.2.0-rc1-b20413.zip)\] 
+
+* \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap-14.2.0-rc1-b20413.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap-enterprise-14.2.0-rc1-b20413.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.2.0/gigaspaces-xap.net-14.2.0-rc1-b20413.msi)\]
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13705" %}}: Upgrade Apache Spark version to 2.4.0.
+
+### Resolved Issues
+
+- {{% jira id="GS-13799" %}}: Wrong host CPU and memory usage values displayed in the GigaSpaces Management Center and Web Management Console when the Sigar library is missing.
+
 # 14.2.0 M12 (Mar-17-2019)
 
 ## Download Links

@@ -940,7 +940,7 @@ To query for a specific **Author** with a specific **Book** title, the query sho
 {{%tab "  Java "%}}
 
 ```java
-SQLQuery<Book> bookQuery = new SQLQuery <Book>(Book.class , "title="?");
+SQLQuery<Book> bookQuery = new SQLQuery <Book>(Book.class , title="?");
 bookQuery.setParameter(1, "BookX");
 Book booksFounds [] = space.readMultiple(bookQuery);
 String authoridsForTitle="";
