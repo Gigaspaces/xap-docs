@@ -51,7 +51,7 @@
         <h1>Configuring the Data Life Cycle Policy</h1>
         <p>The data life cycle policy defines how data is archived from the data grid (speed layer) to the external data storage (batch layer). This policy is defined in the Space, with a global configuration that defines the polling interval and log level for the application itself, along with a life cycle policy for each data object, or table.</p>
         <h2>Global Properties</h2>
-        <p>The global configuration contains a list of DataLifecyclePolicy properties, as well as the following parameters that are set for the entire application:</p>
+        <p>The global configuration contains a list of DataLifecyclePolicy properties, as well as the logging level that is set for the entire application:</p>
         <table style="width: 100%;" class="tc-standard">
             <col />
             <col />
@@ -73,13 +73,6 @@
                     <td>Increases the log levels for both the client and the server to provide verbose information (useful for troubleshooting).</td>
                     <td>True/False</td>
                     <td>False</td>
-                    <td>Optional</td>
-                </tr>
-                <tr>
-                    <td>evictionPollingInterval </td>
-                    <td>Polling interval for querying and evicting each policy.</td>
-                    <td>Minutes (m)</td>
-                    <td>1 m</td>
                     <td>Optional</td>
                 </tr>
             </tbody>
@@ -165,6 +158,13 @@
                     <td>
                         <p>1000 </p>
                     </td>
+                    <td>Optional</td>
+                </tr>
+                <tr>
+                    <td>evictionPollingInterval </td>
+                    <td>Polling interval for querying and evicting each policy.</td>
+                    <td>Minutes (m)</td>
+                    <td>1 m</td>
                     <td>Optional</td>
                 </tr>
                 <tr>
