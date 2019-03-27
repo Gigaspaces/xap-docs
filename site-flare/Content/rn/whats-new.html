@@ -50,35 +50,38 @@
             <li MadCap:conditions="Version.14-0-only">XAP.NET for Microsoft .NET v3.5</li>
         </ul>
         <p MadCap:conditions="Version.14-0-only">In addition, we recommend that you review GigaSapaces' updated Java and Spring Framework policies on the <a href="/release_notes/lifecycle.html">Product Lifecycle and End-of-Life Policy</a> page.</p>
-        <h1 MadCap:conditions="Version.14-2-only">Data Lake Acceleration with AnalyticsXtreme</h1>
+        <h1 MadCap:conditions="Version.14-2-only">AnalyticsXtreme to Accelerate Your Data Lake </h1>
         <p MadCap:conditions="Version.14-2-only"><MadCap:variable name="General.CompanyName" />'s new AnalyticsXtreme feature for the <MadCap:variable name="General.ProductNameIE" /> Platform improves on the traditional Lambda architecture to enable much faster querying of both real-time and historical data, and simplifies business application development by providing a single API for accessing data. Functionality includes:</p>
-        <ul>
-            <li MadCap:conditions="Version.14-2-only">Data life cycle management for moving data from the data grid to external data storage as it ages.</li>
-            <li MadCap:conditions="Version.14-2-only"><MadCap:variable name="General.ProductNameIE" /> JDBC interpreter and driver for querying data from both the speed layer (data grid) and the batch layer (external data storage).</li>
-            <li MadCap:conditions="Version.14-2-only">Out-of-the-box support for data formats such as Apache Parquet and Avro.</li>
-            <li MadCap:conditions="Version.14-2-only">Support for SQL, Spark, and JDBC&#160;queries.</li>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li>Data life cycle management for moving data from the data grid to external data storage as it ages.</li>
+            <li><MadCap:variable name="General.ProductNameIE" /> JDBC interpreter and driver for querying data from both the speed layer (data grid) and the batch layer (external data storage).</li>
+            <li>Out-of-the-box support for data formats such as Apache Parquet and Avro.</li>
+            <li>Support for SQL, Spark, and JDBC&#160;queries.</li>
         </ul>
         <h1 MadCap:conditions="Version.14-2-only">Support for Apache Spark Version 2.4.0</h1>
-        <p>Release 14.2 includes an upgrade to Apache Spark 2.4.0, which provides the following benefits:</p>
-        <ul>
-            <li>Scala 2.12 support</li>
-            <li>Apache Avro as a built-in data source</li>
-            <li>Support for image schema data source</li>
+        <p MadCap:conditions="Version.14-2-only">Release 14.2 includes an upgrade to Apache Spark 2.4.0, which provides the following benefits:</p>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li>Scala 2.12 experimental support - Now you can build Spark with Scala 2.12 and write Spark applications in Scala 2.12.</li>
+            <li>Apache Avro as a built-in data source - Inline Spark-Avro package with logical type support, better performance and usability.</li>
+            <li>Spark datasource for image format - added image reading support in the Spark source API.</li>
         </ul>
-        <p>The upgrade to Apache Spark 2.4 also provides the following Kubernetes-related enhancements:</p>
-        <ul>
-            <li>PySpark and R bindings</li>
-            <li>Client mode support for Kubernetes cluster back end</li>
+        <h1 MadCap:conditions="Version.14-2-only">Kubernetes Enhancements</h1>
+        <p MadCap:conditions="Version.14-2-only">The upgrade to Apache Spark 2.4.0 also provides the following Kubernetes-related enhancements:</p>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li>PySpark and R bindings - Dependency management, increased non-JVM memory overhead default values, and modified Docker images to include Python Support.</li>
+            <li>Client mode support within Spark when running in the Kubernetes cluster back end.</li>
         </ul>
         <h1 MadCap:conditions="Version.14-2-only"><MadCap:variable name="General.CompanyName" /> Products Now Available with Red Hat OpenShift </h1>
-        <p>GigaSpaces products are now available for use in the Red Hat OpenShift environment for Kubernetes. Customers can easily download InsightEdge and XAP container images to create, test, and run applications and deploy them to the cloud.</p>
-        <p>Look for our GigaSpaces products in the <a href="https://access.redhat.com/containers/" target="_blank">Red Hat Container Catalog</a>.</p>
+        <p MadCap:conditions="Version.14-2-only">InsightEdge and XAP are now Red Hat-certified containers, available in the official Red Hat registry. Customers can easily download InsightEdge and XAP container images to create, test, and run applications. and deploy them to the target platform.</p>
+        <p MadCap:conditions="Version.14-2-only">Look for our GigaSpaces products in the <a href="https://access.redhat.com/containers/" target="_blank">Red Hat Container Catalog</a>.</p>
         <h1 MadCap:conditions="Version.14-2-only">Third-Party Product Changes</h1>
-        <ul>
-            <li MadCap:conditions="Version.14-2-only"><a href="https://spark.apache.org/" target="_blank">Apache Spark</a> has been upgraded to 2.4.0.</li>
-            <li MadCap:conditions="Version.14-2-only"><a href="https://zeppelin.apache.org/" target="_blank">Apache Zeppelin</a> has been upgraded to 0.8.1</li>
-            <li MadCap:conditions="Version.14-2-only"><a href="https://zookeeper.apache.org/" target="_blank">Apache Zookeeper</a> has been upgraded to 3.4.13</li>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li><a href="https://spark.apache.org/" target="_blank">Apache Spark</a> has been upgraded to 2.4.0.</li>
+            <li><a href="https://zeppelin.apache.org/" target="_blank">Apache Zeppelin</a> has been upgraded to 0.8.1</li>
+            <li><a href="https://zookeeper.apache.org/" target="_blank">Apache Zookeeper</a> has been upgraded to 3.4.13</li>
+            <li><a href="http://hibernate.org/" target="_blank">Hibernate</a> has been upgraded to 5.1.17</li>
         </ul>
+        <p MadCap:conditions="Version.14-2-only">Additionally, XAP.NET&#160;no longer includes a bundled Java distribution.</p>
         <p MadCap:conditions="Default.DoNotShow">This version is early access, and there are currently no new features.</p>
     </body>
 </html>
