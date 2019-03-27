@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -23,12 +23,12 @@
         </ul>
         <p>The above share the <span class="tc-bold">same</span> <a href="space-persistency-overview.html">Space Persistency</a> settings but have different space settings. See the <a href="hibernate-space-persistency.html">Hibernate Space Persistency</a> for details on how to use the built-in <code>HibernateSpaceSynchronizationEndpoint</code>.</p>
         <h1><a name="the-data-grid-processing-unit"></a>The Data Grid Processing Unit</h1>
-        <p>The <code>cluster-config.mirror-service</code> <code>space</code> settings specify the interaction between the IMDG primary spaces and the Mirror Service. The <code>mirrored="true"</code> <code>space</code> element tag enables the replication mechanism from the IMDG Primary spaces to the Mirror Service. Once <code>mirrored="true"</code> has been specified, all IMDG members will be Mirror aware and will be delegating their activities to the Mirror service. The IMDG primary instance will replicate the operations that have been logged within the primary redo log every <code>interval-millis</code> amount of time or <code>interval-opers</code> amount of operations. Both of these mechanisms are always active and the first one that is breached triggers the replication event.</p>
+        <p>The <code>cluster-config.mirror-service</code> <code>space</code> settings specify the interaction between the data grid primary spaces and the Mirror Service. The <code>mirrored="true"</code> <code>space</code> element tag enables the replication mechanism from the data grid Primary spaces to the Mirror Service. Once <code>mirrored="true"</code> has been specified, all data grid members will be Mirror aware and will be delegating their activities to the Mirror service. The data grid primary instance will replicate the operations that have been logged within the primary redo log every <code>interval-millis</code> amount of time or <code>interval-opers</code> amount of operations. Both of these mechanisms are always active and the first one that is breached triggers the replication event.</p>
         <div class="tc-admon-tip">
             <p>If you are not using the <code>mirrored="true"</code> with the Data-Grid PU, you should use the following property instead:
 <code>cluster-config.mirror-service.enabled=true</code></p>
         </div>
-        <p>The IMDG Mirror replication settings includes the following options:</p>
+        <p>The data grid Mirror replication settings includes the following options:</p>
         <table>
             <thead>
                 <tr>
@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <td align="left">cluster-config.mirror-service.bulk-size</td>
-                    <td align="left">The amount of operations to be transmitted in one bulk (in quantity and not actual memory size) from an active IMDG primary to the Mirror Service.</td>
+                    <td align="left">The amount of operations to be transmitted in one bulk (in quantity and not actual memory size) from an active data grid primary to the Mirror Service.</td>
                     <td align="left">100</td>
                 </tr>
                 <tr>
@@ -114,13 +114,13 @@
         <div class="tc-admon-note">
             <p>See the <a href="space-persistency-advanced-topics.html#properties">Space Persistency Properties</a> and the <a href="hibernate-space-persistency.html">Hibernate Space Persistency</a> for full details about the EDS properties the you may configure.</p>
         </div>
-        <p>You <span class="tc-bold">must use a Data-Grid cluster schema that includes a backup</span> (i.e. <code>partitioned</code>) when running a Mirror Service. Without having backup, the Primary IMDG Spaces <span class="tc-bold">will not</span> replicate their activities to the Mirror Service. For testing purposes, in case you don't want to start backup spaces, you can use the <code>partitioned</code> cluster schema and have 0 as the number of backups - this will still allow the primary spaces to replicate their operations to the Mirror.</p>
+        <p>You <span class="tc-bold">must use a Data-Grid cluster schema that includes a backup</span> (i.e. <code>partitioned</code>) when running a Mirror Service. Without having backup, the Primary data grid Spaces <span class="tc-bold">will not</span> replicate their activities to the Mirror Service. For testing purposes, in case you don't want to start backup spaces, you can use the <code>partitioned</code> cluster schema and have 0 as the number of backups - this will still allow the primary spaces to replicate their operations to the Mirror.</p>
         <p>If you wish to change the mirror service name please refer to <a href="async-persistency-mirror-advanced.html">Async Persistency - Mirror - Advanced</a>.</p>
         <div class="tc-admon-attention">
             <p>Enabling replication into the mirror without starting the Mirror will generate a backlog within the primary space (and backup). Please avoid running in this configuration.</p>
         </div>
         <h1><a name="the-mirror-processing-unit"></a>The Mirror Processing Unit</h1>
-        <p>The Mirror Service is constructed using the <code>Mirror</code> tag. The Mirror Service itself is <span class="tc-bold">not</span> a regular Space. It is dispatching the operations which have been replicated from the IMDG primary spaces to the data source (i.e. Database). The Mirror Service should be constructed as a separate processing unit, which includes only its definition.</p>
+        <p>The Mirror Service is constructed using the <code>Mirror</code> tag. The Mirror Service itself is <span class="tc-bold">not</span> a regular Space. It is dispatching the operations which have been replicated from the data grid primary spaces to the data source (i.e. Database). The Mirror Service should be constructed as a separate processing unit, which includes only its definition.</p>
         <p>The Mirror settings includes the following options:</p>
         <table>
             <thead>
@@ -187,10 +187,10 @@
 -------------- pu.xml
 </code></pre>
         <p>See the <a href="the-processing-unit-structure-and-configuration.html">The Processing Unit Structure and Configuration</a> for more information on the processing unit structure.</p>
-        <p>The relevant Hibernate JAR file and its third party dependencies should be available to the mirror processing unit. The jar files should be placed in the processing unit <code>lib</code> directory.</p>
+        <p>The relevant Hibernate JAR file and its third party dependencies should be available to the mirror processing unit. The JAR&#160;files should be placed in the processing unit <code>lib</code> directory.</p>
         <h2><a name="mirror-undeploy"></a>Mirror Undeploy</h2>
-        <p>When cluster is un deployed, the mirror service must be un deployed last. This will ensure that all data is persisted properly through mirror async persistency.
-Before primary space is un deployed/redeployed, all data changes are flushed to mirror. This operation is limited by timeout that can be configured using the following property:</p><pre><code class="language-xml">&lt;!-- default value is 5 minutes --&gt;
+        <p>When cluster is undeployed, the mirror service must be undeployed last. This will ensure that all data is persisted properly through mirror async persistency.
+Before primary space is undeployed/redeployed, all data changes are flushed to mirror. This operation is limited by timeout that can be configured using the following property:</p><pre><code class="language-xml">&lt;!-- default value is 5 minutes --&gt;
 &lt;prop
     key="cluster-config.groups.group.repl-policy.async-replication.async-channel-shutdown-timeout"&gt;
     300000
@@ -198,11 +198,11 @@ Before primary space is un deployed/redeployed, all data changes are flushed to 
 </code></pre>
         <h1><a name="optimizing-the-mirror-activity"></a>Optimizing the Mirror Activity</h1>
         <div class="tc-admon-attention">
-            <p>The database update rate by the Mirror is a function of the number of IMDG partitions, database update speed with a single thread, database transaction size, network latency between the Mirror and the Database, hibernate overhead (if hibernate is being used as the persistence mechanism), relevant table indexed columns, and the database record size. Also, when distributed transactions are used with the IMDG, this may improve the database update rate (since multiple partitions will be sending their updates to the Mirror, which can batch all cumulative updates to the database), but this will impact the IMDG transaction latency.</p>
+            <p>The database update rate by the Mirror is a function of the number of data grid partitions, database update speed with a single thread, database transaction size, network latency between the Mirror and the Database, hibernate overhead (if hibernate is being used as the persistence mechanism), relevant table indexed columns, and the database record size. Also, when distributed transactions are used with the data grid , this may improve the database update rate (since multiple partitions will be sending their updates to the Mirror, which can batch all cumulative updates to the database), but this will impact the data grid transaction latency.</p>
         </div>
-        <p>You might want to tune the IMDG and the Mirror activity to push data into the database faster. Here are some recommendations you should consider:</p>
+        <p>You might want to tune the data grid and the Mirror activity to push data into the database faster. Here are some recommendations you should consider:</p>
         <ul>
-            <li>Optimize the Space Class structure to include fewer fields. Less fields means less overhead when the IMDG replicates the data to the Mirror Service.</li>
+            <li>Optimize the Space Class structure to include fewer fields. Less fields means less overhead when the data grid replicates the data to the Mirror Service.</li>
             <li>Tune the <code>bulk-size</code>, <code>interval-millis</code> and <code>interval-opers</code> to perform the replication in larger batches and less frequently. This means you should increase the <code>bulk-size</code>, <code>interval-millis</code> and <code>interval-opers</code> to have larger values than the defaults. The exact values depends with the network speed, the average size of the objects and the database configuration and machine speed. Here is an example for a configuration that is relevant for IMDG with relatively small objects (less than one K) and high rate of operations (more than 10,000 operations per second for partition):</li>
         </ul><pre><code class="language-xml">&lt;prop key="cluster-config.mirror-service.bulk-size"&gt;10000&lt;/prop&gt;
 &lt;prop key="cluster-config.mirror-service.interval-millis"&gt;5000&lt;/prop&gt;
@@ -229,7 +229,7 @@ See com.gigaspaces.sync.DataSyncOperation for more details.</p>
             <img src="../Resources/Static/attachment_files/mirror_ui_stats.jpg" alt="image" class="tc-picture80" />
         </div>
         <div class="tc-admon-note">
-            <p>See also the <a href="/sbp/mirror-monitor.html">Mirror Monitor JMX utility</a> for graphical mirror service monitoring via JMX.</p>
+            <p>See the <a href="/sbp/mirror-monitor.html">Mirror Monitor JMX utility</a> for graphical mirror service monitoring via JMX.</p>
         </div>
     </body>
 </html>
