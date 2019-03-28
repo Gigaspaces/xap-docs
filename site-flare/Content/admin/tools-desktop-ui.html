@@ -21,8 +21,8 @@
             <li>Run the GigaSpaces Management Center on the <span class="tc-bold">same</span> network subnet as the data grid and the other <MadCap:variable name="General.ProductNameXAP" /> runtime components, and run the remote access application on the client side to access the remote machines desktop from the administrator machine desktop.</li>
             <li>Make sure that the host machine where the GigaSpaces Management Center is running has Internet access.</li>
         </ul>
-        <div class="tc-admon-note">
-            <p>If the host machine doesn't have Internet access, the GigaSpaces Management Center won't start. <MadCap:conditionalText MadCap:conditions="Version.14-2-died">To prevent this from happening, set the system property <code>com.gs.get-build</code> to <code>false</code> in the EXT_JAVA_OPTIONS environment variable in the <code>setenv-overrides</code> file.</MadCap:conditionalText></p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-2-died">
+            <p>If the host machine doesn't have Internet access, the GigaSpaces Management Center won't start. To prevent this from happening, set the system property <code>com.gs.get-build</code> to <code>false</code> in the EXT_JAVA_OPTIONS environment variable in the <code>setenv-overrides</code> file.</p>
         </div>
         <p>With relatively large amount of GSCs, Services or data grid partitions (over 20 units), we also recommend increasing the heap size of the GigaSpaces Management Center to 1G (-Xmx1g).</p>
         <h1><a name="starting-the-gigaspaces-management-center"></a>Starting The GigaSpaces Management Center</h1>
