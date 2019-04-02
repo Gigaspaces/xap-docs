@@ -130,7 +130,7 @@
             <p>You can define a custom data  target, as explained below in <MadCap:xref href="#Adding">Adding a Custom Batch Data Target</MadCap:xref>.</p>
         </div>
         <h3>Example</h3>
-        <p>The following code snippet from the pu.xml file shows a data life cycle policy that was configured for specific trading information that needs to be stored in the data grid for 5 hours, and then moved to external data storage. Both the data source and the data target have their full definitions in another area of the pu.xml file.</p><pre>&lt;<code class="language-xml">!-- Data life cycle policy for Trade class --&gt;
+        <p>The following code snippet from the pu.xml file shows a data life cycle policy that was configured for specific trading information that needs to be stored in the data grid for 5 hours, and then moved to external data storage. Both the data source and the data target have their full definitions in another area of the pu.xml file.</p><pre><code class="language-xml">&lt;!-- Data life cycle policy for Trade class --&gt;
 						&lt;bean class="com.gigaspaces.analytics_xtreme.DataLifecyclePolicyFactoryBean"&gt;
 							&lt;property name="typeName" value="com.gigaspaces.demo.Trade"/&gt;
 							&lt;property name="timeColumn" value="dateTimeTrade"/&gt;
@@ -195,7 +195,7 @@
                     <td>timeFormat </td>
                     <td>Time format for the data in the timeColumn parameter.</td>
                     <td>See <MadCap:xref href="#Java">Java Time Pattern</MadCap:xref> below</td>
-                    <td>XX</td>
+                    <td>&#160;</td>
                     <td>Optional</td>
                 </tr>
                 <tr>
@@ -217,7 +217,7 @@
                     <td>Maximum data entries per batch feed interval.</td>
                     <td>&#160;</td>
                     <td>
-                        <p>1000 </p>
+                        <p class="tc-tablebody">1000 </p>
                     </td>
                     <td>Optional</td>
                 </tr>
