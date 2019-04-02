@@ -68,7 +68,7 @@ Upon request, GigaSpaces [Consulting Services](mailto:ps@gigaspaces.com) experts
 |Product Release [1] |	GA Date | Last Maintenance Service Pack Release|Planned Next Maintenance Service Pack Release [2]|Support Discontinuance ("End of Life") [3]|
 |--------------------|----------|--------------------------------------|-------------------------------------------------|------------------------------------------|
 |14.2 bxxxxx     |April 2019    |                                      |No Plans|   |
-|14.0 b20000     |<nobr>November 2018<nobr>	|14.0.1 in Dec. 2018       |No Plans| April 2021  |
+|14.0 b20000     |<nobr>November 2018<nobr>	|14.0.1 in Dec. 2018       |No Plans| April 2021 |
 |12.3 b19000     |March 2018	|12.3.1 b19300 in July 2018            |No Plans| November 2020 |
 |12.2 b18000     |Sept. 2017	|12.2.1 b18100 in Nov. 2017            |No Plans| March 2020 |
 |12.1 b17100     |March 2017	|12.1.1 b17100 in June 2017            |No Plans| September 2019 |
@@ -87,9 +87,9 @@ Upon request, GigaSpaces [Consulting Services](mailto:ps@gigaspaces.com) experts
 |7.0 b3500	     |July 2009	    |7.0.4 b4100 in July 2010	           |No Plans|July 2011[4] ||
 |6.6 b2601 (or R6.5) |Sep 2008	|6.6.5 b3320 in June 2009	           |No Plans|September 2010 [4]|
 |6.0 b1855	     |Aug. 2007	    |6.0.5 b2150 in May 2007               |No Plans|August 2009 [4]|
-|5.2 b1708	     |Dec. 2006     |5.2.3 b1780 in June 2007	           |No Plans|June 2009 |
-|5.1	         |Sept. 2006	|5.1 b1603	                           |No Plans|	September 2008 |
-|4.x	         |April 2005    |4.1 b1185                             |No Plans|	April 2008 |
+|5.2 b1708	     |Dec. 2006     |5.2.3 b1780 in June 2007	           |No Plans|June 2009|
+|5.1	         |Sept. 2006	|5.1 b1603	                           |No Plans|September 2008|
+|4.x	         |April 2005    |4.1 b1185                             |No Plans|April 2008|
 
         
 **[1] Product Releases** – GigaSpaces R4.x and R5.x refer to all editions including the Enterprise (EE), Caching (EDG) and Community editions. R6.x refers to all editions including the XAP, Caching (EDG) and Community editions.<br>
