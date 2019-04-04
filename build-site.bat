@@ -17,6 +17,7 @@ if "%1"=="" (
 ) else (
   copy static\%1 output
   if "%1"=="staging" set DOCS_BUCKET=docs-staging.gigaspaces.com
+  if "%1"=="new-website" set DOCS_BUCKET=docs-new-website.gigaspaces.com
   if "%1"=="production" set DOCS_BUCKET=docs.gigaspaces.com-v2
   if not defined DOCS_BUCKET (
     echo echo Publishing skipped - unsupported destination [%1]
