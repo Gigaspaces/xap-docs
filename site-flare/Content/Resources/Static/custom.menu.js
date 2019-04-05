@@ -26,8 +26,7 @@ var resourcesData = {
 };
 
 var buttonsData = [
-  '<button type="button" onclick="location.href=\'https://github.com/xap\'" class="navbar-btn btn-fork"> <i class="fa fa-github" aria-hidden="true"></i> Fork me on Github </button>',
-  '<button type="button" onclick="location.href=\'http://www.gigaspaces.com/download-center\'" class="navbar-btn btn-download">Get Latest GA </button>'
+  '<button type="button" onclick="location.href=\'http://www.gigaspaces.com/download-center\'" class="navbar-btn btn-download">Download</button>'
 ];
 
 var topicBanner = {

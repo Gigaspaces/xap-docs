@@ -119,8 +119,8 @@ a:hover {
   color: #337ab7;
   text-decoration: underline;
 }
-a[target="_blank"]::after,
-a[href^="http"]::after {
+.body-container a[target="_blank"]::after,
+.body-container a[href^="http"]::after {
   content: ' \f08e';
   font: normal normal normal 16px/1 FontAwesome;
   padding-right: 0.5em;
@@ -128,7 +128,7 @@ a[href^="http"]::after {
 a[name] {
   display: none;
 }
-img {
+.body-container img {
   height: auto;
   max-width: 100%;
   width: auto;
