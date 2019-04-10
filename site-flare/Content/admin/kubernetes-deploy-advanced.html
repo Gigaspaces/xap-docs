@@ -89,9 +89,9 @@
 </code></pre>
         <p>This build script finalizes the Processing Unit structure of both the processor and the feeder, and copies the processor JAR file to /examples/data-app/event-processing/processor/target/data-processor/lib, making the /examples/data-app/event-processing/processor/target/data-processor/ a ready-to-use Processing Unit. The final result is two Processing Unit JAR files, one under processor/target and another under feeder/target.</p>
         <h2>Providing a URL for Kubernetes</h2>
-        <p>In order to deploy the Processing Units on Kubernetes, a URL must be provided. You can use an existing HTTP server, or you can create a local HTTP server using Helm. Ensure that your Kubernetes environment has access to the URL that you provide. If you opt for a local server, we recommend creating it from the examples directory so that it can easily access the Processing Unit JARs that were created.</p>
-        <p>Type the following Helm command in the command window to create a local HTTP server:</p><pre><code class="language-bash">helm serve --repo-path . --address &lt;your machine IP&gt;:&lt;port&gt;
-</code></pre>
+        <p>In order to deploy the Processing Units on Kubernetes, a URL must be provided. You can use an existing HTTP server (for example local HTTP server using Helm), or you can use our command line tool for uploading the Processing Unit into the manager . Ensure that your Kubernetes environment has access to the URL that you provide.</p>
+        <p>In order to use our command line tool to upload the resource into the manager: <MadCap:xref href="admin-upload-pu.html"> Upload Processing Unit using the command line tool</MadCap:xref></p>
+        </code></pre>
         <p>Leave this command window open so the server remains available and Kubernetes can connect to it.</p>
         <h2>Deploying the GigaSpaces Components</h2>
         <p>Similar to deploying a Space cluster, it is best practice to first deploy the Management Pod (with the Platform Manager), and then deploy the Data Pods (first the processor, then the feeder).</p>
