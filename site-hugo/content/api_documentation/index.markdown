@@ -6,6 +6,28 @@ categories: API_DOCUMENTATION
 
 This page provides links to the API documentation and related resources for each version of XAP.
 
+# XAP 14.2
+
+{{%tabs%}}
+{{%tab API%}}
+- {{%exurl "Javadoc" "https://resources.gigaspaces.com/api/xap/14.2.0/java/index.html"%}}
+- {{%exurl ".NET API Documentation""https://resources.gigaspaces.com/api/xap/14.2.0/dotnet/Index.html"%}}
+{{%/tab%}}
+{{%tab Schemas%}}
+- [openspaces-core.xsd](https://resources.gigaspaces.com/schema/14.2/core/openspaces-core.xsd)
+- [openspaces-admin.xsd](https://resources.gigaspaces.com/schema/14.2/admin/openspaces-admin.xsd)
+- [openspaces-archive.xsd](https://resources.gigaspaces.com/schema/14.2/archive/openspaces-archive.xsd)
+- [openspaces-events.xsd](https://resources.gigaspaces.com/schema/14.2/events/openspaces-events.xsd)
+- [openspaces-gateway.xsd](https://resources.gigaspaces.com/schema/14.2/core/gateway/openspaces-gateway.xsd)
+- [openspaces-jdbc.xsd](https://resources.gigaspaces.com/schema/14.2/jdbc/openspaces-jdbc.xsd)
+- [openspaces-jms.xsd](https://resources.gigaspaces.com/schema/14.2/jms/openspaces-jms.xsd)
+- [openspaces-remoting.xsd](https://resources.gigaspaces.com/schema/14.2/remoting/openspaces-remoting.xsd)
+- [openspaces-sla.xsd](https://resources.gigaspaces.com/schema/14.2/sla/openspaces-sla.xsd)
+- [mule-os-eventcontainer.xsd](https://resources.gigaspaces.com/schema/14.2/mule/mule-os-eventcontainer.xsd)
+- [mule-os-queue.xsd](https://resources.gigaspaces.com/schema/14.2/mule/mule-os-queue.xsd)
+{{%/tab%}}
+{{%/tabs%}}
+
 # XAP 14.0
 
 {{%tabs%}}

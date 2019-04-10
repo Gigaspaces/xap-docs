@@ -6,8 +6,8 @@
         <h1>Tableau Integration</h1>
         <h1><a name="overview"></a>Overview</h1>
         <p>Organizations often require quick insight into data to understand the business impact, and don't want to waste
-    valuable time consulting their corporate IT team. With the <a href="sql-query-intro.html">InsightEdge JDBC driver</a><![CDATA[   ]]>,
-    this can be done using the data stored in the <MadCap:variable name="General.ProductNameXAP" /> in-memory data grid. <a href="https://www.tableau.com/">Tableau</a>
+    valuable time consulting their corporate IT team. With the <a href="sql-query-intro.html">InsightEdge JDBC driver</a>   ,
+    this can be done using the data stored in the data grid. <a href="https://www.tableau.com/">Tableau</a>
     can be connected to the data grid via an ODBC-JDBC gateway, in order to retrieve and present the required data in a
     visual format.</p>
         <p>This topic describes how to set up an integration of Tableau with <MadCap:variable name="General.ProductNameIE" /> in a Microsoft Windows environment,
@@ -18,20 +18,24 @@
     Easysoft ODBC-JDBC gateway has been evaluated and certified for use with <MadCap:variable name="General.ProductNameIE" />, and is used in the
     integration described here.</p>
         <div class="tc-align-center">
-            <img src="../Resources/Static/attachment_files/sbp/tableau/diagram.png" width="386" height="134" />
+            <p>
+                <img src="../Resources/Static/attachment_files/devguide/Tableau architecture.png" class="tc-picture50" />
+            </p>
         </div>
         <h2><a name="sample-data-set"></a>Sample Data Set</h2>
         <p>In this example, a familiar <code>Simple - Superstore</code> Tableau users data set is used. The original schema
     is too simple to show the join capabilities, so the model was updated with location information that is referenced
     by the orders entity. The updated schema is as follows:</p>
         <div class="tc-align-center">
-            <img src="../Resources/Static/attachment_files/sbp/tableau/schema.png" width="389" height="151" />
+            <p>
+                <img src="../Resources/Static/attachment_files/devguide/Tableau data set.png" class="tc-picture50" />
+            </p>
         </div>
         <h1><a name="integrating-tableau-with-insightedge"></a>Integrating Tableau with <MadCap:variable name="General.ProductNameIE" /></h1>
         <p>In order to integrate Tableau with <MadCap:variable name="General.ProductNameIE" />, you need a data grid that is up and running, and you need access
     to it. After setting up and starting <MadCap:variable name="General.ProductNameIE" />, do the following to create the necessary environment to integrate
     Tableau and view data:</p>
-        <ul>
+        <ol>
             <li>
                 <p>Add sample data to the Space.</p>
             </li>
@@ -45,7 +49,7 @@
             <li>
                 <p>Perform a query on the data grid via Tableau, and view the results.</p>
             </li>
-        </ul>
+        </ol>
         <h2><a name="configuring-insightedge-locally"></a>Configuring <MadCap:variable name="General.ProductNameIE" /> Locally</h2>
         <p>Before you deploy the data grid for the purpose of this demo, you should install the <MadCap:variable name="General.ProductNameIE" /> <a href="../started/insightedge-first-app.html#project-dependencies">dependencies</a>.</p>
         <h3><a name="deploying-the-data-grid"></a>Deploying the Data Grid</h3>
@@ -90,7 +94,7 @@
             <li>
                 <p>Open the GigaSpaces Management Center in order to verify that the data was populated in the Space as expected.</p>
                 <p>
-                    <img src="../Resources/Static/attachment_files/sbp/tableau/xap_1.png" width="371" height="68" class="tc-picture30" />
+                    <img src="../Resources/Static/attachment_files/sbp/tableau/xap_1.png" width="371" height="68" class="tc-picture50" />
                 </p>
             </li>
         </ol>
