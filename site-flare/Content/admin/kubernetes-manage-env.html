@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1><a name="managing-the-application-environment"></a>Managing the Kubernetes Application Environment</h1>
+        <h2><a name="configuring-the-container-memory-allocation"></a>Configuring the Container Memory Allocation</h2>
+        <p>The Docker container is always allocated an absolute amount of memory. If this is undefined in the Helm chart, the container will use as much as is necessary to accomodate the data and processes it contains. You can limit the memory allocation for the contents of the Docker container (Data Pod, Manager Pod, processes, etc.) and the heap memory.</p>
+        <p>The on-heap memory allocation can be defined as any of the following:</p>
+        <ul>
+            <li>A positive absolute value for the heap memory.</li>
+            <li>A negative absolute value for the heap memory, calculating the heap size as (<span class="tc-italic">[total allocated container resources] - [XMib]</span>).</li>
+            <li>A percentage of the Docker container.</li>
+        </ul>
+        <p>The following Helm command allocates the amount of memory for both the Docker container and for the on-heap memory as an absolute value:</p><pre><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=256m
+</code></pre>
+        <p>The following Helm commands allocates the amount of memory for the Docker container, and sets aside a specific amount of memory for the container to use. The rest of the memory is available to the Java heap.</p><pre><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=limit-150m
+</code></pre>
+        <p>You can define the maximum size of the Docker container as an absolute value, and the maximum on-heap memory allocation for the Java running inside the Docker container as a percentage. If you use this approach, make sure you leave enough memory for the Java.</p>
+        <p>The following Helm command sets an absolute value for the Docker container, and defines the maximum Java on-heap memory as a percentage of the container memory:</p><pre><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=256Mi,pu.java.heap=75%
+</code></pre>
+        <h2><a name="configuring-the-data-grid-using-the-helm-chart"></a>Configuring the Data Grid Using the Helm Chart</h2>
+        <h3><a name="default-helm-chart"></a>Default Helm Chart</h3>
+        <p>The <MadCap:variable name="General.ProductNameIE" /> Helm chart has a list of supported values that can be configured. To view this list, use the following Helm command:</p><pre><code class="language-bash">helm inspect insightedge
+</code></pre>
+        <p>The values.yaml file is printed in the command window, and each configurable value has a short explanation above it. The indentation in this printout indicates a use of a ".' (dot) in the value name. For example, the high availability property for the Platform Manager is listed as follows in the file:</p>
+        <p><code>manager:</code>
+            <br /><code>ha: false</code>
+        </p>
+        <p>The value you will set will look like this in the command window: <code>manager.ha=true</code></p>
+        <h3><a name="customizing-a-helm-chart"></a>Customizing a Helm Chart</h3>
+        <p>You can create additional values.yaml files with customized values.</p>
+        <p>The following Helm command shows how a custom YAML file can be used to override the values in the original GigaSpaces Helm chart:</p><pre><code class="language-bash">helm install insightedge -f customValues.yaml --name hello
+</code></pre>
+        <h3><a name="overriding-the-processing-unit-properties"></a>Overriding the Processing Unit Properties</h3>
+        <p>It is recommended to define the Processing Unit properties in the pu.xml as placeholders (as described in the Processing Unit <a href="../dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit">Deployment Properties</a> topic), so you can override these properties using the Helm chart.</p>
+        <p>After defining the properties as placeholders, use the <code>key1=value1;key2=value2</code> format to pass the override values to the Helm chart using either the <code>--set insightedge-pu.properties=&lt;your key-value pairs&gt;</code> command, or using a custom YAML file.</p>
+        <h2><a name="monitoring-the-data-grid"></a>Monitoring the Data Grid</h2>
+        <p>While Kubernetes provides a number of ways to monitor the Pods and services, you can use the GigaSpaces administration tools to monitor the data grid (Spaces and Processing Units).</p>
+        <h3><a name="rest-manager-api"></a>REST Manager API</h3>
+        <p>You can open the GigaSpaces REST Manager API and verify that your data grid was set up properly. You can access it from the minikube on your local machine or VM.</p>
+        <p>To get the IP address of your minikube, type the <code>minikube ip</code> command in the command window. Then type the following URL (using the minikube IP address) in your browser to access the REST Manager API:</p>
+        <p><code>http://&lt;minikube ip&gt;:8090</code>
+        </p>
+        <p>For information on how to use the REST Manager API, see the <a href="../admin/admin-tools.html">Administration Tools</a> section of the documentation.</p>
+        <h3><a name="gigaspaces-command-line-interface"></a>GigaSpaces Command Line Interface</h3>
+        <p>You can use the GigaSpaces CLI to monitor and administer the data grid.</p>
+        <p>To access the CLI, click the <span class="tc-bold">EXEC</span> button in the Kubernetes dashboard to open a shell into the Management Pod. Next, navigate to the <code>/opt/gigaspaces/bin</code> directory and start the GigaSpaces CLI (insightedge or xap).</p>
+        <p>At this point, you can use the CLI commands to monitor the data grid, making sure to set the –server with the Manager Headless Service name.</p>
+        <p>To view a list of Spaces, type the following command:</p><pre><code class="language-bash">./insightedge --server=test-space-xap-manager-hs space list
+</code></pre>
+        <p>To view the Data Type statistics, type the following command:</p><pre><code class="language-bash">./insightedge --server=test-space-xap-manager-hs space info --type-stats test-space
+</code></pre>
+        <p>For more information about the GigaSpaces CLI and available commands, see the <a href="../admin/admin-tools.html">Administration Tools</a> section of the documentation.</p>
+        <h2><a name="advanced-monitoring-using-kubernetes-tools"></a>Advanced Monitoring Using Kubernetes Tools</h2>
+        <p>You can monitor the status of the various Kubernetes components using the Kubernetes dashboard or kubectl, as described in the <a href="#monitoring-the-data-grid-in-kubernetes">Monitoring the Kubernetes Cluster</a> section.</p>
+        <p>The test-space-xap-manager-hs is one of the Kubernetes services. To list all of the Kubernetes services and exposed ports, type the following command:</p><pre><code class="language-bash">kubectl get services
+</code></pre>
+        <p>For more information on using the Kubernetes monitoring tools, refer to the <a href="https://kubernetes.io/docs/home/?path=users&amp;persona=app-developer&amp;level=foundational">Kubernetes documentation</a>.</p>
+        <h2><a name="troubleshooting"></a>Troubleshooting</h2>
+        <p>If the Kubernetes environment doesn't launch properly, you can investigate by checking the Init Container logs. An init container is always run before a GigaSpaces Pod is started. After the init container runs to completion, Kubernetes deploys the actual Pod (such as a Management Pod, Data Pod, etc.). So when you deploy a Space, for example, an init container runs first to verify that the Platform Manager is available, and then the Data Pod with the Space is created.</p>
+        <p>You can access this log in the Kubernetes dashboard, or run the following kubectl command to print the init container log in the command window:</p><pre><code class="language-bash">kubectl logs test-xap-space-1-0 -c check-manager-ready
+</code></pre>
+    </body>
+</html>
