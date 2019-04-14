@@ -36,6 +36,12 @@
         }, 1000);
         _self.methods.generateNavItems();
         _self.methods.scrollToTop();
+        
+        $('<div id="sidebar-toggle" />')
+          .click(function () {
+            $(this).parent().toggleClass('closed');
+          })
+          .appendTo('.content .sidenav-layout');
       });
     },
     methods: {

@@ -19,7 +19,9 @@
         Name="Side Navigation Menu">
         <Properties>
           <Property
-            Name="BackgroundColor">#fafafa</Property>
+            Name="BackgroundColor">transparent</Property>
+          <Property
+            Name="PaddingLeft">0px</Property>
         </Properties>
       </Style>
       <Style
@@ -48,26 +50,49 @@
         Name="Side Navigation Menu Item">
         <Properties>
           <Property
-            Name="BorderTop">solid 1px #dadada</Property>
+            Name="FontFamily">'Rubik', sans-serif</Property>
           <Property
-            Name="BorderRight">solid 1px #dadada</Property>
+            Name="Color">#4A4A4A</Property>
           <Property
-            Name="BorderBottom">solid 1px #dadada</Property>
+            Name="FontSize">1.125em</Property>
           <Property
-            Name="MarginTop">3px</Property>
+            Name="BorderBottom">none 0px transparent</Property>
           <Property
-            Name="Color">#808080</Property>
+            Name="LineHeight">1.375rem</Property>
           <Property
-            Name="BorderLeft">solid 1px #dadada</Property>
+            Name="PaddingLeft">0rem</Property>
           <Property
-            Name="BackgroundColor">#ffffff</Property>
+            Name="PaddingRight">0rem</Property>
+          <Property
+            Name="PaddingTop">0rem</Property>
+          <Property
+            Name="PaddingBottom">0rem</Property>
+          <Property
+            Name="MarginBottom">23px</Property>
         </Properties>
         <Classes>
           <StyleClass
             Name="1st Level">
             <Properties>
               <Property
-                Name="BorderBottom">solid 1px #dadada</Property>
+                Name="FontSize">0.9375rem</Property>
+              <Property
+                Name="BorderBottom">solid 1px #e6e5e5</Property>
+              <Property
+                Name="LineHeight">1.125rem</Property>
+              <Property
+                Name="PaddingTop">0em</Property>
+              <Property
+                Name="PaddingBottom">0.875em</Property>
+            </Properties>
+          </StyleClass>
+          <StyleClass
+            Name="Expander Icon">
+            <Properties>
+              <Property
+                Name="ExpanderBorderColor">#4A4A4A</Property>
+              <Property
+                Name="ExpanderBorderWidth">10px</Property>
             </Properties>
           </StyleClass>
         </Classes>
@@ -76,17 +101,44 @@
         Name="Side Navigation Menu Item (selected)">
         <Properties>
           <Property
-            Name="Color">#b33939</Property>
+            Name="Color">#00C0F3</Property>
           <Property
-            Name="BorderRight">solid 1px #dadada</Property>
+            Name="FontWeight">normal</Property>
         </Properties>
+        <Classes>
+          <StyleClass
+            Name="1st Level">
+            <Properties>
+              <Property
+                Name="Color">#000000</Property>
+            </Properties>
+          </StyleClass>
+        </Classes>
       </Style>
       <Style
         Name="Side Navigation Menu Item (hover)">
         <Properties>
           <Property
-            Name="BackgroundColor">#f5f5f5</Property>
+            Name="Color">#00C0F3</Property>
+          <Property
+            Name="BackgroundColor">transparent</Property>
         </Properties>
+        <Classes>
+          <StyleClass
+            Name="1st Level">
+            <Properties>
+              <Property
+                Name="Color">#4A4A4A</Property>
+            </Properties>
+          </StyleClass>
+          <StyleClass
+            Name="Expander Icon">
+            <Properties>
+              <Property
+                Name="ExpanderBorderColor">#00C0F3</Property>
+            </Properties>
+          </StyleClass>
+        </Classes>
       </Style>
       <Medium
         Name="Tablet">
@@ -166,6 +218,13 @@
             Name="BorderTop">solid 1px #bcbec0</Property>
           <Property
             Name="BorderBottom">solid 1px #bcbec0</Property>
+        </Properties>
+      </Style>
+      <Style
+        Name="Main Page">
+        <Properties>
+          <Property
+            Name="MaxWidth">90%</Property>
         </Properties>
       </Style>
     </Styles>
