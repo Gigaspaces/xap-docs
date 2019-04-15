@@ -30,7 +30,7 @@
 
         debug('Calling methods');
         var id = setInterval(function () {
-          if (!$('.sideContent .menu .selected').length) return;
+          if (!$('.ipn-content .menu .selected').length) return;
           clearInterval(id);
           _self.methods.sidebar();
         }, 1000);
@@ -73,13 +73,13 @@
         });
       },
       sidebar: function () {
-        $('.sideContent .selected-child-parent').removeClass('selected-child-parent');
-        $('.sideContent .selected-child-menu').removeClass('selected-child-menu');
-        $('.sideContent .selected-child').removeClass('selected-child');
+        $('.ipn-content .selected-child-parent').removeClass('selected-child-parent');
+        $('.ipn-content .selected-child-menu').removeClass('selected-child-menu');
+        $('.ipn-content .selected-child').removeClass('selected-child');
 
-        $('.sideContent .selected').parent().addClass('selected-child');
-        $('.sideContent .selected-child').parents('ul:not(.menu)').addClass('selected-child-menu');
-        $('.sideContent .selected-child').parents('ul:not(.menu)').last().prev().addClass('selected-child-parent');
+        $('.ipn-content .selected').parent().addClass('selected-child');
+        $('.ipn-content .selected-child').parents('ul:not(.menu)').addClass('selected-child-menu');
+        $('.ipn-content .selected-child').parents('ul:not(.menu)').last().prev().addClass('selected-child-parent');
       },
       generateNavItems: function () {
         _self.utils.getFile({

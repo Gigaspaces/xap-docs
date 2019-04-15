@@ -293,6 +293,47 @@ MadCap|breadcrumbsProxy {
   opacity: 1;
 }
 
+.content .topic-container {
+  display: flex;
+}
+.content .topic-container .topic-content {
+  flex: 1 1;
+  overflow: auto;
+}
+.content .topic-container .ipn-content {
+  display: block;
+  flex: 0 1 auto;
+  overflow: auto;
+  width: 20%;
+}
+.content .topic-container .ipn-content .is-stuck {
+  margin-top: 7.375em!important;
+}
+.content .topic-container .ipn-content ul.menu._Skins_HTML5___Side_Menu.mc-component {
+  width: 100%;
+}
+
+/* SideNav */
+.ipn-content {
+  display: block;
+  flex: 0 1 auto;
+  overflow: auto;
+  width: 20%;
+}
+.ipn-content .menu li {
+  border-left: solid 2px transparent;
+}
+.ipn-content .menu ul:not(.selected-child-menu) {
+  display: none;
+}
+.ipn-content .menu .selected-child,
+.ipn-content .menu .selected-child-parent {
+  border-left-color: #563d7c;
+}
+.ipn-content ul.menu._Skins_HTML5___Side_Menu.mc-component {
+  width: auto;
+}
+
 /* body {
   overflow-y: hidden;
 }
@@ -599,6 +640,7 @@ margin: 0;
   background-color: #f5f5f5;
   height: 60px;
   margin-left: -1rem;
+  margin-top: 10rem;
   width: calc(100% + 2rem);
   z-index: 300;
 }
