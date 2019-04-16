@@ -21,17 +21,18 @@
             <li>Connect Spark to the data grid.</li>
             <li>Create a Spark Dataframe with AnalyticsXtreme enabled.</li>
         </ol>
-        <p>To implement the AnalyticsXtreme API, add the following Scala code snippet to any client code that will have to access AnalyticsXtreme. This code specifies the Space, initializes Spark, and creates the Spark Dataframe (per class).</p><pre><![CDATA[  ]]><code class="language-scala">import org.insightedge.spark.implicits.all._
+        <p>To implement the AnalyticsXtreme API, add the following Scala code snippet to any client code that will have to access AnalyticsXtreme. This code specifies the Space, initializes Spark, and creates the Spark Dataframe (per class).</p><pre><code class="language-scala">import org.insightedge.spark.implicits.all._
     import org.insightedge.spark.context.InsightEdgeConfig
     
-    //spaceName is required
-    val ieConfig = new InsightEdgeConfig(spaceName = "speedSpace")
+//spaceName is required
+val ieConfig = new InsightEdgeConfig(spaceName = "speedSpace")
     
-    //spark context initialization
-    spark.initializeInsightEdgeContext(ieConfig)
+//spark context initialization
+spark.initializeInsightEdgeContext(ieConfig)
 	
-	//create the AX dataframe object for the specific class
-	val analyticsXtremeDataframe: Dataframe = spark.analyticsXtreme("Trade")</code></pre>
+//create the AX dataframe object for the specific class
+val analyticsXtremeDataframe: Dataframe = spark.analyticsXtreme("Trade")
+</code></pre>
         <div class="tc-admon-note">
             <p>For more information about Spark data source APIs such as the Dataframe, see the <a href="https://spark.apache.org/docs/latest/sql-data-sources-jdbc.html" target="_blank">Spark documentation</a>.</p>
         </div>
@@ -42,7 +43,7 @@
         <p>This next code snippet contains the same simple query, but submitted as a raw query.</p><pre><code class="language-sql">val rawVolumeDataFrame = spark.read.analyticsXtreme("SELECT volume FROM Trade WHERE volume &lt; 1000")</code></pre>
         <p>The behavior is the same in both cases, because only data retrieval is required without any additional action in order to return the required result.</p>
         <h3>Query with Aggregation</h3>
-        <p>For a more complex query that includes aggregation, the method by which the query is submitted causes important behavioral differences.</p>
+        <p>For a more complex query that includes aggregations, the method by which the query is submitted causes important behavioral differences.</p>
         <p>In the code snippet below, the query is submitted to the Spark Dataframe as a table. Only the raw data is retrieved from the data grid; the client application has to perform the aggregation in order to finish executing the query and return results. </p><pre><code class="language-sql">val aggregationDataFrame = analyticsXtremeDataframe.agg("volume -&gt; avg", "endPrice -&gt; max", "startPrice -&gt; min")</code></pre>
         <p>When the query is submitted as a raw query, like in the following code snippet, Spark pushes the entire query (predicate) to the data grid. The query is executed from beginning to end in the data grid (both data retrieval and aggregation), and only the final results are returned to the client application. This predicate pushdown can significantly reduce the processing time of the query because it filters data out at the source, so that the query can complete faster and return only the required data back to the client application.</p><pre><code class="language-sql">val rawAggregationDataFrame = spark.read.analyticsXtreme("SELECT AVERAGE(volume) as avg_volume, MAX(endPrice) as max_endPrice, MIN(endPrice) as min_endPrice FROM Trade")</code></pre>
         <h1>Supported SQL Query Functions</h1>
