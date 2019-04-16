@@ -152,6 +152,13 @@ MadCap|breadcrumbsProxy {
 .content .breadcrumbs {
   padding-bottom: 20px;
 }
+.content .breadcrumbs .breadcrumb-home::before {
+  content: '';
+  background: transparent url(images/icons/Home.png) no-repeat;
+  display: inline-block;
+  height: 20px;
+  width: 23px;
+}
 .content .breadcrumbs a[target="_blank"]::after,
 .content .breadcrumbs a[href^="http"]::after {
   display: none;
