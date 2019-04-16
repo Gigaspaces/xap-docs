@@ -83,8 +83,8 @@ Upon request, GigaSpaces [Consulting Services](mailto:ps@gigaspaces.com) experts
 |9.1 b7500	     |Oct. 2012 	|9.1.2 b7920 in Feb. 2013	           |No Plans|April 2015| 6, 7, 8 |
 |9.0 b6500	     |May 2012 	    |9.0.2 b6900 in Aug. 2012	           |No Plans|October 2014| 6, 7, 8 |
 |8.0 b5000	     |January 2011	|8.0.8 b6380 in March 2013	           |No Plans|January 2013| 6, 7, 8 |
-|7.1 b4300	     |April 2010	|7.1.4 b4750 in Feb. 2011	           |No Plans|April 2012 [4]| 5,6,7 |
-|7.0 b3500	     |July 2009	    |7.0.4 b4100 in July 2010	           |No Plans|July 2011[4] || 5, 6, 7 |
+|7.1 b4300	     |April 2010	|7.1.4 b4750 in Feb. 2011	           |No Plans|April 2012 [4]| 5, 6, 7 |
+|7.0 b3500	     |July 2009	    |7.0.4 b4100 in July 2010	           |No Plans|July 2011[4] | 5, 6, 7 |
 |6.6 b2601 (or R6.5) |Sep 2008	|6.6.5 b3320 in June 2009	           |No Plans|September 2010 [4]| 4, 5, 6, 7 |
 |6.0 b1855	     |Aug. 2007	    |6.0.5 b2150 in May 2007               |No Plans|August 2009 [4]| 4, 5, 6, 7 |
 |5.2 b1708	     |Dec. 2006     |5.2.3 b1780 in June 2007	           |No Plans|June 2009| 4, 5, 6, 7 |
