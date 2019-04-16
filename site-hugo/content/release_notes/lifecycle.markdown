@@ -66,7 +66,7 @@ Upon request, GigaSpaces [Consulting Services](mailto:ps@gigaspaces.com) experts
 # Product Release Plan and End-of-Life Retirement Calendar
 
 |Product Release [1] |	GA Date | Last Maintenance Service Pack Release|Planned Next Maintenance Service Pack Release [2]|Support Discontinuance ("End of Life") [3]| Java Support |
-|--------------------|----------|--------------------------------------|-------------------------------------------------|------------------------------------------|
+|--------------------|----------|--------------------------------------|-------------------------------------------------|------------------------------------------|--------------|
 |14.2 b20400     |April 2019    |                                      |No Plans|   | 8, 11 |
 |14.0 b20000     |<nobr>November 2018<nobr>	|14.0.1 in Dec. 2018       |No Plans| April 2021 | 8 |
 |12.3 b19000     |March 2018	|12.3.1 b19300 in July 2018            |No Plans| November 2020 | 8 |
