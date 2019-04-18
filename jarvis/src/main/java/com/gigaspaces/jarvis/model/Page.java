@@ -18,6 +18,7 @@ public class Page implements Comparable<Page> {
     private Long weight;
     private final String href;
     private final String parent;
+    private final String canonicalUrl;
     private final TreeSet<Page> children = new TreeSet<>();
 
     public Page(File file, boolean groupingMode) throws IOException {
@@ -29,6 +30,7 @@ public class Page implements Comparable<Page> {
 
         Properties properties = loadProperties();
         this.title = properties.getProperty("title");
+        this.canonicalUrl = properties.getProperty("canonical");
         this.weight = properties.containsKey("weight") ? Long.valueOf(properties.getProperty("weight")) : null;
 
         String[] tokens = parseCategory(category);
@@ -154,6 +156,10 @@ public class Page implements Comparable<Page> {
 
     public String getParent() {
         return parent;
+    }
+
+    public String getCanonicalUrl() {
+        return canonicalUrl;
     }
 
     public Long getWeight() {

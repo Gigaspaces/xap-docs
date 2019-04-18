@@ -5,10 +5,12 @@ import com.gigaspaces.jarvis.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeSet;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class ContentSection {
 
@@ -80,16 +82,20 @@ public class ContentSection {
     public void generateSidenav(Config config) throws IOException {
         generateSidenav(config, path.getName(), load(config));
     }
-    
+
+    public void generateCanonicalUrl(Config config, AtomicInteger counter) throws IOException {
+        load(config).forEach(page -> generateCanonicalUrl(page, counter));
+    }
+
+
     protected void generateSidenav(Config config, String suffix, Collection<Page> roots) throws IOException {
         String outputPath = config.getSitePath() + "/themes/hugo-bootswatch/layouts/partials/sidenav-" + suffix + ".html";
         // write the html to the file system
-        try ( 
-            PrintWriter writer = new PrintWriter(outputPath, "UTF-8")) {
+        try (PrintWriter writer = new PrintWriter(outputPath, "UTF-8")) {
             roots.forEach((root) -> printPage(writer, root));
         }
     }
-    
+
     private static void printPage(PrintWriter writer, Page page) {
         String link = "<a href='/" + page.getHref() + "'>" + page.getTitle() + "</a>";
         if (page.getChildren().isEmpty()) {
@@ -101,5 +107,35 @@ public class ContentSection {
             writer.println("</ul>");
             writer.println("</li>");
         }
+    }
+
+    private static void generateCanonicalUrl(Page page, AtomicInteger counter) {
+        page.getChildren().forEach(child -> generateCanonicalUrl(child, counter));
+        String canonicalUrl = page.getCanonicalUrl();
+        if (canonicalUrl != null) {
+            counter.incrementAndGet();
+            if (canonicalUrl.equals("auto")) {
+                canonicalUrl = page.getFile().getParentFile().getName() + "/" +
+                        page.getFile().getName().replace(".markdown", ".html");
+            }
+            Path target = Paths.get("output", "xap",
+                    page.getFile().getParentFile().getParentFile().getName(),
+                    page.getFile().getParentFile().getName(),
+                    page.getFile().getName().replace(".markdown", ".html"));
+            String url = "https://docs.gigaspaces.com/latest/" + canonicalUrl;
+            try {
+                Files.write(target, Files.lines(target)
+                        .map(line -> addCanonicalUrlIfHead(line, url))
+                        .collect(Collectors.toList()));
+            } catch (IOException e) {
+                throw new IllegalStateException("Failed to add canonical url to " + target, e);
+            }
+        }
+    }
+
+    private static String addCanonicalUrlIfHead(String line, String url) {
+        return line.equals("<head>")
+                ? line + System.lineSeparator() + "    <link rel=\"canonical\" href=\"" + url + "\" />"
+                : line;
     }
 }
