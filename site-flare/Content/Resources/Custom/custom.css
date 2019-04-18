@@ -10,7 +10,7 @@
   overflow: hidden;
   position: absolute;
   right: 0;
-  top: 70px;
+  top: 86px;
   z-index: -1;
 }
 .landing .region-hero>img {
@@ -137,7 +137,7 @@
   margin-bottom: 3rem;
 }
 .content .main-section .sidenav-layout {
-  height: calc(100vh - 70px - 3rem) !important;
+  height: calc(100vh - 86px - 3rem) !important;
   position: relative;
 }
 MadCap|breadcrumbsProxy {
@@ -146,12 +146,13 @@ MadCap|breadcrumbsProxy {
   mc-breadcrumbs-prefix: '';
   margin: 0px auto;
   max-width: 90%;
-  padding-bottom: 0px;
-  padding-top: 15px;
-}
-.content .breadcrumbs {
   padding-bottom: 20px;
+  padding-top: 0px;
 }
+/* .content .breadcrumbs {
+  padding-bottom: 20px;
+  padding-top: 0px;
+} */
 .content .breadcrumbs .breadcrumb-home::before {
   content: '';
   background: transparent url(images/icons/Home.png) no-repeat;
@@ -163,8 +164,8 @@ MadCap|breadcrumbsProxy {
 .content .breadcrumbs a[href^="http"]::after {
   display: none;
 }
-.content .MCBreadcrumbsLink {
-  font-size: .875rem;
+.content a.MCBreadcrumbsLink:hover {
+  color: #00c0f3;
 }
 .content .MCBreadcrumbsDivider {
   color: #cccccc;
@@ -172,7 +173,6 @@ MadCap|breadcrumbsProxy {
 }
 .content .MCBreadcrumbsSelf {
   color: #777777;
-  font-size: .875rem;
 }
 
 .content .sidenav-wrapper {
@@ -574,13 +574,16 @@ margin: 0;
   display: inline-block;
   font-size: 14px;
   font-weight: 400;
+  height: 36px;
   line-height: 1.42857143;
   margin-bottom: 0;
   margin-right: 11px;
+  margin-top: 7px;
   padding: 6px 40px;
   text-align: center;
   touch-action: manipulation;
   -ms-touch-action: manipulation;
+  transition: all .2s ease-in-out;
   vertical-align: middle;
   white-space: nowrap;
   -webkit-user-select: none;
@@ -595,8 +598,8 @@ margin: 0;
   color: #FFFFFF;
 }
 .btn-download:hover {
-  background-color: #006DB8;
-  border-color: #006DB8;
+  background-color: transparent;
+  color: #006DB8;
 }
 /* Font Awesome */
 .fa {

@@ -35,6 +35,7 @@
           _self.methods.sidebar();
         }, 1000);
         _self.methods.generateNavItems();
+        _self.methods.placeTopicFooter();
         _self.methods.scrollToTop();
         
         $('<div id="sidebar-toggle" />')
@@ -60,6 +61,17 @@
         }
         $('.title-bar-container')
           .append($('.breadcrumbs'));
+      },
+      placeTopicFooter: function () {
+        var f = document.getElementById('footer');
+        var b = document.getElementsByClassName('body-container')[0];
+        var style = f.currentStyle || window.getComputedStyle(f);
+
+        if (b.getBoundingClientRect().bottom > f.getBoundingClientRect().bottom) {
+          var diff = b.getBoundingClientRect().bottom - f.getBoundingClientRect().bottom;
+          var marginTop = parseInt(style.marginTop);
+          f.style.marginTop = marginTop + diff + 'px';
+        }
       },
       scrollToTop: function () {
         $('.body-container').scroll(function () {
