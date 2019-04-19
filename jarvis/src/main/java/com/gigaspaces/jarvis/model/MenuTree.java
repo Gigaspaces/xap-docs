@@ -4,6 +4,7 @@ import com.gigaspaces.jarvis.Config;
 import com.gigaspaces.jarvis.Logger;
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MenuTree {
 
@@ -29,6 +30,43 @@ public class MenuTree {
                 + ", folders=" + config.getTotalFolders()
                 + ", pages=" + config.getTotalPages() + ")");
     }
+
+    public static void generateCanonicalUrl(Config config) throws IOException {
+        AtomicInteger counter = new AtomicInteger();
+        config.getTotalFolders().set(0);
+        config.getTotalPages().set(0);
+        final long startTime = System.currentTimeMillis();
+        for (ContentSection section : loadSection(config)) {
+            section.generateCanonicalUrl(config, counter);
+        }
+
+        for (VersionContainer section : loadVersions(config)) {
+            section.generateCanonicalUrl(config, counter);
+        }
+
+        long duration = System.currentTimeMillis() - startTime;
+        logger.info(String.format("Finished generating canonical url (duration=%sms, folders=%s, pages=%s, canonical urls=%s)",
+                duration, config.getTotalFolders(), config.getTotalPages(), counter));
+    }
+
+    public static void generateAutoCanonicalUrl(Config config) throws IOException {
+        AtomicInteger counter = new AtomicInteger();
+        config.getTotalFolders().set(0);
+        config.getTotalPages().set(0);
+        final long startTime = System.currentTimeMillis();
+        for (ContentSection section : loadSection(config)) {
+            section.generateAutoCanonicalUrl(config, counter);
+        }
+
+        for (VersionContainer section : loadVersions(config)) {
+            section.generateAutoCanonicalUrl(config, counter);
+        }
+
+        long duration = System.currentTimeMillis() - startTime;
+        logger.info(String.format("Finished generating auto canonical url (duration=%sms, folders=%s, pages=%s, canonical urls=%s)",
+                duration, config.getTotalFolders(), config.getTotalPages(), counter));
+    }
+
 
     public static Collection<ContentSection> loadSection(Config config) {
         Collection<ContentSection> result = new ArrayList<>();
