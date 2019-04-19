@@ -4,6 +4,7 @@ title: What Edition Do I Need?
 categories: XAP123OVW
 parent: none
 weight: 1200
+canonical: auto
 ---
 
 

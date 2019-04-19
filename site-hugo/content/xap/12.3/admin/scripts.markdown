@@ -3,6 +3,7 @@ type: post123
 title:  Scripts
 categories: XAP123ADM,OSS
 weight: 550
+canonical: auto
 parent: admin-tools.html
 ---
 
