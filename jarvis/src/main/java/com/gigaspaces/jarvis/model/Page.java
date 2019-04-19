@@ -32,7 +32,9 @@ public class Page implements Comparable<Page> {
         this.title = properties.getProperty("title");
         this.canonicalUrl = properties.getProperty("canonical");
         this.weight = properties.containsKey("weight") ? Long.valueOf(properties.getProperty("weight")) : null;
-
+        if (weight == null && !file.getName().equals("index.markdown")) {
+            throw new IllegalStateException("No weight for page " + file);
+        }
         String[] tokens = parseCategory(category);
         if (tokens != null) {
             String prefix = tokens[0] + "/" + tokens[1] + "/" + (tokens[2].isEmpty() ? file.getName().replace(".markdown", ".html") : tokens[2] + "/");
@@ -89,7 +91,7 @@ public class Page implements Comparable<Page> {
         Properties properties = new Properties();
         AtomicInteger separators = new AtomicInteger(0);
         
-        try (Scanner scanner = new Scanner(file)) {
+        try (Scanner scanner = new Scanner(file, "utf8")) {
             while (scanner.hasNextLine()) {
                 final String line = scanner.nextLine().trim();
                 if (line.equals(YAML_SEPARATOR)) {
