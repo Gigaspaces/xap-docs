@@ -4,6 +4,7 @@ title:  Configuration
 categories: XAP101ADM
 parent: web-management-console.html
 weight: 100
+canonical: auto
 ---
 
 

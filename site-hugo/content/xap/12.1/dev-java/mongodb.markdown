@@ -4,6 +4,7 @@ title:  MongoDB Integration
 categories: XAP121
 parent: space-persistency-overview.html
 weight: 630
+canonical: auto
 ---
 
 {{%warning "Important"%}}

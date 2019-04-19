@@ -4,6 +4,7 @@ title:  Components
 categories: XAP101NET
 parent: the-processing-unit-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

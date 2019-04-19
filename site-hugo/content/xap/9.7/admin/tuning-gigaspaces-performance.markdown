@@ -4,6 +4,7 @@ title:  XAP Performance
 categories: XAP97ADM
 parent:  tuning.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Indexing
 categories: XAP102NET
 parent: none
 weight: 700
+canonical: auto
 ---
 
 

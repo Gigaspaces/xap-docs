@@ -4,6 +4,7 @@ title:  Troubleshooting
 categories: XAP120ADM
 parent: none
 weight: 1300
+canonical: auto
 ---
 
 

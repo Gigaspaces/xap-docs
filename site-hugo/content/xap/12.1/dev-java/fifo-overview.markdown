@@ -4,6 +4,7 @@ title:  FIFO Ordering
 categories: XAP121
 parent: event-processing.html
 weight: 600
+canonical: auto
 ---
 
 

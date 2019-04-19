@@ -4,6 +4,7 @@ title:  Deploying onto the Grid
 categories: XAP101
 parent: deploying-and-running-overview.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

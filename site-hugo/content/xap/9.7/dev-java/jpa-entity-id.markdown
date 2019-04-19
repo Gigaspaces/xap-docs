@@ -4,6 +4,7 @@ title:  JPA Entity Id
 categories: XAP97
 parent: jpa-api.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}This page explains the various supported options for mapping the identifier property of your JPA entities.{{% /ssummary %}}

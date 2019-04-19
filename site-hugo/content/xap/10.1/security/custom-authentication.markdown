@@ -4,6 +4,7 @@ title:  Authentication
 categories: XAP101SEC
 parent: custom-security.html
 weight: 100
+canonical: auto
 ---
 
 

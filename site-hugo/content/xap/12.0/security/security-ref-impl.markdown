@@ -4,6 +4,7 @@ title:  Reference Implementation
 categories: XAP120SEC, OS
 parent: none
 weight: 600
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

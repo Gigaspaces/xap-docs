@@ -4,6 +4,7 @@ title:  Handling Large Objects
 categories: XAP97ADM
 parent: tuning-gigaspaces-performance.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

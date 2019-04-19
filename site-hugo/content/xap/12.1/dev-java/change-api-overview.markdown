@@ -3,6 +3,7 @@ type: post121
 title:  Change API
 categories: XAP121
 weight: 400
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

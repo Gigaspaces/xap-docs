@@ -4,6 +4,7 @@ title:  Standalone Mode
 categories: XAP123, OSS
 parent: deploying-and-running-overview.html
 weight: 200
+canonical: auto
 ---
 
 

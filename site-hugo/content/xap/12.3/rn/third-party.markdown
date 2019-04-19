@@ -4,6 +4,7 @@ title:  Third-Party License Agreements
 categories: XAP123RN
 parent: none
 weight: 700
+canonical: auto
 ---
 
 This page list all the third-party libraries shipped with InsightEdge and XAP on a per-version basis, and their respective license agreements.

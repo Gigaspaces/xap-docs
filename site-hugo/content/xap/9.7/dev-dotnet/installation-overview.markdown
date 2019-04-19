@@ -4,6 +4,7 @@ title:  Installation
 categories: XAP97NET
 parent: none
 weight: 50
+canonical: auto
 ---
 
 

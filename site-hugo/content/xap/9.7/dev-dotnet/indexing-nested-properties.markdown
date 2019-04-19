@@ -4,6 +4,7 @@ title:  Nested Property Index
 categories: XAP97NET
 parent: indexing-overview.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

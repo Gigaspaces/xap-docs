@@ -4,6 +4,7 @@ title:  Network Configuration
 categories: XAP100ADM
 parent: none
 weight: 800
+canonical: auto
 ---
 
 In this guide we will show you how to configure the network including configuring unicast, multicast, over a firewall and over NAT.

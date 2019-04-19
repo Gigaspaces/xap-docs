@@ -4,6 +4,7 @@ title:  Optimistic Locking
 categories: XAP102NET
 parent: transaction-overview.html
 weight: 400
+canonical: auto
 ---
 
 

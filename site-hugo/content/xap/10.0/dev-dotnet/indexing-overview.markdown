@@ -4,6 +4,7 @@ title:  Indexing
 categories: XAP100NET
 parent: programmers-guide.html
 weight: 600
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Infrastructure
 categories: XAP110ADM
 parent:  tuning.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

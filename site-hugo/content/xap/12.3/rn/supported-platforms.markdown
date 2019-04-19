@@ -4,6 +4,7 @@ title:  Supported Platforms
 categories: XAP123RN
 parent: none
 weight: 400
+canonical: auto
 ---
 
 

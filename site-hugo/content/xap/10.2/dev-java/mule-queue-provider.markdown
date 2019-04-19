@@ -4,6 +4,7 @@ title:  Queue Provider
 categories: XAP102
 parent: mule-esb.html
 weight: 300
+canonical: auto
 ---
 
 

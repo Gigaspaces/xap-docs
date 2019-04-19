@@ -4,6 +4,7 @@ title:  Handling Large Objects
 categories: XAP123ADM, OSS
 parent:  tuning.html
 weight: 600
+canonical: auto
 ---
 
 

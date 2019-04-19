@@ -4,6 +4,7 @@ title:  Object Inspector
 categories: XAP122ADM, PRM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html
 weight: 300
+canonical: auto
 ---
 
 

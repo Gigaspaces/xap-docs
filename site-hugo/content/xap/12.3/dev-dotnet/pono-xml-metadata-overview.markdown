@@ -4,6 +4,7 @@ title:  XML-Based Metadata
 categories: XAP123NET, PRM
 parent: modeling-your-data.html
 weight: 130
+canonical: auto
 ---
 
 

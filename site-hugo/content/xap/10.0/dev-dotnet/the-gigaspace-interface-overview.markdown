@@ -3,6 +3,7 @@ type: post100
 title:  The Space Interface
 categories: XAP100NET
 weight: 400
+canonical: auto
 parent: programmers-guide.html
 ---
 

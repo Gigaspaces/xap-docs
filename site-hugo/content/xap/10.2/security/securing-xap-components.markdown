@@ -4,6 +4,7 @@ title:  Securing Components
 categories: XAP102SEC
 parent: none
 weight: 700
+canonical: auto
 ---
 
 

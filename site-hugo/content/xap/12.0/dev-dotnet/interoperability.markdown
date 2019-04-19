@@ -4,6 +4,7 @@ title:  Platform Interoperability
 categories: XAP120NET, PRM
 parent: none
 weight: 1700
+canonical: auto
 ---
 
 

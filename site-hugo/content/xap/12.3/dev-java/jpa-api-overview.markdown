@@ -4,6 +4,7 @@ title:  JPA API
 categories: XAP123, OSS
 parent: other-data-access-apis.html
 weight: 200
+canonical: auto
 ---
 
 

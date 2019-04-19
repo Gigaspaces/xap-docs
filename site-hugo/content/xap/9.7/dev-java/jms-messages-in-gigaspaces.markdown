@@ -4,6 +4,7 @@ title:  JMS Messages in XAP
 categories: XAP97
 parent: messaging-support.html
 weight: 200
+canonical: auto
 ---
 
 JMS messages implementation; supported and unsupported message types; message compression; accessing JMS messages via space API.

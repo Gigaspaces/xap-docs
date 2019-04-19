@@ -4,6 +4,7 @@ title:  Memcached API
 categories: XAP123, PRM
 parent: other-data-access-apis.html
 weight: 400
+canonical: auto
 ---
 
 

@@ -3,6 +3,7 @@ type: post123
 title: Viewing the Spark Applications
 categories: XAP123ADM,PRM
 weight: 500
+canonical: auto
 parent: admin-insightedge.html
 ---
 

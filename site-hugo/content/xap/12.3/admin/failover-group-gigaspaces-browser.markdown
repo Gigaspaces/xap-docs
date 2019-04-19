@@ -4,6 +4,7 @@ title:  Failover Group
 categories: XAP123ADM, PRM
 parent: working-with-clusters-gigaspaces-browser.html
 weight: 300
+canonical: auto
 ---
 
  

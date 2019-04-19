@@ -4,6 +4,7 @@ title: Mongo Persistency
 categories: XAP123, OSS
 parent: mongodb.html
 weight: 100
+canonical: auto
 ---
 
 

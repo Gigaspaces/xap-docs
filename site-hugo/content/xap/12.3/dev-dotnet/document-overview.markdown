@@ -3,6 +3,7 @@ type: post123
 title:  Space Document
 categories: XAP123NET, PRM
 weight: 300
+canonical: auto
 parent: none
 ---
 

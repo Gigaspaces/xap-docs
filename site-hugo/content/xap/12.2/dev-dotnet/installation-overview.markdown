@@ -4,6 +4,7 @@ title:  Installation
 categories: XAP122NET, PRM
 parent: none
 weight: 100
+canonical: auto
 ---
 
 

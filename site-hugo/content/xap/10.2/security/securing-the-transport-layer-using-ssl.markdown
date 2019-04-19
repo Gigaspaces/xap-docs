@@ -4,6 +4,7 @@ title:  Securing the Transport Layer
 categories: XAP102SEC
 parent: securing-xap-components.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

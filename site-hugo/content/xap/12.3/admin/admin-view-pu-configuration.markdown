@@ -3,6 +3,7 @@ type: post123
 title:  Viewing Processing Unit Configuration Information
 categories: XAP123ADM,PRM
 weight: 600
+canonical: auto
 parent: admin-spaces-pu.html
 ---
  

@@ -4,6 +4,7 @@ title:  Predefined Metrics
 categories: XAP123ADM, PRM
 parent: metrics-overview.html
 weight: 500
+canonical: auto
 ---
 
 

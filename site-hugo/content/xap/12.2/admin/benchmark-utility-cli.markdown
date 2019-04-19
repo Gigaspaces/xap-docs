@@ -4,6 +4,7 @@ title:  Utility
 categories: XAP122ADM, PRM
 parent: benchmarking.html
 weight: 200
+canonical: auto
 ---
 
 

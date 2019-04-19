@@ -4,6 +4,7 @@ title:  SSD - RocksDB
 categories: XAP120ADM, ENT
 parent: memoryxtend-overview.html
 weight: 200
+canonical: auto
 ---
 
 

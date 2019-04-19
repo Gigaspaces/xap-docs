@@ -4,6 +4,7 @@ title:  Logging
 categories: XAP123ADM, OSS
 parent: none
 weight: 500
+canonical: auto
 ---
 
 

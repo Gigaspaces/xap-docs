@@ -4,6 +4,7 @@ title:  Authentication
 categories: XAP120SEC, PRM
 parent: custom-security.html
 weight: 200
+canonical: auto
 ---
 
 

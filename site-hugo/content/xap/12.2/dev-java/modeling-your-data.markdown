@@ -4,6 +4,7 @@ title:  XAP Data Modeling
 categories: XAP122, OSS
 parent: none
 weight: 600
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Partial Results
 categories: XAP97NET
 parent: querying-the-space.html
 weight: 700
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

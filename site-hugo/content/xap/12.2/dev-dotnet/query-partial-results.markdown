@@ -4,6 +4,7 @@ title:  Projection
 categories: XAP122NET, PRM
 parent: querying-the-space.html
 weight: 700
+canonical: auto
 ---
 
 

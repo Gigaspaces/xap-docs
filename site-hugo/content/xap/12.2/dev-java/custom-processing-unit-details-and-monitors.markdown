@@ -4,6 +4,7 @@ title:  Custom Processing Unit
 categories: XAP122, PRM
 parent: the-processing-unit-overview.html
 weight: 400
+canonical: auto
 ---
 
 

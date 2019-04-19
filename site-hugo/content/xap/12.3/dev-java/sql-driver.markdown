@@ -4,6 +4,7 @@ title:  SQL Driver
 categories:  XAP122, IEE
 parent: sql-query-intro.html
 weight: 100
+canonical: auto
 ---
 
  

@@ -4,6 +4,7 @@ title:  Data Event Listener
 categories: XAP122, OSS
 parent: event-processing.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary  %}}{{%/ssummary%}}

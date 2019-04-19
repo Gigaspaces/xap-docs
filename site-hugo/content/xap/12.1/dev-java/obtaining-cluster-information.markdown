@@ -4,6 +4,7 @@ title:  Cluster Information
 categories: XAP121
 parent: the-processing-unit-overview.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  GigaSpaces Management Center
 categories: XAP122ADM, PRM
 parent: none
 weight: 100
+canonical: auto
 ---
 
 # Overview

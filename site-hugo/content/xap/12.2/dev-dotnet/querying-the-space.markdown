@@ -4,6 +4,7 @@ title:  Querying the Space
 categories: XAP122NET, PRM
 parent: none
 weight: 600
+canonical: auto
 ---
 
 

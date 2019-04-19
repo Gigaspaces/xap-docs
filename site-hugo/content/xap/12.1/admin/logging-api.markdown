@@ -4,6 +4,7 @@ title:  Logging API
 categories: XAP121ADM
 parent: logging-overview.html
 weight: 350
+canonical: auto
 ---
 
  

@@ -4,6 +4,7 @@ title:  Standalone Mode
 categories: XAP121
 parent: deploying-and-running-overview.html
 weight: 200
+canonical: auto
 ---
 
 

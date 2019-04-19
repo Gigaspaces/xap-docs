@@ -4,6 +4,7 @@ title:  Advanced Configuration
 categories: XAP120NET, PRM
 parent: asynchronous-persistency-with-the-mirror.html
 weight: 100
+canonical: auto
 ---
 
 

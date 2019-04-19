@@ -4,6 +4,7 @@ title:  Persist to Database
 categories: XAP123GS, OSS
 parent: xap-basics.html
 weight: 1100
+canonical: auto
 ---
 
 

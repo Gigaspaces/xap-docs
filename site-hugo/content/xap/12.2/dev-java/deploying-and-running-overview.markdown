@@ -4,6 +4,7 @@ title:  Deploying and Running
 categories: XAP122, OSS
 parent: the-processing-unit-overview.html
 weight: 600
+canonical: auto
 ---
 
 

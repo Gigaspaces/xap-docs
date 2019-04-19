@@ -4,6 +4,7 @@ title:  Policy Settings
 categories: XAP122ADM, PRM
 parent: cluster-view-gigaspaces-browser.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}How to view replication, load-balancing and failover settings for a space in Cluster View. {{% /ssummary %}}

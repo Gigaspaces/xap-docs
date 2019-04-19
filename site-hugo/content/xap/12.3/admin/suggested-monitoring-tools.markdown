@@ -4,6 +4,7 @@ title:  External Monitoring Tools
 categories: XAP123ADM, OSS
 parent: monitoring.html
 weight: 400
+canonical: auto
 ---
 
 

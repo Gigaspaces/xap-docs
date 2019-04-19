@@ -4,6 +4,7 @@ title:  XAP Manager
 categories: XAP122ADM, PRM
 parent: runtime-configuration.html
 weight: 250
+canonical: auto
 ---
 
 The XAP Manager (or simply The Manager) is a component which stacks together the [LUS]({{%currentoverviewurl%}}/the-runtime-environment.html#lus) and [GSM]({{%currentoverviewurl%}}/the-runtime-environment.html#gsm) 

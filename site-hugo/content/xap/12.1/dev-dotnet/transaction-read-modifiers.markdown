@@ -4,6 +4,7 @@ title:  Read Modifiers
 categories: XAP121NET, PRM
 parent: transaction-overview.html
 weight: 300
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

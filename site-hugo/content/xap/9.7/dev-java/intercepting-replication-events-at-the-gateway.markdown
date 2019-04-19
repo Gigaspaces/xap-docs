@@ -4,6 +4,7 @@ title:  Intercepting Replication Events
 categories: XAP97
 parent: multi-site-replication-overview.html
 weight: 800
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

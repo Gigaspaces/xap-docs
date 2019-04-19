@@ -4,6 +4,7 @@ title:  Modeling your Data
 categories: XAP122NET, PRM
 parent: none
 weight: 400
+canonical: auto
 ---
 
 

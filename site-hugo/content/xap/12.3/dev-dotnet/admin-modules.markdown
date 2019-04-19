@@ -4,6 +4,7 @@ title:  Administration API
 categories: XAP123NET, PRM
 parent: none
 weight: 1400
+canonical: auto
 ---
 
 The Service Grid Admin API provides a way to administer and monitor all of the XAP services and components, using a simple API. The Admin API provides information and the ability to operate on the currently running Service Grid Agents, Service Grid Managers, Service Grid Containers, Lookup Services, Processing Units, and Spaces.

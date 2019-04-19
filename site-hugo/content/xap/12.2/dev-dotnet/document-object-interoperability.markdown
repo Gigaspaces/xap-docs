@@ -3,6 +3,7 @@ type: post122
 title:  Interoperability
 categories: XAP122NET, PRM
 weight: 300
+canonical: auto
 parent: document-overview.html
 ---
 

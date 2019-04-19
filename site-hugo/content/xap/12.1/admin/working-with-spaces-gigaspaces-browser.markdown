@@ -4,6 +4,7 @@ title:  Working with Spaces
 categories: XAP121ADM, PRM
 parent: gigaspaces-management-center.html
 weight: 600
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Directory Management
 categories: XAP120SEC, OS
 parent: none
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

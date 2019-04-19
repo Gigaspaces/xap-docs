@@ -4,6 +4,7 @@ title:  XAP Over a Firewall
 categories: XAP123ADM, PRM
 parent: network.html
 weight: 600
+canonical: auto
 ---
  
 

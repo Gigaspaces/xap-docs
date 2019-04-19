@@ -4,6 +4,7 @@ title:  Pending Notify Templates
 categories: XAP123ADM, PRM
 parent: gigaspaces-management-center.html
 weight: 700
+canonical: auto
 ---
 
 

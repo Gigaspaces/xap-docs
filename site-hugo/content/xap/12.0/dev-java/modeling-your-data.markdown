@@ -4,6 +4,7 @@ title:  Modeling your Data
 categories: XAP120
 parent: none
 weight: 600
+canonical: auto
 ---
 
 

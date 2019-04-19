@@ -4,6 +4,7 @@ title:  Logging
 categories: XAP97ADM
 parent: none
 weight: 750
+canonical: auto
 ---
 
 This section explains how you can configure logging with XAP. We will show you how you can format the log output, choose file names and rollover policies.

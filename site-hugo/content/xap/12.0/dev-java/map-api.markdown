@@ -4,6 +4,7 @@ title:  Map API
 categories: XAP120
 parent: other-data-access-apis.html
 weight: 300
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Extending the REST Manager API
 categories: XAP123ADM, PRM
 parent: xap-manager-rest.html
 weight: 200
+canonical: auto
 ---
  
 The REST Manager API is extensible so that custom methods can be added. Developers can implement a plain Java class with {{%exurl "JAX-RS" "https://github.com/jax-rs"%}} annotations.

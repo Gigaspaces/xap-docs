@@ -3,6 +3,7 @@ type: post97
 title:  Administrators Guide
 categories: XAP97ADM
 weight: 300
+canonical: auto
 ---
 
 

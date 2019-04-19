@@ -4,6 +4,7 @@ title:  SSD - RocksDB Add-On
 categories: XAP110ADM
 parent: memoryxtend-overview.html
 weight: 200
+canonical: auto
 ---
 
 # Native Persistence

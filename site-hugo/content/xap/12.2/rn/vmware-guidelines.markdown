@@ -4,6 +4,7 @@ title:  VMWare Guidelines
 categories: XAP122RN
 parent: none
 weight: 500
+canonical: auto
 ---
 
 

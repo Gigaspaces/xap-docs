@@ -4,6 +4,7 @@ title:  Failure Detection
 categories: XAP100ADM
 parent: troubleshooting.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

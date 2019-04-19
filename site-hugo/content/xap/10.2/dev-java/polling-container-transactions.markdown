@@ -4,6 +4,7 @@ title:  Transaction Support
 categories: XAP102
 parent: polling-container-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary  %}}{{%/ssummary%}}

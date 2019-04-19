@@ -4,6 +4,7 @@ title:  Cluster Information
 categories: XAP97
 parent: packaging-and-deployment.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

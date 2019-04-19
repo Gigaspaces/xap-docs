@@ -4,6 +4,7 @@ title:  Dynamic Properties
 categories: XAP97
 parent: pojo-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

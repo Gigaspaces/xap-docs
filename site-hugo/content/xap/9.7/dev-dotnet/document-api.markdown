@@ -3,6 +3,7 @@ type: post97
 title:  Document API
 categories: XAP97NET
 weight: 100
+canonical: auto
 parent: document-overview.html
 ---
 

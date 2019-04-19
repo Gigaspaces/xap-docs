@@ -4,6 +4,7 @@ title:  Deploying and Running
 categories: XAP97
 parent: packaging-and-deployment.html
 weight: 200
+canonical: auto
 ---
 
 

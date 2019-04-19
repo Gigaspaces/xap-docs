@@ -3,6 +3,7 @@ type: post101
 title:  Data Grid Clustering
 categories: XAP101ADM
 weight: 300
+canonical: auto
 parent: none
 ---
 

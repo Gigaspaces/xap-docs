@@ -4,6 +4,7 @@ title:  Performance Tuning
 categories: XAP121ADM
 parent: none
 weight: 1000
+canonical: auto
 ---
 
 

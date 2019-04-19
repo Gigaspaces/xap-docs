@@ -4,6 +4,7 @@ title:  Consistency Biased
 categories: XAP123ADM, PRM
 parent: leader-election.html
 weight: 200
+canonical: auto
 ---
 
 In distributed computing, consistency-biased leader election is established using an odd number of coordinators (usually 3). Having an odd number ensures that if network segmentation occurs, there will be no draw between the segments - the majority of coordinators (e.g. 2) will be in one segment, and the minority (e.g. 1) in the other. This allows each segment to play its role and ensure consistency:

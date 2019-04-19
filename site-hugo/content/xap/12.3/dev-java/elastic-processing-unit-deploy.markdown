@@ -4,6 +4,7 @@ title:  Deployment
 categories: XAP123,PRM
 parent: elastic-processing-unit-overview.html
 weight: 200
+canonical: auto
 ---
 
  

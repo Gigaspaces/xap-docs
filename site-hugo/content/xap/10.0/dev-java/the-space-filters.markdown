@@ -3,6 +3,7 @@ type: post100
 title:  Space Filters
 categories: XAP100
 weight: 800
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

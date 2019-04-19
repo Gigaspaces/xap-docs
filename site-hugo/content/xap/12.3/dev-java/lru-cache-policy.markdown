@@ -4,6 +4,7 @@ title:  LRU Cache Policy
 categories: XAP123, OSS
 parent: memory-management-overview.html
 weight: 300
+canonical: auto
 ---
 
 

@@ -3,6 +3,7 @@ type: post110
 title:  Transactions
 categories: XAP110
 weight: 600
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

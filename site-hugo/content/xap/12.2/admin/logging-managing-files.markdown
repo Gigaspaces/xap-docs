@@ -4,6 +4,7 @@ title:  Managing Log Files
 categories: XAP122ADM, OSS
 parent: logging-overview.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

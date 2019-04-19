@@ -4,6 +4,7 @@ title:  XAP Over NAT
 categories: XAP110ADM
 parent: network.html
 weight: 450
+canonical: auto
 ---
 
 Some scenarios may include usage of XAP components where each component is  in a different private network, and the connection between the components needs to be on  a different public IP (i.e., via [network address translation](http://en.wikipedia.org/wiki/Network_address_translation).)

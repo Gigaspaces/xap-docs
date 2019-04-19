@@ -4,6 +4,7 @@ title:  User-Defined Objects
 categories: XAP123NET, PRM
 parent: interoperability.html
 weight: 200
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Configuring Targets
 categories: XAP120, ENT
 parent: multi-site-replication-overview.html
 weight: 300
+canonical: auto
 ---
 
 

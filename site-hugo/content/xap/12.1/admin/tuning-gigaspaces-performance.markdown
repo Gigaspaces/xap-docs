@@ -4,6 +4,7 @@ title:  Application
 categories: XAP121ADM
 parent:  tuning.html
 weight: 200
+canonical: auto
 ---
 
 

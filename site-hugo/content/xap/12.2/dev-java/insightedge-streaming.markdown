@@ -4,6 +4,7 @@ title:  Spark Streaming
 categories: XAP122, OSS
 parent: insightedge-apis.html
 weight: 800
+canonical: auto
 ---
 
 This section describes how to save computation results from the Spark Streaming application to the Data Grid.

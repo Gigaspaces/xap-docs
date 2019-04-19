@@ -4,6 +4,7 @@ title:  Transactions and Concurrency
 categories: XAP123NET, PRM
 parent: xapnet-basics.html
 weight: 700
+canonical: auto
 ---
 
 

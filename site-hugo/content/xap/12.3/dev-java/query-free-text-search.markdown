@@ -4,6 +4,7 @@ title:  Free Text Search
 categories: XAP123, OSS
 parent: querying-the-space.html
 weight: 350
+canonical: auto
 ---
 
 

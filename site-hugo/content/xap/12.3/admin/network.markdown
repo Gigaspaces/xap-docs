@@ -4,6 +4,7 @@ title:  Network Configuration
 categories: XAP123ADM, OSS
 parent: none
 weight: 800
+canonical: auto
 ---
 
 

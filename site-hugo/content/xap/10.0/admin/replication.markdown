@@ -4,6 +4,7 @@ title:  Replication
 categories: XAP100ADM
 parent: data-grid-clustering.html
 weight: 400
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Elastic Processing Unit
 categories: XAP101
 parent: none
 weight: 2100
+canonical: auto
 ---
 
 

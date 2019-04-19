@@ -4,6 +4,7 @@ title:  Interacting with the Space
 categories: XAP122GS, OSS
 parent: xap-basics.html
 weight: 500
+canonical: auto
 ---
 
 

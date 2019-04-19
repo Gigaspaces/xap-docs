@@ -4,6 +4,7 @@ title:  Web Management Console
 categories: XAP120ADM, PRM
 parent: none
 weight: 200
+canonical: auto
 ---
 
 

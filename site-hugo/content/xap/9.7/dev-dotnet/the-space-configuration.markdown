@@ -3,6 +3,7 @@ type: post97
 title:  Configuration
 categories: XAP97NET
 weight: 200
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

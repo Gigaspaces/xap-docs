@@ -4,6 +4,7 @@ title:  Locking and Blocking
 categories: XAP122, OSS
 parent: transaction-overview.html
 weight: 200
+canonical: auto
 ---
 
 

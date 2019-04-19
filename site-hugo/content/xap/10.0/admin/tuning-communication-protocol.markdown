@@ -4,6 +4,7 @@ title:  Communication Protocol
 categories: XAP100ADM
 parent:  tuning-gigaspaces-performance-overview.html
 weight: 600
+canonical: auto
 ---
 
 

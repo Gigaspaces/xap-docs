@@ -4,6 +4,7 @@ title:  Indexing
 categories: XAP121
 parent: none
 weight: 900
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Deployment Properties
 categories: XAP123, PRM
 parent: deploying-and-running-overview.html
 weight: 400
+canonical: auto
 ---
 
 

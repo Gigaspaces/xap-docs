@@ -3,6 +3,7 @@ type: post123
 title:  Viewing the Deployed Processing Units
 categories: XAP123ADM,PRM
 weight: 500
+canonical: auto
 parent: admin-spaces-pu.html
 ---
  

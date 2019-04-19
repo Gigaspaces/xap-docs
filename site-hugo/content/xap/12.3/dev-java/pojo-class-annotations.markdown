@@ -4,6 +4,7 @@ title:  Class Annotations
 categories: XAP123, OSS
 parent: pojo-annotation-overview.html
 weight: 100
+canonical: auto
 ---
 
 

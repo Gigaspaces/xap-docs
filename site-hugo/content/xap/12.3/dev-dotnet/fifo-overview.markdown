@@ -4,6 +4,7 @@ title:  FIFO Ordering
 categories: XAP123NET, PRM
 parent: event-processing.html
 weight: 400
+canonical: auto
 ---
 
 

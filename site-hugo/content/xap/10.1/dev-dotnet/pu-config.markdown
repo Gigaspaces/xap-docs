@@ -4,6 +4,7 @@ title:  Configuration
 categories: XAP101NET
 parent: the-processing-unit-overview.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

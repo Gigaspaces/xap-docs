@@ -4,6 +4,7 @@ title:  Paging Support
 categories: XAP123, OSS
 parent: querying-the-space.html
 weight: 700
+canonical: auto
 ---
 
 

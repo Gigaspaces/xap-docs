@@ -4,6 +4,7 @@ title:  Application
 categories: XAP123ADM, OSS
 parent:  tuning.html
 weight: 200
+canonical: auto
 ---
 
 

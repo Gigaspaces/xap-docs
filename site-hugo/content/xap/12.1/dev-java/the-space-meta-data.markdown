@@ -3,6 +3,7 @@ type: post121
 title:  Data Type Meta Data
 categories: XAP121
 weight: 1100
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

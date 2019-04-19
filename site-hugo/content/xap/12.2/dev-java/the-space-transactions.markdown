@@ -3,6 +3,7 @@ type: post122
 title:  Transactions
 categories: XAP122, OSS
 weight: 600
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

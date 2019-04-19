@@ -4,6 +4,7 @@ title:  Monitoring
 categories: XAP120ADM,PRM
 parent: web-management-console.html
 weight: 540
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  What's New
 categories: XAP123RN
 parent: none
 weight: 100
+canonical: auto
 ---
 
 This section describes product changes, along with new features and functionality for InsightEdge platform release 12.3.

@@ -3,6 +3,7 @@ type: post123
 title:  Viewing Event Container Details
 categories: XAP123ADM,PRM
 weight: 1100
+canonical: auto
 parent: admin-spaces-pu.html
 ---
  

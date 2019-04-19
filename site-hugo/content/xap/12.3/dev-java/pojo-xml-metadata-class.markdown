@@ -4,6 +4,7 @@ title:  Class Metadata
 categories: XAP123, OSS
 parent: pojo-xml-metadata-overview.html
 weight: 100
+canonical: auto
 ---
 
 

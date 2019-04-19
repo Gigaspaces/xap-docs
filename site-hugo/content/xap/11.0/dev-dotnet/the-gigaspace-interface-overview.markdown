@@ -3,6 +3,7 @@ type: post110
 title:  The Space Interface
 categories: XAP110NET
 weight: 500
+canonical: auto
 parent: none
 ---
 

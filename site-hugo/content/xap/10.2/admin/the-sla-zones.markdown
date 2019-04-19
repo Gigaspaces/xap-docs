@@ -4,6 +4,7 @@ title:  Hosts, Zones & Machine Utilization
 categories: XAP102ADM
 parent: the-sla-overview.html
 weight: 300
+canonical: auto
 ---
 
 

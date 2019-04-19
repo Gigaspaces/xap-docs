@@ -4,6 +4,7 @@ title:  JDBC Driver
 categories: XAP121
 parent: other-data-access-apis.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Off Heap RAM
 categories: XAP101ADM
 parent: memoryxtend.html
 weight: 300
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Failover
 categories: XAP123ADM, PRM
 parent: data-grid-clustering.html
 weight: 500
+canonical: auto
 ---
 
 

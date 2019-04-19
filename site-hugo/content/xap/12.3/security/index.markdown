@@ -3,6 +3,7 @@ type: post123
 title:  Security
 categories: XAP123SEC, OSS
 weight: 1250
+canonical: auto
 ---
 
 

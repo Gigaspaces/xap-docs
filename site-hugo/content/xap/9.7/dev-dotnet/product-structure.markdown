@@ -4,6 +4,7 @@ title:  Product structure
 categories: XAP97NET
 parent: installation-overview.html
 weight: 200
+canonical: auto
 ---
 
 

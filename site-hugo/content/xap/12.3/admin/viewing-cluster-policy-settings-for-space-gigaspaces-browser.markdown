@@ -4,6 +4,7 @@ title:  Policy Settings
 categories: XAP123ADM, PRM
 parent: cluster-view-gigaspaces-browser.html
 weight: 200
+canonical: auto
 ---
  
 

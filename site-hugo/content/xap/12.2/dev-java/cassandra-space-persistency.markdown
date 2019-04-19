@@ -4,6 +4,7 @@ title:  Cassandra Persistency
 categories: XAP122, OSS
 parent: cassandra.html
 weight: 100
+canonical: auto
 ---
 
 

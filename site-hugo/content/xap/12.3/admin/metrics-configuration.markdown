@@ -4,6 +4,7 @@ title:  Configuration
 categories: XAP123ADM, PRM
 parent: metrics-overview.html
 weight: 100
+canonical: auto
 ---
 
 

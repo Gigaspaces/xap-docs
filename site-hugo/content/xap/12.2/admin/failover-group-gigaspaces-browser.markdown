@@ -4,6 +4,7 @@ title:  Failover Group
 categories: XAP122ADM, PRM
 parent: working-with-clusters-gigaspaces-browser.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}A failover group defines failover between spaces in the cluster.{{% /ssummary %}}

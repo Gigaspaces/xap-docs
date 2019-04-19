@@ -4,6 +4,7 @@ title:  Document API
 categories: XAP110
 parent: document-overview.html
 weight: 100
+canonical: auto
 ---
 
 

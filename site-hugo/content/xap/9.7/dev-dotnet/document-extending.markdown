@@ -3,6 +3,7 @@ type: post97
 title:  Extending
 categories: XAP97NET
 weight: 200
+canonical: auto
 parent: document-overview.html
 ---
 

@@ -4,6 +4,7 @@ title:  Property Annotations
 categories: XAP110
 parent: pojo-annotation-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

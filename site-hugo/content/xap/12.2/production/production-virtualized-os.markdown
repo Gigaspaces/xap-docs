@@ -4,6 +4,7 @@ title:  Virtualized OS
 categories: XAP122PROD
 parent: none
 weight: 200
+canonical: auto
 ---
 
 

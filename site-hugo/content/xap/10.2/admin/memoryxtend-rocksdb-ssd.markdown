@@ -4,6 +4,7 @@ title:  SSD - RocksDB Add-On
 categories: XAP102ADM
 parent: memoryxtend.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

@@ -3,6 +3,7 @@ type: post123
 title:  Administering Spaces and Processing Units
 categories: XAP123ADM,PRM
 weight: 100
+canonical: auto
 parent: none
 ---
  

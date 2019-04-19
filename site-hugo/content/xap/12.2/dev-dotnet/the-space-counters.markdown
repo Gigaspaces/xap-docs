@@ -3,6 +3,7 @@ type: post122
 title:  Counters
 categories: XAP122NET, PRM
 weight: 500
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

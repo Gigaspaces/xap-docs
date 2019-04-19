@@ -4,6 +4,7 @@ title:  Transactions View
 categories: XAP101ADM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html
 weight: 600
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Metadata
 categories: XAP123, OSS
 parent: task-execution-overview.html
 weight: 200
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Advanced
 categories: XAP97NET
 parent: change-api.html
 weight: 100
+canonical: auto
 ---
 
 

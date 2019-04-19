@@ -3,6 +3,7 @@ type: post97
 title:  Notifications
 categories: XAP97
 weight: 550
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

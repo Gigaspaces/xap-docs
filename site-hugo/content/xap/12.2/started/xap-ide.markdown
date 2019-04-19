@@ -4,6 +4,7 @@ title: Setting up your IDE
 categories: XAP122GS
 parent: xap-basics.html
 weight: 200
+canonical: auto
 ---
 
 {{% anchor 0 %}}

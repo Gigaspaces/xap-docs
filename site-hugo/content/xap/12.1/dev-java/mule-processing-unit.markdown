@@ -4,6 +4,7 @@ title:  Processing Unit
 categories: XAP121
 parent: mule-esb.html
 weight: 200
+canonical: auto
 ---
 
 

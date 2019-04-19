@@ -4,6 +4,7 @@ title:  Processing Units
 categories: XAP110ADM
 parent: web-management-console.html
 weight: 520
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

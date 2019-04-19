@@ -4,6 +4,7 @@ title:  Spring Security Bridge
 categories: XAP102SEC
 parent: none
 weight: 900
+canonical: auto
 ---
 
 

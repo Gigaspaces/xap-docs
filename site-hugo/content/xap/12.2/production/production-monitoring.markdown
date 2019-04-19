@@ -4,6 +4,7 @@ title:  Monitoring
 categories: XAP122PROD
 parent: none
 weight: 1100
+canonical: auto
 ---
 
 

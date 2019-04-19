@@ -4,6 +4,7 @@ title:  RDD API
 categories: XAP122, OSS
 parent: insightedge-apis.html
 weight: 500
+canonical: auto
 ---
 
 This section describes how to load data from the Data Grid to Spark.

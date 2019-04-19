@@ -4,6 +4,7 @@ title:  Filters
 categories: XAP100NET
 parent: the-gigaspace-interface-overview.html
 weight: 800
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

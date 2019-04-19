@@ -4,6 +4,7 @@ title:  Elastic Deployment with Command Line
 categories: XAP120ADM, PRM
 parent: administration-tools.html
 weight: 250
+canonical: auto
 ---
 
  

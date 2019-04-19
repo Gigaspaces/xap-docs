@@ -4,6 +4,7 @@ title:  LRU-Cache Policy
 categories: XAP97
 parent: memory-management-overview.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

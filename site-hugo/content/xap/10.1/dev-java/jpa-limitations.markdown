@@ -4,6 +4,7 @@ title:  Limitations
 categories: XAP101
 parent: jpa-api-overview.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

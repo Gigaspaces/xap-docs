@@ -4,6 +4,7 @@ title:  Using GigaSpaces JMS Without Changing the Classpath
 categories: XAP121
 parent: jms-advanced.html
 weight: 600
+canonical: auto
 ---
 
 

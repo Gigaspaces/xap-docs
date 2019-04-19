@@ -4,6 +4,7 @@ title:  Tuning XAP
 categories: XAP110ADM
 parent:  tuning-gigaspaces-performance-overview.html
 weight: 100
+canonical: auto
 ---
 
 

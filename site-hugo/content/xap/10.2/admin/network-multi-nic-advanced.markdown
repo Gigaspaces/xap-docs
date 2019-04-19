@@ -4,6 +4,7 @@ title:  Advanced Configuration
 categories: XAP102ADM
 parent: network-multi-nic.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

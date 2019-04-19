@@ -4,6 +4,7 @@ title:  File Descriptors
 categories: XAP123PROD
 parent: none
 weight: 800
+canonical: auto
 ---
 
 The XAP LRMI communication layer opens network connections dynamically. With large-scale applications, or with clients that are running a large number of threads accessing the data grid, you might end up having a large number of file descriptors used both on the client and server side. You may also have multiple JVMs running on the machine. If so, you may have to increase the default max user processes value.

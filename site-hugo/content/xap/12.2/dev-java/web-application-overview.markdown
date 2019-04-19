@@ -4,6 +4,7 @@ title:  Web Application Support
 categories: XAP122, OSS
 parent: none
 weight: 2200
+canonical: auto
 ---
 
 

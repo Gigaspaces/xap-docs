@@ -4,6 +4,7 @@ title:  Constructor Based Properties
 categories: XAP97
 parent: scala.html
 weight: 100
+canonical: auto
 ---
 
 

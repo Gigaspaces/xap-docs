@@ -4,6 +4,7 @@ title:  User-Role Management
 categories: XAP100SEC
 parent: custom-security.html
 weight: 200
+canonical: auto
 ---
 
 Customize user/role management to meet your application requirements

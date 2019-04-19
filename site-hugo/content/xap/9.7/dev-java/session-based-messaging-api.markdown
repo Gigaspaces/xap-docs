@@ -4,6 +4,7 @@ title:  Session Based Messaging API
 categories: XAP97
 parent: notify-container.html
 weight: 100
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Downloading and Installing
 categories: XAP123GS
 parent: none
 weight: 100
+canonical: auto
 ---
 
 

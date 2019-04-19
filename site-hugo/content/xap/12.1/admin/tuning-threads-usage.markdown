@@ -4,6 +4,7 @@ title:  Threads Usage
 categories: XAP121ADM
 parent: tuning.html
 weight: 900
+canonical: auto
 ---
 
 

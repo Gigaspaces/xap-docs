@@ -3,6 +3,7 @@ type: post121
 title:  Protective Modes
 categories: XAP121ADM
 weight: 150
+canonical: auto
 parent: troubleshooting.html
 ---
 

@@ -4,6 +4,7 @@ title:  POJO Support
 categories: XAP123, OSS
 parent: none
 weight: 400
+canonical: auto
 ---
 
 The XAP interface fully supports POJOs. In terms of preconditions, your POJO classes must follow the JavaBeans conventions (have a no-argument constructor) and declare a getter and setter to every field you want saved on the Space. The POJO class doesn't have to implement `java.io.Serializable`, but its properties must. This is necessary because the POJOs fields are extracted when written to the Space, and stored in a special tuple format that enables the Space to index and analyze them more easily. Therefore the actual POJO is not sent over the network, but rather its properties.

@@ -4,6 +4,7 @@ title:  Space Persistency
 categories: XAP97NET
 parent: programmers-guide.html
 weight: 2500
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Annotation based Metadata
 categories: XAP100NET
 parent: modeling-your-data.html
 weight: 110
+canonical: auto
 ---
 
 

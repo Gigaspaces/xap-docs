@@ -4,6 +4,7 @@ title:  Python
 categories: XAP122, OSS
 parent: insightedge-apis.html
 weight: 650
+canonical: auto
 ---
 
 InsightEdge has a Python API available via PySpark. Its functionality is limited to the DataFrame API.

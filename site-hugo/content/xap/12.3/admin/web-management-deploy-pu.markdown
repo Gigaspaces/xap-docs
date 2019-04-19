@@ -4,6 +4,7 @@ title:  Deploying a Processing Unit
 categories: XAP123ADM,PRM
 parent: web-management-common-view.html
 weight: 200
+canonical: auto
 ---
 
 You can deploy Processing Units through the Web Management Console.

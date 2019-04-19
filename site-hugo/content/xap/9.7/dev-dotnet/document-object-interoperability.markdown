@@ -3,6 +3,7 @@ type: post97
 title:  Interoperability
 categories: XAP97NET
 weight: 300
+canonical: auto
 parent: document-overview.html
 ---
 

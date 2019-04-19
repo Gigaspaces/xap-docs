@@ -4,6 +4,7 @@ title:  Concepts
 categories: XAP123SEC, OSS
 parent: none
 weight: 200
+canonical: auto
 ---
 
 

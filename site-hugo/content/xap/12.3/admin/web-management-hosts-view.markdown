@@ -4,6 +4,7 @@ title:  Monitoring General Physical Resources
 categories: XAP123ADM,PRM
 parent: web-management-console.html
 weight: 500
+canonical: auto
 ---
 
 

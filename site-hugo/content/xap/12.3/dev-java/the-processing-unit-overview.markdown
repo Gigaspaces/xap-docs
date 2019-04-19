@@ -4,6 +4,7 @@ title:  The Processing Unit
 categories: XAP123, OSS
 parent: none
 weight: 2000
+canonical: auto
 ---
 
 

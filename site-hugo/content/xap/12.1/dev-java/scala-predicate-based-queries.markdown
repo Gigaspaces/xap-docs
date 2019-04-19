@@ -4,6 +4,7 @@ title:  Predicate Based Queries
 categories: XAP121
 parent: scala.html
 weight: 300
+canonical: auto
 ---
 
 

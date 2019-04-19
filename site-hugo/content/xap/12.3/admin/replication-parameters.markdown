@@ -4,6 +4,7 @@ title:  Replication Parameters
 categories: XAP123ADM, OSS
 parent: replication.html
 weight: 700
+canonical: auto
 ---
 
  

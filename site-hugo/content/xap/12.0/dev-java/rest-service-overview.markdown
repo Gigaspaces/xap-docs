@@ -4,6 +4,7 @@ title:  The REST Service
 categories: XAP120
 parent: interoperability-overview.html
 weight: 300
+canonical: auto
 ---
 
 

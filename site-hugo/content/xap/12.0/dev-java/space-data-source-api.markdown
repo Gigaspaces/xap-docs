@@ -4,6 +4,7 @@ title:  Data Source
 categories: XAP120
 parent: space-persistency-overview.html
 weight: 300
+canonical: auto
 ---
 
 

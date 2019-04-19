@@ -4,6 +4,7 @@ title:  InsightEdge in 5 Minutes
 categories: XAP123GS, OSS
 parent: insightedge-basics.html
 weight: 70
+canonical: auto
 ---
 
 This topic describes how to start an InsightEdge using the embedded demo, in order to get you up and running as quickly as possible. The demo is launched via the GigaSpaces command line interface (CLI) tool. The InsightEdge demo runs in standalone mode and creates the following environment on your local machine:

@@ -4,6 +4,7 @@ title:  Components
 categories: XAP123NET, PRM
 parent: the-processing-unit-overview.html
 weight: 200
+canonical: auto
 ---
 
  

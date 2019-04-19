@@ -4,6 +4,7 @@ title:  Space Persistency
 categories: XAP102NET
 parent: none
 weight: 900
+canonical: auto
 ---
 
 

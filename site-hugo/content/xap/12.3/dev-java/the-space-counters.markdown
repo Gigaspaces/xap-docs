@@ -3,6 +3,7 @@ type: post123
 title:  Counters
 categories: XAP123, OSS
 weight: 500
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

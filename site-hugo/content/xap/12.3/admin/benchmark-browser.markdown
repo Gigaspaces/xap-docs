@@ -4,6 +4,7 @@ title:  Benchmark View
 categories: XAP123ADM, PRM
 parent: benchmarking.html
 weight: 300
+canonical: auto
 ---
 
  

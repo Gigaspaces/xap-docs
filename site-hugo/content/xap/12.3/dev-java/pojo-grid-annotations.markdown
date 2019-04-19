@@ -4,6 +4,7 @@ title:  Grid Metadata
 categories: XAP123, OSS
 parent: modeling-your-data.html
 weight: 140
+canonical: auto
 ---
 
  

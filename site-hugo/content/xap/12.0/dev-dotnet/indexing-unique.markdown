@@ -4,6 +4,7 @@ title:  Unique Index
 categories: XAP120NET, PRM
 parent: indexing-overview.html
 weight: 500
+canonical: auto
 ---
 
 

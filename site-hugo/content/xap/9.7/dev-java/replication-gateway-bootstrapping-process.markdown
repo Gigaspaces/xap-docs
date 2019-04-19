@@ -4,6 +4,7 @@ title:  Bootstrapping Process
 categories: XAP97
 parent: multi-site-replication-overview.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

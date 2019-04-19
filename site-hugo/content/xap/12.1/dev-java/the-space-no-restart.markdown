@@ -3,6 +3,7 @@ type: post121
 title:  Change code without restarts
 categories: XAP121
 weight: 650
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

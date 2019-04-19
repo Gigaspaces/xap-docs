@@ -4,6 +4,7 @@ title:  Spring-based Bridge
 categories: XAP123SEC, PRM
 parent: spring-security-bridge.html
 weight: 200
+canonical: auto
 ---
 
 You may have noticed that Spring's Security `AuthenticationProvider` and `AuthenticationManager`, aren't much different from the GigaSpaces `com.gigaspaces.security.SecurityManager`. In Fact, they share a similar `authentication` method that handles authentication.

@@ -4,6 +4,7 @@ title:  Auditing
 categories: XAP120SEC, PRM
 parent: security-administration.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

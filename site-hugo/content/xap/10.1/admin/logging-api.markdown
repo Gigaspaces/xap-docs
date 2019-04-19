@@ -4,6 +4,7 @@ title:  Logging API
 categories: XAP101ADM
 parent: logging-overview.html
 weight: 350
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

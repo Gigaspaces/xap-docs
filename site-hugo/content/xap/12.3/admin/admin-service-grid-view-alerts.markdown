@@ -3,6 +3,7 @@ type: post123
 title: Viewing Alerts
 categories: XAP123ADM,PRM
 weight: 501
+canonical: auto
 parent: admin-service-grid.html
 ---
 

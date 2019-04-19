@@ -4,6 +4,7 @@ title:  Synchronous Replication
 categories: XAP100ADM
 parent: replication.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

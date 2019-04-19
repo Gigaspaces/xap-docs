@@ -3,6 +3,7 @@ type: post123
 title: Viewing Events
 categories: XAP123ADM,PRM
 weight: 500
+canonical: auto
 parent: admin-service-grid.html
 ---
  

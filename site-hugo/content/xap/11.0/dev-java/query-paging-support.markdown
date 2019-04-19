@@ -4,6 +4,7 @@ title:  Paging Support
 categories: XAP110
 parent: querying-the-space.html
 weight: 700
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  User Defined Metrics
 categories: XAP101ADM
 parent: metrics-overview.html
 weight: 400
+canonical: auto
 ---
 
 In addition to the metrics shipped with the product, users are free to define additional metrics for application-specific data using the `@ServiceMetric` annotation. For example, suppose we have a `FooService` class which processes some application-specific requests, and we want to measure the number of processed requests:

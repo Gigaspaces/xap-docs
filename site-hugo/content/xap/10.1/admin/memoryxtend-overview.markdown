@@ -4,6 +4,7 @@ title:  Overview
 categories: XAP101ADM
 parent: memoryxtend.html
 weight: 100
+canonical: auto
 ---
 
 <br>

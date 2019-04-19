@@ -4,6 +4,7 @@ title:  Developing Your First Application
 categories: XAP123GS, OSS
 parent: insightedge-basics.html
 weight: 400
+canonical: auto
 ---
 
 This topic explains how to create an InsightEdge application that can read and write from/to the Data Grid. You should have a basic knowledge of {{%exurl "Apache Spark""http://spark.apache.org/docs/latest/index.html"%}}.

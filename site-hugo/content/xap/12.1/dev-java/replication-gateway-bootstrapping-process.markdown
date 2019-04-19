@@ -4,6 +4,7 @@ title:  Bootstrapping Process
 categories: XAP121, ENT
 parent: multi-site-replication-overview.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

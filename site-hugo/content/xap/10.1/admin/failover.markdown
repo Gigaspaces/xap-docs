@@ -4,6 +4,7 @@ title:  Failover
 categories: XAP101ADM
 parent: data-grid-clustering.html
 weight: 300
+canonical: auto
 ---
 
 

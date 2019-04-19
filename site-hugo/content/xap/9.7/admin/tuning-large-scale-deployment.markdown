@@ -4,6 +4,7 @@ title:  Large Scale Deployment
 categories: XAP97ADM
 parent: tuning-gigaspaces-performance.html
 weight: 110
+canonical: auto
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Scaling Agent Example
 categories: XAP110NET
 parent:  admin-modules.html
 weight: 200
+canonical: auto
 ---
 
 

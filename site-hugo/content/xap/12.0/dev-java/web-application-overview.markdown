@@ -4,6 +4,7 @@ title:  Web Application Support
 categories: XAP120
 parent: none
 weight: 2200
+canonical: auto
 ---
 
 

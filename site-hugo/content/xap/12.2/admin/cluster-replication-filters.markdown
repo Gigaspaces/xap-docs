@@ -4,6 +4,7 @@ title:  Replication Filters
 categories: XAP122ADM, OSS
 parent: replication.html
 weight: 450
+canonical: auto
 ---
 
 

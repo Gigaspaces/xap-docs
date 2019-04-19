@@ -4,6 +4,7 @@ title:  Event Processing
 categories: XAP122, OSS
 parent: none
 weight: 1500
+canonical: auto
 ---
 
 

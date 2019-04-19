@@ -4,6 +4,7 @@ title:  Space JMS
 categories: XAP102ADM
 parent: working-with-spaces-gigaspaces-browser.html
 weight: 100
+canonical: auto
 ---
 
 

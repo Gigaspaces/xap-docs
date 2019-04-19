@@ -3,6 +3,7 @@ type: post123
 title:  Undeploying a Processing Unit
 categories: XAP123ADM,PRM
 weight: 700
+canonical: auto
 parent: admin-spaces-pu.html
 ---
  

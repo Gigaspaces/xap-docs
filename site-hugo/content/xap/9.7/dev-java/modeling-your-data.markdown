@@ -4,6 +4,7 @@ title:  Modeling your Data
 categories: XAP97
 parent: programmers-guide.html
 weight: 30
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Java Virtual Machines
 categories: XAP97ADM
 parent: tuning.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

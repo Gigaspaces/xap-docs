@@ -4,6 +4,7 @@ title:  Viewing Events
 categories: XAP123ADM,PRM
 parent: web-management-common-view.html
 weight: 400
+canonical: auto
 ---
 
 In the Events panel, you can view events for the selected component. You can filter the view based on text, and by date and time.

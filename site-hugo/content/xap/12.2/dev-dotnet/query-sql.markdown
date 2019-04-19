@@ -4,6 +4,7 @@ title:  SqlQuery
 categories: XAP122NET, PRM
 parent: querying-the-space.html
 weight: 500
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

@@ -4,6 +4,7 @@ title:  Custom Eviction Policy
 categories: XAP97
 parent: lru-cache-policy.html
 weight: 300
+canonical: auto
 ---
 
 

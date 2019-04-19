@@ -4,6 +4,7 @@ title:  Local Cache
 categories: XAP123, PRM
 parent: client-side-caching.html
 weight: 100
+canonical: auto
 ---
 
  

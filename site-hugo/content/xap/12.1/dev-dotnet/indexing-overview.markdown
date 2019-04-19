@@ -4,6 +4,7 @@ title:  Indexing
 categories: XAP121NET, PRM
 parent: none
 weight: 700
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Monitoring Tools
 categories: XAP110ADM
 parent: monitoring.html
 weight: 300
+canonical: auto
 ---
 
 

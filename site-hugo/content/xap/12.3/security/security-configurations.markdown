@@ -4,6 +4,7 @@ title:  Configuration
 categories: XAP123SEC, OSS
 parent: none
 weight: 500
+canonical: auto
 ---
 
 

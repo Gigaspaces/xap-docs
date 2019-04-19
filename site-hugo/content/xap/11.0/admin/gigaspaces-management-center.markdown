@@ -4,6 +4,7 @@ title:  Management Center
 categories: XAP110ADM
 parent: none
 weight: 100
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Admin Modules
 categories: XAP100NET
 parent: programmers-guide.html
 weight: 1300
+canonical: auto
 ---
 
 

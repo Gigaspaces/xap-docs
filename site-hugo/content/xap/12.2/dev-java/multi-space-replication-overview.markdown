@@ -4,6 +4,7 @@ title:  Multi Site LAN Replication
 categories: XAP122, ENT
 parent: none
 weight: 2300
+canonical: auto
 ---
 
 

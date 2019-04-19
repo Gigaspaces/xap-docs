@@ -4,6 +4,7 @@ title:  Benchmark UI
 categories: XAP97ADM
 parent: benchmarking.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

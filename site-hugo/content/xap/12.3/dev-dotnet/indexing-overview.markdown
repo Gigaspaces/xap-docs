@@ -4,6 +4,7 @@ title:  Indexing
 categories: XAP123NET, PRM
 parent: none
 weight: 700
+canonical: auto
 ---
 
 When a Space is looking for a match for a read or take operation, it iterates over non-null values in the template, looking for matches in the Space. This process can be time consuming, especially when there are many potential matches. To improve performance, it is possible to index one or more properties. The Space maintains additional data for indexed properties, which shortens the time required to determine a match, thus improving performance.

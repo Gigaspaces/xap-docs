@@ -3,6 +3,7 @@ type: post120
 title:  Lease Time
 categories: XAP120NET, PRM
 weight: 700
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

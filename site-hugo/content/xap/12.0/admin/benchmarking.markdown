@@ -4,6 +4,7 @@ title:  Benchmarking
 categories: XAP120ADM
 parent: none
 weight: 1100
+canonical: auto
 ---
 
 

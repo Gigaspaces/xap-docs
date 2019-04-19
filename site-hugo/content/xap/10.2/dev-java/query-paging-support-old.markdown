@@ -4,6 +4,7 @@ title:  Paging Support - GSIterator
 categories: XAP102
 parent: query-paging-support.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

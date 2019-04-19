@@ -4,6 +4,7 @@ title:  Custom Data Event Filters
 categories: XAP123, OSS
 parent: session-based-messaging-api.html
 weight: 300
+canonical: auto
 ---
 
  

@@ -4,6 +4,7 @@ title:  Management Center
 categories: XAP120ADM, PRM
 parent: none
 weight: 100
+canonical: auto
 ---
 
 

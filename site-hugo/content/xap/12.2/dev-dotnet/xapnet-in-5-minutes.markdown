@@ -4,6 +4,7 @@ title:  XAP.NET in 5 Minutes
 categories: XAP122NET, PRM
 parent: xapnet-basics.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary  %}}{{% /ssummary %}}

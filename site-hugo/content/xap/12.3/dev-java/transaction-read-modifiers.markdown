@@ -4,6 +4,7 @@ title:  Read Modifiers
 categories: XAP123, OSS
 parent: transaction-overview.html
 weight: 300
+canonical: auto
 ---
 
 

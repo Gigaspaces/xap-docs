@@ -3,6 +3,7 @@ type: post110
 title:  Administrative Alerts
 categories: XAP110
 weight: 300
+canonical: auto
 parent: administration-and-monitoring-overview.html
 ---
 

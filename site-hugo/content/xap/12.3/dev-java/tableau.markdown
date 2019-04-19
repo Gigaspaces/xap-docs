@@ -4,6 +4,7 @@ title:  Tableau Integration
 categories:  XAP123, IEE
 parent: sql-query-intro.html
 weight: 300
+canonical: auto
 ---
 
 # Overview

@@ -4,6 +4,7 @@ title:  Replication Group
 categories: XAP110ADM
 parent: working-with-clusters-gigaspaces-browser.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary %}}Common settings, sync/async replication, transmission policies, filters, recovery options.{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  GigaSpaces CLI
 categories: XAP123ADM, PRM
 parent: admin-legacy-tools.html
 weight: 100
+canonical: auto
 ---
 
  

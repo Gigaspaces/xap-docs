@@ -4,6 +4,7 @@ title:  Testing System Environment
 categories: XAP102ADM
 parent: troubleshooting.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

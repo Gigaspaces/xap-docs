@@ -4,6 +4,7 @@ title:  Hardware Selection
 categories: XAP122PROD
 parent: none
 weight: 100
+canonical: auto
 ---
 
 The general rule when selecting the hardware to run GigaSpaces applications is **the faster the better**. Multi-core machines with large amounts of memory are the most cost effective, because they provide the best performance by leveraging large JVM heap size that can handle simultaneous requests with minimal thread context switch overhead.

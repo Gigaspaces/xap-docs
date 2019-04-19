@@ -4,6 +4,7 @@ title:  Polling Container
 categories: XAP122NET, PRM
 parent: event-processing.html
 weight: 300
+canonical: auto
 ---
 
 

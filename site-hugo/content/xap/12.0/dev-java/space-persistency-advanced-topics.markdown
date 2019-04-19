@@ -4,6 +4,7 @@ title:  Advanced Topics
 categories: XAP120
 parent: space-persistency-overview.html
 weight: 800
+canonical: auto
 ---
 
 

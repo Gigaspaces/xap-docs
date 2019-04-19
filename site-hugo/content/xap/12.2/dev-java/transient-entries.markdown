@@ -4,6 +4,7 @@ title:  Transient Entries
 categories: XAP122, OSS
 parent: space-persistency-overview.html
 weight: 700
+canonical: auto
 ---
 
 

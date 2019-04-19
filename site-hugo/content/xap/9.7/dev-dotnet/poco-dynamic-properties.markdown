@@ -4,6 +4,7 @@ title:  Dynamic Properties
 categories: XAP97NET
 parent: poco-overview.html
 weight: 300
+canonical: auto
 ---
 
 

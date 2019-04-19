@@ -4,6 +4,7 @@ title:  Machine Provisioning
 categories: XAP101
 parent: elastic-processing-unit-overview.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Annotation-Based Metadata
 categories: XAP123
 parent: modeling-your-data.html
 weight: 110
+canonical: auto
 ---
 
 

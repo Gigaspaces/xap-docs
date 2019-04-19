@@ -4,6 +4,7 @@ title:  Database Authentication
 categories: XAP123SEC, PRM
 parent: spring-security-bridge.html
 weight: 300
+canonical: auto
 ---
 
 Spring's Security `DaoAuthenticationProvider` is a simple authentication provider that uses a Data Access Object (DAO) to retrieve user information from a relational database. It leverages a `UserDetailsService` (as a DAO) in order to lookup the username, password and `GrantedAuthority` s. It authenticates the user simply by comparing the password submitted in a `UsernamePasswordAuthenticationToken`  against the one loaded by the `UserDetailsService`.

@@ -4,6 +4,7 @@ title:  Example Project
 categories: XAP120
 parent: scala.html
 weight: 600
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

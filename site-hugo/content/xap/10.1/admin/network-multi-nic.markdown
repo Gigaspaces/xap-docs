@@ -4,6 +4,7 @@ title:  Multiple Network-Cards
 categories: XAP101ADM
 parent: network.html
 weight: 500
+canonical: auto
 ---
 
 

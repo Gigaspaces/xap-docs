@@ -4,6 +4,7 @@ title:  Task Execution
 categories: XAP97
 parent: programmers-guide.html
 weight: 1100
+canonical: auto
 ---
 
 

@@ -3,6 +3,7 @@ type: post102
 title:  Administrators Guide
 categories: XAP102ADM
 weight: 300
+canonical: auto
 ---
 
 

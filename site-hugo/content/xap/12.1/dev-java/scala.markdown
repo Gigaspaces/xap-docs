@@ -4,6 +4,7 @@ title:  Scala
 categories: XAP121
 parent: interoperability-overview.html
 weight: 400
+canonical: auto
 ---
 
 

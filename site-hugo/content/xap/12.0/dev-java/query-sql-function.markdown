@@ -4,6 +4,7 @@ title:  SQL Functions
 categories: XAP120
 parent: querying-the-space.html
 weight: 320
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Properties Metadata
 categories: XAP100
 parent: pojo-xml-metadata-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

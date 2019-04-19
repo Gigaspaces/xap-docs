@@ -3,6 +3,7 @@ type: post110
 title:  Runtime Configuration
 categories: XAP110ADM
 weight: 700
+canonical: auto
 parent: none
 ---
 

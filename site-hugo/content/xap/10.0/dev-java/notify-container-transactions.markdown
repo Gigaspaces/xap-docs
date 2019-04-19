@@ -4,6 +4,7 @@ title:  Transaction Support
 categories: XAP100
 parent: notify-container-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{<wbr>}}

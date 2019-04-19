@@ -3,6 +3,7 @@ type: post110
 title:  Configuration
 categories: XAP110
 weight: 200
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

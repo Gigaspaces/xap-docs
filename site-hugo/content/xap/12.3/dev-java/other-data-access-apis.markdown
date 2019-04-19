@@ -4,6 +4,7 @@ title:  Other Data Access APIs
 categories: XAP123, OSS
 parent: none
 weight: 1200
+canonical: auto
 ---
 
 

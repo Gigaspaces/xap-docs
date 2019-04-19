@@ -3,6 +3,7 @@ type: post121
 title:  Service Level Agreement
 categories: XAP121ADM, PRM
 weight: 350
+canonical: auto
 parent: none
 ---
 

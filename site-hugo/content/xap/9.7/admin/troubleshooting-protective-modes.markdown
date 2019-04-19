@@ -3,6 +3,7 @@ type: post97
 title:  Protective Modes
 categories: XAP97ADM
 weight: 150
+canonical: auto
 parent: troubleshooting.html
 ---
 

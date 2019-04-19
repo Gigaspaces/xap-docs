@@ -4,6 +4,7 @@ title:  System Configuration
 categories: XAP97NET
 parent: configuration.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

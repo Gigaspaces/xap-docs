@@ -4,6 +4,7 @@ title:  Scripts
 categories: XAP122ADM, OSS
 parent: administration-tools.html
 weight: 50
+canonical: auto
 ---
 
 {{% note "Note"%}}

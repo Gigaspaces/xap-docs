@@ -4,6 +4,7 @@ title:  Interacting with the Space
 categories: XAP123NET, PRM
 parent: xapnet-basics.html
 weight: 200
+canonical: auto
 ---
 
 

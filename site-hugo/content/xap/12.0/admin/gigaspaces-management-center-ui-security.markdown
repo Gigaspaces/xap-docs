@@ -4,6 +4,7 @@ title:  Security
 categories: XAP120ADM, PRM
 parent: gigaspaces-management-center.html
 weight: 800
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

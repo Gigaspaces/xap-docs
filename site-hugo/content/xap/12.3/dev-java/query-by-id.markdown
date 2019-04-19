@@ -4,6 +4,7 @@ title:  Id Queries
 categories: XAP123, OSS
 parent: querying-the-space.html
 weight: 100
+canonical: auto
 ---
 
 

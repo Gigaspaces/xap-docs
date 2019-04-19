@@ -4,6 +4,7 @@ title:  Web Management Console
 categories: XAP110ADM
 parent: none
 weight: 200
+canonical: auto
 ---
 
 

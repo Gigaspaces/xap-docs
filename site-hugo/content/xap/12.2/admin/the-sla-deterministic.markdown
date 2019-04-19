@@ -4,6 +4,7 @@ title:  Deterministic Deployment
 categories: XAP122ADM, PRM
 parent: the-sla-overview.html
 weight: 400
+canonical: auto
 ---
 
 

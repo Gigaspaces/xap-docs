@@ -4,6 +4,7 @@ title:  Default File-Based Security
 categories: XAP122SEC, PRM
 parent: none
 weight: 650
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

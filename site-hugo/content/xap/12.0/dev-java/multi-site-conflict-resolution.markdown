@@ -4,6 +4,7 @@ title:  Conflict Resolution
 categories: XAP120, ENT
 parent: multi-site-replication-overview.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

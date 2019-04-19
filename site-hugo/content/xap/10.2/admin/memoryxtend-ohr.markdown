@@ -4,6 +4,7 @@ title:  Off Heap - MapDB Add-On
 categories: XAP102ADM
 parent: memoryxtend.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

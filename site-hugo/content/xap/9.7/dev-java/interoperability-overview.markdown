@@ -4,6 +4,7 @@ title:  Platform Interoperability
 categories: XAP97
 parent: none
 weight: 250
+canonical: auto
 ---
 
 

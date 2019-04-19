@@ -4,6 +4,7 @@ title:  Routing In Partitioned Spaces
 categories: XAP97NET
 parent: modeling-your-data.html
 weight: 900
+canonical: auto
 ---
 
 

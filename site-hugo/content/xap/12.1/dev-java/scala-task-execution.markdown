@@ -4,6 +4,7 @@ title:  Task Execution
 categories: XAP121
 parent: scala.html
 weight: 200
+canonical: auto
 ---
 
 

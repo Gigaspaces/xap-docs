@@ -4,6 +4,7 @@ title:  XML based Metadata
 categories: XAP100NET
 parent: modeling-your-data.html
 weight: 130
+canonical: auto
 ---
 
 <br>

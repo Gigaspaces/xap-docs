@@ -4,6 +4,7 @@ title:  Archive Container
 categories: XAP123, OSS
 parent: space-persistency-overview.html
 weight: 610
+canonical: auto
 ---
 
 

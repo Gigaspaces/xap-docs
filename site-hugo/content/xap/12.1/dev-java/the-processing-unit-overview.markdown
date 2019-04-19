@@ -4,6 +4,7 @@ title:  The Processing Unit
 categories: XAP121
 parent: none
 weight: 2000
+canonical: auto
 ---
 
 

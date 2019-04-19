@@ -4,6 +4,7 @@ title:  Product License
 categories: XAP123GS
 parent: none
 weight: 200
+canonical: auto
 ---
 
  

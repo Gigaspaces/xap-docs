@@ -4,6 +4,7 @@ title:  Cassandra Integration
 categories: XAP110
 parent: big-data.html
 weight: 200
+canonical: auto
 ---
 
 

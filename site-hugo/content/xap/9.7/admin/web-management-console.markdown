@@ -4,6 +4,7 @@ title:  Web Management Console
 categories: XAP97ADM
 parent: none
 weight: 700
+canonical: auto
 ---
 
 The XAP web management console is a web application which was designed to enable XAP users to quickly understand the state of a running XAP cluster and monitor the running components, i.e. physical hosts, JVMs and deployed processing units.

@@ -4,6 +4,7 @@ title:  Example
 categories: XAP97
 parent: messaging-support.html
 weight: 400
+canonical: auto
 ---
 
 

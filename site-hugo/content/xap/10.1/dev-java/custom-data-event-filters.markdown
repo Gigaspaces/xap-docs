@@ -4,6 +4,7 @@ title:  Custom Data Event Filters
 categories: XAP101
 parent: session-based-messaging-api.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

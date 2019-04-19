@@ -3,6 +3,7 @@ type: post123
 title:  Legacy Topics
 categories: XAP123ADM,PRM
 weight: 600
+canonical: auto
 parent: admin-tools.html
 ---
  

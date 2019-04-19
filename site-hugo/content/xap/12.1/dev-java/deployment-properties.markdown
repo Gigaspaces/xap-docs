@@ -4,6 +4,7 @@ title:  Deployment Properties
 categories: XAP121
 parent: deploying-and-running-overview.html
 weight: 400
+canonical: auto
 ---
 
 

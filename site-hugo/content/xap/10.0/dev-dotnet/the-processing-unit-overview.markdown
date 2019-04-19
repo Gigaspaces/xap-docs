@@ -4,6 +4,7 @@ title:  The Processing Unit
 categories: XAP100NET
 parent: none
 weight: 400
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Notifications
 categories: XAP97NET
 parent: the-gigaspace-interface-overview.html
 weight: 600
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

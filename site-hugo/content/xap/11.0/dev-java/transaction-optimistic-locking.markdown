@@ -4,6 +4,7 @@ title:  Optimistic Locking
 categories: XAP110
 parent: transaction-overview.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

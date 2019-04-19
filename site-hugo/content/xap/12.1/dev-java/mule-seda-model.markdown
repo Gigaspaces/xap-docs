@@ -4,6 +4,7 @@ title:  SEDA Model
 categories: XAP121
 parent: mule-esb.html
 weight: 400
+canonical: auto
 ---
 
 

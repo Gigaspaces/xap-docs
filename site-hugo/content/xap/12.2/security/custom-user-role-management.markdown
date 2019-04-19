@@ -4,6 +4,7 @@ title:  User-Role Management
 categories: XAP122SEC, PRM
 parent: custom-security.html
 weight: 300
+canonical: auto
 ---
 
 Customize user/role management to meet your application requirements

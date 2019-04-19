@@ -4,6 +4,7 @@ title:  Hector Client
 categories: XAP101
 parent: cassandra-space-persistency.html
 weight: 300
+canonical: auto
 ---
 
 

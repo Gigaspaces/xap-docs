@@ -4,6 +4,7 @@ title:  Tools
 categories: XAP123ADM
 parent: troubleshooting.html
 weight: 500
+canonical: auto
 ---
 
 

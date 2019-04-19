@@ -4,6 +4,7 @@ title:  Data Frames API
 categories: XAP123, OSS
 parent: insightedge-apis.html
 weight: 550
+canonical: auto
 ---
 
 DataFrames provide an API for manipulating data within Spark. These provide a more user friendly experience than pure Scala for common queries.

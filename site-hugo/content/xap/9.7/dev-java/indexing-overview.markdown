@@ -4,6 +4,7 @@ title:  Indexing
 categories: XAP97
 parent: programmers-guide.html
 weight: 400
+canonical: auto
 ---
 
 

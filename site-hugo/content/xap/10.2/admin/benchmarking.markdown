@@ -4,6 +4,7 @@ title:  Benchmarking
 categories: XAP102ADM
 parent: none
 weight: 1100
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  CA APM Introscope Reporter
 categories: XAP110ADM
 parent: metrics-overview.html
 weight: 250
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

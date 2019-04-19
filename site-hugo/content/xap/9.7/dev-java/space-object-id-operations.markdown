@@ -4,6 +4,7 @@ title:  Space Object ID
 categories: XAP97
 parent: modeling-your-data.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

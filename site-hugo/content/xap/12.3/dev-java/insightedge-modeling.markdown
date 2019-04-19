@@ -4,6 +4,7 @@ title:  InsightEdge Data Modeling
 categories: XAP123, OSS
 parent: insightedge-apis.html
 weight: 400
+canonical: auto
 ---
 
 This section describes how to define the Data Grid model.

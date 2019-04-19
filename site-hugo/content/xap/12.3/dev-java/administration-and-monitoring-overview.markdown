@@ -4,6 +4,7 @@ title:  Admin API
 categories: XAP123, PRM
 parent: none
 weight: 1900
+canonical: auto
 ---
 
 The Admin API provides a way to administer and monitor all of XAP services and components using a simple API. The API provides information and the ability to operate on the currently running [XAP Agent](../overview/the-runtime-environment.html#gsa), [XAP Manager](../overview/the-runtime-environment.html#gsm), [XAP Container](../overview/the-runtime-environment.html#gsc), [Lookup Service](../overview/the-runtime-environment.html#lus), [Processing Unit](./the-processing-unit-overview.html) and Spaces.

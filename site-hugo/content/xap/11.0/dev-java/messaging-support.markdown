@@ -4,6 +4,7 @@ title:  JMS Messaging Support
 categories: XAP110
 parent: event-processing.html
 weight: 700
+canonical: auto
 ---
 
 

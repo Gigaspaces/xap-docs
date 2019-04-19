@@ -3,6 +3,7 @@ type: post102
 title:  Service Level Agreement
 categories: XAP102ADM
 weight: 350
+canonical: auto
 parent: none
 ---
 

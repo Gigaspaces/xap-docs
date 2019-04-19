@@ -4,6 +4,7 @@ title:  Transactions
 categories: XAP100
 parent: jms-advanced.html
 weight: 200
+canonical: auto
 ---
 
 

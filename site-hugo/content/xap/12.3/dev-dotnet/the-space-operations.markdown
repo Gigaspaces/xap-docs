@@ -3,6 +3,7 @@ type: post123
 title:  Operations
 categories: XAP123NET, PRM
 weight: 300
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

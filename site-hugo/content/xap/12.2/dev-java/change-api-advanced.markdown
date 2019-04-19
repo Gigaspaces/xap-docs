@@ -4,6 +4,7 @@ title:  Advanced
 categories: XAP122, OSS
 parent: change-api-overview.html
 weight: 300
+canonical: auto
 ---
 
 

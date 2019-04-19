@@ -4,6 +4,7 @@ title:  PONO Support
 categories: XAP100NET
 parent: programmers-guide.html
 weight: 100
+canonical: auto
 ---
 
 

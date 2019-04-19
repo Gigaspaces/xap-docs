@@ -3,6 +3,7 @@ type: post123
 title:  Protective Modes
 categories: XAP123ADM, PRM
 weight: 150
+canonical: auto
 parent: troubleshooting.html
 ---
 

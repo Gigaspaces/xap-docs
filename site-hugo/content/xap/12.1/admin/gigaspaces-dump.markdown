@@ -4,6 +4,7 @@ title:  Dump
 categories: XAP121ADM, PRM
 parent: gigaspaces-management-center.html
 weight: 900
+canonical: auto
 ---
 
  

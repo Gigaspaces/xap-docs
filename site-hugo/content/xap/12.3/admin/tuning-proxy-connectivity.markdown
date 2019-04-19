@@ -4,6 +4,7 @@ title:  Proxy Connectivity
 categories: XAP123ADM, OSS
 parent:  tuning.html
 weight: 500
+canonical: auto
 ---
 
 

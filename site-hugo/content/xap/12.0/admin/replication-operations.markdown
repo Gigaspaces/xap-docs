@@ -4,6 +4,7 @@ title:  Replication Operations
 categories: XAP120ADM
 parent: replication.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

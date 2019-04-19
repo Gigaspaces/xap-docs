@@ -4,6 +4,7 @@ title:  Session Based Messaging API
 categories: XAP122, OSS
 parent: notify-container-overview.html
 weight: 300
+canonical: auto
 ---
 
 

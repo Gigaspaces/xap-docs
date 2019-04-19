@@ -4,6 +4,7 @@ title:  Intercepting Replication Events
 categories: XAP123, ENT
 parent: multi-site-replication-overview.html
 weight: 800
+canonical: auto
 ---
 
  

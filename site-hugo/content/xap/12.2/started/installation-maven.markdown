@@ -4,6 +4,7 @@ title:  Maven Plugin
 categories: XAP122GS,PRM
 parent: installation-maven-overview.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

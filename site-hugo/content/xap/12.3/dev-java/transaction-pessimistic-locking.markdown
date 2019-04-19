@@ -4,6 +4,7 @@ title:  Pessimistic Locking
 categories: XAP123, OSS
 parent: transaction-overview.html
 weight: 500
+canonical: auto
 ---
 
 

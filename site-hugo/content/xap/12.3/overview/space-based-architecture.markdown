@@ -4,6 +4,7 @@ title: Space-Based Architecture
 categories: XAP123OVW
 parent: the-in-memory-data-grid.html
 weight: 800
+canonical: auto
 ---
 
 

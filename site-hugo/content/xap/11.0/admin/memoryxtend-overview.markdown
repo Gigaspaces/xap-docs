@@ -4,6 +4,7 @@ title:  MemoryXtend
 categories: XAP110ADM
 parent: none
 weight: 430
+canonical: auto
 ---
 
 

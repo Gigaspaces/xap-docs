@@ -4,6 +4,7 @@ title:  HTTP Session Management
 categories: XAP123, PRM
 parent: web-application-overview.html
 weight: 250
+canonical: auto
 ---
 
 

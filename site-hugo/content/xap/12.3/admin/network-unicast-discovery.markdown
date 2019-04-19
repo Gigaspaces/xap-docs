@@ -4,6 +4,7 @@ title:  Unicast Discovery
 categories: XAP123ADM, PRM
 parent: network.html
 weight: 100
+canonical: auto
 ---
 
 

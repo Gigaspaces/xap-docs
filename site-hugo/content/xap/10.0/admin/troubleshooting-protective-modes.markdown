@@ -3,6 +3,7 @@ type: post100
 title:  Protective Modes
 categories: XAP100ADM
 weight: 150
+canonical: auto
 parent: troubleshooting.html
 ---
 

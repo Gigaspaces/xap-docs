@@ -4,6 +4,7 @@ title:  Example
 categories: XAP122, OSS
 parent: messaging-support.html
 weight: 400
+canonical: auto
 ---
 
  

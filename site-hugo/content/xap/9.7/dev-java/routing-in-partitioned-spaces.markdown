@@ -4,6 +4,7 @@ title:  Routing In Partitioned Spaces
 categories: XAP97
 parent: modeling-your-data.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

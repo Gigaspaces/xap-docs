@@ -4,6 +4,7 @@ title:  JMS Messaging Support
 categories: XAP123, OSS
 parent: event-processing.html
 weight: 700
+canonical: auto
 ---
 
 

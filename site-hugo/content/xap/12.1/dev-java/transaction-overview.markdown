@@ -4,6 +4,7 @@ title:  Transactions
 categories: XAP121
 parent: none
 weight: 1000
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Grid Services
 categories: XAP100SEC
 parent: securing-xap-components.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

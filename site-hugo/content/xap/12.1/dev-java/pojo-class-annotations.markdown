@@ -4,6 +4,7 @@ title:  Class Annotations
 categories: XAP121
 parent: pojo-annotation-overview.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

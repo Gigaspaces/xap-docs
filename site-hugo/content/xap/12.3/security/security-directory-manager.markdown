@@ -4,6 +4,7 @@ title:  Directory Management
 categories: XAP123SEC, OSS
 parent: none
 weight: 400
+canonical: auto
 ---
 
 

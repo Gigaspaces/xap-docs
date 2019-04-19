@@ -4,6 +4,7 @@ title:  Space Command Line Interface
 categories: XAP123ADM, PRM
 parent: command-line-interface.html
 weight: 300
+canonical: auto
 ---
 
 

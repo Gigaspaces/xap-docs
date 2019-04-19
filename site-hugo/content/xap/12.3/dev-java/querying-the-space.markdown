@@ -4,6 +4,7 @@ title:  Querying the Space
 categories: XAP123, OSS
 parent: none
 weight: 800
+canonical: auto
 ---
 
 

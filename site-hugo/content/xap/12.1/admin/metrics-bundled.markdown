@@ -4,6 +4,7 @@ title:  Predefined Metrics
 categories: XAP121ADM
 parent: metrics-overview.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

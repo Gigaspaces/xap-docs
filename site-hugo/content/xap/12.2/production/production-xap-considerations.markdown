@@ -4,6 +4,7 @@ title:  XAP Considerations
 categories: XAP122PROD
 parent: none
 weight: 1000
+canonical: auto
 ---
 
 # The Runtime Environment (GSA, LUS, GSM and GSC)

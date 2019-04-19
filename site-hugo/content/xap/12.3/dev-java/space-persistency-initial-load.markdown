@@ -4,6 +4,7 @@ title:  Initial Load
 categories: XAP123, OSS
 parent: space-persistency-overview.html
 weight: 500
+canonical: auto
 ---
 
  

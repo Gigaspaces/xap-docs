@@ -4,6 +4,7 @@ title: XAP Architecture
 categories: XAP123OVW
 parent: none
 weight: 400
+canonical: auto
 ---
 
  

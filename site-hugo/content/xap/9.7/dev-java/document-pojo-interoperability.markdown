@@ -4,6 +4,7 @@ title:  Interoperability
 categories: XAP97
 parent: document-overview.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  JUnit Testing
 categories: XAP123GS
 parent: xap-basics.html
 weight: 2000
+canonical: auto
 ---
 
 

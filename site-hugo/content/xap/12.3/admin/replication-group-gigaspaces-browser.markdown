@@ -4,6 +4,7 @@ title:  Replication Group
 categories: XAP123ADM, PRM
 parent: working-with-clusters-gigaspaces-browser.html
 weight: 500
+canonical: auto
 ---
 
  

@@ -4,6 +4,7 @@ title:  Transactions
 categories: XAP100
 parent: programmers-guide.html
 weight: 700
+canonical: auto
 ---
 
 

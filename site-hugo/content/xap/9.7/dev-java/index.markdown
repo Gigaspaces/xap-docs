@@ -3,6 +3,7 @@ type: post97
 title:  Java Developers Guide
 categories: XAP97
 weight: 100
+canonical: auto
 ---
 
 

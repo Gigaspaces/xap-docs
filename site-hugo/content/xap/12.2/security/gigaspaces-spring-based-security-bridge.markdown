@@ -4,6 +4,7 @@ title:  Spring-based Bridge
 categories: XAP122SEC, PRM
 parent: spring-security-bridge.html
 weight: 200
+canonical: auto
 ---
 
 

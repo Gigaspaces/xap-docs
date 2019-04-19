@@ -4,6 +4,7 @@ title:  JMX Management
 categories: XAP97ADM
 parent: monitoring.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Creating a Processing Unit
 categories: XAP123GS, OSS
 parent: xap-basics.html
 weight: 900
+canonical: auto
 ---
 
 

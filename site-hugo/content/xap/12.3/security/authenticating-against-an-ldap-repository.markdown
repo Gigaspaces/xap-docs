@@ -4,6 +4,7 @@ title:  LDAP Authentication
 categories: XAP123SEC, PRM
 parent: spring-security-bridge.html
 weight: 400
+canonical: auto
 ---
 
 

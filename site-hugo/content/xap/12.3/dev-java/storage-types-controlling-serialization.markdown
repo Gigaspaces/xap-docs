@@ -4,6 +4,7 @@ title:  Storage Types
 categories: XAP123, OSS
 parent: modeling-your-data.html
 weight: 500
+canonical: auto
 ---
 
 

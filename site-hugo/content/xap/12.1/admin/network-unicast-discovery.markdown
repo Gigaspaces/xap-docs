@@ -4,6 +4,7 @@ title:  Unicast Discovery
 categories: XAP121ADM
 parent: network.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

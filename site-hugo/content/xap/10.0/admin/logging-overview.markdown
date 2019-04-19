@@ -4,6 +4,7 @@ title:  Logging
 categories: XAP100ADM
 parent: none
 weight: 500
+canonical: auto
 ---
 
 

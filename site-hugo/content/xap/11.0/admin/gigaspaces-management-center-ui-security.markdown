@@ -4,6 +4,7 @@ title:  Security
 categories: XAP110ADM
 parent: gigaspaces-management-center.html
 weight: 800
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

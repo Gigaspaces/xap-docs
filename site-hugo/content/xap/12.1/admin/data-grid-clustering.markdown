@@ -3,6 +3,7 @@ type: post121
 title:  Data Grid Clustering
 categories: XAP121ADM
 weight: 300
+canonical: auto
 parent: none
 ---
 

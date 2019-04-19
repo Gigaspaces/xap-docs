@@ -4,6 +4,7 @@ title:  Data Source
 categories: XAP102
 parent: cassandra-space-persistency.html
 weight: 100
+canonical: auto
 ---
 
 

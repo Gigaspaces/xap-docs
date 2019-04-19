@@ -4,6 +4,7 @@ title:  Query View
 categories: XAP101ADM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html
 weight: 400
+canonical: auto
 ---
 
  Used to query the space using SQL statements and view the resulting data set in tabular format.

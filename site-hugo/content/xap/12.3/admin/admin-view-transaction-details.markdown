@@ -3,6 +3,7 @@ type: post123
 title:  Viewing Transaction Details
 categories: XAP123ADM,PRM
 weight: 1300
+canonical: auto
 parent: admin-spaces-pu.html
 ---
  

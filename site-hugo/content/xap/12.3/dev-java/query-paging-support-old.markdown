@@ -4,6 +4,7 @@ title:  Paging Support - GSIterator
 categories: XAP123, OSS
 parent: query-paging-support.html
 weight: 100
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Additional Maintenance Activities
 categories: XAP123ADM,PRM
 parent: web-management-console.html
 weight: 550
+canonical: auto
 ---
 
 You can perform the following maintenance activities from the options on the menu bar:

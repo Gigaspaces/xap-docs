@@ -4,6 +4,7 @@ title:  Connecting to The Grid
 categories: XAP123, OSS
 parent: insightedge-apis.html
 weight: 300
+canonical: auto
 ---
 
 This section describes how to connect your Spark application to the Data Grid.

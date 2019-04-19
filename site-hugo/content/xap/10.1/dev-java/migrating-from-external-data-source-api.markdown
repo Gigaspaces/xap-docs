@@ -4,6 +4,7 @@ title:  Migrating From External Data Source API
 categories: XAP101
 parent: space-persistency-overview.html
 weight: 1000
+canonical: auto
 ---
 
 This page describes how EDS implementations prior to XAP version 9.5 should migrate to the new Space Persistency APIs.

@@ -3,6 +3,7 @@ type: post123
 title: Deleting a Spark Application
 categories: XAP123ADM,PRM
 weight: 800
+canonical: auto
 parent: admin-insightedge.html
 ---
  

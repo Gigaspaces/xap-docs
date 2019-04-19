@@ -4,6 +4,7 @@ title:  Geospatial Queries
 categories: XAP120
 parent: querying-the-space.html
 weight: 340
+canonical: auto
 ---
 
 

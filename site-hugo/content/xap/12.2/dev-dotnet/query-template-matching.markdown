@@ -4,6 +4,7 @@ title:  Template Matching
 categories: XAP122NET, PRM
 parent: querying-the-space.html
 weight: 200
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

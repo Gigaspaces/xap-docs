@@ -4,6 +4,7 @@ title: In-Grid SQL Query
 categories:  XAP122, IEE
 parent: insightedge-apis.html
 weight: 1000
+canonical: auto
 ---
  
 

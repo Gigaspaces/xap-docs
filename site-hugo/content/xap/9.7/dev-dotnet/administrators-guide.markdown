@@ -4,6 +4,7 @@ title:  Deployment and Administration
 categories: XAP97NET
 parent: none
 weight: 400
+canonical: auto
 ---
 
 {{<wbr>}}

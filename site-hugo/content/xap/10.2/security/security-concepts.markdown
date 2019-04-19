@@ -4,6 +4,7 @@ title:  Concepts
 categories: XAP102SEC
 parent: none
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

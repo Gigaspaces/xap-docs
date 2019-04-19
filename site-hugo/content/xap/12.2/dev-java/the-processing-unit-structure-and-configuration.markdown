@@ -4,6 +4,7 @@ title:  Directory Structure
 categories: XAP122, OSS
 parent: the-processing-unit-overview.html
 weight: 100
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Deploy with Command Line
 categories: XAP121ADM, PRM
 parent: administration-tools.html
 weight: 200
+canonical: auto
 ---
 
 {{%ssummary%}} {{%/ssummary%}}

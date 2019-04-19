@@ -4,6 +4,7 @@ title:  Querying the Space
 categories: XAP102NET
 parent: none
 weight: 600
+canonical: auto
 ---
 
 

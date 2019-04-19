@@ -4,6 +4,7 @@ title:  The REST Service
 categories: XAP102
 parent: interoperability-overview.html
 weight: 300
+canonical: auto
 ---
 
 In this section we will show you how to configure and use the rest service.

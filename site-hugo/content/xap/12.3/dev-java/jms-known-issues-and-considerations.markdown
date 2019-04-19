@@ -4,6 +4,7 @@ title:  Known Issues and Considerations
 categories: XAP123, OSS
 parent: jms-advanced.html
 weight: 600
+canonical: auto
 ---
 
 JMS API open issues, unsupported features, and considerations

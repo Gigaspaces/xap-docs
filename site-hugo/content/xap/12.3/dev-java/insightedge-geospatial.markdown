@@ -4,6 +4,7 @@ title:  Geospatial API
 categories: XAP123, OSS
 parent: insightedge-apis.html
 weight: 950
+canonical: auto
 ---
 
 This section gives a brief overview of Geospatial API and describes how to use it with Spark RDD and DataFrames.

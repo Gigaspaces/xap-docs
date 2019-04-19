@@ -4,6 +4,7 @@ title:  NHibernate Integration
 categories: XAP123NET, PRM
 parent: space-persistency-overview.html
 weight: 200
+canonical: auto
 ---
 
  

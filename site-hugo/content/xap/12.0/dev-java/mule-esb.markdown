@@ -4,6 +4,7 @@ title:  Mule ESB Integration
 categories: XAP120
 parent: none
 weight: 1700
+canonical: auto
 ---
 
 XAP comes with comprehensive support for Mule v3.7. It allows you to use the Space as a Mule external transport, enabling receiving and dispatching of POJO messages over the Space.

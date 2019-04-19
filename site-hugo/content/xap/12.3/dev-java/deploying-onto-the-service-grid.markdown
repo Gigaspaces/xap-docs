@@ -4,6 +4,7 @@ title:  Deploying onto the Grid
 categories: XAP123, PRM
 parent: deploying-and-running-overview.html
 weight: 300
+canonical: auto
 ---
 
 

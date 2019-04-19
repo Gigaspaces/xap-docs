@@ -3,6 +3,7 @@ type: post123
 title:  Administration Tools
 categories: XAP123ADM,PRM
 weight: 50
+canonical: auto
 parent: none
 ---
 

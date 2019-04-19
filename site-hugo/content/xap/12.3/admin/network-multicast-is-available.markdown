@@ -4,6 +4,7 @@ title:  Is Multicast Available
 categories: XAP123ADM, PRM
 parent: network-multicast.html
 weight: 300
+canonical: auto
 ---
 
 

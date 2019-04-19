@@ -4,6 +4,7 @@ title:  Event-Driven Programming
 categories: XAP122NET, PRM
 parent: xapnet-basics.html
 weight: 500
+canonical: auto
 ---
 
 

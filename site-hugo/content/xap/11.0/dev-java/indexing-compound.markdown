@@ -4,6 +4,7 @@ title:  Compound Index
 categories: XAP110
 parent: indexing-overview.html
 weight: 400
+canonical: auto
 ---
 
 XAP supports compound indexing, where a single index structure holds references to multiple fields within objects stored within the Space.

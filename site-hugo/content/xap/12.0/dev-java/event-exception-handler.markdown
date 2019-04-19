@@ -4,6 +4,7 @@ title:  Event Exception Handler
 categories: XAP120
 parent: event-processing.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary  %}}{{%/ssummary%}}

@@ -3,6 +3,7 @@ type: post110
 title:  Administrators Guide
 categories: XAP110ADM
 weight: 300
+canonical: auto
 ---
 
 

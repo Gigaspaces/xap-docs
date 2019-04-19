@@ -4,6 +4,7 @@ title:  Multicast Configuration
 categories: XAP123ADM, PRM
 parent: network.html
 weight: 200
+canonical: auto
 ---
 
  

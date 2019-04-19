@@ -4,6 +4,7 @@ title:  Explain Plan
 categories: XAP120
 parent: querying-the-space.html
 weight: 900
+canonical: auto
 ---
 
 {{%warning%}}

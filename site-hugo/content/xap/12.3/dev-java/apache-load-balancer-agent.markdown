@@ -4,6 +4,7 @@ title:  Apache Load Balancer Agent
 categories: XAP123, PRM
 parent: web-application-overview.html
 weight: 400
+canonical: auto
 ---
 
 

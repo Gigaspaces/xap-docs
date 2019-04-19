@@ -4,6 +4,7 @@ title:  Logging
 categories: XAP97NET
 parent: configuration.html
 weight: 600
+canonical: auto
 ---
 
 {{%ssummary%}} {{%/ssummary%}}

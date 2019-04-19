@@ -4,6 +4,7 @@ title:  Product structure
 categories: XAP101NET
 parent: installation-overview.html
 weight: 300
+canonical: auto
 ---
 
 The default product location is **C:\GigaSpaces\XAP.NET \{Version\} \{Platform\}** (For example: C:\GigaSpaces\XAP.NET 10.0.0 x64). This convention supports side-by-side installation of different versions and platforms (x86, x64) of XAP.NET.

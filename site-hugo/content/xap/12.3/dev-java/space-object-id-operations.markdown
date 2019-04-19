@@ -4,6 +4,7 @@ title:  Space Object ID
 categories: XAP123, OSS
 parent: modeling-your-data.html
 weight: 100
+canonical: auto
 ---
 
 

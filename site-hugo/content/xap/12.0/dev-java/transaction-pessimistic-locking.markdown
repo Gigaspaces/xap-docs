@@ -4,6 +4,7 @@ title:  Pessimistic Locking
 categories: XAP120
 parent: transaction-overview.html
 weight: 500
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

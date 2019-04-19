@@ -4,6 +4,7 @@ title:  Metadata
 categories: XAP120
 parent: task-execution-overview.html
 weight: 400
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

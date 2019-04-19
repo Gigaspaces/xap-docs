@@ -4,6 +4,7 @@ title:  Archive Handler
 categories: XAP110
 parent: cassandra.html
 weight: 200
+canonical: auto
 ---
 
 

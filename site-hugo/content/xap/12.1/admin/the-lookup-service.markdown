@@ -4,6 +4,7 @@ title:  The Lookup Service
 categories: XAP121ADM
 parent: runtime-configuration.html
 weight: 300
+canonical: auto
 ---
 
 {{%  ssummary  %}} {{%  /ssummary %}}

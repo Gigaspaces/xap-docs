@@ -4,6 +4,7 @@ title:  Data
 categories: XAP122SEC, PRM
 parent: securing-xap-components.html
 weight: 200
+canonical: auto
 ---
 
 

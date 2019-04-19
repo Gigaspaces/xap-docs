@@ -4,6 +4,7 @@ title:  Cassandra Integration
 categories: XAP97
 parent: big-data.html
 weight: 200
+canonical: auto
 ---
 
 The [Apache Cassandra Project ](http://cassandra.apache.org) is a scalable multi-master database with no single points of failure. The Apache Cassandra Project develops a highly scalable second-generation distributed database, bringing together Dynamo's fully distributed design and Bigtable's ColumnFamily-based data model.

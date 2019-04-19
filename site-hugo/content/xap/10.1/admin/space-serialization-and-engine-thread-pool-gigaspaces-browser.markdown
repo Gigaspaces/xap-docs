@@ -4,6 +4,7 @@ title:  Serialization and Thread Pool
 categories: XAP101ADM
 parent: working-with-spaces-gigaspaces-browser.html
 weight: 400
+canonical: auto
 ---
 
 

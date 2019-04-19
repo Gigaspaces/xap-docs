@@ -4,6 +4,7 @@ title:  Data Grid View
 categories: XAP100ADM
 parent: web-management-console.html
 weight: 600
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

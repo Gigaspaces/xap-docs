@@ -4,6 +4,7 @@ title:  Off Heap - MapDB
 categories: XAP120ADM, ENT
 parent: memory-management-overview.html
 weight: 400
+canonical: auto
 ---
 
 # XAP Off-Heap Storage

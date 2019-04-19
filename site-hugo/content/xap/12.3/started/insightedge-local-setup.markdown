@@ -4,6 +4,7 @@ title:  Local Machine Setup
 categories: XAP123GS, OSS
 parent: insightedge-basics.html
 weight: 100
+canonical: auto
 ---
 
 This section explains how to start an InsightEdge environment on a local machine.

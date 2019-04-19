@@ -4,6 +4,7 @@ title:  Type Discovery
 categories: XAP97NET
 parent: modeling-your-data.html
 weight: 800
+canonical: auto
 ---
 {{% ssummary %}} {{% /ssummary %}}
 

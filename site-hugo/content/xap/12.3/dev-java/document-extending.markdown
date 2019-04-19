@@ -4,6 +4,7 @@ title:  Extended Document
 categories: XAP123, OSS
 parent: document-overview.html
 weight: 200
+canonical: auto
 ---
 
 

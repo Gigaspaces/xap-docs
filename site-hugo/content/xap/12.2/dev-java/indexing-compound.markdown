@@ -4,6 +4,7 @@ title:  Compound Index
 categories: XAP122, OSS
 parent: indexing-overview.html
 weight: 400
+canonical: auto
 ---
 
 

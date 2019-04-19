@@ -4,6 +4,7 @@ title:  Admin API
 categories: XAP120, PRM
 parent: none
 weight: 1900
+canonical: auto
 ---
 
 

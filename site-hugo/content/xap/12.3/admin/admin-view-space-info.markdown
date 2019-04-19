@@ -3,6 +3,7 @@ type: post123
 title:  Viewing Space Configuration Information
 categories: XAP123ADM,PRM
 weight: 300
+canonical: auto
 parent: admin-spaces-pu.html
 ---
  

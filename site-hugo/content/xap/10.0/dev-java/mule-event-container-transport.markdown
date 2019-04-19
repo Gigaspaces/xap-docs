@@ -4,6 +4,7 @@ title:  Event Container Transport
 categories: XAP100
 parent: mule-esb.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary%}}  {{% /ssummary %}}

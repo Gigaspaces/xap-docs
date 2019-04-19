@@ -4,6 +4,7 @@ title:  Transactions
 categories: XAP122, OSS
 parent: none
 weight: 1000
+canonical: auto
 ---
 
 

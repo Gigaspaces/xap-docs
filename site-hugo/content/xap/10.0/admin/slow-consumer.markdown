@@ -4,6 +4,7 @@ title:  Slow Consumer
 categories: XAP100ADM
 parent:  tuning-gigaspaces-performance-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

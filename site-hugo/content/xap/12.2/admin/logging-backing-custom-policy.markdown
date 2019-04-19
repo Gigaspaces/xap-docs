@@ -4,6 +4,7 @@ title:  Backing Up Files With a Custom Policy
 categories: XAP122ADM, OSS
 parent: logging-overview.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

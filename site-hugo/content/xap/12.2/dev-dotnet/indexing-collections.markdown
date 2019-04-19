@@ -4,6 +4,7 @@ title:  Collection Index
 categories: XAP122NET, PRM
 parent: indexing-overview.html
 weight: 300
+canonical: auto
 ---
 
 An index can be defined on a Collection property (such as List). Setting such an index means that each of the Collection's items is indexed.

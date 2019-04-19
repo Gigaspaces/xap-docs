@@ -3,6 +3,7 @@ type: post123
 title: Generating Dump Files
 categories: XAP123ADM,PRM
 weight: 700
+canonical: auto
 parent: admin-service-grid.html
 ---
 

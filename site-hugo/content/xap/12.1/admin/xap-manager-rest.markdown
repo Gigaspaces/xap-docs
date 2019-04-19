@@ -4,6 +4,7 @@ title:  Manager API
 categories: XAP121ADM, PRM
 parent: none
 weight: 250
+canonical: auto
 ---
  
 The [XAP Manager](xap-manager.html) provides a RESTful API for managing XAP environments.

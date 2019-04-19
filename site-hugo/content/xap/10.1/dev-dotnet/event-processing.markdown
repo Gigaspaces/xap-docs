@@ -4,6 +4,7 @@ title:  Event Processing
 categories: XAP101NET
 parent: none
 weight: 1200
+canonical: auto
 ---
 
 

@@ -3,6 +3,7 @@ type: post102
 title:  Lease Time
 categories: XAP102
 weight: 1000
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

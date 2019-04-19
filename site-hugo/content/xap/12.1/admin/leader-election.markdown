@@ -4,6 +4,7 @@ title:  Leader Election
 categories: XAP121ADM, PRM
 parent: data-grid-clustering.html
 weight: 700
+canonical: auto
 ---
 
 

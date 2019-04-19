@@ -4,6 +4,7 @@ title:  JVM Configuration
 categories: XAP102NET
 parent: administrators-guide.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

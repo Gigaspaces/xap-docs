@@ -4,6 +4,7 @@ title:  Class Metadata
 categories: XAP110NET
 parent: pono-xml-metadata-overview.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

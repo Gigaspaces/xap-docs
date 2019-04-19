@@ -4,6 +4,7 @@ title:  Property Storage Type
 categories: XAP122NET, PRM
 parent: modeling-your-data.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary   %}} {{% /ssummary %}}

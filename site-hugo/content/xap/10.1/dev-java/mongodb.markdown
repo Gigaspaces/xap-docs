@@ -4,6 +4,7 @@ title:  MongoDB Integration
 categories: XAP101
 parent: big-data.html
 weight: 300
+canonical: auto
 ---
 
 

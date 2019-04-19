@@ -4,6 +4,7 @@ title:  Configuration Properties
 categories: XAP110
 parent: elastic-processing-unit-overview.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

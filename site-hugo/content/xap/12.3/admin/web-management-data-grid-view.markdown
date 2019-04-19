@@ -4,6 +4,7 @@ title:  Investigating the Space
 categories: XAP123ADM,PRM
 parent: web-management-console.html
 weight: 530
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Communication Filter
 categories: XAP121, ENT
 parent: multi-site-replication-overview.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

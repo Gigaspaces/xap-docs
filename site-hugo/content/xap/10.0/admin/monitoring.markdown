@@ -4,6 +4,7 @@ title:  Monitoring
 categories: XAP100ADM
 parent: none
 weight: 900
+canonical: auto
 ---
 
  In this guide you will find information on how to monitor XAP and your deployed application.

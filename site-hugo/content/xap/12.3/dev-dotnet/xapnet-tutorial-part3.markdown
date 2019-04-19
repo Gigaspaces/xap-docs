@@ -4,6 +4,7 @@ title:  Distributed Processing
 categories: XAP123NET, PRM
 parent: xapnet-basics.html
 weight: 400
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Metrics
 categories: XAP121ADM
 parent: none
 weight: 950
+canonical: auto
 ---
 
 

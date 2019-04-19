@@ -4,6 +4,7 @@ title: Web Notebook
 categories: XAP122GS, OSS
 parent: insightedge-basics.html
 weight: 200
+canonical: auto
 ---
 
 This section describes how to use the interactive Apache Zeppelin Web Notebook.

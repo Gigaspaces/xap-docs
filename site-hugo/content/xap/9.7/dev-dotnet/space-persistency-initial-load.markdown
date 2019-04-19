@@ -4,6 +4,7 @@ title:  Initial Load
 categories: XAP97NET
 parent: space-persistency-overview.html
 weight: 500
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  XAP in 5 Minutes
 categories: XAP122GS, OSS
 parent: xap-basics.html
 weight: 400
+canonical: auto
 ---
 
 This tutorial explains how to deploy and use a XAP [Data Grid](../overview/the-in-memory-data-grid.html) from a Java client application.

@@ -3,6 +3,7 @@ type: post123
 title:  Viewing Network Details
 categories: XAP123ADM,PRM
 weight: 1200
+canonical: auto
 parent: admin-spaces-pu.html
 ---
  

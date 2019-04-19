@@ -3,6 +3,7 @@ type: post122
 title:  Space Mode Context Loader
 categories: XAP122, OSS
 weight: 900
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

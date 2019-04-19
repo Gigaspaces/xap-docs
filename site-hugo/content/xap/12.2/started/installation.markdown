@@ -4,6 +4,7 @@ title:  Installation
 categories: XAP122GS
 parent: none
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

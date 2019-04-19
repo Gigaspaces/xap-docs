@@ -4,6 +4,7 @@ title:  Resource Sharing
 categories: XAP123PROD
 parent: none
 weight: 500
+canonical: auto
 ---
 
 # Grid Management Service Infrastructure

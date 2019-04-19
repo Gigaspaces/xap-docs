@@ -3,6 +3,7 @@ type: post123
 title: Deploying a Spark-Based Application
 categories: XAP123ADM,PRM
 weight: 300
+canonical: auto
 parent: admin-insightedge.html
 ---
  

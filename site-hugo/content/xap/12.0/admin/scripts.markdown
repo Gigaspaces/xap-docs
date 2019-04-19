@@ -4,6 +4,7 @@ title:  Scripts
 categories: XAP120ADM, PRM
 parent: administration-tools.html
 weight: 50
+canonical: auto
 ---
 
 {{% ssummary page%}}{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Custom Eviction Policy
 categories: XAP123, OSS
 parent: lru-cache-policy.html
 weight: 300
+canonical: auto
 ---
 
 

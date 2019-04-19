@@ -3,6 +3,7 @@ type: post122
 title:  Security
 categories: XAP122SEC, OSS
 weight: 1250
+canonical: auto
 ---
 
 This section provides an understanding of GigaSpaces Security features, where they fit in the GigaSpaces architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements. XAP Security provides comprehensive support for securing your data, services, or both. GigaSpaces provides a set of authorities granting privileged access to data, and for performing operations on services.

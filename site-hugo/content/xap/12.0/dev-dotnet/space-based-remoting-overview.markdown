@@ -4,6 +4,7 @@ title:  Space Based Remoting
 categories: XAP120NET, PRM
 parent: none
 weight: 1300
+canonical: auto
 ---
 
 

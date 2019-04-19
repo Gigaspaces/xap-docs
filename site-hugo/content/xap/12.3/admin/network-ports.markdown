@@ -4,6 +4,7 @@ title:  Port Usage Control
 categories: XAP123ADM, OSS
 parent: network.html
 weight: 700
+canonical: auto
 ---
 
 

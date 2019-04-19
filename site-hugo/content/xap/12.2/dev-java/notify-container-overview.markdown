@@ -4,6 +4,7 @@ title:  Notify Container
 categories: XAP122, OSS
 parent: event-processing.html
 weight: 200
+canonical: auto
 ---
 
 

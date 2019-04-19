@@ -4,6 +4,7 @@ title:  Processing Unit
 categories: XAP123, OSS
 parent: mule-esb.html
 weight: 200
+canonical: auto
 ---
 
 

@@ -3,6 +3,7 @@ type: post110
 title:  Interoperability
 categories: XAP110NET
 weight: 300
+canonical: auto
 parent: document-overview.html
 ---
 

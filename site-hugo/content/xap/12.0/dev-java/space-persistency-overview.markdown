@@ -4,6 +4,7 @@ title:  Space Persistency
 categories: XAP120
 parent: none
 weight: 1100
+canonical: auto
 ---
 
 

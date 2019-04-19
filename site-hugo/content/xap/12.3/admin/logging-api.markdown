@@ -4,6 +4,7 @@ title:  Logging API
 categories: XAP123ADM, PRM
 parent: logging-overview.html
 weight: 350
+canonical: auto
 ---
 
  

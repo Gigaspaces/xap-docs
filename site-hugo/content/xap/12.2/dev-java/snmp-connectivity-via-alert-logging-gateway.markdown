@@ -4,6 +4,7 @@ title:  SNMP Alerts
 categories: XAP122, PRM
 parent: administration-and-monitoring-overview.html
 weight: 400
+canonical: auto
 ---
 
 

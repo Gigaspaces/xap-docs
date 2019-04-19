@@ -4,6 +4,7 @@ title:  Platform Interoperability
 categories: XAP100
 parent: none
 weight: 950
+canonical: auto
 ---
 
 

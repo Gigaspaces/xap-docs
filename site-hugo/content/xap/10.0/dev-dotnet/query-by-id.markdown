@@ -4,6 +4,7 @@ title:  ID Queries
 categories: XAP100NET
 parent: querying-the-space.html
 weight: 100
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

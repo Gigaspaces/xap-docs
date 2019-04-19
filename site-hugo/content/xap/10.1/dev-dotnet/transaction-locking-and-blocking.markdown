@@ -4,6 +4,7 @@ title:  Locking and Blocking
 categories: XAP101NET
 parent: transaction-overview.html
 weight: 200
+canonical: auto
 ---
 
 

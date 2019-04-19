@@ -4,6 +4,7 @@ title:  Deployment Properties
 categories: XAP100
 parent: deploying-and-running-overview.html
 weight: 400
+canonical: auto
 ---
 
  {{% ssummary   %}} {{% /ssummary %}}

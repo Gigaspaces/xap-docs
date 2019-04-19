@@ -4,6 +4,7 @@ title:  Synchronous Replication
 categories: XAP123ADM, OSS
 parent: replication.html
 weight: 200
+canonical: auto
 ---
 
  

@@ -3,6 +3,7 @@ type: post123
 title:  Lease Time
 categories: XAP123, OSS
 weight: 1000
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

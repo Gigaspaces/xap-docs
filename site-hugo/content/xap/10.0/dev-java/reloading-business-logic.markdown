@@ -4,6 +4,7 @@ title:  Reloading Business Logic
 categories: XAP100
 parent: the-processing-unit-overview.html
 weight: 350
+canonical: auto
 ---
 
 

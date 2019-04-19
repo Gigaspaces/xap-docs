@@ -4,6 +4,7 @@ title:  SqlQuery
 categories: XAP101NET
 parent: querying-the-space.html
 weight: 500
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

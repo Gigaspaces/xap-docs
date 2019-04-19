@@ -4,6 +4,7 @@ title:  JPA Entity Id
 categories: XAP120
 parent: jpa-api-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

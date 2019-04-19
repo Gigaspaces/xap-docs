@@ -4,6 +4,7 @@ title:  Multiple Network-Cards
 categories: XAP120ADM
 parent: network.html
 weight: 500
+canonical: auto
 ---
 
 

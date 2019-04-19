@@ -4,6 +4,7 @@ title:  LINQ
 categories: XAP121NET, PRM
 parent: querying-the-space.html
 weight: 800
+canonical: auto
 ---
 
 

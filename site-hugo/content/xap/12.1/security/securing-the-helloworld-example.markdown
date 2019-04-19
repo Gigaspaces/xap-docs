@@ -4,6 +4,7 @@ title:  HelloWorld example
 categories: XAP121SEC, PRM
 parent: none
 weight: 1100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

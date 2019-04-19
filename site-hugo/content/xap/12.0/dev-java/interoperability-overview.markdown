@@ -4,6 +4,7 @@ title:  Platform Interoperability
 categories: XAP120
 parent: none
 weight: 2500
+canonical: auto
 ---
 
 

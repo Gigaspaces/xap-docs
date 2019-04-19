@@ -4,6 +4,7 @@ title:  LDAP Authentication
 categories: XAP101SEC
 parent: spring-security-bridge.html
 weight: 400
+canonical: auto
 ---
 
 

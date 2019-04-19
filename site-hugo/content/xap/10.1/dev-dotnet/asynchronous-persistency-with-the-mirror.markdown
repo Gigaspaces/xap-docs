@@ -4,6 +4,7 @@ title:  Asynchronous Persistency - Write Behind
 categories: XAP101NET
 parent: space-persistency-overview.html
 weight: 600
+canonical: auto
 ---
 
 {{% ssummary  %}}  {{% /ssummary %}}

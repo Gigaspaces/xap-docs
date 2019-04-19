@@ -4,6 +4,7 @@ title:  Gateway Components
 categories: XAP122, ENT
 parent: multi-site-replication-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

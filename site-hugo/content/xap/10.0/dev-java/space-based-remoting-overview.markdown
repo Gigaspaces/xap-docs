@@ -4,6 +4,7 @@ title:  Space Based Remoting
 categories: XAP100
 parent: programmers-guide.html
 weight: 1300
+canonical: auto
 ---
 
 

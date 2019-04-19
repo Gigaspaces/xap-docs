@@ -4,6 +4,7 @@ title:  Directory Structure
 categories: XAP100
 parent: the-processing-unit-overview.html
 weight: 100
+canonical: auto
 ---
 
 

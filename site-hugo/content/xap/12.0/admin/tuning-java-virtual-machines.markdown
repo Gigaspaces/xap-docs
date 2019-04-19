@@ -4,6 +4,7 @@ title:  Java Virtual Machines
 categories: XAP120ADM
 parent: tuning.html
 weight: 800
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

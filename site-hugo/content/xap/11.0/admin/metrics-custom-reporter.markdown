@@ -4,6 +4,7 @@ title:  Custom Reporter
 categories: XAP110ADM
 parent: metrics-overview.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

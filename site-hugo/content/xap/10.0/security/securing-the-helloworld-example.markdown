@@ -4,6 +4,7 @@ title:  HelloWorld example
 categories: XAP100SEC
 parent: none
 weight: 1100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Customizing the Configuration Options
 categories: XAP123ADM,PRM
 parent: web-management-console.html
 weight: 100
+canonical: auto
 ---
 
 
