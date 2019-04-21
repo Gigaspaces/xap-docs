@@ -350,5 +350,46 @@
 ]]></pre>
         <h1>Limitations</h1>
         <p>Hot deploy&#160;of policy changes/updates is not supported. The Processing Unit must be undeployed and then redeployed.</p>
+        <h1>Monitoring</h1>
+        <p>You can use the following metrics to monitor how AnalyticsXtreme is functioning.</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>evicted-entries</td>
+                    <td>Total number of data entries evicted from the Space.</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>copied-entries</td>
+                    <td>Total number of data entries copied to the batch layer (external data storage).</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>\{type-name\}\_evicted-entries</td>
+                    <td>Total number of type_name data entries evicted from the Space.</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>\{type-name\}\_copied-entries</td>
+                    <td>Total number of type_name entries copied to the batch layer.</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>\{type-name\}\_confirmed-feed-timestamp</td>
+                    <td>Last confirmed timestamp of when data entries of type_name were copied to the batch layer.</td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
