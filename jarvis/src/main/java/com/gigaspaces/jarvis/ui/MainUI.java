@@ -14,7 +14,6 @@ import com.gigaspaces.jarvis.model.MenuTree;
 import com.gigaspaces.jarvis.model.Page;
 import java.io.IOException;
 import java.net.URI;
-import java.util.Collection;
 import java.awt.Font;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -27,7 +26,6 @@ import javax.swing.TransferHandler;
 import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 /**
@@ -476,12 +474,7 @@ public class MainUI extends javax.swing.JFrame {
         root.removeAllChildren();
 
         ContentSection section = (ContentSection)versionComboBox.getSelectedItem();
-        try {
-            Collection<Page> pages = section.load(config);
-            pages.forEach((page) -> appendPage(treeModel, page, root));
-        } catch (IOException ex) {
-            logger.warning(ex.toString());
-        }
+        section.loadRootPages().forEach((page) -> appendPage(treeModel, page, root));
 
         treeModel.reload();
         //pagesTree.updateUI();

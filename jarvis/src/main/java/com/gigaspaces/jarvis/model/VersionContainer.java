@@ -17,8 +17,8 @@ public class VersionContainer extends ContentSection implements Comparable<Versi
     private final Double numericVersion;
     private final Collection<File> files = new ArrayList<>();
     
-    public VersionContainer(File path) {
-        super(path);
+    public VersionContainer(File path, Config config) {
+        super(path, config);
         this.version = path.getName().replace(".", "");
         this.numericVersion = Double.valueOf(path.getName());
         for (File contentDir : path.listFiles()) {
@@ -47,11 +47,11 @@ public class VersionContainer extends ContentSection implements Comparable<Versi
     }
     
     @Override
-    public TreeSet<Page> load(Config config) throws IOException {
+    public TreeSet<Page> loadRootPages() {
         logger.debug("processVersion(" + version + ")");
         Map<String, Page> rootsMap = new HashMap<>();
         for (File folder : files) {
-            final Collection<Page> folderRoot = loadPages(config, folder, true);
+            final Collection<Page> folderRoot = loadRootPages(folder, true);
             if (folderRoot.isEmpty()) {
                 logger.warning("No root for " + folder.getName());
             } else if (folderRoot.size() != 1) {
@@ -82,8 +82,8 @@ public class VersionContainer extends ContentSection implements Comparable<Versi
     }
 
     @Override
-    public void generateSidenav(Config config) throws IOException {
-        generateSidenav(config, "xap" + getVersion(), load(config));
+    public void generateSidenav() throws IOException {
+        generateSidenav("xap" + getVersion(), loadRootPages());
     }
     
     private void relocate(Map<String, Page> rootsMap, String sourceKey, String targetKey) {
