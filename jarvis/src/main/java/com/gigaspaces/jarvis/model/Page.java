@@ -226,7 +226,7 @@ public class Page implements Comparable<Page> {
     }
 
     public void generateCanonicalUrl(AtomicInteger counter) {
-        children.forEach(child -> generateCanonicalUrl(counter));
+        children.forEach(child -> child.generateCanonicalUrl(counter));
         String canonicalUrl = getCanonicalUrl();
         if (canonicalUrl != null) {
             counter.incrementAndGet();
@@ -244,7 +244,7 @@ public class Page implements Comparable<Page> {
     }
 
     public void generateAutoCanonicalUrl(AtomicInteger counter) {
-        children.forEach(child -> generateAutoCanonicalUrl(counter));
+        children.forEach(child -> child.generateAutoCanonicalUrl(counter));
         String canonicalUrl = getCanonicalUrl();
         if (canonicalUrl == null) {
             Path canonical = Paths.get("site-flare", "Content",
