@@ -19,7 +19,7 @@ This page describes the steps needed to secure the transport layer using SSL and
 
 # Scenario
 
-On my local computer, I am running XAP. On a remote computer, I have a client that will connect to the XAP server and writes an object to the space. In order to protect the communication with SSL, we will enable the `SSLFilterFactory` and supply the `keystore`. We will then deploy a space and run a client. This example builds upon the [documentation]({{%latestsecurl%}}/securing-the-transport-layer-using-ssl.html)
+On my local computer, I am running XAP. On a remote computer, I have a client that will connect to the XAP server and writes an object to the space. In order to protect the communication with SSL, we will enable the `SSLFilterFactory` and supply the `keystore`. We will then deploy a space and run a client. This example builds upon the [documentation](https://docs.gigaspaces.com/latest/security/securing-the-transport-layer-using-ssl.html)
  
 |    | XAP Server (local computer, running Windows)|
 |------|------|
@@ -92,11 +92,11 @@ set EXT_JAVA_OPTIONS=-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filter
 
 Start XAP by running gs-agent
 
-Create a partitioned 2,1 space named SSLSpace. You may use the gs-ui or web-ui to do this. See ({{%latestjavatuturl%}}/java-tutorial-part2.html) for more information.
+Create a partitioned 2,1 space named SSLSpace. You may use the gs-ui or web-ui to do this. 
 
 # Client setup
 
-Compile the example SSLClient.java program provided in the [documentation]({{%latestsecurl%}}/securing-the-transport-layer-using-ssl.html). You may need to change the Groups and Locators values as needed.
+Compile the example SSLClient.java program provided in the [documentation](https://docs.gigaspaces.com/latest/security/securing-the-transport-layer-using-ssl.html). You may need to change the Groups and Locators values as needed.
 
 Below is the bash script I used to run the client:
 

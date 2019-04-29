@@ -16,12 +16,12 @@ weight: 1100
 
 # Overview
 The following example is based on the standard [Spring Hibernate Integration tutorial](http://www.vaannila.com/spring/spring-hibernate-integration-1.html).
-In this pattern you will see how to modify an existing simple spring/hibernate application to leverage GigaSpaces as the [in-memory Data-grid](/product_overview/the-in-memory-data-grid.html) and the application server hosting both the [web application]({{%latestjavaurl%}}/web-application-support.html) and the data in-memory. The Hibernate persistency settings will still be leveraged by [GigaSpaces Hibernate External Data Source]({{%latestjavaurl%}}/hibernate-space-persistency.html) storing the data in-memory into a database in an [asynchronous manner]({{%latestjavaurl%}}/asynchronous-persistency-with-the-mirror.html).
+In this pattern you will see how to modify an existing simple spring/hibernate application to leverage GigaSpaces as the [in-memory Data-grid](/product_overview/the-in-memory-data-grid.html) and the application server hosting both the [web application](https://docs.gigaspaces.com/latest/dev-java/web-application-support.html) and the data in-memory. The Hibernate persistency settings will still be leveraged by [GigaSpaces Hibernate External Data Source](https://docs.gigaspaces.com/latest/dev-java/hibernate-space-persistency.html) storing the data in-memory into a database in an [asynchronous manner](https://docs.gigaspaces.com/latest/dev-java/asynchronous-persistency-with-the-mirror.html).
 
 Moving Spring/Hibernate application to GigaSpaces involves the following basic steps:
 
 1. Spring bean Configuration file changes
-2. [POJO Class]({{%latestjavaurl%}}/pojo-support.html) changes
+2. [POJO Class](https://docs.gigaspaces.com/latest/dev-java/pojo-support.html) changes
 3. DAO implementation changes
 4. Deploying the data-grid and the Spring based web application into GigaSpaces
 
@@ -446,7 +446,7 @@ public interface UserDAO {
 ```
 
 # The DAO Implementation
-The DAO implementation should be modified to use the [GigaSpace interface]({{%latestjavaurl%}}/the-gigaspace-interface-overview.html) to access the data grid instead of using the `HibernateTemplate` that is accessing the database. The `GigaSpace` interface similar methods to the `HibernateTemplate` to write and [Query]({{%latestjavaurl%}}/query-sql.html) for objects.
+The DAO implementation should be modified to use the [GigaSpace interface](https://docs.gigaspaces.com/latest/dev-java/the-gigaspace-interface-overview.html) to access the data grid instead of using the `HibernateTemplate` that is accessing the database. The `GigaSpace` interface similar methods to the `HibernateTemplate` to write and [Query](https://docs.gigaspaces.com/latest/dev-java/query-sql.html) for objects.
 
 {{%tabs%}}
 
@@ -521,7 +521,7 @@ public class UserDAOSpaceImpl implements UserDAO {
 {{% /tabs %}}
 
 # Deploying the Data-Grid and the Application
-To deploy the Data-Grid and the web Application into the [GigaSpaces runtime environment]({{%latestadmurl%}}/the-runtime-environment.html) perform the following:
+To deploy the Data-Grid and the web Application into the [GigaSpaces runtime environment](https://docs.gigaspaces.com/latest/admin/the-runtime-environment.html) perform the following:
 
 - Download the [3rd party libraries](/attachment_files/sbp/3rd_party_libraries.zip) package, and extract it into the `\gigaspaces-xap\lib\optional\pu-common` folder.
 - Download the [application.war](/attachment_files/sbp/application.war) , [myDataGrid.jar](/attachment_files/sbp/myDataGrid.jar) and the [myMirror.jar](/attachment_files/sbp/myMirror.jar).

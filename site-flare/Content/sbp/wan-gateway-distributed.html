@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Distributed WAN Gateway</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th align="center">Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Shay  Hassidim</td>
+<td>12.0.1</td>
+<td>March 2017</td>
+<td></td>
+<td align="center"><a href="/download_files/sbp/wan-replication_multi_gw.zip">Example</a></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>By default, a single WAN / LAN gateway instance used to perform replication from a local space cluster into remote space cluster.
+For most systems, this will provide sufficient throughput to address the activity a single clustered space generating.
+There are cases with large space clusters or with systems that produce large volume of activity that require a distributed (multi-instance) gateway setup.
+The solution described here allows each partition (primary and backup instances) to replicate its activity via a dedicated gateway.
+This forms an architecture where each partition using a separate gateway instance that may run on a different machine, utilizing its full CPU and network bandwidth.
+This approach reducing the potential for redolog accumulation generating a lag between the source space and target space data as a result of a single gateway.</p>
+
+<h1><a name="architecture">&#160;</a>Architecture</h1>
+
+<p>With the example below we will run a source space (New-York) with 2 partitions and a target space (London) with 3 partitions. A gateway running within New-York site will have 2 delegator instances , where the London site will run as well 2 gateway sink instances interacting with the London space cluster.</p>
+
+<p><img src="/attachment_files/sbp/wan_gateway/distributed-wan-gateway-1.png" alt="image" /></p>
+
+<h1><a name="example">&#160;</a>Example</h1>
+
+<p><span class="tc-bold">1.</span> Download the <a href="/download_files/sbp/wan-replication_multi_gw.zip">example</a> and extract its content into an empty folder.<br/>
+It includes two folders: <span class="tc-bold">deploy</span> and <span class="tc-bold">scripts</span>.<br/>
+- Deploy - This includes the PU folders for space and gateway<br/>
+- Scripts – This includes all the start agents and deploy scripts</p>
+
+<p><span class="tc-bold">2.</span> Move the content of the deploy folder into <code>&lt;GIGASPACES_HOME&gt;\deploy</code> folder.<br/>
+<span class="tc-bold">3.</span> Move into the scripts folder and edit the <code>setExampleEnv.bat/sh</code> script to include correct values for <code>XAP_NIC_ADDRESS</code> as the machine IP and <code>GS_HOME</code> as the XAP root folder location.</p>
+
+<p>The scripts folder contains the necessary scripts to start the Grid Service Agent for each site, and the deployAll.bat/sh script  which will be used to automate the deployment of all gateways and space instances. This will allow you to run the entire setup on a single machine.</p>
+
+<p><span class="tc-bold">4.</span> Run <code>startAgent-GB.bat/sh</code> script to start GB site agents.<br/>
+<span class="tc-bold">5.</span> Run <code>startAgent-US.bat/sh</code> script to start US site agents.<br/>
+<span class="tc-bold">6.</span> Run <code>deployAll.bat/sh</code> script to deploy the required processing units.</p>
+
+<h2><a name="viewing-the-space-clusters-and-gateways">&#160;</a>Viewing the Space Clusters and Gateways</h2>
+
+<p>Once US and GB space clusters and gateways deployed you should see the following via the Web UI (make sure you use US,GB as the lookup groups when you login into the Web UI):
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/wan_gateway/distributed-wan-gateway-2.png" alt="image2" /></p>
+</div>
+
+<p><br/></p>
+
+<p><img src="/attachment_files/sbp/wan_gateway/distributed-wan-gateway-3.png" alt="image3" /></p>
+
+<p><br/></p>
+
+<p><img src="/attachment_files/sbp/wan_gateway/distributed-wan-gateway-4.png" alt="image4" /></p>
+
+<h2><a name="us-space-pu-xml-configuration">&#160;</a>US Space pu.xml configuration</h2>
+
+<p>The US space pu.xml should include the <code>${clusterInfo.instanceId}</code> as demonstrated below:</p>
+
+<pre><code class="language-xml">&lt;os-gateway:targets id="gatewayTargets" local-gateway-name="US${clusterInfo.instanceId}"&gt;
+    &lt;os-gateway:target name="GB${clusterInfo.instanceId}" /&gt;
+&lt;/os-gateway:targets&gt;
+</code></pre>
+
+<h2><a name="us-gateway-pu-xml-configuration">&#160;</a>US Gateway pu.xml configuration</h2>
+
+<p>The US Gateway pu.xml should include the <code>${clusterInfo.instanceId}</code> as demonstrated below:</p>
+
+<pre><code class="language-xml">&lt;os-gateway:delegator id="delegator" local-gateway-name="US${clusterInfo.instanceId}" gateway-lookups="gatewayLookups"&gt;
+        &lt;os-gateway:delegation target="GB${clusterInfo.instanceId}" /&gt;
+    &lt;/os-gateway:delegator&gt;
+</code></pre>
+
+<h2><a name="gb-gateway-pu-xml-configuration">&#160;</a>GB Gateway pu.xml configuration</h2>
+
+<p>The GB Gateway pu.xml should include the <code>${clusterInfo.instanceId}</code> as demonstrated below:</p>
+
+<pre><code class="language-xml">&lt;os-gateway:sink id="sink" local-gateway-name="GB${clusterInfo.instanceId}" gateway-lookups="gatewayLookups"
+                     local-space-url="jini://*/*/spaceGB"&gt;
+     &lt;os-gateway:sources&gt;
+            &lt;os-gateway:source name="US${clusterInfo.instanceId}"/&gt;
+     &lt;/os-gateway:sources&gt;
+&lt;/os-gateway:sink&gt;
+</code></pre>
+
+<h1><a name="limitations">&#160;</a>Limitations</h1>
+
+<ul>
+<li>Distributed transactions are not supported. Local transactions supported.
+<br /></li>
+</ul>
+
+</body>
+</html>

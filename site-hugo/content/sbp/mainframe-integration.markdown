@@ -86,7 +86,7 @@ Summary: the mirror service serves as a coordinator that provides not only acces
 
 The ability to deploy web services acting as gateways to the data/business logic hosted within GigaSpaces is important.  This functionality allows every new component or legacy component to interact with the system. The GigaSpaces container may run a set of web services, and can scale these dynamically.
 
-These may be the backbone of the entire system to access backend data and services. The web layer can have its own [cache]({{%latestjavaurl%}}/client-side-caching.html) running within the web application. This speeds up access to reused data by having it as part of the application memory address avoiding the need to perform remote access to the IMDG.
+These may be the backbone of the entire system to access backend data and services. The web layer can have its own [cache](https://docs.gigaspaces.com/latest/dev-java/client-side-caching.html) running within the web application. This speeds up access to reused data by having it as part of the application memory address avoiding the need to perform remote access to the IMDG.
 
 ## Multi-Tenancy
 
@@ -95,7 +95,7 @@ GigaSpaces XAP has built-in multi-tenancy support, meaning that several applicat
 
 # GigaSpaces External Data Source
 
-The GigaSpaces XAP External Data Source allows the XAP IMDG to pull data from Mainframe via a public interfaces (SQL or web services for example) through the [IMDG EDS API]({{%latestjavaurl%}}/space-data-source-api.html). Once there is a cache miss or once the IMDG is started, the IMDG accesses the Mainframe and fetch relevant data. The IMDG can push any changes done back to the Mainframe in a synchronous or asynchronous manner.
+The GigaSpaces XAP External Data Source allows the XAP IMDG to pull data from Mainframe via a public interfaces (SQL or web services for example) through the [IMDG EDS API](https://docs.gigaspaces.com/latest/dev-java/space-data-source-api.html). Once there is a cache miss or once the IMDG is started, the IMDG accesses the Mainframe and fetch relevant data. The IMDG can push any changes done back to the Mainframe in a synchronous or asynchronous manner.
 
 The following architecture leverage [VSAM JDBC API](http://www-03.ibm.com/systems/z/os/zvse/solutions/vsamaccess.html) to allow XAP IMDG to pre-load data from VSAM once the data grid is started and persist changes conducted within the IMDG items back to VSAM.
 
@@ -131,7 +131,7 @@ Connect into a known messaging broker (IBM MQ) within the existing system, consu
 
 ## Mule ESB
 
-Leverage [MF Mule integration](http://www.mulesoft.com) and [GigaSpaces Mule]({{%latestjavaurl%}}/mule-esb.html) support to have these to communicate with each other.
+Leverage [MF Mule integration](http://www.mulesoft.com) and [GigaSpaces Mule](https://docs.gigaspaces.com/latest/dev-java/mule-esb.html) support to have these to communicate with each other.
 
 ## WebMethods EntireX
 

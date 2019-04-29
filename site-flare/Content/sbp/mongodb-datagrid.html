@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>XAP.NET MongoDB Data Grid</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Shay Hassidim</td>
+<td>9.7</td>
+<td>April 2014</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>The MongoDB Data-Grid example demonstrates a common Data Grid / Caching architecture using MongoDB for persistence. It includes the following components.</p>
+
+<ul>
+<li>A Client application that perform write and read operations against a remote clustered IMDG.</li>
+<li>A Clustered IMDG with write-behind (Mirror service) with pre-fetch (initial load) enabled. The Data grid using MongoDB database.</li>
+</ul>
+
+<p><img src="/attachment_files/mongodatagrid/mongodatagrid002.jpg" alt="image.jpeg" /></p>
+
+<p>This best practice will demonstrate show to implement this with XAP.NET.</p>
+
+<h1><a name="structure">&#160;</a>Structure</h1>
+
+<p>The example contains two .Net projects:</p>
+
+<ul>
+<li><code>GigaSpaces.Examples.Datagrid.Commons</code>- Includes the entities project (<code>Person</code>) used in the example and other common functionalities.</li>
+<li><code>GigaSpaces.Examples.Datagrid.Client</code> - A client application performs write and read operations against the data grid.</li>
+</ul>
+
+<p>The example includes two additional Processing Unit folders:</p>
+
+<ul>
+<li>datagrid-mongo - Include a jar with the data grid configuration. See within the jar the <code>pu.xml</code> for MongoDB URL. <code>mongodb://localhost:27017/db</code> used by default.</li>
+<li>mirror-mongo - Include a jar with the mirror configuration. See the within the jar the <code>pu.xml</code> for MongoDB URL. <code>mongodb://localhost:27017/db</code> used by default.</li>
+</ul>
+
+<h1><a name="prerequisites">&#160;</a>Prerequisites</h1>
+
+<ul>
+<li>MongodbDB (win32-x86_64-2008plus-2.4.9) installed and running.</li>
+<li>Visual Studio 2010 with Service pack 1 or Visual Studio 2013</li>
+<li>XAP.NET 9.7 installed. Have the license key placed into <code>C:\GigaSpaces\XAP.NET 9.7.0 x64\Runtime\gslicense.xml</code>.</li>
+</ul>
+
+<h1><a name="building-the-example">&#160;</a>Building the Example</h1>
+
+<p>Step 1:
+<a href="/download_files/sbp/Datagrid-MongoDb.zip">Download the example</a> and extract it into the <code>&lt;GigaSpaces XAP .Net Root&gt;\Examples</code> (i.e. <code>C:\GigaSpaces\XAP.NET 9.7.0 x64\NET v4.0.30319\Examples</code>) folder. A new folder called <code>Datagrid-MongoDb</code> will be created.</p>
+
+<p>Step 2:
+Browse to the <code>Datagrid-MongoDb</code> folder</p>
+
+<p>Step 3:
+Run the <code>BuildAll.bat</code> script to compile the example.</p>
+
+<h1><a name="running-the-data-grid">&#160;</a>Running the Data Grid</h1>
+
+<p>Step 1:
+Run Gigaspaces Agent by running the StartAgent.bat script. This will start 3 containers.</p>
+
+<p>Step 2:
+Deploy the data grid and the Mirror service by running <code>DeployDataGrid.bat</code>. You should see this after running the <code>Gs-ui.exe</code>:</p>
+
+<p><img src="/attachment_files/mongodatagrid/mongodatagrid004.jpg" alt="image" /></p>
+
+<h1><a name="running-the-client-application">&#160;</a>Running the Client Application</h1>
+
+<p>The client application has several options:</p>
+
+<ol>
+<li><code>runWrite.bat</code> - will write 10 <code>Person</code> objects into the data grid and persist to MongoDB.</li>
+<li><code>runWriteMultiple.bat</code> - will write 100 <code>Person</code> objects (10 batches of 10 Person objects) into the data grid and persist to MongoDB.</li>
+<li><code>runRead.bat</code> - will read a <code>Person</code> object from the data grid.</li>
+<li><code>runReadMultiple.bat</code> - will read a 100 <code>Person</code> object from the data grid.</li>
+</ol>
+
+<h1><a name="opening-net-solution-with-microsoft-visual-studio">&#160;</a>Opening .NET Solution with Microsoft Visual Studio</h1>
+
+<ol>
+<li>Double-click the <code>GigaSpaces.Examples.Datagrid.sln</code> file.</li>
+<li>Choose <code>Build &gt; Build Solution</code> menu. The project files and dependencies are created and copied to the <code>release</code> directory.</li>
+</ol>
+
+<h1><a name="viewing-the-data-within-the-data-grid">&#160;</a>Viewing the data within the Data Grid</h1>
+
+<p>Run GigaSpaces UI: Go to <code>&lt;GigaSpaces Root&gt;\Bin</code> and run <code>Gs-ui.exe</code>. This will allow you to view the content of the data grid.</p>
+
+<p><img src="/attachment_files/mongodatagrid/mongodatagrid006.jpg" alt="image" />
+<br/></p>
+
+<p><img src="/attachment_files/mongodatagrid/mongodatagrid008.jpg" alt="image" /></p>
+
+<p><br/></p>
+
+<p><img src="/attachment_files/mongodatagrid/mongodatagrid010.jpg" alt="image" />
+<br/></p>
+
+<h1><a name="viewing-data-persist-into-mongodb">&#160;</a>Viewing data Persist into MongoDB</h1>
+
+<pre><code class="language-bash">\mongodb-win32-x86_64-1.8.2\bin&gt;mongo.exe
+&gt; use db
+switched to db db
+&gt; db.GigaSpaces.Examples.Datagrid.Commons.Entities.Person.count()
+50
+&gt; db.GigaSpaces.Examples.Datagrid.Commons.Entities.Person.find()
+{ "__type__" : "GigaSpaces.Examples.Datagrid.Commons.Entities.Person", "FirstName" : "Name101", "Age" : "101", "LastName" : "lastname101", "_id" : "33
+94b1f1-39d1-4c04-8c73-6f41d42c13ad" }
+{ "__type__" : "GigaSpaces.Examples.Datagrid.Commons.Entities.Person", "FirstName" : "Name102", "Age" : "102", "LastName" : "lastname102", "_id" : "d6
+a18590-ffb3-4dad-9548-009004b86353" }¦
+</code></pre>
+
+<h2><a name="setting-mongodb-url">&#160;</a>Setting MongoDB URL</h2>
+
+<p>To modify the <code>MongoDB URL</code> used with the example update the <code>pu.xml</code> within the <code>Datagrid-mongo.jar</code> and <code>mirror-mongo.jar</code> to have the right value instead the one used:</p>
+
+<pre><code class="language-xml">&lt;constructor-arg value="mongodb://localhost:27017/db" type="java.lang.String" /&gt;
+</code></pre>
+
+<h2><a name="running-data-grid-in-cache-miss-mode">&#160;</a>Running Data Grid in Cache Miss Mode</h2>
+
+<p>To run the Data Grid in Cache miss mode update the <code>pu.xml</code> within the <code>Datagrid-mongo.jar</code> to have:</p>
+
+<pre><code class="language-xml">&lt;os-core:embedded-space id="space" name="datagrid-mongo" space-data-source="mongospaceDataSource" mirror="true" schema="persistent"&gt;
+  &lt;os-core:properties&gt;
+    &lt;props&gt;
+        &lt;!-- 0 for LRU , 1 for IN CACHE --&gt;
+        &lt;prop key="space-config.engine.cache_policy"&gt;0&lt;/prop&gt;
+                    
+        &lt;prop key="space-config.engine.initial_load"&gt;0&lt;/prop&gt;
+        &lt;prop key="space-config.engine.cache_size"&gt;100000&lt;/prop&gt;
+
+        &lt;prop key="space-config.engine.memory_usage.enabled"&gt;true&lt;/prop&gt;
+        &lt;prop key="cluster-config.cache-loader.central-data-source"&gt;true&lt;/prop&gt;
+        &lt;prop key="cluster-config.mirror-service.supports-partial-update"&gt;true&lt;/prop&gt;
+        &lt;prop key="space-config.engine.memory_usage.high_watermark_percentage"&gt;90&lt;/prop&gt;
+        &lt;prop key="space-config.engine.memory_usage.write_only_block_percentage"&gt;85&lt;/prop&gt;
+        &lt;prop key="space-config.engine.memory_usage.write_only_check_percentage"&gt;76&lt;/prop&gt;
+        &lt;prop key="space-config.engine.memory_usage.low_watermark_percentage"&gt;75&lt;/prop&gt;
+        &lt;prop key="space-config.engine.memory_usage.eviction_batch_size"&gt;100&lt;/prop&gt;
+        &lt;prop key="space-config.engine.memory_usage.retry_yield_time"&gt;2000&lt;/prop&gt;
+        &lt;prop key="space-config.engine.memory_usage.retry_count"&gt;10&lt;/prop&gt;
+        &lt;prop key="space-config.engine.memory_usage.explicit-gc"&gt;false&lt;/prop&gt;
+        &lt;prop key="space-config.engine.memory_usage.gc-before-shortage"&gt;false&lt;/prop&gt;
+                       
+     &lt;/props&gt;
+  &lt;/os-core:properties&gt;
+&lt;/os-core:embedded-space&gt;
+</code></pre>
+
+<p>The following controls how Cache miss works:</p>
+
+<pre><code class="language-xml">&lt;prop key="space-config.engine.cache_size"&gt;10000&lt;/prop&gt;
+&lt;prop key="space-config.engine.initial_load"&gt;0&lt;/prop&gt;
+</code></pre>
+
+</body>
+</html>

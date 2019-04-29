@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>XAP.NET Custom Aggregators</h1>
+  
+
+<table class="tc-borderless"><tr><td style="width:60%;"><p>With many systems such as pricing systems, risk management, trading and other analytic and business intelligence applications you may need to perform an aggregation activity across data stored within the data grid when generating reports or when running some business process. Such activity can leverage data stored in memory and will be much faster than performing it with a database.</p>
+</td>
+<td style="width:40%;"><p><img src="/attachment_files/aggreg.jpg" alt="aggreg.jpg" /></p>
+</td>
+</tr></table>
+
+<p>This best practice demonstrate how to calculate Min, Max, Avg and Sum for objects stored within the space. There is no need to retrieve the entire data set from the space to the client side , iterate the result set and perform the aggregation. This would be an expensive activity as it might return a large amount of data into the client application.</p>
+
+<p>Custom Aggregators allows you to perform the entire aggregation activity at the space side avoiding any data retrieval back to the client side. Only the result of each aggregation activity performed with each partition is returned back to the client side where all the results are reduced and returned to the client application. Such aggregation activity utilizes the partitioned nature of the data-grid allowing each partition to execute the aggregation with its local data in parallel, where all the partitions intermediate results are fully aggregated at the client side using the relevant reducer implementation.</p>
+
+<h1><a name="pre-defined-aggregators">&#160;</a>Pre-defined Aggregators</h1>
+
+<p>The following pre-defined aggregators are available:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Task</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><a href="https://github.com/GigaSpaces-ProfessionalServices/dotnet-aggregators/blob/master/src/GigaSpaces.Core.Executors/Tasks/AverageTask.cs">AverageTask</a></td>
+<td align="left">An average operation to be performed on a specific partition in the space.</td>
+</tr>
+
+<tr>
+<td align="left"><a href="https://github.com/GigaSpaces-ProfessionalServices/dotnet-aggregators/blob/master/src/GigaSpaces.Core.Executors/Tasks/MaximumTask.cs">MaximumTask</a></td>
+<td align="left">A maximum aggregation operation to be performed on a specific partition in the space.</td>
+</tr>
+
+<tr>
+<td align="left"><a href="https://github.com/GigaSpaces-ProfessionalServices/dotnet-aggregators/blob/master/src/GigaSpaces.Core.Executors/Tasks/MinimumTask.cs">MininimumTask</a></td>
+<td align="left">A minimum aggregation operation to be performed on a specific partition in the space.</td>
+</tr>
+
+<tr>
+<td align="left"><a href="https://github.com/GigaSpaces-ProfessionalServices/dotnet-aggregators/blob/master/src/GigaSpaces.Core.Executors/Tasks/SumSpacePropertyTask.cs">SumSpacePropertyTask</a></td>
+<td align="left">A sum performed on a space property in a specific partition in the space.</td>
+</tr>
+
+<tr>
+<td align="left"><a href="https://github.com/GigaSpaces-ProfessionalServices/dotnet-aggregators/blob/master/src/GigaSpaces.Core.Executors/Tasks/SumSpaceObjectTask.cs">SumSpaceObjectTask</a></td>
+<td align="left">A sum performed on a space object in a specific partition in the space.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The following pre-defined distributed aggregators are available:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Task</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><a href="https://github.com/GigaSpaces-ProfessionalServices/dotnet-aggregators/blob/master/src/GigaSpaces.Core.Executors/Reducers/AverageReducer.cs">AverageReducer</a></td>
+<td align="left">An average operation to be performed on the space.</td>
+</tr>
+
+<tr>
+<td align="left"><a href="https://github.com/GigaSpaces-ProfessionalServices/dotnet-aggregators/blob/master/src/GigaSpaces.Core.Executors/Reducers/MaximumReducer.cs">MaximumReducer</a></td>
+<td align="left">A maximum aggregation operation to be performed on the space.</td>
+</tr>
+
+<tr>
+<td align="left"><a href="https://github.com/GigaSpaces-ProfessionalServices/dotnet-aggregators/blob/master/src/GigaSpaces.Core.Executors/Reducers/MinimumReducer.cs">MinimumReducer</a></td>
+<td align="left">A minimum aggregation operation to be performed on the space.</td>
+</tr>
+
+<tr>
+<td align="left"><a href="https://github.com/GigaSpaces-ProfessionalServices/dotnet-aggregators/blob/master/src/GigaSpaces.Core.Executors/Reducers/SumSpacePropertyReducer.cs">SumSpacePropertyReducer</a></td>
+<td align="left">A sum performed on a space property in the space.</td>
+</tr>
+
+<tr>
+<td align="left"><a href="https://github.com/GigaSpaces-ProfessionalServices/dotnet-aggregators/blob/master/src/GigaSpaces.Core.Executors/Reducers/SumSpaceObjectReducer.cs">SumSpaceObjectReducer</a></td>
+<td align="left">A sum performed on a space object in the space.</td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="example">&#160;</a>Example</h1>
+
+<p>Below is an example using the <code>AverageReducer</code> to find the average salary of all employees in the space.</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Application " style="padding:10px"><pre><code class="language-c#">ISpaceProxy spaceProxy = ...;
+IDistributedSpaceTask&lt;long,long&gt; averageTask = new AverageReducer&lt;Employee, int&gt;(t =&gt; t.Salary);
+var averageSalary = spaceProxy.Execute(averageTask);
+</code></pre>
+</div>
+
+<div title="  Space Class " style="padding:10px"><pre><code class="language-c#">[SpaceClass]
+public class Employee {
+    [SpaceID(AutoGenerate=false)
+    public int Id { get; set; }
+    
+    public int Salary {get;set; }
+}
+</code></pre>
+</div>
+</div>
+
+</body>
+</html>

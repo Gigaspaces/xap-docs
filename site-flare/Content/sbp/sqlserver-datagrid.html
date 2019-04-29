@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>XAP.NET SQL Server Data Grid</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Shay Hassidim</td>
+<td>9.7</td>
+<td>April 2014</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>The SQL Server Data-Grid example demonstrates a common Data Grid / Caching architecture using SQL Server for persistence and initial data load into the data grid. It includes the following components:</p>
+
+<ul>
+<li>A Client application that perform write and read operations against a remote clustered IMDG.</li>
+<li>A Clustered IMDG with write-behind (Mirror service) with pre-fetch (initial load) enabled. The Data grid using <a href="https://community.jboss.org/wiki/NHibernateForNET">nHibernate</a> to Map .Net objects to database tables and persist data into the SQL Server database.</li>
+</ul>
+
+<p><img src="/attachment_files/sqlserver/datagrid-sqlserver002.jpg" alt="image" /></p>
+
+<p>This best practice will demonstrate how to implement this with XAP.NET.</p>
+
+<h1><a name="structure">&#160;</a>Structure</h1>
+
+<p>The example includes four projects:</p>
+
+<ul>
+<li><code>GigaSpaces.Examples.Datagrid.Commons</code> - contains the entities project (Person) used in the example and other common functionalities.</li>
+<li><code>GigaSpaces.Examples.Datagrid.Mirror</code> - The mirror service (write-behind service) as a Processing Unit.</li>
+<li><code>GigaSpaces.Examples.Datagrid</code> - The Data Grid processing unit (clustered space).</li>
+<li><code>GigaSpaces.Examples.Datagrid.Client</code> - A client application performs write and read operations against the data grid.</li>
+</ul>
+
+<h1><a name="prerequisites">&#160;</a>Prerequisites</h1>
+
+<ul>
+<li>MS SQL Server 2012 installed and running.</li>
+<li>Visual Studio 2010 with Service pack 1 or Visual Studio 2013.</li>
+<li>XAP.NET 9.7 installed. Have the license key placed into <code>C:\GigaSpaces\XAP.NET 9.7.0 x64\Runtime\gslicense.xml</code>.</li>
+</ul>
+
+<h1><a name="building-the-example">&#160;</a>Building the Example</h1>
+
+<p>Step 1:
+<a href="/download_files/sbp/Datagrid-SQLServer.zip">Download the example</a> and extract it into the <code>&lt;GigaSpaces XAP .Net Root&gt;\Examples</code> folder. A new folder called <code>Datagrid-SQLServer</code> will be created.</p>
+
+<p>Step 2:
+Browse to the example directory : <code>&lt;GigaSpaces XAP .Net Root&gt;\Examples\Datagrid-SQLServer</code>.</p>
+
+<p>Step 3:
+Edit the following <code>NHibernate</code> conf files and update the <code>connection.connection_string</code> to have the right value for the Data Source (database server and instance name). Keep the Initial Catalog as <code>datagrid</code>.
+- <GigaSpaces XAP .Net Root>\Datagrid-SQLServer\config\nHibernate\CreateTablesNHibernate.cfg.xml
+- <GigaSpaces XAP .Net Root>\Datagrid-SQLServer\config\nHibernate\nHibernate.cfg.xml
+See example for the <code>connection.connection_string</code> you will need to modify:</p>
+
+<pre><code class="language-java">&lt;property name="connection.connection_string"&gt;Server=MY-SERVER;Database=datagrid;Trusted_Connection=True&lt;/property&gt;
+</code></pre>
+
+<p>Step 4: Run the <code>BuildAll.bat</code> script to compile the example. This script also copies the deployment files to the <code>&lt;GigaSpaces Root&gt;\deploy</code> folder.</p>
+
+<h1><a name="running-the-example">&#160;</a>Running the Example</h1>
+
+<p>Step 1:
+The example must be compiled before running (see Building the Example).</p>
+
+<p>Step 2:
+Create a Database Named <code>datagrid</code>:</p>
+
+<ul>
+<li>If its the first time you are running the example where the database and the <code>Person</code> table have not been created yet:</li>
+<li>Go to Microsoft Sql Server Management Studio , Right click on <code>Databases</code> and Choose <code>New Database</code>, in the Database name Enter: <code>datagrid</code> and press the <span class="tc-bold">OK</span> button.</li>
+<li>To Create the database Tables run:<br /></li>
+</ul>
+
+<pre><code class="language-java">&lt;GigaSpaces Root&gt;\Examples\Datagrid-SQLServer\tools\SqlServerCreateDBTables.bat. 
+</code></pre>
+
+<p>This will generate the <code>Person</code> table within the <code>datagrid</code> database.</p>
+
+<h1><a name="running-the-data-grid">&#160;</a>Running the Data Grid</h1>
+
+<p>You may run the data grid as single process (good for development) or in a distributed manner (production environment). Once the data grid is started it is loading its data from the Database. You may customize this by having your own <code>NHibernateExternalDataSource</code> extension. See the <code>EdsUtils</code> and the <code>C:\GigaSpaces\XAP.NET 9.7.0 x64\NET v4.0.30319\Practices\ExternalDataSource\NHibernate</code> project for details.</p>
+
+<h2><a name="running-the-data-grid-as-a-single-process">&#160;</a>Running the Data Grid as a Single Process</h2>
+
+<p>To run the data grid in a single process for debug mode run the <code>runDebug.bat</code> script as an administrator. This will run the clustered data grid and the mirror service within the same process. You may run it within Visual Studio to debug the data grid construction.</p>
+
+<h2><a name="running-the-data-grid-in-a-distributed-configuration">&#160;</a>Running the Data Grid in a Distributed Configuration</h2>
+
+<ol>
+<li>Run Gigaspaces Agent and containers by running the <code>StartAgent.bat</code> script. This will start 3 containers. <span class="tc-italic">Run this script as an administrator</span>.</li>
+<li>Deploy the data grid and the Mirror service by running <code>DeployDataGrid.bat</code>. This script will undeploy first the existing data grid and mirror if they are already running.</li>
+</ol>
+
+<p>Once deployed you should see the following within the GS-UI:</p>
+
+<p><img src="/attachment_files/sqlserver/datagrid-sqlserver004.jpg" alt="image" /></p>
+
+<h1><a name="running-the-client-application">&#160;</a>Running the Client Application</h1>
+
+<p>The client application has several options:</p>
+
+<ol>
+<li><code>runWrite.bat</code> - will write 10 Person objects into the data grid and persist to SQL Server.</li>
+<li><code>runWriteMultiple.bat</code> - will write 100 Person objects (10 batches of 10 Person objects) into the data grid and persist to SQL Server.</li>
+<li><code>runRead.bat</code> - will read a Person object from the data grid.</li>
+<li><code>runReadMultiple.bat</code> - will read a 100 Person object from the data grid.</li>
+</ol>
+
+<p>When you write objects into the data grid you should see these as well within the database in the <code>Person</code> table.</p>
+
+<h1><a name="opening-net-solution-with-microsoft-visual-studio">&#160;</a>Opening .NET Solution with Microsoft Visual Studio</h1>
+
+<ol>
+<li>Double-click the <code>GigaSpaces.Examples.Datagrid.sln</code> file.</li>
+<li>Choose <code>Build &gt; Build Solution</code> menu. The project files and dependencies are created and copied to the <code>release</code> directory.</li>
+</ol>
+
+<h1><a name="viewing-the-data-within-the-data-grid">&#160;</a>Viewing the data within the Data Grid</h1>
+
+<p>Run GigaSpaces UI: Go to <code>&lt;GigaSpaces Root&gt;\Bin</code> and run <code>Gs-ui.exe</code>. This will allow you to view the content of the data grid.</p>
+
+<h2><a name="viewing-the-data-grid-instances">&#160;</a>Viewing the data grid instances:</h2>
+
+<p><img src="/attachment_files/sqlserver/datagrid-sqlserver006.jpg" alt="image" /></p>
+
+<h2><a name="viewing-the-data-grid-space-types">&#160;</a>Viewing the data grid space types:</h2>
+
+<p><img src="/attachment_files/sqlserver/datagrid-sqlserver008.jpg" alt="&lt;imgage" /></p>
+
+<h2><a name="viewing-the-data-within-the-data-grid-1">&#160;</a>Viewing the data within the data grid:</h2>
+
+<p><img src="/attachment_files/sqlserver/datagrid-sqlserver010.jpg" alt="imgage" /></p>
+
+<h1><a name="important">&#160;</a>Important</h1>
+
+<p>Before you deploy the data grid make sure you will have the <code>nHibernate.cfg.xml</code> and <code>Person.hbm.xml</code> located under the following folders:</p>
+
+<ul>
+<li><GigaSpaces XAP .Net Root>\Deploy\datagrid\NHibernateCfg</li>
+<li><GigaSpaces XAP .Net Root>\Deploy\mirror\NHibernateCfg</li>
+</ul>
+
+</body>
+</html>

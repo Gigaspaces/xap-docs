@@ -54,7 +54,7 @@ The `Status` is a Java enum that reflects the states an order can be in.
 
 The `Operation` is a Java enum that reflects one of two operations for an order: Buy or Sell.
 
-The `OrderEvent` is a simple [JavaBean]({{%latestjavaurl%}}/pojo-support.html), which exposes an id (a unique identifier for the data grid), an account key, a price, the order status, and an operation for the order.
+The `OrderEvent` is a simple [JavaBean](https://docs.gigaspaces.com/latest/dev-java/pojo-support.html), which exposes an id (a unique identifier for the data grid), an account key, a price, the order status, and an operation for the order.
 
 The `AccountData` object is much simpler, exposing only an account key (called the username in this model) and a balance.
 

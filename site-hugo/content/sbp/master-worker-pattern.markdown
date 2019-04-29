@@ -24,7 +24,7 @@ The [Master-Worker Pattern](http://books.google.com/books?id=9cV3TbahjW0C&pg=PA1
 In GigaSpaces XAP, you can implement the Master-Worker pattern using several methods:
 
 - [Task Executors](./map-reduce-pattern-executors-example.html) - best for a scenario where the processing activity is collocated with the data (the data is stored within the same space as the tasks being executed).
-- [Polling Containers]({{%latestjavaurl%}}/polling-container.html) - in this case the processing activity runs in a separate machine/VM from the space. This approach should be used when the processing activity consumes a relatively large amount of CPU and takes a large amount of time. It might also be relevant if the actual data required for the processing is not stored within the space, or the time it takes to retrieve the required data from the space is much shorter than the time it takes to complete the processing.
+- [Polling Containers](https://docs.gigaspaces.com/latest/dev-java/polling-container.html) - in this case the processing activity runs in a separate machine/VM from the space. This approach should be used when the processing activity consumes a relatively large amount of CPU and takes a large amount of time. It might also be relevant if the actual data required for the processing is not stored within the space, or the time it takes to retrieve the required data from the space is much shorter than the time it takes to complete the processing.
 
 # Implementing Master-Worker in XAP using Polling Containers
 

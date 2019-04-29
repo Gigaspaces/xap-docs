@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Dynamic Polling Container Templates using TriggerOperationHandler</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Shravan (Sean) Kumar</td>
+<td>9.0.0</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>Polling Container is one of the most powerful and commonly used feature of GigaSpaces when processing data. To recap, Polling Containers perform a polling receive operation against the space. If a receive operation succeeds (a value is returned from the receive operation), the Data Event Listener is invoked with the event. The receive operation is performed using a static template. For most use cases a static template or a static SQL query (parameters are constant) is sufficient. Examples include: Receive any Order that is marked as "UN_PROCESSED", receive any Order where customer name is like "VIPCustomer", etc.</p>
+
+<p>There are always use cases where you need dynamic templates.</p>
+
+<p>Some examples:</p>
+
+<ol>
+<li>Processing messages that are older than an hour</li>
+<li>Processing an order only after all the items in an order are in the space</li>
+<li>Processing messages in a certain order</li>
+</ol>
+
+<p>Each of these examples need a query that lacks all parameters at configuration time. <code>TriggerOperationsHandler</code> helps achieve this behavior.</p>
+
+<p>The <a href="/xap/14.0/dev-java/polling-container.html">Polling Container</a> shows where <code>TriggerOperationsHandler</code> fits into the Polling Container Life Cycle. Polling Container invokes the <code>TriggerOperationsHandler.triggerReceive()</code> method before invoking the <code>ReceiveHandler</code> which does the actual take and this is the perfect extension point where you can customize or modify the template.</p>
+
+<h1><a name="example">&#160;</a>Example</h1>
+
+<p>Below is an example that shows how you can use <code>TriggerOperationsHandler</code> to process the Message with highest priority (assuming id is the priority) across the cluster and process them in same partition where the <code>Message</code> object resides. It is based on helloworld example which is included with GigaSpaces XAP. Using a default Polling container template this will not be possible, but using a custom <code>TriggerOperationHandler</code> you can achieve this.</p>
+
+<p><code>MyTrigger</code> implementation is shown below,</p>
+
+<pre><code class="language-java">public class MyTrigger implements TriggerOperationHandler {
+
+    private GigaSpace clusteredGigaSpace;
+
+    @Override
+    public Object triggerReceive(Object t, GigaSpace gigaSpace,
+            long receiveTimeout) throws DataAccessException {
+
+        // Make the thread wait for new data with a blocking read with timeout.
+        // Otherwise trigger operation handler will keep getting invoked in a
+        // tight loop
+        Message template = new Message();
+        template.setInfo("Hello ");
+        Message newMsg = gigaSpace.read((Message) template, 60000);
+
+        if (newMsg != null) {
+            SQLQuery&lt;Message&gt; query = new SQLQuery&lt;Message&gt;(Message.class,
+                    "processed = false ORDER BY id DESC");
+
+            Message localObject = (Message) gigaSpace.read(query);
+
+            // If there is an object matching the template, validate if this is
+            // right priority
+            if (localObject != null) {
+
+                Message clusteredObject = clusteredGigaSpace.read(query);
+
+                if (clusteredObject != null
+                        &amp;&amp; localObject.getId().equals(clusteredObject.getId())) {
+                    return localObject;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean isUseTriggerAsTemplate() {
+        return true;
+    }
+
+    public GigaSpace getClusteredGigaSpace() {
+        return clusteredGigaSpace;
+    }
+
+    public void setClusteredGigaSpace(GigaSpace clusteredGigaSpace) {
+        this.clusteredGigaSpace = clusteredGigaSpace;
+    }
+
+}
+</code></pre>
+
+<p><code>MyTrigger</code> runs a cluster wide query and will need clustered proxy which is injected from the pu.xml. Another useful feature of <code>TriggerOperationHandler</code> is ability to pass the template that the receive operation handler uses for performing the take. As you can see above the <code>isUseTriggerAsTemplate</code> returns a boolean flag to indicate that the receive operation handler should use the template returned by <code>MyTrigger</code> to perform the take.</p>
+
+<p>pu.xml snippet below shows how MyTrigger is configured on the polling container,</p>
+
+<pre><code class="language-java">    &lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
+
+    &lt;os-core:giga-space id="clusteredGigaSpace" clustered="true" space="space" tx-manager="transactionManager"/&gt;
+
+    &lt;!--
+        The processor bean
+    --&gt;
+    &lt;bean id="helloProcessor" class="org.openspaces.example.helloworld.processor.Processor"/&gt;
+
+    &lt;os-events:polling-container id="helloProcessorPollingEventContainer"
+        giga-space="gigaSpace"&gt;
+        &lt;os-events:tx-support tx-manager="transactionManager"/&gt;
+        &lt;os-events:trigger-operation-handler&gt;
+            &lt;bean class="org.openspaces.example.helloworld.common.MyTrigger"&gt;
+                &lt;property name="clusteredGigaSpace" ref="clusteredGigaSpace"/&gt;
+            &lt;/bean&gt;
+        &lt;/os-events:trigger-operation-handler&gt;
+        &lt;os-core:template&gt;
+            &lt;bean class="org.openspaces.example.helloworld.common.Message"&gt;
+                &lt;property name="info" value="Hello "/&gt;
+            &lt;/bean&gt;
+        &lt;/os-core:template&gt;
+        &lt;os-events:listener&gt;
+            &lt;os-events:annotation-adapter&gt;
+                &lt;os-events:delegate ref="helloProcessor"/&gt;
+            &lt;/os-events:annotation-adapter&gt;
+        &lt;/os-events:listener&gt;
+    &lt;/os-events:polling-container&gt;
+</code></pre>
+
+<p>Notice the clustered proxy being passed to MyTrigger as a property.</p>
+
+<h1><a name="getting-the-project">&#160;</a>Getting the project</h1>
+
+<p>Example project is held on github in the <a href="https://github.com/Gigaspaces/bestpractices">best practices</a> project. This is an umbrella repository; the specific project is in the <a href="https://github.com/Gigaspaces/bestpractices/tree/master/helloTriggerHandler">helloTriggerHandler</a> directory under the root.</p>
+
+<p>You can run this example just as how you would run helloworld example using the included ant build scripts. Be sure to use a cluster with at least 2 partitions when testing this.</p>
+
+</body>
+</html>

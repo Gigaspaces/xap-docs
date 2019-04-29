@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Scaling Agent</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Shay Hassidim</td>
+<td>7.0</td>
+<td>September 2009</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>The <a href="/xap/14.0/dev-java/administration-and-monitoring-api.html">Administration and Monitoring API</a> allows you to monitor the application health and its resources to enforce a specific pre-defined configurable SLA that will scale the application while it is running. This ensures deterministic response time when there is increasing amount of users accessing the system and the high-availability and robustness of the application.</p>
+
+<p><img src="/attachment_files/sbp/scaling_agent.jpg" alt="scaling_agent.jpg" /></p>
+
+<p>The following example illustrates how you can construct a simple processing unit (<span class="tc-bold">The Scaling Agent</span>) to monitor a web application deployed into GigaSpaces and track the web requests routed to the web application. Once the total average amount of the HTTP requests served by the current running web application instances breach a pre-defined upper or lower limit, the scaling agent will react and perform the necessary activities to scale the web application tier (add or remove instances).</p>
+
+<p>The activities to scale up the application (add more instances) could be starting a new GSC on remote machines and starting additional web application instances. In the same manner the scaling agent can scale down the application to terminate running GSCs and reduce the amount of web the application instances.</p>
+
+<div class="tc-admon-tip">
+  
+  <p>See the <a href="mule-esb-example.html#Scale Dynamically">Mule ESB Example</a> for an advanced usage of the Administration and Monitoring API</p>
+</div>
+
+<h1><a name="how-the-scaling-agent-works">&#160;</a>How the Scaling Agent works?</h1>
+
+<p>The scaling agent sample periodically the amount of HTTP requests served by the running web application instances and compares the total amount of recent requests with the current ones (<code>getAverageRequests</code>). If the average amount of requests is larger than the maximum amount of Requests Per Instance threshold (which has been pre-defined as part of the processing unit configuration) the scaling agent scales up the application by starting a new GSC and increasing the amount of instances (see the <code>scaleUp()</code> method).</p>
+
+<div class="tc-admon-tip">
+  
+  <p>The <a href="/attachment_files/sbp/WebScale.zip">WebScale.zip</a> includes the source and configuration described below.</p>
+</div>
+
+<h2><a name="the-scaling-agent-implementation">&#160;</a>The Scaling Agent Implementation</h2>
+
+<pre><code class="language-java">package com.gigaspaces.examples.webscale;
+
+import org.openspaces.admin.Admin;
+import org.openspaces.admin.AdminFactory;
+import org.openspaces.admin.gsa.GridServiceContainerOptions;
+import org.openspaces.admin.pu.ProcessingUnit;
+import org.openspaces.admin.pu.ProcessingUnitInstance;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class WebMonitor implements InitializingBean, DisposableBean, Runnable {
+
+    private String processingUnitName;
+    private long maxRequestPerInstance;
+    private ScheduledExecutorService executorService;
+    private ProcessingUnit pu;
+    private Admin admin;
+    private long scaleTimestamp = System.currentTimeMillis();
+
+    public void setProcessingUnitName(String processingUnitName) {
+        this.processingUnitName = processingUnitName;
+    }
+
+    public void setMaxRequestPerInstance(long maxRequestPerInstance) {
+        this.maxRequestPerInstance = maxRequestPerInstance;
+    }
+
+    public void afterPropertiesSet() throws Exception {
+        admin = new AdminFactory().createAdmin();
+        admin.getLookupServices().waitFor(1,10, TimeUnit.SECONDS);
+        System.out.println(admin.getLookupServices().getLookupServices().length);
+        pu = admin.getProcessingUnits().waitFor(processingUnitName, 30000L, TimeUnit.SECONDS);
+        System.out.println("PU is " + pu);
+        if (pu != null) {
+            executorService = Executors.newScheduledThreadPool(1);
+            executorService.scheduleWithFixedDelay(this, 1, 1, TimeUnit.SECONDS);
+        }
+    }
+
+    public void run() {
+        long averageRequests = getAverageRequests();
+        if (averageRequests &gt; maxRequestPerInstance) {
+            scaleUp();
+        }
+
+        // if there is nothing going on since it scale up/down for a minute - scale down
+        if (System.currentTimeMillis() - scaleTimestamp &gt; 60000)
+        {
+            if (averageRequests==0) {
+                scaleDown();
+                scaleTimestamp = System.currentTimeMillis();
+            }
+        }
+    }
+
+    private void scaleUp() {
+        System.out.println("Scaling up...");
+        pu.incrementInstance();
+        try {
+            Thread.sleep(10000L);
+            scaleTimestamp = System.currentTimeMillis();
+        } catch (InterruptedException e) {}
+
+    }
+
+    private void scaleDown() {
+
+        if (pu.getInstances().length == 1) return;
+
+        System.out.println("Scaling down...");
+        pu.decrementInstance();
+        try {
+            Thread.sleep(10000L);
+        } catch (InterruptedException e) {}
+    }
+
+    public void destroy() throws Exception {
+        executorService.shutdownNow();
+        admin.close();
+    }
+
+    public long getAverageRequests() {
+        long totalRequests = 0;
+        long previousTotalRequests = 0;
+        for (ProcessingUnitInstance instance : pu) {
+            instance.getStatistics().getPrevious();
+        }
+        for (ProcessingUnitInstance instance : pu) {
+            if (instance.getStatistics().getPrevious() == null) {
+                return 0;
+            }
+            totalRequests += instance.getStatistics().getWebRequests().getTotal();
+            previousTotalRequests += instance.getStatistics().getPrevious().getWebRequests().getTotal();
+        }
+        long averageRequests = ((totalRequests - previousTotalRequests)/ pu.getTotalNumberOfInstances());
+        System.out.println("Average [" + averageRequests + "],
+Total [" + totalRequests + "] Previous Total [" + previousTotalRequests + "]");
+        return averageRequests;
+    }
+}
+</code></pre>
+
+<h2><a name="the-scaling-agent-pu-configuration">&#160;</a>The Scaling Agent PU Configuration</h2>
+
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd"&gt;
+
+   &lt;bean id="scalingAgent" class="com.gigaspaces.examples.webscale.WebMonitor"&gt;
+       &lt;property name="processingUnitName" value="myWebApplication"/&gt;
+       &lt;property name="maxRequestPerInstance" value="300"/&gt;
+   &lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Mirror Monitor</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Shay Hassidim</td>
+<td>7.1</td>
+<td>April 2010</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>The Mirror Service is an essential component when persisting your data into the enterprise database. The <a href="/xap/14.0/dev-java/asynchronous-persistency-with-the-mirror.html">Mirror Service</a> delegates the IMDG activities into the database in a reliable asynchronous manner, allowing the application to access the data stored in-memory without having the database as part of the critical path of the transaction. When using the Mirror Service, the database performance and availability would not impact the application response time.</p>
+
+<p>The Mirror Service behavior is important for the stability of the application and the consistency of the data within the Database. With large scale application, you might want to monitor the Mirror Service behavior in real time. This means reacting in a timely fashion in case there is a need to intervene with its activity or related components that interacts with the Mirror Service (IMDG, Database).</p>
+
+<h1><a name="how-the-mirror-monitor-works">&#160;</a>How the Mirror Monitor works?</h1>
+
+<p>The Mirror Monitor utility gathers statistics about the Mirror Service behavior and exposes these via standard JMX Mbean. You may access this collected data using standard JMX viewers such as the JConsole utility comes with the JVM.</p>
+
+<p>The Mirror Monitor extends the built-in openspaces <code>DefaultHibernateExternalDataSource</code>, and collects statistics about the activities the mirror performs. You may log these statistics into a log file or/and access these by using the JMX API.</p>
+
+<p>The Mirror Monitor using the GigaSpaces <a href="/xap/14.0/dev-java/administration-and-monitoring-api.html">Administration and Monitoring API</a> to receive information about the current status of the replication redo log size of all the IMDG primary instances. When having multiple partitions for the IMDG, the redo log value exposed is a sum of all the IMDG primary instances current replication redo log size.</p>
+
+<p>This utility collecting stats about:</p>
+
+<ul>
+<li>Write, Update, Take operations count executed by the Mirror.</li>
+<li>Write, Update, Take operations current throughput executed by the Mirror.</li>
+<li>Redo log size accumulated at the primary spaces.</li>
+</ul>
+
+<p>The Mirror Monitor includes the following:</p>
+
+<ul>
+<li><code>IMirrorStats</code> Interface - required for the JMX MBean.</li>
+<li><code>MirrorStats</code> - JMX MBean exposing the statistics collected.</li>
+<li><code>Mirror</code> - extends the <code>DefaultHibernateExternalDataSource</code> , and calculates the current Mirror Write/Update/Remove speed.</li>
+<li><code>SpaceModeListener</code> - Identify a failure of the primary space and switch monitoring the new primary.</li>
+</ul>
+
+<h1><a name="how-to-use-the-mirror-monitor">&#160;</a>How to use the Mirror Monitor?</h1>
+
+<p>In order to use the Mirror Monitor with your application you should:</p>
+
+<ol>
+<li>Download the <a href="/attachment_files/sbp/MirrorMonitor.zip">Mirror Monitor project</a>.</li>
+<li>Add the Mirror Monitor classes into your Mirror PU.</li>
+<li>Change the Mirror pu.xml configuration to have this:</li>
+</ol>
+
+<pre><code class="language-java">&lt;bean id="hibernateDataSource" class="com.gigaspaces.util.mirror.monitor.Mirror"&gt;
+            &lt;property name="sessionFactory" ref="sessionFactory"/&gt;
+        &lt;property name="spaceName" value="mySpace"  /&gt;
+        &lt;property name="ide" value="false"/&gt;
+        &lt;property name="debug" value="false"/&gt;
+        &lt;property name="displayStats" value="false"/&gt;
+    &lt;/bean&gt;
+
+&lt;os-core:space id="mirror" url="/./mirror-service" schema="mirror" external-data-source="hibernateDataSource" /&gt;
+</code></pre>
+
+<p>Properties List:</p>
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>spaceName</td>
+<td>Space Name to monitor</td>
+<td>mySpace</td>
+</tr>
+
+<tr>
+<td>sessionFactory</td>
+<td>Hibernate Session</td>
+<td>sessionFactory</td>
+</tr>
+
+<tr>
+<td>ide</td>
+<td>Should be true of Mirror running within the IDE. Should be used in Development mode.</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>debug</td>
+<td>Will bypass the Database calls. Should be true only when debugging.</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>displayStats</td>
+<td>When true will display the Mirror stats to output. Should be used in Development mode.</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+
+
+<div class='bs-callout bs-callout-info'><p>The example assumes that space is deployed before the mirror,if you require otherwise,then you should move the code from Mirror.init method to first call of collectStats() (when space is available.)</p>
+</div>
+
+
+
+
+
+<h1><a name="viewing-the-mirror-statistics">&#160;</a>Viewing the Mirror Statistics</h1>
+
+<p>To view the Statistics gathered by the Mirror monitor:</p>
+
+<ol>
+<li><p>Start the JConsole via the Gigaspaces Mangament Console for the Mirror Service: <br/>
+<img src="/attachment_files/sbp/mirror_monitor2.jpg" alt="mirror_monitor2.jpg" /></p></li>
+
+<li><p>Move into the MBeans Tab and select the com.gigaspaces.util.mirror.monitor: <br/>
+<img src="/attachment_files/sbp/mirror_monitor3.jpg" alt="mirror_monitor3.jpg" /></p></li>
+
+<li><p>Select the Mirror Stats-&gt;Attributes: <br/>
+<img src="/attachment_files/sbp/mirror_monitor.jpg" alt="mirror_monitor.jpg" /></p></li>
+</ol>
+
+<p>Double clicking any of the values, will display a graph that will be refreshed automatically. Without having the graph displayed, you will have to click the Refresh button manually to see the most updated values for each statistic.</p>
+
+</body>
+</html>

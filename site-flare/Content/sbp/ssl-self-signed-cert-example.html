@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>SSL and Self Signed Certificates</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Dixson Huie</td>
+<td>12.0</td>
+<td>December 2016</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>This page describes the steps needed to secure the transport layer using SSL and self signed certificates.</p>
+
+<h1><a name="scenario">&#160;</a>Scenario</h1>
+
+<p>On my local computer, I am running XAP. On a remote computer, I have a client that will connect to the XAP server and writes an object to the space. In order to protect the communication with SSL, we will enable the <code>SSLFilterFactory</code> and supply the <code>keystore</code>. We will then deploy a space and run a client. This example builds upon the <a href="/xap/14.0/security/securing-the-transport-layer-using-ssl.html">documentation</a></p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>XAP Server (local computer, running Windows)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Name:</td>
+<td>my-pc.gspaces.com</td>
+</tr>
+
+<tr>
+<td>IP address:</td>
+<td>10.10.10.131</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Client (remote linux host)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Name:</td>
+<td>blob.gspaces.com</td>
+</tr>
+
+<tr>
+<td>IP address:</td>
+<td>10.10.10.21</td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="private-key-and-certificate">&#160;</a>Private key and certificate</h1>
+
+<h2><a name="generate-the-private-key-and-certificates-on-my-pc">&#160;</a>Generate the private key and certificates on my-pc:</h2>
+
+<pre><code class="language-bash">cd &lt;XAP_root&gt;\bin
+
+# generate the private key
+keytool -genkeypair -alias server -keyalg RSA -keypass changeit -storepass changeit -keystore keystore.jks 
+
+# export the certificate
+keytool -exportcert -alias server -storepass changeit -file server.cer -keystore keystore.jks 
+</code></pre>
+
+<h2><a name="generate-the-private-key-and-certificates-on-blob">&#160;</a>Generate the private key and certificates on blob:</h2>
+
+<pre><code class="language-bash">cd &lt;XAP_root&gt;/bin
+
+# generate the private key
+keytool -genkeypair -alias client -keyalg RSA -keypass changeit -storepass changeit -keystore client_keystore.jks 
+
+# export the certificate
+keytool -exportcert -alias client -storepass changeit -file client.cer -keystore client_keystore.jks 
+</code></pre>
+
+<h2><a name="upload-and-exchange-the-certs">&#160;</a>Upload and exchange the certs.</h2>
+
+<p>Place the server.cer in <code>blob:&lt;XAP_root&gt;/bin</code></p>
+
+<p>Place the client.cer in <code>my-pc:&lt;XAP_root&gt;/bin</code></p>
+
+<h2><a name="import-the-cert-into-the-keystore">&#160;</a>Import the cert into the keystore.</h2>
+
+<p>On many web sites, the recommendation is to put the certificate in the truststore. But here we import directly into the keystore.</p>
+
+<p>On <code>my-pc:&lt;XAP_root&gt;/bin</code>, run</p>
+
+<pre><code class="language-bash">keytool -importcert -v -trustcacerts -alias client -file client.cer -keystore keystore.jks -keypass changeit -storepass changeit 
+</code></pre>
+
+<p>On <code>blob:&lt;XAP_root&gt;/bin</code>, run</p>
+
+<pre><code class="language-bash">keytool -importcert -v -trustcacerts -alias server -file server.cer -keystore client_keystore.jks -keypass changeit -storepass changeit 
+</code></pre>
+
+<h1><a name="xap-server-setup">&#160;</a>XAP server setup</h1>
+
+<p>Below are the contents of the setenv-overrides.bat</p>
+
+<pre><code class="language-bash">set XAP_LOOKUP_LOCATORS=my-pc.gspaces.com:4174
+set XAP_NIC_ADDRESS=10.10.10.131
+
+set EXT_JAVA_OPTIONS=-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory -Dcom.gs.lrmi.filter.security.keystore=C:/Users/Dixson/work/xap/gigaspaces-xap-premium-12.0.0-ga-b16000/bin/keystore.jks -Dcom.gs.lrmi.filter.security.password=changeit -Djava.net.preferIPv4Stack=true -Djavax.net.debug=ssl
+</code></pre>
+
+<p>Start XAP by running gs-agent</p>
+
+<p>Create a partitioned 2,1 space named SSLSpace. You may use the gs-ui or web-ui to do this. See (/xap/14.0/started/xap-basics.html/java-tutorial-part2.html) for more information.</p>
+
+<h1><a name="client-setup">&#160;</a>Client setup</h1>
+
+<p>Compile the example SSLClient.java program provided in the <a href="/xap/14.0/security/securing-the-transport-layer-using-ssl.html">documentation</a>. You may need to change the Groups and Locators values as needed.</p>
+
+<p>Below is the bash script I used to run the client:</p>
+
+<pre><code class="language-bash">#!/bin/bash
+
+export JAVA_HOME=/opt/jdk/jdk8u66
+
+export XAP_LOOKUP_LOCATORS=my-pc.gspaces.com:4174
+export XAP_LOOKUP_GROUPS=dixson_1
+export XAP_NIC_ADDRESS=10.10.10.21
+
+CLASSPATH=/home/user/sslclient
+CLASSPATH=/opt/gspaces/gigaspaces-xap-premium-12.0.0-ga-b16000/bin:${CLASSPATH}
+CLASSPATH=/opt/gspaces/gigaspaces-xap-premium-12.0.0-ga-b16000/lib/required/*:${CLASSPATH}
+
+
+echo $CLASSPATH
+${JAVA_HOME}/bin/java -cp ${CLASSPATH} \
+-Dcom.gs.jini_lus.locators=${XAP_LOOKUP_LOCATORS} \
+-Dcom.gs.jini_lus.groups=${XAP_LOOKUP_GROUPS} \
+-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory \
+-Dcom.gs.lrmi.filter.security.keystore=/opt/gspaces/gigaspaces-xap-premium-12.0.0-ga-b16000/bin/client_keystore.jks \
+-Dcom.gs.lrmi.filter.security.password=changeit \
+-Djava.net.preferIPv4Stack=true \
+-Djavax.net.debug=ssl \
+SSLClient
+</code></pre>
+
+<h1><a name="verification">&#160;</a>Verification</h1>
+
+<p>The SSLSpace will have one object. By setting <code>-Djavax.net.debug=ssl</code> you will see the ssl handshake methods. If this is not enabled, you may get an error: <span class="tc-bold">General SSLEngine problem</span>, but it will be missing details.</p>
+
+<p>After enabling the debug option, you should see the following output in the logs:</p>
+
+<pre><code class="language-bash">2016-12-15 14:19:35,661  INFO [com.gigaspaces.lrmi.filters] - Created LRMI filter factory: com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
+adding as trusted cert:
+adding as trusted cert:
+ Subject: CN=blob.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Subject: CN=blob.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Issuer:  CN=blob.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Issuer:  CN=blob.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Algorithm: RSA; Serial number: 0x6aebeb13
+ Algorithm: RSA; Serial number: 0x6aebeb13
+ Valid from Thu Dec 15 10:35:01 EST 2016 until Wed Mar 15 11:35:01 EDT 2017
+ Valid from Thu Dec 15 10:35:01 EST 2016 until Wed Mar 15 11:35:01 EDT 2017
+
+adding as trusted cert:
+
+adding as trusted cert:
+ Subject: CN=my-pc.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Subject: CN=my-pc.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Issuer:  CN=my-pc.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Issuer:  CN=my-pc.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Algorithm: RSA; Serial number: 0x2f54a1d6
+ Algorithm: RSA; Serial number: 0x2f54a1d6
+ Valid from Wed Dec 14 16:57:53 EST 2016 until Tue Mar 14 17:57:53 EDT 2017
+
+ Valid from Wed Dec 14 16:57:53 EST 2016 until Tue Mar 14 17:57:53 EDT 2017
+</code></pre>
+
+<p>If the certificate of the other computer is not listed, you will get an error:</p>
+
+<pre><code class="language-bash">***
+main, fatal error: 46: General SSLEngine problem
+sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+</code></pre>
+
+</body>
+</html>

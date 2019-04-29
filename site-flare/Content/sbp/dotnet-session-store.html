@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>XAP.NET ASP.NET Session State Store</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Ronnie Guha</td>
+<td>9.7.0</td>
+<td>May 2014</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="xap-net-asp-net-session-state-store">&#160;</a>XAP.NET ASP.NET Session State Store</h1>
+
+<p>It's becoming increasingly important for organizations to share HTTP session data across multiple data centers, multiple web server instances or different types of web servers. Here are few scenarios where HTTP session sharing is required:</p>
+
+<ul>
+<li><p>Multiple different Web servers running your web application - You may be porting your application from one web server to another and there will be a period of time when both types of servers need to be active in production.</p></li>
+
+<li><p>Web Application is broken into multiple modules - When applications are modularized such that different functionalities are deployed across multiple server instances. For example, you may have login, basic info, check-in and shopping functionalities split into separate modules and deployed individually across different servers for manageability or scalability. In order for the user to be presented with a single, seamless, and transparent application, session data needs to be shared between all the servers.</p></li>
+
+<li><p>Reduce Web application memory footprint - The web application storing all session within the web application process heap, consuming large amount of memory. Having the session stored within a remote process will reduce web application utilization avoiding garbage collocation and long pauses.</p></li>
+
+<li><p>Multiple Data-Center deployment - You may need to deploy your application across multiple data centers for high-availability, scalability or flexibility, so session data will need to be replicated.</p></li>
+</ul>
+
+<table class="tc-borderless"><tr><td style="width:70%;"><p>The GigaSpaces XAP.NET ASP.NET Session State Store architecture allows users to deploy their web application across multiple data centers where the session is shared in real-time and in a transparent manner. The HTTP session is also backed by a data grid cluster within each data center for fault tolerance and high-availability.
+With this solution, there is no need to deploy a database to store the session, so you avoid the use of expensive database replication across multiple sites. Setting up GigaSpaces for session sharing between each site is simple and does not involve any code changes to the application.</p>
+</td>
+<td style="width:30%;"><p><MadCap:snippetBlock src="Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://www.youtube.com/watch?v=fgXdQhPkXBQ," /></p>
+</td>
+</tr></table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>GigaSpaces XAP.NET ASP.NET Session State Store Management for .NET is designed to deliver the application maximum performance with <span class="tc-bold">ZERO</span> application code changes. It features the following:</p>
+
+<ul>
+<li><p>Reduced IIS memory footprint storing the session within a remote Data Grid.</p></li>
+
+<li><p>No code changes required to share the session with other remote IIS servers.</p></li>
+
+<li><p>Application elasticity - Support session replication across different IIS applications located within the same or different data-centers/clouds allowing the application to scale dynamically without any downtime.</p></li>
+
+<li><p>Unlimited number of sessions and concurrent users support - Sub-millisecond session data access by using GigaSpaces In-Memory-Data-Grid as the session state store.</p></li>
+
+<li><p>Session replication over the WAN support - Utilizing GigaSpaces Multi-Site Replication over the WAN technology. Support data compression and encryption.</p></li>
+
+<li><p>HTTP Session data access scalability - Session data can utilize any of the supported In-Memory-Data-Grid topologies ; replicated or partitioned.</p></li>
+
+<li><p>Transparent IIS Failover - Allow IIS restart without any session data loss.</p></li>
+
+<li><p>Sticky session and Non-sticky session support - Your requests can move across multiple IIS seamlessly.</p></li>
+</ul>
+
+<h1><a name="session-state-options">&#160;</a>Session State Options</h1>
+
+<p>Before proceeding with the following sections, please find some more information on various session state modes <a href="http://msdn.microsoft.com/en-us/library/vstudio/ms178586(v=vs.100).aspx">here</a>. There are pros and cons of these various approaches.</p>
+
+<ul>
+<li><p>Inproc mode has the best performance metrics but it only works best when you have a single server hosting a web application and web applications in which the end user is guaranteed to be re-directed to the one and only, and therefore, correct server. This mode is used when session data is not very critical as it can be in some other ways reconstructed.</p></li>
+
+<li><p>Out of process/StateServer mode is the only way that allows you to really distribute your applications inside and outside your data centers. This is the mode that one chooses when they cannot guarantee which web server would be serving the end user's request. Herewith you can get the performance of reading from memory, reliability (and associated concerns) of having sessions managed by a separate process for all the web servers involved.</p></li>
+
+<li><p>SQL Server mode is used when very high levels of reliability are required. In other words, a session and its attributes have to be guaranteed re-construction on the fly and the application absolutely requires this kind of data reliability. Keep in mind that this mode has the worst performance of all (as quite easily understood) and trades off reliability for performance. This also allows you to globally distribute your applications across datacenters but relies heavily on clustering SQL Server databases across these data centers globally.</p></li>
+</ul>
+
+<p>We will be concentrating our discussions on using an out of process, custom storage provider for achieving true global, lightweight distribution of your application that provides better reliability than other modes discussed above.</p>
+
+<h1><a name="various-scenarios">&#160;</a>Various Scenarios</h1>
+
+<p>Below are various ASP.NET HTTP Session state sharing scenarios supported with XAP.NET. All of the scenarios are configured the same with Scenario 4 being the exception, and discussed later on in the article.
+The application in all instances is configured to use a custom session state mode with the GigaSpaces session state provider.</p>
+
+<h2><a name="scenario-1">&#160;</a>Scenario 1</h2>
+
+<table class="tc-borderless"><tr><td style="width:80%;"><p>A single web application persisting and reading from XAP.NET to provide resilient session state.</p>
+</td>
+<td style="width:20%;"><p><img src="/attachment_files/iis/iis-pic1.png" class="tc-thumbnail" /></p>
+</td>
+</tr></table>
+
+<h2><a name="scenario-2">&#160;</a>Scenario 2</h2>
+
+<table class="tc-borderless"><tr><td style="width:80%;"><p>Multiple instances of the same application distributed across a cluster of load balanced or distributed servers.</p>
+</td>
+<td style="width:20%;"><p><img src="/attachment_files/iis/iis-pic2.png" class="tc-thumbnail" /></p>
+</td>
+</tr></table>
+
+<h2><a name="scenario-3">&#160;</a>Scenario 3</h2>
+
+<table class="tc-borderless"><tr><td style="width:80%;"><p>Multiple applications persisting and consuming session data from the same IMDG, in either a single server or clustered topology.</p>
+</td>
+<td style="width:20%;"><p><img src="/attachment_files/iis/iis-pic3.png" class="tc-thumbnail" /></p>
+</td>
+</tr></table>
+
+<h2><a name="scenario-4">&#160;</a>Scenario 4</h2>
+
+<table class="tc-borderless"><tr><td style="width:80%;"><p>Any number of applications and servers communicating with the IMDG, deployed using GigaSpaces WAN Gateway technology.
+The difference in configuration for applications in this scenario depends on the GiagSpaces WAN Gateway deployment.
+The application would be configured to communicate with the local/near local active space instance.</p>
+</td>
+<td style="width:20%;"><p><img src="/attachment_files/iis/iis-pic4.png" class="tc-thumbnail" /></p>
+</td>
+</tr></table>
+
+<h1><a name="prerequisites">&#160;</a>Prerequisites</h1>
+
+<p>The following instructions assume that you have downloaded/installed the prerequisites:</p>
+
+<ul>
+<li><p><a href="/download_files/sbp/GigaSpacesSessionStateProvider.zip">Download the sample ASP.NET web application</a></p></li>
+
+<li><p><a href="http://www.gigaspaces.com/xap-download">Download XAP.NET latest version</a></p></li>
+
+<li><p><a href="http://www.microsoft.com/en-us/download/details.aspx?id=30653">Download Microsoft .NET 4.5</a></p></li>
+</ul>
+
+<div class="tc-admon-note">
+  
+  <p>XAP.NET is platform dependent. Ensure your application, version of .NET, and server configuration use the same platform as the XAP.NET installation.</p>
+</div>
+
+<h2><a name="sample-application">&#160;</a>Sample Application</h2>
+
+<div class="tc-admon-important">
+  
+  <p>If needed correct the reference to <code>Gigaspaces.Core.dll</code>, by adding a reference to the library shipped with XAP.NET.
+The default installation of GigaSpaces will put the library in a path similar to <code>C:\GigaSpaces\XAP.NET 9.7.0 x64\NET v4.0.30319\Bin</code></p>
+</div>
+
+<p>The HTTP Session Provider sample is a simple UI for inserting, updating, and deleting session items.
+The application can be run from Visual Studio, but the IMDG must be deployed before the application is ran or an
+exception will be encountered.</p>
+
+<p>The sample application can be deployed into IIS and ran from Visual Studio at the same time, emulating a light weight
+clustered server environment. All applications expected to read and write data that will be consumed by other applications
+must share the same <a href="http://msdn.microsoft.com/en-us/library/w8h3skw9.aspx">machine key</a>.</p>
+
+<h3><a name="configuration">&#160;</a>Configuration</h3>
+
+<pre><code class="language-xml">&lt;configuration&gt;
+  &lt;system.web&gt;
+    &lt;compilation debug="true" targetFramework="4.5" /&gt;
+    &lt;httpRuntime targetFramework="4.5" /&gt;
+    &lt;machineKey validationKey="E83700E53CC20595182307B502E45F0AE4C2ADBEB6CE5BBD2E88B2EE5AB8A6FDC633FBF69309A6D6D06B4B6DBF22E2DA96F0315ED97F65136DDCEFDB4779C3E8" 
+                decryptionKey="06C735053A39D1A9BEA101A58BAFE8FDFF7FA59C51F50673" validation="SHA1" decryption="AES "/&gt;
+    &lt;sessionState mode="Custom" customProvider="GigaSpaceSessionProvider" cookieless="false" timeout="5" regenerateExpiredSessionId="true"&gt;
+      &lt;providers&gt;
+        &lt;!--
+        the name type and connectionStringName should be set as follows,
+        writeExceptionToEventLog states whether unexpected exception should be written to a log or thrown back to the client.
+        supportSessionOnEndEvents states whether the provider should support triggering Session_End events when sessions expires.--&gt;
+        &lt;add name="GigaSpaceSessionProvider" type="GigaSpaces.Practices.HttpSessionProvider.GigaSpaceSessionProvider" connectionStringName="SessionProviderSpaceUrl" 
+             writeExceptionsToEventLog="false" supportSessionOnEndEvents="true"/&gt;
+      &lt;/providers&gt;
+    &lt;/sessionState&gt;
+  &lt;/system.web&gt;
+  &lt;connectionStrings&gt;
+    &lt;add name="SessionProviderSpaceUrl" connectionString="jini://*/*/sessionSpace" /&gt;
+  &lt;/connectionStrings&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<h3><a name="deployment">&#160;</a>Deployment</h3>
+
+<p>Deploy an <a href="dotnet-your-first-xap-application.html">IMDG</a> with the name of <code>sessionSpace</code>.</p>
+
+<p>Deploy the application using <a href="http://msdn.microsoft.com/en-us/library/dd465337.aspx">Microsoft's publish web application</a> feature built into Visual Studio. We've already defined a publish profile
+to publish the application into the standard web directory of the local machine (<code>c:\inetpub\wwwroot\</code>).</p>
+
+<div class="tc-admon-note">
+  
+  <p>Publishing to <code>c:\inetpub\wwwroot\</code> requires running Visual Studio as an administrator.</p>
+</div>
+
+<h3><a name="interacting-with-the-space">&#160;</a>Interacting with the Space</h3>
+
+
+<div class='bs-callout bs-callout-info'>There is nothing unique in how client applications interface with the session API.</div>
+
+
+
+
+
+<pre><code class="language-c#">public partial class Default : Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+            DisplaySessionData();
+    }
+
+    protected void SubmitForm_Click(object sender, EventArgs e)
+    {
+        Session[SessionKey.Text] = SessionValue.Text;
+        DisplaySessionData();
+    }
+
+    protected void RemoveKey_Click(object sender, EventArgs e)
+    {
+        Session.Remove(SessionKey.Text);
+        DisplaySessionData();
+    }
+    
+    private void DisplaySessionData()
+    {
+        foreach (string sessionKey in Session.Keys)
+        {
+            WriteSessionDataToPage(sessionKey);
+        }
+    }
+    
+    private void WriteSessionDataToPage(string sessionKey)
+    {
+        var row = new TableRow();
+
+        row.Cells.Add(new TableCell { Text = sessionKey });
+        row.Cells.Add(new TableCell { Text = Convert.ToString(Session[sessionKey]) });
+
+        sessionData.Controls.Add(row);
+    }
+}
+</code></pre>
+
+</body>
+</html>

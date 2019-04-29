@@ -67,11 +67,11 @@ With Embedded Relationships, a parent object physically contains the associated 
 
 ### Embedded Relationship Data Retrieval Flow
 
-When using the Embedded Relationship model, fetching objects from the Space is done using a [SQLQuery]({{%latestjavaurl%}}/query-sql.html) with the `readMultiple` call, or the [IteratorBuilder]({{%latestjavaurl%}}/query-paging-support.html) when you have large sets of objects where the [SQLQuery]({{%latestjavaurl%}}/query-sql.html) predicate uses root level or embedded object properties. With a single `SQLQuery`, you can specify a query that spans objects from different data types related to each other or contained in each other. The embedded objects can be elements within an array, any type of collection (List, Map), or just a simple referenced object.
+When using the Embedded Relationship model, fetching objects from the Space is done using a [SQLQuery](https://docs.gigaspaces.com/latest/dev-java/query-sql.html) with the `readMultiple` call, or the [IteratorBuilder](https://docs.gigaspaces.com/latest/dev-java/query-paging-support.html) when you have large sets of objects where the [SQLQuery](https://docs.gigaspaces.com/latest/dev-java/query-sql.html) predicate uses root level or embedded object properties. With a single `SQLQuery`, you can specify a query that spans objects from different data types related to each other or contained in each other. The embedded objects can be elements within an array, any type of collection (List, Map), or just a simple referenced object.
 
 ### Updating Embedded Objects
 
-The [Change API]({{%latestjavaurl%}}/change-api.html) allows you to modify a specific property(s) within the root space object (or any embedded object) without reading the entire object graph in an atomic manner. This optimizes the amount of data transferred between the client and the primary Space, and also between the primary and backup instances when replicating updates.
+The [Change API](https://docs.gigaspaces.com/latest/dev-java/change-api.html) allows you to modify a specific property(s) within the root space object (or any embedded object) without reading the entire object graph in an atomic manner. This optimizes the amount of data transferred between the client and the primary Space, and also between the primary and backup instances when replicating updates.
 
 With the embedded model, updating (as well adding or removing) a nested collection with large number of elements **must use the Change API**, because the default behavior is to replicate the entire Space object and its nested collection elements from the primary instance to the backup (or other replica primary copies when using the sync-replicate or the async-replicated cluster schema). The Change API reduces CPU utilization on the primary side, the serialization overhead, and the garbage collection activity on both the primary and backup instances, which significantly improves overall system stability.
 
@@ -94,11 +94,11 @@ The following topics describe the different data modeling options available with
 
 #### Parent-First Data Retrieval Flow
 
-With this approach you first retrieve an initial set of "root space objects", usually using a [SQLQuery]({{%latestjavaurl%}}/query-sql.html) or a [template]({{%latestjavaurl%}}/query-template-matching.html) with the `readMultiple` call or the [IteratorBuilder]({{%latestjavaurl%}}/query-paging-support.html) if you have a large set of objects. After that, you use metadata stored within these root space objects, such as the ID or IDs of related objects, and their routing field values (if they are distributed across remote multiple partitions) to fetch the related (child) objects using the `readById` or `readByIds` calls. Both `readById` and `readByIds` allow you to provide the routing field value, so there is no need to search the entire cluster for matching objects. You can also use the [Change API]({{%latestjavaurl%}}/change-api.html) call to modify specific child objects without reading them first.
+With this approach you first retrieve an initial set of "root space objects", usually using a [SQLQuery](https://docs.gigaspaces.com/latest/dev-java/query-sql.html) or a [template](https://docs.gigaspaces.com/latest/dev-java/query-template-matching.html) with the `readMultiple` call or the [IteratorBuilder](https://docs.gigaspaces.com/latest/dev-java/query-paging-support.html) if you have a large set of objects. After that, you use metadata stored within these root space objects, such as the ID or IDs of related objects, and their routing field values (if they are distributed across remote multiple partitions) to fetch the related (child) objects using the `readById` or `readByIds` calls. Both `readById` and `readByIds` allow you to provide the routing field value, so there is no need to search the entire cluster for matching objects. You can also use the [Change API](https://docs.gigaspaces.com/latest/dev-java/change-api.html) call to modify specific child objects without reading them first.
 
 #### Child-First Data Retrieval Flow
 
-With this approach the child object stores the parent object ID (and routing field value). You can access the referenced (child) objects directly, and from them you can access their parent object. You can query the Space for child objects via specific properties using a [SQLQuery]({{%latestjavaurl%}}/query-sql.html) or a [template]({{%latestjavaurl%}}/query-template-matching.html) with the `readMultiple` call, iterate over the child object result set to collect the parent IDs, and read all relevant parent objects via the `readByIds` call .
+With this approach the child object stores the parent object ID (and routing field value). You can access the referenced (child) objects directly, and from them you can access their parent object. You can query the Space for child objects via specific properties using a [SQLQuery](https://docs.gigaspaces.com/latest/dev-java/query-sql.html) or a [template](https://docs.gigaspaces.com/latest/dev-java/query-template-matching.html) with the `readMultiple` call, iterate over the child object result set to collect the parent IDs, and read all relevant parent objects via the `readByIds` call .
 
 {{% tip %}}
 The data grid supports projections where you can read specific properties (delta read) instead of reading the entire Space object content. This may optimize the data retrieval flow.
@@ -130,7 +130,7 @@ You can [download](/download_files//sbp/Space-Data-Model-Example.zip) the code u
 
 ## Remote vs. Co-located Client
 
-The examples below can be used with a client accessing a remote space or a co-located client running within the Space, such as a [DistributedTask]({{%latestjavaurl%}}/task-execution-over-the-space.html) implementation or a [service]({{%latestjavaurl%}}/executor-based-remoting.html) method invoked in a broadcast mode. The co-located client reduces the serialization and network overhead. When using the co-located client approach with the non-embedded model, you should use the same [routing field]({{%latestjavaurl%}}/routing-in-partitioned-spaces.html) value for associated objects (parent-child).
+The examples below can be used with a client accessing a remote space or a co-located client running within the Space, such as a [DistributedTask](https://docs.gigaspaces.com/latest/dev-java/task-execution-over-the-space.html) implementation or a [service](https://docs.gigaspaces.com/latest/dev-java/executor-based-remoting.html) method invoked in a broadcast mode. The co-located client reduces the serialization and network overhead. When using the co-located client approach with the non-embedded model, you should use the same [routing field](https://docs.gigaspaces.com/latest/dev-java/routing-in-partitioned-spaces.html) value for associated objects (parent-child).
 
 ## One-to-One Relationship
 
@@ -507,7 +507,7 @@ return books;
 {{% /tabs %}}
 
 {{% note %}}
-See the [ID Queries]({{%latestjavaurl%}}/query-by-id.html) topic for more information on how the `readById` call can be used.
+See the [ID Queries](https://docs.gigaspaces.com/latest/dev-java/query-by-id.html) topic for more information on how the `readById` call can be used.
 {{% /note %}}
 
 To query for a specific **Author** with a specific **Book** title, the query code should look like this:
@@ -931,7 +931,7 @@ return books;
 {{% /tabs %}}
 
 {{% note %}}
-See the [ID Queries]({{%latestjavaurl%}}/query-by-id.html) topic for more information about how the `readByIds` call can be used.
+See the [ID Queries](https://docs.gigaspaces.com/latest/dev-java/query-by-id.html) topic for more information about how the `readByIds` call can be used.
 {{% /note %}}
 
 To query for a specific **Author** with a specific **Book** title, the query should look like this:
@@ -1263,11 +1263,11 @@ public class AuthorBookLink
 {{% /accordion %}}
 
 {{% note %}}
-See the [ID Queries]({{%latestjavaurl%}}/query-by-id.html) topic for more information on how the `readByIds` call can be used.
+See the [ID Queries]({https://docs.gigaspaces.com/latest/dev-java/query-by-id.html) topic for more information on how the `readByIds` call can be used.
 {{% /note %}}
 
 {{% tip %}}
-More examples are available in the [SQLQuery]({{%latestjavaurl%}}/query-sql.html) topic, which provides details about query and indexing embedded entities. Additionally, the [Parent Child Relationship](./parent-child-relationship.html) page contains an example of non-embedded relationships.
+More examples are available in the [SQLQuery](https://docs.gigaspaces.com/latest/dev-java/query-sql.html) topic, which provides details about query and indexing embedded entities. Additionally, the [Parent Child Relationship](./parent-child-relationship.html) page contains an example of non-embedded relationships.
 {{% /tip %}}
 
 

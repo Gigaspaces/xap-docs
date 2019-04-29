@@ -17,7 +17,7 @@ weight: 100
 
 # Overview
 
-GigaSpaces XAP provides a powerful IMDG with advanced data access options. Many times a simple key/value interface required to access the IMDG. The [Map API]({{%latestjavaurl%}}/map-api.html) or the [GigaSpace API]({{%latestjavaurl%}}/the-gigaspace-interface-overview.html) can be used in such a case. A simple wrapper around the GigaSpace API described here exposing a `HashMap` interface. 
+GigaSpaces XAP provides a powerful IMDG with advanced data access options. Many times a simple key/value interface required to access the IMDG. The [Map API](https://docs.gigaspaces.com/latest/dev-java/map-api.html) or the [GigaSpace API](https://docs.gigaspaces.com/latest/dev-java/the-gigaspace-interface-overview.html) can be used in such a case. A simple wrapper around the GigaSpace API described here exposing a `HashMap` interface. 
 
 ![cache-service.jpg](/attachment_files/sbp/cache-service.jpg)
 
@@ -296,9 +296,8 @@ cacheService.putAll(map);
 
 ```
 
-{{%refer%}}
+{{%note%}}
 
-- [Modeling and Accessing Your Data]({{%latestjavaurl%}}/modeling-your-data.html)
-- [Deploying and Interacting with the Space](./deploying-and-interacting-with-the-space.html)
+For more information, see [Modeling and Accessing Your Data](https://docs.gigaspaces.com/latest/dev-java/modeling-your-data.html).
 
-{{%/refer%}}
+{{%/note%}}

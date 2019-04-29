@@ -1,6 +1,6 @@
 ---
 type: post
-title:  WAN Gateway Master Slave Replication
+title:  WAN Gateway Master-Slave Replication
 categories: SBP
 parent: wan-based-deployment.html
 weight: 200
@@ -14,10 +14,10 @@ weight: 200
 
 # Overview
 
-The WAN Gateway provides a simple way of creating a master-slave topology enabling data from one XAP site to be replicated to one or more remote sites. For instance, given three clusters in New York, London, and Hong Kong, with New York being the master and the remaining two acting as slaves, any updates to the New York space will propagate to both London and Hong Kong asynchronously. The sample processing units and configuration provided below are intended as an example of implementing a single-master/multi-slave topology across three sites: New York (US), London (GB), and Hong Kong (HK) where each site has an independent cluster and a Gateway.
+The WAN gateway provides a simple way of creating a master-slave topology, enabling data from one site to be replicated to one or more remote sites. For instance, given three clusters in New York, London, and Hong Kong, with New York being the master and the remaining two acting as slaves, any updates to the New York Space will propagate to both London and Hong Kong asynchronously. The sample Processing Units and configuration provided below are intended as an example of implementing a single-master/multi-slave topology across three sites: New York (US), London (GB), and Hong Kong (HK) where each site has an independent cluster and a gateway.
 ![WAN_masterslave.png](/attachment_files/sbp/WAN_masterslave.png)
 
-The demo is configured to start three space instances across three clusters. While the three clusters run on your local machine, they are demarcated by zones and different lookup service ports as follows:
+The demo is configured to start three Space instances across three clusters. While the three clusters run on your local machine, they are demarcated by zones and different lookup service ports as follows:
 
 
 | Gateway/Space | Zone | Lookup Service Port |
@@ -29,23 +29,21 @@ The demo is configured to start three space instances across three clusters. Whi
 | wan-gateway-GB | GB | 4366 |
 | wan-space-GB | GB | 4366 |
 
-The internal architecture of the setup includes a clustered space and a Gateway, such that the master site (US) only configures delegators while the slave sites (GB, HK) only configure sinks (click the thumbnail to enlarge):
+The internal architecture of the setup includes a clustered Space and a gateway, such that the master site (US) only configures delegators while the slave sites (GB, HK) only configure sinks (click the thumbnail to enlarge):
 
 [<img src="/attachment_files/sbp/WAN_masterslave_arch.png" width="140" height="100">](/attachment_files/sbp/WAN_masterslave_arch.png)
 
 
-As a result of this topology setup, the following scenario will take place once updates are written to the New York space:
+As a result of this topology, the following scenario will take place after updates are written to the New York Space:
 
-1.	All updates performed on the New York cluster are sent to local delegators for London and Hong Kong
-2.	London and Hong Kong sinks will receive the updates asynchronously
-3.	London and Hong Kong sinks apply the updates on their local cluster
+1.	All updates performed on the New York cluster are sent to local delegators for London and Hong Kong.
+2.	London and Hong Kong sinks receive the updates asynchronously.
+3.	London and Hong Kong sinks each apply the updates on their local cluster.
 
 # Configuring Master-Slave Replication
 
-The master-slave topology configuration is simply implemented through delegators on the master (New York) and a sink on each slave (London, Hong Kong). In this case, New York's site will be the active site while London and
-Hong Kong will be the passive sites. While the slave sites are passive,  this does not necessarily mean that no work is done in these sites. However,
-in  terms of replication over the WAN, these sites should not replicate to  the other sites and usually should not alter data replicated from other
- sites because it may cause conflicts:
+The master-slave topology configuration is simply implemented through delegators on the master (New York) and a sink on each slave (London, Hong Kong). In this case, New York is the active site while London and
+Hong Kong are the passive sites. While the slave sites are passive, this does not necessarily mean that no work is done in these sites. However, in  terms of replication over the WAN, these sites should not replicate to the other sites and usually should not alter data replicated from other sites because it may cause conflicts:
 
 {{%tabs%}}
 
@@ -60,10 +58,10 @@ in  terms of replication over the WAN, these sites should not replicate to  the 
 	xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%latestxaprelease%}}/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/<MadCap:variable name="Versions.product-version-short" />/core/openspaces-core.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
        http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
-       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/{{%latestxaprelease%}}/core/gateway/openspaces-gateway.xsd
+       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/<MadCap:variable name="Versions.product-version-short" />/core/gateway/openspaces-gateway.xsd
        http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd">
 	<context:annotation-config></context:annotation-config>
 	<tx:annotation-driven transaction-manager="transactionManager" />
@@ -130,10 +128,10 @@ in  terms of replication over the WAN, these sites should not replicate to  the 
 	xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%latestxaprelease%}}/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/<MadCap:variable name="Versions.product-version-short" />/core/openspaces-core.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
        http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
-       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/{{%latestxaprelease%}}/core/gateway/openspaces-gateway.xsd
+       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/<MadCap:variable name="Versions.product-version-short" />/core/gateway/openspaces-gateway.xsd
        http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd">
 	<context:annotation-config></context:annotation-config>
 	<tx:annotation-driven transaction-manager="transactionManager" />
@@ -193,10 +191,10 @@ in  terms of replication over the WAN, these sites should not replicate to  the 
 	xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/{{%latestxaprelease%}}/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/<MadCap:variable name="Versions.product-version-short" />/core/openspaces-core.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
        http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
-       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/{{%latestxaprelease%}}/core/gateway/openspaces-gateway.xsd
+       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/<MadCap:variable name="Versions.product-version-short" />/core/gateway/openspaces-gateway.xsd
        http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd">
 	<context:annotation-config></context:annotation-config>
 	<tx:annotation-driven transaction-manager="transactionManager" />
@@ -251,20 +249,20 @@ in  terms of replication over the WAN, these sites should not replicate to  the 
 # Installing and Running the Example
 
 1. Download the [WAN-Gateway-Examples.zip](https://github.com/Gigaspaces/wan-gateway-examples/archive/master.zip) archive. It includes two folders: **deploy** and **scripts**. View on [GitHub](https://github.com/Gigaspaces/wan-gateway-examples/tree/master/WAN_Replication_MasterSlave)
-2. Please extract the file and and copy the content of the **deploy** folder into `\<GIGASPACES_HOME>\deploy` folder.
-3. Extract the `scripts` folder to an arbitrary location and edit the `setExampleEnv.bat/sh` script to include correct values for `NIC_ADDR` as the machine IP and `GS_HOME` as the GigaSpaces root folder location.
+2. Extract the file and and copy the contents of the **deploy** folder to the `\<GIGASPACES_HOME>\deploy` folder.
+3. Extract the `scripts` folder to an arbitrary location and edit the `setExampleEnv.bat/sh` script to include the machine IP address for `NIC_ADDR` and the GigaSpaces root folder location for `GS_HOME`.
 
-The `scripts` folder contains the necessary scripts to start the [Grid Service Agent](/product_overview/service-grid.html#gsa) for each cluster, in addition to a deploy script `deployAll.bat/sh` which will be used to automate the deployment of all three gateways and space instances. This will allow you to run the entire setup on one machine to simplify testing. Here are the steps to run the example:
+The `scripts` folder contains the necessary scripts to start the [Grid Service Agent](/product_overview/service-grid.html#gsa) for each cluster, in addition to a deploy script `deployAll.bat/sh` that is used to automate the deployment of all three gateways and sSpace instances. This allows you to run the entire setup on one machine to simplify testing. Here are the steps to run the example:
 
-1. Run `startAgent-GB.bat/sh` or to start GB site.
-2. Run `startAgent-HK.bat/sh` to start HK site.
-3. Run `startAgent-US.bat/sh` to start US site.
-4. Run `deployAll.bat/sh` file to deploy all the processing units listed above.
+1. Run `startAgent-GB.bat/sh` to start the GB site.
+2. Run `startAgent-HK.bat/sh` to start the HK site.
+3. Run `startAgent-US.bat/sh` to start the US site.
+4. Run `deployAll.bat/sh` file to deploy all the Processing Units listed above.
 
 # Viewing the Clusters
 
 - Start the GigaSpaces Management Center and configure the appropriate lookup groups through the "Group Management" dialog.
-- Once all clusters are up and running, you will need to enable the relative groups:
+- After all clusters are up and running, you must enable the relative groups:
 
 ![group_management_dialog.jpg](/attachment_files/sbp/group_management_dialog.jpg)
 
@@ -272,29 +270,26 @@ Check to enable all three advertised groups for each site:
 
 ![groups_selection_dialog.jpg](/attachment_files/sbp/groups_selection_dialog.jpg)
 
-As a result, you should see the service grid components for each site displayed under the "Hosts" tree as follows:
+As a result, you should see the service grid components for each site displayed under the **Hosts** tree as follows:
 
 [<img src="/attachment_files/sbp/masterslave_hosts_view.png" width="140" height="100">](/attachment_files/sbp/masterslave_hosts_view.png)
 
 
-
-Once The deployAll.bat/sh script finishes running, you should be able to see all three sites deployed as follows:
+After The `deployAll.bat/sh` script finishes running, you should be able to see all three sites deployed as follows:
 
 [<img src="/attachment_files/sbp/pu_deployments.jpg" width="140" height="100">](/attachment_files/sbp/pu_deployments.jpg)
 
-
-If you are using the GS-WEBUI, you can also view the site topology through the "Data Grids > Gateways" view as the following:
+If you are using the Web Management Console, you can also view the site topology using the **Data Grids**&gt;**Gateways** view as follows:
 
 [<img src="/attachment_files/sbp/webui_gw_topology.png" width="140" height="100">](/attachment_files/sbp/webui_gw_topology.png)
 
 # Testing Master-Slave Replication
 
-You can test the setup by using the [benchmark utility]({{%latestadmurl%}}/benchmark-browser.html) comes with the GS-UI. Select the US Benchmark icons and click Start to begin writing objects to the space:
+You can test the setup using the [benchmark utility](https://docs.gigaspaces.com/latest/admin/benchmark-browser.html) that comes with the GigaSpaces Management Center. Select the US Benchmark icons and click **Start** to begin writing objects to the Space:
 
 [<img src="/attachment_files/sbp/masterslave_space_write.png" width="140" height="100">](/attachment_files/sbp/masterslave_space_write.png)
 
-
-Click the Spaces icon on the Space Browser Tab to get a global view of all spaces. As objects are being written, you should see replication occurring across both HK and GB sites until there are 5000 objects in each space:
+Click the **Spaces** icon on the Space Browser tab to get a global view of all Spaces. As objects are written, you should see replication occurring across both the HK and GB sites until there are 5000 objects in each Space:
 
 [<img src="/attachment_files/sbp/masterslave_space_count.png" width="140" height="100">](/attachment_files/sbp/masterslave_space_count.png)
 

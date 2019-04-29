@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Observable WAN</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>DeWayne Filppi</td>
+<td>8.0.4</td>
+<td>March 2012</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>With the introduction of the Gigaspaces multi-site replication feature, keeping different Gigaspaces deployments in sync is easy.  However, detecting and anticipating communication problems between sites where it counts (at the application level), isn't so easy.  This solution/pattern uses some simple concepts and components to enable easy, flexible monitoring of the replication performance from multiple sites.</p>
+
+<p>The basic idea is to write timestamps into spaces that are being replicated using the multi-site mechanism. The timestamps then flow from site to site, intermingled with application domain objects.  Each site then polls it's site for timestamps arriving from remote sites.  From information in the timestamp, as well as noticing when the timestamp arrives, a picture of replication performance can be deduced.  Each site then maintains a global replication status object with 3 states: up, down, and degraded.  Interested parties can attach event listeners to state changes on the replication status object.<br />
+Refer to my recent blog <a href="https://blog.gigaspaces.com/assured-wan-replication-with-latency-measures/">post</a> for more detail.</p>
+
+<div class="tc-align-center"><img src="/attachment_files/sbp/observablewan.png" alt="observablewan.png" /></div>
+
+<h1><a name="getting-the-project">&#160;</a>Getting the project</h1>
+
+<p>The mirror project is held on github in the <a href="https://github.com/Gigaspaces/bestpractices">patterns</a> project. This is an umbrella repository; the specific project is in the observable-wan directory under the root directory.</p>
+
+<h2><a name="building-the-project">&#160;</a>Building the project</h2>
+
+<p>The project has a Maven2 pom structure.  A "mvn install" at the root directory will build everything.  Currently, the project depends on XAP 8.0.4.  You'll have to install XAP 8.0.4 gs-openspaces.jar and gs-runtime.jar into your local repo.  Versions more recent than 8.0.4 should work as well, but haven't been tested.  The space and gateway projects are currently configured to use "localhost" in a 2 site, multi-master configuration.  For a more realistic run, install the site1 and site2 components on grids on two different hosts (with different lookup groups).</p>
+
+<h2><a name="running-the-project">&#160;</a>Running the project</h2>
+
+<p>Deployment should occur in the following order:</p>
+
+<ol>
+<li>trans-space-site1-pu</li>
+<li>trans-space-site2-pu</li>
+<li>trans-gateway-site1</li>
+<li>trans-gateway-site2</li>
+</ol>
+
+<p>At this point you should see the replication channels linking up.  You'll also see logging indicating that there are no TimeRecords.  This is normal.  Next deploy the time writers:</p>
+
+<ol>
+<li>site1-time-pu</li>
+<li>site2-time-pu</li>
+</ol>
+
+<p>Timestamps will now flow into both "sites". You will notice logging indicating that the remote site is "DOWN", until 10 samples arrive.  Then it will change the status to "UP".  After everything is "UP", you can experiment by undeploying the gateways and watching the status degrade to "DOWN" through "DEGRADED".  If running on a multi-site setup, you can try interfering with the network (unplugging it) to simulate connectivity problems.</p>
+
+</body>
+</html>

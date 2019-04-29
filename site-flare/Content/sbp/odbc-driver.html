@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>ODBC Driver</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Shay Hassidim</td>
+<td>7.1</td>
+<td>April 2010</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>GigaSpaces Data-Grid support standard data access API. One of them is the <a href="/xap/14.0/dev-java/jdbc-driver.html">JDBC Driver</a>. Using the JDBC API and ODBC-JDBC bridge such as the one comes from <a href="http://uda.openlinksw.com">Open Link Software</a>, you can use standard ODBC API to access the GigaSpaces Data-Grid.</p>
+
+<h1><a name="gigaspaces-installation">&#160;</a>GigaSpaces Installation</h1>
+
+<ul>
+<li>You can download Gigaspaces java version from <a href="http://www.gigaspaces.com/LatestProductVersion">http://www.gigaspaces.com/LatestProductVersion</a>.</li>
+<li>Unzip the downloaded file into a directory on your local machine. (Note: make sure the directory path does not have any spaces). This directory will be referred as <GigaSpaces root> in further instructions.</li>
+<li>Download and install the latest version of <a href="http://java.sun.com/javase/downloads/widget/jdk6.jsp">Java JDK</a>.</li>
+<li>Set a <code>JAVA_HOME</code> variable to the path where you have installed the JDK.</li>
+</ul>
+
+<h1><a name="gigaspaces-configuration">&#160;</a>GigaSpaces Configuration</h1>
+
+<ul>
+<li>Start the GigaSpaces Agent by running <GigaSpaces root>\bin\gs-agent.bat(bat).</li>
+<li>Start the management UI by running <GigaSpaces root>\bin\gs-ui.sh(bat).</li>
+</ul>
+
+<h1><a name="create-a-new-user">&#160;</a>Create a new user</h1>
+
+<p>Create a new user "user" and password "password" and grant it all access privileges.
+See <a href="/xap/14.0/admin/gigaspaces-management-center-ui-security.html">GigaSpaces Management Center Security</a> for instructions.</p>
+
+<h1><a name="deploy-a-secured-space">&#160;</a>Deploy a Secured Space</h1>
+
+<ul>
+<li>Click  the  "Deploy In-Memory Data Grid" button (top left, second button) in the UI.</li>
+<li>In the dialog  select the following properties:</li>
+</ul>
+
+<pre><code class="language-java">DataGrid Name : mySpace
+Space Schema : default
+Secured Space checkbox enabled
+User name : user, password: password
+Cluster Schema &lt;None&gt;
+</code></pre>
+
+<p>And deploy the space.</p>
+
+<h1><a name="odbc-jdbc-bridge">&#160;</a>ODBC-JDBC bridge</h1>
+
+<ul>
+<li>Download and install the ODBC-JDBC bridge <a href="http://uda.openlinksw.com/odbc">from</a>.</li>
+<li>Set the following environment variables in your system:</li>
+</ul>
+
+<pre><code class="language-java">PATH=&lt;Your Java Install directory&gt;\jre\bin\server;%PATH%
+CLASSPATH=&lt;GigaSpaces root&gt;lib\required\commons-logging.jar;
+&lt;GigaSpaces root&gt;\lib\required\gs-openspaces.jar;&lt;GigaSpaces root&gt;\lib\required\gs-runtime.jar;
+&lt;GigaSpaces root&gt;\lib\required\spring.jar
+</code></pre>
+
+<ul>
+<li>Create a new OpenLink ODBC datasource with the following properties:</li>
+</ul>
+
+<pre><code class="language-java">JDBC Driver : com.j_spaces.jdbc.driver.GDriver
+URL String: jdbc:gigaspaces:url:jini://*/*/mySpace
+User name  User name : user, Password: password
+</code></pre>
+
+<p>You can test the connection using the openlink sample application at <code>Program Files\OpenLink Software\UDA\Samples\Odbc</code></p>
+
+</body>
+</html>

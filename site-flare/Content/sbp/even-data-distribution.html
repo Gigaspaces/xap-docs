@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Even Data Distribution</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Joe Ottinger</td>
+<td>7.1.2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>In order to leverage your entire space in the most efficient way, you need to be aware of and use an efficient partitioning strategy.</p>
+
+<p>Partitioning refers to distribution across multiple nodes; if all of your data is held in one container, then your data isn't partitioned. It's far more efficient to spread a dataset across multiple nodes and multiple machines, if possible, which allows you to process a subset of data in parallel on each machine, collecting the results and collating them. (This is the "map/reduce" pattern in a nutshell.)</p>
+
+<h1><a name="efficient-partitioning">&#160;</a>Efficient Partitioning</h1>
+
+<p>In Gigaspaces XAP, there are six approaches to partitioning, as discussed on <a href="/xap/14.0/admin/data-partitioning.html">Data-Partitioning</a>. In order to understand the full scope of partitioning, see the <a href="/xap/14.0/admin/data-partitioning.html">data-partitioning.html</a> section.</p>
+
+<p>The most common approach to partitioning is, as stated in the <a href="/xap/14.0/admin/data-partitioning.html">Data-Partitioning</a> documentation, hash-based partitioning, using an explicit value contained in a data object. This is specified via an annotation:</p>
+
+<pre><code class="language-java">public class MyData {
+    private String id;
+    private String groupId;
+
+    @SpaceId
+    public String getId() {return id;}
+    public void setId(String s) { id=s; }
+
+    @SpaceRouting
+    public String getGroupId() { return groupId; }
+    public void setGroupId(String s) { groupId=s; }
+}
+</code></pre>
+
+<p>The approach for efficient partitioning depends very much on how the data is used. In the case of the <code>MyData</code> class above, it's likely that different groups' data will be routed to different partitions (but not <span class="tc-bold">guaranteed</span> - because it's possible that various groupId values end up with the same partitioning values. As usual, see the <a href="/xap/14.0/admin/data-partitioning.html">Data-Partitioning</a> documentation for more detail.)</p>
+
+<p>When a task is started to handle all of a specific groupId's data, then the <span class="tc-bold">single</span> partition holding that data will be involved, which can yield very efficient results; if multiple requests go out to handle different groups (i.e., count all values based on groupId), then the partitions can focus on handling only the groupIds held locally, sending the results back to the original caller. As stated above, this is a representation of the Map/Reduce algorithm, which is documented in <a href="/xap/14.0/dev-java/task-execution-over-the-space.html">Task Execution over the Space</a>.</p>
+
+<p>However, if one groupId consists of a much larger set than another, note that all of that groupId's data will be held on a single partition, which can be problematic. <span class="tc-bold">Remember to examine what your data looks like and how it is partitioned!</span></p>
+
+<p>For perfectly distributed data that isn't naturally partitioned (i.e., something that doesn't have a groupId analog, from the example above), it's possible to use a routing field that is an ascending integer. For example:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  storeEvenlyDistributedData " style="padding:10px"><pre><code class="language-java">...
+public void storeEvenlyDistributedData(GigaSpace space, int count) {
+   if(count&lt;1)
+   {
+      throw new IllegalArgumentException("count of objects must be &gt; 0: passed value was "+count);
+   }
+   for(int i=0; i&lt;count;i++)
+   {
+      MyData data=new MyData();
+      data.setKey("key "+i);
+      // JDK 1.4 will need to use "new Integer(i)" due to the lack of autoboxing.
+      data.setRouting(i);
+      space.write(data);
+   }
+}
+...
+</code></pre>
+</div>
+
+<div title="  MyData " style="padding:10px"><pre><code class="language-java">...
+public class MyData {
+   String key;
+   // note that space objects need to use Object references, not primitives
+   Integer routing;
+   public MyData(String key, Integer routing) {
+      this.key=key;
+      this.routing=routing;
+   }
+
+   public MyData() {}
+   @SpaceId
+   public String getKey() { return key; }
+   @SpaceRouting
+   public Integer getRouting() { return routing; }
+   // various mutators follow, eliminated for brevity
+}
+</code></pre>
+</div>
+</div>
+
+<p>This is not especially efficient for remote task execution (because it doesn't naturally group related data) but does provide an even distribution across partitions, if that's what you need.</p>
+
+</body>
+</html>

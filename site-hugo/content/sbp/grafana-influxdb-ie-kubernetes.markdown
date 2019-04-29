@@ -8,7 +8,7 @@ weight: 150
 
 |Author|Product Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|:----------:|
-| Dharma Prakash and Dixson Huie| 14.0 | January 2019| | [InsightEdge metrics demo](https://github.com/Gigaspaces-sbp/kubernetes/tree/master/ie-metrics-demo)|
+| Dharma Prakash and Dixson Huie| 14.0 | January 2019| | [InsightEdge metrics demo](https://github.com/Gigaspaces-sbp/kubernetes/tree/master/ie-metrics-demo) |
 
 # Overview
 
@@ -18,7 +18,7 @@ Monitoring a production environment of any system requires inspecting many stati
 - **Persistency** - If the web server goes down, all statistics are lost.
 - **Scalability** - The web server gathers statistics by polling each component. This approach is not scalable, and does not behave well on large clusters.
 
-To overcome these limitations, GigaSpaces products include a powerful and versatile [framework for reporting metrics]({{% latestadmurl %}}/metrics-overview.html) - each component can report its own metrics (or even user-defined metrics) to any database or tool the user favours by implementing a [metrics reporter]({{% latestadmurl %}}/metrics-custom-reporter.html). In addition, GigaSpaces provides a [built-in reporter for InfluxDB]({{% latestadmurl %}}/metrics-influxdb-reporter.html) and integration with Grafana to provide metrics storage and visualization: 
+To overcome these limitations, GigaSpaces products include a powerful and versatile [framework for reporting metrics](https://docs.gigaspaces.com/latest/admin/metrics-overview.html) - each component can report its own metrics (or even user-defined metrics) to any database or tool the user favours by implementing a [metrics reporter](https://docs.gigaspaces.com/latest/admin/metrics-custom-reporter.html). In addition, GigaSpaces provides a [built-in reporter for InfluxDB](https://docs.gigaspaces.com/latest/admin/metrics-influxdb-reporter.html) and integration with Grafana to provide metrics storage and visualization: 
 
 - {{%exurl "InfluxDB""http://influxdb.com/"%}} is an open-source distributed time-series database with a powerful query language.
 - {{%exurl "Grafana""http://grafana.org"%}} is a graph and dashboard builder for visualizing time-series metrics, which supports InfluxDB (and other data sources).
@@ -81,6 +81,7 @@ To install and configure InfluxDB in Kubernetes:
 	```
 	helm install --name ie-metrics stable/influxdb
 	```
+	
 	{{% note%}}This installation is only for the purposes of running the demo, so the credentials aren't set.{{% /note%}}
 
 1. Set port forwarding by typing the the following command:
@@ -90,6 +91,7 @@ To install and configure InfluxDB in Kubernetes:
 	```
 	
 1. Run the InfluxDB CLI and do the following to create an InfluxDB database for the demo:
+
 	- To start a database session, type `influx`.
 	- To create the demo database, type `create database demodb`.
 	- To verify that the database was created, type `show databases`. 
@@ -143,6 +145,7 @@ To prepare the custom Docker image:
 	sudo docker build -t <username>/ie-metrics-demo:14.0.1 
 	sudo docker image ls
 	```
+	
 1. Push the Docker image to your Docker Hub account:
 
 	```
@@ -169,7 +172,7 @@ To install InsightEdge in Kubernetes:
 	helm fetch gigaspaces/insightedge --version=14.0.1 --untar
 	```
 
-1. 	To instruct Helm to install InsightEdge using the custom Docker image, modify the following property in the `insightedge/charts/insightedge-pu/values.yaml` file, where `<username>` is your Docker Hub account:
+1. 	To instruct Helm to install InsightEdge using the custom Docker image, modify the following property in the `insightedge/charts/insightedge-pu/values.yaml` file, where &lt;username&gt; is your Docker Hub account:
 
 	```
 	repository:
@@ -182,7 +185,7 @@ To install InsightEdge in Kubernetes:
 	helm install insightedge --name demo
 	```
 
-{{% note%}}For more information about the GigaSpaces Helm charts and how to install and configure InsightEdge and XAP in Kubernetes, see the [KubeGrid]({{% latestadmurl %}}/kubernetes-overview.html) section of the product documentation.{{% /note%}}	
+{{% note%}}For more information about the GigaSpaces Helm charts and how to install and configure InsightEdge and XAP in Kubernetes, see the [KubeGrid](https://docs.gigaspaces.com/latest/admin/kubernetes-overview.html) section of the product documentation.{{% /note%}}	
 	
 # Using Grafana to View InsightEdge Metrics
 	
@@ -196,9 +199,12 @@ You need to do the following in the Grafana client so that it will work with the
 **To configure the data source:**
 
 1. Open a browser to `localhost:3000` and provide the username and password.
+
 	{{% note%}}The username is `admin`. To get the password, type the following command in the command window:
 	
+		```
 		kubectl get secret --namespace default ie-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+		```
 	
 	{{% /note%}}
 	

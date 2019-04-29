@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Data-Collocation Deployment Topology</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Shay Hassidim</td>
+<td>7.0</td>
+<td>September 2009</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="the-abcs-of-the-processing-unit">&#160;</a>The ABCs of the Processing Unit</h1>
+
+<p>GigaSpaces XAP includes a universal grid-based runtime environment for real-time extreme transaction processing (XTP) for Java, C++ and .Net applications. The runtime environment includes a Service Level Agreement-based container called a <a href="/product_overview/service-grid.html#gsc">GSC</a>, in which you are able to deploy business logic and stateful data.</p>
+
+<p>When your business logic and its state are managed by the GigaSpaces runtime components, they are able to self-heal in the case of a failure via the continuous high-availability mechanism of the system. They can dynamically scale themselves by configuration or by a programmable API - all out-of-the-box.</p>
+
+<p>The actual deployment is done via a dedicated service called the <a href="/product_overview/service-grid.html#gsm">GSM</a>, which is responsible for the deployment process and for enforcing the pre-defined SLA (if any) throughout the lifecycle of the application.</p>
+
+<p>The application code running within the GSC should be compiled, packaged into a library, and deployed via the relevant deploy command/API/UI. The GSM is responsible for pushing the application libraries into all the machines running the GSC at deployment, when scaling the system, or when there is a failure that requires the system to use a new available GSC. Once the application libraries have been deployed to the GSC, the container loads the application, initializes it, and then starts the application. You can use external parameters in the deployment and get the status of the business logic and its state via the relevant <a href="/xap/14.0/dev-java/administration-and-monitoring-api.html">administration API</a>, or the provided administration tools.</p>
+
+<p>Since the GSC and its GSM manager include "sensors" that allow the behavior of the hosted processing units to be monitored, additional business logic instances may be instantiated on other GSCs running on other machines. This is done to cope with the additional increasing incoming requests, or to enlarge the capacity of the running spaces to store more data in-memory.</p>
+
+<p>The Processing Unit configuration should follow the basic standards that comprise any processing unit. These include space settings, transaction settings, cluster settings, notify and polling container settings, and your own specific business logic settings. The Processing Unit should also include the actual business logic libraries and any relevant third party libraries used.</p>
+
+<h2><a name="the-data-colocation-deployment-topologies">&#160;</a>The Data Colocation Deployment Topologies</h2>
+
+<p>When deploying the processing unit, one of the following data colocation deployment topologies can be used:</p>
+
+<ul>
+<li>Pure business logic - the state is stored within another processing unit deployed separately. Multiple instances of the business logic can be deployed and scaled dynamically.</li>
+</ul>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/pu_with_bean.gif" alt="pu_with_bean.gif" /></p>
+</div>
+
+<ul>
+<li>Space instance(s) - these are deployed using one of the built-in cluster topologies (replicated, partitioned or partitioned-replicated) or a custom topology.</li>
+</ul>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/pu_with_space.gif" alt="pu_with_space.gif" /></p>
+</div>
+
+<ul>
+<li>Business logic and colocated space instance(s) - the business logic accesses only the colocated spaces or remote space instances running within another processing instance (or running as part of different processing unit). You can deploy these using any of the built-in cluster topologies.</li>
+</ul>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/pu_with_space_and_bean.gif" alt="pu_with_space_and_bean.gif" /></p>
+</div>
+
+<ul>
+<li>Business logic with a local cache - this scenario is relevant for read-mostly cases, where some of the data is cached at the client side.</li>
+</ul>
+
+<p>There are no remote calls involved when the business logic interacts only with its colocated space. Remote calls would be involved in the case where the business logic accesses remote spaces explicitly (with a space proxy configured in a clustered mode), and when the colocated space is configured to have a replica (backup) space. In this case (the replica space), every destructive operation (write, update, take) triggers a replication event that transports the colocated space changes to the replica space(s). Data replication can be done synchronously (which impacts performance), or asynchronously (which does not affect performance).</p>
+
+<p>When the business logic is deployed with a colocated space, it can inherit the space's active mode (i.e., primary or backup). This means that the business logic can be running in stand-by mode, uninitialized, as long as its colocated space is running in backup mode. A space running in backup mode is updated via the existing primary space, and is not accessible by a regular client for direct interaction. If the primary space and its colocated business logic fails (for any reason), the colocated business logic running with the backup space is initialized and started.</p>
+
+<h1><a name="how-can-i-get-more-cpu-power-for-my-application">&#160;</a>How can I get more CPU Power for my Application?</h1>
+
+<p>Historically, software systems scaled by adding more hardware. These ran more software instances that eventually scaled the overall system allowing it to support additional increasing numbers of requests. More CPUs and more memory can always be added to the same machine to be able to process more data/requests per unit of time, but at some point the machine is bound to reach its physical limits in terms of CPU and memory.</p>
+
+<h2><a name="how-can-i-scale-my-application">&#160;</a>How can I Scale my Application?</h2>
+
+<p>The concept of the OpenSpaces Processing Unit was designed around scalability, and the Processing Unit is the unit of scale. Adding scalability, then, is a matter of running more processing units on the any machine participating in the XAP cluster. The application can be scaled by:</p>
+
+<ul>
+<li>Running multiple consumers concurrently within the same process (when using the polling container).</li>
+<li>Running multiple processing unit instances concurrently within the same machine.</li>
+<li>Running multiple processing unit instances across multiple machines that are running concurrently, and utilizing your compute resources over the network (a.k.a. the grid).</li>
+</ul>
+
+<h2><a name="the-starvation-scenario">&#160;</a>The Starvation Scenario</h2>
+
+<p>Nevertheless, in some cases it is not possible to fully take advantage of the available horsepower across the network.</p>
+
+<h3><a name="data-access-starvation">&#160;</a>Data-access Starvation</h3>
+
+<p>Often this occurs because of the data access layer, which cannot feed data quickly enough to the business logic.</p>
+
+<p>This is known as a starvation scenario.</p>
+
+<p>To solve this bottleneck, the processing unit allows you to <span class="tc-bold">colocate</span> the business logic and data; both data and business logic are hosted within the same process, sharing the same memory space. Colocating business logic and data can be done statically (user service associated with a colocated space), or dynamically (via <a href="map-reduce-pattern-executors-example.html#Service Executors Example">Service Executors</a> or <a href="map-reduce-pattern-executors-example.html#Executors Task Example">Task Executors</a>).</p>
+
+<table class="tc-borderless"><tr><td style="width:50%;"><p>Collocated Mode - The Task Executor-Step 1:</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/DistributedTaskExecution_phase1.jpg" alt="DistributedTaskExecution_phase1.jpg" /></p>
+</div>
+</td>
+
+<td style="width:50%;"><p>Collocated Mode - The Task Executor-Step 2:</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/DistributedTaskExecution_phase2.jpg" alt="DistributedTaskExecution_phase2.jpg" /></p>
+</div>
+</td>
+</tr></table>
+
+<h3><a name="cpu-starvation">&#160;</a>CPU Starvation</h3>
+
+<p>In other cases, the bottleneck is not data access, but in the amount of time it takes to process the incoming data (a.k.a. the CPU bound scenario). In this scenario, there is no problem with accessing the data and handing it to the business logic that needs to process it. However, there is a need to run the business logic across as many CPUs and machines as possible, to fully take advantage of the resources over the network.</p>
+
+<p>In this case, it makes better sense to have the data and business logic running in separate processing units, each with its own SLA and scaling requirements. In this case, the business logic may use the <a href="master-worker-pattern.html">Master-Worker Pattern</a>, having the actual business logic running separately and independently from the space processing unit.</p>
+
+<table class="tc-borderless"><tr><td style="width:50%;"><p>Non-Collocated Mode - The Master Worker Pattern-Step 1:</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/master_worker_rr1.jpg" alt="master_worker_rr1.jpg" /></p>
+</div>
+</td>
+
+<td style="width:50%;"><p>Non-Collocated Mode - The Master Worker Pattern-Step 2:</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/master_worker_rr2.jpg" alt="master_worker_rr2.jpg" /></p>
+</div>
+</td>
+</tr></table>
+
+<p>GigaSpaces allows you to build your business logic without having to take the final deployment topology into consideration. The code can be designed, implemented and unit-tested using a single, embedded space colocated with the business logic on your development or testing environment. The same code can then be deployed across a production system involving hundreds of machines having hundreds of spaces with the business logic and data in separated spaces, ultimately processing millions of data items per second with a sub-millisecond latency.</p>
+
+<p>So the question is: to colocate or not to colocate?</p>
+
+<h1><a name="to-colocate-or-not-to-colocate">&#160;</a>To Colocate or not to Colocate?</h1>
+
+<p>When designing your system deployment strategy, you should take a decision about colocating or not colocating your business logic with its state (your application data). This means you should take the following into consideration:</p>
+
+<ol>
+<li>Is your business logic designed to process incoming data events without accessing data located in remote other space partitions?</li>
+<li>Is your data model able to support stickiness, meaning that it can be routed to the same logical partition, based on its content?</li>
+<li>How big is the data used by a single business logic transaction?</li>
+<li>What is the time it takes to process the incoming events?</li>
+<li>What is the amount of data you would like to store within the space?</li>
+</ol>
+
+<p>To help you make the right decision when deploying your application, here are a few guidelines that correlate to the above considerations:</p>
+
+<h4><a name="is-your-business-logic-designed-to-process-incoming-data-events-without-accessing-data-located-in-remote-other-space-partitions">&#160;</a>Is your business logic designed to process incoming data events without accessing data located in remote other space partitions?</h4>
+
+<p>In other words: the business logic can access only its collocated space, or the entire cluster members.</p>
+
+<p>If the collocated space can store both the data required for the processing (cached data), and the consumed data (messages), there is a good chance you can use the collocated mode.</p>
+
+<p>If the business logic needs data stored within other partitions, you might have two space proxies used by the business logic - one that accesses only the collocated space and consumes the incoming "tasks" that need to be processed, and one that accesses all space cluster members and fetches data using space SQL queries needed for the processing. Advanced implementations would use the Map Reduce technique (a.k.a. executors). This popular technique invokes business logic at the relevant partitions that produce intermediate results. These results are then delivered back to the client that aggregates these and returns the final result to the original caller.</p>
+
+<h4><a name="is-your-data-model-designed-to-support-stickiness">&#160;</a>Is your data model designed to support stickiness?</h4>
+
+<p>To allow the application data to be routed to the correct logical partition, associated different objects should have the same routing field value used. A client accessing a remote clustered space has, by default, a space proxy running a simple algorithm before each space operation that calculates the target partition for each space operation.</p>
+
+<p>By default, the calculation uses the hash code value of a field declared as the routing field.</p>
+
+<p>Each space class should have a single routing field declared where the actual field value can be assigned by getting data from possibly several other fields. The routing field value hash code is used to rout write/read operations to the correct partition. For fail-safe operations, a partition may have one or more dedicated backup spaces running in standby mode and holding identical data.</p>
+
+<h4><a name="how-big-is-the-data-used-by-a-single-business-logic-transaction">&#160;</a>How big is the data used by a single business logic transaction?</h4>
+
+<p>When a processing unit hosts your business logic, but accesses a remote space running as a separate processing unit within the same machine as the business logic, or in a different remote machine, there is some cost involved that varies depending on the topology. The remote call overhead depends on the network speed, network bandwidth, data complexity (serialization involved), and its size. The larger the size of the serialized and transported data, the longer it takes for the remote operation to be completed. This applies both to write and read operations.</p>
+
+<p>If the amount of data used for each business logic transaction involves a small amount of objects with a relatively small size, colocating the business logic with the data would not impact the performance significantly. This means you should consider running the business logic and the space as separate processing units.</p>
+
+<p>If the amount of data used for each business logic transaction involves a large amount of objects with a relatively large size, colocating the data and the business logic would boost the application performance dramatically.</p>
+
+<h4><a name="4-what-is-the-time-it-takes-to-process-the-incoming-events">&#160;</a>4. What is the time it takes to process the incoming events?</h4>
+
+<p>When a processing unit hosting your business logic has the space colocated as well, no remote calls or serialization calls are involved when the business logic accesses its colocated data. If the time spent executing the business logic ("task" calculation time) is much longer than the time it takes for the business logic to: retrieve the task from the space, write back the result, or read the required data from the space, it might be logical to run the business logic as a standalone processing unit, separately from the space (i.e. use the <a href="master-worker-pattern.html">Master-Worker Pattern</a>).</p>
+
+<p>As a rule of thumb, a good ratio for running the business logic separately from the space would be 1:10 or more - i.e. if the average time for performing the three basic space remote calls required to retrieve the object from the space (take, read, write) is ~1 ms, and the time it takes to perform the relevant business logic (unrelated to the space) is ~10 ms, it would be wise to run the business logic as a standalone processing unit. If the ratio is less than 1:10, you should consider colocating the business logic with the data.</p>
+
+<h4><a name="5-what-is-the-amount-of-data-you-would-like-to-store-within-the-space">&#160;</a>5. What is the amount of data you would like to store within the space?</h4>
+
+<p>Another important consideration is the total amount of data that your application stores within the space. If you have a relatively small amount of data (that fits into one JVM process), there is no point in partitioning it across many partitions. This means that if you would like to distribute the business logic to many machines having a different scaling ratio than the space, you should not colocate the business logic and the data, but run it as an independent processing unit.</p>
+
+<p>If the amount of data you store within the space is relatively large (more than what can be stored within one JVM process or one machine), and is partitioned across multiple partitions, you should use one of the colocation techniques to allow the business logic and the data to be colocated. You might use only the executors or colocate the business logic service statically, or mix these two options.</p>
+
+<h2><a name="summary">&#160;</a>Summary</h2>
+
+<p>Here is a simple matrix you can use to determine if you should collocate your space with your business logic or not:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Scenario</th>
+<th align="center">Collocate</th>
+<th align="center">Not Collocate</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Data model supports stickiness</td>
+<td align="center"><i class='fa fa-check-circle' style='color:#14892C;'></i>
+
+
+
+</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="left">Transaction takes a short time (&lt;10ms)</td>
+<td align="center"><i class='fa fa-check-circle' style='color:#14892C;'></i>
+
+
+
+</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="left">Transaction takes a long time (&gt;100ms)</td>
+<td align="center"></td>
+<td align="center"><i class='fa fa-check-circle' style='color:#14892C;'></i>
+
+
+
+</td>
+</tr>
+
+<tr>
+<td align="left">Transaction uses a small data set (&gt;1K)</td>
+<td align="center"></td>
+<td align="center"><i class='fa fa-check-circle' style='color:#14892C;'></i>
+
+
+
+</td>
+</tr>
+
+<tr>
+<td align="left">Transaction uses a large data set (&gt;100K)</td>
+<td align="center"><i class='fa fa-check-circle' style='color:#14892C;'></i>
+
+
+
+</td>
+<td align="center"></td>
+</tr>
+
+<tr>
+<td align="left">Amount of data within the space &lt;2GB</td>
+<td align="center"></td>
+<td align="center"><i class='fa fa-check-circle' style='color:#14892C;'></i>
+
+
+
+</td>
+</tr>
+
+<tr>
+<td align="left">Amount of data within the space &gt;2GB</td>
+<td align="center"><i class='fa fa-check-circle' style='color:#14892C;'></i>
+
+
+
+</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="conclusion">&#160;</a>Conclusion</h1>
+
+<p>Choosing the right data colocation deployment topology involves several different considerations. There is no one golden rule you should follow. You should review the different considerations described above, to determine the right data colocation deployment topology that fits your application the best.</p>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Puppet XAP Module</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Shay Hassidim</td>
+<td>9.6</td>
+<td>Feb 2014</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>This pattern explains how to use Puppet to install and configure XAP. This XAP module for Puppet performs two main tasks:</p>
+
+<p><span class="tc-bold">Step 1:</span> Install Gigaspaces XAP.</p>
+
+<p><span class="tc-bold">Step 2:</span> Configure node with one or more XAP roles e.g. Management role, Container role and Web-ui role.</p>
+
+<p><img src="/attachment_files/puppet/xap-puppet.jpg" alt="image" /></p>
+
+<h1><a name="preparing-development-and-testing-environment">&#160;</a>Preparing Development and Testing Environment</h1>
+
+<p>To simulate the IT network we have built 3 virtual machines with VirtuaBox.</p>
+
+<p><span class="tc-bold">Step 1:</span> Download and install Virtual Box</p>
+
+<p><span class="tc-bold">Step 2:</span> Download the learning puppet VM notify to download the OVF file. <a href="http://info.puppetlabs.com/download-learning-puppet-VM.html">http://info.puppetlabs.com/download-learning-puppet-VM.html</a></p>
+
+<p>After download is completed follow the instructions at <span class="tc-bold">Importing the VM into VirtualBox</span>. When the import is complete successfully the puppet master is ready.</p>
+
+<p><span class="tc-bold">Step 3:</span> To prepare puppet agent clone the puppet master and follow the instructions at <span class="tc-bold">Learning Puppet - Preparing an Agent VM</span>.</p>
+
+<p><span class="tc-bold">Step 4:</span>  Create a new VM with windows 7 installation then download and puppet agent for windows and install it.</p>
+
+<p>After completing the steps above your development and testing environment should consist of 3 virtual machines:
+- Centos Linux - puppet master
+- Centos Linux - puppet agent
+- Windows 7 - puppet agent for windows</p>
+
+<p><a href="/attachment_files/puppet/puppet-xap1.jpg"><img src="/attachment_files/puppet/puppet-xap1.jpg" width="400" height="300"></a></p>
+
+<h1><a name="installing-xap-module-dependencies">&#160;</a>Installing XAP module dependencies</h1>
+
+<p>XAP puppet module dependent on other puppet's modules that should be installed:
+- Connect to the master VM: ssh root@<vm_ip_address>
+- Type password: puupet
+- List the already installed modules: puppet module list</p>
+
+<p><a href="/attachment_files/puppet/puppet-xap2.jpg"><img src="/attachment_files/puppet/puppet-xap2.jpg" width="400" height="300"></a></p>
+
+<h2><a name="install-all-the-required-modules-by-running-the-following-commands">&#160;</a>Install all the required modules by running the following commands</h2>
+
+<ul>
+<li>puppet module install biemond/jdk7</li>
+<li>puppet module install reidmv/windows_package</li>
+<li>puppet module install liamjbennett/windows_firewall</li>
+</ul>
+
+<h2><a name="list-the-installed-module-again-by-running-puppet-module-list-and-you-expected-to-see-the-above-module-is-installed">&#160;</a>List the installed module again by running: puppet module list , and you expected to see the above module is installed.</h2>
+
+<p><a href="/attachment_files/puppet/puppet-xap3.jpg"><img src="/attachment_files/puppet/puppet-xap3.jpg" width="400" height="300"></a></p>
+
+<h2><a name="installing-the-xap-module">&#160;</a>Installing The XAP module</h2>
+
+<p>To install the XAP module copy XAP folder under the <code>modules</code> directory in your puppet labs installation.
+- Navigate to your puppet labs configuration directory:</p>
+
+<pre><code class="language-java">a. cd /etc/puppetlabs/puppet/modules/ and then Copy the xap directory under the modules directory
+b. If you clone it from github:
+cd /etc/puppetlabs/puppet/modules/
+git clone https://github.com/Gigaspaces/xap-puppet.git
+mv xap-puppet xap
+</code></pre>
+
+<ul>
+<li>Run: puppet module list, to see the module:</li>
+</ul>
+
+<p><a href="/attachment_files/puppet/puppet-xap4.jpg"><img src="/attachment_files/puppet/puppet-xap4.jpg" width="400" height="300"></a></p>
+
+<h2><a name="xap-module-directory-layout">&#160;</a>XAP Module Directory Layout</h2>
+
+<p>The directory layout and structure is a standard puppet module type:
+- files - include extracted XAP directory and all the JDK version according the nodes platform in your network
+- manifests - include all the logic and classed the module used
+- templates - include all the template files used to generate scripts at runtime when agent node request a configuration catalog</p>
+
+<p><a href="/attachment_files/puppet/puppet-xap5.jpg"><img src="/attachment_files/puppet/puppet-xap5.jpg" width="400" height="300"></a></p>
+
+<h2><a name="module-classes-and-roles">&#160;</a>Module Classes and Roles</h2>
+
+<p>The <code>init.pp</code> is the entry point of any puppet module.</p>
+
+<pre><code class="language-java"># base role to be extended
+class xap{
+
+  require xap::params
+  # install JDK  regards OS
+  case $kernel{
+    'windows' : { 
+      xap::windows_install{'windows-xap-install':}
+    }   
+    default : { 
+      xap::linux_install{'linux-xap-install':}
+    }   
+  }
+
+  #copy gigaspaces-xap dir to the target xap installation directoary
+  file { "${xap::params::gigaspaces_xap_target}" :
+    source  =&gt; "puppet:///modules/${module_name}/${xap::params::gigaspaces_xap_source}",
+    recurse =&gt; true,
+    ensure  =&gt; directory,
+  } ~&gt;
+  #configure installation
+  xap::configure{'configure xap environment':}
+
+
+}
+# manager role
+class xap::manager  (
+  $global_lus = 0,
+  $lus        = 1,
+  $global_gsm = 0,
+  $gsm        = 1,
+  $gsc        = 2,
+) inherits xap {
+  # run gs-agent
+  xap::gs_agent{'xap_manager':
+    name  =&gt; "manager_gsa_global_lus_${global_lus}_gsa_lus_${lus}_gsa_global_gsm_${global_gsm}_gsa_gsm_${gsm}_gsa_gsc_${gsc}",
+    g_lus =&gt; $global_lus,
+    l_lus =&gt; $lus,
+    g_gsm =&gt; $global_gsm,
+    l_gsm =&gt; $gsm,
+    l_gsc =&gt; $gsc,
+  }
+}
+# constainer role
+class xap::container (
+  $global_lus = 0,
+  $lus        = 0,
+  $global_gsm = 0,
+  $gsm        = 0,
+  $gsc        = 4,
+)inherits xap {
+
+  xap::gs_agent{'xap_container':
+    name =&gt;  "container_gsa_global_lus_${global_lus}_gsa_lus_${lus}_gsa_global_gsm_${global_gsm}_gsa_gsm_${gsm}_gsa_gsc_${gsc}",
+    l_gsc  =&gt; $gsc,
+  }
+}
+# web-ui role
+class xap::webui inherits xap {
+
+  xap::web_ui {"xap_webui":}
+}
+</code></pre>
+
+<h2><a name="params-pp">&#160;</a>params.pp</h2>
+
+<p>The params.pp should include all the configuration. See example below:</p>
+
+<pre><code class="language-java">class xap::params { 
+ 
+  $jdk_version = '7' # jdk version 
+  $jdk_update ='45'  # jdk update
+  $jdk_home = "jdk1.${jdk_version}.0_${jdk_update}" # jdk home
+  $jdk_arch = $hardwaremodel ? { # node 32bit or 64bit
+    'i686'   =&gt; 'i586',
+    default =&gt; 'x64',
+  }
+
+  $jdk_name="jdk-${jdk_version}u${jdk_update}-${kernel}-${jdk_arch}" # jdk file name
+
+  $jdk_file = $kernel ? { # jdk file name with extension
+    'windows' =&gt; "${jdk_name}.exe",
+    default   =&gt; "${jdk_name}.tar.gz",
+  }
+
+  # XAP Installation parameters
+  $gigaspaces_xap_source = 'gigaspaces-xap-premium-9.6.2-ga'
+
+  $gigaspaces_xap_target = $kernel ? {
+    'windows' =&gt; "c:/${gigaspaces_xap_source}",
+    default   =&gt; "/opt/${gigaspaces_xap_source}",
+  }
+
+  # license configuration
+  $license_target = "${gigaspaces_xap_target}/gslicense.xml"
+  $license_key = 'Mar 21, 2114~usery$gigaspaces.com@cSdVRnXXXXXXXXXXX#EVALUATION^9.0XAPPremium%UNBOUND+UNLIMITED//WAN//EMT'
+
+  #configure environment
+  $extension = $kernel ? {
+    'windows' =&gt; 'bat',
+    default   =&gt; 'sh',
+  }
+
+  $config_dir = $kernel ? {
+    'windows' =&gt; 'c:/gigaspaces',
+    default   =&gt; '/opt/gigaspaces',
+  }
+
+  $gs_webui_war_file = "gs-webui-9.6.2-9900-RELEASE.war"
+
+  #LOOKUPLOCATORS value
+  $lookup_locators = '192.168.141.130'
+
+  # LOOKUPGROUPS value
+  $lookup_groups ="gigaspaces-9.6.2-XAPPremium-ga"
+
+  # JAVA_VM_NAME value
+  $java_vm_name = $kernel ? {
+    default =&gt; 'ALL',
+  }
+
+  # JAVA_HOME value
+  $java_home = $kernel ? {
+    'windows' =&gt; "C:/Programs file/java/${jdk_home}",
+    default =&gt; "/usr/java/${jdk_home}",
+  }
+
+  # configure firewall\
+  $com_sun_jini_reggie_initialUnicastDiscoveryPort=4174
+  $com_gs_transport_protocol_lrmi_bind_port_start=8000
+  $com_gs_transport_protocol_lrmi_bind_port_end=8100
+  $com_gigaspaces_system_registryPort=10098
+  $com_gigaspaces_start_httpPort=9813
+  $com_gs_webui_port=8099
+
+  # configure System properties
+  $com_gigaspaces_logger_RollingFileHandler_filename_pattern="${config_dir}/logs/"
+  $com_gs_deploy="${config_dir}/deploy"
+  $com_gs_work="${config_dir}/work"
+  $com_gigaspaces_lib_platform_ext="${gigaspaces_xap_target}/lib/platform/ext"
+  $com_gs_pu_common="${gigaspaces_xap_target}/lib/optional/pu-common"
+  $com_gigaspaces_grid_gsa_config_directory="${gigaspaces_xap_target}/config/gsa"
+  $java_util_logging_config_file="${gigaspaces_xap_target}/config/gs_logging.properties"
+  $com_gs_transport_protocol_lrmi_bind_port="${com_gs_transport_protocol_lrmi_bind_port_start}-${com_gs_transport_protocol_lrmi_bind_port_end}"
+$com_gs_transport_protocol_lrmi_max_conn_pool=1024
+  $com_gs_transport_protocol_lrmi_max_threads=512
+  #$com_sun_jini_reggie_initialUnicastDiscoveryPort=4174
+  $com_gs_zones=''
+  $com_gs_grid_secured=false
+
+  # JAVA_OPTION
+  $Xloggc = "${config_dir}/logs/gc.log"
+
+  # GSC_JAVA_OPTIONS
+  $Xms = '300m'
+  $Xmx ='8g'
+  $Xmn =''
+  $XXCMSInitiatingOccupancyFraction = '60'
+}
+</code></pre>
+
+<h2><a name="site-configuration">&#160;</a>Site Configuration</h2>
+
+<p>There are three roles supported:</p>
+
+<ol>
+<li><p>xap::manager role</p></li>
+
+<li><p>xap::container role</p></li>
+
+<li><p>xap::webui</p></li>
+</ol>
+
+<p>To associate a node with a role edit the <code>/etc/puppetlabs/puppet/manifests/site.pp</code> and add for each node the target roles. Example:</p>
+
+<pre><code class="language-java">## site.pp ##
+
+# This file (/etc/puppetlabs/puppet/manifests/site.pp) is the main entry point
+# used when an agent connects to a master and asks for an updated configuration.
+#
+# Global objects like filebuckets and resource defaults should go in this file,
+# as should the default node definition. (The default node can be omitted
+# if you use the console and don't define any other nodes in site.pp. See
+# http://docs.puppetlabs.com/guides/language_guide.html#nodes for more on
+# node definitions.)
+
+## Active Configurations ##
+
+# PRIMARY FILEBUCKET
+# This configures puppet agent and puppet inspect to back up file contents when
+# they run. The Puppet Enterprise console needs this to display file contents
+# and differences.
+
+# Define filebucket 'main':
+filebucket { 'main':
+  server =&gt; 'learn.localdomain',
+  path   =&gt; false,
+}
+
+# Make filebucket 'main' the default backup location for all File resources:
+File { backup =&gt; 'main' }
+
+# DEFAULT NODE
+# Node definitions in this file are merged with node data from the console. See
+# http://docs.puppetlabs.com/guides/language_guide.html#nodes for more on
+# node definitions.
+
+# The default node definition matches any node lacking a more specific node
+# definition. If there are no other nodes in this file, classes declared here
+# will be included in every node's catalog, *in addition* to any classes
+# specified in the console for that node.
+
+node default {
+  # This is where you can declare classes for all nodes.
+  # Example:
+  #   class { 'my_class': }
+}
+node 'agent1.localdomain' {
+  include xap::manager
+  include xap::webui
+}
+
+node 'win7-agent' {
+  include xap::container
+}
+</code></pre>
+
+</body>
+</html>

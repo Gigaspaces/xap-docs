@@ -182,7 +182,7 @@ Here is an example of the Kafka Space Synchronization Endpoint configuration:
 
 
 {{%refer%}}
-For more information on the Mirror service see [asynchronous persistence]({{%latestjavaurl%}}/asynchronous-persistency-with-the-mirror.html)
+For more information on the Mirror service see [asynchronous persistence](https://docs.gigaspaces.com/latest/dev-java/asynchronous-persistency-with-the-mirror.html)
 {{%/refer%}}
 
 

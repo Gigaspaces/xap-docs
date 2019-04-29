@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Distributed Mirror</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th align="center">Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Shay Hassidim</td>
+<td>12.0</td>
+<td>March 2017</td>
+<td><a href="/xap/14.0/dev-java/asynchronous-persistency-with-the-mirror.html">Asynchronous Persistence</a></td>
+<td align="center"><a href="/download_files/sbp/distributed-mirror.zip">Example</a></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>By default a single mirror instance used to perform write-behind activity, persisting data from the space to the enterprise backend database. For most systems this will provide sufficient throughput to address the activity a single clustered space generating. There are cases with large space clusters or with systems that produce large volume of activity where the amount of activity performed by a clustered space would require a distributed (multi-instance) mirror setup. The solution described here allows each partition (primary and backup instances) to perform write-behind activity via a dedicated mirror. This forms an architecture where each partition using a separate mirror instance that may run on a different machine, utilizing its full CPU and network bandwidth. This approach reducing the potential for redolog accumulation generating a lag between the space data state and the persistency backend state as a result of a single mirror.</p>
+
+<h1><a name="architecture">&#160;</a>Architecture</h1>
+
+<p>With the example below we will run a partitioned space (2 partitions) and 2 mirror instances, both writing into a single database.</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/mirror/distributed-mirror-1.png" alt="image" /></p>
+</div>
+
+<h1><a name="the-example">&#160;</a>The Example</h1>
+
+<p>Download the <a href="/download_files/sbp/distributed-mirror.zip">example</a> and extract its contents into an empty folder. You will find 3 zip files:</p>
+
+<ul>
+<li>multi-mirror.zip – A Mirror PU configured to support multiple mirror instances</li>
+<li>space.zip - A Space PU configured to support multiple mirror instances</li>
+<li>feeder.zip – A PU writing objects into the space</li>
+</ul>
+
+<h2><a name="start-the-database-and-its-ui">&#160;</a>Start the Database and its UI</h2>
+
+<p>Run SQLDB:</p>
+
+<pre><code class="language-bash">java -cp hsqldb-2.3.2.jar org.hsqldb.Server -database.0 file:testDB -dbname.0 testDB
+</code></pre>
+
+<p>Run SQLDB Manager:</p>
+
+<pre><code class="language-bash">java -cp hsqldb-2.3.2.jar org.hsqldb.util.DatabaseManager
+</code></pre>
+
+<h2><a name="connect-to-the-database">&#160;</a>Connect to the database:</h2>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/mirror/distributed-mirror-2.jpg" alt="image" /></p>
+</div>
+
+<p>You can find the hsqldb-2.3.2.jar within the multi-mirror.zip lib folder.</p>
+
+<h2><a name="start-agent">&#160;</a>Start Agent</h2>
+
+<p>Start an agent with 7 GSCs. This will allow the GSM to deploy each instance into a dedicated GSC. It will allow you to track the activity easily by monitoring the GSC log file each PU instance using.</p>
+
+<pre><code class="language-bash">gs-agent gsa.gsc 7
+</code></pre>
+
+<h2><a name="deploying-multiple-mirror-instances">&#160;</a>Deploying Multiple Mirror Instances</h2>
+
+<p>To scale the mirror activity deploy multiple mirror instances , one per partition. You should deploy each separately. Each can use the same PU library with different mirror-service_id value – see below example:</p>
+
+<pre><code class="language-bash">gs deploy -properties embed://mirror-service_id=1 -override-name mirror1 multi-mirror.zip
+
+gs deploy -properties embed://mirror-service_id=2 -override-name mirror2 multi-mirror.zip
+</code></pre>
+
+<p>You can create a script that will loop and deploy multiple mirror instances each with its own unique ID.</p>
+
+<h2><a name="deploying-the-space">&#160;</a>Deploying the Space</h2>
+
+<p>To deploy the space:</p>
+
+<pre><code class="language-bash">gs deploy -cluster schema=partitioned total_members=2,1 -override-name space space.zip
+</code></pre>
+
+<h2><a name="deploying-the-feeder">&#160;</a>Deploying the Feeder</h2>
+
+<p>Deploy the feeder via the following:</p>
+
+<pre><code class="language-bash">gs deploy feeder.zip
+</code></pre>
+
+<p>This will write objects into the space. The mirrors will persist these into the database.</p>
+
+<h2><a name="view-the-space-and-the-mirrors-status">&#160;</a>View the Space and the Mirrors Status</h2>
+
+<p>Start the GS-Web UI. You should see the space and the different mirror instances:</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/mirror/distributed-mirror-3.jpg" alt="image" /></p>
+</div>
+
+<p>Or you can start the Management console and view the space and the different mirror instances:</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/mirror/distributed-mirror-4.jpg" alt="image" /></p>
+</div>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/mirror/distributed-mirror-5.png" alt="image" /></p>
+</div>
+
+<p>You may access the database and check the amount of rows inserted – this should match the amount of objects within the space:</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/mirror/distributed-mirror-6.jpg" alt="image" /></p>
+</div>
+
+<h2><a name="space-pu-xml-configuration">&#160;</a>Space pu.xml configuration</h2>
+
+<p>The cluster-config.mirror-service.url should include the ${clusterInfo.instanceId} as demonstrated below:</p>
+
+<pre><code class="language-xml">&lt;os-core:space id="space" url="/./space" mirror="true" &gt;
+        &lt;os-core:properties&gt;
+            &lt;props&gt;
+                &lt;prop key="cluster-config.mirror-service.url"&gt;jini://*/mirror-service${clusterInfo.instanceId}_container/mirror-service${clusterInfo.instanceId}&lt;/prop&gt;
+            &lt;/props&gt;
+        &lt;/os-core:properties&gt;
+    &lt;/os-core:space&gt;
+</code></pre>
+
+<h2><a name="mirror-pu-xml-configuration">&#160;</a>Mirror pu.xml configuration</h2>
+
+<p>The url mirror bean property should include the mirror service id together with the mirror name as demonstrated below:</p>
+
+<pre><code class="language-bash">&lt;os-core:mirror id="mirror" url="/./mirror-service${mirror-service_id}" space-sync-endpoint="hibernateSpaceSynchronizationEndpoint" operation-grouping="group-by-space-transaction"&gt;
+        &lt;os-core:source-space name="space" partitions="2" backups="1"/&gt;
+    &lt;/os-core:mirror&gt;
+</code></pre>
+
+<h1><a name="limitations">&#160;</a>Limitations</h1>
+
+<ul>
+<li>Distributed transactions are not supported. Local transactions are supported.</li>
+</ul>
+
+</body>
+</html>

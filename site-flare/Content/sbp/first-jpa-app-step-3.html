@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Building and Running the Application</h1>
+  
+
+<p>This step shows how to build, package and deploy the application while taking advantage of XAP's dynamic load balancing capabilities and the Space as a highly HttpSession store.</p>
+
+<h1><a name="building-the-example-application">&#160;</a>Building the Example Application</h1>
+
+<p>The application sources and build scripts can be downloaded from this <a href="https://github.com/gigaspaces/petclinic-jpa">Github link</a>. This application uses a Maven build script, so you need to make sure you're connected to the internet when you first run it to allow Maven to download all the dependencies.</p>
+
+<pre><code class="language-bash">~/gs/xap/[%=Versions.gshome-directory%]/tools/maven&gt;installmavenrep.sh
+""
+""
+"Installing XAP [%=Versions.product-version-short%].0-RELEASE jars"
+""
+""
+</code></pre>
+
+<ul>
+<li>cd to the root directory of the application</li>
+<li>Edit the value of the <code>gsVersion</code> property in the <code>pom.xml</code> file at the root directory to reflect the GigaSpaces build you're using (this is the build number that the Maven plugin installation script outputs to the console when invoked).
+For example, if you are using GigaSpaces XAP [%=Versions.xap-version%] you should modify the <code>pom.xml</code> to have:</li>
+</ul>
+
+<pre><code class="language-xml">&lt;gsVersion&gt;[%=Versions.maven-version%]&lt;/gsVersion&gt;
+</code></pre>
+
+<ul>
+<li>Run the following Maven command:</li>
+</ul>
+
+<pre><code class="language-bash">mvn package
+</code></pre>
+
+<p>This will download the application's decencies, compile the sources and package the processor processing unit and the web application.</p>
+
+<h1><a name="deploying-the-example-application">&#160;</a>Deploying the Example Application</h1>
+
+<p>To deploy the application, you should do the following:</p>
+
+<ul>
+<li>Start a <a href="/product_overview/service-grid.html#gsa">GigaSpaces Agent</a></li>
+<li>Run the following Maven command from the application's root directory:</li>
+</ul>
+
+<pre><code class="language-java">mvn os:deploy
+</code></pre>
+
+<h1><a name="creating-sample-data">&#160;</a>Creating Sample Data</h1>
+
+<p>To have an initial sample data set to work with, simply click the "Create Dummy Data" link in the welcome page of the application. This will create a number of <code>Owner</code> s, <code>Pet</code> s and <code>Vet</code> s that you can work with to experience the application's functionality.</p>
+
+<p><img src="/attachment_files/dummy-data.png" alt="dummy-data.png" /></p>
+
+<h1><a name="monitoring-the-deployed-application">&#160;</a>Monitoring the Deployed Application</h1>
+
+<p>To monitor  the application, start the GigaSpaces UI using the <code>&lt;XAP root&gt;/bin/gs-ui.sh(bat)</code> or the GigaSpaces <a href="/xap/14.0/admin/web-management-console.html">Web UI</a>.</p>
+
+<p><img src="/attachment_files/web-ui-pc.png" alt="web-ui-pc.png" /></p>
+
+</body>
+</html>

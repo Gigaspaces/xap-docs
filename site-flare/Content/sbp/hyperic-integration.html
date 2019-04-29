@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Hyperic integration</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Shay Hassidim</td>
+<td></td>
+<td>Feb 2014</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p><a href="http://www.hyperic.com/">Hyperic</a> is a global monitoring system and this page describes a quick GigaSpaces integration that I made during a consulting session.
+The plugin uses the GigaSpaces Admin API to perform the monitoring of a global system.
+The plugin is offered as open source as part of OpenSpaces community.</p>
+
+<h1><a name="installation">&#160;</a>Installation</h1>
+
+<p>As the GigaSpaces plugin uses the <a href="/xap/14.0/dev-java/administration-and-monitoring-api.html">Administration and Monitoring API</a> (a.k.a. Admin API) a single Hyperic agent will be used to monitor the whole cluster. Indeed GigaSpaces is a very dynamic platform and a classical Hyperic installation based on an agent monitoring the processes on his physical (or virtual) machine won't work well, a given processing unit could be unavailable on a machine because the GSM decided to deploy it somewhere else.</p>
+
+<p>In order to use the plugin on an hyperic agent you have to prepare this agent to be "GigaSpaces ready'.</p>
+
+<ol>
+<li>Copy the GigaSpaces required jar files (<span class="tc-italic">JSHOMEDIR/lib/required</span>) to the following agent folder: <span class="tc-italic">agent-4.6/bundles/agent-4.6/pdk/lib/gs</span> (you'll have to create the gs folder).</li>
+<li>Upgrade the agent JVM to a 1.6 version</li>
+<li>Restart the agent</li>
+<li>Connect to the Hyperic server console with admin account and go to the plugin manager. Install the GigaSpaces plugin (<a href="/attachment_files/sbp/hyperic-gs-plugin.jar">hyperic-gs-plugin.jar</a>)</li>
+</ol>
+
+<h1><a name="usage">&#160;</a>Usage</h1>
+
+<h3><a name="create-a-platform">&#160;</a>Create a platform</h3>
+
+<p>In order to use the plugin you'll have to configure a GigaSpaces platform. Indeed as a correct defined GigaSpaces cluster discovery relies on lookup groups and/or lookup locators the plugin won't be able to auto-discover your infrastructure without these parameters.</p>
+
+<p><img src="/attachment_files/sbp/hyperic_new_platform.png" alt="hyperic_new_platform.png" /></p>
+
+<p>On the hyperic new platform page select</p>
+
+<ol>
+<li>The platform type to be GigaSpaces XAP Grid.</li>
+<li>In Agent Connection select the agent that you prepared for GigaSpaces monitoring (Cf. Installation).</li>
+<li>IP Address is not used by the plugin, Hyperic requires a valid one however so you can put any address (the one of the hyperic server if you like).</li>
+</ol>
+
+<h4><a name="configure-the-platform">&#160;</a>Configure the platform</h4>
+
+<p>Once the platform is created you should be able to configure it:</p>
+
+<p><img src="/attachment_files/sbp/hyperic_platform_conf.png" alt="hyperic_platform_conf.png" /></p>
+
+<p>Click on the <span class="tc-italic">Edit</span> button in the <span class="tc-italic">Configuration Properties</span> panel.</p>
+
+<p>Configure your locators, groups and monitoring user details (if GigaSpaces security is enabled).</p>
+
+<p>Click on OK, the plugin should auto discover the GigaSpaces services (GSAs, GSMs, GSCs, Pus and Spaces).</p>
+
+<p><span class="tc-italic">Note that Hyperic Autodiscovery of services etc run daily only so if you deploy a new pu and want it to appear you should repeat the configuration step (without changing values) to trigger a new auto discovery.</span></p>
+
+<p>_The plugin is currently delivering some very basic features and has to be improved in the future to cover more monitoring information.</p>
+
+<h1><a name="building-the-plugin">&#160;</a>Building the plugin</h1>
+
+<p>If you wish to enhance the plugin, fix bugs or just review the source code, you can <a href="https://github.com/Gigaspaces/bestpractices">download the source code</a> from <span class="tc-italic">GigaSpaces Solutions and Patterns GitHub repository</span> and build it yourself.
+Plugin package uses maven but requires a few Hyperic artifacts that are not available in public repositories. In order to build the plugin you'll first have to add them to your repository:</p>
+
+<ul>
+<li>Run the following commands:
+
+<ul>
+<li>mvn install:install-file -Dfile=$PATH_TO_AGENT_HOME_DIR/bundles/agent-4.6/lib/hq-agent-core-4.6.jar -DgroupId=org.hyperic.hq.agent -DartifactId=hq-agent-core -Dversion=4.6 -Dpackaging=jar</li>
+<li>mvn install:install-file -Dfile=$PATH_TO_AGENT_HOME_DIR/bundles/agent-4.6/pdk/lib/hq-pdk-4.6.jar -DgroupId=org.hyperic.hq -DartifactId=hq-pdk -Dversion=4.6 -Dpackaging=jar</li>
+<li>mvn install:install-file -Dfile=$PATH_TO_AGENT_HOME_DIR/bundles/agent-4.6/pdk/lib/hq-util-4.6.jar -DgroupId=org.hyperic.hq -DartifactId=hq-util -Dversion=4.6 -Dpackaging=jar</li>
+<li>mvn install:install-file -Dfile=$PATH_TO_AGENT_HOME_DIR/bundles/agent-4.6/pdk/lib/hq-common-4.6.jar -DgroupId=org.hyperic.hq -DartifactId=hq-common -Dversion=4.6 -Dpackaging=jar</li>
+</ul></li>
+</ul>
+
+<p>Now you should be able to build the plugin using maven (mvn install).</p>
+
+</body>
+</html>

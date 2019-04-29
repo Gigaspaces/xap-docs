@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Universal Deployer</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Shay Hassidim</td>
+<td>8.0.1</td>
+<td>April 2011</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>The GigaSpaces Universal Deployer (GUD) allows deploying the different supported processing units (<a href="/xap/14.0/dev-java/the-processing-unit-overview.html">Space PU</a>, <a href="/xap/14.0/dev-java/the-processing-unit-structure-and-configuration.html">Regular PU</a>, <a href="/xap/14.0/dev-java/elastic-processing-unit-overview.html">Elastic PU</a>, <a href="/xap/14.0/dev-java/memcached-api.html">memCache PU</a> or <a href="/xap/14.0/dev-java/web-processing-unit-container.html">Web PU</a> via a simple configuration file. The GUD support dependency based deployment allowing multiple processing units to be deployed as one atomic process (e.g. composite application).</p>
+
+<div class="tc-admon-tip">
+  
+  <p>Starting with XAP 9 you may use the <span class="tc-bold">Deployment Dependencies API</span> to specify the deployment order. See the <a href="/xap/14.0/dev-java/deploying-onto-the-service-grid.html#Application+Deployment+and+Processing+Unit+Dependencies">Application Deployment and Processing Unit Dependencies</a> for details.</p>
+</div>
+
+<h2><a name="dependency-based-deployment">&#160;</a>Dependency Based Deployment</h2>
+
+<p>The GUD allows you to specify for each deployed PU its dependency PU list. The dependent PU will be deployed after all its PUs dependencies will be fully deployed. The mechanism is recursive; if any of these PUs depends on other PU(s), these will be deployed before the top level dependent PU is deployed. This ensures the deploy order will have the entire PUs deployed in the correct order.</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/universantDeploy_depen.jpg" alt="universantDeploy_depen.jpg" /></p>
+</div>
+
+<p>To describe the above deploy plan the GUD should have the following config file:</p>
+
+<pre><code class="language-java">A [B,C] -file myA_PU.jar
+B [D,E] -file myB_PU.jar
+C [F,G] -file myC_PU.jar
+D [] -file myD_PU.jar
+E [] -file myE_PU.jar
+F [] -file myF_PU.jar
+G [] -file myG_PU.jar
+</code></pre>
+
+<p>With the above config the PUs will be deployed in the following order: F, D, E, G, C, B, A.</p>
+
+<h2><a name="abort-strategy">&#160;</a>Abort Strategy</h2>
+
+<p>In case of a deployment failure, you may specify an abort strategy. In case of unsuccessful deployment you may instruct the GUD to undeploy the specific PU that could not be deployed or undeploy the entire PUs that already been deployed.</p>
+
+<h1><a name="gud-command-line-options">&#160;</a>GUD Command Line Options</h1>
+
+<p>The GUD support the following command line arguments:</p>
+
+<table>
+<thead>
+<tr>
+<th>Switch</th>
+<th>Description</th>
+<th>Options</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-command</td>
+<td>deploy or undeploy PU listed at the config file location</td>
+<td>deploy , undeploy</td>
+<td>deploy</td>
+</tr>
+
+<tr>
+<td>-config</td>
+<td>GUD config file location</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>-locators</td>
+<td>lookup service locators</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>-groups</td>
+<td>lookup service groups</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>-abortDeployOnFailure</td>
+<td>In case of a failure with the deploy of any of the PUs, undeploy all the PUs listed at the GUD config file</td>
+<td>true,false</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="running-the-gud">&#160;</a>Running the GUD</h1>
+
+<h2><a name="install-the-gud">&#160;</a>Install the GUD</h2>
+
+<ul>
+<li>Download the <a href="/attachment_files/sbp/GSUniversalDeployer.zip">GigaSpaces Universal Deployer</a> and extract it into an empty folder.</li>
+<li>Edit the <code>runGSUniversalDeployer.bat</code> or <code>runGSUniversalDeployer.sh</code> to include the correct parameters.</li>
+</ul>
+
+<p>Here an example how you should run the GUD:</p>
+
+<pre><code class="language-java">java com.gigaspaces.admin.GSUniversalDeployer -config c:\\puList.txt -locators 127.0.0.1 -abortDeployOnFailure true
+</code></pre>
+
+<h2><a name="gud-configuration-file">&#160;</a>GUD Configuration File</h2>
+
+<p>The universal Deployer configuration file may include multiple lines with the following format:</p>
+
+<pre><code class="language-java">PU Name [Dependent PU List] deploy options
+</code></pre>
+
+<p>Example:</p>
+
+<pre><code class="language-java">mySpace [] -type space -cluster schema=partitioned-sync2backup total_members=2,1
+myPU [] -type regular -file c:\myPU.zip
+A [B,C] -elastic manualCapacity  -user xxx -password yyyy -undeployOnFailure true -file mywar.war
+B [D,E] -cluster schema=partitioned total_members=2,1 -user xxx -password yyyy  -file myjar.jar
+C [F,E] -elastic eagerCapacity -user xxx -password yyyy -properties embed://prop2=value2;prop3=value3 -file myzip.zip
+D [] -cluster total_members=2 -user xxx -password yyyy -properties file://d:/temp/context.properties
+E [] -cluster total_members=2 -user xxx -password yyyy -zones zone1,zone2
+</code></pre>
+
+<h2><a name="gud-configuration-file-options">&#160;</a>GUD Configuration File Options</h2>
+
+<p>Each GUD configuration file line supports the following options:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Switch</th>
+<th align="left">Description</th>
+<th align="left">Options</th>
+<th align="left">Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">-file</td>
+<td align="left">PU file. You may have .zip , .jar , .war file deployed.</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">-type</td>
+<td align="left">PU Type</td>
+<td align="left">Regular,Space,memcache</td>
+<td align="left">Regular</td>
+</tr>
+
+<tr>
+<td align="left">-timeout</td>
+<td align="left">Timeout to abort the deploy process. If the deploy process is not completed within this timeframe, undeploy process will be initiated.</td>
+<td align="left"></td>
+<td align="left">120 seconds</td>
+</tr>
+
+<tr>
+<td align="left">-undeployOnFailure</td>
+<td align="left">undeploy the PU in case of a failure or when the deploy could not be completed within the timeout specified</td>
+<td align="left">false , true</td>
+<td align="left">false</td>
+</tr>
+
+<tr>
+<td align="left">-spaceurl</td>
+<td align="left">Used with memcache PU type.</td>
+<td align="left">The url of the space, can be embedded, e.g.: /./myMemcached, or remote e.g.: <code>jini://*/*/myMemcached</code></td>
+<td align="left"><code>/./memcached</code></td>
+</tr>
+
+<tr>
+<td align="left">-sla</td>
+<td align="left">Location of an optional xml file holding the SLA element</td>
+<td align="left">sla file location</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">-cluster</td>
+<td align="left">Set cluster parameters</td>
+<td align="left">schema=partitioned-sync2backup  : The cluster schema<br/>total_members=1,1               : The number of instances and number of backups</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">-user xxx -password yyyy</td>
+<td align="left">Deploys a secured processing unit propagated with the supplied user and password</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">-secured</td>
+<td align="left">Deploys a secured processing unit (implicit when using -user/-password)</td>
+<td align="left">false,true</td>
+<td align="left">false</td>
+</tr>
+
+<tr>
+<td align="left">-properties</td>
+<td align="left">Location of context level properties file or list of properties. Examples:<br/><code>-properties embed://prop2=value2;prop3=value3</code> or <code>-properties file://d:/context.properties</code></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">-max-instances-per-vm number</td>
+<td align="left">Set the SLA number of instances per VM</td>
+<td align="left">Numeric value</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">-max-instances-per-machine number</td>
+<td align="left">Set the SLA number of instances per machine</td>
+<td align="left">Numeric value</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">-max-instances-per-zone</td>
+<td align="left">Set the SLA number of instances per zone</td>
+<td align="left">zone/number</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">-zones</td>
+<td align="left">Set the SLA zone requirements</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">-elastic</td>
+<td align="left">Deploy the PU as an <a href="/xap/14.0/dev-java/elastic-processing-unit-overview.html">Elastic PU</a>. You should have the ESM started when using this option.</td>
+<td align="left">manualCapacity,eagerCapacity</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left">-highlyAvailable</td>
+<td align="left">Used with a Stale-full Elastic PU. Start backup instances. Specifies if the space should duplicate each information on two different machines.</td>
+<td align="left">true,false</td>
+<td align="left">true</td>
+</tr>
+
+<tr>
+<td align="left">-memoryCapacityPerContainer</td>
+<td align="left">Used with an Elastic PU. Specifies the the heap size per container (operating system process).</td>
+<td align="left">Numeric value with a Memory Unit. Memory units supported: m for MB,g for GB</td>
+<td align="left">32m</td>
+</tr>
+
+<tr>
+<td align="left">-maxMemoryCapacity</td>
+<td align="left">Used with an Elastic PU. Specifies the estimated <span class="tc-bold">maximum</span> total memory capacity used with this processing unit.</td>
+<td align="left">Numeric value with a Memory Unit. Memory units supported: m for MB,g for GB</td>
+<td align="left">256m</td>
+</tr>
+
+<tr>
+<td align="left">-memoryCapacity</td>
+<td align="left">Used with an Elastic PU. Specifies the estimated <span class="tc-bold">initial</span> total memory capacity used with this processing unit.</td>
+<td align="left">Numeric value with a Memory Unit. Memory units supported: m for MB,g for GB</td>
+<td align="left">128m</td>
+</tr>
+
+<tr>
+<td align="left">-singleMachineDeployment</td>
+<td align="left">Used with an Elastic PU. Allows deployment of the processing unit on a single machine, by lifting the limitation for primary and backup processing unit instances from the same partition to be deployed on different machines.</td>
+<td align="left">false,true</td>
+<td align="left">false</td>
+</tr>
+</tbody>
+</table>
+
+<h2><a name="commenting-lines">&#160;</a>Commenting lines</h2>
+
+<p>You may use <code>/</code> or <code>#</code> to comment out a line within the configuration file.</p>
+
+<h2><a name="logging">&#160;</a>Logging</h2>
+
+<p>When deploying the GUD will display information about started/terminated containers, started/terminated PU instances.</p>
+
+</body>
+</html>

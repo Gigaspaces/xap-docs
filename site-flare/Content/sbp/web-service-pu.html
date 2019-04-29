@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Web Service PU</h1>
+  
+
+<table>
+<thead>
+<tr>
+<th>Author</th>
+<th>XAP Version</th>
+<th>Last Updated</th>
+<th>Reference</th>
+<th>Download</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Shay Hassidim</td>
+<td>8.0</td>
+<td>March 2011</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="overview">&#160;</a>Overview</h1>
+
+<p>This example illustrates a simple web service packaged as a WAR using <a href="http://cxf.apache.org">Apache CXF</a> 2.4. Web service is also interacting with a space and performing read and write operations on behalf of the client.</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/web_service_pu.jpg" alt="web_service_pu.jpg" /></p>
+</div>
+
+<p>For simplicity:</p>
+
+<ul>
+<li>Space is collocated with the web service.</li>
+<li>Example does not include HTTP Load balancer and Load balancer Agent.</li>
+</ul>
+
+<p>The example is based on the <a href="http://cxf.apache.org/docs/sample-projects.html">sample</a> found within the CXF package under the <code>\apache-cxf-2.4.0\samples\wsdl_first</code> folder. This sample shows how to build and call a web service using a given WSDL (also called Contract First).</p>
+
+<h1><a name="what-the-sample-web-service-is-doing">&#160;</a>What the Sample Web Service is Doing?</h1>
+
+<p>The web service performs the following space operations:</p>
+
+<ul>
+<li>Write a Customer object into the space - See the <code>com.example.customerservice.server.CustomerServiceImpl.updateCustomer (Customer customer)</code>.</li>
+<li>Read Customer objects from the space - See the <code>com.example.customerservice.server.CustomerServiceImpl.getCustomersByName (String name)</code>.</li>
+</ul>
+
+<h1><a name="running-the-web-service">&#160;</a>Running the Web Service</h1>
+
+<p>Step 1. Download the <a href="/attachment_files/sbp/CustomerServicePort.war">Web Service WAR file</a>.</p>
+
+<p>Step 2. Download the <a href="/attachment_files/sbp/WebServicePU.zip">Web Service project</a>. This includes the entire source code for the client and the web service.</p>
+
+<p>Step 3. Setup the application project class path libraries. See the <a href="#client-application-project-jars">Client Application Project jars</a> for details.</p>
+
+<p>Step 4. Start GigaSpaces agent.</p>
+
+<pre><code class="language-java">gs-agent
+</code></pre>
+
+<p>Step 5. Deploy the WAR file. You may use the GS-UI or the CLI.</p>
+
+<pre><code class="language-java">gs deploy CustomerServicePort.war
+</code></pre>
+
+<p>Step 6. Run the Client application.</p>
+
+<pre><code class="language-java">java com.example.customerservice.client.CustomerServiceClient
+</code></pre>
+
+<p>See the <a href="#the-client-application">The Client Application</a> for details.</p>
+
+<h1><a name="web-service-configuration">&#160;</a>Web Service Configuration</h1>
+
+<p>The WAR file includes the web service configuration. It is placed within <code>\CustomerServicePort\WEB-INF\cxf-servlet.xml</code>.
+The configuration includes:</p>
+
+<ul>
+<li>The Space bean.</li>
+<li>The GigaSpace bean. It is injected into the Service implementation automatically via the <code>@GigaSpaceContext</code> annotation.</li>
+<li>The Service implementation.</li>
+<li>The endpoint Configuration.</li>
+</ul>
+
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:jaxws="http://cxf.apache.org/jaxws"
+        xmlns:soap="http://cxf.apache.org/bindings/soap"
+        xmlns:os-core="http://www.openspaces.org/schema/core"
+        xmlns:os-events="http://www.openspaces.org/schema/events"
+        xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+        xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/14.0/core/openspaces-core.xsd
+        http://www.openspaces.org/schema/events http://www.openspaces.org/schema/14.0/events/openspaces-events.xsd
+        http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/14.0/remoting/openspaces-remoting.xsd
+        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"&gt;
+
+    &lt;bean id="service" class="com.example.customerservice.server.CustomerServiceImpl" /&gt;
+
+    &lt;os-core:giga-space-context/&gt;
+    &lt;os-core:embedded-space id="space" name="webServiceSpace"&gt;
+    &lt;/os-core:space&gt;
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+    &lt;jaxws:endpoint xmlns:customer="http://customerservice.example.com/"
+            id="CustomerServiceHTTP"
+            address="http://localhost:8080/CustomerServicePort/services/CustomerServicePort"
+            serviceName="customer:CustomerServiceService"
+            endpointName="customer:CustomerServiceEndpoint"
+            implementor="#service"
+            implementorClass="com.example.customerservice.server.CustomerServiceImpl"&gt;
+    &lt;/jaxws:endpoint&gt;
+&lt;/beans&gt;
+</code></pre>
+
+<div class="tc-admon-note">
+  
+  <p>There is no <code>pu.xml</code> used with this war. cxf-servlet.xml has all the required configuration.</p>
+</div>
+
+<h1><a name="space-proxy-injection-into-the-service">&#160;</a>Space Proxy Injection into the Service</h1>
+
+<p>The space proxy injected into the <code>com.example.customerservice.server.CustomerServiceImpl</code> using <code>@GigaSpaceContext</code> annotation:</p>
+
+<pre><code class="language-java">public class CustomerServiceImpl implements CustomerService , InitializingBean{
+....
+    @GigaSpaceContext
+    GigaSpace space;
+</code></pre>
+
+<h1><a name="wsdl-contract">&#160;</a>WSDL Contract</h1>
+
+<p>The WSDL used by the web service includes following:</p>
+
+<pre><code class="language-xml">&lt;wsdl:service name="CustomerServiceService"&gt;
+    &lt;wsdl:port name="CustomerServicePort" binding="tns:CustomerServiceServiceSoapBinding"&gt;
+        &lt;soap:address location="http:/localhost:8080/CustomerServicePort/services/CustomerServicePort"/&gt;
+    &lt;/wsdl:port&gt;
+&lt;/wsdl:service&gt;
+</code></pre>
+
+<p>WSDL is packaged in the CustomerServicePort.war file as <code>\WEB-INF\CustomerService.wsdl</code>.</p>
+
+<h1><a name="the-client-application">&#160;</a>The Client Application</h1>
+
+<p>The client application:</p>
+
+<ul>
+<li>Call the <code>CustomerServiceImpl.updateCustomer (Customer customer)</code>.</li>
+<li>Call the <code>CustomerServiceImpl.getCustomersByName (String name)</code>.</li>
+</ul>
+
+<h2><a name="running-the-client">&#160;</a>Running the Client</h2>
+
+<p>You may test the web service using a client application running as a standalone Java application, Spring Application or via <a href="http://www.soapui.org">SOAP UI</a>.</p>
+
+<h3><a name="standalone-java-application">&#160;</a>Standalone Java Application</h3>
+
+<p>The <code>com.example.customerservice.client.CustomerServiceClient</code> can be used as a standalone Java application to invoke the service. Run the <code>main</code> to run the client:</p>
+
+<pre><code class="language-java">java com.example.customerservice.client.CustomerServiceClient
+</code></pre>
+
+<h3><a name="spring-application">&#160;</a>Spring Application</h3>
+
+<p>The <code>com.example.customerservice.client.CustomerServiceSpringClient</code> can be used as a Spring client application to invoke the service. The <code>\resources\client-applicationContext.xml</code> used as the client application context. Make sure you have the <code>resources</code> folder as part of the client classpath when running the client.
+Run the <code>main</code> to run the client:</p>
+
+<pre><code class="language-java">com.example.customerservice.client.CustomerServiceSpringClient
+</code></pre>
+
+<h2><a name="expected-output">&#160;</a>Expected Output</h2>
+
+<p>When running the client application you should get the following output:</p>
+
+<pre><code class="language-java">Updating Customer info named:Smith
+Reading customer named:Smith
+Found 1 customers with Name:Smith
+All calls were successful
+</code></pre>
+
+<h3><a name="soap-ui">&#160;</a>SOAP UI</h3>
+
+<p>You can use the <a href="http://www.soapui.org">SOAP UI</a> to test the web service.
+Writing a Custmer object:</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/soap_ui1.jpg" alt="soap_ui1.jpg" /></p>
+</div>
+
+<p>Reading a Custmer object:</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/soap_ui2.jpg" alt="soap_ui2.jpg" /></p>
+</div>
+
+<p>The Server will have the following output:</p>
+
+<pre><code class="language-java">&gt;&gt;&gt;&gt;&gt;&gt;&gt; update request was received
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Customer written into the space
+found 1 Customers matching the name:Smith
+</code></pre>
+
+<h2><a name="checking-the-data-within-the-space">&#160;</a>Checking the Data within the Space</h2>
+
+<p>When the client application running successfully you will be able to see the Customer data within the space using the GS-UI.</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/web_serv_ui1.jpg" alt="web_serv_ui1.jpg" /></p>
+</div>
+
+<p>Click the Query button to view the Customer Data:</p>
+
+<div class="tc-align-center"><p><img src="/attachment_files/sbp/web_serv_ui2.jpg" alt="web_serv_ui2.jpg" /></p>
+</div>
+
+<h1><a name="war-file-jars">&#160;</a>WAR file jars</h1>
+
+<p>The CustomerServicePort.war file includes the following jars within its <code>\CustomerServicePort\WEB-INF\lib</code> folder.
+Spring and Jetty jars should not be included since they are loaded by GigaSpaces:</p>
+
+<table class="tc-borderless"><tr><td style="width:30%;"><pre><code class="language-bash">aopalliance-1.0.jar
+asm-3.3.jar
+cxf-api-2.4.0.jar
+cxf-common-utilities-2.4.0.jar
+cxf-rt-bindings-soap-2.4.0.jar
+cxf-rt-bindings-xml-2.4.0.jar
+cxf-rt-core-2.4.0.jar
+cxf-rt-databinding-jaxb-2.4.0.jar
+cxf-rt-frontend-jaxws-2.4.0.jar
+</code></pre>
+</td>
+
+<td style="width:30%;"><pre><code class="language-bash">cxf-rt-frontend-simple-2.4.0.jar
+cxf-rt-transports-common-2.4.0.jar
+cxf-rt-transports-http-2.4.0.jar
+cxf-rt-transports-http-jetty-2.4.0.jar
+cxf-rt-ws-addr-2.4.0.jar
+cxf-tools-common-2.4.0.jar
+geronimo-javamail_1.4_spec-1.7.1.jar
+geronimo-servlet_3.0_spec-1.0.jar
+jaxb-impl-2.1.13.jar
+</code></pre>
+</td>
+
+<td style="width:30%;"><pre><code class="language-bash">junit-4.7.jar
+neethi-3.0.0.jar
+slf4j-api-1.6.1.jar
+slf4j-jdk14-1.6.1.jar
+stax2-api-3.1.1.jar
+woodstox-core-asl-4.1.1.jar
+wsdl4j-1.6.2.jar
+xml-resolver-1.2.jar
+xmlschema-core-2.0.jar
+</code></pre>
+</td>
+</tr></table>
+
+<h1><a name="client-application-project-jars">&#160;</a>Client Application Project jars</h1>
+
+<p>The Client project should include the following libraries:</p>
+
+<ul>
+<li>All jars within the <code>GigaSpaces root/lib/platform/jetty</code> folder.</li>
+<li>All jars within the <code>GigaSpaces root/lib/required</code> folder.</li>
+<li>All jars within the <code>GigaSpaces root/lib/optional/spring</code> folder.</li>
+<li>All jars within the CustomerServicePort.war <code>CustomerServicePort/WEB-INF/lib</code> folder</li>
+</ul>
+
+</body>
+</html>
