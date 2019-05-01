@@ -117,19 +117,45 @@ div.tc-admon-important {
   background: #fce4ee;
   border-left-color: #ff0090;
 }
+div.tc-admon-attention>:first-child:before,
+div.tc-admon-note>:first-child:before,
+div.tc-admon-refer>:first-child:before,
+div.tc-admon-tip>:first-child:before,
+div.tc-admon-important>:first-child:before {
+  content: '';
+  display: block;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+div.tc-admon-attention>:first-child:before {
+  content: 'Attention';
+}
+div.tc-admon-note>:first-child:before {
+  content: 'Note';
+}
+div.tc-admon-refer>:first-child:before {
+  content: 'Note';
+}
+div.tc-admon-tip>:first-child:before {
+  content: 'Tip';
+}
+div.tc-admon-important>:first-child:before {
+  content: 'Important';
+}
 div.tc-admon-attention::before,
 div.tc-admon-note::before,
 div.tc-admon-refer::before,
 div.tc-admon-tip::before,
 div.tc-admon-important::before {
   background: transparent url('../Custom/images/icons/Note.png') no-repeat;
+  background-size: 30px;
   display: block;
   font-size: 1rem;
   font-weight: 700;
-  height: 54px;
+  height: 35px;
   left: 10px;
   position: absolute;
-  width: 55px;
+  width: 35px;
 }
 div.tc-admon-attention::before {
   background-image: url('../Custom/images/icons/Attention.png');
@@ -267,6 +293,8 @@ li p {
 p {
   color: #4a4a4a;
   font-size: 1rem;
+  font-family: 'Rubik', sans-serif;
+  line-height: 1.5;
 }
 p.tc-admon-title {
   font-weight: 700;
@@ -323,7 +351,7 @@ pre {
   border-radius: 4px;
   color: #333;
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.42857143;
   margin: 0 0 10px;
   padding: 9.5px;
@@ -418,6 +446,8 @@ table th {
   border-top: 1px solid #a4aab3;
   border-bottom: 1px solid #a4aab3;
   background: #f7fbff;
+  font-size: 1rem;
+  font-family: 'Rubik', sans-serif;
   /* background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
   background: -moz-linear-gradient(top, #ededed, #ebebeb); */
 }
@@ -452,6 +482,8 @@ table td {
   background: #fafafa;
   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
   background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
+  font-size: 1rem;
+  font-family: 'Rubik', sans-serif;
 }
 table td ol,
 table td ul {
