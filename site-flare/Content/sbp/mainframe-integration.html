@@ -110,7 +110,7 @@ For a running demo of the Delta Server architecture publishing changes from DB2 
 
 <p>The ability to deploy web services acting as gateways to the data/business logic hosted within GigaSpaces is important.  This functionality allows every new component or legacy component to interact with the system. The GigaSpaces container may run a set of web services, and can scale these dynamically.</p>
 
-<p>These may be the backbone of the entire system to access backend data and services. The web layer can have its own <a href="/xap/14.0/dev-java/client-side-caching.html">cache</a> running within the web application. This speeds up access to reused data by having it as part of the application memory address avoiding the need to perform remote access to the IMDG.</p>
+<p>These may be the backbone of the entire system to access backend data and services. The web layer can have its own <a href="https://docs.gigaspaces.com/latest/dev-java/client-side-caching.html">cache</a> running within the web application. This speeds up access to reused data by having it as part of the application memory address avoiding the need to perform remote access to the IMDG.</p>
 
 <h2><a name="multi-tenancy">&#160;</a>Multi-Tenancy</h2>
 
@@ -118,7 +118,7 @@ For a running demo of the Delta Server architecture publishing changes from DB2 
 
 <h1><a name="gigaspaces-external-data-source">&#160;</a>GigaSpaces External Data Source</h1>
 
-<p>The GigaSpaces XAP External Data Source allows the XAP IMDG to pull data from Mainframe via a public interfaces (SQL or web services for example) through the <a href="/xap/14.0/dev-java/space-data-source-api.html">IMDG EDS API</a>. Once there is a cache miss or once the IMDG is started, the IMDG accesses the Mainframe and fetch relevant data. The IMDG can push any changes done back to the Mainframe in a synchronous or asynchronous manner.</p>
+<p>The GigaSpaces XAP External Data Source allows the XAP IMDG to pull data from Mainframe via a public interfaces (SQL or web services for example) through the <a href="https://docs.gigaspaces.com/latest/dev-java/space-data-source-api.html">IMDG EDS API</a>. Once there is a cache miss or once the IMDG is started, the IMDG accesses the Mainframe and fetch relevant data. The IMDG can push any changes done back to the Mainframe in a synchronous or asynchronous manner.</p>
 
 <p>The following architecture leverage <a href="http://www-03.ibm.com/systems/z/os/zvse/solutions/vsamaccess.html">VSAM JDBC API</a> to allow XAP IMDG to pre-load data from VSAM once the data grid is started and persist changes conducted within the IMDG items back to VSAM.</p>
 
@@ -158,7 +158,7 @@ For a running demo of the Delta Server architecture publishing changes from DB2 
 
 <h2><a name="mule-esb">&#160;</a>Mule ESB</h2>
 
-<p>Leverage <a href="http://www.mulesoft.com">MF Mule integration</a> and <a href="/xap/14.0/dev-java/mule-esb.html">GigaSpaces Mule</a> support to have these to communicate with each other.</p>
+<p>Leverage <a href="http://www.mulesoft.com">MF Mule integration</a> and <a href="https://docs.gigaspaces.com/latest/dev-java/mule-esb.html">GigaSpaces Mule</a> support to have these to communicate with each other.</p>
 
 <h2><a name="webmethods-entirex">&#160;</a>WebMethods EntireX</h2>
 

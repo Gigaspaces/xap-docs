@@ -31,15 +31,16 @@
 
 <p>Almost every large enterprise system includes legacy applications or backend systems that are communicating with the enterprise main database system for reporting, batch processing, data mining, OLAP and other processing activity. These applications might not need to access the data grid to improve their performance or scalability. They will be using the database directly. Once these systems perform data updates , removing data or add new records to the database, these updates might need to be reflected within the data grid. This synchronization activity ensures the data grid is consistent and up to date with the enterprise main database server.</p>
 
-<iframe width="640" height="390" src="//www.youtube.com/embed/EOyDg-mI3z0" frameborder="0" allowfullscreen></iframe>
 
-<p>The Delta Server described with this pattern responsible for getting notifications from the database for any user activity (excluding data grid updates) and delegate these to the data grid. You may specify the exact data set updates to be delegated to the data grid by specifying a SQL Query that will indicate which records updates / removal / addition should be reflected within the data grid.</p>
+<MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:www.youtube.com/embed/EOyDg-mI3z0" />
+
+<p>The Delta Server described with this pattern responsible for getting notifications from the database for any user activity (excluding data grid updates) and delegate these to the data grid. You may specify the exact data set updates to be delegated to the data grid by specifying a SQL Query that will indicate which record updates, removals, and additions should be reflected in the data grid.</p>
 
 <h1><a name="scenario">&#160;</a>Scenario</h1>
 
-<p>We have an In Memory Data Grid (IMDG) that is used for querying information. The initial load of the IMDG was performed from an Oracle Database. The IMDG is not used as a system of record in this case meaning that any changes to the objects in the IMDG are not propagated back into the Database. Non-Aware Data-Grid Clients are updating the Database. These updates (insert,update and delete) need to be reflected in the IMDG.</p>
+<p>We have an In Memory Data Grid that is used for querying information. The initial load of the data grid was performed from an Oracle Database. The data grid is not used as a system of record in this case, meaning that any changes to the objects in the data grid are not propagated back to the database. Non-Aware data grid clients are updating the database. These updates (insert,update and delete) need to be reflected in the data grid.</p>
 
-<div class="tc-align-center"><p><a href="/attachment_files/sbp/oracle-dserver.png"><img src="/attachment_files/sbp/oracle-dserver.png" width="400" height="300"></a></p>
+<div class="tc-align-center"><p><a href="/attachment_files/sbp/oracle-dserver.png"><img src="/attachment_files/sbp/oracle-dserver.png" width="400" height="300" /></a></p>
 </div>
 
 <p>We will show you how you can implement this scenario with XAP. A fully functional example is available on <a href="https://github.com/Gigaspaces/oracle-delta-server">GitHub</a>.</p>
@@ -56,11 +57,11 @@
 <li>The ROWIDs of the changed rows and the type of DML that changed them.</li>
 </ul>
 
-<p>In our example we will only demonstrate the notifications for INSERT, UPDATE and Delete.</p>
+<p>In our example we will only demonstrate the notifications for INSERT, UPDATE and DELETE.</p>
 
-<h2><a name="registering-a-listener">&#160;</a>Registering a listener</h2>
+<h2><a name="registering-a-listener">&#160;</a>Registering a Listener</h2>
 
-<p>Lets assume we have an Employee table in the database that we want to be notified when a record is inserted, updated or deleted so we can update the IMDG with the changes. Here is an example of an ChangeNotificationListener.</p>
+<p>Lets assume we have an Employee table in the database that we want to be notified when a record is inserted, updated or deleted so we can update the data grid with the changes. Here is an example of an ChangeNotificationListener.</p>
 
 <pre><code class="language-java">private void registerListener() {
 
@@ -89,12 +90,12 @@
 
 <div class="tc-admon-note">
   
-  <p>The select statement for the listener could be any valid sql statement</p>
+  <p>The select statement for the listener can be any valid SQL statement.</p>
 </div>
 
 <h2><a name="implementing-the-listener">&#160;</a>Implementing the Listener</h2>
 
-<p>The listener will receive the change notifications whenever a row was inserted, updated or deleted in the employee table. Here is the code for the listener implementation:</p>
+<p>The listener will receive the change notifications whenever a row is inserted, updated or deleted in the employee table. Here is the code for the listener implementation:</p>
 
 <pre><code class="language-java">@Override
 public void onDatabaseChangeNotification(DatabaseChangeEvent databaseChangeEvent) {
@@ -122,7 +123,7 @@ public void onDatabaseChangeNotification(DatabaseChangeEvent databaseChangeEvent
 }
 </code></pre>
 
-<p>The notification information only contains the actual operation performed in the database and the corresponding ROWID. After receiving the ROWID we have to retrieve the actual data from the employee table with a query that uses this ROWID in the where clause and then we instantiate the object and write it into the IMDG.</p>
+<p>The notification information only contains the actual operation performed in the database and the corresponding ROWID. After receiving the ROWID, we have to retrieve the actual data from the employee table with a query that uses this ROWID in the where clause, and then we instantiate the object and write it to the data grid.</p>
 
 <p>Here is an example of this query:</p>
 
@@ -131,7 +132,7 @@ public void onDatabaseChangeNotification(DatabaseChangeEvent databaseChangeEvent
 
 <h2><a name="employee-pojo">&#160;</a>Employee POJO</h2>
 
-<p>Here is the corresponding Employee POJO that we will use to write to the space:</p>
+<p>Here is the corresponding Employee POJO that we will use to write to the Space:</p>
 
 <pre><code class="language-java">@SpaceClass
 @Entity
@@ -162,17 +163,20 @@ public class Employee implements IDomainEntity&lt;Long&gt; {
 }
 </code></pre>
 
-<p>Since we are using Hibernate for the queries, we are declaring the Class as an <code>@Entity</code>. However we do not define a table for the Entity otherwise Hibernate would try to map the ROWID attribute to a column in the oracle table.</p>
+<p>Since we are using Hibernate for the queries, we are declaring the Class as an <code>@Entity</code>. However we do not define a table for the Entity, otherwise Hibernate would try to map the ROWID attribute to a column in the Oracle table.</p>
 
 <h1><a name="deployment">&#160;</a>Deployment</h1>
 
-<p>In our example we deploy two Processing Units (PU's):
-- The first PU (loaderPU) creates an embedded space and registers notify listeners that will tell us when objects are written, updated or deleted from the space. This PU also performs the initial load.
-- The second PU (feederPU) creates the Oracle Change Listener and writes, updates or deletes the object from the space.</p>
+<p>In our example, we deploy two Processing Units (PUs):</p>
 
-<h1><a name="initial-load">&#160;</a>Initial load</h1>
+<ul>
+<li>The first PU (loader PU) creates an embedded Space and registers Ntify listeners that will tell us when objects are written, updated or deleted from the Space. This PU also performs the initial load.</li>
+<li>The second PU (feeder PU) creates the Oracle Change Listener and writes, updates or deletes the object from the Space.</li>
+</ul>
 
-<p>On system startup we perform an initial load from the database. The first PU that creates the space will load all rows from the database into the IMDG. Here is an example how we can accomplish this:</p>
+<h1><a name="initial-load">&#160;</a>Initial Load</h1>
+
+<p>On system startup, we perform an initial load from the database. The first PU that creates the Space will load all rows from the database into the data grid. Here is an example of how we can accomplish this:</p>
 
 <pre><code class="language-java">@PostConstruct
 private void initialize() {
@@ -195,16 +199,16 @@ private void initialize() {
 
 </code></pre>
 
-<p>If the space is not partitioned we simply read all employees from the table and write them to the space. If the space is partitioned, we will query the database with the following query assuming that the <code>departmentid</code> attribute is the routing attribute:</p>
+<p>If the Space is not partitioned, we simply read all employees from the table and write them to the Sace. If the Space is partitioned, we query the database with the following query assuming that the <code>departmentid</code> attribute is the routing attribute:</p>
 
 <pre><code class="language-sql">"select rowid, id, processed, firstName, lastname, age, departmentid from employee where mod(departmentid,?) = ? "
 </code></pre>
 
-<h1><a name="running-the-example">&#160;</a>Running the example</h1>
+<h1><a name="running-the-example">&#160;</a>Running the Example</h1>
 
 <ol>
 <li>Download the <a href="https://github.com/Gigaspaces/oracle-delta-server">example</a> from Github.</li>
-<li>Change the Database properties according to your environment:</li>
+<li>Change the database properties according to your environment:</li>
 </ol>
 
 <pre><code class="language-java"># Oracle Database Config
@@ -217,7 +221,7 @@ db.password=password
 
 </code></pre>
 
-<p>These configuration files are located :</p>
+<p>These configuration files are located:</p>
 
 <ul>
 <li>/oracle-delta-server/loader/src/main/resources/service.properties</li>
@@ -226,21 +230,22 @@ db.password=password
 </ul>
 
 <ol>
-<li>Build the processing units with the top pom file.</li>
-<li>Deploy the loaderPU.jar file onto the XAP Data Grid (this will perform the initial load from the database)</li>
-<li>Deploy the feederPU.jar file onto the XAP Data Grid (this will register the change listener with oracle)</li>
-<li>Run a client that inserts, updates and deletes employees in the database /oracle-delta-server/src/test/java/xap/oracle/test/DBTest.java
-This application will insert every 10 seconds an employee into the Database, then updates them and finally removes them from the Database.</li>
+<li>Build the processing units with the top POM file.</li>
+<li>Deploy the loaderPU.jar file to the Data Grid (this will perform the initial load from the database).</li>
+<li>Deploy the feederPU.jar file to the Data Grid (this will register the change listener with oracle).</li>
+<li>Run a client that inserts, updates and deletes employees in the database: /oracle-delta-server/src/test/java/xap/oracle/test/DBTest.java.</li>
 </ol>
 
-<p>You can see in the feeder.log file that the feederPU generates, that the events are processed from the change listener:</p>
+<p>This application will insert an employee every 10 seconds into the database, then update them and finally remove them from the database.</p>
+
+<p>You can see in the feeder.log file (that the feeder PU generates) that the events are processed from the change listener:</p>
 
 <pre><code class="language-java">2013-11-07T14:15:50.256 DEBUG - xap.oracle.processor.OracleChangeListener -Event handler received event
 2013-11-07T14:15:50.256 DEBUG - xap.oracle.processor.OracleChangeListener -Affected row : AAASNyAAEAAAAIzABk
 ROW: operation=DELETE, ROWID=AAASNyAAEAAAAIzABk
 </code></pre>
 
-<p>And in the loader.log file that is generated by the loaderPU, you will see that the space receives the operations:</p>
+<p>And in the loader.log file that is generated by the loader PU, you will see that the Space receives the operations:</p>
 
 <pre><code class="language-java">2013-11-07T14:16:02.118 DEBUG - xap.oracle.loader.listener.RemoveEmployeeListener -An Employee was removed from space
 </code></pre>

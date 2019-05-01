@@ -31,7 +31,7 @@
 
 <p>Almost every large enterprise system includes legacy applications or backend systems that are communicating with the enterprise main database system for reporting, batch processing, data mining, OLAP and other processing activity. These applications might not need to access the data grid to improve their performance or scalability. They will be using the database directly. Once these systems perform data updates , removing data or add new records to the database, these updates might need to be reflected within the data grid. This synchronization activity ensures the data grid is consistent and up to date with the enterprise main database server.</p>
 
-<iframe width="640" height="390" src="//www.youtube.com/embed/tBdphj2hjXk" frameborder="0" allowfullscreen></iframe>
+<MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:www.youtube.com/embed/tBdphj2hjXk" />
 
 <p>The Delta Server described with this pattern responsible for getting notifications from the database for any user activity (excluding data grid updates) and delegate these to the data grid. You may specify the exact data set updates to be delegated to the data grid.</p>
 
@@ -39,7 +39,7 @@
 
 <p>We have an In Memory Data Grid (IMDG) that is used for querying information. The initial load of the IMDG was performed from a DB2 Database. The IMDG is not used as a system of record in this case meaning that any changes to the objects in the IMDG are not propagated back into the Database. Non-Aware Data-Grid Clients are updating the Database. These updates (insert,update and delete) need to be reflected in the IMDG.</p>
 
-<div class="tc-align-center"><p><a href="/attachment_files/sbp/ibm-d-server.png"><img src="/attachment_files/sbp/ibm-d-server.png" width="400" height="300"></a></p>
+<div class="tc-align-center"><p><a href="/attachment_files/sbp/ibm-d-server.png"><img src="/attachment_files/sbp/ibm-d-server.png" width="400" height="300" /></a></p>
 </div>
 
 <p>We will show you how you can implement this scenario with XAP. A fully functional example is available for <a href="/download_files/sbp/db2gs.jar">download</a>.</p>

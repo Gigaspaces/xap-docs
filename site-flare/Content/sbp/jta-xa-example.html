@@ -29,21 +29,21 @@
 
 <h1><a name="overview">&#160;</a>Overview</h1>
 
-<p>Integrating GigaSpaces with an external JMS Servers is demonstrated in this page. This example shows how GigaSpaces event container can process events and send JMS messages to a external JMS server all under one distributed transaction.</p>
+<p>Integrating GigaSpaces products with an external JMS Server is demonstrated in this page. This example shows how the data grid's event container can process events and send JMS messages to a external JMS server, all under one distributed transaction.</p>
 
 <div class="tc-admon-note">
   
   <p>Use of distributed transactions is done as a demonstration. Use this with caution, in production applications this can be expensive and have a performance penalty. Well known patterns like <a href="http://www.eaipatterns.com/IdempotentReceiver.html">Idempotent Receiver</a> are potential alternatives to distributed transactions.</p>
 </div>
 
-<p>This example includes:</p>
+<p>This example has the following characteristics:</p>
 
 <ul>
 <li>GigaSpaces updates and JMS message creation are done under transactions so as to avoid duplicate processing/data loss.</li>
 <li>Apache ActiveMQ is used as a the JMS provider.</li>
-<li>Atomikos is used as the JTA Transaction provider and uses XA protocol.</li>
-<li>Example is based on the GigaSpaces helloworld example included with the product.</li>
-<li>To demonstrate the XA transaction it rollbacks messages with 100 modulo. You will notice that these messages will never appear in the JMS queue and are rolled back on GigaSpaces server.</li>
+<li>Atomikos is used as the JTA Transaction provider and uses the XA protocol.</li>
+<li>Example is based on the GigaSpaces helloworld example included in the product package.</li>
+<li>To demonstrate the XA transaction it rollbacks messages with 100 modulo. You will notice that these messages will never appear in the JMS queue and are rolled back on the GigaSpaces server.</li>
 </ul>
 
 <h2><a name="source-code">&#160;</a>Source Code</h2>
@@ -307,67 +307,65 @@ public class Message  {
 </div>
 </div>
 
-<h2><a name="running-the-example">&#160;</a>Running the example</h2>
+<h2><a name="running-the-example">&#160;</a>Running the Example</h2>
 
 <p>Step 1. Download Apache ActiveMQ from <a href="http://activemq.apache.org/download.html">here</a>.</p>
 
 <p>Step 2. Download Atomikos TransactionEssentials from <a href="http://www.atomikos.com/Main/TransactionsEssentialsDownloadForm">here</a>.</p>
 
-<p>Step 3. Extract the <a href="/attachment_files/sbp/helloworld-jta.zip">example</a> archive into a folder (calling it <helloworld-jta>). Modify the setDevEnv.bat and build.properties files to have proper paths for GigaSpaces home, Java home, ActiveMQ home and Atomikos home. Also modify the NIC_ADDR and locators variable to have proper IP address.</p>
+<p>Step 3. Extract the <a href="/attachment_files/sbp/helloworld-jta.zip">example</a> archive into a folder (calling it &lt;helloworld-jta&gt;). Modify the setDevEnv.bat and build.properties files to have the proper paths for GigaSpaces home, Java home, ActiveMQ home and Atomikos home. Also modify the NIC_ADDR and locators variable to have the proper IP address.</p>
 
-<p>Step 4. Open a command shell and navigate to <helloworld-jta> folder.</p>
+<p>Step 4. Open a command shell and navigate to the &lt;helloworld-jta&gt; folder.</p>
 
-<p>Step 5. Run <code>setDevEnv.bat</code> script in <helloworld-jta> folder, to set the environment variables.</p>
+<p>Step 5. Run the <code>setDevEnv.bat</code> script in the &lt;helloworld-jta&gt; folder to set the environment variables.</p>
 
-<p>Step 6. Copy the required jars to the <helloworld-jta>\lib folder using the <code>copy-libs</code> ant task provided.</p>
+<p>Step 6. Copy the required JARs to the &lt;helloworld-jta&gt;\lib folder using the <code>copy-libs</code> ant task provided.</p>
 
 <pre><code class="language-java"> build copy-libs
 </code></pre>
 
 <div class="tc-admon-note">
   
-  <p>Example was tested using following product versions,</p>
+  <p>The example was tested using the following product versions:</p>
 
-<ol>
-<li><p>GigaSpaces - <span class="tc-bold">8.0.1</span></p></li>
+<ul>
+<li>GigaSpaces - <span class="tc-bold">8.0.1</span></li>
+<li>Apache ActiveMQ - <span class="tc-bold">5.5</span></li>
+<li>Atomikos TransactionEssentials - <span class="tc-bold">3.7.0</span></li>
+</ul>
 
-<li><p>Apache ActiveMQ - <span class="tc-bold">5.5</span></p></li>
-
-<li><p>Atomikos TransactionEssentials - <span class="tc-bold">3.7.0</span></p></li>
-</ol>
-
-<p>If you are using different versions please make sure all the equivalent jars are reflected in <code>copy-libs</code> ant task</p>
+<p>If you are using different versions, please make sure all the equivalent JARs are reflected in the <code>copy-libs</code> ant task.</p>
 </div>
 
-<p>Step 7. Start a gs-ui instance using <code>gs-ui.bat</code> script in <helloworld-jta> folder.</p>
+<p>Step 7. Start a gs-ui instance using <code>gs-ui.bat</code> script in the &lt;helloworld-jta&gt;&gt; folder.</p>
 
-<p>Step 8. Run <code>gs-agent.bat</code>  <helloworld-jta> folder, to start the GigaSpaces components (GSA,GSM, LUS, GSM).</p>
+<p>Step 8. Run <code>gs-agent.bat</code>  &lt;helloworld-jta&gt; folder, to start the data grid components (GSA,GSM, LUS, GSM).</p>
 
-<p>Step 9. Start the ActiveMQ process using <ActiveMQHome><code>\bin\activemq.bat</code> script.</p>
+<p>Step 9. Start the ActiveMQ process using the &lt;ActiveMQHome&gt;<code>\bin\activemq.bat</code> script.</p>
 
 <div class="tc-admon-note">
   
-  <p>If ActiveMQ is running on another server, please remember to update the brokerURL in <code>pu.xml</code></p>
+  <p>If ActiveMQ is running on another server, remember to update the brokerURL in the <code>pu.xml</code> file.</p>
 </div>
 
-<p>Step 10. Deploy the processorSpace cluster by running <code>deploy-processor</code> ant task.</p>
+<p>Step 10. Deploy the processorSpace cluster by running the <code>deploy-processor</code> ant task.</p>
 
 <pre><code class="language-java">build deploy-processor
 </code></pre>
 
-<p>Step 11. Run the feeder process using <code>run-feeder</code> ant task.</p>
+<p>Step 11. Run the feeder process using the <code>run-feeder</code> ant task.</p>
 
 <pre><code class="language-java"> build run-feeder
 </code></pre>
 
-<p>Step 12. If you check GigaSpaces logs, you will notice that the Message-0 (id=0) is Rolled back and all other messages are processed successfully and sent to JMS server.</p>
+<p>Step 12. If you check the data grid logs, you will notice that the Message-0 (id=0) is rolled back and all other messages are processed successfully and sent to the JMS server.</p>
 
 <div class="tc-admon-note">
   
-  <p>Message-0 (id=0) will keep going back to Polling container logic because the space update and JMS message both are rolled back. This is intentionally done, to demonstrate XA.</p>
+  <p>Message-0 (id=0) will keep going back to the Polling container logic, because the space update and JMS message both are rolled back. This is done intentionally to demonstrate XA.</p>
 </div>
 
-<p>Step 13. You can validate the JMS messages received by the Queue using a test JMS client included. You can run the client using <code>jms-client</code> ant task.</p>
+<p>Step 13. You can validate the JMS messages received by the Queue using a test JMS client included. You can run the client using the <code>jms-client</code> ant task.</p>
 
 <pre><code class="language-java"> build jms-client
 </code></pre>
@@ -375,7 +373,7 @@ public class Message  {
 <h2><a name="references">&#160;</a>References</h2>
 
 <ul>
-<li>JTA/XA support information, <a href="/xap/14.0/dev-java/transaction-management.html">Transaction Management</a>.</li>
+<li>JTA/XA support information, <a href="https://docs.gigaspaces.com/latest/dev-java/transaction-management.html">Transaction Management</a>.</li>
 <li>XA transactions using Spring, <a href="http://www.javaworld.com/javaworld/jw-04-2007/jw-04-xa.html">http://www.javaworld.com/javaworld/jw-04-2007/jw-04-xa.html</a>.</li>
 <li>Distributed transactions in Spring, with and without XA, <a href="http://www.javaworld.com/javaworld/jw-01-2009/jw-01-spring-transactions.html">http://www.javaworld.com/javaworld/jw-01-2009/jw-01-spring-transactions.html</a>.</li>
 <li>Atomikos TransactionEssentials Spring Integration information, <a href="http://www.atomikos.com/Documentation/SpringIntegration">http://www.atomikos.com/Documentation/SpringIntegration</a>.</li>

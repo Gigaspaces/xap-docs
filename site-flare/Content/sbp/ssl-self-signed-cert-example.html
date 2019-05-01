@@ -31,7 +31,7 @@
 
 <h1><a name="scenario">&#160;</a>Scenario</h1>
 
-<p>On my local computer, I am running XAP. On a remote computer, I have a client that will connect to the XAP server and writes an object to the space. In order to protect the communication with SSL, we will enable the <code>SSLFilterFactory</code> and supply the <code>keystore</code>. We will then deploy a space and run a client. This example builds upon the <a href="/xap/14.0/security/securing-the-transport-layer-using-ssl.html">documentation</a></p>
+<p>On my local computer, I am running XAP. On a remote computer, I have a client that will connect to the XAP server and writes an object to the space. In order to protect the communication with SSL, we will enable the <code>SSLFilterFactory</code> and supply the <code>keystore</code>. We will then deploy a space and run a client. This example builds upon the <a href="https://docs.gigaspaces.com/latest/security/securing-the-transport-layer-using-ssl.html">documentation</a></p>
 
 <table>
 <thead>
@@ -131,11 +131,11 @@ set EXT_JAVA_OPTIONS=-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filter
 
 <p>Start XAP by running gs-agent</p>
 
-<p>Create a partitioned 2,1 space named SSLSpace. You may use the gs-ui or web-ui to do this. See (/xap/14.0/started/xap-basics.html/java-tutorial-part2.html) for more information.</p>
+<p>Create a partitioned 2,1 space named SSLSpace. You may use the gs-ui or web-ui to do this.</p>
 
 <h1><a name="client-setup">&#160;</a>Client setup</h1>
 
-<p>Compile the example SSLClient.java program provided in the <a href="/xap/14.0/security/securing-the-transport-layer-using-ssl.html">documentation</a>. You may need to change the Groups and Locators values as needed.</p>
+<p>Compile the example SSLClient.java program provided in the <a href="https://docs.gigaspaces.com/latest/security/securing-the-transport-layer-using-ssl.html">documentation</a>. You may need to change the Groups and Locators values as needed.</p>
 
 <p>Below is the bash script I used to run the client:</p>
 

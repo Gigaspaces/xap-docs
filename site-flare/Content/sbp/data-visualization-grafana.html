@@ -64,7 +64,7 @@
 
 <div class="tc-admon-note">
   
-  <p>The sample configuration files are located in the <span class="tc-italic"><host directory>/timeseries-rest/tree/master/src/main/resources</span> folder. When you run the connector, the <a href="https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/java/com/gigaspaces/Main.java">Main</a> requires two paramaters, the path to the grafana-insightedge.properties file and the path to the tableData.txt file (if you create different ones).</p>
+  <p>The sample configuration files are located in the <span class="tc-italic">&lt;host directory&gt;/timeseries-rest/tree/master/src/main/resources</span> folder. When you run the connector, the <a href="https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/java/com/gigaspaces/Main.java">Main</a> requires two parameters, the path to the <code>grafana-insightedge.properties</code> file and the path to the <code>tableData.txt</code> file (if you create different ones).</p>
 </div>
 
 <p>To install the InsightEdge-Grafana connector:</p>
@@ -86,7 +86,8 @@ XAP_LOOKUP_GROUPS=xap-14.0.0
 <div class="tc-admon-note">
   
   <p>The syntax of the URL that is used to configure the simple JSON data source to work with the Space is <code>http://&lt;yourhost&gt;:&lt;port&gt;/insightedge/metrics</code>. The variables are based on values you added to the properties file.</p>
-</div></li>
+</div>
+</li>
 
 <li><p>Modify the <a href="https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/resources/tablesData.txt">tablesData.txt file</a> or create a new tableData.txt file that the connector will use to categorize the data.</p>
 
@@ -113,8 +114,9 @@ TelemetryVibration,com.gigaspaces.Telemetry,longDate,vibration,machineID
 
 <h2><a name="installing-the-grafana-client-dashboard-application">&#160;</a>Installing the Grafana Client (Dashboard Application)</h2>
 
-<p>Grafana is not bundled with GigaSpaces products, but the product installation is easy and straightforward.
-To install Grafana:</p>
+<p>Grafana is not bundled with GigaSpaces products, but the product installation is easy and straightforward.</p>
+
+<p>To install Grafana:</p>
 
 <ol>
 <li>Download the client from the Grafanalabs <a href="http://grafana.org/download/" target="_blank" >download page</a>.</li>
@@ -146,7 +148,8 @@ To install Grafana:</p>
 
 <ol>
 <li>Run the Grafana server as described in the Grafana installation instructions.</li>
-<li>In the Settings tab of the Data Sources screen, configure the following:
+
+<li><p>In the Settings tab of the Data Sources screen, configure the following:</p>
 
 <ul>
 <li>Assign a <span class="tc-bold">Name</span> for the data source. For example, InsightedgeDS.</li>
@@ -166,8 +169,8 @@ To install Grafana:</p>
 
 <ol>
 <li>In the upper-right area of the dashboard, define the time period for which you want to see data.</li>
-<li>In the Metrics tab below the graph, select the InsightedgeDS data source.</li>
-<li>Select TelemetryPressure from the dropdown list.</li>
+<li>In the Metrics tab below the graph, select the <span class="tc-bold">InsightedgeDS</span> data source.</li>
+<li>Select <span class="tc-bold">TelemetryPressure</span> from the dropdown list.</li>
 </ol>
 
 <div class="tc-align-center"><p><img src="/attachment_files/sbp/grafana/telemetry-dashboard.png" alt="telemetry-dashboard.png" /></p>
