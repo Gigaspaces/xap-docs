@@ -1,8 +1,12 @@
-﻿body {
+﻿@namespace MadCap url(http://www.madcapsoftware.com/Schemas/MadCap.xsd);
+body {
   font-family: 'Rubik', sans-serif;
 }
 .landing .sidenav-wrapper {
   display: none;
+}
+.landing .body-container {
+  overflow-y: hidden;
 }
 .landing .region-hero {
   height: 290px;
@@ -22,6 +26,7 @@
 }
 .landing .region-top .region-wrapper {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 auto;
   max-width: 80%;
@@ -30,9 +35,9 @@
   background: #FFFFFF;
   border: 1px solid #E6E5E5;
   height: 13rem;
-  margin: 0px;
+  margin: 0 0 2rem 0;
   position: relative;
-  width: 31%;
+  width: 45%;
 }
 .landing .region-top .region-wrapper a {
   color: #00000A;
@@ -56,7 +61,7 @@
   transform: translateX(-50%) translateY(-50%);
 }
 .landing .region-bottom {
-  margin: 4rem auto 0 auto;
+  margin: 2rem auto 0 auto;
   max-width: 60%;
 }
 .landing .region-bottom .mc-wrapper .mc-viewport {
@@ -178,9 +183,20 @@ MadCap|breadcrumbsProxy {
 .content .sidenav-wrapper {
   border-right: solid 1px #E6E5E5;
   position: relative;
-  transition: 0.5s width ease;
+  transition: 0.5s width ease, 0.5s opacity ease .25s;
 }
-.content .sidenav-wrapper:before {
+.content #sidebar-toggle {
+  cursor: pointer;
+  height: 20px;
+  left: calc(20% - 20px);
+  margin: 0;
+  position: absolute;
+  top: 3px;
+  transition: 0.5s left ease;
+  width: 20px;
+  z-index: 1;
+}
+.content #sidebar-toggle:before {
   border-top: solid 10px transparent;
   border-left: none;
   border-bottom: solid 10px transparent;
@@ -190,29 +206,7 @@ MadCap|breadcrumbsProxy {
   right: 0px;
   top: 3px;
 }
-.content #sidebar-toggle {
-  cursor: pointer;
-  height: 20px;
-  left: calc(20% - 20px);
-  margin: 0;
-  opacity: 0;
-  position: absolute;
-  top: 3px;
-  width: 20px;
-  z-index: 1;
-}
-.content .sidenav-layout.closed .sidenav-wrapper {
-  border-right: none;
-  width: 0px;
-}
-.content .sidenav-layout.closed .sidenav-wrapper:before {
-  display: none;
-}
-.content .sidenav-layout.closed .body-container {
-  border-left: solid 1px #E6E5E5;
-  position: relative;
-}
-.content .sidenav-layout.closed .body-container:before {
+.content .sidenav-layout.closed #sidebar-toggle:before {
   border-top: solid 10px transparent;
   border-left: solid 10px #E6E5E5;
   border-bottom: solid 10px transparent;
@@ -221,6 +215,19 @@ MadCap|breadcrumbsProxy {
   position: absolute;
   left: 0px;
   top: 3px;
+}
+.content .sidenav-layout.closed .sidenav-wrapper {
+  border-right: none;
+  opacity: 0;
+  transition: 0.5s width ease, 0.1s opacity ease;
+  width: 0px;
+}
+.content .sidenav-layout.closed .sidenav-wrapper:before {
+  display: none;
+}
+.content .sidenav-layout.closed .body-container {
+  border-left: solid 1px #E6E5E5;
+  position: relative;
 }
 .content .sidenav-layout.closed .sidenav-wrapper #sidebar-toggle {
   right: -20px;
@@ -277,11 +284,17 @@ MadCap|breadcrumbsProxy {
 }
 .content .off-canvas-accordion>.is-accordion-submenu-parent>.is-accordion-submenu.nested {
   direction: rtl;
-  max-height: 210px;
+  max-height: 270px;
   overflow: auto;
 }
 .content .off-canvas-accordion .is-accordion-submenu.nested {
   margin: 23px 0 23px 0;
+}
+.content .off-canvas-accordion .is-accordion-submenu .is-accordion-submenu.nested {
+  margin: 13px 0 13px 0;
+}
+.content .off-canvas-accordion .is-accordion-submenu .is-accordion-submenu.nested li {
+  margin-bottom: 13px;
 }
 .content .off-canvas-accordion .is-accordion-submenu.nested::-webkit-scrollbar {
   width: 2px;
@@ -573,6 +586,7 @@ margin: 0;
   border-radius: 25px;
   cursor: pointer;
   display: inline-block;
+  font-family: 'Rubik', sans-serif;
   font-size: 14px;
   font-weight: 400;
   height: 36px;

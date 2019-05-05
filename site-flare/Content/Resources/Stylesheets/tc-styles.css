@@ -24,14 +24,14 @@ h1:first-of-type {
 }
 h2 {
   color: #4a4a4a;
-  font-size: 1.1875rem;
+  font-size: 1.575rem;
   line-height: 30px;
-  font-weight: 400;
+  font-weight: 300;
   margin-top: 0px;
 }
 h3 {
   color: #4a4a4a;
-  font-size: .9375rem;
+  font-size: 1.325rem;
   line-height: 30px;
   font-weight: 400;
   margin-bottom: 10px;
@@ -39,7 +39,7 @@ h3 {
 }
 h4 {
   color: #00c0f3;
-  font-size: .8125rem;
+  font-size: 1.125rem;
   line-height: 30px;
   font-weight: 300;
   margin-bottom: 10px;
@@ -75,6 +75,9 @@ div.easyui-tabs .tabs>li.tabs-selected a.tabs-inner {
 div.easyui-tabs .tabs>li .tabs-title {
   font-size: .875rem;
   font-weight: 400;
+}
+div.easyui-tabs .tabs>li.tabs-selected .tabs-title {
+  font-weight: 500;
 }
 div.easyui-tabs .tabs-panels,
 div.easyui-accordion,
@@ -195,6 +198,20 @@ div.tc-admon-tip>:last-child,
 div.tc-admon-important>:last-child {
   margin-bottom: 0;
 }
+div.tc-admon-attention ul,
+div.tc-admon-note ul,
+div.tc-admon-refer ul ,
+div.tc-admon-tip ul,
+div.tc-admon-important ul {
+  padding-left: 0;
+}
+div.tc-admon-attention ul li,
+div.tc-admon-note ul li,
+div.tc-admon-refer ul li,
+div.tc-admon-tip ul li,
+div.tc-admon-important ul li {
+  padding-left: 2.5rem;
+}
 div.tc-align-left {
   /* placeholder */
 }
@@ -208,7 +225,7 @@ a:visited {
   text-decoration: none;
 }
 a:hover {
-  color: #006DB8;
+  color: #00C0F3;
   text-decoration: underline;
 }
 .body-container a[target="_blank"]::after,
@@ -251,6 +268,7 @@ ul {
 }
 li,
 li p {
+  line-height: 1.5;
   margin: 0px;
 }
 .topic-content ol,
@@ -265,6 +283,7 @@ li p {
   color: #00c0f3;
   font-size: 1.4rem;
   margin-left: -1em;
+  margin-top: -5px;
   position: absolute;
   width: 1em;
 }
@@ -273,6 +292,7 @@ li p {
 }
 .topic-content ol {
   counter-reset: li;
+  list-style-type: none !important;
 }
 .topic-content ol>li {
   counter-increment: li;
@@ -337,9 +357,9 @@ p.tc-tablehead {
 }
 p.tc-tablebody {
   font-size: 1rem;
-  font-weight: 300;
+  /* font-weight: 300; */
   line-height: 17px;
-  padding: 10px;
+  /* padding: 10px; */
 }
 p.tc-todo {
   color: #006cb8;
@@ -370,7 +390,7 @@ code {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 code:not([class]) {
-  background-color: #ededed;
+  background-color: #f5f5f5;
   border-radius: 4px;
   color: black;
   font-size: 90%;
@@ -395,7 +415,7 @@ code.language-xml {
   /* placeholder */
 }
 span.tc-bold {
-  font-weight: 700;
+  font-weight: 500;
 }
 span.tc-highlight {
   background-color: #ffff00;
@@ -424,15 +444,14 @@ table a:hover {
   text-decoration: underline;
 }
 table {
-  font-family: Arial, Helvetica, sans-serif;
   color: #666;
-  font-size: .75rem;
   text-shadow: 1px 1px 0px #fff;
   background: #ffffff;
   margin: 0px;
   margin-bottom: 20px;
   /* XAP*/
   border: #a4aab3 1px solid;
+  border-collapse: collapse;
   width: 100%;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -443,15 +462,14 @@ table {
 }
 table th {
   padding: 10px 10px 10px 10px;
-  border-top: 1px solid #a4aab3;
-  border-bottom: 1px solid #a4aab3;
+  border-left: 1px solid #e0e0e0;
   background: #f7fbff;
   font-size: 1rem;
   font-family: 'Rubik', sans-serif;
-  /* background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
-  background: -moz-linear-gradient(top, #ededed, #ebebeb); */
+  font-weight: 500;
 }
 table th:first-child {
+  border-left: none;
   text-align: left;
   padding-left: 10px;
 }
@@ -466,6 +484,7 @@ table tr:first-child th:last-child {
   border-top-right-radius: 3px;
 }
 table tr {
+  border-bottom: 1px solid #e0e0e0;
   padding-left: 10px;
   text-align: left;
 }
@@ -476,8 +495,6 @@ table td:first-child {
 }
 table td {
   padding: 10px;
-  border-top: 1px solid #ffffff;
-  border-bottom: 1px solid #e0e0e0;
   border-left: 1px solid #e0e0e0;
   background: #fafafa;
   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
@@ -517,7 +534,6 @@ table.tc-borderless * {
   border-collapse: collapse !important;
   box-shadow: none !important;
   color: #000000;
-  font-size: .875rem !important;
   white-space: normal;
 }
 table.tc-borderless img {
