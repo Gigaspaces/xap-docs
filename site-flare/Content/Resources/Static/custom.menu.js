@@ -1,5 +1,5 @@
 ﻿var versionData = {
-  '14.5': { 'url': '/xap/14.5', 'label': '14.5 Early Access', 'topicBanner': 'preview' },
+  '14.5': { 'url': '/14.5', 'label': '14.5 Early Access', 'topicBanner': 'preview' },
   '14.2': { 'url': '/14.2', 'label': '14.2', 'hide': true },
   'latest': { 'url': '/latest', 'label': '14.2' },
   '14.0': { 'url': '/xap/14.0', 'label': '14.0', 'topicBanner': 'old' },
