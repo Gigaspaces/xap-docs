@@ -29,9 +29,10 @@
           &lt;/bean&gt;
      &lt;/property&gt;
 &lt;/bean&gt;</code></pre>
+        <h2>Cold Starts</h2>
         <p>For persistency reasons, <MadCap:variable name="General.ProductNameIE" /> maintains a record of the last confirmed data that was copied from the Space to the external data source. If you need to undeploy and then redeploy a Processing Unit, for example as part of a maintenance activity, you can configure whether you want to perform a cold start of the Space (copy data from the Space to the external data source from the beginning), or whether you want the redeployed Processing Unit to continue copying the data from where it left off when it was undeployed.</p>
         <h2>Global Properties</h2>
-        <p>The global configuration contains a list of DataLifecyclePolicy properties, as well as the AnalyticsXtreme logging level that is set for the entire application.</p>
+        <p>The global configuration contains a list of DataLifecyclePolicy properties, as well as the AnalyticsXtreme logging level.</p>
         <table style="width: 100%;" class="tc-standard">
             <col />
             <col />
@@ -65,7 +66,8 @@
             </tbody>
         </table>
         <h1>Configuring the Data Life Cycle Policy</h1>
-        <p>The next step in configuring AnalyticsXtreme is to define the data life cycle policy, which specifies how and when data is archived from the data grid (speed layer) to the external data storage (batch layer). This policy is configured in the AnalyticsXtreme Manager for each data object, or table. You must define the following properties in the policy: </p>
+        <p>The next step in configuring AnalyticsXtreme is to define the data life cycle policy, which specifies how and when data is archived from the data grid (speed layer) to the external data storage (batch layer). This policy is configured in the AnalyticsXtreme Manager for each data object, or table.</p>
+        <p>You must define the following properties in the policy: </p>
         <ul>
             <li><code>typeName</code>
             </li>
@@ -78,7 +80,7 @@
         </ul>
         <p>All other properties are optional, and you can leave the default values unless your specific environment has different requirements. See <MadCap:xref href="#Table">Table (Object) Properties</MadCap:xref> below for a full list of the data life cycle policy properties and their descriptions.</p>
         <div class="tc-admon-attention">
-            <p>The relationship between the data object and the data life cycle policy is one to one. You cannot have more than one policy per data object, and each policy applies to only a single data object.</p>
+            <p>The relationship between the data object and the data life cycle policy is one to one. You cannot have more than one policy per data object, and each policy applies to a single data object.</p>
         </div>
         <h2><a name="Adding"></a>Defining the Data Source and Data Target</h2>
         <p>Part of configuring the data life cycle policy is defining the <code>batchDataSource</code> property. You can define it directly, or you can use a <code>ref </code>to point to the definition. If you are implementing AnalyticsXtreme in external data tiering mode, this is the only required property because the data is simply evicted at the end of the life cycle.</p>
@@ -102,6 +104,9 @@
      &lt;property name="sparkSessionProvider" ref="ax-sparkSessionFactory"/&gt;
 &lt;/bean&gt;</code><![CDATA[
 ]]></pre>
+        <div class="tc-admon-note">
+            <p>The data source and the data target use the same <code>sparkSessionFactory </code>bean. </p>
+        </div>
         <h3>Configuring the Data Target</h3>
         <p>There are three possible implementations for the data target out of the box; JDBC, Spark, and Hive. Each is wrapped in a factory bean. The <code>BatchDataTarget</code> interface can be used for other data targets by implementing the <code>feed</code> method. </p>
         <p><span class="tc-bold">Spark Hive Batch Data Target Exampl</span>e</p>
@@ -230,9 +235,7 @@
                     <td>batchFeedSize </td>
                     <td>Maximum data entries per batch feed interval.</td>
                     <td>Integer&#160;(number of entries)</td>
-                    <td>
-                        <p class="tc-tablebody">1000 </p>
-                    </td>
+                    <td>1000</td>
                     <td>Optional</td>
                 </tr>
                 <tr>
