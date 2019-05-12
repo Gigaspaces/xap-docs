@@ -37,12 +37,17 @@
         _self.methods.generateNavItems();
         _self.methods.placeTopicFooter();
         _self.methods.scrollToTop();
-        
+
         $('<div id="sidebar-toggle" />')
           .click(function () {
             $(this).parent().toggleClass('closed');
           })
           .appendTo('.content .sidenav-layout');
+        $('<div id="ipn-toggle" />')
+          .click(function () {
+            $(this).prev().toggleClass('closed');
+          })
+          .appendTo('.content .topic-container');
       });
     },
     methods: {
