@@ -52,8 +52,8 @@
     },
     methods: {
       breadcrumb: function () {
-        if (new RegExp(/^.*?\/(:?\d+?[\.\d]*?|latest)\//).test(location.href)) {
-          var prodVerUrl = location.href.match(/(^.*?\/\d+?[\.\d]*?|latest)\//)[0];
+        if (new RegExp(/^.*?\/(:?\d+?[\.\d]*?|\/latest)\//).test(location.href)) {
+          var prodVerUrl = location.href.match(/(^.*?\/\d+?[\.\d]*?|\/latest)\//)[0];
           debug('BREADCRUMB::prodVerUrl:', prodVerUrl);
           var breadcrumbPrefix = '<a class="breadcrumb-home" href="/"></a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>';
           debug('BREADCRUMB::Children:', $('.breadcrumbs').children().length);
