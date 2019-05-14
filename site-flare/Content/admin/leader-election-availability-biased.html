@@ -90,7 +90,7 @@ pu.unquiesce(new QuiesceRequest("split-brain resolved"));
             <li>
                 <p><span class="tc-bold">High (&gt;90%) CPU utilization</span> - As discussed, that can cause to various components (also external to GigaSpaces) to strive for CPU clock resources, such as keep alive mechanisms (which can miss events and therefore trigger initialization of redundant services or false alarms), IO/network lack of available sockets, OS fails to release resources etc. One should avoid getting into scenarios of constant (more than a minute) utilization of over 90% CPU.</p>
                 <ul>
-                    <li>You can use the out-of-the-box CPU monitoring component (which uses <a href="http://www.hyperic.com/products/sigar" target="_blank">SIGAR</a>) for measuring the OS and JVM resources. It is easily accessible through the GigaSpaces Admin API.</li>
+                    <li>You can use the out-of-the-box CPU monitoring component (which uses <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><a href="http://www.hyperic.com/products/sigar" target="_blank">SIGAR</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><a href="https://github.com/oshi/oshi" target="_blank">OSHI</a></MadCap:conditionalText>) for measuring the OS and JVM resources. It is easily accessible through the GigaSpaces Admin API.</li>
                 </ul>
             </li>
             <li>
