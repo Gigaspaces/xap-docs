@@ -52,15 +52,16 @@
     },
     methods: {
       breadcrumb: function () {
-        if (new RegExp(/^.*?\/(:?\d+?[\.\d]*?|\/latest)\//).test(location.href)) {
-          var prodVerUrl = location.href.match(/(^.*?\/\d+?[\.\d]*?|\/latest)\//)[0];
+        var href = location.href.replace(location.search, '');
+        if (new RegExp(/^.*?\/(:?\d+?[\.\d]*?|latest)\//).test(href)) {
+          var prodVerUrl = href.match(/(^.*?\/\d+?[\.\d]*?|\/latest)\//)[0];
           debug('BREADCRUMB::prodVerUrl:', prodVerUrl);
           var breadcrumbPrefix = '<a class="breadcrumb-home" href="/"></a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>';
           debug('BREADCRUMB::Children:', $('.breadcrumbs').children().length);
-          if (location.href.substr(-5) == '.html')
+          if (href.substr(-5) == '.html')
             var breadcrumbPrefixVersion = '<a href="' + prodVerUrl + '" class="MCBreadcrumbsLink">' + versionData[_self.props.prodVer].label + '</a> <span class="MCBreadcrumbsDivider"> &gt;&gt; </span>';
           else
-            var breadcrumbPrefixVersion = '<span class="MCBreadcrumbsSelf">' + versionData[_self.props.prodVer].label + '</span>';
+            var breadcrumbPrefixVersion = '<span class="MCBreadcrumbsSelf">' + versionData[_self.props.prodVer].label + '</span><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>';
 
           $(breadcrumbPrefix + breadcrumbPrefixVersion).prependTo('.breadcrumbs');
         }
