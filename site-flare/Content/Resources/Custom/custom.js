@@ -1,9 +1,9 @@
 (function (w) {
   var _self = {
     props: {
-      version: '1.0.3',
+      version: '2.0.0',
       prefix: 'TOPNAV:::',
-      debug: false,
+      debug: location.protocol == 'file:' || location.hostname == 'localhost',
       domain: "\.gigaspaces\.com",
       isIframe: window.self !== window.top,
       prodVer: (new RegExp(/\/(\d+?[\.\d]*?|latest)\//).test(location.href)) ? location.href.match(/\/(\d+?[\.\d]*?|latest)\//)[1] : null,
@@ -30,30 +30,54 @@
 
         debug('Calling methods');
         var id = setInterval(function () {
-          if (!$('.sideContent .menu .selected').length) return;
+          if (!$('.ipn-content .menu .selected').length) return;
           clearInterval(id);
           _self.methods.sidebar();
         }, 1000);
         _self.methods.generateNavItems();
+        _self.methods.placeTopicFooter();
         _self.methods.scrollToTop();
+
+        $('<div id="sidebar-toggle" />')
+          .click(function () {
+            $(this).parent().toggleClass('closed');
+          })
+          .appendTo('.content .sidenav-layout');
+        $('<div id="ipn-toggle" />')
+          .click(function () {
+            $(this).prev().toggleClass('closed');
+          })
+          .appendTo('.content .topic-container');
       });
     },
     methods: {
       breadcrumb: function () {
-        if (new RegExp(/^.*?\/(:?\d+?[\.\d]*?|latest)\//).test(location.href)) {
-          var prodVerUrl = location.href.match(/(^.*?\/\d+?[\.\d]*?|latest)\//)[0];
-          console.log('BREADCRUMB::prodVerUrl:', prodVerUrl);
-          var breadcrumbPrefix = '<a href="/"><i class="fa fa-home fa-lg"></i></a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>';
-          console.log('BREADCRUMB::Children:', $('.breadcrumbs').children().length);
-          if (location.href.substr(-5) == '.html')
+        var href = location.href.replace(location.search, '');
+        if (new RegExp(/^.*?\/(:?\d+?[\.\d]*?|latest)\//).test(href)) {
+          var prodVerUrl = href.match(/(^.*?\/\d+?[\.\d]*?|\/latest)\//)[0];
+          debug('BREADCRUMB::prodVerUrl:', prodVerUrl);
+          var breadcrumbPrefix = '<a class="breadcrumb-home" href="/"></a><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>';
+          debug('BREADCRUMB::Children:', $('.breadcrumbs').children().length);
+          if (href.substr(-5) == '.html')
             var breadcrumbPrefixVersion = '<a href="' + prodVerUrl + '" class="MCBreadcrumbsLink">' + versionData[_self.props.prodVer].label + '</a> <span class="MCBreadcrumbsDivider"> &gt;&gt; </span>';
           else
-            var breadcrumbPrefixVersion = '<span class="MCBreadcrumbsSelf">' + versionData[_self.props.prodVer].label + '</span>';
+            var breadcrumbPrefixVersion = '<span class="MCBreadcrumbsSelf">' + versionData[_self.props.prodVer].label + '</span><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>';
 
           $(breadcrumbPrefix + breadcrumbPrefixVersion).prependTo('.breadcrumbs');
         }
         $('.title-bar-container')
           .append($('.breadcrumbs'));
+      },
+      placeTopicFooter: function () {
+        var f = document.getElementById('footer');
+        var b = document.getElementsByClassName('body-container')[0];
+        var style = f.currentStyle || window.getComputedStyle(f);
+
+        if (b.getBoundingClientRect().bottom > f.getBoundingClientRect().bottom) {
+          var diff = b.getBoundingClientRect().bottom - f.getBoundingClientRect().bottom;
+          var marginTop = parseInt(style.marginTop);
+          f.style.marginTop = marginTop + diff + 'px';
+        }
       },
       scrollToTop: function () {
         $('.body-container').scroll(function () {
@@ -67,13 +91,13 @@
         });
       },
       sidebar: function () {
-        $('.sideContent .selected-child-parent').removeClass('selected-child-parent');
-        $('.sideContent .selected-child-menu').removeClass('selected-child-menu');
-        $('.sideContent .selected-child').removeClass('selected-child');
+        $('.ipn-content .selected-child-parent').removeClass('selected-child-parent');
+        $('.ipn-content .selected-child-menu').removeClass('selected-child-menu');
+        $('.ipn-content .selected-child').removeClass('selected-child');
 
-        $('.sideContent .selected').parent().addClass('selected-child');
-        $('.sideContent .selected-child').parents('ul:not(.menu)').addClass('selected-child-menu');
-        $('.sideContent .selected-child').parents('ul:not(.menu)').last().prev().addClass('selected-child-parent');
+        $('.ipn-content .selected').parent().addClass('selected-child');
+        $('.ipn-content .selected-child').parents('ul:not(.menu)').addClass('selected-child-menu');
+        $('.ipn-content .selected-child').parents('ul:not(.menu)').last().prev().addClass('selected-child-parent');
       },
       generateNavItems: function () {
         _self.utils.getFile({
@@ -87,7 +111,8 @@
         var vMenu = null,
           rMenu = null;
         var mLabel, mTarget;
-        var menuStart = '<ul id="MENU_ID" class="nav-menu"><li><a href="#">MENU_LABEL<span class="caret"></span></a><ul>';
+        var navBar = $('<div class="nav-extn-wrapper"></div>');
+        var menuStart = '<ul id="MENU_ID" class="nav-menu"><li><a class="caret" href="#">MENU_LABEL</a><ul>';
         var menuEnd = '</ul></li></ul>';
 
         $(document)
@@ -96,30 +121,26 @@
               $('.nav-menu>li.open').removeClass('open');
           });
 
+        if (_self.props.debug) _self.props.prodVer = 'latest';
         vMenu = menuStart.replace('MENU_ID', 'version-menu');
         for (var v in versionData) {
           mLabel = versionData[v].label || v;
           mTarget = versionData[v].target || '_self';
           if (v == _self.props.prodVer) {
             vMenu = vMenu.replace('MENU_LABEL', mLabel);
-            
+
             /* Add topic banner */
             var bannerType = versionData[v].topicBanner;
             if (bannerType) {
               $('.bodyContent').prepend($(topicBanner[bannerType]));
             }
-          } else {
-            if (versionData[v].hide) continue;
-            vMenu += '<li><a href="' + versionData[v].url + '" target="' + mTarget + '">' + mLabel + '</a></li>';
-          }
+          } /*  else { */
+          if (versionData[v].hide) continue;
+          vMenu += '<li><a' + ((v == _self.props.prodVer) ? ' class="selected"' : '') + ' href="' + versionData[v].url + '" target="' + mTarget + '">' + mLabel + '</a></li>';
+          /* } */
         }
         vMenu += menuEnd;
-        $(vMenu).appendTo('.logo-wrapper');
-        $('#version-menu>li>a')
-          .click(function (e) {
-            e.preventDefault();
-            $('#version-menu>li').toggleClass('open');
-          });
+        $(vMenu).appendTo(navBar);
 
         for (var r in resourcesData) {
           mTarget = resourcesData[r].target || '_self';
@@ -129,16 +150,24 @@
             rMenu += '<li><a href="' + resourcesData[r].url + '" target="' + mTarget + '">' + r + '</a></li>';
         }
         rMenu += menuEnd;
-        $(rMenu).appendTo('.logo-wrapper');
+        $(rMenu).appendTo(navBar);
+
+
+        for (var i = 0; i < buttonsData.length; i++) {
+          $(buttonsData[i]).appendTo(navBar);
+        }
+
+        navBar.appendTo('.title-bar-layout');
+        $('#version-menu>li>a')
+          .click(function (e) {
+            e.preventDefault();
+            $('#version-menu>li').toggleClass('open');
+          });
         $('#resources-menu>li>a')
           .click(function (e) {
             e.preventDefault();
             $('#resources-menu>li').toggleClass('open');
           });
-
-        for (var i = 0; i < buttonsData.length; i++) {
-          $(buttonsData[i]).prependTo('.nav-search-wrapper');
-        }
       }
     },
     events: {
