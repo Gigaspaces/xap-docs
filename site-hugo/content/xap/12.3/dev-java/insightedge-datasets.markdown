@@ -4,6 +4,7 @@ title:  Dataset API
 categories: XAP123, OSS
 parent: insightedge-apis.html
 weight: 600
+canonical: auto
 ---
 
 A Dataset is a distributed collection of data. Datasets provide the benefits of RDDs (strong typing, ability to use powerful lambda functions) 

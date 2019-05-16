@@ -4,6 +4,7 @@ title:  Network Monitoring
 categories: XAP122ADM, OSS
 parent: monitoring.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

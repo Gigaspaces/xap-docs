@@ -4,6 +4,7 @@ title:  Archive Handler
 categories: XAP100
 parent: mongodb.html
 weight: 200
+canonical: auto
 ---
 
 

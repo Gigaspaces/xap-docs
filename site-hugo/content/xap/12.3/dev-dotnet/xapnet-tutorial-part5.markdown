@@ -4,6 +4,7 @@ title:  Creating a Processing Unit
 categories: XAP123NET, PRM
 parent: xapnet-basics.html
 weight: 600
+canonical: auto
 ---
 
 

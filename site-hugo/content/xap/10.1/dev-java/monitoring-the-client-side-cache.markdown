@@ -4,6 +4,7 @@ title:  Monitoring Client Side Cache
 categories: XAP101
 parent: client-side-caching.html
 weight: 400
+canonical: auto
 ---
 
 

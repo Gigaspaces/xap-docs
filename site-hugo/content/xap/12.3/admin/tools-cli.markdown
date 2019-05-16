@@ -3,6 +3,7 @@ type: post123
 title:  Command Line Interface
 categories: XAP123ADM,OSS
 weight: 100
+canonical: auto
 parent: admin-tools.html
 ---
 

@@ -4,6 +4,7 @@ title:  Custom Processing Unit
 categories: XAP97
 parent: the-processing-unit-overview.html
 weight: 400
+canonical: auto
 ---
 
 

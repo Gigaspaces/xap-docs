@@ -4,6 +4,7 @@ title: Service Grid Layer
 categories: XAP123OVW
 parent: product-architecture.html
 weight: 600
+canonical: auto
 ---
 
  

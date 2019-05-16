@@ -3,6 +3,7 @@ type: post101
 title:  Operations
 categories: XAP101NET
 weight: 300
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

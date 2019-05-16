@@ -4,6 +4,7 @@ title:  PONO Support
 categories: XAP121NET, PRM
 parent: none
 weight: 200
+canonical: auto
 ---
 
 

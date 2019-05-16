@@ -4,6 +4,7 @@ title: What Edition Do I Need?
 categories: XAP123OVW
 parent: none
 weight: 1200
+canonical: auto
 ---
 
 This feature matrix provides a side-by-side comparison of the features available in the open source and commercial editions of InsightEdge and XAP. Use this as a guide to determine what edition best suits your needs.

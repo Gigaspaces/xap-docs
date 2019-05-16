@@ -3,6 +3,7 @@ type: post123
 title:  Administering Open Source Editions
 categories: XAP123ADM,OSS
 weight: 80
+canonical: auto
 parent: none
 ---
  

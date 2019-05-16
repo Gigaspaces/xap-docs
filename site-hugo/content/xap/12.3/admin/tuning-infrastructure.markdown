@@ -4,6 +4,7 @@ title:  Infrastructure
 categories: XAP123ADM, OSS
 parent:  tuning.html
 weight: 100
+canonical: auto
 ---
 
 

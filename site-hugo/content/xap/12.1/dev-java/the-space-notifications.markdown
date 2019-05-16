@@ -3,6 +3,7 @@ type: post121
 title:  Notifications
 categories: XAP121
 weight: 700
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

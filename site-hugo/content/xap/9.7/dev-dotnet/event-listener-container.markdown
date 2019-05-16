@@ -4,6 +4,7 @@ title:  Event Listener Container
 categories: XAP97NET
 parent: event-processing.html
 weight: 100
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

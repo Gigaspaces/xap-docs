@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -6,7 +6,8 @@
         <h1>JVM Configuration</h1>
         <p>This page explains how to configure runtime settings for XAP.NET applications. In general, the development phase of a XAP.NET based application does not require runtime tuning settings as the defaults are usually satisfactory. In later testing and production phases, however, it is sometimes required to customize the default configuration.</p><a name="JvmLocation"></a>
         <h1><a name="jvm-location"></a>JVM&#160;Location</h1>
-        <p>GigaSpaces XAP.NET is bundled with <a href="http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html">Oracle Java SE 8 update 121</a>, aiming to save .NET users the hassle of downloading and installing Java. However, it is quite simple to bind it to a different JVM (For a list of supported JVMs refer to Supported Platforms in the release notes):</p>
+        <p MadCap:conditions="Version.14-2-died">GigaSpaces XAP.NET is bundled with <a href="http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html">Oracle Java SE 8 update 121</a>, aiming to save .NET users the hassle of downloading and installing Java. However, it is quite simple to bind it to a different JVM (For a list of supported JVMs refer to Supported Platforms in the release notes):</p>
+        <p MadCap:conditions="Version.14-2-born">By default, XAP.NET binds to Java using the standard <code>JAVA_HOME</code> environment variable. However, it is quite simple to bind it to a different JVM (For a list of supported JVMs refer to Supported Platforms in the release notes)</p>
         <ol>
             <li>
                 <p>Edit the <code>Settings.xml</code> file (located in <code>&lt;XapNet&gt;\config\Settings.xml</code>).</p>
@@ -15,10 +16,10 @@
                 <p>Locate the <code>&lt;XapNet.Runtime.JavaHome&gt;</code> node and change its value to the location of the JVM you wish to use.</p>
             </li>
         </ol>
-        <div class="tc-admon-note">
-            <p>Many systems define an environment variable called <code>JAVA_HOME</code> which points to the JVM installation, since most java applications and libraries (including <MadCap:variable name="General.ProductNameXAP" />) use <code>JAVA_HOME</code> to locate java. Since the <code>Settings.xml</code> file supports environment variable expansion, it is possible to set &lt;XapNet.Runtime.JavaHome&gt; to <code>%JAVA_HOME%</code>, so you can later on change the jvm location without editing the xml file.</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-2-died">
+            <p>Many systems define an environment variable called <code>JAVA_HOME</code> which points to the JVM installation, since most java applications and libraries (including <MadCap:variable name="General.ProductNameXAP" />) use <code>JAVA_HOME</code> to locate Java. Since the <code>Settings.xml</code> file supports environment variable expansion, it is possible to set &lt;XapNet.Runtime.JavaHome&gt; to <code>%JAVA_HOME%</code>, so you can later on change the jvm location without editing the xml file.</p>
         </div><a name="JvmSettings"></a>
-        <h1><a name="jvm-settings"></a>Jvm Settings</h1>
+        <h1><a name="jvm-settings"></a>JVM Settings</h1>
         <p>Unlike .NET applications, which are compiled to executable files, java applications are compiled to <code>.class</code> or <code>.jar</code> files which are executed using the <a href="http://java.sun.com/javase/6/docs/technotes/tools/windows/java.html" target="_blank">Java Application Launcher</a> (<code>java.exe</code>) tool. This tool supports various options which control the way the application is executed, such as memory allocation, garbage collection and more.</p>
         <p>XAP.NET tools and applications use <a href="http://java.sun.com/javase/6/docs/technotes/guides/jni/index.html" target="_blank">Java Native Interface (JNI)</a> instead of <code>java.exe</code> to launch the JVM and execute java code, and use the Application Configuration File to load JVM settings.</p>
         <p>To configure JVM settings, add a <code>GigaSpaces</code> section to the application configuration file:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8" ?&gt;

@@ -4,6 +4,7 @@ title:  Full Text Search
 categories: XAP121
 parent: querying-the-space.html
 weight: 360
+canonical: auto
 ---
  
 

@@ -4,6 +4,7 @@ title:  Monitoring Processing Unit Resources
 categories: XAP123ADM,PRM
 parent: web-management-console.html
 weight: 520
+canonical: auto
 ---
 
 

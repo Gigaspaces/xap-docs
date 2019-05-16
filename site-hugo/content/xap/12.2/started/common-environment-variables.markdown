@@ -4,6 +4,7 @@ title:  Configuration
 categories: XAP122GS
 parent: none
 weight: 300
+canonical: auto
 ---
 
 

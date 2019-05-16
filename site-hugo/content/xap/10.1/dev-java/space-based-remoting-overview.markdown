@@ -4,6 +4,7 @@ title:  Space Based Remoting
 categories: XAP101
 parent: none
 weight: 1600
+canonical: auto
 ---
 
  Remoting allows you to use remote invocations of POJO services, with the space as the transport layer.

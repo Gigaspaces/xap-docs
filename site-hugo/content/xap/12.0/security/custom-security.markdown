@@ -4,6 +4,7 @@ title:  Custom Security
 categories: XAP120SEC, PRM
 parent: none
 weight: 850
+canonical: auto
 ---
 
 

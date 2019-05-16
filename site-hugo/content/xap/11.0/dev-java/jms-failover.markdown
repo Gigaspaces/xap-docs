@@ -4,6 +4,7 @@ title:  JMS Failover
 categories: XAP110
 parent: jms-advanced.html
 weight: 100
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

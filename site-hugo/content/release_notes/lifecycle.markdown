@@ -65,31 +65,31 @@ Upon request, GigaSpaces [Consulting Services](mailto:ps@gigaspaces.com) experts
 
 # Product Release Plan and End-of-Life Retirement Calendar
 
-|Product Release [1] |	GA Date | Last Maintenance Service Pack Release|Planned Next Maintenance Service Pack Release [2]|Support Discontinuance ("End of Life") [3]|
-|--------------------|----------|--------------------------------------|-------------------------------------------------|------------------------------------------|
-|14.2 b20400     |April 2019    |                                      |No Plans|   |
-|14.0 b20000     |<nobr>November 2018<nobr>	|14.0.1 in Dec. 2018       |No Plans| April 2021 |
-|12.3 b19000     |March 2018	|12.3.1 b19300 in July 2018            |No Plans| November 2020 |
-|12.2 b18000     |Sept. 2017	|12.2.1 b18100 in Nov. 2017            |No Plans| March 2020 |
-|12.1 b17100     |March 2017	|12.1.1 b17100 in June 2017            |No Plans| September 2019 |
-|12.0 b16000     |<nobr>January 2017<nobr> |12.0.1 b16600 in Sep. 2016 |No Plans|March 2019  |            
-|11.0 b14800     |April 2016	| 	                                   |No Plans|January 2019 |     
-|10.2 b13800     |July 2015	    |10.2.1 b14000 in Nov. 2015	           |No Plans|April 2018 |	 
-|10.1 b12600     |March 2015	|10.1.1 b12800 in April 2015	       |No Plans|July 2017	 |
-|10.0 	         |July 2014     |10.0.1 b11800 in Aug. 2014            |10.0.2	|March 2017 |
-|9.7 b10496      |Jan. 2014	    |9.7.2 b11000 in Feb. 2015	           |No Plans|July 2016|
-|9.6 b9500	     |July 2013	    |9.6.2 b9900 in Oct. 2013	           |No Plans|January 2016|
-|9.5 b8500	     |April 2013	|9.5.2 b8900 in Aug. 2013	           |No Plans|July 2015|
-|9.1 b7500	     |Oct. 2012 	|9.1.2 b7920 in Feb. 2013	           |No Plans|April 2015|
-|9.0 b6500	     |May 2012 	    |9.0.2 b6900 in Aug. 2012	           |No Plans|October 2014|
-|8.0 b5000	     |January 2011	|8.0.8 b6380 in March 2013	           |No Plans|January 2013|
-|7.1 b4300	     |April 2010	|7.1.4 b4750 in Feb. 2011	           |No Plans|April 2012 [4]|
-|7.0 b3500	     |July 2009	    |7.0.4 b4100 in July 2010	           |No Plans|July 2011[4] ||
-|6.6 b2601 (or R6.5) |Sep 2008	|6.6.5 b3320 in June 2009	           |No Plans|September 2010 [4]|
-|6.0 b1855	     |Aug. 2007	    |6.0.5 b2150 in May 2007               |No Plans|August 2009 [4]|
-|5.2 b1708	     |Dec. 2006     |5.2.3 b1780 in June 2007	           |No Plans|June 2009|
-|5.1	         |Sept. 2006	|5.1 b1603	                           |No Plans|September 2008|
-|4.x	         |April 2005    |4.1 b1185                             |No Plans|April 2008|
+|Product Release [1] |	GA Date | Last Maintenance Service Pack Release|Planned Next Maintenance Service Pack Release [2]|Support Discontinuance ("End of Life") [3]| Java Support |
+|--------------------|----------|--------------------------------------|-------------------------------------------------|------------------------------------------|--------------|
+|14.2 b20400     |April 2019    |                                      |No Plans|   | 8, 11 |
+|14.0 b20000     |<nobr>November 2018<nobr>	|14.0.1 in Dec. 2018       |No Plans| April 2021 | 8 |
+|12.3 b19000     |March 2018	|12.3.1 b19300 in July 2018            |No Plans| November 2020 | 8 |
+|12.2 b18000     |Sept. 2017	|12.2.1 b18100 in Nov. 2017            |No Plans| March 2020 | 7, 8 |
+|12.1 b17100     |March 2017	|12.1.1 b17100 in June 2017            |No Plans| September 2019 | 7, 8 |
+|12.0 b16000     |<nobr>January 2017<nobr> |12.0.1 b16600 in Sep. 2016 |No Plans|March 2019  | 6, 7, 8 |           
+|11.0 b14800     |April 2016	| 	                                   |No Plans|January 2019 | 6, 7, 8 |     
+|10.2 b13800     |July 2015	    |10.2.1 b14000 in Nov. 2015	           |No Plans|April 2018 | 6, 7, 8 |	 
+|10.1 b12600     |March 2015	|10.1.1 b12800 in April 2015	       |No Plans|July 2017	 | 6, 7, 8 |
+|10.0 	         |July 2014     |10.0.1 b11800 in Aug. 2014            |10.0.2	|March 2017 | 6, 7, 8 |
+|9.7 b10496      |Jan. 2014	    |9.7.2 b11000 in Feb. 2015	           |No Plans|July 2016| 6, 7, 8 |
+|9.6 b9500	     |July 2013	    |9.6.2 b9900 in Oct. 2013	           |No Plans|January 2016| 6, 7, 8 |
+|9.5 b8500	     |April 2013	|9.5.2 b8900 in Aug. 2013	           |No Plans|July 2015| 6, 7, 8 |
+|9.1 b7500	     |Oct. 2012 	|9.1.2 b7920 in Feb. 2013	           |No Plans|April 2015| 6, 7, 8 |
+|9.0 b6500	     |May 2012 	    |9.0.2 b6900 in Aug. 2012	           |No Plans|October 2014| 6, 7, 8 |
+|8.0 b5000	     |January 2011	|8.0.8 b6380 in March 2013	           |No Plans|January 2013| 6, 7, 8 |
+|7.1 b4300	     |April 2010	|7.1.4 b4750 in Feb. 2011	           |No Plans|April 2012 [4]| 5, 6, 7 |
+|7.0 b3500	     |July 2009	    |7.0.4 b4100 in July 2010	           |No Plans|July 2011[4] | 5, 6, 7 |
+|6.6 b2601 (or R6.5) |Sep 2008	|6.6.5 b3320 in June 2009	           |No Plans|September 2010 [4]| 4, 5, 6, 7 |
+|6.0 b1855	     |Aug. 2007	    |6.0.5 b2150 in May 2007               |No Plans|August 2009 [4]| 4, 5, 6, 7 |
+|5.2 b1708	     |Dec. 2006     |5.2.3 b1780 in June 2007	           |No Plans|June 2009| 4, 5, 6, 7 |
+|5.1	         |Sept. 2006	|5.1 b1603	                           |No Plans|September 2008| 4, 5, 6, 7 |
+|4.x	         |April 2005    |4.1 b1185                             |No Plans|April 2008| 4, 5, 6, 7 |
 
         
 **[1] Product Releases** – GigaSpaces R4.x and R5.x refer to all editions including the Enterprise (EE), Caching (EDG) and Community editions. R6.x refers to all editions including the XAP, Caching (EDG) and Community editions.<br>
@@ -105,9 +105,7 @@ This section describes GigaSpaces' general support policies for Java and Spring 
  
 Customers should upgrade to a fully-supported environment, such as the latest version of InsightEdge or XAP {{%latestxaprelease%}} and the latest Java 1.8 SDK.
 
-- GigaSpaces is planning to support the first Long-Term Support (LTS) Java 11 release in an upcoming version of the InsightEdge Platform, and all future LTS Java versions as they are released.
-- From version 8.0 onwards, XAP no longer supports the Java 1.5 SDK, and requires Java 1.6 SDK or higher. 
-- From version 7.0 onwards, XAP no longer supports the Java 1.4 SDK, and requires Java 1.5 SDK or higher.
+GigaSpaces supports the first Long-Term Support (LTS) Java 11 release from release 14.2, and will support all future LTS Java versions as they are released.
 
 ## Spring Framework Support
 

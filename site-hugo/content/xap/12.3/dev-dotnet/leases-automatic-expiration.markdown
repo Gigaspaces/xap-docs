@@ -3,6 +3,7 @@ type: post123
 title:  Lease Time
 categories: XAP123NET, PRM
 weight: 700
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

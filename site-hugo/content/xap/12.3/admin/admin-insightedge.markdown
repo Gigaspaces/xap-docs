@@ -3,6 +3,7 @@ type: post123
 title:  Administering InsightEdge
 categories: XAP123ADM,PRM
 weight: 200
+canonical: auto
 parent: none
 ---
  

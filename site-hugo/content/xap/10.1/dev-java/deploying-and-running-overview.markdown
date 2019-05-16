@@ -4,6 +4,7 @@ title:  Deploying and Running
 categories: XAP101
 parent: the-processing-unit-overview.html
 weight: 600
+canonical: auto
 ---
 
 This section describes the various options to debug and run your processing units.

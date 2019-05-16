@@ -4,6 +4,7 @@ title:  Space Instance Recovery
 categories: XAP123ADM, OSS
 parent: replication.html
 weight: 400
+canonical: auto
 ---
 
  

@@ -4,6 +4,7 @@ title:  Communication Protocol
 categories: XAP123ADM, OSS
 parent:  tuning.html
 weight: 700
+canonical: auto
 ---
 
 {{% note "Note" %}}

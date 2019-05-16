@@ -4,6 +4,7 @@ title:  Memcached API
 categories: XAP102
 parent: other-data-access-apis.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

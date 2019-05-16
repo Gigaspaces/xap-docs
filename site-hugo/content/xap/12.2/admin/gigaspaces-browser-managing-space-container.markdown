@@ -4,6 +4,7 @@ title:  Space Containers
 categories: XAP122ADM, PRM
 parent: gigaspaces-management-center.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

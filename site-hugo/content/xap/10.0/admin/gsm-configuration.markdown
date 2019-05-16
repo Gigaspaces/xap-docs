@@ -4,6 +4,7 @@ title:  Global vs. Local GSM
 categories: XAP100ADM
 parent: runtime-configuration.html
 weight: 300
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

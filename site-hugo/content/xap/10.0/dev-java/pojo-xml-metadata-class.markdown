@@ -4,6 +4,7 @@ title:  Class Metadata
 categories: XAP100
 parent: pojo-xml-metadata-overview.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Large Scale Deployment
 categories: XAP122ADM, OSS
 parent:  tuning.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

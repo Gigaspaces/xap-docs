@@ -4,6 +4,7 @@ title:  Web Application Support
 categories: XAP123, OSS
 parent: none
 weight: 2200
+canonical: auto
 ---
 
 XAP's integration with the Service Grid allows you to deploy web applications (packaged as WAR files) onto the Service Grid. The integration is built on top of the [Service Grid Processing Unit Container](./deploying-onto-the-service-grid.html).

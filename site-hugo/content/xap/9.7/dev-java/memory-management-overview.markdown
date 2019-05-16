@@ -4,6 +4,7 @@ title:  Memory Management
 categories: XAP97
 parent: administrators-guide.html
 weight: 240
+canonical: auto
 ---
 
 In this section we will explain the different Space cache policies, memory usage, and rules for exceeding physical memory capacity.

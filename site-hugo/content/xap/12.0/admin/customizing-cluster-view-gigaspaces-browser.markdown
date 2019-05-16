@@ -4,6 +4,7 @@ title:  Customizing
 categories: XAP120ADM, PRM
 parent: cluster-view-gigaspaces-browser.html
 weight: 100
+canonical: auto
 
 ---
 

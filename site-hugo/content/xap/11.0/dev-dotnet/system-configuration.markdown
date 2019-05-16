@@ -4,6 +4,7 @@ title:  System Configuration
 categories: XAP110NET
 parent: administrators-guide.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

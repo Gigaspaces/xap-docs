@@ -3,6 +3,7 @@ type: post102
 title:  Interoperability
 categories: XAP102NET
 weight: 300
+canonical: auto
 parent: document-overview.html
 ---
 

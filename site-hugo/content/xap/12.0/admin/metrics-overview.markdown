@@ -4,6 +4,7 @@ title:  Metrics
 categories: XAP120ADM
 parent: none
 weight: 950
+canonical: auto
 ---
 
 

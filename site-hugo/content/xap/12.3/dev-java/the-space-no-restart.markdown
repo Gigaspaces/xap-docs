@@ -3,6 +3,7 @@ type: post123
 title:  Changing Code without a Restart
 categories: XAP123, OSS
 weight: 250
+canonical: auto
 parent: change-api-overview.html
 ---
 

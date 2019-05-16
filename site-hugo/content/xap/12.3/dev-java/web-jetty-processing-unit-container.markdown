@@ -4,6 +4,7 @@ title:  Jetty Processing Unit Container
 categories: XAP123, OSS
 parent: web-application-overview.html
 weight: 200
+canonical: auto
 ---
 
 

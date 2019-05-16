@@ -4,6 +4,7 @@ title:  JPA Entity ID
 categories: XAP123, OSS
 parent: jpa-api-overview.html
 weight: 200
+canonical: auto
 ---
 
 

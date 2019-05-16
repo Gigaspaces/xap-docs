@@ -3,6 +3,7 @@ type: post123
 title:  Viewing Host Information
 categories: XAP123ADM,PRM 
 weight: 100
+canonical: auto
 parent: admin-service-grid.html
 ---
  

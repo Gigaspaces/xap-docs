@@ -4,6 +4,7 @@ title:  Dynamic Language Tasks
 categories: XAP110
 parent: task-execution-overview.html
 weight: 300
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

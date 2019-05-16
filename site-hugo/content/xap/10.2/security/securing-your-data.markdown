@@ -4,6 +4,7 @@ title:  Data
 categories: XAP102SEC
 parent: securing-xap-components.html
 weight: 100
+canonical: auto
 ---
 
 

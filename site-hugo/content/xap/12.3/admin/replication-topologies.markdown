@@ -4,6 +4,7 @@ title:  Topologies
 categories: XAP123ADM, OSS
 parent: replication.html
 weight: 100
+canonical: auto
 ---
 
  

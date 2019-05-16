@@ -3,6 +3,7 @@ type: post100
 title:  Configuration
 categories: XAP100NET
 weight: 200
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

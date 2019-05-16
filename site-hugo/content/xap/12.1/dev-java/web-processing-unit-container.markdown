@@ -4,6 +4,7 @@ title:  Web Processing Unit Container
 categories: XAP121
 parent: web-application-overview.html
 weight: 300
+canonical: auto
 ---
 
 

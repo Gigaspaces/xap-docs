@@ -3,6 +3,7 @@ type: post123
 title:  Cluster Setup for InsightEdge
 categories: XAP123ADM,PRM
 weight: 100
+canonical: auto
 parent: admin-insightedge.html
 ---
 

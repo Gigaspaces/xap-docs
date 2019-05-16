@@ -3,6 +3,7 @@ type: post122
 title:  The Space Bean
 categories: XAP122, OSS
 weight: 150
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

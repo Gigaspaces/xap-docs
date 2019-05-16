@@ -4,6 +4,7 @@ title:  Services Manager
 categories: XAP100NET
 parent: installation-overview.html
 weight: 500
+canonical: auto
 ---
 
 

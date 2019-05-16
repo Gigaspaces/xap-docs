@@ -4,6 +4,7 @@ title:  Quiesce Mode
 categories: XAP122ADM, PRM
 parent: none
 weight: 1200
+canonical: auto
 ---
 
 # Overview

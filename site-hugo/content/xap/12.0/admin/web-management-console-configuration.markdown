@@ -4,6 +4,7 @@ title:  Configuration
 categories: XAP120ADM,PRM
 parent: web-management-console.html
 weight: 100
+canonical: auto
 ---
 
 

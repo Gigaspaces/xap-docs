@@ -4,6 +4,7 @@ title:  Configuration
 categories: XAP120SEC, OS
 parent: none
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

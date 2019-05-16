@@ -4,6 +4,7 @@ title:  Application Debugging
 categories: XAP123NET, PRM
 parent: installation-overview.html
 weight: 600
+canonical: auto
 ---
 
 

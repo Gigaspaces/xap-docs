@@ -3,6 +3,7 @@ type: post123
 title:  The Space URL  
 categories: XAP123, OSS
 weight: 200
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

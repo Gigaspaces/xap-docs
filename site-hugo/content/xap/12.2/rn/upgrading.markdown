@@ -4,6 +4,7 @@ title:  Upgrading from a Previous Version
 categories: XAP122RN
 parent: none
 weight: 600
+canonical: auto
 ---
 
 If you are currently using a previous version of XAP or InsightEdge, contact <support@gigaspaces.com> for assistance in upgrading to the most recent [version](https://www.gigaspaces.com/download-center).

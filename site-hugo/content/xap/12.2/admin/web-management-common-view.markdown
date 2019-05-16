@@ -4,6 +4,7 @@ title:  Menu Bar
 categories: XAP122ADM,PRM
 parent: web-management-console.html
 weight: 510
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

@@ -4,6 +4,7 @@ title:  Benchmarking
 categories: XAP123ADM, PRM
 parent: none
 weight: 1100
+canonical: auto
 ---
 
 

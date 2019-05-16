@@ -4,6 +4,7 @@ title:  Statistics View
 categories: XAP101ADM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html
 weight: 500
+canonical: auto
 ---
 
 

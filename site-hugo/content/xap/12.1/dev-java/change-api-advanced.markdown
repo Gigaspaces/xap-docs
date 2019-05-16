@@ -4,6 +4,7 @@ title:  Advanced
 categories: XAP121
 parent: change-api-overview.html
 weight: 300
+canonical: auto
 ---
 
 

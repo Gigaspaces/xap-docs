@@ -4,6 +4,7 @@ title:  Consistency Level
 categories: XAP110ADM
 parent: data-grid-clustering.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

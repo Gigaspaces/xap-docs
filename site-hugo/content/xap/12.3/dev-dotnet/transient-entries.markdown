@@ -4,6 +4,7 @@ title:  Transient Entries
 categories: XAP123NET, PRM
 parent: space-persistency-overview.html
 weight: 700
+canonical: auto
 ---
 
 When using a persistent space there are situations where not all the space objects need to be persistent (saved within the database). You can specify a space Object to be stored only in the space, without storing it also in the persistent store, by setting its `Persist` mode to have a **false** value. You should set this value at the space class level or at the object level. When setting it at the object level you should have it set to false before writing it into the space. After the space object has been written to the space you cannot change its persist mode.

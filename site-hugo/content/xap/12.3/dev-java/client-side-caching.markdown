@@ -4,6 +4,7 @@ title:  Client-Side Caching
 categories: XAP123, PRM
 parent: none
 weight: 1300
+canonical: auto
 ---
 
 

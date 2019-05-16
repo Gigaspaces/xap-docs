@@ -4,6 +4,7 @@ title:  Deployment and Administration
 categories: XAP121NET, PRM
 parent: none
 weight: 1600
+canonical: auto
 ---
 
 

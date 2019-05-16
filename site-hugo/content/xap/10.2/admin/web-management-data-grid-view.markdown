@@ -4,6 +4,7 @@ title:  Spaces
 categories: XAP102ADM
 parent: web-management-console.html
 weight: 530
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

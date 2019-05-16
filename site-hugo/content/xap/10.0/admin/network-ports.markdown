@@ -4,6 +4,7 @@ title:  Port usage Control
 categories: XAP100ADM
 parent: network.html
 weight: 700
+canonical: auto
 ---
 
 

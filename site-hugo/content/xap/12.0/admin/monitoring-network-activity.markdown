@@ -4,6 +4,7 @@ title:  Network Monitoring
 categories: XAP120ADM
 parent: monitoring.html
 weight: 100
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Handling Large Objects
 categories: XAP120ADM
 parent:  tuning.html
 weight: 600
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

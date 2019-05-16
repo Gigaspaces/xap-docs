@@ -4,6 +4,7 @@ title:  JPA Relationships
 categories: XAP102
 parent: jpa-api-overview.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

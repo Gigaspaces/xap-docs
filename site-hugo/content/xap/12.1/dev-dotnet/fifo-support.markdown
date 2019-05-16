@@ -4,6 +4,7 @@ title:  FIFO Support
 categories: XAP121NET, PRM
 parent: fifo-overview.html
 weight: 100
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

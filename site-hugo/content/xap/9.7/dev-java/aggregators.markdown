@@ -4,6 +4,7 @@ title:  Aggregators
 categories: XAP97
 parent: task-execution-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary  %}}  {{% /ssummary %}}

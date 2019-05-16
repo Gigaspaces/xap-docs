@@ -4,6 +4,7 @@ title:  Transactions
 categories: XAP123, OSS
 parent: none
 weight: 1000
+canonical: auto
 ---
 
 {{%imagertext "/attachment_files/tx_manager.jpg" %}}

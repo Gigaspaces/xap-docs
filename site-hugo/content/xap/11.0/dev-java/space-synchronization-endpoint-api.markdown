@@ -4,6 +4,7 @@ title:  Synchronization Endpoint
 categories: XAP110
 parent: space-persistency-overview.html
 weight: 400
+canonical: auto
 ---
 
 

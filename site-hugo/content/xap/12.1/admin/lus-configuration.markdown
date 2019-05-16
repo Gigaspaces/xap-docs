@@ -4,6 +4,7 @@ title:  Global vs. Local LUS
 categories: XAP121ADM, PRM
 parent: runtime-configuration.html
 weight: 700
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

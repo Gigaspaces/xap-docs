@@ -4,6 +4,7 @@ title:  Admin Modules
 categories: XAP120NET, PRM
 parent: none
 weight: 1400
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Custom Serialization
 categories: XAP122, OSS
 parent: modeling-your-data.html
 weight: 550
+canonical: auto
 ---
 
 

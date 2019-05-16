@@ -4,6 +4,7 @@ title:  Synchronization Endpoint
 categories: XAP123, OSS
 parent: mongodb-space-persistency.html
 weight: 200
+canonical: auto
 ---
 
 A MongoDB based implementation of the [Space Synchronization Endpoint](./space-synchronization-endpoint-api.html). 

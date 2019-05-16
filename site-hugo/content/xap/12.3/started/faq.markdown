@@ -3,6 +3,7 @@ type: post123
 title:  Frequently Asked Questions 
 categories:  XAP122GS
 weight: 700
+canonical: auto
 ---
 
 # Upgrading 

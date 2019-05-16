@@ -3,6 +3,7 @@ type: post123
 title:  REST Manager API
 categories: XAP123ADM,PRM
 weight: 200
+canonical: auto
 parent: admin-tools.html
 ---
 

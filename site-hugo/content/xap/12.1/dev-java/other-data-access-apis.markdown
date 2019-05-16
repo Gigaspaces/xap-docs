@@ -4,6 +4,7 @@ title:  Other Data Access APIs
 categories: XAP121
 parent: none
 weight: 1200
+canonical: auto
 ---
 
 

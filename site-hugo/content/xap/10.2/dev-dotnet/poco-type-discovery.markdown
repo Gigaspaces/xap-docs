@@ -4,6 +4,7 @@ title:  Type Discovery
 categories: XAP102NET
 parent: modeling-your-data.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

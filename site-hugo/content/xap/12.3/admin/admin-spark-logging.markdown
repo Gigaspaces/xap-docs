@@ -3,6 +3,7 @@ type: post123
 title:  Spark Logging for InsightEdge
 categories: XAP123ADM,PRM
 weight: 200
+canonical: auto
 parent: admin-insightedge.html
 ---
 

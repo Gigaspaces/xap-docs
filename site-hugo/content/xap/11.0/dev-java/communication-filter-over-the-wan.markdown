@@ -4,6 +4,7 @@ title:  Communication Filter
 categories: XAP110
 parent: multi-site-replication-overview.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

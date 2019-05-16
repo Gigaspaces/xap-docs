@@ -4,6 +4,7 @@ title:  Dump
 categories: XAP121ADM, PRM
 parent: web-management-console.html
 weight: 600
+canonical: auto
 ---
 
 

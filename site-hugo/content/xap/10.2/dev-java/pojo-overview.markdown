@@ -4,6 +4,7 @@ title:  POJO Support
 categories: XAP102
 parent: none
 weight: 400
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Multicast Configuration
 categories: XAP100ADM
 parent: network.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

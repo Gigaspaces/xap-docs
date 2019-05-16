@@ -3,6 +3,7 @@ type: post101
 title:  Aggregators
 categories: XAP101
 weight: 550
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

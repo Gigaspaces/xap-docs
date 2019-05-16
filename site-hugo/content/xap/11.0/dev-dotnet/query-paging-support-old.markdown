@@ -4,6 +4,7 @@ title:  Paging Support - Old
 categories: XAP110NET
 parent: query-paging-support.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Caching over the WAN
 categories: XAP101
 parent: client-side-caching.html
 weight: 300
+canonical: auto
 ---
 
 

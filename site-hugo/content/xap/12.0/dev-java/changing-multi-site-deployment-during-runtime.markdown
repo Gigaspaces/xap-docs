@@ -4,6 +4,7 @@ title:  Changing Deployment during Runtime
 categories: XAP120, ENT
 parent: multi-site-replication-overview.html
 weight: 600
+canonical: auto
 ---
 
 

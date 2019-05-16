@@ -4,6 +4,7 @@ title:  Custom Serialization
 categories: XAP110
 parent: modeling-your-data.html
 weight: 550
+canonical: auto
 ---
 
 

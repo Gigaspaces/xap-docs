@@ -4,6 +4,7 @@ title:  Mule ESB Integration
 categories: XAP100
 parent: programmers-guide.html
 weight: 1500
+canonical: auto
 ---
 
 

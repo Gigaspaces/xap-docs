@@ -4,6 +4,7 @@ title:  Working with Clusters
 categories: XAP97ADM
 parent: gigaspaces-management-center.html
 weight: 500
+canonical: auto
 ---
 
 

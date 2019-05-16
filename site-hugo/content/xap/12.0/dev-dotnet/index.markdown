@@ -3,6 +3,7 @@ type: post120
 title: .NET Developers Guide
 categories: XAP120NET, PRM
 weight: 200
+canonical: auto
 ---
 
 

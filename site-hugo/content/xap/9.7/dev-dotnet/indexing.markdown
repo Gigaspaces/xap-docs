@@ -4,6 +4,7 @@ title:  Basic Index
 categories: XAP97NET
 parent: indexing-overview.html
 weight: 50
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

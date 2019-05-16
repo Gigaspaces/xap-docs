@@ -4,6 +4,7 @@ title:  Free Text Search
 categories: XAP122NET, PRM
 parent: querying-the-space.html
 weight: 550
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

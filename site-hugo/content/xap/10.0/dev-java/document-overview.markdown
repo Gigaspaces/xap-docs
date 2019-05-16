@@ -4,6 +4,7 @@ title:  Space Document
 categories: XAP100
 parent: programmers-guide.html
 weight: 200
+canonical: auto
 ---
 
 

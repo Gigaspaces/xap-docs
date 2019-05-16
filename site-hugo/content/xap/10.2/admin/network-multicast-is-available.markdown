@@ -4,6 +4,7 @@ title:  Is Multicast Available
 categories: XAP102ADM
 parent: network-multicast.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Load-Balancing Group
 categories: XAP102ADM
 parent: working-with-clusters-gigaspaces-browser.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}A load-balancing group defines load-balancing between spaces in the cluster.{{% /ssummary %}}

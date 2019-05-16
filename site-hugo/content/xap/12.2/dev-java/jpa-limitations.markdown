@@ -4,6 +4,7 @@ title:  Limitations
 categories: XAP122, OSS
 parent: jpa-api-overview.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

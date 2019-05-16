@@ -4,6 +4,7 @@ title:  Utility
 categories: XAP97ADM
 parent: benchmarking.html
 weight: 100
+canonical: auto
 ---
 
 

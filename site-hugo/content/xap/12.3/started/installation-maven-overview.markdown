@@ -4,6 +4,7 @@ title:  Maven
 categories: XAP123GS
 parent: xap-basics.html
 weight: 300
+canonical: auto
 ---
 
 

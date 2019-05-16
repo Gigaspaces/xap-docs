@@ -4,6 +4,7 @@ title:  The Processing Unit
 categories: XAP97
 parent: packaging-and-deployment.html
 weight: 100
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  FIFO Grouping
 categories: XAP123NET, PRM
 parent: fifo-overview.html
 weight: 200
+canonical: auto
 ---
 
  

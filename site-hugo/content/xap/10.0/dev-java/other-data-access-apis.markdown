@@ -4,6 +4,7 @@ title:  Other Data Access APIs
 categories: XAP100
 parent: programmers-guide.html
 weight: 900
+canonical: auto
 ---
 
 

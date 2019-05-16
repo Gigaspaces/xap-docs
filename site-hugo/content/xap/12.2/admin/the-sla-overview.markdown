@@ -3,6 +3,7 @@ type: post122
 title:  Service Level Agreement (SLA)
 categories: XAP122ADM, PRM
 weight: 350
+canonical: auto
 parent: none
 ---
 

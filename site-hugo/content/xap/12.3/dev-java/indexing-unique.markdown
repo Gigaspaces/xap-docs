@@ -4,6 +4,7 @@ title:  Unique Index
 categories: XAP123, OSS
 parent: indexing-overview.html
 weight: 700
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Configuration
 categories: XAP101SEC
 parent: none
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

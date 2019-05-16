@@ -4,6 +4,7 @@ title:  Transaction support
 categories: XAP121NET, PRM
 parent: notify-container-overview.html
 weight: 200
+canonical: auto
 ---
 
 

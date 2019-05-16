@@ -3,6 +3,7 @@ type: post122
 title:  Notifications
 categories: XAP122, OSS
 weight: 700
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

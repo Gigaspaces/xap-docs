@@ -4,6 +4,7 @@ title:  JVM Configuration
 categories: XAP97NET
 parent: configuration.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

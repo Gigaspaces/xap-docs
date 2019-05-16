@@ -3,6 +3,7 @@ type: post101
 title:  Configuration
 categories: XAP101
 weight: 200
+canonical: auto
 parent: the-processing-unit-overview.html
 ---
 

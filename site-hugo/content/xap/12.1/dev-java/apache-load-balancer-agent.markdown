@@ -4,6 +4,7 @@ title:  Apache Load Balancer Agent
 categories: XAP121
 parent: web-application-overview.html
 weight: 400
+canonical: auto
 ---
 
 

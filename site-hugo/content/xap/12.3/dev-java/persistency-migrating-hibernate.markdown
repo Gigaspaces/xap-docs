@@ -4,6 +4,7 @@ title:  Migrating from Hibernate
 categories: XAP123, OSS
 parent: space-persistency-overview.html
 weight: 900
+canonical: auto
 ---
 
 

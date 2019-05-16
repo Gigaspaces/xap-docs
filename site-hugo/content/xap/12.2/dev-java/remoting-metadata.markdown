@@ -4,6 +4,7 @@ title:  Metadata Summary
 categories: XAP122, OSS
 parent: space-based-remoting-overview.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

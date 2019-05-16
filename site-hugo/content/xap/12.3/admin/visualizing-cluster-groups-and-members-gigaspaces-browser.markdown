@@ -4,6 +4,7 @@ title:  Groups and Members
 categories: XAP123ADM, PRM
 parent: cluster-view-gigaspaces-browser.html
 weight: 400
+canonical: auto
 ---
 
  

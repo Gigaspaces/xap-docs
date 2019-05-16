@@ -4,6 +4,7 @@ title:  Filtering  Data
 categories: XAP123, ENT
 parent: multi-site-replication-overview.html
 weight: 700
+canonical: auto
 ---
 
 

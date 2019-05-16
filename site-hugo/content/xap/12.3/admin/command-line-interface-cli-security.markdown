@@ -4,6 +4,7 @@ title:  Using the CLI in a Secured Environment
 categories: XAP123SEC, PRM
 parent: command-line-interface.html
 weight: 500
+canonical: auto
 ---
 
 This page explains how security can be applied to the commands supported by the CLI tool.

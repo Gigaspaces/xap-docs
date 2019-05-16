@@ -4,6 +4,7 @@ title:  Grid Tree & Configuration
 categories: XAP110ADM
 parent: gigaspaces-management-center.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

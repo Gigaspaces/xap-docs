@@ -3,6 +3,7 @@ type: post101
 title:  Space Document
 categories: XAP101NET
 weight: 300
+canonical: auto
 parent: none
 ---
 

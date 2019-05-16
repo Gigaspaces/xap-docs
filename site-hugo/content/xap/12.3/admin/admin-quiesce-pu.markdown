@@ -3,6 +3,7 @@ type: post123
 title:  Advanced Maintenance Activities
 categories: XAP123ADM,PRM
 weight: 1400
+canonical: auto
 parent: admin-spaces-pu.html
 ---
 

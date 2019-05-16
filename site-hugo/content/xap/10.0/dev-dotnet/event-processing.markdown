@@ -4,6 +4,7 @@ title:  Event Processing
 categories: XAP100NET
 parent: programmers-guide.html
 weight: 1100
+canonical: auto
 ---
 
 

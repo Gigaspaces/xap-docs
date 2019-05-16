@@ -3,6 +3,7 @@ type: post123
 title: Viewing Container Information
 categories: XAP123ADM,PRM
 weight: 200
+canonical: auto
 parent: admin-service-grid.html
 ---
  

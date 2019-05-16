@@ -4,6 +4,7 @@ title:  Command Line Interface
 categories: XAP121ADM, PRM
 parent: administration-tools.html
 weight: 100
+canonical: auto
 ---
 
 {{%ssummary%}} {{%/ssummary%}}

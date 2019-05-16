@@ -3,6 +3,7 @@ type: post123
 title:  Configuration
 categories: XAP123NET, PRM
 weight: 200
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

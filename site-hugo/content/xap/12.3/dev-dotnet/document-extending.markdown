@@ -3,6 +3,7 @@ type: post123
 title:  Extending
 categories: XAP123NET, PRM
 weight: 200
+canonical: auto
 parent: document-overview.html
 ---
 

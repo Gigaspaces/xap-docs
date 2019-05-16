@@ -4,6 +4,7 @@ title:  Example
 categories: XAP101
 parent: elastic-processing-unit-overview.html
 weight: 600
+canonical: auto
 ---
 
 This example deploys a partitioned data grid across several machines. It demonstrates the Elastic PU elasticity, continuous high-availability and even data (primary) distribution across all existing resources available for the grid. 

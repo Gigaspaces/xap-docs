@@ -4,6 +4,7 @@ title:  Space Persistency
 categories: XAP120NET, PRM
 parent: none
 weight: 900
+canonical: auto
 ---
 
 

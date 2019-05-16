@@ -4,6 +4,7 @@ title:  XML based Metadata
 categories: XAP122, OSS
 parent: modeling-your-data.html
 weight: 130
+canonical: auto
 ---
 
 

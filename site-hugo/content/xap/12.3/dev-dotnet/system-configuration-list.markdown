@@ -4,6 +4,7 @@ title:  Platform Configuration
 categories: XAP123NET, PRM
 parent: administrators-guide.html
 weight: 400
+canonical: auto
 ---
 
  

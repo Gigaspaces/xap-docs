@@ -4,6 +4,7 @@ title:  Failover Considerations
 categories: XAP123PROD
 parent: none
 weight: 700
+canonical: auto
 ---
 
 GigaSpaces applications provide continuous high-availability even when the infrastructure processes or entire (physical/virtual) machines fail. This capability is provided **out of the box** but does require some attention to configuration to meet the needs of your specific application.

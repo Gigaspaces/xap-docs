@@ -4,6 +4,7 @@ title:   Common User Issues
 categories: XAP122ADM, PRM
 parent: troubleshooting.html
 weight: 100
+canonical: auto
 ---
 
 

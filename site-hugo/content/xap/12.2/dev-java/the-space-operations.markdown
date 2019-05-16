@@ -3,6 +3,7 @@ type: post122
 title:  Operations
 categories: XAP122, OSS
 weight: 300
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

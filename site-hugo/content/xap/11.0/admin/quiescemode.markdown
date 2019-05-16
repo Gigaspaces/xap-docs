@@ -4,6 +4,7 @@ title:  Quiesce Mode
 categories: XAP110ADM
 parent: none
 weight: 1200
+canonical: auto
 ---
 
 

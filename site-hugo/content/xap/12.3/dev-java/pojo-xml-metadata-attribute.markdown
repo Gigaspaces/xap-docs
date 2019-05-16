@@ -4,6 +4,7 @@ title:  Property Metadata
 categories: XAP123, OSS
 parent: pojo-xml-metadata-overview.html
 weight: 200
+canonical: auto
 ---
 
 

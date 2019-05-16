@@ -4,6 +4,7 @@ title:  Space Document
 categories: XAP123, OSS
 parent: none
 weight: 500
+canonical: auto
 ---
 
 

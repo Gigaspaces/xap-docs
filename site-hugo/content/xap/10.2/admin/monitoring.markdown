@@ -4,6 +4,7 @@ title:  Monitoring
 categories: XAP102ADM
 parent: none
 weight: 900
+canonical: auto
 ---
 
 

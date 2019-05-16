@@ -4,6 +4,7 @@ title:  Troubleshooting
 categories: XAP123ADM, PRM
 parent: none
 weight: 1350
+canonical: auto
 ---
 
 This troubleshooting section provides a comprehensive list of [common user Issues](./troubleshooting-common-user-issues.html) that may occur while developing and deploying XAP-based user applciations, along with troubleshooting methodology, possible causes, and what information to collect if you have to consult with GigaSpaces support.

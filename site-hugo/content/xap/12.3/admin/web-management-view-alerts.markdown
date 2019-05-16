@@ -4,6 +4,7 @@ title:  Viewing Alerts
 categories: XAP123ADM,PRM
 parent: web-management-common-view.html
 weight: 300
+canonical: auto
 ---
 
 You can view alerts in the Web Management Console Alerts panel, displayed by XAP Alert groups (alerts are grouped by correlation key), and also generate an alert dump for specific grid components. 

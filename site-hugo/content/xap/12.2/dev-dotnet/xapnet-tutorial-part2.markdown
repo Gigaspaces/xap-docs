@@ -4,6 +4,7 @@ title:  Deploying a Space
 categories: XAP122NET, PRM
 parent: xapnet-basics.html
 weight: 300
+canonical: auto
 ---
 
 

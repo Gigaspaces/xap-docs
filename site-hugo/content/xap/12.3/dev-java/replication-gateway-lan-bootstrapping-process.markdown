@@ -4,6 +4,7 @@ title:  Gateway Bootstrapping
 categories: XAP123, ENT
 parent: multi-space-replication-overview.html
 weight: 200
+canonical: auto
 ---
 
  

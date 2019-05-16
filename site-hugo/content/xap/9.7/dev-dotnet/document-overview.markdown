@@ -3,6 +3,7 @@ type: post97
 title:  Space Document
 categories: XAP97NET
 weight: 200
+canonical: auto
 parent: programmers-guide.html
 ---
 

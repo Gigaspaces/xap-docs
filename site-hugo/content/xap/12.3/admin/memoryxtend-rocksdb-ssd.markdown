@@ -4,6 +4,7 @@ title:  MemoryXtend for Disk (SSD/HDD)
 categories: XAP123ADM, ENT
 parent: memoryxtend-overview.html
 weight: 200
+canonical: auto
 ---
 
 # Overview

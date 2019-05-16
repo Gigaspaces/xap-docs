@@ -4,6 +4,7 @@ title:  Elastic Processing Unit
 categories: XAP100
 parent: none
 weight: 420
+canonical: auto
 ---
 
 

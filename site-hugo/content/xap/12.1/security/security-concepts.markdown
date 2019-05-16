@@ -4,6 +4,7 @@ title:  Concepts
 categories: XAP121SEC, OS
 parent: none
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

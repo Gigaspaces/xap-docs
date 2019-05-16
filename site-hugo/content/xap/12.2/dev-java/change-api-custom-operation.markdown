@@ -4,6 +4,7 @@ title:  Custom Change
 categories: XAP122, OSS
 parent: change-api-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

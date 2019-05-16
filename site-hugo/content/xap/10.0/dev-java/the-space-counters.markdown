@@ -3,6 +3,7 @@ type: post100
 title:  Counters
 categories: XAP100
 weight: 500
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

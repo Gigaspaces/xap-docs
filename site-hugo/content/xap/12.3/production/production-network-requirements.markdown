@@ -4,6 +4,7 @@ title:  Network Considerations
 categories: XAP123PROD
 parent: none
 weight: 300
+canonical: auto
 ---
 
 # Binding the Process to a Machine IP Address

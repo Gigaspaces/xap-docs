@@ -4,6 +4,7 @@ title:  MemoryXtend for Flash/SSD
 categories: XAP122ADM, ENT
 parent: memoryxtend-overview.html
 weight: 200
+canonical: auto
 ---
 
 # Introduction

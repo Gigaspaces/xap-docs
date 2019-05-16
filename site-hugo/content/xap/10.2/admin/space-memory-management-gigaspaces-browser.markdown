@@ -4,6 +4,7 @@ title:  Memory Management
 categories: XAP102ADM
 parent: working-with-spaces-gigaspaces-browser.html
 weight: 300
+canonical: auto
 ---
 
  Using the **Memory Management** tab of the advanced space configuration dialog.

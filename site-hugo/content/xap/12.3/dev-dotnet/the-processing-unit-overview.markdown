@@ -4,6 +4,7 @@ title:  The Processing Unit
 categories: XAP123NET, PRM
 parent: none
 weight: 1500
+canonical: auto
 ---
 
 

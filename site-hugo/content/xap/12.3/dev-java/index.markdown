@@ -3,6 +3,7 @@ type: post123
 title:  Developer Guide
 categories: XAP123
 weight: 400
+canonical: auto
 ---
 
 

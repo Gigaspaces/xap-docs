@@ -4,6 +4,7 @@ title:  Controlling the Replication Redo Log
 categories: XAP121ADM, PRM
 parent: replication.html
 weight: 600
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

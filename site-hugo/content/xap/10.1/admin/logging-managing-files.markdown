@@ -4,6 +4,7 @@ title:  Managing Log Files
 categories: XAP101ADM
 parent: logging-overview.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

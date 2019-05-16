@@ -4,6 +4,7 @@ title:  Monitoring
 categories: XAP102ADM
 parent: web-management-console.html
 weight: 540
+canonical: auto
 ---
 
 

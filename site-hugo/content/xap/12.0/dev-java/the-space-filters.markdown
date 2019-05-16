@@ -3,6 +3,7 @@ type: post120
 title:  Space Filters
 categories: XAP120
 weight: 800
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

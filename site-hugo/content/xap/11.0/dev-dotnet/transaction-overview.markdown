@@ -4,6 +4,7 @@ title:  Transactions
 categories: XAP110NET
 parent: none
 weight: 800
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Database Authentication
 categories: XAP100SEC
 parent: spring-security-bridge.html
 weight: 300
+canonical: auto
 ---
 
 

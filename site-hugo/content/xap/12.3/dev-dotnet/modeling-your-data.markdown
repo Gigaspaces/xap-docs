@@ -4,6 +4,7 @@ title: Data Modeling
 categories: XAP123NET, PRM
 parent: none
 weight: 400
+canonical: auto
 ---
 
 

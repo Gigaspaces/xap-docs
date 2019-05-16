@@ -3,6 +3,7 @@ type: post123
 title:  The Service Grid
 categories: XAP123ADM, PRM
 weight: 700
+canonical: auto
 parent: none
 ---
 

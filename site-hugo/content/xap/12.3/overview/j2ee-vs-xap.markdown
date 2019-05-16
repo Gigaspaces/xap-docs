@@ -4,6 +4,7 @@ title: Migrating from Java EE to XAP
 categories: XAP123OVW
 parent: none
 weight: 1000
+canonical: auto
 ---
 
 

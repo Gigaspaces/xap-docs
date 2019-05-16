@@ -4,6 +4,7 @@ title:  MemoryXtend for Off-Heap RAM
 categories: XAP121ADM, ENT
 parent: memoryxtend-overview.html
 weight: 300
+canonical: auto
 ---
 
 

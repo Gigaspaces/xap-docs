@@ -3,6 +3,7 @@ type: post121
 title:  The Space Bean
 categories: XAP121
 weight: 150
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

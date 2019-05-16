@@ -4,6 +4,7 @@ title:  Dynamic Properties
 categories: XAP121NET, PRM
 parent: poco-overview.html
 weight: 200
+canonical: auto
 ---
 
 

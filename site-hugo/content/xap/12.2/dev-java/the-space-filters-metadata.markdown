@@ -4,6 +4,7 @@ title:  Interceptors
 categories: XAP122, OSS
 parent: the-space-filters.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

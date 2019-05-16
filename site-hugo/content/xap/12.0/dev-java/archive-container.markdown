@@ -4,6 +4,7 @@ title:  Archive Container
 categories: XAP120
 parent: space-persistency-overview.html
 weight: 610
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

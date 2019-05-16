@@ -4,6 +4,7 @@ title:  Troubleshooting
 categories: XAP101ADM
 parent: none
 weight: 1300
+canonical: auto
 ---
 
 

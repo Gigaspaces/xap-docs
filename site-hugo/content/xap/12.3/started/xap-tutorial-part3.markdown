@@ -4,6 +4,7 @@ title:  Distributed Processing
 categories: XAP123GS, OSS
 parent: xap-basics.html
 weight: 700
+canonical: auto
 ---
 
 In this part of the tutorial we will introduce you to the different processing services you can run on top of the space.

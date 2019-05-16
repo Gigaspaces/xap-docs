@@ -4,6 +4,7 @@ title:  Moving into Production
 categories: XAP123PROD
 parent: none
 weight: 700
+canonical: auto
 ---
 
 

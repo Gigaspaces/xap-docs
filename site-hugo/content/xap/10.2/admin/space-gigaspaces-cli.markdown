@@ -4,6 +4,7 @@ title:  Space Command Line Interface
 categories: XAP102ADM
 parent: administration-tools.html
 weight: 300
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

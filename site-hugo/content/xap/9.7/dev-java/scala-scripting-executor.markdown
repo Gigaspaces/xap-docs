@@ -4,6 +4,7 @@ title:  Scripting Executor
 categories: XAP97
 parent: scala.html
 weight: 400
+canonical: auto
 ---
 
 

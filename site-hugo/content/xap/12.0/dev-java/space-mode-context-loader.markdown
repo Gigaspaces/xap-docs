@@ -3,6 +3,7 @@ type: post120
 title:  Space Mode Context Loader
 categories: XAP120
 weight: 900
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

@@ -4,6 +4,7 @@ title:  Storage Types
 categories: XAP97
 parent: modeling-your-data.html
 weight: 200
+canonical: auto
 ---
 
 

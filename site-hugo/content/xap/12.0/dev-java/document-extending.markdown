@@ -4,6 +4,7 @@ title:  Extended Document
 categories: XAP120
 parent: document-overview.html
 weight: 200
+canonical: auto
 ---
 
 

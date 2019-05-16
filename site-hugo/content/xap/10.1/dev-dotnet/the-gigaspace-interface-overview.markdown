@@ -3,6 +3,7 @@ type: post101
 title:  The Space Interface
 categories: XAP101NET
 weight: 500
+canonical: auto
 parent: none
 ---
 

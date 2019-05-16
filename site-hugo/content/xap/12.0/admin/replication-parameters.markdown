@@ -4,6 +4,7 @@ title:  Replication Parameters
 categories: XAP120ADM
 parent: replication.html
 weight: 700
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

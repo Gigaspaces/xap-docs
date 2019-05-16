@@ -4,6 +4,7 @@ title:  Filtering  Data
 categories: XAP101
 parent: multi-site-replication-overview.html
 weight: 700
+canonical: auto
 ---
 
 

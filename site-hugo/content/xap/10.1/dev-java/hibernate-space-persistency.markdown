@@ -4,6 +4,7 @@ title:  Hibernate Integration
 categories: XAP101
 parent: space-persistency-overview.html
 weight: 200
+canonical: auto
 ---
 
 

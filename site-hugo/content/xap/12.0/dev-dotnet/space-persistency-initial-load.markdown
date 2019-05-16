@@ -4,6 +4,7 @@ title:  Initial Load
 categories: XAP120NET, PRM
 parent: space-persistency-overview.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary  %}} {{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Gateway Bootstrapping
 categories: XAP101
 parent: multi-space-replication-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Dynamic Properties
 categories: XAP123, OSS
 parent: pojo-overview.html
 weight: 200
+canonical: auto
 ---
 
 

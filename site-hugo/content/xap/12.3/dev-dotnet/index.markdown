@@ -3,6 +3,7 @@ type: post123
 title: XAP.NET Guide
 categories: XAP123NET, PRM
 weight: 500
+canonical: auto
 ---
 
 

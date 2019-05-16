@@ -3,6 +3,7 @@ type: post110
 title:  Java Developers Guide
 categories: XAP110
 weight: 100
+canonical: auto
 ---
 
 

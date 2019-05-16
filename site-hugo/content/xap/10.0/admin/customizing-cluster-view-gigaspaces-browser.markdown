@@ -4,6 +4,7 @@ title:  Customizing
 categories: XAP100ADM
 parent: cluster-view-gigaspaces-browser.html
 weight: 100
+canonical: auto
 
 ---
 

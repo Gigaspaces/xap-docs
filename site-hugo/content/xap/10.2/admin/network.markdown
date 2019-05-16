@@ -4,6 +4,7 @@ title:  Network Configuration
 categories: XAP102ADM
 parent: none
 weight: 800
+canonical: auto
 ---
 
 

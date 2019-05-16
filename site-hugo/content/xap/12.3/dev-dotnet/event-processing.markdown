@@ -4,6 +4,7 @@ title:  Event Processing
 categories: XAP123NET, PRM
 parent: none
 weight: 1200
+canonical: auto
 ---
 
 

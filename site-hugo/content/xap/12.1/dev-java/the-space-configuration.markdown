@@ -3,6 +3,7 @@ type: post121
 title:  The Space URL  
 categories: XAP121
 weight: 200
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

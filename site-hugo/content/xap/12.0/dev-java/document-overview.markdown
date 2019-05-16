@@ -4,6 +4,7 @@ title:  Space Document
 categories: XAP120
 parent: none
 weight: 500
+canonical: auto
 ---
 
 

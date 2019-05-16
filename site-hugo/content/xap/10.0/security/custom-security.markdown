@@ -4,6 +4,7 @@ title:  Custom Security
 categories: XAP100SEC
 parent: none
 weight: 800
+canonical: auto
 ---
 
 

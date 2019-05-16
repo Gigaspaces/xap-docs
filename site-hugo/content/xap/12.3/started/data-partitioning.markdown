@@ -4,6 +4,7 @@ title:  Data Partitioning
 categories:  XAP122GS, OSS
 parent: xap-basics.html
 weight: 550
+canonical: auto
 ---
 
 

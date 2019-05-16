@@ -4,6 +4,7 @@ title:  Compound Index
 categories: XAP102NET
 parent: indexing-overview.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

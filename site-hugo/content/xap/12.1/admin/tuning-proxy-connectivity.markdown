@@ -4,6 +4,7 @@ title:  Proxy Connectivity
 categories: XAP121ADM
 parent:  tuning.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

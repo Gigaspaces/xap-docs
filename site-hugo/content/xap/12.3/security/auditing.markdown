@@ -4,6 +4,7 @@ title:  Auditing
 categories: XAP123SEC, PRM
 parent: index.html
 weight: 720
+canonical: auto
 ---
 
 

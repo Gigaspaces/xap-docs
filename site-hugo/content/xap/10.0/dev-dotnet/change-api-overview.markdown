@@ -3,6 +3,7 @@ type: post100
 title:  Change API
 categories: XAP100NET
 weight: 400
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

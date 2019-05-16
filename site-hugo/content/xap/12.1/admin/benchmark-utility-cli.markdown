@@ -4,6 +4,7 @@ title:  Utility
 categories: XAP121ADM
 parent: benchmarking.html
 weight: 200
+canonical: auto
 ---
 
 

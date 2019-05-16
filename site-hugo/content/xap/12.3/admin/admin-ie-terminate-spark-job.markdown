@@ -3,6 +3,7 @@ type: post123
 title: Terminating a Spark Job
 categories: XAP123ADM,PRM
 weight: 700
+canonical: auto
 parent: admin-insightedge.html
 ---
  

@@ -4,6 +4,7 @@ title:  Executor Based Remoting
 categories: XAP120
 parent: space-based-remoting-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary%}}{{%/ssummary%}}

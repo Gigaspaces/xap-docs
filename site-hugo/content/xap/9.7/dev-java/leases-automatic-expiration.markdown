@@ -3,6 +3,7 @@ type: post97
 title:  Lease Time
 categories: XAP97
 weight: 800
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

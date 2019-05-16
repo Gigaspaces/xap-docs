@@ -4,6 +4,7 @@ title:  Tools
 categories: XAP101ADM
 parent: troubleshooting.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

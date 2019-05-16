@@ -4,6 +4,7 @@ title:  Deploy with REST
 categories: XAP122ADM, PRM
 parent: administration-tools.html
 weight: 220
+canonical: auto
 ---
 
   

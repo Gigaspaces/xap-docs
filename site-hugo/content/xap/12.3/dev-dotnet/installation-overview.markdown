@@ -4,6 +4,7 @@ title:  Installation
 categories: XAP123NET, PRM
 parent: none
 weight: 100
+canonical: auto
 ---
 
 

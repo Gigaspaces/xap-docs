@@ -4,6 +4,7 @@ title:  Clustered vs Non-Clustered Proxies
 categories: XAP123ADM, OSS
 parent: data-grid-clustering.html
 weight: 200
+canonical: auto
 ---
 
  

@@ -4,6 +4,7 @@ title:  Admin API
 categories: XAP102
 parent: none
 weight: 1900
+canonical: auto
 ---
 
 

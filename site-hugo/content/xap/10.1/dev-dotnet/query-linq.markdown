@@ -4,6 +4,7 @@ title:  LINQ
 categories: XAP101NET
 parent: querying-the-space.html
 weight: 800
+canonical: auto
 ---
 
 

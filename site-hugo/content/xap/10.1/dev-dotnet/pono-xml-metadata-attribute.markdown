@@ -4,6 +4,7 @@ title:  Properties Metadata
 categories: XAP101NET
 parent: pono-xml-metadata-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

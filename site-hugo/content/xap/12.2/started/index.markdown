@@ -4,6 +4,7 @@ title:  Getting Started
 categories: XAP122GS
 parent: none
 weight: 300
+canonical: auto
 ---
 
 Here you will find everything you need to get started with with the InsightEdge platform.

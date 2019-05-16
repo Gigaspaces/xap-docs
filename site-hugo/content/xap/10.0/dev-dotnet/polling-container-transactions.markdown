@@ -4,6 +4,7 @@ title:  Transaction support
 categories: XAP100NET
 parent: polling-container-overview.html
 weight: 300
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  User-Defined Objects
 categories: XAP101NET
 parent: interoperability.html
 weight: 200
+canonical: auto
 ---
 
 

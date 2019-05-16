@@ -4,6 +4,7 @@ title:  Map API
 categories: XAP100
 parent: other-data-access-apis.html
 weight: 300
+canonical: auto
 ---
 
 XAP allows applications to interact with the space and cache data using the Map API (JCache) or a [HashTable API](http://docs.oracle.com/javase/{{%version "java-version"%}}/docs/api/java/util/Hashtable.html). Accessing the space via the Map API can be done using the [GigaMap]({{% api-javadoc %}}/org/openspaces/core/GigaMap.html) interfaces. It includes enhanced options such as declarative transactions support, coherent runtime exception hierarchy, timeout operations , TTL, locking and versioning.

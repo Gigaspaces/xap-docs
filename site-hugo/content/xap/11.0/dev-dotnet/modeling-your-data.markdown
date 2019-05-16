@@ -4,6 +4,7 @@ title:  Modeling your Data
 categories: XAP110NET
 parent: none
 weight: 400
+canonical: auto
 ---
 
 

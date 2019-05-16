@@ -3,6 +3,7 @@ type: post97
 title:  Filters
 categories: XAP97
 weight: 600
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

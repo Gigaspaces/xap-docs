@@ -3,6 +3,7 @@ type: post123
 title:  Deploying a Space
 categories: XAP123ADM,PRM
 weight: 100
+canonical: auto
 parent: admin-spaces-pu.html
 ---
  

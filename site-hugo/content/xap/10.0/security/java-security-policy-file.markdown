@@ -4,6 +4,7 @@ title:  Java Security Policy File
 categories: XAP100SEC
 parent: security-administration.html
 weight: 500
+canonical: auto
 ---
 
 

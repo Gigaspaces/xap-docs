@@ -4,6 +4,7 @@ title:  GigaSpaces Management Center
 categories: XAP123ADM, PRM
 parent: admin-legacy-tools.html
 weight: 300
+canonical: auto
 ---
 
 

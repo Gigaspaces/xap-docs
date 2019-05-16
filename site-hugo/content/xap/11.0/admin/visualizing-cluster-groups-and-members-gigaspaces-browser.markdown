@@ -4,6 +4,7 @@ title:  Groups and Members
 categories: XAP110ADM
 parent: cluster-view-gigaspaces-browser.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}Viewing clustered groups, clustered spaces and URLs, and accessing information views for a clustered space.{{% /ssummary %}}

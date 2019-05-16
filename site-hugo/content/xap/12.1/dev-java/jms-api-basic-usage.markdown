@@ -4,6 +4,7 @@ title:  JMS Basics
 categories: XAP121
 parent: messaging-support.html
 weight: 100
+canonical: auto
 ---
 
 

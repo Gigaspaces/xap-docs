@@ -4,6 +4,7 @@ title:  JPA Relationships
 categories: XAP123, OSS
 parent: jpa-api-overview.html
 weight: 300
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Interoperability
 categories: XAP122, OSS
 parent: document-overview.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

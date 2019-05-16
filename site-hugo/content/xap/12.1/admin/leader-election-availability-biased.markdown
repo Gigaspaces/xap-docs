@@ -4,6 +4,7 @@ title:  Availability Biased
 categories: XAP121ADM, PRM
 parent: leader-election.html
 weight: 300
+canonical: auto
 ---
 
 # Overview

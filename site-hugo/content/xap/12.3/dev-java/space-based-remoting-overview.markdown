@@ -4,6 +4,7 @@ title:  Space-Based Remoting
 categories: XAP123, OSS
 parent: none
 weight: 1600
+canonical: auto
 ---
 
 

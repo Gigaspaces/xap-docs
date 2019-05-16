@@ -3,6 +3,7 @@ type: post120
 title:  Runtime Configuration
 categories: XAP120ADM
 weight: 700
+canonical: auto
 parent: none
 ---
 

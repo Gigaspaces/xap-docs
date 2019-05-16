@@ -4,6 +4,7 @@ title:  JVM Tuning
 categories: XAP122PROD
 parent: none
 weight: 900
+canonical: auto
 ---
 
 In most cases, the applications that use InsightEdge and XAP are leveraging machines with very fast CPUs, where the amount of temporary objects created is relatively large for the JVM garbage collector to handle with its default settings. This means careful tuning of the JVM is very important to ensure stable and flawless behavior of the application.

@@ -4,6 +4,7 @@ title:  Menus and Buttons
 categories: XAP122ADM, PRM
 parent: gigaspaces-management-center.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

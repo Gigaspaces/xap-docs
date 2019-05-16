@@ -4,6 +4,7 @@ title:  Indexing
 categories: XAP123, OSS
 parent: none
 weight: 900
+canonical: auto
 ---
 
 

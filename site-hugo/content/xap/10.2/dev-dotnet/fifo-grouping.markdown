@@ -4,6 +4,7 @@ title:  FIFO Grouping
 categories: XAP102NET
 parent: fifo-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

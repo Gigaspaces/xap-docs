@@ -3,6 +3,7 @@ type: post123
 title:  Viewing Data Types
 categories: XAP123ADM,PRM
 weight: 800
+canonical: auto
 parent: admin-spaces-pu.html
 ---
   

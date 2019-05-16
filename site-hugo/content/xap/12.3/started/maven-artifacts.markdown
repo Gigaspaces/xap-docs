@@ -4,6 +4,7 @@ title:  Maven Artifacts
 categories: XAP123GS
 parent: installation-maven-overview.html
 weight: 50
+canonical: auto
 ---
 
 

@@ -3,6 +3,7 @@ type: post123
 title:  Administrative Alerts
 categories: XAP123, PRM
 weight: 300
+canonical: auto
 parent: administration-and-monitoring-overview.html
 ---
 

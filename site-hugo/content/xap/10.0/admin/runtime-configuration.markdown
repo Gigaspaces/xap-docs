@@ -3,6 +3,7 @@ type: post100
 title:  Runtime Configuration
 categories: XAP100ADM
 weight: 700
+canonical: auto
 parent: none
 ---
 

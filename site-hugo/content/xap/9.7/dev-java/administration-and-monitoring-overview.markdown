@@ -4,6 +4,7 @@ title:  Admin and Monitoring
 categories: XAP97
 parent: programmers-guide.html
 weight: 1700
+canonical: auto
 ---
 
 

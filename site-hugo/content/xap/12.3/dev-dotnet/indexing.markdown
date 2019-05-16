@@ -4,6 +4,7 @@ title:  Space Index
 categories: XAP123NET, PRM
 parent: indexing-overview.html
 weight: 100
+canonical: auto
 ---
 
 # Index Types

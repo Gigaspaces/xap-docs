@@ -4,6 +4,7 @@ title: Terminology
 categories: XAP123OVW
 parent: none
 weight: 300
+canonical: auto
 ---
 
  

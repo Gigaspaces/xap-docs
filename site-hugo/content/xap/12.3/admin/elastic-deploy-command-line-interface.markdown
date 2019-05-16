@@ -4,6 +4,7 @@ title:  Elastic Deployment with Command Line
 categories: XAP123ADM, PRM
 parent: command-line-interface.html
 weight: 250
+canonical: auto
 ---
 
  

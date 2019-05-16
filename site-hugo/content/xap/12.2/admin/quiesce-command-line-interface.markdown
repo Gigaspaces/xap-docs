@@ -4,6 +4,7 @@ title:  Quiesce Command Line
 categories: XAP122ADM, PRM
 parent: administration-tools.html
 weight: 400
+canonical: auto
 ---
 
 {{%refer%}}

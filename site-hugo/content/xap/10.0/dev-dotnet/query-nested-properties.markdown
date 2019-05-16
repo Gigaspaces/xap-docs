@@ -4,6 +4,7 @@ title:  Nested Properties
 categories: XAP100NET
 parent: querying-the-space.html
 weight: 400
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

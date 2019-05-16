@@ -4,6 +4,7 @@ title:  Installation
 categories:  XAP122NET, PRM
 parent: xapnet-basics.html
 weight: 50
+canonical: auto
 ---
 
 

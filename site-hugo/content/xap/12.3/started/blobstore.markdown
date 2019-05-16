@@ -4,6 +4,7 @@ title:  Multi-Tiered Data Storage (SSD)
 categories: XAP123GS, ENT
 parent: xap-basics.html
 weight: 1600
+canonical: auto
 ---
 
 

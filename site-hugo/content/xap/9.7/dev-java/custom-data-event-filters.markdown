@@ -4,6 +4,7 @@ title:  Custom Data Event Filters
 categories: XAP97
 parent: session-based-messaging-api.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}Filtering data events at the server side using user-defined filters {{% /ssummary %}}

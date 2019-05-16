@@ -17,19 +17,19 @@ weight: 300
 
 # Overview
 
-Integrating GigaSpaces with an external JMS Servers is demonstrated in this page. This example shows how GigaSpaces event container can process events and send JMS messages to a external JMS server all under one distributed transaction.
+Integrating GigaSpaces products with an external JMS Server is demonstrated in this page. This example shows how the data grid's event container can process events and send JMS messages to a external JMS server, all under one distributed transaction.
 
 {{% note %}}
  Use of distributed transactions is done as a demonstration. Use this with caution, in production applications this can be expensive and have a performance penalty. Well known patterns like [Idempotent Receiver](http://www.eaipatterns.com/IdempotentReceiver.html) are potential alternatives to distributed transactions.
 {{% /note %}}
 
-This example includes:
+This example has the following characteristics:
 
 - GigaSpaces updates and JMS message creation are done under transactions so as to avoid duplicate processing/data loss.
 - Apache ActiveMQ is used as a the JMS provider.
-- Atomikos is used as the JTA Transaction provider and uses XA protocol.
-- Example is based on the GigaSpaces helloworld example included with the product.
-- To demonstrate the XA transaction it rollbacks messages with 100 modulo. You will notice that these messages will never appear in the JMS queue and are rolled back on GigaSpaces server.
+- Atomikos is used as the JTA Transaction provider and uses the XA protocol.
+- Example is based on the GigaSpaces helloworld example included in the product package.
+- To demonstrate the XA transaction it rollbacks messages with 100 modulo. You will notice that these messages will never appear in the JMS queue and are rolled back on the GigaSpaces server.
 
 ## Source Code
 
@@ -323,19 +323,19 @@ public class Message  {
 
 {{% /tabs %}}
 
-## Running the example
+## Running the Example
 
 Step 1. Download Apache ActiveMQ from [here](http://activemq.apache.org/download.html).
 
 Step 2. Download Atomikos TransactionEssentials from [here](http://www.atomikos.com/Main/TransactionsEssentialsDownloadForm).
 
-Step 3. Extract the [example](/attachment_files/sbp/helloworld-jta.zip) archive into a folder (calling it <helloworld-jta>). Modify the setDevEnv.bat and build.properties files to have proper paths for GigaSpaces home, Java home, ActiveMQ home and Atomikos home. Also modify the NIC_ADDR and locators variable to have proper IP address.
+Step 3. Extract the [example](/attachment_files/sbp/helloworld-jta.zip) archive into a folder (calling it &lt;helloworld-jta&gt;). Modify the setDevEnv.bat and build.properties files to have the proper paths for GigaSpaces home, Java home, ActiveMQ home and Atomikos home. Also modify the NIC_ADDR and locators variable to have the proper IP address.
 
-Step 4. Open a command shell and navigate to <helloworld-jta> folder.
+Step 4. Open a command shell and navigate to the &lt;helloworld-jta&gt; folder.
 
-Step 5. Run `setDevEnv.bat` script in <helloworld-jta> folder, to set the environment variables.
+Step 5. Run the `setDevEnv.bat` script in the &lt;helloworld-jta&gt; folder to set the environment variables.
 
-Step 6. Copy the required jars to the <helloworld-jta>\lib folder using the `copy-libs` ant task provided.
+Step 6. Copy the required JARs to the &lt;helloworld-jta&gt;\lib folder using the `copy-libs` ant task provided.
 
 
 ```java
@@ -343,45 +343,42 @@ Step 6. Copy the required jars to the <helloworld-jta>\lib folder using the `cop
 ```
 
 {{% note %}}
- Example was tested using following product versions,
+The example was tested using the following product versions:
 
-1. GigaSpaces - **8.0.1**
+- GigaSpaces - **8.0.1**
+- Apache ActiveMQ - **5.5**
+- Atomikos TransactionEssentials - **3.7.0**
 
-2. Apache ActiveMQ - **5.5**
-
-3. Atomikos TransactionEssentials - **3.7.0**
-
-If you are using different versions please make sure all the equivalent jars are reflected in `copy-libs` ant task
+If you are using different versions, please make sure all the equivalent JARs are reflected in the `copy-libs` ant task.
 {{% /note %}}
 
-Step 7. Start a gs-ui instance using `gs-ui.bat` script in <helloworld-jta> folder.
+Step 7. Start a gs-ui instance using `gs-ui.bat` script in the &lt;helloworld-jta&gt;> folder.
 
-Step 8. Run `gs-agent.bat`  <helloworld-jta> folder, to start the GigaSpaces components (GSA,GSM, LUS, GSM).
+Step 8. Run `gs-agent.bat`  &lt;helloworld-jta&gt; folder, to start the data grid components (GSA,GSM, LUS, GSM).
 
-Step 9. Start the ActiveMQ process using <ActiveMQHome>`\bin\activemq.bat` script.
+Step 9. Start the ActiveMQ process using the &lt;ActiveMQHome&gt;`\bin\activemq.bat` script.
 
 {{% note %}}
-If ActiveMQ is running on another server, please remember to update the brokerURL in `pu.xml`
+If ActiveMQ is running on another server, remember to update the brokerURL in the `pu.xml` file.
 {{% /note %}}
 
-Step 10. Deploy the processorSpace cluster by running `deploy-processor` ant task.
-
+Step 10. Deploy the processorSpace cluster by running the `deploy-processor` ant task.
 
 ```java
 build deploy-processor
 ```
-Step 11. Run the feeder process using `run-feeder` ant task.
+Step 11. Run the feeder process using the `run-feeder` ant task.
 
 ```java
  build run-feeder
 ```
-Step 12. If you check GigaSpaces logs, you will notice that the Message-0 (id=0) is Rolled back and all other messages are processed successfully and sent to JMS server.
+Step 12. If you check the data grid logs, you will notice that the Message-0 (id=0) is rolled back and all other messages are processed successfully and sent to the JMS server.
 
 {{% note %}}
- Message-0 (id=0) will keep going back to Polling container logic because the space update and JMS message both are rolled back. This is intentionally done, to demonstrate XA.
+ Message-0 (id=0) will keep going back to the Polling container logic, because the space update and JMS message both are rolled back. This is done intentionally to demonstrate XA.
 {{% /note %}}
 
-Step 13. You can validate the JMS messages received by the Queue using a test JMS client included. You can run the client using `jms-client` ant task.
+Step 13. You can validate the JMS messages received by the Queue using a test JMS client included. You can run the client using the `jms-client` ant task.
 
 ```java
  build jms-client
@@ -389,7 +386,7 @@ Step 13. You can validate the JMS messages received by the Queue using a test JM
 
 ## References
 
-- JTA/XA support information, [Transaction Management]({{%latestjavaurl%}}/transaction-management.html).
+- JTA/XA support information, [Transaction Management](https://docs.gigaspaces.com/latest/dev-java/transaction-management.html).
 - XA transactions using Spring, http://www.javaworld.com/javaworld/jw-04-2007/jw-04-xa.html.
 - Distributed transactions in Spring, with and without XA, http://www.javaworld.com/javaworld/jw-01-2009/jw-01-spring-transactions.html.
 - Atomikos TransactionEssentials Spring Integration information, http://www.atomikos.com/Documentation/SpringIntegration.

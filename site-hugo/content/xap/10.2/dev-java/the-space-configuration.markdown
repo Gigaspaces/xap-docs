@@ -3,6 +3,7 @@ type: post102
 title:  Configuration
 categories: XAP102
 weight: 200
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

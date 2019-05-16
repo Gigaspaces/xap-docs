@@ -4,6 +4,7 @@ title:  HTTP Session Management
 categories: XAP100
 parent: web-application-overview.html
 weight: 250
+canonical: auto
 ---
 
 

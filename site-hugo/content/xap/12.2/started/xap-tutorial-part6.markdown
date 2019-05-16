@@ -4,6 +4,7 @@ title:  Transactions and Concurrency
 categories: XAP122GS, OSS
 parent: xap-basics.html
 weight: 1000
+canonical: auto
 ---
 
 

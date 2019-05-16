@@ -4,6 +4,7 @@ title:  Concurrent Consumers
 categories: XAP102
 parent: polling-container-overview.html
 weight: 300
+canonical: auto
 ---
 
 

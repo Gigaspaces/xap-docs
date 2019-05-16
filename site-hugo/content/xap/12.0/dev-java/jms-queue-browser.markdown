@@ -4,6 +4,7 @@ title:  Browsing JMS Queues
 categories: XAP120
 parent: jms-advanced.html
 weight: 400
+canonical: auto
 ---
 
 

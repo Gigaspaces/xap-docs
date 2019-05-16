@@ -4,6 +4,7 @@ title:  Java Security Policy File
 categories: XAP123SEC, PRM
 parent: index.html
 weight: 740
+canonical: auto
 ---
 
 

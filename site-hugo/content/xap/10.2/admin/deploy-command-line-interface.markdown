@@ -4,6 +4,7 @@ title:  Deploy with Command Line
 categories: XAP102ADM
 parent: administration-tools.html
 weight: 200
+canonical: auto
 ---
 
 {{%ssummary%}} {{%/ssummary%}}

@@ -4,6 +4,7 @@ title:  Configuring Targets
 categories: XAP102
 parent: multi-site-replication-overview.html
 weight: 300
+canonical: auto
 ---
 
 

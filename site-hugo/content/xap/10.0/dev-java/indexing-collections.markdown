@@ -4,6 +4,7 @@ title:  Collection Index
 categories: XAP100
 parent: indexing-overview.html
 weight: 200
+canonical: auto
 ---
 
 An index can be defined on a Collection property (java.util.Collection implementation) or Array. Setting such an index means that each of the Collection's or Array's items is indexed. Setting an index on a Collection / Array done using the SpaceIndex.path() attribute where a Collection / Array property should be followed by "\[\*\]".

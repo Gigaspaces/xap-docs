@@ -4,6 +4,7 @@ title:  Securing the Data Layer
 categories: XAP123SEC, PRM
 parent: securing-xap-components.html
 weight: 200
+canonical: auto
 ---
 
 # Secured Space

@@ -3,6 +3,7 @@ type: post123
 title: Viewing the Spark Job Status
 categories: XAP123ADM,PRM
 weight: 400
+canonical: auto
 parent: admin-insightedge.html
 ---
 

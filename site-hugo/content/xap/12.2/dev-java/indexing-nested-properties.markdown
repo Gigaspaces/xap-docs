@@ -4,6 +4,7 @@ title:  Nested Property Index
 categories: XAP122, OSS
 parent: indexing-overview.html
 weight: 200
+canonical: auto
 ---
 
 

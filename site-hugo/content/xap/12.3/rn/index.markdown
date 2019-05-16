@@ -4,6 +4,7 @@ title:  Release Notes
 categories: XAP123RN
 parent: none
 weight: 800
+canonical: auto
 ---
 
 # InsightEdge Platform Version 12.3

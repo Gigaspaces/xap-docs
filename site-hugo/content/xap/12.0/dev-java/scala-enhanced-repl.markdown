@@ -4,6 +4,7 @@ title:  Enhanced Scala REPL
 categories: XAP120
 parent: scala.html
 weight: 500
+canonical: auto
 ---
 
 

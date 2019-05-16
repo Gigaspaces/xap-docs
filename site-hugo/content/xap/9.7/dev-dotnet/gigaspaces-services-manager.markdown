@@ -4,6 +4,7 @@ title:  Services Manager
 categories: XAP97NET
 parent: installation-overview.html
 weight: 300
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title: Securing the Grid Services
 categories: XAP123SEC, PRM
 parent: securing-xap-components.html
 weight: 300
+canonical: auto
 ---
 
 

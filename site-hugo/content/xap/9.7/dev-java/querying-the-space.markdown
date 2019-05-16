@@ -4,6 +4,7 @@ title:  Querying the Space
 categories: XAP97
 parent: programmers-guide.html
 weight: 300
+canonical: auto
 ---
 
 

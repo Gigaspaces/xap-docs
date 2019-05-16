@@ -4,6 +4,7 @@ title:  POJO Support
 categories: XAP97
 parent: programmers-guide.html
 weight: 10
+canonical: auto
 ---
 
 

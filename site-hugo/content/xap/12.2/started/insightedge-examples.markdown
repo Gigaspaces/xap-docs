@@ -4,6 +4,7 @@ title:  Running The Examples
 categories: XAP122GS, OSS
 parent: insightedge-basics.html
 weight: 300
+canonical: auto
 ---
 
 # Overview

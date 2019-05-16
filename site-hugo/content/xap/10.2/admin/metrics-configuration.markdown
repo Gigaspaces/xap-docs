@@ -4,6 +4,7 @@ title:  Configuration
 categories: XAP102ADM
 parent: metrics-overview.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

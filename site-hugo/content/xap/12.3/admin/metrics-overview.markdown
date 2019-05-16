@@ -4,6 +4,7 @@ title:  Metrics
 categories: XAP123ADM, PRM
 parent: none
 weight: 950
+canonical: auto
 ---
 
 

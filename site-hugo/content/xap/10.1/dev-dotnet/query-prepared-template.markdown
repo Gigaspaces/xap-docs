@@ -4,6 +4,7 @@ title:  Prepared Template
 categories: XAP101NET
 parent: querying-the-space.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Monitoring Client Side Cache
 categories: XAP120, PRM
 parent: client-side-caching.html
 weight: 400
+canonical: auto
 ---
 
 

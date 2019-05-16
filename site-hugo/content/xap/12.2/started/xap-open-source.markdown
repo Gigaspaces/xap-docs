@@ -4,6 +4,7 @@ title:  XAP Open-Source Functionality
 categories:  XAP122GS, OSS
 parent: xap-basics.html
 weight: 70
+canonical: auto
 ---
 
 

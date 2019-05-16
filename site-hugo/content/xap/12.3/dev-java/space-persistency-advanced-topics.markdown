@@ -4,6 +4,7 @@ title:  Advanced Topics
 categories: XAP123, OSS
 parent: space-persistency-overview.html
 weight: 800
+canonical: auto
 ---
 
 

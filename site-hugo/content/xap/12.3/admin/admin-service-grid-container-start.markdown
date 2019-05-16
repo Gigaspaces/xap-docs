@@ -3,6 +3,7 @@ type: post123
 title:  Managing Containers
 categories: XAP123ADM,PRM
 weight: 300
+canonical: auto
 parent: admin-service-grid.html
 ---
  

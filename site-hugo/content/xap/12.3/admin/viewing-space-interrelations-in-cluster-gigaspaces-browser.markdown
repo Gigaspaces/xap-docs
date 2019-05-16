@@ -4,6 +4,7 @@ title:  Space Inter-relations
 categories: XAP123ADM, PRM
 parent: cluster-view-gigaspaces-browser.html
 weight: 300
+canonical: auto
 ---
 
  Viewing spaces in different cluster policy groups and how they relate to each other.

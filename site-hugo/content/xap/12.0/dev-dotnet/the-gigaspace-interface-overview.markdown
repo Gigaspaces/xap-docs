@@ -3,6 +3,7 @@ type: post120
 title:  The Space Interface
 categories: XAP120NET, PRM
 weight: 500
+canonical: auto
 parent: none
 ---
 

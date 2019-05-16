@@ -4,6 +4,7 @@ title:  Slow Consumer
 categories: XAP120ADM
 parent:  tuning.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

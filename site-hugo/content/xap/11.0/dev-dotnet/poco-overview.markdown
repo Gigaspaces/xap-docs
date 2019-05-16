@@ -4,6 +4,7 @@ title:  PONO Support
 categories: XAP110NET
 parent: none
 weight: 200
+canonical: auto
 ---
 
 

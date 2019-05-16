@@ -4,6 +4,7 @@ title:  Scala
 categories: XAP123, OSS
 parent: interoperability-overview.html
 weight: 400
+canonical: auto
 ---
 
 

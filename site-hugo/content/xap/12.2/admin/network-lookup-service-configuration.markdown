@@ -4,6 +4,7 @@ title:  Lookup Service Configuration
 categories: XAP122ADM, OSS
 parent: network.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

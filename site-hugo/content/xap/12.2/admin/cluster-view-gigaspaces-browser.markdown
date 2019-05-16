@@ -4,6 +4,7 @@ title:  Cluster View
 categories: XAP122ADM, PRM
 parent: working-with-clusters-gigaspaces-browser.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

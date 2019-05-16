@@ -4,6 +4,7 @@ title:  Capacity Planning
 categories: XAP122PROD
 parent: none
 weight: 400
+canonical: auto
 ---
 
 Capacity planning is calculating the number of machines your application requires. This is one of the most important tasks you must complete before moving into production and making your application available to your customers/users. Typically, it should be done during the early stages of your project, in order to budget for the hardware and relevant software products your system will use. At a minimum, capacity planning involves estimating the number of CPUs and cores plus the memory each machine must have.

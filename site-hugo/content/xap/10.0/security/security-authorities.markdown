@@ -4,6 +4,7 @@ title:  Authorities
 categories: XAP100SEC
 parent: none
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

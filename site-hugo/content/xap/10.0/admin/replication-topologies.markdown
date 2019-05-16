@@ -4,6 +4,7 @@ title:  Topologies
 categories: XAP100ADM
 parent: replication.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

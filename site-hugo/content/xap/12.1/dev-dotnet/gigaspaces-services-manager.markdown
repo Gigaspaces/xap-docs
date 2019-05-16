@@ -4,6 +4,7 @@ title:  Services Manager
 categories: XAP121NET, PRM
 parent: installation-overview.html
 weight: 500
+canonical: auto
 ---
 
 

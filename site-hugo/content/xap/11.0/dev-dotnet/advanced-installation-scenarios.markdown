@@ -4,6 +4,7 @@ title:  Advanced Scenarios
 categories: XAP110NET
 parent: installation-overview.html
 weight: 400
+canonical: auto
 ---
 
 # Customizing Java

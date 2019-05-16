@@ -4,6 +4,7 @@ title:  Benchmarking
 categories: XAP97ADM
 parent: none
 weight: 950
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  InfluxDB Reporter
 categories: XAP101ADM
 parent: metrics-overview.html
 weight: 200
+canonical: auto
 ---
 
 GigaSpaces XAP is shipped with built-in support for [InfluxDB](http://influxdb.com/). This page explains how to configure XAP to report metrics to InfluxDB. 

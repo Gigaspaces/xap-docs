@@ -4,6 +4,7 @@ title:  Hosts View
 categories: XAP97ADM
 parent: web-management-console.html
 weight: 500
+canonical: auto
 ---
 
 

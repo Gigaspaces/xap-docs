@@ -4,6 +4,7 @@ title:  Client Side Caching
 categories: XAP100
 parent: programmers-guide.html
 weight: 1000
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Class Annotations
 categories: XAP123NET, PRM
 parent: pono-annotation-overview.html
 weight: 100
+canonical: auto
 ---
 
  

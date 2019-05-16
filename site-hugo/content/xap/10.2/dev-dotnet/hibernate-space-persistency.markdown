@@ -4,6 +4,7 @@ title:  NHibernate Integration
 categories: XAP102NET
 parent: space-persistency-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary  %}}{{% /ssummary %}}

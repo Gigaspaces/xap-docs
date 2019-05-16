@@ -4,6 +4,7 @@ title:  Viewing Clustered Space Status
 categories: XAP120ADM
 parent: troubleshooting.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

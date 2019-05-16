@@ -4,6 +4,7 @@ title:  Template Matching
 categories: XAP120
 parent: querying-the-space.html
 weight: 200
+canonical: auto
 ---
 
 

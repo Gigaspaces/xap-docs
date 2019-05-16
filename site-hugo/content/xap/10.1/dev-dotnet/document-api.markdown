@@ -3,6 +3,7 @@ type: post101
 title:  Document API
 categories: XAP101NET
 weight: 100
+canonical: auto
 parent: document-overview.html
 ---
 

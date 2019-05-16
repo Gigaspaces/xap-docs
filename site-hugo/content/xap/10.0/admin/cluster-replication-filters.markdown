@@ -4,6 +4,7 @@ title:  Replication Filters
 categories: XAP100ADM
 parent: replication.html
 weight: 450
+canonical: auto
 ---
 
 

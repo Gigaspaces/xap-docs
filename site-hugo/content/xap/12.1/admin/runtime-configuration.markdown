@@ -3,6 +3,7 @@ type: post121
 title:  The Service Grid
 categories: XAP121ADM, PRM
 weight: 700
+canonical: auto
 parent: none
 ---
 

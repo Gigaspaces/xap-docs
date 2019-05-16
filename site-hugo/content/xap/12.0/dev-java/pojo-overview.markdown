@@ -4,6 +4,7 @@ title:  POJO Support
 categories: XAP120, OS
 parent: none
 weight: 400
+canonical: auto
 ---
 
 

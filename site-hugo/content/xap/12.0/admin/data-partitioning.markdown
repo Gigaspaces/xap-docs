@@ -4,6 +4,7 @@ title:  Data Partitioning
 categories: XAP120ADM
 parent: data-grid-clustering.html
 weight: 400
+canonical: auto
 ---
 
 

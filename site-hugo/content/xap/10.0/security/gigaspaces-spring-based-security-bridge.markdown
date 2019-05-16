@@ -4,6 +4,7 @@ title:  Spring-based bridge
 categories: XAP100SEC
 parent: spring-security-bridge.html
 weight: 200
+canonical: auto
 ---
 
 

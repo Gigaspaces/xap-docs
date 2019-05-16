@@ -3,6 +3,7 @@ type: post101
 title:  Security Guide
 categories: XAP101SEC
 weight: 400
+canonical: auto
 ---
 
 

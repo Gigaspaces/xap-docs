@@ -4,6 +4,7 @@ title:  Property Annotations
 categories: XAP122NET, PRM
 parent: pono-annotation-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

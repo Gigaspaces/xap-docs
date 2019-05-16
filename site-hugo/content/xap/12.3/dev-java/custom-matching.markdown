@@ -4,6 +4,7 @@ title:  Custom Matching
 categories: XAP123, OSS
 parent: querying-the-space.html
 weight: 330
+canonical: auto
 ---
 
 # Overview

@@ -4,6 +4,7 @@ title:  SQL Clients
 categories:  XAP122, IEE
 parent: sql-query-intro.html
 weight: 200
+canonical: auto
 ---
 
 

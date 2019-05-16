@@ -4,6 +4,7 @@ title:  Property Storage Type
 categories: XAP97NET
 parent: modeling-your-data.html
 weight: 700
+canonical: auto
 ---
 
 {{% ssummary   %}} {{% /ssummary %}}

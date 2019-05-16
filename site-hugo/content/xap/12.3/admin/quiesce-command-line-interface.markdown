@@ -4,6 +4,7 @@ title:  Quiesce Command Line
 categories: XAP123ADM, PRM
 parent: command-line-interface.html
 weight: 400
+canonical: auto
 ---
 
 {{%refer%}}

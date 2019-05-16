@@ -4,6 +4,7 @@ title:  Space Instance Recovery
 categories: XAP110ADM
 parent: replication.html
 weight: 400
+canonical: auto
 ---
 
  {{% ssummary %}} {{% /ssummary %}}

@@ -3,6 +3,7 @@ type: post122
 title:  Data Grid Clustering
 categories: XAP122ADM, OSS
 weight: 300
+canonical: auto
 parent: none
 ---
 

@@ -4,6 +4,7 @@ title:  Quiesce Command Line
 categories: XAP110ADM
 parent: administration-tools.html
 weight: 400
+canonical: auto
 ---
 
 {{%ssummary%}} {{%/ssummary%}}

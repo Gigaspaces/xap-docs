@@ -4,6 +4,7 @@ title:  Routing In Partitioned Spaces
 categories: XAP123NET, PRM
 parent: modeling-your-data.html
 weight: 600
+canonical: auto
 ---
 
 

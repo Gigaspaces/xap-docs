@@ -3,6 +3,7 @@ type: post123
 title: Managing the Grid Service Agent
 categories: XAP123ADM,PRM 
 weight: 800
+canonical: auto
 parent: admin-service-grid.html
 ---
  

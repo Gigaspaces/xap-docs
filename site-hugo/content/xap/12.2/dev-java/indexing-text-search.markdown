@@ -4,6 +4,7 @@ title:  Text Search Index
 categories: XAP122, OSS
 parent: indexing-overview.html
 weight: 600
+canonical: auto
 ---
  
 Text Search indexes can be defined by using the `@SpaceTextIndex` and `@SpaceTextIndexs` annotations.

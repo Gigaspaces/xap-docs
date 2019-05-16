@@ -4,6 +4,7 @@ title:  Mule ESB Integration
 categories: XAP123, OSS
 parent: none
 weight: 1700
+canonical: auto
 ---
 
 XAP comes with comprehensive support for Mule v3.7. This allows you to use the Space as a Mule external transport, enabling receiving and dispatching of POJO messages over the Space using an [Event Container](./mule-event-container-transport.html).

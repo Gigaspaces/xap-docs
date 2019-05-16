@@ -4,6 +4,7 @@ title:  Persist to Database
 categories: XAP123NET, PRM
 parent: xapnet-basics.html
 weight: 800
+canonical: auto
 ---
  
 

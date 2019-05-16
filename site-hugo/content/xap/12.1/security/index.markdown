@@ -3,6 +3,7 @@ type: post121
 title:  Security Guide
 categories: XAP121SEC, OS
 weight: 400
+canonical: auto
 ---
 
 

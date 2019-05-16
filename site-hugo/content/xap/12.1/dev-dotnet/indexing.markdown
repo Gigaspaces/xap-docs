@@ -4,6 +4,7 @@ title:  Basic Index
 categories: XAP121NET, PRM
 parent: indexing-overview.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

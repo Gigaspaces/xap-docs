@@ -4,6 +4,7 @@ title:  Caching over the WAN
 categories: XAP121,ENT
 parent: client-side-caching.html
 weight: 300
+canonical: auto
 ---
 
 

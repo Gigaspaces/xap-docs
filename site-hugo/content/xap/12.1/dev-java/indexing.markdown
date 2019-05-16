@@ -4,6 +4,7 @@ title:  Basic Index
 categories: XAP121
 parent: indexing-overview.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

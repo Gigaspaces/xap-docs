@@ -4,6 +4,7 @@ title:  Cassandra Integration
 categories: XAP121
 parent: space-persistency-overview.html
 weight: 620
+canonical: auto
 ---
 
 

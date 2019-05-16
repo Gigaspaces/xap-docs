@@ -4,6 +4,7 @@ title:  FIFO Support
 categories: XAP120
 parent: fifo-overview.html
 weight: 100
+canonical: auto
 ---
 
 The default space behavior is non-FIFO. The reason is that FIFO support comes at a cost: the space needs to organize and maintain the entries internally in a more complex fashion to support FIFO queries, thus slowing down concurrent write operations. To enable FIFO operations users need to turn on FIFO support for classes which will participate in such operations. If a FIFO operation is performed on an entry whose class does not support FIFO, an exception will be thrown.

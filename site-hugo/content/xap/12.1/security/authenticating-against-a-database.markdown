@@ -4,6 +4,7 @@ title:  Database Authentication
 categories: XAP121SEC, PRM
 parent: spring-security-bridge.html
 weight: 300
+canonical: auto
 ---
 
 

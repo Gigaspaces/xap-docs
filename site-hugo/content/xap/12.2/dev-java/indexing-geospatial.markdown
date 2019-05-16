@@ -4,6 +4,7 @@ title:  Geospatial Index
 categories: XAP122, OSS
 parent: indexing-overview.html
 weight: 500
+canonical: auto
 ---
 
 Geospatial indexes can be defined by using the `@SpaceSpatialIndex` and `@SpaceSpatialIndexes` annotations.

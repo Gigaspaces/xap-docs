@@ -4,6 +4,7 @@ title:  Event Exception Handler
 categories: XAP123, OSS
 parent: event-processing.html
 weight: 500
+canonical: auto
 ---
 
 

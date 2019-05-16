@@ -4,6 +4,7 @@ title: About Jini
 categories: XAP122OVW
 parent: none
 weight: 1100
+canonical: auto
 ---
 
 {{%  ssummary %}}{{%  /ssummary %}}

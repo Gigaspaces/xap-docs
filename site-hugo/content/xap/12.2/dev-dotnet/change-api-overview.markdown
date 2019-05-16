@@ -3,6 +3,7 @@ type: post122
 title:  Change API
 categories: XAP122NET, PRM
 weight: 400
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

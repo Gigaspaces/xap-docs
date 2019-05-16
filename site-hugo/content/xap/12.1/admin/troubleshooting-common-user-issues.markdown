@@ -4,6 +4,7 @@ title:   Common User Issues
 categories: XAP121ADM
 parent: troubleshooting.html
 weight: 100
+canonical: auto
 ---
 
 

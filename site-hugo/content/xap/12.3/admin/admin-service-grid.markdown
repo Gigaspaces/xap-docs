@@ -3,6 +3,7 @@ type: post123
 title:  Administering the Service Grid
 categories: XAP123ADM,PRM
 weight: 150
+canonical: auto
 parent: none
 ---
 

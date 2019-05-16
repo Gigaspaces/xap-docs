@@ -4,6 +4,7 @@ title:  NHibernate External Data Source
 categories: XAP97NET
 parent: space-persistency-overview.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary  %}}{{% /ssummary %}}

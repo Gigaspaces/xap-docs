@@ -4,6 +4,7 @@ title:  Installation
 categories: XAP100NET
 parent: none
 weight: 100
+canonical: auto
 ---
 
 

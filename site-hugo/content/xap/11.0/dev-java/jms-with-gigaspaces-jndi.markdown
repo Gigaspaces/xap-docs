@@ -4,6 +4,7 @@ title:  XAP JNDI
 categories: XAP110
 parent: messaging-support.html
 weight: 500
+canonical: auto
 ---
 
 

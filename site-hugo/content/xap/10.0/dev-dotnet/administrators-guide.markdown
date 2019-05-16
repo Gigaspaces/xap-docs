@@ -4,6 +4,7 @@ title:  Deployment and Administration
 categories: XAP100NET
 parent: none
 weight: 500
+canonical: auto
 ---
 
 

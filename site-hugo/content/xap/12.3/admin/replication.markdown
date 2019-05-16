@@ -4,6 +4,7 @@ title:  Replication
 categories: XAP123ADM, OSS
 parent: data-grid-clustering.html
 weight: 600
+canonical: auto
 ---
 
 

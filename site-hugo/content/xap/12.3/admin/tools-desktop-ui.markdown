@@ -3,6 +3,7 @@ type: post123
 title:  GigaSpaces Management Center
 categories: XAP123ADM,PRM
 weight: 400
+canonical: auto
 parent: admin-tools.html
 ---
 

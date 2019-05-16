@@ -4,6 +4,7 @@ title:  Formatting Log Messages
 categories: XAP110ADM
 parent: logging-overview.html
 weight: 300
+canonical: auto
 ---
 
 

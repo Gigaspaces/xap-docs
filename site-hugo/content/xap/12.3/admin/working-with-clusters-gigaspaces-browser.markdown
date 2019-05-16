@@ -4,6 +4,7 @@ title:  Working with Clusters
 categories: XAP123ADM, PRM
 parent: gigaspaces-management-center.html
 weight: 500
+canonical: auto
 ---
 
 

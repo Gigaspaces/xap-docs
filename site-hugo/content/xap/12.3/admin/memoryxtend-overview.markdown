@@ -4,6 +4,7 @@ title:  MemoryXtend
 categories: XAP123ADM, ENT
 parent: none
 weight: 430
+canonical: auto
 ---
 
 # Overview

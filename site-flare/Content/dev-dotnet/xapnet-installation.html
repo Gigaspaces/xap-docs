@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -26,7 +26,7 @@
                 <img src="../Resources/Static/attachment_files/dotnet/dotnet-installer.png" alt="data-access.jpg" class="tc-picture50" />
             </p>
         </div>
-        <p>The default product location is <span class="tc-bold">C:\GigaSpaces\XAP.NET {Version} {Platform}</span> (For example: C:\[%=Versions.gshome-net-directory%]). This convention supports side-by-side installation of different versions and platforms (x86, x64) of XAP.NET.</p>
+        <p>The default product location is <span class="tc-bold">C:\GigaSpaces\XAP.NET {Version} {Platform}</span> (For example: C:\[%=Versions.gshome-net-directory%]). This convention supports side-by-side installation of different versions  of XAP.NET.</p>
         <p>
             <img src="../Resources/Static/attachment_files/dotnet/dotnet-file-structure.png" alt="data-access.jpg" class="tc-picture100" />
         </p>
@@ -49,10 +49,7 @@
                 </ul>
             </li>
             <li>
-                <p><span class="tc-bold">NET v3.5</span> – Contains XAP.NET for .NET 3.5 (Optional, needs to be explicitly included during installation).</p>
-            </li>
-            <li>
-                <p><span class="tc-bold">Runtime</span> – Contains the Java part of the product as well as an embedded Java installation.</p>
+                <p><span class="tc-bold">Runtime</span> – Contains the Java part of the product<MadCap:conditionalText MadCap:conditions="Version.14-2-died"> as well as an embedded Java installation</MadCap:conditionalText>.</p>
             </li>
         </ul>
         <p>In addition, the XAP.NET installer creates shortcuts in the start menu for some of these items.</p>

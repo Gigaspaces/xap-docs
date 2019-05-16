@@ -4,6 +4,7 @@ title:  Scale Triggers
 categories: XAP121,PRM
 parent: elastic-processing-unit-overview.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

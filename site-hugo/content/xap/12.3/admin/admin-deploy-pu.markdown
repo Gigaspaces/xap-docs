@@ -3,6 +3,7 @@ type: post123
 title:  Deploying a Processing Unit
 categories: XAP123ADM,PRM
 weight: 400
+canonical: auto
 parent: admin-spaces-pu.html
 ---
  

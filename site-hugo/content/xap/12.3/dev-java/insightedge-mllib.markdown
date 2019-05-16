@@ -4,6 +4,7 @@ title:  Machine Learning
 categories: XAP123, OSS
 parent: insightedge-apis.html
 weight: 700
+canonical: auto
 ---
 
 This section describes how to reuse ML models with the Data Grid. You can train your model, save it to the Data Grid and then reuse it in different Spark contexts.

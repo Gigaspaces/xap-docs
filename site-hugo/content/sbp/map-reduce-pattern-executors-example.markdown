@@ -15,10 +15,10 @@ weight: 400
 
 # Overview
 
-The [Map-Reduce](http://en.wikipedia.org/wiki/MapReduce) pattern is a popular pattern used in distributed systems to process data in parallel. This [example](/attachment_files/sbp/ExecutorExample.zip) illustrates the usage of [Executors Remoting]({{%latestjavaurl%}}/executor-based-remoting.html) (Service Executors) and [Task Executors]({{%latestjavaurl%}}/task-execution-over-the-space.html) to execute your business logic on a remote process that is collocated with a space in a parallel manner.
+The [Map-Reduce](http://en.wikipedia.org/wiki/MapReduce) pattern is a popular pattern used in distributed systems to process data in parallel. This [example](/attachment_files/sbp/ExecutorExample.zip) illustrates the usage of [Executors Remoting](https://docs.gigaspaces.com/latest/dev-java/executor-based-remoting.html) (Service Executors) and [Task Executors](https://docs.gigaspaces.com/latest/dev-java/task-execution-over-the-space.html) to execute your business logic on a remote process that is collocated with a space in a parallel manner.
 
-- The [Executors Remoting]({{%latestjavaurl%}}/executor-based-remoting.html) should be used when you would like to export service method(s) for remote clients to be invoked.
-- The [Task Executors]({{%latestjavaurl%}}/task-execution-over-the-space.html) should be used when you would like to transport business logic to the server side to be executed remotely.
+- The [Executors Remoting](https://docs.gigaspaces.com/latest/dev-java/executor-based-remoting.html) should be used when you would like to export service method(s) for remote clients to be invoked.
+- The [Task Executors](https://docs.gigaspaces.com/latest/dev-java/task-execution-over-the-space.html) should be used when you would like to transport business logic to the server side to be executed remotely.
 
 In both cases, the business logic will be invoked with a collocated space.
 

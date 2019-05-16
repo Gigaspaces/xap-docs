@@ -4,6 +4,7 @@ title:  Dynamic Language Tasks
 categories: XAP123, OSS
 parent: task-execution-overview.html
 weight: 100
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Metadata Summary
 categories: XAP123, OSS
 parent: space-based-remoting-overview.html
 weight: 400
+canonical: auto
 ---
 
 

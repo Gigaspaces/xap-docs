@@ -3,6 +3,7 @@ type: post101
 title:  Extending
 categories: XAP101NET
 weight: 200
+canonical: auto
 parent: document-overview.html
 ---
 

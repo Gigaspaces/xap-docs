@@ -4,6 +4,7 @@ title:  Release Notes
 categories: XAP122RN
 parent: none
 weight: 800
+canonical: auto
 ---
 
 ## InsightEdge and XAP Version 12.2

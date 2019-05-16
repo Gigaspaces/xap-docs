@@ -4,6 +4,7 @@ title:  Component Configuration
 categories: XAP120SEC, PRM
 parent: securing-xap-components.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

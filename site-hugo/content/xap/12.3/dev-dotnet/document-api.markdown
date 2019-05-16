@@ -3,6 +3,7 @@ type: post123
 title:  Document API
 categories: XAP123NET, PRM
 weight: 100
+canonical: auto
 parent: document-overview.html
 ---
 

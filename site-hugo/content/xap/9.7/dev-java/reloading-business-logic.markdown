@@ -4,6 +4,7 @@ title:  Reloading Business Logic
 categories: XAP97
 parent: administrators-guide.html
 weight: 250
+canonical: auto
 ---
 
 

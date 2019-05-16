@@ -3,6 +3,7 @@ type: post123
 title:  Web Management Console
 categories: XAP123ADM,PRM
 weight: 300
+canonical: auto
 parent: admin-tools.html
 ---
 

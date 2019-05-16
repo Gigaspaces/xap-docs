@@ -3,6 +3,7 @@ type: post97
 title: .NET Developers Guide
 categories: XAP97NET
 weight: 200
+canonical: auto
 ---
 
 

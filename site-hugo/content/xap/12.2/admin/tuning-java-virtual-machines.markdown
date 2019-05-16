@@ -4,6 +4,7 @@ title:  Java Virtual Machines
 categories: XAP122ADM, OSS
 parent: tuning.html
 weight: 800
+canonical: auto
 ---
 
 {{% ssummary %}}  {{% /ssummary %}}

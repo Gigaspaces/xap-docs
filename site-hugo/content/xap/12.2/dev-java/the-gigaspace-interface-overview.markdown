@@ -3,6 +3,7 @@ type: post122
 title:  The Space Interface
 categories: XAP122, OSS
 weight: 700
+canonical: auto
 parent: none
 ---
 

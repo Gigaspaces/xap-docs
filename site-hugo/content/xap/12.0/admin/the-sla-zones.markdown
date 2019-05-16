@@ -4,6 +4,7 @@ title:  Hosts, Zones & Machine Utilization
 categories: XAP120ADM, PRM
 parent: the-sla-overview.html
 weight: 300
+canonical: auto
 ---
 
 

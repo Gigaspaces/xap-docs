@@ -4,6 +4,7 @@ title:  Dump
 categories: XAP121, PRM
 parent: administration-and-monitoring-overview.html
 weight: 200
+canonical: auto
 ---
 
 

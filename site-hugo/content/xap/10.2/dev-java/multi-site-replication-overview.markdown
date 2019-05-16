@@ -4,6 +4,7 @@ title:  Multi Site WAN Replication
 categories: XAP102
 parent: none
 weight: 2400
+canonical: auto
 ---
 
 

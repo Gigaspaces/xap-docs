@@ -4,6 +4,7 @@ title:  System Properties
 categories: XAP101ADM
 parent: runtime-configuration.html
 weight: 400
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

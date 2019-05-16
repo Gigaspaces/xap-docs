@@ -3,6 +3,7 @@ type: post123
 title: Accessing a Secured Service Grid
 categories: XAP123ADM,PRM
 weight: 900
+canonical: auto
 parent: admin-service-grid.html
 ---
  

@@ -4,6 +4,7 @@ title:  Platform Interoperability
 categories: XAP123, OSS
 parent: none
 weight: 2500
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  GS-Agent
 categories: XAP123ADM, PRM
 parent: runtime-configuration.html
 weight: 200
+canonical: auto
 ---
 
 {{% anchor GSRuntimeEnv %}}

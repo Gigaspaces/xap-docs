@@ -4,6 +4,7 @@ title:  Multiple Network Cards
 categories: XAP123ADM, OSS
 parent: network.html
 weight: 500
+canonical: auto
 ---
 
 

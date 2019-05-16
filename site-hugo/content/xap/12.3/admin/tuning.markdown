@@ -4,6 +4,7 @@ title:  Performance Tuning
 categories: XAP123ADM, OSS
 parent: none
 weight: 1000
+canonical: auto
 ---
 
 

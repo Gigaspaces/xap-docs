@@ -3,6 +3,7 @@ type: post123
 title:  Viewing Space Statistics
 categories: XAP123ADM,PRM
 weight: 900
+canonical: auto
 parent: admin-spaces-pu.html
 ---
  

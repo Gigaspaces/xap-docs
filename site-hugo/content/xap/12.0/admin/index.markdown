@@ -3,6 +3,7 @@ type: post120
 title:  Administrators Guide
 categories: XAP120ADM
 weight: 300
+canonical: auto
 ---
 
 

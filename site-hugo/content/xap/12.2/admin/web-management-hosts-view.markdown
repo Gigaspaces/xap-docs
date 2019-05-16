@@ -4,6 +4,7 @@ title:  Hosts
 categories: XAP122ADM,PRM
 parent: web-management-console.html
 weight: 500
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

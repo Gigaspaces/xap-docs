@@ -4,6 +4,7 @@ title:  Scala
 categories: XAP97
 parent: interoperability-overview.html
 weight: 400
+canonical: auto
 ---
 
 Several extensions to the XAP API have been introduced to provide a more natural way of combining Scala with XAP.

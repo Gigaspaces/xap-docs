@@ -4,6 +4,7 @@ title:  The Lookup Service
 categories: XAP122ADM, PRM
 parent: runtime-configuration.html
 weight: 300
+canonical: auto
 ---
 
  

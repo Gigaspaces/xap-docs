@@ -4,6 +4,7 @@ title:  Event-Driven Programming
 categories: XAP122GS, OSS
 parent: xap-basics.html
 weight: 800
+canonical: auto
 ---
 
 

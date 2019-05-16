@@ -4,6 +4,7 @@ title:  Consistency Biased
 categories: XAP110ADM
 parent: leader-election.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

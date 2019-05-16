@@ -4,6 +4,7 @@ title:  Timeout, Filters and Lease Manager
 categories: XAP110ADM
 parent: working-with-spaces-gigaspaces-browser.html
 weight: 500
+canonical: auto
 ---
 
 

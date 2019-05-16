@@ -4,6 +4,7 @@ title:  Security
 categories: XAP102
 parent: jms-advanced.html
 weight: 300
+canonical: auto
 ---
 
 

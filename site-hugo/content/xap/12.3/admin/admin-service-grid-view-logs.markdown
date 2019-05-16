@@ -3,6 +3,7 @@ type: post123
 title: Viewing Logs
 categories: XAP123ADM,PRM
 weight: 400
+canonical: auto
 parent: admin-service-grid.html
 ---
  

@@ -4,6 +4,7 @@ title:  Notify Container
 categories: XAP110
 parent: event-processing.html
 weight: 200
+canonical: auto
 ---
 
 

@@ -3,6 +3,7 @@ type: post100
 title:  Space Document
 categories: XAP100NET
 weight: 200
+canonical: auto
 parent: programmers-guide.html
 ---
 

@@ -4,6 +4,7 @@ title:  Paging Support
 categories: XAP121NET, PRM
 parent: querying-the-space.html
 weight: 600
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

@@ -4,6 +4,7 @@ title:  Polling Container
 categories: XAP102NET
 parent: event-processing.html
 weight: 300
+canonical: auto
 ---
 
 

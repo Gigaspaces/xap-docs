@@ -4,6 +4,7 @@ title:  Deploying a Space
 categories: XAP123ADM,PRM
 parent: web-management-common-view.html
 weight: 100
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Administration Authorities
 categories: XAP123SEC, PRM
 parent: none
 weight: 700
+canonical: auto
 ---
 
 

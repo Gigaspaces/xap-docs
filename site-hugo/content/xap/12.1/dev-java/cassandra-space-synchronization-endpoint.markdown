@@ -4,6 +4,7 @@ title:  Synchronization Endpoint
 categories: XAP121
 parent: cassandra-space-persistency.html
 weight: 200
+canonical: auto
 ---
 
 

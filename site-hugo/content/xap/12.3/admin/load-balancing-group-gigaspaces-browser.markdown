@@ -4,6 +4,7 @@ title:  Load-Balancing Group
 categories: XAP123ADM, PRM
 parent: working-with-clusters-gigaspaces-browser.html
 weight: 400
+canonical: auto
 ---
 
  

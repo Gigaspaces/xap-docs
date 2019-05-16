@@ -4,6 +4,7 @@ title: Apache Spark
 categories: XAP123OVW
 parent: none
 weight: 110
+canonical: auto
 ---
 
 

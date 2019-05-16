@@ -4,6 +4,7 @@ title:  Data Source
 categories: XAP97
 parent: mongodb-space-persistency.html
 weight: 100
+canonical: auto
 ---
 
 A MongoDB based implementation of the [Space Data Source](./space-data-source-api.html). 

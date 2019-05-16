@@ -4,6 +4,7 @@ title:  Data Event Listener
 categories: XAP110
 parent: event-processing.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary  %}}{{%/ssummary%}}

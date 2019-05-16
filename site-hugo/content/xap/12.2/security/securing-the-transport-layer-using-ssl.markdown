@@ -4,6 +4,7 @@ title:  Securing the Transport Layer
 categories: XAP122SEC, PRM
 parent: securing-xap-components.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

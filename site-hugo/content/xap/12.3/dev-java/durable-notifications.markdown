@@ -4,6 +4,7 @@ title:  Durable Notifications
 categories: XAP123, OSS
 parent: session-based-messaging-api.html
 weight: 100
+canonical: auto
 ---
 
  

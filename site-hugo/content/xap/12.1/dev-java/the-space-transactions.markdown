@@ -3,6 +3,7 @@ type: post121
 title:  Transactions
 categories: XAP121
 weight: 600
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

@@ -4,6 +4,7 @@ title:  Memory Management
 categories: XAP123ADM, PRM
 parent: working-with-spaces-gigaspaces-browser.html
 weight: 400
+canonical: auto
 ---
 
  Using the **Memory Management** tab of the advanced space configuration dialog.

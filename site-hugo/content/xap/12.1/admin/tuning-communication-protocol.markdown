@@ -4,6 +4,7 @@ title:  Communication Protocol
 categories: XAP121ADM
 parent:  tuning.html
 weight: 700
+canonical: auto
 ---
 
 

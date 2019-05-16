@@ -4,6 +4,7 @@ title:  Archive Container
 categories: XAP102
 parent: big-data.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

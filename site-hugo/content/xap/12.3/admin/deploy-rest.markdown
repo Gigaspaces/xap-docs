@@ -4,6 +4,7 @@ title:  Deploy with REST
 categories: XAP123ADM, PRM
 parent: xap-manager-rest.html
 weight: 100
+canonical: auto
 ---
 
   

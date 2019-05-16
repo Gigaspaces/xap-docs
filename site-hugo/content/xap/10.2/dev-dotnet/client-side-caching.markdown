@@ -4,6 +4,7 @@ title:  Client Side Caching
 categories: XAP102NET
 parent: none
 weight: 1000
+canonical: auto
 ---
 
 

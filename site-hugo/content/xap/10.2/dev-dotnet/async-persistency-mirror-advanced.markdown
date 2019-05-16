@@ -4,6 +4,7 @@ title:  Advanced Configuration
 categories: XAP102NET
 parent: asynchronous-persistency-with-the-mirror.html
 weight: 100
+canonical: auto
 ---
 
 

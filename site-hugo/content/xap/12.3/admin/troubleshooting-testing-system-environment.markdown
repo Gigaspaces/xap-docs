@@ -4,6 +4,7 @@ title:  Testing System Environment
 categories: XAP123ADM, PRM
 parent: troubleshooting.html
 weight: 200
+canonical: auto
 ---
 
 

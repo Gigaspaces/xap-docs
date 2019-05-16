@@ -4,6 +4,7 @@ title:  Event Processing
 categories: XAP121
 parent: none
 weight: 1500
+canonical: auto
 ---
 
 

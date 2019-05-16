@@ -4,6 +4,7 @@ title:  Domain Service Host
 categories: XAP110NET
 parent: space-based-remoting-overview.html
 weight: 100
+canonical: auto
 ---
 
 

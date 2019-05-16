@@ -4,6 +4,7 @@ title:  User Defined Classes
 categories: XAP97
 parent: querying-the-space.html
 weight: 500
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Web Management Console
 categories: XAP123ADM, PRM
 parent: admin-legacy-tools.html
 weight: 400
+canonical: auto
 ---
 
 The Web Management Console is a web application that enables users to quickly understand the state of a running data grid cluster and monitor the running components, such as the physical hosts, JVMs and deployed Processing Units.

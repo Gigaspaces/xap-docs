@@ -4,6 +4,7 @@ title:  Reducing the Space Object Footprint
 categories: XAP123, OSS
 parent: modeling-your-data.html
 weight: 570
+canonical: auto
 
 ---
 

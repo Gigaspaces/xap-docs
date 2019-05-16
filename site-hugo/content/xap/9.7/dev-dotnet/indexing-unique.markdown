@@ -4,6 +4,7 @@ title:  Unique Index
 categories: XAP97NET
 parent: indexing-overview.html
 weight: 600
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

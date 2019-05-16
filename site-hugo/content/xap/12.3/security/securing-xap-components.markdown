@@ -4,6 +4,7 @@ title:  Securing Components
 categories: XAP123SEC, PRM
 parent: none
 weight: 800
+canonical: auto
 ---
 
 

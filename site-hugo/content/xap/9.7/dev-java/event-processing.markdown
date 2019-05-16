@@ -4,6 +4,7 @@ title:  Event Processing
 categories: XAP97
 parent: programmers-guide.html
 weight: 1150
+canonical: auto
 ---
 
 This section will guide you through event processing APIs and configuration on top of the space.

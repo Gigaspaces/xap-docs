@@ -4,6 +4,7 @@ title:  Scripts
 categories: XAP97ADM
 parent: administration-tools.html
 weight: 50
+canonical: auto
 ---
 
 {{% ssummary page%}}{{% /ssummary %}}

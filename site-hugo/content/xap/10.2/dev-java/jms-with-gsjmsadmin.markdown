@@ -4,6 +4,7 @@ title:  Working with GSJMSAdmin
 categories: XAP102
 parent: messaging-support.html
 weight: 600
+canonical: auto
 ---
 
 

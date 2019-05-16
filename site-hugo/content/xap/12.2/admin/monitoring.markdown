@@ -4,6 +4,7 @@ title:  Monitoring
 categories: XAP122ADM, OSS
 parent: none
 weight: 900
+canonical: auto
 ---
 
 

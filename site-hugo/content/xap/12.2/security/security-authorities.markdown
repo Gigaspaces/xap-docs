@@ -4,6 +4,7 @@ title:  Authorities and Privileges
 categories: XAP122SEC, OSS
 parent: none
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

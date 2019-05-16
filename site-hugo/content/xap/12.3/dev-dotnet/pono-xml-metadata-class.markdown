@@ -4,6 +4,7 @@ title:  Class Metadata
 categories: XAP123NET, PRM
 parent: pono-xml-metadata-overview.html
 weight: 100
+canonical: auto
 ---
 
  

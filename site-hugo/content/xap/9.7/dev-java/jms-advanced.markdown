@@ -4,6 +4,7 @@ title:  Advanced Options
 categories: XAP97
 parent: messaging-support.html
 weight: 700
+canonical: auto
 ---
 
 {{<wbr>}}

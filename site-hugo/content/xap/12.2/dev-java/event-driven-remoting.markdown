@@ -4,6 +4,7 @@ title:  Event Driven Remoting
 categories: XAP122, OSS
 parent: space-based-remoting-overview.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary%}}{{%/ssummary%}}

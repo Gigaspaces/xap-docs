@@ -3,6 +3,7 @@ type: post122
 title:  Administration
 categories: XAP122ADM
 weight: 600
+canonical: auto
 ---
 
 

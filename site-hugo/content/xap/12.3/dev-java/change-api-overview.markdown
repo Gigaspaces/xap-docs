@@ -3,6 +3,7 @@ type: post123
 title:  Change API
 categories: XAP123, OSS
 weight: 400
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

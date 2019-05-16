@@ -4,6 +4,7 @@ title:  Client Side Caching
 categories: XAP97NET
 parent: programmers-guide.html
 weight: 2600
+canonical: auto
 ---
 
 

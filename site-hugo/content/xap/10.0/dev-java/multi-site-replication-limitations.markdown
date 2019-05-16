@@ -4,6 +4,7 @@ title:  Limitations
 categories: XAP100
 parent: multi-site-replication-overview.html
 weight: 900
+canonical: auto
 ---
 
 

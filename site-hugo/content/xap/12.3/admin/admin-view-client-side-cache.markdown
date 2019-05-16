@@ -3,6 +3,7 @@ type: post123
 title:  Viewing Client-Side Cache Details
 categories: XAP123ADM,PRM
 weight: 1000
+canonical: auto
 parent: admin-spaces-pu.html
 ---
  

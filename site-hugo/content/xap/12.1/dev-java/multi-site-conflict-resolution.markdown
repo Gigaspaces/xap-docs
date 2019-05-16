@@ -4,6 +4,7 @@ title:  Conflict Resolution
 categories: XAP121, ENT
 parent: multi-site-replication-overview.html
 weight: 500
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  Proxy Connectivity
 categories: XAP102ADM
 parent:  tuning-gigaspaces-performance-overview.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

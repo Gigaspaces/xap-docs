@@ -4,6 +4,7 @@ title:  Benchmark View
 categories: XAP120ADM
 parent: benchmarking.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

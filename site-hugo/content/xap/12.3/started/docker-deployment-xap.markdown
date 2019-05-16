@@ -4,6 +4,7 @@ title:  Using Docker
 categories: XAP123GS
 parent: none
 weight: 400
+canonical: auto
 ---
 
 GigaSpaces provides Docker images for both InsightEdge and XAP. The main benefits of using Docker are:

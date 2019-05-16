@@ -4,6 +4,7 @@ title:  Using Grafana for Monitoring and Analytics
 categories: XAP123ADM,PRM
 parent: monitoring.html
 weight: 300
+canonical: auto
 ---
 
 

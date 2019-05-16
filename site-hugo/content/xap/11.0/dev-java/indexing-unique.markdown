@@ -4,6 +4,7 @@ title:  Unique Index
 categories: XAP110
 parent: indexing-overview.html
 weight: 600
+canonical: auto
 ---
 
 

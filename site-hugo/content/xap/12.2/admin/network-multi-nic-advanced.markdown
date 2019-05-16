@@ -4,6 +4,7 @@ title:  Advanced Configuration
 categories: XAP122ADM, OSS
 parent: network-multi-nic.html
 weight: 100
+canonical: auto
 ---
 
 {{% note "Note" %}}

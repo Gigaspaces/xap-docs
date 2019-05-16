@@ -4,6 +4,7 @@ title:  Distributed Processing
 categories: XAP122GS, OSS
 parent: xap-basics.html
 weight: 700
+canonical: auto
 ---
 
 

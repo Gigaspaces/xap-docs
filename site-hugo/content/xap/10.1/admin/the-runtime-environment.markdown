@@ -4,6 +4,7 @@ title:  The Runtime Environment
 categories: XAP101ADM
 parent: runtime-configuration.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

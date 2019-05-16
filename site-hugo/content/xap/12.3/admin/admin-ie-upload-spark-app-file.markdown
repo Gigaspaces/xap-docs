@@ -3,6 +3,7 @@ type: post123
 title: Uploading a Spark Application File
 categories: XAP123ADM,PRM
 weight: 600
+canonical: auto
 parent: admin-insightedge.html
 ---
  

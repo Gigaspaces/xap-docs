@@ -4,6 +4,7 @@ title:  Deploy a Web App
 categories: XAP122GS, OSS
 parent: xap-basics.html
 weight: 1200
+canonical: auto
 ---
 
 

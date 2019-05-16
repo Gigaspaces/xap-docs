@@ -4,6 +4,7 @@ title:  Deploying a Space
 categories: XAP123GS, OSS
 parent: xap-basics.html
 weight: 600
+canonical: auto
 ---
 
 

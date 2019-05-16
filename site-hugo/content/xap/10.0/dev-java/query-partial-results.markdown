@@ -4,6 +4,7 @@ title:  Projection
 categories: XAP100
 parent: querying-the-space.html
 weight: 800
+canonical: auto
 ---
 
 

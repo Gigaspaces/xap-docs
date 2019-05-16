@@ -4,6 +4,7 @@ title:  Platform Interoperability
 categories: XAP102
 parent: none
 weight: 2500
+canonical: auto
 ---
 
 

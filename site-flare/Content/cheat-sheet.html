@@ -368,6 +368,9 @@ int count = gigaSpace.count(template);
         <p>HTML:</p><pre><code>&lt;p&gt;This is &lt;MadCap:conditionalText MadCap:conditions="Version.14-2-died"&gt;what you are hiding in this version&lt;/MadCap:conditionalText&gt; because it was removed.&lt;/p&gt;</code></pre>
         <p MadCap:conditions="Version.14-0-only">This is how to condition a paragraph in a topic. </p>
         <p>HTML:</p><pre><code>&lt;p MadCap:conditions="Version.14-0-only"&gt;This is how to condition a paragraph in a topic. &lt;/p&gt;</code></pre>
+        <div class="tc-admon-attention">
+            <p>Note the differences between conditioning a portion of tagged content vs. conditioning content that is fully enclosed by a tag (such as a paragraph, table row, or div). When conditioning content that is enclosed in its own tag, add this to the opening tag:  <code>MadCap:conditions="&lt;condition definition&gt;"</code>. Do not add a closing tag.</p>
+        </div>
         <h2>Variables</h2>
         <p>Don't hard-code things like software versions in the text or in code samples (for third-party software or other items that are included in our product package). </p>
         <p>Add the variable in the sentence, for example <MadCap:variable name="General.ProductNameIE" /> release <MadCap:variable name="Versions.product-version-short" />.</p>

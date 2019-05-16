@@ -4,6 +4,7 @@ title:  Failure Detection
 categories: XAP122ADM, PRM
 parent: troubleshooting.html
 weight: 400
+canonical: auto
 ---
 
 {{% ssummary%}}{{% /ssummary %}}

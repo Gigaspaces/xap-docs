@@ -4,6 +4,7 @@ title:  Advanced Configuration
 categories: XAP122GS,PRM
 parent: installation-maven.html
 weight: 200
+canonical: auto
 ---
 
 

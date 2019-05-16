@@ -3,6 +3,7 @@ type: post97
 title:  Transactions
 categories: XAP97
 weight: 500
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

@@ -4,6 +4,7 @@ title:  SNMP Alerts
 categories: XAP110
 parent: administration-and-monitoring-overview.html
 weight: 400
+canonical: auto
 ---
 
 

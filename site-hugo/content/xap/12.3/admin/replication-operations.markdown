@@ -4,6 +4,7 @@ title:  Replication Operations
 categories: XAP123ADM, OSS
 parent: replication.html
 weight: 500
+canonical: auto
 ---
 
  

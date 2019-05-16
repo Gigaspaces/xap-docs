@@ -4,6 +4,7 @@ title:  JMS-Space Interoperability
 categories: XAP121
 parent: messaging-support.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary%}}  {{% /ssummary %}}

@@ -4,6 +4,7 @@ title: Caching Scenarios
 categories: XAP123OVW
 parent: the-in-memory-data-grid.html
 weight: 200
+canonical: auto
 ---
 
  

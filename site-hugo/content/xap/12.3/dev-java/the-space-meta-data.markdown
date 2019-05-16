@@ -3,6 +3,7 @@ type: post123
 title:  Data Type Metadata
 categories: XAP123, OSS
 weight: 1100
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

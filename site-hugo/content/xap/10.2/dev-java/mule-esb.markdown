@@ -4,6 +4,7 @@ title:  Mule ESB Integration
 categories: XAP102
 parent: none
 weight: 1700
+canonical: auto
 ---
 
 

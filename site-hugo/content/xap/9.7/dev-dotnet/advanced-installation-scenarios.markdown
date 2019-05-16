@@ -4,6 +4,7 @@ title:  Advanced Scenarios
 categories: XAP97NET
 parent: installation-overview.html
 weight: 100
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

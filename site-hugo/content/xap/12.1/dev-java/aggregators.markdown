@@ -3,6 +3,7 @@ type: post121
 title:  Aggregators
 categories: XAP121
 weight: 550
+canonical: auto
 parent: the-gigaspace-interface-overview.html
 ---
 

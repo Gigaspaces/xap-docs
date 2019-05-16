@@ -4,6 +4,7 @@ title:  Local View
 categories: XAP123,PRM
 parent: client-side-caching.html
 weight: 200
+canonical: auto
 ---
 
  

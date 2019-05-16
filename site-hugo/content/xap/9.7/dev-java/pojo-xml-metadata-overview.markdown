@@ -4,6 +4,7 @@ title:  XML based Metadata
 categories: XAP97
 parent: modeling-your-data.html
 weight: 130
+canonical: auto
 ---
 
 {{<wbr>}}

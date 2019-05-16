@@ -13,10 +13,31 @@ Click a thumbnail to watch the relevant video
 
 
 
+# Whats new
 
+{{%section%}}
+
+{{%column width="25%" %}}
+{{%youtube "WPn46dUdWUI" "Predictive Stock Pricing Demo"%}}
+{{%/column%}}
+
+{{%column width="25%" %}}
+{{%youtube "_xutsdCr2zQ" "Leveraging Deep Learning for Automatic Call Routing"%}}
+{{%/column%}}
+
+
+{{%column width="25%" %}}
+{{%youtube "SXah9jTnndk" "AnalyticsXtreme Demo"%}}
+{{%/column%}}
+
+{{%column width="25%" %}}
+{{%youtube "i4Z4__l8N9Q" "One-Click Deployment with Kubernetes"%}}
+{{%/column%}}
+
+{{%/section%}}
  
 
-# Whats new
+# XAP Product
 
 {{%section%}}
 
@@ -38,12 +59,6 @@ Click a thumbnail to watch the relevant video
 {{%/column%}}
 
 {{%/section%}}
-
-
-
- 
-
-# XAP Product
 
 {{%section%}}
 {{%column width="25%" %}}

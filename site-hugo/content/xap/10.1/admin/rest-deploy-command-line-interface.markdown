@@ -4,6 +4,7 @@ title:  Deploying REST service with Command Line
 categories: XAP101ADM
 parent: administration-tools.html
 weight: 260
+canonical: auto
 ---
 
 

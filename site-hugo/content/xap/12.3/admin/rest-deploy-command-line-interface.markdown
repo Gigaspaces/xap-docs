@@ -4,6 +4,7 @@ title:  Deploying REST Service with Command Line
 categories: XAP123ADM, PRM
 parent: command-line-interface.html
 weight: 260
+canonical: auto
 ---
 
 {{%refer "Interacting with a Secured Grid"%}}

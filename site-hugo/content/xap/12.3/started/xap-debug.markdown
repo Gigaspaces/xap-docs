@@ -4,6 +4,7 @@ title:  Debugging
 categories: XAP123GS
 parent: xap-basics.html
 weight: 2100
+canonical: auto
 ---
 
 As part of your development process, you may want to run/debug your processing unit within your IDE, or create unit tests (with JUnit for example) to tests in isolation certain aspects of it.

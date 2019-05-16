@@ -4,6 +4,7 @@ title:  Example Project
 categories: XAP123, OSS
 parent: scala.html
 weight: 600
+canonical: auto
 ---
 
 

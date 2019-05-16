@@ -4,6 +4,7 @@ title:  Scale Triggers
 categories: XAP102
 parent: elastic-processing-unit-overview.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

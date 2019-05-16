@@ -4,6 +4,7 @@ title:  XAP as Windows Service
 categories: XAP122ADM, PRM
 parent: none
 weight: 1300
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

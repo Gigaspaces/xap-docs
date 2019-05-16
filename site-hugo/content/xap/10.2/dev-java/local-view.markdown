@@ -4,6 +4,7 @@ title:  Local View
 categories: XAP102
 parent: client-side-caching.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary page %}}{{% /ssummary %}}

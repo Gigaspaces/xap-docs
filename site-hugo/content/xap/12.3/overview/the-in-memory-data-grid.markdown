@@ -4,6 +4,7 @@ title: In-Memory Data Grid Layer
 categories: XAP123OVW
 parent: product-architecture.html
 weight: 700
+canonical: auto
 ---
 
 

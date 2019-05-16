@@ -4,6 +4,7 @@ title:  User Defined Metrics
 categories: XAP121ADM
 parent: metrics-overview.html
 weight: 400
+canonical: auto
 ---
 
 In addition to the metrics shipped with the product, users can define additional metrics for application-specific data. 

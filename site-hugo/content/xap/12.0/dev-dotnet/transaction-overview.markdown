@@ -4,6 +4,7 @@ title:  Transactions
 categories: XAP120NET, PRM
 parent: none
 weight: 800
+canonical: auto
 ---
 
 

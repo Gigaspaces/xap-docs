@@ -4,6 +4,7 @@ title:  ALL IN CACHE Policy
 categories: XAP123, OSS
 parent: memory-management-overview.html
 weight: 200
+canonical: auto
 ---
 
 

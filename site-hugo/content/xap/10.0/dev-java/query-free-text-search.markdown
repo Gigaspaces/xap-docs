@@ -4,6 +4,7 @@ title:  Free Text Search
 categories: XAP100
 parent: querying-the-space.html
 weight: 350
+canonical: auto
 ---
 
 {{%ssummary%}}{{%/ssummary%}}

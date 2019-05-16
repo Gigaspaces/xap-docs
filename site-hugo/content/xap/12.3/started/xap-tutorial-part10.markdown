@@ -4,6 +4,7 @@ title:  Security
 categories: XAP123GS, OSS
 parent: xap-basics.html
 weight: 1400
+canonical: auto
 ---
 
 

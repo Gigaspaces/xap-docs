@@ -4,6 +4,7 @@ title:  Elastic Processing Unit
 categories: XAP122,PRM
 parent: none
 weight: 2100
+canonical: auto
 ---
 
 

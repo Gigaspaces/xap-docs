@@ -3,6 +3,7 @@ type: post97
 title:  Runtime Configuration
 categories: XAP97ADM
 weight: 770
+canonical: auto
 parent: none
 ---
 

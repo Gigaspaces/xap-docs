@@ -4,6 +4,7 @@ title:  REST API
 categories: XAP110
 parent: rest-service-overview.html
 weight: 400
+canonical: auto
 ---
 
 

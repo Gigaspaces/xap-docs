@@ -4,6 +4,7 @@ title:  Conflict Resolution
 categories: XAP110
 parent: multi-site-replication-overview.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

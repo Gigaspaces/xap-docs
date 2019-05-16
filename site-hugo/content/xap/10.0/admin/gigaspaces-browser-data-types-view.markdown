@@ -4,6 +4,7 @@ title:  Data Types View
 categories: XAP100ADM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html
 weight: 200
+canonical: auto
 ---
 
 

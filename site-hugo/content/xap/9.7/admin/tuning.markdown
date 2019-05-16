@@ -4,6 +4,7 @@ title:  Performance Tuning
 categories: XAP97ADM
 parent: none
 weight: 900
+canonical: auto
 ---
 
 

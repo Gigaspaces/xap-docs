@@ -4,6 +4,7 @@ title:  Filters
 categories: XAP123NET, PRM
 parent: the-gigaspace-interface-overview.html
 weight: 800
+canonical: auto
 ---
 
  

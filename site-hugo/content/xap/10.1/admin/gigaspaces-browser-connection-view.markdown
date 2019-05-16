@@ -4,6 +4,7 @@ title:  Connections View
 categories: XAP101ADM
 parent: gigaspaces-browser-tree-panel-and-configuration-panel.html
 weight: 100
+canonical: auto
 ---
 
 

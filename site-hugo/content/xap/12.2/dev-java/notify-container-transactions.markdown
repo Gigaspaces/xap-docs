@@ -4,6 +4,7 @@ title:  Transaction Support
 categories: XAP122, OSS
 parent: notify-container-overview.html
 weight: 200
+canonical: auto
 ---
 
 

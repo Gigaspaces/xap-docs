@@ -4,6 +4,7 @@ title:  Asynchronous Replication
 categories: XAP122ADM, OSS
 parent: replication.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

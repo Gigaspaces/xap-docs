@@ -4,6 +4,7 @@ title:  Deterministic Deployment
 categories: XAP110ADM
 parent: the-sla-overview.html
 weight: 400
+canonical: auto
 ---
 
 

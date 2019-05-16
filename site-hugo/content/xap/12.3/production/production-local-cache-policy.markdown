@@ -4,6 +4,7 @@ title:  Local Cache Policy
 categories: XAP123PROD
 parent: none
 weight: 600
+canonical: auto
 ---
 
 The [local cache](../dev-java/local-cache.html) is used as a client-side cache that stores objects read from the Space by the client application. Holding the objects in the local cache speeds up repeated read operations of the same data. The `readById`/`readByIds` operation has a special optimization with a local cache that speeds up the retrieval time of the object from the local cache, if the object is already stored there. The local cache evicts objects when a threshold is met. For client applications with a large heap size, you may want to configure the local cache eviction parameters as follows in order to control the eviction behavior:

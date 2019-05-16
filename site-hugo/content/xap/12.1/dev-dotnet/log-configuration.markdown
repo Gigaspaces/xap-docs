@@ -4,6 +4,7 @@ title:  Logging
 categories: XAP121NET, PRM
 parent: administrators-guide.html
 weight: 600
+canonical: auto
 ---
 
 {{%ssummary%}} {{%/ssummary%}}

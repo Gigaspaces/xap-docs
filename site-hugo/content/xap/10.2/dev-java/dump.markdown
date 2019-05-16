@@ -4,6 +4,7 @@ title:  Dump
 categories: XAP102
 parent: administration-and-monitoring-overview.html
 weight: 200
+canonical: auto
 ---
 
 

@@ -40,14 +40,15 @@ This sample integration was run in the following environment:
 
 The first step in integrating InsightEdge with Grafana is to download and configure the connector so that Grafana can access the data from the InsightEdge-based application.
 
-{{%note%}}The sample configuration files are located in the *<host directory>/timeseries-rest/tree/master/src/main/resources* folder. When you run the connector, the [Main](https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/java/com/gigaspaces/Main.java) requires two paramaters, the path to the grafana-insightedge.properties file and the path to the tableData.txt file (if you create different ones).{{%/note%}}
+{{%note%}}The sample configuration files are located in the *<host directory>/timeseries-rest/tree/master/src/main/resources* folder. When you run the connector, the [Main](https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/java/com/gigaspaces/Main.java) requires two parameters, the path to the `grafana-insightedge.properties` file and the path to the `tableData.txt` file (if you create different ones).{{%/note%}}
 
 To install the InsightEdge-Grafana connector:
 
 1. Clone the contents of the github repo.
 1. Modify the [grafana-insightedge.properties file](https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/resources/grafana-insightedge.properties) to suit your local evironment (host, port, space name, lookup group, and lookup locator (optional)) or create a new properties file.
 
-	Sample configuration:	
+	Sample configuration:
+	
 	```
 	CONNECTOR_HOST=HostName
 	CONNECTOR_PORT=8082
@@ -55,18 +56,22 @@ To install the InsightEdge-Grafana connector:
 	XAP_LOOKUP_GROUPS=xap-14.0.0
 	#XAP_LOOKUP_LOCATORS=
 	```
+	
 	{{%note%}}The syntax of the URL that is used to configure the simple JSON data source to work with the Space is `http://<yourhost>:<port>/insightedge/metrics`. The variables are based on values you added to the properties file.{{%/note%}}
 
 1. Modify the [tablesData.txt file](https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/resources/tablesData.txt) or create a new tableData.txt file that the connector will use to categorize the data. 
 
 	Sample data values:
+	
 	```
 	TelemetryVolt,com.gigaspaces.Telemetry,longDate,volt,machineID
 	TelemetryRotate,com.gigaspaces.Telemetry,longDate,rotate,machineID
 	TelemetryPressure,com.gigaspaces.Telemetry,longDate,pressure,machineID
 	TelemetryVibration,com.gigaspaces.Telemetry,longDate,vibration,machineID
 	```
+	
 	Each row represents the following fields in Grafana (the values from the first line of the above sample are provided for reference):
+	
 	- &lt;display name of table as it appears in the dashboard&gt; - `TelemetryPressure`
 	- &lt;class name in the Space&gt; - `com.gigaspaces.Telemetry`
 	- &lt;timestamp field in the class (of type long)&gt; - `longDate`
@@ -79,6 +84,7 @@ To install the InsightEdge-Grafana connector:
 ## Installing the Grafana Client (Dashboard Application)
 
 Grafana is not bundled with GigaSpaces products, but the product installation is easy and straightforward.
+
 To install Grafana:
 
 1. Download the client from the Grafanalabs {{%exurl "download page""http://grafana.org/download/"%}}.
@@ -105,6 +111,7 @@ After installing the Grafana client and the SimpleJson data source plugin, you m
 
 1. Run the Grafana server as described in the Grafana installation instructions.
 1. In the Settings tab of the Data Sources screen, configure the following:
+
 	- Assign a **Name** for the data source. For example, InsightedgeDS.
 	- Verify that the data source **Type** is SimpleJson.
 	- In the HTTP area, type the URL of the connector in the **URL** field using the syntax described in the section [above](#downloading-and-configuring-the-insightedge-grafana-connector).
@@ -120,8 +127,8 @@ After you finish configuring the Grafana client, you can create new dashboards t
 **To view the Space data in the dashboard:**
 
 1. In the upper-right area of the dashboard, define the time period for which you want to see data.
-1. In the Metrics tab below the graph, select the InsightedgeDS data source.
-1. Select TelemetryPressure from the dropdown list.
+1. In the Metrics tab below the graph, select the **InsightedgeDS** data source.
+1. Select **TelemetryPressure** from the dropdown list.
 
 {{% align center%}}
 ![telemetry-dashboard.png](/attachment_files/sbp/grafana/telemetry-dashboard.png)

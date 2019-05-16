@@ -4,6 +4,7 @@ title:  Interoperability
 categories: XAP110
 parent: document-overview.html
 weight: 300
+canonical: auto
 ---
 
 {{% ssummary %}}{{% /ssummary %}}

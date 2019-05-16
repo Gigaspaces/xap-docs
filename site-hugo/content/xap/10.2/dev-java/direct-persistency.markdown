@@ -4,6 +4,7 @@ title:  Direct Persistency
 categories: XAP102
 parent: space-persistency-overview.html
 weight: 100
+canonical: auto
 ---
 
 

@@ -4,6 +4,7 @@ title:  JPA API
 categories: XAP110
 parent: other-data-access-apis.html
 weight: 200
+canonical: auto
 ---
 
 

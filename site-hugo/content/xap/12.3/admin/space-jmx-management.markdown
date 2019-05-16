@@ -4,6 +4,7 @@ title:  JMX Management
 categories: XAP123ADM, OSS
 parent: monitoring.html
 weight: 200
+canonical: auto
 ---
 
 

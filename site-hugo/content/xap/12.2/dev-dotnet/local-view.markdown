@@ -4,6 +4,7 @@ title:  Local View
 categories: XAP122NET, PRM
 parent: client-side-caching.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}}{{%/ssummary%}}

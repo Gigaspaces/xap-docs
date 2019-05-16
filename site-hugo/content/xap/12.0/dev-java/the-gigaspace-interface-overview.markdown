@@ -3,6 +3,7 @@ type: post120
 title:  The Space Interface
 categories: XAP120
 weight: 700
+canonical: auto
 parent: none
 ---
 

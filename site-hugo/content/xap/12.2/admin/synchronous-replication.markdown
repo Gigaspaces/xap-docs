@@ -4,6 +4,7 @@ title:  Synchronous Replication
 categories: XAP122ADM, OSS
 parent: replication.html
 weight: 200
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

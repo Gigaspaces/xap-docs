@@ -4,6 +4,7 @@ title:  Type Discovery
 categories: XAP120NET, PRM
 parent: modeling-your-data.html
 weight: 500
+canonical: auto
 ---
 
 {{% ssummary %}} {{% /ssummary %}}

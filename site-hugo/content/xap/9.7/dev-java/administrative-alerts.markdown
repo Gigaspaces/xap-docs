@@ -3,6 +3,7 @@ type: post97
 title:  Administrative Alerts
 categories: XAP97
 weight: 300
+canonical: auto
 parent: administration-and-monitoring-overview.html
 ---
 
