@@ -260,20 +260,25 @@ img.tc-pictureinline {
 img.tc-thumbnail {
   mc-thumbnail: popup;
 }
-ol,
-ul {
+ol, ul {
   font-size: 1rem;
   margin-bottom: 10px;
   margin-top: 0px;
 }
-li,
-li p {
+li, p {
   line-height: 1.5;
-  margin: 0px;
+  margin: 1em 0px;
 }
 .topic-content ol,
 .topic-content ul {
   list-style: none;
+  margin-left: -1.1em;
+}
+.topic-content ol ol,
+.topic-content ol ul,
+.topic-content ul ul,
+.topic-content ul ol {
+  margin-left: -1.5em;
 }
 .topic-content ul>li {
   position: relative;
@@ -352,15 +357,12 @@ span.tc-iconexcl:before {
 }
 p.tc-tablehead {
   font-size: 1rem;
-  font-weight: 400;
   margin: 0;
   line-height: 17px;
 }
 p.tc-tablebody {
   font-size: 1rem;
-  /* font-weight: 300; */
   line-height: 17px;
-  /* padding: 10px; */
 }
 p.tc-todo {
   color: #006cb8;
@@ -502,10 +504,12 @@ table td {
   background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
   font-size: 1rem;
   font-family: 'Rubik', sans-serif;
+  font-weight: 300;
 }
 table td ol,
 table td ul {
   font-size: .75rem;
+  font-weight: 300
 }
 table tr.even td {
   background: #f6f6f6;
