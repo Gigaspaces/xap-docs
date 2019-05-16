@@ -2,8 +2,11 @@ package com.gigaspaces.jarvis.model;
 
 import com.gigaspaces.jarvis.Logger;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -21,7 +24,7 @@ public class Page implements Comparable<Page> {
     private final String canonicalUrl;
     private final TreeSet<Page> children = new TreeSet<>();
 
-    public Page(File file, boolean groupingMode) throws IOException {
+    public Page(File file, boolean groupingMode) {
         this.file = file;
         String category = initCategory(file);
         this.index = file.getName().equals("index.markdown");
@@ -32,7 +35,9 @@ public class Page implements Comparable<Page> {
         this.title = properties.getProperty("title");
         this.canonicalUrl = properties.getProperty("canonical");
         this.weight = properties.containsKey("weight") ? Long.valueOf(properties.getProperty("weight")) : null;
-
+        if (weight == null && !file.getName().equals("index.markdown")) {
+            throw new IllegalStateException("No weight for page " + file);
+        }
         String[] tokens = parseCategory(category);
         if (tokens != null) {
             String prefix = tokens[0] + "/" + tokens[1] + "/" + (tokens[2].isEmpty() ? file.getName().replace(".markdown", ".html") : tokens[2] + "/");
@@ -81,15 +86,15 @@ public class Page implements Comparable<Page> {
         return new String[]{product, version, s};
     }
 
-    private Properties loadProperties() throws IOException {
+    private Properties loadProperties() {
         if (file.getName().contains("--")) {
-            throw new IOException("File names can't contain more then one '-' :" + file.getName());
+            throw new IllegalStateException("File names can't contain more then one '-' :" + file.getName());
         }
 
         Properties properties = new Properties();
         AtomicInteger separators = new AtomicInteger(0);
         
-        try (Scanner scanner = new Scanner(file)) {
+        try (Scanner scanner = new Scanner(file, "utf8")) {
             while (scanner.hasNextLine()) {
                 final String line = scanner.nextLine().trim();
                 if (line.equals(YAML_SEPARATOR)) {
@@ -104,6 +109,8 @@ public class Page implements Comparable<Page> {
                     }
                 }
             }
+        } catch (FileNotFoundException e) {
+            throw new IllegalStateException("Failed to scan properties file", e);
         }
 
         return properties;
@@ -216,5 +223,37 @@ public class Page implements Comparable<Page> {
 
         System.out.println("Ambigous comparison: " + this.id + " => " + c1 + ", " + o.id + " => " + c2);
         return 0;
+    }
+
+    public void generateCanonicalUrl(AtomicInteger counter) {
+        children.forEach(child -> child.generateCanonicalUrl(counter));
+        String canonicalUrl = getCanonicalUrl();
+        if (canonicalUrl != null) {
+            counter.incrementAndGet();
+            if (canonicalUrl.equals("auto")) {
+                canonicalUrl = file.getParentFile().getName() + "/" +
+                        file.getName().replace(".markdown", ".html");
+            }
+            Path target = Paths.get("output", "xap",
+                    file.getParentFile().getParentFile().getName(),
+                    file.getParentFile().getName(),
+                    file.getName().replace(".markdown", ".html"));
+            String url = "https://docs.gigaspaces.com/latest/" + canonicalUrl;
+            FileUtils.processLines(target, line -> FileUtils.lineAppender(line, l -> l.equals("<head>"), "    <link rel=\"canonical\" href=\"" + url + "\" />"));
+        }
+    }
+
+    public void generateAutoCanonicalUrl(AtomicInteger counter) {
+        children.forEach(child -> child.generateAutoCanonicalUrl(counter));
+        String canonicalUrl = getCanonicalUrl();
+        if (canonicalUrl == null) {
+            Path canonical = Paths.get("site-flare", "Content",
+                    file.getParentFile().getName(),
+                    file.getName().replace(".markdown", ".html"));
+            if (canonical.toFile().exists()) {
+                counter.incrementAndGet();
+                FileUtils.processLines(file.toPath(), line -> FileUtils.lineAppender(line, l -> l.startsWith("weight:"), "canonical: auto"));
+            }
+        }
     }
 }

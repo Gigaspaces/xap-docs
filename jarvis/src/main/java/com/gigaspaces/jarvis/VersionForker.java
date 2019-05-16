@@ -64,8 +64,8 @@ public class VersionForker {
             updateConfigToml();
             updateShortcodes();
             logger.info("Forking completed");
-            VersionContainer result = new VersionContainer(destPath.toFile());
-            result.load(config);
+            VersionContainer result = new VersionContainer(destPath.toFile(), config);
+            result.loadRootPages();
             return result;
         } catch (IOException ex) {
             logger.warning("Failed to fork " + srcVersion + " to " + dstVersion + ": " + ex);
