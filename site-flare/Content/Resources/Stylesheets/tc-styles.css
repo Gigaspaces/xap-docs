@@ -59,6 +59,7 @@ div.easyui-tabs {
   /* Placeholder */
 }
 div.easyui-tabs .tabs {
+  margin-left: 0;
   padding-left: 0;
 }
 div.easyui-tabs .tabs>li::before {
@@ -266,8 +267,9 @@ ol, ul {
   margin-top: 0px;
 }
 li, p {
+  font-weight: 300;
   line-height: 1.5;
-  margin: 1em 0px;
+  margin: .5em 0px;
 }
 .topic-content ol,
 .topic-content ul {
@@ -306,6 +308,7 @@ li, p {
 .topic-content ol>li::before {
   content: counter(li) '. ';
   color: #00c0f3;
+  font-weight: 300;
   margin-left: -1.5em;
   margin-right: 0.5em;
   position: absolute;
@@ -319,7 +322,6 @@ p {
   color: #4a4a4a;
   font-size: 1rem;
   font-family: 'Rubik', sans-serif;
-  font-weight: 300;
   line-height: 1.5;
 }
 p.tc-admon-title {
