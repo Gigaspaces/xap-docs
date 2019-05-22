@@ -22,7 +22,7 @@
             <li MadCap:conditions="Version.14-2-died">Make sure that the host machine where the GigaSpaces Management Center is running has Internet access.</li>
         </ul>
         <div class="tc-admon-note" MadCap:conditions="Version.14-2-died">
-            <p>If the host machine doesn't have Internet access, the GigaSpaces Management Center won't start. To prevent this from happening, set the system property <code>com.gs.get-build</code> to <code>false</code> in the EXT_JAVA_OPTIONS environment variable in the <code>setenv-overrides</code> file.</p>
+            <p>If the host machine doesn't have Internet access, the GigaSpaces Management Center won't start. To prevent this from happening, set the system property <code>com.gs.get-build</code> to <code>false</code> in the <MadCap:conditionalText MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.14-5-born">XAP_OPTIONS_EXT</MadCap:conditionalText>environment variable in the <code>setenv-overrides</code> file.</p>
         </div>
         <p>With relatively large amount of GSCs, Services or data grid partitions (over 20 units), we also recommend increasing the heap size of the GigaSpaces Management Center to 1G (-Xmx1g).</p>
         <h1><a name="starting-the-gigaspaces-management-center"></a>Starting The GigaSpaces Management Center</h1>

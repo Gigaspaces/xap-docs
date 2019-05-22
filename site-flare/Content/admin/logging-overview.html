@@ -20,7 +20,7 @@
         <p>Any configuration that you want to override in the <code>xap_logging.properties</code> file, should appear in <code>xap_logging_ext.properties</code> with its new value. The same applies for system properties, for example:</p><pre><code class="language-bash">-Dcom.gigaspaces.exceptions.level=WARNING
 </code></pre>
         <div class="tc-admon-note">
-            <p>The recommended way to define system properties when starting service grid components is to wrap the original script, e.g. <code>gsc.sh(bat)</code> with a wrapper script which include the EXT_JAVA_OPTIONS variable. The <code>setenv.sh(bat)</code> script, which is used by these components, will pick these options automatically and use them as JVM arguments.</p>
+            <p>The recommended way to define system properties when starting service grid components is to wrap the original script, e.g. <code>gsc.sh(bat)</code> with a wrapper script which include the <MadCap:conditionalText MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-born">XAP_OPTIONS_EXT</MadCap:conditionalText> variable. The <code>setenv.sh(bat)</code> script, which is used by these components, will pick these options automatically and use them as JVM arguments.</p>
         </div>
         <h2><a name="overriding-the-configuration-file"></a>Overriding the Configuration File</h2>
         <p>Your own configuration file may also be used instead of the platform's default. This is done by setting the configuration file location using a system property:</p><pre><code class="language-bash">-Djava.util.logging.config.file=myfile.properties

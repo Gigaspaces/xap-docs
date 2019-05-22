@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -29,7 +29,7 @@
             <p>The recommended number of GSCs a machine should host is <span class="tc-bold">half of the amount</span> of total CPU cores, each having no more than a 10GB maximum heap size.</p>
         </div>
         <h2><a name="configuring-the-runtime-environment"></a>Configuring the Runtime Environment</h2>
-        <p>JVM parameters (system properties, heap settings, etc.) that are shared between all components are best set using the <code>EXT_JAVA_OPTIONS</code> environment variable. Specific GSA JVM parameters can be easily passed using <code>XAP_GSA_OPTIONS</code> which will be appended to <code>EXT_JAVA_OPTIONS</code>. As good practice, add all the components' environment variables ( <code>XAP_GSA_OPTIONS</code>, <code>XAP_GSM_OPTIONS</code>, <code>XAP_GSC_OPTIONS</code>, <code>XAP_LUS_OPTIONS</code>) within the GSA script, or in a wrapper script and the values will be passed to corresponding components.</p>
+        <p>JVM parameters (system properties, heap settings, etc.) that are shared between all components are best set using the <code MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</code> <code MadCap:conditions="Version.14-5-born">XAP_OPTIONS_EXT</code> environment variable. Specific GSA JVM parameters can be easily passed using <code>XAP_GSA_OPTIONS</code> which will be appended to<MadCap:conditionalText MadCap:conditions="Version.14-5-died"> <code>EXT_JAVA_OPTIONS</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><ins>XAP_OPTIONS_EXT</ins>.</MadCap:conditionalText> As good practice, add all the components' environment variables ( <code>XAP_GSA_OPTIONS</code>, <code>XAP_GSM_OPTIONS</code>, <code>XAP_GSC_OPTIONS</code>, <code>XAP_LUS_OPTIONS</code>) within the GSA script, or in a wrapper script and the values will be passed to corresponding components.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Linux " style="padding:10px"><pre><code class="language-bash">#Wrapper Script
 export XAP_GSA_OPTIONS='-Xmx256m'
@@ -91,23 +91,23 @@ gs deploy-space -cluster schema=partitioned total_members=2 spaceY
             <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
                 <div title="Step 1. Run gs-agent starting LUS/GSM with a lookup service listening on port 8888:" style="padding:10px;"><pre><code class="language-bash">export XAP_LUS_OPTIONS=-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=8888
 export XAP_LOOKUP_LOCATORS=127.0.0.1:8888
-export EXT_JAVA_OPTIONS=-Dcom.gs.multicast.enabled=false
+export </code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">=-Dcom.gs.multicast.enabled=false
 gs-agent.sh --lus=1 --gsm=1 
 </code></pre>
                 </div>
                 <div title="Step 2. Run gs-agent that will start GSCs using the lookup listening on port 8888 (4 GGCs with this example):" style="padding:10px;"><pre><code class="language-bash">export XAP_LOOKUP_LOCATORS=127.0.0.1:8888
-export EXT_JAVA_OPTIONS=-Dcom.gs.multicast.enabled=false
+export </code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">=-Dcom.gs.multicast.enabled=false
 gs-agent.sh --gsc-4
 </code></pre>
                 </div>
                 <div title="Step 3. Run gs-agent starting LUS/GSM with a lookup service listening on port 9999:" style="padding:10px;"><pre><code class="language-bash">export XAP_LUS_OPTIONS=-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=9999
 export XAP_LOOKUP_LOCATORS=127.0.0.1:8888
-export EXT_JAVA_OPTIONS=-Dcom.gs.multicast.enabled=false
+export </code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">=-Dcom.gs.multicast.enabled=false
 gs-agent.sh --lus=1 --gsm=1 
 </code></pre>
                 </div>
                 <div title="Step 4. Run gs-agent that will start GSCs using the lookup listening on port 9999 (2 GGCs with this example):" style="padding:10px;"><pre><code class="language-bash">export XAP_LOOKUP_LOCATORS=127.0.0.1:9999
-export EXT_JAVA_OPTIONS=-Dcom.gs.multicast.enabled=false
+export </code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">=-Dcom.gs.multicast.enabled=false
 gs-agent.sh --gsc=2
 </code></pre>
                 </div>
@@ -139,7 +139,7 @@ gs deploy-space -cluster schema=partitioned total_members=2 spaceY
         <p>To use zones when deploying your PU you should:</p>
         <div class="row">
             <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
-                <div title="Step 1. Start the GSC using the `com.gs.zones` system property. Example: " style="padding:10px;"><pre><code class="language-bash">export EXT_JAVA_OPTIONS=-Dcom.gs.zones=webZone ${EXT_JAVA_OPTIONS}
+                <div title="Step 1. Start the GSC using the `com.gs.zones` system property. Example: " style="padding:10px;"><pre><code class="language-bash">export </code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">=-Dcom.gs.zones=webZone ${</code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">}
 gs-agent --gsc=2
 </code></pre>
                 </div>
@@ -155,11 +155,11 @@ gs-agent --gsc=2
                 <div title="Step 1. Run gs-agent on the machines you want to have the LUS/GSM:" style="padding:10px;"><pre><code class="language-bash">gs-agent.sh --lus=1 --gsm=1 
 </code></pre>
                 </div>
-                <div title="Step 2. Run gs-agent that will start GSCs with zoneX (4 GGCs with this example):" style="padding:10px;"><pre><code class="language-bash">export EXT_JAVA_OPTIONS=-Dcom.gs.zones=zoneX ${EXT_JAVA_OPTIONS}
+                <div title="Step 2. Run gs-agent that will start GSCs with zoneX (4 GGCs with this example):" style="padding:10px;"><pre><code class="language-bash">export </code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">=-Dcom.gs.zones=zoneX ${</code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">}
 gs-agent.sh --gsc=4
 </code></pre>
                 </div>
-                <div title="Step 3. Run gs-agent that will start GSCs with zoneY (2 GGCs with this example):" style="padding:10px;"><pre><code class="language-bash">export EXT_JAVA_OPTIONS=-Dcom.gs.zones=zoneY ${EXT_JAVA_OPTIONS}
+                <div title="Step 3. Run gs-agent that will start GSCs with zoneY (2 GGCs with this example):" style="padding:10px;"><pre><code class="language-bash">export </code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">=-Dcom.gs.zones=zoneY ${</code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">}
 gs-agent.sh --gsc=2
 </code></pre>
                 </div>

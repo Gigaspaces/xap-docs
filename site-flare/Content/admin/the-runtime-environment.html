@@ -90,7 +90,7 @@ gs-agent --global.lus=2 --global.gsm=2 --gsc=2
         </div>
         <h1><a name="configuration"></a>Configuration</h1>
         <p>Service Grid configuration is often composed of two layers: system-wide configuration and component-specific configuration.</p>
-        <p>The system-wide configuration specifies settings which all components share, e.g. discovery (unicast/multicast), security, zones, etc. These are set using the <code>EXT_JAVA_OPTIONS</code> environment variable.</p>
+        <p>The system-wide configuration specifies settings which all components share, e.g. discovery (unicast/multicast), security, zones, etc. These are set using the <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code MadCap:conditions="Version.14-5-born"> XAP_OPTIONS_EXT</code> environment variable.</p>
         <p>The component-specific configuration specifies settings per component type, e.g. the GSC memory limit is greater than the GSM and LUS. These are set using one or more of the environment variables: <code>XAP_GSA_OPTIONS</code>, <code>XAP_GSC_OPTIONS</code>, <code>XAP_GSM_OPTIONS</code>, <code>XAP_LUS_OPTIONS</code>.</p>
         <div class="tc-admon-note">
             <p>The component-specific configuration override the system-wide configuration.</p>

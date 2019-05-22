@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -377,7 +377,7 @@
         </div><a name="portrange"></a>
         <h2><a name="defining-socket-port-range-per-jvm"></a>Defining Socket Port Range per JVM</h2>
         <p>You can define port range using the <code>com.gigaspaces.transport.bind-port</code> property, meaning that every JVM acquires a bind port from a defined port range. This functionality is useful when having multiple JVMs on the same machine (clients or servers), and simplifies firewall setup.</p>
-        <p>Here is how you can set a listening port range for GSA/GSC/GSM:</p><pre><code class="language-bash">export EXT_JAVA_OPTIONS=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100
+        <p>Here is how you can set a listening port range for GSA/GSC/GSM:</p><pre><code class="language-bash">export </code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100
 </code></pre><a name="server"></a>
         <h2><a name="configuration-with-multi-homed-machines"></a>Configuration with Multi-Homed Machines</h2>
         <p>When working with a multi-homed machine (a computer with multiple network cards), use the following system property to bind the GigaSpaces Server on a specified network interface:</p><pre><code class="language-bash">-Djava.rmi.server.hostname=&lt;hostname or IP address&gt;
