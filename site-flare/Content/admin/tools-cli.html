@@ -20,9 +20,17 @@ the list of commands for <code>insightedge host run-agent --help</code> contains
             <li>The server configured using <code>--server</code> command line option.</li>
             <li>The <code>localhost</code> as the server to connect to (if none of the above was applied).</li>
         </ul>
+        <h1 MadCap:conditions="Version.14-5-born">Interactive Shell</h1>
+        <p MadCap:conditions="Version.14-5-born">CLI interactive shell is available for all platforms. To activate the interactive mode navigate to <code>&lt;XAP-HOME&gt;/bin</code> and type <code>xap</code> or <code>insightedge</code>. CLI help is displayed and Interactive mode continues to guide you in completing CLI commands by:</p>
+        <ul MadCap:conditions="Version.14-5-born">
+            <li>Autocompleting the command when you enter the first letters of the command and click <code>[TAB]</code></li>
+            <li>Automatically displaying CLI help for the command you enter</li>
+        </ul>
+        <p>Enter ctrl-D to exit the interactive shell.</p>
         <h1><a name="autocomplete-functionality"></a>Autocomplete Functionality</h1>
         <h2><a name="overview"></a>Overview</h2>
-        <p>Bash completion in the CLI is available for Linux and MacOS X users. After activating the autocomplete feature (as explained below), navigate to <code>&lt;XAP-HOME&gt;/bin</code> and type <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>. This will complete the command sequence, or list all the available completions if there are multiple options.</p>
+        <p MadCap:conditions="Version.14-5-died">Bash completion in the CLI is available for Linux and MacOS X users. After activating the autocomplete feature (as explained below), navigate to <code>&lt;XAP-HOME&gt;/bin</code> and type <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>. This will complete the command sequence, or list all the available completions if there are multiple options.</p>
+        <p MadCap:conditions="Version.14-5-born">Bash completion for all commands in the CLI is available for Linux and MacOS X users. After activating the autocomplete feature (as explained below), navigate to <code>&lt;XAP-HOME&gt;/bin</code> and type <code>&lt;command&gt; [TAB][TAB]</code>. This will complete the command sequence, or list all the available completions if there are multiple options.</p>
         <h3><a name="macos-x-users-only"></a>MacOS X Users Only</h3>
         <p>If you are using the CLI in a MacOS X environment, the autocomplete script will only work if bash version 4 is installed on your machine. After installing the required bash version, add the shell to the allowed shells and make it the default shell.</p>
         <p>When using autocomplete, type <code>./xap [TAB][TAB]</code> or <code>./insightedge [TAB][TAB]</code>.</p>
