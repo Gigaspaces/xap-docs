@@ -19,6 +19,7 @@ public class Config {
     private final File path;
     private final File sitePath;
     private final File contentPath;
+	private final File outputPath;
     private final Map<String, String> properties = new TreeMap<>();
     private final Map<String, String> pagePluging = new TreeMap<>();
     private final AtomicInteger totalFolders = new AtomicInteger();
@@ -40,9 +41,9 @@ public class Config {
         this.path = path;
         this.sitePath = new File(path, siteFolder != null ? siteFolder : "site-hugo");
         this.contentPath = new File(sitePath, "content");
+        this.outputPath = new File(path, "output");
         loadProperties();
         groupByPrefix(properties, "plugin.").forEach(this::addPlugin);
-
     }
 
     private void loadProperties() {
@@ -137,6 +138,10 @@ public class Config {
 
     public File getContentPath() {
         return contentPath;
+    }
+    
+    public File getOutputPath() {
+        return outputPath;
     }
     
     public Map<String, String> getPagePluging() {

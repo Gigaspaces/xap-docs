@@ -11,6 +11,9 @@ call run-hugo.bat -d ..\output
 echo *** Building flare site ***
 "C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild.exe" -project site-flare\XAP-Import-Test-1.flprj -batch "InsightEdge-batch"
 
+echo *** Add noindex element to output ***
+call jarvis.bat generate-noindex %~dp0
+
 echo *** Publishing output ***
 if "%1"=="" (
   echo echo Publishing skipped - destination not defined

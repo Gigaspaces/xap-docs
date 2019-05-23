@@ -2,10 +2,12 @@ package com.gigaspaces.jarvis;
 
 import com.gigaspaces.jarvis.model.CanonicalUrlReport;
 import com.gigaspaces.jarvis.model.ContentSection;
+import com.gigaspaces.jarvis.model.FileUtils;
 import com.gigaspaces.jarvis.model.MenuTree;
 import com.gigaspaces.jarvis.ui.MainUI;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -19,6 +21,9 @@ public class Program {
         switch (command) {
             case "generate-navbar":
                 generateNavBar(getConfig(args));
+                break;
+            case "generate-noindex":
+                generateNoindex(getConfig(args));
                 break;
             case "generate-canonical-url":
                 generateCanonicalUrl(getConfig(args));
@@ -37,6 +42,19 @@ public class Program {
 
     private static void generateNavBar(Config config) throws IOException {
         MenuTree.generateNavbar(config);
+    }
+
+    private static void generateNoindex(Config config) throws IOException {
+        final long startTime = System.currentTimeMillis();
+
+		Path outputPath = config.getOutputPath().toPath().resolve("xap");
+        String element = "    <meta name=\"robots\" content=\"noindex\" />";
+        FileUtils.processFiles(outputPath,
+                p -> p.getFileName().toString().endsWith(".html"),
+                line -> FileUtils.lineAppender(line, l -> l.equals("<head>"), element));
+
+        long duration = System.currentTimeMillis() - startTime;
+        Logger.getInstance().info(String.format("Finished generating noindex (duration=%sms)", duration));
     }
 
     private static void generateCanonicalUrl(Config config) {

@@ -6,8 +6,15 @@ import java.nio.file.Path;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FileUtils {
+
+    public static void processFiles(Path path, Predicate<Path> pathFilter, Function<String, String> lineMapper) throws IOException {
+        try (Stream<Path> tree = Files.walk(path)) {
+            tree.filter(pathFilter).forEach(p -> processLines(p, lineMapper));
+        }
+    }
 
     public static void processLines(Path path, Function<String, String> lineMapper) {
         try {
