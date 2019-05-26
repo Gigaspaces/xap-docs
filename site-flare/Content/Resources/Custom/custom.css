@@ -20,6 +20,16 @@ body {
 .landing .region-hero>img {
   max-width: none;
 }
+/* 404 Page */
+.landing .page-404 .region-top {
+  margin-top: 5rem;
+}
+.landing .page-404 .region-top p {
+  font-size: 1.3rem;
+}
+.landing .page-404 + #footer {
+  margin-top: 5rem;
+}
 /* Top tiles */
 .landing .region-top {
   margin-top: 237px;
@@ -333,7 +343,6 @@ MadCap|breadcrumbsProxy {
   overflow: auto;
 }
 
-
 /* In-Page Nav */
 .content .topic-container .ipn-content {
   display: block;
@@ -379,7 +388,7 @@ MadCap|breadcrumbsProxy {
   height: 20px;
   margin: 0;
   position: absolute;
-  right: calc(20% - 49px);
+  /* right: calc(20% - 49px); */
   top: 3px;
   transition: 0.5s right ease;
   width: 20px;
@@ -395,7 +404,7 @@ MadCap|breadcrumbsProxy {
   top: 3px;
 }
 .content .ipn-content.closed + #ipn-toggle {
-  right: 33px;
+  right: 33px!important;
 }
 .content .ipn-content.closed + #ipn-toggle:before {
   border-top: solid 10px transparent;

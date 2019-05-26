@@ -44,10 +44,14 @@
           })
           .appendTo('.content .sidenav-layout');
         $('<div id="ipn-toggle" />')
+          .css('right', (parseInt($('.ipn-content').width()) + 14) + 'px')
           .click(function () {
             $(this).prev().toggleClass('closed');
           })
           .appendTo('.content .topic-container');
+        $(window).on('resize', function () {
+          $('#ipn-toggle').css('right', (parseInt($('.ipn-content').width()) + 14) + 'px');
+        });
       });
     },
     methods: {
