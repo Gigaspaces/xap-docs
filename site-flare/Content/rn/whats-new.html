@@ -76,14 +76,18 @@
         <h1 MadCap:conditions="Version.14-2-only"><MadCap:variable name="General.CompanyName" /> Products Now Available with Red Hat OpenShift </h1>
         <p MadCap:conditions="Version.14-2-only">InsightEdge and XAP are now Red Hat-certified containers, available in the official Red Hat registry. Customers can easily download <a href="https://access.redhat.com/containers/?tab=overview#/registry.connect.redhat.com/gigaspaces/insightedge-enterprise-14-0" target="_blank">InsightEdge</a> and <a href="https://access.redhat.com/containers/?tab=overview#/registry.connect.redhat.com/gigaspaces/xap-enterprise-14-0" target="_blank">XAP</a> container images to create, test, and run applications. and deploy them to the target platform.</p>
         <p MadCap:conditions="Version.14-2-only">Look for our GigaSpaces products in the <a href="https://access.redhat.com/containers/" target="_blank">Red Hat Container Catalog</a>.</p>
-        <h1 MadCap:conditions="Version.14-5-only">Interactive Shell for CLI</h1>
-        <p MadCap:conditions="Version.14-5-only">CLI interactive shell is available for all platforms and is activated automatically with the <code>xap</code> or <code>insightedge</code> commands. The interactive shell guides you in completing CLI commands by autocompleting commands and by automatically displaying CLI help for commands.</p>
-        <h1 MadCap:conditions="Version.14-5-only">Environment and Command Changes</h1>
+        <h1 MadCap:conditions="Version.14-5-only">Platform Enhancements</h1>
+        <h2 MadCap:conditions="Version.14-5-only">Interactive Shell for CLI</h2>
+        <p MadCap:conditions="Version.14-5-only">A CLI interactive shell is available for all platforms, and is activated automatically with the <code>xap</code> or <code>insightedge</code> commands. The interactive shell guides you in completing CLI commands by autocompleting and automatically displaying CLI help for commands.</p>
+        <h2 MadCap:conditions="Version.14-5-only">Environment and Command Changes</h2>
+        <p MadCap:conditions="Version.14-5-only">The following environment variables have been added:</p>
         <ul MadCap:conditions="Version.14-5-only">
-            <li>XAP_OPTIONS and XAP_OPTIONS_EXT environment variables have been added</li>
-            <li>XAP_LIBRARY_PATH and XAP_LIBRARY_PATH_EXT environment variables have been added</li>
-            <li>EXT_JAVA_OPTIONS has been deprecated. Use XAP_OPTIONS_EXT instead.</li>
+            <li>XAP_OPTIONS and XAP_OPTIONS_EXT </li>
+            <li>XAP_LIBRARY_PATH and XAP_LIBRARY_PATH_EXT </li>
         </ul>
+        <p>Additionally, the EXT_JAVA_OPTIONS environment variable is deprecated as of this version. Use XAP_OPTIONS_EXT instead.</p>
+        <h2>Improved Support for CSV Files</h2>
+        <p>Users can now stream data from CSV files directly to Space entries, and then write them to the Space.,</p>
         <h1 MadCap:conditions="Version.14-2-only,Version.14-5-only">Third-Party Product Changes</h1>
         <ul MadCap:conditions="Version.14-2-only">
             <li><a href="https://spark.apache.org/" target="_blank">Apache Spark</a> has been upgraded to 2.4.0.</li>
