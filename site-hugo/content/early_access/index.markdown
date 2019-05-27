@@ -12,15 +12,15 @@ This page contains early access information for the InsightEdge Platform and XAP
 
 # 14.5.0 M6 (May-26-2019)
 
- ## Download Links
+## Download Links
 
  * \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.5.0/gigaspaces-insightedge-14.5.0-m6.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.5.0/gigaspaces-insightedge-enterprise-14.5.0-m6.zip)\] 
 
  * \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap-14.5.0-m6.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap-enterprise-14.5.0-m6.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap.net-14.5.0-m6.msi)\]
 
- ## Changelog
+## Changelog
 
- ### Features and Enhancements
+### Features and Enhancements
 
 - {{% jira id="GS-13844" %}}: Added CsvReader to simplify reading data from .CSV files.
 - {{% jira id="GS-13843" %}}: Upgrade Apache Calcite to 1.13.
@@ -36,7 +36,7 @@ This page contains early access information for the InsightEdge Platform and XAP
 - {{% jira id="GS-13807" %}}: Reduce network traffic when the GSC connects with the GSM.
 
 
- ### Resolved Issues
+### Resolved Issues
 
 - {{% jira id="GS-13828" %}}: Processing Unit stays in COMPROMISED state after network disruption, due to failure of the GSC to register with the GSM.
 - {{% jira id="GS-13831" %}}: Command line generator does not quote the com.gs.home path if it contains space characters.
