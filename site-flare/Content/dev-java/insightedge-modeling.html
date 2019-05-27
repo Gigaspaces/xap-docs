@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
-        <h1><MadCap:variable name="General.ProductNameIE" /> Data Modeling</h1>
+        <h1 class="tc-pagetitle"><MadCap:variable name="General.ProductNameIE" /> Data Modeling</h1>
         <p>This section describes how to define the Data Grid model.</p>
         <h1><a name="class-annotations"></a>Class Annotations</h1>
         <p>The Data Grid native modeling is designed for  Java POJO classes. In order to use Scala case classes with the grid, do the following:</p>
@@ -47,5 +47,12 @@ case class Product(
         <h2><a name="controlling-spark-partitions"></a>Controlling Spark Partitions</h2>
         <p>By default there is a one-to-one mapping between Spark and Data Grid partitions. If you want your RDD or DataFrame to have more partitions than Data Grid, you have to mixin <code>org.insightedge.spark.model.BucketedGridModel</code> trait into your class.
 The <code>BucketedGridModel.metaBucketId</code> property should be uniformly distributed between 0 and 128.</p>
+        <h1>Limitations</h1>
+        <p>If you use Java client to write POJO objects to the Space, but then read them as DataFrame from the Apache Zeppelin notebook, you may encounter any of the following limitations:</p>
+        <ul>
+            <li>If you try to read a class where one or more of the properties is defined as Enum, read operations will fail.</li>
+            <li>The InsightEdge JDBC interpreter doesn’t support nested properties. Instead, use the Spark SQL interpreter to read POJOs that contain nested properties.</li>
+            <li>In some edge cases, the Java class definition may be incompatible with Scala. For example, if the Java class contains a sub-class that references the parent class. When this type of incompatibility is encountered, read operations From Apache Zeppelin may fail with an error.</li>
+        </ul>
     </body>
 </html>
