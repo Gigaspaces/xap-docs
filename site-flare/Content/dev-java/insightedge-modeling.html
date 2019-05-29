@@ -50,7 +50,8 @@ The <code>BucketedGridModel.metaBucketId</code> property should be uniformly dis
         <h1>Limitations</h1>
         <p>If you use Java client to write POJO objects to the Space, but then read them as DataFrame from the Apache Zeppelin notebook, you may encounter any of the following limitations:</p>
         <ul>
-            <li>If you try to read a class where one or more of the properties is defined as Enum, read operations will fail.</li>
+            <li MadCap:conditions="Version.14-5-died">If you try to read a class where one or more of the properties is defined as Enum, read operations will fail.</li>
+            <li MadCap:conditions="Version.14-5-died,Version.14-5-born">If you try to read a SpaceDocument where one or more of the property values is defined as Enum, read operations will fail.</li>
             <li>The InsightEdge JDBC interpreter doesn’t support nested properties. Instead, use the Spark SQL interpreter to read POJOs that contain nested properties.</li>
             <li>In some edge cases, the Java class definition may be incompatible with Scala. For example, if the Java class contains a sub-class that references the parent class. When this type of incompatibility is encountered, read operations From Apache Zeppelin may fail with an error.</li>
         </ul>

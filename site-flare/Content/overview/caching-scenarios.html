@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Caching Scenarios</h1>
-        <p>The GigaSpaces IMDG supports three kinds of caching mechanisms:</p>
+        <p>The data grid supports three kinds of caching mechanisms:</p>
         <ul>
             <li>
                 <p><a href="#in-line">In-line Cache</a>
@@ -19,7 +19,7 @@
                 </p>
             </li>
         </ul>
-        <p>Using the <MadCap:variable name="General.ProductNameXAP" /> data grid as a cache provides you the following benefits:</p>
+        <p>Using the  data grid as a cache provides you the following benefits:</p>
         <ul>
             <li>
                 <p>Low latency: In-Memory Data access time without any disk usage.</p>
@@ -154,8 +154,8 @@
             </li>
         </ul><a name="client-cache"></a>
         <h1><a name="client-cache"></a>Client Cache</h1>
-        <p>Together with the in-line cache and side cache scenarios, you can also use a client cache. This client cache may host data loaded from any IMDG partition. The client cache data access does not involve any serialization or network calls.</p>
-        <p>When using client cache, you use a two-layered cache architecture: The first layer runs locally, within the client, and the second layer runs in the remote IMDG. The remote IMDG may use any of the supported deployment topologies.</p>
+        <p>Together with the in-line cache and side cache scenarios, you can also use a client cache. This client cache may host data loaded from any data grid partition. The client cache data access does not involve any serialization or network calls.</p>
+        <p>When using client cache, you use a two-layered cache architecture: The first layer runs locally, within the client, and the second layer runs in the remote data grid. The remote data grid may use any of the supported deployment topologies.</p>
         <p><span class="tc-bold">In-Line Cache with a Client Cache</span>
         </p>
         <div class="tc-align-center">
@@ -183,7 +183,7 @@
                 <img src="../Resources/Static/attachment_files/overview/side-cache-external-data-local-cache.png" width="644" height="231" class="tc-picture80" />
             </p>
         </div>
-        <p>The client cache size is limited to the client process heap size. The client-side cache is updated automatically when the master copy of the object within the IMDG is updated. The client cache can be implemented using the following configurations:</p>
+        <p>The client cache size is limited to the client process heap size. The client-side cache is updated automatically when the master copy of the object within the data grid is updated. The client cache can be implemented using the following configurations:</p>
         <ul>
             <li>
                 <p><a href="../dev-java/local-cache.html">Local Cache</a> - On-demand client cache loading data based on client activity. This type of client cache evicts data when the client available memory drops below a configurable value.</p>
