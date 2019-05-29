@@ -8,16 +8,19 @@
         <p>Organizations often require quick insight into data to understand the business impact, and don't want to waste
     valuable time consulting their corporate IT team. With the <a href="sql-query-intro.html">InsightEdge JDBC driver</a>   ,
     this can be done using the data stored in the data grid. <a href="https://www.tableau.com/">Tableau</a>
-    can be connected to the data grid via an ODBC-JDBC gateway, in order to retrieve and present the required data in a
+    can be connected to the data grid via<MadCap:conditionalText MadCap:conditions="Version.14-5-died"> an ODBC-JDBC gateway</MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.14-5-born">JDBC</MadCap:conditionalText>, in order to retrieve and present the required data in a
     visual format.</p>
         <p>This topic describes how to set up an integration of Tableau with <MadCap:variable name="General.ProductNameIE" /> in a Microsoft Windows environment,
     so that the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;driver can be used to retrieve data and display it in a graphic visual representation.</p>
-        <h2><a name="architecture"></a>Architecture</h2>
-        <p>Tableau can connect to the data grid using the <MadCap:variable name="General.ProductNameIE" /> JDBC driver. However, Tableau can only use ODBC as a general connection option, so a third-party ODBC-JDBC
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p>Tableau version 2019.1 or later is required.</p>
+        </div>
+        <h2 MadCap:conditions="Version.14-5-died"><a name="architecture"></a>Architecture</h2>
+        <p MadCap:conditions="Version.14-5-died">Tableau can connect to the data grid using the <MadCap:variable name="General.ProductNameIE" /> JDBC driver. However, Tableau can only use ODBC as a general connection option, so a third-party ODBC-JDBC
     connection is needed to convert ODBC requests from Tableau into JDBC requests for the <MadCap:variable name="General.ProductNameIE" /> JDBC driver. The
     Easysoft ODBC-JDBC gateway has been evaluated and certified for use with <MadCap:variable name="General.ProductNameIE" />, and is used in the
     integration described here.</p>
-        <div class="tc-align-center">
+        <div class="tc-align-center" MadCap:conditions="Version.14-5-died">
             <p>
                 <img src="../Resources/Static/attachment_files/devguide/Tableau architecture.png" class="tc-picture50" />
             </p>
@@ -39,12 +42,12 @@
             <li>
                 <p>Add sample data to the Space.</p>
             </li>
-            <li>
+            <li MadCap:conditions="Version.14-5-died">
                 <p>After <MadCap:variable name="General.ProductNameIE" /> has been configured, download and install the ODBC-JDBC gateway, activate it with a trial
       license, and set it up in Microsoft Windows.</p>
             </li>
             <li>
-                <p>Download and configure Tableau to work with <MadCap:variable name="General.ProductNameIE" /> via the ODBC-JDBC gateway.</p>
+                <p>Download and configure Tableau to work with <MadCap:variable name="General.ProductNameIE" /><MadCap:conditionalText MadCap:conditions="Version.14-5-died"> via the ODBC-JDBC gatewa</MadCap:conditionalText>y.</p>
             </li>
             <li>
                 <p>Perform a query on the data grid via Tableau, and view the results.</p>
@@ -98,13 +101,13 @@
                 </p>
             </li>
         </ol>
-        <h3><a name="adding-the-insightedge-jdbc-client-jar-to-the-classpath"></a>Adding the <MadCap:variable name="General.ProductNameIE" /> JDBC Client
+        <h3 MadCap:conditions="Version.14-5-died"><a name="adding-the-insightedge-jdbc-client-jar-to-the-classpath"></a>Adding the <MadCap:variable name="General.ProductNameIE" /> JDBC Client
     JAR to the Classpath</h3>
-        <p>When connecting to the data grid, the ODBC-JDBC gateway runs the <MadCap:variable name="General.ProductNameIE" /> JDBC driver. In order to make
+        <p MadCap:conditions="Version.14-5-died">When connecting to the data grid, the ODBC-JDBC gateway runs the <MadCap:variable name="General.ProductNameIE" /> JDBC driver. In order to make
     the driver visible to the ODBC-JDBC gateway, you have to create a special JAR file for use when configuring the
     gateway in Microsoft Windows.</p>
-        <p class="tc-todo">To generate the <MadCap:variable name="General.ProductNameIE" /> JDBC Client JAR:</p>
-        <ol>
+        <p class="tc-todo" MadCap:conditions="Version.14-5-died">To generate the <MadCap:variable name="General.ProductNameIE" /> JDBC Client JAR:</p>
+        <ol MadCap:conditions="Version.14-5-died">
             <li>
                 <p>Navigate to <code>$&lt;XAP_HOME&gt;\insightedge\tools\jdbc</code>.</p>
             </li>
@@ -114,14 +117,14 @@
     </p>
             </li>
         </ol>
-        <h2><a name="setting-up-the-odbc-jdbc-connection"></a>Setting Up the ODBC-JDBC Connection</h2>
-        <p>Follow these instructions to download, install, and set up the Easysoft ODBC-JDBC gateway.</p>
-        <div class="tc-admon-note">
+        <h2 MadCap:conditions="Version.14-5-died"><a name="setting-up-the-odbc-jdbc-connection"></a>Setting Up the ODBC-JDBC Connection</h2>
+        <p MadCap:conditions="Version.14-5-died">Follow these instructions to download, install, and set up the Easysoft ODBC-JDBC gateway.</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
             <p>If you don't want to use the Easysoft ODBC-JDBC Gateway, you can use your preferred bridge implementation.</p>
         </div>
-        <h3><a name="installing-the-easysoft-odbc-jdbc-gateway"></a>Installing the Easysoft ODBC-JDBC Gateway</h3>
-        <p class="tc-todo">To download and install the Easysoft ODBC-JDBC gateway:</p>
-        <ol>
+        <h3 MadCap:conditions="Version.14-5-died"><a name="installing-the-easysoft-odbc-jdbc-gateway"></a>Installing the Easysoft ODBC-JDBC Gateway</h3>
+        <p class="tc-todo" MadCap:conditions="Version.14-5-died">To download and install the Easysoft ODBC-JDBC gateway:</p>
+        <ol MadCap:conditions="Version.14-5-died">
             <li>
                 <p>Log in to the Easysoft web site: <a href="http://www.easysoft.com/cgi-bin/account/login.cgi" target="_blank">link</a>.
         (If this is your first time working with Easysoft, first follow the instructions to register and create your
@@ -135,11 +138,11 @@
                 <p>Install the gateway on your local machine.</p>
             </li>
         </ol>
-        <h3><a name="requesting-an-easysoft-license"></a>Requesting an EasySoft License</h3>
-        <p>After you install the Easysoft gateway on your machine, you must request a trial license in order to run the
+        <h3 MadCap:conditions="Version.14-5-died"><a name="requesting-an-easysoft-license"></a>Requesting an EasySoft License</h3>
+        <p MadCap:conditions="Version.14-5-died">After you install the Easysoft gateway on your machine, you must request a trial license in order to run the
     application.</p>
-        <p class="tc-todo">To obtain a trial Easysoft license for the ODBC-JDBC gateway:</p>
-        <ol>
+        <p class="tc-todo" MadCap:conditions="Version.14-5-died">To obtain a trial Easysoft license for the ODBC-JDBC gateway:</p>
+        <ol MadCap:conditions="Version.14-5-died">
             <li>Navigate to <code>&lt;EASYSOFT-HOME&gt;\Easysoft\License Manager</code> and open the Easysoft Data Access
       License Manager.</li>
             <li>
@@ -177,13 +180,13 @@
                 </p>
             </li>
         </ol>
-        <p>Look in your email spam section for the license. At this point, your user account is updated and you have access
+        <p MadCap:conditions="Version.14-5-died">Look in your email spam section for the license. At this point, your user account is updated and you have access
     to the ODBC-JDBC gateway software for the duration of the trial license period.</p>
-        <h3><a name="configuring-the-odbc-jdbc-gateway"></a>Configuring the ODBC-JDBC Gateway</h3>
-        <p>After you have installed the gateway software and obtained a trial license, you have to configure the gateway to
+        <h3 MadCap:conditions="Version.14-5-died"><a name="configuring-the-odbc-jdbc-gateway"></a>Configuring the ODBC-JDBC Gateway</h3>
+        <p MadCap:conditions="Version.14-5-died">After you have installed the gateway software and obtained a trial license, you have to configure the gateway to
     point to the required data source.</p>
-        <p>To configure the ODBC-JDBC gateway:</p>
-        <ol>
+        <p MadCap:conditions="Version.14-5-died">To configure the ODBC-JDBC gateway:</p>
+        <ol MadCap:conditions="Version.14-5-died">
             <li>
                 <p>Navigate to the ODBC Data Source Administrator in Microsoft Windows.</p>
                 <div class="tc-admon-note">
@@ -252,25 +255,36 @@
                 <p>Click <span class="tc-bold">OK</span> in the ODBC Data Source Administrator window.</p>
             </li>
         </ol>
+        <h2 MadCap:conditions="Version.14-5-born">Setting Up the JDBC Connection</h2>
+        <p MadCap:conditions="Version.14-5-born">To configure the connection:</p>
+        <ol>
+            <li MadCap:conditions="Version.14-5-born">Run "&lt;XAP_HOME&gt;\bin\insightedge maven install" to install the Maven artifacts.</li>
+            <li MadCap:conditions="Version.14-5-born">Run &lt;XAP_HOME&gt;\insightedge\tools\jdbc\build-jdbc-client.cmd to create the jar file, insightedge-jdbc-client.jar.</li>
+            <li MadCap:conditions="Version.14-5-born">Copy the file to C:\Program Files\Tableau\Drivers.</li>
+            <li MadCap:conditions="Version.14-5-born">Run &lt;TABLEAU_HOME&gt;\bin\tableau.exe -DConnectPluginsPath=&lt;GS_HOME&gt;\insightedge\tools\jdbc</li>
+        </ol>
         <h2><a name="setting-up-tableau"></a>Setting Up Tableau</h2>
         <p>Download and install the <a href="https://www.tableau.com/" target="_blank">Tableau</a> desktop.</p>
-        <p>After the data grid has been populated with the sample data, and the ODBC-JDBC Gateway has been configured to
+        <p>After the data grid has been populated with the sample data, and<MadCap:conditionalText MadCap:conditions="Version.14-5-died"> the ODBC-JDBC Gateway</MadCap:conditionalText> Tableau has been configured to
     connect to <MadCap:variable name="General.ProductNameIE" />, you can configure Tableau to read the data and display it in a graphic visual format. You
     can then query the data grid and see the activity that occurs under the hood when Tableau accesses it as a SQL
     database and reads the requested data.</p>
         <h3><a name="configuring-the-data-source"></a>Configuring the Data Source</h3>
-        <p>Tableau has to be configured to use the ODBC-JDBC gateway as the data source.</p>
-        <p class="tc-todo">To configure the ODBC-JDBC gateway:</p>
+        <p MadCap:conditions="Version.14-5-died">Tableau has to be configured to use the ODBC-JDBC gateway as the data source.</p>
+        <p class="tc-todo">To configure the <MadCap:conditionalText MadCap:conditions="Version.14-5-born">connection</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died">ODBC-JDBC gateway</MadCap:conditionalText>:</p>
         <ol>
             <li>Start Tableau.</li>
             <li>
-                <p>Click <span class="tc-bold">Connect</span> in the Tableau desktop, and select <span class="tc-bold">Other
-          Database (ODBC)</span> as the data source.</p>
-                <p>
+                <p>Click <span class="tc-bold">Connect</span> in the Tableau desktop, and select <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><span class="tc-bold">Other
+          Database (ODBC)</span></MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.14-5-born"><span class="tc-bold">Gigaspaces InsightEdge</span></MadCap:conditionalText> as the data source.</p>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+                    <p>If on the first access <span class="tc-bold">Gigaspaces InsightEdge</span> does not appear in the <span class="tc-bold">Connect</span> menu, Click <span class="tc-bold">More</span> and select <span class="tc-bold">Gigaspaces InsightEdge</span> from the alphabetic ordered list.</p>
+                </div>
+                <p MadCap:conditions="Version.14-5-died">
                     <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_0.png" width="243" height="245" class="tc-picture50" />
                 </p>
             </li>
-            <li>
+            <li MadCap:conditions="Version.14-5-died">
                 <p>In the Other Databases (ODBC) window, configure the options as follows:</p>
                 <p>a. In the <span class="tc-bold">Connect Using</span> area, defin the DSN:</p>
                 <ul>
@@ -286,9 +300,10 @@
                     <li>In the <span class="tc-bold">Database</span> field, type <span class="tc-bold">space</span>.</li>
                 </ul>
             </li>
+            <li MadCap:conditions="Version.14-5-born">In the <span class="tc-bold">Gigaspaces InsightEdge</span> window, configure the options as follows:<ol style="list-style-type: lower-alpha;"><li>Enter <span class="tc-bold">Server</span> name</li><li>Optionally enter <span class="tc-bold">True</span> for <span class="tc-bold">Enable AnalyticsXtreme</span></li><li>Enter <span class="tc-bold">Space</span> name</li><li>Optionally enter <span class="tc-bold">Advanced Parameters</span></li><li>For a secure space enter <span class="tc-bold">Username</span> and <span class="tc-bold">Password</span></li></ol></li>
             <li>
                 <p>Click <span class="tc-bold">Sign In</span>.</p>
-                <p>
+                <p MadCap:conditions="Version.14-5-died">
                     <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_2_1.png" width="310" height="496" class="tc-picture50" />
                 </p>
             </li>
@@ -299,14 +314,14 @@
                     <p>The sample data contains a Space called <span class="tc-bold">space</span>. If you have additional Spaces
             in your <MadCap:variable name="General.ProductNameIE" /> environment, they may appear in this list.</p>
                 </div>
-                <p>
+                <p MadCap:conditions="Version.14-5-died">
                     <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_3.png" width="213" height="267" class="tc-picture30" />
                 </p>
             </li>
             <li>
                 <p>Verify that Tableau can see the sample data by peforming a table search. You should see <span class="tc-bold">Locations</span>
         and <span class="tc-bold">Orders</span> in the list of tables.</p>
-                <p>
+                <p MadCap:conditions="Version.14-5-died">
                     <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_1.png" width="229" height="155" class="tc-picture30" />
                 </p>
             </li>
@@ -337,7 +352,7 @@
             </li>
             <li>
                 <p>Right-click and select <span class="tc-bold">Create Hierarchy</span> from the menu that is displayed.</p>
-                <p>
+                <p MadCap:conditions="Version.14-5-died">
                     <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_4.png" width="338" height="347" class="tc-picture50" />
                 </p>
             </li>
@@ -351,7 +366,7 @@
             <li>
                 <p>View the results in the data pane; you can easily see the sales-profit insight that was derived from the data
         retrieved from the data grid.</p>
-                <p>
+                <p MadCap:conditions="Version.14-5-died">
                     <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_5.png" width="770" height="388" class="tc-picture100" />
                 </p>
             </li>
