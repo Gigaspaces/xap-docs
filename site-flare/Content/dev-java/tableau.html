@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Tableau Integration</h1>
-        <h1><a name="overview"></a>Overview</h1>
+        <h1 MadCap:conditions="Version.14-5-died"><a name="overview"></a>Overview</h1>
         <p MadCap:conditions="Version.14-5-died">Organizations often require quick insight into data to understand the business impact, and don't want to waste
     valuable time consulting their corporate IT team. With the <a href="sql-query-intro.html">InsightEdge JDBC driver</a>  ,
     this can be done using the data stored in the data grid. <a href="https://www.tableau.com/">Tableau</a>
@@ -26,7 +26,7 @@
             </p>
         </div>
         <h2><a name="sample-data-set"></a>Sample Data Set</h2>
-        <p>In this example, a familiar <code>Simple - Superstore</code> Tableau users data set is used. The original schema
+        <p>The example in this topic uses a familiar <code>Simple - Superstore</code> Tableau users data set. The original schema
     is too simple to show the join capabilities, so the model was updated with location information that is referenced
     by the orders entity. The updated schema is as follows:</p>
         <div class="tc-align-center">
@@ -47,7 +47,7 @@
       license, and set it up in Microsoft Windows.</p>
             </li>
             <li>
-                <p>Download and configure Tableau to work with <MadCap:variable name="General.ProductNameIE" /><MadCap:conditionalText MadCap:conditions="Version.14-5-died"> via the ODBC-JDBC gatewa</MadCap:conditionalText>y.</p>
+                <p>Download and configure Tableau to work with <MadCap:variable name="General.ProductNameIE" /><MadCap:conditionalText MadCap:conditions="Version.14-5-died"> via the ODBC-JDBC gateway</MadCap:conditionalText>.</p>
             </li>
             <li>
                 <p>Perform a query on the data grid via Tableau, and view the results.</p>
@@ -84,7 +84,7 @@
                 <p>Download the <a href="/download_files/sbp/insightedge-sql-demo.rar">InsightEdge SQL demo</a> and unpack it.</p>
             </li>
             <li>
-                <p>Under the extracted "insightedge-sql-demo" folder, build the sample with <code>mvn clean install</code>.</p>
+                <p>Under the extracted <span class="tc-italic">insightedge-sql-demo</span> folder, build the sample with <code>mvn clean install</code>.</p>
             </li>
             <li>
                 <p>Execute the following command:</p><pre><code class="language-bash">java -jar target\insightedge-sql-demo.jar --space-url "jini://*/*/tableauSpace?locators=127.0.0.1" --lookup-group &lt;DATA_GRID_LOOKUP_GROUP&gt;
@@ -258,10 +258,12 @@
         <h2 MadCap:conditions="Version.14-5-born">Setting Up the JDBC Connection</h2>
         <p class="tc-todo" MadCap:conditions="Version.14-5-born">To configure the connection:</p>
         <ol>
-            <li MadCap:conditions="Version.14-5-born">Run "&lt;XAP_HOME&gt;\bin\insightedge maven install" to install the Maven artifacts.</li>
-            <li MadCap:conditions="Version.14-5-born">Run &lt;XAP_HOME&gt;\insightedge\tools\jdbc\build-jdbc-client.cmd to create the jar file, insightedge-jdbc-client.jar.</li>
-            <li MadCap:conditions="Version.14-5-born">Copy the file to C:\Program Files\Tableau\Drivers.</li>
-            <li MadCap:conditions="Version.14-5-born">Run &lt;TABLEAU_HOME&gt;\bin\tableau.exe -DConnectPluginsPath=&lt;GS_HOME&gt;\insightedge\tools\jdbc</li>
+            <li MadCap:conditions="Version.14-5-born">Run <code>&lt;XAP_HOME&gt;\bin\insightedge maven install</code> to install the Maven artifacts.</li>
+            <li MadCap:conditions="Version.14-5-born">Run <code>&lt;XAP_HOME&gt;\insightedge\tools\jdbc\build-jdbc-client.cmd</code> to create the <span class="tc-italic">insightedge-jdbc-client.jar</span> file.</li>
+            <li MadCap:conditions="Version.14-5-born">Copy the file to <span class="tc-bold">C:\Program Files\Tableau\Drivers</span>.</li>
+            <li MadCap:conditions="Version.14-5-born">
+                <p>Run the following command: </p><pre><code>&lt;TABLEAU_HOME&gt;\bin\tableau.exe -DConnectPluginsPath=&lt;GS_HOME&gt;\insightedge\tools\jdbc</code></pre>
+            </li>
         </ol>
         <h2><a name="setting-up-tableau"></a>Setting Up Tableau</h2>
         <p>Download and install the <a href="https://www.tableau.com/" target="_blank">Tableau</a> desktop.</p>
@@ -300,7 +302,7 @@
                     <li>In the <span class="tc-bold">Database</span> field, type <span class="tc-bold">space</span>.</li>
                 </ul>
             </li>
-            <li MadCap:conditions="Version.14-5-born">In the <span class="tc-bold">Gigaspaces InsightEdge</span> window, configure the options as follows:<ol style="list-style-type: lower-alpha;"><li>Enter the <span class="tc-bold">Server</span> name.</li><li>(Optional) If your <MadCap:variable name="General.ProductNameIE" /> system includes AnalyticsXtreme, you can type <span class="tc-bold">True</span> for <span class="tc-bold">Enable AnalyticsXtreme</span>.</li><li>Enter the <span class="tc-bold">Space</span> name.</li><li>Optionally enter <span class="tc-bold">Advanced Parameters</span>.for JDBC connection as key-value pairs.</li><li>If your system is configured with a secure Space, enter the <span class="tc-bold">Username</span> and <span class="tc-bold">Password</span>.</li></ol></li>
+            <li MadCap:conditions="Version.14-5-born">In the <span class="tc-bold">Gigaspaces InsightEdge</span> window, configure the options as follows:<ol style="list-style-type: lower-alpha;"><li>Enter the <span class="tc-bold">Server</span> name.</li><li>(Optional) If your <MadCap:variable name="General.ProductNameIE" /> system includes AnalyticsXtreme, you can type <span class="tc-bold">True</span> for <span class="tc-bold">Enable AnalyticsXtreme</span>.</li><li>Enter the <span class="tc-bold">Space</span> name.</li><li>(Optional) Add <span class="tc-bold">Advanced Parameters</span> for the JDBC connection as key-value pairs.</li><li>If your system is configured with a secure Space, enter the <span class="tc-bold">Username</span> and <span class="tc-bold">Password</span>.</li></ol></li>
             <li>
                 <p>Click <span class="tc-bold">Sign In</span>.</p>
                 <p MadCap:conditions="Version.14-5-died">
