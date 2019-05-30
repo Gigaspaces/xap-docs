@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
-        <h1>The REST&#160;Service</h1>
-        <p>The REST service is a Processing Unit that once it is deployed it starts an embedded jetty server along with a REST service allowing interactions with the Space via the <a href="rest-service-api.html">REST API</a>.</p>
+        <h1>Space Interface REST API</h1>
+        <p>The REST service is a Processing Unit that once it is deployed starts an embedded jetty server along with a REST service allowing Interaction with the Space  via the <a href="rest-service-api.html">REST API</a>.</p>
         <p>The Space's name and a port number must be specified. In case of multiple instances of the REST Processing Unit, the port will be the specified port plus a running number starting with zero.</p>
         <div class="tc-admon-note">
-            <p>The REST service is not supported with embedded space thus we recommend using it as a separate processing unit.</p>
+            <p>The REST service is not supported with embedded space. Thus we recommend using it as a separate processing unit.</p>
         </div>
         <h1><a name="deploment-options"></a>Deployment Options</h1>
         <h2><a name="deploy-via-cli"></a>Deploy via CLI</h2>
@@ -58,6 +58,13 @@
             </tbody>
         </table>
         <p>*giga-space and space-name attributes can not be used together.</p>
+        <h1>WAR Deployment </h1>
+        <p>Another option is to deploy the REST service as a <a href="web-application-overview.html">Web Processing Unit</a>, as in this example.</p><pre><code class="language-bash">#Specify the space parameters using the following properties:
+spaceName=mySpace
+lookupGroups=myGroups
+#lookupLocators=
+#datetime_format=
+</code></pre>
         <h1><a name="date-support"></a>Date Support</h1>
         <p>Date string is parsed with a different parser from <MadCap:variable name="General.ProductNameXAP" />'s parser. Therefore, a date format must be defined.</p>
         <p>We provide a default format <code>yyyy-MM-dd HH:mm:ss</code> but you can override it by providing the <code>rest.datetime_format</code> property in the deployment step or by specify it in the pu.xml:</p><pre><code class="language-xml">&lt;os-core:rest id="mySpaceRestService" space-name="mySpace" port="8081" lookup-groups="myGroups"&gt;
@@ -104,32 +111,9 @@
                 <p>Currently there is no support for connecting to a secured space.</p>
             </li>
         </ul>
-        <h1><a name="removed-apis"></a>Removed APIs</h1>
-        <p>The REST service was a dependant project until version 10.1.0.
+        <h1 MadCap:conditions="Default.DoNotShow"><a name="removed-apis"></a>Removed APIs</h1>
+        <p MadCap:conditions="Default.DoNotShow">The REST service was a dependent project until version 10.1.0.
 Since then, it is an official part of the product.</p>
-        <p>Tasks API were removed, Pojo and Document API were merged with no support for Pojo writing.</p>
-        <h1><a name="war-deployment-and-customization"></a>WAR Deployment and Customization</h1>
-        <p>Another option is to deploy the REST service as <a href="web-application-overview.html">Web Processing Unit</a>.</p>
-        <p>In order to do so, you will need to do the following:</p>
-        <ol>
-            <li>
-                <p>Clone the project from Github: <code>git clone https://github.com/GigaSpaces/RESTData.git</code></p>
-            </li>
-            <li>
-                <p>Edit the file that is located under src/main/webapp/WEB-INF/config.properties to include your space's properties</p>
-            </li>
-            <li>
-                <p>Package the project using maven: <code>mvn package -P standalone-war</code> <br />This will run the unit tests and package the project to a war file located at target/RESTData.war</p>
-            </li>
-            <li>
-                <p>Deploy the war file as a Web Processing Unit</p>
-            </li>
-        </ol>
-        <p>For example:</p><pre><code class="language-bash">#Specify the space parameters using the following properties:
-spaceName=mySpace
-lookupGroups=myGroups
-#lookupLocators=
-#datetime_format=
-</code></pre>
+        <p MadCap:conditions="Default.DoNotShow">Tasks API were removed, Pojo and Document API were merged with no support for Pojo writing.</p>
     </body>
 </html>
