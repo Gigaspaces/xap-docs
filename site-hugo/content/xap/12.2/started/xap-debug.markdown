@@ -130,48 +130,45 @@ When using a cluster and **not** specifying an instance Id (see `setInstanceId()
 
 ## The Java Debugger
 
-The Java Debugger (jdb) is a dynamic, controlled, assignment-based debugging tool. It helps find and fix bugs in the Java language programs both locally and on the server. To use jdb in a Java application you must first launch it with debugging `enabled` and attach to the Java process from the debugger through a JPDA port (Default port is 1044).
+The Java Debugger (jdb) is a dynamic, controlled, assignment-based debugging tool. It helps find and fix bugs in the Java language programs both locally and on the server. To use jdb in a Java application you must first launch it with debugging `enabled` and attach to the Java process from the debugger through a JPDA port.
 
 The default JPDA options for Java applications are as follows:
 
 
 ```bash
--Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
+-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
 ```
 
-The jdb parameters specify the way the debugger will operate. For instance `transport=dt_socket` instructs the JVM that the debugger connections will be made through a socket while the `address=1044` parameter informs it that the port number will be 1044. Similarly, if you substitute `suspend=y` , the JVM starts in suspended mode and stays suspended until a debugger is attached to it. This may be helpful if you want to start debugging as soon as the JVM starts.
+The jdb parameters specify the way the debugger will operate. For instance `transport=dt_socket` instructs the JVM that the debugger connections will be made through a socket while the `address=8000` parameter informs it that the port number will be 8000. Similarly, if you substitute `suspend=y` , the JVM starts in suspended mode and stays suspended until a debugger is attached to it. This may be helpful if you want to start debugging as soon as the JVM starts.
 
 # Debugging Your Application
 
 Debugging your application running within the GSC is no different than debugging any other Java application. Make sure you launch the GSC with the required debugging arguments and attach a debugger. You should use the GSC `gsc.sh` or `gsc.bat` startup script found within the `XAP root/bin/advanced_scripts.zip` by extracting it from the zip file and place it within the `XAP root/bin` folder. It should be started in debug mode.
+
+The goal is to start and manage 1 GSC per host with JDPA options because each JVM started will need a different `address` port number to avoid port collision.
+
+Once the application is deployed, you will the relocate the PU to the GSC that has debugging enabled. 
 
 ## Step 1
 Start an agent and deploy your PU as usual. The agent will start GSCs in non-debug mode.
 
 ## Step 2
 
-Start a command window and set the `JAVA_OPTIONS` variable:
+Start a command window and set the `XAP_GSC_OPTIONS` variable:
 
 {{%tabs%}}
 {{%tab "  Linux "%}}
 ```bash
-export JAVA_OPTIONS="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y"
+export XAP_GSC_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000"
 ```
 
 {{% /tab %}}
 {{%tab "  Windows "%}}
 ```bash
-set JAVA_OPTIONS=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y
+set XAP_GSC_OPTIONS=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y
 ```
 {{% /tab %}}
 {{% /tabs %}}
-
-If you would like to specify a specific listening port, use the `address` parameter:
-
-
-```bash
-set JAVA_OPTIONS=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
-```
 
 ## Step 3
 
