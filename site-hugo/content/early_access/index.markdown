@@ -14,27 +14,29 @@ This page contains early access information for the InsightEdge Platform and XAP
 
 ## Download Links
 
- * \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.5.0/gigaspaces-insightedge-14.5.0-m7.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.5.0/gigaspaces-insightedge-enterprise-14.5.0-m7.zip)\] 
+ * [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.5.0/gigaspaces-insightedge-enterprise-14.5.0-m7.zip) 
 
- * \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap-14.5.0-m7.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap-enterprise-14.5.0-m7.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap.net-14.5.0-m7.msi)\]
+ * \[[XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap-enterprise-14.5.0-m7.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap.net-14.5.0-m7.msi)\]
 
 ## Changelog
 
 ### Features and Enhancements
 
-- {{% jira id="GS-13844" %}}: xxx.
+- {{% jira id="GS-13820" %}}: Remove the XAP Maven plugin from the software package.
+- {{% jira id="GS-13847" %}}: New 'maven install' CLI command for installing GigaSpaces Maven artifacts.
+- {{% jira id="GS-13848" %}}: Remove bundled Apache Maven from package.
 
 ### Resolved Issues
 
-- {{% jira id="GS-13828" %}}: xxx.
+- {{% jira id="GS-13842" %}}: Support reading DataFrame of a POJO with an enum field.
 
 # 14.5.0 M6 (May-26-2019)
 
 ## Download Links
 
- * \[[InsightEdge (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.5.0/gigaspaces-insightedge-14.5.0-m6.zip) | [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.5.0/gigaspaces-insightedge-enterprise-14.5.0-m6.zip)\] 
+ * [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.5.0/gigaspaces-insightedge-enterprise-14.5.0-m6.zip) 
 
- * \[[XAP (Open Source)](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap-14.5.0-m6.zip) | [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap-enterprise-14.5.0-m6.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap.net-14.5.0-m6.msi)\]
+ * \[[XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap-enterprise-14.5.0-m6.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap.net-14.5.0-m6.msi)\]
 
 ## Changelog
 
