@@ -27,14 +27,16 @@
         <p>Verity that extended memory is deployed correctly and data is now fetched from SSD layer.</p>
         <ol>
             <li>Build the project again.<br /></li>
-            <li>Deploy the processing unit again and run the query:</li>
-        </ol><pre xml:space="preserve">select UID, * from com.gigaspaces.demo.common.Data</pre>
+            <li>
+                <p>Deploy the processing unit again and run the query in Management Console:</p><pre>select UID, * from com.gigaspaces.demo.common.Data</pre>
+            </li>
+        </ol>
         <ol>
             <p>Since data was stored persistently in SSD, all data types are fetched.</p>
             <p style="color: #ff0000;" MadCap:conditions="Default.DraftOnly">ED NOTE: The recording from Alex has additional round of undeploy/deploy  but results/purpose are not clear, so omitted (for now) - Niv also looking at it. The main point of demo has already been achieved without these steps, </p>
             <li MadCap:conditions="Default.DoNotShow"><span style="color: #ff0000;">Undeploy the processing unit.</span>
             </li>
-            <li style="color: #ff0000;" MadCap:conditions="Default.DoNotShow">Re-deploy the processing unit and verify that data with type 1 is fetched from the SSD layer.<p style="color: #ff0000;">Run the query  in Management Console and verify there is no data with type 1</p><pre xml:space="preserve">select UID, * from com.gigaspaces.demo.common.Data</pre></li>
+            <li style="color: #ff0000;" MadCap:conditions="Default.DoNotShow">Re-deploy the processing unit and verify that data with type 1 is fetched from the SSD layer.<p style="color: #ff0000;">Run the query again in Management Console and verify there is no data with type 1</p><pre xml:space="preserve">select UID, * from com.gigaspaces.demo.common.Data</pre></li>
         </ol>
         <p>Other storage options are:</p>
         <ul>
