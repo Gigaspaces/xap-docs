@@ -65,13 +65,29 @@ tryme
             <p>For information on how to use the Web Management Console and other administration tools to view the <MadCap:variable name="General.ProductNameXAP" /> core components (the data fabric within <MadCap:variable name="General.ProductNameIE" />), see the <a href="../admin/admin-spaces-pu.html">Administering Spaces and Processing Units</a> topics in the Administration section.</p>
         </div>
         <h1>Apache Zeppelin Notebook Examples</h1>
+        <h2>AWS Marketplace Users</h2>
+        <p>After you launch the <MadCap:variable name="General.ProductNameIE" /> instance from the AMI, you can connect to Apache Zeppelin and explore the examples in the web notebook provided with the product.</p>
+        <p>To connect to Apache Zeppelin:</p>
+        <ol>
+            <li>
+                <p>Navigate to <code>&lt;ami-public-ip&gt;:9090</code> in your web browser.</p>
+                <div class="tc-admon-attention">
+                    <p>To resolve the AMI&#160;public IP&#160;address, refer to the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#using-instance-addressing-common" target="_blank">AWS user guide</a>.</p>
+                </div>
+            </li>
+            <li>
+                <MadCap:snippetBlock src="../Resources/Snippets/Content/Started/ApacheZeppelinExamples.flsnp" />
+            </li>
+        </ol>
+        <h2>Other Users</h2>
         <p>After you get <MadCap:variable name="General.ProductNameIE" /> up and running, you can use the Apache Zeppelin web notebook to explore the examples that are provided with the product.</p>
         <p><span class="tc-bold">To access the examples in the web notebook:</span>
         </p>
         <ol>
             <li>Navigate to <code>localhost:9090</code> in your web browser.</li>
-            <li>The <MadCap:variable name="General.ProductNameIE" /> package comes with three Getting Started notebooks; <MadCap:variable name="General.ProductNameIE" /> Basics, <MadCap:variable name="General.ProductNameIE" /> Geospatial API, and <MadCap:variable name="General.ProductNameIE" /> Python Example. Open any of these examples and click <span class="tc-bold">Play</span> to run the paragraph it contains.
-<div class="tc-admon-note"><p>If you see an <span class="tc-bold">Interpreter Binding</span> setting in the notebook main window, click <span class="tc-bold">Save</span> (don't deselect any interpreters or the examples won't work).</p></div></li>
+            <li>
+                <MadCap:snippetBlock src="../Resources/Snippets/Content/Started/ApacheZeppelinExamples.flsnp" />
+            </li>
         </ol>
         <h1><a name="what-s-next"></a>What's Next?</h1>
         <ul>
