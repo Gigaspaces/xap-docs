@@ -27,7 +27,7 @@
 &lt;/os-core:space&gt;</code></pre></li></li></ol></li>
         </ol>
         <h1>Verifying the Extended Memory</h1>
-        <p>After you configure the tiered storage for your <MadCap:variable name="General.ProductNameIE" /> deployment, you should verify that the extended memory has been deployed correctly. <span class="tc-highlight">Since data type 1 continues to be stored in RAM (see my addition to the editorial note below)</span>, is fetched from SSD layer.</p>
+        <p>After you configure the tiered storage for your <MadCap:variable name="General.ProductNameIE" /> deployment, you should verify that the extended memory has been deployed correctly. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><span class="tc-highlight">Since data type 1 continues to be stored in RAM (see my addition to the editorial note below)</span>, is fetched from SSD layer.</MadCap:conditionalText></p>
         <ol>
             <li>Build the project again.<br /></li>
             <li>
@@ -36,7 +36,7 @@
         </ol>
         <ol>
             <p>Since data was stored persistently in SSD, all data types are fetched.</p>
-            <p style="color: #ff0000;">ED NOTE: The recording from Alex has additional round of undeploy/deploy  but results/purpose are not clear, so omitted (for now) - The main point of demo has already been achieved without these steps, <span class="tc-highlight">Missing the explanation of how we test to make sure MemoryXtend was deployed correctly and works properly before the actual procedure. What is the query supposed to retrieve? if we redeployed the processing unit then will data type 1 be missing, since it wasn't read to the persistent memory? Also, where are the results of the test? Should there be a screen capture to show what it looks like? </span></p>
+            <p style="color: #ff0000;" MadCap:conditions="Default.DoNotShow">ED NOTE: The recording from Alex has additional round of undeploy/deploy  but results/purpose are not clear, so omitted (for now) - The main point of demo has already been achieved without these steps, <span class="tc-highlight">Missing the explanation of how we test to make sure MemoryXtend was deployed correctly and works properly before the actual procedure. What is the query supposed to retrieve? if we redeployed the processing unit then will data type 1 be missing, since it wasn't read to the persistent memory? Also, where are the results of the test? Should there be a screen capture to show what it looks like? </span></p>
         </ol>
         <h1>Additional MemoryXtend Drivers</h1>
         <p>MemoryXtend supports the following additional storage options for tiered storage, which can be used alone or together with the SSD driver:</p>
