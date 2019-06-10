@@ -16,7 +16,7 @@ This page contains early access information for the InsightEdge Platform and XAP
 
  * [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.5.0/gigaspaces-insightedge-enterprise-14.5.0-m8.zip) 
 
- * \[[XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap-enterprise-14.5.0-m8.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap.net-14.5.0-m8.msi)\]
+ * [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap-enterprise-14.5.0-m8.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap.net-14.5.0-m8.msi)
 
 ## Changelog
 
