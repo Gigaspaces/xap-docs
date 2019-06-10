@@ -26,7 +26,7 @@ N/A
 
 ### Resolved Issues
 
-- {{% jira id="GS-138XX" %}}: XX.
+- {{% jira id="GS-13812" %}}: Full recovery does not preserve the FIFO grouping order.
 
 # 14.5.0 M7 (Jun-02-2019)
 
