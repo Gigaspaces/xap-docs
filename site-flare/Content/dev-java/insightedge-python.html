@@ -6,12 +6,14 @@
         <h1 class="tc-pagetitle">PySpark</h1>
         <p><MadCap:variable name="General.ProductNameIE" /> has a Python API available via PySpark. Its functionality is limited to the DataFrame API.</p>
         <h1><a name="interactive-use"></a>Interactive Use</h1>
-        <p>There are two options for analyzing data interactively in Python:</p>
+        <p>There are three options for analyzing data interactively in Python:</p>
         <ul>
             <li><a href="../started/insightedge-zeppelin.html">Zeppelin</a>
                 <br />
             </li>
             <li>command line shell</li>
+            <li><a href="../started/insightedge-jupyter.html">Jupyter</a>
+            </li>
         </ul>
         <h1><a name="zeppelin-notebook"></a>Zeppelin Notebook</h1>
         <p>To develop notebooks in Python, use the <code>%pyspark</code> interpreter in the Zeppelin web notebook. See the <code>InsightEdge python example</code> notebook as a reference example.</p>
@@ -72,7 +74,7 @@ conf.set("spark.insightedge.space.name", "demo")
 conf.set("spark.insightedge.space.lookup.group", "insightedge")
 conf.set("spark.insightedge.space.lookup.locator", "127.0.0.1:4174")
 
-spark = SparkSession.builder.config(conf=SparkConf()).getOrCreate()
+spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
 </code></pre>
             </div>
