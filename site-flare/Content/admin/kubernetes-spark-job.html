@@ -20,7 +20,7 @@
         <p>The following Spark configuration property <code>spark.kubernetes.container.image</code> is required when submitting Spark jobs for an <MadCap:variable name="General.ProductNameIE" /> application. Note how this configuration is applied to the examples in the <a href="#submitting-spark-jobs-with-insightedge-submit">Submitting Spark Jobs </a>section:</p><pre><code>--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version%]
 </code></pre>
         <h2><a name="getting-the-kubernetes-master-url"></a>Getting the Kubernetes Master URL</h2>
-        <p>You can get the the Kubernetes master URL using kubectl. Type the following command to print out the URL that will be used in the Spark and <MadCap:variable name="General.ProductNameIE" /> examples when submitting Spark jobs to the Kubernetes scheduler.</p><pre><code>kubectl cluster-info
+        <p>You can get the Kubernetes master URL using kubectl. Type the following command to print out the URL that will be used in the Spark and <MadCap:variable name="General.ProductNameIE" /> examples when submitting Spark jobs to the Kubernetes scheduler.</p><pre><code>kubectl cluster-info
 </code></pre>
         <p>Sample output: <code>Kubernetes master is running at https://192.168.99.100:8443</code></p>
         <h2><a name="configuring-the-kubernetes-service-accounts"></a>Configuring the Kubernetes Service Accounts</h2>
