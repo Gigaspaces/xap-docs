@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -30,7 +30,7 @@
             <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-sla="http://www.openspaces.org/schema/sla"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd"&gt;
 
     &lt;os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="1" max-instances-per-vm="1"&gt;
@@ -41,7 +41,7 @@
             </div>
             <div title="  Plain " style="padding:10px"><pre><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd"&gt;
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
 
     &lt;bean id="SLA" class="org.openspaces.pu.sla.SLA"&gt;
         &lt;property name="clusterSchema" value="partitioned" /&gt;

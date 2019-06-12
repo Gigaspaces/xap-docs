@@ -1,103 +1,95 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Parallel Queue Pattern</h1>
-  
-
-<table>
-<thead>
-<tr>
-<th>Author</th>
-<th>XAP Version</th>
-<th>Last Updated</th>
-<th>Reference</th>
-<th>Download</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Shay Hassidim</td>
-<td>8.0.0</td>
-<td>Feb 2011</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-<h1><a name="overview">&#160;</a>Overview</h1>
-
-<p>When building <a href="http://en.wikipedia.org/wiki/High_frequency_trading">low latency systems</a>, a critical requirement of such systems is to be able to process the incoming data as fast as they can, but also to do that in the exact order the request has been submitted into the system. The system can't process requests associated with the same Order in parallel, but in the exact order these has been created at the client side.</p>
-
-<p>Such a requirement would be relevant with algorithmic trading engines , Order Management Systems , Market Data processing system , High Speed inventory systems, etc.</p>
-
-<p>GigaSpaces introduce the ability to partition data in memory across multiple data-grid partitions. This provides the ability to scale the system, but it does not ensure fast data processing in the correct order. You should add another component that allows the system to "slice" each partition into virtual queues or several buckets. The polling container consuming data in a FIFO manner is the missing required component.</p>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/par_q2.jpg" alt="par_q2.jpg" /></p>
-</div>
-
-<p>Having multiple polling containers running collocated with each partition allows us to scale at the partition level, forming set of "virtual queues", that consume data pushed into the partition in a parallel manner, but also in the correct order. The amount of polling containers will be usually the <span class="tc-bold">number of machine cores</span>. This will optimize the ability to use the machine CPUs in the most efficient manner.</p>
-
-<p>With our example we will simulate a simple Order Management processing system where Orders are sent into the system. An order might have 5 states (state 1-5) where these should be processed in the correct order by a "processor". Different Orders (from different clients) should be processed in parallel, but requests associated with the same order MUST be processed in the exact order they have submitted by the end point client.</p>
-
-<p>Here is an example for the latency duration for the Order request processing time:</p>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/par_q1.jpg" alt="par_q1.jpg" /></p>
-</div>
-
-<p>The above results retrieved when running the Data-Grid with 4 partitions with a backup.</p>
-
-<div class="tc-admon-tip">
-  
-  <p>You can <a href="/attachment_files/sbp/ParallelQueue.zip">download</a> the Order Management Processor code used with this example.</p>
-</div>
-
-<h1><a name="the-order-management-processor-example">&#160;</a>The Order Management Processor Example</h1>
-
-<p>The following example illustrates a simple Order management processor that includes the following artifacts:</p>
-
-<ul>
-<li><span class="tc-bold">The Order Class</span> - This represents an Order request. An order includes a <span class="tc-italic">Symbol</span> , <span class="tc-italic">requestType</span>, <span class="tc-italic">id</span> , <span class="tc-italic">orderId</span> and a <span class="tc-italic">bucketId</span> field.
+    <head>
+    </head>
+    <body>
+        <h1>Parallel Queue Pattern</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>XAP Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shay Hassidim</td>
+                    <td>8.0.0</td>
+                    <td>Feb 2011</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="overview">&#160;</a>Overview</h1>
+        <p>When building <a href="http://en.wikipedia.org/wiki/High_frequency_trading">low latency systems</a>, a critical requirement of such systems is to be able to process the incoming data as fast as they can, but also to do that in the exact order the request has been submitted into the system. The system can't process requests associated with the same Order in parallel, but in the exact order these has been created at the client side.</p>
+        <p>Such a requirement would be relevant with algorithmic trading engines , Order Management Systems , Market Data processing system , High Speed inventory systems, etc.</p>
+        <p>GigaSpaces introduce the ability to partition data in memory across multiple data-grid partitions. This provides the ability to scale the system, but it does not ensure fast data processing in the correct order. You should add another component that allows the system to "slice" each partition into virtual queues or several buckets. The polling container consuming data in a FIFO manner is the missing required component.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="/attachment_files/sbp/par_q2.jpg" alt="par_q2.jpg" />
+            </p>
+        </div>
+        <p>Having multiple polling containers running collocated with each partition allows us to scale at the partition level, forming set of "virtual queues", that consume data pushed into the partition in a parallel manner, but also in the correct order. The amount of polling containers will be usually the <span class="tc-bold">number of machine cores</span>. This will optimize the ability to use the machine CPUs in the most efficient manner.</p>
+        <p>With our example we will simulate a simple Order Management processing system where Orders are sent into the system. An order might have 5 states (state 1-5) where these should be processed in the correct order by a "processor". Different Orders (from different clients) should be processed in parallel, but requests associated with the same order MUST be processed in the exact order they have submitted by the end point client.</p>
+        <p>Here is an example for the latency duration for the Order request processing time:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="/attachment_files/sbp/par_q1.jpg" alt="par_q1.jpg" />
+            </p>
+        </div>
+        <p>The above results retrieved when running the Data-Grid with 4 partitions with a backup.</p>
+        <div class="tc-admon-tip">
+            <p>You can <a href="/attachment_files/sbp/ParallelQueue.zip">download</a> the Order Management Processor code used with this example.</p>
+        </div>
+        <h1><a name="the-order-management-processor-example">&#160;</a>The Order Management Processor Example</h1>
+        <p>The following example illustrates a simple Order management processor that includes the following artifacts:</p>
+        <ul>
+            <li><span class="tc-bold">The Order Class</span> - This represents an Order request. An order includes a <span class="tc-italic">Symbol</span> , <span class="tc-italic">requestType</span>, <span class="tc-italic">id</span> , <span class="tc-italic">orderId</span> and a <span class="tc-italic">bucketId</span> field.
 – The <code>orderId</code> field used to partition the Order requests (its getter method annotated with <code>@SpaceRouting</code>) between the partitions.
 – The <code>id</code> used as the space object ID (its getter annotated with <code>@SpaceID</code>).
 – The <code>bucketId</code> used to generate the buckets that each polling container consuming Orders from.
 – The <code>Order</code> class is decorated with the <code>FIFO</code> mode allows it to be consumed in a FIFO manner.</li>
-<li><span class="tc-bold">The Feeder</span> - A client running multiple threads pushing requests for different Order.</li>
-<li><span class="tc-bold">The Processor</span> - Polling Container listener. Running collocated with the data-grid. Each polling container consumes different set of objects from its co located space. Each Polling Container template using <span class="tc-bold">different bucketId</span>.</li>
-<li><span class="tc-bold">The Data-Grid</span> - Stores the incoming <code>Order</code> requests state until these are consumed by the polling containers. It provides the ability to scale the system and also provides high-availability.</li>
-<li><span class="tc-bold">The ProcessorFactory</span> - A Spring bean. Creates the polling containers and their listeners.  The polling containers consumes data based on the Order <code>Symbol</code>. Each associated with a different Symbol. These are running collocated with the Data-Grid.</li>
-</ul>
-
-<p>The <code>bucketId</code> is calculated using the following formula:</p>
-
-<pre><code class="language-java">(first char of Symbol hashcode) % (# of machine cores)
+            <li><span class="tc-bold">The Feeder</span> - A client running multiple threads pushing requests for different Order.</li>
+            <li><span class="tc-bold">The Processor</span> - Polling Container listener. Running collocated with the data-grid. Each polling container consumes different set of objects from its co located space. Each Polling Container template using <span class="tc-bold">different bucketId</span>.</li>
+            <li><span class="tc-bold">The Data-Grid</span> - Stores the incoming <code>Order</code> requests state until these are consumed by the polling containers. It provides the ability to scale the system and also provides high-availability.</li>
+            <li><span class="tc-bold">The ProcessorFactory</span> - A Spring bean. Creates the polling containers and their listeners.  The polling containers consumes data based on the Order <code>Symbol</code>. Each associated with a different Symbol. These are running collocated with the Data-Grid.</li>
+        </ul>
+        <p>The <code>bucketId</code> is calculated using the following formula:</p><pre><code class="language-java">(first char of Symbol hashcode) % (# of machine cores)
 </code></pre>
-
-<h2><a name="running-the-example">&#160;</a>Running the Example</h2>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Running the Order Processor " style="padding:10px"><p>You can run the Data-Grid with the collocated Order Processor within your IDE using the following configuration:</p>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/par_q4.jpg" alt="par_q4.jpg" /></p>
-</div>
-
-<p>Here is a configuration for a data-grid with 2 partitions that will be running the polling containers:</p>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/par_q5.jpg" alt="par_q5.jpg" /></p>
-</div>
-</div>
-
-<div title="  Running the Feeder " style="padding:10px"><p>You can run the Feeder within your IDE using the following configuration:</p>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/par_q3.jpg" alt="par_q3.jpg" /></p>
-</div>
-</div>
-</div>
-
-<h2><a name="example-code-and-configuration">&#160;</a>Example Code and Configuration</h2>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="   The Order Class " style="padding:10px"><pre><code class="language-java">package com.gigaspaces.examples.parallelqueue;
+        <h2><a name="running-the-example">&#160;</a>Running the Example</h2>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Running the Order Processor " style="padding:10px">
+                <p>You can run the Data-Grid with the collocated Order Processor within your IDE using the following configuration:</p>
+                <div class="tc-align-center">
+                    <p>
+                        <img src="/attachment_files/sbp/par_q4.jpg" alt="par_q4.jpg" />
+                    </p>
+                </div>
+                <p>Here is a configuration for a data-grid with 2 partitions that will be running the polling containers:</p>
+                <div class="tc-align-center">
+                    <p>
+                        <img src="/attachment_files/sbp/par_q5.jpg" alt="par_q5.jpg" />
+                    </p>
+                </div>
+            </div>
+            <div title="  Running the Feeder " style="padding:10px">
+                <p>You can run the Feeder within your IDE using the following configuration:</p>
+                <div class="tc-align-center">
+                    <p>
+                        <img src="/attachment_files/sbp/par_q3.jpg" alt="par_q3.jpg" />
+                    </p>
+                </div>
+            </div>
+        </div>
+        <h2><a name="example-code-and-configuration">&#160;</a>Example Code and Configuration</h2>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="   The Order Class " style="padding:10px"><pre><code class="language-java">package com.gigaspaces.examples.parallelqueue;
 
 import com.gigaspaces.annotation.pojo.FifoSupport;
 import com.gigaspaces.annotation.pojo.SpaceClass;
@@ -179,9 +171,8 @@ public class Order {
     }
 }
 </code></pre>
-</div>
-
-<div title="   The Feeder " style="padding:10px"><pre><code class="language-java">package com.gigaspaces.examples.parallelqueue;
+            </div>
+            <div title="   The Feeder " style="padding:10px"><pre><code class="language-java">package com.gigaspaces.examples.parallelqueue;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import org.openspaces.core.GigaSpace;
@@ -238,9 +229,8 @@ public class Feeder implements Runnable{
     }
 }
 </code></pre>
-</div>
-
-<div title="   The Processor " style="padding:10px"><pre><code class="language-java">package com.gigaspaces.examples.parallelqueue;
+            </div>
+            <div title="   The Processor " style="padding:10px"><pre><code class="language-java">package com.gigaspaces.examples.parallelqueue;
 
 import org.openspaces.core.GigaSpace;
 import org.openspaces.events.SpaceDataEventListener;
@@ -268,9 +258,8 @@ public class Processor implements SpaceDataEventListener&lt;Order&gt;{
     }
 }
 </code></pre>
-</div>
-
-<div title="   The Data-Grid pu.xml  " style="padding:10px"><pre><code class="language-java">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+            </div>
+            <div title="   The Data-Grid pu.xml  " style="padding:10px"><pre><code class="language-java">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xmlns:context="http://www.springframework.org/schema/context"
@@ -281,8 +270,8 @@ public class Processor implements SpaceDataEventListener&lt;Order&gt;{
       xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
       xmlns:os-sla="http://www.openspaces.org/schema/sla"
       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/core/openspaces-core.xsd
       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd
@@ -301,9 +290,8 @@ public class Processor implements SpaceDataEventListener&lt;Order&gt;{
    &lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
 &lt;/beans&gt;
 </code></pre>
-</div>
-
-<div title="   The ProcessorFactory - None TX " style="padding:10px"><pre><code class="language-java">package com.gigaspaces.examples.parallelqueue;
+            </div>
+            <div title="   The ProcessorFactory - None TX " style="padding:10px"><pre><code class="language-java">package com.gigaspaces.examples.parallelqueue;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -364,9 +352,8 @@ public class ProcessorFactory implements InitializingBean{
     }
 }
 </code></pre>
-</div>
-
-<div title="   The ProcessorFactory - TX " style="padding:10px"><pre><code class="language-java">package com.gigaspaces.examples.parallelqueue;
+            </div>
+            <div title="   The ProcessorFactory - TX " style="padding:10px"><pre><code class="language-java">package com.gigaspaces.examples.parallelqueue;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -439,8 +426,7 @@ public class ProcessorFactory implements InitializingBean{
 
 }
 </code></pre>
-</div>
-</div>
-
-</body>
+            </div>
+        </div>
+    </body>
 </html>
