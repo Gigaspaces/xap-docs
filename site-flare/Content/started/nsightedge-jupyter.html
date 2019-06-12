@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Using the Jupyter Notebook with PySpark in <MadCap:variable name="General.ProductNameIE" /></h1>
+        <p>This section describes how to integrate Jupyter to be used with PySpark <MadCap:variable name="General.ProductNameIE" />.</p>
+        <h1>Prerequisites</h1>
+        <ul>
+            <li>
+                <p>Your host machine must have Python release 2 or 3, including pip, installed</p>
+            </li>
+            <li>Include &lt;python home&gt; in your path.</li>
+        </ul>
+        <h1>Incorporating Jupyter</h1>
+        <p>To have <a href="https://docs.gigaspaces.com/latest/dev-java/insightedge-python.html?Highlight=dataframe">PySpark</a> use Jupyter as a shell:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Linux" style="padding:10px">
+                <ol>
+                    <li>Install Jupyter with the  <code>&lt;python home&gt;/Scripts/pip install jupyter</code>command.</li>
+                    <li>
+                        <p>Include &lt;pythod-home&gt;/Scripts in your path.</p>
+                    </li>
+                    <li>
+                        <p>Add these entries to &lt;XAP_HOME&gt;/bin/insightedge/insightedge-pyspark:</p><pre><code class="language-bash">export PYSPARK_DRIVER_PYTHON=jupyter
+export PYSPARK_DRIVER_PYTHON_OPTS='notebook'<![CDATA[
+]]></code></pre>
+                    </li>
+                </ol>
+            </div>
+            <div title="Windows" style="padding:10px">
+                <ol>
+                    <li>Install Jupyter with the <code>&lt;python home&gt;\Scripts\pip install jupyter</code> command.</li>
+                    <li>Include &lt;pythod-home&gt;\Scripts in your path.</li>
+                    <li>
+                        <p>Add these entries to &lt;XAP_HOME&gt;\bin\insightedge\insightedge-pyspark:</p><pre><code class="language-bash">set PYSPARK_DRIVER_PYTHON=jupyter
+set PYSPARK_DRIVER_PYTHON_OPTS='notebook'
+</code></pre>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <h1>Running PySpark from Jupyter Dashboard</h1>
+        <p>Run the command <code>&lt;XAP_HOME&gt;\bin\insightedge\insightedge-pyspark</code> and a browser window opens at localhost:8888 with the Jupyter dashboard. From the dashboard you can view or run existing notebooks or create a new notebook by clicking <code>New</code> and selecting any of the available notebooks. Use the DataFrames API to manipulate data. You can load and access InsightEdge data as shown in the <a href="https://docs.gigaspaces.com/latest/dev-java/insightedge-python.html?Highlight=dataframe">PySpark</a> command line interface.</p>
+        <p>Following shows the commands within the Jupyter dashboard</p>
+    </body>
+</html>
