@@ -46,6 +46,38 @@ val analyticsXtremeDataframe: Dataframe = spark.analyticsXtreme("Trade")
         <p>For a more complex query that includes aggregations, the method by which the query is submitted causes important behavioral differences.</p>
         <p>In the code snippet below, the query is submitted to the Spark Dataframe as a table. Only the raw data is retrieved from the data grid; the client application has to perform the aggregation in order to finish executing the query and return results. </p><pre><code class="language-sql">val aggregationDataFrame = analyticsXtremeDataframe.agg("volume -&gt; avg", "endPrice -&gt; max", "startPrice -&gt; min")</code></pre>
         <p>When the query is submitted as a raw query, like in the following code snippet, Spark pushes the entire query (predicate) to the data grid. The query is executed from beginning to end in the data grid (both data retrieval and aggregation), and only the final results are returned to the client application. This predicate pushdown can significantly reduce the processing time of the query because it filters data out at the source, so that the query can complete faster and return only the required data back to the client application.</p><pre><code class="language-sql">val rawAggregationDataFrame = spark.read.analyticsXtreme("SELECT AVERAGE(volume) as avg_volume, MAX(endPrice) as max_endPrice, MIN(endPrice) as min_endPrice FROM Trade")</code></pre>
+        <h3>Query with Joins</h3>
+        <p>AnalyticsXtreme supports <code>JOIN</code> queries that meet the following requirements:</p>
+        <ul>
+            <li>The query is limited to two tables</li>
+            <li>Both tables use the same timestamp</li>
+            <li>Both tables have similar AnalyticXtreme policies</li>
+        </ul>
+        <p>The following query types are supported:</p>
+        <ul>
+            <li><code>Select * from t1 join t2 on t1.id=t2.id where...</code>
+            </li>
+            <li><code>Select * from t1, t2 where t1.id=t2.id</code>
+            </li>
+            <li><code>Select t1.&lt;variable1&gt; as &lt;variable1&gt;, t2.&lt;variable2&gt; as &lt;var2&gt; from t1, t2 where t1.id=t2.id</code>
+            </li>
+            <li><code>Select * from t1 join t2 on t1.id=t2.id and t1.&lt;variableId&gt;=t2.&lt;variableId&gt;</code>
+            </li>
+            <li><code>Select * from t1 join t2 on t1.id=t2.id where t1.id&lt;x or t2.[varId]&lt;y</code> (where x&gt;y)</li>
+            <li><code>Select * from t1 join t2 on t1.id=t2.id where t1.id&lt;xand t2.[varId]&lt;y</code> (where x&gt;y)</li>
+            <li><code>Select t1.column1, t2.column2 from t1 join t2 on t1.id=t2.id</code>
+            </li>
+        </ul>
+        <p>The following query types are not supported:</p>
+        <ul>
+            <li>Diagonal queries between the speed and batch layers (only same-layer JOINs are executed)</li>
+            <li>Outer layer JOIN (only inner JOIN is executed)</li>
+            <li><code>Select sum</code>, <code>count</code>, <code>avg</code>, <code>max</code>, <code>min from t1 join t2 on t1.id=t2.id</code></li>
+            <li><code>Select * from t1 join t2 ont1.id=t2.id order by t2.id desc</code>
+            </li>
+            <li><code>limit</code>
+            </li>
+        </ul>
         <h1>Supported SQL Query Functions</h1>
         <p>The following SQL keywords and operations can be used with AnalyticsXtreme:</p>
         <ul>
@@ -64,7 +96,7 @@ val analyticsXtremeDataframe: Dataframe = spark.analyticsXtreme("Trade")
         </div>
         <p>The following SQL&#160;query functionality is not supported in this release:</p>
         <ul>
-            <li>SQL keywords: <code>JOIN</code>, <code>HAVING</code></li>
+            <li>SQL keywords:<MadCap:conditionalText MadCap:conditions="Version.14-5-died"> <code>JOIN</code>,</MadCap:conditionalText> <code>HAVING</code></li>
             <li>Only the TIMESTAMP 'yyyy-MM-dd HH:mm:ss' format is supported in the SQL query</li>
         </ul>
     </body>
