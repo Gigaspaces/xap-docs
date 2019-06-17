@@ -853,6 +853,15 @@ public class SimpleListener {
 </code></pre>
             </div>
         </div>
+
+        <p>
+            A durable notify container can be tagged using a unique name to identify this listener. The tag will appear
+            in debug logs of the replication channel and its statistics. It can be added as a 'tag' attribute of the
+            <code>@Notify</code> annotation, or as a 'tag' attribute of <code>os-events:notify-container</code> namespace,
+            or by adding a 'tag' property on <code>SimpleNotifyEventListenerContainer</code>,
+            or by setting the <code>SimpleNotifyContainerConfigurer#setTag(String)</code> method.
+        </p>
+
         <div class="tc-admon-attention">
             <p>Durable Notification does not support embedded Spaces, and can only be used with a remote proxy.  As an alternative, use a <code>Polling Container</code> with <a href="polling-container-overview.html#trigger-receive-operation">SingleReadReceiveOperationHandler</a>.</p>
         </div>
