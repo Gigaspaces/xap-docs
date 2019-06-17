@@ -26,7 +26,7 @@ N/A
 
 ### Resolved Issues
 
-- {{% jira id="GS-13853" %}}: xxx.
+- {{% jira id="GS-13853" %}}: The os_cpu_used-percent operating system metric reported the wrong values.
 
 # 14.5.0 M8 (Jun-10-2019)
 
