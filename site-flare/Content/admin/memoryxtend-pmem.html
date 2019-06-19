@@ -34,13 +34,33 @@
         </div>
         <p>You can create a Space that utilizes the MemoryXtend PMEM storage driver via the <code>pu.xml</code> configuration file, or in the code. For example, to create a Space called "mySpace' with a PMEM memory pool of 20GB to be allocated at <MadCap:conditionalText MadCap:conditions="Version.14-5-died">/mnt/pmem0/pu-local-storage-pool.txt (the path in the file name should point to a file in the DAX&#160;file system)</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-born">/mnt/pmem0/MySpace_container:MySpace.data (pmem-path should point to a DAX&#160;file system)</MadCap:conditionalText>:</p>
         <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
-            <div title="pu.xml" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+            <div title="pu.xml" style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
        xmlns:blob-store="http://www.openspaces.org/schema/pmem-blob-store"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/pmem-blob-store http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/pmem-blob-store/openspaces-pmem-blob-store.xsd"&gt;
+
+	&lt;blob-store:pmem-blob-store id="myBlobStore" memory-pool-size="20GB" pmem-path="/mnt/pmem0/"/&gt;					
+
+    &lt;os-core:embedded-space id="space" name="MySpace"&gt;
+        &lt;!-- cache-entries-percentage=0 in order to make sure that objects are written to the ssd--&gt;
+        &lt;os-core:blob-store-data-policy  blob-store-handler="myBlobStore"
+                                         cache-entries-percentage="20"
+                                         avg-object-size-KB="10"
+                                         persistent="false"/&gt;
+    &lt;/os-core:embedded-space&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/pmem-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/core/openspaces-core.xsd
        http://www.openspaces.org/schema/pmem-blob-store http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/pmem-blob-store/openspaces-pmem-blob-store.xsd"&gt;
 

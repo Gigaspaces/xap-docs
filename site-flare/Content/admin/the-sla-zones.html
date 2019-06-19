@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -251,11 +251,53 @@ gs-agent.bat
         <p>To start the large zone:</p><pre><code class="language-bash">set XAP_GSC_OPTIONS=-Dcom.gs.zones=zoneLarge -Xmx3g
 gs-agent.bat
 </code></pre>
-        <p>Deploy a 3 partitions with a backup space cluster using the following sla.xml:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <p>Deploy a 3 partitions with a backup space cluster using the following sla.xml:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:os-sla="http://www.openspaces.org/schema/sla"
 xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/sla/openspaces-sla.xsd"&gt;
+
+&lt;os-sla:sla&gt;
+    &lt;os-sla:instance-SLAs&gt;
+        &lt;os-sla:instance-SLA instance-id="1"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneSmall" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="1" backup-id="1"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneSmall" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="2"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneMedium" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="2" backup-id="1"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneMedium" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="3"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneLarge" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="3" backup-id="1"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneLarge" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+    &lt;/os-sla:instance-SLAs&gt;
+&lt;/os-sla:sla&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:os-sla="http://www.openspaces.org/schema/sla"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/sla/openspaces-sla.xsd"&gt;
 
 &lt;os-sla:sla&gt;
