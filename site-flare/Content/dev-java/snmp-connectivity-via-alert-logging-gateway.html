@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -105,7 +105,7 @@ log4j.appender.TRAP_LOG.layout.ConversionPattern=%d,%p,%t,%c,%m%n
                 <p>If you do not have an SNMP server software, you should download one for the sake of running and testing this example. iReasoning MIB browser for example (<a href="http://ireasoning.com/mibbrowser.shtml" target="_blank">mibbrowser</a>) provides good basic SNMP trap viewing capabilities with a free personal edition. Make sure you configure log4j.properties to use the same IP and port used by the server.</p>
             </li>
             <li>
-                <p>Install <MadCap:variable name="General.ProductNameXAP" />'s maven dependencies to the local maven repository by executing <code>&lt;XAP root&gt;/tools/maven/installmavenrep.sh(bat)</code></p>
+                <p>Install <MadCap:variable name="General.ProductNameXAP" />'s maven dependencies to the local maven repository by executing <code>&lt;XAP_HOME&gt;\insightedge\bin\gs maven install</code></p>
             </li>
             <li>
                 <p>Build and pack the example project into a jar file. This can be done by executing the command "mvn" from the project's root directory or performing an equivalent action within your UI. A successful build should result in the creation of the example jar file in target/AlertLoggingGateway.jar.</p>
