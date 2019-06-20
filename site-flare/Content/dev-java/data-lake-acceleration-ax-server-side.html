@@ -270,7 +270,7 @@
             <p>For more information about the data grid's remoting mechanism, see the <MadCap:xref href="space-based-remoting-overview.html">Space-Based Remoting</MadCap:xref> section of the developer guide.</p>
         </div>
         <h1>Sample pu.xml File</h1>
-        <p>The following pu.xml file shows all the above steps, including defining a Space. </p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <p>The following pu.xml file shows all the above steps, including defining a Space. </p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xmlns:context="http://www.springframework.org/schema/context"
@@ -279,6 +279,86 @@
      xsi:schemaLocation="
    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-<MadCap:variable name="Versions.spring-short" />.xsd
    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-<MadCap:variable name="Versions.spring-short" />.xsd
+   http://www.openspaces.org/schema/core http://www.openspaces.org/schema/14.0/core/openspaces-core.xsd
+   http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd"&gt;
+
+     &lt;context:annotation-config /&gt;
+
+     &lt;os-core:annotation-support /&gt;
+
+     &lt;os-core:embedded-space id="space" space-name="demo-space" /&gt;
+
+     &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+
+&lt;bean id="ax-manager" class="com.gigaspaces.analytics_xtreme.server.AnalyticsXtremeManagerFactory"&gt;
+     &lt;property name="config"&gt;
+          &lt;bean class="com.gigaspaces.analytics_xtreme.AnalyticsXtremeConfigurationFactoryBean"&gt;
+               &lt;!-- Verbose is recommended for getting started, usually turned off in production --&gt;
+               &lt;property name="verbose" value="true"/&gt;
+               &lt;!-- more properties --&gt;
+          &lt;/bean&gt;
+     &lt;/property&gt;
+&lt;/bean&gt;
+	
+&lt;!-- Data life cycle policy for Trade class --&gt;
+&lt;bean class="com.gigaspaces.analytics_xtreme.DataLifecyclePolicyFactoryBean"&gt;
+     &lt;property name="typeName" value="com.gigaspaces.demo.Trade"/&gt;
+     &lt;property name="timeColumn" value="dateTimeTrade"/&gt;
+     &lt;property name="speedPeriod" value="pt5h"/&gt;
+     &lt;property name="batchDataSource" ref="ax-datasource"/&gt;
+     &lt;property name="batchDataTarget" ref="ax-datatarget"/&gt;
+&lt;/bean&gt;
+
+&lt;!-- Register the ax-manager bean as a remote service so clients can load configuration &amp; stats from it --&gt;
+&lt;os-remoting:service-exporter id="serviceExporter"&gt;
+     &lt;os-remoting:service ref="ax-manager"/&gt;
+&lt;/os-remoting:service-exporter&gt;
+
+
+&lt;!-- Data source plugin based on Spark Hive --&gt;
+&lt;bean id="ax-datasource" class="com.gigaspaces.analytics_xtreme.spark.SparkHiveBatchDataSourceFactoryBean"&gt;
+     &lt;property name="sparkSessionProvider" ref="ax-sparkSessionFactory"/&gt;
+&lt;/bean&gt;
+
+&lt;!-- Data target plugin based on Spark Hive --&gt;
+&lt;bean id="ax-datatarget" class="com.gigaspaces.analytics_xtreme.spark.SparkHiveBatchDataTargetFactoryBean"&gt;
+     &lt;property name="format" value="hive"/&gt;
+     &lt;property name="mode" value="append"/&gt;
+     &lt;property name="sparkSessionProvider" ref="ax-sparkSessionFactory"/&gt;
+&lt;/bean&gt;
+
+&lt;!-- Spark session provider --&gt;
+&lt;bean id="ax-sparkSessionFactory" class="org.insightedge.spark.SparkSessionProviderFactoryBean"&gt;
+     &lt;property name="master" value="local[*]"/&gt;
+     &lt;property name="enableHiveSupport" value="true"/&gt;
+     &lt;property name="configOptions"&gt;
+          &lt;map&gt;
+               &lt;entry key="hive.metastore.uris" value="thrift://hive-metastore:9083"/&gt;
+          &lt;/map&gt;
+     &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;!-- To use jdbc instead of spark, replace ax-datasource, ax-datatarget and sparkSessionFactory with these beans
+&lt;bean id="ax-datasource" class="com.gigaspaces.analytics_xtreme.jdbc.JdbcBatchDataSourceFactoryBean"&gt;
+     &lt;property name="connectionString" value="jdbc:hive2://hive-server:10000/;ssl=false"/&gt;
+&lt;/bean&gt;
+	
+&lt;bean id="ax-datatarget" class="com.gigaspaces.analytics_xtreme.jdbc.JdbcBatchDataTargetFactoryBean"&gt;
+     &lt;property name="connectionString" value="jdbc:hive2://hive-server:10000/;ssl=false"/&gt;
+     &lt;property name="useLowerCase" value="true"/&gt;
+&lt;/bean&gt;
+--&gt;
+&lt;/beans&gt;</code><![CDATA[
+]]></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:os-core="http://www.openspaces.org/schema/core"
+     xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+     xsi:schemaLocation="
+   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
    http://www.openspaces.org/schema/core http://www.openspaces.org/schema/14.0/core/openspaces-core.xsd
    http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd"&gt;
 

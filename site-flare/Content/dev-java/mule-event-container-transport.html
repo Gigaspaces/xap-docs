@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -6,7 +6,7 @@
         <h1>Event Container Transport</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> event container transport uses <a href="messaging-support.html">event components</a> (namely the <a href="polling-container-overview.html">polling container</a> and <a href="notify-container-overview.html">notify container</a>) to receive POJO messages using the Space as the transport layer. It also allows you to send POJO messages using the Space as the transport layer.</p>
         <p>Since Mule configuration uses Spring, the event container transport can be easily integrated with OpenSpaces event components.</p>
-        <p>In order to use the event container transport (using XML namespaces), the following XML headers need to be defined:</p><pre><code class="language-xml">&lt;mule xmlns="http://www.mulesoft.org/schema/mule/core"
+        <p>In order to use the event container transport (using XML namespaces), the following XML headers need to be defined:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;mule xmlns="http://www.mulesoft.org/schema/mule/core"
       xmlns:os-events="http://www.openspaces.org/schema/events"
       xmlns:os-core="http://www.openspaces.org/schema/core"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -16,6 +16,23 @@
       xsi:schemaLocation="http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+      http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/[%=Versions.mule%]/mule.xsd
+      http://www.mulesoft.org/schema/mule/stdio http://www.mulesoft.org/schema/mule/stdio/[%=Versions.mule%]/mule-stdio.xsd
+      http://www.openspaces.org/schema/mule/os-eventcontainer http://www.openspaces.org/schema/[%=Versions.product-version-short%]/mule/[%=Versions.mule%]/mule-os-eventcontainer.xsd"&gt;
+
+       &lt;!-- Mule configuration comes here ... --&gt;
+
+&lt;/mule&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:os-events="http://www.openspaces.org/schema/events"
+      xmlns:os-core="http://www.openspaces.org/schema/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:spring="http://www.springframework.org/schema/beans"
+      xmlns:os-eventcontainer="http://www.openspaces.org/schema/mule/os-eventcontainer"
+      xmlns:stdio="http://www.mulesoft.org/schema/mule/stdio"
+      xsi:schemaLocation="http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+      http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
       http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/[%=Versions.mule%]/mule.xsd
       http://www.mulesoft.org/schema/mule/stdio http://www.mulesoft.org/schema/mule/stdio/[%=Versions.mule%]/mule-stdio.xsd
       http://www.openspaces.org/schema/mule/os-eventcontainer http://www.openspaces.org/schema/[%=Versions.product-version-short%]/mule/[%=Versions.mule%]/mule-os-eventcontainer.xsd"&gt;
@@ -135,7 +152,7 @@
 </code></pre>
         <p>In the above example, the Mule transaction factory used is Spring-based, wrapping the Spring <code>PlatformTransactionManager</code>. For more information regarding OpenSpaces support for transactions (including XA), see the <a href="transaction-overview.html">OpenSpaces Core Component - Transaction Manager</a> section.</p>
         <h1><a name="full-example"></a>Full Example</h1>
-        <p>In this example, POJO messages are received (<code>SimpleMessage</code>) from the Space, with their <code>read</code> flag set to <code>false</code>. The <code>MessageReader</code> service then processes the messages (and among other operations, sets the <code>read</code> flag to <code>true</code>). Finally, the <code>MessageReader</code> result is written back to the Space.</p><pre><code class="language-xml">
+        <p>In this example, POJO messages are received (<code>SimpleMessage</code>) from the Space, with their <code>read</code> flag set to <code>false</code>. The <code>MessageReader</code> service then processes the messages (and among other operations, sets the <code>read</code> flag to <code>true</code>). Finally, the <code>MessageReader</code> result is written back to the Space.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;mule xmlns="http://www.mulesoft.org/schema/mule/core"
       xmlns:os-events="http://www.openspaces.org/schema/events"
@@ -147,6 +164,64 @@
       xsi:schemaLocation="http://www.openspaces.org/schema/core http://www.openspaces.org/schema/core/openspaces-core.xsd
       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+      http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/[%=Versions.mule%]/mule.xsd
+      http://www.mulesoft.org/schema/mule/stdio http://www.mulesoft.org/schema/mule/stdio/[%=Versions.mule%]/mule-stdio.xsd
+      http://www.openspaces.org/schema/mule/os-eventcontainer http://www.openspaces.org/schema/[%=Versions.product-version-short%]/mule/[%=Versions.mule%]/mule-os-eventcontainer.xsd"&gt;
+
+    &lt;description&gt;Tests mule connector, receive and process single object at a time.&lt;/description&gt;
+
+    &lt;spring:beans&gt;
+        &lt;os-core:embedded-space id="space" space-name="space" lookup-groups="${user.name}"/&gt;
+
+        &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+        &lt;os-events:polling-container id="helloPollingEventContainer" giga-space="gigaSpace"&gt;
+            &lt;os-core:template&gt;
+                &lt;spring:bean class="org.openspaces.itest.esb.mule.SimpleMessage"&gt;
+                    &lt;spring:property name="read" value="false"/&gt;
+                &lt;/spring:bean&gt;
+            &lt;/os-core:template&gt;
+        &lt;/os-events:polling-container&gt;
+    &lt;/spring:beans&gt;
+
+    &lt;!-- this connector must be declared ,in order to inject the  Spring appliction context --&gt;
+    &lt;os-eventcontainer:connector name="gigaSpacesConnector"/&gt;
+
+    &lt;!--The Mule model initialises and manages your UMO components--&gt;
+
+    &lt;model name="helloSample"&gt;
+
+        &lt;service name="MessageReaderUMO"&gt;
+            &lt;inbound &gt;
+                &lt;os-eventcontainer:inbound-endpoint address="os-eventcontainer://helloPollingEventContainer"/&gt;
+            &lt;/inbound&gt;
+
+            &lt;component class="org.openspaces.itest.esb.mule.MessageReader"/&gt;
+
+            &lt;outbound&gt;
+                &lt;outbound-pass-through-router&gt;
+                    &lt;os-eventcontainer:outbound-endpoint
+                     address="os-eventcontainer://gigaSpace"/&gt;
+                &lt;/outbound-pass-through-router&gt;
+            &lt;/outbound&gt;
+
+        &lt;/service&gt;
+
+    &lt;/model&gt;
+
+&lt;/mule&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:os-events="http://www.openspaces.org/schema/events"
+      xmlns:os-core="http://www.openspaces.org/schema/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:spring="http://www.springframework.org/schema/beans"
+      xmlns:os-eventcontainer="http://www.openspaces.org/schema/mule/os-eventcontainer"
+      xmlns:stdio="http://www.mulesoft.org/schema/mule/stdio"
+      xsi:schemaLocation="http://www.openspaces.org/schema/core http://www.openspaces.org/schema/core/openspaces-core.xsd
+      http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
       http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/[%=Versions.mule%]/mule.xsd
       http://www.mulesoft.org/schema/mule/stdio http://www.mulesoft.org/schema/mule/stdio/[%=Versions.mule%]/mule-stdio.xsd
       http://www.openspaces.org/schema/mule/os-eventcontainer http://www.openspaces.org/schema/[%=Versions.product-version-short%]/mule/[%=Versions.mule%]/mule-os-eventcontainer.xsd"&gt;

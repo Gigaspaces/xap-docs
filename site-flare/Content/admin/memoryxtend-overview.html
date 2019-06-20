@@ -279,7 +279,7 @@ For information about <MadCap:variable name="General.ProductNameXAP" /> metrics 
         </ul>
         <p>The following examples demonstrate how to configure a persistent disk-based storage driver with such an attribute store:</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="File-based" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+            <div title="File-based" style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -303,7 +303,7 @@ For information about <MadCap:variable name="General.ProductNameXAP" /> metrics 
 &lt;/beans&gt;
 </code></pre>
             </div>
-            <div title="Zookeeper-based" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+            <div title="Zookeeper-based" style="padding:10px"><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"

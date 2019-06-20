@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -15,10 +15,7 @@ As long as there is enough memory resources across the available machines, the d
                         <li>4 VMs - <MadCap:variable name="General.ProductNameXAP" />-1 , <MadCap:variable name="General.ProductNameXAP" />-2 , <MadCap:variable name="General.ProductNameXAP" />-3 , <MadCap:variable name="General.ProductNameXAP" />-4<br /></li>
                         <li>8 GM RAM , 4 cores each</li>
                     </ul>
-                    <p>The Data-Grid cluster:<br />
-- 8 partitions with backup<br />
-- Offheap storage<br />
-- GSC size 500 MB heap</p>
+                    <p>The Data-Grid cluster:<br />- 8 partitions with backup<br />- Offheap storage<br />- GSC size 500 MB heap</p>
                 </td>
                 <td style="width:30%;">
                     <p>
@@ -58,12 +55,29 @@ As long as there is enough memory resources across the available machines, the d
         <p>Other nodes (<MadCap:variable name="General.ProductNameXAP" />-2, <MadCap:variable name="General.ProductNameXAP" />-3 , <MadCap:variable name="General.ProductNameXAP" />-4)</p><pre><code class="language-bash%">./gs-agent.sh 
 </code></pre>
         <h1><a name="elastic-pu"></a>Elastic PU</h1>
-        <h2><a name="the-space-pu-xml"></a>The Space pu.xml</h2><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <h2><a name="the-space-pu-xml"></a>The Space pu.xml</h2><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
        xmlns:blob-store="http://www.openspaces.org/schema/mapdb-blob-store"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/mapdb-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/mapdb-blob-store/openspaces-mapdb-blobstore.xsd"&gt;
+
+    &lt;blob-store:mapdb-blob-store id="offheapBlobstore"/&gt;
+
+    &lt;os-core:embedded-space id="space" space-name="offheap-space"&gt;
+       &lt;os-core:blob-store-data-policy persistent="false" blob-store-handler="offheapBlobstore"/&gt;
+    &lt;/os-core:space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/mapdb-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
        http://www.openspaces.org/schema/mapdb-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/mapdb-blob-store/openspaces-mapdb-blobstore.xsd"&gt;
 

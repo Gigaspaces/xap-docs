@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -58,7 +58,7 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("gigaspaces", 
 </code></pre>
         <h3><a name="injection-using-spring"></a>Injection using Spring</h3>
         <p>You can inject either an <code>EntityManager</code> or <code>EntityManagerFactory</code> using Spring. Before reading this, we recommend that you familiarize yourself with <a href="http://static.springsource.org/spring/docs/3.0.x/reference/orm.html#orm-jpa">Spring's JPA support</a>.</p>
-        <p>The following example shows how to inject a Space-based <code>EntityManagerFactory</code>. The Spring XML configuration file declares a Space, an <code>EntityManagerFactory</code>, a transaction manager, and a JPA service bean (this is our DAO):</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <p>The following example shows how to inject a Space-based <code>EntityManagerFactory</code>. The Spring XML configuration file declares a Space, an <code>EntityManagerFactory</code>, a transaction manager, and a JPA service bean (this is our DAO):</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -69,6 +69,48 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("gigaspaces", 
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring%].xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-[%=Versions.spring%].xsd"&gt;
+
+    &lt;!-- space definition --&gt;
+    &lt;os-core:embedded-space  id="space" space-name="jpaSpace" lookup-groups="test"/&gt;
+
+    &lt;!-- gigaspace definition --&gt;
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+    &lt;!-- JPA entity manager factory definition --&gt;
+    &lt;bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"&gt;
+                &lt;!-- this relies on the fact that our persistence.xml file defines a persistence unit named "gigaspaces" --&gt;
+        &lt;property name="persistenceUnitName" value="gigaspaces"/&gt;
+        &lt;property name="jpaVendorAdapter"&gt;
+            &lt;bean class="org.openspaces.jpa.OpenSpacesJpaVendorAdapter"&gt;
+                &lt;property name="space" value="#{gigaSpace.space}"/&gt;
+            &lt;/bean&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+
+    &lt;!-- JPA transaction manager definition --&gt;
+    &lt;bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"&gt;
+        &lt;property name="entityManagerFactory" ref="entityManagerFactory" /&gt;
+    &lt;/bean&gt;
+
+    &lt;!-- support annotations --&gt;
+    &lt;bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" /&gt;
+    &lt;context:annotation-config/&gt;
+    &lt;tx:annotation-driven transaction-manager="transactionManager"/&gt;
+
+    &lt;!-- JPA example service definition --&gt;
+    &lt;bean id="jpaService" class="org.openspaces.jpa.JpaService" /&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"&gt;
 
     &lt;!-- space definition --&gt;
     &lt;os-core:embedded-space  id="space" space-name="jpaSpace" lookup-groups="test"/&gt;
@@ -168,7 +210,8 @@ public class JpaService {
         <table>
             <thead>
                 <tr>
-                    <th align="left"><MadCap:variable name="General.ProductNameXAP" /></th>
+                    <th align="left"><MadCap:variable name="General.ProductNameXAP" />
+                    </th>
                     <th align="left">JPA</th>
                 </tr>
             </thead>

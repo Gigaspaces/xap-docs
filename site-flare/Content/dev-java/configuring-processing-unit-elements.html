@@ -38,7 +38,7 @@ Naturally, <MadCap:variable name="General.ProductNameXAP" /> also leverages the 
         </ul>
         <p>Throughout this guide, every configuration example will be provided in all of the supported forms (plain Spring, custom namespace element and annotations). See below for an example pu.xml configuration file.</p>
         <h1><a name="sample-pu-xml-configuration"></a>Sample pu.xml Configuration</h1>
-        <p>Here's a sample <code>pu.xml</code> configuration file. Note the comments in the file which describe the various elements that appear in it.</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <p>Here's a sample <code>pu.xml</code> configuration file. Note the comments in the file which describe the various elements that appear in it.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!--
     top level element of the Spring configuration. Note the multiple namespace definition for both
     GigaSpaces and Spring. You can simply copy and paste this portion of the pu.xml file
@@ -53,6 +53,52 @@ Naturally, <MadCap:variable name="General.ProductNameXAP" /> also leverages the 
    xsi:schemaLocation="
    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
+   http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+   http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+   http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+   http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd"&gt;
+
+    &lt;!-- Enables to configure Spring beans through annotations   --&gt;
+    &lt;context:annotation-config /&gt;
+
+    &lt;!-- Enable OpenSpaces core annotation support. --&gt;
+    &lt;os-core:annotation-support /&gt;
+
+    &lt;!-- Enables using @Polling and @Notify annotations to creating polling and notify containers  --&gt;
+    &lt;os-events:annotation-support /&gt;
+
+    &lt;!-- Enables using @RemotingService and other remoting related annotations   --&gt;
+    &lt;os-remoting:annotation-support /&gt;
+
+    &lt;!--
+        A bean representing a Space. Here we configure an embedded space. Note
+        that we do not specify here the cluster topology of the Space. It is
+        declared by the os-sla:sla element of this pu.xml file.
+    --&gt;
+     &lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+
+    &lt;!-- Defines a distributed transaction manager.--&gt;
+    &lt;os-core:distributed-tx-manager id="transactionManager" /&gt;
+
+    &lt;!-- Define the GigaSpace instance that the application will use to access the space  --&gt;
+    &lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
+
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!--
+    top level element of the Spring configuration. Note the multiple namespace definition for both
+    GigaSpaces and Spring. You can simply copy and paste this portion of the pu.xml file
+--&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:os-core="http://www.openspaces.org/schema/core"
+   xmlns:os-events="http://www.openspaces.org/schema/events"
+   xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+   xmlns:os-sla="http://www.openspaces.org/schema/sla"
+   xsi:schemaLocation="
+   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
    http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
    http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
    http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd

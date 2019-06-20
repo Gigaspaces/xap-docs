@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -288,7 +288,7 @@ for (ProcessingUnit pu : dataApp.getProcessingUnits()) {
   pu.waitFor(pu.getTotalNumberOfInstances());
 }
 </code></pre>
-                <p>Here is the content of the application.xml file (that resides alongside feeder.jar in dist.zip):</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+                <p>Here is the content of the application.xml file (that resides alongside feeder.jar in dist.zip):</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
     xmlns:os-admin="http://www.openspaces.org/schema/admin"
@@ -308,17 +308,57 @@ for (ProcessingUnit pu : dataApp.getProcessingUnits()) {
 
     &lt;/os-admin:application&gt;
 &lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:space name="space" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="space"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
 </code></pre>
             </div>
             <div title="  GigaSpaces CLI and XML " style="padding:10px">
                 <p>The processing unit dependencies can be described using an XML file.</p><pre><code class="language-java">&gt; &lt;XAP Root&gt;/bin/gs.sh(bat) deploy-application examples/data/dist.zip
 </code></pre>
-                <p>Here is the content of the application.xml file (that resides alongside feeder.jar in dist.zip):</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+                <p>Here is the content of the application.xml file (that resides alongside feeder.jar in dist.zip):</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
     xmlns:os-admin="http://www.openspaces.org/schema/admin"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:space name="space" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="space"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
     http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
 
     &lt;context:annotation-config /&gt;
@@ -378,12 +418,32 @@ for (ProcessingUnit pu : dataApp.getProcessingUnits()) {
   pu.waitFor(pu.getTotalNumberOfInstances());
 }
 </code></pre>
-                <p>Here is the content of the application.xml file (that resides alongside feeder.jar in dist.zip):</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+                <p>Here is the content of the application.xml file (that resides alongside feeder.jar in dist.zip):</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
     xmlns:os-admin="http://www.openspaces.org/schema/admin"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:space name="space" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="space" min-instances-per-partition="1"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
     http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
 
     &lt;context:annotation-config /&gt;
@@ -409,6 +469,26 @@ for (ProcessingUnit pu : dataApp.getProcessingUnits()) {
     xmlns:os-admin="http://www.openspaces.org/schema/admin"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:space name="space" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="space" min-instances-per-partition="1"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born,Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
     http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
 
     &lt;context:annotation-config /&gt;

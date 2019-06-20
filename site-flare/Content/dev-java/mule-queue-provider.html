@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -104,7 +104,7 @@ The messaging style can be configured on the endpoints in the following way:</p>
 </code></pre>
         <p>The above example defines a Mule <code>transactionFactory</code>, which is used to handle transactions within Mule. Since the <code>giga-space</code> bean is aware of it, any operations performed on it using the <code>os-queue</code> result in joining an existing transaction if one is in progress.</p>
         <h1><a name="full-example"></a>Full Example</h1>
-        <p>The example below will uses two components: <code>Appender1</code> and <code>Appender2</code>. The 2 services that wrap the components use the OpenSpaces queue transport as both the inbound and outbound transports.</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <p>The example below will uses two components: <code>Appender1</code> and <code>Appender2</code>. The 2 services that wrap the components use the OpenSpaces queue transport as both the inbound and outbound transports.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;mule xmlns="http://www.mulesoft.org/schema/mule/core"
       xmlns:os-events="http://www.openspaces.org/schema/events"
       xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -115,6 +115,63 @@ The messaging style can be configured on the endpoints in the following way:</p>
       xsi:schemaLocation="http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
        http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+       http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
+       http://www.mulesoft.org/schema/mule/stdio http://www.mulesoft.org/schema/mule/stdio/3.1/mule-stdio.xsd
+       http://www.openspaces.org/schema/mule/os-queue http://www.openspaces.org/schema/[%=Versions.product-version-short%]/mule/3.1/mule-os-queue.xsd"&gt;
+
+    &lt;spring:beans&gt;
+        &lt;os-core:embedded-space id="space" space-name="mySpace"  lookup-groups="${user.name}"/&gt;
+
+        &lt;os-core:giga-space id="gigaSpace" space="space" /&gt;
+    &lt;/spring:beans&gt;
+
+    &lt;!-- this connector must be declared ,in order to inject the  Spring appliction context --&gt;
+    &lt;os-queue:connector name="queueConnector" giga-space="gigaSpace"   /&gt;
+
+    &lt;model name="helloSample"&gt;
+
+        &lt;service name="Appender1"&gt;
+
+            &lt;inbound-router&gt;
+                &lt;os-queue:inbound-endpoint path="test1"/&gt;
+            &lt;/inbound-router&gt;
+
+            &lt;component class="test.EchoeComponentAppender"/&gt;
+
+            &lt;outbound-router&gt;
+                &lt;outbound-pass-through-router&gt;
+                    &lt;os-queue:outbound-endpoint path="test2"/&gt;
+                &lt;/outbound-pass-through-router&gt;
+            &lt;/outbound-router&gt;
+
+        &lt;/service&gt;
+
+        &lt;service name="Appender2"&gt;
+            &lt;inbound-router&gt;
+                &lt;os-queue:inbound-endpoint path="test2"/&gt;
+            &lt;/inbound-router&gt;
+
+            &lt;component class="test.EchoeComponentAppender"/&gt;
+
+            &lt;outbound-router&gt;
+                &lt;outbound-pass-through-router&gt;
+                    &lt;os-queue:outbound-endpoint path="test3"/&gt;
+                &lt;/outbound-pass-through-router&gt;
+            &lt;/outbound-router&gt;
+        &lt;/service&gt;
+    &lt;/model&gt;
+&lt;/mule&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:os-events="http://www.openspaces.org/schema/events"
+      xmlns:os-core="http://www.openspaces.org/schema/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:spring="http://www.springframework.org/schema/beans"
+      xmlns:os-queue="http://www.openspaces.org/schema/mule/os-queue"
+      xmlns:stdio="http://www.mulesoft.org/schema/mule/stdio"
+      xsi:schemaLocation="http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
        http://www.mulesoft.org/schema/mule/stdio http://www.mulesoft.org/schema/mule/stdio/3.1/mule-stdio.xsd
        http://www.openspaces.org/schema/mule/os-queue http://www.openspaces.org/schema/[%=Versions.product-version-short%]/mule/3.1/mule-os-queue.xsd"&gt;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -12,9 +12,15 @@ By implementing Spring's <code>PlatformTransactionManager</code>, the <MadCap:va
         </div>
         <div class="tc-admon-note">
             <p>In order to make <a href="the-gigaspace-interface-overview.html">The GigaSpace Interface </a> transactional, the transaction manager must be provided to it when constructing the GigaSpace bean.
-The following should be added to your <code>pu.xml</code> to enable the configuration of transactional behavior based on annotations:</p><pre><code class="language-xml">&lt;beans ....
+The following should be added to your <code>pu.xml</code> to enable the configuration of transactional behavior based on annotations:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;beans ....
        xmlns:tx="http://www.springframework.org/schema/tx"
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-[%=Versions.spring-short%].xsd"&gt;
+
+       &lt;tx:annotation-driven transaction-manager="transactionManager"/&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;beans ....
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"&gt;
 
        &lt;tx:annotation-driven transaction-manager="transactionManager"/&gt;
 &lt;/beans&gt;
@@ -252,7 +258,7 @@ public void myTransactionalMethod(Object data) {
             <li>
                 <p>If you try to call an annotated method from within the same class, for example calling it on <code>this</code>, no transaction will be started because your code actually accesses a direct reference and not a proxied bean.</p>
             </li>
-        </ol><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        </ol><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -265,6 +271,33 @@ public void myTransactionalMethod(Object data) {
        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
        http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-[%=Versions.spring-short%].xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd"&gt;
+
+    &lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
+
+    &lt;!-- Defines a distributed Jini transaction manager. --&gt;
+    &lt;os-core:distributed-tx-manager id="transactionManager"/&gt;
+        &lt;bean id="transactionalBean" class="MyClass"/&gt;
+        &lt;bean id="callingBean" class="MyOtherClass"&gt;
+            &lt;property name="myClass" ref="transactionalBean"/&gt;
+        &lt;/bean&gt;
+    &lt;tx:annotation-driven transaction-manager="transactionManager" /&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:os-events="http://www.openspaces.org/schema/events"
+       xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd"&gt;
 
     &lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
