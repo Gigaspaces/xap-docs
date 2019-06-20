@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -6,6 +6,7 @@
         <h1>Spring Security</h1>
         <p>Spring Security, historically also known as Acegi Security, provides a comprehensive security solution for handling authentication and authorization. Spring Security namespace provides directives for most common operations, allowing complete security configuration in just a few lines of XML.</p>
         <p>Spring Security comes with authentication providers for many occasions. Most common are the <code>DaoAuthenticationProvider</code> for retrieving user information from a database; <code>LdapAuthenticationProvider</code> for authentication against a Lightweight Directory Access Protocol (LDAP) server; <code>JaasAuthenticationProvider</code> for retrieving user information from a JAAS login configuration; etc.</p>
+        <p MadCap:conditions="Version.14-5-born">You must apply Password Encoding. See <MadCap:xref href="default-file-based-security-implementation-ext.html">Default File-Based Security</MadCap:xref> for details on defining a password encoder.</p>
         <div class="tc-admon-note">
             <p>For more information, please refer to the <a href="http://static.springsource.org/spring-security/site" target="_blank">Spring Security website</a>.</p>
         </div>

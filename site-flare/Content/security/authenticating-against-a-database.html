@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -92,11 +92,19 @@ create table group_members (
         </div>
         <h1><a name="working-with-encrypted-passwords"></a>Working with Encrypted Passwords</h1>
         <p>Spring Security's <code>PasswordEncoder</code> interface is used to support the use of passwords which are encoded in some way in persistent storage. This will normally mean that the passwords are "hashed" using a digest algorithm such as MD5 or SHA.</p>
-        <p>By default, the <code>DaoAuthenticationProvider</code> uses the <code>PlaintextPasswordEncoder</code>, which means that the password is left unencoded. Here is how to wire <code>DaoAuthenticationProvider</code> to use <span class="tc-bold">MD5</span> encoding:</p><pre><code class="language-xml">&lt;bean id="daoAuthenticationProvider"
+        <p>
+            <MadCap:conditionalText MadCap:conditions="Version.14-5-died">By default, the <code>DaoAuthenticationProvider</code> uses the <code>PlaintextPasswordEncoder</code>, which means that the password is left unencoded.</MadCap:conditionalText> Here is how to wire <code>DaoAuthenticationProvider</code> to use <span class="tc-bold">MD5</span> encoding:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;bean id="daoAuthenticationProvider"
     class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"&gt;
     &lt;property name="userDetailsService" ref="daoUserDetailsService" /&gt;
     &lt;property name="passwordEncoder"&gt;
         &lt;bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" /&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;bean id="daoAuthenticationProvider"
+    class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"&gt;
+    &lt;property name="userDetailsService" ref="daoUserDetailsService" /&gt;
+    &lt;property name="passwordEncoder"&gt;
+        &lt;bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /&gt;
     &lt;/property&gt;
 &lt;/bean&gt;
 </code></pre>
