@@ -6,13 +6,13 @@
         <h1 class="tc-pagetitle">PySpark</h1>
         <p><MadCap:variable name="General.ProductNameIE" /> has a Python API available via PySpark. Its functionality is limited to the DataFrame API.</p>
         <h1><a name="interactive-use"></a>Interactive Use</h1>
-        <p>There are three options for analyzing data interactively in Python:</p>
+        <p>You can use the following tools to analyze data interactively in Python:</p>
         <ul>
             <li><a href="../started/insightedge-zeppelin.html">Zeppelin</a>
                 <br />
             </li>
-            <li>command line shell</li>
-            <li><a href="../started/insightedge-jupyter.html">Jupyter</a>
+            <li>Command line shell</li>
+            <li MadCap:conditions="Version.14-5-born"><a href="../started/insightedge-jupyter.html">Jupyter</a>
             </li>
         </ul>
         <h1><a name="zeppelin-notebook"></a>Zeppelin Notebook</h1>
@@ -88,6 +88,9 @@ spark = SparkSession.builder.config(conf=conf).getOrCreate()
             <div title="Windows" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;\insightedge\bin\insightedge-submit --master spark://127.0.0.1:7077 &lt;XAP-HOME&gt;\insightedge\examples\python\sf_salaries.py
 </code></pre>
             </div>
+        </div>
+        <div class="tc-admon-attention">
+            <p>PySpark doesn't support Java 11. Make sure your JAVA_HOME environment variable is pointing to a JDK&#160;8 folder. See <a href="https://stackoverflow.com/questions/53583199/pyspark-error-unsupported-class-file-major-" target="_blank">here</a> for more information about PySpark and Java.</p>
         </div>
     </body>
 </html>
