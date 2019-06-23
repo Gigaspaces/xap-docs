@@ -3,33 +3,49 @@
     <head>
     </head>
     <body>
-        <h1>Example Project</h1>
+        <h1 class="tc-pagetitle">Sample Scala Project</h1>
         <h1><a name="overview"></a>Overview</h1>
-        <p>Here is an example project that shows how <MadCap:variable name="General.ProductNameXAP" /> Scala can be used in a real project and how Scala and Java code might be integrated.</p>
-        <h1><a name="openspaces-maven-plugin-project"></a>OpenSpaces Maven plugin project</h1>
-        <p>The project is based on a template project of <code>basic</code> type from the <MadCap:variable name="General.ProductNameXAP" /> Maven plugin. A few changes were introduced:</p>
-        <ul>
-            <li><code>Common</code> module, which implements Space classes,  written in Scala and takes advantage of constructor based properties.</li>
-            <li>A new module - <code>verifier</code> was introduced. It uses a class with constructor based properties and predicate based queries to obtain objects from Space.</li>
-            <li>Build process of <code>common</code> and <code>verifier</code> modules was modified to handle Scala and mixed Java/Scala modules, respectively.</li>
+        <p>This topic describes a sample project that shows how <MadCap:variable name="General.ProductNameXAP" /> Scala can be used in a real project and how Scala and Java code might be integrated.</p>
+        <h1 MadCap:conditions="Version.14-5-died"><a name="openspaces-maven-plugin-project"></a>OpenSpaces Maven plugin project</h1>
+        <p MadCap:conditions="Version.14-5-died">The project is based on a template project of <code>basic</code> type from the <MadCap:variable name="General.ProductNameXAP" /> Maven plugin. A few changes were introduced:</p>
+        <ul MadCap:conditions="Version.14-5-died">
+            <li MadCap:conditions="Version.14-5-died">The <code>Common</code> module, which implements Space classes, is written in Scala and leverages constructor-based properties.</li>
+            <li MadCap:conditions="Version.14-5-died">A new module - <code>verifier</code> was introduced. It uses a class with constructor based properties and predicate based queries to obtain objects from Space.</li>
+            <li MadCap:conditions="Version.14-5-died">Build process of <code>common</code> and <code>verifier</code> modules was modified to handle Scala and mixed Java/Scala modules, respectively.</li>
         </ul>
-        <h1><a name="build-run"></a>Build &amp; run</h1>
+        <h1><a name="build-run"></a>Using the <MadCap:variable name="General.ProductNameXAP" /> Scala Project</h1>
         <h2><a name="requirements"></a>Requirements</h2>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> Scala project uses the <code>maven </code>build tool. Ensure that the following requirements are met:</p>
+        <ul>
+            <li>The minimum required Java version is JDK 1.6 .</li>
+            <li>To run the project, Scala libraries must be accessible to the <MadCap:variable name="General.ProductNameXAP" /> data grid.</li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>Scala is not needed to build the project, because the required libraries are downloaded by <code>maven</code>.</p>
+        </div>
+        <h2><a name="build-and-run-steps"></a>Running the Example</h2>
         <ol>
-            <li>JDK in version at least 1.6 is required to build the project.</li>
-            <li>The project uses <code>maven</code> build tool.</li>
-            <li>To run the project, Scala libraries have to be a accessible for <MadCap:variable name="General.ProductNameXAP" />.</li>
-        </ol>
-        <p>Please note that Scala is not required to build the project, since requried libraries will be downloaded by <code>maven</code>.</p>
-        <h2><a name="build-and-run-steps"></a>Build and run steps</h2>
-        <ol>
-            <li>Download <a href="https://github.com/Gigaspaces/xap-scala/archive/10.2.0_ga_build13800_07_28_2015.zip">xap-scala</a> and unzip it.</li>
-            <li>From the project's main directory <code>$XAP_SCALA</code> run command <code>mvn clean install</code></li>
-            <li>From the project's main directory <code>$XAP_SCALA/example/gs-openspaces-scala-example</code> run command <code>mvn clean package</code> - necessary JAR files to deploy on a grid will be created.</li>
-            <li>Start <MadCap:variable name="General.ProductNameXAP" /> Grid Service by running command: <code>$GS_HOME/bin/gs-agent.sh/bat</code></li>
-            <li MadCap:conditions="Version.14-5-died">Run this command <code>&lt;XAP_root&gt;/tools/maven/installmavenrep.sh(bat)</code>: </li>
-            <li MadCap:conditions="Version.14-5-born">Run this command <code>&lt;XAP_HOME&gt;\insightedge\bin\gs maven install</code>: </li>
-            <li>Deploy the project on the grid (from <code>$XAP_SCALA/example/gs-openspaces-scala-example</code>): <code>mvn os:deploy -Dgroups=$XAP_LOOKUP_GROUPS</code>.</li>
+            <li>
+                <p>Download the <a href="https://github.com/Gigaspaces/xap-scala/archive/10.2.0_ga_build13800_07_28_2015.zip">xap-scala</a> package and unzip it.</p>
+            </li>
+            <li>
+                <p>From the project's main directory <code>$XAP_SCALA</code>, run the following CLI&#160;command to install Maven on the host machine: </p><pre><code>mvn clean install</code></pre>
+            </li>
+            <li>
+                <p>From the project's main directory <code>$XAP_SCALA/example/gs-openspaces-scala-example</code>, run the following command to deploy the JAR files that you will need to deploy the project to the data grid: </p><pre><code>mvn clean package</code></pre>
+            </li>
+            <li>
+                <p>To start the data grid, run the following command:</p><pre><code>$GS_HOME/bin/gs-agent.sh/bat</code></pre>
+            </li>
+            <li MadCap:conditions="Version.14-5-died">
+                <p>Run this command <code>&lt;XAP_root&gt;/tools/maven/installmavenrep.sh(bat)</code>: </p>
+            </li>
+            <li MadCap:conditions="Version.14-5-born">
+                <p>Run this command <code>&lt;XAP_HOME&gt;\insightedge\bin\gs maven install</code>: </p>
+            </li>
+            <li>
+                <p>Deploy the project on the grid (from <code>$XAP_SCALA/example/gs-openspaces-scala-example</code>): <code>mvn os:deploy -Dgroups=$XAP_LOOKUP_GROUPS</code>.</p>
+            </li>
         </ol>
         <h1><a name="xap-scala-features"></a><MadCap:variable name="General.ProductNameXAP" /> Scala features</h1>
         <h2><a name="constructor-based-properties"></a>Constructor based properties</h2>
