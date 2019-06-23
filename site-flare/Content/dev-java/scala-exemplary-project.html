@@ -27,7 +27,8 @@
             <li>From the project's main directory <code>$XAP_SCALA</code> run command <code>mvn clean install</code></li>
             <li>From the project's main directory <code>$XAP_SCALA/example/gs-openspaces-scala-example</code> run command <code>mvn clean package</code> - necessary JAR files to deploy on a grid will be created.</li>
             <li>Start <MadCap:variable name="General.ProductNameXAP" /> Grid Service by running command: <code>$GS_HOME/bin/gs-agent.sh/bat</code></li>
-            <li>Run this command <code>&lt;XAP_HOME&gt;\insightedge\bin\gs maven install</code>: </li>
+            <li MadCap:conditions="Version.14-5-died">Run this command <code>&lt;XAP_root&gt;/tools/maven/installmavenrep.sh(bat)</code>: </li>
+            <li MadCap:conditions="Version.14-5-born">Run this command <code>&lt;XAP_HOME&gt;\insightedge\bin\gs maven install</code>: </li>
             <li>Deploy the project on the grid (from <code>$XAP_SCALA/example/gs-openspaces-scala-example</code>): <code>mvn os:deploy -Dgroups=$XAP_LOOKUP_GROUPS</code>.</li>
         </ol>
         <h1><a name="xap-scala-features"></a><MadCap:variable name="General.ProductNameXAP" /> Scala features</h1>
