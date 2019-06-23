@@ -10,6 +10,34 @@ This page contains early access information for the InsightEdge Platform and XAP
 
 {{%tip "Disclaimer"%}} Early access builds are provided as is, and should not be used in production. The latest stable release is version 14.2.0.<br>[Download](https://www.gigaspaces.com/download-center) | [Documentation](/xap/14.0/)</br>{{%/tip%}}
 
+# 14.5.0 RC1 (Jun-23-2019)
+
+## Download Links
+
+ * [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.5.0/gigaspaces-insightedge-enterprise-14.5.0-rc1.zip) 
+
+ * [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap-enterprise-14.5.0-rc1.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap.net-14.5.0-rc1.msi)
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13840" %}}: AnalyticsXtreme - add JOIN support to query.
+- {{% jira id="GS-13869" %}}: Query optimization for "OR" conditions in AnalyticsXtreme.
+- {{% jira id="GS-13868" %}}: Added support in AnalyticsXtreme for Hive partitioned tables.
+- {{% jira id="GS-13839" %}}: GigaSpaces blueprints for creating new projects.
+- {{% jira id="GS-13854" %}}: Consolidate CLI scripts (gs, xap, insightedge) to a single script (gs).
+- {{% jira id="GS-13859" %}}: Deprecated duplicate scripts and removed obsolete scripts.
+- {{% jira id="GS-13862" %}}: Added SLF4J dependency for logging.
+- {{% jira id="GS-13860" %}}: InsightEdge JDBC Driver enhancement - push down projection when aggregation is used.
+- {{% jira id="GS-13838" %}}: New GigaSpaces-Tableau JDBC Connector.
+- {{% jira id="GS-13858" %}}: Upgrade Jetty to 9.3.27.
+- {{% jira id="GS-13498" %}}: Tag durable notify containers with business-oriented names.
+
+### Resolved Issues
+
+- {{% jira id="GS-13871" %}}: Force timezone to UTC when using a Spark data source with AnalyticsXtreme.
+
 # 14.5.0 M9 (Jun-16-2019)
 
 ## Download Links
