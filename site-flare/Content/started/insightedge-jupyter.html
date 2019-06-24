@@ -47,18 +47,29 @@ set PYSPARK_DRIVER_PYTHON_OPTS='notebook'
             <li>
                 <p>  Load data from the InsightEdge data grid as shown in the example on the <a href="https://docs.gigaspaces.com/latest/dev-java/insightedge-python.html?Highlight=dataframe">PySpark</a> page, and use the DataFrames API to manipulate the data as necessary.</p>
                 <p MadCap:conditions="Default.DoNotShow">You can run this sample that loads data from a file and saves it to the demo dataspace.</p><pre xml:space="preserve" MadCap:conditions="Default.DoNotShow">
-</pre>
-                <p>The following shows the PySpark commands within the Jupyter dashboard.</p>
-                <p>Before running the command:</p>
-                <p>
-                    <img src="../Resources/Static/attachment_files/started/Jupyter-before.png" class="tc-picture80" />
-                </p>
-                <p>After running the command:</p>
+from pyspark.conf import SparkConf
+from pyspark.sql import SparkSession
+
+conf = SparkConf()
+conf.setAppName("InsightEdge Python Example")
+conf.set("spark.insightedge.space.name", "demo")
+conf.set("spark.insightedge.space.lookup.group", "insightedge")
+conf.set("spark.insightedge.space.lookup.locator", "127.0.0.1:4174")
+
+spark = SparkSession.builder.config(conf=conf).getOrCreate()
+# load SF salaries dataset from file
+jsonFilePath = os.path.join(os.environ["XAP_HOME"], "insightedge/data/sf_salaries_sample.json")
+jsonDf = spark.read.json(jsonFilePath)
+
+# save DataFrame to the grid
+jsonDf.write.format("org.apache.spark.sql.insightedge").mode("overwrite").save("salaries")
+
+# load DataFrame from the grid
+gridDf = spark.read.format("org.apache.spark.sql.insightedge").option("collection", "salaries").load()
+gridDf.show()</pre>
+                <p>And see the PySpark commands and output within the Jupyter dashboard.</p>
                 <p>
                     <img src="../Resources/Static/attachment_files/started/Jupyter-after.png" class="tc-picture80" />
-                </p>
-                <p MadCap:conditions="Default.DoNotShow">
-                    <img src="../Resources/Static/attachment_files/started/Jupyter.png" class="tc-picture80" />
                 </p>
             </li>
         </ol>
