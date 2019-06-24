@@ -5,13 +5,21 @@
     <body>
         <h1>Command Line Interface (CLI)</h1>
         <p>GigaSpaces provides a CLI tool for administering both <MadCap:variable name="General.ProductNameXAP" /> and <MadCap:variable name="General.ProductNameIE" />. The CLI is based on the REST Manager API, enabling users to administer local, remote, and cloud-based application environments. In addition to the REST Manager API operations, the CLI supports certain administration tasks in the open source application editions.</p>
-        <p>Users that are administering a <MadCap:variable name="General.ProductNameXAP" /> environment should use the <code>xap</code> script. Users that are administering <MadCap:variable name="General.ProductNameIE" /> should use the <code>insightedge</code> CLI script, which contains all of the actions available with the <code>xap</code> script, plus additional options where relevant for administering <MadCap:variable name="General.ProductNameIE" /> components.</p>
-        <p>The image below shows the screen that is displayed when you run the <code>xap</code> script.</p>
-        <p>
+        <p MadCap:conditions="Version.14-5-died">Users that are administering a <MadCap:variable name="General.ProductNameXAP" /> environment should use the <code>xap</code> script. Users that are administering <MadCap:variable name="General.ProductNameIE" /> should use the <code>insightedge</code> CLI script, which contains all of the actions available with the <code>xap</code> script, plus additional options where relevant for administering <MadCap:variable name="General.ProductNameIE" /> components.</p>
+        <p MadCap:conditions="Version.14-5-died">The image below shows the screen that is displayed when you run the <code>xap</code> script.</p>
+        <p MadCap:conditions="Version.14-5-born">Use the <code>gs</code> script to invoke the new CLI&#160;provided with release 14.5. The image below is displayed, showing the usage and available commands, when you run the script.</p>
+        <p MadCap:conditions="Version.14-5-died">
             <img src="../Resources/Static/attachment_files/admin/xap-cli.png" alt="image" class="tc-picture80" />
         </p>
-        <h1><a name="cli-help"></a>CLI Help</h1>
-        <p>Use the <code>--help</code> command (or <code>-h</code>) to see the syntax of a specified CLI command, or a list of all available commands. The list of commands may vary depending on whether you are running the <MadCap:variable name="General.ProductNameXAP" /> or the <MadCap:variable name="General.ProductNameIE" /> script. For example,
+        <p MadCap:conditions="Version.14-5-born">
+            <img src="../Resources/Static/attachment_files/admin/cli-gs.png" class="tc-picture80" />
+        </p>
+        <p MadCap:conditions="Version.14-5-born">Optionally you can continue to use the previous CLI version commands  by invoking <code>gs --cli-version=1</code>. The image below is displayed, showing the usage and available commands, when you run the script..</p>
+        <p MadCap:conditions="Version.14-5-born">
+            <img src="../Resources/Static/attachment_files/admin/cli-gs-previous.png" class="tc-picture80" />
+        </p>
+        <h1 MadCap:conditions="Version.14-5-died"><a name="cli-help"></a>CLI Help</h1>
+        <p MadCap:conditions="Version.14-5-died">Use the <code>--help</code> command (or <code>-h</code>) to see the syntax of a specified CLI command, or a list of all available commands. The list of commands may vary depending on whether you are running the <MadCap:variable name="General.ProductNameXAP" /> or the <MadCap:variable name="General.ProductNameIE" /> script. For example,
 the list of commands for <code>insightedge host run-agent --help</code> contains all the actions available under <code>xap host run-agent --help</code>, plus additional options for administering the Spark master and worker components.</p>
         <h1><a name="cli-configuration"></a>CLI Configuration</h1>
         <p>The CLI connects to the REST Manager API using the name or IP address of the Manager server. Configuration is applied from one of the following:</p>
@@ -21,12 +29,12 @@ the list of commands for <code>insightedge host run-agent --help</code> contains
             <li>The <code>localhost</code> as the server to connect to (if none of the above was applied).</li>
         </ul>
         <h1 MadCap:conditions="Version.14-5-born">Interactive Shell</h1>
-        <p MadCap:conditions="Version.14-5-born">CLI interactive shell is available for all platforms. To activate the interactive mode navigate to <code>&lt;XAP-HOME&gt;/bin</code> and type <code>xap</code> or <code>insightedge</code>. CLI help with command usage and the available options and commands is displayed. Then for each command you enter the interactive shell guides you by:</p>
+        <p MadCap:conditions="Version.14-5-born">CLI interactive shell is available for all platforms. To activate the interactive mode navigate to <code>&lt;XAP-HOME&gt;/bin</code> and type <code>gs</code> . CLI help with command usage and the available options and commands is displayed. Then for each command you enter the interactive shell guides you by:</p>
         <ul MadCap:conditions="Version.14-5-born">
             <li>Providing the same command help when a partial command is entered</li>
             <li>Autocompleting the command when you enter the first letters of the command and click <code>[TAB]</code></li>
         </ul>
-        <p>Enter ctrl-D to exit the interactive shell.</p>
+        <p MadCap:conditions="Version.14-5-died">Enter ctrl-D to exit the interactive shell.</p>
         <h1><a name="autocomplete-functionality"></a>Autocomplete Functionality</h1>
         <h2><a name="overview"></a>Overview</h2>
         <p MadCap:conditions="Version.14-5-died">Bash completion in the CLI is available for Linux and MacOS X users. After activating the autocomplete feature (as explained below), navigate to <code>&lt;XAP-HOME&gt;/bin</code> and type <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>. This will complete the command sequence, or list all the available completions if there are multiple options.</p>

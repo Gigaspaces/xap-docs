@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr MadCap:conditions="Version.14-5-died">
                     <td align="left">insightedge</td>
                     <td align="left">Starts the <MadCap:variable name="General.ProductNameIE" /> Command Line Interface (CLI).</td>
                     <td align="left">✔</td>
@@ -39,16 +39,24 @@
                     <td align="left">✔</td>
                     <td align="left">✔</td>
                 </tr>
-                <tr>
+                <tr MadCap:conditions="Version.14-5-died">
                     <td align="left">xap</td>
                     <td align="left">The <MadCap:variable name="General.ProductNameXAP" /> Command Line Interface (CLI).</td>
                     <td align="left">✔</td>
                     <td align="left">✔</td>
                     <td align="left">✔</td>
                 </tr>
-                <tr>
+                <tr MadCap:conditions="Version.14-5-died">
                     <td align="left">gs</td>
                     <td align="left">The legacy Gigaspaces CLI.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">✔</td>
+                    <td align="left">✔</td>
+                </tr>
+                <tr MadCap:conditions="Version.14-5-born">
+                    <td align="left">gs</td>
+                    <td align="left">Starts the Command Line Interface (CLI)</td>
                     <td align="left">
                     </td>
                     <td align="left">✔</td>
@@ -80,8 +88,11 @@
                 </tr>
             </tbody>
         </table>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
             <p>The gs-agent script is deprecated as of version 14.0, as noted in the <a href="../rn/whats-new.html">Release Notes</a>. Use the <code>xap host run-agent</code> or <code>insightedge host run-agent</code> command in the <a href="tools-cli.html">new CLI</a> instead.</p>
+        </div>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p>The gs-agent script is deprecated as of version 14.0, as noted in the <a href="../rn/whats-new.html">Release Notes</a>. Use the <code>gs host run-agent</code>  command in the <a href="tools-cli.html">new CLI</a> instead.</p>
         </div>
         <h1><a name="advanced-scripts"></a>Advanced Scripts</h1>
         <p>In addition to the scripts listed above, the <code>bin</code> folder (in both the <MadCap:variable name="General.ProductNameXAP" /> and <MadCap:variable name="General.ProductNameIE" /> commercial editions) contains additional scripts in the <span class="tc-bold">advanced_scripts.zip</span> folder, which are only provided to maintain backwards compatibility with earlier versions of <MadCap:variable name="General.ProductNameXAP" />.</p>

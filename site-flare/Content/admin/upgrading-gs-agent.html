@@ -18,30 +18,52 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr MadCap:conditions="Version.14-5-died">
                     <td>Run <MadCap:variable name="General.ProductNameXAP" /> Manager</td>
                     <td><code>gs-agent --manager</code>
                     </td>
                     <td><code>xap host run-agent --manager</code>
                     </td>
                 </tr>
-                <tr>
+                <tr MadCap:conditions="Version.14-5-died">
                     <td>Run "N' Grid Service Containers (GSCs)</td>
                     <td><code>gs-agent --gsc=N</code>
                     </td>
                     <td><code>xap host run-agent --gsc=N</code>
                     </td>
                 </tr>
-                <tr>
+                <tr MadCap:conditions="Version.14-5-died">
                     <td>Run the Web Management Console (web-ui)</td>
                     <td><code>gs-agent --webui</code>
                     </td>
                     <td><code>xap host run-agent --webui</code>
                     </td>
                 </tr>
+                <tr MadCap:conditions="Version.14-5-born">
+                    <td>Run <MadCap:variable name="General.ProductNameXAP" /> Manager</td>
+                    <td><code>gs-agent --manager</code>
+                    </td>
+                    <td><code>gs host run-agent --manager</code>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Version.14-5-born">
+                    <td>Run "N' Grid Service Containers (GSCs)</td>
+                    <td><code>gs-agent --gsc=N</code>
+                    </td>
+                    <td><code>gs host run-agent --gsc=N</code>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Version.14-5-born">
+                    <td>Run the Web Management Console (web-ui)</td>
+                    <td><code>gs-agent --webui</code>
+                    </td>
+                    <td><code>gs host run-agent --webui</code>
+                    </td>
+                </tr>
             </tbody>
         </table>
-        <h1><a name="starting-a-local-manager"></a>Starting a Local Manager</h1>
+        <p>&#160;</p>
+        <p>Starting a Local Manager</p>
         <p>The <code>--manager-local</code> option was used in the previous version to start a <MadCap:variable name="General.ProductNameXAP" /> Manager on a local environment without configuration. This is superseded by the <code>--auto</code> option in the new version, which has the following improved functionality:</p>
         <ul>
             <li>If <MadCap:variable name="General.ProductNameXAP" /> Manager is not configured, the command starts a local manager.</li>
@@ -56,11 +78,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr MadCap:conditions="Version.14-5-died">
                     <td>Run a local <MadCap:variable name="General.ProductNameXAP" /> Manager</td>
                     <td><code>gs-agent --manager-local</code>
                     </td>
                     <td><code>xap host run-agent --auto</code>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Version.14-5-born">
+                    <td>Run a local <MadCap:variable name="General.ProductNameXAP" /> Manager</td>
+                    <td><code>gs-agent --manager-local</code>
+                    </td>
+                    <td><code>gs host run-agent --auto</code>
                     </td>
                 </tr>
             </tbody>
@@ -76,11 +105,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr MadCap:conditions="Version.14-5-died">
                     <td>Start "N' instances of <code>foo.xml</code></td>
                     <td><code>gs-agent --foo=N</code>
                     </td>
                     <td><code>xap host run-agent --custom foo=N</code>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Version.14-5-born">
+                    <td>Start "N' instances of <code>foo.xml</code></td>
+                    <td><code>gs-agent --foo=N</code>
+                    </td>
+                    <td><code>gs host run-agent --custom foo=N</code>
                     </td>
                 </tr>
             </tbody>
@@ -91,7 +127,7 @@
             <p>You can still start GSM and LUS using the <code>--custom</code> option, but we recommend doing this only as an interim step within the migration process, because support for non-manager environments will be removed in a future version.</p>
         </div>
         <p>In addition to the above, the <code>global</code> modifier is not available in the new command because it is only relevant for multicast discovery, and the <MadCap:variable name="General.ProductNameXAP" /> Manager uses unicast discovery. You can use the <code>--custom</code> option as a workaround for this.</p>
-        <table>
+        <table MadCap:conditions="Version.14-5-died">
             <thead>
                 <tr>
                     <th>Task</th>
@@ -126,6 +162,46 @@
                     <td><code>gs-agent --global.lus=1</code>
                     </td>
                     <td><code>xap host run-agent --custom global.lus=1</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table style="width: 100%;" MadCap:conditions="Version.14-5-born">
+            <col style="width: 321px;" />
+            <col />
+            <col />
+            <tbody>
+                <tr>
+                    <td>Task</td>
+                    <td>Old Command</td>
+                    <td>New Command</td>
+                </tr>
+                <tr>
+                    <td>Run Grid Service Manager (GSM)</td>
+                    <td><code>gs-agent --gsm=1</code>
+                    </td>
+                    <td><code>gs host run-agent --custom gsm=1</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Run Lookup Service (LUS)</td>
+                    <td><code>gs-agent --lus=1</code>
+                    </td>
+                    <td><code>gs host run-agent --custom lus=1</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Run Global Grid Service Manager (GSM)</td>
+                    <td><code>gs-agent --global.gsm=1</code>
+                    </td>
+                    <td><code>gs host run-agent --custom global.gsm=1</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Run Global Lookup Service (LUS)</td>
+                    <td><code>gs-agent --global.lus=1</code>
+                    </td>
+                    <td><code>gs host run-agent --custom global.lus=1</code>
                     </td>
                 </tr>
             </tbody>

@@ -71,7 +71,8 @@ local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
 
 </code></pre>
         <p>Use the GigaSpaces CLI to query the number of objects in the <code>demo</code> data grid. The output should show <code>100,000</code> objects of type <code>org.insightedge.examples.basic.Product</code>.</p>
-        <p>Port <code>8090</code> is exposed as the internal endpoint <code>demo-insightedge-manager-service:30890 TCP</code>, and should be specified as part of the <code>--server</code> option. Type the following CLI command:</p><pre><code>../../bin/insightedge --server 192.168.99.100:30890 space info --type-stats demo
+        <p>Port <code>8090</code> is exposed as the internal endpoint <code>demo-insightedge-manager-service:30890 TCP</code>, and should be specified as part of the <code>--server</code> option. Type the following CLI command:</p><pre MadCap:conditions="Version.14-5-died"><code>../../bin/insightedge --server 192.168.99.100:30890 space info --type-stats demo
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code>../../bin/gs--server 192.168.99.100:30890 space info --type-stats demo
 </code></pre>
         <h4><a name="improved-configuration-options"></a>Improved Configuration Options</h4>
         <div class="tc-admon-note">
