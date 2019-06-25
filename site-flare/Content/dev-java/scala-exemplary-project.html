@@ -5,7 +5,7 @@
     <body>
         <h1 class="tc-pagetitle">Sample Scala Project</h1>
         <h1><a name="overview"></a>Overview</h1>
-        <p>This topic describes a sample project that shows how <MadCap:variable name="General.ProductNameXAP" /> Scala can be used in a real project and how Scala and Java code might be integrated.</p>
+        <p>This topic describes a sample project that shows how the <MadCap:variable name="General.CompanyName" /> Scala extension can be used in a real project, and how Scala and Java code can be integrated.</p>
         <h1 MadCap:conditions="Version.14-5-died"><a name="openspaces-maven-plugin-project"></a>OpenSpaces Maven plugin project</h1>
         <p MadCap:conditions="Version.14-5-died">The project is based on a template project of <code>basic</code> type from the <MadCap:variable name="General.ProductNameXAP" /> Maven plugin. A few changes were introduced:</p>
         <ul MadCap:conditions="Version.14-5-died">
@@ -13,12 +13,12 @@
             <li MadCap:conditions="Version.14-5-died">A new module - <code>verifier</code> was introduced. It uses a class with constructor based properties and predicate based queries to obtain objects from Space.</li>
             <li MadCap:conditions="Version.14-5-died">Build process of <code>common</code> and <code>verifier</code> modules was modified to handle Scala and mixed Java/Scala modules, respectively.</li>
         </ul>
-        <h1><a name="build-run"></a>Using the <MadCap:variable name="General.ProductNameXAP" /> Scala Project</h1>
+        <h1><a name="build-run"></a>Using the Sample Scala Project</h1>
         <h2><a name="requirements"></a>Requirements</h2>
-        <p>The <MadCap:variable name="General.ProductNameXAP" /> Scala project uses the <code>maven </code>build tool. Ensure that the following requirements are met:</p>
+        <p>The sample Scala project uses the <code>maven </code>build tool. Ensure that the following requirements are met:</p>
         <ul>
             <li>The minimum required Java version is JDK 1.6 .</li>
-            <li>To run the project, Scala libraries must be accessible to the <MadCap:variable name="General.ProductNameXAP" /> data grid.</li>
+            <li>To run the project, Scala libraries must be accessible to the  data grid.</li>
         </ul>
         <div class="tc-admon-note">
             <p>Scala is not needed to build the project, because the required libraries are downloaded by <code>maven</code>.</p>
@@ -47,10 +47,10 @@
                 <p>Deploy the project on the grid (from <code>$XAP_SCALA/example/gs-openspaces-scala-example</code>): <code>mvn os:deploy -Dgroups=$XAP_LOOKUP_GROUPS</code>.</p>
             </li>
         </ol>
-        <h1><a name="xap-scala-features"></a><MadCap:variable name="General.ProductNameXAP" /> Scala features</h1>
-        <h2><a name="constructor-based-properties"></a>Constructor based properties</h2>
-        <p><code>Common</code> module defines Space classes used by other modules. Please note, that the classes are written in Scala and are used in other Scala and Java modules as well. All of these classes are translated to <code>bytecode</code> and therefore can be used interchangeably.</p>
-        <p>Sometimes, having immutable state is a desired feature. This requirement is covered in <MadCap:variable name="General.ProductNameXAP" /> Scala by classes that use constructor based properties, in case of the <code>common</code> module it is the <code>Verification</code> class. It is written only once to the <code>Space</code> and never changed (instances can be removed).</p><pre><code class="language-scala">case class Verification @SpaceClassConstructor() (
+        <h1>Scala Sample Project Features</h1>
+        <h2><a name="constructor-based-properties"></a>Constructor-Based Properties</h2>
+        <p>The <code>Common</code> module defines the Space classes that are used by other modules. The classes are written in Scala, and are also used in other Scala and Java modules. All of these classes are translated into <code>bytecode</code> and can  therefore be used interchangeably.</p>
+        <p>Being in immutable state is sometimes preferable. This requirement is covered in the <MadCap:variable name="General.CompanyName" /> Scala extension by classes that use constructor-based properties; in the <code>common</code> module this is the <code>Verification</code> class, which is written only once to the <code>Space</code> and is never changed (instances can be removed).</p><pre><code class="language-scala">case class Verification @SpaceClassConstructor() (
   @BeanProperty
   @SpaceId
   id: String,
@@ -61,7 +61,7 @@
   override def toString: String = s"id[$id] dataId[$dataId]"
 }
 </code></pre>
-        <p>The other class (<code>Data</code>) has been rewritten in Scala. However, its behavior has not been modified (apart from adding a new field needed by the <code>verifier</code> module):</p><pre><code class="language-scala">case class Data (
+        <p>The other class (<code>Data</code>) has been rewritten in Scala. However, its behavior has not been modified apart from adding a new field needed by the <code>verifier</code> module:</p><pre><code class="language-scala">case class Data (
   @BeanProperty @SpaceId(autoGenerate = true) var id: String = null,
   @BeanProperty @SpaceRouting @SpaceProperty(nullValue = "-1") var `type`: Long = -1,
   @BeanProperty var rawData: String = null,
@@ -76,14 +76,14 @@
   override def toString: String = s"id[${id}] type[${`type`}] rawData[${rawData}] data[${data}] processed[${processed}] verified[${verified}]"
 }
 </code></pre>
-        <h2><a name="predicate-based-queries"></a>Predicate based queries</h2>
-        <p>The <code>verifier</code> module extends the pipeline presented in the baseline project (the one created by the <code>OpenSpaces Maven plugin</code>). The <code>Verifier</code> picks up processed <code>Data</code> instances and tries to verify them. The objects that pass the verification process are then modified (<code>verified</code> set to <code>true</code>) and saved along with a new, immutable <code>Verification</code> object. The objects that failed during verification process are removed from the Space. The <code>verifier</code> uses the new feature - predicate based queries - to access the Space in a more readable and natural way (especially for functional languages such as Scala):</p><pre><code class="language-scala">@GigaSpaceContext private var gigaSpace: GigaSpace = _ // injected
+        <h2><a name="predicate-based-queries"></a>Predicate-Based Queries</h2>
+        <p>The <code>verifier</code> module extends the pipeline presented in the baseline project (the one created by the <code>OpenSpaces Maven plugin</code>). The <code>Verifier</code> picks up processed <code>Data</code> instances and tries to verify them. The objects that pass the verification process are then modified (<code>verified</code> is set to <code>true</code>) and saved along with a new, immutable <code>Verification</code> object. The objects that fail the verification process are removed from the Space. The <code>verifier</code> uses the predicate-based queries feature to access the Space in a more readable and natural way (especially for functional languages such as Scala):</p><pre><code class="language-scala">@GigaSpaceContext private var gigaSpace: GigaSpace = _ // injected
 // ...
 
 // data instances to process further are obtained in the following way
 val unverifiedData = gigaSpace.predicate.readMultiple { data: Data =&gt; data.processed == true &amp;&amp; data.verified == false }
 </code></pre>
-        <p>Pu.xml contains a standard description of gigaSpace:</p><pre><code class="language-xml">...
+        <p>The pu.xml contains a standard description of the gigaSpace:</p><pre><code class="language-xml">...
 &lt;os-core:giga-space-context/&gt;
 
 &lt;os-core:space-proxy  id="space" space-name="mySpace"/&gt;
@@ -92,12 +92,12 @@ val unverifiedData = gigaSpace.predicate.readMultiple { data: Data =&gt; data.pr
 ...
 </code></pre>
         <div class="tc-admon-note">
-            <p>Please note that <code>gigaSpace</code> from the code above is an instance of ScalaEnhancedGigaSpaceWrapper - a wrapper around GigaSpace introduced in <MadCap:variable name="General.ProductNameXAP" /> Scala.</p>
+            <p>The <code>gigaSpace</code> in the code above is an instance of ScalaEnhancedGigaSpaceWrapper, which is a wrapper around the <code>gigaSpace</code> in the <MadCap:variable name="General.CompanyName" /> Scala shell.</p>
         </div>
-        <h1><a name="building-scala-and-mixed-java-scala-modules"></a>Building Scala and mixed Java/Scala modules</h1>
+        <h1><a name="building-scala-and-mixed-java-scala-modules"></a>Building Scala and Mixed Java/Scala Modules</h1>
         <p>The build configuration in Scala or Java/Scala modules is almost as simple in case of pure Java modules.</p>
-        <h2><a name="scala-module"></a>Scala module</h2>
-        <p>The <code>common</code> module is a pure Scala module. The <code>maven-compiler-plugin</code> has been replaced by <code>scala-maven-plugin</code>. The build configuration from the <code>pom.xml</code> for the <code>common</code> has the following form:</p><pre><code class="language-xml">&lt;build&gt;
+        <h2><a name="scala-module"></a>Scala Module</h2>
+        <p>The <code>common</code> module is a pure Scala module. <MadCap:conditionalText MadCap:conditions="Version.14-5-died">The <code>maven-compiler-plugin</code> has been replaced by <code>scala-maven-plugin</code>. </MadCap:conditionalText>The build configuration from the <code>pom.xml</code> for the <code>common</code> module has the following form:</p><pre><code class="language-xml">&lt;build&gt;
     &lt;sourceDirectory&gt;src/main/scala&lt;/sourceDirectory&gt;
     &lt;plugins&gt;
         &lt;plugin&gt;
@@ -120,10 +120,10 @@ val unverifiedData = gigaSpace.predicate.readMultiple { data: Data =&gt; data.pr
     &lt;finalName&gt;gs-openspaces-scala-example-common&lt;/finalName&gt;
 &lt;/build&gt;
 </code></pre>
-        <p>where <code>scalaBinaryVersion</code> is a property defined in a parent pom file (in this case it is <code>2.11</code>).</p>
-        <h2><a name="java-scala-module"></a>Java-Scala module</h2>
-        <p>The <code>verifier</code> module is a mixed Java-Scala module, where Scala classes call Java classes. This configuration can be used when a separate task is implemented in Java and it only needs to be called from other parts of application. In case of this project, Java module is simulated by <code>VerifierEngine</code> class and, for ease of use, it is executed by Scala <code>verifier</code>.</p>
-        <p>In such a configuration, the Scala compiler has to "somehow' reach Java compiled classes. This is where a <code>build-helper-maven-plugin</code> is used - it adds Java classes to the source, then they are compiled and finally the Scala compiler uses them during Scala code compilation. The build configuration of the <code>verifier</code> module is as follows:</p><pre><code class="language-xml">&lt;build&gt;
+        <p>In the above example, <code>scalaBinaryVersion</code> is a property defined in a parent pom file (in this case it is <code>2.11</code>).</p>
+        <h2><a name="java-scala-module"></a>Java-Scala Module</h2>
+        <p>The <code>verifier</code> module is a mixed Java-Scala module where Scala classes call Java classes. This configuration can be used when a separate task is implemented in Java, and it only needs to be called from other parts of the application. In this sample project, the Java module is simulated by the <code>VerifierEngine</code> class and is executed by the Scala <code>verifier</code> for ease of use.</p>
+        <p>In this configuration, the Scala compiler has to access the Java-compiled classes. The <code>build-helper-maven-plugin</code> adds Java classes to the source, then they are compiled, and finally the Scala compiler uses them during Scala code compilation. The build configuration of the <code>verifier</code> module is as follows:</p><pre><code class="language-xml">&lt;build&gt;
     &lt;sourceDirectory&gt;src/main/scala&lt;/sourceDirectory&gt;
 
     &lt;plugins&gt;
