@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -7,8 +7,8 @@
         <p>This tutorial explains how to deploy and use a <MadCap:variable name="General.ProductNameXAP" /> <a href="../overview/the-in-memory-data-grid.html">Data Grid</a> from a Java client application.</p>
         <h1><a name="starting-a-service-grid"></a>Starting a Service Grid</h1>
         <p>A Data Grid requires a <a href="../overview/the-runtime-environment.html">Service Grid</a> to host it. A service grid is composed of one or more machines (service grid nodes) running a <a href="../overview/the-runtime-environment.html#gsa">Service Grid Agent</a> (or <code>GSA</code>), and provides a framework to deploy and monitor applications on those machines, in our case the Data Grid.</p>
-        <p>In this tutorial you'll launch a single node service grid on your machine. To start the service grid, simply run the <code>gs-agent</code> script from the product's <code>bin</code> folder.</p>
-        <div class="easyui-tabs" plain="true" data-options="">
+        <p>In this tutorial you'll launch a single node service grid on your machine. To start the service grid <MadCap:conditionalText MadCap:conditions="Version.14-5-born">with 4 containers</MadCap:conditionalText>, navigate to the product's <code>bin</code> folder and run the following command.</p>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-died">
             <div title="Unix CLI" style="padding:10px"><pre><code class="language-bash">./gs-agent.sh
 </code></pre>
             </div>
@@ -23,13 +23,28 @@ gs-agent.bat --manager-local --gsc=2
 </code></pre>
             </div>
         </div>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+            <div title="Unix CLI" style="padding:10px"><pre><code class="language-bash">./gs host run-agent --auto --gsc=4<![CDATA[
+]]></code></pre>
+            </div>
+            <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash">gs host run-agent --auto --gsc=4<![CDATA[
+]]></code></pre>
+            </div>
+            <div title="REST" style="padding:10px"><pre><code class="language-bash"># start the agent with the REST interface
+# Windows
+gs host run-agent --manager-local --gsc=4
+# Unix
+./gs host run-agent --manager-local --gsc=4
+</code></pre>
+            </div>
+        </div>
         <div class="tc-admon-note">
             <p><MadCap:variable name="General.ProductNameXAP" /> provides a web-based tool called the Web Management Console for monitoring and management. From the <code>bin</code> folder, start the <code>gs-webui</code> script, then browse to <code>localhost:8099</code>. Click <b>Login </b>and click the <span class="tc-italic">Hosts</span> tab to see the service grid components created on your machine.</p>
         </div>
         <h1><a name="deploying-the-data-grid"></a>Deploying the Data Grid</h1>
         <p>The Data grid can be deployed from command line, from the web management tool or via an Administration API. In this tutorial we'll use the command line.</p>
         <p>Start a command line, navigate to the product's <code>bin</code> folder and run the following command:</p>
-        <div class="easyui-tabs" plain="true" data-options="">
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-died">
             <div title="Unix CLI" style="padding:10px"><pre><code class="language-bash">./gs.sh deploy-space -cluster total_members=2,1 myGrid
 </code></pre>
             </div>
@@ -41,8 +56,19 @@ gs-agent.bat --manager-local --gsc=2
 </code></pre>
             </div>
         </div>
-        <p>This command deploys a Data Grid (aka space) called <span class="tc-bold">myGrid</span> with 2 partitions and 1 backup per partition (hence the <code>2,1</code> syntax).</p>
-        <p>If you're using the web console mentioned above to see what's going on, you'll see the data grid has been deployed.</p>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+            <div title="Unix CLI" style="padding:10px"><pre><code class="language-bash">./gs space deploy --partitions=2 --ha myGrid
+</code></pre>
+            </div>
+            <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash">gs.bat space deploy --partitions=2 --ha myGrid</code></pre>
+            </div>
+            <div title="REST" style="padding:10px"><pre><code class="language-json">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+'http://localhost:8090/v1/spaces?name=myGrid&amp;partitions=2&amp;backups=true&amp;requiresIsolation=true'
+</code></pre>
+            </div>
+        </div>
+        <p>This command deploys a Data Grid (aka space) called <span class="tc-bold">myGrid</span> with 2 partitions and 1 backup per partition <MadCap:conditionalText MadCap:conditions="Version.14-5-died">(hence the <code>2,1</code> syntax)</MadCap:conditionalText>.</p>
+        <p>If you're using the web console mentioned above to see what's going on, you'll see that the data grid has been deployed.</p>
         <h1><a name="interacting-with-the-data-grid"></a>Interacting with the Data Grid</h1>
         <h2><a name="connecting-to-the-grid"></a>Connecting to the Grid</h2>
         <p>Since the Data grid is not located in our client process, we need some sort of address to find it. Data grids are searched using a <code>SpaceProxyConfigurer("spaceName")</code>. This roughly translates to: find a remote Space called <code>spaceName</code>.</p>
