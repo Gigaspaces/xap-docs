@@ -8,20 +8,22 @@
         <h1 MadCap:conditions="Version.14-5-born">Installing Maven Artifacts</h1>
         <h2 MadCap:conditions="Version.14-5-born">Prerequisites</h2>
         <p MadCap:conditions="Version.14-5-born">Maven must be installed and included in your system PATH&#160;variable.</p>
-        <p>To install the artifacts run the  <code>gs host run-agent --auto</code>script from the product's <code>bin</code> folder.</p>
         <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
             <p>If you don't have Maven installed, refer to the Apache Maven documentation for <a href="http://maven.apache.org/download.cgi" target="_blank">download instructions</a>.</p>
         </div>
         <h2 MadCap:conditions="Version.14-5-born">Installation</h2>
-        <p>To install the Maven artifacts run the  <code>gs maven install</code>script from the product <code>bin</code> folder. The product <code>config/bin</code> folder is created with </p>
+        <p>To install the Maven artifacts run the  <code>gs maven install</code>script from the product <code>bin</code> folder.  </p>
         <h2 MadCap:conditions="Version.14-5-born">Installation Options</h2>
-        <p MadCap:conditions="Version.14-5-born">To customize Maven installation for your environment you can create a target folder by:</p>
+        <p MadCap:conditions="Version.14-5-born">To customize Maven installation for your environment:</p>
         <ul>
             <li MadCap:conditions="Version.14-5-born">
-                <p>Generate the install script and not run the install, by running the script with an option - <code>gs maven install --generate-only</code>. </p>
+                <p>Generate the install script only (without install), by running the script with an option - <code>gs maven install --generate-only</code>. </p>
                 <p>The product <code>config/maven/installer</code> folder is created with the pom xml files. </p>
             </li>
-            <li MadCap:conditions="Version.14-5-born">Generate the <code>target</code>folder by running the <code>mvn install</code> script..</li>
+            <li MadCap:conditions="Version.14-5-born">
+                <p> From that folder run the <code>mvn install</code> script. </p>
+                <p>The <code>target</code>folder that can be applied to your environment is created.</p>
+            </li>
         </ul>
         <p MadCap:conditions="Version.14-5-born">You can customize the artifacts created by editing the product <code>config/maven/gs-artifacts.txt</code> file.</p>
         <h1 MadCap:conditions="Version.14-5-born"><a name="xap-maven-repository"></a><MadCap:variable name="General.ProductNameXAP" /> Maven Repository</h1>
