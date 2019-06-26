@@ -3,7 +3,201 @@
     <head>
     </head>
     <body>
-        <h1>Maven</h1>
+        <h1 class="tc-pagetitle">Maven Artifacts</h1>
         <p>Maven is a tool used to automate and simplify the development cycle of any Java-based project. The <MadCap:variable name="General.ProductNameXAP" /> plugin for Maven utilizes Maven to simplify the development cycle of <MadCap:variable name="General.ProductNameXAP" />-based applications. This section describes the <a href="maven-artifacts.html">Maven artifacts</a> that are provided, and how to get started with <MadCap:variable name="General.ProductNameXAP" /> using Maven.<MadCap:conditionalText MadCap:conditions="Version.14-5-died">. It also describes how to install and use the XAP <a href="installation-maven.html">Maven plugi</a>n. Installation and usage of the XAP plugin for maven.</MadCap:conditionalText></p>
+        <h1 MadCap:conditions="Version.14-5-born">Installing Maven Artifacts</h1>
+        <h2 MadCap:conditions="Version.14-5-born">Prerequisites</h2>
+        <p MadCap:conditions="Version.14-5-born">Maven must be installed and included in your system PATH&#160;variable.</p>
+        <p>To install the artifacts run the  <code>gs host run-agent --auto</code>script from the product's <code>bin</code> folder.</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p>If you don't have Maven installed, refer to the Apache Maven documentation for <a href="http://maven.apache.org/download.cgi" target="_blank">download instructions</a>.</p>
+        </div>
+        <h2 MadCap:conditions="Version.14-5-born">Installation</h2>
+        <p>To install the Maven artifacts run the  <code>gs maven install</code>script from the product <code>bin</code> folder. The product <code>config/bin</code> folder is created with </p>
+        <h2 MadCap:conditions="Version.14-5-born">Installation Options</h2>
+        <p MadCap:conditions="Version.14-5-born">To customize Maven installation for your environment you can create a target folder by:</p>
+        <ul>
+            <li MadCap:conditions="Version.14-5-born">
+                <p>Generate the install script and not run the install, by running the script with an option - <code>gs maven install --generate-only</code>. </p>
+                <p>The product <code>config/maven/installer</code> folder is created with the pom xml files. </p>
+            </li>
+            <li MadCap:conditions="Version.14-5-born">Generate the <code>target</code>folder by running the <code>mvn install</code> script..</li>
+        </ul>
+        <p MadCap:conditions="Version.14-5-born">You can customize the artifacts created by editing the product <code>config/maven/gs-artifacts.txt</code> file.</p>
+        <h1 MadCap:conditions="Version.14-5-born"><a name="xap-maven-repository"></a><MadCap:variable name="General.ProductNameXAP" /> Maven Repository</h1>
+        <p MadCap:conditions="Version.14-5-born"><MadCap:variable name="General.ProductNameXAP" /> artifacts are not currently published in the Maven Central Repo, so you must first configure a repository:</p><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;repository&gt;
+   &lt;id&gt;org.openspaces&lt;/id&gt;
+   &lt;url&gt;http://maven-repository.openspaces.org&lt;/url&gt;
+&lt;/repository&gt;
+</code></pre>
+        <h1 MadCap:conditions="Version.14-5-born"><a name="xap-artifacts"></a><MadCap:variable name="General.ProductNameXAP" /> Artifacts</h1>
+        <p MadCap:conditions="Version.14-5-born">The main dependency required to use <MadCap:variable name="General.ProductNameXAP" /> is <code>xap-openspaces</code>.</p><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;
+  &lt;artifactId&gt;xap-openspaces&lt;/artifactId&gt;
+  &lt;version&gt;[%=Versions.maven-version%]&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+        <h2 MadCap:conditions="Version.14-5-born"><a name="core-artifacts"></a>Core Artifacts</h2>
+        <p MadCap:conditions="Version.14-5-born">This section lists the core artifacts. You only need to add <code>xap-openspaces</code>, because all the other core artifacts are its dependencies.</p>
+        <p MadCap:conditions="Version.14-5-born">The group ID for these artifacts is <code>org.gigaspaces</code>.</p>
+        <table MadCap:conditions="Version.14-5-born">
+            <thead>
+                <tr>
+                    <th>Artifact ID</th>
+                    <th>Location in product</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>xap-openspaces</td>
+                    <td>${XAP_HOME}/lib/required/xap-openspaces.jar</td>
+                </tr>
+                <tr>
+                    <td>xap-datagrid</td>
+                    <td>${XAP_HOME}/lib/required/xap-datagrid.jar</td>
+                </tr>
+                <tr>
+                    <td>xap-common</td>
+                    <td>${XAP_HOME}/lib/required/xap-common.jar</td>
+                </tr>
+                <tr>
+                    <td>xap-trove</td>
+                    <td>${XAP_HOME}/lib/required/xap-trove.jar</td>
+                </tr>
+                <tr>
+                    <td>xap-asm</td>
+                    <td>${XAP_HOME}/lib/required/xap-asm.jar</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2 MadCap:conditions="Version.14-5-born"><a name="extension-artifacts"></a>Extension Artifacts</h2>
+        <p MadCap:conditions="Version.14-5-born">This section lists extension artifacts. The group ID for these artifacts is <code>org.gigaspaces</code>.</p>
+        <table MadCap:conditions="Version.14-5-born">
+            <thead>
+                <tr>
+                    <th>Artifact ID</th>
+                    <th>Location in product</th>
+                    <th>Required for</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>xap-map</td>
+                    <td>${XAP_HOME}/lib/optional/map/xap-map.jar</td>
+                    <td><a href="../dev-java/map-api.html">Map API</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xap-map-spring</td>
+                    <td>${XAP_HOME}/lib/optional/map/xap-map-spring.jar</td>
+                    <td><a href="../dev-java/map-api.html">Map API</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xap-jms</td>
+                    <td>${XAP_HOME}/lib/optional/jms/xap-jms.jar</td>
+                    <td><a href="../dev-java/messaging-support.html">JMS</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xap-jetty</td>
+                    <td>${XAP_HOME}/lib/optional/jetty/xap-jetty/xap-jetty.jar</td>
+                    <td><a href="../dev-java/web-jetty-processing-unit-container.html">Jetty PU Container</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xap-mongodb</td>
+                    <td>${XAP_HOME}/lib/optional/mongodb/xap-mongodb.jar</td>
+                    <td><a href="../dev-java/mongodb.html">MongoDB integration</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xap-spatial</td>
+                    <td>${XAP_HOME}/lib/optional/spatial/xap-spatial.jar</td>
+                    <td><a href="../dev-java/query-geospatial.html">Geospatial Queries</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xap-full-text-search</td>
+                    <td>${XAP_HOME}/lib/optional/full-text-search/xap-full-text-search.jar</td>
+                    <td><a href="../dev-java/query-full-text-search.html">Full Text Search</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2 MadCap:conditions="Version.14-5-born"><a name="premium-extensions"></a>Premium Extensions</h2>
+        <p MadCap:conditions="Version.14-5-born">This section lists Premium artifacts. The group ID for these artifacts is <code>com.gigaspaces</code>.</p>
+        <table MadCap:conditions="Version.14-5-born">
+            <thead>
+                <tr>
+                    <th>Artifact ID</th>
+                    <th>Location in product</th>
+                    <th>Required for</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>xap-near-cache-spring</td>
+                    <td>${XAP_HOME}/lib/optional/near-cache/xap-near-cache-spring.jar</td>
+                    <td><a href="../dev-java/client-side-caching.html">Client Side Caching</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xap-near-cache</td>
+                    <td>${XAP_HOME}/lib/optional/near-cache/xap-near-cache.jar</td>
+                    <td><a href="../dev-java/client-side-caching.html">Client Side Caching</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xap-security</td>
+                    <td>${XAP_HOME}/lib/optional/security/xap-security.jar</td>
+                    <td><a href="../security/index.html">Security</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xap-zookeeper</td>
+                    <td>${XAP_HOME}/lib/platform/zookeeper/xap-zookeeper.jar</td>
+                    <td><a href="../admin/leader-election-consistency-biased.html">Consistency-biased leader election</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xap-admin</td>
+                    <td>${XAP_HOME}/lib/platform/service-grid/xap-admin.jar</td>
+                    <td><a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2 MadCap:conditions="Version.14-5-born"><a name="enterprise-extensions"></a>Enterprise Extensions</h2>
+        <p MadCap:conditions="Version.14-5-born">This section lists Enterprise artifacts. The group ID for these artifacts is <code>com.gigaspaces</code>.</p>
+        <table MadCap:conditions="Version.14-5-born">
+            <thead>
+                <tr>
+                    <th>Artifact ID</th>
+                    <th>Location in product</th>
+                    <th>Required for</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>xap-mx-rocksdb</td>
+                    <td>${XAP_HOME}/lib/optional/memoryxtend/rocksdb/xap-mx-rocksdb.jar</td>
+                    <td><a href="../admin/memoryxtend-overview.html">MemoryXtend - SSD</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xap-wan-gateway-spring</td>
+                    <td>${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway-spring.jar</td>
+                    <td><a href="../dev-java/multi-site-replication-overview.html">WAN Replication</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xap-wan-gateway</td>
+                    <td>${XAP_HOME}/lib/optional/wan-gateway/xap-wan-gateway.jar</td>
+                    <td><a href="../dev-java/multi-site-replication-overview.html">WAN Replication</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
