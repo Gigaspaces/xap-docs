@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -11,16 +11,9 @@
                 <img src="../Resources/Static/attachment_files/SpringSecurityBridge.png" alt="SpringSecurityBridge.png" class="tc-picture80" />
             </p>
         </div>
-        <p>The Spring Security XML configuration file contains the <code>AuthenticationManager</code>, <code>ProviderManager</code> and <code>AuthenticationProvider</code> references. The authentication manager is discovered by the GigaSpaces Spring Security bridge (i.e. it iterates through all the types of authentication manager and plugs it in automatically).</p><pre><code class="language-java">&lt;bean id="authenticationManager" 
-class="org.springframework.security.authentication.ProviderManager"&gt; 
-&lt;constructor-arg&gt; 
-&lt;list&gt; 
-&lt;ref bean="ldapAuthenticationProvider"/&gt; 
-&lt;/list&gt; 
-&lt;/constructor-arg&gt; 
-&lt;/bean&gt; 
-...
-</code></pre>
+        <p>The Spring Security XML configuration file contains the <code>AuthenticationManager</code>, <code>ProviderManager</code> and <code>AuthenticationProvider</code> references. The authentication manager is discovered by the GigaSpaces Spring Security bridge (i.e. it iterates through all the types of authentication manager and plugs it in automatically).</p><pre><code class="language-java">&lt;sec:authentication-manager&gt;
+   &lt;sec:authentication-provider ref="ldapAuthenticationProvider"/&gt;
+&lt;/sec:authentication-manager&gt;</code></pre>
         <h1><a name="configuring-the-security-manager"></a>Configuring the Security Manager</h1>
         <p>The Spring security configurations are loaded using Spring's <code>FileSystemXmlApplicationContext</code> taking the context definition files from the file system or from URLs. The location of the configuration file is set using the <code>spring-security-config-location</code> property; if not set, a default <code>security-config.xml</code> is considered (if present).</p>
         <p>As with all GigaSpaces security configurations, they must be placed in a properties file. In order to configure the security manager to use the Spring Security bridge, we set the <code>security-manager.class</code> property along with the expected <code>spring-security-config-location</code> property.</p><pre><code class="language-java">com.gs.security.security-manager.class = org.gigaspaces.security.spring.SpringSecurityManager

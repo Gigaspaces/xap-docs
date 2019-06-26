@@ -21,17 +21,11 @@
                 <img src="../Resources/Static/attachment_files/SpringSecurity-ProviderManager.png" alt="SpringSecurity-ProviderManager.png" class="tc-picture80" />
             </p>
         </div>
-        <p>The following chunk of XML shows a typical configuration of <code>ProviderManager</code> in the Spring configuration file:</p><pre><code class="language-java">&lt;bean id="authenticationManager"
-     class="org.springframework.security.authentication.ProviderManager"&gt;
-  &lt;property name="providers"&gt;
-    &lt;list&gt;
-      &lt;ref local="daoAuthenticationProvider"/&gt;
-      &lt;ref local="anonymousAuthenticationProvider"/&gt;
-      &lt;ref local="ldapAuthenticationProvider"/&gt;
-    &lt;/list&gt;
-  &lt;/property&gt;
-&lt;/bean&gt;
-</code></pre>
+        <p>The following chunk of XML shows a typical configuration of <code>ProviderManager</code> in the Spring configuration file:</p><pre><code class="language-java">&lt;sec:authentication-manager&gt;
+   &lt;sec:authentication-provider ref="daoAuthenticationProvider"/&gt;
+   &lt;sec:authentication-provider ref="anonymousAuthenticationProvider"/&gt;
+   &lt;sec:authentication-provider ref="ldapAuthenticationProvider"/&gt;
+&lt;/sec:authentication-manager&gt;</code></pre>
         <p><code>ProviderManager</code> is given a list of authentication providers through its <code>providers</code> property. Typically, you'll only need one authentication provider, but in some cases, it may be useful to supply a list of several providers so that if authentication fails against one provider, another provider will be tried.</p>
         <p>Spring comes with numerous authentication providers. We will concentrate on a couple of the most commonly used authentication providers, to give an example how GigaSpaces authorities are to be managed. If you can't find an authentication provider that suits your security needs, you can always create your own by implementing the <code>org.springframework.security.authentication.AuthenticationProvider</code> interface.</p>
     </body>
