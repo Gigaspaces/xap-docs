@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Persistent Volume Storage in Kubernetes</h1>
+        <p>This topic describes the Kubernetes storage model and how it is leveraged to support tiered storage that utilizes external persistent memory. This support enables using <MadCap:variable name="General.CompanyName" />'s MemoryXtend feature for SSD in the Kubernetes environment, as detailed later on this page.</p>
+        <h1>Kubernetes Storage Model</h1>
+        <p>The KubeGrid implementation of persistent volume storage utilizes the following Kubernetes entities:</p>
+        <ul>
+            <li>Container - The Docker container that hosts the Space.</li>
+            <li>Pod - Hosts the container, and is essentially the Processing Unit instance, or service in the data grid.</li>
+            <li>StorageClass - A Kubernetes wrapper around the physical storage volume that contains the storage profile. Provides the requested storage defined by the PersistentVolumeClaim.</li>
+            <li>PersistentVolumeClaim - The request for Kubernetes to create a PersistentVolume. Used to attach (bind) the PersistentVolume to the Data Pod.</li>
+            <li>PersistentVolume - A Kubernetes wrapper around the storage that is bound to the Space. </li>
+        </ul>
+        <p>To enable persistent volume storage, the container definition must include a VolumeMount, which is a path that is mapped to the external persistent storage. If a VolumeMount is defined, this indicates to the pod that external storage is required. Additionally, the pod definition must include the PersistentVolumeClaim, which defines the capacity of storage volume. The pod creates a PersistentVolumeClaim when it receives the VolumeMount from the container.</p>
+        <p>When a PersistentVolumeClaim is created, it communicates to the StorageClass that external storage is needed. The StorageClass dynamically creates the PersistentVolume, which is then attached to the PersistentVolumeClaim and its associated pod.</p>
+        <p>To summarize, the pod creates a PersistentVolumeClaim, which interfaces with the StorageClass to create a PersistentVolume that is dedicated to that pod.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/kubernetes/kubernetes-pvc.png" class="tc-picture80" />
+            </p>
+        </div>
+        <h1>Deploying a Data Pod with MemoryXtend in Kubernetes</h1>
+        <p>In order to deploy a Processing Unit as a Data Pod in Kubernetes, both the pu.xml and pu Helm charts must be configured. The MemoryXtendVolume needs a path specified for each space instance being set up. In Kubernetes, since the Spaces are completely separate from each other and reside in separate Data Pods, they can each use the same path to the MemoryXtend external storage.</p>
+    </body>
+</html>
