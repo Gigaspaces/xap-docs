@@ -46,36 +46,31 @@ val analyticsXtremeDataframe: Dataframe = spark.analyticsXtreme("Trade")
         <p>For a more complex query that includes aggregations, the method by which the query is submitted causes important behavioral differences.</p>
         <p>In the code snippet below, the query is submitted to the Spark Dataframe as a table. Only the raw data is retrieved from the data grid; the client application has to perform the aggregation in order to finish executing the query and return results. </p><pre><code class="language-sql">val aggregationDataFrame = analyticsXtremeDataframe.agg("volume -&gt; avg", "endPrice -&gt; max", "startPrice -&gt; min")</code></pre>
         <p>When the query is submitted as a raw query, like in the following code snippet, Spark pushes the entire query (predicate) to the data grid. The query is executed from beginning to end in the data grid (both data retrieval and aggregation), and only the final results are returned to the client application. This predicate pushdown can significantly reduce the processing time of the query because it filters data out at the source, so that the query can complete faster and return only the required data back to the client application.</p><pre><code class="language-sql">val rawAggregationDataFrame = spark.read.analyticsXtreme("SELECT AVERAGE(volume) as avg_volume, MAX(endPrice) as max_endPrice, MIN(endPrice) as min_endPrice FROM Trade")</code></pre>
-        <h3>Query with Joins</h3>
-        <p>AnalyticsXtreme supports <code>JOIN</code> queries that meet the following requirements:</p>
+        <h3 MadCap:conditions="Version.14-5-born">Query with Joins</h3>
+        <p MadCap:conditions="Version.14-5-born">AnalyticsXtreme supports using <code>JOIN</code> in queries that meet the following requirements:</p>
         <ul>
-            <li>The query is limited to two tables</li>
-            <li>Both tables use the same timestamp</li>
-            <li>Both tables have similar AnalyticXtreme policies</li>
+            <li MadCap:conditions="Version.14-5-born">The query is limited to two tables</li>
+            <li MadCap:conditions="Version.14-5-born">Both tables have similar AnalyticXtreme policies</li>
+            <li MadCap:conditions="Version.14-5-born">Both tables use the same time thresholds in their policies</li>
         </ul>
-        <p>The following query types are supported:</p>
+        <p MadCap:conditions="Version.14-5-born">The following query types are supported:</p>
         <ul>
-            <li><code>Select * from t1 join t2 on t1.id=t2.id where...</code>
+            <li MadCap:conditions="Version.14-5-born"><code>Select * from t1 join t2 on t1.id=t2.id where ...</code>
             </li>
-            <li><code>Select * from t1, t2 where t1.id=t2.id</code>
-            </li>
-            <li><code>Select t1.&lt;variable1&gt; as &lt;variable1&gt;, t2.&lt;variable2&gt; as &lt;var2&gt; from t1, t2 where t1.id=t2.id</code>
-            </li>
-            <li><code>Select * from t1 join t2 on t1.id=t2.id and t1.&lt;variableId&gt;=t2.&lt;variableId&gt;</code>
-            </li>
-            <li><code>Select * from t1 join t2 on t1.id=t2.id where t1.id&lt;x or t2.[varId]&lt;y</code> (where x&gt;y)</li>
-            <li><code>Select * from t1 join t2 on t1.id=t2.id where t1.id&lt;xand t2.[varId]&lt;y</code> (where x&gt;y)</li>
-            <li><code>Select t1.column1, t2.column2 from t1 join t2 on t1.id=t2.id</code>
+            <li MadCap:conditions="Version.14-5-born"><code>Select * from t1, t2 where t1.id=t2.id ...</code>
             </li>
         </ul>
-        <p>The following query types are not supported:</p>
+        <h4 MadCap:conditions="Version.14-5-born">Limitations</h4>
+        <p MadCap:conditions="Version.14-5-born">The following query types are not supported:</p>
         <ul>
-            <li>Diagonal queries between the speed and batch layers (only same-layer JOINs are executed)</li>
-            <li>Outer layer JOIN (only inner JOIN is executed)</li>
-            <li><code>Select sum</code>, <code>count</code>, <code>avg</code>, <code>max</code>, <code>min from t1 join t2 on t1.id=t2.id</code></li>
-            <li><code>Select * from t1 join t2 ont1.id=t2.id order by t2.id desc</code>
+            <li MadCap:conditions="Version.14-5-born">Diagonal queries between the speed and batch layers (only same-layer JOINs are executed)</li>
+            <li MadCap:conditions="Version.14-5-born">Outer JOIN (only inner JOIN is executed)</li>
+            <li MadCap:conditions="Version.14-5-born">Aggregations (<code>sum</code>, <code>count</code>, <code>avg</code>, <code>max</code>, <code>min</code>)</li>
+            <li MadCap:conditions="Version.14-5-born"><code>order by</code>
             </li>
-            <li><code>limit</code>
+            <li MadCap:conditions="Version.14-5-born"><code>group by</code>
+            </li>
+            <li MadCap:conditions="Version.14-5-born"><code>limit</code>
             </li>
         </ul>
         <h1>Supported SQL Query Functions</h1>
@@ -90,7 +85,7 @@ val analyticsXtremeDataframe: Dataframe = spark.analyticsXtreme("Trade")
             <li><code>GROUP BY</code> for multiple columns</li>
             <li>Column aliases</li>
         </ul>
-        <h1>Limitations</h1>
+        <h2>Limitations</h2>
         <div class="tc-admon-note">
             <p>This feature is meant for querying data that is being fed by other sources into the target database(s). It cannot be used to alter the data (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>).</p>
         </div>
