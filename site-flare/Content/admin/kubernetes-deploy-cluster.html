@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1><a name="deploying-a-space-cluster"></a>Deploying a Space Cluster in Kubernetes</h1>
+        <h1 class="tc-pagetitle"><a name="deploying-a-space-cluster"></a>Deploying a Space Cluster in Kubernetes</h1>
         <p>The demo above created a data grid that contained a single Space instance. Real-life environments generally have to store large volumes of data, and therefore need more than a single Space instance (a cluster).</p>
         <p>Type the following Helm command to deploy a Space cluster with n Data Pods, with a partition count from 1 to n:</p><pre><code>helm install insightedge --name test --set pu.partitions=n
 </code></pre>
