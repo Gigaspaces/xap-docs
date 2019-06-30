@@ -4,25 +4,138 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Persistent Volume Storage in Kubernetes</h1>
-        <p>This topic describes the Kubernetes storage model and how it is leveraged to support tiered storage that utilizes external persistent memory. This support enables using <MadCap:variable name="General.CompanyName" />'s MemoryXtend feature for SSD in the Kubernetes environment, as detailed later on this page.</p>
+        <p>This topic describes the Kubernetes storage model and how it is leveraged by <MadCap:variable name="General.CompanyName" /> to support tiered storage that utilizes external persistent memory. This support enables using <MadCap:variable name="General.CompanyName" />'s MemoryXtend feature for SSD in the Kubernetes environment.</p>
         <h1>Kubernetes Storage Model</h1>
         <p>The KubeGrid implementation of persistent volume storage utilizes the following Kubernetes entities:</p>
         <ul>
             <li>Container - The Docker container that hosts the Space.</li>
             <li>Pod - Hosts the container, and is essentially the Processing Unit instance, or service in the data grid.</li>
-            <li>StorageClass - A Kubernetes wrapper around the physical storage volume that contains the storage profile. Provides the requested storage defined by the PersistentVolumeClaim.</li>
-            <li>PersistentVolumeClaim - The request for Kubernetes to create a PersistentVolume. Used to attach (bind) the PersistentVolume to the Data Pod.</li>
-            <li>PersistentVolume - A Kubernetes wrapper around the storage that is bound to the Space. </li>
+            <li><code>storageClass</code> - A Kubernetes wrapper around the physical storage volume that contains the storage profile. Provides the requested storage defined by the <code>persistentVolumeClaim</code>.</li>
+            <li><code>persistentVolumeClaim</code> - The request for Kubernetes to create a <code>persistentVolume</code>. Used to attach (bind) the <code>persistentVolume </code>to the Data Pod.</li>
+            <li><code>persistentVolume</code> - A Kubernetes wrapper around the storage that is bound to the Space. </li>
         </ul>
-        <p>To enable persistent volume storage, the container definition must include a VolumeMount, which is a path that is mapped to the external persistent storage. If a VolumeMount is defined, this indicates to the pod that external storage is required. Additionally, the pod definition must include the PersistentVolumeClaim, which defines the capacity of storage volume. The pod creates a PersistentVolumeClaim when it receives the VolumeMount from the container.</p>
-        <p>When a PersistentVolumeClaim is created, it communicates to the StorageClass that external storage is needed. The StorageClass dynamically creates the PersistentVolume, which is then attached to the PersistentVolumeClaim and its associated pod.</p>
-        <p>To summarize, the pod creates a PersistentVolumeClaim, which interfaces with the StorageClass to create a PersistentVolume that is dedicated to that pod.</p>
+        <p>To enable persistent volume storage, the container definition must include a <code>volumeMount</code>, which is a path that is mapped to the external persistent storage. If a <code>volumeMount</code> is defined, this indicates to the pod that external storage is required. The pod definition must include a <code>persistentVolumeClaim</code>, which defines the capacity of the external storage volume. The pod can then create a <code>persistentVolumeClaim</code> when it receives the <code>volumeMount</code> from the container.</p>
+        <p>When a <code>persistentVolumeClaim</code> is created, it communicates to the <code>storageClass</code> that external storage is needed. The <code>storageClass </code>dynamically creates a <code>persistentVolume</code>, which is then attached to the <code>persistentVolumeClaim</code> and its associated pod.</p>
+        <p>To summarize, the pod creates a <code>persistentVolumeClaim</code>, which interfaces with the <code>storageClass</code> to create a <code>persistentVolume</code> dedicated to that pod.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/kubernetes/kubernetes-pvc.png" class="tc-picture80" />
             </p>
         </div>
         <h1>Deploying a Data Pod with MemoryXtend in Kubernetes</h1>
-        <p>In order to deploy a Processing Unit as a Data Pod in Kubernetes, both the pu.xml and pu Helm charts must be configured. The MemoryXtendVolume needs a path specified for each space instance being set up. In Kubernetes, since the Spaces are completely separate from each other and reside in separate Data Pods, they can each use the same path to the MemoryXtend external storage.</p>
+        <p>In order to deploy a Processing Unit with tiered storage in Kubernetes, both the pu.xml and pu Helm charts must be configured with the MemoryXtend definitions. </p>
+        <h2>Defining the Processing Unit pu.xml</h2>
+        <p>The pu.xml contains a <code>paths</code> property. This property defines the mount path for the persistent external storage, or blobstore, used by MemoryXtend. </p>
+        <p>When using a <MadCap:variable name="General.CompanyName" /> product in a non-containerized environment, such as the service grid, then you must define a path for each Space instance. For example, when configuring MemoryXtend for a  2:1 high availability environment, four Space instances will be deployed so four paths must be defined in the <code>paths</code> array. </p>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/Kubernetes/k8s-mx-path.flsnp" /><pre><code class="language-xml">&lt;bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"&gt;
+    &lt;property name="properties"&gt;
+        &lt;props&gt;
+                &lt;prop key="space-name"&gt;rocksdb&lt;/prop&gt;
+                &lt;prop key="path"&gt;opt/gigaspaces/memoryxtend&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+	
+&lt;blob-store:rocksdb-blob-store id="myBlobStore" paths="[${path}]" mapping-dir="${path}/mapping/rocksdbmap"/&gt;
+
+&lt;os-core:embedded-space id="space" name="${space-name}"&gt;
+  &lt;!--cache-entries-percentage=0 in order to make sure that objects are written tot he SSD--&gt;
+os-core:blob-store-data-policy  blob-store-handler="myBlobStore"
+                                cache-entries-percentage="20"
+                                avg-object-size-KB="10"
+                                persistent="true"/&gt;								
+&lt;/os-core:embedded-space&gt;</code></pre>
+        <h2>Installing the Helm Chart</h2>
+        <p>After the pu.xml has been configured for the MemoryXtend persistent storage option, the next step is installing the Helm chart. Fetch the <MadCap:variable name="General.CompanyName" /> Helm charts as described in <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref>, and modify the <code>memoryXtendVolume</code> section as shown below. Besides changing the default value of the <code>enabled</code> property to <code>true</code>, the only other property that needs to be defined is the <code>volumeClaimTemplate</code>, where you specify the required capacity of the external storage.</p><pre><code class="language-xml">memoryXtendVolume:
+  # enabled: Define whether memoryXtendVolume is enabled.
+  enabled: true
+
+  volumeMount:
+    # name: The name of the volume mount.
+    name: mx-volume
+    # mountPath: The container path that is mapped to the volume.
+    mountPath: /opt/gigaspaces/memoryxtend
+
+  # volumeClaimTemplate: template for persistent volume claim generation
+  volumeClaimTemplate:
+    # storage: Size of volume to claim (100Mi, 1000Gi etc.)
+    storage: 100mi
+    # storageClassName: The storage class to claim the volume from.
+    storageClassName:
+    # accessMode: pods mode of access to the volume. Possible values ReadWriteOnce, ReadOnlyMany, ReadWriteMany
+    accessModes: ReadWriteOnce
+    # persistentVolumeReclaimPolicy: Determines what is done with persistent volume after the claim is deleted. Possible values: Retain, Delete
+    persistentVolumeReclaimPolicy: Delete</code></pre>
+        <p>The following table describes the properties in the memoryXtendVolume section of the Helm chart.</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                    <th>Default Value</th>
+                    <th>Required</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="4"><code>memoryXtendVolume</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>enabled</td>
+                    <td>Indicates whether MemoryXtend for persistent memory is enabled.</td>
+                    <td>false</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><code>volumeMount</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>Name of the <code>volumeMount</code>.</td>
+                    <td>mx-volume</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>mountPath</td>
+                    <td>Path that is mapped to the external persistent storage (must be identical to the <code>volumeMount </code>path in the Data Pod configuration).</td>
+                    <td>/opt/gigaspaces/memoryxtend</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td colspan="4">volumeClaimTemplate</td>
+                </tr>
+                <tr>
+                    <td>storage</td>
+                    <td>Capacity of the external persistent memory volume.</td>
+                    <td>&#160;</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>storageClassName</td>
+                    <td>The <code>storageClass </code>from which the Data Pod is requesting the external persistent memory volume.</td>
+                    <td>&#160;</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>accessModes</td>
+                    <td>Mode of access to the external persistent memory volume</td>
+                    <td>ReadWriteOnce</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>persistentVolumeReclaimPolicy</td>
+                    <td>Define what to do with the <code>persistentVolume </code>after the <code>persistentVolumeClaim </code>is deleted.</td>
+                    <td>Delete</td>
+                    <td>No</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The following command is an example of how to configure the MemoryXtend feature for persistent memory (SSD) when installing the <MadCap:variable name="General.ProductNameIE" /> Helm chart:</p><pre><code>helm install insightedge-pu --name mypu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
     </body>
 </html>
