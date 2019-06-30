@@ -11,28 +11,16 @@
             <li>Java 8 or higher</li>
             <li>Tableau version 2019.1 or higher</li>
         </ul>
-        <h1><a name="integrating-tableau-with-insightedge"></a>Integrating Tableau with <MadCap:variable name="General.ProductNameIE" /></h1>
-        <p>After setting up and starting <MadCap:variable name="General.ProductNameIE" />, you have to add the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;connector to the Tableau Drivers folder. Scripts are provided that create the driver and invoke Tableau.</p>
-        <p>You can override the default configuration for these scripts by editing the variables in the <code>gs-tableau-env</code>in the product <code>tools\tableau</code> folder.</p>
+        <h1><a name="integrating-tableau-with-insightedge"></a>Setting up the GigaSpaces-Tableau Connector</h1>
+		<p></p>
+		<p>The GigaSpaces-Tableau integration is based on the Tableau Connector SDK and JDBC integration, which has proprietary requirements about various files location and execution arguments.
+		GigaSpaces provides the <code>gs-tableau</code> script (located at product's <code>tools/tableau</code>) which takes care of that for you and starts Tableau Desktop with the GigaSpaces connector enabled. 
+		Note that the first time this script runs it requires elevated permissions, since it automatically packages and copies the JDBC driver to Tableau's installation, which resides in the <code>Program Files</code> folder.
+		</p>
+        <p>If needed, you can override some of the default values (e.g. Tableau installation folder, or JDBC driver heap size) by editing the <code>gs-tableau-env</code> script.</p>
         <h2>Creating a standalone <MadCap:variable name="General.ProductNameIE" /> JDBC Connector to Tableau</h2>
-        <p>A standalone connector package is required for machines that access <MadCap:variable name="General.ProductNameIE" /> but don't have <MadCap:variable name="General.ProductNameIE" /> installed locally. To create the package ZIP file, run the  <code>gs-tableau-package</code>script from the product <code>tools\tableau</code> folder. That file can be distributed and installed on any machine to access <MadCap:variable name="General.ProductNameIE" /> data using Tableau.</p>
-        <h2><a name="setting-up-tableau"></a>Accessing the Data Grid with Tableau</h2>
-        <p>In order to use the <MadCap:variable name="General.ProductNameIE" />Tableau connector, start Tableau using the  <code>gs-tableau</code>script from the product <code>tools\tableau</code> folder. The initial setup depends on your local environment.</p>
-        <ul>
-            <li>If you don't have <MadCap:variable name="General.ProductNameIE" /> installed locally, install a standalone connector package ZIP file and then proceed to run the <code>gs-tableau</code>script.</li>
-            <li>If you  have <MadCap:variable name="General.ProductNameIE" /> installed locally, the JDBC connector is added by the <code>gs-tableau</code>script. The first time you run the script  the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;connector is automatically packaged and copied (this requires elevated permissions). </li>
-        </ul>
-        <h3>Exploring the <MadCap:variable name="General.ProductNameIE" /> JDBC Connector to Tableau</h3>
-        <p>If you need to customize or troubleshoot the integration, these are the steps executed in the scripts.</p>
-        <ol>
-            <li>Run <code>&lt;XAP_HOME&gt;\bin\insightedge maven install</code> to install the Maven artifacts.</li>
-            <li>Run <code>&lt;XAP_HOME&gt;\insightedge\tools\jdbc\build-jdbc-client.cmd</code> to create the <span class="tc-italic">insightedge-jdbc-client.jar</span> file.</li>
-            <li>Copy the file to the Tableau Drivers folder.</li>
-            <li>
-                <p><code>gs-tableau</code> runs the following command to start Tableau with the <MadCap:variable name="General.ProductNameIE" /> connector: </p><pre><code>&lt;TABLEAU_HOME&gt;\bin\tableau.exe -DConnectPluginsPath=&lt;GS_HOME&gt;\insightedge\tools\jdbc</code></pre>
-            </li>
-        </ol>
-        <h3><a name="configuring-the-data-source"></a>Configuring the Connection to <MadCap:variable name="General.ProductNameIE" /></h3>
+        <p>A standalone connector package is required for machines that access <MadCap:variable name="General.ProductNameIE" /> but don't have <MadCap:variable name="General.ProductNameIE" /> installed locally. To create the package ZIP file, run the <code>gs-tableau-package</code> script from the product <code>tools\tableau</code> folder. That file can be distributed and installed on any machine to access <MadCap:variable name="General.ProductNameIE" /> data using Tableau.</p>
+        <h1><a name="configuring-the-data-source"></a>Connecting to the Space</h1>
         <p class="tc-todo">To configure the data source after Tableau is started:</p>
         <ol>
             <li>
@@ -55,10 +43,10 @@
                 </div>
             </li>
         </ol>
-        <h2>Using Tableau to Query the Data Grid</h2>
+        <h1>Querying the Space using Tableau</h1>
         <p>After the connection has been configured, you can execute queries against the <MadCap:variable name="General.ProductNameIE" /> data, with access to a data grid that has already been deployed. This section describes a simple example of reading the data and displaying it in a graphic visual format. </p>
         <h3>Example </h3>
-        <p>If you aren't an experienced Tableau user, you can use the <a href="/download_files/sbp/insightedge-sql-demo.rar">InsightEdge SQL demo</a> to populate the Space with sample data. Then, follow the instructions below to see how the information can be visualized in the Tableau desktop. The example uses the following schema:</p>
+        <p>Suppose the data grid contains the following schema:</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/devguide/Tableau data set.png" class="tc-picture30" />
