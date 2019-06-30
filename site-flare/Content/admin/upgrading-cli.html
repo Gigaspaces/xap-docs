@@ -4,9 +4,24 @@
     </head>
     <body>
         <h1>Upgrading the CLI</h1>
-        <p>A new <a href="tools-cli.html">Command Line Interface</a> <MadCap:conditionalText MadCap:conditions="Version.14-5-died">was introduced in the <MadCap:variable name="General.ProductNameIEP" /> and <MadCap:variable name="General.ProductNameXAP" /> release 12.3. This CLI</MadCap:conditionalText> provides a simpler syntax and is cloud-friendly (based on the <a href="admin-rest-manager-api.html">REST Manager API</a>).</p>
+        <p>The new <a href="tools-cli.html">Command Line Interface</a> which was introduced in  release 12.3 provides a simpler syntax and is cloud-friendly (based on the <a href="admin-rest-manager-api.html">REST Manager API</a>).</p>
         <p>The <a href="command-line-interface.html">legacy CLI</a> is still supported, but has been deprecated as of <MadCap:variable name="General.ProductNameIEP" /> and <MadCap:variable name="General.ProductNameXAP" /> release 14.0 and will be removed in a future version. Customers upgrading from older product versions are encouraged to upgrade to the new CLI.</p>
         <p>To get started with the new CLI, simply run<MadCap:conditionalText MadCap:conditions="Version.14-5-died"> <code>xap --help</code></MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code>gs --help</code></MadCap:conditionalText> from the product's <code>bin</code> folder.</p>
+        <h2 MadCap:conditions="Version.14-5-born">Setting the CLI Version</h2>
+        <p MadCap:conditions="Version.14-5-born">We use versioning to formally differentiate between the CLIs: the ‘new’ CLI version is 2, and the ‘legacy’ CLI version is 1.</p>
+        <p MadCap:conditions="Version.14-5-born">Until release 14.5, running the insightedge or xap script started CLI v2 whereas running gs started CLI v1. Starting in release 14.5, running gs starts the latest version of the CLI (v2), and the insightedge &amp; xap scripts have been removed.</p>
+        <p MadCap:conditions="Version.14-5-born">To explicitly set the CLI version use one of the following options:</p>
+        <ul MadCap:conditions="Version.14-5-born">
+            <li>
+                <p>Global - Edit the <code>setenv-overrides</code> script (located at the product's bin folder) and set the <b>XAP_CLI_VERSION</b> environment variable to 1.</p>
+            </li>
+            <li>
+                <p>Per-command - Use the<b> --cli-version</b> option to set the CLI version for a specific command invocation, such as <b>gs --cli-version=1</b> . This option overrides the XAP_CLI_VERSION environment variable, if set.</p>
+            </li>
+        </ul>
+        <p MadCap:conditions="Version.14-5-born">If you’ve just started upgrading from an old version, you’ll probably want to use <b>XAP_CLI_VERSION</b>,since it globally reverts to the old syntax and your scripts can run unchanged. Since the <b>--cli-version</b> option overrides the environment variable, you can migrate your scripts gradually by changing one command at a time to use and test the new syntax, before moving to the next command.</p>
+        <p MadCap:conditions="Version.14-5-born">Note that version 1 of the CLI is deprecated and will be removed in the future - the versioning mechanism is provided as an aide to simplify migration, but should not be used as a long-term solution.</p>
+        <p MadCap:conditions="Version.14-5-born">If your scripts were already using CLI v2 using the <code>insightedge</code> &amp; <code>xap</code> scripts, simply revise them to call <code>gs</code> instead. If you’re interested, the deprecated-scripts.zip archive at the product's bin folder contains revised <code>insightedge</code> &amp; <code>xap</code> scripts which simply invoke <code>gs --cli-version=2</code>  with the specified arguments on your behalf.</p>
         <h1><a name="commonly-used-options"></a>Commonly Used Options</h1>
         <p>The following table lists common tasks and the commands that are used to execute them using both the old and new Command Line Interfaces. This is not an exhaustive list, but it should help you get started with migration quickly and estimate the required effort.</p>
         <table MadCap:conditions="Version.14-5-died">

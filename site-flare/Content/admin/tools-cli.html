@@ -4,25 +4,19 @@
     </head>
     <body>
         <h1>Command Line Interface (CLI)</h1>
-        <p>GigaSpaces provides a CLI tool for administering both <MadCap:variable name="General.ProductNameXAP" /> and <MadCap:variable name="General.ProductNameIE" />. The CLI is based on the REST Manager API, enabling users to administer local, remote, and cloud-based application environments. In addition to the REST Manager API operations, the CLI supports certain administration tasks in the open source application editions.</p>
+        <p>GigaSpaces provides a CLI tool for administering both <MadCap:variable name="General.ProductNameXAP" /> and <MadCap:variable name="General.ProductNameIE" />. The CLI is based on the REST Manager API, enabling users to administer local, remote, and cloud-based application environments. <MadCap:conditionalText MadCap:conditions="Version.14-5-died">In addition to the REST Manager API operations, the CLI supports certain administration tasks in the open source application editions.</MadCap:conditionalText></p>
         <p MadCap:conditions="Version.14-5-died">Users that are administering a <MadCap:variable name="General.ProductNameXAP" /> environment should use the <code>xap</code> script. Users that are administering <MadCap:variable name="General.ProductNameIE" /> should use the <code>insightedge</code> CLI script, which contains all of the actions available with the <code>xap</code> script, plus additional options where relevant for administering <MadCap:variable name="General.ProductNameIE" /> components.</p>
         <p MadCap:conditions="Version.14-5-died">The image below shows the screen that is displayed when you run the <code>xap</code> script.</p>
-        <p MadCap:conditions="Version.14-5-born">Use the <code>gs</code> script to invoke the new CLI&#160;provided with release 14.5. The image below is displayed, showing the usage and available commands, when you run the script.</p>
+        <p MadCap:conditions="Version.14-5-born">Use the <code>gs</code> script to invoke the CLI. If no arguments are specified, the usage instructions and available commands are displayed, as shown below:</p>
         <p MadCap:conditions="Version.14-5-died">
             <img src="../Resources/Static/attachment_files/admin/xap-cli.png" alt="image" class="tc-picture80" />
         </p>
         <p MadCap:conditions="Version.14-5-born">
             <img src="../Resources/Static/attachment_files/admin/cli-gs.png" class="tc-picture80" />
         </p>
-        <p MadCap:conditions="Version.14-5-born">Optionally you can continue to use the previous CLI version commands  by either:</p>
-        <ul>
-            <li MadCap:conditions="Version.14-5-born">invoking <code>gs --cli-version=1</code>. </li>
-            <li MadCap:conditions="Version.14-5-born">Adding the environmental variable <code>XAP_CLI_VERSION=1</code> to file <code>setenv-overrides.bat</code> in the product <code>bin</code> folder</li>
-        </ul>
-        <p MadCap:conditions="Version.14-5-born">The image below is displayed, showing the usage and available commands, when you run the script..</p>
-        <p MadCap:conditions="Version.14-5-born">
-            <img src="../Resources/Static/attachment_files/admin/cli-gs-previous.png" class="tc-picture80" />
-        </p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p>If you're upgrading from a version prior to 14.5, this is a new version of the CLI tool and uses a different syntax and command set. For more information see <a href="upgrading-cli.html">upgrading-cli.html</a>.</p>
+        </div>
         <h1 MadCap:conditions="Version.14-5-died"><a name="cli-help"></a>CLI Help</h1>
         <p MadCap:conditions="Version.14-5-died">Use the <code>--help</code> command (or <code>-h</code>) to see the syntax of a specified CLI command, or a list of all available commands. The list of commands may vary depending on whether you are running the <MadCap:variable name="General.ProductNameXAP" /> or the <MadCap:variable name="General.ProductNameIE" /> script. For example,
 the list of commands for <code>insightedge host run-agent --help</code> contains all the actions available under <code>xap host run-agent --help</code>, plus additional options for administering the Spark master and worker components.</p>
@@ -89,12 +83,7 @@ the list of commands for <code>insightedge host run-agent --help</code> contains
         <p><code>ALIAS</code> is optional; use it if you changed the name of the command.</p>
         <p>After running <code>java -cp "../../lib/required/*:*" MAIN_COMMAND ALIAS</code>, the autocomplete script will appear in <code>&lt;XAP-HOME&gt;/tools/cli</code>.</p>
         <h1><a name="running-a-local-manager-server"></a>Running a Local Manager Server</h1>
-        <p>To run a local Manager server and a web browser client, type <code>xap host run-agent --auto</code> or <code>insightedge host run-agent --auto</code>.</p>
-        <p>To view a list of the running agents, type <code>xap host list</code> or <code>insightedge host list</code>.</p>
-        <div class="tc-admon-note">
-            <p>If you've recently upgraded to version 12.3 or higher, note that this is a new version of the CLI tool and uses a different syntax and command set. We encourage using this new version, but if you need information about the old CLI commands, refer to the <a href="command-line-interface.html">GigaSpaces CLI</a> pages in the <a href="admin-legacy-tools.html">Legacy Tools</a> section.</p>
-        </div>
-        <h1 MadCap:conditions="Version.14-5-born">Running Deprecated Scripts</h1>
-        <p MadCap:conditions="Version.14-5-born">Scripts that are deprecated can be extracted from <code>deprecated-scripts.zip</code> in the product <code>bin</code> folder.</p>
+        <p>To run a local Manager server and a web browser client, type <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code>xap host run-agent --auto</code> or <code>insightedge host run-agent --auto</code></MadCap:conditionalText><code MadCap:conditions="Version.14-5-born">gs host run-agent --auto</code>.</p>
+        <p>To view a list of the running agents, type <MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code>gs host list</code> </MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"> <code>xap host list</code> or <code>insightedge host list</code></MadCap:conditionalText>.</p>
     </body>
 </html>
