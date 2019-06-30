@@ -13,19 +13,24 @@
         </div>
         <h2 MadCap:conditions="Version.14-5-born">Installation</h2>
         <p>To install the Maven artifacts run the  <code>gs maven install</code>script from the product <code>bin</code> folder.  </p>
-        <h2 MadCap:conditions="Version.14-5-born">Installation Options</h2>
-        <p MadCap:conditions="Version.14-5-born">To customize Maven installation for your environment:</p>
-        <ul>
+        <h3 MadCap:conditions="Version.14-5-born">Advanced Installation Options</h3>
+        <p MadCap:conditions="Version.14-5-born">Some maven setups requires slightly different maven installation process. GigaSpaces maven installation is designed to be customized, if needed, and works as follows:</p>
+        <ol>
             <li MadCap:conditions="Version.14-5-born">
-                <p>Generate the install script only (without install), by running the script with an option - <code>gs maven install --generate-only</code>. </p>
-                <p>The product <code>config/maven/installer</code> folder is created with the pom xml files. </p>
+                <p>Create a temporary directory (<code>$XAP_HOME/config/maven/installer</code>), and a main <code>pom.xml</code> for the installation process.</p>
             </li>
             <li MadCap:conditions="Version.14-5-born">
-                <p> From that folder run the <code>mvn install</code> script. </p>
-                <p>The <code>target</code>folder that can be applied to your environment is created.</p>
+                <p>Add each artifact in <code>$XAP_HOME/config/maven/gs-artifacts.txt</code> to the main <code>pom.xml</code>, and extract the artifact's pom.xml if needed.</p>
             </li>
-        </ul>
-        <p MadCap:conditions="Version.14-5-born">You can customize the artifacts created by editing the product <code>config/maven/gs-artifacts.txt</code> file.</p>
+            <li MadCap:conditions="Version.14-5-born">
+                <p>Install the main <code>pom.xml</code> using a standard <code>mvn install</code> command.</p>
+            </li>
+			<li MadCap:conditions="Version.14-5-born">
+                <p>Delete the temporary folder.</p>
+            </li>
+        </ol>
+		<p MadCap:conditions="Version.14-5-born">If needed, you can customize the list of installed artifacts by editing the <code>gs-artifacts.txt</code> file. 
+		In addition, the <code>gs maven install</code> supports an optional <code>--generate-only</code> flag, which generates the temporary directory and files without installtion (steps 1+2), so you can tailor the generated content to your needs. </p>
         <h1 MadCap:conditions="Version.14-5-born"><a name="xap-maven-repository"></a><MadCap:variable name="General.ProductNameXAP" /> Maven Repository</h1>
         <p MadCap:conditions="Version.14-5-born"><MadCap:variable name="General.ProductNameXAP" /> artifacts are not currently published in the Maven Central Repo, so you must first configure a repository:</p><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;repository&gt;
    &lt;id&gt;org.openspaces&lt;/id&gt;
