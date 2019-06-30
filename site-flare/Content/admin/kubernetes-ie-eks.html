@@ -42,11 +42,12 @@
         <p>Use the following command to fetch the GigaSpaces Helm charts and unpack them locally:</p><pre><code>helm fetch gigaspaces/insightedge --version=14.0 --untar</code></pre>
         <p>You should also verify that your KubeGrid EKS cluster is active using the Amazon EKS console, and that the KubeGrid and worker nodes were created using the CloudFormation console.</p>
         <h2>Installing KubeGrid </h2>
-        <p>In order to ensure that <MadCap:variable name="General.ProductNameIE" /> will work properly in the Amazon EKS environment, the default service type (<code>NodePort</code>) in the  manager and  zeppelin Helm charts must be changed to <code>LoadBalancer</code> before applying the Helm install command.</p>
-        <p class="tc-todo">To install <MadCap:variable name="General.ProductNameIE" />:</p>
+        <p MadCap:conditions="Version.14-5-born">Installing KubeGrid is a simple one-step procedure.</p>
+        <p MadCap:conditions="Version.14-5-died">In order to ensure that <MadCap:variable name="General.ProductNameIE" /> will work properly in the Amazon EKS environment, the default service type (<code>NodePort</code>) in the  manager and  zeppelin Helm charts must be changed to <code>LoadBalancer</code> before applying the Helm install command.</p>
+        <p class="tc-todo">To install <MadCap:variable name="General.ProductNameIE" /> in KubeGrid:</p>
         <ol>
-            <li>Modify the Helm charts:</li>
-            <ol style="list-style-type: lower-alpha;">
+            <li MadCap:conditions="Version.14-5-died">Modify the Helm charts:</li>
+            <ol style="list-style-type: lower-alpha;" MadCap:conditions="Version.14-5-died">
                 <li>
                     <p>Open the <code>insightedge-manager</code> values.yaml file, and change the service type from NodePort to LoadBalancer. The chart should look like this:</p><pre><code class="language-xml"># service: Platform Manager service configuration.
 service:
