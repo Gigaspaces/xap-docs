@@ -83,7 +83,7 @@ the list of commands for <code>insightedge host run-agent --help</code> contains
         <p MadCap:conditions="Version.14-5-died"><code>ALIAS</code> is optional; use it if you changed the name of the command.</p>
         <p MadCap:conditions="Version.14-5-died">After running <code>java -cp "../../lib/required/*:*" MAIN_COMMAND ALIAS</code>, the autocomplete script will appear in <code>&lt;XAP-HOME&gt;/tools/cli</code>.</p>
         <h3 MadCap:conditions="Version.14-5-born">Prerequisite for MacOS</h3>
-        <p MadCap:conditions="Version.14-5-born">The default 3.2 Bash shell of your Mac has basic Bash completion functionality. Newer versions of Bash support a much more advanced type of completion, called programmable completion. Today many completion scripts make use of new features that are not supported by Bash 3.2, and that may also depend on third-party project called bash-completion.</p>
+        <p MadCap:conditions="Version.14-5-born">The default 3.2 Bash shell of your Mac has basic Bash completion functionality. Newer versions of Bash, starting with 4.0, support a much more advanced type of completion, called programmable completion. Today many completion scripts make use of new features that are not supported by Bash 3.2, and that may also depend on third-party project called bash-completion.</p>
         <p MadCap:conditions="Version.14-5-born">To apply Bash completion on MacOS:</p>
         <ul>
             <li MadCap:conditions="Version.14-5-born">Upgrade Bash on MacOS. For example<code> brew install bash</code>.</li>
@@ -94,7 +94,7 @@ the list of commands for <code>insightedge host run-agent --help</code> contains
             <p>You can add <code>.gs</code>.as an alias of <code>.gs.sh</code>to the <code>.bash_profile</code>, in order to simplify using autocomplete.</p>
         </div>
         <h3 MadCap:conditions="Version.14-5-born">Generating a Completion Script</h3>
-        <p MadCap:conditions="Version.14-5-born">Bash supports a much more advanced type of completion, called programmable completion. This allows to define command-specific completion logic, which enables users to auto-complete sub-commands, options, and other arguments of commands in a context-specific manner.</p>
+        <p MadCap:conditions="Version.14-5-born">Programmable completion allows to define command-specific completion logic, which enables users to auto-complete sub-commands, options, and other arguments of commands in a context-specific manner.</p>
         <p MadCap:conditions="Version.14-5-born">A completion specification defines the applicable completions for the argument tokens of a command. To generate a completion spec run <code>./gs.sh completion</code> with one of the following options:</p>
         <table style="width: 100%;" MadCap:conditions="Version.14-5-born">
             <col style="width: 227px;" />
@@ -107,14 +107,18 @@ the list of commands for <code>insightedge host run-agent --help</code> contains
                     <td class="tabs-title" style="font-weight: bold;">Example</td>
                 </tr>
                 <tr>
-                    <td><code>--stdout</code></td>
+                    <td><code>--stdout</code>
+                    </td>
                     <td>Prints the completion code to standard output</td>
-                    <td><code>./gs.sh completion --stdout</code></td>
+                    <td><code>./gs.sh completion --stdout</code>
+                    </td>
                 </tr>
                 <tr>
-                    <td><code>--target=&lt;file&gt;</code></td>
+                    <td><code>--target=&lt;file&gt;</code>
+                    </td>
                     <td>Stores the completion code in the specified file</td>
-                    <td><code>./gs.sh completion --target gs.completion</code></td>
+                    <td><code>./gs.sh completion --target gs.completion</code>
+                    </td>
                 </tr>
             </tbody>
         </table>
