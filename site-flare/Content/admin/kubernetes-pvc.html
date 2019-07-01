@@ -30,43 +30,21 @@
         <MadCap:snippetBlock src="../Resources/Snippets/Content/Kubernetes/k8s-mx-path.flsnp" /><pre><code class="language-xml">&lt;bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"&gt;
     &lt;property name="properties"&gt;
         &lt;props&gt;
-                &lt;prop key="space-name"&gt;rocksdb&lt;/prop&gt;
-                &lt;prop key="path"&gt;opt/gigaspaces/memoryxtend&lt;/prop&gt;
+            &lt;prop key="space-name"&gt;rocksdb&lt;/prop&gt;
+            &lt;prop key="mx-path"&gt;opt/gigaspaces/memoryxtend&lt;/prop&gt;
         &lt;/props&gt;
     &lt;/property&gt;
 &lt;/bean&gt;
 	
-&lt;blob-store:rocksdb-blob-store id="myBlobStore" paths="[${path}]" mapping-dir="${path}/mapping/rocksdbmap"/&gt;
+&lt;blob-store:rocksdb-blob-store id="myBlobStore" paths="[${mx-path}]" mapping-dir="${mx-path}/mapping/rocksdbmap"/&gt;
 
 &lt;os-core:embedded-space id="space" name="${space-name}"&gt;
-  &lt;!--cache-entries-percentage=0 in order to make sure that objects are written tot he SSD--&gt;
-os-core:blob-store-data-policy  blob-store-handler="myBlobStore"
-                                cache-entries-percentage="20"
-                                avg-object-size-KB="10"
-                                persistent="true"/&gt;								
+    &lt;os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/&gt;								
 &lt;/os-core:embedded-space&gt;</code></pre>
         <h2>Installing the Helm Chart</h2>
-        <p>After the pu.xml has been configured for the MemoryXtend persistent storage option, the next step is installing the Helm chart. Fetch the <MadCap:variable name="General.CompanyName" /> Helm charts as described in <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref>, and modify the <code>memoryXtendVolume</code> section as shown below. Besides changing the default value of the <code>enabled</code> property to <code>true</code>, the only other property that needs to be defined is the <code>volumeClaimTemplate</code>, where you specify the required capacity of the external storage.</p><pre><code class="language-xml">memoryXtendVolume:
-  # enabled: Define whether memoryXtendVolume is enabled.
-  enabled: true
-
-  volumeMount:
-    # name: The name of the volume mount.
-    name: mx-volume
-    # mountPath: The container path that is mapped to the volume.
-    mountPath: /opt/gigaspaces/memoryxtend
-
-  # volumeClaimTemplate: template for persistent volume claim generation
-  volumeClaimTemplate:
-    # storage: Size of volume to claim (100Mi, 1000Gi etc.)
-    storage: 100mi
-    # storageClassName: The storage class to claim the volume from.
-    storageClassName:
-    # accessMode: pods mode of access to the volume. Possible values ReadWriteOnce, ReadOnlyMany, ReadWriteMany
-    accessModes: ReadWriteOnce
-    # persistentVolumeReclaimPolicy: Determines what is done with persistent volume after the claim is deleted. Possible values: Retain, Delete
-    persistentVolumeReclaimPolicy: Delete</code></pre>
-        <p>The following table describes the properties in the memoryXtendVolume section of the Helm chart.</p>
+        <p>After the pu.xml has been configured for the MemoryXtend persistent storage option, the next step is installing the Helm chart. Fetch the <MadCap:variable name="General.CompanyName" /> Helm charts as described in <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref>, then use the <code>helm install</code> command to deploy the processing unit. The minimum configuration required for MemoryXtend volume is to set the <code>enabled</code> property to <code>true</code>, and the <code>storage</code> property to the required capacity of the external storage. For example:</p>
+        <pre><code>helm install insightedge-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
+        <p>The following table describes the properties in the <code>memoryXtendVolume</code> section of the Helm chart.</p>
         <table style="width: 100%;" class="tc-standard">
             <col />
             <col />
@@ -82,60 +60,48 @@ os-core:blob-store-data-policy  blob-store-handler="myBlobStore"
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="4"><code>memoryXtendVolume</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td>enabled</td>
+                    <td><code>memoryXtendVolume.enabled</code></td>
                     <td>Indicates whether MemoryXtend for persistent memory is enabled.</td>
                     <td>false</td>
                     <td>Yes</td>
                 </tr>
                 <tr>
-                    <td colspan="4"><code>volumeMount</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td>name</td>
+                    <td><code>memoryXtendVolume.volumeMount.name</code></td>
                     <td>Name of the <code>volumeMount</code>.</td>
                     <td>mx-volume</td>
                     <td>No</td>
                 </tr>
                 <tr>
-                    <td>mountPath</td>
+                    <td><code>memoryXtendVolume.volumeMount.mountPath</code></td>
                     <td>Path that is mapped to the external persistent storage (must be identical to the <code>volumeMount </code>path in the Data Pod configuration).</td>
-                    <td>/opt/gigaspaces/memoryxtend</td>
+                    <td><code>/opt/gigaspaces/memoryxtend</code></td>
                     <td>No</td>
                 </tr>
                 <tr>
-                    <td colspan="4">volumeClaimTemplate</td>
-                </tr>
-                <tr>
-                    <td>storage</td>
+                    <td><code>memoryXtendVolume.volumeClaimTemplate.storage</code></td>
                     <td>Capacity of the external persistent memory volume.</td>
                     <td>&#160;</td>
                     <td>Yes</td>
                 </tr>
                 <tr>
-                    <td>storageClassName</td>
+                    <td><code>memoryXtendVolume.volumeClaimTemplate.storageClassName</code></td>
                     <td>The <code>storageClass </code>from which the Data Pod is requesting the external persistent memory volume.</td>
                     <td>&#160;</td>
                     <td>No</td>
                 </tr>
                 <tr>
-                    <td>accessModes</td>
+                    <td><code>memoryXtendVolume.volumeClaimTemplate.accessModes</code></td>
                     <td>Mode of access to the external persistent memory volume</td>
                     <td>ReadWriteOnce</td>
                     <td>No</td>
                 </tr>
                 <tr>
-                    <td>persistentVolumeReclaimPolicy</td>
+                    <td><code>memoryXtendVolume.volumeClaimTemplate.persistentVolumeReclaimPolicy</code></td>
                     <td>Define what to do with the <code>persistentVolume </code>after the <code>persistentVolumeClaim </code>is deleted.</td>
                     <td>Delete</td>
                     <td>No</td>
                 </tr>
             </tbody>
         </table>
-        <p>The following command is an example of how to configure the MemoryXtend feature for persistent memory (SSD) when installing the <MadCap:variable name="General.ProductNameIE" /> Helm chart:</p><pre><code>helm install insightedge-pu --name mypu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
     </body>
 </html>
