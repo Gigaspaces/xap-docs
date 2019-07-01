@@ -55,17 +55,18 @@
         <p MadCap:conditions="Version.14-2-only">Look for our GigaSpaces products in the <a href="https://access.redhat.com/containers/" target="_blank">Red Hat Container Catalog</a>.</p>
         <h1 MadCap:conditions="Version.14-5-only">AnalyticsXtreme Enhancements</h1>
         <p MadCap:conditions="Version.14-5-only">AnalyticsXtreme now supports smart SQL JOINs between the speed and batch layers. Additionally, this version includes performance improvements such as "OR" optimization and partitioned Hive tables.</p>
-        <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../dev-java/data-lake-acceleration.html">Data Lake Acceleration</MadCap:xref>.</p>
+        <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../dev-java/data-lake-acceleration-ax-client-side.html">Data Lake Acceleration</a>.</p>
         <h1 MadCap:conditions="Version.14-5-only">Kubernetes Support for Persistent MemoryXtend</h1>
         <p MadCap:conditions="Version.14-5-only">MemoryXtend functionality in Kubernetes deployments has been enhanced with persistent volume (SSD) support, which leverages SSD and persistent memory technologies.</p>
-        <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../dev-java/data-lake-acceleration.html">Data Lake Acceleration</a>.</p>
+        <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../admin/kubernetes-pvc.html">Persistent Volume Storage in Kubernetes</a>.</p>
         <h1 MadCap:conditions="Version.14-5-only">GigaSpaces-Tableau Connector</h1>
         <p MadCap:conditions="Version.14-5-only">The new <MadCap:variable name="General.CompanyName" />-Tableau connector enables out-of-the-box integration with Tableau, so that InsightEdge is available directly from the Tableau Desktop.</p>
-        <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../dev-java/tableau-integration.html">Tableau Integration</MadCap:xref>.</p>
+        <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../dev-java/tableau-integration.html">Tableau Integration</a>.</p>
         <h1 MadCap:conditions="Version.14-5-only">Jupyter Notebook Integration</h1>
         <p MadCap:conditions="Version.14-5-only">Python users can now incorporate the familiar Jupyter web notebook with <MadCap:variable name="General.ProductNameIE" />, enjoying out-of-the-box connectivity and PySpark support.</p>
-        <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../started/insightedge-jupyter.html">Using a Jupyter Notebook</MadCap:xref>.</p>
+        <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../started/insightedge-jupyter.html">Using a Jupyter Notebook</a>.</p>
         <h1 MadCap:conditions="Version.14-5-only">Usability and Platform Enhancements</h1>
+        <h2 MadCap:conditions="Version.14-5-only">Usability Enhancements</h2>
         <h3 MadCap:conditions="Version.14-5-only">Interactive Shell for CLI</h3>
         <p MadCap:conditions="Version.14-5-only">A CLI interactive shell is available for all platforms, and is activated automatically with the <code>gs</code> command. The interactive shell guides you in entering CLI commands by autocompleting commands and automatically displaying CLI help information.</p>
         <p MadCap:conditions="Default.DoNotShow"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../dev-java/data-lake-acceleration.html">Data Lake Acceleration</a>.</p>
@@ -74,14 +75,17 @@
         <p MadCap:conditions="Default.DoNotShow"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../dev-java/data-lake-acceleration.html">Data Lake Acceleration</a>.</p>
         <h3 MadCap:conditions="Version.14-5-only">Improved Maven Integration</h3>
         <p MadCap:conditions="Version.14-5-only">The <MadCap:variable name="General.CompanyName" /> product integration with Maven has been streamlined and obsolete files have been removed. Additionally, the <MadCap:variable name="General.CompanyName" /> CLI has a new command for installing Maven artifacts.</p>
-        <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../started/maven-artifacts.html">Maven Artifacts</MadCap:xref>.</p>
-        <h2 MadCap:conditions="Version.14-5-only">CSV Reader Utility</h2>
+        <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../started/installation-maven-overview.html">Maven Artifacts</a>.</p>
+        <h3 MadCap:conditions="Version.14-5-only">CSV Reader Utility</h3>
         <p MadCap:conditions="Version.14-5-only"><MadCap:variable name="General.ProductNameIE" /> now includes a <code>CsvReader</code> utility, which simplifies loading data from a CSV file to the data grid. This utility is especially helpful for first-time and new users of GigaSpaces products, as it can be used to quickly load demo data to a Space for evaluation and testing purposes.</p>
         <p MadCap:conditions="Default.DoNotShow"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../dev-java/data-lake-acceleration.html">Data Lake Acceleration</a>.</p>
         <h2 MadCap:conditions="Version.14-5-only">Environment and Command Changes</h2>
+        <h3 MadCap:conditions="Version.14-5-only">Environment Variables</h3>
         <p MadCap:conditions="Version.14-5-only">There have been updates and modifications to the set environment variables that <MadCap:variable name="General.CompanyName" /> uses.</p>
         <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../started/common-environment-variables.html">Configuring the Environment Variables</MadCap:xref>.</p>
-        <p MadCap:conditions="Version.14-5-only">The <MadCap:variable name="General.CompanyName" /> Command Line Interface (CLI) has been consolidated and now uses a single <code>gs</code> script as the entry point. To maintain backwards compatibility, users that upgrade from earlier versions of <MadCap:variable name="General.CompanyName" /> products can revert the CLI&#160;to the previous behavior to simplify the migration process. For more information, see the <MadCap:xref href="upgrading.html">Upgrading from a Previous Version</MadCap:xref> page of the&#160;Release Notes.</p>
+        <h3 MadCap:conditions="Version.14-5-only">Command Line Interface Enhancement</h3>
+        <p MadCap:conditions="Version.14-5-only">The <MadCap:variable name="General.CompanyName" /> Command Line Interface (CLI) has been consolidated and now uses a single <code>gs</code> script as the entry point. To maintain backwards compatibility, users that upgrade from earlier versions of <MadCap:variable name="General.CompanyName" /> products can revert the CLI&#160;to the previous behavior to simplify the migration process. </p>
+        <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../admin/upgrading-cli.html">Upgrading the CLI</MadCap:xref>.</p>
         <h1>Third-Party Product Changes</h1>
         <ul>
             <li MadCap:conditions="Version.14-0-only">Java 11 is now supported (starting from service pack 14.0.1). For more information, see the <MadCap:xref href="java11-guidelines.html">Java 11 Guidelines</MadCap:xref> page of the release notes.</li>
@@ -103,7 +107,7 @@
         <p MadCap:conditions="Version.14-2-only">Additionally, XAP.NET&#160;no longer includes a bundled Java distribution.</p>
         <ul>
             <li MadCap:conditions="Version.14-5-only"><a href="https://projects.spring.io/spring-framework/">Spring Framework</a> integration has been upgraded to 5.1.7</li>
-            <li MadCap:conditions="Version.14-5-only"><a href="http://projects.spring.io/spring-security/">Spring Security</a> integration has been upgraded to 5.1.5.<div class="tc-admon-attention"><p MadCap:conditions="Version.14-5-only">As of Spring Security 5,   password encoder must be defined.</p></div></li>
+            <li MadCap:conditions="Version.14-5-only"><a href="http://projects.spring.io/spring-security/">Spring Security</a> integration has been upgraded to 5.1.5.<div class="tc-admon-attention"><p MadCap:conditions="Version.14-5-only">As of Spring Security 5.x,   a password encoder must be defined.</p></div></li>
         </ul>
         <h1><a name="end-of-life-and-deprecated-features-and-functionality"></a>End-Of-Life and Deprecated Features and Functionality</h1>
         <p MadCap:conditions="Version.14-0-only">The following functionality is deprecated as of this release:</p>
@@ -117,7 +121,20 @@
         </ul>
         <p MadCap:conditions="Version.14-0-only">In addition, we recommend that you review GigaSapaces' updated Java and Spring Framework policies on the <MadCap:xref href="lifecycle.html">Product Life Cycle and End-of-Life Policy</MadCap:xref> page.</p>
         <p MadCap:conditions="Version.14-2-only">There are no end-of-life or deprecated features in this release.</p>
-        <p MadCap:conditions="Version.14-5-only">The <code>EXT_JAVA_OPTIONS</code> environment variable is deprecated as of this version. Use <code>XAP_OPTIONS_EXT</code> instead.</p>
+        <h3 MadCap:conditions="Version.14-5-only">Deprecated Features and Functionality</h3>
+        <ul>
+            <li MadCap:conditions="Version.14-5-only">The advanced_scripts.zip file has been renamed to deprecated_scripts.zip.</li>
+            <li MadCap:conditions="Version.14-5-only">The xap and insightedge duplicate CLI scripts were deprecated and moved to the deprecated_scripts.zip file.</li>
+            <li MadCap:conditions="Version.14-5-only">The <code>EXT_JAVA_OPTIONS</code> environment variable is deprecated as of this version. Use <code>XAP_OPTIONS_EXT</code> instead.</li>
+        </ul>
+        <h3 MadCap:conditions="Version.14-5-only">End-Of-Life Functionality</h3>
+        <p MadCap:conditions="Version.14-5-only">The following obsolete scripts were removed from the product (formerly in the advanced_scripts.zip file):</p>
+        <ul>
+            <li MadCap:conditions="Version.14-5-only">esm</li>
+            <li MadCap:conditions="Version.14-5-only">gs-memcached</li>
+            <li MadCap:conditions="Version.14-5-only">lookupbrowser</li>
+            <li MadCap:conditions="Version.14-5-only">startjinix_mahalo</li>
+        </ul>
         <p MadCap:conditions="Default.DoNotShow">This version is early access, and there are currently no new features.</p>
     </body>
 </html>
