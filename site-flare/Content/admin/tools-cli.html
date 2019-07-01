@@ -15,7 +15,7 @@
             <img src="../Resources/Static/attachment_files/admin/cli-gs.png" class="tc-picture80" />
         </p>
         <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
-            <p>If you're upgrading from a version prior to 14.5, this is a new version of the CLI tool and uses a different syntax and command set. For more information see <a href="upgrading-cli.html">upgrading-cli.html</a>.</p>
+            <p>If you're upgrading from a version prior to 14.5, this is a new version of the CLI tool and uses a different syntax and command set. For more information see <a href="upgrading-cli.html">Upgrading the CLI</a>.</p>
         </div>
         <h1 MadCap:conditions="Version.14-5-died"><a name="cli-help"></a>CLI Help</h1>
         <p MadCap:conditions="Version.14-5-died">Use the <code>--help</code> command (or <code>-h</code>) to see the syntax of a specified CLI command, or a list of all available commands. The list of commands may vary depending on whether you are running the <MadCap:variable name="General.ProductNameXAP" /> or the <MadCap:variable name="General.ProductNameIE" /> script. For example,
@@ -34,7 +34,7 @@ the list of commands for <code>insightedge host run-agent --help</code> contains
             <li>Autocompleting the command when you enter the first letters of the command and click <code>[TAB]</code></li>
         </ul>
         <p MadCap:conditions="Version.14-5-died">Enter ctrl-D to exit the interactive shell.</p>
-        <h1><a name="autocomplete-functionality"></a>Autocomplete Functionality</h1>
+        <h1><a name="autocomplete-functionality"></a>Bash Completion</h1>
         <h2><a name="overview"></a>Overview</h2>
         <p MadCap:conditions="Version.14-5-died">Bash completion in the CLI is available for Linux and MacOS X users. After generating and activating the autocomplete feature (as explained below), navigate to <code>&lt;XAP-HOME&gt;/bin</code> and type <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>. This will complete the command sequence, or list all the available completions if there are multiple options.</p>
         <p MadCap:conditions="Version.14-5-born">In addition to the interactive shell, bash completion for all commands in the CLI is available for Linux and MacOS X users. After generating and activating the auto-completion (as explained below), navigate to <code>&lt;XAP-HOME&gt;/bin</code> and type <code>gs [TAB][TAB]</code>. This will complete the command sequence, or list all the available completions if there are multiple options.</p>
@@ -94,7 +94,7 @@ the list of commands for <code>insightedge host run-agent --help</code> contains
             <p>You can add <code>.gs</code>.as an alias of <code>.gs.sh</code>to the <code>.bash_profile</code>, in order to simplify using autocomplete.</p>
         </div>
         <h3 MadCap:conditions="Version.14-5-born">Generating a Completion Script</h3>
-        <p MadCap:conditions="Version.14-5-born">Bash h supports a much more advanced type of completion, called programmable completion. This allows to define command-specific completion logic, which enables users to auto-complete sub-commands, options, and other arguments of commands in a context-specific manner.</p>
+        <p MadCap:conditions="Version.14-5-born">Bash supports a much more advanced type of completion, called programmable completion. This allows to define command-specific completion logic, which enables users to auto-complete sub-commands, options, and other arguments of commands in a context-specific manner.</p>
         <p MadCap:conditions="Version.14-5-born">A completion specification defines the applicable completions for the argument tokens of a command. To generate a completion spec run <code>./gs.sh completion</code> with one of the following options:</p>
         <table style="width: 100%;" MadCap:conditions="Version.14-5-born">
             <col style="width: 227px;" />
@@ -107,26 +107,26 @@ the list of commands for <code>insightedge host run-agent --help</code> contains
                     <td class="tabs-title" style="font-weight: bold;">Example</td>
                 </tr>
                 <tr>
-                    <td>--stdout</td>
-                    <td>Prints the auto completion code to standard output</td>
-                    <td>./gs.sh completion --stdout</td>
+                    <td><code>--stdout</code></td>
+                    <td>Prints the completion code to standard output</td>
+                    <td><code>./gs.sh completion --stdout</code></td>
                 </tr>
                 <tr>
-                    <td>--target=&lt;target&gt;</td>
-                    <td>Stores the auto completion code in the specified path/file</td>
-                    <td>./gs.sh completion --target gs.completion</td>
+                    <td><code>--target=&lt;file&gt;</code></td>
+                    <td>Stores the completion code in the specified file</td>
+                    <td><code>./gs.sh completion --target gs.completion</code></td>
                 </tr>
             </tbody>
         </table>
         <h3 MadCap:conditions="Version.14-5-born">Activating Command Completion</h3>
         <h4 MadCap:conditions="Version.14-5-born">Current Shell</h4>
-        <p MadCap:conditions="Version.14-5-born">To load the <code>gs</code> completion code for bash into the current shell either enter this command:</p><pre xml:space="preserve" MadCap:conditions="Version.14-5-born">$ source &lt;(./gs.sh completion --stdout)&lt;/</pre>
-        <p MadCap:conditions="Version.14-5-born">or use the --target option to create the completion code in a file and then source it with a script containing these commands:</p><pre xml:space="preserve" MadCap:conditions="Version.14-5-born">$ ./gs.sh completion --target gs.completion
+        <p MadCap:conditions="Version.14-5-born">To load the <code>gs</code> completion code for bash into the current shell either enter this command:</p><pre xml:space="preserve" MadCap:conditions="Version.14-5-born">$ source &lt;(./gs.sh completion --stdout)</pre>
+        <p MadCap:conditions="Version.14-5-born">or use the <code>--target</code> option to create the completion code in a file and then source it with a script containing these commands:</p><pre xml:space="preserve" MadCap:conditions="Version.14-5-born">$ ./gs.sh completion --target gs.completion
 $ source gs.completion
 </pre>
         <h4 MadCap:conditions="Version.14-5-born">Each New Shell</h4>
         <p MadCap:conditions="Version.14-5-born">To load the <code>gs</code> completion for each new shell, source this script from the <code>.bash_profile</code> to be loaded on each session.</p>
-        <p MadCap:conditions="Version.14-5-born">You may also leverage bash completion behavior by placing the script in the <code>bash_completion.d</code> folder:</p><pre MadCap:conditions="Version.14-5-born">$ ./gs.sh completion --target &lt;path to&gt;/bash_completion.d/gs.completion</pre>
+        <p MadCap:conditions="Version.14-5-born">You may also leverage bash completion behavior by placing the script in the <code>bash_completion.d</code> folder:</p><pre MadCap:conditions="Version.14-5-born">$ ./gs.sh completion --target /path/to/bash_completion.d/gs.completion</pre>
         <h1>Running a Local Manager Server</h1>
         <p>To run a local Manager server and a web browser client, type <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code>xap host run-agent --auto</code> or <code>insightedge host run-agent --auto</code></MadCap:conditionalText><code MadCap:conditions="Version.14-5-born">gs host run-agent --auto</code>.</p>
         <p>To view a list of the running agents, type <MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code>gs host list</code> </MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"> <code>xap host list</code> or <code>insightedge host list</code></MadCap:conditionalText>.</p>
