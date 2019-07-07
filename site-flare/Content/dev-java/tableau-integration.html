@@ -11,20 +11,27 @@
             <li>Java 8 or higher</li>
             <li>Tableau version 2019.1 or higher</li>
         </ul>
-        <h1>Overview</h1>
-        <p>The <MadCap:variable name="General.CompanyName" /> Tableau integration is available in the <code>&lt;XAP_HOME&gt;/tools/tableau</code> folder of the <MadCap:variable name="General.ProductNameIE" /> software package. It contains the following files:</p>
-        <p>&#160;</p>
-        <h1><a name="integrating-tableau-with-insightedge"></a>Setting up the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> Connector for Tableau </h1>
-        <p>The <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" />connector is based on the Tableau Connector SDK and JDBC integration. The setup process includes providing proprietary requirements about various file locations and execution arguments. 
-		<MadCap:variable name="General.CompanyName" />'s Tableau integration is packaged in the <code>&lt;XAP_HOME&gt;/tools/tableau/gs-tableau.bat</code> script, which automates the setup process and starts Tableau Desktop with the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector enabled. </p>
+        <h1>Integrating InsightEdge with Tableau</h1>
+        <p>The <MadCap:variable name="General.CompanyName" /> Tableau integration creates a JDBC&#160;connector for Tableau, so that Tableau Desktop can query the <MadCap:variable name="General.ProductNameIE" /> data grid directly using the <MadCap:variable name="General.ProductNameIE" /> JDBC driver. The integration is available in the <code>&lt;product&gt;/tools/tableau</code> folder of the <MadCap:variable name="General.ProductNameIE" /> software package. It contains the following files:</p>
+        <ul>
+            <li><code>gs-tableau.bat</code> - runs the setup process for the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector.</li>
+            <li><code>gs-tableau-env</code> - environment variables that can be used to customize certain default values for the setup process.</li>
+            <li><code>gs-tableau-package</code> - script that creates a standalone connector package.</li>
+        </ul>
+        <h2>Setting up the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> Connector for Tableau </h2>
+        <p>The <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" />connector is based on the Tableau Connector SDK and JDBC integration. The setup process includes providing proprietary requirements about various file locations and execution arguments. <MadCap:variable name="General.CompanyName" /> provides a script that automates the setup process and starts Tableau Desktop with the <MadCap:variable name="General.CompanyName"></MadCap:variable>-<MadCap:variable name="General.ProductNameIE"></MadCap:variable> connector enabled. </p>
+        <p>
+		To implement the <MadCap:variable name="General.CompanyName" />-Tableau integration, run the <code>&lt;product&gt;/tools/tableau/gs-tableau.bat</code> script. </p>
         <div class="tc-admon-note">
             <p>
 		The first time this script runs it requires elevated permissions, because it automatically packages and copies the <MadCap:variable name="General.ProductNameIE" /> JDBC driver to Tableau's installation files, which generally reside in the <code>Program Files</code> folder.
 		</p>
         </div>
-        <p>If necessary you can customize some of the default values, such as the location of the Tableau installation folder or the JDBC driver heap size, by editing the <code>gs-tableau-env</code> script that is also available in the <code>&lt;XAP_HOME&gt;/tools/tableau</code> folder.</p>
+        <h2>Customizing the Setup Process</h2>
+        <p>If necessary, you can customize some of the default setup process values, such as the location of the Tableau installation folder or the JDBC driver heap size. To do this, open the <code>product&gt;/tools/tableau/gs-tableau.env</code> script and edit the required environment variables.</p>
         <h2>Creating a Standalone Connector Package</h2>
-        <p>A standalone connector package is required for machines that access <MadCap:variable name="General.ProductNameIE" /> but don't have <MadCap:variable name="General.ProductNameIE" /> installed locally. To create the file, run the <code>gs-tableau-package</code> script from the product <code>tools\tableau</code> folder. That file can be distributed and installed on any machine to access <MadCap:variable name="General.ProductNameIE" /> data using Tableau.</p>
+        <p>If your organization includes Tableau users who aren't developers (for example, data scientists that don't need <MadCap:variable name="General.ProductNameIE" /> installed locally) you can provide a standalone connector package so that these users can integrate the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector with their Tableau installation and perform the necessary analytics on the <MadCap:variable name="General.ProductNameIE" /> data. </p>
+        <p>To create the connector package, run the <code>gs-tableau-package</code> script from the <code>&lt;product&gt;tools\tableau</code> folder. This package can then be distributed and installed on any machine to enable accessing <MadCap:variable name="General.ProductNameIE" /> data using Tableau.</p>
         <h1><a name="configuring-the-data-source"></a>Connecting to the Space</h1>
         <p class="tc-todo">To configure the data source after Tableau is started:</p>
         <ol>
@@ -37,77 +44,19 @@
                     <p>If <span class="tc-bold">Gigaspaces InsightEdge</span> does not appear in the <span class="tc-bold">Connect</span> menu on first access ,click <span class="tc-bold">More</span> and select <span class="tc-bold">Gigaspaces InsightEdge</span> from the alphabetic list.</p>
                 </div>
             </li>
-            <li MadCap:conditions="Version.14-5-born">In the <span class="tc-bold">Gigaspaces InsightEdge</span> window, configure the options as follows:<ol style="list-style-type: lower-alpha;"><li>Type the <span class="tc-bold">Server</span> host name or IP address. Include the port number if the Space is not using the default port.</li><li>(Optional) If your <MadCap:variable name="General.ProductNameIE" /> system includes <a href="https://docs.gigaspaces.com/14.5/dev-java/data-lake-acceleration.html">AnalyticsXtreme</a>, you can type <span class="tc-bold">True</span> for <span class="tc-bold">Enable AnalyticsXtreme</span>.</li><li>Type the <span class="tc-bold">Space</span> name.</li><li>(Optional) Add <span class="tc-bold">Advanced Parameters</span> for the JDBC connection as key-value pairs.</li><li>If your system is configured with a secure Space (See <a href="https://docs.gigaspaces.com/14.5/started/xap-tutorial-part10.html">Security</a>), type the <span class="tc-bold">Username</span> and <span class="tc-bold">Password</span>.</li></ol></li>
+            <li MadCap:conditions="Version.14-5-born">In the <span class="tc-bold">Gigaspaces InsightEdge</span> window, configure the options as follows:<ol style="list-style-type: lower-alpha;"><li>Type the <span class="tc-bold">Server</span> host name or IP address. Include the port number if the Space is not using the default port.</li><li>(Optional) If your <MadCap:variable name="General.ProductNameIE" /> system includes <a href="https://docs.gigaspaces.com/14.5/dev-java/data-lake-acceleration.html">AnalyticsXtreme</a>, you can type <span class="tc-bold">True</span> for <span class="tc-bold">Enable AnalyticsXtreme</span>.</li><li>Type the <span class="tc-bold">Space</span> name.</li><li>(Optional) Add <span class="tc-bold">Advanced Parameters</span> for the JDBC connection as key-value pairs.</li><li><p>If your system is configured with a secure Space, type the <span class="tc-bold">Username</span> and <span class="tc-bold">Password</span>.</p><div class="tc-admon-note"><p>For more information about secure Spaces, see the <a href="https://docs.gigaspaces.com/14.5/started/xap-tutorial-part10.html">Security</a> section of the Administration guide.</p></div></li></ol></li>
             <li>
                 <p>Click <span class="tc-bold">Sign In</span> to connect to the <MadCap:variable name="General.ProductNameIE" /> data grid.</p>
             </li>
             <li>
-                <p>Verify that Tableau can see the Tables in your Space.</p>
+                <p>Verify that Tableau can see the tables in your Space.</p>
                 <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
-                    <p>A POJO in the data source must use java.sql.Date rather than java.util.Date.</p>
+                    <p>If your data source uses POJOs, they must be configured for java.sql.Date rather than java.util.Date.</p>
                 </div>
             </li>
         </ol>
-        <h1>Querying the Space using Tableau</h1>
-        <p>After the connection has been configured, you can execute queries against the <MadCap:variable name="General.ProductNameIE" /> data, with access to a data grid that has already been deployed. This section describes a simple example of reading the data and displaying it in a graphic visual format. </p>
-        <h3>Example </h3>
-        <p>Suppose the data grid contains the following schema:</p>
-        <div class="tc-align-center">
-            <p>
-                <img src="../Resources/Static/attachment_files/devguide/Tableau data set.png" class="tc-picture30" />
-            </p>
-        </div>
-        <h4>Querying the <MadCap:variable name="General.ProductNameIE" /> Data Grid</h4>
-        <p>Before performing a query on <MadCap:variable name="General.ProductNameIE" />, you can use the Web Management Console to look at the Space that
-    contains the sample data. At this point, there have been no read operations.</p>
-        <p MadCap:conditions="Default.DoNotShow"><span class="tc-highlight">ED&#160;NOTE: Alan, run the demo and take screen caps of the Web Management Console (Web UI) instead of the GigaSpaces Management Center (GS-UI).</span>
-        </p>
-        <p MadCap:conditions="Default.DoNotShow"><span class="tc-highlight">Also, why are we providing this at all if we aren't giving them the demo package?&#160;Best to just show them the Web Management Console before the read operations, and then Tableau desktop and Web Management Console after the read operation.</span>
-        </p>
-        <p class="tc-todo">To query the data in <MadCap:variable name="General.ProductNameIE" />:</p>
-        <ol>
-            <li>From the Data tab, drag and drop the <span class="tc-bold">Orders</span> and <span class="tc-bold">Locations</span>
-      tables to the data pane.</li>
-            <li>
-                <p>Join the tables as <span class="tc-bold">Inner</span>.</p>
-                <p>
-                    <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_2.png" class="tc-picture80" width="595" height="346" />
-                </p>
-            </li>
-            <li>
-                <p>Below the data pane, select the <span class="tc-bold">Sheet1</span> tab.</p>
-            </li>
-            <li>
-                <p>Select <span class="tc-bold">Country</span> and <span class="tc-bold">State</span> from the <span class="tc-bold">Locations</span>
-        node.</p>
-            </li>
-            <li>
-                <p>Right-click and select <span class="tc-bold">Create Hierarchy</span> from the menu that is displayed.</p>
-            </li>
-            <li>
-                <p>Double-click <span class="tc-bold">State</span>.</p>
-            </li>
-            <li>
-                <p>From the <span class="tc-bold">Measures</span> area, drag and drop <span class="tc-bold">Sales</span> to the
-        Size option in the Marks card, and <span class="tc-bold">Profit</span> to the Color option.</p>
-            </li>
-            <li>
-                <p>View the results in the data pane; you can easily see the sales-profit insight that was derived from the data
-        retrieved from <MadCap:variable name="General.ProductNameIE" />.</p>
-                <p MadCap:conditions="Version.14-5-died">
-                    <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_5.png" width="770" height="388" class="tc-picture100" />
-                </p>
-            </li>
-            <li>
-                <p>In the GigaSpaces Management Center, view the Space operations statistics. You can see the read operations
-        that were performed when Tableau accessed <MadCap:variable name="General.ProductNameIE" /> to construct the view.</p>
-                <p MadCap:conditions="Default.DoNotShow">
-                    <img src="../Resources/Static/attachment_files/sbp/tableau/xap_3.png" width="757" height="392" class="tc-picture100" /> </p>
-            </li>
-        </ol>
-        <div class="tc-align-center">
-            <p>&#160;</p>
-        </div>
+        <h2>Querying the Space using Tableau</h2>
+        <p>After the setup process is complete and the connection has been configured, you can execute queries against the <MadCap:variable name="General.ProductNameIE" /> data grid. </p>
         <h1>Additional Resources</h1>
         <table style="width: 100%;" class="tc-borderless">
             <col />
