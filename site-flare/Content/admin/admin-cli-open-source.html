@@ -3,11 +3,22 @@
     <head>
     </head>
     <body>
-        <h1>Administering Open Source Editions</h1>
-        <p>The Command Line Interface tool can be used to perform minimal administration tasks for open source <MadCap:variable name="General.ProductNameXAP" /> and <MadCap:variable name="General.ProductNameIE" /> editions. The available commands are described below.</p>
+        <h1 class="tc-pagetitle">Standalone Mode</h1>
+        <p>For initial evaluation purposes, you can run <MadCap:variable name="General.CompanyName" /> products in standalone mode using the open source <MadCap:variable name="General.ProductNameXAP" /> and <MadCap:variable name="General.ProductNameIE" /> editions. This mode provides limited functionality and administration capabilities.</p>
+        <p>For a full list of the features and functionality available in standalone mode, see the <MadCap:xref href="../overview/feature-matrix.html">What Edition Do I Need?</MadCap:xref> topic in the Overview section, and the <MadCap:xref href="../started/xap-open-source.html">XAP Open-Source Functionality</MadCap:xref> in the Getting Started section.</p>
+        <p>You can download the open source editions from Github as follows:</p>
+        <ul>
+            <li><a href="https://github.com/xap/xap" target="_blank" title="XAP open source project in Github" alt="XAP open source project in Github"><MadCap:variable name="General.ProductNameXAP" /> Open Source</a>
+            </li>
+            <li><a href="https://github.com/InsightEdge/insightedge" target="_blank" title="InsightEdge open source project in Github" alt="InsightEdge open source project in Github"><MadCap:variable name="General.ProductNameIE" /> Open Source</a>
+            </li>
+        </ul>
+        <h1>Running <MadCap:variable name="General.CompanyName" /> Products in Standalone Mode</h1>
+        <p>You can start a data grid, run a Space or a Processing Unit, or start <MadCap:variable name="General.ProductNameIE" /> in standalone mode.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="XAP Open Source" style="padding:10px">
-                <h2><a name="run-xap-in-demo-mode"></a>Run <MadCap:variable name="General.ProductNameXAP" /> in Demo Mode</h2>
+                <h2><a name="run-xap-in-demo-mode"></a>Starting a Data Grid in Demo Mode</h2>
+                <p>To run  a Space in demo mode, type the following command:</p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
                 <p MadCap:conditions="Version.14-5-died"><code>xap demo</code>
@@ -24,7 +35,8 @@
                 </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap demo
 </code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">&lt;XAP-HOME&gt;/bin/gs demo
 </code></pre>
-                <h2><a name="run-a-standalone-space"></a>Run a Standalone Space</h2>
+                <h2><a name="run-a-standalone-space"></a>Running a Standalone Space</h2>
+                <p>To run a standalone Space, type the following command:</p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
                 <p MadCap:conditions="Version.14-5-died"><code>xap space run</code>
@@ -77,7 +89,7 @@
                 </table>
                 <p><span class="tc-italic">Input Example:</span>
                 </p>
-                <p>This example runs a Space named <span class="tc-bold">mySpace</span> with high availability and 2 partitions. The CLI commands start two instances for the first partition (1_1, 1_2) and two instances for the second partition (2_1, 2_2).</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space run --lus --partitions=2 --ha mySpace
+                <p>This example runs a Space named <span class="tc-bold">mySpace</span> with high availability and 2 partitions. The commands start two instances for the first partition (1_1, 1_2) and two instances for the second partition (2_1, 2_2).</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space run --lus --partitions=2 --ha mySpace
 </code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">&lt;XAP-HOME&gt;/bin/gs space run --lus --partitions=2 --ha mySpace
 </code></pre>
                 <p>To run instances separately, run each of the following commands on different hosts (note that –lus is specified for discovery):</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space run --lus --partitions=2 --ha --instances=1_1 mySpace
@@ -89,7 +101,8 @@
 &lt;XAP-HOME&gt;/bin/gs space run --lus --partitions=2 --ha --instances=2_1 mySpace
 &lt;XAP-HOME&gt;/bin/gs space run --partitions=2 --ha --instances=2_2 mySpace
 </code></pre>
-                <h2><a name="run-a-standalone-processing-unit"></a>Run a Standalone Processing Unit</h2>
+                <h2><a name="run-a-standalone-processing-unit"></a>Running a Standalone Processing Unit</h2>
+                <p>To run a standalone Processing Unit, run the following command:</p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
                 <p MadCap:conditions="Version.14-5-died"><code>xap pu run</code>
@@ -157,7 +170,8 @@
 </code></pre>
             </div>
             <div title="InsightEdge Open Source" style="padding:10px">
-                <h2><a name="run-insightedge-in-demo-mode"></a>Run <MadCap:variable name="General.ProductNameIE" /> in Demo Mode</h2>
+                <h2><a name="run-insightedge-in-demo-mode"></a>Running <MadCap:variable name="General.ProductNameIE" /> in Demo Mode</h2>
+                <p>To run <MadCap:variable name="General.ProductNameIE" /> in demo mode, type the following command:</p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
                 <p MadCap:conditions="Version.14-5-died"><code>insightedge demo</code>
