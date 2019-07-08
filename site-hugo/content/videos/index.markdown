@@ -13,7 +13,7 @@ Click a thumbnail to watch the relevant video
 
 
 
-# Whats new
+# Whats New
 
 {{%section%}}
 
@@ -42,11 +42,11 @@ Click a thumbnail to watch the relevant video
 {{%section%}}
 
 {{%column width="25%" %}}
-{{%youtube "gRdGWMigJBI" "Global HTTP Session sharing"%}}
+{{%youtube "gRdGWMigJBI" "Global HTTP Session Sharing"%}}
 {{%/column%}}
 
 {{%column width="25%" %}}
-{{%youtube "fgXdQhPkXBQ" "XAP ASP NET Session-Store"%}}
+{{%youtube "fgXdQhPkXBQ" "XAP ASP .NET Session Store"%}}
 {{%/column%}}
 
 
@@ -89,10 +89,6 @@ Click a thumbnail to watch the relevant video
 {{%/column%}}
 
 {{%column width="25%" %}}
-{{%youtube "_n8ZCnoAIyw" "Maven Plugin"%}}
-{{%/column%}}
-
-{{%column width="25%" %}}
 {{%youtube "I2s8jg_Gufs" "Hello World Application"%}}
 {{%/column%}}
 {{%/section%}}
@@ -112,7 +108,7 @@ Click a thumbnail to watch the relevant video
 {{%/column%}}
 
 {{%column width="25%" %}}
-{{%youtube "jC57mId3SMg" "XAP Query APIS"%}}
+{{%youtube "jC57mId3SMg" "XAP Query APIs"%}}
 {{%/column%}}
 
 
@@ -139,11 +135,11 @@ Click a thumbnail to watch the relevant video
 
  
 
-#   Processing
+# Processing
 
 {{%section%}}
 {{%column width="25%" %}}
-{{%youtube "n7P4rnQN1gw" "Map Reduce"%}}
+{{%youtube "n7P4rnQN1gw" "Map/Reduce"%}}
 {{%/column%}}
 
 {{%column width="25%" %}}
@@ -156,7 +152,7 @@ Click a thumbnail to watch the relevant video
 
 
 {{%column width="25%" %}}
-{{%youtube "-07-0PXUoeM" "Space based remoting"%}}
+{{%youtube "-07-0PXUoeM" "Space-Based Remoting"%}}
 {{%/column%}}
 {{%/section%}}
 
@@ -186,15 +182,15 @@ Click a thumbnail to watch the relevant video
 
 {{%section%}}
 {{%column width="25%" %}}
-{{%youtube "YTEqFzrfVss" "Web Application support" %}}
+{{%youtube "YTEqFzrfVss" "Web Application Support" %}}
 {{%/column%}}
 
 {{%column width="25%" %}}
-{{%youtube "gRdGWMigJBI" "Global HTTP Session sharing"%}}
+{{%youtube "gRdGWMigJBI" "Global HTTP Session Sharing"%}}
 {{%/column%}}
 
 {{%column width="25%" %}}
-{{%youtube "fgXdQhPkXBQ" "XAP ASP NET Session-Store"%}}
+{{%youtube "fgXdQhPkXBQ" "XAP ASP .NET Session Store"%}}
 {{%/column%}}
 
 {{%/section%}}
@@ -204,7 +200,7 @@ Click a thumbnail to watch the relevant video
 
  
 
-# Wan and Multi Site Replication
+# WAN and Multi-Site Replication
 
 {{%section%}}
 {{%column width="25%" %}}
@@ -267,7 +263,7 @@ Click a thumbnail to watch the relevant video
 
 {{%section%}}
 {{%column width="20%" %}}
-{{%youtube "ZTRvuE8kQs0" "Java and .Net Interoperability" %}}
+{{%youtube "ZTRvuE8kQs0" "Java and .NET Interoperability" %}}
 {{%/column%}}
 {{%/section%}}
 

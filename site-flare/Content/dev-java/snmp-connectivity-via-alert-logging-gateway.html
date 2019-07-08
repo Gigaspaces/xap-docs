@@ -13,7 +13,7 @@ A recommended approach for this type of integration is to construct a listener t
             <img src="../Resources/Static/attachment_files/AlertsLoggerBridge.jpg" alt="AlertsLoggerBridge.jpg" class="tc-picture100" />
         </div>
         <h1><a name="example"></a>AlertsLoggingGatway Example</h1>
-        <p>The <code>AlertLoggingGateway</code> example provided with the <MadCap:variable name="General.CompanyName" /> distribution uses an existing <code>Log4J</code> Appender (SnmpTrapAppender) to convert log messages into SNMP traps, resulting in the alerts propagated to a third-party network management solution.</p>
+        <p>The <code>AlertLoggingGateway</code> example provided with the <MadCap:variable name="General.CompanyName" /> distribution uses an existing <code>Log4J</code> Appender (SnmpTrapAppender) to convert log messages into SNMP traps, resulting in the alerts being propagated to a third-party network management solution.</p>
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/SNMP_Appender.jpg" alt="SNMP_Appender.jpg" class="tc-picture100" />
         </div>
@@ -114,11 +114,11 @@ log4j.appender.TRAP_LOG.layout.ConversionPattern=%d,%p,%t,%c,%m%n
             </li>
         </ul>
         <h2>Running the Example</h2>
-        <p>The AlertsLoggingGatway example is located under <code>&lt;XAP root&gt;/tools/alert-integration</code>.</p>
+        <p>The AlertsLoggingGatway example is located under <code>&lt;product&gt;/tools/alert-integration</code>.</p>
         <p>To run the example:</p>
         <ol>
             <li>
-                <p>Set the <code>group </code>value in the pu.xml file to your own data grid group. (Optionally, you can edit the function <code>registerAlertTrapper()</code> in <code>SnmpTrapTransmitter.java</code> to create your own <code>Admin</code> object in any way you see fit).</p>
+                <p>Set the <code>group </code>value in the pu.xml file to your own data grid group. (Optionally, you can edit the function <code>registerAlertTrapper()</code> in <code>SnmpTrapTransmitter.java</code> to create your own <code>Admin</code> object in any way you see fit.)</p>
             </li>
             <li>
                 <p>(Optional) Edit the <code>notify-alerts.xml</code> file to set your own alerts and alert conditions that will be listened to by this example.</p>
@@ -132,7 +132,7 @@ log4j.appender.TRAP_LOG.layout.ConversionPattern=%d,%p,%t,%c,%m%n
             <li MadCap:conditions="Version.14-5-died">
                 <p>Install <MadCap:variable name="General.ProductNameXAP" />'s Maven dependencies to the local Maven repository by running the <code>&lt;XAP_root&gt;/tools/maven/installmavenrep.sh(bat)</code> script.</p>
             </li>
-            <li MadCap:conditions="Version.14-5-born">Install <MadCap:variable name="General.CompanyName" />'s Maven dependencies to the local Maven repository by running the <code>&lt;XAP_HOME&gt;/insightedge/bin/gs maven install</code> script.</li>
+            <li MadCap:conditions="Version.14-5-born">Install <MadCap:variable name="General.CompanyName" />'s Maven dependencies to the local Maven repository by running the <code>&lt;product&gt;/insightedge/bin/gs maven install</code> script.</li>
             <li>
                 <p>Build and pack the sample project into a JAR file. This can be done by executing the command <code>mvn </code>from the project's root directory, or by performing an equivalent action within your UI. A successful build should result in the creation of the example JAR&#160;file in <span class="tc-italic">target/AlertLoggingGateway.jar</span>.</p>
             </li>
