@@ -1,5 +1,5 @@
 ﻿var versionData = {
-  //'14.5': { 'url': '/15.0', 'label': '15.0 Early Access', 'topicBanner': 'preview' },
+  '15.0': { 'url': '/15.0', 'label': '15.0 Early Access', 'topicBanner': 'preview' },
   '14.5': { 'url': '/14.5', 'label': '14.5', 'hide': true },
   'latest': { 'url': '/latest', 'label': '14.5' },
   '14.2': { 'url': '/14.2', 'label': '14.2', 'topicBanner': 'old' },
