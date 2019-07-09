@@ -48,10 +48,15 @@
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p MadCap:conditions="Version.14-5-died"><code>xap pu upload</code>
-                </p>
-                <p MadCap:conditions="Version.14-5-born"><code>gs pu upload</code>
-                </p>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+                    <MadCap:snippetBlock src="../Resources/Snippets/InsighedgeXap.flsnp" />
+                </div>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux/Mac" style="padding:10px"><pre><code>./<MadCap:variable name="General.CLIversionLinux" />  pu upload </code></pre>
+                    </div>
+                    <div title="Windows" style="padding:10px"><pre><code><MadCap:variable name="General.CLIversion" />  pu upload </code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>Upload a Processing Unit to the service grid.</p>
@@ -80,7 +85,13 @@
                 </table>
                 <p><span class="tc-italic">Input Example:</span>
                 </p>
-                <p>This example upload a PU named <span class="tc-bold">myPu</span> the mypu.jar file.</p><pre MadCap:conditions="Version.14-5-died"><code>&lt;XAP-HOME&gt;/bin/xap pu upload mypu.jar</code></pre><pre MadCap:conditions="Version.14-5-born"><code>&lt;XAP-HOME&gt;/bin/gs pu upload mypu.jar</code></pre>
+                <p>This example uploads a PU named <span class="tc-bold">myPu</span> to the mypu.jar file.</p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux/Mac" style="padding:10px"><pre><code>.&lt;XAP-HOME&gt;/bin/<MadCap:variable name="General.CLIversionLinux" />  pu upload mypu.jar</code></pre>
+                    </div>
+                    <div title="Windows" style="padding:10px"><pre><code>&lt;XAP-HOME&gt;\bin\<MadCap:variable name="General.CLIversion" />  pu upload mypu.jar</code></pre>
+                    </div>
+                </div>
             </div>
             <div title="REST Manager API" style="padding:10px">
                 <p><span class="tc-italic">Path</span>
