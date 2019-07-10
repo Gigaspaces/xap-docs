@@ -7,14 +7,14 @@
         <div class="tc-admon-note">
             <p>Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with <MadCap:variable name="General.ProductNameXAPPrem" />).</p>
         </div>
-        <p>XAP provides a pluggable communication adaptor, LRMI (<span class="tc-bold">Light Remote Method Invocation</span>), built on top of the <a href="http://en.wikipedia.org/wiki/New_I/O" target="_blank">NIO communication protocol</a>.</p>
+        <p><MadCap:variable name="General.CompanyName" /> provides a pluggable communication adaptor, LRMI (<span class="tc-bold">Light Remote Method Invocation</span>), built on top of the <a href="http://en.wikipedia.org/wiki/New_I/O" target="_blank">NIO communication protocol</a>.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/lrmi.jpg" alt="lrmi.jpg" class="tc-picture80" />
             </p>
         </div>
         <p>LRMI uses a <code>GenericExporter</code> that implements the <a href="[%=Links.ApiJavaDoc%]/index.html?net/jini/export/Exporter.html">net.jini.export.Exporter</a> interface.</p>
-        <p>All XAP components that represent remote objects/services (for example:Distributed Transaction Manager, Lookup Service, GSA, GSM, GSC, Space) use the LRMI protocol.</p>
+        <p>All <MadCap:variable name="General.CompanyName" /> components that represent remote objects/services (for example:Distributed Transaction Manager, Lookup Service, GSA, GSM, GSC, Space) use the LRMI protocol.</p>
         <table class="tc-borderless">
             <tr>
                 <td style="width:75%;">
@@ -150,28 +150,23 @@
                     <td>XAP maintains a thread pool on the server side that manages incoming remote requests for admin invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool.</td>
                     <td>8</td>
                     <td>Server</td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
+                    <td />
+                    <td />
                 </tr>
                 <tr>
                     <td>com.gs.transport_protocol.<br />lrmi.system-priority.<br />threadpool.min-threads</td>
                     <td>XAP maintains a thread pool on the server side that manages incoming remote requests for admin invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool.</td>
                     <td>1</td>
                     <td>Server</td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
+                    <td />
+                    <td />
                 </tr>
                 <tr>
                     <td>com.gs.transport_protocol<br />.lrmi.bind-port</td>
                     <td>Server port used for incoming client requests, or notifications from server to client. The server port is set by default to 0, which means next free port. This means that whenever XAP is launched, it allocates one of the available ports. Define a specific port value to enforce a specific port on the space server or client side. You can define a range of ports</td>
                     <td>0</td>
                     <td>Server</td>
-                    <td>
-                    </td>
+                    <td />
                     <td>No</td>
                 </tr>
                 <tr>
@@ -179,8 +174,7 @@
                     <td>Binds the XAP Server on a specified network interface. If java.rmi.server.hostname is null the system sets the localhost IP address.</td>
                     <td>host<br />name</td>
                     <td>Client &amp; Server</td>
-                    <td>
-                    </td>
+                    <td />
                     <td>No</td>
                 </tr>
                 <tr>
@@ -323,44 +317,36 @@
                     <td>com.gs.transport_protocol<br />.lrmi.custom.threadpool.<br />idle_timeout</td>
                     <td>Idle timeout</td>
                     <td>300000 millisec</td>
-                    <td>
-                    </td>
+                    <td />
                     <td>Invo<br />cation</td>
                     <td>No</td>
                 </tr>
                 <tr>
                     <td>com.gs.transport_protocol<br />.lrmi.threadpool.<br />queue-size</td>
                     <td>Regualr operations thread pool queue size</td>
-                    <td>
-                    </td>
+                    <td />
                     <td>2147483647</td>
-                    <td>
-                    </td>
+                    <td />
                     <td>Invo<br />cation</td>
                 </tr>
                 <tr>
                     <td>com.gs.transport_protocol<br />.lrmi.custom.threadpool.<br />queue-size</td>
                     <td>Custom operations thread pool queue size</td>
-                    <td>
-                    </td>
+                    <td />
                     <td>2147483647</td>
-                    <td>
-                    </td>
+                    <td />
                     <td>Invo<br />cation</td>
                 </tr>
                 <tr>
                     <td>com.gs.transport_protocol<br />.lrmi.system-priority.<br />threadpool.queue-size</td>
                     <td>System operations thread pool queue size</td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
+                    <td />
+                    <td />
                     <td>2147483647</td>
-                    <td>
-                    </td>
+                    <td />
                 </tr>
             </tbody>
-        </table><a name="1"></a>
+        </table>
         <p><span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span>
         </p>
         <p>With a system that may have high concurrency level as a result of a large number of remote clients performing:</p>
@@ -374,11 +360,10 @@
         <p>With a system that may trigger a notify listener (that performs remote space access) or a remote service or a task 128 times, very quickly this would consume the entire LRMI thread pool causing new remote requests (by the listener or any other remote activities) to wait until there would be available LRMI threads to handle incoming requests. This may slow down the application performance dramatically causing existing connections to drop.</p>
         <div class="tc-admon-note">
             <p>If you are using the <span class="tc-bold">notification slow consumer</span> mechanism, refer to <a href="slow-consumer.html#configuration">Slow Consumer</a> for additional LRMI parameters to configure.</p>
-        </div><a name="portrange"></a>
-        <h2><a name="defining-socket-port-range-per-jvm"></a>Defining Socket Port Range per JVM</h2>
+        </div>
+        <h2><a name="defining-socket-port-range-per-jvm"></a>Defining the Socket Port Range per JVM</h2>
         <p>You can define port range using the <code>com.gigaspaces.transport.bind-port</code> property, meaning that every JVM acquires a bind port from a defined port range. This functionality is useful when having multiple JVMs on the same machine (clients or servers), and simplifies firewall setup.</p>
-        <p>Here is how you can set a listening port range for GSA/GSC/GSM:</p><pre><code class="language-bash">export </code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100
-</code></pre><a name="server"></a>
+        <p>Here is how you can set a listening port range for GSA/GSC/GSM:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">export EXT_JAVA_OPTIONS=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">export XAP_OPTIONS_EXT=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100</code></pre>
         <h2><a name="configuration-with-multi-homed-machines"></a>Configuration with Multi-Homed Machines</h2>
         <p>When working with a multi-homed machine (a computer with multiple network cards), use the following system property to bind the GigaSpaces Server on a specified network interface:</p><pre><code class="language-bash">-Djava.rmi.server.hostname=&lt;hostname or IP address&gt;
 </code></pre>

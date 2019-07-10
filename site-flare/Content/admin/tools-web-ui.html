@@ -6,7 +6,7 @@
         <h1>Web Management Console</h1>
         <p>The Web Management Console is a web application that enables users to quickly understand the state of a running data grid cluster and monitor the running components, such as the physical hosts, JVMs and deployed Processing Units.</p>
         <p>This user interface complements the GigaSpaces Management Center and provides a lightweight alternative for monitoring a running cluster, without having to install the <MadCap:variable name="General.ProductNameXAP" /> runtime and run the standalone Java-based user interface.</p>
-        <p>The Web Management Console application is located under <code><MadCap:variable name="General.ProductNameXAP" /> root/tools/gs-webui</code>. This directory contains the web application itself (in the form of a standard JEE .WAR file), and a launcher library and shell scripts used to start it in standalone mode (see below).</p>
+        <p>The Web Management Console application is located under <code> &lt;product&gt;/tools/gs-webui</code>. This directory contains the web application itself (in the form of a standard JEE .WAR file), and a launcher library and shell scripts used to start it in standalone mode (see below).</p>
         <h1><a name="starting-the-web-management-console-on-a-local-machine"></a>Starting the Web Management Console on a Local Machine</h1>
         <p>When you first start using <MadCap:variable name="General.ProductNameIE" /> or <MadCap:variable name="General.ProductNameXAP" />, you may prefer to run the Web Management Console on your local machine instead of on a web server. Simply click the <code>gs-webui.sh(bat)</code> script to start a Jetty web container with the Web Management Console application running within it. After the user interface starts, there's no need to deploy or perform any additional steps.</p>
         <div class="tc-admon-note">
@@ -14,21 +14,21 @@
         </div>
         <h1><a name="security"></a>Security</h1>
         <h2><a name="enabling-security"></a>Enabling Security</h2>
-        <p>The Web Management Console (Web-UI) allows for a secured access when the security <code>enabled</code> property is set. This property should be configured using <code MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</code><code MadCap:conditions="Version.14-5-born">XAP_OPTIONS_EXT</code> in <code>setenv</code> script and is applied to all <MadCap:variable name="General.ProductNameXAP" /><a href="../security/securing-the-grid-services.html">Grid Components</a>.</p>
+        <p>The Web Management Console (Web-UI) allows for a secured access when the security <code>enabled</code> property is set. This property should be configured using <code MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</code><code MadCap:conditions="Version.14-5-born">XAP_OPTIONS_EXT</code> in the <code>setenv</code> script and is applied to all <MadCap:variable name="General.ProductNameXAP" /><a href="../security/securing-the-grid-services.html">Grid Components</a>.</p>
         <p>The property:</p><pre><code class="language-java">-Dcom.gs.security.enabled=true
 </code></pre>
         <div class="tc-admon-note">
             <p>The Lookup groups and Locators are loaded from the <code>setenv/setenv-overrides</code> script. ץ Lookup groups and Lookup Locators can be configured in the configuration files described in <a href="../started/common-environment-variables.html#extension">Configure Lookup Groups and Locators</a>.</p>
         </div>
         <h2><a name="security-properties-file"></a>Security Properties File</h2>
-        <p>The security properties file is used to configure the <code>SecurityManager</code>, which is responsible for the authentication and authorization process. The <code>security.properties</code> file is common to all components and is usually located under <code>&lt;XAP root&gt;/config/security/security.properties</code>. To only affect the Web Management Console, use <code>webui-security.properties</code> instead.</p>
+        <p>The security properties file is used to configure the <code>SecurityManager</code>, which is responsible for the authentication and authorization process. The <code>security.properties</code> file is common to all components and is usually located under <code>&lt;product&gt;/config/security/security.properties</code>. To only affect the Web Management Console, use <code>webui-security.properties</code> instead.</p>
         <p>The configuration file can be located anywhere in the classpath or in the classpath under <code>config/security</code>. Alternatively, a system property can be set to indicate the location of the properties file:</p><pre><code class="language-java">-Dcom.gs.security.properties-file = my-security.properties
 </code></pre>
         <p>By setting <code>-Dcom.gs.security.properties-file</code> the property file will be located as a direct path (e.g. <code>~/home/user/my-security.properties</code>),
 a resource (e.g. "my-security.properties") in the classpath or in the classpath under <code>config/security</code>.</p>
         <h2><a name="custom-credentials"></a>Custom Credentials</h2>
         <p>An authentication mechanism might require a different set of actions to be taken on the provided credentials (username/password). A custom extension can be provided for this, as described in the <a href="../security/custom-authentication.html">Authentication</a> page of the <a href="../security/index.html">Security</a> section.</p>
-        <p>This credentials provider is configured as arguments to the command line of the Web Managment Console. Use <code>-user-details-provider</code> for the provider class name. Use <code>-user-details-properties</code> to provide additional properties. This argument is optional.</p>
+        <p>This credentials provider is configured as arguments to the command line of the Web Management Console. Use <code>-user-details-provider</code> for the provider class name. Use <code>-user-details-properties</code> to provide additional properties. This argument is optional.</p>
         <p>Run the <code>gs-webui</code> script with these parameters:</p><pre><code class="language-bash">gs-webui(.sh/bat) -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties custom-security.server-address=myServer
 </code></pre>
         <h2><a name="ssl-connection"></a>SSL Connection</h2>
@@ -71,9 +71,9 @@ gs-webui.bat
         <h1><a name="deploying-the-web-application"></a>Deploying the Web Application</h1>
         <p>When you reach the stage of a proper deployment, or are preparing to move to production, you can deploy the Web Management Console as described below.</p>
         <h2><a name="xap-runtime-environment"></a><MadCap:variable name="General.ProductNameXAP" /> Runtime Environment</h2>
-        <p>To deploy the Web Management Console to the <MadCap:variable name="General.ProductNameXAP" /> <a href="the-runtime-environment.html">Runtime Environment</a>, point your deployment tool of choice (CLI, Admin API or the GigaSpaces Management Center) to the <code>&lt;XAP root&gt;/tools/gs-webui/gs-webui.war</code> file and deploy it.</p>
+        <p>To deploy the Web Management Console to the <MadCap:variable name="General.ProductNameXAP" /> <a href="the-runtime-environment.html">Runtime Environment</a>, point your deployment tool of choice (CLI, Admin API or the GigaSpaces Management Center) to the <code>&lt;product&gt;/tools/gs-webui/gs-webui.war</code> file and deploy it.</p>
         <p>In this case, the Web Management Console actually monitors the runtime environment on which it runs.</p>
-        <p>The following example shows how to do this using the <MadCap:variable name="General.ProductNameXAP" /> CLI:</p><pre><code class="language-bash">&lt;XAP root&gt;/bin/gs.sh(bat} deploy -properties embed://web.port=80;web.context=/
+        <p>The following example shows how to do this using the <MadCap:variable name="General.CompanyName" /> CLI:</p><pre><code class="language-bash">&lt;XAP root&gt;/bin/gs.sh(bat} deploy -properties embed://web.port=80;web.context=/
 &lt;XAP root&gt;/tools/gs-webui/gs-webui.war
 </code></pre>
         <p>The above command deploys the Web Management Console to the <MadCap:variable name="General.ProductNameXAP" /> runtime environment, listening on port 80 with the root context path.</p>
@@ -85,14 +85,14 @@ gs-webui.bat
         <div class="tc-admon-note">
             <p>When deploying to a third-party web container like Apache Tomcat, you must repackage the <code>xap-webui-[version-build].war</code> file and add the following .JAR files to the <code>WEB-INF/lib</code> directory of the <code>xap-webui-[version-build].war</code> file:</p>
             <ol>
-                <li><code>.jar</code> files located under <code>&lt;XAP root&gt;/lib/required</code> <br /></li>
-                <li><code>&lt;XAP root&gt;/lib/required/optional/spring/spring-web-x.x.x.RELEASE.jar</code>
+                <li><code>.jar</code> files located under <code>&lt;product&gt;/lib/required</code> <br /></li>
+                <li><code>&lt;product&gt;/lib/required/optional/spring/spring-web-x.x.x.RELEASE.jar</code>
                     <br />
                 </li>
-                <li><code>&lt;XAP root&gt;/lib/platform/commons/commons-collections-x.x.x.jar</code>
+                <li><code>&lt;product&gt;/lib/platform/commons/commons-collections-x.x.x.jar</code>
                     <br />
                 </li>
-                <li><code>&lt;XAP root&gt;/lib/optional/spring/spring-webmvc-4.1.1.RELEASE.jar</code>
+                <li><code>&lt;product&gt;/lib/optional/spring/spring-webmvc-4.1.1.RELEASE.jar</code>
                     <br />
                 </li>
             </ol>
@@ -112,7 +112,7 @@ gs-webui.bat
         </ul>
         <h1><a name="runtime-considerations"></a>Runtime Considerations</h1>
         <h2><a name="deployment-location-of-the-web-application"></a>Deployment Location of the Web Application</h2>
-        <p>The web application communicates with the runtime components of the <MadCap:variable name="General.ProductNameXAP" /> cluster, and receives notification from the <MadCap:variable name="General.ProductNameXAP" /> <a href="../overview/the-runtime-environment.html#lus">lookup service</a>. Therefore, it is highly recommended to run the web application in the same network segment of the other cluster components. This does not affect the web browser client, which communicates with the web application using standard HTTP and can be located anywhere, provided that it has access to the web application.</p>
+        <p>The web application communicates with the runtime components of the data grid cluster, and receives notification from the <a href="../overview/the-runtime-environment.html#lus">lookup service</a>. Therefore, it is highly recommended to run the web application in the same network segment of the other cluster components. This does not affect the web browser client, which communicates with the web application using standard HTTP and can be located anywhere, provided that it has access to the web application.</p>
         <h2><a name="running-via-a-reverse-proxy"></a>Running via a Reverse Proxy</h2>
         <p>YOu can set up a reverse proxy for the Web Management Console. This may be preferable in certain scenarios, such as when access to the Web Management Console is done via a gateway. Reverse proxy setups are currently available and tested only on the Apache web server.</p>
         <h2><a name="configuring-the-proxy"></a>Configuring the Proxy</h2>

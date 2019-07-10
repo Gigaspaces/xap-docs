@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Logging</h1>
-        <p>This section explains how to configure the <MadCap:variable name="General.ProductNameXAP" /> logging. You can format the log output, choose file names, and define rollover policies.</p>
+        <p>This section explains how to configure the  logging for <MadCap:variable name="General.CompanyName" /> products. You can format the log output, choose file names, and define rollover policies.</p>
         <div class="tc-admon-note">
             <p>Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with <MadCap:variable name="General.ProductNameXAPPrem" />).</p>
         </div>
@@ -25,7 +25,7 @@
         <h2><a name="overriding-the-configuration-file"></a>Overriding the Configuration File</h2>
         <p>Your own configuration file may also be used instead of the platform's default. This is done by setting the configuration file location using a system property:</p><pre><code class="language-bash">-Djava.util.logging.config.file=myfile.properties
 </code></pre>
-        <p><MadCap:variable name="General.ProductNameXAP" /> scripts rely on the exported environment variable <code>GS_LOGGING_CONFIG_FILE</code> (declared in <code>&lt;XAP-HOME&gt;/bin/setenv script</code>). The preferred way to apply your override file is to use a wrapper script; export the new setting of this variable and call the original script. This ensures that when <code>setenv.sh(bat)</code> is called from within the platform's scripts, it will pick up the override.</p><pre><code class="language-bash"># unix
+        <p><MadCap:variable name="General.ProductNameXAP" /> scripts rely on the exported environment variable <code>GS_LOGGING_CONFIG_FILE</code> (declared in <code>&lt;XAP_HOME&gt;/bin/setenv script</code>). The preferred way to apply your override file is to use a wrapper script; export the new setting of this variable and call the original script. This ensures that when <code>setenv.sh(bat)</code> is called from within the platform's scripts, it will pick up the override.</p><pre><code class="language-bash"># unix
 
 export XAP_LOGS_CONFIG_FILE=myfile.properties
 ./gsc.sh
@@ -61,7 +61,7 @@ export XAP_LOGS_CONFIG_FILE=myfile.properties
         <p>The stack trace of a <code>java.lang.RuntimeException</code> is always be logged, regardless of the level definition.</p>
         <h1><a name="logging-management-at-runtime"></a>Logging Management at Runtime</h1>
         <p>You can change various logger level settings while the system is up and running, without having to restart. This can be very useful in production environments when you have to troubleshoot the system, but cannot restart it.</p>
-        <p>To do this, connect to the JMX Bean of the Java logging facility via a monitoring tool such as JConsole. You can start JConsole for a specific running GSC or GSM using the <MadCap:variable name="General.ProductNameXAP" /> Management Center (<code>&lt;GigaSpaces&gt;\bin\gs-ui.sh(bat)</code>).</p>
+        <p>To do this, connect to the JMX Bean of the Java logging facility via a monitoring tool such as JConsole. You can start JConsole for a specific running GSC or GSM using the <MadCap:variable name="General.CompanyName" /> Management Center (<code>&lt;product&gt;\bin\gs-ui.sh(bat)</code>).</p>
         <p><span class="tc-bold">To change the logging level in JConsole</span>
         </p>
         <ol>
@@ -139,10 +139,10 @@ export XAP_LOGS_CONFIG_FILE=myfile.properties
                 <p>Class Loader</p>
             </li>
             <li>
-                <p>Space (Caching, Query, Replication, etc)</p>
+                <p>Space (Caching, Query, Replication, etc.)</p>
             </li>
             <li>
-                <p>Runtime (GCC, GSM, etc)</p>
+                <p>Runtime (GCC, GSM, etc.)</p>
             </li>
             <li>
                 <p>Security</p>
@@ -158,7 +158,7 @@ export XAP_LOGS_CONFIG_FILE=myfile.properties
             </li>
         </ul>
         <p>For each category, there are specific logger names you should use when configuring the logging level. See the <code>xap_logging.properties</code> file for the exact logger names supported for each category. You can also find all logger names in the <code>com.gigaspaces.logger.Constants</code> class.</p>
-        <p>the following sections describe the different modules, their logging names, and their default logging levels.</p>
+        <p>The following sections describe the different modules, their logging names, and their default logging levels.</p>
         <h2><a name="client-general"></a>Client General</h2><pre><code class="language-bash">com.gigaspaces.client.level = INFO
 com.gigaspaces.client.cluster.liveness.level = INFO
 </code></pre>
@@ -173,7 +173,7 @@ com.gigaspaces.dotnet.pu.level = INFO
 </code></pre>
         <h2><a name="openspaces"></a>OpenSpaces</h2><pre><code class="language-bash">org.openspaces.level = INFO
 </code></pre>
-        <p>OpenSpaces wraps the core product with Spring, which enables applying Spring configuration and the Spring life cycle to <MadCap:variable name="General.ProductNameXAP" /> applications.</p>
+        <p>OpenSpaces wraps the core product with Spring, which enables applying Spring configuration and the Spring life cycle to <MadCap:variable name="General.CompanyName" /> applications.</p>
         <h2><a name="pu"></a>PU</h2><pre><code class="language-bash">org.openspaces.pu.container.support.level = WARNING
 org.openspaces.pu.container.jee.context.ProcessingUnitWebApplicationContext.level = WARNING
 </code></pre>
@@ -202,7 +202,7 @@ com.gigaspaces.lrmi.channel.protocol.level = INFO
         <h2><a name="class-loader"></a>Class Loader</h2><pre><code class="language-bash">com.gigaspaces.core.classloadercleaner.level = INFO
 com.gigaspaces.core.classloadercache.level = INFO
 </code></pre>
-        <p><MadCap:variable name="General.ProductNameXAP" /> applications run as part of a <MadCap:variable name="General.ProductNameXAP" /> runtime container, and are packaged using the structure described <a href="../dev-java/the-processing-unit-structure-and-configuration.html">here</a>.
+        <p><MadCap:variable name="General.CompanyName" /> applications run as part of a <MadCap:variable name="General.ProductNameXAP" /> runtime container, and are packaged using the structure described <a href="../dev-java/the-processing-unit-structure-and-configuration.html">here</a>.
 Application JARs/classes are packaged in different folders, and some of the classes may be loaded as part of GigaSpaces containers (GSCs). There are multiple class loaders involved when an application is running. More information about the class loaders and their hierarchy can be found <a href="../dev-java/the-processing-unit-structure-and-configuration.html">here</a>.</p>
         <h2><a name="space"></a>Space</h2>
         <h3><a name="core-and-kernel"></a>Core and Kernel</h3><pre><code class="language-bash">com.gigaspaces.core.engine.level = INFO
@@ -250,7 +250,7 @@ com.gigaspaces.core.cluster.sync_replication.level = INFO
         <p>When there are multiple instances (primary/backup(s)), an Active-Election process is used by the cluster members to determine which member acts as the primary instance.</p>
         <h3><a name="pojo"></a>POJO</h3><pre><code class="language-bash">com.gigaspaces.pojo.level = INFO
 </code></pre>
-        <p>This logger corresponds to <MadCap:variable name="General.ProductNameXAP" /> POJO support. More information is available <a href="../dev-java/pojo-overview.html">here</a>.</p>
+        <p>This logger corresponds to <MadCap:variable name="General.CompanyName" /> POJO support. More information is available <a href="../dev-java/pojo-overview.html">here</a>.</p>
         <h3><a name="xa-manager"></a>XA Manager</h3><pre><code class="language-bash">com.gigaspaces.core.xa.level = INFO
 </code></pre>
         <p>This logger corresponda to the XA Transaction manager running in the Space. More information is available here <a href="../dev-java/transaction-overview.html">Java version</a> |<a href="../dev-dotnet/transaction-overview.html"> .NET version</a>.</p>
