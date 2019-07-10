@@ -120,5 +120,45 @@
 </code></pre>
         <h2><a name="monitoring-the-processing-units"></a>Monitoring the Processing Units</h2>
         <p>You can use one of the Kubernetes tools to view the logs for the processor Data Pod, where you can see that the sample data has been processed.</p>
+        <h1><a name="configuring-the-container-memory-allocation"></a>Configuring the Container Memory Allocation</h1>
+        <p>The Docker container is always allocated an absolute amount of memory. If this is undefined in the Helm chart, the container will use as much as is necessary to accomodate the data and processes it contains. You can limit the memory allocation for the contents of the Docker container (Data Pod, Manager Pod, processes, etc.) and the heap memory.</p>
+        <p>The on-heap memory allocation can be defined as any of the following:</p>
+        <ul>
+            <li>A positive absolute value for the heap memory.</li>
+            <li>A negative absolute value for the heap memory, calculating the heap size as (<span class="tc-italic">[total allocated container resources] - [XMib]</span>).</li>
+            <li>A percentage of the Docker container.</li>
+        </ul>
+        <p>The following Helm command allocates the amount of memory for both the Docker container and for the on-heap memory as an absolute value:</p><pre><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=256m
+</code></pre>
+        <p>The following Helm commands allocates the amount of memory for the Docker container, and sets aside a specific amount of memory for the container to use. The rest of the memory is available to the Java heap.</p><pre><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=limit-150m
+</code></pre>
+        <p>You can define the maximum size of the Docker container as an absolute value, and the maximum on-heap memory allocation for the Java running inside the Docker container as a percentage. If you use this approach, make sure you leave enough memory for the Java.</p>
+        <p>The following Helm command sets an absolute value for the Docker container, and defines the maximum Java on-heap memory as a percentage of the container memory:</p><pre><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=256Mi,pu.java.heap=75%
+</code></pre>
+        <h1><a name="configuring-the-data-grid-using-the-helm-chart"></a>Configuring the Data Grid Using the Helm Chart</h1>
+        <h2><a name="default-helm-chart"></a>Default Helm Chart</h2>
+        <p>The <MadCap:variable name="General.ProductNameIE" /> Helm chart has a list of supported values that can be configured. To view this list, use the following Helm command:</p><pre><code class="language-bash">helm inspect insightedge
+</code></pre>
+        <p>The values.yaml file is printed in the command window, and each configurable value has a short explanation above it. The indentation in this printout indicates a use of a ".' (dot) in the value name. For example, the high availability property for the Platform Manager is listed as follows in the file:</p>
+        <p><code>manager:</code>
+            <br /><code>ha: false</code>
+        </p>
+        <p>The value you will set will look like this in the command window: <code>manager.ha=true</code></p>
+        <h2><a name="customizing-a-helm-chart"></a>Customizing a Helm Chart</h2>
+        <p>You can create additional values.yaml files with customized values.</p>
+        <p>The following Helm command shows how a custom YAML file can be used to override the values in the original GigaSpaces Helm chart:</p><pre><code class="language-bash">helm install insightedge -f customValues.yaml --name hello
+</code></pre>
+        <h2><a name="overriding-the-processing-unit-properties"></a>Overriding the Processing Unit Properties</h2>
+        <p>It is recommended to define the Processing Unit properties in the pu.xml as placeholders (as described in the Processing Unit <a href="../dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit">Deployment Properties</a> topic), so you can override these properties using the Helm chart.</p>
+        <p>After defining the properties as placeholders, use the <code>key1=value1;key2=value2</code> format to pass the override values to the Helm chart using either the <code>--set insightedge-pu.properties=&lt;your key-value pairs&gt;</code> command, or using a custom YAML file.</p>
+        <h2>Configuring the MemoryXtend Properties</h2>
+        <p>The Kubernetes environment supports using MemoryXtend for off-heap RAM<MadCap:conditionalText MadCap:conditions="Version.14-5-born"> and MemoryXtend for Disk (SSD)</MadCap:conditionalText>.</p>
+        <h3>MemoryXtend for Off-Heap RAM</h3>
+        <p>To configure your Kubernetes-based environment, you need to make sure that the container memory allocation is sufficient to accommodate the overall RAM&#160;requirements. Additionally, you should define the memory threshold properties as placeholders in the pu.xml file. For more information about the MemoryXtend Off-Heap RAM driver, see <MadCap:xref href="memoryxtend-ohr.html">MemoryXtend for Off-Heap RAM</MadCap:xref>.</p>
+        <h3 MadCap:conditions="Version.14-5-born">MemoryXtend for Disk (SSD)</h3>
+        <p MadCap:conditions="Version.14-5-born">To configure your Kubernetes-based environment to use external storage, you need to enable persistent volume storage in both the Processing unit pu.xml and the pu Helm chart. This is described in detail in <MadCap:xref href="memoryxtend-rocksdb-ssd.html">MemoryXtend for Disk (SSD/HDD)</MadCap:xref>.</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p MadCap:conditions="Version.14-5-born">For information about the Kubernetes persistent volume storage model, refer to the <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/" target="_blank">Kubernetes documentation</a>.</p>
+        </div>
     </body>
 </html>
