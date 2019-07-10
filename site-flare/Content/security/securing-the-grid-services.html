@@ -6,7 +6,7 @@
         <h1 class="tc-pagetitle">Securing the Grid Services</h1>
         <h1><a name="enabling-security"></a>Enabling Security</h1>
         <p>Data grid security is enabled by setting a system property.
-Append the following system property to <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code>EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code MadCap:conditions="Version.14-5-born">XAP_OPTIONS_EXT </code>in <code>setenv</code> script.</p><pre><code class="language-java">-Dcom.gs.security.enabled=true
+Append the following system property to <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code>EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code MadCap:conditions="Version.14-5-born">XAP_OPTIONS_EXT </code>in the <code>setenv</code> script.</p><pre><code class="language-java">-Dcom.gs.security.enabled=true
 </code></pre>
         <p>This property affects the GSA, GSM, and GSC.
 It also affects also a standalone PU instance (with a Space).</p>
@@ -26,7 +26,7 @@ For more information about using the RESTful API with security, refer to <a href
         <p>A <a href="../overview/the-runtime-environment.html#gsc">Grid Service Container (GSC)</a> is a container which hosts deployed Processing Unit Instances, and reports its status to the GSM. In general, operations on the GSC are routed to the managing GSM of the processing unit. To <span class="tc-italic">scale up/down</span>, <span class="tc-italic">relocate</span>, <span class="tc-italic">restart PU instance</span>, <span class="tc-italic">destroy PU instance</span> you need <span class="tc-bold">Manage PU</span> privileges.</p>
         <p>A secured GSC can <span class="tc-bold">only</span> connect to a secured GSM. This means that a Processing Unit managed by a secured GSM can only be provisioned to a secured GSC.</p>
         <div class="tc-admon-note">
-            <p>Security of a GSC does not enforce any security on the deployed Processing Unit. i.e., a secured GSC can contain a Processing unit with a non-secured Space, and a non-secured GSC can contain a Processing Unit with a secured Sspace.</p>
+            <p>Security of a GSC does not enforce any security on the deployed Processing Unit. i.e., a secured GSC can contain a Processing unit with a non-secured Space, and a non-secured GSC can contain a Processing Unit with a secured Space.</p>
         </div>
     </body>
 </html>
