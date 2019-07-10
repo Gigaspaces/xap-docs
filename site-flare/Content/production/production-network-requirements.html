@@ -46,8 +46,10 @@
                 </tr>
             </tbody>
         </table>
-        <p>Here are examples of how to set different LRMI listening ports for the GigaSpaces Management Center, and another set of ports for the GSA/GSC/GSM/Lookup Service:</p><pre><code class="language-bash"> export </code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7500
-</code></pre><pre><code class="language-bash"> export </code><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code class="language-bash">XAP_OPTIONS_EXT</code></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code class="language-bash">EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code class="language-bash">=-Dcom.gs.transport_protocol.lrmi.bind-port=8000-8100
+        <p>Here are examples of how to set different LRMI listening ports for the GigaSpaces Management Center, and another set of ports for the GSA/GSC/GSM/Lookup Service:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"> export </code><code class="language-bash">EXT_JAVA_OPTIONS</code><code class="language-bash">=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7500
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash"> export </code><code class="language-bash">XAP_OPTIONS_EXT</code><code class="language-bash">=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7500
+</code></pre><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"> export </code><code class="language-bash">EXT_JAVA_OPTIONS</code><code class="language-bash">=-Dcom.gs.transport_protocol.lrmi.bind-port=8000-8100
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash"> export </code><code class="language-bash">XAP_OPTIONS_EXT</code><code class="language-bash">=-Dcom.gs.transport_protocol.lrmi.bind-port=8000-8100
 </code></pre>
         <p>A running GSC tries to use the first free port out of the port range specified. The same port might be used for several connections (via a multiplexed protocol). If the entire port range is exhausted, an error is displayed.</p>
         <div class="tc-admon-tip">
