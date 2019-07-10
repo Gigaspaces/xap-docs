@@ -20,12 +20,12 @@
         <p>The following Spark configuration property <code>spark.kubernetes.container.image</code> is required when submitting Spark jobs for an <MadCap:variable name="General.ProductNameIE" /> application. Note how this configuration is applied to the examples in the <a href="#submitting-spark-jobs-with-insightedge-submit">Submitting Spark Jobs </a>section:</p><pre><code>--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version%]
 </code></pre>
         <h2><a name="getting-the-kubernetes-master-url"></a>Getting the Kubernetes Master URL</h2>
-        <p>You can get the Kubernetes master URL using kubectl. Type the following command to print out the URL that will be used in the Spark and <MadCap:variable name="General.ProductNameIE" /> examples when submitting Spark jobs to the Kubernetes scheduler.</p><pre><code>kubectl cluster-info
+        <p>You can get the Kubernetes master URL using kubectl. Type the following command to print out the URL that will be used in the Spark and <MadCap:variable name="General.ProductNameIE" /> examples when submitting Spark jobs to the Kubernetes scheduler.</p><pre><code class="language-bash">kubectl cluster-info
 </code></pre>
         <p>Sample output: <code>Kubernetes master is running at https://192.168.99.100:8443</code></p>
         <h2><a name="configuring-the-kubernetes-service-accounts"></a>Configuring the Kubernetes Service Accounts</h2>
         <p>In Kubernetes clusters with RBAC enabled, users can configure Kubernetes RBAC roles and service accounts used by the various Spark jobs on Kubernetes components to access the Kubernetes API server.</p>
-        <p>Spark on Kubernetes supports specifying a custom service account for use by the Driver Pod via the configuration property that is passed as part of the submit command. To create a custom service account, run the following kubectl command:</p><pre><code>kubectl create serviceaccount spark
+        <p>Spark on Kubernetes supports specifying a custom service account for use by the Driver Pod via the configuration property that is passed as part of the submit command. To create a custom service account, run the following kubectl command:</p><pre><code class="language-bash">kubectl create serviceaccount spark
 </code></pre>
         <p>After the custom service account is created, you need to grant a service account Role. To grant a service account Role, a RoleBinding is needed. To create a RoleBinding or ClusterRoleBinding, use the kubectl <code>create rolebinding</code> (or <code>clusterrolebinding</code> for ClusterRoleBinding) command. For example, the following command creates an <code>edit</code> ClusterRole in the <code>default</code> namespace and grants it to the <code>spark</code> service account you created above.</p><pre><code>kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark --namespace=default
 </code></pre>
@@ -71,9 +71,16 @@ local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
 
 </code></pre>
         <p>Use the GigaSpaces CLI to query the number of objects in the <code>demo</code> data grid. The output should show <code>100,000</code> objects of type <code>org.insightedge.examples.basic.Product</code>.</p>
-        <p>Port <code>8090</code> is exposed as the internal endpoint <code>demo-insightedge-manager-service:30890 TCP</code>, and should be specified as part of the <code>--server</code> option. Type the following CLI command:</p><pre MadCap:conditions="Version.14-5-died"><code>../../bin/insightedge --server 192.168.99.100:30890 space info --type-stats demo
-</code></pre><pre MadCap:conditions="Version.14-5-born"><code>../../bin/gs--server 192.168.99.100:30890 space info --type-stats demo
-</code></pre>
+        <p>Port <code>8090</code> is exposed as the internal endpoint <code>demo-insightedge-manager-service:30890 TCP</code>, and should be specified as part of the <code>--server</code> option. Navigate to the product bin directory and type the following CLI command:</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+            <MadCap:snippetBlock src="../Resources/Snippets/InsighedgeXap.flsnp" />
+        </div>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash">./<MadCap:variable name="General.CLIversionLinux" /> --server 192.168.99.100:30890 space info --type-stats demo </code></pre>
+            </div>
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLIversion" /> --server 192.168.99.100:30890 space info --type-stats demo </code></pre>
+            </div>
+        </div>
         <h4><a name="improved-configuration-options"></a>Improved Configuration Options</h4>
         <div class="tc-admon-note">
             <p>These improvements are available starting from version 14.0.0 M13.</p>

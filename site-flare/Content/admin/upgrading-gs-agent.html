@@ -7,6 +7,9 @@
         <p>When the new <a href="tools-cli.html">Command Line Interface</a> was introduced in <MadCap:variable name="General.ProductNameIEP" /> and <MadCap:variable name="General.ProductNameXAP" /> release 12.3, it included the <a href="admin-service-grid-agent.html">host run-agent</a> command for starting a GigaSpaces agent on the current host.</p>
         <p>While the <a href="the-runtime-environment.html">legacy gs-agent</a> script is still supported, it has been deprecated as of <MadCap:variable name="General.ProductNameIEP" /> and <MadCap:variable name="General.ProductNameXAP" /> release 14.0 and will be removed in a future version. Customers upgrading from older versions are encouraged to upgrade to the new CLI command. The new CLI only supports working with the <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
         <p>To get started with the new CLI command, simply run <code>xap host run-agent --help</code> from the product's <code>bin</code> folder.</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+            <MadCap:snippetBlock src="../Resources/Snippets/InsighedgeXap.flsnp" />
+        </div>
         <h1><a name="commonly-used-options"></a>Commonly Used Options</h1>
         <p>The following commonly-used options have the same functionality, except for the command name:</p>
         <table>
@@ -18,46 +21,25 @@
                 </tr>
             </thead>
             <tbody>
-                <tr MadCap:conditions="Version.14-5-died">
+                <tr MadCap:conditions="">
                     <td>Run <MadCap:variable name="General.ProductNameXAP" /> Manager</td>
                     <td><code>gs-agent --manager</code>
                     </td>
-                    <td><code>xap host run-agent --manager</code>
+                    <td><code><MadCap:variable name="General.CLIversion" /> host run-agent --manager</code>
                     </td>
                 </tr>
-                <tr MadCap:conditions="Version.14-5-died">
+                <tr MadCap:conditions="">
                     <td>Run "N' Grid Service Containers (GSCs)</td>
                     <td><code>gs-agent --gsc=N</code>
                     </td>
-                    <td><code>xap host run-agent --gsc=N</code>
+                    <td><code><MadCap:variable name="General.CLIversion" /> host run-agent --gsc=N</code>
                     </td>
                 </tr>
-                <tr MadCap:conditions="Version.14-5-died">
+                <tr MadCap:conditions="">
                     <td>Run the Web Management Console (web-ui)</td>
                     <td><code>gs-agent --webui</code>
                     </td>
-                    <td><code>xap host run-agent --webui</code>
-                    </td>
-                </tr>
-                <tr MadCap:conditions="Version.14-5-born">
-                    <td>Run <MadCap:variable name="General.ProductNameXAP" /> Manager</td>
-                    <td><code>gs-agent --manager</code>
-                    </td>
-                    <td><code>gs host run-agent --manager</code>
-                    </td>
-                </tr>
-                <tr MadCap:conditions="Version.14-5-born">
-                    <td>Run "N' Grid Service Containers (GSCs)</td>
-                    <td><code>gs-agent --gsc=N</code>
-                    </td>
-                    <td><code>gs host run-agent --gsc=N</code>
-                    </td>
-                </tr>
-                <tr MadCap:conditions="Version.14-5-born">
-                    <td>Run the Web Management Console (web-ui)</td>
-                    <td><code>gs-agent --webui</code>
-                    </td>
-                    <td><code>gs host run-agent --webui</code>
+                    <td><code><MadCap:variable name="General.CLIversion" /> host run-agent --webui</code>
                     </td>
                 </tr>
             </tbody>
@@ -78,18 +60,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr MadCap:conditions="Version.14-5-died">
+                <tr MadCap:conditions="">
                     <td>Run a local <MadCap:variable name="General.ProductNameXAP" /> Manager</td>
                     <td><code>gs-agent --manager-local</code>
                     </td>
-                    <td><code>xap host run-agent --auto</code>
-                    </td>
-                </tr>
-                <tr MadCap:conditions="Version.14-5-born">
-                    <td>Run a local <MadCap:variable name="General.ProductNameXAP" /> Manager</td>
-                    <td><code>gs-agent --manager-local</code>
-                    </td>
-                    <td><code>gs host run-agent --auto</code>
+                    <td><code><MadCap:variable name="General.CLIversion" /> host run-agent --auto</code>
                     </td>
                 </tr>
             </tbody>
@@ -105,18 +80,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr MadCap:conditions="Version.14-5-died">
+                <tr MadCap:conditions="">
                     <td>Start "N' instances of <code>foo.xml</code></td>
                     <td><code>gs-agent --foo=N</code>
                     </td>
-                    <td><code>xap host run-agent --custom foo=N</code>
-                    </td>
-                </tr>
-                <tr MadCap:conditions="Version.14-5-born">
-                    <td>Start "N' instances of <code>foo.xml</code></td>
-                    <td><code>gs-agent --foo=N</code>
-                    </td>
-                    <td><code>gs host run-agent --custom foo=N</code>
+                    <td><code><MadCap:variable name="General.CLIversion" /> host run-agent --custom foo=N</code>
                     </td>
                 </tr>
             </tbody>
@@ -127,7 +95,7 @@
             <p>You can still start GSM and LUS using the <code>--custom</code> option, but we recommend doing this only as an interim step within the migration process, because support for non-manager environments will be removed in a future version.</p>
         </div>
         <p>In addition to the above, the <code>global</code> modifier is not available in the new command because it is only relevant for multicast discovery, and the <MadCap:variable name="General.ProductNameXAP" /> Manager uses unicast discovery. You can use the <code>--custom</code> option as a workaround for this.</p>
-        <table MadCap:conditions="Version.14-5-died">
+        <table>
             <thead>
                 <tr>
                     <th>Task</th>
@@ -140,68 +108,28 @@
                     <td>Run Grid Service Manager (GSM)</td>
                     <td><code>gs-agent --gsm=1</code>
                     </td>
-                    <td><code>xap host run-agent --custom gsm=1</code>
+                    <td><code><MadCap:variable name="General.CLIversion" /> host run-agent --custom gsm=1</code>
                     </td>
                 </tr>
                 <tr>
                     <td>Run Lookup Service (LUS)</td>
                     <td><code>gs-agent --lus=1</code>
                     </td>
-                    <td><code>xap host run-agent --custom lus=1</code>
+                    <td><code><MadCap:variable name="General.CLIversion" /> host run-agent --custom lus=1</code>
                     </td>
                 </tr>
                 <tr>
                     <td>Run Global Grid Service Manager (GSM)</td>
                     <td><code>gs-agent --global.gsm=1</code>
                     </td>
-                    <td><code>xap host run-agent --custom global.gsm=1</code>
+                    <td><code><MadCap:variable name="General.CLIversion" /> host run-agent --custom global.gsm=1</code>
                     </td>
                 </tr>
                 <tr>
                     <td>Run Global Lookup Service (LUS)</td>
                     <td><code>gs-agent --global.lus=1</code>
                     </td>
-                    <td><code>xap host run-agent --custom global.lus=1</code>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table style="width: 100%;" MadCap:conditions="Version.14-5-born">
-            <col style="width: 321px;" />
-            <col />
-            <col />
-            <tbody>
-                <tr>
-                    <td>Task</td>
-                    <td>Old Command</td>
-                    <td>New Command</td>
-                </tr>
-                <tr>
-                    <td>Run Grid Service Manager (GSM)</td>
-                    <td><code>gs-agent --gsm=1</code>
-                    </td>
-                    <td><code>gs host run-agent --custom gsm=1</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Run Lookup Service (LUS)</td>
-                    <td><code>gs-agent --lus=1</code>
-                    </td>
-                    <td><code>gs host run-agent --custom lus=1</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Run Global Grid Service Manager (GSM)</td>
-                    <td><code>gs-agent --global.gsm=1</code>
-                    </td>
-                    <td><code>gs host run-agent --custom global.gsm=1</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Run Global Lookup Service (LUS)</td>
-                    <td><code>gs-agent --global.lus=1</code>
-                    </td>
-                    <td><code>gs host run-agent --custom global.lus=1</code>
+                    <td><code><MadCap:variable name="General.CLIversion" /> host run-agent --custom global.lus=1</code>
                     </td>
                 </tr>
             </tbody>

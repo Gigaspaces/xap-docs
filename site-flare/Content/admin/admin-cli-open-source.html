@@ -19,12 +19,17 @@
             <div title="XAP Open Source" style="padding:10px">
                 <h2><a name="run-xap-in-demo-mode"></a>Starting a Data Grid in Demo Mode</h2>
                 <p>To run  a Space in demo mode, type the following command:</p>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+                    <MadCap:snippetBlock src="../Resources/Snippets/InsighedgeXap.flsnp" />
+                </div>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p MadCap:conditions="Version.14-5-died"><code>xap demo</code>
-                </p>
-                <p MadCap:conditions="Version.14-5-born"><code>gs demo</code>
-                </p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux/Mac" style="padding:10px"><pre><code>./<MadCap:variable name="General.CLIversionLinux" /> demo </code></pre>
+                    </div>
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLIversion" /> demo</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>Runs a Space in high availability mode (2 primaries with 1 backup each).</p>
@@ -32,17 +37,23 @@
                 </p>
                 <p>None.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap demo
-</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">&lt;XAP-HOME&gt;/bin/gs demo
-</code></pre>
+                </p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux/Mac" style="padding:10px"><pre><code>&lt;XAP-HOME&gt;/bin/<MadCap:variable name="General.CLIversionLinux" /> demo </code></pre>
+                    </div>
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;\bin\<MadCap:variable name="General.CLIversion" /> demo </code></pre>
+                    </div>
+                </div>
                 <h2><a name="run-a-standalone-space"></a>Running a Standalone Space</h2>
                 <p>To run a standalone Space, type the following command:</p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p MadCap:conditions="Version.14-5-died"><code>xap space run</code>
-                </p>
-                <p MadCap:conditions="Version.14-5-born"><code>gs space run</code>
-                </p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux/Mac" style="padding:10px"><pre><code>./<MadCap:variable name="General.CLIversionLinux" /> space run </code></pre>
+                    </div>
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLIversion" /> space run</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>Runs a standalone Space in a stateful Processing Unit.</p>
@@ -89,26 +100,36 @@
                 </table>
                 <p><span class="tc-italic">Input Example:</span>
                 </p>
-                <p>This example runs a Space named <span class="tc-bold">mySpace</span> with high availability and 2 partitions. The commands start two instances for the first partition (1_1, 1_2) and two instances for the second partition (2_1, 2_2).</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space run --lus --partitions=2 --ha mySpace
-</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">&lt;XAP-HOME&gt;/bin/gs space run --lus --partitions=2 --ha mySpace
-</code></pre>
-                <p>To run instances separately, run each of the following commands on different hosts (note that –lus is specified for discovery):</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space run --lus --partitions=2 --ha --instances=1_1 mySpace
-&lt;XAP-HOME&gt;/bin/xap space run --partitions=2 --ha --instances=1_2 mySpace
-&lt;XAP-HOME&gt;/bin/xap space run --lus --partitions=2 --ha --instances=2_1 mySpace
-&lt;XAP-HOME&gt;/bin/xap space run --partitions=2 --ha --instances=2_2 mySpace
-</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">&lt;XAP-HOME&gt;/bin/gs space run --lus --partitions=2 --ha --instances=1_1 mySpace
-&lt;XAP-HOME&gt;/bin/gs space run --partitions=2 --ha --instances=1_2 mySpace
-&lt;XAP-HOME&gt;/bin/gs space run --lus --partitions=2 --ha --instances=2_1 mySpace
-&lt;XAP-HOME&gt;/bin/gs space run --partitions=2 --ha --instances=2_2 mySpace
-</code></pre>
+                <p>This example runs a Space named <span class="tc-bold">mySpace</span> with high availability and 2 partitions. The commands start two instances for the first partition (1_1, 1_2) and two instances for the second partition (2_1, 2_2).</p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux/Mac" style="padding:10px"><pre><code>&lt;XAP-HOME&gt;/bin/<MadCap:variable name="General.CLIversionLinux" /> space run --lus --partitions=2 --ha mySpace </code></pre>
+                    </div>
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;\bin\<MadCap:variable name="General.CLIversion" /> space run --lus --partitions=2 --ha mySpace</code></pre>
+                    </div>
+                </div>
+                <p>To run instances separately, run each of the following commands on different hosts (note that –lus is specified for discovery):</p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux/Mac" style="padding:10px"><pre><code>&lt;XAP-HOME&gt;/bin/<MadCap:variable name="General.CLIversionLinux" /> space run --lus --partitions=2 --ha --instances=1_1 mySpace
+&lt;XAP-HOME&gt;/bin/<MadCap:variable name="General.CLIversionLinux" /> space run --partitions=2 --ha --instances=1_2 mySpace
+&lt;XAP-HOME&gt;/bin/<MadCap:variable name="General.CLIversionLinux" /> space run --lus --partitions=2 --ha --instances=2_1 mySpace
+&lt;XAP-HOME&gt;/bin/<MadCap:variable name="General.CLIversionLinux" /> space run --partitions=2 --ha --instances=2_2 mySpace </code></pre>
+                    </div>
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;\bin\<MadCap:variable name="General.CLIversion" /> space run --lus --partitions=2 --ha --instances=1_1 mySpace
+&lt;XAP-HOME&gt;\bin\<MadCap:variable name="General.CLIversion" /> space run --partitions=2 --ha --instances=1_2 mySpace
+&lt;XAP-HOME&gt;\bin\<MadCap:variable name="General.CLIversion" /> space run --lus --partitions=2 --ha --instances=2_1 mySpace
+&lt;XAP-HOME&gt;\bin\<MadCap:variable name="General.CLIversion" /> space run --partitions=2 --ha --instances=2_2 mySpace</code></pre>
+                    </div>
+                </div>
                 <h2><a name="run-a-standalone-processing-unit"></a>Running a Standalone Processing Unit</h2>
                 <p>To run a standalone Processing Unit, run the following command:</p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p MadCap:conditions="Version.14-5-died"><code>xap pu run</code>
-                </p>
-                <p MadCap:conditions="Version.14-5-born"><code>gs pu run</code>
-                </p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux/Mac" style="padding:10px"><pre><code>./<MadCap:variable name="General.CLIversionLinux" /> pu run </code></pre>
+                    </div>
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLIversion" /> pu run</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>Runs a standalone Processing Unit.</p>
@@ -165,19 +186,25 @@
                 </table>
                 <p><span class="tc-italic">Input Example:</span>
                 </p>
-                <p>This example deploys a Processing Unit that contains a Space named <span class="tc-bold">mySpace</span> with high availability and 2 partitions.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu run --lus --ha --partitions=2 myPu.jar
-</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">&lt;XAP-HOME&gt;/bin/gs pu run --lus --ha --partitions=2 myPu.jar
-</code></pre>
+                <p>This example deploys a Processing Unit that contains a Space named <span class="tc-bold">mySpace</span> with high availability and 2 partitions.</p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux/Mac" style="padding:10px"><pre><code>&lt;XAP-HOME&gt;/bin/<MadCap:variable name="General.CLIversionLinux" /> pu run --lus --ha --partitions=2 myPu.jar</code></pre>
+                    </div>
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;\bin\<MadCap:variable name="General.CLIversion" /> pu run --lus --ha --partitions=2 myPu.jar</code></pre>
+                    </div>
+                </div>
             </div>
             <div title="InsightEdge Open Source" style="padding:10px">
                 <h2><a name="run-insightedge-in-demo-mode"></a>Running <MadCap:variable name="General.ProductNameIE" /> in Demo Mode</h2>
                 <p>To run <MadCap:variable name="General.ProductNameIE" /> in demo mode, type the following command:</p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p MadCap:conditions="Version.14-5-died"><code>insightedge demo</code>
-                </p>
-                <p MadCap:conditions="Version.14-5-born"><code>gs demo</code>
-                </p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux/Mac" style="padding:10px"><pre><code>./<MadCap:variable name="General.CLIversionLinux" /> demo</code></pre>
+                    </div>
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLIversion" /> demo</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>Run Spark in standalone mode (master, worker and Apache Zeppelin), and run a Space in high availability mode (2 primaries with 1 backup each).</p>
@@ -185,9 +212,13 @@
                 </p>
                 <p>None.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/insightedge demo
-</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">&lt;XAP-HOME&gt;/bin/gs demo
-</code></pre>
+                </p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux/Mac" style="padding:10px"><pre><code>&lt;XAP-HOME&gt;/bin/<MadCap:variable name="General.CLIversionLinux" /> demo</code></pre>
+                    </div>
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;\bin\<MadCap:variable name="General.CLIversion" /> demo</code></pre>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
