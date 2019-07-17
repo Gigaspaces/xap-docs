@@ -29,20 +29,26 @@
                 <p>Download the <MadCap:variable name="General.ProductNameIE" /> package from the GigaSpaces website and install it, as described in <a href="installation.html">Downloading and Installing</a>.</p>
             </li>
             <li>
-                <p>From the home directory, open the <code>xap-license.txt</code> file and apply the "tryme" license key, which will give you access to the <MadCap:variable name="General.ProductNameIE" /> features and functionality for 24 hours.</p><pre><code># License can also be set via the XAP_LICENSE environment variable or com.gs.licensekey system property
-tryme
-</code></pre>
+                <p>Open the <code>xap-license.txt</code> file and apply the  license key you received via email, which will give you access to the <MadCap:variable name="General.ProductNameIE" /> features and functionality for 30 days.</p>
                 <div class="tc-admon-note">
                     <p>For more information about <MadCap:variable name="General.ProductNameIE" /> license options, see the <a href="license-key.html">Product License</a> page.</p>
                 </div>
             </li>
             <li>
-                <p>Navigate to the product <code>bin</code> directory and run the following command to start the CLI:</p>
-                <div class="easyui-tabs" plain="true" data-options="">
-                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash">./gs.sh demo
+                <p>Run the following command to start the CLI:</p>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-died">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;\bin\insightedge demo
 </code></pre>
                     </div>
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash">gs demo
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/insightedge demo
+</code></pre>
+                    </div>
+                </div>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> demo
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> demo
 </code></pre>
                     </div>
                 </div>
