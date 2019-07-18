@@ -12,14 +12,23 @@
                 </p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap space list</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap space list</code> or <code>insightedge space list</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> space list</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command lists all the Spaces in a table with their Space name, Processing Unit name, cluster topology, number of actual/planned Space instances, and Instance ID.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space list
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space list
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space list
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> space list
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Output Example:</span>
                 </p>
                 <p>
@@ -32,14 +41,23 @@
                 </p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap space list-instances &lt;name&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap space list-instances &lt;name&gt;</code> or <code>insightedge space list-instances &lt;name&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> space list-instances &lt;name&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>The Space instances for the given Space are listed with their Instance ID, Mode, Host ID, and Container ID.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space list-instances mySpace
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space list-instances mySpace
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space list-instances mySpace
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> space list-instances mySpace
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Output Example:</span>
                 </p>
                 <p>
