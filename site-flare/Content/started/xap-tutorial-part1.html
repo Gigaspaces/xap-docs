@@ -14,8 +14,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("xapTu
 </code></pre>
         <p>You can configure the Space connection with several options.</p>
         <div class="tc-admon-refer">
-            <p><a href="../dev-java/the-space-configuration.html">The Space Configuration</a>
-            </p>
+            <p>For more information, see <MadCap:xref href="../dev-java/the-space-configuration.html">The Space URL</MadCap:xref>.</p>
         </div>
         <p>When a client connects to a space, a proxy is created that holds a connection which implements the space API. All client interaction is performed through this proxy.</p>
         <p>With XAP you can also create a Local Cache and a Local View.</p>
@@ -26,8 +25,7 @@ In both cases, updates are performed (objects are added/updated/removed) on the 
         </ul>
         <p>These two scenarios are only applicable for remote clients.</p>
         <div class="tc-admon-refer">
-            <p><a href="../dev-java/client-side-caching.html">Client Side Caching</a>
-            </p>
+            <p>For more information, see the <MadCap:xref href="../dev-java/client-side-caching.html">Client-Side Caching</MadCap:xref> page.</p>
         </div>
         <h1><a name="the-space-object"></a>The Space Object</h1>
         <p>XAP supports two types of objects that can interact with the Space, POJOs and Documents.</p>
@@ -65,8 +63,7 @@ public class User {
         <h2><a name="compound-spaceid"></a>Compound SpaceId</h2>
         <p>You might need to construct a space id that will be comprised from a user defined class rather than using a Numeric or String type field. In such a case your user defined class used as the SpaceId data type must implement the toString , hashCode and equals methods. The compound ID class must implement a toString method that return a unique String for each ID.</p>
         <div class="tc-admon-refer">
-            <p><a href="../dev-java/space-object-id-operations.html">The Space Object Id</a>
-            </p>
+            <p>For more information, see the <MadCap:xref href="../dev-java/space-object-id-operations.html">Space Object ID</MadCap:xref> topic.</p>
         </div>
         <h2><a name="defining-routing"></a>Defining Routing</h2>
         <p>Partitioning is used when the total number of objects is too big to be stored in a single space. In this case we will divide the data into several partitions. By designating an attribute on the space class as a partitioning key, the space proxy will then know to which partition a particular instance of the space class belongs to. The space proxy uses the entry's routing attribute hash code to determine the corresponding partition for it.</p>
@@ -74,8 +71,7 @@ public class User {
             <p>The routing attribute can be explicitly set using the @SpaceRouting annotation for POJO entries or via the SpaceTypeDescriptorBuilder for document entries. If the routing attribute is not explicitly set, the space id attribute is used for routing. If the space id attribute is not defined, the first indexed attribute (alphabetically) is used for routing, otherwise the first attribute (alphabetically) is used for routing.</p>
         </div>
         <div class="tc-admon-refer">
-            <p><a href="../dev-java/routing-in-partitioned-spaces.html">Routing in partitioned Space</a>
-            </p>
+            <p>For more information, see the <MadCap:xref href="../dev-java/routing-in-partitioned-spaces.html">Routing In Partitioned Spaces</MadCap:xref> page.</p>
         </div>
         <h1><a name="space-document"></a>Space Document</h1>
         <p>The GigaSpaces document API exposes the space as Document Store. A document, which is represented by the class SpaceDocument, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, String, Date, other documents, or collections thereof. Unlike POJOs, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic, users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the class SpaceTypeDescriptor.</p>
@@ -113,12 +109,11 @@ public class User {
             <p>It is possible to write a POJO to the space and read it back as a document, and vice versa. This scenario is useful when you want to read or modify POJO objects without loading the concrete java classes.</p>
         </div>
         <div class="tc-admon-refer">
-            <p><a href="../dev-java/document-pojo-interoperability.html">Document POJO Interoperability</a>
-            </p>
+            <p>For more information, see the <MadCap:xref href="../dev-java/document-pojo-interoperability.html">Interoperability</MadCap:xref> topic.</p>
         </div>
         <h1><a name="interacting-with-the-space"></a>Interacting with the Space</h1>
         <p>All space operations are relevant to both the POJO and Document.</p>
-        <h2><a name="writing-an-object-to-space"></a>Writing an object to space:</h2>
+        <h2><a name="writing-an-object-to-space"></a>Writing an Object to the Space</h2>
         <p>When writing an object to the space, the object is created in space if it does not exist. If it already exists in space it will be updated. This is the default behavior of the write operation.</p><pre><code class="language-java">public void writeUser() {
      User user = new User();
      user.setId(new Long(1));
@@ -159,7 +154,7 @@ public class User {
             <p><a href="../dev-java/the-space-operations.html">The Space Operations</a>
             </p>
         </div>
-        <h2><a name="updating-an-object-in-space"></a>Updating an object in space</h2>
+        <h2><a name="updating-an-object-in-space"></a>Updating an Object in the Space</h2>
         <p>When you want to update only a couple of attributes on an object in space, you can use the change operation and update specific fields or even nested fields or modify collections and maps without having to supply the entire collection or map for the operation. With the following change operation example it is not necessary to read the object first from the space to update it. The Change API reduces a normal two step operation to a one step operation. This operation can vastly improve performance when you have an object with many attributes and you only need to update one or a couple of attributes.</p><pre><code class="language-java">public void ChangeSet() {
       User user = new User();
       user.setId(new Long(1));
@@ -234,8 +229,7 @@ public User[] sqlFindUsersByNameAndIds() {
 }
 </code></pre>
         <div class="tc-admon-refer">
-            <p><a href="../dev-java/query-sql.html">SQL Query</a>
-            </p>
+            <p>For more information, see the <MadCap:xref href="../dev-java/query-sql.html">SQL Query</MadCap:xref> topic.</p>
         </div>
         <h2><a name="parameterized-queries"></a>Parameterized Queries</h2>
         <p>You can separate the values for the SQL criteria expression by placing a "?' symbol instead of the actual value in the expression. When executing the query, the conditions that includes "?' are replaced with the corresponding parameter values supplied via the setParameter  method.</p>
@@ -251,7 +245,7 @@ public User[] sqlParameterFindUsersByNameAndCreditLimit() {
      return space.readMultiple(query);
 }
 </code></pre>
-        <h2><a name="nested-property-queries"></a>Nested property queries</h2>
+        <h2><a name="nested-property-queries"></a>Nested Property Queries</h2>
         <p>Many times a class has embedded classes as attributes. You can query for attributes within the embedded classes. Matching a nested attribute is done by specifying a Path which describes how to obtain its value. For example, our user class has an embedded attribute of an Address that has a zipCode attribute.</p>
         <p>Here is an example how you can query the space for all users that have a zip code of "12345'.</p><pre><code class="language-java">public User[] sqlFindUsersByZipCode() {
      SQLQuery&lt;User&gt; query = new SQLQuery&lt;User&gt;(User.class,"address.zipCode = 12345");
@@ -269,7 +263,7 @@ public User[] sqlParameterFindUsersByNameAndCreditLimit() {
             <p><a href="../dev-java/query-nested-properties.html">Query Netsed Properties</a>
             </p>
         </div>
-        <h2><a name="query-returning-partial-results"></a>Query returning partial results</h2>
+        <h2><a name="query-returning-partial-results"></a>Query Returning Partial Results</h2>
         <p>In some cases when querying the space for objects only specific attributes of an objects are required and not the entire object (delta read). For that purpose the Projection API can be used where you can specify which attributes are of interest and the space will only populate these attributes with the actual data when the result is returned back to the user. This approach reduces network overhead and can vastly improve performance.</p>
         <p>In this example below we are just interested in the name attribute of the user object:</p><pre><code class="language-java">public User[] findUsersByNameAndProjection() {
      SQLQuery&lt;User&gt; query = new SQLQuery&lt;User&gt;(User.class,"name = ?");
@@ -280,8 +274,7 @@ public User[] sqlParameterFindUsersByNameAndCreditLimit() {
 }
 </code></pre>
         <div class="tc-admon-refer">
-            <p><a href="../dev-java/query-partial-results.html">Query Partial results</a>
-            </p>
+            <p>For more information, see the <MadCap:xref href="../dev-java/query-partial-results.html">Projection</MadCap:xref> topic.</p>
         </div>
         <h2><a name="document-queries"></a>Document Queries</h2>
         <p>You can also query the space for documents. Just like the POJO queries, you can use query by ID, template and SQLQuery.</p>
@@ -302,8 +295,7 @@ public SpaceDocument[] readProductsBySQL() {
 }
 </code></pre>
         <div class="tc-admon-refer">
-            <p><a href="../dev-java/document-api.html">The Document API</a>
-            </p>
+            <p>For more information, see the <MadCap:xref href="../dev-java/document-api.html">Document API</MadCap:xref> topic.</p>
         </div>
         <h2><a name="geospatial-query"></a>Geospatial Query</h2>
         <p>Spatial queries make use of geometry data types such as points, circles and polygons and these queries consider the spatial relationship between these geometries.</p>
@@ -415,12 +407,11 @@ public class GasStation {
             </tbody>
         </table>
         <div class="tc-admon-refer">
-            <p><a href="../dev-java/query-geospatial.html">Geospatial Queries</a>
-            </p>
+            <p>For more information, see the <MadCap:xref href="../dev-java/query-geospatial.html">Geospatial Queries</MadCap:xref> topic.</p>
         </div>
-        <h2><a name="removing-objects-from-space"></a>Removing Objects from Space</h2>
+        <h2><a name="removing-objects-from-space"></a>Removing Objects from the Space</h2>
         <p>To remove objects from a space you can use the take or the clear operation.</p>
-        <h3><a name="take-operation"></a>Take operation</h3>
+        <h3><a name="take-operation"></a>Take Operation</h3>
         <p>The take operation returns an object and removes it from the space. XAP provides several options for the take operation:</p>
         <ul>
             <li>Take by ID</li>
@@ -444,7 +435,7 @@ public User[] takeUsersBySQL() {
    return space.takeMultiple(query);
 }
 </code></pre>
-        <h2><a name="clear-operation"></a>Clear operation</h2>
+        <h3><a name="clear-operation"></a>Clear Operation</h3>
         <p>The clear operation removes objects from a space without returning them.
 Here are some examples:</p><pre><code class="language-java">public void clearUserByTemplate() {
      User template = new User();
@@ -463,8 +454,7 @@ public void clearAllObjectInSpace() {
 }
 </code></pre>
         <div class="tc-admon-refer">
-            <p><a href="../dev-java/the-space-operations.html">The Space Operations</a>
-            </p>
+            <p>For more information, see the <MadCap:xref href="../dev-java/the-space-operations.html">Operations</MadCap:xref> topic.</p>
         </div>
         <h2><a name="aggregation"></a>Aggregation</h2>
         <p>The Aggregators allow you to perform the entire aggregation activity at the space side avoiding any data retrieval back to the client side. Only the result of each aggregation activity performed with each partition is returned back to the client side where all the results are reduced and returned to the client application.</p><pre><code class="language-java">import static org.openspaces.extensions.QueryExtension.*;
@@ -488,8 +478,7 @@ Person youngestPersonInSpace = minEntry(space, query, "age");
 </code></pre>
         <p>XAP also supports, <code>Compound</code>, <code>Embedded Fields</code> and <code>Group</code> Aggregation.</p>
         <div class="tc-admon-refer">
-            <p><a href="../dev-java/aggregators.html">Aggregators</a>
-            </p>
+            <p>For more information, see the <MadCap:xref href="../dev-java/aggregators.html">Aggregators</MadCap:xref> topic.</p>
         </div>
         <h1><a name="indexing"></a>Indexing</h1>
         <p>To improve performance, it is possible to index one or more attributes for an object. The space maintains additional data for indexed attributes, which shortens the time required to determine a match resulting in improved performance. However, indexes consume more resources and impacts the write operations performance.</p>
@@ -552,8 +541,7 @@ SQLQuery&lt;User&gt; query = new SQLQuery&lt;User&gt;(User.class,"name = 'John D
 </code></pre>
         <p>There are several additional indexing options available. For example you can index nested attributes, Nested Maps, Collections, nested attributes within a Collection, free text search and others.</p>
         <div class="tc-admon-refer">
-            <p><a href="../dev-java/indexing-overview.html">Indexing</a>
-            </p>
+            <p>For more information, see the <MadCap:xref href="../dev-java/indexing-overview.html">Indexing</MadCap:xref> section of the Developer guide.</p>
         </div>
         <h1><a name="best-practice"></a>Best Practice</h1>
         <p><span class="tc-bold">When you code your space classes make sure:</span>
@@ -574,8 +562,7 @@ SQLQuery&lt;User&gt; query = new SQLQuery&lt;User&gt;(User.class,"name = 'John D
         <h1><a name="other-data-access-apis"></a>Other Data Access APIs</h1>
         <p>XAP provides a JDBC Driver, JPA API, MAP and Memcached APIs.</p>
         <div class="tc-admon-refer">
-            <p><a href="../dev-java/other-data-access-apis.html">Other Data Access API's</a>
-            </p>
+            <p>For more information, see the <MadCap:xref href="../dev-java/other-data-access-apis.html">Other Data Access APIs</MadCap:xref> section of the Developer guide.</p>
         </div>
         <h1><a name="spring-integration"></a>Spring Integration</h1>
         <p>All XAP components can be wired and configured with the application using corresponding Spring Beans.</p>

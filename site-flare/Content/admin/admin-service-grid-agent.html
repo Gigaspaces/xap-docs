@@ -3,21 +3,30 @@
     <head>
     </head>
     <body>
-        <h1>Managing the Grid Service Agent</h1>
+        <h1 class="tc-pagetitle">Managing the Grid Service Agent</h1>
         <p><span class="tc-bold">To start a Grid Service Agent:</span>
         </p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap host run-agent</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap host run-agent</code> or <code>insightedge host run-agent</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> host run-agent</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command starts a Grid Service Agent on the current host.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host run-agent
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host run-agent
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> host run-agent
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> host run-agent
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
                 <table>
@@ -94,14 +103,23 @@
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap host kill-agent</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap host kill-agent</code> or <code>insightedge host kill-agent</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> host kill-agent</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command terminates the Grid Service Agent that is running on the current host.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host kill-agent
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host kill-agent
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> host kill-agent
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> host kill-agent
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
                 <table>
@@ -121,7 +139,7 @@
                         <tr>
                             <td align="left">Parameter</td>
                             <td align="left">[pids]</td>
-                            <td align="left">Display a whitespace delimited list of process IDs (for example, 8361 1123 4270)</td>
+                            <td align="left">Display a whitespace-delimited list of process IDs (for example, 8361 1123 4270)</td>
                         </tr>
                         <tr>
                             <td align="left">Option</td>
