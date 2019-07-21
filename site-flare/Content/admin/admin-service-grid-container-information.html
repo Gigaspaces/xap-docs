@@ -12,14 +12,23 @@
                 </p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap container list</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap container list</code>or <code>insightedge container list</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> container list</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command lists all the containers on the current host.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap container list
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap container list
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> container list
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> container list
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Output Example:</span>
                 </p>
                 <p>
@@ -32,14 +41,21 @@
                 </p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap container info &lt;container ID&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap container info &lt;container ID&gt;</code> or <code>inisghtedge container info &lt;container ID&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> container info &lt;container ID&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command lists the container ID, Process ID, zones, and Processing Unit instances for the specified container.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap container info demo-host3~22592<![CDATA[
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap container info demo-host3~22592<![CDATA[
 ]]></code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> container info demo-host3~22592</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> container info demo-host3~22592</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Output Example:</span>
                 </p>
                 <p>
