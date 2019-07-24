@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <body>
+        <h1 MadCap:conditions="Version.14-0-only">Kubernetes Integration</h1>
+        <p MadCap:conditions="Version.14-0-only">The InsightEdge Platform and the <MadCap:variable name="General.ProductNameXAP" /> data grid both support the Kubernetes environment. Benefits include:</p>
+        <ul>
+            <li MadCap:conditions="Version.14-0-only">The ability to deploy GigaSpaces-based applications in whatever environment best suits the business needs of the enterprise.</li>
+            <li MadCap:conditions="Version.14-0-only">Kubernetes synergizes with InsightEdge and <MadCap:variable name="General.ProductNameXAP" />, simplifying the operationalizing of machine learning and transactional processing at scale.</li>
+            <li MadCap:conditions="Version.14-0-only">InsightEdge and <MadCap:variable name="General.ProductNameXAP" /> utilize key features of Kubernetes, such as cloud-native orchestration automation with self-healing, cooperative multi-tenancy, and RBAC authorization.</li>
+            <li MadCap:conditions="Version.14-0-only">Auto-deployment of data services and deep learning and machine learning frameworks, such as Apache Spark, Stateful Sets (analogous to Processing Units), as well as the Apache Zeppelin web notebook.</li>
+        </ul>
+        <p MadCap:conditions="Version.14-0-only">
+            <span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../admin/orchestration.html">Orchestration</a>.</p>
+        <h1 MadCap:conditions="Version.14-0-only">Tiered Storage (MemoryXtend)</h1>
+        <p MadCap:conditions="Version.14-0-only">This version of InsightEdge and <MadCap:variable name="General.ProductNameXAP" /> introduces our newest Persistent Memory (PMEM) driver for the MemoryXtend module. The combined strength of <a href="https://newsroom.intel.com/editorials/re-architecting-data-center-memory-storage-hierarchy/">Optane DC Persistent Memory</a> and the InsightEdge Platform provides customers with the required performance and TCO optimization for uncompromised business results:</p>
+        <ul>
+            <li MadCap:conditions="Version.14-0-only">In-memory extreme performance at at a significantly lower cost.</li>
+            <li MadCap:conditions="Version.14-0-only">Large reduction in the number of servers required, which reduces footprint, power, maintenance, network and other overhead costs.</li>
+        </ul>
+        <p MadCap:conditions="Version.14-0-only">
+            <span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../admin/memoryxtend-pmem.html">MemoryXtend for PMEM</a>.</p>
+        <h1 MadCap:conditions="Version.14-0-only">Hot Swap - Rebalancing with Zero Downtime</h1>
+        <p MadCap:conditions="Version.14-0-only">Our new demote capability in the REST Manager API makes it easier, faster, and simpler to rebalance a system after significant environment change scenarios, such as  failover or scaling. In the past, the only way to demote a primary instance in order to rebalance a system was to force a restart. Now customers can write their own rebalancing policies that take advantage of the ability to perform a hot swap during runtime, without having to reload the data.</p>
+        <p MadCap:conditions="Version.14-0-only">
+            <span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../admin/resource-load-balancing.html">Hot Primary Swap</a>.</p>
+        <h1 MadCap:conditions="Version.14-0-only">Enhanced Web Notebook Functionality</h1>
+        <p MadCap:conditions="Version.14-0-only">InsightEdge now offers a JDBC-based interpreter for Apache Zeppelin. Customers can use this new interpreter to access data directly from the data grid, instead of via a Spark interpreter. This provides incredible value for analysts and developers, who can now visualize the Space data within the Zeppelin notebook.</p>
+        <p MadCap:conditions="Version.14-0-only">
+            <span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../started/insightedge-zeppelin.html">Using the InsightEdge Web Notebook</a>.</p>
+        <h1 MadCap:conditions="Version.14-2-only">AnalyticsXtreme to Accelerate Your Data Lake </h1>
+        <p MadCap:conditions="Version.14-2-only">
+            <MadCap:variable name="General.CompanyName" />'s new AnalyticsXtreme feature for the <MadCap:variable name="General.ProductNameIE" /> Platform improves on the traditional Lambda architecture to enable much faster querying of both real-time and historical data, and simplifies business application development by providing a single API for accessing data. Functionality includes:</p>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li>Data life cycle management for moving data from the data grid to external data storage as it ages.</li>
+            <li>
+                <MadCap:variable name="General.ProductNameIE" /> JDBC interpreter and driver for querying data from both the speed layer (data grid) and the batch layer (external data storage).</li>
+            <li>Out-of-the-box support for data formats such as Apache Parquet and Avro.</li>
+            <li>Support for SQL, Spark, and JDBC&#160;queries.</li>
+        </ul>
+        <p MadCap:conditions="Version.14-2-only">
+            <span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../dev-java/data-lake-acceleration.html">Data Lake Acceleration</a>.</p>
+        <h1 MadCap:conditions="Version.14-2-only">Support for Apache Spark Version 2.4.0</h1>
+        <p MadCap:conditions="Version.14-2-only">Release 14.2 includes an upgrade to Apache Spark 2.4.0, which provides the following benefits:</p>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li>Scala 2.12 experimental support - Now you can build Spark with Scala 2.12 and write Spark applications in Scala 2.12.</li>
+            <li>Apache Avro as a built-in data source - Inline Spark-Avro package with logical type support, better performance and usability.</li>
+            <li>Spark datasource for image format - added image reading support in the Spark source API.</li>
+        </ul>
+        <h1 MadCap:conditions="Version.14-2-only">Kubernetes Enhancements</h1>
+        <p MadCap:conditions="Version.14-2-only">The upgrade to Apache Spark 2.4.0 also provides the following Kubernetes-related enhancements:</p>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li>PySpark and R bindings - Docker images to include Python Support.</li>
+            <li>Client mode support within Spark when running in the Kubernetes cluster back end.</li>
+            <li>Support for mounting the volume in the Spark driver and executor pods in Kubernetes.</li>
+        </ul>
+        <h1 MadCap:conditions="Version.14-2-only">
+            <MadCap:variable name="General.CompanyName" /> Products Now Available with Red Hat OpenShift </h1>
+        <p MadCap:conditions="Version.14-2-only">InsightEdge and XAP are now Red Hat-certified containers, available in the official Red Hat registry. Customers can easily download <a href="https://access.redhat.com/containers/?tab=overview#/registry.connect.redhat.com/gigaspaces/insightedge-enterprise-14-0" target="_blank">InsightEdge</a> and <a href="https://access.redhat.com/containers/?tab=overview#/registry.connect.redhat.com/gigaspaces/xap-enterprise-14-0" target="_blank">XAP</a> container images to create, test, and run applications. and deploy them to the target platform.</p>
+        <p MadCap:conditions="Version.14-2-only">Look for our GigaSpaces products in the <a href="https://access.redhat.com/containers/" target="_blank">Red Hat Container Catalog</a>.</p>
+        <h1 MadCap:conditions="Version.14-5-only">New Features and Functionality</h1>
+        <ul>
+            <li MadCap:conditions="Version.14-5-only">
+                <p>
+                    <span class="tc-bold">AnalyticsXtreme Enhancements </span>- AnalyticsXtreme now supports smart SQL JOINs between the speed and batch layers. Additionally, this version includes performance improvements such as "OR" optimization<MadCap:conditionalText MadCap:conditions="Default.DoNotShow"> and partitioned Hive tables</MadCap:conditionalText>.</p>
+                <p MadCap:conditions="Version.14-5-only">
+                    <span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../dev-java/data-lake-acceleration-ax-client-side.html">Data Lake Acceleration</a>.</p>
+            </li>
+            <li MadCap:conditions="Version.14-5-only">
+                <p>
+                    <span class="tc-bold">Kubernetes Support for Persistent MemoryXtend </span>- MemoryXtend functionality in Kubernetes deployments has been enhanced with persistent volume (SSD) support, which leverages SSD and persistent memory technologies.</p>
+                <p MadCap:conditions="Version.14-5-only">
+                    <span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../admin/memoryxtend-rocksdb-ssd.html">Persistent Volume Storage in Kubernetes</a>.</p>
+            </li>
+            <li MadCap:conditions="Version.14-5-only">
+                <p>
+                    <span class="tc-bold">GigaSpaces-Tableau Connector </span>- The new <MadCap:variable name="General.CompanyName" />-Tableau connector enables out-of-the-box integration with Tableau, so that InsightEdge is available directly from the Tableau Desktop.</p>
+                <p MadCap:conditions="Version.14-5-only">
+                    <span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../dev-java/tableau-integration.html">Tableau Integration</a>.</p>
+            </li>
+            <li MadCap:conditions="Version.14-5-only">
+                <p>
+                    <span class="tc-bold">Jupyter Notebook Integration </span>- Python users can now incorporate the familiar Jupyter web notebook with <MadCap:variable name="General.ProductNameIE" />, enjoying out-of-the-box connectivity and PySpark support.</p>
+                <p MadCap:conditions="Version.14-5-only">
+                    <span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../started/insightedge-jupyter.html">Using a Jupyter Notebook</a>.</p>
+            </li>
+        </ul>
+        <h1 MadCap:conditions="Version.14-5-only">Usability and Platform Enhancements</h1>
+        <h2 MadCap:conditions="Version.14-5-only">Usability Enhancements</h2>
+        <ul>
+            <li MadCap:conditions="Version.14-5-only">
+                <p>
+                    <span class="tc-bold">Interactive Shell for CLI </span>- A CLI interactive shell is available for all platforms, and is activated automatically with the <code>gs</code> command. The interactive shell guides you in entering CLI commands by autocompleting commands and automatically displaying CLI help information.</p>
+                <p MadCap:conditions="Version.14-5-only">
+                    <span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../admin/tools-cli.html">Command Line Interface (CLI)</a>.</p>
+            </li>
+            <li>
+                <p MadCap:conditions="Version.14-5-only">
+                    <span class="tc-bold">Project Blueprints </span>- A blueprint is a pre-configured template that functions as a starting point for your microservice. <MadCap:variable name="General.CompanyName" /> products now have blueprints that developers can use to create new projects directly from templates, instead of having to create blank projects and deal with manual configuration tasks. </p>
+                <span MadCap:conditions="Default.DoNotShow" class="tc-bold">
+                    <span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../dev-java/data-lake-acceleration.html">Data Lake Acceleration</a>.</span>
+            </li>
+            <li MadCap:conditions="Version.14-5-only">
+                <span class="tc-bold">Improved Maven Integration </span>- The <MadCap:variable name="General.CompanyName" /> product integration with Maven has been streamlined and obsolete files have been removed. Additionally, the <MadCap:variable name="General.CompanyName" /> CLI has a new command for installing Maven artifacts.<p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../started/installation-maven-overview.html">Maven Artifacts</a>.</p></li>
+            <li>
+                <p MadCap:conditions="Version.14-5-only">
+                    <span class="tc-bold">CSV Reader Utility </span>- <MadCap:variable name="General.ProductNameIE" /> now includes a <code>CsvReader</code> utility, which simplifies loading data from a CSV file to the data grid. This utility is especially helpful for first-time and new users of GigaSpaces products, as it can be used to quickly load demo data to a Space for evaluation and testing purposes.</p>
+                <p MadCap:conditions="Default.DoNotShow">
+                    <span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../dev-java/data-lake-acceleration.html">Data Lake Acceleration</a>.</p>
+            </li>
+        </ul>
+        <h2 MadCap:conditions="Version.14-5-only">Environment and Command Changes</h2>
+        <h3 MadCap:conditions="Version.14-5-only">Environment Variables</h3>
+        <p MadCap:conditions="Version.14-5-only">There have been updates and modifications to the set environment variables that <MadCap:variable name="General.CompanyName" /> uses.</p>
+        <p MadCap:conditions="Version.14-5-only">
+            <span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../../../../started/common-environment-variables.html">Configuring the Environment Variables</MadCap:xref>.</p>
+        <h3 MadCap:conditions="Version.14-5-only">Command Line Interface Update</h3>
+        <p MadCap:conditions="Version.14-5-only">The <MadCap:variable name="General.CompanyName" /> Command Line Interface (CLI) has been consolidated and now uses a single <code>gs</code> script as the entry point. Backwards compatibility is supported; users that upgrade from earlier versions of <MadCap:variable name="General.CompanyName" /> products can revert the CLI&#160;to the previous behavior to simplify the migration process. </p>
+        <p MadCap:conditions="Version.14-5-only">
+            <span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../../../../admin/upgrading-cli.html">Upgrading the CLI</MadCap:xref>.</p>
+        <h1>Third-Party Product Changes</h1>
+        <p MadCap:conditions="Version.15-0-only">There are currently no third-party changes or updates.</p>
+        <ul>
+            <li MadCap:conditions="Version.14-0-only">Java 11 is now supported (starting from service pack 14.0.1). For more information, see the <MadCap:xref href="../../../../rn/java11-guidelines.html">Java 11 Guidelines</MadCap:xref> page of the release notes.</li>
+            <li MadCap:conditions="Version.14-0-only">
+                <a href="https://spark.apache.org/" target="_blank">Apache Spark</a> has been upgraded to <code>2.3.2</code></li>
+            <li MadCap:conditions="Version.14-0-only">
+                <a href="https://zeppelin.apache.org/" target="_blank">Apache Zeppelin</a> has been upgraded to <code>0.8</code></li>
+        </ul>
+        <p MadCap:conditions="Version.14-0-only">The following third-party dependency updates mitigate known security vulnerabilities:</p>
+        <ul>
+            <li MadCap:conditions="Version.14-0-only">
+                <a href="http://www.eclipse.org/jetty/">Jetty</a> package has been upgraded to <code>9.3.25</code></li>
+            <li MadCap:conditions="Version.14-0-only">
+                <a href="https://projects.spring.io/spring-framework/">Spring Framework</a> integration has been upgraded to <code>4.3.19</code></li>
+            <li MadCap:conditions="Version.14-0-only">
+                <a href="http://projects.spring.io/spring-security/">Spring Security</a> integration has been upgraded to <code>4.2.8</code></li>
+        </ul>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li>
+                <a href="https://spark.apache.org/" target="_blank">Apache Spark</a> has been upgraded to 2.4.0</li>
+            <li>
+                <a href="https://zeppelin.apache.org/" target="_blank">Apache Zeppelin</a> has been upgraded to 0.8.1</li>
+            <li>
+                <a href="https://zookeeper.apache.org/" target="_blank">Apache Zookeeper</a> has been upgraded to 3.4.13</li>
+            <li>
+                <a href="http://hibernate.org/" target="_blank">Hibernate</a> has been upgraded to 5.1.17</li>
+        </ul>
+        <p MadCap:conditions="Version.14-2-only">Additionally, XAP.NET&#160;no longer includes a bundled Java distribution.</p>
+        <ul>
+            <li MadCap:conditions="Version.14-5-only">
+                <a href="https://projects.spring.io/spring-framework/">Spring Framework</a> integration has been upgraded to 5.1.7</li>
+            <li MadCap:conditions="Version.14-5-only">
+                <a href="http://projects.spring.io/spring-security/">Spring Security</a> integration has been upgraded to 5.1.5.<div class="tc-admon-attention"><p MadCap:conditions="Version.14-5-only">As of Spring Security 5.x,   a password encoder must be defined.</p></div></li>
+        </ul>
+        <h1>Deprecated and End-Of-Life  Features and Functionality</h1>
+        <p MadCap:conditions="Version.15-0-only">There are currently no deprecated or end-of-life features and functionality.</p>
+        <p MadCap:conditions="Version.14-0-only">The following functionality is deprecated as of this release:</p>
+        <ul MadCap:conditions="Version.14-0-only">
+            <li MadCap:conditions="Version.14-0-only">Legacy command line interface (use the new command line interface that was introduced in release 12.3 instead)</li>
+            <li MadCap:conditions="Version.14-0-only">The gs-agent script (use the <code>insightedge host run-agent</code> or <code>xap host run-agent</code> command instead)</li>
+        </ul>
+        <p MadCap:conditions="Version.14-0-only">The following functionality is end of life as of this release:</p>
+        <ul MadCap:conditions="Version.14-0-only">
+            <li MadCap:conditions="Version.14-0-only">XAP.NET for Microsoft .NET v3.5</li>
+        </ul>
+        <p MadCap:conditions="Version.14-0-only">In addition, we recommend that you review GigaSapaces' updated Java and Spring Framework policies on the <MadCap:xref href="../../../../rn/lifecycle.html">Product Life Cycle and End-of-Life Policy</MadCap:xref> page.</p>
+        <p MadCap:conditions="Version.14-2-only">There are no end-of-life or deprecated features in this release.</p>
+        <h3 MadCap:conditions="Version.14-5-only">Deprecated Features and Functionality</h3>
+        <ul>
+            <li MadCap:conditions="Version.14-5-only">The advanced_scripts.zip file has been renamed to deprecated_scripts.zip.</li>
+            <li MadCap:conditions="Version.14-5-only">The xap and insightedge duplicate CLI scripts were deprecated and moved to the deprecated_scripts.zip file.</li>
+            <li MadCap:conditions="Version.14-5-only">The <code>EXT_JAVA_OPTIONS</code> environment variable is deprecated as of this version. Use <code>XAP_OPTIONS_EXT</code> instead.</li>
+        </ul>
+        <h3 MadCap:conditions="Version.14-5-only">End-Of-Life Functionality</h3>
+        <p MadCap:conditions="Version.14-5-only">The following obsolete scripts were removed from the product (formerly in the advanced_scripts.zip file):</p>
+        <ul>
+            <li MadCap:conditions="Version.14-5-only">esm</li>
+            <li MadCap:conditions="Version.14-5-only">gs-memcached</li>
+            <li MadCap:conditions="Version.14-5-only">lookupbrowser</li>
+            <li MadCap:conditions="Version.14-5-only">startjinix_mahalo</li>
+        </ul>
+    </body>
+</html>
