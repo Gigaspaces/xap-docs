@@ -6,16 +6,14 @@
   Destinations=""
   GlossaryTermConversion="marked"
   MasterPage="/Content/Resources/MasterPages/content.flmsp"
-  ConditionTagExpression="include[Version.14-0-born or Version.14-2-born or Version.14-5-born or Version.14-5-only or Version.15-0-died] exclude[Default.DoNotShow or Default.DraftOnly or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-2-only or Version.14-5-died or Version.15-0-born or Version.15-0-only] "
+  ConditionTagExpression="include[Version.14-0-born or Version.14-0-only or Version.14-2-died or Version.14-5-died or Version.15-0-died]exclude[Default.DoNotShow or Default.DraftOnly or Version.14-0-died or Version.14-2-born or Version.14-2-only or Version.14-5-born or Version.14-5-only or Version.15-0-born or Version.15-0-only]"
   Skin="/Project/Skins/HTML5 - Side Navigation.flskn"
   ExcludeUnreferencedContent="true"
   MoveOutputContentToRoot="true"
   InsertMOTW="true"
   UseCustomTopicFileExtension="true"
   CustomTopicFileExtension="html"
-  MasterToc="/Project/TOCs/Master-TOC.fltoc"
-  EnableSitemap="true"
-  SitemapWebUrl="https://docs.gigaspaces.com/latest/"
+  MasterToc="/Project/TOCs/Production/Master-TOC.fltoc"
   DefaultUrl="/Content/index.html">
   <PrintedOutput
     CollapseMargins="true"
@@ -24,37 +22,37 @@
     GenerateGlossaryProxy="true" />
   <Variables>
     <Variable
-      Name="Versions/java-version">8</Variable>
+      Name="Versions/java-version">9</Variable>
     <Variable
-      Name="Versions/maven-version">14.5.0</Variable>
+      Name="Versions/maven-version">14.0.1</Variable>
     <Variable
-      Name="Versions/product-version-long">14.5.0</Variable>
+      Name="Versions/product-version-long">14.0.0</Variable>
     <Variable
       Name="Versions/rest-version">v2</Variable>
     <Variable
       Name="Versions/scala-version">2.11.8</Variable>
     <Variable
-      Name="Versions/spark-version">2.4</Variable>
+      Name="Versions/spark-version">2.3.2</Variable>
     <Variable
-      Name="Versions/product-version-short">14.5</Variable>
+      Name="Versions/product-version-short">14.0</Variable>
     <Variable
-      Name="Versions/helm-version">14.5</Variable>
+      Name="Versions/helm-version">14.0.1</Variable>
     <Variable
-      Name="Versions/gshome-directory">gigaspaces-xap-enterprise-14.5.0</Variable>
+      Name="Versions/gshome-directory">gigaspaces-xap-enterprise-14.0.1-ga-b20100</Variable>
     <Variable
-      Name="Versions/gshome-directory-oss">gigaspaces-xap-14.5.0</Variable>
+      Name="Versions/gshome-directory-oss">gigaspaces-xap-14.0.1-ga-b20100</Variable>
     <Variable
-      Name="Versions/default-lookup-group">xap-14.5.0</Variable>
+      Name="Versions/default-lookup-group">xap-14.0.1</Variable>
     <Variable
-      Name="Versions/xap-release">14.5</Variable>
+      Name="Versions/xap-release">14.0</Variable>
     <Variable
-      Name="Versions/xap-version">14.5</Variable>
+      Name="Versions/xap-version">14.0</Variable>
     <Variable
-      Name="Versions/msi-filename">gigaspaces-xap.net-14.5.0.msi</Variable>
+      Name="Versions/msi-filename">gigaspaces-xap.net-14.0.1-ga-b20100.msi</Variable>
     <Variable
-      Name="Versions/gshome-net-directory">XAP.NET-14.5.0-x64</Variable>
+      Name="Versions/gshome-net-directory">XAP.NET-14.0.1-x64</Variable>
     <Variable
-      Name="Versions/spring-short">5.1</Variable>
+      Name="Versions/spring-short">4.3</Variable>
     <Variable
       Name="Versions/mongo-java-driver">3.2.0</Variable>
     <Variable
@@ -62,7 +60,7 @@
     <Variable
       Name="Versions/mule">3.7.0</Variable>
     <Variable
-      Name="Versions/openjpa">2.2.2</Variable>
+      Name="Versions/openjpa">2.0.1</Variable>
     <Variable
       Name="Versions/cassandra-clientutil">1.1.6</Variable>
     <Variable
@@ -82,9 +80,11 @@
     <Variable
       Name="Versions/scala">2.11.6</Variable>
     <Variable
-      Name="Versions/product-version-svc-pack">14.5.0</Variable>
+      Name="Versions/product-version-svc-pack">14.0.1</Variable>
     <Variable
-      Name="Versions/spring-long">5.1.7</Variable>
+      Name="General/CLI-script-Windows">insightedge</Variable>
+    <Variable
+      Name="General/CLI-script-Linux">insightedge</Variable>
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
   <Destinations></Destinations>

@@ -5,15 +5,17 @@
   Type="WebHelp2"
   Destinations=""
   GlossaryTermConversion="marked"
-  MasterPage="/Content/Resources/MasterPages/OtherTopics.flmsp"
-  ConditionTagExpression="include[Version.14-0-born or Version.14-0-only or Version.14-2-born] exclude[Default.DoNotShow or Version.14-0-died or Version.14-2-died or Version.14-2-only] "
+  MasterPage="/Content/Resources/MasterPages/content.flmsp"
+  ConditionTagExpression="include[Version.14-0-born or Version.14-2-born or Version.14-2-only or Version.14-5-died or Version.15-0-died]exclude[Default.DoNotShow or Default.DraftOnly or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-5-born or Version.14-5-only or Version.15-0-born or Version.15-0-only]"
   Skin="/Project/Skins/HTML5 - Side Navigation.flskn"
   ExcludeUnreferencedContent="true"
   MoveOutputContentToRoot="true"
   InsertMOTW="true"
   UseCustomTopicFileExtension="true"
   CustomTopicFileExtension="html"
-  MasterToc="/Project/TOCs/shlomo-local.fltoc">
+  MasterToc="/Project/TOCs/Production/Master-TOC.fltoc"
+  DefaultUrl="/Content/index.html"
+  TabletBreakpoint="1023">
   <PrintedOutput
     CollapseMargins="true"
     GenerateTOCProxy="true"
@@ -21,35 +23,33 @@
     GenerateGlossaryProxy="true" />
   <Variables>
     <Variable
-      Name="Versions/java-version">9</Variable>
+      Name="Versions/maven-version">14.2.0</Variable>
     <Variable
-      Name="Versions/maven-version">14.0.0</Variable>
-    <Variable
-      Name="Versions/product-version-long">14.0.0</Variable>
+      Name="Versions/product-version-long">14.2.0</Variable>
     <Variable
       Name="Versions/rest-version">v2</Variable>
     <Variable
       Name="Versions/scala-version">2.11.8</Variable>
     <Variable
-      Name="Versions/spark-version">2.3.2</Variable>
+      Name="Versions/spark-version">2.4</Variable>
     <Variable
-      Name="Versions/product-version-short">14.0</Variable>
+      Name="Versions/product-version-short">14.2</Variable>
     <Variable
-      Name="Versions/helm-version">14.0</Variable>
+      Name="Versions/helm-version">14.2</Variable>
     <Variable
-      Name="Versions/gshome-directory">gigaspaces-xap-enterprise-14.0.0-ga-b20000</Variable>
+      Name="Versions/gshome-directory">gigaspaces-xap-enterprise-14.2.0-ga-b20400</Variable>
     <Variable
-      Name="Versions/gshome-directory-oss">gigaspaces-xap-14.0.0-ga-b20000</Variable>
+      Name="Versions/gshome-directory-oss">gigaspaces-xap-14.2.0-ga-b20400</Variable>
     <Variable
-      Name="Versions/default-lookup-group">xap-14.0.0</Variable>
+      Name="Versions/default-lookup-group">xap-14.2.0</Variable>
     <Variable
-      Name="Versions/xap-release">14.0</Variable>
+      Name="Versions/xap-release">14.2</Variable>
     <Variable
-      Name="Versions/xap-version">14.0</Variable>
+      Name="Versions/xap-version">14.2</Variable>
     <Variable
-      Name="Versions/msi-filename">gigaspaces-xap.net-14.0.0-ga-b20000.msi</Variable>
+      Name="Versions/msi-filename">gigaspaces-xap.net-14.2.0-ga-b20400.msi</Variable>
     <Variable
-      Name="Versions/gshome-net-directory">XAP.NET-14.0.0-x64</Variable>
+      Name="Versions/gshome-net-directory">XAP.NET-14.2.0-x64</Variable>
     <Variable
       Name="Versions/spring-short">4.3</Variable>
     <Variable
@@ -78,11 +78,12 @@
       Name="Versions/topthreads">1.0.0</Variable>
     <Variable
       Name="Versions/scala">2.11.6</Variable>
+    <Variable
+      Name="Versions/product-version-svc-pack">14.2.0</Variable>
+    <Variable
+      Name="General/CLI-script-Windows">insightedge</Variable>
+    <Variable
+      Name="General/CLI-script-Linux">insightedge</Variable>
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
-  <Destinations>
-    <Destination
-      Link="/Project/Destinations/shlomo-local.fldes"
-      Publish="true" />
-  </Destinations>
 </CatapultTarget>
