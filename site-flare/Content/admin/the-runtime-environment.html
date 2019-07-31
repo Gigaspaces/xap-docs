@@ -156,7 +156,19 @@ call gs-agent.bat
                 </tr>
             </tbody>
         </table>
-        <p>Here is an example of the <code>gsc.xml</code> configuration file:</p><pre><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always"&gt;
+        <p>Here is an example of the <code>gsc.xml</code> configuration file:</p><pre MadCap:conditions="Version.15-0-died"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always"&gt;
+    &lt;script enable="true" work-dir="${com.gs.home}/bin"
+            windows="${com.gs.home}/bin/gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
+        &lt;argument&gt;start&lt;/argument&gt;
+        &lt;argument&gt;"GSC"&lt;/argument&gt;
+    &lt;/script&gt;
+    &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
+        &lt;input-argument&gt;&lt;/input-argument&gt;
+        &lt;argument&gt;com.gigaspaces.start.services="GSC"&lt;/argument&gt;
+    &lt;/vm&gt;
+    &lt;restart-regex&gt;.*java\.lang\.OutOfMemoryError.*&lt;/restart-regex&gt;
+&lt;/process&gt;
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="pid-handshake"&gt;
     &lt;script enable="true" work-dir="${com.gs.home}/bin"
             windows="${com.gs.home}/bin/gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
         &lt;argument&gt;start&lt;/argument&gt;
@@ -174,7 +186,7 @@ call gs-agent.bat
             <li>The <code>initial-instances</code> parameter controls what type of spawning will be performed when the GSA spawns processes by itself (and not on demand by the Admin API).</li>
             <li>The <code>shutdown-class</code> followed by the <code>restart-on-exit</code> flag, controls if the process will be restarted upon termination. There are three types of values:
 
-<ul><li><code>always</code> - Always restarts the process if it exits.</li><li><code>never</code> - Never restarts the process if it exists.</li><li><code>!0</code> - Restarts the process only if the exit code is different than 0.</li></ul></li>
+<ul><li><code>always</code> - Always restarts the process if it exits.</li><li MadCap:conditions="Version.15-0-born">pid-handshake - Restart the process on any exit value, following a successful pid-handshake.</li><li><code>never</code> - Never restarts the process if it exits.</li><li MadCap:conditions="Version.15-0-died"><p>!0 - Restarts the process only if the exit code is different than 0.</p></li></ul></li>
             <li>The <code>shutdown-class</code> is an implementation of <code>com.gigaspaces.grid.gsa.ShutdownProcessHandler</code> interface and provides the default shutdown hooks before and after shutdown of a process, to make sure it is shutdown properly. The <code>shutdown-class</code> can be omitted.</li>
             <li>The <code>restart-regex</code> (there can be more than one element) is applied to each console output line of the managed process, and if there is a match, the GSA will automatically restart the process. By default, the GSC will be restarted if there is an <code>OutOfMemoryError</code>.</li>
         </ul>
@@ -187,7 +199,19 @@ call gs-agent.bat
         <p>In some scenarios you'll need to have several "flavors' of components (e.g. multiple zones, or different sizes of GSCs, etc.). You can create a custom gs-agent script to manage each of those, or you can do this all within a single agent.</p>
         <p>For example, suppose we want our agent to load 2 "small' GSCs (512MB each) in a zone called <span class="tc-italic">Small</span>, and 1 "large' GSC (1024MB) in a zone called <span class="tc-italic">Large</span>. To achieve this, we'll duplicate the default <code>gsc.xml</code> (which resides in <code>$XAP_HOME/config/gsa</code>) into <code>gsc_small.xml</code> and <code>gsc_large.xml</code>, and modify them to include an <code>environment</code> tag which sets <code>XAP_GSC_OPTIONS</code> to the required settings:</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="  gsc_small.xml " style="padding:10px"><pre><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always"&gt;
+            <div title="  gsc_small.xml " style="padding:10px"><pre MadCap:conditions="Version.15-0-died"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always"&gt;
+    &lt;script enable="true" work-dir="${com.gs.home}/bin"
+            windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
+        &lt;argument&gt;services=GSC&lt;/argument&gt;
+        &lt;environment name="XAP_COMPONENT_OPTIONS"&gt;-Xms512m -Xmx512m -Dcom.gs.zones=Small&lt;/environment&gt;
+    &lt;/script&gt;
+    &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
+        &lt;input-argument&gt;&lt;/input-argument&gt;
+        &lt;argument&gt;services=GSC&lt;/argument&gt;
+    &lt;/vm&gt;
+    &lt;restart-regex&gt;.*java\.lang\.OutOfMemoryError.*&lt;/restart-regex&gt;
+&lt;/process&gt;
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="pid-handshake"&gt;
     &lt;script enable="true" work-dir="${com.gs.home}/bin"
             windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
         &lt;argument&gt;services=GSC&lt;/argument&gt;
@@ -201,7 +225,19 @@ call gs-agent.bat
 &lt;/process&gt;
 </code></pre>
             </div>
-            <div title="  gsc_large.xml " style="padding:10px"><pre><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always"&gt;
+            <div title="  gsc_large.xml " style="padding:10px"><pre MadCap:conditions="Version.15-0-died"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always"&gt;
+    &lt;script enable="true" work-dir="${com.gs.home}/bin"
+            windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
+        &lt;argument&gt;services=GSC&lt;/argument&gt;
+        &lt;environment name="XAP_COMPONENT_OPTIONS"&gt;-Xms1024m -Xmx1024m -Dcom.gs.zones=Large&lt;/environment&gt;
+    &lt;/script&gt;
+    &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
+        &lt;input-argument&gt;&lt;/input-argument&gt;
+        &lt;argument&gt;services=GSC&lt;/argument&gt;
+    &lt;/vm&gt;
+    &lt;restart-regex&gt;.*java\.lang\.OutOfMemoryError.*&lt;/restart-regex&gt;
+&lt;/process&gt;
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="pid-handshake"&gt;
     &lt;script enable="true" work-dir="${com.gs.home}/bin"
             windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
         &lt;argument&gt;services=GSC&lt;/argument&gt;
