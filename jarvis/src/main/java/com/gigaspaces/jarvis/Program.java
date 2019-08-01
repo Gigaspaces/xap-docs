@@ -47,11 +47,21 @@ public class Program {
     private static void generateNoindex(Config config) throws IOException {
         final long startTime = System.currentTimeMillis();
 
-		Path outputPath = config.getOutputPath().toPath().resolve("xap");
+		Path[] paths = new Path[] {
+			config.getOutputPath().toPath().resolve("xap"),
+			config.getOutputPath().toPath().resolve("faq"),
+			config.getOutputPath().toPath().resolve("howto"),
+			config.getOutputPath().toPath().resolve("product_overview"),
+			config.getOutputPath().toPath().resolve("release_notes"),
+			config.getOutputPath().toPath().resolve("tutorials"),
+		};
+		
         String element = "    <meta name=\"robots\" content=\"noindex\" />";
-        FileUtils.processFiles(outputPath,
-                p -> p.getFileName().toString().endsWith(".html"),
-                line -> FileUtils.lineAppender(line, l -> l.equals("<head>"), element));
+		for (Path outputPath : paths) {
+			FileUtils.processFiles(outputPath,
+            	    p -> p.getFileName().toString().endsWith(".html"),
+                	line -> FileUtils.lineAppender(line, l -> l.equals("<head>"), element));
+		}
 
         long duration = System.currentTimeMillis() - startTime;
         Logger.getInstance().info(String.format("Finished generating noindex (duration=%sms)", duration));

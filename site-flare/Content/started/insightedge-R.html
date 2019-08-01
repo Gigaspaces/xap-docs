@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Using R in Zeppelin</h1>
+        <p>In addition to native support for Apache Zeppelin, which is used primarily by Python and Scala developers, the R programming language can be used for statistical computing with InsightEdge. R provides a wide variety of statistical and graphical techniques to apply on the objects in the InsightEdge data grid.</p>
+        <p>This topic describes how to run R with <MadCap:variable name="General.ProductNameIE" />.in the Apache Zeppelin web notebook.</p>
+        <h1>Prerequisites</h1>
+        <p>R must be installed, along with any of its packages required for your purpose. To install R in Linux run the following command:</p>
+        <p><code>api-get install r-base</code>
+        </p>
+        <p MadCap:conditions="Default.DoNotShow"><span style="color: #ff0000;">Don't have a reference to use instead of command. Windows equivalent not clear and would require some trials</span>
+        </p>
+        <h1>Running R from the Zeppelin Notebook</h1>
+        <p>You can run R commands on the data grid from the <MadCap:variable name="General.ProductNameIE" /> Apache Zeppelin web notebook. Start the notebook and initialize the Spark context as described in<a href="insightedge-zeppelin.html"> Using the InsightEdge Web Notebook</a>. You can view the R tutorial that is included in the notebook.</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/devguide/ZeppelinR.png" />
+        </p>
+        <p>Before running the example below, install these 2 R packages with commands:</p><pre xml:space="preserve">sudo R -e "install.packages('knitr', repos = 'http://cran.us.r-project.org’)"
+sudo R -e "install.packages('data.table', type = 'source',repos = 
+'http://Rdatatable.github.io/data.table’)"</pre>
+        <p>To read your data from the grid and write data back to the grid, create a new note with R commands similar to this sample:</p><pre>%r
+//Reading salaries from the grid
+df &lt;- read.df("salaries", "org.apache.spark.sql.insightedge", header = "false", 
+inferSchema = "true", na.strings = "NA") 
+//Writing back as people to the grid
+write.df(df, path = "people", source = "org.apache.spark.sql.insightedge", mode = "overwrite")</pre>
+    </body>
+</html>

@@ -3,17 +3,26 @@
     <head>
     </head>
     <body>
-        <h1>Undeploying a Processing Unit</h1>
+        <h1 class="tc-pagetitle">Undeploying a Processing Unit</h1>
         <p><span class="tc-bold">Removing a Processing Unit from the Service Grid</span>.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap pu undeploy &lt;name&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu undeploy &lt;name&gt;</code> and <code>insightedge pu undeploy &lt;name&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu undeploy &lt;name&gt;</code>
                 </p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu undeploy myPu
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu undeploy myPu
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu undeploy myPu
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu undeploy myPu
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
                 <table>

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
-        <h1>Viewing Processing Unit Configuration Information</h1>
+        <h1 class="tc-pagetitle">Viewing Processing Unit Configuration Information</h1>
         <p><span class="tc-bold">To view the Processing Unit configuration information:</span>
         </p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -12,14 +12,23 @@
                 </p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap pu info &lt;name&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu info &lt;name&gt;</code> or <code>insightedge pu info &lt;name&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu info &lt;name&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>Display detailed information for the given Processing Unit.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu info  myPu
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu info myPu
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu info myPu
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu info myPu
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Output Example:</span>
                 </p>
                 <p>
@@ -47,14 +56,23 @@
                 </p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap pu info-instance &lt;instance ID&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu info-instance &lt;instance ID&gt;</code> or <code>insightedge pu info-instance &lt;instance ID&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu info-instance &lt;instance ID&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>Display detailed information for the given Processing Unit instance.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu info-instance mySpace~1_1
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu info-instance mySpace~1_1
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu info-instance mySpace~1_1
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu info-instance mySpace~1_1
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Output Example:</span>
                 </p>
                 <p>

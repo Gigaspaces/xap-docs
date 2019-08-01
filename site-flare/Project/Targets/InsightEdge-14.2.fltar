@@ -6,14 +6,14 @@
   Destinations=""
   GlossaryTermConversion="marked"
   MasterPage="/Content/Resources/MasterPages/content.flmsp"
-  ConditionTagExpression="include[Version.14-0-born or Version.14-2-born or Version.14-2-only or Version.14-5-died or Version.15-0-died] exclude[Default.DoNotShow or Default.DraftOnly or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-5-born or Version.14-5-only or Version.15-0-born or Version.15-0-only] "
+  ConditionTagExpression="include[Version.14-0-born or Version.14-2-born or Version.14-2-only or Version.14-5-died or Version.15-0-died]exclude[Default.DoNotShow or Default.DraftOnly or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-5-born or Version.14-5-only or Version.15-0-born or Version.15-0-only]"
   Skin="/Project/Skins/HTML5 - Side Navigation.flskn"
   ExcludeUnreferencedContent="true"
   MoveOutputContentToRoot="true"
   InsertMOTW="true"
   UseCustomTopicFileExtension="true"
   CustomTopicFileExtension="html"
-  MasterToc="/Project/TOCs/Master-TOC.fltoc"
+  MasterToc="/Project/TOCs/Production/Master-TOC.fltoc"
   DefaultUrl="/Content/index.html"
   TabletBreakpoint="1023">
   <PrintedOutput
@@ -81,9 +81,11 @@
     <Variable
       Name="Versions/product-version-svc-pack">14.2.0</Variable>
     <Variable
-      Name="General/CLIversion">insightedge</Variable>
+      Name="General/CLI-script-Windows">insightedge</Variable>
     <Variable
-      Name="General/CLIversionLinux">insightedge</Variable>
+      Name="General/CLI-script-Linux">insightedge</Variable>
+    <Variable
+      Name="Versions/hibernate-medium">4.1</Variable>
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
 </CatapultTarget>

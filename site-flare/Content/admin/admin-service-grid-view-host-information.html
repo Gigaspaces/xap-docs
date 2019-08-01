@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1>Viewing Host Information</h1>
+        <h1 class="tc-pagetitle">Viewing Host Information</h1>
         <p>A host is discovered by having a <a href="admin-service-grid-agent.html">Grid Service Agent</a> running on it.</p>
         <p><span class="tc-bold">To view host information:</span>
         </p>
@@ -13,14 +13,23 @@
                 </p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap host list</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap host list</code> or <code>insightedge host list</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> host list</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>Lists all the host machines.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host list
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host list
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> host list
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> host list
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Output Example:</span>
                 </p>
                 <p>
@@ -33,14 +42,23 @@
                 </p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap host info --containers &lt;name&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap host info --containers &lt;name&gt;</code> or <code>insightedge host info --containers &lt;name&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> host info --containers &lt;name&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>Lists all the containers on a specific host machine.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host info --containers localhost
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host info --containers localhost
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> host info --containers localhost
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> host info --containers localhost
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Output Example:</span>
                 </p>
                 <p>
@@ -68,14 +86,23 @@
                 </p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap host info --os &lt;name&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap host info --os &lt;name&gt;</code> or <code>insightedge host info --os &lt;name&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> host info --os &lt;name&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>Lists all the operating system and related host machine details for a specific host machine, such as OS type, host architecture, OS version, etc.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host info --os localhost
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host info --os localhost
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> host info --os localhost
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> host info --os localhost
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Output Example:</span>
                 </p>
                 <p>
@@ -103,14 +130,23 @@
                 </p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap host info --os-stats &lt;name&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap host info --os-stats &lt;name&gt;</code> or <code>insightedge host info --os-stats &lt;name&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> host info --os-stats &lt;name&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>Lists several operating system statistics for a specific host machine, such as free physical memory, memory used, and free swap space.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host info --os-stats localhost
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap host info --os-stats localhost
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> host info --os-stats localhost
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> host info --os-stats localhost
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Output Example:</span>
                 </p>
                 <p>

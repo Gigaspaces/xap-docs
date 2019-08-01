@@ -3,20 +3,29 @@
     <head>
     </head>
     <body>
-        <h1>Accessing a Secured Service Grid</h1>
+        <h1 class="tc-pagetitle">Accessing a Secured Service Grid</h1>
         <p>When security is in place, the administration tools require credentials to securely access and operate the secured components. Access is granted to authenticated users, while operations are restricted based on the granted permission.
-For more information, refer to the <a href="../started/xap-tutorial-part10.html">Security</a> page in the <a href="../started/index.html">Getting Started</a> guide (under the <a href="../started/xap-basics.html">XAP Basics</a> section).</p>
+For more information, refer to the <MadCap:xref href="../started/xap-tutorial-part10.html">Security</MadCap:xref> topic in the <MadCap:xref href="../started/index.html">Getting Started</MadCap:xref> guide (under the <MadCap:xref href="../started/xap-basics.html">Data Grid Basics</MadCap:xref> section).</p>
         <p><span class="tc-bold">To access a secured service grid:</span>
         </p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap --username=&lt;user name&gt; --password=&lt;password&gt; &lt;command&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap --username=&lt;user name&gt; --password=&lt;password&gt; &lt;command&gt;</code> or <code>insightedge --username=&lt;user name&gt; --password=&lt;password&gt; &lt;command&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> --username=&lt;user name&gt; --password=&lt;password&gt; &lt;command&gt;</code>
                 </p>
                 <p><span class="tc-italic">Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap --username=user --password=pass  host list
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap --username=user --password=pass  host list
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> --username=user --password=pass  host list
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> --username=user --password=pass  host list
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
                 <table>
@@ -44,7 +53,7 @@ For more information, refer to the <a href="../started/xap-tutorial-part10.html"
             <div title="REST Manager API" style="padding:10px">
                 <p>When security is enabled, the REST Manager API performs basic authentication and checks if the user has sufficient privileges
 to execute the operation.</p>
-                <p>For more information about using the REST Manager API in a secured environment, refer to the <a href="admin-rest-manager-api.html">REST Manager API</a> introductory page.</p>
+                <p>For more information about using the REST Manager API in a secured environment, refer to the <MadCap:xref href="admin-rest-manager-api.html">REST Manager API</MadCap:xref> introductory page.</p>
             </div>
             <div title="Web Management Console" style="padding:10px">
                 <p>If you configured your <MadCap:variable name="General.ProductNameXAP" /> instance to run in secure mode using the <code>-Dcom.gs.security.enabled=true</code> property, you will see the following login window when the Web Management Console is started:</p>

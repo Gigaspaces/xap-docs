@@ -11,7 +11,7 @@
         <p>&#160;</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/lambda/AnalyticsXtreme.png" class="tc-picture80" />
+                <img src="../Resources/Static/attachment_files/lambda/AnalyticsXtreme.png" class="tc-picture50" />
             </p>
         </div>
         <p>This approach enables smooth access to frequently used historical data, because applications can access any data - hot or cold - via a unified layer using Spark SQL or JDBC. You can easily integrate BI&#160;tools such as <a href="tableau-integration.html">Tableau</a>, Looker, and PowerBI. It also ensures that every entry is retrieved only once, from the correct layer.</p>
@@ -22,7 +22,7 @@
         <p>In external data tiering mode, data is streamed to both the <MadCap:variable name="General.ProductNameIE" /> data grid and the external data source in parallel. This means that AnalyticsXtreme provides only the speed layer for the purpose of facilitating accelerated query results, so the data life cycle policy only needs to manage the data until it reaches its expiration point. After it expires, the data is evicted from the data grid.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/lambda/AnalyticsXtreme-mode2.png" class="tc-picture80" />
+                <img src="../Resources/Static/attachment_files/lambda/AnalyticsXtreme-mode2.png" class="tc-picture50" />
             </p>
         </div>
         <h2>Supported Data Formats</h2>
@@ -35,25 +35,25 @@
         <p>The data life cycle policy was designed to handle this movement of data from the speed layer to the batch layer in a safe and predictable way. For example, we may have a system where data that is up to 5 hours old is considered hot and should be held in the speed layer, while anything older is considered cold and therefore must be moved to the batch layer. This 5-hour interval is the <code>speedPeriod</code>. The end of the <code>speedPeriod</code> is the query threshold; if a query is sent at 6 PM that requires data up to 5 hours old, the query threshold is 1 PM, and the query manager will look for the data in the speed layer only. If the query needs data that is more than 5 hours old, the query manager will look for that data in either the batch layer only, or in both the speed and batch layers and combine the results.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/lambda/ax-1-speedperiod.png" class="tc-picture80" />
+                <img src="../Resources/Static/attachment_files/lambda/ax-1-speedperiod.png" class="tc-picture50" />
             </p>
         </div>
         <p>When the data is in the speed layer, it is dynamic and can be updated as necessary. When it is in the batch layer, the data is immutable. As the data nears the end of the <code>speedPeriod</code>, the data life cycle policy has to prepare for moving it to the batch layer. Therefore, the policy includes a <code>mutabilityPeriod</code>, during which time the data remains fully dynamic. When the data ages out of the <code>mutabilityPeriod</code>, it becomes immutable so that it is ready to be moved to the batch layer. By default, the <code>mutabilityPeriod</code> is set to 80% of the <code>speedPeriod</code>; looking at our example, if the <code>speedPeriod</code> is 5 hours, then the <code>mutabilityPeriod</code> is 4 hours, and data that is between 4-5 hours old is in an immutable window.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/lambda/ax-2-mutabilityperiod.png" class="tc-picture80" />
+                <img src="../Resources/Static/attachment_files/lambda/ax-2-mutabilityperiod.png" class="tc-picture50" />
             </p>
         </div>
         <p>In order to keep system performance consistent, and to ensure that the data can be easily verified when it is moved between layers, if AnalyticsXtreme has been implemented in automatic data tiering mode, the data life cycle policy copies the data from the speed layer to the batch layer in small chunks as it nears the end of the immutable window, according to the <span class="tc-italic">batchFeedInterval</span>. At this point, the aging data exists both in the speed layer and in the batch layer.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/lambda/ax-3-batchfeed.png" class="tc-picture80" />
+                <img src="../Resources/Static/attachment_files/lambda/ax-3-batchfeed.png" class="tc-picture50" />
             </p>
         </div>
         <p>After the aging data is residing safely to the batch layer and the <code>speedPeriod</code> expires, the data needs to be evicted from the speed layer. However, since the query threshold is a sliding window, a small safety margin is needed to ensure that long-running queries can complete, and to account for network latency regarding remote clients that sent queries just before the <code>speedPeriod</code> expired (so the query will need the data to be located in the speed layer). This safety margin, which provides data consistency, is the <span class="tc-italic">evictionBuffer</span>, and is set by default to 10 minutes.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/lambda/ax-4-eviction.png" class="tc-picture80" />
+                <img src="../Resources/Static/attachment_files/lambda/ax-4-eviction.png" class="tc-picture50" />
             </p>
         </div>
         <p>After the data is evicted from the speed layer, it exists as historical data in the batch layer. Any queries that need data that is older than the query threshold (in this example, 1 PM) will access the batch layer only.</p>

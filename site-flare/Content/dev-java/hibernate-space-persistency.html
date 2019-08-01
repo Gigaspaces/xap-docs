@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -12,9 +12,9 @@
         </div>
         <p>There are two available implementations.</p>
         <h2><a name="default-hibernate-space-persistency-implementation"></a>Default Hibernate Space Persistency Implementation</h2>
-        <p><code>DefaultHibernateSpaceDataSource</code> and <code>Default</code> based on <a href="http://docs.jboss.org/hibernate/orm/4.1/javadocs/org/hibernate/Session.html" target="_blank">Hibernate Session</a>.</p>
+        <p><code>DefaultHibernateSpaceDataSource</code> and <code>Default</code> based on <a href="https://docs.jboss.org/hibernate/orm/[%=Versions.hibernate-medium%]/javadocs/org/hibernate/Session.html" target="_blank">Hibernate Session</a>.</p>
         <h2><a name="stateless-hibernate-space-persistency-implementation"></a>Stateless Hibernate Space Persistency Implementation</h2>
-        <p><code>StatelessHibernateSpaceDataSource</code> and <code>Stateless</code> based on Hibernate <a href="http://docs.jboss.org/hibernate/orm/4.1/javadocs/org/hibernate/StatelessSession.html" target="_blank">StatelessSession</a>. This implementation is faster than the <code>Default Hibernate Space Persistency Implementation</code>, but it does not have first level cache, as well as does not perform any cascading operations (both in read operations as well as dirty operations).</p>
+        <p><code>StatelessHibernateSpaceDataSource</code> and <code>Stateless</code> based on Hibernate <a href="https://docs.jboss.org/hibernate/orm/[%=Versions.hibernate-medium%]/javadocs/org/hibernate/StatelessSession.html" target="_blank">StatelessSession</a>. This implementation is faster than the <code>Default Hibernate Space Persistency Implementation</code>, but it does not have first level cache, as well as does not perform any cascading operations (both in read operations as well as dirty operations).</p>
         <p>The <code>Hibernate Space Persistency Implementation</code> is used both with the <a href="direct-persistency.html">Synchronous</a> and the <a href="asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency</a> modes.</p>
         <h1><a name="configuration"></a>Configuration</h1>
         <p>See below example for <code>Hibernate Space Persistency</code> that is configured having a Space connected to a central data source using Hibernate configuration files decorating the Space Classes:</p>
@@ -26,7 +26,7 @@
     &lt;property name="password" value=""/&gt;
 &lt;/bean&gt;
 
-&lt;bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"&gt;
+&lt;bean id="sessionFactory" class="org.springframework.orm.hibernate<MadCap:variable name="Versions.hibernate-short" />.LocalSessionFactoryBean"&gt;
     &lt;property name="dataSource" ref="dataSource"/&gt;
     &lt;property name="mappingResources"&gt;
         &lt;list&gt;
@@ -73,7 +73,7 @@
     &lt;property name="password" value=""/&gt;
 &lt;/bean&gt;
 
-&lt;bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"&gt;
+&lt;bean id="sessionFactory" class="org.springframework.orm.hibernate<MadCap:variable name="Versions.hibernate-short" />.LocalSessionFactoryBean"&gt;
     &lt;property name="dataSource" ref="dataSource"/&gt;
     &lt;property name="mappingResources"&gt;
         &lt;list&gt;
@@ -169,7 +169,7 @@ public class Data {
     }
 }
 </code></pre>
-        <div class="tc-admon-tip">
+        <div class="tc-admon-tip" MadCap:conditions="Version.14-5-died">
             <ul>
                 <li>
                     <p>When mapping a Collection Data types or any other variable size field make sure the relevant database table column has a sufficient size that can accommodate the largest collection/variable size field you may have within your space object.</p>
@@ -178,6 +178,9 @@ public class Data {
                     <p>When fetching collections, you must use the <code>@Fetch(FetchMode.SELECT)</code> annotation for the collection field. This is a result of <a href="https://hibernate.atlassian.net/browse/HHH-1751" target="_blank">hibernate bug HHH-1751</a>. The default <code>@Fetch(FetchMode.JOIN)</code> mode will not fetch all members. This will handle also duplicate entry creation when initial-load is being called. Irrelevant since <MadCap:variable name="General.ProductNameXAP" /> upgraded to Hibernate 4.1.9.</p>
                 </li>
             </ul>
+        </div>
+        <div class="tc-admon-tip" MadCap:conditions="Version.14-5-born">
+            <p>When mapping a Collection Data types or any other variable size field make sure the relevant database table column has a sufficient size that can accommodate the largest collection/variable size field you may have within your space object.</p>
         </div>
         <h1><a name="properties"></a>Properties</h1>
         <p>The Hibernate Space Persistency implementation includes the following properties:</p>

@@ -12,7 +12,7 @@
   InsertMOTW="true"
   UseCustomTopicFileExtension="true"
   CustomTopicFileExtension="html"
-  MasterToc="/Project/TOCs/Master-TOC.fltoc"
+  MasterToc="/Project/TOCs/Production/Master-TOC.fltoc"
   DefaultUrl="/Content/index.html"
   MasterPage="/Content/Resources/MasterPages/content.flmsp">
   <PrintedOutput
@@ -81,6 +81,8 @@
       Name="Versions/product-version-svc-pack">14.5.0</Variable>
     <Variable
       Name="Versions/spring-long">5.1.7</Variable>
+    <Variable
+      Name="Versions/hibernate-short">5</Variable>
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
 </CatapultTarget>

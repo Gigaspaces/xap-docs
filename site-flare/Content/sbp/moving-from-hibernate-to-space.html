@@ -1,67 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Moving from Hibernate to Space</h1>
-  
-
-<table>
-<thead>
-<tr>
-<th>Author</th>
-<th>XAP Version</th>
-<th>Last Updated</th>
-<th>Reference</th>
-<th>Download</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Shay Hassidim</td>
-<td>8.0</td>
-<td>Feb 2011</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-<h1><a name="overview">&#160;</a>Overview</h1>
-
-<p>The following example is based on the standard <a href="http://www.vaannila.com/spring/spring-hibernate-integration-1.html">Spring Hibernate Integration tutorial</a>.
+    <head>
+    </head>
+    <body>
+        <h1>Moving from Hibernate to Space</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>XAP Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shay Hassidim</td>
+                    <td>8.0</td>
+                    <td>Feb 2011</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="overview">&#160;</a>Overview</h1>
+        <p>The following example is based on the standard <a href="http://www.vaannila.com/spring/spring-hibernate-integration-1.html">Spring Hibernate Integration tutorial</a>.
 In this pattern you will see how to modify an existing simple spring/hibernate application to leverage GigaSpaces as the <a href="/product_overview/the-in-memory-data-grid.html">in-memory Data-grid</a> and the application server hosting both the <a href="https://docs.gigaspaces.com/latest/dev-java/web-application-support.html">web application</a> and the data in-memory. The Hibernate persistency settings will still be leveraged by <a href="https://docs.gigaspaces.com/latest/dev-java/hibernate-space-persistency.html">GigaSpaces Hibernate External Data Source</a> storing the data in-memory into a database in an <a href="https://docs.gigaspaces.com/latest/dev-java/asynchronous-persistency-with-the-mirror.html">asynchronous manner</a>.</p>
-
-<p>Moving Spring/Hibernate application to GigaSpaces involves the following basic steps:</p>
-
-<ol>
-<li>Spring bean Configuration file changes</li>
-<li><a href="https://docs.gigaspaces.com/latest/dev-java/pojo-support.html">POJO Class</a> changes</li>
-<li>DAO implementation changes</li>
-<li>Deploying the data-grid and the Spring based web application into GigaSpaces</li>
-</ol>
-
-<h1><a name="architecture-change">&#160;</a>Architecture Change</h1>
-
-<p>The procedure described below will move a standard Spring/Hibernate application that is using the following architecture:
+        <p>Moving Spring/Hibernate application to GigaSpaces involves the following basic steps:</p>
+        <ol>
+            <li>Spring bean Configuration file changes</li>
+            <li><a href="https://docs.gigaspaces.com/latest/dev-java/pojo-support.html">POJO Class</a> changes</li>
+            <li>DAO implementation changes</li>
+            <li>Deploying the data-grid and the Spring based web application into GigaSpaces</li>
+        </ol>
+        <h1><a name="architecture-change">&#160;</a>Architecture Change</h1>
+        <p>The procedure described below will move a standard Spring/Hibernate application that is using the following architecture:
 <img src="/attachment_files/sbp/Hibernate with EhCache.jpg" alt="Hibernate with EhCache.jpg" /></p>
-
-<p>To use the following architecture where the Data-Grid placed in-line between the application and the database:
+        <p>To use the following architecture where the Data-Grid placed in-line between the application and the database:
 <img src="/attachment_files/sbp/Hibernate_DataGrid_mirror.jpg" alt="Hibernate_DataGrid_mirror.jpg" /></p>
-
-<h1><a name="spring-bean-configuration-file">&#160;</a>Spring bean Configuration File</h1>
-
-<p>The existing application Spring bean Configuration file will be modified to:</p>
-
-<ul>
-<li>Remove the usage of database at the application layer.</li>
-<li>Use the GigaSpaces DAO implementation instead of the original Hibernate DAO implementation.</li>
-<li>Use Data Grid (space) as the data access layer instead of the database.</li>
-<li>Add a Spring Configuration file for the Data-Grid (Data-Grid PU).</li>
-<li>Add a Spring Configuration file for the Mirror (Mirror PU).</li>
-</ul>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Hibernate spring bean configuration file " style="padding:10px"><pre><code class="language-java">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <h1><a name="spring-bean-configuration-file">&#160;</a>Spring Bean Configuration File</h1>
+        <p>The existing application Spring bean Configuration file will be modified to:</p>
+        <ul>
+            <li>Remove the usage of database at the application layer.</li>
+            <li>Use the GigaSpaces DAO implementation instead of the original Hibernate DAO implementation.</li>
+            <li>Use Data Grid (space) as the data access layer instead of the database.</li>
+            <li>Add a Spring Configuration file for the Data-Grid (Data-Grid PU).</li>
+            <li>Add a Spring Configuration file for the Mirror (Mirror PU).</li>
+        </ul>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Hibernate spring bean configuration file " style="padding:10px"><pre><code class="language-java">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:p="http://www.springframework.org/schema/p"
@@ -76,7 +66,7 @@ In this pattern you will see how to modify an existing simple spring/hibernate a
         &lt;property name="password" value=""/&gt;
     &lt;/bean&gt;
 
-    &lt;bean id="mySessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"&gt;
+    &lt;bean id="mySessionFactory" class="org.springframework.orm.hibernate<MadCap:variable name="Versions.hibernate-short" />.annotation.AnnotationSessionFactoryBean"&gt;
         &lt;property name="dataSource" ref="myDataSource" /&gt;
         &lt;property name="annotatedClasses"&gt;
             &lt;list&gt;
@@ -101,13 +91,10 @@ In this pattern you will see how to modify an existing simple spring/hibernate a
     &lt;/bean&gt;
 &lt;/beans&gt;
 </code></pre>
-</div>
-
-<div title="  GigsSpaces spring bean configuration file " style="padding:10px"><h2><a name="the-application-spring-bean-configuration-file">&#160;</a>The Application spring bean configuration file</h2>
-
-<p>The {myUserSpaceDAO}} includes the GigaSpaces DAO.</p>
-
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+            </div>
+            <div title="  GigsSpaces spring bean configuration file " style="padding:10px">
+                <h2><a name="the-application-spring-bean-configuration-file">&#160;</a>The Application Spring Bean Configuration File</h2>
+                <p>The {myUserSpaceDAO}} includes the GigaSpaces DAO.</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -131,10 +118,7 @@ In this pattern you will see how to modify an existing simple spring/hibernate a
     &lt;/bean&gt;
 &lt;/beans&gt;
 </code></pre>
-
-<h2><a name="the-data-grid-pu-spring-bean-configuration-file">&#160;</a>The Data-Grid PU spring bean configuration file</h2>
-
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+                <h2><a name="the-data-grid-pu-spring-bean-configuration-file">&#160;</a>The Data Grid PU Spring Bean Configuration File</h2><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -168,7 +152,7 @@ In this pattern you will see how to modify an existing simple spring/hibernate a
     &lt;!--
         Hibernate SessionFactory bean. Uses the pooled data source to connect to the database.
     --&gt;
-    &lt;bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"&gt;
+    &lt;bean id="sessionFactory" class="org.springframework.orm.hibernate<MadCap:variable name="Versions.hibernate-short" />.annotation.AnnotationSessionFactoryBean"&gt;
         &lt;property name="dataSource" ref="dataSource"/&gt;
         &lt;property name="annotatedClasses"&gt;
             &lt;list&gt;
@@ -225,10 +209,7 @@ In this pattern you will see how to modify an existing simple spring/hibernate a
 
 &lt;/beans&gt;
 </code></pre>
-
-<h2><a name="the-mirror-pu-spring-bean-configuration-file">&#160;</a>The Mirror PU spring bean configuration file</h2>
-
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+                <h2><a name="the-mirror-pu-spring-bean-configuration-file">&#160;</a>The Mirror PU Spring Bean Configuration File</h2><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -257,7 +238,7 @@ In this pattern you will see how to modify an existing simple spring/hibernate a
     &lt;!--
         Hibernate SessionFactory bean. Uses the pooled data source to connect to the database.
     --&gt;
-    &lt;bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"&gt;
+    &lt;bean id="sessionFactory" class="org.springframework.orm.hibernate<MadCap:variable name="Versions.hibernate-short" />.annotation.AnnotationSessionFactoryBean"&gt;
         &lt;property name="dataSource" ref="dataSource"/&gt;
         &lt;property name="annotatedClasses"&gt;
             &lt;list&gt;
@@ -298,21 +279,18 @@ In this pattern you will see how to modify an existing simple spring/hibernate a
 
 &lt;/beans&gt;
 </code></pre>
-</div>
-</div>
-
-<h1><a name="the-pojo-class">&#160;</a>The POJO Class</h1>
-
-<p>The POJO Class will be modified to include:</p>
-
-<ul>
-<li>SpaceID field</li>
-<li>Routing field</li>
-<li>Indexed fields</li>
-<li>Other Space class metadata decorations</li>
-</ul>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Hibernate POJO Class " style="padding:10px"><pre><code class="language-java">package com.vaannila.domain;
+            </div>
+        </div>
+        <h1><a name="the-pojo-class">&#160;</a>The POJO Class</h1>
+        <p>The POJO Class will be modified to include:</p>
+        <ul>
+            <li>SpaceID field</li>
+            <li>Routing field</li>
+            <li>Indexed fields</li>
+            <li>Other Space class metadata decorations</li>
+        </ul>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Hibernate POJO Class " style="padding:10px"><pre><code class="language-java">package com.vaannila.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -362,9 +340,8 @@ public class User {
     public void setMailingList(Boolean mailingList) {this.mailingList = mailingList;}
 }
 </code></pre>
-</div>
-
-<div title="  GigsSpaces POJO Class " style="padding:10px"><pre><code class="language-java">package com.vaannila.domain;
+            </div>
+            <div title="  GigsSpaces POJO Class " style="padding:10px"><pre><code class="language-java">package com.vaannila.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -419,14 +396,10 @@ public class User {
     public void setMailingList(Boolean mailingList) {this.mailingList = mailingList;    }
 }
 </code></pre>
-</div>
-</div>
-
-<h1><a name="userdao-interface">&#160;</a>UserDAO interface</h1>
-
-<p>The UserDAO interface remains as is:</p>
-
-<pre><code class="language-java">package com.vaannila.dao;
+            </div>
+        </div>
+        <h1><a name="userdao-interface">&#160;</a>UserDAO Interface</h1>
+        <p>The UserDAO interface remains as is:</p><pre><code class="language-java">package com.vaannila.dao;
 
 import java.util.List;
 import com.vaannila.domain.User;
@@ -436,16 +409,14 @@ public interface UserDAO {
     public List&lt;User&gt; listUser() ;
 }
 </code></pre>
-
-<h1><a name="the-dao-implementation">&#160;</a>The DAO Implementation</h1>
-
-<p>The DAO implementation should be modified to use the <a href="https://docs.gigaspaces.com/latest/dev-java/the-gigaspace-interface-overview.html">GigaSpace interface</a> to access the data grid instead of using the <code>HibernateTemplate</code> that is accessing the database. The <code>GigaSpace</code> interface similar methods to the <code>HibernateTemplate</code> to write and <a href="https://docs.gigaspaces.com/latest/dev-java/query-sql.html">Query</a> for objects.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Hibernate DAO Implemenation " style="padding:10px"><pre><code class="language-java">package com.vaannila.dao;
+        <h1><a name="the-dao-implementation">&#160;</a>The DAO Implementation</h1>
+        <p>The DAO implementation should be modified to use the <a href="https://docs.gigaspaces.com/latest/dev-java/the-gigaspace-interface-overview.html">GigaSpace interface</a> to access the data grid instead of using the <code>HibernateTemplate</code> that is accessing the database. The <code>GigaSpace</code> interface similar methods to the <code>HibernateTemplate</code> to write and <a href="https://docs.gigaspaces.com/latest/dev-java/query-sql.html">Query</a> for objects.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Hibernate DAO Implemenation " style="padding:10px"><pre><code class="language-java">package com.vaannila.dao;
 
 import java.util.List;
 import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.orm.hibernate<MadCap:variable name="Versions.hibernate-short" />.HibernateTemplate;
 import com.vaannila.domain.User;
 
 public class UserDAOImpl implements UserDAO {
@@ -464,9 +435,8 @@ public class UserDAOImpl implements UserDAO {
     public List&lt;User&gt; listUser() {  return hibernateTemplate.find("from User"); }
 }
 </code></pre>
-</div>
-
-<div title="  GigsSpaces DAO Implemenation " style="padding:10px"><pre><code class="language-java">package com.vaannila.dao;
+            </div>
+            <div title="  GigsSpaces DAO Implemenation " style="padding:10px"><pre><code class="language-java">package com.vaannila.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -497,47 +467,29 @@ public class UserDAOSpaceImpl implements UserDAO {
     public void setGigaspace(GigaSpace gigaspace) {this.gigaspace = gigaspace;}
 }
 </code></pre>
-</div>
-</div>
-
-<h1><a name="deploying-the-data-grid-and-the-application">&#160;</a>Deploying the Data-Grid and the Application</h1>
-
-<p>To deploy the Data-Grid and the web Application into the <a href="https://docs.gigaspaces.com/latest/admin/the-runtime-environment.html">GigaSpaces runtime environment</a> perform the following:</p>
-
-<ul>
-<li>Download the <a href="/attachment_files/sbp/3rd_party_libraries.zip">3rd party libraries</a> package, and extract it into the <code>\gigaspaces-xap\lib\optional\pu-common</code> folder.</li>
-<li>Download the <a href="/attachment_files/sbp/application.war">application.war</a> , <a href="/attachment_files/sbp/myDataGrid.jar">myDataGrid.jar</a> and the <a href="/attachment_files/sbp/myMirror.jar">myMirror.jar</a>.</li>
-<li>Start the <a href="/product_overview/service-grid.html#gsa">GigaSpaces agent</a>:
+            </div>
+        </div>
+        <h1><a name="deploying-the-data-grid-and-the-application">&#160;</a>Deploying the Data Grid and the Application</h1>
+        <p>To deploy the Data Grid and the web Application into the <a href="https://docs.gigaspaces.com/latest/admin/the-runtime-environment.html">GigaSpaces runtime environment</a> perform the following:</p>
+        <ul>
+            <li>Download the <a href="/attachment_files/sbp/3rd_party_libraries.zip">3rd party libraries</a> package, and extract it into the <code>\gigaspaces-xap\lib\optional\pu-common</code> folder.</li>
+            <li>Download the <a href="/attachment_files/sbp/application.war">application.war</a> , <a href="/attachment_files/sbp/myDataGrid.jar">myDataGrid.jar</a> and the <a href="/attachment_files/sbp/myMirror.jar">myMirror.jar</a>.</li>
+            <li>Start the <a href="/product_overview/service-grid.html#gsa">GigaSpaces agent</a>:
 On windows run the following command:</li>
-</ul>
-
-<pre><code class="language-java">\gigaspaces-xap\bin\gs-agent.bat
+        </ul><pre><code class="language-java">\gigaspaces-xap\bin\gs-agent.bat
 </code></pre>
-
-<p>On linux run the following command:</p>
-
-<pre><code class="language-java">\gigaspaces-xap\bin\gs-agent.sh
+        <p>On linux run the following command:</p><pre><code class="language-java">\gigaspaces-xap\bin\gs-agent.sh
 </code></pre>
-
-<ul>
-<li>Start the HSQLDB database:</li>
-</ul>
-
-<pre><code class="language-java">java -cp ../lib/platform/jdbc/hsqldb.jar org.hsqldb.Server -database.0 file:mydb -dbname.0 xdb
+        <ul>
+            <li>Start the HSQLDB database:</li>
+        </ul><pre><code class="language-java">java -cp ../lib/platform/jdbc/hsqldb.jar org.hsqldb.Server -database.0 file:mydb -dbname.0 xdb
 </code></pre>
-
-<p>Once the agent is up and running call the deploy commands.</p>
-
-<ul>
-<li>Deploy the Data-grid using:</li>
-</ul>
-
-<pre><code class="language-java">gs.sh deploy myDataGrid.jar
+        <p>Once the agent is up and running call the deploy commands.</p>
+        <ul>
+            <li>Deploy the Data grid using:</li>
+        </ul><pre><code class="language-java">gs.sh deploy myDataGrid.jar
 </code></pre>
-
-<p>You should see the following:</p>
-
-<pre><code class="language-java">Found 1 GSMs
+        <p>You should see the following:</p><pre><code class="language-java">Found 1 GSMs
 Deploying [myDataGrid.jar] with name [myDataGrid] under groups [gigaspaces-8.0.0-XAPPremium-ga] and locators []
 Uploading [myDataGrid] to [http://192.168.1.101:3354/]
 Waiting for [2] processing unit instances to be deployed...
@@ -545,17 +497,11 @@ Waiting for [2] processing unit instances to be deployed...
 [myDataGrid.1] [2] deployed successfully on [192.168.1.101]
 Finished deploying [2] processing unit instances
 </code></pre>
-
-<ul>
-<li>Deploy the Mirror using:</li>
-</ul>
-
-<pre><code class="language-java">gs.sh deploy myMirror.jar
+        <ul>
+            <li>Deploy the Mirror using:</li>
+        </ul><pre><code class="language-java">gs.sh deploy myMirror.jar
 </code></pre>
-
-<p>You should see the following:</p>
-
-<pre><code class="language-java">Found 1 GSMs
+        <p>You should see the following:</p><pre><code class="language-java">Found 1 GSMs
 Deploying [myMirror.jar] with name [myMirror] under groups [gigaspaces-8.0.0-XAPPremium-ga] and locators []
 Uploading [myMirror] to [http://192.168.1.101:3354/]
 SLA Not Found in PU.  Using Default SLA.
@@ -563,78 +509,65 @@ Waiting for [1] processing unit instances to be deployed...
 [myMirror] [1] deployed successfully on [192.168.1.101]
 Finished deploying [1] processing unit instances
 </code></pre>
-
-<ul>
-<li>Deploy the web Application using:</li>
-</ul>
-
-<pre><code class="language-java">gs.sh deploy application.war
+        <ul>
+            <li>Deploy the web Application using:</li>
+        </ul><pre><code class="language-java">gs.sh deploy application.war
 </code></pre>
-
-<p>You should see the following:</p>
-
-<pre><code class="language-java">Found 1 GSMs
+        <p>You should see the following:</p><pre><code class="language-java">Found 1 GSMs
 Deploying [application.war] with name [application] under groups [gigaspaces-8.0.0-XAPPremium-ga] and locators []
 Uploading [application] to [http://192.168.1.101:3354/]
 Waiting for [1] processing unit instances to be deployed...
 [application] [1] deployed successfully on [192.168.1.101]
 Finished deploying [1] processing unit instances
 </code></pre>
-
-<ul>
-<li>To view the deployed application and data-grid start the GS-UI:
+        <ul>
+            <li>To view the deployed application and data grid start the GS-UI:
 On windows run the following command:</li>
-</ul>
-
-<pre><code class="language-java">\gigaspaces-xap\bin\gs-ui.bat
+        </ul><pre><code class="language-java">\gigaspaces-xap\bin\gs-ui.bat
 </code></pre>
-
-<p>On linux run the following command:</p>
-
-<pre><code class="language-java">\gigaspaces-xap\bin\gs-ui.sh
+        <p>On linux run the following command:</p><pre><code class="language-java">\gigaspaces-xap\bin\gs-ui.sh
 </code></pre>
-
-<ul>
-<li>Once the Data-Grid, Mirror and the application will be deployed you should see the following within the GS-UI:</li>
-</ul>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/hib2space1.jpg" alt="hib2space1.jpg" /></p>
-</div>
-
-<ul>
-<li>You can start the web application and register users:</li>
-</ul>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/hib2space3.jpg" alt="hib2space3.jpg" /></p>
-</div>
-
-<p>Each registered user data will be stored within the space and also be persist into the database.</p>
-
-<ul>
-<li>To view the data within the space click the Data Types , select the User class and click Query:</li>
-</ul>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/hib2space2.jpg" alt="hib2space2.jpg" /></p>
-</div>
-
-<p>This will display the Query view with the User objects data stored within the space:</p>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/hib2space5.jpg" alt="hib2space5.jpg" /></p>
-</div>
-
-<ul>
-<li>To view the data within the database, start the database UI :</li>
-</ul>
-
-<pre><code class="language-java">java -cp  ../lib/platform/jdbc/hsqldb.jar  org.hsqldb.util.DatabaseManager
+        <ul>
+            <li>Once the Data Grid, Mirror and the application will be deployed you should see the following within the GS-UI:</li>
+        </ul>
+        <div class="tc-align-center">
+            <p>
+                <img src="/attachment_files/sbp/hib2space1.jpg" alt="hib2space1.jpg" />
+            </p>
+        </div>
+        <ul>
+            <li>You can start the web application and register users:</li>
+        </ul>
+        <div class="tc-align-center">
+            <p>
+                <img src="/attachment_files/sbp/hib2space3.jpg" alt="hib2space3.jpg" />
+            </p>
+        </div>
+        <p>Each registered user data will be stored within the space and also be persist into the database.</p>
+        <ul>
+            <li>To view the data within the space click the Data Types , select the User class and click Query:</li>
+        </ul>
+        <div class="tc-align-center">
+            <p>
+                <img src="/attachment_files/sbp/hib2space2.jpg" alt="hib2space2.jpg" />
+            </p>
+        </div>
+        <p>This will display the Query view with the User objects data stored within the space:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="/attachment_files/sbp/hib2space5.jpg" alt="hib2space5.jpg" />
+            </p>
+        </div>
+        <ul>
+            <li>To view the data within the database, start the database UI :</li>
+        </ul><pre><code class="language-java">java -cp  ../lib/platform/jdbc/hsqldb.jar  org.hsqldb.util.DatabaseManager
 </code></pre>
-
-<p>And query the database:</p>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/hib2space4.jpg" alt="hib2space4.jpg" /></p>
-</div>
-
-<p><span class="tc-iconexcl">&#160;</span> You may download the full source code of the application <a href="/attachment_files/sbp/HibernateToSpace.zip">here</a>.</p>
-
-</body>
+        <p>And query the database:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="/attachment_files/sbp/hib2space4.jpg" alt="hib2space4.jpg" />
+            </p>
+        </div>
+        <p><span class="tc-iconexcl">&#160;</span> You may download the full source code of the application <a href="/attachment_files/sbp/HibernateToSpace.zip">here</a>.</p>
+    </body>
 </html>

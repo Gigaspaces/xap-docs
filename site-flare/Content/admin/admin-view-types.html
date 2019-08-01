@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1>Viewing Data Types</h1>
+        <h1 class="tc-pagetitle">Viewing Data Types</h1>
         <p><span class="tc-bold">To view data types in the Space:</span>
         </p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -12,14 +12,23 @@
                 </p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap space info --type-stats &lt;name&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap space info --type-stats &lt;name&gt;</code> or <code>insightedge space info --type-stats &lt;name&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> space info --type-stats &lt;name&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command shows data type information for the specified Space: Entry class, number of entries, notify templates.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space info --type-stats mySpace
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space info --type-stats mySpace
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space info --type-stats mySpace
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> space info --type-stats mySpace
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Output Example:</span>
                 </p>
                 <p>
@@ -47,14 +56,23 @@
                 </p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap space info-instance --type-stats &lt;instance ID&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap space info-instance --type-stats &lt;instance ID&gt;</code> or <code>insightedge space info-instance --type-stats &lt;instance ID&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> space info-instance --type-stats &lt;instance ID&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command shows data type information for the specified Space instance: Entry class, number of entries, notify templates.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space info-instance --type-stats mySpace~1_1
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space info-instance --type-stats mySpace~1_1
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space info-instance --type-stats mySpace~1_1
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> space info-instance --type-stats mySpace~1_1
+</code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Output Example:</span>
                 </p>
                 <p>

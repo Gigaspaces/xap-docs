@@ -9,7 +9,7 @@ weight: 50
 
 |Author|XAP Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-|Oleksiy Dyagilev| 9.6| February 2014| [Apache Kafka](http://kafka.apache.org)| [Kafka integration](/download_files/sbp/kafka-integration.tar)|
+|Oleksiy Dyagilev| 14.2| March 2019| [Apache Kafka](http://kafka.apache.org)| [Github link](/https://github.com/GigaSpaces-ProfessionalServices/xap-kafka)|
 
 
 
@@ -43,7 +43,7 @@ By default Kafka messages are uniformly distributed across Kafka partitions. Ple
 
 ## Download the Kafka Example
 
-You can download the example code from [here](/download_files/sbp/kafka-integration.tar).
+You can download the example code from [here](https://github.com/GigaSpaces-ProfessionalServices/xap-kafka).
 Unzip into an empty folder.
 
 The example located under `<project_root>/example`. It demonstrates how to configure Kafka persistence and implements a simple Kafka consumer pulling data from Kafka and store in HsqlDB.

@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1>Deploying a Space</h1>
+        <h1 class="tc-pagetitle">Deploying a Space</h1>
         <p>As part of evaluating <MadCap:variable name="General.ProductNameXAP" /> or <MadCap:variable name="General.ProductNameIE" />, or as part of working with the products in a lab environment, you’ll want to deploy a data grid, also known as a Space. After you’ve deployed the Space, you can perform Space-related activities, such as adding data objects, viewing information about the Space configuration, querying the data in the Space, and viewing logs and alerts.</p>
         <div class="tc-admon-note">
             <p>In order to deploy a Space, you must first have a <a href="admin-service-grid.html">service grid</a>  up and running. Deploying a Space creates a Processing Unit that contains only a Space, without any application components.</p>
@@ -14,7 +14,8 @@
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap space deploy</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap space deploy</code> or <code>insightedge space deploy</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> space deploy</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
@@ -61,8 +62,16 @@
                 </table>
                 <p><span class="tc-italic">Input Example:</span>
                 </p>
-                <p>This example deploys a Space named <span class="tc-bold">mySpace</span> with high availability and two partitions, two instances for the first parition (mySpace~1_1,mySpace~1_2) and two for the second partition (mySpace~2_1,mySpace~2_2). For this example, you must start at least 2 containers.</p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space deploy --ha --partitions=2 mySpace
+                <p>This example deploys a Space named <span class="tc-bold">mySpace</span> with high availability and two partitions, two instances for the first parition (mySpace~1_1,mySpace~1_2) and two for the second partition (mySpace~2_1,mySpace~2_2). For this example, you must start at least 2 containers.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space deploy --ha --partitions=2 mySpace
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space deploy --ha --partitions=2 mySpace
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> space deploy --ha --partitions=2 mySpace
+</code></pre>
+                    </div>
+                </div>
             </div>
             <div title="REST Manager API" style="padding:10px">
                 <p><span class="tc-italic">Path</span>
