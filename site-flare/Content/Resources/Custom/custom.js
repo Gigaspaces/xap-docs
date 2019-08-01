@@ -69,8 +69,8 @@
 
           $(breadcrumbPrefix + breadcrumbPrefixVersion).prependTo('.breadcrumbs');
         }
-        $('.title-bar-container')
-          .append($('.breadcrumbs'));
+        $('.main-section')
+          .prepend($('.breadcrumbs'));
       },
       placeTopicFooter: function () {
         var f = document.getElementById('footer');
@@ -137,6 +137,7 @@
             var bannerType = versionData[v].topicBanner;
             if (bannerType) {
               $('.bodyContent').prepend($(topicBanner[bannerType]));
+              $('.topic-content').prepend($(topicBanner[bannerType]));
             }
           } /*  else { */
           if (versionData[v].hide) continue;
@@ -163,12 +164,12 @@
 
         navBar.appendTo('.title-bar-layout');
         $('#version-menu>li>a')
-          .click(function (e) {
+          .hover(function (e) {
             e.preventDefault();
             $('#version-menu>li').toggleClass('open');
           });
         $('#resources-menu>li>a')
-          .click(function (e) {
+          .hover(function (e) {
             e.preventDefault();
             $('#resources-menu>li').toggleClass('open');
           });
