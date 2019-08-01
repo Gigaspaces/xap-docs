@@ -75,9 +75,12 @@ body
 	padding: 1rem;
 	position: relative;
 	text-align: center;
+	transition: 0.5s all ease;
 	width: 35.5%;
 }
-
+.landing .region-top .region-wrapper .tile:hover {
+    box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);
+}
 .landing .region-top .region-wrapper .tile-link
 {
 	bottom: 0;
@@ -132,6 +135,24 @@ body
 .landing .region-bottom .MCSlide
 {
 	padding: 1rem;
+}
+.landing .MCSlide.slideshow {
+    text-align: center;
+}
+
+.landing .slideshow p:first-child {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.landing .MCSlide.slideshow p:first-child a, .MCSlide.slideshow h3:first-child a {
+    font-size: 1.325rem;
+    line-height: 30px;
+    font-weight: 400;
+}
+
+.landing .MCSlide.slideshow img {
+    max-width: 30%;
 }
 
 .landing .region-bottom .mc-wrapper .mc-controls-direction a
@@ -216,13 +237,15 @@ body
 
 .content .title-bar-container
 {
-	margin-bottom: 3rem;
+	/*margin-bottom: 3rem;*/
 }
 
 .content .main-section .sidenav-layout
 {
 	height: calc(100vh - 86px - 3rem) !important;
 	position: relative;
+	max-width: 100%;
+	margin-left: 5%;
 }
 
 MadCap|breadcrumbsProxy
@@ -404,13 +427,13 @@ MadCap|breadcrumbsProxy
 .content .off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested
 {
 	direction: rtl;
-	max-height: 270px;
+	max-height: 350px;
 	overflow: auto;
 }
 
 .content .menu.vertical .menu.vertical > li
 {
-	margin-bottom: 13px;
+	margin-bottom: 9px;
 }
 
 .content .off-canvas-accordion .is-accordion-submenu.nested
@@ -430,7 +453,7 @@ MadCap|breadcrumbsProxy
 
 .content .off-canvas-accordion .is-accordion-submenu.nested::-webkit-scrollbar
 {
-	width: 2px;
+	width: 4px;
 }
 
 .content .off-canvas-accordion .is-accordion-submenu.nested::-webkit-scrollbar-track
@@ -471,6 +494,7 @@ MadCap|breadcrumbsProxy
 {
 	flex: 1 1;
 	overflow: auto;
+	padding: 0 20px;
 }
 
 /* In-Page Nav */
@@ -575,6 +599,7 @@ MadCap|breadcrumbsProxy
 
 .content .ipn-content.closed
 {
+	border-right: none;
 	transition: 0.5s width ease;
 	width: 0px;
 }
@@ -753,6 +778,11 @@ MadCap|breadcrumbsProxy
 	z-index: 1000;
 }
 
+.nav-menu > li > ul:hover {
+	display: block;
+}
+
+
 .nav-menu > li.open > ul
 {
 	display: block;
@@ -918,6 +948,9 @@ MadCap|breadcrumbsProxy
 	border: solid 1px #000000;
 	margin-top: 10px;
 	padding: 8px;
+    margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .tc-topic-banner.old
@@ -961,3 +994,19 @@ h1
 	page-break-before: avoid;
 }
 
+@media only screen and (max-width: 1279px) {
+	.foundation-wrap,
+	.off-canvas-wrapper
+	{
+		overflow-y: hidden;
+	}
+		.body-container
+	{
+		overflow: hidden;
+	}
+
+	html .content .main-section .sidenav-layout
+	{	
+		height: auto !important;
+	}
+}
