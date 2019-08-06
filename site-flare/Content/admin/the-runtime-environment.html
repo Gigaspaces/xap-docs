@@ -9,7 +9,7 @@
             <p>The <code>gs-agent</code> script is deprecated as of version 14.0, as noted in the <a href="../rn/whats-new.html">Release Notes</a>. Use the <code>xap host run-agent</code> or <code>insightedge host run-agent</code> command in the <a href="tools-cli.html">new CLI</a> instead.</p>
         </div>
         <h1>Usage</h1>
-        <p>To start a service grid on a machine, launch the <code>gs-agent</code> utility located in the <code>$XAP_HOME/bin</code> folder. This will start the <a href="../overview/the-runtime-environment.html#gsa">Grid Service Agent</a>, which is responsible of starting and managing the other service grid components (GSC, GSM, etc.). Command line arguments are used to specify which service grid components should be started and managed. In general, <code>--process_type=n</code> will start <code>n</code> instances of the specified <code>process_type</code>. Use the <code>global</code> keyword (e.g. <code>--global.process_type=n</code>) to specify that the agent should coordinate the hosting and management of that service with other running agents.</p>
+        <p>To start a service grid on a machine, launch the <code>gs-agent</code> utility located in the <code>$XAP_HOME/bin</code> folder. This will start the <a href="../overview/the-runtime-environment.html#gsa">Grid Service Agent</a>, which is responsible for starting and managing the other service grid components (GSC, GSM, etc.). Command line arguments are used to specify which service grid components should be started and managed. In general, <code>--process_type=n</code> will start <code>n</code> instances of the specified <code>process_type</code>. Use the <code>global</code> keyword (e.g. <code>--global.process_type=n</code>) to specify that the agent should coordinate the hosting and management of that service with other running agents.</p>
         <h2>Help</h2>
         <p>Run the <code>--help</code> or <code>-h</code> command to see all available options:</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -55,7 +55,7 @@ gs-agent --manager --gsc=2
             <p>You also need to configure the <code>XAP_MANAGER_SERVERS</code> environment variable in the list of designated Manager servers.</p>
         </div>
         <h2>Starting a Data Grid Without a Manager</h2>
-        <p>If you can't the Manager for some reason, but you still want high availability, you can select a specific host machines as management servers, and start a LUS and GSM on each one:</p>
+        <p>If you can't start the Manager for some reason, but you still want high availability, you can select specific host machines as management servers, and start a LUS and GSM on each one:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Linux" style="padding:10px"><pre><code class="language-bash"># Starts a LUS and GSM:
 ./gs-agent.sh --lus --gsm
@@ -188,7 +188,7 @@ call gs-agent.bat
             <li>The <code>initial-instances</code> parameter controls what type of spawning will be performed when the GSA spawns processes by itself (and not on demand by the Admin API).</li>
             <li>The <code>shutdown-class</code>, followed by the <code>restart-on-exit</code> flag, controls whether the process will be restarted upon termination. There are three types of values:
 
-<ul><li><code>always</code> - Always restarts the process if it exits.</li><li MadCap:conditions="Version.15-0-born"><code>pid-handshake</code> - Restart the process on any exit value, following a successful PID handshake.</li><li><code>never</code> - Never restarts the process if it exits.</li><li MadCap:conditions="Version.15-0-died"><p>!0 - Restart the process only if the exit code is different than 0.</p></li></ul></li>
+<ul><li MadCap:conditions="Version.15-0-born">Default and recommended value <code>pid-handshake</code> - Restart the process on any exit value if the process started successfully, as indicated by a successful PID handshake.</li><li><code>always</code> - Always restarts the process if it exits.</li><li><code>never</code> - Never restarts the process if it exits.</li><li MadCap:conditions="Version.15-0-died"><p>!0 - Restart the process only if the exit code is different than 0.</p></li></ul></li>
             <li>The <code>shutdown-class</code> is an implementation of <code>com.gigaspaces.grid.gsa.ShutdownProcessHandler</code> interface and provides the default shutdown hooks before and after shutdown of a process, to make sure it is shut down properly. The <code>shutdown-class</code> can be omitted.</li>
             <li>The <code>restart-regex</code> (there can be more than one element) is applied to each console output line of the managed process, and if there is a match, the GSA will automatically restart the process. By default, the GSC will be restarted if there is an <code>OutOfMemoryError</code>.</li>
         </ul>
