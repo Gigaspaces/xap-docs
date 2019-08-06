@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Deploying GigaSpaces Platforms on Kubernetes</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th align="center">Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&#160;</td>
+                    <td>15.0</td>
+                    <td>August 2019</td>
+                    <td>
+                    </td>
+                    <td align="center">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="overview">&#160;</a>Overview</h1>
+        <p>Minishift is a tool that helps you run OpenShift locally by running a single-node OpenShift cluster inside a VM. This topic explains how to prepare the OpenShift environment so you can install KubeGrid (the InsightEdge and XAP Kubernetes deployment) on Minishift. The sample deployment described here deploys InsightEdge using PowerShell and Oracle VirtualBox, but KubeGrid can be installed on any Minishift cluster using your preferred tools.</p>
+        <p>The desktop preparation process for deploying KubeGrid in Minishift involves the following steps, which are explained in detail below:</p>
+        <ol>
+            <li>Set up your local machine or VM.</li>
+            <li>(For Windows environments only) Disable Hyper-V (as this deployment uses Oracle VirtualBox).</li>
+            <li>Configure Minishift to work with Oracle VirtualBox.</li>
+            <li>Set up the OpenShift container environment.</li>
+        </ol>
+        <p>After the desktop has been prepared, you can follow the instructions in the <a href="https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html">Deploying a Data Grid in Kubernetes</a> topic to deploy KubeGrid on Minishift.</p>
+        <h1><a name="prerequisites">&#160;Creating the Cluster</a>
+        </h1>
+        <p>The setup and commands to create the cluster are specific to each of the cluster environments.</p>
+        <h2>AWS</h2>
+        <h3>Prerequisites</h3>
+        <p>Before beginning to create the cluster, ensure that you have the following installed on your local machine or a VM:</p>
+        <ul>
+            <li><a href="https://helm.sh/docs/using_helm/#quickstart-guide" target="_blank">Helm </a>
+            </li>
+            <li><a href="https://github.com/weaveworks/eksctl" target="_blank">Eksctl - CLI for EKS</a>
+            </li>
+        </ul>
+        <h3>Create Cluster</h3>
+        <p>To create a cluster named demo with default parameters type the following command:</p><pre><code>eksctl create cluster --name demo</code></pre>
+        <h2>Kubespray</h2>
+        <h3>Prerequisites</h3>
+        <p>Before beginning to create the cluster, ensure that you have the following installed on your local machine or a VM:</p>
+        <ul>
+            <li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank">Kubectl</a>
+            </li>
+            <li><a href="https://github.com/kubernetes-sigs/kubespray" target="_blank">Kubespray</a>
+            </li>
+            <li><a href="https://helm.sh/docs/using_helm/#quickstart-guide" target="_blank">Helm </a>
+            </li>
+            <li><a href="https://www.vagrantup.com/downloads.html" target="_blank">Vagrant</a>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>This sample deployment used the following software:</p>
+            <ul>
+                <li>Helm version v2.14.3</li>
+                <li>M</li>
+                <li>Kubectl: Client Version: v1.15.0, Server Version: v1.????</li>
+                <li>Vagrant version 2.2.5</li>
+            </ul>
+        </div>
+        <h1>Deploying the Cluster</h1>
+        <p>To deploy the cluster perform the following steps </p>
+        <h2>Deploy the Helm Service</h2>
+        <p>To deploy the Helm Tiller service with access to manage resources in your cluster type the following command</p><pre><code>helm init --service-account tiller</code></pre>
+        <h2>Deploying KubeGrid</h2>
+        <p>Now that the desktop environment is prepared, you can install the InsightEdge demo on Minishift.</p>
+        <p>To deploy KubeGrid and the InsightEdge demo:</p>
+        <ol>
+            <li>
+                <p>Type the following command to access the insightedge GigaSpaces charts for the XAP data grid and InsightEdge:</p><pre><code>helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
+</code></pre>
+            </li>
+            <li>
+                <p>After adding the GigaSpaces Helm repo, install the required chart(s) by referencing the chart name and product package version. For example, to install InsightEdge, use the following command:</p><pre><code>helm install gigaspaces/insightedge --version=14.0.1 --name demo
+</code></pre>
+            </li>
+        </ol>
+        <p>For more information about InsightEdge KubeGrid deployment options, see the <a href="https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html">Deploying a Data Grid in Kubernetes</a> topic.</p>
+    </body>
+</html>
