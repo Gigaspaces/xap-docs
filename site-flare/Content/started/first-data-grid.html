@@ -24,13 +24,13 @@
         </ul>
         <h1>Creating a Project</h1>
         <p>When you create a project, the blueprint leads you through an interactive work flow where you define a number of options as you create your configuration. Using only the default options in the work flow creates a client application that is configured to use the Space that is generated with it.</p>
+        <div class="tc-admon-tip">
+            <p>When you first begin to generate a blueprint-based project, you can give the project a name. We skip this in the example.</p>
+        </div>
         <p class="tc-todo">To create a project:</p>
         <ol>
             <li>
                 <p>Type <code>blueprint generate</code>. This begins the configuration work flow.</p>
-                <div class="tc-admon-tip">
-                    <p>When you first begin to generate a blueprint-based project, you can give the project a name. We skip this in the example.</p>
-                </div>
             </li>
             <li>A list of available blueprints is displayed. Press <span class="tc-bold">Enter</span> to select the default value (<span class="tc-bold">1</span>=client).</li>
             <li>The next step is configuring the target path (folder name and location) for the client application files. Press <span class="tc-bold">Enter</span> to select the default value (<span class="tc-bold">my-client</span> in the product package bin folder).</li>
@@ -86,35 +86,26 @@ Would you like to open it in file explorer? [y]:</code></pre>
         <p>A data grid in a local environment is hosted on a <a href="../overview/the-runtime-environment.html">service grid</a>. The service grid is comprised of one or more machines (service grid nodes) running a <a href="../overview/the-runtime-environment.html#gsa">Grid Service Agent</a> (or GSA), and provides a framework to deploy and monitor applications on the data grid.</p>
         <p>To start the service grid with 4 containers, navigate to <span class="tc-bold"><MadCap:variable name="General.Home-directory"></MadCap:variable>/bin</span> and run the following command:</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Unix CLI" style="padding:10px"><pre><code class="language-bash">./gs host run-agent --auto --gsc=4<![CDATA[
-]]></code></pre>
+            <div title="Linux" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> host run-agent --auto --gsc=4
+</code></pre>
             </div>
-            <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash">gs host run-agent --auto --gsc=4<![CDATA[
-]]></code></pre>
-            </div>
-            <div title="REST" style="padding:10px"><pre><code class="language-bash"># start the agent with the REST interface
-# Windows
-gs host run-agent --manager-local --gsc=4
-# Unix
-./gs host run-agent --manager-local --gsc=4
+            <div title="Windows " style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> host run-agent --auto --gsc=4
 </code></pre>
             </div>
         </div>
         <h2><a name="deploying-the-data-grid"></a>Deploying the Data Grid</h2>
         <p>Start a command line, navigate to <span class="tc-bold"><MadCap:variable name="General.Home-directory"></MadCap:variable>/bin</span> and run the following command:</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Unix CLI" style="padding:10px"><pre><code class="language-bash">./gs space deploy --partitions=2 --ha myGrid
+            <div title="Linux " style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> space deploy --partitions=2 --ha myGrid
 </code></pre>
             </div>
-            <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash">gs.bat space deploy --partitions=2 --ha myGrid</code></pre>
-            </div>
-            <div title="REST" style="padding:10px"><pre><code class="language-json">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
-'http://localhost:8090/v1/spaces?name=myGrid&amp;partitions=2&amp;backups=true&amp;requiresIsolation=true'
-</code></pre>
+            <div title="Windows " style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space deploy --partitions=2 --ha myGrid</code></pre>
             </div>
         </div>
         <p>This command deploys a Data Grid (aka space) called <span class="tc-bold">myGrid</span> with 2 partitions and 1 backup per partition.</p>
         <h2>Interacting with the Data Grid</h2>
         <p>After the data grid has been deployed, you can run your project again. To connect to the existing Space, change the default Space name to the name of the Space you just created.</p>
+        <p>&#160;</p>
+        <p>launch the run script (type "run myGrid" with the Linux/Windows CLI variables first.</p>
     </body>
 </html>
