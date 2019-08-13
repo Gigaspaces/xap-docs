@@ -15,26 +15,30 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Oleksiy Dyagilev</td>
-                    <td>9.6</td>
-                    <td>February 2014</td>
-                    <td><a href="http://kafka.apache.org">Apache Kafka</a>
-                    </td>
-                    <td><a href="/download_files/sbp/kafka-integration.tar">Kafka integration</a>
+                <tr MadCap:conditions="">
+                    <td>Aharon Moll</td>
+                    <td>14.2</td>
+                    <td>March 2019</td>
+                    <td>Apache Kafka</td>
+                    <td><a href="https://docs-staging.gigaspaces.com/https://github.com/GigaSpaces-ProfessionalServices/xap-kafka" target="_blank">Github link </a>
                     </td>
                 </tr>
             </tbody>
         </table>
         <h1><a name="introduction">&#160;</a>Introduction</h1>
-        <p><a href="http://kafka.apache.org">Apache Kafka</a> is a distributed publish-subscribe messaging system. It is designed to support persistent messaging with a O(1) disk structures that provides constant time performance even with many TB of stored messages.
+        <p><a href="http://kafka.apache.org">Apache Kafka</a> is a distributed publish-subscribe messaging system, which supports sending messages between applications, processes, and servers. A message is any kind of information that is sent from a producer (application that sends the messages) to a consumer (application that receives the messages).</p>
+        <p>Producers write their messages, or data, to topics. Kafka topics are divided into partitions that function like logs. Each message is written to a partition and has a unique offset, or identifier. Consumers can specify a particular offset point where they can begin to read messages. </p>
+        <p>A Kafka server is called a broker, and a Kafka cluster contains one or more brokers. Topic partitions can reside on different brokers in the clusters, so that data in a specific topic can be split among multiple brokers. Consumers can be associated with consumer groups (each group reads from a specific topic). This enables high throughput because messages can be written and read in parallel to and from the different brokers in the cluster.</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p> It is designed to support persistent messaging with a O(1) disk structures that provides constant time performance even with many TB of stored messages.
 Apache Kafka provides High-throughput even with very modest hardware, Kafka can support hundreds of thousands of messages per second. Apache Kafka supports partitioning the messages over Kafka servers and distributing consumption over a cluster of consumer machines while maintaining per-partition ordering semantics. Many times Apache Kafka is used to perform parallel data load into Hadoop.</p>
         <p>This pattern integrates GigaSpaces with Apache Kafka. GigaSpaces' write-behind IMDG operations to Kafka making it available for the subscribers. Such could be Hadoop or other data warehousing systems using the data for reporting and processing.</p>
         <h1><a name="xap-kafka-integration-architecture">&#160;</a>XAP Kafka Integration Architecture</h1>
         <p>The XAP Kafka integration is done via the <code>SpaceSynchronizationEndpoint</code> interface deployed as a Mirror service PU. It consumes a batch of IMDG operations, converts them to custom Kafka messages and sends these to the Kafka server using the Kafka Producer API.</p>
         <div class="tc-align-center">
             <p>
-                <img src="/attachment_files/sbp/xap-kafka.jpg" alt="xap-kafka.jpg" />
+                <img src="../Resources/Static/attachment_files/sbp/xap-kafka.jpg" alt="xap-kafka.jpg" />
             </p>
         </div>
         <p>GigaSpace-Kafka protocol is simple and represents the data and its IMDG operation. The message consists of the IMDG operation type (Write, Update , remove, etc.) and the actual data object. The Data object itself could be represented either as a single object or as a Space Document with key/values pairs (<code>SpaceDocument</code>).
@@ -43,7 +47,7 @@ The default encoder utilizes Java serialization mechanism which implies Space cl
         <p>By default Kafka messages are uniformly distributed across Kafka partitions. Please note, even though IMDG operations appear ordered in <code>SpaceSynchronizationEndpoint</code>, it doesn't imply correct ordering of data processing in Kafka consumers. See below diagram:</p>
         <div class="tc-align-center">
             <p>
-                <img src="/attachment_files/sbp/xap-kafka-ordering.jpg" alt="xap-kafka-ordering.jpg" />
+                <img src="../Resources/Static/attachment_files/sbp/xap-kafka-ordering.jpg" alt="xap-kafka-ordering.jpg" />
             </p>
         </div>
         <h1><a name="getting-started">&#160;</a>Getting started</h1>

@@ -30,7 +30,7 @@
         <div class="tc-admon-refer">
             <p>For more information about dependencies, see <a href="../started/installation-maven-overview.html">Maven Artifacts</a>.</p>
         </div>
-        <h1><a name="examples"></a>Examples</h1>
+        <h1>Examples</h1>
         <p>Text search queries are available through the <code>text:</code> extension to the <a href="query-sql.html">SQL query syntax</a>.</p>
         <p>For example, suppose we have a class called <code>NewsArticle</code> with a String property called <code>content</code> and a String property called <code>type</code>:</p><pre><code class="language-java">// Matching 
 SQLQuery&lt;NewsArticle&gt; query = new SQLQuery&lt;NewsArticle&gt;(NewsArticle.class, "content text:match ?");
@@ -58,9 +58,9 @@ SQLQuery&lt;NewsArticle&gt; query = new SQLQuery&lt;NewsArticle&gt;(NewsArticle.
 query.setParameter(1, "space");
 query.setParameter(1, "blog");
 </code></pre>
-        <h1><a name="supported-search-operations"></a>Supported Search Operations</h1>
+        <h1>Supported Search Operations</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> supports the <a href="http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description" target="_blank">Lucene Query Parser Syntax</a> except <code>Fields</code>.</p>
-        <h1><a name="nested-properties"></a>Nested Properties</h1>
+        <h1>Nested Properties</h1>
         <p>In the example below, the <code>author</code> is a property of type <code>Person</code>  which is a property of <code>NewsArticle</code>:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="NewsAricle" style="padding:10px"><pre><code class="language-java">@SpaceClass
@@ -108,12 +108,12 @@ public class NewsArticle {
 query.setParameter(1, "Friedrich");
 query.setParameter(2, "Durrenmatt");
 </code></pre>
-        <h1><a name="combining-text-and-standard-predicates"></a>Combining Text and Standard Predicates</h1>
+        <h1>Combining Text and Standard Predicates</h1>
         <p>Suppose our <code>NewsArticle</code> class contains a articleNumber property as well, and we want to enhance our query and find the NewsArticle with a articleNumber. We can simply add the relevant predicate to the query’s criteria:</p><pre><code class="language-java">SQLQuery&lt;NewsArticle&gt; query = new SQLQuery&lt;NewsArticle&gt;(NewsArticle.class, "content text:match ? AND articleNumber &lt; ?");
 query.setParameter(1, "deployment");
 query.setParameter(2, new Long(1000));  
 </code></pre>
-        <h1><a name="analyzer"></a>Analyzer</h1>
+        <h1>Analyzer</h1>
         <p>An <a href="http://lucene.apache.org/core/5_3_0/core/org/apache/lucene/analysis/package-summary.html#package_description" target="_blank">Analyzer</a> is responsible for supplying a TokenStream which can be consumed by the indexing and searching processes in Lucene. There are several different <a href="https://lucene.apache.org/core/3_0_3/api/core/org/apache/lucene/analysis/Analyzer.html" target="_blank">Analyzers</a> available.</p>
         <p>You can use the <code>@SpaceTextAnalyzer</code>  annotation to choose the Analyzer:</p><pre><code class="language-java">import org.apache.lucene.analysis.core.KeywordAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -145,7 +145,7 @@ public class NewsArticle {
   // ....
 }
 </code></pre>
-        <p>For nested properties you  can use the <code>@SpaceTextAnalyzers</code>annotation:</p><pre><code class="language-java">@SpaceClass
+        <p>For nested properties, you  can use the <code>@SpaceTextAnalyzers</code>annotation:</p><pre><code class="language-java">@SpaceClass
 public class NewsArticle {
     private UUID id;
     private String content;
@@ -163,11 +163,21 @@ public class NewsArticle {
         <div class="tc-admon-note">
             <p>If the <code>@SpaceTextAnalyzer</code> annotation is omitted, the <code>StandardAnalyzer</code> is applied.</p>
         </div>
-        <h1><a name="indexing"></a>Indexing</h1>
+        <p>For collection properties, you can use the <code>@SpaceTextAnalyzers</code> annotation:</p><pre><code class="language-java">@SpaceClass
+public class Director {
+    private UUID id;
+    private List&lt;Movie&gt; movies;
+
+    @SpaceTextAnalyzers({ @SpaceTextAnalyzer(analyzer = KeywordAnalyzer.class,path = "[*].title")})
+    public List&lt;Movie&gt; getMovies() {
+        return movies;
+    }
+    // .....</code></pre>
+        <h1>Indexing</h1>
         <div class="tc-admon-refer">
             <p>The performance of text search queries can be vastly improved by indexing the relevant  properties. For detailed information see See <a href="indexing-text-search.html">Indexing</a> for more information.</p>
         </div>
-        <h1><a name="space-document"></a>Space Document</h1>
+        <h1>Space Document</h1>
         <p>The text search is also supported with <a href="document-overview.html">Space Documents</a>. Lets take the above example of the <code>NewsArticle</code> and use it as a <code>SpaceDocument</code>:</p><pre><code class="language-java">DocumentProperties author = new DocumentProperties();
 author.put("firstName", "Friedrich");
 author.put("lastName", "Durrenmatt");
@@ -201,7 +211,7 @@ SpaceDocument result = this.gigaSpace.read(query);
         <div class="tc-admon-refer">
             <p>Refer to <a href="document-overview.html">SpaceDocument</a> for more information on SpaceDocument.</p>
         </div>
-        <h1><a name="configuration"></a>Configuration</h1>
+        <h1>Configuration</h1>
         <table>
             <thead>
                 <tr>
