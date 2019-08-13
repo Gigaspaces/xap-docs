@@ -23,7 +23,7 @@ This page contains early access information for the InsightEdge Platform and XAP
 
 ### Features and Enhancements
 
-- {{% jira id="GS-13902" %}}: External client support for Kubernetes cluster.
+- {{% jira id="GS-13887" %}}: LRMI support enhanced to enable defining a single port for client access.
 - {{% jira id="GS-13881" %}}: Added Lucene support for collections in full text search.
 - {{% jira id="GS-13883" %}}: Enhance InsightEdge JDBC driver to optionally get schema from an alternative URL instead of from a Space.
 - {{% jira id="GS-13683" %}}: Upgrade Jetty to 9.4.19.
