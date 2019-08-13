@@ -40,30 +40,24 @@
 Would you like to open it in file explorer? [y]:</code></pre>
                 <p>Press <span class="tc-bold">Enter</span> to view the project files.</p>
                 <p>
-                    <img src="client-blueprint-project-files.png" class="tc-picture50" />
+                    <img src="client-blueprint-project-files.png" class="tc-picture80" />
                 </p>
             </li>
         </ol>
         <h2>Project Structure</h2>
         <p>The project that is created by the client blueprint has the following structure:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="client-blueprint-project-structure.png" class="tc-picture30" />
+            </p>
+        </div>
+        <p>Where:</p>
         <ul>
-            <li><span class="tc-bold"><MadCap:variable name="General.Home-directory"></MadCap:variable>/src</span>
-                <ul>
-                    <li><span class="tc-bold">/main/java/com/mycompany/app/Program.java</span> - a simple Java program with a <code>main</code> method that demonstrates how to connect to an existing Space or how to create an embedded Space.</li>
-                    <li><span class="tc-bold">/test</span>
-                        <ul>
-                            <li><span class="tc-bold">/resources/employees.csv</span> - a test resource file with sample data.</li>
-                            <li><span class="tc-bold">/java/com/mycompany/app</span>
-                                <ul>
-                                    <li><span class="tc-bold">Employee.java</span> - a POJO&#160;file that contains the employee data model.</li>
-                                    <li><span class="tc-bold">SpaceTestCase.java</span> - a unit test that loads employee data from the resource file, writes the data to the Space, and performs various Space operations.</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
             <li><span class="tc-bold">pom.xml</span> - a standard Maven project descriptor that contains a single Maven dependency on <code>xap-openspace</code>.</li>
+            <li><span class="tc-bold">Program.java</span> - a simple Java program with a <code>main</code> method that demonstrates how to connect to an existing Space or how to create an embedded Space.</li>
+            <li><span class="tc-bold">employees.csv</span> - a test resource file with sample data.</li>
+            <li><span class="tc-bold">Employee.java</span> - a POJO&#160;file that contains the employee data model.</li>
+            <li>.<span class="tc-bold">SpaceTestCase.java</span> - a unit test that loads employee data from the resource file, writes the data to the Space, and performs various Space operations.</li>
         </ul>
         <div class="tc-admon-note">
             <p>For more information about using Maven with <MadCap:variable name="General.CompanyName" /> products, see <MadCap:xref href="installation-maven-overview.html">Maven Artifacts</MadCap:xref>.</p>
