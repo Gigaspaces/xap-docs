@@ -186,7 +186,7 @@ call gs-agent.bat
         <p>The GSA can spawn either  a script-based process, or a pure JVM (with its arguments) process. The GSC, for example, allows both types of process spawning.</p>
         <ul>
             <li>The <code>initial-instances</code> parameter controls what type of spawning will be performed when the GSA spawns processes by itself (and not on demand by the Admin API).</li>
-            <li>The <code>shutdown-class</code>, followed by the <code>restart-on-exit</code> flag, controls whether the process will be restarted upon termination. There are four types of values:
+            <li>The <code>shutdown-class</code>, followed by the <code>restart-on-exit</code> flag, controls whether the process will be restarted upon termination. The <code>restart-on-exit</code> flag has these types of values:
 
 <ul><li MadCap:conditions="Version.15-0-born">Default and recommended value <code>pid-handshake</code> - Restart the process on any exit value if the process started successfully, as indicated by a successful PID handshake.</li><li><code>always</code> - Always restarts the process if it exits.</li><li><p>!0 - Restart the process only if the exit code is different than 0.</p></li><li><code>never</code> - Never restarts the process if it exits.</li></ul></li>
             <li>The <code>shutdown-class</code> is an implementation of <code>com.gigaspaces.grid.gsa.ShutdownProcessHandler</code> interface and provides the default shutdown hooks before and after shutdown of a process, to make sure it is shut down properly. The <code>shutdown-class</code> can be omitted.</li>
