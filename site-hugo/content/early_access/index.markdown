@@ -11,6 +11,30 @@ This page contains early access information for the InsightEdge Platform and XAP
  {{%tip "Disclaimer"%}} Early access builds are provided as is, and should not be used in production. The latest stable release is version 14.0.1.<br>[Download](https://www.gigaspaces.com/download-center) | [Documentation](/latest/)</br>{{%/tip%}}
 
 
+# 15.0.0 M9 (Aug-18-2019)
+
+## Download Links
+
+* [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.0.0/gigaspaces-insightedge-enterprise-15.0.0-m9.zip) 
+
+* [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap-enterprise-15.0.0-m9.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap.net-15.0.0-m9.msi)
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13903" %}}: Simplified the RocksDB configuration for the MemoryXtend driver for SSD.
+- {{% jira id="GS-13901" %}}: Add new "space_replciation_redo_log_used-percent" metric.
+- {{% jira id="GS-13900" %}}: Add new "memory-heap-used-percent" metric.
+
+
+### Resolved Issues
+
+- {{% jira id="GS-13905" %}}: Passing options to interactive shell doesn't work
+- {{% jira id="GS-13899" %}}: The "process_cpu_used-percent" metric doesn't record the correct value.
+
+
+
 # 15.0.0 M8 (Aug-12-2019)
 
 ## Download Links
