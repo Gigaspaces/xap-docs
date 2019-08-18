@@ -370,19 +370,23 @@
 
      &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
 
-
 &lt;bean id="ax-manager" class="com.gigaspaces.analytics_xtreme.server.AnalyticsXtremeManagerFactory"&gt;
      &lt;property name="config"&gt;
           &lt;bean class="com.gigaspaces.analytics_xtreme.AnalyticsXtremeConfigurationFactoryBean"&gt;
                &lt;!-- Verbose is recommended for getting started, usually turned off in production --&gt;
                &lt;property name="verbose" value="true"/&gt;
+               &lt;property name="policies"&gt;
+                   &lt;list&gt;
+                       &lt;ref bean="dataLifecyclePolicy"/&gt;
+                   &lt;/list&gt;
+               &lt;/property&gt;
                &lt;!-- more properties --&gt;
           &lt;/bean&gt;
      &lt;/property&gt;
 &lt;/bean&gt;
 	
 &lt;!-- Data life cycle policy for Trade class --&gt;
-&lt;bean class="com.gigaspaces.analytics_xtreme.DataLifecyclePolicyFactoryBean"&gt;
+&lt;bean id="dataLifecyclePolicy" class="com.gigaspaces.analytics_xtreme.DataLifecyclePolicyFactoryBean"&gt;
      &lt;property name="typeName" value="com.gigaspaces.demo.Trade"/&gt;
      &lt;property name="timeColumn" value="dateTimeTrade"/&gt;
      &lt;property name="speedPeriod" value="pt5h"/&gt;
