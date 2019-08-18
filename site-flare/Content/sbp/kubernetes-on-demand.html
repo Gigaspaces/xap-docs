@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1>Deploying GigaSpaces Platforms on Kubernetes</h1>
+        <h1>Deploying Kubernetes on Demand with Amazon EKS</h1>
         <table>
             <thead>
                 <tr>
@@ -27,19 +27,17 @@
             </tbody>
         </table>
         <h1><a name="overview">&#160;</a>Overview</h1>
-        <p>Minishift is a tool that helps you run OpenShift locally by running a single-node OpenShift cluster inside a VM. This topic explains how to prepare the OpenShift environment so you can install KubeGrid (the InsightEdge and XAP Kubernetes deployment) on Minishift. The sample deployment described here deploys InsightEdge using PowerShell and Oracle VirtualBox, but KubeGrid can be installed on any Minishift cluster using your preferred tools.</p>
-        <p>The desktop preparation process for deploying KubeGrid in Minishift involves the following steps, which are explained in detail below:</p>
+        <p>This topic describes how to deploy a cluster on demand to run <MadCap:variable name="General.ProductNameIE" />, using the Amazon Elastic Container Service for Kubernetes (Amazon EKS). The process involves the following steps, which are explained in detail below:</p>
         <ol>
-            <li>Set up your local machine or VM.</li>
-            <li>(For Windows environments only) Disable Hyper-V (as this deployment uses Oracle VirtualBox).</li>
-            <li>Configure Minishift to work with Oracle VirtualBox.</li>
-            <li>Set up the OpenShift container environment.</li>
+            <li>Create a cluster in Amazon EKS.</li>
+            <li>Deploy the cluster using Helm.</li>
+            <li>Optionally deploy the Kubernetes dashboard to administer the application.</li>
+            <li>Delete the cluster.</li>
         </ol>
-        <p>After the desktop has been prepared, you can follow the instructions in the <a href="https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html">Deploying a Data Grid in Kubernetes</a> topic to deploy KubeGrid on Minishift.</p>
         <h1><a name="prerequisites">&#160;Creating the Cluster</a>
         </h1>
-        <p>The setup and commands to create the cluster are specific to each of the cluster environments.</p>
-        <h2>AWS</h2>
+        <p MadCap:conditions="Default.DoNotShow">The setup and commands to create the cluster are specific to each of the cluster environments.</p>
+        <h2 MadCap:conditions="Default.DoNotShow">AWS</h2>
         <h3>Prerequisites</h3>
         <p>Before beginning to create the cluster, ensure that you have the following installed on your local machine or a VM:</p>
         <ul>
@@ -48,12 +46,18 @@
             <li><a href="https://github.com/weaveworks/eksctl" target="_blank">Eksctl - CLI for EKS</a>
             </li>
         </ul>
-        <h3>Create Cluster</h3>
-        <p>To create a cluster named demo with default parameters type the following command:</p><pre><code>eksctl create cluster --name demo</code></pre>
-        <h2>Kubespray</h2>
-        <h3>Prerequisites</h3>
-        <p>Before beginning to create the cluster, ensure that you have the following installed on your local machine or a VM:</p>
-        <ul>
+        <h3>Creating Cluster</h3>
+        <p>To create an EKS cluster type the eksctl create cluster command as described in the <a href="https://eksworkshop.com/eksctl/launcheks/#create-eks-cluster-0" target="_blank">Amazon workshop</a>.</p>
+        <div class="tc-admon-note">
+            <p>For more information on the available options see the <a href="https://github.com/weaveworks/eksctl/blob/master/README.md" target="_blank">project README on GitHub</a></p>
+        </div>
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
+            <p>Kubespray partial info retained for future after all steps are verified/modified</p>
+        </div>
+        <h2 MadCap:conditions="Default.DoNotShow">Kubespray</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Prerequisites</h3>
+        <p MadCap:conditions="Default.DoNotShow">Before beginning to create the cluster, ensure that you have the following installed on your local machine or a VM:</p>
+        <ul MadCap:conditions="Default.DoNotShow">
             <li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank">Kubectl</a>
             </li>
             <li><a href="https://github.com/kubernetes-sigs/kubespray" target="_blank">Kubespray</a>
@@ -63,7 +67,7 @@
             <li><a href="https://www.vagrantup.com/downloads.html" target="_blank">Vagrant</a>
             </li>
         </ul>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
             <p>This sample deployment used the following software:</p>
             <ul>
                 <li>Helm version v2.14.3</li>
@@ -72,23 +76,27 @@
                 <li>Vagrant version 2.2.5</li>
             </ul>
         </div>
-        <h1>Deploying the Cluster</h1>
-        <p>To deploy the cluster perform the following steps </p>
-        <h2>Deploy the Helm Service</h2>
-        <p>To deploy the Helm Tiller service with access to manage resources in your cluster type the following command</p><pre><code>helm init --service-account tiller</code></pre>
+        <h1>Deploying the Data Grid</h1>
+        <p>The Helm package manager is used for installing <MadCap:variable name="General.ProductNameIE" /> in the Kubernetes environment. To deploy the cluster perform the following steps </p>
+        <h2>Deploying the Helm Service</h2>
+        <p>To deploy the Helm Tiller service with access to manage resources in your cluster type the following command:</p><pre><code>helm init --service-account tiller</code></pre>
         <h2>Deploying KubeGrid</h2>
-        <p>Now that the desktop environment is prepared, you can install the InsightEdge demo on Minishift.</p>
         <p>To deploy KubeGrid and the InsightEdge demo:</p>
         <ol>
             <li>
-                <p>Type the following command to access the insightedge GigaSpaces charts for the XAP data grid and InsightEdge:</p><pre><code>helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
+                <p>Type the following command to access the GigaSpaces Helm charts and unpack them locally to a folder named insightedge:</p><pre><code>helm fetch gigaspaces/insightedge --untar
 </code></pre>
             </li>
             <li>
-                <p>After adding the GigaSpaces Helm repo, install the required chart(s) by referencing the chart name and product package version. For example, to install InsightEdge, use the following command:</p><pre><code>helm install gigaspaces/insightedge --version=14.0.1 --name demo
+                <p>After adding the GigaSpaces Helm charts, type the following command to deploy <MadCap:variable name="General.ProductNameIE" /> demo on Amazon EKS</p><pre><code>helm install insightedge --name demo
 </code></pre>
             </li>
         </ol>
         <p>For more information about InsightEdge KubeGrid deployment options, see the <a href="https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html">Deploying a Data Grid in Kubernetes</a> topic.</p>
+        <h1>Deploying the Kubernetes Dashboard</h1>
+        <p>You can deploy the Kubernetes dashboard in Amazon EKS, so you can properly administer your Kubernetes-based GigaSpaces application. See the <a href="https://docs.aws.amazon.com/en_us/eks/latest/userguide/dashboard-tutorial.html" target="_blank">Amazon dashboard tutorial page</a> for instructions.</p>
+        <h1>Deleting the Cluster</h1>
+        <p>When done working with the cluster, completely delete the cluster type the following command:</p><pre><code>helm delete --purge <![CDATA[
+]]></code></pre>
     </body>
 </html>
