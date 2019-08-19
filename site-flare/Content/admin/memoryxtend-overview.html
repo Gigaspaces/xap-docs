@@ -335,6 +335,7 @@ For information about <MadCap:variable name="General.ProductNameXAP" /> metrics 
             <li>MemoryXtend and <a href="../dev-java/direct-persistency.html">Direct Persistency</a> configuration is not supported.</li>
             <li>MemoryXtend is only supported with the Space caching policy set to ALL_IN_CACHE. LRU and other cache policies that use eviction are not supported.</li>
             <li>MemoryXtend is not supported with the <code>ESM</code>.</li>
+            <li MadCap:conditions="Version.14-5-born">If <a href="../dev-java/fifo-grouping.html">FIFO grouping</a> is used with MemoryXtend, the FIFO order is not always maintained after failover.</li>
         </ul>
     </body>
 </html>

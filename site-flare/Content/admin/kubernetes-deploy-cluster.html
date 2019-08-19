@@ -40,20 +40,18 @@
         <p>After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager. Use the following Helm command to deploy a cluster of Data Pods called <code>testspace</code>, and to specify that the cluster should connect to the <code>testmanager</code> Management Pod:</p><pre><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager
 </code></pre>
         <h1 MadCap:conditions="Version.15-0-born">Deploying External Client Support</h1>
-        <p MadCap:conditions="Version.15-0-born">You can configure the space cluster to enable data operations from remote clients on the cluster running in Kubernetes. Once configured a proxy can connect to the external port that is exposed in Kubernetes.</p>
+        <p MadCap:conditions="Version.15-0-born">You can configure the space cluster to enable data operations from remote clients on the cluster running in Kubernetes. Once configured, a proxy can connect to the external port that is exposed in Kubernetes.</p>
         <h2 MadCap:conditions="Version.15-0-born">Enable Client Access</h2>
         <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow,Version.15-0-born">
             <p><b style="color: #ff0000;">repo add command is only to retrieve EA charts, to be removed for production.</b>
             </p>
         </div>
-        <p MadCap:conditions="Version.15-0-born">Point to the GigaSpaces Helm repo, so that Helm can locate the <code>xap</code> and <code>insightedge</code> charts for installation:</p><pre MadCap:conditions="Version.15-0-born"><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts<MadCap:variable name="Versions.early-access-suffix" /></code></pre>
-        <p MadCap:conditions="Version.15-0-born">To enable external client access set enableExternalClient when you install the Helm charts, as in the following command:</p><pre MadCap:conditions="Version.15-0-born"><code>helm install gigaspaces/insightedge --name test --version=<MadCap:variable name="Versions.product-version-svc-pack" />  --set enableExternalClient=true
+        <p MadCap:conditions="Version.15-0-born">Point to the GigaSpaces Helm repo, so that Helm can locate the <code>insightedge</code> charts for installation:</p><pre MadCap:conditions="Version.15-0-born"><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts<MadCap:variable name="Versions.early-access-suffix" /></code></pre>
+        <p MadCap:conditions="Version.15-0-born">To enable external client access set <b>enableExternalClient</b> when you install the Helm charts, as in the following command:</p><pre MadCap:conditions="Version.15-0-born"><code>helm install gigaspaces/insightedge --name test --version=<MadCap:variable name="Versions.product-version-svc-pack" />  --set enableExternalClient=true
 </code></pre>
         <p MadCap:conditions="Version.15-0-born">Alternately if you are deploying the manager and the space separately enter the following commands:</p><pre MadCap:conditions="Version.15-0-born"><code>helm install gigaspaces/insightedge-manager --name test --version=<MadCap:variable name="Versions.product-version-svc-pack" />  --set enableExternalClient=true
  </code></pre><pre xml:space="preserve" MadCap:conditions="Version.15-0-born"><code>helm install gigaspaces/insightedge-pu --name test --version=<MadCap:variable name="Versions.product-version-svc-pack" />  --set enableExternalClient=true</code></pre>
-        <h2 xml:space="preserve" MadCap:conditions="Version.15-0-born"><code>Create Proxy
-</code>
-        </h2>
+        <h2>Create Proxy</h2>
         <p MadCap:conditions="Version.15-0-born">Once you've enabled client access, you can create a GigaSpaces proxy (using <a href="https://github.com/xap/xap/blob/master/xap-core/xap-openspaces/src/main/java/org/openspaces/core/space/UrlSpaceConfigurer.java">UrlSpaceConfigurer</a>). Use the external IP/port for the Lookup Service that is either:</p>
         <ul MadCap:conditions="Version.15-0-born">
             <li><span style="color: #ff0000;">exposed in Kupernetes</span>

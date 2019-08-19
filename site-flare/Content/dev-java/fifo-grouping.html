@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>FIFO Grouping</h1>
-        <p>The FIFO Grouping designed to allow efficient processing of events with partial ordering constraints. To better understand FIFO groups, let's first examine the constraints of total ordering, i.e. What it takes to process events in the exact order in which they arrive. There are two elements that effectively limit the scalability of processing events with total ordering:</p>
+        <p>The FIFO Grouping feature is designed to allow efficient processing of events with partial ordering constraints. To better understand FIFO groups, let's first examine the constraints of total ordering, i.e. What it takes to process events in the exact order in which they arrive. There are two elements that effectively limit the scalability of processing events with total ordering:</p>
         <ul>
             <li>
                 <p>Maintaining the original order of arrival (the "natural FIFO order"), which requires the Space to maintain a central data structure (i.e. event queue) that is accessed every time an event enters the system. This can become a central bottleneck quite quickly and limit the throughput of the system.</p>
@@ -13,7 +13,7 @@
                 <p>Ensuring in-order processing of events. This seems quite straight forward once you maintain the natural FIFO ordering, but in many cases, you want to ensure that a certain event will not be processed until its preceding event has been fully processed. This requirement effectively means that you can only process one event at a time, constraining the event processing to a single thread.</p>
             </li>
         </ul>
-        <p>In most cases, your application does not require total ordering, but rather ordering within groups of events. Let's take a flight booking system as an example. Such an system should process the bookings for each flight one by one, to avoid conflicting bookings for the same seats and ensure fairness. But it can process many flights simultaneously, since there's no relevance to the order of processing across different flights. The FIFO groups feature allows you to implement this kind of scenario easily by designating a "FIFO group" field. The value of this field indicates the unique group identifier. In the above example, this would be the flight number, so effectively your application can process many bookings simultaneously for different flights, but it will never process two bookings for the same flight simultaneously. In more generic terms, the FIFO groups capability ensures the following:</p>
+        <p>In most cases, your application does not require total ordering, but rather ordering within groups of events. Let's take a flight booking system as an example. Such an system should process the bookings for each flight one by one, to avoid conflicting bookings for the same seats and ensure fairness, but it can process many flights simultaneously, since there's no relevance to the order of processing across different flights. The FIFO groups feature allows you to implement this kind of scenario easily by designating a "FIFO group" field. The value of this field indicates the unique group identifier. In the above example, this would be the flight number, so effectively your application can process many bookings simultaneously for different flights, but it will never process two bookings for the same flight simultaneously. In more generic terms, the FIFO groups capability ensures the following:</p>
         <ul>
             <li>
                 <p>Within the same group, events will be processed in the order they arrived, and exclusively, meaning that only one event will be processed at a time, regardless of the number of event processors.</p>
@@ -27,7 +27,7 @@
                 <img src="../Resources/Static/attachment_files/fifo-group.jpg" alt="fifo-group.jpg" class="tc-picture80" />
             </p>
         </div>
-        <p>The FIFO-Grouping can be used with financial systems to process <span class="tc-bold">trade orders</span>, in healthcare systems to processes <span class="tc-bold">patient medical data</span>, with transportation systems to process <span class="tc-bold">reservations</span>, with airlines systems to process <span class="tc-bold">flight schedule</span> , with billing system to processes <span class="tc-bold">payments</span>, etc. With the flight reservation system scenario several reservations can be processed simultaneously but the reservations of a particular fight must be processed exclusively and in FIFO order.</p>
+        <p>FIFO-Grouping can be used with financial systems to process <span class="tc-bold">trade orders</span>, in healthcare systems to processes <span class="tc-bold">patient medical data</span>, with transportation systems to process <span class="tc-bold">reservations</span>, with airlines systems to process <span class="tc-bold">flight schedule</span> , with billing system to processes <span class="tc-bold">payments</span>, etc. With the flight reservation system scenario several reservations can be processed simultaneously but the reservations of a particular fight must be processed exclusively and in FIFO order.</p>
         <h1><a name="how-it-works"></a>How It Works</h1>
         <p>FIFO-Grouping ("FG') enables reading/taking certain space entries in FIFO order (by order of insertion), and is mainly used as an enhancement of the openspaces polling-containers.  When a property is declared with the <code>@SpaceFifoGroupingProperty</code> annotation ("the FG designated property'), a read/take operation with the <code>FIFO_GROUPING_POLL</code> modifier will return all space entries that match the selection template in FIFO order. Different values of the FG property define groups of space entries that match that value - FIFO ordering exists within each group and not between different groups.</p>
         <div class="tc-admon-note">
@@ -234,6 +234,7 @@ For example, declaring <code>SpaceFifoGroupingIndex(path="a")</code>, overriding
             <li>
                 <p>A FG index cannot be declared on some type's property without existence of a FG property for that type.</p>
             </li>
+            <li MadCap:conditions="Version.14-5-born">If FG is used with MemoryXtend storage, the FIFO order is not always maintained after failover.</li>
             <li>
                 <p>The following annotations cannot be used with the FG property/index annotations for the same property:</p>
                 <ul>
