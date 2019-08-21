@@ -34,24 +34,29 @@
 Kafka provides high throughput even with very modest hardware, supporting hundreds of thousands of messages per second. Messages can be split among Kafka brokers, distributing consumption over a cluster of consumer machines while maintaining per-partition ordering semantics. For example, Kafka is often used to perform parallel data loading to Hadoop.</p>
         <p>This page describes how to integrate <MadCap:variable name="General.CompanyName" /> products with Apache Kafka, using our write-behind data grid operations to Kafka to make data available for subscribers. Hadoop or any other data warehousing system can using the data for reporting and processing.</p>
         <h1>The Space as a Producer</h1>
-        <p>The <MadCap:variable name="General.CompanyName" />-Kafka integration is done via the <code>SpaceSynchronizationEndpoint</code> interface deployed as a Mirror service. The mirror consumes a batch of data grid operations, converts them into custom Kafka messages, and sends these to the Kafka broker using the Kafka Producer API.</p>
+        <p>The <MadCap:variable name="General.CompanyName" />-Kafka integration is done via the <code>SpaceSynchronizationEndpoint</code> interface deployed as a Kafka producer service. The service consumes a batch of data grid operations, converts them into custom Kafka messages, and sends these to the Kafka broker using the Kafka Producer API.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/sbp/xap-kafka.jpg" alt="xap-kafka.jpg" />
+                <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-producer.png" alt="xap-kafka.jpg" class="tc-picture50" />
             </p>
         </div>
-        <p>The <MadCap:variable name="General.CompanyName" />-Kafka protocol is simple and represents the data and data grid operations. A message consists of the data grid operation type (Write, Update , remove, etc.) and the actual data object. The data object itself may be represented either as a single object or as a <code>SpaceDocument</code> with key/value pairs.
+        <p>The <MadCap:variable name="General.CompanyName" />-Kafka protocol is simple and represents the data and data grid operations. A message consists of the data grid operation type (Write, Update , Remove, etc.) and the actual data object. The data object itself may be represented either as a single object or as a <code>SpaceDocument</code> with key/value pairs.
 Kafka messages are sent via the network, so must be somehow serialized into bytes.
 The default encoder utilizes the Java serialization mechanism, which implies Space classes (domain model) to be <code>Serializable</code>.</p>
-        <p>By default, Kafka messages are uniformly distributed across Kafka partitions. As such, even though data grid operations appear ordered in <code>SpaceSynchronizationEndpoint</code>, this doesn't imply the correct data processing ordering  in Kafka consumers. See below diagram:</p>
+        <p>By default, Kafka messages are uniformly distributed across Kafka partitions. As such, even though data grid operations appear ordered in <code>SpaceSynchronizationEndpoint</code>, this doesn't imply the correct data processing ordering  in Kafka consumers. </p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/sbp/xap-kafka-ordering.jpg" alt="xap-kafka-ordering.jpg" />
+                <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-data-order.png" alt="xap-kafka-ordering.jpg" class="tc-picture50" />
             </p>
         </div>
         <h1>The Space as a Consumer</h1>
         <p>The Kafka persistence library provides a wrapper around the native Kafka Consumer API for the <MadCap:variable name="General.CompanyName" />-Kafka protocol serialization. For an example of how to use this wrapper, see <code>com.epam.openspaces.persistency.kafka.consumer.KafkaConsumer</code> in the <code>&lt;<MadCap:variable name="General.Home-directory" />&gt;/example module</code> folder.</p>
-        <p>The Space sits behind the consumer group, and the data objects are passed to the Space instances using routing keys.</p>
+        <p>The Space sits behind the Kafka consumer service, and the data objects are passed to the Space instances using routing keys.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-consumer.png" class="tc-picture50" />
+            </p>
+        </div>
         <h1>Getting started</h1>
         <h2>Download the Kafka Example</h2>
         <p>You can download the example code from <a href="/download_files/sbp/kafka-integration.tar">here</a>.
