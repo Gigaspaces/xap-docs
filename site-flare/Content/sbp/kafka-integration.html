@@ -3,12 +3,12 @@
     <head>
     </head>
     <body>
-        <h1>XAP Integration with Kafka</h1>
+        <h1 class="tc-pagetitle">Integrating Kafka with <MadCap:variable name="General.CompanyName" /></h1>
         <table>
             <thead>
                 <tr>
                     <th>Author</th>
-                    <th>XAP Version</th>
+                    <th>Release</th>
                     <th>Last Updated</th>
                     <th>Reference</th>
                     <th>Download</th>
@@ -19,43 +19,45 @@
                     <td>Aharon Moll</td>
                     <td>14.2</td>
                     <td>March 2019</td>
-                    <td>Apache Kafka</td>
-                    <td><a href="https://docs-staging.gigaspaces.com/https://github.com/GigaSpaces-ProfessionalServices/xap-kafka" target="_blank">Github link </a>
+                    <td><a href="https://kafka.apache.org/" target="_blank">Apache Kafka</a>
+                    </td>
+                    <td><a href="https://github.com/Gigaspaces-sbp/xap-kafka" target="_blank">Github link </a>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <h1><a name="introduction">&#160;</a>Introduction</h1>
+        <h1>Introduction</h1>
         <p><a href="http://kafka.apache.org">Apache Kafka</a> is a distributed publish-subscribe messaging system, which supports sending messages between applications, processes, and servers. A message is any kind of information that is sent from a producer (application that sends the messages) to a consumer (application that receives the messages).</p>
-        <p>Producers write their messages, or data, to topics. Kafka topics are divided into partitions that function like logs. Each message is written to a partition and has a unique offset, or identifier. Consumers can specify a particular offset point where they can begin to read messages. </p>
+        <p>Producers write their messages, or data, to Kafka topics. These topics are divided into partitions that function like logs. Each message is written to a partition and has a unique offset, or identifier. Consumers can specify a particular offset point where they can begin to read messages. </p>
         <p>A Kafka server is called a broker, and a Kafka cluster contains one or more brokers. Topic partitions can reside on different brokers in the clusters, so that data in a specific topic can be split among multiple brokers. Consumers can be associated with consumer groups (each group reads from a specific topic). This enables high throughput because messages can be written and read in parallel to and from the different brokers in the cluster.</p>
-        <p>&#160;</p>
-        <p>&#160;</p>
-        <p> It is designed to support persistent messaging with a O(1) disk structures that provides constant time performance even with many TB of stored messages.
-Apache Kafka provides High-throughput even with very modest hardware, Kafka can support hundreds of thousands of messages per second. Apache Kafka supports partitioning the messages over Kafka servers and distributing consumption over a cluster of consumer machines while maintaining per-partition ordering semantics. Many times Apache Kafka is used to perform parallel data load into Hadoop.</p>
-        <p>This pattern integrates GigaSpaces with Apache Kafka. GigaSpaces' write-behind IMDG operations to Kafka making it available for the subscribers. Such could be Hadoop or other data warehousing systems using the data for reporting and processing.</p>
-        <h1><a name="xap-kafka-integration-architecture">&#160;</a>XAP Kafka Integration Architecture</h1>
-        <p>The XAP Kafka integration is done via the <code>SpaceSynchronizationEndpoint</code> interface deployed as a Mirror service PU. It consumes a batch of IMDG operations, converts them to custom Kafka messages and sends these to the Kafka server using the Kafka Producer API.</p>
+        <p>Kafka is designed to support persistent messaging with a O(1) disk structure that provides constant time performance, even with multiple terabytes of stored messages.
+Kafka provides high throughput even with very modest hardware, supporting hundreds of thousands of messages per second. Messages can be split among Kafka brokers, distributing consumption over a cluster of consumer machines while maintaining per-partition ordering semantics. For example, Kafka is often used to perform parallel data loading to Hadoop.</p>
+        <p>This page describes how to integrate <MadCap:variable name="General.CompanyName" /> products with Apache Kafka, using our write-behind data grid operations to Kafka to make data available for subscribers. Hadoop or any other data warehousing system can using the data for reporting and processing.</p>
+        <h1>The Space as a Producer</h1>
+        <p>The <MadCap:variable name="General.CompanyName" />-Kafka integration is done via the <code>SpaceSynchronizationEndpoint</code> interface deployed as a Mirror service. The mirror consumes a batch of data grid operations, converts them into custom Kafka messages, and sends these to the Kafka broker using the Kafka Producer API.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/sbp/xap-kafka.jpg" alt="xap-kafka.jpg" />
             </p>
         </div>
-        <p>GigaSpace-Kafka protocol is simple and represents the data and its IMDG operation. The message consists of the IMDG operation type (Write, Update , remove, etc.) and the actual data object. The Data object itself could be represented either as a single object or as a Space Document with key/values pairs (<code>SpaceDocument</code>).
-Since a Kafka message is sent over the wire, it should be serialized to bytes in some way.
-The default encoder utilizes Java serialization mechanism which implies Space classes (domain model) to be <code>Serializable</code>.</p>
-        <p>By default Kafka messages are uniformly distributed across Kafka partitions. Please note, even though IMDG operations appear ordered in <code>SpaceSynchronizationEndpoint</code>, it doesn't imply correct ordering of data processing in Kafka consumers. See below diagram:</p>
+        <p>The <MadCap:variable name="General.CompanyName" />-Kafka protocol is simple and represents the data and data grid operations. A message consists of the data grid operation type (Write, Update , remove, etc.) and the actual data object. The data object itself may be represented either as a single object or as a <code>SpaceDocument</code> with key/value pairs.
+Kafka messages are sent via the network, so must be somehow serialized into bytes.
+The default encoder utilizes the Java serialization mechanism, which implies Space classes (domain model) to be <code>Serializable</code>.</p>
+        <p>By default, Kafka messages are uniformly distributed across Kafka partitions. As such, even though data grid operations appear ordered in <code>SpaceSynchronizationEndpoint</code>, this doesn't imply the correct data processing ordering  in Kafka consumers. See below diagram:</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/sbp/xap-kafka-ordering.jpg" alt="xap-kafka-ordering.jpg" />
             </p>
         </div>
-        <h1><a name="getting-started">&#160;</a>Getting started</h1>
-        <h2><a name="download-the-kafka-example">&#160;</a>Download the Kafka Example</h2>
+        <h1>The Space as a Consumer</h1>
+        <p>The Kafka persistence library provides a wrapper around the native Kafka Consumer API for the <MadCap:variable name="General.CompanyName" />-Kafka protocol serialization. For an example of how to use this wrapper, see <code>com.epam.openspaces.persistency.kafka.consumer.KafkaConsumer</code> in the <code>&lt;<MadCap:variable name="General.Home-directory" />&gt;/example module</code> folder.</p>
+        <p>The Space sits behind the consumer group, and the data objects are passed to the Space instances using routing keys.</p>
+        <h1>Getting started</h1>
+        <h2>Download the Kafka Example</h2>
         <p>You can download the example code from <a href="/download_files/sbp/kafka-integration.tar">here</a>.
 Unzip into an empty folder.</p>
         <p>The example located under <code>&lt;project_root&gt;/example</code>. It demonstrates how to configure Kafka persistence and implements a simple Kafka consumer pulling data from Kafka and store in HsqlDB.</p>
-        <h2><a name="running-the-example">&#160;</a>Running the Example</h2>
+        <h2>Running the Example</h2>
         <p>In order to run an example, please follow the instruction below:</p>
         <p>Step 1: Install Kafka<br /></p>
         <p>Step 2: Start Zookeeper and Kafka server<br />bin/zookeeper-server-start.sh config/zookeeper.properties<br />bin/kafka-server-start.sh config/server.properties</p>
@@ -66,15 +68,15 @@ mvn clean install
 mvn os:deploy
 </code></pre>
         <p>Step 5: Check GigaSpaces log files, there should be messages from the Feeder and Consumer.</p>
-        <h1><a name="configuration">&#160;</a>Configuration</h1>
-        <h2><a name="library-dependency">&#160;</a>Library Dependency</h2>
+        <h1>Configuration</h1>
+        <h2>Library Dependency</h2>
         <p>The following maven dependency needs to be included in your project in order to use Kafka persistence. This artifact is built from <code>&lt;project_rood&gt;/kafka-persistence</code> source directory.</p><pre><code class="language-xml">&lt;dependency&gt;
     &lt;groupId&gt;com.epam&lt;/groupId&gt;
     &lt;artifactId&gt;kafka-persistence&lt;/artifactId&gt;
     &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-        <h2><a name="processing-unit">&#160;</a>Processing Unit</h2>
+        <h2>Processing Unit</h2>
         <p>Here is an example of the Kafka Processing Unit configuration:</p><pre MadCap:conditions="Version.14-5-died"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -142,7 +144,7 @@ mvn os:deploy
     &lt;os-core:giga-space id="gigaSpace" space="space" /&gt;
 &lt;/beans&gt;
 </code></pre>
-        <h2><a name="mirror-service">&#160;</a>Mirror service</h2>
+        <h2>Mirror service</h2>
         <p>Here is an example of the Kafka Space Synchronization Endpoint configuration:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -227,7 +229,7 @@ mvn os:deploy
         <div class="tc-admon-refer">
             <p>For more information on the Mirror service see <a href="https://docs.gigaspaces.com/latest/dev-java/asynchronous-persistency-with-the-mirror.html">asynchronous persistence</a></p>
         </div>
-        <h1><a name="producer-properties">&#160;</a>Producer Properties</h1>
+        <h1>Producer Properties</h1>
         <p>Please consult Kafka documentation for the full list of available producer properties.
 The default properties applied to Kafka producer are the following:</p>
         <table>
@@ -252,7 +254,7 @@ The default properties applied to Kafka producer are the following:</p>
             </tbody>
         </table>
         <p>You can override the default properties if there is a need to customize GigaSpace-Kafka protocol. See Customization section below for details.</p>
-        <h2><a name="space-class">&#160;</a>Space class</h2>
+        <h2>Space class</h2>
         <p>In order to associate a Kafka topic with the domain model class, the class needs to be annotated with the <code>@KafkaTopic</code> annotation and declared as <code>Serializable</code>. Here is an example</p><pre><code class="language-java">@KafkaTopic("user_activity")
 @SpaceClass
 public class UserActivity implements Serializable {
@@ -272,9 +274,7 @@ public Product() {
     &lt;property name="spaceDocumentKafkaTopicName" value="topic_name" /&gt;
 &lt;/bean&gt;
 </code></pre>
-        <h2><a name="kafka-consumers">&#160;</a>Kafka consumers</h2>
-        <p>The Kafka persistence library provides a wrapper around the native Kafka Consumer API for the GigaSpace-Kafka protocol serialization. Please see <code>com.epam.openspaces.persistency.kafka.consumer.KafkaConsumer</code>, example of how to use it under <code>&lt;project_root&gt;/example module</code>.</p>
-        <h2><a name="customization">&#160;</a>Customization</h2>
+        <h2>Customization</h2>
         <ul>
             <li>Kafka persistence was designed to be extensible and customizable.</li>
             <li>If you need to create a custom protocol between GigaSpace and Kafka, provide an implementation of <code>AbstractKafkaMessage</code>, <code>AbstractKafkaMessageKey</code>, <code>AbstractKafkaMessageFactory</code>.</li>
