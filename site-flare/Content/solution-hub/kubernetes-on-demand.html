@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1>Deploying Kubernetes on Demand with Amazon EKS</h1>
+        <h1 class="tc-pagetitle">Deploying <MadCap:variable name="General.ProductNameIE" /> with Kubernetes on Demand In the Cloud </h1>
         <table>
             <thead>
                 <tr>
@@ -27,30 +27,28 @@
             </tbody>
         </table>
         <h1><a name="overview">&#160;</a>Overview</h1>
-        <p>This topic describes how to deploy a cluster on demand to run <MadCap:variable name="General.ProductNameIE" />, using the Amazon Elastic Container Service for Kubernetes (Amazon EKS). The process involves the following steps, which are explained in detail below:</p>
-        <ol>
-            <li>Create a cluster in Amazon EKS.</li>
-            <li>Deploy the cluster using Helm.</li>
-            <li>Optionally deploy the Kubernetes dashboard to administer the application.</li>
-            <li>Delete the cluster.</li>
-        </ol>
-        <h1><a name="prerequisites">&#160;Creating the Cluster</a>
-        </h1>
-        <p MadCap:conditions="Default.DoNotShow">The setup and commands to create the cluster are specific to each of the cluster environments.</p>
-        <h2 MadCap:conditions="Default.DoNotShow">AWS</h2>
-        <h3>Prerequisites</h3>
-        <p>Before beginning to create the cluster, ensure that you have the following installed on your local machine or a VM:</p>
+        <p>This topic describes the use case of deploying a cluster on demand to run <MadCap:variable name="General.ProductNameIE" /> in the cloud, using the Amazon Elastic Container Service for Kubernetes (Amazon EKS). There are three main steps to this process:</p>
+        <ul>
+            <li>Creating the Kubernetes cluster in the cloud</li>
+            <li>Automating the Kubernetes infrastructure by installing the Kubernetes dashboard and Helm</li>
+            <li>Automating <MadCap:variable name="General.ProductNameIE" /> deployment with Helm.</li>
+        </ul>
+        <p><MadCap:variable name="General.CompanyName" /> products have custom Helm charts to enable easy deployment and configuration in Kubernetes, both in the cloud and on premise. After <MadCap:variable name="General.ProductNameIE" /> is installed, you can use the Kubernetes dashboard to monitor and administer your cluster.</p>
+        <h2>Prerequisites</h2>
+        <p>In order to complete all the steps in the deployment process, you need the following installed on your local machine or VM:</p>
         <ul>
             <li><a href="https://helm.sh/docs/using_helm/#quickstart-guide" target="_blank">Helm </a>
             </li>
             <li><a href="https://github.com/weaveworks/eksctl" target="_blank">Eksctl - CLI for EKS</a>
             </li>
         </ul>
-        <h3>Creating Cluster</h3>
-        <p>To create an EKS cluster type the eksctl create cluster command as described in the <a href="https://eksworkshop.com/eksctl/launcheks/#create-eks-cluster-0" target="_blank">Amazon workshop</a>.</p>
+        <h1>Deploying <MadCap:variable name="General.ProductNameIE" /> on Demand</h1>
+        <h2>Creating a Kubernetes Cluster</h2>
+        <p>The first step is to create a Kubernetes cluster in AWS. While there are several tools available, this use case is based on eksctl, a well-known command-line utility that is used to create and manage Kubernetes clusters on Amazon EKS.</p>
         <div class="tc-admon-note">
-            <p>For more information on the available options see the <a href="https://github.com/weaveworks/eksctl/blob/master/README.md" target="_blank">project README on GitHub</a></p>
+            <p>For more information about the eksctl utility, see the <a href="https://github.com/weaveworks/eksctl/blob/master/README.md" target="_blank">Weaveworks README</a> on GitHub.</p>
         </div>
+        <p>To create an EKS cluster type the eksctl create cluster command as described in the <a href="https://eksworkshop.com/eksctl/launcheks/#create-eks-cluster-0" target="_blank">Amazon workshop</a>.</p>
         <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
             <p>Kubespray partial info retained for future after all steps are verified/modified</p>
         </div>
