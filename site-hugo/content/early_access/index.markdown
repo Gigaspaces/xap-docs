@@ -6,9 +6,9 @@ categories: EARLY_ACCESS
 weight: 1
 ---
 
-This page contains early access information for the InsightEdge Platform and XAP data grid version 14.5.0, which is scheduled for release at the end of Q2 2019. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!
+This page contains early access information for the InsightEdge Platform and XAP data grid version 15.0.0, which is scheduled for release during Q4 2019. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!
 
- {{%tip "Disclaimer"%}} Early access builds are provided as is, and should not be used in production. The latest stable release is version 14.0.1.<br>[Download](https://www.gigaspaces.com/download-center) | [Documentation](/latest/)</br>{{%/tip%}}
+ {{%tip "Disclaimer"%}} Early access builds are provided as is, and should not be used in production. The latest stable release is version 14.5.0.<br>[Download](https://www.gigaspaces.com/download-center) | [Documentation](/latest/)</br>{{%/tip%}}
 
 
 # 15.0.0 M10 (Aug-25-2019)
