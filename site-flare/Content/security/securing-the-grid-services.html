@@ -6,8 +6,10 @@
         <h1 class="tc-pagetitle">Securing the Grid Services</h1>
         <h1><a name="enabling-security"></a>Enabling Security</h1>
         <p>Data grid security is enabled by setting a system property.
-Append the following system property to <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code>EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code MadCap:conditions="Version.14-5-born">XAP_OPTIONS_EXT </code>in the <code>setenv</code> script.</p><pre><code class="language-java">-Dcom.gs.security.enabled=true
-</code></pre>
+Append the following system property to <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code>EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code MadCap:conditions="Version.14-5-born">XAP_OPTIONS_EXT </code>in the <code>setenv-overides</code> script.</p><pre><code class="language-java">-Dcom.gs.security.enabled=true-Dcom.gs.security.userid=xxx -Dcom.gs.security.password=yyy -Dcom.gigaspaces.webui.username.mandatory=true -Dcom.gs.manager.rest.ssl.enabled=false</code></pre>
+        <p>Then deploy with the userid and password that you provided, with command:</p>
+        <p><code class="language-bash">gs --username=xxx --password=yyy</code>
+        </p>
         <p>This property affects the GSA, GSM, and GSC.
 It also affects also a standalone PU instance (with a Space).</p>
         <h1><a name="grid-service-agent"></a>Grid Service Agent</h1>
