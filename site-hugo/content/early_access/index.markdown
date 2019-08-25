@@ -11,13 +11,13 @@ This page contains early access information for the InsightEdge Platform and XAP
  {{%tip "Disclaimer"%}} Early access builds are provided as is, and should not be used in production. The latest stable release is version 14.0.1.<br>[Download](https://www.gigaspaces.com/download-center) | [Documentation](/latest/)</br>{{%/tip%}}
 
 
-# 15.0.0 M9 (Aug-18-2019)
+# 15.0.0 M10 (Aug-25-2019)
 
 ## Download Links
 
-* [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.0.0/gigaspaces-insightedge-enterprise-15.0.0-m9.zip) 
+* [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.0.0/gigaspaces-insightedge-enterprise-15.0.0-m10.zip) 
 
-* [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap-enterprise-15.0.0-m9.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap.net-15.0.0-m9.msi)
+* [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap-enterprise-15.0.0-m10.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap.net-15.0.0-m10.msi)
 
 ## Changelog
 
