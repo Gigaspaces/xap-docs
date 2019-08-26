@@ -518,5 +518,32 @@ A query is considered complex if it contains one or more of the following:</p>
 </code></pre>
         <h1><a name="reserved-separators-and-operators"></a>Reserved Separators and Operators</h1>
         <p>:= || ; . ROWTYPE ~ &lt; &lt;= &gt;  &gt;= =&gt; != &lt;&gt; (+) ( ) * / + - ? { }</p>
+        <h1>String Conversion</h1>
+        <p>When writing an SQLquery with a field in a class that is not one of the more common supported Java types the query can fail when SQL query does not have a conversion from a String literal to the object of that type.</p>
+        <p>For example, if a field inside the class is of type UUID. SQL query does not have a converter defined and the query will fail with an exception. </p>
+        <p>To convert such a field to type string:</p>
+        <ul>
+            <li>Define an wrapper class for the type.</li>
+            <li> In the wrapper class implement the <code class="language-bash">parse()</code> method that uses the signature <code class="language-bash">public static &lt;class of wrapper object&gt; parse(String s)</code>. This method is responsible for the conversion from String to an object.</li>
+        </ul><pre>    public static MyUuid parse(String s) throws SQLException {
+
+        MyUuid myUuid = new MyUuid();
+
+        try {
+            myUuid.setUuid(UUID.fromString(s));
+            return myUuid;
+
+        } catch (Throwable t) {
+            t.printStackTrace();
+            SQLException sqlException = new SQLException(t.getMessage(), t);
+            sqlException.initCause(t);
+            throw sqlException;
+        }
+    }</pre>
+        <ul>
+            <li> The parent class must use the wrapper class in its field definition.</li>
+        </ul>
+        <p>You can then run the query, as in this example from webui:</p><pre>select UID,* from com.samples.common.PojoWithUuid 
+where myUuid = '073f739f-6937-4632-a9c5-3b74e9337c90' and rowNum&lt;10</pre>
     </body>
 </html>
