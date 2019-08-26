@@ -5,13 +5,10 @@
     <body>
         <h1 class="tc-pagetitle">Securing the Grid Services</h1>
         <h1><a name="enabling-security"></a>Enabling Security</h1>
-        <p>Data grid security is enabled by setting a system property.
-Append the following system property to <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code>EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code MadCap:conditions="Version.14-5-born">XAP_OPTIONS_EXT </code>in the <code>setenv-overides</code> script.</p><pre><code class="language-java">-Dcom.gs.security.enabled=true-Dcom.gs.security.userid=xxx -Dcom.gs.security.password=yyy -Dcom.gigaspaces.webui.username.mandatory=true -Dcom.gs.manager.rest.ssl.enabled=false</code></pre>
-        <p>Then deploy with the userid and password that you provided, with command:</p>
-        <p><code class="language-bash">gs --username=xxx --password=yyy</code>
-        </p>
+        <p>Data grid security is enabled by setting the <code class="language-bash">gs.security.enabled</code>system property.
+Append  the property to <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code>EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code MadCap:conditions="Version.14-5-born">XAP_OPTIONS_EXT </code>in the <code>setenv-overides</code> script. The following example sets the property along with other optional security parameters.</p><pre><code class="language-java">-Dcom.gs.security.enabled=true -Dcom.gs.security.userid=xxx -Dcom.gs.security.password=yyy -Dcom.gigaspaces.webui.username.mandatory=true </code></pre>
         <p>This property affects the GSA, GSM, and GSC.
-It also affects also a standalone PU instance (with a Space).</p>
+</p>
         <h1><a name="grid-service-agent"></a>Grid Service Agent</h1>
         <p>The <a href="../overview/the-runtime-environment.html#gsa">Grid Service Agent (GSA)</a> acts as a process manager that can spawn and manage Service Grid processes (GSM, GSC, etc.). When GSA is secured, a spawned GSM/GSC will also be secured. To <span class="tc-italic">start</span>, <span class="tc-italic">kill</span>, <span class="tc-italic">restart</span> a process you need <span class="tc-bold">Manage Grid</span> privileges.</p>
         <h1><a name="grid-service-manager"></a>Grid Service Manager</h1>
