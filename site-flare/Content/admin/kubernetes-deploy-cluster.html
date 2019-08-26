@@ -46,14 +46,14 @@
 </code></pre>
         <p MadCap:conditions="Version.15-0-born">Alternately if you are deploying the manager and the processing unit separately, run the following commands:</p><pre MadCap:conditions="Version.15-0-born"><code>helm install insightedge-manager --name testmanager  --set enableExternalClient=true
  </code></pre><pre xml:space="preserve" MadCap:conditions="Version.15-0-born"><code>helm install insightedge-pu --name testspace --set manager.name=testmanager,enableExternalClient=true</code></pre>
-        <h2>Create Proxy</h2>
+        <h2 MadCap:conditions="Version.15-0-born">Create Proxy</h2>
         <p MadCap:conditions="Version.15-0-born">Once you've enabled external client access, you can create a GigaSpaces proxy (see  <a href="../started/xap-tutorial-part1.html">Interacting with the Space</a>). Use the external IP that is exposed in Kubernetes as the lookup locator when creating the proxy. You can retrieve the external IP by running the command <code class="language-bash">kubectl get svc</code> with the following output:</p>
         <p MadCap:conditions="Version.15-0-born">
             <img src="../Resources/Static/attachment_files/admin/kubectlGetSvc.png" />
         </p>
-        <p>For example in your Java code</p><pre>GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer
+        <p MadCap:conditions="Version.15-0-born">For example in your Java code</p><pre MadCap:conditions="Version.15-0-born">GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer
 ("testspace").lookupLocators(“17.204.211.27:30174”)).gigaSpace();</pre>
-        <p>If you are using Minikube, you can use192.168.99.100:30174.</p>
+        <p MadCap:conditions="Version.15-0-born">If you are using Minikube, you can use192.168.99.100:30174.</p>
         <div class="tc-admon-note" MadCap:conditions="Version.15-0-born">
             <p MadCap:conditions="Default.DoNotShow"><b style="color: #ff0000;"> only for EA , to be removed for production.</b>
             </p>
