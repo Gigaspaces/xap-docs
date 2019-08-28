@@ -9,7 +9,7 @@ weight: 50
 
 |Author|Product Version|Last Updated | Reference | Download |
 |------|-----------|-------------|-----------|----------|
-|Oleksiy Dyagilev| 14.2| March 2019| [Apache Kafka](http://kafka.apache.org)| [Github link](https://github.com/Gigaspaces-sbp/xap-kafka|
+|Oleksiy Dyagilev| 14.2| March 2019| [Apache Kafka](http://kafka.apache.org)| [Github link](https://github.com/Gigaspaces-sbp/xap-kafka)|
 
 
 
@@ -43,7 +43,7 @@ By default, Kafka messages are uniformly distributed across Kafka partitions. Pl
 
 ## Download the Kafka Example
 
-You can download the example code from [here](https://github.com/Gigaspaces-sbp/xap-kafka.
+You can download the example code from [here](https://github.com/Gigaspaces-sbp/xap-kafka).
 Unzip into an empty folder.
 
 The example is located under `<project_root>/example`. It demonstrates how to configure Kafka persistence and implements a simple Kafka consumer that pulls data from Kafka and stores in HsqlDB.
