@@ -32,7 +32,15 @@
         <p>A Kafka server is called a broker, and a Kafka cluster contains one or more brokers. Topic partitions can reside on different brokers in the clusters, so that data in a specific topic can be split among multiple brokers. Consumers can be associated with consumer groups (each group reads from a specific topic). This enables high throughput because messages can be written and read in parallel to and from the different brokers in the cluster.</p>
         <p>Kafka is designed to support persistent messaging with a O(1) disk structure that provides constant time performance, even with multiple terabytes of stored messages.
 Kafka provides high throughput even with very modest hardware, supporting hundreds of thousands of messages per second. Messages can be split among Kafka brokers, distributing consumption over a cluster of consumer machines while maintaining per-partition ordering semantics. For example, Kafka is often used to perform parallel data loading to Hadoop.</p>
-        <p>This page describes how to integrate <MadCap:variable name="General.CompanyName" /> products with Apache Kafka, using our write-behind data grid operations to Kafka to make data available for subscribers. Hadoop or any other data warehousing system can using the data for reporting and processing.</p>
+        <p>This page describes how to integrate <MadCap:variable name="General.CompanyName" /> products with Apache Kafka, using our write-behind data grid operations to Kafka to make data available for subscribers. Hadoop or any other data warehousing system can using the data for reporting and processing. <MadCap:variable name="General.CompanyName" /> products can be implemented as the consumer by subscribing to Kafka messages, and as a producer by publishing Kafka messages. Both implementations are described below.</p>
+        <h1>The Space as a Consumer</h1>
+        <p>The Kafka persistence library provides a wrapper around the native Kafka Consumer API for the <MadCap:variable name="General.CompanyName"></MadCap:variable>-Kafka protocol serialization. For an example of how to use this wrapper, see the <code>com.epam.openspaces.persistency.kafka.consumer.KafkaConsumer</code> example in the <code><MadCap:variable name="General.Home-directory"></MadCap:variable>/example module</code> folder.</p>
+        <p>The Space sits behind the Kafka consumer service, and the data objects are passed to the Space instances using routing keys.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-consumer.png" class="tc-picture80" />
+            </p>
+        </div>
         <h1>The Space as a Producer</h1>
         <p>The <MadCap:variable name="General.CompanyName" />-Kafka integration is done via the <code>SpaceSynchronizationEndpoint</code> interface deployed as a Kafka producer service. The service consumes a batch of data grid operations, converts them into custom Kafka messages, and sends these to the Kafka broker using the Kafka Producer API.</p>
         <div class="tc-align-center">
@@ -47,14 +55,6 @@ The default encoder utilizes the Java serialization mechanism, which implies Spa
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-data-order.png" alt="xap-kafka-ordering.jpg" class="tc-picture80" />
-            </p>
-        </div>
-        <h1>The Space as a Consumer</h1>
-        <p>The Kafka persistence library provides a wrapper around the native Kafka Consumer API for the <MadCap:variable name="General.CompanyName" />-Kafka protocol serialization. For an example of how to use this wrapper, see the <code>com.epam.openspaces.persistency.kafka.consumer.KafkaConsumer</code> example in the <code><MadCap:variable name="General.Home-directory" />/example module</code> folder.</p>
-        <p>The Space sits behind the Kafka consumer service, and the data objects are passed to the Space instances using routing keys.</p>
-        <div class="tc-align-center">
-            <p>
-                <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-consumer.png" class="tc-picture80" />
             </p>
         </div>
         <h1>Running the Example</h1>
