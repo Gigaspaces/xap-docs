@@ -167,16 +167,36 @@
         var searchClose = "<span id='search-close'></span>";
         $(searchIcon).prependTo('.nav-extn-wrapper');
         $(searchClose).insertAfter('.search-bar');
+        
         $('#version-menu>li>a')
-          .on('mouseenter', function (e) {
+          .on('click', function (e) {
             e.preventDefault();
-            $('#version-menu>li').addClass('open');
+            $('#version-menu>li').toggleClass('open');
+            $('#resources-menu>li').removeClass('open');
           });
+
+          $('#resources-menu>li>a')
+          .on('click', function (e) {
+            e.preventDefault();
+            $('#resources-menu>li').toggleClass('open');
+            $('#version-menu>li').removeClass('open');
+          });
+
+          $('#version-menu ul a').on('touchstart', function (e) {
+            document.location.href = $(this).attr('href');
+          });
+
+          $('#resources-menu ul a').on('touchstart', function (e) {
+            document.location.href = $(this).attr('href');
+          });
+
+          /*
           $('#version-menu>li>a')
           .on('mouseleave', function (e) {
             e.preventDefault();
             $('#version-menu>li').removeClass('open');
           });
+          
           $('#version-menu>li>a')
           .on('touchstart', function (e) {
             e.preventDefault();
@@ -197,6 +217,7 @@
             e.preventDefault();
             $('#resources-menu>li').toggleClass('open');
           });
+          */
         $('#search-icon')
           .click(function (e) {
             e.preventDefault();
@@ -214,21 +235,24 @@
             $(this).hide();
           });
 
-         $(window).resize(function() {
-            if ($(this).width() > 803) {
-              $('.nav-search-wrapper').show();
-              $("ul#version-menu>li>a").text(function(index, text) {
-              return text.replace('EA', 'Early Access');
-            });
-            } 
-            else {
-             $('.nav-search-wrapper').hide();
-             $('#search-icon').show();
-             $("ul#version-menu>li>a").text(function(index, text) {
-              return text.replace('Early Access', 'EA');
-            });
+          $(window).resize(function() {
+            if ($("input").is(":focus")) {
+          } else {
+              if ($(this).width() > 803) {
+                $('.nav-search-wrapper').show();
+                $("ul#version-menu>li>a").text(function(index, text) {
+                return text.replace('EA', 'Early Access');
+              });
+              } 
+              else {
+               $('.nav-search-wrapper').hide();
+               $('#search-icon').show();
+               $("ul#version-menu>li>a").text(function(index, text) {
+                return text.replace('Early Access', 'EA');
+              });
+              }
             }
-          });
+            });
       }
     },
     events: {
