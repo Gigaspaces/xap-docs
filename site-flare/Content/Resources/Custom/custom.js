@@ -1,4 +1,4 @@
-(function (w) {
+﻿(function (w) {
   var _self = {
     props: {
       version: '2.0.0',
@@ -116,7 +116,7 @@
           rMenu = null;
         var mLabel, mTarget;
         var navBar = $('<div class="nav-extn-wrapper"></div>');
-        var menuStart = '<ul id="MENU_ID" class="nav-menu"><li><a class="caret" href="#">MENU_LABEL</a><ul>';
+        var menuStart = '<ul id="MENU_ID" class="nav-menu"><li><a class="caret" href="#">Versions</a><ul>';
         var menuEnd = '</ul></li></ul>';
 
         $(document)
