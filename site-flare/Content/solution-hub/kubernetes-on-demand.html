@@ -31,24 +31,28 @@
         <ul>
             <li>Creating the Kubernetes cluster in the cloud</li>
             <li>Automating the Kubernetes infrastructure by installing the Kubernetes dashboard and Helm</li>
-            <li>Automating <MadCap:variable name="General.ProductNameIE" /> deployment with Helm.</li>
+            <li>Automating the KubeGrid deployment for <MadCap:variable name="General.ProductNameIE" /> with Helm.</li>
         </ul>
         <p><MadCap:variable name="General.CompanyName" /> products have custom Helm charts to enable easy deployment and configuration in Kubernetes, both in the cloud and on premise. After <MadCap:variable name="General.ProductNameIE" /> is installed, you can use the Kubernetes dashboard to monitor and administer your cluster.</p>
+        <p>After you finish working with <MadCap:variable name="General.ProductNameIE" />, you can easily take down the deployment from AWS until the next time it is needed.</p>
+        <div class="tc-admon-tip">
+            <p>This topic assumes existing knowledge of how to work in an Amzaon EKS environment. If you are not familiar, review the information in the <a href="https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html" target="_blank">Getting Started with Amazon EKS</a> section of the AWS&#160;user guide before continuing.</p>
+        </div>
         <h2>Prerequisites</h2>
         <p>In order to complete all the steps in the deployment process, you need the following installed on your local machine or VM:</p>
         <ul>
             <li><a href="https://helm.sh/docs/using_helm/#quickstart-guide" target="_blank">Helm </a>
             </li>
-            <li><a href="https://github.com/weaveworks/eksctl" target="_blank">Eksctl - CLI for EKS</a>
-            </li>
+            <li><a href="https://github.com/weaveworks/eksctl" target="_blank">Eksctl</a> (CLI for Amazon EKS)</li>
         </ul>
+        <p MadCap:conditions="Default.DoNotShow"><span class="tc-highlight">missing the versions that were used for this scenario</span>
+        </p>
         <h1>Deploying <MadCap:variable name="General.ProductNameIE" /> on Demand</h1>
         <h2>Creating a Kubernetes Cluster</h2>
-        <p>The first step is to create a Kubernetes cluster in AWS. While there are several tools available, this use case is based on eksctl, a well-known command-line utility that is used to create and manage Kubernetes clusters on Amazon EKS.</p>
+        <p>This use case utilizes eksctl (a well-known command-line utility that is used to create and manage Kubernetes clusters on Amazon EKS) to deploy the Kubernetes cluster. You can deploy the cluster by following the instructions provided in the <a href="https://eksworkshop.com/eksctl/" target="_blank">Amazon EKS Workshop</a>.</p>
         <div class="tc-admon-note">
             <p>For more information about the eksctl utility, see the <a href="https://github.com/weaveworks/eksctl/blob/master/README.md" target="_blank">Weaveworks README</a> on GitHub.</p>
         </div>
-        <p>To create an EKS cluster type the eksctl create cluster command as described in the <a href="https://eksworkshop.com/eksctl/launcheks/#create-eks-cluster-0" target="_blank">Amazon workshop</a>.</p>
         <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
             <p>Kubespray partial info retained for future after all steps are verified/modified</p>
         </div>
@@ -74,7 +78,8 @@
                 <li>Vagrant version 2.2.5</li>
             </ul>
         </div>
-        <h1>Deploying the Data Grid</h1>
+        <h2>Deploying the Data Grid</h2>
+        <p>In order to deploy Kube</p>
         <p>The Helm package manager is used for installing <MadCap:variable name="General.ProductNameIE" /> in the Kubernetes environment. To deploy the cluster perform the following steps </p>
         <h2>Deploying the Helm Service</h2>
         <p>To deploy the Helm Tiller service with access to manage resources in your cluster type the following command:</p><pre><code>helm init --service-account tiller</code></pre>

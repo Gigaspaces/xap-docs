@@ -18,11 +18,11 @@
 
 var resourcesData = {
   'Resources': { 'url': '#' },
-  'Early Access': { 'url': '/early_access' },
+  'Early Access': { 'url': '/early-access/early-access/early-access.html' },
   'Frequently Asked Questions': { 'url': '/faq' },
-  'API Docs': { 'url': '/api_documentation' },
-  'Videos': { 'url': '/videos' },
-  'Solutions & Patterns': { 'url': '/sbp' },
+  'API Docs': { 'url': '/api-documentation/api-docs/api-docs.html' },
+  'Videos': { 'url': '/videos/videos/Videos.html' },
+  'Solutions & Patterns': { 'url': '/solution-hub/solution-hub/intro.html' },
   'Blog': { 'url': 'http://blog.gigaspaces.com', 'target': '_blank' },
   'Forum': { 'url': 'http://ask.gigaspaces.org', 'target': '_blank' }
 };
