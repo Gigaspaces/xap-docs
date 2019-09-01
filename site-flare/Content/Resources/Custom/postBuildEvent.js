@@ -44,6 +44,10 @@ function processBuildFolder(srcFolder) {
   ]);
   log("Processing static resources...");
   processStaticResources(fso.GetFolder(dstFolder.Path + "\\Resources\\Static"), sOutputPath);
+  if (srcFolder.Name === "ie-resources") {
+	fso.CopyFolder(sDstPath, sOutputPath + "\\");
+	fso.DeleteFolder(sDstPath);
+  }
 }
 
 function processStaticResources(srcPath, dstPath) {
