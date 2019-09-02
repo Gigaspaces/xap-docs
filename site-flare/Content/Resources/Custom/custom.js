@@ -222,7 +222,7 @@
           .click(function (e) {
             e.preventDefault();
             $('.nav-search-wrapper').show();
-            $('.search-field.needs-pie').attr('placeholder','Search for anything...');
+            $('.search-field.needs-pie').attr('placeholder','Search...');
             $('#search-close').show();
             $(this).hide();
           });
