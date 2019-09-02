@@ -20,3 +20,4 @@ It's important for us to encourage your feedback and contribution. Contributing 
 ## (Optional) Navigation menu generation
 
 The navigation menu is generated outside of Hugo via a script. The `run.sh` and `run.bat` scripts automatically genereate this menu by calling the `generate-navbar.sh` or `generate-navbar.bat` scripts before starting hugo. If you create a new page or change the weight of the pages, simply restart the script for the changes to take effect.
+
