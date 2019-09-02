@@ -40,9 +40,9 @@ Moreover, since Helm is open source, there are many community charts available w
             <li>Unpack the required Helm chart(s) in a local folder</li>
         </ul>
         <h3><a name="adding-a-helm-repo-to-the-repo-list"></a>Adding a Helm Repo to the Repo List</h3>
-        <p>You can point to the GigaSpaces Helm repo, so that Helm can locate the <code>xap</code> and <code>insightedge</code> charts for installation:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
-</code></pre>
-        <p>After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. For example, to install <MadCap:variable name="General.ProductNameIE" />, use the following command:</p><pre><code class="language-bash">helm install gigaspaces/insightedge --version=[%=Versions.helm-version%] --name demo
+        <p>You can point to the GigaSpaces Helm repo, so that Helm can locate the <code>xap</code> and <code>insightedge</code> charts for installation:</p><pre><code class="language-bash">helm repo add gigaspaces<MadCap:variable name="Versions.early-access-suffix" /> https://resources.gigaspaces.com/helm-charts<MadCap:variable name="Versions.early-access-suffix" /><![CDATA[
+]]></code></pre>
+        <p>After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. For example, to install <MadCap:variable name="General.ProductNameIE" />, use the following command:</p><pre><code class="language-bash">helm install gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack" /> --name demo
 </code></pre>
         <h3><a name="fetching-the-gigaspaces-helm-charts-from-the-gigaspaces-repository"></a>Fetching the GigaSpaces Helm Charts from the GigaSpaces Repository</h3>
         <p>Another option is to fetch the GigaSpaces Helm charts that you need and unpack them locally, so you don’t have to repeat the repo name and package version in each command (which has the added benefit of making the commands shorter). For example, if you fetch and unpack the Helm chart using the following command:</p><pre><code class="language-bash">helm fetch gigaspaces/insightedge --version=[%=Versions.helm-version%] --untar
