@@ -14,11 +14,50 @@
   UseCustomTopicFileExtension="true"
   ExcludeUnreferencedContent="true"
   MasterPage="/Content/Resources/MasterPages/content.flmsp"
-  CustomTopicFileExtension="html">
+  CustomTopicFileExtension="html"
+  ConditionTagExpression="exclude[Default.DoNotShow or Default.DraftOnly] ">
   <PrintedOutput
     CollapseMargins="true"
     GenerateTOCProxy="true"
     GenerateIndexProxy="true"
     GenerateGlossaryProxy="true" />
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
+  <Variables>
+    <Variable
+      Name="Versions/product-version-long">15.0.0</Variable>
+    <Variable
+      Name="Versions/product-version-short">14.5</Variable>
+    <Variable
+      Name="Versions/product-version-svc-pack">14.5.0</Variable>
+    <Variable
+      Name="Versions/helm-version">14.5</Variable>
+    <Variable
+      Name="Versions/maven-version">14.5.0</Variable>
+    <Variable
+      Name="Versions/msi-filename">gigaspaces-xap.net-14.5.0.msi</Variable>
+    <Variable
+      Name="Versions/default-lookup-group">xap-14.5.0</Variable>
+    <Variable
+      Name="Versions/gshome-directory">gigaspaces-xap-enterprise-14.5.0</Variable>
+    <Variable
+      Name="Versions/gshome-directory-oss">gigaspaces-xap-14.5.0</Variable>
+    <Variable
+      Name="Versions/gshome-net-directory">XAP.NET-14.5.0-x64</Variable>
+    <Variable
+      Name="Versions/xap-version">15.0</Variable>
+    <Variable
+      Name="Versions/xap-release">14.5</Variable>
+    <Variable
+      Name="Versions/openjpa">2.2.2</Variable>
+    <Variable
+      Name="Versions/spark-version">2.4</Variable>
+    <Variable
+      Name="Versions/hibernate-medium">5.2</Variable>
+    <Variable
+      Name="Versions/hibernate-short">5</Variable>
+    <Variable
+      Name="Versions/spring-long">5.1.7</Variable>
+    <Variable
+      Name="Versions/spring-short">5.1</Variable>
+  </Variables>
 </CatapultTarget>

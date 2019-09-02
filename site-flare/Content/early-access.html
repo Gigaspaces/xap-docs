@@ -5,24 +5,98 @@
     <body>
         <h1 class="tc-pagetitle"> Early Access</h1>
         <p MadCap:conditions="Default.DoNotShow">There is currently no early access release available for evaluation.</p>
-        <p>This page contains early access information for the <MadCap:variable name="General.ProductNameIE" /> platform and <MadCap:variable name="General.ProductNameXAP" /> data grid version <MadCap:variable name="Versions.product-version-long" />, which is scheduled for release at the end of Q2 2019. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!</p>
+        <p>This page contains early access information for version <MadCap:variable name="Versions.product-version-long" /> of <MadCap:variable name="General.CompanyName" /> products, scheduled for release at the end of Q2 2019. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!</p>
         <div class="tc-admon-attention">
-            <p>Early access builds are provided as is, and should not be used in production. The latest stable release is version 14.2.0.</p>
+            <p>Early access builds are provided as is, and should not be used in production. The latest stable release is version 14.5.0.</p>
             <p><a href="https://www.gigaspaces.com/download-center">Download</a> | <a href="https://docs.gigaspaces.com/latest/landing.html">Documentation</a></p>
         </div>
-        <h1 MadCap:conditions="Default.DoNotShow">14.5.0 RC1 (Jun-23-2019)</h1>
-        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
+        <h1>15.0.0 M11 (Sep-02-2019)</h1>
+        <h2>Download Links</h2>
         <ul>
-            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/14.5.0/gigaspaces-insightedge-enterprise-14.5.0-rc1.zip">InsightEdge Enterprise</a>
+            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.0.0/gigaspaces-insightedge-enterprise-15.0.0-m11.zip">InsightEdge Enterprise</a>
             </li>
-            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/14.5.0/gigaspaces-xap-enterprise-14.5.0-rc1.zip">XAP Enterprise</a> | <a href="">XAP.NET Enterprise</a></li>
+            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap-enterprise-15.0.0-m11.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap.net-15.0.0-m11.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
-        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
-        <li MadCap:conditions="Default.DoNotShow">
-            <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13851," />: text here.</li>
-        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
-        <li MadCap:conditions="Default.DoNotShow">
-            <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13851," />: text here.</li>
+        <h2>Changelog</h2>
+        <h3>Features and Enhancements</h3>
+        <ul>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13885," />: Upgrade Apache Zookeeper to 3.5.5, Curator to 4.2.0.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13914," />: Upgrade Apache Calcite to 1.14.</li>
+        </ul>
+        <h3>Resolved Issues</h3>
+        <ul>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13889," />: Processing Unit failed to deploy after problematic content was removed with LinkageError exception.</li>
+        </ul>
+        <h1>15.0.0 M10 (Aug-25-2019)</h1>
+        <h2>Download Links</h2>
+        <ul>
+            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.0.0/gigaspaces-insightedge-enterprise-15.0.0-m10.zip">InsightEdge Enterprise</a>
+            </li>
+            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap-enterprise-15.0.0-m10.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap.net-15.0.0-m10.msi">XAP.NET Enterprise</a></li>
+        </ul>
+        <h2>Changelog</h2>
+        <h3>Features and Enhancements</h3>
+        <ul>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13903," />: Simplified the RocksDB configuration for the MemoryXtend driver for SSD.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13901," />: Add new "space_replciation_redo_log_used-percent" metric.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13900," />: Add new "memory-heap-used-percent" metric.</li>
+        </ul>
+        <h3>Resolved Issues</h3>
+        <ul>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13905," />: Passing options to interactive shell doesn't work.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13899," />: The "process_cpu_used-percent" metric doesn't record the correct value.</li>
+        </ul>
+        <h1>15.0.0 M8 (Aug-12-2019)</h1>
+        <h2>Download Links</h2>
+        <ul>
+            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.0.0/gigaspaces-insightedge-enterprise-15.0.0-m8.zip">InsightEdge Enterprise</a>
+            </li>
+            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap-enterprise-15.0.0-m8.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap.net-15.0.0-m8.msi">XAP.NET Enterprise</a></li>
+        </ul>
+        <h2>Changelog</h2>
+        <h3>Features and Enhancements</h3>
+        <ul>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13887," />: Kubernetes network policy enhancement to enable data operations from remote clients via a public IP/port.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13881," />: Added Lucene support for collections in full text search.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13883," />: Enhance InsightEdge JDBC driver to optionally get schema from an alternative URL instead of from a Space.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13683," />: Upgrade Jetty to 9.4.19.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13816," />: Improve SQL query performance when distinct keyword is used.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13696," />: User-defined SQL functions now support setting parameters.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13893," />: Added the CONTAINS_KEY built-in SQL function that checks if a map contains a key.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-12362," />: The GS Agent only monitors (and restarts) components that were started successfully.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13891," />: Upgrade RocksDB to 6.0.1.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13879," />: Upgrade Hibernate to 5.2.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13868," />: Added support in AnalyticsXtreme for Hive partitioned tables.</li>
+        </ul>
+        <h3>Resolved Issues</h3>
+        <ul>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13894," />: GS Agent components don't terminate when the parent process is no longer alive.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13863," />: Full recovery failed when using a FIFO group.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13207," />: Polling container didn't have a graceful shutdown when using a DynamicEventTemplate in combination with a SQL query.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13812," />: Full recovery does not preserve the FIFO grouping order.</li>
+        </ul>
     </body>
 </html>
