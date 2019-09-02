@@ -144,6 +144,8 @@
           vMenu += '<li><a' + ((v == _self.props.prodVer) ? ' class="selected"' : '') + ' href="' + versionData[v].url + '" target="' + mTarget + '">' + mLabel + '</a></li>';
           /* } */
         }
+        // If MENU_LABEL was not replaced (no version), set place holder
+        vMenu = vMenu.replace('MENU_LABEL', 'Versions');
         vMenu += menuEnd;
         $(vMenu).appendTo(navBar);
 
@@ -154,8 +156,6 @@
           else
             rMenu += '<li><a href="' + resourcesData[r].url + '" target="' + mTarget + '">' + r + '</a></li>';
         }
-        // If MENU_LABEL was not replaced (no version), set place holder
-        vMenu = vMenu.replace('MENU_LABEL', 'Versions');
         rMenu += menuEnd;
         $(rMenu).appendTo(navBar);
 
