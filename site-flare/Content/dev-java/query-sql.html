@@ -519,7 +519,7 @@ A query is considered complex if it contains one or more of the following:</p>
         <h1><a name="reserved-separators-and-operators"></a>Reserved Separators and Operators</h1>
         <p>:= || ; . ROWTYPE ~ &lt; &lt;= &gt;  &gt;= =&gt; != &lt;&gt; (+) ( ) * / + - ? { }</p>
         <h1>String Conversion</h1>
-        <p>When writing an SQLquery with a field in a class that is a custom type (not one of the common supported Java types) and not setting a parameter, the query can fail when SQL query does not have a conversion from a String literal to the object of that type.</p>
+        <p>When writing an SQLquery with a field in a class that is a custom type (not one of the common supported Java types) and not setting a parameter, the query will fail when SQL query does not have a conversion from a String literal to the object of that type.</p>
         <p>For example, if a field inside the class is of a custom type MYID. SQL query does not have a converter defined and the query will fail with an exception. </p>
         <p>To convert such a field to type string:</p>
         <ul>
