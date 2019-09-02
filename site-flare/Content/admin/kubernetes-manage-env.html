@@ -8,9 +8,11 @@
         <p>While Kubernetes provides a number of ways to monitor the Pods and services, you can use the GigaSpaces administration tools to monitor the data grid (Spaces and Processing Units).</p>
         <h2><a name="rest-manager-api"></a>REST Manager API</h2>
         <p>You can open the GigaSpaces REST Manager API and verify that your data grid was set up properly. You can access it from the minikube on your local machine or VM.</p>
-        <p>To get the IP address of your minikube, type the <code>minikube ip</code> command in the command window. Then type the following URL (using the minikube IP address) in your browser to access the REST Manager API:</p>
-        <p><code>http://&lt;minikube ip&gt;:8090</code>
-        </p>
+        <p>To get the IP address of your minikube, type the <code>minikube ip</code> command in the command window. Then type the following URL (using the minikube IP address) in your browser to access the REST Manager API, with the port dependent on the service being used:</p>
+        <ul>
+            <li>Default LoadBalancer service <code>http://&lt;minikube ip&gt;:8090</code></li>
+            <li>NodePort service <code>http://&lt;minikube ip&gt;:30890</code></li>
+        </ul>
         <p>For information on how to use the REST Manager API, see the <a href="../admin/admin-tools.html">Administration Tools</a> section of the documentation.</p>
         <h2><a name="gigaspaces-command-line-interface"></a><MadCap:variable name="General.CompanyName" /> Command Line Interface</h2>
         <p>You can use the <MadCap:variable name="General.CompanyName" /> CLI to monitor and administer the data grid.</p>
