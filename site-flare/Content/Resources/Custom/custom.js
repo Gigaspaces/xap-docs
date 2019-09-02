@@ -1,4 +1,4 @@
-(function (w) {
+﻿(function (w) {
   var _self = {
     props: {
       version: '2.0.0',

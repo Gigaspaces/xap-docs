@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="MadCap HTML5 Target"
+  Type="WebHelp2"
+  Destinations=""
+  ShowMadCapBacklink="false"
+  GlossaryTermConversion="marked"
+  MasterToc="/Project/TOCs/Production/insightedge-resources.fltoc"
+  Skin="/Project/Skins/HTML5 - Side Navigation.flskn"
+  MobileBreakpoint="820"
+  InsertMOTW="true"
+  MoveOutputContentToRoot="true"
+  UseCustomTopicFileExtension="true"
+  ExcludeUnreferencedContent="true"
+  MasterPage="/Content/Resources/MasterPages/content.flmsp"
+  CustomTopicFileExtension="html">
+  <PrintedOutput
+    CollapseMargins="true"
+    GenerateTOCProxy="true"
+    GenerateIndexProxy="true"
+    GenerateGlossaryProxy="true" />
+  <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
+</CatapultTarget>

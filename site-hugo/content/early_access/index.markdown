@@ -11,6 +11,27 @@ This page contains early access information for the InsightEdge Platform and XAP
  {{%tip "Disclaimer"%}} Early access builds are provided as is, and should not be used in production. The latest stable release is version 14.5.0.<br>[Download](https://www.gigaspaces.com/download-center) | [Documentation](/latest/)</br>{{%/tip%}}
 
 
+# 15.0.0 M11 (Sep-01-2019)
+
+## Download Links
+
+* [InsightEdge Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.0.0/gigaspaces-insightedge-enterprise-15.0.0-m11.zip) 
+
+* [XAP Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap-enterprise-15.0.0-m11.zip) | [XAP.NET Enterprise](https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.0.0/gigaspaces-xap.net-15.0.0-m11.msi)
+
+## Changelog
+
+### Features and Enhancements
+
+- {{% jira id="GS-13885" %}}: Upgrade Apache Zookeeper to 3.5.5, Curator to 4.2.0.
+- {{% jira id="GS-13914" %}}: Upgrade Apache Calcite to 1.14.
+
+
+### Resolved Issues
+
+- {{% jira id="GS-13889" %}}: Processing Unit failed to deploy after problematic content was removed with LinkageError exception.
+
+
 # 15.0.0 M10 (Aug-25-2019)
 
 ## Download Links
@@ -30,7 +51,7 @@ This page contains early access information for the InsightEdge Platform and XAP
 
 ### Resolved Issues
 
-- {{% jira id="GS-13905" %}}: Passing options to interactive shell doesn't work
+- {{% jira id="GS-13905" %}}: Passing options to interactive shell doesn't work.
 - {{% jira id="GS-13899" %}}: The "process_cpu_used-percent" metric doesn't record the correct value.
 
 
