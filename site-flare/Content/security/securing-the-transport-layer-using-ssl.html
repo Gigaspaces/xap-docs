@@ -29,7 +29,7 @@
         <p>The way to load and enable the communication filter, is by setting the system property <code>com.gs.lrmi.filter.factory</code>. The value should be the <code>communication filter factory</code> class name.</p>
         <p>For example, to use an SSL communication filter, run <MadCap:variable name="General.ProductNameXAP" /> with:</p><pre><code class="language-bash">-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 </code></pre>
-        <h1><a name="default-sslfilterfactory"></a>Default SSLFilterFactory</h1>
+        <h1><a name="Default"></a>Default SSLFilterFactory</h1>
         <p>Since some types of communication filters are not symmetric regarding the client and server, the class <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/lrmi/nio/filters/SSLFilterFactory.html" target="_blank">SSLFilterFactory</a> has 2 methods: one to create the communication filter for the client side, and the other for the server side.</p>
         <ul>
             <li>
