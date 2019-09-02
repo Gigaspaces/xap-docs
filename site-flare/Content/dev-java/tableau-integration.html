@@ -9,7 +9,7 @@
         <p>Your host machine must have the following installed:</p>
         <ul>
             <li>Java 8 or higher</li>
-            <li>Tableau version 2019.1 or higher <MadCap:conditionalText MadCap:conditions="Default.DoNotShow" style="color: #dc143c;">Also for MAC?</MadCap:conditionalText></li>
+            <li>Tableau version 2019.1 or higher </li>
         </ul>
         <h1>Integrating InsightEdge with Tableau in a Windows environment</h1>
         <p>The <MadCap:variable name="General.CompanyName" /> Tableau integration creates a JDBC&#160;connector for Tableau, so that Tableau Desktop can query the <MadCap:variable name="General.ProductNameIE" /> data grid directly using the <MadCap:variable name="General.ProductNameIE" /> JDBC driver. The integration is available in the <code>&lt;product&gt;/tools/tableau</code> folder of the <MadCap:variable name="General.ProductNameIE" /> software package. It contains the following files:</p>
@@ -45,13 +45,11 @@
         <ul>
             <li>If the JDBC&#160;driver is not yet created, run the command <code>&lt;product&gt;/tools/jdbc/build-jdbc-client.sh</code> to create the <code class="language-bash">insightedge-jdbc-client.jar</code> file.</li>
         </ul>
-        <p MadCap:conditions="Default.DoNotShow" style="color: #dc143c;">Check Tableau path details on next 2</p>
         <ul>
             <li> Run the command <code>cp &lt;product&gt;/tools/jdbc/insightedge-jdbc-client.jar &lt;TABLEAU_HOME&gt;/Drivers</code> to copy the driver to the Tableau drivers folder.</li>
-            <li>Run the Tableau application with pointer to the <MadCap:variable name="General.CompanyName" /> tableau folder with the command <code class="language-bash">"/Applications/Tableau Desktop 2019.2.app/Contents/MacOS/Tableau" -DConnectPluginsPath=$IE_HOME/tools/tableau</code></li>
+            <li>Run the Tableau application with pointer to the <MadCap:variable name="General.CompanyName" /> tableau folder as in this sample  command <code class="language-bash">"/Applications/Tableau Desktop 2019.2.app/Contents/MacOS/Tableau" -DConnectPluginsPath=$IE_HOME/tools/tableau</code></li>
         </ul>
         <h1>Connecting to the Space</h1>
-        <p MadCap:conditions="Default.DoNotShow" style="color: #dc143c;">Is this same for MAC</p>
         <p class="tc-todo">To configure the data source after Tableau is started:</p>
         <ol>
             <li>
