@@ -8,7 +8,7 @@
             <thead>
                 <tr>
                     <th>Author</th>
-                    <th>Release</th>
+                    <th>Product Version</th>
                     <th>Last Updated</th>
                     <th>Reference</th>
                     <th>Download</th>
@@ -38,14 +38,14 @@ Kafka provides high throughput even with very modest hardware, supporting hundre
         <p>The Space sits behind the Kafka consumer service, and the data objects are passed to the Space instances using routing keys.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-consumer.png" class="tc-picture80" />
+                <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-consumer.png" class="tc-picture50" />
             </p>
         </div>
         <h1>The Space as a Producer</h1>
         <p>The <MadCap:variable name="General.CompanyName" />-Kafka integration is done via the <code>SpaceSynchronizationEndpoint</code> interface deployed as a Kafka producer service. The service consumes a batch of data grid operations, converts them into custom Kafka messages, and sends these to the Kafka broker using the Kafka Producer API.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-producer.png" alt="xap-kafka.jpg" class="tc-picture80" />
+                <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-producer.png" alt="xap-kafka.jpg" class="tc-picture50" />
             </p>
         </div>
         <p>The <MadCap:variable name="General.CompanyName" />-Kafka protocol is simple and represents the data and data grid operations. A message consists of the data grid operation type (Write, Update , Remove, etc.) and the actual data object. The data object itself may be represented either as a single object or as a <code>SpaceDocument</code> with key/value pairs.
@@ -209,7 +209,7 @@ public class UserActivity implements Serializable {
     ...
 }
 </code></pre>
-        <h3><a name="space-documents">&#160;</a>Space Documents</h3>
+        <h3>Space Documents</h3>
         <p>To configure a Kafka topic for a <code>SpaceDocument</code> or <code>Extended SpaceDocument</code>, the <code>KafkaPersistenceConstants.SPACE_DOCUMENT_KAFKA_TOPIC_PROPERTY_NAME</code> property should be added to the document. See the following sample code.</p><pre><code class="language-java">public class Product extends SpaceDocument {
 
 public Product() {
@@ -222,7 +222,7 @@ public Product() {
     &lt;property name="spaceDocumentKafkaTopicName" value="topic_name" /&gt;
 &lt;/bean&gt;
 </code></pre>
-        <h2><a name="Customization"></a>Customizing the Integration</h2>
+        <h2>Customizing the Integration</h2>
         <p>You can customize the <MadCap:variable name="General.CompanyName" />-Kafka protocol as necessary, to suit your specific use case and environment. The following guidelines may be helpful:</p>
         <ul>
             <li>Kafka persistence was designed to be extensible and customizable.</li>

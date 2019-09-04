@@ -3,12 +3,12 @@
     <head>
     </head>
     <body>
-        <h1>Drools Rule Engine Integration</h1>
+        <h1 class="tc-pagetitle">Drools Rule Engine Integration</h1>
         <table>
             <thead>
                 <tr>
                     <th>Author</th>
-                    <th>XAP Version</th>
+                    <th>Product Version</th>
                     <th>Last Updated</th>
                     <th>Reference</th>
                     <th>Download</th>
@@ -42,7 +42,7 @@
         <p>Drools stores its rules in Production Memory and facts in Working Memory. The Agenda manages the execution order of these rules using a Conflict Resolution strategy.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/drools/drools1.png" alt="drools1" />
+                <img src="../Resources/Static/attachment_files/drools/drools1.png" alt="drools1" class="tc-picture30" />
             </p>
         </div>
         <p>Drools has a "native" rule language. A rule file typically has a .drl extension. In a DRL file you can have multiple rules, queries and functions, as well as some resource declarations like imports, globals, and attributes.
@@ -64,7 +64,7 @@ A package is a collection of rules and other related constructs, such as imports
         <p>Let's discuss these gaps within the context of a stateless application hosted in clustered environment and explain how an integration with XAP would benefit its use of Drools.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/drools/drools2.png" alt="drools1" />
+                <img src="../Resources/Static/attachment_files/drools/drools2.png" alt="drools1" class="tc-picture80" />
             </p>
         </div>
         <h3><a name="distribution">&#160;</a>Distribution</h3>
@@ -116,7 +116,7 @@ A package is a collection of rules and other related constructs, such as imports
         <p>This module implements classes encapsulating stand-alone functional processes to load, analyze, execute and remove Rules and Facts. These processes can be simply instantiated by running their main methods and will interact with the space via the Space Proxy. If you are using an Eclipse IDE you can just click on the class and choose Run As Configurations to start the process.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/drools/drools3.png" alt="drools1" />
+                <img src="../Resources/Static/attachment_files/drools/drools3.png" alt="drools1" class="tc-picture50" />
             </p>
         </div>
         <div class="tc-admon-note">
@@ -429,21 +429,27 @@ public class RulesExecutionServiceImpl implements IRulesExecutionService {
         <p>This module creates a deployable artifact (WAR) that instantiates a Stateless processing unit(s) hosting JSON Restful Web Services on top of XAP's <a href="https://docs.gigaspaces.com/latest/dev-java/web-jetty-processing-unit-container.html">Jetty Processing Unit Container</a>.</p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/drools/drools4.png" alt="drools1" />
+                <img src="../Resources/Static/attachment_files/drools/drools4.png" alt="drools1" class="tc-picture30" />
             </p>
         </div>
         <p>Interaction with these services is very simple, because they only implement the GET REST method. A client only needs an Internet Browser to initiate a HTTP Servlet transaction on the listening Spring Controllers. There are two types of services that are deployed as part of this integration pattern - Decision Services and Generic Data Retrieval Services.</p>
         <p>Decision services create or look up facts from the Space and pass them to the Remoting Service, which adds them to the KnowledgeBase's working memory and pattern matches them against all compiled rules. To initiate a decision service, enter a URL in the Browser and in response you receive a JSON payload printed to the screen.</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/drools/drools5.png" alt="drools1" />
-        </p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools5.png" alt="drools1" class="tc-picture50" />
+            </p>
+        </div>
         <p>Generic REST Data Retrieval Services come in two flavors - Read-By-ID and Read-By-Type. Read-By-ID requires the client to pass an ID along with the type of Object they are requesting. The Read-By-Type only requires the type returning multiple objects.</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/drools/drools6.png" alt="drools1" />
-        </p>
-        <p>
-            <img src="../Resources/Static/attachment_files/drools/drools7.png" alt="drools1" />
-        </p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools6.png" alt="drools1" class="tc-picture50" />
+            </p>
+        </div>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools7.png" alt="drools1" class="tc-picture50" />
+            </p>
+        </div>
         <h1><a name="running-the-demo">&#160;</a>Running the Demo</h1>
         <div class="row">
             <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
@@ -558,7 +564,7 @@ public class RulesExecutionServiceImpl implements IRulesExecutionService {
                 <div title="Step 16: Confirm the Web Services URL and PORT" style="padding:10px;">
                     <p>Click the Applications Tab and confirm the Web Services URL and PORT.</p>
                     <p>
-                        <img src="../Resources/Static/attachment_files/drools/drools31.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools31.png" alt="drools1" class="tc-picture50" />
                     </p>
                 </div>
                 <div title="Step 17: Test the rules" style="padding:10px;">

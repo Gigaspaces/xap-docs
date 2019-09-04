@@ -3,12 +3,12 @@
     <head>
     </head>
     <body>
-        <h1>Mainframe Integration</h1>
+        <h1 class="tc-pagetitle">Mainframe Integration</h1>
         <table>
             <thead>
                 <tr>
                     <th>Author</th>
-                    <th>XAP Version</th>
+                    <th>Product Version</th>
                     <th>Last Updated</th>
                     <th>Reference</th>
                     <th>Download</th>
@@ -36,9 +36,11 @@
         <p><a href="http://www-03.ibm.com/software/products/us/en/infodatarepl">IBM® InfoSphere® Data Replication</a> (aka IBM QRep) replicates information between heterogeneous data stores in near real time. It provides replication with transactional integrity to support database migration, application consolidation, warehousing, master data management, business analytics and data quality processes. DB2 Replication programs read the source database recovery logs continuously and apply them to target data source (i.e. databases). This can be achieved via either SQL Replication or Queue Replication.</p>
         <h3><a name="event-publishing">&#160;</a>Event Publishing</h3>
         <p>DB2 Event publishing programs read source database changes from the database logs and makes the same available to consuming applications(in delimited, XML format or direct to database tables). When publishing messages, these can be available via IBM Websphere MQ.</p>
-        <p>
-            <img src="/attachment_files/sbp/db2-delta-server.jpg" alt="db2-delta-server.jpg" />
-        </p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/db2-delta-server.jpg" alt="db2-delta-server.jpg" class="tc-picture30" />
+            </p>
+        </div>
         <p>One of the main differences between SQL/Q Replication is the usage of staging tables by SQL replication. Both do use the Q Capture and Q Apply programs, however Q replication has a step wherein the committed changes are immediately sent over to a Websphere Message Q.</p>
         <p>Event publishing, on the other hand, does not use the Q Apply program, in other words, it just makes the data available for consumers to handle the same accordingly.</p>
         <p>Overall, an architectural decision needs to be made based on the specific use case for each enterprise. There are, of course, latency trade offs with each architectural path chosen. Care has to be taken to define the appropriate choice for a high TPS, OLTP application vs an analytic use case/OLAP etc.</p>
