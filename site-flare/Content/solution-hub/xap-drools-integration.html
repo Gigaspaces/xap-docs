@@ -40,9 +40,11 @@
         </ul>
         <p>The Drools Rule Engine matches Facts (POJO) against Rules to infer conclusions which result in actions. The process of matching the new or existing facts against Rules is called pattern matching, which is performed by the inference engine.</p>
         <p>Drools stores its rules in Production Memory and facts in Working Memory. The Agenda manages the execution order of these rules using a Conflict Resolution strategy.</p>
-        <p>
-            <img src="/attachment_files/drools/drools1.png" alt="drools1" />
-        </p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools1.png" alt="drools1" />
+            </p>
+        </div>
         <p>Drools has a "native" rule language. A rule file typically has a .drl extension. In a DRL file you can have multiple rules, queries and functions, as well as some resource declarations like imports, globals, and attributes.
 A package is a collection of rules and other related constructs, such as imports and globals. The package members are typically related to each other - perhaps HR rules, for instance.</p>
         <p>A package represents a namespace, which ideally is kept unique for a given grouping of rules.</p>
@@ -60,9 +62,11 @@ A package is a collection of rules and other related constructs, such as imports
             <li>Scalability</li>
         </ul>
         <p>Let's discuss these gaps within the context of a stateless application hosted in clustered environment and explain how an integration with XAP would benefit its use of Drools.</p>
-        <p>
-            <img src="/attachment_files/drools/drools2.png" alt="drools1" />
-        </p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools2.png" alt="drools1" />
+            </p>
+        </div>
         <h3><a name="distribution">&#160;</a>Distribution</h3>
         <p>Drools was not created as a distributed solution. In order to maintain seamless load-balancing in a clustered environment, each instance of an enterprise application would require identical data in its <code>KnowledgeBase(s)</code>. Since XAP is inherently a distributed environment it allows the clustered enterprise applications to distribute their rules across multiple <a href="https://docs.gigaspaces.com/latest/admin/data-partitioning.html">Data Grid partitions (Space)</a>. In addition, the enterprise applications would use a common reference proxy to the Space allowing them to avoid the burden on managing data locality.</p>
         <h3><a name="failover">&#160;</a>Failover</h3>
@@ -110,9 +114,11 @@ A package is a collection of rules and other related constructs, such as imports
         <p>The remaining POJOs are meant to be informative tools for management and governance purposes. Their role is to provide the user with metadata type information about the contents of KnowledgeBase without having to execute operations against the actual objects.</p>
         <h2><a name="client-module">&#160;</a>Client Module</h2>
         <p>This module implements classes encapsulating stand-alone functional processes to load, analyze, execute and remove Rules and Facts. These processes can be simply instantiated by running their main methods and will interact with the space via the Space Proxy. If you are using an Eclipse IDE you can just click on the class and choose Run As Configurations to start the process.</p>
-        <p>
-            <img src="/attachment_files/drools/drools3.png" alt="drools1" />
-        </p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools3.png" alt="drools1" />
+            </p>
+        </div>
         <div class="tc-admon-note">
             <p>Some main methods allow for you to pass arguments.</p>
         </div>
@@ -142,7 +148,7 @@ A package is a collection of rules and other related constructs, such as imports
         <h3><a name="analyze">&#160;</a>Analyze</h3>
         <p>By running these processes you can get a print out to the System.Out log of the KnowledgePackages and their corresponding Rules within the chosen KnowledgeBase.</p>
         <div class="tc-admon-note">
-            <p>You can also get this information by inspecting the KnowledgePackage Space Class via the <a href="currentadmurl/gigaspaces-management-center.html">XAP Management Center</a>, which maintains metadata about each available KnowledgePackage across all loaded KnowledgeBase(s).</p>
+            <p>You can also get this information by inspecting the KnowledgePackage Space Class via the <a href="../admin/gigaspaces-management-center.html">GigaSpaces Management Center</a>, which maintains metadata about each available KnowledgePackage across all loaded KnowledgeBase(s).</p>
         </div>
         <h3><a name="loader">&#160;</a>Loader</h3>
         <p>These processes load both the Rules and Facts into the KnowledgeBase(s) stored on one or more instances of Stateful Processing Units representing the Space.</p>
@@ -407,7 +413,7 @@ public class RulesExecutionServiceImpl implements IRulesExecutionService {
 </code></pre>
             </div>
         </div>
-        <p>As with any execution against a partitioned space, a routing key is required for the <a href="currentadmurl/data-partitioning.html">Hash-Based Routing</a> mechanism to determine which partition hosts the client's requested data. The routing key can also simply be set by adding an annotation, but this time to one of the parameters inside the method signature.</p><pre><code class="language-java">public interface IRulesExecutionService {
+        <p>As with any execution against a partitioned space, a routing key is required for the <a href="../admin/data-partitioning.html">Hash-Based Routing</a> mechanism to determine which partition hosts the client's requested data. The routing key can also simply be set by adding an annotation, but this time to one of the parameters inside the method signature.</p><pre><code class="language-java">public interface IRulesExecutionService {
 
     Iterable&lt;Object&gt; executeRules(@Routing String resultSet, Iterable&lt;Object&gt; facts,  Map&lt;String, Object&gt; globals);
 
@@ -421,20 +427,22 @@ public class RulesExecutionServiceImpl implements IRulesExecutionService {
 </code></pre>
         <h3><a name="web-services-module">&#160;</a>Web-Services Module</h3>
         <p>This module creates a deployable artifact (WAR) that instantiates a Stateless processing unit(s) hosting JSON Restful Web Services on top of XAP's <a href="https://docs.gigaspaces.com/latest/dev-java/web-jetty-processing-unit-container.html">Jetty Processing Unit Container</a>.</p>
-        <p>
-            <img src="/attachment_files/drools/drools4.png" alt="drools1" />
-        </p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools4.png" alt="drools1" />
+            </p>
+        </div>
         <p>Interaction with these services is very simple, because they only implement the GET REST method. A client only needs an Internet Browser to initiate a HTTP Servlet transaction on the listening Spring Controllers. There are two types of services that are deployed as part of this integration pattern - Decision Services and Generic Data Retrieval Services.</p>
         <p>Decision services create or look up facts from the Space and pass them to the Remoting Service, which adds them to the KnowledgeBase's working memory and pattern matches them against all compiled rules. To initiate a decision service, enter a URL in the Browser and in response you receive a JSON payload printed to the screen.</p>
         <p>
-            <img src="/attachment_files/drools/drools5.png" alt="drools1" />
+            <img src="../Resources/Static/attachment_files/drools/drools5.png" alt="drools1" />
         </p>
         <p>Generic REST Data Retrieval Services come in two flavors - Read-By-ID and Read-By-Type. Read-By-ID requires the client to pass an ID along with the type of Object they are requesting. The Read-By-Type only requires the type returning multiple objects.</p>
         <p>
-            <img src="/attachment_files/drools/drools6.png" alt="drools1" />
+            <img src="../Resources/Static/attachment_files/drools/drools6.png" alt="drools1" />
         </p>
         <p>
-            <img src="/attachment_files/drools/drools7.png" alt="drools1" />
+            <img src="../Resources/Static/attachment_files/drools/drools7.png" alt="drools1" />
         </p>
         <h1><a name="running-the-demo">&#160;</a>Running the Demo</h1>
         <div class="row">
@@ -442,125 +450,115 @@ public class RulesExecutionServiceImpl implements IRulesExecutionService {
                 <div title="Step 1: Java Installation " style="padding:10px;">
                     <p>Confirm Java is installed by running the java -version in your command line.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools8.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools8.png" alt="drools1" class="tc-picture50" />
                     </p>
-                    <p>If Java is not installed, <a href="https://java.com/en/download/index.jsp">download Java</a> and add JAVA_HOME to your system variables.
-<img src="/attachment_files/drools/drools9.png" alt="drools1" /></p>
+                    <p>If Java is not installed, <a href="https://java.com/en/download/index.jsp">download Java</a> and add JAVA_HOME to your system variables.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools9.png" alt="drools1" class="tc-picture30" />
+                    </p>
                     <p>Add %JAVA_HOME%/bin to your PATH system variable.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools10.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools10.png" alt="drools1" class="tc-picture30" />
                     </p>
                 </div>
                 <div title="Step 2: Maven Installation" style="padding:10px;">
                     <p>Confirm Maven is installed by running the mvn version in your command line.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools11.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools11.png" alt="drools1" class="tc-picture50" />
                     </p>
                     <p>If Maven is not installed, <a href="http://maven.apache.org/download.cgi">download Maven</a> and add M2_HOME to your system variables.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools12.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools12.png" alt="drools1" class="tc-picture30" />
                     </p>
                     <p>Add %M2_HOME%/bin to your PATH system variable.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools13.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools13.png" alt="drools1" class="tc-picture30" />
                     </p>
                 </div>
                 <div title="Step 3: XAP Installation" style="padding:10px;">
                     <p>If XAP is not installed, download the <a href="http://www.gigaspaces.com/xap-download">latest version</a> and add JSHOMEDIR to your system variables.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools14.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools14.png" alt="drools1" class="tc-picture30" />
                     </p>
                     <p>Add %JSHOMEDIR%/bin to your PATH system variable.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools15.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools15.png" alt="drools1" class="tc-picture30" />
                     </p>
                 </div>
                 <div title="Step 4: Download Example" style="padding:10px;">
                     <p>Download the <a href="https://github.com/Gigaspaces/xap-drools-integration">example</a> and extract.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools16.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools16.png" alt="drools1" class="tc-picture50" />
                     </p>
                 </div>
                 <div title="Step 5: Execute maven command" style="padding:10px;">
                     <p>Navigate to the project root and execute the mvn package command.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools17.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools17.png" alt="drools1" class="tc-picture50" />
                     </p>
                 </div>
                 <div title="Step 6: Start the XAP agent" style="padding:10px;">
                     <p>Navigate to the XAP bin directory and double-click gs-agent.bat.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools18.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools18.png" alt="drools1" class="tc-picture50" />
                     </p>
                 </div>
                 <div title="Step 7: Start Web management Console" style="padding:10px;">
-                    <p>Start and login to the Web Management Console by double-clicking gs-webui.bat
-and then entering <code>http://localhost:8099</code> into an Internet Browser (Firefox or Google Chrome is recommended).</p>
-                    <p>
-                        <img src="/attachment_files/drools/drools19.png" alt="drools1" />
-                    </p>
-                    <p>
-                        <img src="/attachment_files/drools/drools20.png" alt="drools1" />
-                    </p>
-                    <p>
-                        <img src="/attachment_files/drools/drools21.png" alt="drools1" />
-                    </p>
+                    <p>Start the Web Management Console by double-clicking gs-webui.bat.
+</p>
                 </div>
                 <div title="Step 8: Deploy the PU" style="padding:10px;">
-                    <p>Click the Hosts Tab and find the Deploy drop-down. Choose Processing Unit¦</p>
-                    <p>
-                        <img src="/attachment_files/drools/drools22.png" alt="drools1" />
-                    </p>
+                    <p>Click the Hosts Tab and find the Deploy drop-down. Choose Processing Unit.</p>
                 </div>
                 <div title="Step 9: Upload file" style="padding:10px;">
                     <p>Click Upload File and navigate to the space/target directory inside the Distributed Drools project. Double-click the space.jar and click Deploy.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools23.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools23.png" alt="drools1" class="tc-picture50" />
                     </p>
                     <p>
-                        <img src="/attachment_files/drools/drools24.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools24.png" alt="drools1" class="tc-picture50" />
                     </p>
                 </div>
                 <div title="Step 10: View Data Grid" style="padding:10px;">
                     <p>Confirm that the <code>Space</code> was created by clicking the <code>Data Grid</code> tab.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools25.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools25.png" alt="drools1" />
                     </p>
                 </div>
                 <div title="Step 11: Open Eclipse" style="padding:10px;">
                     <p>Open the workspace in an Eclipse IDE.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools26.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools26.png" alt="drools1" class="tc-picture30" />
                     </p>
                 </div>
                 <div title="Step 12: Import the project" style="padding:10px;">
                     <p>Import the existing Maven Project named <code>xap-drools-integration</code>.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools27.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools27.png" alt="drools1" class="tc-picture50" />
                     </p>
                 </div>
                 <div title="Step 13: Loading the rules" style="padding:10px;">
                     <p>Run DroolsRuleLoader.java and FactLoader.java as a Java Application.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools28.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools28.png" alt="drools1" class="tc-picture50" />
                     </p>
                 </div>
                 <div title="Step 14: Confirm rules are loaded" style="padding:10px;">
                     <p>Confirm that the KnowledgeBasesWrappers and Applicant Facts were loaded to the Space.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools29.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools29.png" alt="drools1" class="tc-picture80" />
                     </p>
                 </div>
                 <div title="Step 15: Deploy web service" style="padding:10px;">
                     <p>Click the Hosts Tab and deploy the web-services.war file.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools30.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools30.png" alt="drools1" class="tc-picture50" />
                     </p>
                 </div>
                 <div title="Step 16: Confirm the Web Services URL and PORT" style="padding:10px;">
                     <p>Click the Applications Tab and confirm the Web Services URL and PORT.</p>
                     <p>
-                        <img src="/attachment_files/drools/drools31.png" alt="drools1" />
+                        <img src="../Resources/Static/attachment_files/drools/drools31.png" alt="drools1" />
                     </p>
                 </div>
                 <div title="Step 17: Test the rules" style="padding:10px;">
