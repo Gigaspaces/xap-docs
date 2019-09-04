@@ -94,8 +94,8 @@
             </div>
         </div>
         <p>Note that this code does not reflect the complete model - most of the properties does not need to be introduced to the schema. Only properties with special roles (ID, Routing) are part of the schema definition. These meta model <span class="tc-bold">settings cannot be changed</span> without restarting the space or dropping the type, clearing all its instances and reintroducing it again.</p>
-        <h1 MadCap:conditions="Version.15-0-born">Modifying Schema  of Registered Objects.</h1>
-        <p MadCap:conditions="Version.15-0-born">You can dynamically add new properties to a  SpaceDocument that is already registered and the properties are then visible to the JDBC client (such as Tableau or Zeppelin). This is done by defining the schema in a separate xml file, and configuring the location of that file as a space property. When  that space property is set,  the schema is loaded from the specified location instead of the type descriptor. Changes  made directly on the xml file are then visible after restarting the client, without restarting the space. The property, <code class="language-bash">jdbc-alt-schema-url</code>, can be point to the xml file as either:</p>
+        <h1 MadCap:conditions="Version.15-0-born">Modifying Schema  of Registered Objects</h1>
+        <p MadCap:conditions="Version.15-0-born">You can add new properties to a  SpaceDocument that is already registered and the properties are then visible to the JDBC client (such as Tableau or Zeppelin), without restarting the space. This is done by defining the schema in a separate xml file, and configuring the location of that file as a space property. When  that space property is set,  the schema is loaded from the specified location instead of the type descriptor. Changes  made directly on the xml file are then visible after restarting the client. The property, <code class="language-bash">jdbc-alt-schema-url</code>,  points to the xml file as either:</p>
         <ul MadCap:conditions="Version.15-0-born">
             <li>URL</li>
             <li>Path on local disk</li>
