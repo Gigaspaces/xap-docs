@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -94,6 +94,28 @@
             </div>
         </div>
         <p>Note that this code does not reflect the complete model - most of the properties does not need to be introduced to the schema. Only properties with special roles (ID, Routing) are part of the schema definition. These meta model <span class="tc-bold">settings cannot be changed</span> without restarting the space or dropping the type, clearing all its instances and reintroducing it again.</p>
+        <h1 MadCap:conditions="Version.15-0-born">Modifying Schema  of Registered Objects.</h1>
+        <p MadCap:conditions="Version.15-0-born">You can dynamically add new properties to a  SpaceDocument that is already registered and the properties are then visible to the JDBC client (such as Tableau or Zeppelin). This is done by defining the schema in a separate xml file, and configuring the location of that file as a space property. When  that space property is set,  the schema is loaded from the specified location instead of the type descriptor. Changes  made directly on the xml file are then visible after restarting the client, without restarting the space. The property, <code class="language-bash">jdbc-alt-schema-url</code>, can be point to the xml file as either:</p>
+        <ul MadCap:conditions="Version.15-0-born">
+            <li>URL</li>
+            <li>Path on local disk</li>
+            <li><a href="web-jetty-processing-unit-container.html">Web Processing Unit</a>
+            </li>
+        </ul>
+        <p MadCap:conditions="Version.15-0-born">In this sample, the property is set to a URL</p><pre MadCap:conditions="Version.15-0-born">&lt;os-core:space id="space" url="/./sql-test-space-alt?locators=localhost:4174"&gt;
+    &lt;os-core:properties&gt;
+        &lt;props&gt;
+            &lt;prop key="jdbc-alt-schema-url"&gt;http://my-server/path/to/my-schema.xml&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/os-core:properties&gt;
+&lt;/os-core:space&gt;</pre>
+        <p MadCap:conditions="Version.15-0-born">using this sample my-schema.xml file that defines the schema.</p><pre MadCap:conditions="Version.15-0-born">&lt;my-schema&gt;
+    &lt;table name="Purchase"&gt;
+        &lt;column name="id" type="java.lang.String"/&gt;
+        &lt;column name="name" type="java.lang.String"/&gt;
+        &lt;column name="price" type="java.lang.Float"/&gt;
+    &lt;/table&gt;
+&lt;/my-schema&gt;</pre>
         <h1><a name="creating-and-writing"></a>Creating and Writing</h1>
         <p>To create a document create a <code>Map&lt;String,Object&gt;</code> with the requested properties, create a <code>SpaceDocument</code> object using the type name and properties, and write it to the space using the regular <code>GigaSpace</code> write method:</p><pre><code class="language-java">public void writeProduct1(GigaSpace gigaspace) {
     // 1. Create the properties:
