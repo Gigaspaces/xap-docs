@@ -3,12 +3,12 @@
     <head>
     </head>
     <body>
-        <h1>WAN Gateway Master-Slave Replication</h1>
+        <h1 class="tc-pagetitle">WAN Gateway Master-Slave Replication</h1>
         <table>
             <thead>
                 <tr>
                     <th>Author</th>
-                    <th>XAP Version</th>
+                    <th>Product Version</th>
                     <th>Last Updated</th>
                     <th>Reference</th>
                     <th>Download</th>
@@ -28,7 +28,12 @@
         </table>
         <h1><a name="overview">&#160;</a>Overview</h1>
         <p>The WAN gateway provides a simple way of creating a master-slave topology, enabling data from one site to be replicated to one or more remote sites. For instance, given three clusters in New York, London, and Hong Kong, with New York being the master and the remaining two acting as slaves, any updates to the New York Space will propagate to both London and Hong Kong asynchronously. The sample Processing Units and configuration provided below are intended as an example of implementing a single-master/multi-slave topology across three sites: New York (US), London (GB), and Hong Kong (HK) where each site has an independent cluster and a gateway.
-<img src="/attachment_files/sbp/WAN_masterslave.png" alt="WAN_masterslave.png" /></p>
+</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/WAN_masterslave.png" alt="WAN_masterslave.png" class="tc-picture80" />
+            </p>
+        </div>
         <p>The demo is configured to start three Space instances across three clusters. While the three clusters run on your local machine, they are demarcated by zones and different lookup service ports as follows:</p>
         <table>
             <thead>
@@ -71,9 +76,11 @@
                 </tr>
             </tbody>
         </table>
-        <p>The internal architecture of the setup includes a clustered Space and a gateway, such that the master site (US) only configures delegators while the slave sites (GB, HK) only configure sinks (click the thumbnail to enlarge):</p>
-        <p><a href="/attachment_files/sbp/WAN_masterslave_arch.png"><img src="/attachment_files/sbp/WAN_masterslave_arch.png" width="140" height="100" /></a>
-        </p>
+        <p>The internal architecture of the setup includes a clustered Space and a gateway, such that the master site (US) only configures delegators while the slave sites (GB, HK) only configure sinks:</p>
+        <div class="tc-align-center">
+            <p><a href="../Resources/Static/attachment_files/sbp/WAN_masterslave_arch.png"><img src="../Resources/Static/attachment_files/sbp/WAN_masterslave_arch.png" width="140" height="100" class="tc-picture80" /></a>
+            </p>
+        </div>
         <p>As a result of this topology, the following scenario will take place after updates are written to the New York Space:</p>
         <ol>
             <li>All updates performed on the New York cluster are sent to local delegators for London and Hong Kong.</li>
@@ -428,27 +435,27 @@ Hong Kong are the passive sites. While the slave sites are passive, this does no
             <li>After all clusters are up and running, you must enable the relative groups:</li>
         </ul>
         <p>
-            <img src="/attachment_files/sbp/group_management_dialog.jpg" alt="group_management_dialog.jpg" />
+            <img src="../Resources/Static/attachment_files/sbp/group_management_dialog.jpg" alt="group_management_dialog.jpg" />
         </p>
         <p>Check to enable all three advertised groups for each site:</p>
         <p>
-            <img src="/attachment_files/sbp/groups_selection_dialog.jpg" alt="groups_selection_dialog.jpg" />
+            <img src="../Resources/Static/attachment_files/sbp/groups_selection_dialog.jpg" alt="groups_selection_dialog.jpg" />
         </p>
         <p>As a result, you should see the service grid components for each site displayed under the <span class="tc-bold">Hosts</span> tree as follows:</p>
-        <p><a href="/attachment_files/sbp/masterslave_hosts_view.png"><img src="/attachment_files/sbp/masterslave_hosts_view.png" width="140" height="100" /></a>
+        <p><a href="../Resources/Static/attachment_files/sbp/masterslave_hosts_view.png"><img src="../Resources/Static/attachment_files/sbp/masterslave_hosts_view.png" width="140" height="100" /></a>
         </p>
         <p>After The <code>deployAll.bat/sh</code> script finishes running, you should be able to see all three sites deployed as follows:</p>
-        <p><a href="/attachment_files/sbp/pu_deployments.jpg"><img src="/attachment_files/sbp/pu_deployments.jpg" width="140" height="100" /></a>
+        <p><a href="../Resources/Static/attachment_files/sbp/pu_deployments.jpg"><img src="../Resources/Static/attachment_files/sbp/pu_deployments.jpg" width="140" height="100" /></a>
         </p>
         <p>If you are using the Web Management Console, you can also view the site topology using the <span class="tc-bold">Data Grids</span>&gt;<span class="tc-bold">Gateways</span> view as follows:</p>
-        <p><a href="/attachment_files/sbp/webui_gw_topology.png"><img src="/attachment_files/sbp/webui_gw_topology.png" width="140" height="100" /></a>
+        <p><a href="../Resources/Static/attachment_files/sbp/webui_gw_topology.png"><img src="../Resources/Static/attachment_files/sbp/webui_gw_topology.png" width="140" height="100" /></a>
         </p>
         <h1><a name="testing-master-slave-replication">&#160;</a>Testing Master-Slave Replication</h1>
         <p>You can test the setup using the <a href="https://docs.gigaspaces.com/latest/admin/benchmark-browser.html">benchmark utility</a> that comes with the GigaSpaces Management Center. Select the US Benchmark icons and click <span class="tc-bold">Start</span> to begin writing objects to the Space:</p>
-        <p><a href="/attachment_files/sbp/masterslave_space_write.png"><img src="/attachment_files/sbp/masterslave_space_write.png" width="140" height="100" /></a>
+        <p><a href="../Resources/Static/attachment_files/sbp/masterslave_space_write.png"><img src="../Resources/Static/attachment_files/sbp/masterslave_space_write.png" width="140" height="100" /></a>
         </p>
         <p>Click the <span class="tc-bold">Spaces</span> icon on the Space Browser tab to get a global view of all Spaces. As objects are written, you should see replication occurring across both the HK and GB sites until there are 5000 objects in each Space:</p>
-        <p><a href="/attachment_files/sbp/masterslave_space_count.png"><img src="/attachment_files/sbp/masterslave_space_count.png" width="140" height="100" /></a>
+        <p><a href="../Resources/Static/attachment_files/sbp/masterslave_space_count.png"><img src="../Resources/Static/attachment_files/sbp/masterslave_space_count.png" width="140" height="100" /></a>
         </p>
     </body>
 </html>

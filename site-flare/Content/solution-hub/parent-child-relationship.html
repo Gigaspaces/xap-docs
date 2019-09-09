@@ -1,40 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Parent Child Relationship</h1>
-  
-
-<h1><a name="parent-child-relationship">&#160;</a>Parent-Child Relationship</h1>
-
-<p>In some cases, you might want to store objects within the space that include references to other space objects – i.e. an object graph. With such object relationships, you might want to fetch a parent object that is associated with a child object(s) holds a specific data (join).</p>
-
-<div class="tc-admon-tip">
-  
-  <p>See the <a href="modeling-your-data.html">Modeling your data</a> section for details about when you should construct strong relationship between parent-child objects (embed) and when you should not embed child objects within their parent but have the ID of child objects placed within the parent object.</p>
-</div>
-
-<p>The example below demonstrates how ID operations handle relationships between objects. This example using the <code>readByIds</code> batch operation to retrieve multiple space objects using on their ID:</p>
-
-<pre><code class="language-java">ReadByIdsResult&lt;Child&gt; childrenObjResult = space.readByIds(Child.class,childrenIDs);
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Parent-Child Relationship</h1>
+        <p>In some cases, you might want to store objects within the space that include references to other space objects – i.e. an object graph. With such object relationships, you might want to fetch a parent object that is associated with a child object(s) holds a specific data (join).</p>
+        <div class="tc-admon-tip">
+            <p>See the <a href="modeling-your-data.html">Modeling your data</a> section for details about when you should construct strong relationship between parent-child objects (embed) and when you should not embed child objects within their parent but have the ID of child objects placed within the parent object.</p>
+        </div>
+        <p>The example below demonstrates how ID operations handle relationships between objects. This example using the <code>readByIds</code> batch operation to retrieve multiple space objects using on their ID:</p><pre><code class="language-java">ReadByIdsResult&lt;Child&gt; childrenObjResult = space.readByIds(Child.class,childrenIDs);
 </code></pre>
-
-<p>The example writes 10000 parent-child graphs into the space. Two types of graphs will be created with this example:</p>
-
-<ul>
-<li>5 graphs with the following values for the child objects: <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code>, <code>9</code>.</li>
-<li>9955 graphs with the following values for the child objects: <code>0</code>, <code>10</code>, <code>20</code>, <code>30</code>, <code>40</code>, <code>50</code>, <code>60</code>, <code>70</code>, <code>80</code>, <code>90</code>.</li>
-</ul>
-
-<p><img src="/attachment_files/parent_child.JPG" alt="parent_child.JPG" />
-The example demonstrates a simple approach locating all the parent objects that have two child objects with values of <code>1</code> and <code>2</code> – effectively a join operation using ID operations. This will return 5 matching graphs.</p>
-
-<div class="tc-admon-tip">
-  
-  <p>The full example source code can be downloaded <a href="/download_files/ParentChild_711.zip">here</a>.</p>
-</div>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Child Class " style="padding:10px"><pre><code class="language-java">package com.j_spaces.examples.parentchild;
+        <p>The example writes 10000 parent-child graphs into the space. Two types of graphs will be created with this example:</p>
+        <ul>
+            <li>5 graphs with the following values for the child objects: <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, <code>7</code>, <code>8</code>, <code>9</code>.</li>
+            <li>9955 graphs with the following values for the child objects: <code>0</code>, <code>10</code>, <code>20</code>, <code>30</code>, <code>40</code>, <code>50</code>, <code>60</code>, <code>70</code>, <code>80</code>, <code>90</code>.</li>
+        </ul>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/parent_child.JPG" alt="parent_child.JPG" class="tc-picture50" /><![CDATA[
+]]></p>
+        </div>
+        <p>The example demonstrates a simple approach locating all the parent objects that have two child objects with values of <code>1</code> and <code>2</code> – effectively a join operation using ID operations. This will return 5 matching graphs.</p>
+        <div class="tc-admon-tip">
+            <p>The full example source code can be downloaded <a href="/download_files/ParentChild_711.zip">here</a>.</p>
+        </div>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Child Class " style="padding:10px"><pre><code class="language-java">package com.j_spaces.examples.parentchild;
 
 import com.gigaspaces.annotation.pojo.SpaceClass;
 import com.gigaspaces.annotation.pojo.SpaceId;
@@ -92,9 +83,8 @@ public class Child {
     }
 }
 </code></pre>
-</div>
-
-<div title="  Parent class " style="padding:10px"><pre><code class="language-java">package com.j_spaces.examples.parentchild;
+            </div>
+            <div title="  Parent class " style="padding:10px"><pre><code class="language-java">package com.j_spaces.examples.parentchild;
 
 import java.rmi.RemoteException;
 
@@ -194,9 +184,8 @@ public class Parent  {
 
 }
 </code></pre>
-</div>
-
-<div title="  Application " style="padding:10px"><pre><code class="language-java">package com.j_spaces.examples.parentchild;
+            </div>
+            <div title="  Application " style="padding:10px"><pre><code class="language-java">package com.j_spaces.examples.parentchild;
 
 import java.rmi.RemoteException;
 import java.util.HashSet;
@@ -322,12 +311,9 @@ public class ParentChildMain {
     }
 }
 </code></pre>
-</div>
-</div>
-
-<h1><a name="expected-output">&#160;</a>Expected output</h1>
-
-<pre><code class="language-java">Write 10000 parent/child graphs.
+            </div>
+        </div>
+        <h1><a name="expected-output">&#160;</a>Expected Output</h1><pre><code class="language-java">Write 10000 parent/child graphs.
 We will have 2 types of graphs:
 5 graphs that got the following values for the child objects:0,1,2,3,4,5,6,7,8,9
 and another 9995 graphs with the following values for the child objects:0,10,20,30,40,50,60,70,80,90
@@ -346,6 +332,5 @@ Found Parent Object:com.j_spaces.examples.parentchild.Parent@3ce725 - ID:4000 - 
 Found Parent Object:com.j_spaces.examples.parentchild.Parent@6b6ac8 - ID:2000 - His children objects are:
     ID:2000_0 data:0 | ID:2000_1 data:1 | ID:2000_2 data:2 | ...
 </code></pre>
-
-</body>
+    </body>
 </html>

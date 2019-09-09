@@ -1,74 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Map-Reduce Pattern - Executors Example</h1>
-  
-
-<table>
-<thead>
-<tr>
-<th>Author</th>
-<th>XAP Version</th>
-<th>Last Updated</th>
-<th>Reference</th>
-<th>Download</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Shay Hassidim</td>
-<td>7.1</td>
-<td>Dec 2010</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-<h1><a name="overview">&#160;</a>Overview</h1>
-
-<p>The <a href="http://en.wikipedia.org/wiki/MapReduce">Map-Reduce</a> pattern is a popular pattern used in distributed systems to process data in parallel. This <a href="/attachment_files/sbp/ExecutorExample.zip">example</a> illustrates the usage of <a href="https://docs.gigaspaces.com/latest/dev-java/executor-based-remoting.html">Executors Remoting</a> (Service Executors) and <a href="https://docs.gigaspaces.com/latest/dev-java/task-execution-over-the-space.html">Task Executors</a> to execute your business logic on a remote process that is collocated with a space in a parallel manner.</p>
-
-<ul>
-<li>The <a href="https://docs.gigaspaces.com/latest/dev-java/executor-based-remoting.html">Executors Remoting</a> should be used when you would like to export service method(s) for remote clients to be invoked.</li>
-<li>The <a href="https://docs.gigaspaces.com/latest/dev-java/task-execution-over-the-space.html">Task Executors</a> should be used when you would like to transport business logic to the server side to be executed remotely.</li>
-</ul>
-
-<p>In both cases, the business logic will be invoked with a collocated space.</p>
-
-<h1><a name="installing-the-example">&#160;</a>Installing the Example</h1>
-
-<ol>
-<li>Download the <a href="/attachment_files/sbp/ExecutorExample.zip">example</a> and extract the zip file. Open your IDE and import the project files.</li>
-<li>Set the project libraries to have the correct GigaSpaces libraries location. Make sure your project libraries list will include all the libraries located at <code>gigaspaces-xap\lib\required</code>.</li>
-</ol>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/project_libraries.jpg" alt="project_libraries.jpg" /></p>
-</div>
-
-<h1><a name="executors-task-example">&#160;</a>Executors Task Example</h1>
-
-<p>The example will illustrate a simple map-reduce implementation.</p>
-
-<p>A client writing some Account objects into the Data Grid. Later it will calculate the average balance for all the Accounts via a <code>DistributedTask</code> that is sent to each partition to be executed:
-<img src="/attachment_files/sbp/DistributedTaskExecution_phase1.jpg" alt="DistributedTaskExecution_phase1.jpg" />
-The Task will read all the Account objects at the collocated partition and calculate the average balance for these objects and return the result back to the client. The results sent from each partition back to the client will be aggregated (via the <code>DistributedTask</code> reducer implementation at the client side) and the final result will be displayed.
-<img src="/attachment_files/sbp/DistributedTaskExecution_phase2.jpg" alt="DistributedTaskExecution_phase2.jpg" /></p>
-
-<p>The example code will have the following implemented:</p>
-
-<ul>
-<li>Task</li>
-<li>Client</li>
-</ul>
-
-<h2><a name="the-task-implementation">&#160;</a>The Task Implementation</h2>
-
-<p>The Task implements the <code>DistributedTask</code> interface. It includes the <code>execute</code> and the <code>reduce</code> methods:</p>
-
-<pre><code class="language-java">package org.test.executor;
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Map-Reduce Pattern - Executors Example</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shay Hassidim</td>
+                    <td>7.1</td>
+                    <td>Dec 2010</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="overview">&#160;</a>Overview</h1>
+        <p>The <a href="http://en.wikipedia.org/wiki/MapReduce">Map-Reduce</a> pattern is a popular pattern used in distributed systems to process data in parallel. This <a href="/attachment_files/sbp/ExecutorExample.zip">example</a> illustrates the usage of <a href="https://docs.gigaspaces.com/latest/dev-java/executor-based-remoting.html">Executors Remoting</a> (Service Executors) and <a href="https://docs.gigaspaces.com/latest/dev-java/task-execution-over-the-space.html">Task Executors</a> to execute your business logic on a remote process that is collocated with a space in a parallel manner.</p>
+        <ul>
+            <li>The <a href="https://docs.gigaspaces.com/latest/dev-java/executor-based-remoting.html">Executors Remoting</a> should be used when you would like to export service method(s) for remote clients to be invoked.</li>
+            <li>The <a href="https://docs.gigaspaces.com/latest/dev-java/task-execution-over-the-space.html">Task Executors</a> should be used when you would like to transport business logic to the server side to be executed remotely.</li>
+        </ul>
+        <p>In both cases, the business logic will be invoked with a collocated space.</p>
+        <h1><a name="installing-the-example">&#160;</a>Installing the Example</h1>
+        <ol>
+            <li>Download the <a href="/attachment_files/sbp/ExecutorExample.zip">example</a> and extract the zip file. Open your IDE and import the project files.</li>
+            <li>Set the project libraries to have the correct GigaSpaces libraries location. Make sure your project libraries list will include all the libraries located at <code>gigaspaces-xap\lib\required</code>.</li>
+        </ol>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/project_libraries.jpg" alt="project_libraries.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h1><a name="executors-task-example">&#160;</a>Executors Task Example</h1>
+        <p>The example will illustrate a simple map-reduce implementation. A client writing some Account objects into the Data Grid. Later it will calculate the average balance for all the Accounts via a <code>DistributedTask</code> that is sent to each partition to be executed:
+</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/DistributedTaskExecution_phase1.jpg" alt="DistributedTaskExecution_phase1.jpg" class="tc-picture50" /><![CDATA[
+]]></p>
+        </div>
+        <p>The Task will read all the Account objects at the collocated partition and calculate the average balance for these objects and return the result back to the client. The results sent from each partition back to the client will be aggregated (via the <code>DistributedTask</code> reducer implementation at the client side) and the final result will be displayed.
+</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/DistributedTaskExecution_phase2.jpg" alt="DistributedTaskExecution_phase2.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <p>The example code will have the following implemented:</p>
+        <ul>
+            <li>Task</li>
+            <li>Client</li>
+        </ul>
+        <h2><a name="the-task-implementation">&#160;</a>The Task Implementation</h2>
+        <p>The Task implements the <code>DistributedTask</code> interface. It includes the <code>execute</code> and the <code>reduce</code> methods:</p><pre><code class="language-java">package org.test.executor;
 
 import java.sql.Time;
 import java.util.List;
@@ -120,79 +116,58 @@ public class MyTask implements DistributedTask&lt;Integer, Integer&gt;{
     }
 }
 </code></pre>
-
-<h2><a name="the-client">&#160;</a>The Client</h2>
-
-<h3><a name="sync-mode">&#160;</a>Sync mode</h3>
-
-<p>The client invokes the Task on the remote space in sync mode using the following:</p>
-
-<pre><code class="language-java">space = new UrlSpaceConfigurer("jini://*/*/space").space();
+        <h2><a name="the-client">&#160;</a>The Client</h2>
+        <h3><a name="sync-mode">&#160;</a>Sync Mode</h3>
+        <p>The client invokes the Task on the remote space in sync mode using the following:</p><pre><code class="language-java">space = new UrlSpaceConfigurer("jini://*/*/space").space();
 gigaSpace = new GigaSpaceConfigurer(space).gigaSpace();
 AsyncFuture&lt;Integer&gt; future =gigaSpace.execute(new MyTask());
 Integer result = future.get();
 </code></pre>
-
-<h3><a name="a-sync-mode">&#160;</a>A-Sync mode</h3>
-
-<p>The client invokes the Task on the remote space in A-sync mode using the following:</p>
-
-<pre><code class="language-java">space = new UrlSpaceConfigurer("jini://*/*/space").space();
+        <h3><a name="a-sync-mode">&#160;</a>Async Mode</h3>
+        <p>The client invokes the Task on the remote space in A-sync mode using the following:</p><pre><code class="language-java">space = new UrlSpaceConfigurer("jini://*/*/space").space();
 gigaSpace = new GigaSpaceConfigurer(space).gigaSpace();
 gigaSpace.execute(new MyTask(),new ExecutorTaskClientMain ());
 </code></pre>
-
-<p>ExecutorTaskClientMain implements AsyncFutureListener:</p>
-
-<pre><code class="language-java">public void onResult(AsyncResult&lt;Integer&gt; result) {
+        <p>ExecutorTaskClientMain implements AsyncFutureListener:</p><pre><code class="language-java">public void onResult(AsyncResult&lt;Integer&gt; result) {
     System.out.println(new Time(System.currentTimeMillis()) + " - Client got Result:" + result.getResult() );
 }
 </code></pre>
-
-<h2><a name="running-the-example">&#160;</a>Running the Example</h2>
-
-<h3><a name="deploying-the-space">&#160;</a>Deploying the Space</h3>
-
-<p>Using IDE:
-Set your IDe to have the Following:
-<img src="/attachment_files/sbp/exec_ide1.jpg" alt="exec_ide1.jpg" />
-<img src="/attachment_files/sbp/exec_ide2.jpg" alt="exec_ide2.jpg" />
-Click <span class="tc-bold">Run</span>. This will start the clustered space within your IDE.</p>
-
-<p>Using CLI:
-To start the clustered space with 2 partitions run the following:</p>
-
-<pre><code class="language-java">\gigaspaces-xap\bin\bin&gt;puInstance -cluster schema=partitioned total_members=2 ..\deploy\templates\datagrid
+        <h2><a name="running-the-example">&#160;</a>Running the Example</h2>
+        <h3><a name="deploying-the-space">&#160;</a>Deploying the Space</h3>
+        <p class="tc-todo">Using IDE:
+</p>
+        <p>Set your IDE to have the following:</p>
+        <div class="tc-align-center">
+            <p><![CDATA[
+]]><img src="../Resources/Static/attachment_files/sbp/exec_ide1.jpg" alt="exec_ide1.jpg" class="tc-picture80" /></p>
+        </div>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/exec_ide2.jpg" alt="exec_ide2.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>
+Click <span class="tc-bold">Run</span>. This will start the clustered Apace within your IDE.</p>
+        <p class="tc-todo">Using CLI:
+</p>
+        <p>To start the clustered Space with 2 partitions run the following:</p><pre><code class="language-java">\gigaspaces-xap\bin\bin&gt;puInstance -cluster schema=partitioned total_members=2 ..\deploy\templates\datagrid
 </code></pre>
-
-<p>When you start the space make sure you see both partitions started before you run the client:</p>
-
-<pre><code class="language-java">2010-12-17 14:02:20,453  INFO [com.gigaspaces.core.common] - Space [space_container1:space]
+        <p>When you start the Space, make sure you see both partitions started before you run the client:</p><pre><code class="language-java">2010-12-17 14:02:20,453  INFO [com.gigaspaces.core.common] - Space [space_container1:space]
 with url [/./space?cluster_schema=partitioned&amp;total_members=2&amp;id=1&amp;schema=default&amp;groups=gigaspaces-7.1.2-XAPPremium-ga&amp;state=started]
 started successfully
 2010-12-17 14:03:04,187  INFO [com.gigaspaces.core.common] - Space [space_container2:space]
 with url [/./space?cluster_schema=partitioned&amp;total_members=2&amp;id=2&amp;schema=default&amp;groups=gigaspaces-7.1.2-XAPPremium-ga&amp;state=started]
 started successfully
 </code></pre>
-
-<h3><a name="run-the-client-application">&#160;</a>Run the Client Application</h3>
-
-<p>Run the Client Application (ExecutorTaskClientMain.java).</p>
-
-<p>The ExecutorTaskClientMain requires the following as application arguments:
-Sync mode:</p>
-
-<pre><code class="language-java">org.test.executor.ExecutorTaskClientMain sync
+        <h3><a name="run-the-client-application">&#160;</a>Run the Client Application</h3>
+        <p>Run the Client Application (ExecutorTaskClientMain.java).</p>
+        <p>The ExecutorTaskClientMain requires the following as application arguments:
+</p>
+        <p>Sync mode:</p><pre><code class="language-java">org.test.executor.ExecutorTaskClientMain sync
 </code></pre>
-
-<p>A-Sync mode:</p>
-
-<pre><code class="language-java">org.test.executor.ExecutorTaskClientMain async
+        <p>Async mode:</p><pre><code class="language-java">org.test.executor.ExecutorTaskClientMain async
 </code></pre>
-
-<h3><a name="expected-output">&#160;</a>Expected output</h3>
-
-<pre><code class="language-java">14:14:16 MyTask execute called at space_container1 - total is:24500
+        <h3><a name="expected-output">&#160;</a>Expected Output</h3><pre><code class="language-java">14:14:16 MyTask execute called at space_container1 - total is:24500
 14:14:16 MyTask execute called at space_container2 - total is:25000
 14:14:17 MyTask execute called at space_container1 - total is:24500
 14:14:17 MyTask execute called at space_container2 - total is:25000
@@ -212,9 +187,7 @@ Sync mode:</p>
 14:14:24 MyTask execute called at space_container2 - total is:25000
 14:14:25 MyTask execute called at space_container1 - total is:24500
 14:14:25 MyTask execute called at space_container2 - total is:25000
-</code></pre>
-
-<pre><code class="language-java">Sync Executor example started
+</code></pre><pre><code class="language-java">Sync Executor example started
 Log file: C:\gigaspaces-xap-premium-7.1.2-ga\logs\2010-12-17~14.14-gigaspaces-service-207.172.165.179-6516.log
 14:14:16 - Client calling MyTask execute sync
 14:14:16 - Client got Result:495
@@ -237,46 +210,45 @@ Log file: C:\gigaspaces-xap-premium-7.1.2-ga\logs\2010-12-17~14.14-gigaspaces-se
 14:14:25 - Client calling MyTask execute sync
 14:14:25 - Client got Result:495
 </code></pre>
-
-<p>You can view the space operations statistics by running the <code>\gigaspaces-xap\bin\gs-ui</code>:</p>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/exe_example_stats.jpg" alt="exe_example_stats.jpg" /></p>
-</div>
-
-<h1><a name="service-executors-example">&#160;</a>Service Executors Example</h1>
-
-<p>The example will have a clustered space with a collocated service running. A client will be invoking the service:
-<img src="/attachment_files/sbp/Executor1.jpg" alt="Executor1.jpg" />
-The results created at each partition will be sent to the client. These will be aggregated via the reducer implementation at the client side and displayed:
-<img src="/attachment_files/sbp/Executor2.jpg" alt="Executor2.jpg" /></p>
-
-<p>This example illustrates simple Service Executors usage in <span class="tc-bold">Synchronous</span> mode and <span class="tc-bold">Asynchronous</span> mode.
+        <p>You can view the Space operations statistics by running the <MadCap:variable name="General.CompanyName" /> Management Center from <code>\gigaspaces-xap\bin\gs-ui</code>:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/exe_example_stats.jpg" alt="exe_example_stats.jpg" />
+            </p>
+        </div>
+        <h1><a name="service-executors-example">&#160;</a>Service Executors Example</h1>
+        <p>The example will have a clustered space with a collocated service running. A client will be invoking the service:
+</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/Executor1.jpg" alt="Executor1.jpg" class="tc-picture50" /><![CDATA[
+]]></p>
+        </div>
+        <p>The results created at each partition will be sent to the client. These will be aggregated via the reducer implementation at the client side and displayed:
+</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/Executor2.jpg" alt="Executor2.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <p>This example illustrates simple Service Executors usage in <span class="tc-bold">Synchronous</span> mode and <span class="tc-bold">Asynchronous</span> mode.
 Your code should have the following implemented:</p>
-
-<ol>
-<li>Service Interface</li>
-<li>Service Implementation</li>
-<li>Service Result Reducer (Client Side)</li>
-<li>Client</li>
-</ol>
-
-<h2><a name="the-service-interface">&#160;</a>The Service Interface</h2>
-
-<p>The Service Interface includes 2 methods. One used to invoke the Service method in <span class="tc-bold">Synchronous</span> mode and another used to invoke the Service method <span class="tc-bold">Asynchronous</span> mode:</p>
-
-<pre><code class="language-java">import com.gigaspaces.async.AsyncFuture;
+        <ol>
+            <li>Service Interface</li>
+            <li>Service Implementation</li>
+            <li>Service Result Reducer (Client Side)</li>
+            <li>Client</li>
+        </ol>
+        <h2><a name="the-service-interface">&#160;</a>The Service Interface</h2>
+        <p>The Service Interface includes 2 methods. One used to invoke the Service method in <span class="tc-bold">Synchronous</span> mode and another used to invoke the Service method <span class="tc-bold">Asynchronous</span> mode:</p><pre><code class="language-java">import com.gigaspaces.async.AsyncFuture;
 
 public interface IDataProcessor {
     Integer processData(Object data);
     AsyncFuture&lt;Integer&gt;  asyncProcessData(Object data);
 }
 </code></pre>
-
-<h2><a name="the-service-implementation">&#160;</a>The Service Implementation</h2>
-
-<p>The Service Implementation includes some business logic for both of these methods:</p>
-
-<pre><code class="language-java">import java.sql.Time;
+        <h2><a name="the-service-implementation">&#160;</a>The Service Implementation</h2>
+        <p>The Service Implementation includes some business logic for both of these methods:</p><pre><code class="language-java">import java.sql.Time;
 import org.openspaces.core.GigaSpace;
 import org.openspaces.core.cluster.ClusterInfo;
 import org.openspaces.core.cluster.ClusterInfoContext;
@@ -311,12 +283,8 @@ public class DataProcessorService implements IDataProcessor {
     }
 }
 </code></pre>
-
-<h2><a name="the-service-declaration">&#160;</a>The Service Declaration</h2>
-
-<p>The <code>pu.xml</code> used to export the Service and start the space described below:</p>
-
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <h2><a name="the-service-declaration">&#160;</a>The Service Declaration</h2>
+        <p>The <code>pu.xml</code> used to export the Service and start the space described below:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -345,19 +313,12 @@ public class DataProcessorService implements IDataProcessor {
 
 &lt;/beans&gt;
 </code></pre>
-
-<div class="tc-admon-note">
-  
-  <p>The <code>context:component-scan</code> , <code>os-remoting:service-exporter</code> and <code>os-remoting:annotation-support</code> used to allow the system to locate classes annotated with <code>RemotingService</code> and export these implicitly.</p>
-</div>
-
-<h2><a name="service-result-reducer">&#160;</a>Service Result Reducer</h2>
-
-<p>The Service Result Reducer is called at the client side and aggregates results sent from all invoked services (collocated with all space partitions).</p>
-
-<p>The Reducer implements the <code>RemoteResultReducer</code> interface:</p>
-
-<pre><code class="language-java">import org.openspaces.remoting.RemoteResultReducer;
+        <div class="tc-admon-note">
+            <p>The <code>context:component-scan</code> , <code>os-remoting:service-exporter</code> and <code>os-remoting:annotation-support</code> used to allow the system to locate classes annotated with <code>RemotingService</code> and export these implicitly.</p>
+        </div>
+        <h2><a name="service-result-reducer">&#160;</a>Service Result Reducer</h2>
+        <p>The Service Result Reducer is called at the client side and aggregates results sent from all invoked services (collocated with all space partitions).</p>
+        <p>The Reducer implements the <code>RemoteResultReducer</code> interface:</p><pre><code class="language-java">import org.openspaces.remoting.RemoteResultReducer;
 import org.openspaces.remoting.SpaceRemotingInvocation;
 import org.openspaces.remoting.SpaceRemotingResult;
 
@@ -374,64 +335,51 @@ public class DataProcessorServiceReducer implements RemoteResultReducer&lt;Integ
     }
 }
 </code></pre>
-
-<h2><a name="the-client-1">&#160;</a>The Client</h2>
-
-<p>The client invokes the service in <span class="tc-bold">Synchronous</span> mode using the following:</p>
-
-<pre><code class="language-java">IJSpace space = new UrlSpaceConfigurer("jini://*/*/space").space();
+        <h2><a name="the-client-1">&#160;</a>The Client</h2>
+        <p>The client invokes the service in <span class="tc-bold">Synchronous</span> mode using the following:</p><pre><code class="language-java">IJSpace space = new UrlSpaceConfigurer("jini://*/*/space").space();
 GigaSpace gigaSpace = new GigaSpaceConfigurer(space).gigaSpace();
 IDataProcessor dataProcessor = new ExecutorRemotingProxyConfigurer&lt;IDataProcessor&gt;
     (gigaSpace, IDataProcessor.class).broadcast(new DataProcessorServiceReducer()).proxy();
 Integer result = dataProcessor.processData("A" + count);
 System.out.println(new Time(System.currentTimeMillis()) + " - Client got Result:" + result.intValue() );
 </code></pre>
-
-<ol>
-<li>The client getting a proxy to a remote space</li>
-<li>The client constructing Service proxy using the <code>ExecutorRemotingProxyConfigurer</code>. The <code>DataProcessorServiceReducer</code> is used when constructing Service proxy .</li>
-<li>The client invokes the service in <span class="tc-bold">Synchronous</span> mode</li>
-<li>The result is being displayed.</li>
-</ol>
-
-<h2><a name="running-the-example-1">&#160;</a>Running the Example</h2>
-
-<h3><a name="deploying-the-space-and-services">&#160;</a>Deploying the Space and Services</h3>
-
-<p>Using IDE:
-Set your IDe to have the Following:
-<img src="/attachment_files/sbp/exec_ide1.jpg" alt="exec_ide1.jpg" />
-<img src="/attachment_files/sbp/exec_ide2.jpg" alt="exec_ide2.jpg" />
-Click <span class="tc-bold">Run</span>. This will start the clustered space and the Services within your IDE.</p>
-
-<p>Using CLI:
-To start the clustered space with 2 partitions and export the Service run the following:</p>
-
-<pre><code class="language-java">\gigaspaces-xap\bin\bin&gt;puInstance -cluster schema=partitioned total_members=2 \ExecutorExample\classes
+        <ol>
+            <li>The client getting a proxy to a remote space</li>
+            <li>The client constructing Service proxy using the <code>ExecutorRemotingProxyConfigurer</code>. The <code>DataProcessorServiceReducer</code> is used when constructing Service proxy .</li>
+            <li>The client invokes the service in <span class="tc-bold">Synchronous</span> mode</li>
+            <li>The result is being displayed.</li>
+        </ol>
+        <h2><a name="running-the-example-1">&#160;</a>Running the Example</h2>
+        <h3><a name="deploying-the-space-and-services">&#160;</a>Deploying the Space and Services</h3>
+        <p class="tc-todo">Using IDE:</p>
+        <p>
+Set your IDE to have the following:</p>
+        <div class="tc-align-center">
+            <p><![CDATA[
+]]><img src="../Resources/Static/attachment_files/sbp/exec_ide1.jpg" alt="exec_ide1.jpg" class="tc-picture80" /></p>
+        </div>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/exec_ide2.jpg" alt="exec_ide2.jpg" class="tc-picture80" /><![CDATA[
+]]></p>
+        </div>
+        <p>Click <span class="tc-bold">Run</span>. This will start the clustered space and the Services within your IDE.</p>
+        <p class="tc-todo">Using CLI:
+</p>
+        <p>To start the clustered space with 2 partitions and export the Service run the following:</p><pre><code class="language-java">\gigaspaces-xap\bin\bin&gt;puInstance -cluster schema=partitioned total_members=2 \ExecutorExample\classes
 </code></pre>
-
-<p>Where the <code>\ExecutorExample\classes</code> should include the processing unit pu.xml under <code>META-INF\spring\pu.xml</code> and relevant Service class files.</p>
-
-<p>When you start the space make sure you see both partitions started before you run the client:</p>
-
-<pre><code class="language-java">2010-12-17 14:02:20,453  INFO [com.gigaspaces.core.common] - Space [space_container1:space]
+        <p>Where the <code>\ExecutorExample\classes</code> should include the processing unit pu.xml under <code>META-INF\spring\pu.xml</code> and relevant Service class files.</p>
+        <p>When you start the space make sure you see both partitions started before you run the client:</p><pre><code class="language-java">2010-12-17 14:02:20,453  INFO [com.gigaspaces.core.common] - Space [space_container1:space]
 with url [/./space?cluster_schema=partitioned&amp;total_members=2&amp;id=1&amp;schema=default&amp;groups=gigaspaces-7.1.2-XAPPremium-ga&amp;state=started]
 started successfully
 2010-12-17 14:03:04,187  INFO [com.gigaspaces.core.common] - Space [space_container2:space]
 with url [/./space?cluster_schema=partitioned&amp;total_members=2&amp;id=2&amp;schema=default&amp;groups=gigaspaces-7.1.2-XAPPremium-ga&amp;state=started]
 started successfully
 </code></pre>
-
-<h3><a name="run-the-client-application-1">&#160;</a>Run the Client Application</h3>
-
-<p>Run the Client Application (ExecutorClientMain.java) using the following:</p>
-
-<pre><code class="language-java">org.test.executor.ExecutorClientMain sync
+        <h3><a name="run-the-client-application-1">&#160;</a>Run the Client Application</h3>
+        <p>Run the Client Application (ExecutorClientMain.java) using the following:</p><pre><code class="language-java">org.test.executor.ExecutorClientMain sync
 </code></pre>
-
-<h3><a name="expected-output-1">&#160;</a>Expected Output</h3>
-
-<pre><code class="language-java">14:12:18 MyTask execute called at space_container2 - total is:25000
+        <h3><a name="expected-output-1">&#160;</a>Expected Output</h3><pre><code class="language-java">14:12:18 MyTask execute called at space_container2 - total is:25000
 14:12:18 MyTask execute called at space_container1 - total is:24500
 14:12:19 MyTask execute called at space_container1 - total is:24500
 14:12:19 MyTask execute called at space_container2 - total is:25000
@@ -449,9 +397,7 @@ started successfully
 14:12:26 MyTask execute called at space_container1 - total is:24500
 14:12:27 MyTask execute called at space_container2 - total is:25000
 14:12:27 MyTask execute called at space_container1 - total is:24500
-</code></pre>
-
-<pre><code class="language-java">Sync Service Executor example started
+</code></pre><pre><code class="language-java">Sync Service Executor example started
 Log file: C:\gigaspaces-xap-premium-7.1.2-ga\logs\2010-12-17~14.12-gigaspaces-service-207.172.165.179-6472.log
 14:12:18 - Client calling sync dataProcessor
 14:12:18 - Client got Result:495
@@ -472,11 +418,11 @@ Log file: C:\gigaspaces-xap-premium-7.1.2-ga\logs\2010-12-17~14.12-gigaspaces-se
 14:12:27 - Client calling sync dataProcessor
 14:12:27 - Client got Result:495
 </code></pre>
-
-<p>You can view the space operations statistics by running the <code>\gigaspaces-xap\bin\gs-ui</code>:</p>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/exe_example_stats.jpg" alt="exe_example_stats.jpg" /></p>
-</div>
-
-</body>
+        <p>You can view the space operations statistics by running the <code>\gigaspaces-xap\bin\gs-ui</code>:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/exe_example_stats.jpg" alt="exe_example_stats.jpg" class="tc-picture80" />
+            </p>
+        </div>
+    </body>
 </html>
