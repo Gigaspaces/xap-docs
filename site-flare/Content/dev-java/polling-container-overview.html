@@ -112,12 +112,9 @@ pollingEventListenerContainer.destroy();
         </div>
         <div class="tc-admon-attention">
             <p><code>EventDriven</code>, <code>@Polling</code>, and <code>@Notify</code> cannot be placed on interface classes. Place them on the implementation class instead.</p>
-            <p>The property <code class="language-bash">perform-snapshot</code>  is set to true by default since the snapshot improves performance. However configure <code class="language-bash">perform-snapshot</code> to false if working with a polling container that performs an <code class="language-bash">order by</code> query, or that contains a Trigger operation handler that returns a template without specifying the template.</p>
+            <p>The property <code class="language-bash">perform-snapshot</code>  is set to true by default since the snapshot improves performance. However configure <code class="language-bash">perform-snapshot="false</code>if working with a polling container that performs an <code class="language-bash">order by</code> query, or that contains a Trigger operation handler that returns a template without specifying the template.</p>
         </div>
         <p>The above example performs single take operations (see below) using the provided template (a <code>Data</code> object with its processed flag set to <code>false</code>). If the take operation succeeds (a value is returned), the <code>SimpleListener</code> is invoked. The operations are performed on the configured <a href="the-gigaspace-interface-overview.html">GigaSpace</a> bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).</p>
-        <div class="tc-admon-attention">
-            <p><code>EventDriven</code>, <code>@Polling</code>, and <code>@Notify</code> cannot be placed on interface classes. Place them on the implementation class instead.</p>
-        </div>
         <h1><a name="primary-backup"></a>Primary/Backup</h1>
         <p>By default, the polling event container performs receive operations only when the relevant Space it is working against is in primary mode. When the Space is in backup mode, no receive operations are performed. If the Space changes from backup mode to primary mode, the receive operations are started.</p>
         <div class="tc-admon-note">
