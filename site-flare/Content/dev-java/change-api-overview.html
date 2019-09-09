@@ -51,7 +51,9 @@ Uuid id = ...;
 IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(Account.class, id, routing);
 space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D));
 </code></pre>
-        <div class="tc-admon-note">NOTEWhen using changeSet with idQuery, use a specific class type. The query must use a unique id and return only one object in order for the API to perform the change correctly.</div>
+        <div class="tc-admon-note">
+            <p>When using changeSet with idQuery, use a specific class type. The query must use a unique id and return only one object in order for the API to perform the change correctly.</p>
+        </div>
         <h2><a name="specifying-the-path"></a>Specifying the Path</h2>
         <p>Each operation in the change set acts on a specified string path. This path points to the property that needs to be changed, and has the following semantic:</p>
         <ol>
