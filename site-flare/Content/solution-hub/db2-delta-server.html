@@ -28,7 +28,7 @@
         </table>
         <h1><a name="overview">&#160;</a>Overview</h1>
         <p>Almost every large enterprise system includes legacy applications or backend systems that are communicating with the enterprise main database system for reporting, batch processing, data mining, OLAP and other processing activity. These applications might not need to access the data grid to improve their performance or scalability. They will be using the database directly. Once these systems perform data updates , removing data or add new records to the database, these updates might need to be reflected within the data grid. This synchronization activity ensures the data grid is consistent and up to date with the enterprise main database server.</p>
-        <MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:www.youtube.com/embed/tBdphj2hjXk" />
+        <MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://youtu.be/tBdphj2hjXk," />
         <p>The Delta Server described with this pattern responsible for getting notifications from the database for any user activity (excluding data grid updates) and delegate these to the data grid. You may specify the exact data set updates to be delegated to the data grid.</p>
         <h1><a name="scenario">&#160;</a>Scenario</h1>
         <p>We have an In Memory Data Grid (IMDG) that is used for querying information. The initial load of the IMDG was performed from a DB2 Database. The IMDG is not used as a system of record in this case meaning that any changes to the objects in the IMDG are not propagated back into the Database. Non-Aware Data-Grid Clients are updating the Database. These updates (insert,update and delete) need to be reflected in the IMDG.</p>
@@ -44,7 +44,7 @@
         </ul>
         <h1><a name="installation">&#160;</a>Installation</h1>
         <p>For simplicity, we install and execute this demo using the DB2 default user db2inst1. Log in to the Linux machine using the user db2inst1. <a href="/download_files/sbp/db2gs.jar">download</a> the sample code and extract to a folder say /home/db2inst1/db2mqrep. We'll refer to this path as DEMO_HOME.</p>
-        <p>The following jar files are needed for this example:</p><pre><code class="language-java">
+        <p>The following JAR&#160;files are needed for this example:</p><pre><code class="language-java">
  These files must be copied from the MQ server that you are running against.
 
  CL3Export.jar
@@ -77,7 +77,7 @@
  providerutil.jar
 
 </code></pre>
-        <h3><a name="prepare-the-db-demo-files">&#160;</a>Prepare the db demo files</h3>
+        <h3><a name="prepare-the-db-demo-files">&#160;</a>Prepare the db Demo Files</h3>
         <p>Change directory to the db2mqrep directory. We'll execute a script that creates the db2sampl database PUBSRC and configures it for this demo. Execute the script <code>democreatedb.sh</code> using the command from a terminal window:</p><pre><code class="language-java"> ./democreatedb.sh
 </code></pre>
         <p>If your db2inst1 home directory doesn't match the script, please update the path to the exact one on your installation.</p>
@@ -87,7 +87,7 @@
 </code></pre>
         <h3><a name="setting-up-the-mq-queue-managers">&#160;</a>Setting up the MQ Queue Managers</h3>
         <p>If the db2inst1 account is not part of the mqm group, then you need to add it to the group.
- In this step we will setup the replication for the data base changes. Execute the following script using the asnclp command:</p><pre><code class="language-java"> asnclp -f demomq.asnclp
+ In this step we will setup the replication for the database changes. Execute the following script using the asnclp command:</p><pre><code class="language-java"> asnclp -f demomq.asnclp
 </code></pre>
         <p>The output on the console should look something like this:</p><pre><code class="language-java"> ====
  CMD: asnclp session set to q replication;
@@ -129,18 +129,18 @@
 
 </code></pre>
         <h1><a name="running-the-demo">&#160;</a>Running the Demo</h1>
-        <p>Step 1: Start the xap agent</p><pre><code class="language-java"> \XAP_HOME\bin\gs-agent.sh
+        <p>Step 1: Start the&#160;<MadCap:variable name="General.ProductNameXAP" /> agent.</p><pre><code class="language-java"> \XAP_HOME\bin\gs-agent.sh
 </code></pre>
-        <p>Step 2: Set environment variables for MQ</p><pre><code class="language-java"> export MQ_JAVA_INSTALL_PATH=/opt/mqm/java
+        <p>Step 2: Set environment variables for MQ.</p><pre><code class="language-java"> export MQ_JAVA_INSTALL_PATH=/opt/mqm/java
  export MQ_JAVA_DATA_PATH=/var/mqm
  export MQ_JAVA_LIB_PATH=/opt/mqm/java/lib64
 </code></pre>
-        <p>Step 3: Start the Delta Server</p><pre><code class="language-java"> java -Djava.library.path=/opt/mqm/java/lib64 -cp "/opt/mqm/java/lib:./*"
+        <p>Step 3: Start the Delta Server.</p><pre><code class="language-java"> java -Djava.library.path=/opt/mqm/java/lib64 -cp "/opt/mqm/java/lib:./*"
  com.gigaspaces.mq.listener.DB2SpaceListener
  -qmgr PUBSRC -queue ASN.PUBSRC.DATA -time 60000 -out DEPFiles
 </code></pre>
-        <p>Make sure you include all the jars that are MQS specific.</p>
-        <p>Step 4: Update the data base to force notifications</p><pre><code class="language-java">
+        <p>Make sure you include all the JARs that are MQS specific.</p>
+        <p>Step 4: Update the database to force notifications.</p><pre><code class="language-java">
  db2 connect to PUBSRC
 
  db2 "insert into employee(empno, firstnme, lastname, edlevel,workdept) values ('000015','MARK','POTTER',18,'C01')";
@@ -148,6 +148,6 @@
  db2 "insert into employee(empno, firstnme, lastname, edlevel,workdept) values ('000016','SALLY','JOHNSON',18,'A00')";
 
 </code></pre>
-        <p>If you start the XAP Administration UI you should see under "mySpace" the entries we have inserted into the data base.</p>
+        <p>If you start the GigaSpaces Managemennt Center, you should see under "mySpace" the entries we have inserted into the database.</p>
     </body>
 </html>

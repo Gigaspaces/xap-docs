@@ -78,7 +78,8 @@
         </table>
         <p>The internal architecture of the setup includes a clustered Space and a gateway, such that the master site (US) only configures delegators while the slave sites (GB, HK) only configure sinks:</p>
         <div class="tc-align-center">
-            <p><a href="../Resources/Static/attachment_files/sbp/WAN_masterslave_arch.png"><img src="../Resources/Static/attachment_files/sbp/WAN_masterslave_arch.png" width="140" height="100" class="tc-picture80" /></a>
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/WAN_masterslave_arch.png" class="tc-picture80" />
             </p>
         </div>
         <p>As a result of this topology, the following scenario will take place after updates are written to the New York Space:</p>
@@ -417,12 +418,14 @@ Hong Kong are the passive sites. While the slave sites are passive, this does no
             </div>
         </div>
         <h1><a name="installing-and-running-the-example">&#160;</a>Installing and Running the Example</h1>
+        <p class="tc-todo">To install the example:</p>
         <ol>
             <li>Download the <a href="https://github.com/Gigaspaces/wan-gateway-examples/archive/master.zip">WAN-Gateway-Examples.zip</a> archive. It includes two folders: <span class="tc-bold">deploy</span> and <span class="tc-bold">scripts</span>. View on <a href="https://github.com/Gigaspaces/wan-gateway-examples/tree/master/WAN_Replication_MasterSlave">GitHub</a></li>
             <li>Extract the file and and copy the contents of the <span class="tc-bold">deploy</span> folder to the <code>\&lt;GIGASPACES_HOME&gt;\deploy</code> folder.</li>
             <li>Extract the <code>scripts</code> folder to an arbitrary location and edit the <code>setExampleEnv.bat/sh</code> script to include the machine IP address for <code>NIC_ADDR</code> and the GigaSpaces root folder location for <code>GS_HOME</code>.</li>
         </ol>
-        <p>The <code>scripts</code> folder contains the necessary scripts to start the <a href="/product_overview/service-grid.html#gsa">Grid Service Agent</a> for each cluster, in addition to a deploy script <code>deployAll.bat/sh</code> that is used to automate the deployment of all three gateways and sSpace instances. This allows you to run the entire setup on one machine to simplify testing. Here are the steps to run the example:</p>
+        <p>The <code>scripts</code> folder contains the necessary scripts to start the <a href="/product_overview/service-grid.html#gsa">Grid Service Agent</a> for each cluster, in addition to a deploy script <code>deployAll.bat/sh</code> that is used to automate the deployment of all three gateways and sSpace instances. This allows you to run the entire setup on one machine to simplify testing.</p>
+        <p class="tc-todo"> To run the example:</p>
         <ol>
             <li>Run <code>startAgent-GB.bat/sh</code> to start the GB site.</li>
             <li>Run <code>startAgent-HK.bat/sh</code> to start the HK site.</li>
@@ -430,32 +433,49 @@ Hong Kong are the passive sites. While the slave sites are passive, this does no
             <li>Run <code>deployAll.bat/sh</code> file to deploy all the Processing Units listed above.</li>
         </ol>
         <h1><a name="viewing-the-clusters">&#160;</a>Viewing the Clusters</h1>
-        <ul>
+        <ol>
             <li>Start the GigaSpaces Management Center and configure the appropriate lookup groups through the "Group Management" dialog.</li>
-            <li>After all clusters are up and running, you must enable the relative groups:</li>
-        </ul>
-        <p>
-            <img src="../Resources/Static/attachment_files/sbp/group_management_dialog.jpg" alt="group_management_dialog.jpg" />
-        </p>
-        <p>Check to enable all three advertised groups for each site:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/sbp/groups_selection_dialog.jpg" alt="groups_selection_dialog.jpg" />
-        </p>
-        <p>As a result, you should see the service grid components for each site displayed under the <span class="tc-bold">Hosts</span> tree as follows:</p>
-        <p><a href="../Resources/Static/attachment_files/sbp/masterslave_hosts_view.png"><img src="../Resources/Static/attachment_files/sbp/masterslave_hosts_view.png" width="140" height="100" /></a>
-        </p>
-        <p>After The <code>deployAll.bat/sh</code> script finishes running, you should be able to see all three sites deployed as follows:</p>
-        <p><a href="../Resources/Static/attachment_files/sbp/pu_deployments.jpg"><img src="../Resources/Static/attachment_files/sbp/pu_deployments.jpg" width="140" height="100" /></a>
-        </p>
-        <p>If you are using the Web Management Console, you can also view the site topology using the <span class="tc-bold">Data Grids</span>&gt;<span class="tc-bold">Gateways</span> view as follows:</p>
-        <p><a href="../Resources/Static/attachment_files/sbp/webui_gw_topology.png"><img src="../Resources/Static/attachment_files/sbp/webui_gw_topology.png" width="140" height="100" /></a>
-        </p>
+            <li>
+                <p>After all clusters are up and running, you must enable the relative groups:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/sbp/group_management_dialog.jpg" alt="group_management_dialog.jpg" class="tc-picture30" />
+                </p>
+            </li>
+            <li>
+                <p>Check to enable all three advertised groups for each site:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/sbp/groups_selection_dialog.jpg" alt="groups_selection_dialog.jpg" class="tc-picture30" />
+                </p>
+                <p>As a result, you should see the service grid components for each site displayed under the <span class="tc-bold">Hosts</span> tree as follows:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/sbp/masterslave_hosts_view.png" class="tc-picture80" />
+                </p>
+            </li>
+            <li>
+                <p>After The <code>deployAll.bat/sh</code> script finishes running, you should be able to see all three sites deployed as follows:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/sbp/pu_deployments.jpg" class="tc-picture50" />
+                </p>
+            </li>
+            <li>
+                <p>If you are using the Web Management Console, you can also view the site topology using the <span class="tc-bold">Data Grids</span>&gt;<span class="tc-bold">Gateways</span> view as follows:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/sbp/webui_gw_topology.png" class="tc-picture80" />
+                </p>
+            </li>
+        </ol>
         <h1><a name="testing-master-slave-replication">&#160;</a>Testing Master-Slave Replication</h1>
         <p>You can test the setup using the <a href="https://docs.gigaspaces.com/latest/admin/benchmark-browser.html">benchmark utility</a> that comes with the GigaSpaces Management Center. Select the US Benchmark icons and click <span class="tc-bold">Start</span> to begin writing objects to the Space:</p>
-        <p><a href="../Resources/Static/attachment_files/sbp/masterslave_space_write.png"><img src="../Resources/Static/attachment_files/sbp/masterslave_space_write.png" width="140" height="100" /></a>
-        </p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/masterslave_space_write.png" class="tc-picture80" />
+            </p>
+        </div>
         <p>Click the <span class="tc-bold">Spaces</span> icon on the Space Browser tab to get a global view of all Spaces. As objects are written, you should see replication occurring across both the HK and GB sites until there are 5000 objects in each Space:</p>
-        <p><a href="../Resources/Static/attachment_files/sbp/masterslave_space_count.png"><img src="../Resources/Static/attachment_files/sbp/masterslave_space_count.png" width="140" height="100" /></a>
-        </p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/masterslave_space_count.png" class="tc-picture80" />
+            </p>
+        </div>
     </body>
 </html>
