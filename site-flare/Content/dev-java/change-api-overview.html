@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1>Change API</h1>
+        <h1 class="tc-pagetitle">Change API</h1>
         <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.html" target="_blank">GigaSpace.change</a> and the <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">ChangeSet</a> allows updating existing objects in Space, by specifying only the required change instead of passing the entire updated object.</p>
         <h3>Additional Resources</h3>
         <MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://www.youtube.com/watch?v=k2zGdUi_ntU," />
@@ -52,14 +52,14 @@ IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(Account.class, id, r
 space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D));
 </code></pre>
         <div class="tc-admon-note">
-            <p>When using changeSet with idQuery, use a specific class type. The query must use a unique id and return only one object in order for the API to perform the change correctly.</p>
+            <p>When using <code>changeSet</code> with <code>idQuery</code>, use a specific class type. The query must use a unique ID and return only one object in order for the API to perform the change correctly.</p>
         </div>
         <h2><a name="specifying-the-path"></a>Specifying the Path</h2>
         <p>Each operation in the change set acts on a specified string path. This path points to the property that needs to be changed, and has the following semantic:</p>
         <ol>
-            <li><span class="tc-bold">First level property</span> - A path with no ".' character in it points to a first-level property. If the property specified by this path is not part of the Object, it is treated as a dynamic property (see <a href="dynamic-properties.html">Dynamic Properties</a>). If the object doesn't support dynamic properties, an exception is generated.</li>
-            <li><span class="tc-bold">Nested property</span> - A path that contains a ".' character is considered a path to a nested property. The location process of the final property that needs to be changed is done recursively by activating the properties, specified by the split of the path using the ".' character, one at a time until reaching the targeted end property.</li>
-            <li><span class="tc-bold">Nested Map property</span> - A path that contains a ".' character may also point to keys inside a map, meaning the following path - "attributes.color' looks for a key named "color' if the property named "attribute' in the object is actually a map. This affects nested properties as well.</li>
+            <li><span class="tc-bold">First level property</span> - A path with no "." character in it points to a first-level property. If the property specified by this path is not part of the object, it is treated as a dynamic property (see <a href="dynamic-properties.html">Dynamic Properties</a>). If the object doesn't support dynamic properties, an exception is generated.</li>
+            <li><span class="tc-bold">Nested property</span> - A path that contains a "." character is considered a path to a nested property. The location process of the final property that needs to be changed is done recursively by activating the properties, specified by the split of the path using the "." character, one at a time until reaching the targeted end property.</li>
+            <li><span class="tc-bold">Nested Map property</span> - A path that contains a "." character may also point to keys inside a map, meaning the following path - "attributes.color" looks for a key named "color" if the property named "attribute" in the object is actually a map. This affects nested properties as well.</li>
         </ol>
         <p>The following demonstrates how the path works with a map property instead of concrete properties:</p><pre><code class="language-java">@SpaceClass
 public class Account
@@ -239,7 +239,7 @@ space.change(idQuery, new ChangeSet().lease(1000)...);
             <li>The transaction lock is released - in this case, the change operation is applied on the objects that were previously locked but are now available.</li>
             <li>A timeout occurs - in this case, the change operation returns with an exception. Like all other failures, the exception is a <code>ChangeException</code> that contains the successful changes. All the objects that were still locked when the timeout period elapsed are part of the <code>getFailedChanges</code> property of the exception, each with a failure reason of <code>UpdateOperationTimeoutException</code>.</li>
         </ul>
-        <p>If there are no matching objects for the specified template/Query, the operation returns immediately without waiting for the timeout to elapse. This is similar to the <code>(read/take)IfExists</code> operation semantic.</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
+        <p>If there are no matching objects for the specified template/query, the operation returns immediately without waiting for the timeout to elapse. This is similar to the <code>(read/take)IfExists</code> operation semantic.</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
 Uuid id = ...;
 IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(Account.class, id, routing);
 long timeout = 1000; //1 seconds
