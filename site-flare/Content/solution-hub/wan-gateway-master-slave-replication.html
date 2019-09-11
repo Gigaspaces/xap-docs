@@ -26,12 +26,12 @@
                 </tr>
             </tbody>
         </table>
-        <h1><a name="overview">&#160;</a>Overview</h1>
+        <h1>Overview</h1>
         <p>The WAN gateway provides a simple way of creating a master-slave topology, enabling data from one site to be replicated to one or more remote sites. For instance, given three clusters in New York, London, and Hong Kong, with New York being the master and the remaining two acting as slaves, any updates to the New York Space will propagate to both London and Hong Kong asynchronously. The sample Processing Units and configuration provided below are intended as an example of implementing a single-master/multi-slave topology across three sites: New York (US), London (GB), and Hong Kong (HK) where each site has an independent cluster and a gateway.
 </p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/sbp/WAN_masterslave.png" alt="WAN_masterslave.png" class="tc-picture80" />
+                <img src="../Resources/Static/attachment_files/sbp/WAN_masterslave.png" alt="WAN_masterslave.png" class="tc-picture50" />
             </p>
         </div>
         <p>The demo is configured to start three Space instances across three clusters. While the three clusters run on your local machine, they are demarcated by zones and different lookup service ports as follows:</p>
@@ -88,7 +88,7 @@
             <li>London and Hong Kong sinks receive the updates asynchronously.</li>
             <li>London and Hong Kong sinks each apply the updates on their local cluster.</li>
         </ol>
-        <h1><a name="configuring-master-slave-replication">&#160;</a>Configuring Master-Slave Replication</h1>
+        <h1>Configuring Master-Slave Replication</h1>
         <p>The master-slave topology configuration is simply implemented through delegators on the master (New York) and a sink on each slave (London, Hong Kong). In this case, New York is the active site while London and
 Hong Kong are the passive sites. While the slave sites are passive, this does not necessarily mean that no work is done in these sites. However, in  terms of replication over the WAN, these sites should not replicate to the other sites and usually should not alter data replicated from other sites because it may cause conflicts:</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -432,7 +432,7 @@ Hong Kong are the passive sites. While the slave sites are passive, this does no
             <li>Run <code>startAgent-US.bat/sh</code> to start the US site.</li>
             <li>Run <code>deployAll.bat/sh</code> file to deploy all the Processing Units listed above.</li>
         </ol>
-        <h1><a name="viewing-the-clusters">&#160;</a>Viewing the Clusters</h1>
+        <h1>Viewing the Clusters</h1>
         <ol>
             <li>Start the GigaSpaces Management Center and configure the appropriate lookup groups through the "Group Management" dialog.</li>
             <li>
@@ -448,7 +448,7 @@ Hong Kong are the passive sites. While the slave sites are passive, this does no
                 </p>
                 <p>As a result, you should see the service grid components for each site displayed under the <span class="tc-bold">Hosts</span> tree as follows:</p>
                 <p>
-                    <img src="../Resources/Static/attachment_files/sbp/masterslave_hosts_view.png" class="tc-picture80" />
+                    <img src="../Resources/Static/attachment_files/sbp/masterslave_hosts_view.png" class="tc-picture100" />
                 </p>
             </li>
             <li>
@@ -464,7 +464,7 @@ Hong Kong are the passive sites. While the slave sites are passive, this does no
                 </p>
             </li>
         </ol>
-        <h1><a name="testing-master-slave-replication">&#160;</a>Testing Master-Slave Replication</h1>
+        <h1>Testing Master-Slave Replication</h1>
         <p>You can test the setup using the <a href="https://docs.gigaspaces.com/latest/admin/benchmark-browser.html">benchmark utility</a> that comes with the GigaSpaces Management Center. Select the US Benchmark icons and click <span class="tc-bold">Start</span> to begin writing objects to the Space:</p>
         <div class="tc-align-center">
             <p>

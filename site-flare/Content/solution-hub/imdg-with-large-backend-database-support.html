@@ -3,12 +3,12 @@
     <head>
     </head>
     <body>
-        <h1>Data Grid with Large Backend Database Support</h1>
+        <h1 class="tc-pagetitle">Data Grid with Large Backend Database Support</h1>
         <table>
             <thead>
                 <tr>
                     <th>Author</th>
-                    <th>XAP Version</th>
+                    <th>Product Version</th>
                     <th>Last Updated</th>
                     <th>Reference</th>
                     <th>Download</th>
@@ -26,17 +26,17 @@
                 </tr>
             </tbody>
         </table>
-        <h1><a name="overview">&#160;</a>Overview</h1>
-        <p>When having an application using a very large backend database leveraging the IMDG, caching a subset of the application data, while running on-going data eviction policy with read-through policy (i.e. LRU cache policy mode with an External-Data-Source used), the main requirement is to <span class="tc-bold">access the database in the most optimal manner</span> when performing queries against the IMDG.</p>
-        <p>When using <code>readById</code> or <code>readByIds</code> operations looking for a single specific object(s), that cannot be found within the IMDG (a cache miss), the database access is very minimal. Only one raw is retrieved from the database per object lookup activity via the space External Data Source (EDS) implementation.</p>
-        <p>But when performing queries, using <code>readMultiple</code> with a template or SQLQuery filter, that return a result set that may involve relatively large amount of objects, with an IMDG running in LRU cache policy mode, the probability accessing the database retrieving large amount of data is very high:</p>
+        <h1>Overview</h1>
+        <p>When having an application using a very large backend database leveraging the data grid, caching a subset of the application data, while running on-going data eviction policy with read-through policy (i.e. LRU cache policy mode with an External-Data-Source used), the main requirement is to <span class="tc-bold">access the database in the most optimal manner</span> when performing queries against the data grid.</p>
+        <p>When using <code>readById</code> or <code>readByIds</code> operations looking for a single specific object(s), that cannot be found within the data grid (a cache miss), the database access is very minimal. Only one raw is retrieved from the database per object lookup activity via the space External Data Source (EDS) implementation.</p>
+        <p>But when performing queries, using <code>readMultiple</code> with a template or SQLQuery filter, that return a result set that may involve relatively large amount of objects, with an data grid running in LRU cache policy mode, the probability accessing the database retrieving large amount of data is very high:</p>
         <ul>
             <li>When using <code>readMultiple</code> having <code>Integer.MAX_VALUE</code> as the <code>max_objects</code> parameter, every partition will access the database (parallel database access). This may overload the database.</li>
             <li>When using <code>readMultiple</code> having <code>max_objects</code> &lt; <code>Integer.MAX_VALUE</code> the database might be accessed even if there are enough objects matching the query criteria across all the space partitions.</li>
             <li>When loading data from database data eviction process may be triggered. This may impact the performance.</li>
             <li>Database access involves reading objects that will not be loaded into the space (non-matching routing value).</li>
         </ul>
-        <h1><a name="solution">&#160;</a>Solution</h1>
+        <h1>Solution</h1>
         <p>The main motivation with the solution proposed below, is to have better control when a space partition is accessing the database. The space is inspected prior retrieving the data leveraging the ability to count matching objects to a given query very fast (via the in-memory indexes the space maintains). If there is an adequate amount of matching objects, the client will access the relevant space partition(s) and retrieve the data from the space without accessing the database.</p>
         <p>Here is the full query execution strategy:</p>
         <ol>
@@ -60,10 +60,10 @@
         </ol>
         <div class="tc-align-center">
             <p>
-                <img src="/attachment_files/sbp/imdg_eviction_large_db.jpg" alt="imdg_eviction_large_db.jpg" />
+                <img src="../Resources/Static/attachment_files/sbp/imdg_eviction_large_db.jpg" alt="imdg_eviction_large_db.jpg" class="tc-picture80" />
             </p>
         </div>
-        <h2><a name="data-eviction-options">&#160;</a>Data Eviction Options</h2>
+        <h2>Data Eviction Options</h2>
         <p>Evicting data from the space can be done using the following options:</p>
         <ul>
             <li>LRU Cache policy - The simplest way to evict data based on available memory. Built-in option.</li>
@@ -73,7 +73,7 @@
 – Using the JVM Memory Notification API.</li>
         </ul>
         <p>See the Custom Eviction section for details.</p>
-        <h1><a name="example">&#160;</a>Example</h1>
+        <h1>Example</h1>
         <p>With the <a href="/attachment_files/sbp/LargeDBLRUSpace.zip">attached example</a> the clustered space has 600 objects in memory:</p>
         <ul>
             <li>100 object loaded into partition 1.</li>
@@ -87,11 +87,11 @@
             <li>Query for 500 matching objects - This will return objects from multiple partitions without accessing the database.</li>
             <li>Query for 700 matching objects - Load data from the database and return objects from all partitions.</li>
         </ul>
-        <h2><a name="running-the-example">&#160;</a>Running the Example</h2>
-        <p>To run the example you should first run the IMDG and later run the client. The example below explains how to run these within the IDE, but you can also modify these to run as a PU and deploy these into the GigaSpaces runtime environment.</p>
-        <h3><a name="running-the-imdg">&#160;</a>Running the IMDG</h3>
-        <p>The <code>MyEDS</code> class main method will start IMDG with 3 nodes. Once the IMDG will be started, each partition will load the dummy data.</p>
-        <h3><a name="running-the-client">&#160;</a>Running the Client</h3>
+        <h2>Running the Example</h2>
+        <p>To run the example you should first run the data grid and later run the client. The example below explains how to run these within the IDE, but you can also modify these to run as a PU and deploy these into the GigaSpaces runtime environment.</p>
+        <h3>Running the Data GRid</h3>
+        <p>The <code>MyEDS</code> class main method will start data grid with 3 nodes. Once the data grid is started, each partition will load the dummy data.</p>
+        <h3>Running the Client</h3>
         <p>The <code>Client</code> class main method will start a client that will perform the above queries.</p>
     </body>
 </html>

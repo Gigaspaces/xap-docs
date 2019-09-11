@@ -1,49 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Cache Interface</h1>
-  
-
-<table>
-<thead>
-<tr>
-<th>Author</th>
-<th>XAP Version</th>
-<th>Last Updated</th>
-<th>Reference</th>
-<th>Download</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Shay Hassidim</td>
-<td>9.6</td>
-<td>February 2014</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-<h1><a name="overview">&#160;</a>Overview</h1>
-
-<p>GigaSpaces XAP provides a powerful IMDG with advanced data access options. Many times a simple key/value interface required to access the IMDG. The <a href="https://docs.gigaspaces.com/latest/dev-java/map-api.html">Map API</a> or the <a href="https://docs.gigaspaces.com/latest/dev-java/the-gigaspace-interface-overview.html">GigaSpace API</a> can be used in such a case. A simple wrapper around the GigaSpace API described here exposing a <code>HashMap</code> interface.</p>
-
-<p><img src="/attachment_files/sbp/cache-service.jpg" alt="cache-service.jpg" /></p>
-
-<h1><a name="cache-interface-implementation">&#160;</a>Cache Interface Implementation</h1>
-
-<p>The implementation includes two classes. The <code>Data</code> class that model the data within the space and the <code>CacheService</code> class that wraps the <code>GigaSpace</code> API using standard <code>Map</code> API (<code>put</code>,<code>get</code> , <code>remove</code>..).</p>
-
-<p>The <code>CacheService</code> support inserting data using a key/value and also via region/key/value. A region allows you to mark entries with a "tag" that groups these for better management. When constructing a <code>CacheService</code> you may indicate if you would like to have the data cached also at the client side. In such a case , the client will have a copy of the data maintained for fast data access avoiding any remote calls or serialization activity. Once the client application constructs the <code>CacheService</code> all cached data will be pre-loaded into the client side. Make sure the client will have sufficient heap size configured (<code>Xmx</code>) to accommodate all entries.</p>
-
-<h2><a name="the-data-space-class">&#160;</a>The Data Space Class</h2>
-
-<p>The Data Space Class holds the key , value and region data within a simple POJO properties. The <code>@SpaceId</code> annotation indicates the key field specified as the Space class ID field.</p>
-
-<pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceId;
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Cache Interface</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shay Hassidim</td>
+                    <td>9.6</td>
+                    <td>February 2014</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Overview</h1>
+        <p>GigaSpaces provides a powerful data grid with advanced data access options. Many times a simple key/value interface required to access the data grid. The <a href="https://docs.gigaspaces.com/latest/dev-java/map-api.html">Map API</a> or the <a href="https://docs.gigaspaces.com/latest/dev-java/the-gigaspace-interface-overview.html">GigaSpace API</a> can be used in such a case. A simple wrapper around the GigaSpace API described here exposing a <code>HashMap</code> interface.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/cache-service.jpg" alt="cache-service.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h1>Cache Interface Implementation</h1>
+        <p>The implementation includes two classes. The <code>Data</code> class that model the data within the space and the <code>CacheService</code> class that wraps the <code>GigaSpace</code> API using standard <code>Map</code> API (<code>put</code>,<code>get</code> , <code>remove</code>..).</p>
+        <p>The <code>CacheService</code> support inserting data using a key/value and also via region/key/value. A region allows you to mark entries with a "tag" that groups these for better management. When constructing a <code>CacheService</code> you may indicate if you would like to have the data cached also at the client side. In such a case , the client will have a copy of the data maintained for fast data access avoiding any remote calls or serialization activity. Once the client application constructs the <code>CacheService</code> all cached data will be pre-loaded into the client side. Make sure the client will have sufficient heap size configured (<code>Xmx</code>) to accommodate all entries.</p>
+        <h2>The Data Space Class</h2>
+        <p>The Data Space Class holds the key , value and region data within a simple POJO properties. The <code>@SpaceId</code> annotation indicates the key field specified as the Space class ID field.</p><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceId;
 import com.gigaspaces.annotation.pojo.SpaceIndex;
 
 public class Data {
@@ -76,32 +70,20 @@ public class Data {
 }
 
 </code></pre>
-
-<h3><a name="optimzing-value-object-serialization-and-storage">&#160;</a>Optimzing Value Object Serialization and Storage</h3>
-
-<p>The <code>Data</code> class can be modified to support better serialization for the value object. You may store the value object in binary format or compressed format.</p>
-
-<p>To store the value object in a binary format the <code>getValue</code> should have the following:</p>
-
-<pre><code class="language-java">@SpaceStorageType(storageType=StorageType.BINARY)
+        <h3>Optimzing Value Object Serialization and Storage</h3>
+        <p>The <code>Data</code> class can be modified to support better serialization for the value object. You may store the value object in binary format or compressed format.</p>
+        <p>To store the value object in a binary format the <code>getValue</code> should have the following:</p><pre><code class="language-java">@SpaceStorageType(storageType=StorageType.BINARY)
 public Object getValue() {
     return value;
 }
 </code></pre>
-
-<p>To store the value object in a compressed format the <code>getValue</code> should have the following:</p>
-
-<pre><code class="language-java">@SpaceStorageType(storageType=StorageType.COMPRESSED)
+        <p>To store the value object in a compressed format the <code>getValue</code> should have the following:</p><pre><code class="language-java">@SpaceStorageType(storageType=StorageType.COMPRESSED)
 public Object getValue() {
     return value;
 }
 </code></pre>
-
-<h2><a name="the-cacheservice">&#160;</a>The CacheService</h2>
-
-<p>The <code>CacheService</code> leveraging the <code>GigaSpace</code> interface implementing the standard <code>put</code>,<code>get</code>,<code>putAll</code>,<code>getAll</code>,<code>remove</code>,etc. methods:</p>
-
-<pre><code class="language-java">import java.util.Collection;
+        <h2>The CacheService</h2>
+        <p>The <code>CacheService</code> leveraging the <code>GigaSpace</code> interface implementing the standard <code>put</code>,<code>get</code>,<code>putAll</code>,<code>getAll</code>,<code>remove</code>,etc. methods:</p><pre><code class="language-java">import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -283,10 +265,7 @@ public class CacheService {
 }
 
 </code></pre>
-
-<p>See example how the <code>CacheService</code> can be used accessing IMDG called "mySpace':</p>
-
-<pre><code class="language-java">CacheService cacheService = new CacheService("jini//*/*/mySpace");
+        <p>See example how the <code>CacheService</code> can be used accessing IMDG called "mySpace':</p><pre><code class="language-java">CacheService cacheService = new CacheService("jini//*/*/mySpace");
 
 cacheService.put("key1", "value1");
 cacheService.put("region1" , "key2", "value2");
@@ -302,11 +281,8 @@ map.put("key3", "value");
 cacheService.putAll(map);
 
 </code></pre>
-
-<div class="tc-admon-note">
-  
-  <p>For more information, see <a href="https://docs.gigaspaces.com/latest/dev-java/modeling-your-data.html">Modeling and Accessing Your Data</a>.</p>
-</div>
-
-</body>
+        <div class="tc-admon-note">
+            <p>For more information, see <a href="https://docs.gigaspaces.com/latest/dev-java/modeling-your-data.html">Modeling and Accessing Your Data</a>.</p>
+        </div>
+    </body>
 </html>

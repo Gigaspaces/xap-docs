@@ -1,68 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Custom Aggregators</h1>
-  
-
-<table>
-<thead>
-<tr>
-<th>Author</th>
-<th>XAP Version</th>
-<th>Last Updated</th>
-<th>Reference</th>
-<th>Download</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Shay Hassidim</td>
-<td>10.1</td>
-<td>July 2015</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-<p>Aggregators provided by the core XAP platform are extensible, allowing developers to modify existing functionality as well as add new features. This flexibility allows the framework to grow with changing requirements and new technologies.  Creating a new aggregator or extending an existing one is a small level of effort for the developer.  This document will describe different patterns to write custom aggregators and some common use cases.</p>
-
-<h1><a name="spaceentriesaggregator">&#160;</a>SpaceEntriesAggregator</h1>
-
-<p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html">SpaceEntriesAggregator</a> is an abstract class that serves as the base class for all aggregators, including the ones provided by the core platform.  Extending this class will provide several methods to allow the user to easily implement a custom aggregator.  The methods are as follows:</p>
-
-<h3><a name="aggregate-hahahugoshortcode-2hbhb-com-gigaspaces-query-aggregators-spaceentriesaggregator-html-aggregate-com-gigaspaces-query-aggregators-spaceentriesaggregatorcontext">&#160;</a><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#aggregate-com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext-">aggregate</a></h3>
-
-<p>The aggregate method is executed for each space entity matching the SQLQuery in a space partition.  The function receives a SpaceEntriesAggregatorContext, which is a wrapper that allows the user to access members of the user entity. The members of each space entity can be accessed by the getPathValue method of SpaceEntriesAggregatorContext.</p>
-
-<p>Long departmentId = (Long) context.getPathValue("departmentId");</p>
-
-<h3><a name="getintermediateresult-hahahugoshortcode-3hbhb-com-gigaspaces-query-aggregators-spaceentriesaggregator-html-getintermediateresult">&#160;</a><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getIntermediateResult--">getIntermediateResult</a></h3>
-
-<p>Executed after all aggregate method calls have completed, this method represents the aggregation result of one partition. The returned value will be passed back to the client where it will trigger the aggregateIntermediateResult method.</p>
-
-<h3><a name="aggregateintermediateresult-hahahugoshortcode-4hbhb-com-gigaspaces-query-aggregators-spaceentriesaggregator-html-aggregateintermediateresult-t">&#160;</a><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#aggregateIntermediateResult-T-">aggregateIntermediateResult</a></h3>
-
-<p>Assembles the responses from each partition on the client side to represent a response from the entire cluster.  The input to this method is the returned value of the getIntermediateResult method.</p>
-
-<h3><a name="getfinalresult-hahahugoshortcode-5hbhb-com-gigaspaces-query-aggregators-spaceentriesaggregator-html-getfinalresult-optional">&#160;</a><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getFinalResult--">getFinalResult</a> (optional)</h3>
-
-<p>Once all partitions have returned their results, the proxy invokes the getFinalResult method to retrieve the final aggregation result. Its default implementation will invoke the getIntermediateResult method, which yields the correct value in most aggregation implementations. Implement getFinalResult when there needs to be additional logic performed on the entire aggregatedResult.</p>
-
-<h3><a name="getdefaultalias-hahahugoshortcode-6hbhb-com-gigaspaces-query-aggregators-spaceentriesaggregator-html-getdefaultalias">&#160;</a><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getDefaultAlias--">getDefaultAlias</a></h3>
-
-<p>An aggregation result can contain the results from multiple aggregations. An alias provides a way to distinguish one aggregation result from another.</p>
-
-<div class="tc-align-center"><p><img src="/attachment_files/aggregators-custom.png" alt="aggregators.jpg" /></p>
-</div>
-
-<h1><a name="simple-aggregator">&#160;</a>Simple Aggregator</h1>
-
-<p>In the following example we will implement a custom aggregator to retrieve a result set of employee-id and salary. In the aggregate method, we place the employee-id and salary-id in a key value map.  On the client side, each partition result is assembled in the aggregateIntermediateResult method. After the results are assembled the getFinalResult method is called. In this case we implemented getFinalResult to be explicit, but by default getFinalResult behavior will invoke getIntermediateResult.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title=" Aggregator" style="padding:10px"><pre><code class="language-java">package com.gigaspaces.se.aggregator.example.salaryaggregator;
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Custom Aggregators</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>XAP Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shay Hassidim</td>
+                    <td>10.1</td>
+                    <td>July 2015</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Aggregators provided by the core XAP platform are extensible, allowing developers to modify existing functionality as well as add new features. This flexibility allows the framework to grow with changing requirements and new technologies.  Creating a new aggregator or extending an existing one is a small level of effort for the developer.  This document will describe different patterns to write custom aggregators and some common use cases.</p>
+        <h1>SpaceEntriesAggregator</h1>
+        <p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html">SpaceEntriesAggregator</a> is an abstract class that serves as the base class for all aggregators, including the ones provided by the core platform.  Extending this class will provide several methods to allow the user to easily implement a custom aggregator.  The methods are as follows:</p>
+        <h2>Aggregate</h2>
+        <p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#aggregate-com.gigaspaces.query.aggregators.SpaceEntriesAggregatorContext-">aggregate</a> method is executed for each space entity matching the SQLQuery in a space partition.  The function receives a SpaceEntriesAggregatorContext, which is a wrapper that allows the user to access members of the user entity. The members of each space entity can be accessed by the getPathValue method of SpaceEntriesAggregatorContext.</p>
+        <p>Long departmentId = (Long) context.getPathValue("departmentId");</p>
+        <h2>GetIntermediateResult</h2>
+        <p>Executed after all aggregate method calls have completed, the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getIntermediateResult--">getIntermediateResult</a> method represents the aggregation result of one partition. The returned value will be passed back to the client where it will trigger the aggregateIntermediateResult method.</p>
+        <h2>AggregateIntermediateResult</h2>
+        <p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#aggregateIntermediateResult-T-">aggregateIntermediateResult</a> assembles the responses from each partition on the client side to represent a response from the entire cluster.  The input to this method is the returned value of the getIntermediateResult method.</p>
+        <h2>GetFinalResult (Optional)</h2>
+        <p>Once all partitions have returned their results, the proxy invokes the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getFinalResult--">getFinalResult</a> method to retrieve the final aggregation result. Its default implementation will invoke the getIntermediateResult method, which yields the correct value in most aggregation implementations. Implement getFinalResult when there needs to be additional logic performed on the entire aggregatedResult.</p>
+        <h2>GetDefaultAlias</h2>
+        <p>An aggregation result can contain the results from multiple aggregations. An alias provides a way to distinguish one aggregation result from another, and can be retrieved with the <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html#getDefaultAlias--">getDefaultAlias</a> method.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/aggregators-custom.png" alt="aggregators.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h1>Simple Aggregator</h1>
+        <p>In the following example we will implement a custom aggregator to retrieve a result set of employee-id and salary. In the aggregate method, we place the employee-id and salary-id in a key value map.  On the client side, each partition result is assembled in the aggregateIntermediateResult method. After the results are assembled the getFinalResult method is called. In this case we implemented getFinalResult to be explicit, but by default getFinalResult behavior will invoke getIntermediateResult.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" Aggregator" style="padding:10px"><pre><code class="language-java">package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
 import java.util.HashMap;
 import com.gigaspaces.query.aggregators.SpaceEntriesAggregator;
@@ -115,9 +101,8 @@ public class SalaryAggregator extends SpaceEntriesAggregator&lt;HashMap&lt;Strin
 }
 
 </code></pre>
-</div>
-
-<div title=" Program" style="padding:10px"><pre><code class="language-java">    SalaryAggregator salaryAggregator = new SalaryAggregator();
+            </div>
+            <div title=" Program" style="padding:10px"><pre><code class="language-java">    SalaryAggregator salaryAggregator = new SalaryAggregator();
     AggregationSet aggregationSet = new AggregationSet();
     aggregationSet.add(salaryAggregator);
         
@@ -125,14 +110,12 @@ public class SalaryAggregator extends SpaceEntriesAggregator&lt;HashMap&lt;Strin
     AggregationResult aggregationResult = gigaSpace.aggregate(query, aggregationSet);
     Map&lt;String, Integer&gt; employeeSalaryMap = (Map&lt;String, Integer&gt;)aggregationResult.get("salaryAggrgetor()");
 </code></pre>
-</div>
-</div>
-
-<h1><a name="extending-an-existing-aggregator">&#160;</a>Extending an Existing Aggregator</h1>
-
-<p>In the following example we extend the GroupByAggregator to add custom filtering based on a Mathematical operation. For each value found, we compare the absolute value of ‘expenses ‘ to the value of  ‘limit’ provided in the constructor. If expenses fall between -100 and 100 the aggregator will include the space entry in the aggregation.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title=" Aggregator" style="padding:10px"><pre><code class="language-java">package com.gigaspaces.se.aggregator.example.salaryaggregator;
+            </div>
+        </div>
+        <h1>Extending an Existing Aggregator</h1>
+        <p>In the following example we extend the GroupByAggregator to add custom filtering based on a Mathematical operation. For each value found, we compare the absolute value of ‘expenses ‘ to the value of  ‘limit’ provided in the constructor. If expenses fall between -100 and 100 the aggregator will include the space entry in the aggregation.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" Aggregator" style="padding:10px"><pre><code class="language-java">package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -180,9 +163,8 @@ public class GroupByAggregatorWithFilter extends GroupByAggregator{
     }
 }
 </code></pre>
-</div>
-
-<div title=" Program" style="padding:10px"><pre><code class="language-java">    SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class, "salary &gt; 50000");
+            </div>
+            <div title=" Program" style="padding:10px"><pre><code class="language-java">    SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class, "salary &gt; 50000");
 
     GroupByAggregator groupByAggregator = new GroupByAggregatorWithFilter(100.0)
     .selectAverage("salary")
@@ -195,21 +177,18 @@ public class GroupByAggregatorWithFilter extends GroupByAggregator{
 
     GroupByResult groupByResult = (GroupByResult)result.get(0);
 </code></pre>
-</div>
-
-<div title=" SQL" style="padding:10px"><pre><code class="language-sql">SELECT AVG(salary)
+            </div>
+            <div title=" SQL" style="padding:10px"><pre><code class="language-sql">SELECT AVG(salary)
 FROM employee
 WHERE ABS(expenses) &lt; 100 AND salary &gt; 50000
 GROUP BY  departmentId
 </code></pre>
-</div>
-</div>
-
-<h1><a name="chaining-aggregators">&#160;</a>Chaining Aggregators</h1>
-
-<p>Chaining aggregators allows users to reuse the same filtering logic for different aggregators. Just as in our example where we extend the GroupByAggregator, we check the absolute value of a field before aggregating the value. This time we accept any type of aggregator.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title=" Aggregator" style="padding:10px"><pre><code class="language-java">package com.gigaspaces.se.aggregator.example.salaryaggregator;
+            </div>
+        </div>
+        <h1>Chaining Aggregators</h1>
+        <p>Chaining aggregators allows users to reuse the same filtering logic for different aggregators. Just as in our example where we extend the GroupByAggregator, we check the absolute value of a field before aggregating the value. This time we accept any type of aggregator.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" Aggregator" style="padding:10px"><pre><code class="language-java">package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
 import java.io.Serializable;
 
@@ -260,9 +239,8 @@ public class ChainedAggregatorWithFilter&lt;T extends Serializable&gt; extends S
     }
 }
 </code></pre>
-</div>
-
-<div title=" Program" style="padding:10px"><pre><code class="language-java">        SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class, "salary &gt; 50000");
+            </div>
+            <div title=" Program" style="padding:10px"><pre><code class="language-java">        SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class, "salary &gt; 50000");
 
         GroupByAggregator groupByAggregator = new GroupByAggregator()
                 .selectAverage("salary")
@@ -277,23 +255,19 @@ public class ChainedAggregatorWithFilter&lt;T extends Serializable&gt; extends S
         GroupByResult groupByResult = (GroupByResult)result.get(0);
 
 </code></pre>
-</div>
-
-<div title=" SQL" style="padding:10px"><pre><code class="language-sql">SELECT AVG(salary)
+            </div>
+            <div title=" SQL" style="padding:10px"><pre><code class="language-sql">SELECT AVG(salary)
 FROM employee
 WHERE ABS(expenses) &lt; 100 AND salary &gt; 50000
 GROUP BY  departmentId
 </code></pre>
-</div>
-</div>
-
-<h1><a name="common-use-cases">&#160;</a>Common Use Cases</h1>
-
-<h2><a name="comparing-two-properties-from-the-same-object">&#160;</a>Comparing Two Properties From the Same Object</h2>
-
-<p>Sometimes there is a need to compare two members of the same object. Currently (XAP 10.2) SQLQuery does not support this type of comparison. To achieve this a user may create a custom aggregator to perform the comparison before performing the aggregation. The following example will emulate a read multiple call. It has a special filter that compares two fields from the same object.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title=" Aggregator" style="padding:10px"><pre><code class="language-java">package com.gigaspaces.se.aggregator.example.salaryaggregator;
+            </div>
+        </div>
+        <h1><a name="common-use-cases">&#160;</a>Common Use Cases</h1>
+        <h2>Comparing Two Properties From the Same Object</h2>
+        <p>Sometimes there is a need to compare two members of the same object. Currently (XAP 10.2) SQLQuery does not support this type of comparison. To achieve this a user may create a custom aggregator to perform the comparison before performing the aggregation. The following example will emulate a read multiple call. It has a special filter that compares two fields from the same object.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" Aggregator" style="padding:10px"><pre><code class="language-java">package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
 import java.util.HashMap;
 
@@ -357,9 +331,8 @@ public class SalaryAggregatorWithFilter extends SpaceEntriesAggregator&lt;HashMa
 }
 
 </code></pre>
-</div>
-
-<div title=" Program" style="padding:10px"><pre><code class="language-java">    SalaryAggregatorWithFilter salaryAggregator = new SalaryAggregatorWithFilter();
+            </div>
+            <div title=" Program" style="padding:10px"><pre><code class="language-java">    SalaryAggregatorWithFilter salaryAggregator = new SalaryAggregatorWithFilter();
     AggregationSet aggregationSet = new AggregationSet();
     aggregationSet.add(salaryAggregator);
         
@@ -367,33 +340,22 @@ public class SalaryAggregatorWithFilter extends SpaceEntriesAggregator&lt;HashMa
     AggregationResult aggregationResult = gigaSpace.aggregate(query, aggregationSet);
     Map&lt;String, Integer&gt; employeeSalaryMap = (Map&lt;String, Integer&gt;)aggregationResult.get("salaryAggrgetorWithFilter()");
 </code></pre>
-</div>
-
-<div title=" SQL" style="padding:10px"><pre><code class="language-sql">SELECT employeeId, salary
+            </div>
+            <div title=" SQL" style="padding:10px"><pre><code class="language-sql">SELECT employeeId, salary
 FROM employee
 WHERE employeeId = ssn AND salary &gt; 50000
 </code></pre>
-</div>
-</div>
-
-<h1><a name="sql-in-query-vs-custom-aggregator-query">&#160;</a>SQL IN Query vs. Custom Aggregator Query</h1>
-
-<h2><a name="sql-in-queries-custom-aggregator-example">&#160;</a>SQL IN Queries – Custom Aggregator Example</h2>
-
-<p>This example has a Space with a million Employee objects.
+            </div>
+        </div>
+        <h1>SQL IN Query vs. Custom Aggregator Query</h1>
+        <h2>SQL IN Queries – Custom Aggregator Example</h2>
+        <p>This example has a Space with a million Employee objects.
 The Employee objects are associated with 50,000 different Departments – in average 20 Employees per Department.
 An Employee object has an id field, a salary field (extended indexed) and a departmentId field (indexed).</p>
-
-<p>Out of the million Employees within the space we had 750,000 with a salary = 6000 and 250,000 Employees with salary = 1000.</p>
-
-<p>The query executed using a classic <code>SQL IN</code> statement:</p>
-
-<pre><code class="language-sql">select id from Employee where salary &gt; 5000 AND departmentId IN (?)
+        <p>Out of the million Employees within the space we had 750,000 with a salary = 6000 and 250,000 Employees with salary = 1000.</p>
+        <p>The query executed using a classic <code>SQL IN</code> statement:</p><pre><code class="language-sql">select id from Employee where salary &gt; 5000 AND departmentId IN (?)
 </code></pre>
-
-<p>Where the dynamic parameter had a different size of IDs list each time. The normal way of implementing such a query is to use the <code>SQLQuery</code> in the following manner:</p>
-
-<pre><code class="language-java">Collection&lt;Integer&gt; departmentList = new HashSet&lt;Integer&gt;();
+        <p>Where the dynamic parameter had a different size of IDs list each time. The normal way of implementing such a query is to use the <code>SQLQuery</code> in the following manner:</p><pre><code class="language-java">Collection&lt;Integer&gt; departmentList = new HashSet&lt;Integer&gt;();
 departmentList.add(…);
 ….
 SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class, "salary &gt; 5000 AND departmentId IN (?)");
@@ -401,29 +363,25 @@ query.setProjections("id");
 query.setParameter(1, departmentList);
 Employee result[] = gigaSpace.readMultiple(query);
 </code></pre>
-
-<p>where the <span class="tc-bold">departmentList</span> includes the list of IDs we want to match against.</p>
-
-<p>The other option is to use a <code>Custom Aggregator</code> as described below.</p>
-
-<p>Here are the results comparing regular query using IN with the custom aggregator:</p>
-
-<div class="tc-align-center"><p><img src="/attachment_files/sbp/custom-agg-example.png" alt="image" /></p>
-</div>
-
-<p>As we can see - the time it takes to execute the query using the regular approach grows exponentially as we increase the departmentList size, where with the custom aggregator we are getting a minor increase with the query execution time.</p>
-
-<p>The reason for this difference is the way the Custom Aggregator is implemented.  With the Custom Aggregator, the Space iterates the candidate set (in our case Employee objects that matches salary &gt; 5000) and calls the CustomINAggregator.Aggregate()
+        <p>where the <span class="tc-bold">departmentList</span> includes the list of IDs we want to match against.</p>
+        <p>The other option is to use a <code>Custom Aggregator</code> as described below.</p>
+        <p>Here are the results comparing regular query using IN with the custom aggregator:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/custom-agg-example.png" alt="image" class="tc-picture50" />
+            </p>
+        </div>
+        <p>As we can see - the time it takes to execute the query using the regular approach grows exponentially as we increase the departmentList size, where with the custom aggregator we are getting a minor increase with the query execution time.</p>
+        <p>The reason for this difference is the way the Custom Aggregator is implemented.  With the Custom Aggregator, the Space iterates the candidate set (in our case Employee objects that matches salary &gt; 5000) and calls the CustomINAggregator.Aggregate()
 for each where the given <span class="tc-bold">departmentList</span> matched against the Employee <span class="tc-bold">departmentID</span> field value. The ones that can be found within the departmentList are added to the result set that eventually is sent back to the client using getIntermediateResult and finally aggregated via the aggregateIntermediateResult that is called for each partition.
 Iterating the candidate set is a very fast process that does not generates many new objects on the server.
 Getting the final result (HashSet) back into the client size also have very minimal garbage creation footprint.</p>
-
-<p>The regular approach, where the <code>SQLQuery</code> is getting the departmentList to match against , performs a separate query for each element within the departmentList collections. All results are eventually aggregated into a final one returned back to the client.
+        <p>The regular approach, where the <code>SQLQuery</code> is getting the departmentList to match against , performs a separate query for each element within the departmentList collections. All results are eventually aggregated into a final one returned back to the client.
 This is a time consuming process. In addition – the aEmployee objects are materialize on the client side, which may consume memory and invoke garbage collection activity.
 With the Custom Aggregator approach, Employee objects are not created anywhere throughout the process (these are accessed by reference during the scan activity), so no garbage is created.
 This generates a very stable system in case such a query is executed continuously by many threads.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="CustomINAggregator" style="padding:10px"><pre><code class="language-java">import java.io.Externalizable;
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="CustomINAggregator" style="padding:10px"><pre><code class="language-java">import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
@@ -485,9 +443,8 @@ public class CustomINAggregator extends SpaceEntriesAggregator&lt;HashSet&lt;Str
     }
 }
 </code></pre>
-</div>
-
-<div title="Employee" style="padding:10px"><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceId;
+            </div>
+            <div title="Employee" style="padding:10px"><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceId;
 import com.gigaspaces.annotation.pojo.SpaceIndex;
 import com.gigaspaces.metadata.index.SpaceIndexType;
 
@@ -524,9 +481,8 @@ public class Employee {
     }
 }
 </code></pre>
-</div>
-
-<div title="Custom aggregator Query" style="padding:10px"><pre><code class="language-java">    SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class, "salary &gt; 5000");
+            </div>
+            <div title="Custom aggregator Query" style="padding:10px"><pre><code class="language-java">    SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class, "salary &gt; 5000");
     CustomINAggregator customINAggregator = new CustomINAggregator(departmentList);
     AggregationSet aggregationSet = new AggregationSet();
     aggregationSet.add(customINAggregator);
@@ -534,14 +490,12 @@ public class Employee {
     AggregationResult result = gigaSpace.aggregate(query, aggregationSet);
     HashSet&lt;String&gt; aggreResult = (HashSet&lt;String&gt;) result.get(0);
 </code></pre>
-</div>
-</div>
-
-<h2><a name="replacing-large-collection-for-in-operator">&#160;</a>Replacing Large Collection for IN Operator</h2>
-
-<p>Consider replacing the IN/NOT IN operator in SQLQuery with a custom aggregator when using a large collection as a parameter. The SQLQuery supports the IN and NOT IN operator, but when the collection is extensive, it may be beneficial to pass the collection into a custom aggregator as shown below.</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title=" Aggregator" style="padding:10px"><pre><code class="language-java">package com.gigaspaces.se.aggregator.example.salaryaggregator;
+            </div>
+        </div>
+        <h2>Replacing Large Collection for IN Operator</h2>
+        <p>Consider replacing the IN/NOT IN operator in SQLQuery with a custom aggregator when using a large collection as a parameter. The SQLQuery supports the IN and NOT IN operator, but when the collection is extensive, it may be beneficial to pass the collection into a custom aggregator as shown below.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" Aggregator" style="padding:10px"><pre><code class="language-java">package com.gigaspaces.se.aggregator.example.salaryaggregator;
 
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -597,9 +551,8 @@ public class GroupByAggregatorWithContainsFiler&lt;T&gt; extends GroupByAggregat
 }
 
 </code></pre>
-</div>
-
-<div title=" Program" style="padding:10px"><pre><code class="language-java">    List&lt;Integer&gt; departmentList = new ArrayList&lt;Integer&gt;();
+            </div>
+            <div title=" Program" style="padding:10px"><pre><code class="language-java">    List&lt;Integer&gt; departmentList = new ArrayList&lt;Integer&gt;();
     departmentList.add(1);
     departmentList.add(2);
     //Large List....
@@ -617,14 +570,12 @@ public class GroupByAggregatorWithContainsFiler&lt;T&gt; extends GroupByAggregat
 
     GroupByResult groupByResult = (GroupByResult)result.get(0);
 </code></pre>
-</div>
-
-<div title=" SQL" style="padding:10px"><pre><code class="language-sql">SELECT AVG(salary), departmentId FROM
+            </div>
+            <div title=" SQL" style="padding:10px"><pre><code class="language-sql">SELECT AVG(salary), departmentId FROM
 Employee
 WHERE salary &gt; 50000 AND departmentId IN (1,25,33,…. 10,000)
 </code></pre>
-</div>
-</div>
-
-</body>
+            </div>
+        </div>
+    </body>
 </html>
