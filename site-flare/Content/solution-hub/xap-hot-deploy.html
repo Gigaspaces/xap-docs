@@ -26,9 +26,6 @@
                 </tr>
             </tbody>
         </table>
-        <p>This tool allows business logic running as a PU to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach, placing new PU code on the GSM PU deploy folder and later restarting each PU instance. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><span style="color: #dc143c;">See XAP Hot Deploy documentation for details</span></MadCap:conditionalText>.</p>
-        <p>To refresh the PU code, the tool restarts all processing units for a given PU. Old deployment files for the specified PU are moved into a temporary folder to be used in case the upgrade fails. New PU files are copied to the XAP deploy folder prior the restart phase. The tool identifies all running PU instances and restarts them one by one. Once the process is completed, both the primary and backup PU instances will run updated logic.</p>
-        <h1>Stateful PU Restart</h1>
         <p>This tool allows business logic running as a PU to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach, placing new PU code on the GSM PU deploy folder and later restarting each PU instance.</p>
         <h1>Overview</h1>
         <p>To refresh the PU code, the tool restarts all processing units for a given PU with these steps. </p>
@@ -46,14 +43,6 @@
         </ol>
         <h1>Stateless PU Restart</h1>
         <p>The tool discover all processing unit instances and restarts them (each instance in separate thread).</p>
-        <h1>Build</h1>
-        <p>Source files (<code>xap-hot-redeploy</code> folder) can be located anywhere on your machine.</p>
-        <p>To build the tool enter the command:</p><pre><code class="language-bash">mvn clean install
-</code></pre>
-        <p>Note, that tests will be skipped in this case. To build with tests see the <a href="#1">tests section</a>.</p>
-        <h1>Run</h1>
-        <h2><a name="stateless-pu-restart">&#160;</a>Stateless PU Restart</h2>
-        <p>The tool discover all processing unit instances and restarts them (each instance in a separate thread).</p>
         <h1><a name="build">&#160;</a>Build</h1>
         <p>Source files (<code>xap-hot-deploy-master</code> folder) that are downloaded from the repository can be located anywhere on your machine.</p>
         <p>To build the tool enter the command:</p><pre><code class="language-bash">mvn clean install
