@@ -20,6 +20,7 @@
                     <td>10.0</td>
                     <td>November 2014</td>
                     <td> </td>
+                    <td />
                     <td><a href="https://github.com/fe2s/xap-hot-deploy">Github link</a>
                     </td>
                 </tr>
@@ -28,6 +29,16 @@
         <p>This tool allows business logic running as a PU to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach, placing new PU code on the GSM PU deploy folder and later restarting each PU instance. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><span style="color: #dc143c;">See XAP Hot Deploy documentation for details</span></MadCap:conditionalText>.</p>
         <p>To refresh the PU code, the tool restarts all processing units for a given PU. Old deployment files for the specified PU are moved into a temporary folder to be used in case the upgrade fails. New PU files are copied to the XAP deploy folder prior the restart phase. The tool identifies all running PU instances and restarts them one by one. Once the process is completed, both the primary and backup PU instances will run updated logic.</p>
         <h1>Stateful PU Restart</h1>
+        <p>This tool allows business logic running as a PU to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach, placing new PU code on the GSM PU deploy folder and later restarting each PU instance.</p>
+        <h1>Overview</h1>
+        <p>To refresh the PU code, the tool restarts all processing units for a given PU with these steps. </p>
+        <ol>
+            <li>Old deployment files for the specified PU are moved into a temporary folder to be used in case the upgrade fails. </li>
+            <li>New PU files are copied to the XAP deploy folder prior the restart phase. </li>
+            <li>The tool identifies all running PU instances and restarts them one by one, in either stateful or stateless mode. <span style="color: #dc143c;" MadCap:conditions="Default.DoNotShow">based on what</span> </li>
+        </ol>
+        <p>Once the process is completed, both the primary and backup PU instances will run updated logic.</p>
+        <h2><a name="stateful-pu-restart">&#160;</a>Stateful PU Restart</h2>
         <ol>
             <li>The tool discovers all processing unit instances and identifies their Space mode.</li>
             <li>All backups are restarted (each instance in a separate thread).</li>
@@ -41,15 +52,24 @@
 </code></pre>
         <p>Note, that tests will be skipped in this case. To build with tests see the <a href="#1">tests section</a>.</p>
         <h1>Run</h1>
+        <h2><a name="stateless-pu-restart">&#160;</a>Stateless PU Restart</h2>
+        <p>The tool discover all processing unit instances and restarts them (each instance in a separate thread).</p>
+        <h1><a name="build">&#160;</a>Build</h1>
+        <p>Source files (<code>xap-hot-deploy-master</code> folder) that are downloaded from the repository can be located anywhere on your machine.</p>
+        <p>To build the tool enter the command:</p><pre><code class="language-bash">mvn clean install
+</code></pre>
+        <p>Note, that tests will be skipped in this case. To build with tests see the <a href="#1">tests section</a>.</p>
+        <h1><a name="run">&#160;</a>Run Hot Deploy</h1>
+        <p>To run hot deploy:</p>
         <ol>
             <li>Copy new jar(war) files with new classes to the <code>xap-hot-redeploy</code> folder.<span style="color: #dc143c;" MadCap:conditions="Default.DoNotShow"> what/where?</span></li>
-            <li>Configure options in <code>xap-hot-redeploy/config.properties</code> file.</li>
-            <li>Run the <code>run.sh (run.bat)</code> script from the xap-hot-redeploy folder.</li>
+            <li>Configure options in <code>xap-hot-deploy-master/config.properties</code> file.</li>
+            <li>Run the <code>run.sh (run.bat)</code> script from the xap-hot-deploy-master folder.</li>
         </ol>
-        <p>Runtime configuration <code>config.properties</code> file. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow" style="color: #dc143c;">how can items be req if there is default? define PU&#160;better</MadCap:conditionalText></p>
+        <p>Runtime configuration <code>config.properties</code> file. </p>
         <table>
             <thead>
-                <tr>
+                <tr class="tabs-title">
                     <th>Option</th>
                     <th>Optional/required</th>
                     <th>Default value</th>
@@ -137,8 +157,8 @@
                 </tr>
             </tbody>
         </table>
-        <p>Results</p>
-        <p>If there are no problems with hot-redeploy application, you can see success message and details for restarting pu instances:</p><pre><code class="language-bash">14:51:44,392  INFO main ConfigInitializer:init:28 - Gigaspaces location: /home/user/gigaspaces-xap-premium-10.0.0-ga
+        <h2>Results</h2>
+        <p>If there are no problems with hot-redeploy application, you can see success message and details for restarting pu instances, as in this sample:</p><pre><code class="language-bash">14:51:44,392  INFO main ConfigInitializer:init:28 - Gigaspaces location: /home/user/gigaspaces-xap-premium-10.0.0-ga
 14:51:44,393  INFO main ConfigInitializer:init:29 - Pu to restart: [space, cinema, mirror]
 14:51:44,393  INFO main ConfigInitializer:init:30 - Locator: null
 14:51:44,393  INFO main ConfigInitializer:init:31 - Lookup group: null
@@ -162,10 +182,11 @@
 14:52:38,929  INFO main StatelessPuRestarter:restart:25 - done
 14:52:28,945  INFO main HotRedeployMain:main:17 - Hot redeploy completed successfully
 ``
-
+<![CDATA[
+]]></code></pre>
+        <p>
 If there are any problems during the hot-redeploy, you will see an error message and description of the problem:
-
-```bash
+</p><pre><code>
 20:11:27,861  INFO main HotRedeployMain:checkFiles:76 - Please place new files on all GSM machines and try again.
 20:11:27,864  INFO main HotRedeployMain:checkFiles:77 - Hot redeploy failed
 </code></pre>
@@ -174,18 +195,22 @@ If there are any problems during the hot-redeploy, you will see an error message
         <p>To build the tool with running tests enter the command:</p><pre><code class="language-bash">mvn clean install -DskipTests=false
 </code></pre>
         <h4>PREREQUISITES for running tests:</h4>
+20:11:27,864  INFO main HotRedeployMain:checkFiles:77 - Hot redeploy failed</code></pre>
+        <p>You can see full details about the hot-redeploy process in the <code>hot-redeploy.log</code> file.</p>
+        <h1><a name="tests">&#160;</a>Build with Tests</h1>
+        <p>To build the tool with running tests, enter the command:</p><pre><code class="language-bash">mvn clean install -DskipTests=false
+</code></pre>
+        <h3><a name="prerequisites-for-running-tests">&#160;</a>Prerequisites for running tests:</h3>
         <ul>
-            <li>run gs-agent.sh/bat</li>
-            <li>lookup group and locator must be set to default values</li>
-            <li>properties should be set in <code>/tool/src/test/resources/config.properties</code> file <span style="color: #dc143c;" MadCap:conditions="Default.DoNotShow">what properties</span> </li>
-            <li>make sure that there is no pu with name <code>space</code> deployed already</li>
+            <li>Run gs-agent.sh/bat.</li>
+            <li>Lookup group and locator must be set to default values.</li>
+            <li>Set properties in <code>/tool/src/test/resources/config.properties</code> file. </li>
+            <li>Make sure that there is no pu with name <code>space</code> deployed already.</li>
         </ul>
         <h1>Rollback</h1>
         <p>Rollback functionality helps to avoid the loss of data, if errors occurred during the redeploy (for example - broken pu file).
-When errors occur, the tool searches for backup GSM's. If there is more than one GSM in the system, they will be restarted one by one. If there is only one GSM in the system, the tool will look for an empty GSC and restart it.
-In  case the rollback finished successfully, all pu's for redeploy return to their original  version.</p>
-        <p>If no backup GSM and no empty container are found, the rollback will fail and the system state is unstable.</p>
-        <p>Rollback working example:</p><pre><code class="language-bash">
+When errors occur, the tool searches for backup GSM's. If there is more than one GSM in the system, they will be restarted one by one. If there is only one GSM in the system, the tool will look for an empty GSC <span style="color: #dc143c;" MadCap:conditions="Default.DoNotShow">check </span>and restart it.
+If the rollback finished successfully, all processing units for redeploy return to their original  version, and you will see messages as in this sample.</p><pre><code class="language-bash">
 17:03:48,679  INFO main StatefulPuRestarter:restartAllInstances:105 - Restarting pu space with type STATEFUL
 17:03:48,681  INFO pool-6-thread-1 PuInstanceRestarter:restartPUInstance:36 - restarting instance 1 on 127.0.0.1[127.0.0.1] GSC PID:7612 mode:backup...
 17:04:49,294  INFO pool-6-thread-1 PuInstanceRestarter:restartPUInstance:43 - done
@@ -196,13 +221,15 @@ In  case the rollback finished successfully, all pu's for redeploy return to the
 17:10:53,684  WARN main HotRedeployMain:redeploy:44 - Hot redeploy failed. Rollback successfully completed
 </code></pre>
         <h3>Minimal configuration for rollback</h3>
+        <p>If no backup GSM and no empty container are found, the rollback will fail and the system will be in unstable state.</p>
+        <h3><a name="minimal-configuration-for-rollback">&#160;</a>Minimal configuration for rollback:</h3>
         <p>In order for the rollback to work, the following minimal topology needs to be available:</p>
         <ul>
-            <li>At least one backup GSM should be deployed.</li>
+            <li>At least one backup GSM must be deployed.</li>
         </ul>
         <p>or</p>
         <ul>
-            <li>If n = count of primary pu instances, you should have n + 1 GSC deployed.</li>
+            <li>If n = count of primary pu instances,  n + 1 GSCs must be deployed.</li>
         </ul>
     </body>
 </html>
