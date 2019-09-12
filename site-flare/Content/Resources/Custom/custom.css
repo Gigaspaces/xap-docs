@@ -133,11 +133,6 @@ body
 	box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);
 }
 
-.landing .region-top .region-wrapper .tile:hover
-{
-	box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);
-}
-
 .landing .region-top .region-wrapper .tile-link
 {
 	bottom: 0;
@@ -190,7 +185,7 @@ body
 .landing .region-bottom
 {
 	border: solid 1px #E6E5E5;
-	margin: 2rem auto 0 auto;
+	margin: 2rem 12% 0 12%;
 }
 
 .landing .region-bottom .region-wrapper
@@ -206,42 +201,16 @@ body
 
 .landing .region-bottom .MCSlide
 {
-	padding: 1rem;
+	padding: 0 1rem;
 }
-
+.landing .mc-wrapper .mc-viewport {
+	padding: 0 1px;
+}
 .landing .MCSlide.slideshow
 {
 	text-align: center;
-}
-
-.landing .slideshow p
-{
-	min-height: 72px;
-}
-
-.landing .slideshow p:first-child
-{
-	margin-top: 20px;
-	margin-bottom: 10px;
-	height: auto;
-}
-
-.landing .MCSlide.slideshow p:first-child a,
-.MCSlide.slideshow h3:first-child a
-{
-	font-size: 1.325rem;
-	line-height: 30px;
-	font-weight: 400;
-}
-
-.landing .MCSlide.slideshow img
-{
-	max-width: 30%;
-}
-
-.landing .MCSlide.slideshow
-{
-	text-align: center;
+	border-right: solid 1px #00C0F3;
+	margin: 1rem 0;
 }
 
 .landing .slideshow p
@@ -1210,6 +1179,9 @@ h1
 		background-size: cover;
 	}
 
+	.landing .region-bottom {
+		margin: 0;
+	}
 	.content .sidenav-layout.closed .body-container
 	{
 		border-left: none;
