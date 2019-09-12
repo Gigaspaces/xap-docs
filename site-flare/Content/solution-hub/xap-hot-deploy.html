@@ -3,12 +3,12 @@
     <head>
     </head>
     <body>
-        <h1>Hot Deploy&#160;Utility</h1>
+        <h1 class="tc-pagetitle">Hot Deploy&#160;Utility <span MadCap:conditions="Default.DoNotShow" class="tc-highlight">update table</span></h1>
         <table>
             <thead>
                 <tr>
                     <th>Author</th>
-                    <th>XAP Version</th>
+                    <th>Product Version</th>
                     <th>Last Updated</th>
                     <th>Reference</th>
                     <th>Download</th>
@@ -19,8 +19,7 @@
                     <td>Anna Babich <br /> Pavlo Romanenko</td>
                     <td>10.0</td>
                     <td>November 2014</td>
-                    <td>
-                    </td>
+                    <td> </td>
                     <td><a href="https://github.com/fe2s/xap-hot-deploy">Github link</a>
                     </td>
                 </tr>
@@ -28,20 +27,20 @@
         </table>
         <p>This tool allows business logic running as a PU to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach, placing new PU code on the GSM PU deploy folder and later restarting each PU instance. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><span style="color: #dc143c;">See XAP Hot Deploy documentation for details</span></MadCap:conditionalText>.</p>
         <p>To refresh the PU code, the tool restarts all processing units for a given PU. Old deployment files for the specified PU are moved into a temporary folder to be used in case the upgrade fails. New PU files are copied to the XAP deploy folder prior the restart phase. The tool identifies all running PU instances and restarts them one by one. Once the process is completed, both the primary and backup PU instances will run updated logic.</p>
-        <h1><a name="stateful-pu-restart">&#160;</a>Stateful PU Restart</h1>
+        <h1>Stateful PU Restart</h1>
         <ol>
             <li>The tool discovers all processing unit instances and identifies their Space mode.</li>
             <li>All backups are restarted (each instance in a separate thread).</li>
             <li>All primaries are restarted. If the <code>double_restart</code> option is enabled, primaries are restarted twice to return to the original state (one by one). Without this option, primary partitions  are  restarted one time (each instance in a separate thread). Use <code>double_restart</code> if all instances should be placed in the “original” vm.</li>
         </ol>
-        <h1><a name="stateless-pu-restart">&#160;</a>Stateless PU Restart</h1>
+        <h1>Stateless PU Restart</h1>
         <p>The tool discover all processing unit instances and restarts them (each instance in separate thread).</p>
-        <h1><a name="build">&#160;</a>Build</h1>
+        <h1>Build</h1>
         <p>Source files (<code>xap-hot-redeploy</code> folder) can be located anywhere on your machine.</p>
         <p>To build the tool enter the command:</p><pre><code class="language-bash">mvn clean install
 </code></pre>
         <p>Note, that tests will be skipped in this case. To build with tests see the <a href="#1">tests section</a>.</p>
-        <h1><a name="run">&#160;</a>Run</h1>
+        <h1>Run</h1>
         <ol>
             <li>Copy new jar(war) files with new classes to the <code>xap-hot-redeploy</code> folder.<span style="color: #dc143c;" MadCap:conditions="Default.DoNotShow"> what/where?</span></li>
             <li>Configure options in <code>xap-hot-redeploy/config.properties</code> file.</li>
@@ -170,18 +169,18 @@ If there are any problems during the hot-redeploy, you will see an error message
 20:11:27,861  INFO main HotRedeployMain:checkFiles:76 - Please place new files on all GSM machines and try again.
 20:11:27,864  INFO main HotRedeployMain:checkFiles:77 - Hot redeploy failed
 </code></pre>
-        <p>You can see all details about the hot-redeploy process in the <code>hot-redeploy.log</code> file.</p><a name="1">&#160;</a>
-        <h1><a name="tests">&#160;</a>Tests</h1>
+        <p>You can see all details about the hot-redeploy process in the <code>hot-redeploy.log</code> file.</p>
+        <h1>Tests</h1>
         <p>To build the tool with running tests enter the command:</p><pre><code class="language-bash">mvn clean install -DskipTests=false
 </code></pre>
-        <h4><a name="prerequisites-for-running-tests">&#160;</a>PREREQUISITES for running tests:</h4>
+        <h4>PREREQUISITES for running tests:</h4>
         <ul>
             <li>run gs-agent.sh/bat</li>
             <li>lookup group and locator must be set to default values</li>
             <li>properties should be set in <code>/tool/src/test/resources/config.properties</code> file <span style="color: #dc143c;" MadCap:conditions="Default.DoNotShow">what properties</span> </li>
             <li>make sure that there is no pu with name <code>space</code> deployed already</li>
         </ul>
-        <h1><a name="rollback">&#160;</a>Rollback</h1>
+        <h1>Rollback</h1>
         <p>Rollback functionality helps to avoid the loss of data, if errors occurred during the redeploy (for example - broken pu file).
 When errors occur, the tool searches for backup GSM's. If there is more than one GSM in the system, they will be restarted one by one. If there is only one GSM in the system, the tool will look for an empty GSC and restart it.
 In  case the rollback finished successfully, all pu's for redeploy return to their original  version.</p>
@@ -196,7 +195,7 @@ In  case the rollback finished successfully, all pu's for redeploy return to the
 17:10:53,683  INFO main RollbackChecker:doRollback:119 - Rollback completed successfully
 17:10:53,684  WARN main HotRedeployMain:redeploy:44 - Hot redeploy failed. Rollback successfully completed
 </code></pre>
-        <h3><a name="minimal-configuration-for-rollback">&#160;</a>Minimal configuration for rollback:</h3>
+        <h3>Minimal configuration for rollback</h3>
         <p>In order for the rollback to work, the following minimal topology needs to be available:</p>
         <ul>
             <li>At least one backup GSM should be deployed.</li>

@@ -3,12 +3,12 @@
     <head>
     </head>
     <body>
-        <h1>Dynamic Processing</h1>
+        <h1 class="tc-pagetitle">Dynamic Processing</h1>
         <table>
             <thead>
                 <tr>
                     <th>Author</th>
-                    <th>XAP Version</th>
+                    <th>Product Version</th>
                     <th>Last Updated</th>
                     <th>Reference</th>
                     <th>Download</th>
@@ -24,7 +24,7 @@
                 </tr>
             </tbody>
         </table>
-        <h1><a name="dynamic-processing">&#160;</a>Dynamic Processing</h1>
+        <h1>Dynamic Processing</h1>
         <p>Data processing in real-time micro services oriented systems may handle unstructured data , data that
 may be feed by very disparate systems. Data may be sent from IoT,FiS,Life science,media,Telco,
 Logistics and other mission critical systems. Such data may be sent into an edge or a central system
@@ -37,7 +37,7 @@ reliability,optimized; effective resource utilization and overall system agility
 is hitting its data store fabric. This means there is no need to move the incoming data into another
 process where the actual processing logic is executed. This approach is critical when handling vast
 amount of incoming data that need to be analyzed to produce real-time decisions.</p>
-        <h1><a name="updating-your-processing-logic-with-zero-downtime">&#160;</a>Updating Your Processing Logic with ZERO Downtime</h1>
+        <h1>Updating Your Processing Logic with ZERO Downtime</h1>
         <p>The challenging part with this approach is updating the processing logic without any downtime. Due-to
 the dynamic nature of the incoming data, you may need to update the processing logic. As the
 processing logic running within the same process and classloader as the data you may need to build a
@@ -54,7 +54,7 @@ its associated incoming data.&#160; This simplifies the system deployment since 
 the processing code together with the data store (Space PU). You may push new updates of your
 processing logic anytime. New versions of the processing logic will replace the existing one, continuing
 the processing activity without any disruption.</p>
-        <h1><a name="supportcodechange-annotation">&#160;</a>SupportCodeChange Annotation</h1>
+        <h1>SupportCodeChange Annotation</h1>
         <p>The Dynamic Processing using the <a href="/xap/14.0/dev-java/the-space-no-restart.html">SupportCodeChange Annotation</a> available with XAP 12.1. It allows you
 to update Task , Custom Change and Custom Aggregator implementations without any downtime.
 With the code example below we have the DynamicTask V1 implementation that return the value “A”:</p><pre><code class="language-java">import org.openspaces.core.executor.Task;
@@ -81,7 +81,7 @@ public class DynamicTask implements Task&lt;String&gt; {
     }
 }
 </code></pre>
-        <h1><a name="the-dynamic-polling-container-example">&#160;</a>The Dynamic Polling Container Example</h1>
+        <h1>The Dynamic Polling Container Example</h1>
         <p>With our example below we have:</p>
         <ul>
             <li>Statefull PU with a space running - Note that this PU doesn’t package any processing logic once deployed. Only the Space Data class.</li>
@@ -90,16 +90,20 @@ public class DynamicTask implements Task&lt;String&gt; {
             <li>MainTaskExecutor – Responsible to execute StartPollingContainerTask against the space. The StartPollingContainerTask delivers new versions of Processor object to the space. Once the Task is executed it stops existing polling containers running (in case such exists) and starting a new one using the encapsulated Processor class.</li>
             <li>SpaceModeListener – Responsible to identify primary instance failure and execute the StartPollingContainerTask against the new Primary (previously backup instance) to resume the processing activity.</li>
         </ul>
-        <p>
-            <img src="/attachment_files/hotdeploy/dynamic-processing-1.png" alt="pic" />
-        </p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/hotdeploy/dynamic-processing-1.png" alt="pic" class="tc-picture50" />
+            </p>
+        </div>
         <p>Once a new version of the processor is available (V2), you may call the Task Executor again with a new
 version ID of the StartPollingContainerTask (V2). This will replace the existing PollingContainer that is
 using V1 Processor with V2.</p>
-        <p>
-            <img src="/attachment_files/hotdeploy/dynamic-processing-2.png" alt="pic" />
-        </p>
-        <h1><a name="running-the-example">&#160;</a>Running the Example</h1>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/hotdeploy/dynamic-processing-2.png" alt="pic" class="tc-picture50" />
+            </p>
+        </div>
+        <h1>Running the Example</h1>
         <p>The example includes:</p>
         <ul>
             <li>Data class – A space type class.</li>
@@ -128,8 +132,5 @@ Note the pu.xml includes the following:
             <li>You will see the polling container running now version 2 of the Processor class.</li>
             <li>Run MainSpaceDataEventListener. If you terminate primary space instance (imitating a failure) you will see the backup that turned into primary will have the polling container running within it automatically. The MainSpaceDataEventListener can be deployed as a separate stateless PU to provide it high-availability.</li>
         </ol>
-        <p>
-            <img src="/attachment_files/hotdeploy/zero-downtime.png" alt="" title="" />
-        </p>
     </body>
 </html>

@@ -29,15 +29,15 @@
         <p>The Export/Import tool was originally created to help our engineers quickly replicate test scenarios.
 Since its creation this tool has evolved to be an easy-to-use method for migrating data to new XAP deployments, capturing data snapshots,
 and bootstrapping disparate environments.</p>
-        <p>The Export/Import tool leverages several XAP features that make its operations the most performant and functional for each
+        <p>The Export/Import tool leverages several XAP features that make it effective for each
  use case. The fundamental feature leveraged by Export/Import is XAP's <a href="/xap/14.0/dev-java/task-execution-overview.html">Task Execution API</a>.</p>
         <p>When the Export/Import tool is started it will send either an Export or Import task to each partition, and this is where
 the actual operation will be performed. To put it simply each primary instance is responsible for exporting or importing their own data.</p>
-        <h2>When to use Export/Import?</h2>
+        <h2>When is the Export/Import Tool Useful?</h2>
         <ul>
             <li>Creating a snapshot of data</li>
             <li>Introducing a new environment</li>
-            <li>Upgrading XAP versions</li>
+            <li>Upgrading product versions</li>
             <li>Setting up integration-style test scenarios</li>
         </ul>
         <p>You can download and build the <a href="https://github.com/GigaSpaces-ProfessionalServices/import-export">source code</a> from our GitHub repository.
@@ -60,7 +60,7 @@ Obj: Space Class Instance (x Row Count)
 </code></pre>
         <div class="tc-align-center">
             <p>
-                <img src="..Resources/Static/attachment_files/export-import/export.png" alt="How Exporting Data Works" />
+                <img src="../Resources/Static/attachment_files/export-import/export.png" alt="How Exporting Data Works" class="tc-picture50" />
             </p>
         </div>
         <h2>Usage</h2>
@@ -202,8 +202,7 @@ PS C:\var\import-export&gt;
                     <td>A full path to the directory containing either previously exported files, or where the exported files should be placed.</td>
                 </tr>
                 <tr>
-                    <td>
-                    </td>
+                    <td> </td>
                     <td>--pu-name</td>
                     <td>optional</td>
                     <td>n/a</td>
@@ -211,8 +210,7 @@ PS C:\var\import-export&gt;
                     <td>Overrides the name of the processing unit, relevant only when the processing unit is different from space name.</td>
                 </tr>
                 <tr>
-                    <td>
-                    </td>
+                    <td> </td>
                     <td>--jarless</td>
                     <td>optional</td>
                     <td>n/a</td>
@@ -259,8 +257,7 @@ PS C:\var\import-export&gt;
                     <td>Performance option to batch records retrieved from the space.</td>
                 </tr>
                 <tr>
-                    <td>
-                    </td>
+                    <td> </td>
                     <td>--thread-sleep</td>
                     <td>optional</td>
                     <td>1000</td>
@@ -280,11 +277,11 @@ PS C:\var\import-export&gt;
         <h1>Import</h1>
         <p>During the import a remote task is sent to each primary space instance. From there each primary instance will search the file system
 for relevant files. Relevancy is determined by the second integer in the file name also known as the destination partition ID.</p>
-        <p>All files destine for the new partition will then be queued and processed from the export/import thread pool. The number of
+        <p>All files destined for the new partition will then be queued and processed from the export/import thread pool. The number of
 files that will be processed in parallel for each partition is configurable and based on the size of the export/import thread pool.</p>
         <div class="tc-align-center">
             <p>
-                <img src="/attachment_files/export-import/import.png" alt="How Exporting Data Works" />
+                <img src="../Resources/Static/attachment_files/export-import/import.png" alt="How Exporting Data Works" class="tc-picture50" />
             </p>
         </div>
         <h2>Usage</h2>
@@ -390,8 +387,7 @@ PS C:\var\import-export&gt;
                     <td>Specifies an XAP password corresponding to the specified XAP username. Required when connecting to a secured grid.</td>
                 </tr>
                 <tr>
-                    <td>
-                    </td>
+                    <td> </td>
                     <td>–security-level</td>
                     <td>optional</td>
                     <td>n/a</td>
@@ -422,8 +418,7 @@ PS C:\var\import-export&gt;
                     <td>A full path to the directory containing either previously exported files, or where the exported files should be placed.</td>
                 </tr>
                 <tr>
-                    <td>
-                    </td>
+                    <td> </td>
                     <td>–pu-name</td>
                     <td>optional</td>
                     <td>n/a</td>
@@ -446,8 +441,7 @@ PS C:\var\import-export&gt;
                     <td>Performance option to batch records retrieved from the space.</td>
                 </tr>
                 <tr>
-                    <td>
-                    </td>
+                    <td> </td>
                     <td>–thread-sleep</td>
                     <td>optional</td>
                     <td>1000</td>
@@ -465,7 +459,7 @@ PS C:\var\import-export&gt;
             </tbody>
         </table>
         <h1>Troubleshooting &amp; Frequently Asked Questions</h1>
-        <h3>Can I use the Export/Import tool with a secured grid?</h3>
+        <h4>Can I use the Export/Import tool with a secured grid?</h4>
         <p>Yes, the Export/Import tool will work with secured infrastructure components and/or secured spaces. The username and password provided
 should have sufficient privileges to <span class="tc-italic">execute</span> a remote task on the grid.</p>
         <p>If using a secured space the space must be authenticated with sufficient privileges to <span class="tc-italic">read, write, and update all classes, as well as monitor_pu</span>.
@@ -474,7 +468,7 @@ should have sufficient privileges to <span class="tc-italic">execute</span> a re
         <p>The most common reason for this exception is that your storage directory (the <code>-d</code> command line option) may not exist on all hosts.
 Double check the directory exists before re-running the Export/Import tool.
 <br /></p>
-        <h4>Can I use this to upgrade XAP versions?</h4>
+        <h4>Can I use this to upgrade product versions?</h4>
         <p>Yes, this tool has been tested for upgrades between XAP 9.7, XAP 10, and XAP 11.
 <br /></p>
         <h4>One or more of my files did not get imported, why is that?</h4>
