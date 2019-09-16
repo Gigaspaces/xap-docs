@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -11,7 +11,7 @@
         <div class="tc-admon-note">
             <p>This feature allows dynamic class loading the first time a task is executed. If your use case requires loading a class afterward, use static import or keep the type as a member. Changing the task in runtime is not supported.</p>
         </div>
-        <h1><a name="task-api"></a>Task API</h1>
+        <h1>Task API</h1>
         <p>The <code>Task</code> interface is defined as follows:</p><pre><code class="language-java">public interface Task&lt;T extends Serializable&gt; extends Serializable {
 
   /**
@@ -39,7 +39,7 @@
         <p>Executing the task uses the <code>GigaSpace</code> API with a routing value of 2 (the second parameter):</p><pre><code class="language-java">AsyncFuture&lt;Integer&gt; future = gigaSpace.execute(new MyTask(2), 2);
 int result = future.get();
 </code></pre>
-        <h1><a name="async-api"></a>Async API</h1>
+        <h1>Async API</h1>
         <p><code>Task</code> execution is asynchronous in nature, returning an <code>AyncFuture</code>. This allows the result to be retrieved at a later stage. <code>AsyncFuture</code> allows registration of an <code>AsyncFutureListener</code> that will execute the specified logic when the <code>Task</code> completes.</p>
         <p>The following are the interfaces for both <code>AsyncFuture</code> and <code>AsyncFutureListener</code>:</p><pre><code class="language-java">public interface AsyncFuture&lt;V&gt; extends Future&lt;V&gt; {
 
@@ -73,7 +73,7 @@ public interface AsyncFutureListener&lt;T&gt; {
 </code></pre>
         <p>If there are no connections available for an asynchronous operation it will be blocked until a connection becomes available, which can affect system performance. If your environment is sensitive to this, you can use the <code>com.gs.transport_protocol.lrmi.throw-resource-not-available</code> Boolean property&#160;to configure the system behavior.</p>
         <p>If you set this property to true, a ResourceNotAvailableException is thrown instead of blocking until resources are available.</p>
-        <h1><a name="task-routing"></a>Task Routing</h1>
+        <h1>Task Routing</h1>
         <p>When executing a single <code>Task</code>, there are several ways its routing can be controlled. Passing the routing information as a parameter to the execute command is the simplest approach:</p><pre><code class="language-java">AsyncFuture&lt;Integer&gt; future = gigaSpace.execute(new MyTask(2), 2);
 int result = future.get();
 </code></pre>
@@ -145,7 +145,7 @@ public class MyTask implements Task&lt;Integer&gt; implements TaskRoutingProvide
         <p>Using either mechanism to define routing at the the <code>Task</code> level removes the need for the routing parameter:</p><pre><code class="language-java">AsyncFuture&lt;Integer&gt; future = gigaSpace.execute(new MyTask(2));
 int result = future.get();
 </code></pre>
-        <h1><a name="distributedtask-api"></a>DistributedTask API</h1>
+        <h1>DistributedTask API</h1>
         <p>A <code>DistributedTask</code> is a <code>Task</code> that is executed more than once (concurrently). It returns a result that is the reduced product of all operations. This reduction is calculated in the <code>Task</code>'s <code>reduce(...)</code> method.</p>
         <ul>
             <li>
@@ -200,7 +200,7 @@ long result = future.get(); // result will be 4
 long result = future.get(); // result will be the number of primary spaces
 </code></pre>
         <p>In this case, the <code>DistributedTask</code> is executed on all primary Spaces of the cluster.</p>
-        <h2><a name="asyncresultfilter"></a>AsyncResultFilter</h2>
+        <h2>AsyncResultFilter</h2>
         <p>When executing a distributed task, results arrive in an asynchronous manner. When all the results have arrived, the <code>AsyncResultsReducer</code> is used to reduce them. The <code>AsyncResultFitler</code> can be used to as a callback and filter mechanism to be invoked for each result that arrives.</p><pre><code class="language-java">public interface AsyncResultFilter&lt;T&gt; {
 
     /**
@@ -245,7 +245,7 @@ long result = future.get(); // result will be the number of primary spaces
             </li>
         </ul>
         <p>The filter can also be used to identify that results have arrived and we can do something within our application as a result. In this case, make sure that heavy processing is performed on a separate (probably pooled) thread.</p>
-        <h1><a name="executorbuilder-api"></a>ExecutorBuilder API</h1>
+        <h1>ExecutorBuilder API</h1>
         <p>The executor builder API allows combining several task executions (both distributed and non-distributed) into a seemingly single execution (with a reduce phase). Think of the <code>ExecutorBuilder</code> as a cartridge that accumulates all the tasks to be executed, and then executes all of them at once giving back a reduced result (in a concurrent and asynchronous manner). The following is an example of the API:</p>
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/executorBuilder.jpg" alt="executorBuilder.jpg" class="tc-picture50" />
@@ -261,7 +261,7 @@ Integer result = future.get();
         <div class="tc-admon-tip">
             <p>See the <a href="/sbp/elastic-distributed-calculation-engine.html">Elastic Distributed Risk Analysis Engine</a> for a full <code>ExecutorBuilder</code> API example.</p>
         </div>
-        <h1><a name="space-injection"></a>Space Injection</h1>
+        <h1>Space Injection</h1>
         <p>The most common scenario for using executors is by interacting with the co-located Space on which the task is executed. A <code>GigaSpace</code> instance, which works against a co-located Space, can be easily injected either using annotations or using an interface. Here is an example:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Annotation " style="padding:10px"><pre><code class="language-java">
@@ -326,7 +326,7 @@ public class TemplateCountTask implements DistributedTask&lt;Integer, Long&gt;, 
 </code></pre>
             </div>
         </div>
-        <h2><a name="injecting-a-clustered-space-proxy"></a>Injecting a Clustered Space Proxy</h2>
+        <h2>Injecting a Clustered Space Proxy</h2>
         <p>You can use the <code>ApplicationContextAware</code> interface to inject a clustered proxy into the task implementation. This is useful when the task should access other partitions. See the following example:</p><pre><code class="language-java">public class MyTask implements Task&lt;Integer&gt;, ApplicationContextAware {
 
     @TaskGigaSpace
@@ -346,7 +346,7 @@ public class TemplateCountTask implements DistributedTask&lt;Integer, Long&gt;, 
         <p>where the pu.xml should have:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
 &lt;os-core:giga-space id="clusteredGigaSpace" space="space" clustered="true"/&gt;
 </code></pre>
-        <h1><a name="task-resource-injection"></a>Task Resource Injection</h1>
+        <h1>Task Resource Injection</h1>
         <p>A task may have to make use of resources defined within the Processing Unit where it is executed (that are not the co-located Space). For example, access a bean defined within the co-located Processing Unit. A <code>Task</code> executed goes through the same lifecycle of a bean defined within a Processing Unit (except that it isn't registered with a Processing Unit). As such, injecting resources can be done using annotations (<code>@Autowired</code> and <code>@Resource</code>) or lifecycle interfaces (such as <code>ApplicationContextAware</code>).</p>
         <p>In order to enable resource injection, the task must either be annotated with <code>AutowireTask</code> or implement the marker interface <code>AutowireTaskMarker</code>. The following is an example of injecting a resource of type <code>OrderDao</code> registered under the bean name <code>orderDao</code>. The <code>OrderDao</code> is then used to count the number of orders for each node.</p><pre><code class="language-java">@AutowireTask
 public class OrderCountTask implements DistributedTask&lt;Integer, Long&gt; {
@@ -377,7 +377,7 @@ public class OrderCountTask implements DistributedTask&lt;Integer, Long&gt; {
         <h4>Why use @TaskGigaSpace/TaskGigaSpaceAware when you can autowire using standard Spring? </h4>
         <p>You can inject a co-located <code>GigaSpace</code> instance to the task using the <code>@TaskGigaSpace</code> annotation  implementing the <code>TaskGigaSpaceAware</code> interface. You can also wire the task through standard Spring dependency injection using the <code>@AutowireTask</code> and <code>@Resource</code> annotations.</p>
         <p>However, there's a big difference between the two; the <code>@TaskGigaSpace</code> annotation and the <code>TaskGigaSpaceAware</code> interface are intentionally designed not to trigger the Spring dependency resolution and injection process, because it can be quite costly in terms of performance if executed every time a task is submitted. Therefore, for the common case where you only need to inject the collocated <code>GigaSpace</code> instance to the task, it is recommended to use <code>@TaskGigaSpace</code> or <code>TaskGigaSpaceAware</code>.</p>
-        <h1><a name="built-in-reducers"></a>Built-In Reducers</h1>
+        <h1>Built-In Reducers</h1>
         <p>OpenSpaces comes with several built-in reducers and distributed tasks that can be used to perform common reduce operations (such as <code>Min</code>, <code>Max</code>, <code>Avg</code> and <code>Sum</code>). For example, if you use a simple <code>Task</code>:</p><pre><code class="language-java">public class MyTask implements Task&lt;Integer&gt; {
 
   public Integer execute() throws Exception {
@@ -393,7 +393,7 @@ int result = future.get(); // returns the number of active cluster members
         <div class="tc-admon-note">
             <p>See the <a href="aggregators.html">Aggregators</a> section for more details.</p>
         </div>
-        <h1><a name="changing-code-without-restarts"></a>Changing Code without Restarts</h1>
+        <h1>Changing Code without Restarts</h1>
         <p>When executing a task over the Space, the code is loaded from the remote client and cached for future executions. Since the code is cached, modifications are ignored, and users are forced to restart the Space whenever they modify the code.</p>
         <p>Starting with <MadCap:variable name="General.ProductNameXAP" /> version 12.1, you can use the <code>@SupportCodeChange</code> annotation to tell the Space your code has changed. The Space can store multiple versions of the same task. This is ideal for supporting clients using different versions of a task.</p>
         <p>For example, start with annotating your task with <code>@SupportCodeChange(id="1")</code>. When the code changes, set the annotation to <code>@SupportCodeChange(id="2")</code>, and the Space will load the new task.</p>
@@ -430,13 +430,13 @@ public class DynamicTask implements Task&lt;Integer&gt; {
         <div class="tc-admon-note">
             <p>For more information, see the <a href="the-space-no-restart.html">Change Code Without a Restart</a> page.</p>
         </div>
-        <h1><a name="transactions"></a>Transactions</h1>
+        <h1>Transactions</h1>
         <p>Executors fully support transactions similar to other <code>GigaSpace</code> APIs. When an <code>execute</code> operation is executed within a declarative transaction, it will automatically join it. The transaction itself is then passed to the node the task executed on, and added to it declaratively. This means that <span class="tc-bold">any</span> <code>GigaSpace</code> operation performed within the task <code>execute</code> operation automatically joins the transaction started on the <span class="tc-bold">client</span> side.</p>
         <p>An exception thrown within the <code>execute</code> operation will not cause the transaction to roll back (because it might be a valid exception). Transaction commit/rollback is controlled just by the client that executed the task.</p>
         <div class="tc-admon-tip">
             <p>When executing distributed tasks, or tasks that are executed on more than one node within the same execution, they should use the distributed transaction manager. Tasks that execute on a single node can use the distributed transaction manager, but should use the local transaction manager.</p>
-        </div><a name="ExecutorService"></a>
-        <h1><a name="executorservice"></a>ExecutorService</h1>
+        </div>
+        <h1>ExecutorService</h1>
         <p>Support for OpenSpaces executors allows easily implementing the <code>java.util.concurrent.ExecutorService</code>, which supports the <code>ExecutorService</code> API and executed <code>Callable</code> and <code>Runnable</code> as tasks within the Space. The following is an example of how to get an <code>ExecutorService</code> implementation based on OpenSpaces executors and use it:</p><pre><code class="language-java">ExecutorService executorService = TaskExecutors.newExecutorService(gigaSpace);
 Future&lt;Integer&gt; future = executorService.submit(new MyCallable());
 int result = future.get();
@@ -450,12 +450,12 @@ DistributedTask&lt;Integer&gt; task2 = TaskExecutors.task(new MyCallable(),
         <div class="tc-admon-note">
             <p>The following <a href="/sbp/map-reduce-pattern-executors-example.html">example</a> demonstrates how to use the <code>Task</code> Execution API.</p>
         </div>
-        <h1><a name="considerations"></a>Considerations</h1>
+        <h1>Considerations</h1>
         <p>If the Task <code>execute</code> method is called frequently or large complex objects are used as return types, it is recommended to implement optimized serialization such as <code>Externalizable</code> for the returned value object or use libraries such as <a href="https://github.com/EsotericSoftware/kryo">kryo</a>.</p>
         <div class="tc-admon-note">
             <p>For more information, see the <a href="custom-serialization.html">Custom Serialization</a> page.</p>
         </div>
-        <h1><a name="additional-resources"></a>Additional Resources</h1>
+        <h1>Additional Resources</h1>
         <MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://www.youtube.com/watch?v=n7P4rnQN1gw," />
     </body>
 </html>
