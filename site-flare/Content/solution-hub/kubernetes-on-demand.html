@@ -35,23 +35,11 @@
         </ul>
         <p><MadCap:variable name="General.CompanyName" /> products have custom Helm charts to enable easy deployment and configuration in Kubernetes, both in the cloud and on premise. After <MadCap:variable name="General.ProductNameIE" /> is installed, you can use the Kubernetes dashboard to monitor and administer your cluster.</p>
         <p>After you finish working with <MadCap:variable name="General.ProductNameIE" />, you can easily take down the deployment from AWS until the next time it is needed.</p>
-        <div class="tc-admon-tip">
-            <p>This topic assumes existing knowledge of how to work in an Amzaon EKS environment. If you are not familiar, review the information in the <a href="https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html" target="_blank">Getting Started with Amazon EKS</a> section of the AWS&#160;user guide before continuing.</p>
-        </div>
-        <h2>Prerequisites</h2>
-        <p>In order to complete all the steps in the deployment process, you need the following installed on your local machine or VM:</p>
-        <ul>
-            <li><a href="https://helm.sh/docs/using_helm/#quickstart-guide" target="_blank" style="color: #dc143c;">Helm </a>
-            </li>
-            <li><a href="https://github.com/weaveworks/eksctl" target="_blank">Eksctl</a> (CLI for Amazon EKS)</li>
-        </ul>
-        <p MadCap:conditions="Default.DoNotShow"><span class="tc-highlight">missing the versions that were used for this scenario</span>
-        </p>
         <h2>Deploying the Kubernetes Dashboard</h2>
-        <p>You can deploy the Kubernetes dashboard in Amazon EKS, so you can properly administer your Kubernetes-based GigaSpaces application. See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/">Kubernetes Web UI</a><a href="https://docs.aws.amazon.com/en_us/eks/latest/userguide/dashboard-tutorial.html" target="_blank" style="color: #dc143c;">Amazon dashboard tutorial page</a> for instructions.</p>
+        <p>You can deploy the Kubernetes dashboard in Amazon EKS, so you can properly administer your Kubernetes-based GigaSpaces application. See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/">Kubernetes Web UI</a> for instructions.</p>
         <h1>Deploying <MadCap:variable name="General.ProductNameIE" /> on Demand</h1>
         <h2>Creating a Kubernetes Cluster</h2>
-        <p>This use case utilizes eksctl (a well-known command-line utility that is used to create and manage Kubernetes clusters on Amazon EKS) to deploy the Kubernetes cluster. You can deploy the cluster with the eksctl create, as in this sample command to create a cluster with 30 c4.xlarge nodes and prevent updating current context in ~/.kube/config.</p><pre xml:space="preserve">eksctl create cluster --name=cluster-6 --region=us-east-1 --nodes=30 
+        <p>This use case utilizes eksctl (a well-known command-line utility that is used to create and manage Kubernetes clusters on Amazon EKS) to deploy the Kubernetes cluster. You can deploy the cluster  following the instructions in <a href="https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html">Getting Started with eksctl</a>, and create a cluster as in this sample command that creates a cluster with 30 c4.xlarge nodes and prevent updating current context in ~/.kube/config.</p><pre xml:space="preserve">eksctl create cluster --name=cluster-6 --region=us-east-1 --nodes=30 
 --node-type=c4.xlarge --set-kubeconfig-context=false</pre>
         <div class="tc-admon-note">
             <p>For more information about the eksctl utility, see the <a href="https://github.com/weaveworks/eksctl/blob/master/README.md" target="_blank">Weaveworks README</a> on GitHub.</p>
@@ -82,10 +70,10 @@
             </ul>
         </div>
         <h2>Deploying the Data Grid</h2>
-        <p>The Helm package manager is used for installing <MadCap:variable name="General.ProductNameIE" /> in the Kubernetes environment. To deploy the cluster perform the following steps </p>
-        <h2>Deploying the Helm Service</h2>
-        <p>To deploy the Helm Tiller service with access to manage resources in your cluster type the following command:</p><pre><code>helm init --service-account tiller</code></pre>
-        <h2>Deploying KubeGrid</h2>
+        <p>The Helm package manager is used for installing <MadCap:variable name="General.ProductNameIE" /> in the Kubernetes environment. After <a href="https://github.com/helm/helm/blob/master/docs/install.md">installing Helm</a> deploy the cluster with the following steps.</p>
+        <h3>Deploying the Helm Service</h3>
+        <p>To deploy the Helm Tiller service with access to manage resources in your cluster, create a <a href="https://github.com/helm/helm/blob/master/docs/rbac.md">service role </a>for Tiller to use and then type the following command:</p><pre><code>helm init --service-account tiller</code></pre>
+        <h3>Deploying KubeGrid</h3>
         <p>To deploy KubeGrid and the InsightEdge demo:</p>
         <ol>
             <li>
