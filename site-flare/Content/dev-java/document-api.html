@@ -11,7 +11,7 @@
         </div>
         <p>Note that the Document type does not describe the properties themselves (except for the names of the ID and Routing properties). These are completely dynamic and each instance can have a different set of properties, although in most cases Document instances of the same type are likely to have identical or similar set of properties.</p>
         <h1><a name="schema-evolution"></a>Schema Evolution</h1>
-        <p>A <code>SpaceDocument</code> is completely dynamic by nature, so it is very easy to change or evolve your data model without taking down the Space. Simply change your application code to add additional properties or remove existing ones, and you're good to go. Even better, old and new versions can co-exist because the sSpace doesn't enforce any restrictions regarding the property set of Documents that belong to a certain type. This is a much more lightweight model in comparison to the classic POJO model, where a recompilation and in many cases a full Space restart is required to change the data schema.</p>
+        <p>A <code>SpaceDocument</code> is completely dynamic by nature, so it is very easy to change or evolve your data model without taking down the Space. Simply change your application code to add additional properties or remove existing ones, and you're good to go. Even better, old and new versions can co-exist because the Space doesn't enforce any restrictions regarding the property set of Documents that belong to a certain type. This is a much more lightweight model in comparison to the classic POJO model, where a recompilation and in many cases a full Space restart is required to change the data schema.</p>
         <p>If the POJO model can't be replaced with the Document model, yet some level of schema evolution is desired within the POJO model, <a href="dynamic-properties.html">Dynamic Properties</a> can be used.</p>
         <h1><a name="type-definition"></a>Type Definition</h1>
         <p>Before we start writing and reading a<code>SpaceDocument</code> from the Space, we need an <span class="tc-bold">initial</span> schema definition of the document type.</p>
@@ -101,6 +101,7 @@
             <li>
                 <p><span class="tc-bold">Space type descriptor</span> (default)</p>
                 <p>When defining the type descriptor you can define fixed properties, each of which will be included in the schema. However, each time you modify the schema you must restart the entire cluster because JDBC clients load the schema only once during initialization, so they have to be restarted to discover schema changes.</p>
+                NOTE: you will also need to define the "idProperty" and "routingProperty" as fixed properties in order to query them using JDBC.
             </li>
             <li>
                 <p><span class="tc-bold">External XML file</span>
