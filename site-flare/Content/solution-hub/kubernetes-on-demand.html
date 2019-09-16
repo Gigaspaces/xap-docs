@@ -41,15 +41,18 @@
         <h2>Prerequisites</h2>
         <p>In order to complete all the steps in the deployment process, you need the following installed on your local machine or VM:</p>
         <ul>
-            <li><a href="https://helm.sh/docs/using_helm/#quickstart-guide" target="_blank">Helm </a>
+            <li><a href="https://helm.sh/docs/using_helm/#quickstart-guide" target="_blank" style="color: #dc143c;">Helm </a>
             </li>
             <li><a href="https://github.com/weaveworks/eksctl" target="_blank">Eksctl</a> (CLI for Amazon EKS)</li>
         </ul>
         <p MadCap:conditions="Default.DoNotShow"><span class="tc-highlight">missing the versions that were used for this scenario</span>
         </p>
+        <h2>Deploying the Kubernetes Dashboard</h2>
+        <p>You can deploy the Kubernetes dashboard in Amazon EKS, so you can properly administer your Kubernetes-based GigaSpaces application. See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/">Kubernetes Web UI</a><a href="https://docs.aws.amazon.com/en_us/eks/latest/userguide/dashboard-tutorial.html" target="_blank" style="color: #dc143c;">Amazon dashboard tutorial page</a> for instructions.</p>
         <h1>Deploying <MadCap:variable name="General.ProductNameIE" /> on Demand</h1>
         <h2>Creating a Kubernetes Cluster</h2>
-        <p>This use case utilizes eksctl (a well-known command-line utility that is used to create and manage Kubernetes clusters on Amazon EKS) to deploy the Kubernetes cluster. You can deploy the cluster by following the instructions provided in the <a href="https://eksworkshop.com/eksctl/" target="_blank">Amazon EKS Workshop</a>.</p>
+        <p>This use case utilizes eksctl (a well-known command-line utility that is used to create and manage Kubernetes clusters on Amazon EKS) to deploy the Kubernetes cluster. You can deploy the cluster with the eksctl create, as in this sample command to create a cluster with 30 c4.xlarge nodes and prevent updating current context in ~/.kube/config.</p><pre xml:space="preserve">eksctl create cluster --name=cluster-6 --region=us-east-1 --nodes=30 
+--node-type=c4.xlarge --set-kubeconfig-context=false</pre>
         <div class="tc-admon-note">
             <p>For more information about the eksctl utility, see the <a href="https://github.com/weaveworks/eksctl/blob/master/README.md" target="_blank">Weaveworks README</a> on GitHub.</p>
         </div>
@@ -79,7 +82,6 @@
             </ul>
         </div>
         <h2>Deploying the Data Grid</h2>
-        <p>In order to deploy Kube</p>
         <p>The Helm package manager is used for installing <MadCap:variable name="General.ProductNameIE" /> in the Kubernetes environment. To deploy the cluster perform the following steps </p>
         <h2>Deploying the Helm Service</h2>
         <p>To deploy the Helm Tiller service with access to manage resources in your cluster type the following command:</p><pre><code>helm init --service-account tiller</code></pre>
@@ -96,10 +98,9 @@
             </li>
         </ol>
         <p>For more information about InsightEdge KubeGrid deployment options, see the <a href="https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html">Deploying a Data Grid in Kubernetes</a> topic.</p>
-        <h1>Deploying the Kubernetes Dashboard</h1>
-        <p>You can deploy the Kubernetes dashboard in Amazon EKS, so you can properly administer your Kubernetes-based GigaSpaces application. See the <a href="https://docs.aws.amazon.com/en_us/eks/latest/userguide/dashboard-tutorial.html" target="_blank">Amazon dashboard tutorial page</a> for instructions.</p>
         <h1>Deleting the Cluster</h1>
-        <p>When done working with the cluster, completely delete the cluster type the following command:</p><pre><code>helm delete --purge <![CDATA[
-]]></code></pre>
+        <p>When done working with the cluster, type the following command to delete the application:</p><pre><code>helm delete --purge demo
+</code></pre>
+        <p>Then type the following command to completely delete the cluster:</p><pre><code class="language-bash">eksctl delete cluster --name=cluster-6 --region=us-east-1</code></pre>
     </body>
 </html>
