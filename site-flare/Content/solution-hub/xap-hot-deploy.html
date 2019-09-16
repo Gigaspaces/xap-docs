@@ -26,28 +26,28 @@
                 </tr>
             </tbody>
         </table>
-        <p>This tool allows business logic running as a PU to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach, placing new PU code on the GSM PU deploy folder and later restarting each PU instance.</p>
+        <p>This tool allows business logic running as a processing unit to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach, placing new PU code on the GSM PU deploy folder and later restarting each PU instance.</p>
         <h1>PU Restart</h1>
         <p>To refresh the PU code, the tool restarts all processing units for a given PU with these steps. </p>
         <ol>
             <li>Old deployment files for the specified PU are moved into a temporary folder to be used in case the upgrade fails. </li>
-            <li>New PU files are copied to the XAP deploy folder prior the restart phase. </li>
+            <li>New PU files are copied to the XAP deploy folder prior to the restart phase. </li>
             <li>The tool identifies all running PU instances and restarts them one by one, in either stateful or stateless mode. <span style="color: #dc143c;" MadCap:conditions="Default.DoNotShow">based on what</span> </li>
         </ol>
-        <p>Once the process is completed, both the primary and backup PU instances will run updated logic.</p>
+        <p>Once the process is completed, both the primary and backup PU instances will run with the updated logic.</p>
         <h2><a name="stateful-pu-restart">&#160;</a>Stateful  Restart</h2>
-        <p>To tool performs these steps for a stateful restart:</p>
+        <p>The tool performs these steps for a stateful restart:</p>
         <ol>
-            <li>Discovers all processing unit instances and identifies their Space mode.</li>
+            <li>Discovers all PU instances and identifies their Space mode.</li>
             <li>Restarts all backups  (each instance in a separate thread).</li>
             <li>Restarts all primaries. If the <code>double_restart</code> option is enabled, primaries are restarted twice to return to the original state (one by one). Without this option, primary partitions  are  restarted one time (each instance in a separate thread). Use <code>double_restart</code> if all instances should be placed in the “original” vm.</li>
         </ol>
         <h1>Stateless  Restart</h1>
-        <p>For a stateless restart the tool discover all processing unit instances and restarts them (each instance in separate thread).</p>
+        <p>For a stateless restart the tool discover all PU instances and restarts them (each instance in a separate thread).</p>
         <h1><a name="build">&#160;</a>Build</h1>
         <p>To build the tool:</p>
         <ol>
-            <li>Download the source files (<code>xap-hot-deploy-master</code> folder)  from the repository. They can be located anywhere on your machine.</li>
+            <li>Download the source files (<code>xap-hot-deploy-master</code> folder)  from the repository. They can be downloaded to any location on your machine.</li>
             <li>Enter the command:</li>
         </ol><pre><code class="language-bash">mvn clean install
 </code></pre>
@@ -198,7 +198,7 @@ If there are any problems during the hot-redeploy, you will see an error message
         <h2><a name="prerequisites-for-running-tests">&#160;</a>Prerequisites for running tests:</h2>
         <ul>
             <li>Run gs-agent.sh/bat.</li>
-            <li>Lookup group and locator must be set to default values.</li>
+            <li>Set lookup group and locator to default values.</li>
             <li>Set properties in <code>/tool/src/test/resources/config.properties</code> file. </li>
             <li>Make sure that there is no pu with name <code>space</code> deployed already.</li>
         </ul>
@@ -215,8 +215,6 @@ If the rollback finished successfully, all processing units for redeploy return 
 17:10:53,683  INFO main RollbackChecker:doRollback:119 - Rollback completed successfully
 17:10:53,684  WARN main HotRedeployMain:redeploy:44 - Hot redeploy failed. Rollback successfully completed
 </code></pre>
-        <h3>Minimal configuration for rollback</h3>
-        <p>If no backup GSM and no empty container are found, the rollback will fail and the system will be in unstable state.</p>
         <h3><a name="minimal-configuration-for-rollback">&#160;</a>Minimal configuration for rollback:</h3>
         <p>In order for the rollback to work, the following minimal topology needs to be available:</p>
         <ul>
@@ -225,5 +223,6 @@ If the rollback finished successfully, all processing units for redeploy return 
         <ul>
             <li>If there are n  primary pu instances,  n + 1 GSCs must be deployed.</li>
         </ul>
+        <p>If no backup GSM and no empty container are found, the rollback will fail and the system will be in unstable state.</p>
     </body>
 </html>
