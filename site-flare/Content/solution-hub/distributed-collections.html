@@ -86,20 +86,21 @@ public class MyService {
         <h3>Distributed Collocation Mode</h3>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/collections/local.png" alt="Local collocation mode" class="tc-picture50" />
-                <img src="../Resources/Static/attachment_files/collections/distributed.png" alt="Distributed collocation mode" class="tc-picture50" />
+                <img src="../Resources/Static/attachment_files/collections/distributed.png" alt="Distributed collocation mode" class="tc-picture30" />
             </p>
         </div>
         <p>In this mode collection items are spread over the whole cluster. It is preferred mode for collections of huge sizes, since memory consumption is balanced across the grid. User items are wrapped into meta classes and stored in space one by one.</p>
         <h3>Local Collocation Mode</h3>
         <div class="tc-align-center">
-            <p>&#160;</p>
+            <p>
+                <img src="../Resources/Static/attachment_files/collections/local.png" alt="Local collocation mode" class="tc-picture30" />
+            </p>
         </div>
         <p>In <code>local</code> collocation mode items are stored within the same partition as the metadata object. This mode should be chosen when application interacts with multiple small collections stored in the grid. It is scalable by collection count and not by the number of items in one collection. User items are wrapped into meta classes and stored in space one by one.</p>
         <h3>Embedded Collocation Mode</h3>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/collections/embedded.png" alt="Embedded collocation mode" class="tc-picture50" />
+                <img src="../Resources/Static/attachment_files/collections/embedded.png" alt="Embedded collocation mode" class="tc-picture30" />
             </p>
         </div>
         <p>This mode suggests that user items are stored inside single collection container object. Thus items do not have their own space identity and are stored together. This mode is similar to <code>local</code> mode but groups up items for performance needs.</p>

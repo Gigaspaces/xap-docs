@@ -3,18 +3,18 @@
     <head>
     </head>
     <body>
-        <h1>Document API</h1>
-        <p>Unlike POJOs, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic - users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the class <code>SpaceTypeDescriptor</code>.</p>
-        <p>Before a certain Document instance is written to the space, its type should be introduced to it. The type has a name and controls metadata such as identifier property, routing property and which properties are initially indexed (naturally, you can also index new properties at runtime after adding them to your documents).</p>
+        <h1 class="tc-pagetitle">Document API</h1>
+        <p>Unlike POJOs, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a Document is much more dynamic - users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the class <code>SpaceTypeDescriptor</code>.</p>
+        <p>Before a certain Document instance is written to the Space, its type should be introduced to it. The type has a name and controls metadata such as identifier property, routing property and which properties are initially indexed (naturally, you can also index new properties at runtime after adding them to your Documents).</p>
         <div class="tc-admon-note">
-            <p>The Type controls <span class="tc-bold">metadata</span> - so only the metadata is part of the type. A document can introduce new properties at will.</p>
+            <p>The Type controls <span class="tc-bold">metadata</span>, so only the metadata is part of the type. A Document can introduce new properties at will.</p>
         </div>
-        <p>Note that the Document type does not describe the properties themselves (except for the names of the ID and Routing properties). These are completely dynamic and each instance can have a different set of properties (although in most cases Document instances of the same type are likely to have identical or similar set of properties).</p>
+        <p>Note that the Document type does not describe the properties themselves (except for the names of the ID and Routing properties). These are completely dynamic and each instance can have a different set of properties, although in most cases Document instances of the same type are likely to have identical or similar set of properties.</p>
         <h1><a name="schema-evolution"></a>Schema Evolution</h1>
-        <p>Since a <code>SpaceDocument</code> is completely dynamic by nature, it is very easy to change or evolve your data model without ever taking down the Space. Simply change your application code to add additional properties or remove existing ones, and you're good to go. Even better, old and new versions can co-exist since the space does not enforce any restriction with regards to the property set of documents that belong to a certain type. This is a much more lightweight model in comparison to the classic POJO model, where a recompilation and in many cases a full space restart is required to change the data schema.</p>
-        <p>If POJO model cannot be replaced with Document model, yet some level of schema evolution is desired within the POJO model, <a href="dynamic-properties.html">Dynamic Properties</a> can be used.</p>
+        <p>A <code>SpaceDocument</code> is completely dynamic by nature, so it is very easy to change or evolve your data model without taking down the Space. Simply change your application code to add additional properties or remove existing ones, and you're good to go. Even better, old and new versions can co-exist because the Space doesn't enforce any restrictions regarding the property set of Documents that belong to a certain type. This is a much more lightweight model in comparison to the classic POJO model, where a recompilation and in many cases a full Space restart is required to change the data schema.</p>
+        <p>If the POJO model can't be replaced with the Document model, yet some level of schema evolution is desired within the POJO model, <a href="dynamic-properties.html">Dynamic Properties</a> can be used.</p>
         <h1><a name="type-definition"></a>Type Definition</h1>
-        <p>Before we start writing and reading <code>SpaceDocument</code> from the space, we need an <span class="tc-bold">initial</span> schema definition of the document type.</p>
+        <p>Before we start writing and reading a<code>SpaceDocument</code> from the Space, we need an <span class="tc-bold">initial</span> schema definition of the document type.</p>
         <p>For example, suppose we're implementing an electronic commerce system, and decided we need a type called <span class="tc-bold">Product</span> with the following properties:</p>
         <ul>
             <li>CatalogNumber : String</li>
@@ -26,8 +26,8 @@
             <li>Tags : Collection of Strings</li>
             <li>Reviews : Collection of nested documents</li>
         </ul>
-        <p>We also decide that <span class="tc-bold">CatalogNumber</span> will be a primary key, partitioning will be done by the <span class="tc-italic">Category</span> property, and the properties <span class="tc-bold">Name</span>, <span class="tc-bold">Price</span> should be indexed since they participate in most of the queries executed. Remember, the type definition is for metadata only, so we're not concerned about <span class="tc-bold">Description</span> and other such fields in the type definition, because Description isn't used for indexing or any other metadata.</p>
-        <p>The following is an example of how to introduce a new document type:</p>
+        <p>We also decide that <span class="tc-bold">CatalogNumber</span> will be a primary key, partitioning will be done by the <span class="tc-italic">Category</span> property, and the properties <span class="tc-bold">Name</span> and <span class="tc-bold">Price</span> should be indexed because they participate in most of the queries executed. Remember, the type definition is for metadata only, so we're not concerned about <span class="tc-bold">Description</span> and other such fields in the type definition, because Description isn't used for indexing or any other metadata.</p>
+        <p>The following is an example of how to introduce a new Document type:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Spring Namespace Configuration " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"  &gt;
       &lt;os-core:space-type type-name="Product" &gt;
@@ -93,31 +93,51 @@
 </code></pre>
             </div>
         </div>
-        <p>Note that this code does not reflect the complete model - most of the properties does not need to be introduced to the schema. Only properties with special roles (ID, Routing) are part of the schema definition. These meta model <span class="tc-bold">settings cannot be changed</span> without restarting the space or dropping the type, clearing all its instances and reintroducing it again.</p>
-        <h1 MadCap:conditions="Version.15-0-born">Modifying Schema  of Registered Objects</h1>
-        <p MadCap:conditions="Version.15-0-born">You can add new properties to a  SpaceDocument that is already registered and the properties are then visible to the JDBC client (such as Tableau or Zeppelin), without restarting the space. This is done by defining the schema in a separate xml file, and configuring the location of that file as a space property. When  that space property is set,  the schema is loaded from the specified location instead of the type descriptor. Changes  made directly on the xml file are then visible after restarting the client. The property, <code class="language-bash">jdbc-alt-schema-url</code>,  points to the xml file as either:</p>
-        <ul MadCap:conditions="Version.15-0-born">
-            <li>URL</li>
-            <li>Path on local disk</li>
-            <li><a href="web-jetty-processing-unit-container.html">Web Processing Unit</a>
-            </li>
-        </ul>
-        <p MadCap:conditions="Version.15-0-born">In this sample, the property is set to a URL</p><pre MadCap:conditions="Version.15-0-born">&lt;os-core:space id="space" url="/./sql-test-space-alt?locators=localhost:4174"&gt;
+        <p>Note that this code does not reflect the complete model - most of the properties do not need to be introduced to the schema. Only properties with special roles (ID, Routing) are part of the schema definition. These meta model <span class="tc-bold">settings cannot be changed</span> without restarting the Space or dropping the type, clearing all its instances and reintroducing it again.</p>
+        <h1 MadCap:conditions="Version.15-0-born">Querying with JDBC</h1>
+        <p>Space documents do not have fixed schema - each document can have a different set of properties. If you want to query documents via JDBC (either directly from the code or using tools such as Tableau or Apache Zeppelin), you must supply a schema so that the JDBC connection can infer metadata and execute queries. For example, executing a query like <code class="language-bash">SELECT * FROM Person</code> requires a schema that contains the set of columns.</p>
+        <p>A schema can be provided in one of the following ways: </p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Space type descriptor</span> (default)</p>
+                <p>When defining the type descriptor you can define fixed properties, as in the following example, each of which will be included in the schema. However, each time you modify the schema you must restart the entire cluster because JDBC clients load the schema only once during initialization, so they have to be restarted to discover schema changes.</p>
+                <div class="tc-admon-note">
+                    <p>You will also need to define the "idProperty" and "routingProperty" as fixed properties in order to query them using JDBC.</p>
+                </div><![CDATA[            ]]></li>
+        </ul><pre> SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder("Product")        
+.idProperty("id")
+.addFixedProperty("name", String.class)
+.addFixedProperty("price", Float.class)
+.addFixedProperty("id", String.class).create();</pre>
+        <ul>
+            <li>
+                <p><span class="tc-bold">External XML file</span>
+                </p>
+                <p>You can define the schema in an XML file, and configure its location using the <code class="language-bash">jdbc-alt-schema-url</code> Space property. JDBC clients that connect to the Space can check whether this Space property is configured; if it is, the client then reads the schema from the XML file instead of from the Space type descriptor. This enables changing the schema definition during runtime without having to restart the Space. The XML file should be hosted in a location accessible to the clients, such as a web server. The <span style="text-decoration: none;">jdbc-alt-schema-url</span> property points to the XML file as one of the following:</p>
+                <ul MadCap:conditions="Version.15-0-born">
+                    <li>URL</li>
+                    <li>Path on local disk</li>
+                    <li><a href="web-jetty-processing-unit-container.html">Web Processing Unit</a>
+                    </li>
+                </ul>
+                <p MadCap:conditions="Version.15-0-born">In this example, the property is set to a URL:</p><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;os-core:space id="space" url="/./sql-test-space-alt?locators=localhost:4174"&gt;
     &lt;os-core:properties&gt;
         &lt;props&gt;
             &lt;prop key="jdbc-alt-schema-url"&gt;http://my-server/path/to/my-schema.xml&lt;/prop&gt;
         &lt;/props&gt;
     &lt;/os-core:properties&gt;
-&lt;/os-core:space&gt;</pre>
-        <p MadCap:conditions="Version.15-0-born">using this sample my-schema.xml file that defines the schema.</p><pre MadCap:conditions="Version.15-0-born">&lt;my-schema&gt;
+&lt;/os-core:space&gt;</code></pre>
+                <p MadCap:conditions="Version.15-0-born">In this example, the my-schema.xml file defines the schema.</p><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;my-schema&gt;
     &lt;table name="Purchase"&gt;
         &lt;column name="id" type="java.lang.String"/&gt;
         &lt;column name="name" type="java.lang.String"/&gt;
         &lt;column name="price" type="java.lang.Float"/&gt;
     &lt;/table&gt;
-&lt;/my-schema&gt;</pre>
-        <h1><a name="creating-and-writing"></a>Creating and Writing</h1>
-        <p>To create a document create a <code>Map&lt;String,Object&gt;</code> with the requested properties, create a <code>SpaceDocument</code> object using the type name and properties, and write it to the space using the regular <code>GigaSpace</code> write method:</p><pre><code class="language-java">public void writeProduct1(GigaSpace gigaspace) {
+&lt;/my-schema&gt;</code></pre>
+            </li>
+        </ul>
+        <h1><a name="creating-and-writing"></a>Creating and Writing Documents</h1>
+        <p>To create a Document, create a <code>Map&lt;String,Object&gt;</code> with the requested properties, create a <code>SpaceDocument</code> object using the type name and properties, and write it to the Space using the regular <code>GigaSpace</code> write method:</p><pre><code class="language-java">public void writeProduct1(GigaSpace gigaspace) {
     // 1. Create the properties:
     Map&lt;String, Object&gt; properties = new HashMap&lt;String, Object&gt;();
     properties.put("CatalogNumber", "hw-1234");
@@ -254,11 +274,11 @@ public class ConvertJSONTODocument {
             <ul>
                 <li>The <code>GigaSpace.writeMultiple</code> method can be used to write a batch of documents.</li>
                 <li>Update semantics are the same as POJO, except <span class="tc-bold">partial update</span> that is not currently supported.</li>
-                <li>Use only alphanumeric characters (a-z, A-Z, 0-9) and the underscore ('_") to construct properties keys. Other characters might have a special behavior in GigaSpaces (for example: the dot (".') is used to distinguish nested paths).</li>
+                <li>Use only alphanumeric characters (a-z, A-Z, 0-9) and the underscore ("_") to construct property keys. Other characters might have special behavior in GigaSpaces (for example, "." is used to distinguish nested paths).</li>
             </ul>
         </div>
         <h1><a name="reading-and-removing"></a>Reading and Removing</h1>
-        <p>There are three types of document queries:</p>
+        <p>There are three types of document queries, described in the following sections.</p>
         <h2><a name="template-query"></a>Template Query</h2>
         <p>This type of query uses a SpaceDocument with <span class="tc-italic">type</span> and any other set of properties values as a template for the query
 For example: Read a document of type <span class="tc-bold">Product</span> whose <span class="tc-bold">Name</span> is <span class="tc-bold">Anvil</span>:</p><pre><code class="language-java">public SpaceDocument readProductByTemplate(GigaSpace gigaSpace) {
@@ -296,7 +316,7 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
 }
 </code></pre>
         <h2><a name="id-based-query"></a>ID-Based Query</h2>
-        <p>For example: Read a document of type <span class="tc-bold">Product</span> whose ID is <span class="tc-bold">hw-1234</span>:</p><pre><code class="language-java">public SpaceDocument readProductById(GigaSpace gigaSpace) {
+        <p>This code example shows how to read a document of type <span class="tc-bold">Product</span> whose ID is <span class="tc-bold">hw-1234</span>:</p><pre><code class="language-java">public SpaceDocument readProductById(GigaSpace gigaSpace) {
     return gigaSpace.readById(new IdQuery&lt;SpaceDocument&gt;("Product", "hw-1234"));
 }
 </code></pre>
@@ -318,9 +338,9 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
             <p>An ID-based query will not return results if the condition is on an auto-generated ID field _spaceId (generated for spaceDocument). Internal fields should not be queried because implementations are subject to change.</p>
         </div>
         <h1><a name="nested-properties"></a>Nested Properties</h1>
-        <p>The <code>Document</code> properties values can be either scalars (integers, strings, enumerations, etc), collections (arrays, lists), or nested properties (Map or an extension of map, such as <code>DocumentProperties</code>). Values must adhere to the same restrictions as in the POJO model (e.g. be serializable). Nested properties can be queried by using the dot (".') notation to describe paths, as shown above.</p>
+        <p>The <code>Document</code> properties values can be either scalars (integers, strings, enumerations, etc), collections (arrays, lists), or nested properties (Map or an extension of map, such as <code>DocumentProperties</code>). Values must adhere to the same restrictions as in the POJO model (e.g. be serializable). Nested properties can be queried by using the "." notation to describe paths, as shown above.</p>
         <div class="tc-admon-note">
-            <p>It's highly recommended to use <code>DocumentProperties</code> for nested documents because it contains performance and memory footprint optimizations that are tailored for GigaSpaces usage.</p>
+            <p>It is highly recommended to use <code>DocumentProperties</code> for nested documents because it contains performance and memory footprint optimizations that are tailored for GigaSpaces usage.</p>
             <ul>
                 <li>
                     <p>While it is possible to use  <code>SpaceDocument</code> as a property, it is probably a mistake, because it contains extra information that is not relevant for nested properties (type name, version, etc.).</p>
@@ -399,7 +419,7 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
             </div>
         </div>
         <h1><a name="indexing"></a>Indexing</h1>
-        <p>Properties and nested paths can be <a href="indexing.html">indexed</a> to boost queries performance. In the type registration sample above the <span class="tc-bold">Name</span> and <span class="tc-bold">Price</span> properties are indexed.</p>
+        <p>Properties and nested paths can be <a href="indexing.html">indexed</a> to boost query performance. In the type registration sample above, the <span class="tc-bold">Name</span> and <span class="tc-bold">Price</span> properties are indexed.</p>
         <p>The schema is flexible and new properties may be added after the type has been registered, therefore it is possible to add indexes dynamically as well.</p>
         <div class="tc-admon-note">
             <p>For more information about indexing, see the <a href="indexing-overview.html">Indexing</a> page.</p>
@@ -529,7 +549,7 @@ pollingEventListenerContainer.destroy();
 </code></pre>
             </div>
         </div>
-        <h1><a name="fifo"></a>FIFO</h1>
+        <h1><a name="fifo"></a>FIFO Support</h1>
         <p><a href="fifo-support.html">FIFO support</a> is off by default with <code>Document</code> entries (same as with POJO). To enable FIFO support, modify the type introduction code and set the desired FIFO support mode. For example:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Spring Namespace Configuration " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"&gt;
@@ -697,26 +717,26 @@ public class DocumentEDS
 </code></pre>
             </div>
         </div>
-        <p>Different document database can be used to implement the document persistency - MongoDB, CouchDB and others.
-Pojos can be persisted via document EDS as well, in the same way.</p>
+        <p>Different document databases can be used to implement the document persistency, such as MongoDB and CouchDB.
+POJOs can be persisted via document EDS as well, in the same way.</p>
         <div class="tc-admon-note">
             <ul>
                 <li>In order to support initialLoad of documents the relevant types must be declared in the "space" bean, so that they are registered in the space before initialLoad is invoked.</li>
                 <li>Document persistence is currently not provided by default - If needed, the External Data Source should be implemented to fit the required solution.</li>
             </ul>
         </div>
-        <h2><a name="transient-document"></a>Transient Document</h2>
-        <p>When using a persistent Apace, there are situations where not all SpaceDocuments need to be persisted. You can specify the document to be transient by invoking the <code>setTransient()</code> method.</p><pre><code class="language-java">   SpaceDocument doc = new SpaceDocument("Entity");
+        <h2><a name="transient-document"></a>Transient Documents</h2>
+        <p>When using a persistent Space, there are situations where not all SpaceDocuments need to be persisted. You can specify the document to be transient by invoking the <code>setTransient()</code> method.</p><pre><code class="language-java">   SpaceDocument doc = new SpaceDocument("Entity");
    ......       
    doc.setTransient(true);
 </code></pre>
         <h1><a name="space-filters"></a>Space Filters</h1>
-        <p>Space Filter are supported for Space documents.</p>
+        <p>Space Filters are supported for Space Documents.</p>
         <div class="tc-admon-note">
             <p>If you intend to use Space filters in a mixed POJO-Document environment, see the <a href="document-pojo-interoperability.html">Interoperability</a> page.</p>
         </div>
         <h1><a name="replication-filters"></a>Replication Filters</h1>
-        <p>Space Replication Filter are supported for Space documents.</p>
+        <p>Space Replication Filters are supported for Space Documents.</p>
         <div class="tc-admon-note">
             <p>If you intend to use Space replication filters in a mixed POJO-Document environment, see the <a href="document-pojo-interoperability.html">Interoperability</a> page. </p>
         </div>

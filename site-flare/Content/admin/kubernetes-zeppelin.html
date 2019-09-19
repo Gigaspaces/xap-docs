@@ -5,7 +5,7 @@
     <body>
         <h1 class="tc-pagetitle">Using an Apache Zeppelin Notebook in Kubernetes</h1>
         <p>Apache Zeppelin is a multi-purpose web notebook that supports data ingestion and discovery, as well as data analytics, visualization, and collaboration.</p>
-        <p>KubeGrid runs Apache Zeppelin in a dedicated Pod. The Apache Zeppelin web notebooks can be accessed via the URL <code>http://&lt;minikube ip&gt;:30990</code>.</p>
+        <p>KubeGrid runs Apache Zeppelin in a dedicated Pod. The Apache Zeppelin web notebooks can be accessed via the URL <code>http://&lt;minikube ip&gt;:<MadCap:conditionalText MadCap:conditions="Version.15-0-died">30990</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only">9090</MadCap:conditionalText></code>.</p>
         <div class="tc-admon-note">
             <ul>
                 <li>The Zeppelin Pod port is configurable, and its value can be set when installing the <code>insightedge</code> or <code>insightedge-zeppelin</code> Helm chart by defining the following:  <code>--set zeppelin.service.port.api=&lt;port&gt;</code></li>

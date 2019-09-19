@@ -39,7 +39,7 @@ A probe that indicates whether a Data Pod is ready to service requests (the appl
 -->
         <h2><a name="services"></a>Services</h2>
         <h3><a name="service"></a>Service</h3>
-        <p>A Kubernetes service is an abstraction that defines a logical set of Pods, along with a policy for accessing them. We use services to define NodePorts that expose specific Pods to the user, such as for Apache Zeppelin (port 30990), and Swagger for the REST Manager API (port 30890).</p>
+        <p>A Kubernetes service is an abstraction that defines a logical set of Pods, along with a policy for accessing them. We use services to define NodePorts that expose specific Pods to the user, such as for Apache Zeppelin (port <MadCap:conditionalText MadCap:conditions="Version.15-0-died">30990</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only">9090</MadCap:conditionalText></code>), and Swagger for the REST Manager API (port <MadCap:conditionalText MadCap:conditions="Version.15-0-died">30890</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only">8090</MadCap:conditionalText></code>).</p>
         <h3><a name="headless-service"></a>Headless Service</h3>
         <p>In environments where load-balancing and a single service IP are not needed, you can use headless services to reduce coupling to the Kubernetes system and do discovery independently. In this scenario, no cluster IP is allocated, kube-proxy doesn’t handle these services, and there is no load balancing or proxying done by the platform for them.</p>
         <h2><a name="statefulset"></a>StatefulSet</h2>

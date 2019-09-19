@@ -3,12 +3,12 @@
     <head>
     </head>
     <body>
-        <h1>Hot Deploy&#160;Utility</h1>
+        <h1 class="tc-pagetitle">Hot Deploy&#160;Utility <span MadCap:conditions="Default.DoNotShow" class="tc-highlight">update table</span></h1>
         <table>
             <thead>
                 <tr>
                     <th>Author</th>
-                    <th>XAP Version</th>
+                    <th>Product Version</th>
                     <th>Last Updated</th>
                     <th>Reference</th>
                     <th>Download</th>
@@ -19,38 +19,58 @@
                     <td>Anna Babich <br /> Pavlo Romanenko</td>
                     <td>10.0</td>
                     <td>November 2014</td>
-                    <td>
-                    </td>
+                    <td> </td>
+                    <td />
                     <td><a href="https://github.com/fe2s/xap-hot-deploy">Github link</a>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <p>This tool allows business logic running as a PU to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach, placing new PU code on the GSM PU deploy folder and later restarting each PU instance. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><span style="color: #dc143c;">See XAP Hot Deploy documentation for details</span></MadCap:conditionalText>.</p>
-        <p>To refresh the PU code, the tool restarts all processing units for a given PU. Old deployment files for the specified PU are moved into a temporary folder to be used in case the upgrade fails. New PU files are copied to the XAP deploy folder prior the restart phase. The tool identifies all running PU instances and restarts them one by one. Once the process is completed, both the primary and backup PU instances will run updated logic.</p>
-        <h1><a name="stateful-pu-restart">&#160;</a>Stateful PU Restart</h1>
+        <p>This tool allows business logic running as a processing unit to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach, placing new PU code on the GSM PU deploy folder and later restarting each PU instance.</p>
+        <h1>PU Restart</h1>
+        <p>To refresh the PU code, the tool restarts all processing units for a given PU with these steps. </p>
         <ol>
-            <li>The tool discovers all processing unit instances and identifies their Space mode.</li>
-            <li>All backups are restarted (each instance in a separate thread).</li>
-            <li>All primaries are restarted. If the <code>double_restart</code> option is enabled, primaries are restarted twice to return to the original state (one by one). Without this option, primary partitions  are  restarted one time (each instance in a separate thread). Use <code>double_restart</code> if all instances should be placed in the “original” vm.</li>
+            <li>Old deployment files for the specified PU are moved into a temporary folder to be used in case the upgrade fails. </li>
+            <li>New PU files are copied to the XAP deploy folder prior to the restart phase. </li>
+            <li>The tool identifies all running PU instances and restarts them one by one, in either stateful or stateless mode. <span style="color: #dc143c;" MadCap:conditions="Default.DoNotShow">based on what</span> </li>
         </ol>
-        <h1><a name="stateless-pu-restart">&#160;</a>Stateless PU Restart</h1>
-        <p>The tool discover all processing unit instances and restarts them (each instance in separate thread).</p>
+        <p>Once the process is completed, both the primary and backup PU instances will run with the updated logic.</p>
+        <h2><a name="stateful-pu-restart">&#160;</a>Stateful  Restart</h2>
+        <p>The tool performs these steps for a stateful restart:</p>
+        <ol>
+            <li>Discovers all PU instances and identifies their Space mode.</li>
+            <li>Restarts all backups  (each instance in a separate thread).</li>
+            <li>Restarts all primaries. If the <code>double_restart</code> option is enabled, primaries are restarted twice to return to the original state (one by one). Without this option, primary partitions  are  restarted one time (each instance in a separate thread). Use <code>double_restart</code> if all instances should be placed in the “original” vm.</li>
+        </ol>
+        <h1>Stateless  Restart</h1>
+        <p>For a stateless restart the tool discover all PU instances and restarts them (each instance in a separate thread).</p>
         <h1><a name="build">&#160;</a>Build</h1>
-        <p>Source files (<code>xap-hot-redeploy</code> folder) can be located anywhere on your machine.</p>
-        <p>To build the tool enter the command:</p><pre><code class="language-bash">mvn clean install
+        <p>To build the tool:</p>
+        <ol>
+            <li>Download the source files (<code>xap-hot-deploy-master</code> folder)  from the repository. They can be downloaded to any location on your machine.</li>
+            <li>Enter the command:</li>
+        </ol><pre><code class="language-bash">mvn clean install
 </code></pre>
         <p>Note, that tests will be skipped in this case. To build with tests see the <a href="#1">tests section</a>.</p>
-        <h1><a name="run">&#160;</a>Run</h1>
+        <h1><a name="run">&#160;</a>Run Hot Deploy</h1>
+        <p>To run hot deploy:</p>
         <ol>
             <li>Copy new jar(war) files with new classes to the <code>xap-hot-redeploy</code> folder.<span style="color: #dc143c;" MadCap:conditions="Default.DoNotShow"> what/where?</span></li>
-            <li>Configure options in <code>xap-hot-redeploy/config.properties</code> file.</li>
-            <li>Run the <code>run.sh (run.bat)</code> script from the xap-hot-redeploy folder.</li>
+            <li>Configure options in the <code>xap-hot-deploy-master/config.properties</code> file.</li>
+            <li>Run the following script from the xap-hot-deploy-master folder.</li>
         </ol>
-        <p>Runtime configuration <code>config.properties</code> file. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow" style="color: #dc143c;">how can items be req if there is default? define PU&#160;better</MadCap:conditionalText></p>
+        <p>&#160;</p>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"> run</code></pre>
+            </div>
+            <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"> run.sh</code></pre>
+            </div>
+        </div>
+        <h2>Runtime configuration</h2>
+        <p>The following options can be configured: </p>
         <table>
             <thead>
-                <tr>
+                <tr class="tabs-title">
                     <th>Option</th>
                     <th>Optional/required</th>
                     <th>Default value</th>
@@ -68,7 +88,7 @@
                     <td>PU</td>
                     <td>required</td>
                     <td>space=space.jar, web=web.war</td>
-                    <td>Map with key value pairs, where key is processing unit name, value is name of file with new classes.</td>
+                    <td>Map with key value pairs, where key is processing unit name and value is the name of the file with new classes.</td>
                 </tr>
                 <tr>
                     <td>SSH_USER</td>
@@ -138,8 +158,8 @@
                 </tr>
             </tbody>
         </table>
-        <p>Results</p>
-        <p>If there are no problems with hot-redeploy application, you can see success message and details for restarting pu instances:</p><pre><code class="language-bash">14:51:44,392  INFO main ConfigInitializer:init:28 - Gigaspaces location: /home/user/gigaspaces-xap-premium-10.0.0-ga
+        <h2>Results</h2>
+        <p>If  hot-redeploy runs successfully, you can see success message and details for restarting pu instances, as in this sample:</p><pre><code class="language-bash">14:51:44,392  INFO main ConfigInitializer:init:28 - Gigaspaces location: /home/user/gigaspaces-xap-premium-10.0.0-ga
 14:51:44,393  INFO main ConfigInitializer:init:29 - Pu to restart: [space, cinema, mirror]
 14:51:44,393  INFO main ConfigInitializer:init:30 - Locator: null
 14:51:44,393  INFO main ConfigInitializer:init:31 - Lookup group: null
@@ -163,30 +183,29 @@
 14:52:38,929  INFO main StatelessPuRestarter:restart:25 - done
 14:52:28,945  INFO main HotRedeployMain:main:17 - Hot redeploy completed successfully
 ``
-
+<![CDATA[
+]]></code></pre>
+        <p>
 If there are any problems during the hot-redeploy, you will see an error message and description of the problem:
-
-```bash
+</p><pre><code>
 20:11:27,861  INFO main HotRedeployMain:checkFiles:76 - Please place new files on all GSM machines and try again.
 20:11:27,864  INFO main HotRedeployMain:checkFiles:77 - Hot redeploy failed
 </code></pre>
-        <p>You can see all details about the hot-redeploy process in the <code>hot-redeploy.log</code> file.</p><a name="1">&#160;</a>
-        <h1><a name="tests">&#160;</a>Tests</h1>
-        <p>To build the tool with running tests enter the command:</p><pre><code class="language-bash">mvn clean install -DskipTests=false
+        <p>You can see all details about the hot-redeploy process in the <code>hot-redeploy.log</code> file.</p>
+        <h1><a name="tests">&#160;</a>Build with Tests</h1>
+        <p>To build the tool with running tests, enter the command:</p><pre><code class="language-bash">mvn clean install -DskipTests=false
 </code></pre>
-        <h4><a name="prerequisites-for-running-tests">&#160;</a>PREREQUISITES for running tests:</h4>
+        <h2><a name="prerequisites-for-running-tests">&#160;</a>Prerequisites for running tests:</h2>
         <ul>
-            <li>run gs-agent.sh/bat</li>
-            <li>lookup group and locator must be set to default values</li>
-            <li>properties should be set in <code>/tool/src/test/resources/config.properties</code> file <span style="color: #dc143c;" MadCap:conditions="Default.DoNotShow">what properties</span> </li>
-            <li>make sure that there is no pu with name <code>space</code> deployed already</li>
+            <li>Run gs-agent.sh/bat.</li>
+            <li>Set lookup group and locator to default values.</li>
+            <li>Set properties in <code>/tool/src/test/resources/config.properties</code> file. </li>
+            <li>Make sure that there is no pu with name <code>space</code> deployed already.</li>
         </ul>
-        <h1><a name="rollback">&#160;</a>Rollback</h1>
-        <p>Rollback functionality helps to avoid the loss of data, if errors occurred during the redeploy (for example - broken pu file).
+        <h1>Rollback</h1>
+        <p>Rollback functionality helps to avoid the loss of data, if errors occurred during the redeploy (such as a broken pu file).
 When errors occur, the tool searches for backup GSM's. If there is more than one GSM in the system, they will be restarted one by one. If there is only one GSM in the system, the tool will look for an empty GSC and restart it.
-In  case the rollback finished successfully, all pu's for redeploy return to their original  version.</p>
-        <p>If no backup GSM and no empty container are found, the rollback will fail and the system state is unstable.</p>
-        <p>Rollback working example:</p><pre><code class="language-bash">
+If the rollback finished successfully, all processing units for redeploy return to their original  version, and you will see messages as in this sample.</p><pre><code class="language-bash">
 17:03:48,679  INFO main StatefulPuRestarter:restartAllInstances:105 - Restarting pu space with type STATEFUL
 17:03:48,681  INFO pool-6-thread-1 PuInstanceRestarter:restartPUInstance:36 - restarting instance 1 on 127.0.0.1[127.0.0.1] GSC PID:7612 mode:backup...
 17:04:49,294  INFO pool-6-thread-1 PuInstanceRestarter:restartPUInstance:43 - done
@@ -199,11 +218,11 @@ In  case the rollback finished successfully, all pu's for redeploy return to the
         <h3><a name="minimal-configuration-for-rollback">&#160;</a>Minimal configuration for rollback:</h3>
         <p>In order for the rollback to work, the following minimal topology needs to be available:</p>
         <ul>
-            <li>At least one backup GSM should be deployed.</li>
+            <li>At least one backup GSM must be deployed.</li>
         </ul>
-        <p>or</p>
         <ul>
-            <li>If n = count of primary pu instances, you should have n + 1 GSC deployed.</li>
+            <li>If there are n  primary pu instances,  n + 1 GSCs must be deployed.</li>
         </ul>
+        <p>If no backup GSM and no empty container are found, the rollback will fail and the system will be in unstable state.</p>
     </body>
 </html>
