@@ -35,11 +35,6 @@
         </ul>
         <p><MadCap:variable name="General.CompanyName" /> products have custom Helm charts to enable easy deployment and configuration in Kubernetes, both in the cloud and on premise. After <MadCap:variable name="General.ProductNameIE" /> is installed, you can use the Kubernetes dashboard to monitor and administer your cluster.</p>
         <p>After you finish working with <MadCap:variable name="General.ProductNameIE" />, you can easily take down the deployment from AWS until the next time it is needed.</p>
-        <h1>Install Dependencies</h1>
-        <ul>
-            <li>Kubernetes dashboard - You can deploy the Kubernetes dashboard in Amazon EKS, so you can properly administer your Kubernetes-based GigaSpaces application. See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/" target="_blank">Kubernetes Web UI</a> for instructions.</li>
-            <li>Install <a href="https://github.com/helm/helm/blob/master/docs/install.md" target="_blank">Helm</a></li>
-        </ul>
         <h1>Deploying <MadCap:variable name="General.ProductNameIE" /> on Demand</h1>
         <h2>Creating a Kubernetes Cluster</h2>
         <p>This use case utilizes eksctl (a well-known command-line utility that is used to create and manage Kubernetes clusters on Amazon EKS) to deploy the Kubernetes cluster. You can deploy the cluster  following the instructions in <a href="https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html" target="_blank">Getting Started with eksctl</a>, and create a cluster as in this sample command that creates a cluster with 30 c4.xlarge nodes and prevent updating current context in ~/.kube/config.</p><pre xml:space="preserve">eksctl create cluster --name=cluster-6 --region=us-east-1 --nodes=30 
@@ -73,9 +68,12 @@
             </ul>
         </div>
         <h2>Deploying the Data Grid</h2>
-        <p>The Helm package manager is used for installing <MadCap:variable name="General.ProductNameIE" /> in the Kubernetes environment. After Helm is installed, deploy the cluster with the following steps.</p>
+        <p>The Helm package manager is used for installing <MadCap:variable name="General.ProductNameIE" /> in the Kubernetes environment. Deploy the cluster with the following steps.</p>
+        <div class="tc-admon-note">
+            <p>If you don't have helm installed, follow the instructions in the <a href="https://helm.sh/docs/using_helm/#installing-helm">Helm</a> documentation to install it..</p>
+        </div>
         <h3>Deploying the Helm Service</h3>
-        <p>To deploy the Helm Tiller service with access to manage resources in your cluster, create a <a href="https://github.com/helm/helm/blob/master/docs/rbac.md" target="_blank">service role </a>for Tiller to use and then type the following command:</p><pre><code>helm init --service-account tiller</code></pre>
+        <p>To deploy the Helm Tiller service with access to manage resources in your cluster, create a <a href="https://github.com/helm/helm/blob/master/docs/rbac.md" target="_blank">Service account with cluster-admin role </a>for Tiller to use and then type the following command:</p><pre><code class="language-bash">helm init --service-account tiller</code></pre>
         <h3>Deploying KubeGrid</h3>
         <p>To deploy KubeGrid and the InsightEdge demo:</p>
         <ol>
@@ -89,6 +87,11 @@
             </li>
         </ol>
         <p>For more information about InsightEdge KubeGrid deployment options, see the <a href="https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html" target="_blank">Deploying a Data Grid in Kubernetes</a> topic.</p>
+        <h1>Deploying the Kubernetes Dashboard</h1>
+        <p>You can deploy the Kubernetes dashboard in Amazon EKS, so you can properly administer your Kubernetes-based GigaSpaces application. To deploy the dashboard type the following command</p><pre>kubectl apply -f 
+https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta4/aio/deploy/recommended.yaml</pre>
+        <p>To then access the dashboard type the following command</p><pre xml:space="preserve">kubectl proxy</pre>
+        <p>Kubectl will make Dashboard available at http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/. See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/" target="_blank">Kubernetes Web UI</a> for further details.</p>
         <h1>Deleting the Cluster</h1>
         <p>When done working with the cluster, type the following command to delete the application:</p><pre><code class="language-bash">helm delete --purge demo
 </code></pre>
