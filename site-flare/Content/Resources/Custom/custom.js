@@ -102,6 +102,13 @@
         $('.ipn-content .selected').parent().addClass('selected-child');
         $('.ipn-content .selected-child').parents('ul:not(.menu)').addClass('selected-child-menu');
         $('.ipn-content .selected-child').parents('ul:not(.menu)').last().prev().addClass('selected-child-parent');
+        $('.ipn-content a').each(function() {
+          var ipnLink = $(this).attr("href");
+            var charLink = ipnLink.slice(1, 2).toUpperCase();
+            var restLink = ipnLink.substr(2);
+           var newIpnLink = "#" + charLink + restLink;
+          $(this).attr("href",newIpnLink);
+          });
       },
       generateNavItems: function () {
         _self.utils.getFile({
