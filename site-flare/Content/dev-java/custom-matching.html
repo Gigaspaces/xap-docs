@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -13,6 +13,9 @@
         <p>You can index the data to speed up the custom matching process; index the field so that its class implements the <code>Comparable</code> interface using the <code>EXTENDED</code> index type as part of the Space class. Indexing the custom type field should be used with caution, because it doesn't support a <code>Comparable.compareTo</code> implementation that performs relative-based matching, which is demonstrated in the example on this page.</p>
         <div class="tc-admon-note">
             <p>See the <a href="indexing-overview.html">Indexing</a> section for additional information about how to enable the <code>EXTENDED</code> index.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p> In your Comparable class make sure that the compareTo() and equals()&#160;methods always yield the same result, since <MadCap:variable name="General.CompanyName" /> query optimization depends on that equivalence. This is not the case, for example, where the method BigDecimal.equals() takes into account the number of trailing zeros, whereas the method BigDecimal.compareTo() ignores the trailing zeros.</p>
         </div>
         <h1><a name="vector-compare-example"></a>Vector Compare Example</h1>
         <p>The following example is a business logic implementation used to query for vector data (an array of Integer values), using the <a href="http://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a> formula:</p>
