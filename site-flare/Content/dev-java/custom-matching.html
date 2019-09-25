@@ -3,8 +3,8 @@
     <head>
     </head>
     <body>
-        <h1>Custom Matching</h1>
-        <h1><a name="overview"></a>Overview</h1>
+        <h1 class="tc-pagetitle">Custom Matching</h1>
+        <h1>Overview</h1>
         <p>Queries are usually indexed and executed using primitive fields (long, float, string, etc.). These fields can be at the root level of the Space object, or embedded within <a href="query-sql.html#nested-properties">nested objects</a> in the Space object. You can construct a query using a template object or SQL, to specify the criteria you want to use when the matching phase is performed within the Space when looking for the relevant objects.</p>
         <p>However, in some cases you may need a custom data type with custom business logic to find matching objects within the Space, instead of the <a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html">primitive data type</a> comparison. To allow the Space to invoke your business logic when the matching process is conducted, the <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Comparable.html">Comparable</a> interface should be implemented for a class that stores the data you want to use with your custom business logic.</p>
         <div class="tc-admon-tip">
@@ -12,12 +12,10 @@
         </div>
         <p>You can index the data to speed up the custom matching process; index the field so that its class implements the <code>Comparable</code> interface using the <code>EXTENDED</code> index type as part of the Space class. Indexing the custom type field should be used with caution, because it doesn't support a <code>Comparable.compareTo</code> implementation that performs relative-based matching, which is demonstrated in the example on this page.</p>
         <div class="tc-admon-note">
+            <p> In your Comparable class, make sure that the <code>compareTo()</code> and <code>equals()</code>&#160;methods always yield the same result, because the <MadCap:variable name="General.CompanyName" /> query optimization depends on that equivalence. This is not the case, for example, where the <code>BigDecimal.equals()</code> method  takes into account the number of trailing zeros, whereas the <code>BigDecimal.compareTo()</code> method  ignores the trailing zeros.</p>
             <p>See the <a href="indexing-overview.html">Indexing</a> section for additional information about how to enable the <code>EXTENDED</code> index.</p>
         </div>
-        <div class="tc-admon-note">
-            <p> In your Comparable class make sure that the compareTo() and equals()&#160;methods always yield the same result, since <MadCap:variable name="General.CompanyName" /> query optimization depends on that equivalence. This is not the case, for example, where the method BigDecimal.equals() takes into account the number of trailing zeros, whereas the method BigDecimal.compareTo() ignores the trailing zeros.</p>
-        </div>
-        <h1><a name="vector-compare-example"></a>Vector Compare Example</h1>
+        <h1>Vector Compare Example</h1>
         <p>The following example is a business logic implementation used to query for vector data (an array of Integer values), using the <a href="http://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a> formula:</p>
         <div class="well" style="background:white">
             <img src="../Resources/Static/attachment_files/sbp/EuclideanDistance.jpg" alt="EuclideanDistance.jpg" class="tc-picture30" />
