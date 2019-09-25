@@ -71,14 +71,14 @@ local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
 
 </code></pre>
         <p>Use the GigaSpaces CLI to query the number of objects in the <code>demo</code> data grid. The output should show <code>100,000</code> objects of type <code>org.insightedge.examples.basic.Product</code>.</p>
-        <p>Port <code>8090</code> is exposed as the load balancer port <code>demo-insightedge-manager-service:<MadCap:conditionalText MadCap:conditions="Version.15-0-died">30990</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only">9090</MadCap:conditionalText></code> TCP</code>, and should be specified as part of the <code>--server</code> option. Navigate to the product bin directory and type the following CLI command:</p>
+        <p>Port <code>8090</code> is exposed as the load balancer port <code>demo-insightedge-manager-service:<MadCap:conditionalText MadCap:conditions="Version.15-0-died">30990</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born">9090</MadCap:conditionalText>TCP</code>, and should be specified as part of the <code>--server</code> option. Navigate to the product bin directory and type the following CLI command:</p>
         <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
             <MadCap:snippetBlock src="../Resources/Snippets/InsighedgeXap.flsnp" />
         </div>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash">./<MadCap:variable name="General.CLI-script-Linux" /> --server 192.168.99.100:<MadCap:conditionalText MadCap:conditions="Version.15-0-died">30990</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only">9090</MadCap:conditionalText></code> space info --type-stats demo </code></pre>
+            <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash">./<MadCap:variable name="General.CLI-script-Linux" /> --server 192.168.99.100:<MadCap:conditionalText MadCap:conditions="Version.15-0-died">30990</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born">9090</MadCap:conditionalText>space info --type-stats demo </code></pre>
             </div>
-            <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> --server 192.168.99.100:<MadCap:conditionalText MadCap:conditions="Version.15-0-died">30990</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only">9090</MadCap:conditionalText></code> space info --type-stats demo </code></pre>
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> --server 192.168.99.100:<MadCap:conditionalText MadCap:conditions="Version.15-0-died">30990</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born">9090</MadCap:conditionalText>space info --type-stats demo </code></pre>
             </div>
         </div>
         <h4><a name="improved-configuration-options"></a>Improved Configuration Options</h4>
