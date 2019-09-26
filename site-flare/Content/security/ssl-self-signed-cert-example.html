@@ -76,7 +76,7 @@ set </code><code class="language-bash">EXT_JAVA_OPTIONS</code><code class="langu
 </code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">set XAP_LOOKUP_LOCATORS=my-pc.gspaces.com:4174
 set XAP_NIC_ADDRESS=10.10.10.131
 
-set </code><code class="language-bash">XAP_OPTIONS_EXT</code><code class="language-bash">=-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory -Dcom.gs.lrmi.filter.security.keystore=C:/Users/Dixson/work/xap/gigaspaces-xap-premium-12.0.0-ga-b16000/bin/keystore.jks -Dcom.gs.lrmi.filter.security.password=changeit -Djava.net.preferIPv4Stack=true -Djavax.net.debug=ssl
+set </code><code class="language-bash">XAP_OPTIONS_EXT</code><code class="language-bash">=-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory -Dcom.gs.lrmi.filter.security.keystore=C:/Users/Dixson/work/xap/gigaspaces-xap-premium-12.0.0-ga-b16000/bin/keystore.jks -Dcom.gs.lrmi.filter.security.password=changeit -Djavax.net.debug=ssl
 </code></pre>
         <p>After you configure the environment variables, you can deploy your data grid by running the following CLI command from  <code>my-pc:&lt;XAP_home&gt;/bin</code>:</p><pre><code>&lt;XAP-HOME&gt;\bin\gs space deploy --partitions=2 --ha SSLSpace</code></pre>
         <h1>Client Server Setup</h1>
@@ -101,7 +101,6 @@ ${JAVA_HOME}/bin/java -cp ${CLASSPATH} \
 -Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory \
 -Dcom.gs.lrmi.filter.security.keystore=/opt/gspaces/gigaspaces-xap-premium-12.0.0-ga-b16000/bin/client_keystore.jks \
 -Dcom.gs.lrmi.filter.security.password=changeit \
--Djava.net.preferIPv4Stack=true \
 -Djavax.net.debug=ssl \
 SSLClient
 </code></pre>
