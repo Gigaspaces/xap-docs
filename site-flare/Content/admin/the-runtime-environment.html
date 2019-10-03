@@ -9,7 +9,7 @@
             <p>The <code>gs-agent</code> script is deprecated as of version 14.0, as noted in the <a href="../rn/whats-new.html">Release Notes</a>. Use the <code>xap host run-agent</code> or <code>insightedge host run-agent</code> command in the <a href="tools-cli.html">new CLI</a> instead.</p>
         </div>
         <h1>Usage</h1>
-        <p>To start a service grid on a machine, launch the <code>gs-agent</code> utility located in the <code>$XAP_HOME/bin</code> folder. This will start the <a href="../overview/the-runtime-environment.html#gsa">Grid Service Agent</a>, which is responsible for starting and managing the other service grid components (GSC, GSM, etc.). Command line arguments are used to specify which service grid components should be started and managed. In general, <code>--process_type=n</code> will start <code>n</code> instances of the specified <code>process_type</code>. Use the <code>global</code> keyword (e.g. <code>--global.process_type=n</code>) to specify that the agent should coordinate the hosting and management of that service with other running agents.</p>
+        <p>To start a service grid on a machine, launch the <code>gs-agent</code> utility located in the <code><MadCap:variable name="General.HomePath" />/bin</code> folder. This will start the <a href="../overview/the-runtime-environment.html#gsa">Grid Service Agent</a>, which is responsible for starting and managing the other service grid components (GSC, GSM, etc.). Command line arguments are used to specify which service grid components should be started and managed. In general, <code>--process_type=n</code> will start <code>n</code> instances of the specified <code>process_type</code>. Use the <code>global</code> keyword (e.g. <code>--global.process_type=n</code>) to specify that the agent should coordinate the hosting and management of that service with other running agents.</p>
         <h2>Help</h2>
         <p>Run the <code>--help</code> or <code>-h</code> command to see all available options:</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -117,7 +117,7 @@ call gs-agent.bat
             </div>
         </div>
         <h1>Customizing the GSA Components</h1>
-        <p>The GSA manages different process types. Each process type is defined within the <code>$XAP_HOME/config/gsa</code> directory in an XML file that identifies the process type by name.</p>
+        <p>The GSA manages different process types. Each process type is defined within the <code><MadCap:variable name="General.HomePath" />/config/gsa</code> directory in an XML file that identifies the process type by name.</p>
         <div class="tc-admon-note">
             <p>You can change the default location of the GSA configuration files using the <code>com.gigaspaces.grid.gsa.config-directory</code> system property.</p>
         </div>
@@ -199,7 +199,7 @@ call gs-agent.bat
         </ul>
         <h1>Advanced Configuration</h1>
         <p>In some scenarios you may need several "flavors' of components (e.g. multiple zones, or different sizes of GSCs, etc.). You can create a custom gs-agent script to manage each of those, or you can do this all within a single agent.</p>
-        <p>For example, you may want your GS&#160;agent to load 2 "small' GSCs (512MB each) in a zone called <span class="tc-italic">Small</span>, and 1 "large' GSC (1024MB) in a zone called <span class="tc-italic">Large</span>. To achieve this, duplicate the default <code>gsc.xml</code> (which resides in <code>$XAP_HOME/config/gsa</code>) into <code>gsc_small.xml</code> and <code>gsc_large.xml</code>, and modify them to include an <code>environment</code> tag that defines the <code>XAP_GSC_OPTIONS</code>environment variable with the required settings:</p>
+        <p>For example, you may want your GS&#160;agent to load 2 "small' GSCs (512MB each) in a zone called <span class="tc-italic">Small</span>, and 1 "large' GSC (1024MB) in a zone called <span class="tc-italic">Large</span>. To achieve this, duplicate the default <code>gsc.xml</code> (which resides in <code><MadCap:variable name="General.HomePath" />/config/gsa</code>) into <code>gsc_small.xml</code> and <code>gsc_large.xml</code>, and modify them to include an <code>environment</code> tag that defines the <code>XAP_GSC_OPTIONS</code>environment variable with the required settings:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  gsc_small.xml " style="padding:10px"><pre MadCap:conditions="Version.15-0-died"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always"&gt;
     &lt;script enable="true" work-dir="${com.gs.home}/bin"

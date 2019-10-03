@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -31,13 +31,13 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
 </code></pre>
             </div>
         </div>
-        <p>In the Manager log file (<code>$XAP_HOME/logs</code>), you can see:</p>
+        <p>In the Manager log file (<MadCap:variable name="General.HomePath" /><code>/logs</code>), you can see:</p>
         <ul>
             <li>
                 <p>The Manager has started the LUS, Zookeeper, GSM and REST API (and various other details about them).</p>
             </li>
             <li>
-                <p>Apache Zookeeper files reside in <code>$XAP_HOME/work/manager/zookeeper</code>.</p>
+                <p>Apache Zookeeper files reside in <code><MadCap:variable name="General.HomePath" />/work/manager/zookeeper</code>.</p>
             </li>
             <li>
                 <p>The REST API is started on <a href="http://localhost:8090/" target="_blank">localhost:8090</a> .</p>
@@ -50,7 +50,7 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
         <p>In a production environment, you'll probably want a cluster of Managers on multiple hosts to ensure high availability. You'll need 3 machines (an odd number is required to ensure a quorum during network partitions). For example, suppose you’ve selected machines alpha, bravo and charlie to host the managers:</p>
         <ol>
             <li>
-                <p>Edit the <code>$XAP_HOME/bin/setenv-overrides.sh/bat</code> script and set <code>XAP_MANAGER_SERVERS</code> to the list of hosts. For example: <code>export XAP_MANAGER_SERVERS=alpha,bravo,charlie</code>/</p>
+                <p>Edit the <code><MadCap:variable name="General.HomePath" />/bin/setenv-overrides.sh/bat</code> script and set <code>XAP_MANAGER_SERVERS</code> to the list of hosts. For example: <code>export XAP_MANAGER_SERVERS=alpha,bravo,charlie</code>/</p>
             </li>
             <li>
                 <p>Copy the modified <code>setenv-overrides.sh/bat</code> to each machine that runs a <code>gs-agent</code>.</p>
@@ -62,7 +62,7 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
         <p>Starting more than one Manager on the same host is not supported.</p>
         <h1><a name="configuration"></a>Configuration</h1>
         <h2><a name="ports"></a>Ports</h2>
-        <p>The following ports can be modified using system properties, e.g. via the <code>setenv-overrides</code> script located in <code>$XAP_HOME/bin</code>:</p>
+        <p>The following ports can be modified using system properties, e.g. via the <code>setenv-overrides</code> script located in <code><MadCap:variable name="General.HomePath" />/bin</code>:</p>
         <table>
             <thead>
                 <tr>

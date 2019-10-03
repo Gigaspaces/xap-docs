@@ -181,7 +181,7 @@ LoadModule  proxy_http_module    modules/mod_proxy_http.so
                 <p>Replace the <code>LOCALE</code> value with the required language code (<code>zh_CN</code>).</p>
             </li>
             <li>
-                <p>Save the file under <span class="tc-bold">XAP_HOME ← config</span>.</p>
+                <p>Save the file under <span class="tc-bold"><MadCap:variable name="General.HomePath" />/config</span>.</p>
             </li>
             <li>
                 <p>Pass this file as a system property to the Web Management Console launcher script, as follows:</p>
@@ -206,7 +206,7 @@ bin\gs-webui.bat
         </ol>
         <h3><a name="updating-the-existing-configuration-file"></a>Updating the Existing Configuration File</h3>
         <ol>
-            <li>Open the <span class="tc-bold">xap-webui-[version-build].war</span> archive (located under <code>[XAP_HOME]/tools/gs-webui</code>) for exploring and navigate to <code>/WEB-INF/lib</code>.</li>
+            <li>Open the <span class="tc-bold">xap-webui-[version-build].war</span> archive (located under <code><MadCap:variable name="General.HomePath" />/tools/gs-webui</code>) for exploring and navigate to <code>/WEB-INF/lib</code>.</li>
             <li>
                 <p>Edit the <span class="tc-bold">web-context.xml</span> file to add the <code>localeConf</code> bean with the desired language (<code>zh_CN</code> for Chinese or <code>en</code> for English).</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

@@ -25,7 +25,7 @@
         <h2><a name="overriding-the-configuration-file"></a>Overriding the Configuration File</h2>
         <p>Your own configuration file may also be used instead of the platform's default. This is done by setting the configuration file location using a system property:</p><pre><code class="language-bash">-Djava.util.logging.config.file=myfile.properties
 </code></pre>
-        <p><MadCap:variable name="General.ProductNameXAP" /> scripts rely on the exported environment variable <code>XAP_LOGS_CONFIG_FILE</code> (declared in <code>&lt;XAP_HOME&gt;/bin/setenv script</code>). The preferred way to apply your override file is to use a wrapper script; export the new setting of this variable and call the original script. This ensures that when <code>setenv.sh(bat)</code> is called from within the platform's scripts, it will pick up the override.</p><pre><code class="language-bash"># unix
+        <p><MadCap:variable name="General.ProductNameXAP" /> scripts rely on the exported environment variable <code>XAP_LOGS_CONFIG_FILE</code> (declared in <code><MadCap:variable name="General.HomePath" />/bin/setenv script</code>). The preferred way to apply your override file is to use a wrapper script; export the new setting of this variable and call the original script. This ensures that when <code>setenv.sh(bat)</code> is called from within the platform's scripts, it will pick up the override.</p><pre><code class="language-bash"># unix
 
 export XAP_LOGS_CONFIG_FILE=myfile.properties
 ./gsc.sh
