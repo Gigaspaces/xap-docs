@@ -59,11 +59,11 @@
         <p>The first step is deploying a data grid and creating a Space.</p>
         <p class="tc-todo">To deploy the data grid on a local machine:</p>
         <ol>
-            <li>From the <code>$&lt;XAP_HOME&gt;\tools\maven</code> directory, run the <code>installmavenrep.bat </code>script.</li>
-            <li>From the <code>$&lt;XAP_HOME&gt;insightedge\tools\maven</code> directory, run the <code>insightedge-maven.cmd </code>script.
+            <li>From the <code><MadCap:variable name="General.HomePath" />\tools\maven</code> directory, run the <code>installmavenrep.bat </code>script.</li>
+            <li>From the <code><MadCap:variable name="General.HomePath" />\insightedge\tools\maven</code> directory, run the <code>insightedge-maven.cmd </code>script.
       </li>
             <li>
-                <p>Navigate to the <code>$&lt;XAP_HOME&gt;\bin</code> directory and launch a command window.</p>
+                <p>Navigate to the <code><MadCap:variable name="General.HomePath" />\bin</code> directory and launch a command window.</p>
             </li>
             <li>
                 <p>Type <code>insightedge host run-agent --auto --gsc=2</code> to create a data grid.</p>
@@ -109,7 +109,7 @@
         <p class="tc-todo" MadCap:conditions="Version.14-5-died">To generate the <MadCap:variable name="General.ProductNameIE" /> JDBC Client JAR:</p>
         <ol MadCap:conditions="Version.14-5-died">
             <li>
-                <p>Navigate to <code>$&lt;XAP_HOME&gt;\insightedge\tools\jdbc</code>.</p>
+                <p>Navigate to <code><MadCap:variable name="General.HomePath" />\insightedge\tools\jdbc</code>.</p>
             </li>
             <li>
                 <p>Run the <code>build-jdbc-client.cmd</code> script to create the file <code>insightedge-jdbc-client.jar</code>.
@@ -258,8 +258,8 @@
         <h2 MadCap:conditions="Version.14-5-born">Setting Up the JDBC Connection</h2>
         <p class="tc-todo" MadCap:conditions="Version.14-5-born">To configure the connection:</p>
         <ol>
-            <li MadCap:conditions="Version.14-5-born">Run <code>&lt;XAP_HOME&gt;\bin\insightedge maven install</code> to install the Maven artifacts.</li>
-            <li MadCap:conditions="Version.14-5-born">Run <code>&lt;XAP_HOME&gt;\insightedge\tools\jdbc\build-jdbc-client.cmd</code> to create the <span class="tc-italic">insightedge-jdbc-client.jar</span> file.</li>
+            <li MadCap:conditions="Version.14-5-born">Run <code><MadCap:variable name="General.HomePath" />\bin\insightedge maven install</code> to install the Maven artifacts.</li>
+            <li MadCap:conditions="Version.14-5-born">Run <code><MadCap:variable name="General.HomePath" />\insightedge\tools\jdbc\build-jdbc-client.cmd</code> to create the <span class="tc-italic">insightedge-jdbc-client.jar</span> file.</li>
             <li MadCap:conditions="Version.14-5-born">Copy the file to <span class="tc-bold">C:\Program Files\Tableau\Drivers</span>.</li>
             <li MadCap:conditions="Version.14-5-born">
                 <p>Run the following command: </p><pre><code>&lt;TABLEAU_HOME&gt;\bin\tableau.exe -DConnectPluginsPath=&lt;GS_HOME&gt;\insightedge\tools\jdbc</code></pre>

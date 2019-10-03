@@ -14,7 +14,7 @@
         <h2><a name="deploy-via-cli"></a>Deploy via CLI</h2>
         <p>For information on how to use the CLI, see the <a href="../admin/tools-cli.html">Command Line Interface</a> page in the Administration guide.</p>
         <h2><a name="deploy-using-a-template"></a>Deploy Using a Template</h2>
-        <p>A pre-configured processing unit template is provided and can be found at <code>{XAP_HOME}/deploy/templates/rest</code>.</p>
+        <p>A pre-configured processing unit template is provided and can be found at <code><MadCap:variable name="General.HomePath" />/deploy/templates/rest</code>.</p>
         <h2><a name="deploy-rest-service-as-part-of-a-custom-processing-unit"></a>Deploy REST Service as Part of a Custom Processing Unit</h2>
         <p>A REST Service can be started as part of a custom processing unit by specifying the <code>&lt;os-core:rest &gt;</code> annotation as follows:</p><pre><code class="language-xml">&lt;os-core:space-proxy id="theSpace" space-name="theGigaSpace"&gt;
 &lt;os-core:rest id="mySpaceRestService" giga-space="theGigaSpace" port="8081" /&gt;
