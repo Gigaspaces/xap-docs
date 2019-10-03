@@ -70,7 +70,7 @@
         <h2>Deploying the Data Grid</h2>
         <p>The Helm package manager is used for installing <MadCap:variable name="General.ProductNameIE" /> in the Kubernetes environment. Deploy the cluster with the following steps.</p>
         <div class="tc-admon-note">
-            <p>If you don't have helm installed, follow the instructions in the <a href="https://helm.sh/docs/using_helm/#installing-helm" target="_blank">Helm</a> documentation to install it..</p>
+            <p>If you don't have Helm client installed, follow the instructions in the <a href="https://helm.sh/docs/using_helm/#installing-helm" target="_blank">Helm</a> documentation to install it.</p>
         </div>
         <h3>Deploying the Helm Service</h3>
         <p>To deploy the Helm Tiller service with access to manage resources in your cluster, create a service account for Tiller to use, by creating a configuration file and applying the configuration as shown in the example <a href="https://github.com/helm/helm/blob/master/docs/rbac.md" target="_blank">Service account with cluster-admin role, </a>and then type the following command:</p><pre><code class="language-bash">helm init --service-account tiller</code></pre>
@@ -81,8 +81,7 @@
                 <p>Type the following command to access the GigaSpaces Helm charts and unpack them locally to a folder named insightedge:</p><pre><code class="language-bash">helm fetch gigaspaces/insightedge --untar
 </code></pre>
             </li>
-            <li>
-                <p>After adding the GigaSpaces Helm charts, type the following command to deploy <MadCap:variable name="General.ProductNameIE" /> demo on Amazon EKS</p><pre><code class="language-bash">helm install insightedge --name demo
+            <li><pre>After adding the GigaSpaces Helm charts, type the following command to deploy <MadCap:variable name="General.ProductNameIE" /> demo on Amazon EKS:</pre><pre><code class="language-bash">helm install insightedge --name demo
 </code></pre>
             </li>
         </ol>
