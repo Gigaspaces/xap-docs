@@ -60,9 +60,9 @@
                 </tr>
             </tbody>
         </table>
-        <p>The  <span class="tc-bold">CatalogNumber</span> property is the primary key, partitioning is done according to the <span class="tc-italic">Category</span> property, and the <span class="tc-bold">Name</span> and <span class="tc-bold">Price</span> properties will be indexed because they are used in most of the queries executed. </p>
+        <p>The  <code>CatalogNumber</code> property is the primary key, partitioning is done according to the <code>Category</code> property, and the <code>Name</code> and <code>Price</code> properties will be indexed because they are used in most of the queries executed. </p>
         <div class="tc-admon-tip">
-            <p>Remember, the type definition is only for metadata; we're not concerned about fields like <span class="tc-bold">Description</span> because they aren't used for indexing or any other metadata.</p>
+            <p>Remember, the type definition is only for metadata; we're not concerned about fields like <code class="language-bash">Description</code> because they aren't used for indexing or any other metadata.</p>
         </div>
         <p>The following is an example of how to introduce a new Document type:</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -130,27 +130,27 @@
 </code></pre>
             </div>
         </div>
-        <p>This code doesn't reflect the complete model, and most of the properties don't need to be introduced to the schema. Only properties with special roles (for example, <code>idProperty</code> and <code>routingProperty</code>) are part of the schema definition. These meta model <span class="tc-bold">settings can't be changed</span> without restarting the Space or dropping the type, clearing all its instances, and reintroducing it.</p>
+        <p>This code doesn't reflect the complete model, and most of the properties don't need to be introduced to the schema. Only properties with special roles (for example, <code>idProperty</code> and <code>routingProperty</code>) are part of the schema definition. These meta model settings <span class="tc-bold">can't be changed</span> without restarting the Space or dropping the type, clearing all its instances, and reintroducing it.</p>
         <h1 MadCap:conditions="Version.15-0-born">Querying with JDBC</h1>
         <p>SpaceDocuments don't have fixed schema, so each document can have a different set of properties. If you want to query documents via JDBC (either directly from the code or using tools such as Tableau or Apache Zeppelin), you must supply a schema so that the JDBC connection can infer metadata and execute queries. For example, executing a query like <code class="language-bash">SELECT * FROM Person</code> requires a schema that contains the set of columns.</p>
-        <ul>
-            <li>
-                <p>A schema can be provided in one of the following ways: </p>
-                <p><span class="tc-bold">Space type descriptor</span> (default)When defining the type descriptor you can define fixed properties,  each of which will be included in the schema. However, each time you modify the schema you must restart the entire cluster because JDBC clients load the schema only once during initialization, so they have to be restarted to discover schema changes.</p>
-                <div class="tc-admon-note">
-                    <p>In order to query <code>idProperty</code> and <code>routingProperty</code> using JDBC you must also define them as fixed properties, as <code>idProperty</code> is defined in the following example.</p>
-                </div><pre><code> SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder("Product")        
+        <p>
+            <p>A schema can be provided in one of the following ways: </p>
+            <ul>
+                <li>
+                    <p><span class="tc-bold">Space type descriptor</span> (default) - When defining the type descriptor you can define fixed properties,  each of which will be included in the schema. However, each time you modify the schema you must restart the entire cluster because JDBC clients load the schema only once during initialization, so they have to be restarted to discover schema changes.</p>
+                    <div class="tc-admon-note">
+                        <p>In order to query <code>idProperty</code> and <code>routingProperty</code> using JDBC you must also define them as fixed properties, as <code>idProperty</code> is defined in the following example.</p>
+                    </div><pre><code> SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder("Product")        
 .idProperty("id")
 .addFixedProperty("name", String.class)
 .addFixedProperty("price", Float.class)
 .addFixedProperty("id", String.class).create();</code></pre>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </p>
         <ul>
             <li>
-                <p><span class="tc-bold">External XML file</span>
-                </p>
-                <p>You can define the schema in an XML file, and configure its location using the <code class="language-bash">jdbc-alt-schema-url</code> Space property. JDBC clients that connect to the Space can check whether this Space property is configured; if it is, the client then reads the schema from the XML file instead of from the Space type descriptor. This enables changing the schema definition during runtime without having to restart the Space. The XML file should be hosted in a location accessible to the clients, such as a web server. The <span style="text-decoration: none;">jdbc-alt-schema-url</span> property points to the XML file as one of the following:</p>
+                <p><span class="tc-bold">External XML file</span> - You can define the schema in an XML file, and configure its location using the <code class="language-bash">jdbc-alt-schema-url</code> Space property. JDBC clients that connect to the Space can check whether this Space property is configured; if it is, the client then reads the schema from the XML file instead of from the Space type descriptor. This enables changing the schema definition during runtime without having to restart the Space. The XML file should be hosted in a location accessible to the clients, such as a web server. The <code>jdbc-alt-schema-url</code> property points to the XML file as one of the following:</p>
                 <ul MadCap:conditions="Version.15-0-born">
                     <li>URL</li>
                     <li>Path on local disk</li>
@@ -317,8 +317,8 @@ public class ConvertJSONTODocument {
         <h1><a name="reading-and-removing"></a>Reading and Removing</h1>
         <p>There are three types of document queries, described in the following sections.</p>
         <h2><a name="template-query"></a>Template Query</h2>
-        <p>This type of query uses a SpaceDocument with <span class="tc-italic">type</span> and any other set of properties values as a template for the query
-For example: Read a document of type <span class="tc-bold">Product</span> whose <span class="tc-bold">Name</span> is <span class="tc-bold">Anvil</span>:</p><pre><code class="language-java">public SpaceDocument readProductByTemplate(GigaSpace gigaSpace) {
+        <p>This type of query uses a Space Document with <code>type</code> and any other set of properties values as a template for the query
+For example: Read a document of type <code>Product</code> whose <code>Name</code> is <code>Anvil</code>:</p><pre><code class="language-java">public SpaceDocument readProductByTemplate(GigaSpace gigaSpace) {
     // Create template:
     SpaceDocument template = new SpaceDocument("Product");
     template.setProperty("Name", "Anvil");
@@ -329,7 +329,7 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
 </code></pre>
         <h2><a name="sql-query"></a>SQL Query</h2>
         <p>You can use the <a href="query-sql.html">SQLQuery</a> to search for matching <code>SpaceDocument</code> entries.
-For example: Read a document of type <span class="tc-bold">Product</span> whose <span class="tc-bold">Price</span> is greater than 15:</p><pre><code class="language-java">public SpaceDocument readProductBySQL(GigaSpace gigaSpace) {
+For example: Read a document of type <code>Product</code> whose <code>Price</code> is greater than 15:</p><pre><code class="language-java">public SpaceDocument readProductBySQL(GigaSpace gigaSpace) {
     // Create query:
     SQLQuery&lt;SpaceDocument&gt; query =
         new SQLQuery&lt;SpaceDocument&gt;("Product", "Price &gt; ?");
@@ -342,7 +342,7 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
         <div class="tc-admon-note">
             <p>Consider indexing properties used in queries to boost performance.</p>
         </div>
-        <p>Queries on nested properties are supported. For example, to read products manufactured by <span class="tc-bold">Acme</span>:</p><pre><code class="language-java">public SpaceDocument[] readProductBySQLNested(GigaSpace gigaSpace) {
+        <p>Queries on nested properties are supported. For example, to read products manufactured by Acme:</p><pre><code class="language-java">public SpaceDocument[] readProductBySQLNested(GigaSpace gigaSpace) {
     // Create query:
     SQLQuery&lt;SpaceDocument&gt; query =
         new SQLQuery&lt;SpaceDocument&gt;("Product", "Features.Manufacturer = ?");
@@ -353,7 +353,7 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
 }
 </code></pre>
         <h2><a name="id-based-query"></a>ID-Based Query</h2>
-        <p>This code example shows how to read a document of type <span class="tc-bold">Product</span> whose ID is <span class="tc-bold">hw-1234</span>:</p><pre><code class="language-java">public SpaceDocument readProductById(GigaSpace gigaSpace) {
+        <p>This code example shows how to read a document of type <code>Product</code> whose ID is <code>hw-1234</code>:</p><pre><code class="language-java">public SpaceDocument readProductById(GigaSpace gigaSpace) {
     return gigaSpace.readById(new IdQuery&lt;SpaceDocument&gt;("Product", "hw-1234"));
 }
 </code></pre>
@@ -372,7 +372,7 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
             </ul>
         </div>
         <div class="tc-admon-important">
-            <p>An ID-based query will not return results if the condition is on an auto-generated ID field _spaceId (generated for spaceDocument). Internal fields should not be queried because implementations are subject to change.</p>
+            <p>An ID-based query will not return results if the condition is on an auto-generated ID field <code>_spaceId</code> (generated for <code>spaceDocument</code>). Internal fields should not be queried because implementations are subject to change.</p>
         </div>
         <h1><a name="nested-properties"></a>Nested Properties</h1>
         <p>The <code>Document</code> properties values can be either scalars (integers, strings, enumerations, etc), collections (arrays, lists), or nested properties (Map or an extension of map, such as <code>DocumentProperties</code>). Values must adhere to the same restrictions as in the POJO model (e.g. be serializable). Nested properties can be queried by using the "." notation to describe paths, as shown above.</p>
@@ -456,7 +456,7 @@ For example: Read a document of type <span class="tc-bold">Product</span> whose 
             </div>
         </div>
         <h1><a name="indexing"></a>Indexing</h1>
-        <p>Properties and nested paths can be <a href="indexing.html">indexed</a> to boost query performance. In the type registration sample above, the <span class="tc-bold">Name</span> and <span class="tc-bold">Price</span> properties are indexed.</p>
+        <p>Properties and nested paths can be <a href="indexing.html">indexed</a> to boost query performance. In the type registration sample above, the <code>Name</code> and <code>Price</code> properties are indexed.</p>
         <p>The schema is flexible and new properties may be added after the type has been registered, therefore it is possible to add indexes dynamically as well.</p>
         <div class="tc-admon-note">
             <p>For more information about indexing, see the <a href="indexing-overview.html">Indexing</a> page.</p>
@@ -684,7 +684,7 @@ gigaspace.getTypeManager().registerTypeDescriptor(typeDescriptor);
         <p>If you intend to use local cache or local view in a mixed POJO-Document environment, please refer to <a href="document-pojo-interoperability.html">Document-POJO Interoperability</a>.</p>
         <h1><a name="persistency"></a>Persistency</h1>
         <p>External Data Source is supported for space documents.
-Example on how to implement an EDS that persists SpaceDocuments of type "Trade":</p>
+Example on how to implement an EDS that persists <code>SpaceDocuments</code> of type <code>Trade</code>:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Configuration " style="padding:10px"><pre><code class="language-xml">&lt;bean id="documentDataSource" class="com.test.DocumentEDS"/&gt;
 
