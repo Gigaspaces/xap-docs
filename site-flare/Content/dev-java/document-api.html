@@ -14,19 +14,56 @@
         <p>A <code>SpaceDocument</code> is completely dynamic by nature, so it is very easy to change or evolve your data model without taking down the Space. Simply change your application code to add additional properties or remove existing ones, and you're good to go. Even better, old and new versions can co-exist because the Space doesn't enforce any restrictions regarding the property set of Documents that belong to a certain type. This is a much more lightweight model in comparison to the classic POJO model, where a recompilation and in many cases a full Space restart is required to change the data schema.</p>
         <p>If the POJO model can't be replaced with the Document model, yet some level of schema evolution is desired within the POJO model, <a href="dynamic-properties.html">Dynamic Properties</a> can be used.</p>
         <h1><a name="type-definition"></a>Type Definition</h1>
-        <p>Before we start writing and reading a<code>SpaceDocument</code> from the Space, we need an <span class="tc-bold">initial</span> schema definition of the document type.</p>
-        <p>For example, suppose we're implementing an electronic commerce system, and decided we need a type called <span class="tc-bold">Product</span> with the following properties:</p>
-        <ul>
-            <li>CatalogNumber : String</li>
-            <li>Category : String</li>
-            <li>Name : String</li>
-            <li>Description : String</li>
-            <li>Price : float</li>
-            <li>Features : Nested document (for example: Manufacturer=Acme, RequiresAssembly=false, weight=7.5)</li>
-            <li>Tags : Collection of Strings</li>
-            <li>Reviews : Collection of nested documents</li>
-        </ul>
-        <p>We also decide that <span class="tc-bold">CatalogNumber</span> will be a primary key, partitioning will be done by the <span class="tc-italic">Category</span> property, and the properties <span class="tc-bold">Name</span> and <span class="tc-bold">Price</span> should be indexed because they participate in most of the queries executed. Remember, the type definition is for metadata only, so we're not concerned about <span class="tc-bold">Description</span> and other such fields in the type definition, because Description isn't used for indexing or any other metadata.</p>
+        <p>Before beginning to write to and read from a<code>SpaceDocument</code> in the Space, an <span class="tc-bold">initial</span> schema definition of the document type is needed.</p>
+        <p>For example, suppose we're implementing an electronic commerce system, and we need a type called <span class="tc-bold">Product</span> with the following properties:</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Product Property</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CatalogNumber </td>
+                    <td>String</td>
+                </tr>
+                <tr>
+                    <td>Category </td>
+                    <td>String</td>
+                </tr>
+                <tr>
+                    <td>Name </td>
+                    <td>String</td>
+                </tr>
+                <tr>
+                    <td>Description </td>
+                    <td>String</td>
+                </tr>
+                <tr>
+                    <td>Price </td>
+                    <td>Float</td>
+                </tr>
+                <tr>
+                    <td>Features </td>
+                    <td>Nested document (for example: Manufacturer=Acme, RequiresAssembly=false, weight=7.5)</td>
+                </tr>
+                <tr>
+                    <td>Tags </td>
+                    <td>Collection of strings</td>
+                </tr>
+                <tr>
+                    <td>Reviews </td>
+                    <td>Collection of nested documents</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The  <span class="tc-bold">CatalogNumber</span> property will be a primary key, partitioning will be done according to the <span class="tc-italic">Category</span> property, and the properties <span class="tc-bold">Name</span> and <span class="tc-bold">Price</span> will be indexed because they are used in most of the queries executed. </p>
+        <div class="tc-admon-tip">
+            <p>Remember, the type definition is only for metadata; we're not concerned about fields like as <span class="tc-bold">Description</span> because they aren't used for indexing or any other metadata.</p>
+        </div>
         <p>The following is an example of how to introduce a new Document type:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Spring Namespace Configuration " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"  &gt;
@@ -93,14 +130,14 @@
 </code></pre>
             </div>
         </div>
-        <p>Note that this code does not reflect the complete model - most of the properties do not need to be introduced to the schema. Only properties with special roles (ID, Routing) are part of the schema definition. These meta model <span class="tc-bold">settings cannot be changed</span> without restarting the Space or dropping the type, clearing all its instances and reintroducing it again.</p>
+        <p>This code doesn't reflect the complete model, and most of the properties don't need to be introduced to the schema. Only properties with special roles (for example, ID and Routing) are part of the schema definition. These meta model <span class="tc-bold">settings can't be changed</span> without restarting the Space or dropping the type, clearing all its instances, and reintroducing it.</p>
         <h1 MadCap:conditions="Version.15-0-born">Querying with JDBC</h1>
-        <p>Space documents do not have fixed schema - each document can have a different set of properties. If you want to query documents via JDBC (either directly from the code or using tools such as Tableau or Apache Zeppelin), you must supply a schema so that the JDBC connection can infer metadata and execute queries. For example, executing a query like <code class="language-bash">SELECT * FROM Person</code> requires a schema that contains the set of columns.</p>
+        <p>SpaceDocuments don't have fixed schema, so each document can have a different set of properties. If you want to query documents via JDBC (either directly from the code or using tools such as Tableau or Apache Zeppelin), you must supply a schema so that the JDBC connection can infer metadata and execute queries. For example, executing a query like <code class="language-bash">SELECT * FROM Person</code> requires a schema that contains the set of columns.</p>
         <p>A schema can be provided in one of the following ways: </p>
         <ul>
             <li>
                 <p><span class="tc-bold">Space type descriptor</span> (default)</p>
-                <p>When defining the type descriptor you can define fixed properties  each of which will be included in the schema. However, each time you modify the schema you must restart the entire cluster because JDBC clients load the schema only once during initialization, so they have to be restarted to discover schema changes.</p>
+                <p>When defining the type descriptor you can define fixed properties,  each of which will be included in the schema. However, each time you modify the schema you must restart the entire cluster because JDBC clients load the schema only once during initialization, so they have to be restarted to discover schema changes.</p>
                 <div class="tc-admon-note">
                     <p>In order to query <b>idProperty</b> and <b>routingProperty</b> using JDBC you must also define them as fixed properties, as <b>idProperty</b> is defined in the following example.</p>
                 </div>
