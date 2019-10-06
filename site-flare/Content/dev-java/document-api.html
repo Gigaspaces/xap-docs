@@ -60,9 +60,9 @@
                 </tr>
             </tbody>
         </table>
-        <p>The  <span class="tc-bold">CatalogNumber</span> property will be a primary key, partitioning will be done according to the <span class="tc-italic">Category</span> property, and the properties <span class="tc-bold">Name</span> and <span class="tc-bold">Price</span> will be indexed because they are used in most of the queries executed. </p>
+        <p>The  <span class="tc-bold">CatalogNumber</span> property is the primary key, partitioning is done according to the <span class="tc-italic">Category</span> property, and the <span class="tc-bold">Name</span> and <span class="tc-bold">Price</span> properties will be indexed because they are used in most of the queries executed. </p>
         <div class="tc-admon-tip">
-            <p>Remember, the type definition is only for metadata; we're not concerned about fields like as <span class="tc-bold">Description</span> because they aren't used for indexing or any other metadata.</p>
+            <p>Remember, the type definition is only for metadata; we're not concerned about fields like <span class="tc-bold">Description</span> because they aren't used for indexing or any other metadata.</p>
         </div>
         <p>The following is an example of how to introduce a new Document type:</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -130,23 +130,22 @@
 </code></pre>
             </div>
         </div>
-        <p>This code doesn't reflect the complete model, and most of the properties don't need to be introduced to the schema. Only properties with special roles (for example, ID and Routing) are part of the schema definition. These meta model <span class="tc-bold">settings can't be changed</span> without restarting the Space or dropping the type, clearing all its instances, and reintroducing it.</p>
+        <p>This code doesn't reflect the complete model, and most of the properties don't need to be introduced to the schema. Only properties with special roles (for example, <code>idProperty</code> and <code>routingProperty</code>) are part of the schema definition. These meta model <span class="tc-bold">settings can't be changed</span> without restarting the Space or dropping the type, clearing all its instances, and reintroducing it.</p>
         <h1 MadCap:conditions="Version.15-0-born">Querying with JDBC</h1>
         <p>SpaceDocuments don't have fixed schema, so each document can have a different set of properties. If you want to query documents via JDBC (either directly from the code or using tools such as Tableau or Apache Zeppelin), you must supply a schema so that the JDBC connection can infer metadata and execute queries. For example, executing a query like <code class="language-bash">SELECT * FROM Person</code> requires a schema that contains the set of columns.</p>
-        <p>A schema can be provided in one of the following ways: </p>
         <ul>
             <li>
-                <p><span class="tc-bold">Space type descriptor</span> (default)</p>
-                <p>When defining the type descriptor you can define fixed properties,  each of which will be included in the schema. However, each time you modify the schema you must restart the entire cluster because JDBC clients load the schema only once during initialization, so they have to be restarted to discover schema changes.</p>
+                <p>A schema can be provided in one of the following ways: </p>
+                <p><span class="tc-bold">Space type descriptor</span> (default)When defining the type descriptor you can define fixed properties,  each of which will be included in the schema. However, each time you modify the schema you must restart the entire cluster because JDBC clients load the schema only once during initialization, so they have to be restarted to discover schema changes.</p>
                 <div class="tc-admon-note">
-                    <p>In order to query <b>idProperty</b> and <b>routingProperty</b> using JDBC you must also define them as fixed properties, as <b>idProperty</b> is defined in the following example.</p>
-                </div>
-            </li>
-        </ul><pre> SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder("Product")        
+                    <p>In order to query <code>idProperty</code> and <code>routingProperty</code> using JDBC you must also define them as fixed properties, as <code>idProperty</code> is defined in the following example.</p>
+                </div><pre><code> SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder("Product")        
 .idProperty("id")
 .addFixedProperty("name", String.class)
 .addFixedProperty("price", Float.class)
-.addFixedProperty("id", String.class).create();</pre>
+.addFixedProperty("id", String.class).create();</code></pre>
+            </li>
+        </ul>
         <ul>
             <li>
                 <p><span class="tc-bold">External XML file</span>
@@ -165,7 +164,7 @@
         &lt;/props&gt;
     &lt;/os-core:properties&gt;
 &lt;/os-core:space&gt;</code></pre>
-                <p MadCap:conditions="Version.15-0-born">In this example, the my-schema.xml file defines the schema.</p><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;my-schema&gt;
+                <p MadCap:conditions="Version.15-0-born">In this example, the <span class="tc-bold">my-schema.xml</span> file defines the schema.</p><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;my-schema&gt;
     &lt;table name="Purchase"&gt;
         &lt;column name="id" type="java.lang.String"/&gt;
         &lt;column name="name" type="java.lang.String"/&gt;
@@ -759,12 +758,12 @@ public class DocumentEDS
 POJOs can be persisted via document EDS as well, in the same way.</p>
         <div class="tc-admon-note">
             <ul>
-                <li>In order to support initialLoad of documents the relevant types must be declared in the "space" bean, so that they are registered in the space before initialLoad is invoked.</li>
-                <li>Document persistence is currently not provided by default - If needed, the External Data Source should be implemented to fit the required solution.</li>
+                <li>In order to support <code>initialLoad</code> of documents the relevant types must be declared in the Space bean, so that they are registered in the space before <code>initialLoad</code> is invoked.</li>
+                <li>Document persistence is currently not provided by default - If needed, an External Data Source should be implemented to fit the required solution.</li>
             </ul>
         </div>
         <h2><a name="transient-document"></a>Transient Documents</h2>
-        <p>When using a persistent Space, there are situations where not all SpaceDocuments need to be persisted. You can specify the document to be transient by invoking the <code>setTransient()</code> method.</p><pre><code class="language-java">   SpaceDocument doc = new SpaceDocument("Entity");
+        <p>When using a persistent Space, there are situations where not all Space Documents need to be persisted. You can specify a document as transient by invoking the <code>setTransient()</code> method.</p><pre><code class="language-java">   SpaceDocument doc = new SpaceDocument("Entity");
    ......       
    doc.setTransient(true);
 </code></pre>
