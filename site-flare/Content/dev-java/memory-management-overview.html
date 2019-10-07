@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
-        <h1>Memory Management</h1>
-        <p>The Memory Management facility is used to prevent situations where a Space server gets into an out-of-memory failure scenario. Based on the configured cache policy, the memory manager protects the Space (and the application, if it is running co-located with the Space) from consuming memory beyond a defined threshold.</p>
+        <h1>Cache Policy</h1>
+        <p>The <MadCap:variable name="General.CompanyName" /> cache policy is used to prevent situations where a Space server gets into an out-of-memory failure scenario. Based on the configured cache policy, the memory manager protects the Space (and the application, if it is running co-located with the Space) from consuming memory beyond a defined threshold.</p>
         <div class="tc-admon-important">
             <p>The client application is expected to have business logic that handles any <code>org.openspaces.core.SpaceMemoryShortageException</code> that may be thrown (when using the OpenSpaces API). When the legacy <code>IJSpace</code> interface is used, a <code>com.j_spaces.core.MemoryShortageException</code> will be thrown instead. Without this business logic, the Space server or a client local cache may eventually exhaust all the parent process available memory resources.</p>
         </div>
