@@ -81,14 +81,7 @@ local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
             <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> --server 192.168.99.100:<MadCap:conditionalText MadCap:conditions="Version.15-0-died">30990</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born">9090</MadCap:conditionalText>space info --type-stats demo </code></pre>
             </div>
         </div>
-        <h4>Improved Configuration Options</h4>
-        <div class="tc-admon-note">
-            <p>These improvements are available starting from version 14.0.0 M13.</p>
-        </div>
-        <p>The following simplified configuration options can be used with the <code>insightedge-submit</code> script.</p>
-        <h5>Space Name</h5>
-        <p>The <code>insightedge-submit</code> script now accepts any Space name when running an <MadCap:variable name="General.ProductNameIE" /> example in Kubernetes.</p>
-        <p>To provide a Space name for the script, add the configuration property: <code>--conf spark.insightedge.space.name=&lt;space name&gt;</code>.</p>
+        <p>The <code>insightedge-submit</code> script accepts any Space name when running an <MadCap:variable name="General.ProductNameIE" /> example in Kubernetes, by  adding the configuration property: <code>--conf spark.insightedge.space.name=&lt;space name&gt;</code>.</p>
         <p>For example, the Helm commands below will install the following stateful sets: <code>testmanager-insightedge-manager</code>, <code>testmanager-insightedge-zeppelin</code>, <code>testspace-demo-*\[i\]*</code></p>
         <p>The <MadCap:variable name="General.ProductNameIE" /> submit command will submit the SaveRDD example with the <code>testspace</code> and <code>testmanager</code> configuration parameters.</p><pre><code class="language-bash">$ helm install insightedge-manager --name testmanager
 
