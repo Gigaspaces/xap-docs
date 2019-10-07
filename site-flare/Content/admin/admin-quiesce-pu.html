@@ -86,7 +86,7 @@
                 </p>
                 <p>This command disables a running Processing Unit for maintenance.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu quiesce  myPu --description="start friday maintenance"
+                </p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu quiesce  myPu --description="start friday maintenance"
 </code></pre>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
@@ -184,7 +184,7 @@
                 </p>
                 <p>This command enables a quiesced Processing Unit.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu unquiesce  myPu
+                </p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu unquiesce  myPu
 </code></pre>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
@@ -269,7 +269,7 @@
                 </p>
                 <p>This command demotes a Space instance from a primary to a backup, with no downtime required.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap space demote-instance mySpace~1_1 --max-suspend-time=15s
+                </p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap space demote-instance mySpace~1_1 --max-suspend-time=15s
 </code></pre>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
@@ -445,7 +445,7 @@ mySpace.getSpaceSuspendTypeChanged().remove(myListener);
                 </p>
                 <p>This command moves a Processing Unit instance to another container. If container ID is not specified, the Processing Unit instance will be moved to any available container.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu relocate  myPu~1 container~1
+                </p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu relocate  myPu~1 container~1
 </code></pre>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
@@ -548,7 +548,7 @@ mySpace.getSpaceSuspendTypeChanged().remove(myListener);
                 </p>
                 <p>This command adds one instance to the specified Processing Unit (which must be stateless).</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu increment  myPu
+                </p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu increment  myPu
 </code></pre>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
@@ -624,7 +624,7 @@ mySpace.getSpaceSuspendTypeChanged().remove(myListener);
                 </p>
                 <p>This command removes one instance from the specified Processing Unit (which must be stateless).</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu decrement myPu~3
+                </p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu decrement myPu~3
 </code></pre>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>

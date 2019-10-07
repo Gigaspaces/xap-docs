@@ -1,65 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head>
-</head>
-<body>
-<h1>Uploading a Processing Unit</h1>
-<p><span class="tc-bold">To upload a Processing Unit to the Service Grid:</span>
-</p>
-<div class="easyui-tabs" plain="true" data-options="">
-    <div title="Command Line Interface" style="padding:10px">
-        <p><span class="tc-italic">Command:</span>
+    <head>
+    </head>
+    <body>
+        <h1>Uploading a Processing Unit</h1>
+        <p><span class="tc-bold">To upload a Processing Unit to the Service Grid:</span>
         </p>
-        <p><code>xap pu upload</code>
-        </p>
-        <p><span class="tc-italic">Description:</span>
-        </p>
-        <p>Upload a Processing Unit to the service grid.</p>
-        <p><span class="tc-italic">Parameters and Options:</span>
-        </p>
-        <table>
-            <thead>
-            <tr>
-                <th align="left">Item</th>
-                <th align="left">Name</th>
-                <th align="left">Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td align="left">Parameter</td>
-                <td align="left">file</td>
-                <td align="left">Path to the Processing Unit file (.jar or .zip).</td>
-            </tr>
-            <tr>
-                <td align="left">Option</td>
-                <td align="left">--url-only</td>
-                <td align="left">Return only the processing unit URL after uploading</td>
-            </tr>
-            </tbody>
-        </table>
-        <p><span class="tc-italic">Input Example:</span>
-        </p>
-        <p>This example upload a PU named <span class="tc-bold">myPu</span> the mypu.jar file.</p>
-        <pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/xap pu upload mypu.jar
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p><code>xap pu upload</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>Upload a Processing Unit to the service grid.</p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">file</td>
+                            <td align="left">Path to the Processing Unit file (.jar or .zip).</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Option</td>
+                            <td align="left">--url-only</td>
+                            <td align="left">Return only the processing unit URL after uploading</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-italic">Input Example:</span>
+                </p>
+                <p>This example upload a PU named <span class="tc-bold">myPu</span> the mypu.jar file.</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu upload mypu.jar
 </code></pre>
-    </div>
-    <div title="REST Manager API" style="padding:10px">
-        <p><span class="tc-italic">Path</span>
-        </p>
-        <p><code>PUT /pus/resources</code>
-        </p>
-        <p><span class="tc-italic">Description:</span>
-        </p>
-        <p>Upload a Processing Unit to the service grid.</p>
-        <p><span class="tc-italic">Example:</span>
-        </p>
-        <pre>
-                <code class="language-bash">
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>PUT /pus/resources</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>Upload a Processing Unit to the service grid.</p>
+                <p><span class="tc-italic">Example:</span>
+                </p><pre><code class="language-bash">
                     curl -X PUT --header 'Content-Type: multipart/form-data'
                     --header 'Accept: text/plain' {"type":"formData"} 'http://localhost:8090/v2/pus/resources'
                 </code></pre>
-    </div>
-</div>
-</body>
+            </div>
+        </div>
+    </body>
 </html>

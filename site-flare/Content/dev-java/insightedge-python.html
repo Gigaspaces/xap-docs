@@ -21,19 +21,19 @@
         <p>To start the command line shell, run the <code>./bin/insightedge-pyspark</code> script in the <MadCap:variable name="General.ProductNameIE" /> directory.</p>
         <p>For example, start the <MadCap:variable name="General.ProductNameIE" /> demo:</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Linux" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;/bin/insightedge demo
+            <div title="Linux" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/insightedge demo
 </code></pre>
             </div>
-            <div title="Windows" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;\bin\insightedge demo
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\bin\insightedge demo
 </code></pre>
             </div>
         </div>
         <p>Then start the command line shell:</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Linux" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME/insightedge/bin/insightedge-pyspark --master spark://127.0.0.1:7077
+            <div title="Linux" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/insightedge/bin/insightedge-pyspark --master spark://127.0.0.1:7077
 </code></pre>
             </div>
-            <div title="Windows" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;\insightedge\bin\insightedge-pyspark --master spark://127.0.0.1:7077
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\insightedge\bin\insightedge-pyspark --master spark://127.0.0.1:7077
 </code></pre>
             </div>
         </div>
@@ -79,13 +79,13 @@ spark = SparkSession.builder.config(conf=conf).getOrCreate()
 </code></pre>
             </div>
         </div>
-        <p>The complete source code is available at <code>&lt;XAP-HOME&gt;/insightedge/examples/python/sf_salaries.py</code>.</p>
+        <p>The complete source code is available at <code><MadCap:variable name="General.HomePath" />/insightedge/examples/python/sf_salaries.py</code>.</p>
         <p>The application can be submitted with the <code>insightedge-submit</code> script, for example:</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Linux" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;/insightedge/bin/insightedge-submit --master spark://127.0.0.1:7077 &lt;XAP-HOME&gt;/insightedge/examples/python/sf_salaries.py
+            <div title="Linux" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/insightedge/bin/insightedge-submit --master spark://127.0.0.1:7077 <MadCap:variable name="General.HomePath" />/insightedge/examples/python/sf_salaries.py
 </code></pre>
             </div>
-            <div title="Windows" style="padding:10px"><pre><code class="language-bash">&lt;XAP-HOME&gt;\insightedge\bin\insightedge-submit --master spark://127.0.0.1:7077 &lt;XAP-HOME&gt;\insightedge\examples\python\sf_salaries.py
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\insightedge\bin\insightedge-submit --master spark://127.0.0.1:7077 <MadCap:variable name="General.HomePath" />\insightedge\examples\python\sf_salaries.py
 </code></pre>
             </div>
         </div>

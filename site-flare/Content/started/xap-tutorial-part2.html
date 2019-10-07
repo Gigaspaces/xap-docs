@@ -59,7 +59,7 @@ The GSA is a process manager that can spawn and manage service grid processes (O
         <p>We want to deploy a data grid that has two primary partitions and one backup for each primary partition.
 Here are the gs and REST commands that you would execute to achieve this:</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="CLI" style="padding:10px"><pre><code class="language-bash">XAP-HOME\bin\gs.sh deploy-space  -cluster schema=partitioned total_members=2,1  xapTutorialSpace
+            <div title="CLI" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\bin\gs.sh deploy-space  -cluster schema=partitioned total_members=2,1  xapTutorialSpace
 </code></pre>
             </div>
             <div title="REST" style="padding:10px"><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 

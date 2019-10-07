@@ -12,10 +12,10 @@
         <h1><a name="configuration"></a>Configuration</h1>
         <p>The logging configuration is initialized using a configuration file that is read at startup. This configuration file is in the standard <code>java.util.Properties</code> format. It configures custom versions of both <code>java.util.logging.Handler</code> and <code>java.util.logging.Formatter</code>, and default levels for frequently used loggers (categories).</p>
         <h2><a name="default-configuration"></a>Default Configuration</h2>
-        <p>The default <MadCap:variable name="General.ProductNameXAP" /> logger configuration file is located under:</p><pre><code class="language-bash">&lt;XAP-HOME&gt;/config/log/xap_logging.properties
+        <p>The default <MadCap:variable name="General.ProductNameXAP" /> logger configuration file is located under:</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/config/log/xap_logging.properties
 </code></pre>
         <h2><a name="overriding-the-default-configuration"></a>Overriding the Default Configuration</h2>
-        <p>The configuration defined in the <code>xap_logging.properties</code> file may be overridden either by using system properties, or by providing an external configuration file with overrides. This external configuration file should be located in the classpath under:</p><pre><code class="language-bash">&lt;XAP-HOME&gt;/config/log/xap_logging_ext.properties
+        <p>The configuration defined in the <code>xap_logging.properties</code> file may be overridden either by using system properties, or by providing an external configuration file with overrides. This external configuration file should be located in the classpath under:</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/config/log/xap_logging_ext.properties
 </code></pre>
         <p>Any configuration that you want to override in the <code>xap_logging.properties</code> file, should appear in <code>xap_logging_ext.properties</code> with its new value. The same applies for system properties, for example:</p><pre><code class="language-bash">-Dcom.gigaspaces.exceptions.level=WARNING
 </code></pre>
