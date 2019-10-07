@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -47,7 +47,7 @@ By default it is left blank. It accepts a comma separated list of <code>host:por
         <p>For troubleshooting purposes you should verify that the services (spaces, GSC, GSM, processing units etc.) print correct settings for the locators while they initialize. You can turn on the relevant logging if required.</p>
         <h1><a name="unicast-port"></a>Unicast Port</h1>
         <p>To change the lookup service listening port use the <code>com.sun.jini.reggie.initialUnicastDiscoveryPort</code> system property. The default value is the one assigned to the <code>com.gs.multicast.discoveryPort</code>.</p>
-        <p>Set the <code>XAP_LOOKUP_LOCATORS</code> system property in <code>&lt;XAP Root&gt;\bin\setenv.bat/sh</code> to match the port number you defined (in this case, <code>host:1234</code>). That is required if you specify an explicit unicast/locators port, otherwise the service will use the default port if not set explicitly.</p>
+        <p>Set the <code>XAP_LOOKUP_LOCATORS</code> system property in <code><MadCap:variable name="General.HomePath" />\bin\setenv.bat/sh</code> to match the port number you defined (in this case, <code>host:1234</code>). That is required if you specify an explicit unicast/locators port, otherwise the service will use the default port if not set explicitly.</p>
         <div class="tc-admon-refer">
             <p>For more information, see the description of the <a href="network-lookup-service-configuration.html#multicast-settings">com.gs.multicast.discoveryPort</a> system property.</p>
         </div>

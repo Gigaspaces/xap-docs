@@ -73,8 +73,8 @@ gs-webui.bat
         <h2><a name="xap-runtime-environment"></a><MadCap:variable name="General.ProductNameXAP" /> Runtime Environment</h2>
         <p>To deploy the Web Management Console to the <MadCap:variable name="General.ProductNameXAP" /> <a href="the-runtime-environment.html">Runtime Environment</a>, point your deployment tool of choice (CLI, Admin API or the GigaSpaces Management Center) to the <code>&lt;product&gt;/tools/gs-webui/gs-webui.war</code> file and deploy it.</p>
         <p>In this case, the Web Management Console actually monitors the runtime environment on which it runs.</p>
-        <p>The following example shows how to do this using the <MadCap:variable name="General.CompanyName" /> CLI:</p><pre><code class="language-bash">&lt;XAP root&gt;/bin/gs.sh(bat} deploy -properties embed://web.port=80;web.context=/
-&lt;XAP root&gt;/tools/gs-webui/gs-webui.war
+        <p>The following example shows how to do this using the <MadCap:variable name="General.CompanyName" /> CLI:</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs.sh(bat} deploy -properties embed://web.port=80;web.context=/
+<MadCap:variable name="General.HomePath" />/tools/gs-webui/gs-webui.war
 </code></pre>
         <p>The above command deploys the Web Management Console to the <MadCap:variable name="General.ProductNameXAP" /> runtime environment, listening on port 80 with the root context path.</p>
         <div class="tc-admon-note">

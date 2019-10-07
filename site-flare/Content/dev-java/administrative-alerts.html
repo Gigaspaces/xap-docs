@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -69,7 +69,7 @@
             </tbody>
         </table>
         <h1><a name="static-configuration"></a>Static Configuration</h1>
-        <p>The static configuration for the predefined alerts mentioned above is defined in the <code>&lt;XAP Root&gt;/config/alerts/alerts.xml</code> file. It includes the default settings for each alert.</p>
+        <p>The static configuration for the predefined alerts mentioned above is defined in the <code><MadCap:variable name="General.HomePath" />/config/alerts/alerts.xml</code> file. It includes the default settings for each alert.</p>
         <p>For example, the following is a snippet that represents the configuration of the <span class="tc-bold">CPU Utilization Alert</span>.
 The alert is configured with a high threshold of 80% and a low threshold of 60% and a   period of 1 minute. An alert will be raised if CPU utilization in a certain host in the GigaSpaces cluster crosses 80% for a period of 1 minute. A raised alert will be resolved if the CPU utilization goes below 60% for 1 minute.</p><pre><code class="language-xml">    &lt;alert class="org.openspaces.admin.alert.config.CpuUtilizationAlertConfiguration"
            enabled="true"&gt;

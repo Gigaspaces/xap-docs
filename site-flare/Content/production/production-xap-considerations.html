@@ -257,7 +257,7 @@ In order to close LRMI threads when closing application, use:LRMIManager.shutdow
         <h2><a name="gs-ui-libraries"></a>GigaSpaces Management Center Libraries</h2>
         <p>It is recommended to include all space classes and their dependency classes as part of the GS-UI CLASSPATH . This ensures that you can query the data via the GigaSpaces Management Center. To set the GigaSpaces Management Center classpath, set the <code>POST_CLASSPATH</code> variable prior to calling the GS-UI script to have the application JARs locations.</p>
         <div class="tc-admon-tip">
-            <p>To avoid having to load the same library into each PU instance classloader running within the GSC, you should place common libraries (such as JDBC driver, logging libraries, Hibernate libraries and their dependencies) in the <code>&lt;gigaspaces-xap root&gt;\lib\optional\pu-common</code> folder. You can specify the location of this folder using the <code>com.gs.pu-common</code> system property.</p>
+            <p>To avoid having to load the same library into each PU instance classloader running within the GSC, you should place common libraries (such as JDBC driver, logging libraries, Hibernate libraries and their dependencies) in the <code><MadCap:variable name="General.HomePath" />\lib\optional\pu-common</code> folder. You can specify the location of this folder using the <code>com.gs.pu-common</code> system property.</p>
         </div>
         <h1><a name="space-memory-management"></a>Space Memory Management</h1>
         <p>The Space supports two <a href="../dev-java/memory-management-overview.html">memory management</a> modes:</p>

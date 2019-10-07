@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -14,7 +14,7 @@
 </code></pre>
         <h1><a name="security-properties-file"></a>Security Properties File</h1>
         <p>The security properties file is used to configure the <code>SecurityManager</code>, that is responsible for the authentication and authorization process.
-The <code>security.properties</code> file is common to all components and is usually located under <code>&lt;XAP root&gt;/config/security/security.properties</code>.</p>
+The <code>security.properties</code> file is common to all components and is usually located under <code><MadCap:variable name="General.HomePath" />/config/security/security.properties</code>.</p>
         <p>To only affect the Web Management Console, use the <code>webui-security.properties</code> instead.</p>
         <p>The configuration file can be located anywhere in the classpath or in the classpath under <code>config/security</code>.</p>
         <p>Alternatively, a system property can be set to indicate the location of the properties file:</p><pre><code class="language-java">-Dcom.gs.security.properties-file = my-security.properties

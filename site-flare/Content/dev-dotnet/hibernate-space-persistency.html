@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -7,7 +7,7 @@
         <p><MadCap:variable name="General.ProductNameXAP" /> comes with a built in implementation of <a href="space-persistency-overview.html">Space Persistency</a> APIs for NHibernate. This implementation is an extension of the <code>AbstractExternalDataSource</code> class. The implementation allows a custom objects persistency using NHibernate mappings.</p>
         <p>The <code>NHibernate Space Persistency Implementation</code> is used both with the <a href="direct-persistency.html">Synchronous</a> and the <a href="asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency</a> modes.</p>
         <div class="tc-admon-note">
-            <p>The NHibernate External Data Source is provided as a reference implementation under <code>&lt;XAP Root&gt;\Practices\ExternalDataSource\NHibernate</code>. You must build the plugin before using it by running the <code>build.bat</code> script.</p>
+            <p>The NHibernate External Data Source is provided as a reference implementation under <code><MadCap:variable name="General.HomePath" />\Practices\ExternalDataSource\NHibernate</code>. You must build the plugin before using it by running the <code>build.bat</code> script.</p>
         </div>
         <h1><a name="configuration"></a>Configuration</h1>
         <p>The external data source configuration is done via the embedded space configuration within <code>pu.config</code> - Add an <code>ExternalDataSource</code> tag and set the <code>Type</code> to the class implementing the external data source (in this case - <code>NHibernateExternalDataSource</code>). For example:</p><pre><code class="language-xml">&lt;ProcessingUnit&gt;

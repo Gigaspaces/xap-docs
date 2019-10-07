@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -6,7 +6,7 @@
         <h1>Hello World Example</h1>
         <p>If you are new to the <span class="tc-bold">Hello World</span> example, we suggest to first review the <a href="http://www.youtube.com/watch?v=I2s8jg_Gufs&amp;feature=relmfu" target="_blank">Hello World screencast</a>. With this page we provide a short overview of the example, and get you started with applying security aspects to it.</p>
         <div class="tc-admon-note">
-            <p>The example distribution can be found under <code>&lt;XAP root&gt;/examples/helloworld</code>.</p>
+            <p>The example distribution can be found under <code><MadCap:variable name="General.HomePath" />/examples/helloworld</code>.</p>
         </div>
         <h1><a name="overview"></a>Overview</h1>
         <p>We have a processor bean that will process <code>HelloObjects</code> - it works with a polling container to talk to with a Space, all inside of a <code>Helloworld</code> Processing Unit. External to that process is the <code>Feeder</code> application, which gets a remote proxy to the Space and uses it to write objects (#1). The <code>HelloObject</code> written to the Space becomes interesting to the polling container. The polling container will take it out of the Space (#2), hand it to the <code>HelloWorld</code> processor bean for processing, and then write the results back to the Space (#3). In this case a <code>ProcessedHelloObject</code>. Later, our feeder application can read the results (#4) and print them out to the screen.</p>

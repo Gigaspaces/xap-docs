@@ -78,9 +78,9 @@ A Processing Unit Container which runs within a Grid Service Container. It enabl
             <p>For more information, see the <a href="../admin/the-sla-overview.html">SLA Overview</a> page.</p>
         </div>
         <h1><a name="deployment"></a>Deployment</h1>
-        <p>When deploying the PU to the <MadCap:variable name="General.ProductNameXAP" /> Service Grid, the PU is uploaded to the <MadCap:variable name="General.ProductNameXAP" /> Manager (GSM) and extracted to the deploy directory of the local <MadCap:variable name="General.ProductNameXAP" /> installation (located by default under &lt;XAP Root&gt;\deploy).
+        <p>When deploying the PU to the <MadCap:variable name="General.ProductNameXAP" /> Service Grid, the PU is uploaded to the <MadCap:variable name="General.ProductNameXAP" /> Manager (GSM) and extracted to the deploy directory of the local <MadCap:variable name="General.ProductNameXAP" /> installation (located by default under <MadCap:variable name="General.HomePath" />\deploy).
 Once extracted, the GSM processes the deployment descriptor and based on that provisions PU instances to the running <MadCap:variable name="General.ProductNameXAP" /> containers.</p>
-        <p>Each GSC to which a certain instance was provisioned, downloads the PU from the GSM, extracts it to its local working directory (located by default under &lt;XAP Root&gt;\work\deployed-processing-units) and starts the PU instance.</p>
+        <p>Each GSC to which a certain instance was provisioned, downloads the PU from the GSM, extracts it to its local working directory (located by default under <MadCap:variable name="General.HomePath" />\work\deployed-processing-units) and starts the PU instance.</p>
         <div class="tc-admon-tip">
             <p>To build directly to the deploy folder,  change the PU project output directory to <code>GS_HOME\deploy\[pu-name\]</code>, since this is the default path used by the GUI and the command line interface will find the PU's to deploy under this file structure.</p>
         </div>

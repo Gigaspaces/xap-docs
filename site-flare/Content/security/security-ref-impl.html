@@ -1,31 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Reference Implementation</h1>
-  
-
-<p>The reference implementation uses MongoDB as the storage for the UserDetails.
+    <head>
+    </head>
+    <body>
+        <h1>Reference Implementation</h1>
+        <p>The reference implementation uses MongoDB as the storage for the UserDetails.
 It uses Morphia to abstract the UserDetailsDAO that is stored.</p>
-
-<h2><a name="security-properties-file"></a>Security Properties file</h2>
-
-<p>Create a <code>security.properties file</code> at the default location <code>&lt;XAP root&gt;/config/security/security.properties</code>
-It should include a SecurityManager implementation class and other properties configurable by the implementation.</p>
-
-<pre><code class="language-java">com.gs.security.security-manager.class = com.mycompany.MyCustomSecurityManager
+        <h2><a name="security-properties-file"></a>Security Properties file</h2>
+        <p>Create a <code>security.properties file</code> at the default location <code><MadCap:variable name="General.HomePath" />/config/security/security.properties</code>
+It should include a SecurityManager implementation class and other properties configurable by the implementation.</p><pre><code class="language-java">com.gs.security.security-manager.class = com.mycompany.MyCustomSecurityManager
 com.mycompany.mongodb.host = localhost
 com.mycompany.mongodb.port = 27017
 com.mycompany.mongodb.databsebName = myDB
 </code></pre>
-
-<h2><a name="implementing-securitymanager"></a>Implementing SecurityManager</h2>
-
-<p>The implementation utilizes the properties file to configure the connection to MongoDB.
+        <h2><a name="implementing-securitymanager"></a>Implementing SecurityManager</h2>
+        <p>The implementation utilizes the properties file to configure the connection to MongoDB.
 Calls to <code>authenticate</code> are triggered once per user login operation. The authentication
-is done against the user details stored in the DB.</p>
-
-<pre><code class="language-java">public static class MyCustomSecurityManager implements SecurityManager {
+is done against the user details stored in the DB.</p><pre><code class="language-java">public static class MyCustomSecurityManager implements SecurityManager {
 
     private MongoClient mongo;
     private UserDetailsDAO userDetailsDAO;
@@ -78,33 +69,18 @@ is done against the user details stored in the DB.</p>
     }
 }
 </code></pre>
-
-<h2><a name="packaging-and-classpath"></a>Packaging and Classpath</h2>
-
-<p>The most common scenario is for all services to share the <span class="tc-bold">same</span> custom security. This is easily accomplished by placing the custom implementation classes in the <code>lib/optional/security</code> directory.</p>
-
-<div class="tc-admon-note">
-  
-  <p>You can use a different directory by configuring the <code>com.gigaspaces.lib.opt.security</code> system property.</p>
-</div>
-
-<pre><code class="language-java">&lt;XAP root&gt;/lib/optional/security/my-custom-security.jar
+        <h2><a name="packaging-and-classpath"></a>Packaging and Classpath</h2>
+        <p>The most common scenario is for all services to share the <span class="tc-bold">same</span> custom security. This is easily accomplished by placing the custom implementation classes in the <code>lib/optional/security</code> directory.</p>
+        <div class="tc-admon-note">
+            <p>You can use a different directory by configuring the <code>com.gigaspaces.lib.opt.security</code> system property.</p>
+        </div><pre><code class="language-java"><MadCap:variable name="General.HomePath" />/lib/optional/security/my-custom-security.jar
 </code></pre>
-
-<p>Processing units may share a custom security implementation. In this case, the custom security jar can be placed under <code>pu-common</code>.</p>
-
-<pre><code class="language-java">&lt;XAP root&gt;/lib/optional/pu-common/my-pu-custom-security.jar
+        <p>Processing units may share a custom security implementation. In this case, the custom security jar can be placed under <code>pu-common</code>.</p><pre><code class="language-java"><MadCap:variable name="General.HomePath" />/lib/optional/pu-common/my-pu-custom-security.jar
 </code></pre>
-
-<p>If each processing unit has its <span class="tc-bold">own</span> custom security implementation, the custom security jar can be part of the processing unit distribution.</p>
-
-<pre><code class="language-java">&lt;XAP root&gt;/deploy/hello-processor/lib/my-processor-custom-security.jar
+        <p>If each processing unit has its <span class="tc-bold">own</span> custom security implementation, the custom security jar can be part of the processing unit distribution.</p><pre><code class="language-java"><MadCap:variable name="General.HomePath" />/deploy/hello-processor/lib/my-processor-custom-security.jar
 </code></pre>
-
-<div class="tc-admon-note">
-  
-  <p>It is recommended that the custom security jar should only contain security-related classes.</p>
-</div>
-
-</body>
+        <div class="tc-admon-note">
+            <p>It is recommended that the custom security jar should only contain security-related classes.</p>
+        </div>
+    </body>
 </html>

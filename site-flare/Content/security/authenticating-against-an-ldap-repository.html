@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -52,7 +52,7 @@ userPassword: koala
 &lt;/bean&gt;
 </code></pre>
         <div class="tc-admon-note">
-            <p>An LDAP Spring Security configuration file can be found under &lt;XAP ROOT&gt;/config/security/ldap-security-config.xml.</p>
+            <p>An LDAP Spring Security configuration file can be found under <MadCap:variable name="General.HomePath" />/config/security/ldap-security-config.xml.</p>
         </div>
         <h2><a name="authenticating-with-ldap-binding"></a>Authenticating with LDAP Binding</h2>
         <p>Spring Security comes with an <code>LdapAuthenticator</code> implementation called <code>BindAuthenticator</code>. <code>Bindauthenticator</code> uses an LDAP bind operator to bind as a user to the LDAP server. This approach relies on the LDAP server to authenticate the user's credentials.</p><pre><code class="language-xml">&lt;bean id="authenticator"

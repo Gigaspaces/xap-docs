@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -6,7 +6,7 @@
         <h1>Web Management Console</h1>
         <p>The Web Management Console is a web application that enables users to quickly understand the state of a running data grid cluster and monitor the running components, such as the physical hosts, JVMs and deployed Processing Units.</p>
         <p>This user interface complements the GigaSpaces Management Center and provides a lightweight alternative for monitoring a running cluster, without having to install the <MadCap:variable name="General.ProductNameXAP" /> runtime and run the standalone Java-based user interface.</p>
-        <p>The Web Management Console application is located under <code>XAP root/tools/gs-webui</code>. This directory contains the web application itself (in the form of a standard JEE .WAR file), and a launcher library and shell scripts used to start it in standalone mode (see below).</p>
+        <p>The Web Management Console application is located under <code><MadCap:variable name="General.HomePath" />/tools/gs-webui</code>. This directory contains the web application itself (in the form of a standard JEE .WAR file), and a launcher library and shell scripts used to start it in standalone mode (see below).</p>
         <h1><a name="starting-the-web-management-console-on-a-local-machine"></a>Starting the Web Management Console on a Local Machine</h1>
         <p>When you first start using <MadCap:variable name="General.ProductNameIE" /> or <MadCap:variable name="General.ProductNameXAP" />, you may prefer to run the Web Management Console on your local machine instead of on a web server. Simply click the <code>gs-webui.sh(bat)</code> script to start a Jetty web container with the Web Management Console application running within it. After the user interface starts, there's no need to deploy or perform any additional steps.</p>
         <div class="tc-admon-note">
@@ -65,10 +65,10 @@ Lookup groups and Lookup Locators can be configured in the configuration files d
         <h1><a name="deploying-the-web-application"></a>Deploying the Web Application</h1>
         <p>When you reach the stage of a proper deployment, or are preparing to move to production, you can deploy the Web Management Console as described below.</p>
         <h2><a name="xap-runtime-environment"></a><MadCap:variable name="General.ProductNameXAP" /> Runtime Environment</h2>
-        <p>To deploy the Web Management Console to the <MadCap:variable name="General.ProductNameXAP" /> <a href="the-runtime-environment.html">Runtime Environment</a>, point your deployment tool of choice (CLI, Admin API or the GigaSpaces Management Center) to the <code>&lt;XAP root&gt;/tools/gs-webui/gs-webui.war</code> file and deploy it.</p>
+        <p>To deploy the Web Management Console to the <MadCap:variable name="General.ProductNameXAP" /> <a href="the-runtime-environment.html">Runtime Environment</a>, point your deployment tool of choice (CLI, Admin API or the GigaSpaces Management Center) to the <code><MadCap:variable name="General.HomePath" />/tools/gs-webui/gs-webui.war</code> file and deploy it.</p>
         <p>In this case, the Web Management Console actually monitors the runtime environment on which it runs.</p>
-        <p>The following example shows how to do this using the <MadCap:variable name="General.ProductNameXAP" /> CLI:</p><pre><code class="language-bash">&lt;XAP root&gt;/bin/gs.sh(bat} deploy -properties embed://web.port=80;web.context=/
-&lt;XAP root&gt;/tools/gs-webui/gs-webui.war
+        <p>The following example shows how to do this using the <MadCap:variable name="General.ProductNameXAP" /> CLI:</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs.sh(bat} deploy -properties embed://web.port=80;web.context=/
+<MadCap:variable name="General.HomePath" />/tools/gs-webui/gs-webui.war
 </code></pre>
         <p>The above command deploys the Web Management Console to the <MadCap:variable name="General.ProductNameXAP" /> runtime environment, listening on port 80 with the root context path.</p>
         <div class="tc-admon-note">
@@ -79,14 +79,14 @@ Lookup groups and Lookup Locators can be configured in the configuration files d
         <div class="tc-admon-note">
             <p>When deploying to a third-party web container like Apache Tomcat, you must repackage the <code>xap-webui-[version-build].war</code> file and add the following .JAR files to the <code>WEB-INF/lib</code> directory of the <code>xap-webui-[version-build].war</code> file:</p>
             <ol>
-                <li><code>.jar</code> files located under <code>&lt;XAP root&gt;/lib/required</code> <br /></li>
-                <li><code>&lt;XAP root&gt;/lib/required/optional/spring/spring-web-x.x.x.RELEASE.jar</code>
+                <li><code>.jar</code> files located under <code><MadCap:variable name="General.HomePath" />/lib/required</code> <br /></li>
+                <li><code><MadCap:variable name="General.HomePath" />/lib/required/optional/spring/spring-web-x.x.x.RELEASE.jar</code>
                     <br />
                 </li>
-                <li><code>&lt;XAP root&gt;/lib/platform/commons/commons-collections-x.x.x.jar</code>
+                <li><code><MadCap:variable name="General.HomePath" />/lib/platform/commons/commons-collections-x.x.x.jar</code>
                     <br />
                 </li>
-                <li><code>&lt;XAP root&gt;/lib/optional/spring/spring-webmvc-4.1.1.RELEASE.jar</code>
+                <li><code><MadCap:variable name="General.HomePath" />/lib/optional/spring/spring-webmvc-4.1.1.RELEASE.jar</code>
                     <br />
                 </li>
             </ol>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -9,7 +9,7 @@
 One such custom security implementation is the <a href="spring-security-bridge.html">Spring Security Bridge</a>.</p>
         <h1><a name="getting-started"></a>Getting Started</h1>
         <p>The default security file-based directory is first created when you try to manage the security directory (either using the UI or API).</p>
-        <p>The default file is created under <code>&lt;XAP root&gt;/security/gs-directory.fsm</code>.
+        <p>The default file is created under <code><MadCap:variable name="General.HomePath" />/security/gs-directory.fsm</code>.
 The <code>.fsm</code> is an abbreviation of File Security Manager.</p>
         <p>When the file doesn't exist, we create a new file and an <code>admin/admin</code> user is added with both <span class="tc-bold">Manage Users</span> and <span class="tc-bold">Manage Roles</span> privileges. With this <code>admin</code> user you can start to manage the roles and users. The <code>admin</code> user has no privileges to perform any other operation. Of course, it can be deleted, and replaced with your own administrator.</p>
         <p>The file can be changed while services are up and running. Changes to the file are monitored (see <code>FileService.lastModified()</code> API), which triggers a refresh for fetching the updated file contents. The refresh rate is platform dependent. Changes don't affect open sessions, only new established sessions will be aware of the change.</p>

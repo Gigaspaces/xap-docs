@@ -21,7 +21,7 @@
 </code></pre>
         <p>Consider Edward, a Box-Office Employee, which has privileges to list all movies and their available seats, and to reserve a seat. Edward is granted <code>READ</code> privileges for class <code>eg.cinema.Movie</code> and for class <code>eg.cinema.Seat</code>, and <code>WRITE</code> privileges to update a <code>eg.cinema.Seat</code> as reserved. Of course, this can get quite cumbersome for production use.</p>
         <div class="tc-admon-note">
-            <p>This Spring Security configuration file can be found under <code>&lt;XAP root&gt;/config/security/in-memory-security-config.xml</code>.</p>
+            <p>This Spring Security configuration file can be found under <code><MadCap:variable name="General.HomePath" />/config/security/in-memory-security-config.xml</code>.</p>
         </div>
         <h1><a name="declaring-a-jdbc-dao"></a>Declaring a JDBC DAO</h1>
         <p>Spring Security also includes <code>JdbcDaoImpl</code>, a <code>UserDetailsService</code> that can obtain authentication information from a JDBC data source. It can be declared in the Spring configuration file as follows:</p><pre><code class="language-xml">&lt;bean id="daoUserDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl"&gt;
@@ -88,7 +88,7 @@ create table group_members (
 &lt;/bean&gt;
 </code></pre>
         <div class="tc-admon-note">
-            <p>This Spring Security configuration file can be found under <code>&lt;XAP root&gt;/config/security/jdbc-security-config.xml</code>.</p>
+            <p>This Spring Security configuration file can be found under <code><MadCap:variable name="General.HomePath" />/config/security/jdbc-security-config.xml</code>.</p>
         </div>
         <h1><a name="working-with-encrypted-passwords"></a>Working with Encrypted Passwords</h1>
         <p>Spring Security's <code>PasswordEncoder</code> interface is used to support the use of passwords which are encoded in some way in persistent storage. This will normally mean that the passwords are "hashed" using a digest algorithm such as MD5 or SHA.</p>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -55,7 +55,7 @@
             <p>By default, Jini is configured to support multicast over multiple (all) interface cards. The only time you need to change this, is if you want to limit these interface cards.</p>
         </div>
         <p>Jini clients perform lookup discovery by either unicast and/or multicast. By default, the configuration is set to multicast. Multicast discovery is configured to use all the network interfaces. To limit the use to a specific network interface, the relevant Jini service configuration file needs to be changed.</p>
-        <p>The service configuration files are located under <code>&lt;XAP Root&gt;\config\services\</code>. By default, <code>&lt;XAP Root&gt;\config\services\services.config</code> is used to configure Reggie, Mahalo and other services.</p>
+        <p>The service configuration files are located under <code><MadCap:variable name="General.HomePath" />\config\services\</code>. By default, <code><MadCap:variable name="General.HomePath" />\config\services\services.config</code> is used to configure Reggie, Mahalo and other services.</p>
         <p>The multicast network interface specifies the network interfaces that send and receive multicast request and announcement packets as part of multicast discovery.</p>
         <p>If no value is specified for this Entry, then all network interfaces of the host are used (default). If the Entry value is <code>null</code>, then the interface to which the operating system defaults is used. If the Entry value is a zero-length array, then <span class="tc-bold">multicast discovery is disabled</span>.</p>
         <p>To limit the network interface to a specific set of network cards, the <code>multicastInterfaces</code> value should be an array of <code>NetworkInterface</code> instances.</p>
@@ -122,7 +122,7 @@ Otherwise, to use <code>eth0/192.169.80.145</code> as the unicast discovery chan
             <p>You can set the <code>jini://</code> and/or <code>rmi://</code> protocols in the <code>com.gs.cluster.url-protocol-prefix</code> system property.</p>
         </div><a name="5"></a>
         <h1><a name="testing-your-configuration"></a>Testing Your Configuration</h1>
-        <p>The replicated example, located under <code>&lt;XAP Root&gt;\examples\Advanced\Data_Grid\replicated</code>, can be used to test the above configuration. The example interacts using the <code>setenv</code> and <code>space-instance</code> scripts.</p>
+        <p>The replicated example, located under <code><MadCap:variable name="General.HomePath" />\examples\Advanced\Data_Grid\replicated</code>, can be used to test the above configuration. The example interacts using the <code>setenv</code> and <code>space-instance</code> scripts.</p>
         <p>The <code>XAP_NIC_ADDRESS</code> should be set corresponding at each machine's network interface card.</p>
         <p>For the purpose of the example, <code>node1</code> and <code>node2</code> are loaded at <code>Lab16</code> <code>.gigaspaces.com</code> and <code>Lab17</code> <code>.gigaspaces.com</code> respectively. Both have a network card configured for <code>eth0</code> (spanning IPs <code>192.168.80.145...147</code>). Both nodes should be configured with the corresponding <code>XAP_NIC_ADDRESS</code> property of their own network interface IP address for <code>eth0</code>.</p>
         <div class="tc-align-center">
@@ -154,7 +154,7 @@ URL_PREFIX=-Dcom.gs.cluster.url-protocol-prefix=jini://${XAP_NIC_ADDRESS}/
 -classpath "${APPEND_TO_CLASSPATH_ARG}${CPS}$
 {XAP_HOME}${CPS}${XAP_HOME}/lib/required/xap-datagrid.jar" com.j_spaces.core.client.SpaceFinder "${SPACE_URL}"
 </code></pre>
-        <p>The <code>&lt;XAP Root&gt;\bin\start-node1</code> and the <code>&lt;XAP Root&gt;\bin\start-node2</code> scripts should set <code>XAP_NIC_ADDRESS</code> as mentioned above.</p>
+        <p>The <code><MadCap:variable name="General.HomePath" />\bin\start-node1</code> and the <code><MadCap:variable name="General.HomePath" />\bin\start-node2</code> scripts should set <code>XAP_NIC_ADDRESS</code> as mentioned above.</p>
         <p>Remember that the <code>XAP_NIC_ADDRESS</code> variable is set prior to the call to <code>setExampleEnv</code>, thus overriding the <code>XAP_NIC_ADDRESS</code> set in the <code>setenv</code> script.</p><pre><code class="language-bash">XAP_NIC_ADDRESS=192.168.80.146; export XAP_NIC_ADDRESS
 . setExampleEnv.sh
 </code></pre><a name="6"></a>

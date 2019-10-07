@@ -373,7 +373,7 @@
         <h1><a name="troubleshooting"></a>Troubleshooting</h1>
         <p>You can troubleshoot the space activity using LRMI logging. You can turn on LRMI logging in the following ways:</p>
         <h2><a name="offline-mode-via-xap-logging-properties"></a>Offline Mode via xap_logging.properties</h2>
-        <p>Step 1: Open <code>&lt;XAP Root&gt;/config/log/xap_logging.properties</code></p>
+        <p>Step 1: Open <code><MadCap:variable name="General.HomePath" />/config/log/xap_logging.properties</code></p>
         <p>Step 2: Locate the following line:</p><pre><code class="language-bash">com.gigaspaces.lrmi.level = INFO
 </code></pre>
         <p>Step 3:
@@ -387,7 +387,7 @@ Set debug logger granularity level:</p>
         <p>Step 4:
 Save and close the <code>xap_logging.properties</code> file.</p>
         <p>Step 5:
-Start a space by deploying a data-grid PU or a custom PU with a space. You may also start a space via <code>&lt;XAP Root&gt;/bin/space-instance</code>.</p>
+Start a space by deploying a data-grid PU or a custom PU with a space. You may also start a space via <code><MadCap:variable name="General.HomePath" />/bin/space-instance</code>.</p>
         <p>LRMI communication transport protocol debug messages are displayed.</p>
         <h2><a name="during-runtime-using-jmx"></a>During Runtime – Using JMX</h2>
         <p>Step 1: Start <code>space-instance</code> using the following Java system properties:</p><pre><code class="language-bash">-Dcom.sun.management.jmxremote.port=5001
@@ -409,7 +409,7 @@ Start a space by deploying a data-grid PU or a custom PU with a space. You may a
         <p>
             <img src="../Resources/Static/attachment_files/lrmi_log1.JPG" alt="lrmi_log1.JPG" class="tc-picture80" />
         </p>
-        <p>To test LRMI logging, you can run the <code>space ping</code> utility using the following command. See <a href="space-gigaspaces-cli.html#ping">space ping</a> for more information on this utility.:</p><pre><code class="language-bash">&lt;XAP Root&gt;/bin/gs.bat space ping mySpace_container mySpace -i 1
+        <p>To test LRMI logging, you can run the <code>space ping</code> utility using the following command. See <a href="space-gigaspaces-cli.html#ping">space ping</a> for more information on this utility.:</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs.bat space ping mySpace_container mySpace -i 1
 </code></pre>
         <p>
             <img src="../Resources/Static/attachment_files/lrmi_ping.JPG" alt="lrmi_ping.JPG" class="tc-picture80" />
