@@ -315,10 +315,10 @@ public class PaymentProcessor {
         <p>Now we have all the pieces that are necessary to create the JAR file for the PU. After we have created the JAR file its time to deploy the PU onto the data grid. Again, you can do this in three ways; by script, Java code or via the Web Managment Console. In our example will use the scripts to deploy the PU.</p>
         <p>First we start the XAP Agent (GSA) that will create our data grid on this machine:</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash">XAP_HOME\bin\gs-agent.bat
+            <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\bin\gs-agent.bat
 </code></pre>
             </div>
-            <div title="Linux CLI" style="padding:10px"><pre><code class="language-bash">XAP_HOME/bin/gs-agent.sh
+            <div title="Linux CLI" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs-agent.sh
 </code></pre>
             </div>
             <div title="REST" style="padding:10px"><pre><code class="language-bash"># start the agent with the REST interface

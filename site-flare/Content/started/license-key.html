@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -7,13 +7,13 @@
         <p>If you are using the <MadCap:variable name="General.ProductNameXAP" /> or <MadCap:variable name="General.ProductNameIE" /> open source editions, you don't need a product license. Simply download and unzip the software, and begin by exploring the examples or building your own application.</p>
         <p>The <MadCap:variable name="General.ProductNameXAPPrem" />, <MadCap:variable name="General.ProductNameXAPEnt" />, and <MadCap:variable name="General.ProductNameIE" /> Enterprise editions each require a valid license to start. This section explains how to set up the initial 30-day evaluation license, and also provides additional related information.</p>
         <h1><a name="applying-the-license"></a>Applying the License</h1>
-        <p>After you download an <MadCap:variable name="General.ProductNameIE" /> or <MadCap:variable name="General.ProductNameXAP" /> commercial edition from the <a href="http://www.gigaspaces.com/download-center" target="_blank">Download Center</a>, you will receive an email with a license key for the evaluation period. To start the evaluation period, open the license file located in <code>&lt;XAP_HOME&gt;/xap-license.txt</code> with any text editor, and copy the license key from the email to a blank line in the file. For example:</p><pre><code class="language-bash"># License can also be set via the XAP_LICENSE environment variable or com.gs.licensekey system property
+        <p>After you download an <MadCap:variable name="General.ProductNameIE" /> or <MadCap:variable name="General.ProductNameXAP" /> commercial edition from the <a href="http://www.gigaspaces.com/download-center" target="_blank">Download Center</a>, you will receive an email with a license key for the evaluation period. To start the evaluation period, open the license file located in <code><MadCap:variable name="General.HomePath" />/xap-license.txt</code> with any text editor, and copy the license key from the email to a blank line in the file. For example:</p><pre><code class="language-bash"># License can also be set via the XAP_LICENSE environment variable or com.gs.licensekey system property
 Product=InsightEdge;Version=[%=Versions.xap-version%];Type=ENTERPRISE;Customer=yourname@yourcompany.com;Expiration=2022-Dec-31;Hash=PNXrPIPANOOddPNQFdQQ
 </code></pre>
         <p>If you're using <a href="https://hub.docker.com/u/gigaspaces/">Docker images</a> for evaluation, add the <code>-e XAP_LICENSE=...</code> option to the Docker run command, using the license key in the email.</p>
         <p>The same evaluation license is used for both <MadCap:variable name="General.ProductNameIE" /> and <MadCap:variable name="General.ProductNameXAP" /> downloaders, enabling you to evaluate the full <MadCap:variable name="General.ProductNameIE" /> Enterprise edition, which contains all of the available features for all commercial editions.</p>
         <div class="tc-admon-note">
-            <p>If you are using XAP.NET, the <code>xap-license.txt</code> file is located at <code>&lt;XAP_HOME&gt;\Runtime\xap-license.txt</code>.<br />If you are using more than one machine for your evaluation, you must apply the license to each machine.</p>
+            <p>If you are using XAP.NET, the <code>xap-license.txt</code> file is located at <code><MadCap:variable name="General.HomePath" />\Runtime\xap-license.txt</code>.<br />If you are using more than one machine for your evaluation, you must apply the license to each machine.</p>
         </div>
         <p>After you have applied the license, you can access all of the available features for the duration of the 30-day evaluation period without any limitations. When the evaluation license expires, the next time you restart the data grid you will only have access to the open-source functionality. Contact GigaSpaces support to purchase a license for the edition that meets your needs. After the new license is applied, the relevant functionality will once again be available.</p>
         <div class="tc-admon-note">
