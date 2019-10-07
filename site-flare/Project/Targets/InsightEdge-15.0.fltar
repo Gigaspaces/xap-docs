@@ -86,6 +86,8 @@
       Name="Versions/java-version">11</Variable>
     <Variable
       Name="Versions/hibernate-short">5</Variable>
+    <Variable
+      Name="General/EnvVariablePrefix">GS</Variable>
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
 </CatapultTarget>

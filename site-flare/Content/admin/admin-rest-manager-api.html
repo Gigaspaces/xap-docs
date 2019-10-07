@@ -58,7 +58,7 @@ Currently you cannot delete/replace a JAR file if a deployed Processing Unit is 
         <p>The REST component is part of the <MadCap:variable name="General.ProductNameXAP" /> Manager, and inherits the <MadCap:variable name="General.ProductNameXAP" /> Manager security configuration. As the REST uses an HTTP protocol, it is best to configure SSL to allow for HTTPS (secure access).</p>
         <h2><a name="enabling-security"></a>Enabling Security</h2>
         <p>The REST Manager API allows for secured access and operations when the security <code>enabled</code> property is set.
-This property should be configured using the <code MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</code><code MadCap:conditions="Version.14-5-born"> XAP_OPTIONS_EXT</code> in the <code>setenv</code> script, and is applied to all <MadCap:variable name="General.ProductNameXAP" /> <a href="../security/securing-the-grid-services.html">Grid Components</a>.</p>
+This property should be configured using the <code MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</code><code MadCap:conditions="Version.14-5-born"><MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT</code> in the <code>setenv</code> script, and is applied to all <MadCap:variable name="General.ProductNameXAP" /> <a href="../security/securing-the-grid-services.html">Grid Components</a>.</p>
         <p>The property:</p><pre><code class="language-java">-Dcom.gs.security.enabled=true
 </code></pre>
         <p>By default, to get you up and running, if nothing was configured the fallback security implementation
