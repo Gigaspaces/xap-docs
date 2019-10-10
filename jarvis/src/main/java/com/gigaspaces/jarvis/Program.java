@@ -54,6 +54,7 @@ public class Program {
 			config.getOutputPath().toPath().resolve("product_overview"),
 			config.getOutputPath().toPath().resolve("release_notes"),
 			config.getOutputPath().toPath().resolve("tutorials"),
+			config.getOutputPath().toPath().resolve("sbp"),
 		};
 		
         String element = "    <meta name=\"robots\" content=\"noindex\" />";
