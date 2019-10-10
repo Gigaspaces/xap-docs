@@ -50,7 +50,7 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
         <p>In a production environment, you'll probably want a cluster of Managers on multiple hosts to ensure high availability. You'll need 3 machines (an odd number is required to ensure a quorum during network partitions). For example, suppose you’ve selected machines alpha, bravo and charlie to host the managers:</p>
         <ol>
             <li>
-                <p>Edit the <code><MadCap:variable name="General.HomePath" />/bin/setenv-overrides.sh/bat</code> script and set <code>XAP_MANAGER_SERVERS</code> to the list of hosts. For example: <code>export XAP_MANAGER_SERVERS=alpha,bravo,charlie</code>/</p>
+                <p>Edit the <code><MadCap:variable name="General.HomePath" />/bin/setenv-overrides.sh/bat</code> script and set <code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS</code> to the list of hosts. For example: <code>export <MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS=alpha,bravo,charlie</code>/</p>
             </li>
             <li>
                 <p>Copy the modified <code>setenv-overrides.sh/bat</code> to each machine that runs a <code>gs-agent</code>.</p>
@@ -94,14 +94,14 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
             </tbody>
         </table>
         <div class="tc-admon-note">
-            <p>Apache Zookeeper requires that each Manager can reach the other Managers. If you change the Apache Zookeeper ports, make sure you use the same port on all machines. If that is not possible for some reason, you may specify the ports via the <code>XAP_MANAGER_SERVERS</code> environment variable.  For example:</p><pre><code class="language-bash">XAP_MANAGER_SERVERS="alpha;zookeeper=2000:3000;lus=4242,bravo;zookeeper=2100:3100,charlie;zookeeper=2200:3200"
+            <p>Apache Zookeeper requires that each Manager can reach the other Managers. If you change the Apache Zookeeper ports, make sure you use the same port on all machines. If that is not possible for some reason, you may specify the ports via the <code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS</code> environment variable.  For example:</p><pre><code class="language-bash"><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS="alpha;zookeeper=2000:3000;lus=4242,bravo;zookeeper=2100:3100,charlie;zookeeper=2200:3200"
 </code></pre>
             <p>When using this syntax in Unix/Linux systems, make sure to wrap it in quotes (as shown), because of the semi-colons.</p>
         </div>
         <h2><a name="apache-zookeeper"></a>Apache Zookeeper</h2>
         <p>Apache ZooKeeper's behavior is governed by its configuration file (<code>zoo.cfg</code>).
 When using <MadCap:variable name="General.ProductNameXAP" /> Manager, an embedded Zookeeper instance is started using a default configuration located at <code><MadCap:variable name="General.HomePath" />/config/zookeeper/zoo.cfg</code>.
-If you need to override the default settings, either edit the default file, or use the <code>XAP_ZOOKEEPER_SERVER_CONFIG_FILE</code> environment variable or the <code>com.gs.zookeeper.config-file</code> system property to point to your custom configuration file.
+If you need to override the default settings, either edit the default file, or use the <code><MadCap:variable name="General.EnvVariablePrefix" />_ZOOKEEPER_SERVER_CONFIG_FILE</code> environment variable or the <code>com.gs.zookeeper.config-file</code> system property to point to your custom configuration file.
 The default Zookeeper port is 2181.</p>
         <div class="tc-admon-note">
             <p>For more information about Apache Zookeeper configuration, see <a href="https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.html#sc_configuration" target="_blank">ZooKeeper configuration</a>.</p>
@@ -200,7 +200,7 @@ so if you’re upgrading for bug fixes/other features and don’t want the manag
         <div class="tc-admon-note">
             <p>The Manager uses a different selection strategy when selecting resources where to deploy a Processing Unit instance. The strategy is to choose the container with the least relative weight. This is achieved by calculating the relative weight of each container in regards to other containers. Prior to 12.1, the strategy was to calculate the weight of a container based on gathering remote state. In large deployments, the network overhead and the overall deployment time is costly. We can achieve almost the same behavior with the new strategy.</p>
             <p>You may experience a different instance distribution than before. Although in both strategies we take a "best-effort" approach, in some cases it may still be an uneven distribution due to simultaneous selection process.</p>
-            <p>To change between selector strategies, use the following system property (org.jini.rio.monitor.serviceResourceSelector). For example, to set the strategy to the on prior to 12.1, assign the following when loading the manager (in <code>XAP_MANAGER_OPTIONS</code> environment variable):</p><pre><code class="language-bash">-Dorg.jini.rio.monitor.serviceResourceSelector=org.jini.rio.monitor.WeightedSelector
+            <p>To change between selector strategies, use the following system property (org.jini.rio.monitor.serviceResourceSelector). For example, to set the strategy to the on prior to 12.1, assign the following when loading the manager (in <code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_OPTIONS</code> environment variable):</p><pre><code class="language-bash">-Dorg.jini.rio.monitor.serviceResourceSelector=org.jini.rio.monitor.WeightedSelector
 </code></pre>
         </div>
         <h1><a name="faq"></a>FAQ</h1>

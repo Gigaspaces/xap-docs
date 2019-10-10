@@ -363,7 +363,7 @@
         </div>
         <h2><a name="defining-socket-port-range-per-jvm"></a>Defining the Socket Port Range per JVM</h2>
         <p>You can define port range using the <code>com.gigaspaces.transport.bind-port</code> property, meaning that every JVM acquires a bind port from a defined port range. This functionality is useful when having multiple JVMs on the same machine (clients or servers), and simplifies firewall setup.</p>
-        <p>Here is how you can set a listening port range for GSA/GSC/GSM:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">export EXT_JAVA_OPTIONS=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">export XAP_OPTIONS_EXT=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100</code></pre>
+        <p>Here is how you can set a listening port range for GSA/GSC/GSM:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">export EXT_JAVA_OPTIONS=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">export <MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100</code></pre>
         <h2><a name="configuration-with-multi-homed-machines"></a>Configuration with Multi-Homed Machines</h2>
         <p>When working with a multi-homed machine (a computer with multiple network cards), use the following system property to bind the GigaSpaces Server on a specified network interface:</p><pre><code class="language-bash">-Djava.rmi.server.hostname=&lt;hostname or IP address&gt;
 </code></pre>

@@ -76,15 +76,15 @@ ProcessingUnit pu = admin.getGridServiceManagers().waitForAtLeastOne().deploy(
         <p>You should have <span class="tc-bold">one GigaSpaces agent</span> running the ESM. No GSCs should be started.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Windows " style="padding:10px"><pre><code class="language-java">rem Agent deployment that potentially can start management processes
-set XAP_LOOKUP_GROUPS=myGroup
-set XAP_HOME=d:\gigaspaces
-start cmd /c "%XAP_HOME%\bin\gs-agent.bat --global.esm=1 --global.gsm=2 --global.lus=2"
+set <MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS=myGroup
+set <MadCap:variable name="General.EnvVariablePrefix" />_HOME=d:\gigaspaces
+start cmd /c "%<MadCap:variable name="General.EnvVariablePrefix" />_HOME%\bin\gs-agent.bat --global.esm=1 --global.gsm=2 --global.lus=2"
 </code></pre>
             </div>
             <div title="  Linux " style="padding:10px"><pre><code class="language-java"># Agent deployment that potentially can start management processes
 
-export XAP_LOOKUP_GROUPS=myGroup
-export XAP_HOME=~/gigaspaces
+export <MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS=myGroup
+export <MadCap:variable name="General.EnvVariablePrefix" />_HOME=~/gigaspaces
 nohup <MadCap:variable name="General.HomePath" />/bin/gs-agent.sh --global.esm=1 --global.gsm=2 --global.lus=2 &gt; /dev/null 2&gt;&amp;1 &amp;
 </code></pre>
             </div>

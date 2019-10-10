@@ -19,10 +19,10 @@
         <p MadCap:conditions="Version.14-5-born">If you need to explicitly roll back the CLI in the latest <MadCap:variable name="General.CompanyName" /> product to version 1, you can do this in one of the following ways:</p>
         <ul MadCap:conditions="Version.14-5-born">
             <li>
-                <p>Global change to version 1 - Edit the <code><MadCap:variable name="General.HomePath" />/setenv-overrides</code> script and set the <code>XAP_CLI_VERSION</code> environment variable to <span class="tc-bold">1</span>. This option is useful if you are upgrading from an older <MadCap:variable name="General.CompanyName" /> release and need to globally revert to the old syntax temporarily.</p>
+                <p>Global change to version 1 - Edit the <code><MadCap:variable name="General.HomePath" />/setenv-overrides</code> script and set the <code><MadCap:variable name="General.EnvVariablePrefix" />_CLI_VERSION</code> environment variable to <span class="tc-bold">1</span>. This option is useful if you are upgrading from an older <MadCap:variable name="General.CompanyName" /> release and need to globally revert to the old syntax temporarily.</p>
             </li>
             <li>
-                <p>Per-command - Use the <code>--cli-version</code> option to set the CLI version for a specific command invocation, for example <code>gs --cli-version=1</code> . This option overrides the <code>XAP_CLI_VERSION</code> environment variable (if it was set). This option is useful towards the end of the upgrade process, enabling you to  migrate your scripts gradually by changing one command at a time to use and test the new syntax, before moving to the next command.</p>
+                <p>Per-command - Use the <code>--cli-version</code> option to set the CLI version for a specific command invocation, for example <code>gs --cli-version=1</code> . This option overrides the <code><MadCap:variable name="General.EnvVariablePrefix" />_CLI_VERSION</code> environment variable (if it was set). This option is useful towards the end of the upgrade process, enabling you to  migrate your scripts gradually by changing one command at a time to use and test the new syntax, before moving to the next command.</p>
             </li>
         </ul>
         <div class="tc-admon-attention">

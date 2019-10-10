@@ -52,7 +52,7 @@ gs-agent --manager --gsc=2
             </div>
         </div>
         <div class="tc-admon-note">
-            <p>You also need to configure the <code>XAP_MANAGER_SERVERS</code> environment variable in the list of designated Manager servers.</p>
+            <p>You also need to configure the <code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS</code> environment variable in the list of designated Manager servers.</p>
         </div>
         <h2>Starting a Data Grid Without a Manager</h2>
         <p>If you can't start the Manager for some reason, but you still want high availability, you can select specific host machines as management servers, and start a LUS and GSM on each one:</p>
@@ -92,25 +92,25 @@ gs-agent --global.lus=2 --global.gsm=2 --gsc=2
         </div>
         <h1>Configuring the Service Grid</h1>
         <p>Service grid configuration is often comprised of two layers, namely the system-wide configuration and component-specific configuration.</p>
-        <p>The system-wide configuration specifies the settings that all components share, such as discovery (unicast/multicast), security, zones, etc. These are set using the <code MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</code><code MadCap:conditions="Version.14-5-born"> XAP_OPTIONS_EXT</code> environment variable.</p>
-        <p>The component-specific configuration specifies settings per component type, for example that the GSC memory limit should be greater than the GSM and LUS limits. These are set using one or more of the following environment variables: <code>XAP_GSA_OPTIONS</code>, <code>XAP_GSC_OPTIONS</code>, <code>XAP_GSM_OPTIONS</code>, <code>XAP_LUS_OPTIONS</code>.</p>
+        <p>The system-wide configuration specifies the settings that all components share, such as discovery (unicast/multicast), security, zones, etc. These are set using the <code MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</code><code MadCap:conditions="Version.14-5-born"> <MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT</code> environment variable.</p>
+        <p>The component-specific configuration specifies settings per component type, for example that the GSC memory limit should be greater than the GSM and LUS limits. These are set using one or more of the following environment variables: <code><MadCap:variable name="General.EnvVariablePrefix" />_GSA_OPTIONS</code>, <code><MadCap:variable name="General.EnvVariablePrefix" />P_GSC_OPTIONS</code>, <code><MadCap:variable name="General.EnvVariablePrefix" />_GSM_OPTIONS</code>, <code><MadCap:variable name="General.EnvVariablePrefix" />_LUS_OPTIONS</code>.</p>
         <div class="tc-admon-note">
             <p>The component-specific configuration overrides the system-wide configuration where there is overlap.</p>
         </div>
         <p>For example:</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Linux" style="padding:10px"><pre><code class="language-bash">export XAP_GSA_OPTIONS=-Xmx256m
-export XAP_GSC_OPTIONS=-Xms2g -Xmx2g
-export XAP_GSM_OPTIONS=-Xmx1g
-export XAP_LUS_OPTIONS=-Xmx1g
+            <div title="Linux" style="padding:10px"><pre><code class="language-bash">export <MadCap:variable name="General.EnvVariablePrefix" />_GSA_OPTIONS=-Xmx256m
+export <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Xms2g -Xmx2g
+export <MadCap:variable name="General.EnvVariablePrefix" />_GSM_OPTIONS=-Xmx1g
+export <MadCap:variable name="General.EnvVariablePrefix" />_LUS_OPTIONS=-Xmx1g
 
 ./gs-agent.sh
 </code></pre>
             </div>
-            <div title="Windows" style="padding:10px"><pre><code class="language-bash">set XAP_GSA_OPTIONS=-Xmx256m
-set XAP_GSC_OPTIONS=-Xms2g -Xmx2g
-set XAP_GSM_OPTIONS=-Xmx1g
-set XAP_LUS_OPTIONS=-Xmx1g
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash">set <MadCap:variable name="General.EnvVariablePrefix" />_GSA_OPTIONS=-Xmx256m
+set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Xms2g -Xmx2g
+set <MadCap:variable name="General.EnvVariablePrefix" />_GSM_OPTIONS=-Xmx1g
+set <MadCap:variable name="General.EnvVariablePrefix" />_LUS_OPTIONS=-Xmx1g
 
 call gs-agent.bat
 </code></pre>
@@ -195,17 +195,17 @@ call gs-agent.bat
         <p>In addition, within the <code>script</code> tag, you can add the following tags:</p>
         <ul>
             <li><code>argument</code> - adds a command ling argument which will be passed to the script. In the <code>gsc.xml</code> example above, there are two command line arguments.</li>
-            <li><code>environment</code> -adds an environment variable. For example, <code>&lt;environment name="XAP_GSC_OPTIONS"&gt;-Xmx1024m&lt;/environment&gt;</code> can be used to override the memory for the GSC.</li>
+            <li><code>environment</code> -adds an environment variable. For example, <code>&lt;environment name="<MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS"&gt;-Xmx1024m&lt;/environment&gt;</code> can be used to override the memory for the GSC.</li>
         </ul>
         <h1>Advanced Configuration</h1>
         <p>In some scenarios you may need several "flavors' of components (e.g. multiple zones, or different sizes of GSCs, etc.). You can create a custom gs-agent script to manage each of those, or you can do this all within a single agent.</p>
-        <p>For example, you may want your GS&#160;agent to load 2 "small' GSCs (512MB each) in a zone called <span class="tc-italic">Small</span>, and 1 "large' GSC (1024MB) in a zone called <span class="tc-italic">Large</span>. To achieve this, duplicate the default <code>gsc.xml</code> (which resides in <code><MadCap:variable name="General.HomePath" />/config/gsa</code>) into <code>gsc_small.xml</code> and <code>gsc_large.xml</code>, and modify them to include an <code>environment</code> tag that defines the <code>XAP_GSC_OPTIONS</code>environment variable with the required settings:</p>
+        <p>For example, you may want your GS&#160;agent to load 2 "small' GSCs (512MB each) in a zone called <span class="tc-italic">Small</span>, and 1 "large' GSC (1024MB) in a zone called <span class="tc-italic">Large</span>. To achieve this, duplicate the default <code>gsc.xml</code> (which resides in <code><MadCap:variable name="General.HomePath" />/config/gsa</code>) into <code>gsc_small.xml</code> and <code>gsc_large.xml</code>, and modify them to include an <code>environment</code> tag that defines the <code><MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS</code>environment variable with the required settings:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  gsc_small.xml " style="padding:10px"><pre MadCap:conditions="Version.15-0-died"><code class="language-xml">&lt;process initial-instances="script" shutdown-class="com.gigaspaces.grid.gsa.GigaSpacesShutdownProcessHandler" restart-on-exit="always"&gt;
     &lt;script enable="true" work-dir="${com.gs.home}/bin"
             windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
         &lt;argument&gt;services=GSC&lt;/argument&gt;
-        &lt;environment name="XAP_COMPONENT_OPTIONS"&gt;-Xms512m -Xmx512m -Dcom.gs.zones=Small&lt;/environment&gt;
+        &lt;environment name="<MadCap:variable name="General.EnvVariablePrefix" />_COMPONENT_OPTIONS"&gt;-Xms512m -Xmx512m -Dcom.gs.zones=Small&lt;/environment&gt;
     &lt;/script&gt;
     &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
         &lt;input-argument&gt;&lt;/input-argument&gt;
@@ -217,7 +217,7 @@ call gs-agent.bat
     &lt;script enable="true" work-dir="${com.gs.home}/bin"
             windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
         &lt;argument&gt;services=GSC&lt;/argument&gt;
-        &lt;environment name="XAP_COMPONENT_OPTIONS"&gt;-Xms512m -Xmx512m -Dcom.gs.zones=Small&lt;/environment&gt;
+        &lt;environment name="<MadCap:variable name="General.EnvVariablePrefix" />_COMPONENT_OPTIONS"&gt;-Xms512m -Xmx512m -Dcom.gs.zones=Small&lt;/environment&gt;
     &lt;/script&gt;
     &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
         &lt;input-argument&gt;&lt;/input-argument&gt;
@@ -231,7 +231,7 @@ call gs-agent.bat
     &lt;script enable="true" work-dir="${com.gs.home}/bin"
             windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
         &lt;argument&gt;services=GSC&lt;/argument&gt;
-        &lt;environment name="XAP_COMPONENT_OPTIONS"&gt;-Xms1024m -Xmx1024m -Dcom.gs.zones=Large&lt;/environment&gt;
+        &lt;environment name="<MadCap:variable name="General.EnvVariablePrefix" />_COMPONENT_OPTIONS"&gt;-Xms1024m -Xmx1024m -Dcom.gs.zones=Large&lt;/environment&gt;
     &lt;/script&gt;
     &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
         &lt;input-argument&gt;&lt;/input-argument&gt;
@@ -243,7 +243,7 @@ call gs-agent.bat
     &lt;script enable="true" work-dir="${com.gs.home}/bin"
             windows="${com.gs.home}\bin\gs.bat" unix="${com.gs.home}/bin/gs.sh"&gt;
         &lt;argument&gt;services=GSC&lt;/argument&gt;
-        &lt;environment name="XAP_COMPONENT_OPTIONS"&gt;-Xms1024m -Xmx1024m -Dcom.gs.zones=Large&lt;/environment&gt;
+        &lt;environment name="<MadCap:variable name="General.EnvVariablePrefix" />_COMPONENT_OPTIONS"&gt;-Xms1024m -Xmx1024m -Dcom.gs.zones=Large&lt;/environment&gt;
     &lt;/script&gt;
     &lt;vm enable="true" work-dir="${com.gs.home}/bin" main-class="com.gigaspaces.start.SystemBoot"&gt;
         &lt;input-argument&gt;&lt;/input-argument&gt;

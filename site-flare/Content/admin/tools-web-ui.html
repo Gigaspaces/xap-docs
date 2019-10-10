@@ -14,7 +14,7 @@
         </div>
         <h1><a name="security"></a>Security</h1>
         <h2><a name="enabling-security"></a>Enabling Security</h2>
-        <p>The Web Management Console (Web-UI) allows for a secured access when the security <code>enabled</code> property is set. This property should be configured using <code MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</code><code MadCap:conditions="Version.14-5-born">XAP_OPTIONS_EXT</code> in the <code>setenv</code> script and is applied to all <MadCap:variable name="General.ProductNameXAP" /><a href="../security/securing-the-grid-services.html">Grid Components</a>.</p>
+        <p>The Web Management Console (Web-UI) allows for a secured access when the security <code>enabled</code> property is set. This property should be configured using <code MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</code><code MadCap:conditions="Version.14-5-born"><MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT</code> in the <code>setenv</code> script and is applied to all <MadCap:variable name="General.ProductNameXAP" /><a href="../security/securing-the-grid-services.html">Grid Components</a>.</p>
         <p>The property:</p><pre><code class="language-java">-Dcom.gs.security.enabled=true
 </code></pre>
         <div class="tc-admon-note">

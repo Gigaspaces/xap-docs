@@ -60,12 +60,12 @@
                 <img src="../Resources/Static/attachment_files/zones.jpg" alt="zones.jpg" class="tc-picture100" />
             </p>
         </div>
-        <p>Defining zones allows you to configure logical tags for each GSC, according to which the processing unit instances will be provisioned to. You can use any alphanumeric combination for a zone name. The GSC can be started with a set of zones that are tagged to it, which match (or not) a given zone requirement in the processing unit's SLA (the zone name matching is case sensitive). The zones of a GSC are specified via the <code>com.gs.zones</code> system property. Typically this will be done by setting the XAP_GSC_OPTIONS environment variable before running the GSC, as shown below (note that you can also edit the <code>setenv.sh/bat</code> script manually, but it is less recommended since it touches a core system script):</p>
+        <p>Defining zones allows you to configure logical tags for each GSC, according to which the processing unit instances will be provisioned to. You can use any alphanumeric combination for a zone name. The GSC can be started with a set of zones that are tagged to it, which match (or not) a given zone requirement in the processing unit's SLA (the zone name matching is case sensitive). The zones of a GSC are specified via the <code>com.gs.zones</code> system property. Typically this will be done by setting the <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS environment variable before running the GSC, as shown below (note that you can also edit the <code>setenv.sh/bat</code> script manually, but it is less recommended since it touches a core system script):</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="  Unix " style="padding:10px"><pre><code class="language-bash">export XAP_GSC_OPTIONS=-Dcom.gs.zones=zone1,zone3 ${XAP_GSC_OPTIONS}
+            <div title="  Unix " style="padding:10px"><pre><code class="language-bash">export <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gs.zones=zone1,zone3 ${<MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS}
 </code></pre>
             </div>
-            <div title="  Windows " style="padding:10px"><pre><code class="language-bash">set XAP_GSC_OPTIONS=-Dcom.gs.zones=zone1,zone3 %XAP_GSC_OPTIONS%
+            <div title="  Windows " style="padding:10px"><pre><code class="language-bash">set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gs.zones=zone1,zone3 %<MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS%
 </code></pre>
             </div>
             <div title="  Code " style="padding:10px"><pre><code class="language-java">Admin admin = new AdminFactory().create();
@@ -242,13 +242,13 @@ gs&gt; deploy -requires-isolation true myPU
         <p>The above example verifies that the <span class="tc-bold">first instance</span> is deployed to a specific machine (specified by its IP address), and its <span class="tc-bold">second instance</span> for the same partition is deployed to a different machine. All instances share the "general" requirements of CPU and memory. The first instance <span class="tc-bold">might be</span> the primary and the second might be the backup, but there is no guarantee these will remain primary/backup as these are runtime properties and might change during the life-cycle of the clustered space. The activation property of the space (primary or backup) is determined once the instance is deployed and is not controlled by the GSM but as part of the primary election process.</p>
         <h1><a name="zone-based-partitioning-provisioning"></a>Zone Based Partitioning Provisioning</h1>
         <p>To accommodate partitions with different size we can use the zones configuration to provision each partition into a different zone. Each zone will be associated with GSCs having a different heap size (Xmx). The assumption here is a GSCs hosting a single partition instance (primary or a backup instance). With the following example we deploy a cluster with 3 partitions where each partition deployed into a different zone: Small (1GB GSC), Medium (2GB GSC ) and Large (3GB GSC).</p>
-        <p>To start the small zone:</p><pre><code class="language-bash">set XAP_GSC_OPTIONS=-Dcom.gs.zones=zoneSmall -Xmx1g
+        <p>To start the small zone:</p><pre><code class="language-bash">set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gs.zones=zoneSmall -Xmx1g
 gs-agent.bat
 </code></pre>
-        <p>To start the medium zone:</p><pre><code class="language-bash">set XAP_GSC_OPTIONS=-Dcom.gs.zones=zoneMedium -Xmx2g
+        <p>To start the medium zone:</p><pre><code class="language-bash">set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gs.zones=zoneMedium -Xmx2g
 gs-agent.bat
 </code></pre>
-        <p>To start the large zone:</p><pre><code class="language-bash">set XAP_GSC_OPTIONS=-Dcom.gs.zones=zoneLarge -Xmx3g
+        <p>To start the large zone:</p><pre><code class="language-bash">set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gs.zones=zoneLarge -Xmx3g
 gs-agent.bat
 </code></pre>
         <p>Deploy a 3 partitions with a backup space cluster using the following sla.xml:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;

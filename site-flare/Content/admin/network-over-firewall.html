@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -163,7 +163,7 @@
 -Dcom.gigaspaces.start.httpPort=7104
 </code></pre>
         <h3><a name="bin-setenv-sh-script-modifications-mandatory"></a>bin/setenv.sh Script Modifications (Mandatory)</h3>
-        <p>Lookup locators unicast discovery port should be the same as defined in <code>gs.sh</code>, for example:</p><pre><code class="language-bash">XAP_LOOKUP_LOCATORS=server111:7102; export XAP_LOOKUP_LOCATORS
+        <p>Lookup locators unicast discovery port should be the same as defined in <code>gs.sh</code>, for example:</p><pre><code class="language-bash"><MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_LOCATORS=server111:7102; export <MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_LOCATORS
 </code></pre>
         <h3><a name="lrmi-communication-protocol-port-range-setting-modifications"></a>LRMI Communication Protocol Port Range Setting Modifications</h3>
         <p>The <code>com.gigaspaces.start.httpPort</code> Webster port number property can be defined by overriding as shown below, or using a system property:</p><pre><code class="language-bash">gsm.sh webster.xml
