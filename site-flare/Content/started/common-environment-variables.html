@@ -193,8 +193,9 @@
         </table>
         <p>In addition, you can also use standard Spark environment variables. The <MadCap:variable name="General.ProductNameIEP" /> loads Spark components in a manner that preserves their usage. For example, set <code>SPARK_MASTER_PORT</code> to override the default <code>7077</code> port.</p>
         <h1><a name="upgrading-from-previous-versions"></a>Upgrading from Previous Versions</h1>
-        <p>In previous versions, environment variable names were inconsistent, which occasionally led to confusion. Starting with <MadCap:variable name="General.ProductNameXAP" /> 11.0, all <MadCap:variable name="General.ProductNameXAP" />-related environment variables were renamed with a <code>XAP_</code> prefix, so they're easier to identify. The following table maps the pre-11.0 names to the current names:</p>
-        <table>
+        <p MadCap:conditions="Version.15-0-born">Environment variables in <MadCap:variable name="General.ProductNameIE" /> 15.0 are modified to start with a GS_ prefix in place of the previous XAP_ prefix. To support existing scripts that include environment variables with the XAP_ prefix,  the product reads <MadCap:variable name="General.ProductNameIE" />-specific environment variables,  with both a GS_ prefix and a XAP_ prefix. Therefore users upgrading from previous versions don't have to modify their scripts right away (though we recommend that you do it eventually).</p>
+        <p MadCap:conditions="Version.15-0-died">In previous versions, environment variable names were inconsistent, which occasionally led to confusion. Starting with <MadCap:variable name="General.ProductNameXAP" /> 11.0, all <MadCap:variable name="General.ProductNameXAP" />-related environment variables were renamed with a <code>XAP_</code> prefix, so they're easier to identify. The following table maps the pre-11.0 names to the current names:</p>
+        <table MadCap:conditions="Version.15-0-died">
             <thead>
                 <tr>
                     <th align="left">Name before 11.0</th>
@@ -248,8 +249,8 @@
                 </tr>
             </tbody>
         </table><a name="extension"></a>
-        <div class="tc-admon-note">
-            <p>If you'd rather postpone or avoid changing your scripts to the new names, you can use the new <code>setenv-overrides</code> script to map the corresponding values. For example, suppose you customized the lookup groups and the GSC options. If you followed GigaSpaces best practices, you created a custom script to set those environment variables before calling the original script, for example:</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.15-0-died">
+            <p>If you'd rather postpone or avoid changing your scripts to the new names, you can use the <code>setenv-overrides</code> script to map the corresponding values. For example, suppose you customized the lookup groups and the GSC options. If you followed GigaSpaces best practices, you created a custom script to set those environment variables before calling the original script, for example:</p>
             <div class="easyui-tabs" plain="true" data-options="">
                 <div title=" my-gs-agent.sh (Unix)" style="padding:10px"><pre><code class="language-bash">export LOOKUPGROUPS=foo
 export GSC_JAVA_OPTIONS=-Xms1024m -Xmx1024m
