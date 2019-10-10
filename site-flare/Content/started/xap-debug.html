@@ -67,9 +67,9 @@ The following screenshot displays the <span class="tc-bold">Create, manage, and 
             </p>
         </div>
         <div class="tc-admon-note">
-            <p>You can isolate your environment by defining <a href="../overview/the-runtime-environment.html#lus">Lookup Groups/Locators</a>. You can set lookup groups/locators in your IDE run configuration using system variables as VM arguments. If you have <code>XAP_LOOKUP_GROUPS</code>/<code>XAP_LOOKUP_LOCATORS</code> OS environment variables, you can use their values for the system variables. For example, to set lookup groups in Eclipse IDE using <code>XAP_LOOKUP_GROUPS</code> environment variable you need to add the following as VM argument to the run configuration:</p><pre><code class="language-bash">-Dcom.gs.jini_lus.groups=${env_var:XAP_LOOKUP_GROUPS}
+            <p>You can isolate your environment by defining <a href="../overview/the-runtime-environment.html#lus">Lookup Groups/Locators</a>. You can set lookup groups/locators in your IDE run configuration using system variables as VM arguments. If you have <code><MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS</code>/<code><MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_LOCATORS</code> OS environment variables, you can use their values for the system variables. For example, to set lookup groups in Eclipse IDE using <code><MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS</code> environment variable you need to add the following as VM argument to the run configuration:</p><pre><code class="language-bash">-Dcom.gs.jini_lus.groups=${env_var:<MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS}
 </code></pre>
-            <p>To set the lookup locators:</p><pre><code class="language-bash">-Dcom.gs.jini_lus.locators=${env_var:XAP_LOOKUP_LOCATORS}
+            <p>To set the lookup locators:</p><pre><code class="language-bash">-Dcom.gs.jini_lus.locators=${env_var:<MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_LOCATORS}
 </code></pre>
         </div>
         <h3><a name="starting-an-integratedprocessingunitcontainer-programmatically"></a>Starting an IntegratedProcessingUnitContainer Programmatically</h3>
@@ -108,12 +108,12 @@ container.close();
         <h2><a name="step-1"></a>Step 1</h2>
         <p>Start an agent and deploy your PU as usual. The agent will start GSCs in non-debug mode.</p>
         <h2><a name="step-2"></a>Step 2</h2>
-        <p>Start a command window and set the <code>XAP_GSC_OPTIONS</code> variable:</p>
+        <p>Start a command window and set the <code><MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS</code> variable:</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="  Linux " style="padding:10px"><pre><code class="language-bash">export XAP_GSC_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000"
+            <div title="  Linux " style="padding:10px"><pre><code class="language-bash">export <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000"
 </code></pre>
             </div>
-            <div title="  Windows " style="padding:10px"><pre><code class="language-bash">set XAP_GSC_OPTIONS=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y</code></pre>
+            <div title="  Windows " style="padding:10px"><pre><code class="language-bash">set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,server=y,suspend=y</code></pre>
             </div>
         </div>
         <h2><a name="step-3"></a>Step 3</h2>

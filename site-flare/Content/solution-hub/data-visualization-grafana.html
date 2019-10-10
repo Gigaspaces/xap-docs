@@ -59,9 +59,9 @@
                 <p>Modify the <a href="https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/resources/grafana-insightedge.properties">grafana-insightedge.properties file</a> to suit your local evironment (host, port, space name, lookup group, and lookup locator (optional)) or create a new properties file.</p>
                 <p>Sample configuration:</p><pre><code>CONNECTOR_HOST=HostName
 CONNECTOR_PORT=8082
-XAP_SPACE_NAME=demo
-XAP_LOOKUP_GROUPS=xap-14.0.0
-#XAP_LOOKUP_LOCATORS=
+<MadCap:variable name="General.EnvVariablePrefix" />_SPACE_NAME=demo
+<MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS=xap-14.0.0
+#<MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_LOCATORS=
 </code></pre>
                 <div class="tc-admon-note">
                     <p>The syntax of the URL that is used to configure the simple JSON data source to work with the Space is <code>http://&lt;yourhost&gt;:&lt;port&gt;/insightedge/metrics</code>. The variables are based on values you added to the properties file.</p>
