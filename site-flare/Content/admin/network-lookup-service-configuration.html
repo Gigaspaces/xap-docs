@@ -14,11 +14,11 @@
             <p>When using multicast please review the following section <a href="network-multicast-is-available.html">How to Determine Whether Multicast is Available</a> and <a href="network-multicast.html">How to Configure Multicast</a>.</p>
         </div>
         <h1><a name="setting-up-the-lookup-service-for-multicast-discovery-using-lookup-group"></a>Setting up the Lookup Service For Multicast Discovery (Using Lookup Group)</h1>
-        <p>Each of the Jini Services (such as the Reggie lookup service or the Mahalo Transaction Manager) registers and advertises using a group name which is defined by the following system property (set in the <code>/bin/setenv.bat file</code>):</p><pre><code>set XAP_LOOKUP_GROUPS="gigaspaces-%USERNAME%"
-set LOOKUP_GROUPS_PROP=-Dcom.gs.jini_lus.groups=%XAP_LOOKUP_GROUPS%
+        <p>Each of the Jini Services (such as the Reggie lookup service or the Mahalo Transaction Manager) registers and advertises using a group name which is defined by the following system property (set in the <code>/bin/setenv.bat file</code>):</p><pre><code>set <MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS="gigaspaces-%USERNAME%"
+set LOOKUP_GROUPS_PROP=-Dcom.gs.jini_lus.groups=%<MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS%
 </code></pre>
         <p>While the <code>%USERNAME%</code> will be replaced after installation with the version number e.g.
-set <code>XAP_LOOKUP_GROUPS="gigaspaces-7.0XAPga"</code>.</p>
+set <code><MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS="gigaspaces-7.0XAPga"</code>.</p>
         <p>The command that loads a space needs to have this system property set. Another way of doing it instead of setting the <code>com.gs.jini_lus.groups</code> system property, is to set the Space URL groups attribute, e.g.:</p><pre><code class="language-java">/./mySpace?schema=cache&amp;groups=myPrivateGroupName
 </code></pre>
         <div class="tc-admon-refer">
