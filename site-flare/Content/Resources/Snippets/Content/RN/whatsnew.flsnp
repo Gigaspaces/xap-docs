@@ -91,6 +91,19 @@
         <h3 MadCap:conditions="Version.14-5-only">Command Line Interface Update</h3>
         <p MadCap:conditions="Version.14-5-only">The <MadCap:variable name="General.CompanyName" /> Command Line Interface (CLI) has been consolidated and now uses a single <code>gs</code> script as the entry point. Backwards compatibility is supported; users that upgrade from earlier versions of <MadCap:variable name="General.CompanyName" /> products can revert the CLI&#160;to the previous behavior to simplify the migration process. </p>
         <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../../../../admin/upgrading-cli.html">Upgrading the CLI</MadCap:xref>.</p>
+        <h1 MadCap:conditions="Version.15-0-only"><MadCap:variable name="General.CompanyName" /> Ops Manager</h1>
+        <p MadCap:conditions="Version.15-0-only"><MadCap:variable name="General.CompanyName" /> is proud to introduce an enterprise-class management platform for your <MadCap:variable name="General.CompanyName" />-based clusters running on your own cloud, on-premise or hybrid infrastructure. Use the <MadCap:variable name="General.CompanyName" /> Ops Manager for monitoring, alerts, disaster recovery, scaling, deploying and upgrading your applications, and for managing other <MadCap:variable name="General.CompanyName" /> components such as the BI Connector.</p>
+        <h1 MadCap:conditions="Version.15-0-only">Intelligent Tiering of Your Data Lake </h1>
+        <p MadCap:conditions="Version.15-0-only">The <MadCap:variable name="General.CompanyName" /> Analyticsxtreme module allows you to leverage an intelligent data management policy, to automatically auto-tier cold and archive data in your Hadoop or cloud object store data lake. <MadCap:variable name="General.CompanyName" />'s intelligent tiering is designed to automatically optimize storage of historical data in terms of performance and costs as data access patterns change, moving data between frequent access and infrequent access tiers.</p>
+        <h1 MadCap:conditions="Version.15-0-only">Improved Integration for BI&#160;and Visualization Tools</h1>
+        <h2 MadCap:conditions="Version.15-0-only">Kubernetes Space-Based Remoting</h2>
+        <p MadCap:conditions="Version.15-0-only"><MadCap:variable name="General.ProductNameIE" /> now provides a native smart Space client in Kubernetes that supports remote CRUD operations, task execution, and event-driven analytics. The smart client is content aware to the distributed cluster topolgy, which provides high throughput and fast serialization, as well as automatic load balancing. This is accomplished by auto forwarding the remote operation to the relevant data pod, based on the data model and routing.</p>
+        <h2 MadCap:conditions="Version.15-0-only">Confluent Streaming Connector (Kafka) </h2>
+        <p MadCap:conditions="Version.15-0-only">The official <MadCap:variable name="General.CompanyName" /> Connector for Apache Kafka has been released and verified by Confluent. The connector, which adheres to the guidelines set forth by Confluent’s Verified Integrations Program, enables <MadCap:variable name="General.ProductNameIE" /> to be configured as both a sink and a source for Apache Kafka.</p>
+        <h2 MadCap:conditions="Version.15-0-only">Tableau Server Support </h2>
+        <p MadCap:conditions="Version.15-0-only">The <MadCap:variable name="General.CompanyName" /><MadCap:variable name="General.ProductNameIE" />Connector fir Tableau now supports Tableau Server, a centralized, web-based repository for users, data sources and visualizations. This support allows you to publish dashboards with Tableau Desktop and share them throughout the organization with Tableau Server. Tableau Server also provides direct, authorized access to live Space objects and documents , allowing users to build and run complex filtered queries against <MadCap:variable name="General.ProductNameIE" />.</p>
+        <h2 MadCap:conditions="Version.15-0-only">Dynamic Schema Versioning </h2>
+        <p MadCap:conditions="Version.15-0-only">InsightEdge supports dynamic schema definition by allowing you to write and update data without a predefined schema.  you can easily make changes to the data model  while ensuring it will be compatible with JDBC and BI tools. The result is more reliable code integration, faster development, and less administration overhead.</p>
         <h1>Third-Party Product Changes</h1>
         <p MadCap:conditions="Default.DoNotShow">There are currently no third-party changes or updates.</p>
         <ul>
@@ -98,6 +111,8 @@
             <li MadCap:conditions="Version.15-0-only"><a href="https://rocksdb.org/" target="_blank">RocksDB</a> has been upgraded to 6.0.1.</li>
             <li MadCap:conditions="Version.15-0-only"><a href="http://www.hibernate.org/orm/" target="_blank">Hibernate</a> has been upgraded to 5.2.0.</li>
             <li MadCap:conditions="Version.15-0-only"><a href="https://zookeeper.apache.org/">Apache Zookeeper</a> has been upgraded to 3.5.5.</li>
+            <li MadCap:conditions="Version.15-0-only">OSHI has been upgraded to 4.0.0.</li>
+            <li MadCap:conditions="Version.15-0-only">JNA has been upgraded to 5.4.0.</li>
         </ul>
         <ul>
             <li MadCap:conditions="Version.14-0-only">Java 11 is now supported (starting from service pack 14.0.1). For more information, see the <MadCap:xref href="../../../../rn/java11-guidelines.html">Java 11 Guidelines</MadCap:xref> page of the release notes.</li>
@@ -122,8 +137,15 @@
             <li MadCap:conditions="Version.14-5-only"><a href="http://projects.spring.io/spring-security/">Spring Security</a> integration has been upgraded to 5.1.5.<div class="tc-admon-attention"><p MadCap:conditions="Version.14-5-only">As of Spring Security 5.x,   a password encoder must be defined.</p></div></li>
         </ul>
         <h1>Deprecated and End-Of-Life  Features and Functionality</h1>
-        <p MadCap:conditions="Version.15-0-only">There are currently no deprecated or end-of-life features and functionality.</p>
-        <p MadCap:conditions="Version.14-0-only">The following functionality is deprecated as of this release:</p>
+        <p MadCap:conditions="Default.DoNotShow">There are currently no deprecated or end-of-life features and functionality.</p>
+        <p MadCap:conditions="Version.14-0-only,Version.15-0-only">The following functionality is deprecated as of this release:</p>
+        <ul MadCap:conditions="Version.15-0-only">
+            <li><MadCap:variable name="General.CompanyName" /> Management Center</li>
+            <li>LRU and custom eviction policies</li>
+            <li>Direct persistency</li>
+            <li>Option for multiple Processing Units per GSC</li>
+            <li>"Requires isolation" feature</li>
+        </ul>
         <ul MadCap:conditions="Version.14-0-only">
             <li MadCap:conditions="Version.14-0-only">Legacy command line interface (use the new command line interface that was introduced in release 12.3 instead)</li>
             <li MadCap:conditions="Version.14-0-only">The gs-agent script (use the <code>insightedge host run-agent</code> or <code>xap host run-agent</code> command instead)</li>
