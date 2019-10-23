@@ -210,14 +210,12 @@ Category :Aviation
                 <tr>
                     <td>user</td>
                     <td align="left">The user for a secured Space.</td>
-                    <td align="left">
-                    </td>
+                    <td align="left">&#160;</td>
                 </tr>
                 <tr>
                     <td>password</td>
                     <td align="left">The password for a secured Space.</td>
-                    <td align="left">
-                    </td>
+                    <td align="left">&#160;</td>
                 </tr>
                 <tr>
                     <td>disableServerSideJoins</td>
@@ -237,8 +235,7 @@ Category :Aviation
                 <tr>
                     <td>log4jFile</td>
                     <td align="left">The path to log4j.properties file. If not provided, the default configuration is used. For more information, see the <a href="../admin/logging-overview.html">Logging</a> topic.</td>
-                    <td align="left">
-                    </td>
+                    <td align="left">&#160;</td>
                 </tr>
                 <tr>
                     <td>autoCommit</td>
@@ -354,7 +351,7 @@ This will allow you to create more sufficient queries.</p>
             <p>For more information about the <MadCap:variable name="General.ProductNameXAP" /> aggregation API, refer to the <a href="aggregators.html">Aggregation API</a> page.</p>
         </div>
         <h2><a name="join-query-algorithms"></a>Join Query Algorithms</h2>
-        <p>The <MadCap:variable name="General.ProductNameIE" />\ JDBC driver has two join algorithms, <code>Hash Join</code> and  <code>Nested Loop Join</code>. They use the distributed tasks to execute the join. Considering two join tables, the larger table is used as the <code>probe</code> table, while the smaller is used as the <code>build</code> table.</p>
+        <p>The <MadCap:variable name="General.ProductNameIE" /> JDBC driver has two join algorithms, <code>Hash Join</code> and  <code>Nested Loop Join</code>. They use the distributed tasks to execute the join. Considering two join tables, the larger table is used as the <code>probe</code> table, while the smaller is used as the <code>build</code> table.</p>
         <p>The <code>Hash Join</code> algorithm is applied for equality conjunctions (when only equal conditions are used in the join predicates), while the <code>Nested Loop Join</code> algorithm is applied in other cases.</p>
         <p>Each partition loads the <code>build</code> table from the entire cluster and stores it in memory. The node must have enough free memory while executing a non-collocated join to hold the entire <code>build</code> table in the memory of the single partition.</p>
         <p>To improve the performance of the join queries, consider designing your schema to run <code>Collocated Join</code>. The benefit of the collocated join is that it doesn't load the <code>build</code> table from all partitions, but only from the current partition. This join uses the <code>share nothing</code> approach. In order to achieve this join condition, you can only use a routing field.</p>

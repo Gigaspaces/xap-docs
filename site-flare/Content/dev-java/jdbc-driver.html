@@ -6,7 +6,7 @@
         <h1>In-Memory Data Grid JDBC Driver</h1>
         <p>The <MadCap:variable name="General.ProductNameXAP" /> JDBC interface allows database-driven applications to interact with Spaces via SQL queries and commands. A query processor transparently translates SQL queries into legal Space operations. No integration is required - all you need to do is point the application to the <MadCap:variable name="General.ProductNameXAP" /> JDBC driver like any other JDBC driver.</p>
         <div class="tc-admon-note">
-            <p>This JDBC driver is not ANSI SQL compliant. ANSI SQL compliant query functionality is available in the <MadCap:variable name="General.ProductNameIE" /> Enterprise edition. Refer to the SQLQuery and <a href="../dev-java/sql-query-intro.html">JDBC Driver</a> topics in the Developer Guide.</p>
+            <p>This JDBC driver is not ANS-SQL-compliant. ANSI-SQL-compliant query functionality is available in the <MadCap:variable name="General.ProductNameIE" /> Enterprise edition. Refer to the SQLQuery and <MadCap:xref href="sql-query-intro.html">[%=General.ProductNameIE%] JDBC&#160;Driver</MadCap:xref> topics in the Developer Guide.</p>
         </div>
         <p>Applications can access the <MadCap:variable name="General.ProductNameXAP" /> data grid using the JDBC API; data written to the data grid using the JDBC API can also be accessed using other APIs.</p>
         <div class="tc-admon-note">
@@ -355,7 +355,7 @@ st.setString(1, "today\u0027s.*");
 ResultSet rs = st.executeQuery();
 </code></pre>
         <h1><a name="text-search"></a>Text Search</h1>
-        <p><MadCap:variable name="General.ProductNameXAP" /> 12.1 introduced full text search capability leveraging the <a href="http://lucene.apache.org" target="_blank">Lucene</a> search engine library supporting the <a href="http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description" target="_blank">Lucene Query Parser Syntax</a> except <code>Fields</code>.</p>
+        <p><MadCap:variable name="General.CompanyName" /> products have full text search capability, leveraging the <a href="http://lucene.apache.org" target="_blank">Lucene</a> search engine library supporting the <a href="http://lucene.apache.org/core/5_3_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description" target="_blank">Lucene Query Parser Syntax</a> except <code>Fields</code>.</p>
         <p>Text search queries are available through the <code>text:</code> extension:</p><pre><code class="language-java">    Connection connection = GConnection.getInstance(gigaSpace.getSpace());
 
     // search 'java'
