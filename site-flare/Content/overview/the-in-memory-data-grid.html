@@ -265,6 +265,10 @@ It supports the following options, from which you can choose:</p>
             </li>
         </ul>
         <h2><a name="eviction-policy-and-memory-management"></a>Eviction Policy and Memory Management</h2>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+            <p MadCap:conditions="Version.14-5-born">
+                <MadCap:snippetText src="../Resources/Snippets/EvictionDeprecate.flsnp" /> </p>
+        </div>
         <p>Since the Space is memory-based, it is essential to verify that it does not overflow and crash. The Space has a number of <a href="../dev-java/memory-management-overview.html">facilities</a> to manage its memory and make sure it does not overflow.
 The first one is the eviction policy. The space supports two eviction policies: <code>ALL_IN_CACHE</code> and <code>LRU</code> (Least Recently Used). With the <code>LRU</code> policy, the Space starts to evict the least used entries when it becomes full. The <code>ALL_IN_CACHE</code> policy never evicts anything from the Space.
 The memory manager allows you to define numerous thresholds that control when entries are evicted (if you use <code>LRU</code>), or when the Space simply blocks clients from adding data to it.

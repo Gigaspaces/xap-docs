@@ -200,8 +200,12 @@
         <h1><a name="cache-refresh-options"></a>Cache Refresh Options</h1>
         <p>When running the cache in LRU cache policy mode, you may need to expire or evict the cache data. This ensures that you don't load the cache with unnecessary data. Another reason to expire or evict the cache data is to ensure that the memory allocated for the cache (JVM heap size) can accommodate the most valuable objects required by your applications.</p>
         <p>Here are few options you may use to refresh the cache:</p>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+            <p MadCap:conditions="Version.14-5-born">
+                <MadCap:snippetText src="../Resources/Snippets/EvictionDeprecate.flsnp" /> </p>
+        </div>
         <ul>
-            <li>Eviction - You may configure the space to evict data by running in <a href="../dev-java/lru-cache-policy.html">LRU eviction policy</a>.</li>
+            <li>Eviction - You may configure the space to evict data by running an <a href="../dev-java/lru-cache-policy.html">LRU eviction policy</a>.</li>
             <li>Lease expiration - You may write objects into the space with a specific time to live (lease duration).</li>
             <li>Programmatic expiration - You may expire the object using:
 
