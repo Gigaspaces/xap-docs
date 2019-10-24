@@ -4,6 +4,9 @@
     </head>
     <body>
         <h1>Direct Persistency</h1>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+            <p>Direct <MadCap:snippetText src="../Resources/Snippets/SynchronousDeprecate.flsnp" /></p>
+        </div>
         <p>When running in direct persistency mode (i.e. Read-Write Through) the data grid interacts with the data source to persist its data where the client application would get the acknowledge for the data grid operation only after <span class="tc-bold">both</span> the data grid and the <code>SpaceDataSource</code> acknowledged the operation. With this persistency mode, the data grid operations performance would be heavily depended on the speed of the <code>SpaceSynchronizationEndpoint</code> to commit the data and provide acknowledge back to the data grid for the successful operation of the transaction. When having a mapping layer in between the data grid and the data source that converts the data grid objects to relational database tables data (i.e. <a href="http://www.hibernate.org" target="_blank">Hibernate</a>), the time which takes to perform the conversion would also impact the acknowledge time and the application overall performance.</p>
         <p>The above means you should be careful when using this persistency mode in case your application have the requirement to respond quickly (low latency) and scale in linear manner.</p>
         <div class="tc-admon-note">
