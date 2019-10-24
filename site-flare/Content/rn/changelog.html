@@ -4,10 +4,18 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Changelog</h1>
-        <p>This section lists the changes that were made in the InsightEdge Platform for <MadCap:variable name="Versions.product-version-short" />.x.<MadCap:conditionalText MadCap:conditions="Version.15-0-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
+        <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.x.<MadCap:conditionalText MadCap:conditions="Version.15-0-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
         <h1 MadCap:conditions="Version.15-0-only">15.0.0</h1>
         <h2 MadCap:conditions="Version.15-0-only">Features and Enhancements</h2>
         <ul MadCap:conditions="Version.15-0-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13849,">
+                </MadCap:snippetText>: Remove GS_OPTIONS_EXT usage from Dockerfile to simplify external usage.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13942," />: upgrade OSHI to version 4.0.0 and JNA to 5.4.0.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13660,">
+                </MadCap:snippetText>: Upgrade Apache Calcite to 1.21 and Avatica to 15.0.</li>
             <li>
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13660," />: Upgrade Apache Calcite to 1.17.</li>
             <li>
@@ -69,6 +77,13 @@
         </ul>
         <h2 MadCap:conditions="Version.15-0-only">Resolved Issues</h2>
         <ul MadCap:conditions="Version.15-0-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13849," />: GSC stdio sometimes closes prematurely, causing shutdown to hang indefinitely.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13878,">
+                </MadCap:snippetText>: SpaceIterator.close() throws an exception when the data isn't fully consumed.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13936," />: REST Manager API deployment status shows Pending instead of Failed.</li>
             <li>
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13936," />: REST API deployment status shows pending instead of failed.</li>
             <li>
