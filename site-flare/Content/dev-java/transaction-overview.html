@@ -166,12 +166,12 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
         <p>The above configuration creates a Distributed Transaction Manager with a pool of 2 transaction (lease) renewal managers (a single manager can handle multiple transactions, more managers allow for better concurrency). Each transaction is renewed every 1 second (1000 milliseconds) with an expected round trip time of 500 milliseconds. This means that a transaction with a timeout of 10 seconds is renewed 10 times (approximately) and if the JVM crashes, the transaction expires within a second (at most).</p>
         <p>More information regarding Lease Renewal Manager can be found <a href="leases-automatic-expiration.html#LeaseRenewalManager">here</a>.</p>
         <h1><a name="xa-jta-support"></a>XA/JTA Support</h1>
-        <p><MadCap:variable name="General.ProductNameXAP" /> can be used within an XA transaction using JTA. The OpenSpaces API allows you to work with Spring's <code>JTATransactionManager</code> and provides support for declarative transaction management. The following is an example of how OpenSpaces JTA support can be used (using JOTM):</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> can be used within an XA transaction using JTA. The OpenSpaces API allows you to work with Spring's <code>JTATransactionManager</code> and provides support for declarative transaction management. The following is an example of how OpenSpaces JTA support can be used (using Jboss):</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
-&lt;bean id="jotm" class="org.springframework.transaction.jta.JotmFactoryBean" /&gt;
+&lt;bean id="jboss" class="com.arjuna.ats.internal.jta.transaction.arjunacore.UserTransactionImple" /&gt;
 &lt;bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"&gt;
-    &lt;property name="userTransaction" ref="jotm" /&gt;
+    &lt;property name="userTransaction" ref="jboss" /&gt;
 &lt;/bean&gt;
 
 &lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager" /&gt;
@@ -181,10 +181,10 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
     &lt;property name="name" value="space" /&gt;
 &lt;/bean&gt;
 
-&lt;bean id="jotm" class="org.springframework.transaction.jta.JotmFactoryBean" /&gt;
+&lt;bean id="jboss" class="com.arjuna.ats.internal.jta.transaction.arjunacore.UserTransactionImple" /&gt;
 
 &lt;bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager"&gt;
-    &lt;property name="userTransaction" ref="jotm" /&gt;
+    &lt;property name="userTransaction" ref="jboss" /&gt;
 &lt;/bean&gt;
 
 &lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
@@ -196,7 +196,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm
             <div title="Code" style="padding:10px"><pre><code class="language-java">UserTransaction userTransaction = ... //get UserTransaction via JDNI / instantiation
 PlatformTransactionManager ptm = new JtaTransactionManager(userTransaction);
 EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("mySpace");
-GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm).gig
+GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).transactionManager(ptm).gigaSpace()
 </code></pre>
             </div>
         </div>
