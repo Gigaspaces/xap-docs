@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Intelligent Tiering</h1>
+        <p MadCap:conditions="Default.DoNotShow"><MadCap:variable name="General.ProductNameIE" /> only</p>
+        <h1>Overview</h1>
+        <p>AnalyticsXtreme is a data lake accelerator that  operationalizes your data lake for real-time analytics, which can run simultaneously on both real-time, mutable streaming data and on historical data that is stored on data lakes based on Hadoop, Amazon S3 or Azure Blob Storage, without exposing a separate data load procedure or data duplication.  Moving from on-premise to the cloud, or changing technology stacks for example from Cloudera to Amazon S3, is seamless to machine learning applications; increasing flexibility while reducing development and maintenance. </p>
+        <p>With AnalyticsXtreme, your data is available for immediate searching, queries, and running analytics; there is a single logical view for hot, warm and cold data. The hot data resides on <MadCap:variable name="General.ProductNameIE" />'s in-memory data grid, while cold (historical) data can be stored on any big-data platform such as HDFS or Amazon S3. Additionally, the hot data is mutable, supporting real-time updates. The data becomes immutable when it is stored on the external big data platform.</p>
+        <p>HIve with Hadoop is only supported platform</p>
+        <p>Apache Hive is an SQL engine over Hadoop, has PARTITION query language with partition and bucket capability for categorizing data in the Hadoop file system (provides specific location for each type of data). Spark doesn't currently support querying buckets, only partitions.</p>
+        <p>Index entry structure - sya have partition by city, and want to do query by name. So need to map between names, and the cities that have pple with those names that live in them. Can't index entire file system because just the index would be very large.</p>
+        <p>accuracy vs. size</p>
+        <p>Index period is entire period that we want to index. For example, want to index one month out of a full year of data - one month is the index period. The month needs to be segmented into time slices called buckets (this is the index granularity). The more granular you get, the larger the index which is a tradeoff for greater accuracy. The longer the time slice the less granular, so the less accurate but you get better performance/ smaller footprint in memory. Index is deployed in MX space over SSD.</p>
+        <p>&#160;</p>
+        <p>Speed space is the AX speed layer. Batch index space is MX over SSD&#160;space where the index is stored. <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;driver is used to communicate from the AX&#160;client side. When index is deployed, need to do an initial indexing of the required index period. This index will only be available to optimize search time until it is completely initialized. You can run your query, but you don't get the benefit of the faster search because you weren't able to use the index.</p>
+        <p>data is regularly moved from the speed layer to the batch later (only the data that matches the partition/bucket definitions and has a time value). </p>
+        <p>Note:&#160;Null is not a legitimate value.</p>
+        <p>As part of this process, the data is indexed before it's cached in the speed buffer. If a query is executed in the AX&#160;client, first step is to check whether index is available. Then verifies that all the required data is within the defined index period (if the time definition exceeds the index period, the index isn't used in the query because there won't be data consistency). If yes, query is run using the index. The relevant partitions are returned - meaning those that contain data that match the query. Then the original query from the client is updated with the partition condition.</p>
+        <p>example query would be to look for Niv and he is a match for three city partitions (Jerusalem, Tel Aviv, and Haifa). then the query would be name=Niv and partition=Jerusalem, Tel Aviv, Haifa. So the query only searches those three partitions instead of searching all the partitions, which speeds up the query considerably.</p>
+        <p>&#160;</p>
+        <p>Lifecycle of the data from speed (hot) to batch (warm) to index (cold) to out (archive). Add diagram here. When data moves from speed layer to batch layer, is added to batch index as it moves through the speed layer eviction time window. As the data is moved into the batch layer, it is directed to the relevant partitions and buckets. When the batch layer time window expires, the data moves into the batch index eviction time window and when this expires, the data is expunged from the index and is available only as archive data.</p>
+        <p>&#160;</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lambda/AX-batch-index.png" class="tc-picture80" />
+            </p>
+        </div>
+        <h1>Zeppelin Examples</h1>
+        <h2>XetraStockMarketTrade</h2>
+        <p>running the example without the batch index takes over 4 minutes (full scan of maybe 30MB of data, which isn't a lot) in Hive.</p>
+        <p>When the query is run with the batch index, it takes about 3 seconds. the securityType (ETN) that was the target of the query was present in about 100 of the 1900 partitions in Hive, so using the batch index meant that 99% of the available partitions didn't actually have to be scanned.</p>
+        <h2>Efficiency Query</h2>
+        <p>Zeppelin also has a Batch Index Efficiency query to assess how effective it is to use the batch index to improve performance.</p>
+        <h2>Adding Custom Queries and Data</h2>
+        <p>There are also statistics that are saved in the same object and so can used for demo purposes. This is for when you add your own data and apply your own queries, so you can see how effective batch indexing is on your own data.</p>
+    </body>
+</html>
