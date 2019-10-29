@@ -4,35 +4,13 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Integrating Kafka with <MadCap:variable name="General.CompanyName" /></h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Author</th>
-                    <th>Product Version</th>
-                    <th>Last Updated</th>
-                    <th>Reference</th>
-                    <th>Download</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr MadCap:conditions="">
-                    <td>Aharon Moll</td>
-                    <td>14.5</td>
-                    <td>September 2019</td>
-                    <td><a href="https://kafka.apache.org/" target="_blank">Apache Kafka</a>
-                    </td>
-                    <td><a href="https://github.com/Gigaspaces-sbp/xap-kafka" target="_blank">Github link </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
         <h1>Introduction</h1>
         <p><a href="http://kafka.apache.org">Apache Kafka</a> is a distributed publish-subscribe messaging system, which supports sending messages between applications, processes, and servers. A message is any kind of information that is sent from a producer (application that sends the messages) to a consumer (application that receives the messages).</p>
         <p>Producers write their messages, or data, to Kafka topics. These topics are divided into partitions that function like logs. Each message is written to a partition and has a unique offset, or identifier. Consumers can specify a particular offset point where they can begin to read messages. </p>
-        <p>A Kafka server is called a broker, and a Kafka cluster contains one or more brokers. Topic partitions can reside on different brokers in the clusters, so that data in a specific topic can be split among multiple brokers. Consumers can be associated with consumer groups (each group reads from a specific topic). This enables high throughput because messages can be written and read in parallel to and from the different brokers in the cluster.</p>
-        <p>Kafka is designed to support persistent messaging with a O(1) disk structure that provides constant time performance, even with multiple terabytes of stored messages.
+        <p MadCap:conditions="Default.DoNotShow">A Kafka server is called a broker, and a Kafka cluster contains one or more brokers. Topic partitions can reside on different brokers in the clusters, so that data in a specific topic can be split among multiple brokers. Consumers can be associated with consumer groups (each group reads from a specific topic). This enables high throughput because messages can be written and read in parallel to and from the different brokers in the cluster.</p>
+        <p MadCap:conditions="Default.DoNotShow">Kafka is designed to support persistent messaging with a O(1) disk structure that provides constant time performance, even with multiple terabytes of stored messages.
 Kafka provides high throughput even with very modest hardware, supporting hundreds of thousands of messages per second. Messages can be split among Kafka brokers, distributing consumption over a cluster of consumer machines while maintaining per-partition ordering semantics. For example, Kafka is often used to perform parallel data loading to Hadoop.</p>
-        <p>This page describes how to integrate <MadCap:variable name="General.CompanyName" /> products with Apache Kafka, using our write-behind data grid operations to Kafka to make data available for subscribers. Hadoop or any other data warehousing system can using the data for reporting and processing. <MadCap:variable name="General.CompanyName" /> products can be implemented as the consumer by subscribing to Kafka messages, and as a producer by publishing Kafka messages. Both implementations are described below.</p>
+        <p>This topic describes how to integrate <MadCap:variable name="General.CompanyName" /> products with Apache Kafka, using our write-behind data grid operations to Kafka to make data available for subscribers. Hadoop or any other data warehousing system can use the data for reporting and processing. <MadCap:variable name="General.CompanyName" /> products can be implemented as the consumer by subscribing to Kafka messages, and as a producer by publishing Kafka messages. Both implementations are described below.</p>
         <h1>The Space as a Consumer</h1>
         <p>The Kafka persistence library provides a wrapper around the native Kafka Consumer API for the <MadCap:variable name="General.CompanyName"></MadCap:variable>-Kafka protocol serialization. For an example of how to use this wrapper, see the <code>com.epam.openspaces.persistency.kafka.consumer.KafkaConsumer</code> example in the <code><MadCap:variable name="General.Home-directory"></MadCap:variable>/example module</code> folder.</p>
         <p>The Space sits behind the Kafka consumer service, and the data objects are passed to the Space instances using routing keys.</p>
@@ -48,18 +26,18 @@ Kafka provides high throughput even with very modest hardware, supporting hundre
                 <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-producer.png" alt="xap-kafka.jpg" class="tc-picture50" />
             </p>
         </div>
-        <p>The <MadCap:variable name="General.CompanyName" />-Kafka protocol is simple and represents the data and data grid operations. A message consists of the data grid operation type (Write, Update , Remove, etc.) and the actual data object. The data object itself may be represented either as a single object or as a <code>SpaceDocument</code> with key/value pairs.
-Kafka messages are sent via the network, so must be somehow serialized into bytes.
+        <p>The <MadCap:variable name="General.CompanyName" />-Kafka protocol  represents the data and data grid operations. A message consists of the data grid operation type (Write, Update , Remove, etc.) and the actual data object. The data object itself may be represented either as a single object or as a <code>SpaceDocument</code> with key/value pairs.
+Kafka messages are sent via the network, so must be serialized into bytes.
 The default encoder utilizes the Java serialization mechanism, which implies Space classes (domain model) to be <code>Serializable</code>.</p>
         <p>By default, Kafka messages are uniformly distributed across Kafka partitions. As such, even though data grid operations appear ordered in <code>SpaceSynchronizationEndpoint</code>, this doesn't imply the correct data processing ordering  in Kafka consumers. </p>
+        <p MadCap:conditions="Default.DoNotShow">Is there a way to change default (maybe not) Why mention this and not how to guarantee ordering - e.g. 1 partition (lower performance), or some id per partition.....</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-data-order.png" alt="xap-kafka-ordering.jpg" class="tc-picture80" />
             </p>
         </div>
         <h1>Running the Example</h1>
-        <p>This topic includes an example of <MadCap:variable name="General.CompanyName" /> as a producer, which demonstrates how to configure Kafka persistence and implements a simple Kafka consumer. The consumer pulls data from the Kafka broker and uses HsqlDB for storage.</p>
-        <p>After you download and install the example, you can configure the pu.xml with any necessary properties, such as the Kafka persistence, Kafka producer or consumer properties, Space class, and data modeling (SpaceDocument).</p>
+        <p>This topic includes an example of <MadCap:variable name="General.CompanyName" /> as a producer, which demonstrates how to configure Kafka persistence. The topic also implements a simple Kafka consumer, which pulls data from the Kafka broker and uses HsqlDB for storage.</p>
         <div class="tc-admon-note">
             <p>You need to install Kafka to run the example.</p>
         </div>
@@ -89,15 +67,24 @@ mvn os:deploy
             <li>Check the log files for messages from the Feeder and Consumer to confirm that the example was installed successfully.</li>
         </ol>
         <h1>Configuring the Services</h1>
-        <h2>Library Dependency</h2>
+        <p>After you download and install the example, you can configure the pu.xml with any necessary properties, such as </p>
+        <ul>
+            <li>Kafka persistence</li>
+            <li>Kafka producer or consumer properties </li>
+            <li>Space class</li>
+            <li>Data modeling (SpaceDocument).</li>
+        </ul>
+        <h2>Kafka Persistence</h2>
+        <h3>Library Dependency</h3>
         <p>The following Maven dependency must be included in your project in order to use Kafka persistence. This artifact is built from the <code>&lt;project_rootd&gt;/kafka-persistence</code> source directory.</p><pre><code class="language-xml">&lt;dependency&gt;
     &lt;groupId&gt;com.epam&lt;/groupId&gt;
     &lt;artifactId&gt;kafka-persistence&lt;/artifactId&gt;
     &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-        <h2>Kafka Persistence</h2>
-        <p>You can configure the <code>kafkaSpaceSynchronizationEndpoint</code> as shown in the following sample code, where it is implemented as a <MadCap:variable name="General.CompanyName" /> mirror service:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <h3>Example Code</h3>
+        <p>You can configure the <code>kafkaSpaceSynchronizationEndpoint</code> as shown in the following example code, where it is implemented as a <MadCap:variable name="General.CompanyName" /> mirror service:</p>
+        <p MadCap:conditions="Default.DoNotShow">Need some explanation about persistence - also how this does persistence</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -142,7 +129,9 @@ mvn os:deploy
             <p>For more information about the <MadCap:variable name="General.CompanyName" /> mirror service, see the <a href="https://docs.gigaspaces.com/latest/dev-java/asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency - Write Behind</a> topic in the Developer guide.</p>
         </div>
         <h2>Kafka Consumer Service</h2>
-        <p>You can configure the Kafka consumer service as shown in the following sample code:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <p>You can configure the Kafka consumer service as shown in the following sample code:</p>
+        <p MadCap:conditions="Default.DoNotShow">More explanation what this does</p>
+        <p MadCap:conditions="Default.DoNotShow">Seems this is not from example package.</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -177,7 +166,8 @@ mvn os:deploy
 &lt;/beans&gt;
 </code></pre>
         <h2>Kafka Producer Properties</h2>
-        <p>The following properties are the default applied to the Kafka producer in the <MadCap:variable name="General.CompanyName" />-Kafka protocol. You can override them if necessary, as described in the <MadCap:xref href="#Customization">Customizing the Integration</MadCap:xref> section below.</p>
+        <p>The following properties are the default applied to the Kafka producer in the <MadCap:variable name="General.CompanyName" />-Kafka protocol. You can override them if necessary.</p>
+        <p MadCap:conditions="Default.DoNotShow">where/how? Are these the only relevant properties and any for consumer?</p>
         <table>
             <thead>
                 <tr>
