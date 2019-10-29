@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>Administration API</h1>
-        <p>The Admin API provides a way to administer and monitor all of <MadCap:variable name="General.ProductNameXAP" /> services and components using a simple API. The API provides information and the ability to operate on the currently running <a href="../overview/the-runtime-environment.html#gsa"><MadCap:variable name="General.ProductNameXAP" /> Agent</a>, <a href="../overview/the-runtime-environment.html#gsm">XAP Manager</a>, <a href="../overview/the-runtime-environment.html#gsc">XAP Container</a>, <a href="../overview/the-runtime-environment.html#lus">Lookup Service</a>, Processing Unit, and Spaces.</p>
+        <p>The Admin API provides a way to administer and monitor all of <MadCap:variable name="General.ProductNameXAP" /> services and components using a simple API. The API provides information and the ability to operate on the currently running <a href="../overview/the-runtime-environment.html#gsa"><MadCap:variable name="General.ProductNameXAP" /> Agent</a>, <a href="../overview/the-runtime-environment.html#gsm">the Manager</a>, <a href="../overview/the-runtime-environment.html#gsc">the Container</a>, <a href="../overview/the-runtime-environment.html#lus">Lookup Service</a>, Processing Unit, and Spaces.</p>
         <p><span class="tc-bold">Dependencies</span>
         </p>
         <p>In order to use this feature, include the <code><MadCap:variable name="General.HomePath" />/lib/platform/service-grid/xap-admin.jar</code> file on your classpath or use maven dependencies:</p><pre><code class="language-xml">&lt;dependency&gt;
@@ -271,7 +271,7 @@ public void space() {
         <p>When the <code>Admin</code> is created, it starts to receive discovery events from all the advertised services/components within its lookup groups and lookup locators. The events occur asynchronously and the data model within the Admin API gets initialized in the background with services coming and going.</p>
         <p>This means that just creating the <code>Admin</code> and calling a specific "getter" for a data structure might not return what is currently deployed, and you should wait until the structures are filled. Some components have a <code>waitFor</code> method that allows waiting for a specific number of services to be up. When navigating the data model, the Admin API provides its most up-to-date state of the system it is monitoring.</p>
         <h1><a name="domain-model"></a>Domain Model</h1>
-        <p>The Admin Domain Model has representation to all the XAP-level main actors. They include:</p>
+        <p>The Admin Domain Model has representation to all the <MadCap:variable name="General.DataGrid" />-level main actors. They include:</p>
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/admin_DomainModel.jpg" alt="admin_DomainModel.jpg" class="tc-picture50" />
         </div>

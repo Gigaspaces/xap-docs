@@ -10,7 +10,9 @@
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap pu upload</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu upload</code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu upload</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
@@ -40,8 +42,16 @@
                 </table>
                 <p><span class="tc-italic">Input Example:</span>
                 </p>
-                <p>This example upload a PU named <span class="tc-bold">myPu</span> the mypu.jar file.</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu upload mypu.jar
+                <p>This example upload a PU named <span class="tc-bold">myPu</span> the mypu.jar file.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu upload mypu.jar
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu  upload mypu.jar<![CDATA[
+]]></code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu upload mypu.jar<![CDATA[
+]]></code></pre>
+                    </div>
+                </div>
             </div>
             <div title="REST Manager API" style="padding:10px">
                 <p><span class="tc-italic">Path</span>

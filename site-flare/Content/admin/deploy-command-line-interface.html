@@ -200,16 +200,16 @@ processor.jar
             <li>
                 <p>Within the deployed jar under the lib folder - Good if you have relatively small amount of jars and few PU
       instances within the same GSC. These will be copied automatically by GigaSpaces during the deploy process to the
-      <code>\gigaspaces-xap-premium\work</code> folder on all the machines running GSCs hosting the PU instances. You
+      <code><MadCap:variable name="General.HomePath" />\work</code> folder on all the machines running GSCs hosting the PU instances. You
       may control this folder location using the <code>com.gs.work</code> system property.</p>
             </li>
             <li>
-                <p>Within the <code>\gigaspaces-xap-premium\lib\optional\pu-common</code> folder for each machine running GSCs -
+                <p>Within the <code><MadCap:variable name="General.HomePath" />\lib\optional\pu-common</code> folder for each machine running GSCs -
       Each PU instance will have its own instance of the loaded class. Speed up the deployed time. You may control this
       folder location using the <code>com.gs.pu-common</code> system property.</p>
             </li>
             <li>
-                <p>Within the <code>\gigaspaces-xap-premium\lib\platform\ext</code> folder for each machine running GSCs - All PUs
+                <p>Within the <code><MadCap:variable name="General.HomePath" />\lib\platform\ext</code> folder for each machine running GSCs - All PUs
       class loaders will share the same loaded class. Speed up the deployed time. Optimize the JVM perm gem space usage
       since all 3rd party jars are loaded only once. You may control this folder location using the <code>com.gigaspaces.lib.platform.ext</code>
       system property.</p>
@@ -763,7 +763,7 @@ processor.jar
         </table>
         <h1><a name="hot-deploy"></a>Hot Deploy</h1>
         <div class="tc-admon-note">
-            <p>The <a href="/sbp/xap-hot-deploy.html">XAP Hot Deploy</a> tool allows business logic running as a PU to be
+            <p>The <a href="../solution-hub/xap-hot-deploy.html">Hot Deploy</a> tool allows business logic running as a PU to be
       refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach ,
       placing new PU code on the GSM PU deploy folder and later restart each PU instance.</p>
         </div>

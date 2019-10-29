@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Global vs. Local GSM</h1>
         <div class="tc-admon-note">
-            <p>This page is irrelevant for <MadCap:variable name="General.ProductNameXAP" /> Manager, and explains how to setup multiple GSMs manually to achieve high availability. This technique is still supported, but outdated, and will be phased out in the future. It's highly recommended to use <a href="xap-manager.html">XAP Manager</a> instead, which is both easier to use and provides superior <a href="xap-manager.html#high-availability">high availability</a>.</p>
+            <p>This page is irrelevant for <MadCap:variable name="General.ProductNameXAP" /> Manager, and explains how to setup multiple GSMs manually to achieve high availability. This technique is still supported, but outdated, and will be phased out in the future. It's highly recommended to use <a href="xap-manager.html"> Manager</a> instead, which is both easier to use and provides superior <a href="xap-manager.html#high-availability">high availability</a>.</p>
         </div><a name="local-gsm"></a>
         <h1><a name="local-gsm"></a>Local GSM</h1>
         <p>Similar to the lookup service you may run a global GSM or a local GSM. In this case a local GSM will allow you to control the host machine where the GSM and its deploy folder will be located (configured via the <code>com.gs.deploy</code> system property). The GSM deploy folder used at the deployment time when provisioning a deployed PU into exiting GSCs or once a new GSC is started (manually or dynamically via the ESM) where it is downloading from the GSM its PU configuration (pu.xml) and relevant PU files.</p>

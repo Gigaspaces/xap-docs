@@ -80,14 +80,24 @@
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap pu quiesce &lt;name&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu quiesce &lt;name&gt;</code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu quiesce &lt;name&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command disables a running Processing Unit for maintenance.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu quiesce  myPu --description="start friday maintenance"
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu quiesce  myPu --description="start friday maintenance"
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu  quiesce  myPu --description="start friday maintenance"<![CDATA[
+]]></code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu quiesce  myPu --description="start friday maintenance"<![CDATA[
+]]></code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
                 <table>
@@ -178,14 +188,24 @@
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap pu unquiesce &lt;pu name&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu unquiesce &lt;pu name&gt;</code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu unquiesce &lt;pu name&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command enables a quiesced Processing Unit.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu unquiesce  myPu
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu unquiesce  myPu
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu  unquiesce  myPu <![CDATA[
+]]></code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu unquiesce  myPu <![CDATA[
+]]></code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
                 <table>
@@ -263,14 +283,24 @@
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap space demote-instance &lt;instance ID&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap space demote-instance &lt;instance ID&gt;</code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> space demote-instance &lt;instance ID&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command demotes a Space instance from a primary to a backup, with no downtime required.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap space demote-instance mySpace~1_1 --max-suspend-time=15s
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap space demote-instance mySpace~1_1 --max-suspend-time=15s
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space demote-instance mySpace~1_1 --max-suspend-time=15s<![CDATA[ 
+]]></code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> space demote-instance mySpace~1_1 --max-suspend-time=15s<![CDATA[
+]]></code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
                 <table>
@@ -439,14 +469,24 @@ mySpace.getSpaceSuspendTypeChanged().remove(myListener);
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap pu relocate &lt;instance ID&gt; [&lt;container ID&gt;]</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu relocate &lt;instance ID&gt; [&lt;container ID&gt;]</code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu relocate &lt;instance ID&gt; [&lt;container ID&gt;]</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command moves a Processing Unit instance to another container. If container ID is not specified, the Processing Unit instance will be moved to any available container.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu relocate  myPu~1 container~1
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu relocate  myPu~1 container~1
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu relocate  myPu~1 container~1<![CDATA[
+]]></code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu relocate  myPu~1 container~1<![CDATA[
+]]></code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
                 <table>
@@ -542,14 +582,24 @@ mySpace.getSpaceSuspendTypeChanged().remove(myListener);
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap pu increment &lt;name&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu increment &lt;name&gt;</code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><code>xap pu increment &lt;name&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command adds one instance to the specified Processing Unit (which must be stateless).</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu increment  myPu
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu increment  myPu
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu increment  myPu<![CDATA[
+]]></code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu increment  myPu<![CDATA[
+]]></code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
                 <table>
@@ -618,14 +668,24 @@ mySpace.getSpaceSuspendTypeChanged().remove(myListener);
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-italic">Command:</span>
                 </p>
-                <p><code>xap pu decrement &lt;instance ID&gt;</code>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu decrement &lt;instance ID&gt;</code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu decrement &lt;instance ID&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command removes one instance from the specified Processing Unit (which must be stateless).</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu decrement myPu~3
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu decrement myPu~3
 </code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu decrement myPu~3<![CDATA[
+]]></code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu decrement myPu~3<![CDATA[
+]]></code></pre>
+                    </div>
+                </div>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
                 <table>
