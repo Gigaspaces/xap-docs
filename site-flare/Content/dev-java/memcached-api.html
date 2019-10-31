@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -45,7 +45,7 @@ MemcachedClient c = builder.build();
 </code></pre>
         <div class="tc-admon-important">
             <p>Traditional memcached servers shard data by running multiple instances as unassociated peers. Clients connect to each of them, and manually determine which of the server instances data is sent to.</p>
-            <p>XAPs memcached service would run access points on each of the servers - memcached1 and memcached2, as shown above - but the servers share data, so you could get the same dataset by just connecting to only one of the server instances.</p>
+            <p><MadCap:variable name="General.DataGrid" />s memcached service would run access points on each of the servers - memcached1 and memcached2, as shown above - but the servers share data, so you could get the same dataset by just connecting to only one of the server instances.</p>
         </div>
         <p>Setting data and retrieving it is very simple:</p><pre><code class="language-java">int secondsToLive=60; // 60 seconds
 c.set("key", secondsToLive, "value");
