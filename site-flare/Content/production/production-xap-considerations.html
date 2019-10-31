@@ -297,6 +297,9 @@ The <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</c
    -max-instances-per-vm 2  -max-instances-per-machine 1 MySpace
 </code></pre>
         <h1><a name="total-max-instances-per-vm"></a>Total Max Instances per VM</h1>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+            <p>The option for multiple PU instances per GSC is deprecated and will be removed in a future <MadCap:variable name="General.CompanyName" /> product release.</p>
+        </div>
         <p>This parameter controls the total amount of PU instances that can be instantiated within a GSC. This is very different than the <code>max-instances-per-vm</code>, which controls how many instances a partition may have within a GSC.  To control the Total Max PU Instances hosted by a GSC, use the <code>com.gigaspaces.grid.gsc.serviceLimit</code> system property and set its value before starting the GigaSpaces agent:</p><pre><code class="language-java">set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gigaspaces.grid.gsc.serviceLimit=1
 </code></pre>
         <div class="tc-admon-important">
