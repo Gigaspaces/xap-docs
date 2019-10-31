@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Integrating Kafka with <MadCap:variable name="General.CompanyName" /></h1>
+        <h1 class="tc-pagetitle">Integrating Kafka with <MadCap:variable name="General.CompanyName" /> Products</h1>
         <h1>Introduction</h1>
         <p><a href="http://kafka.apache.org">Apache Kafka</a> is a distributed publish-subscribe messaging system, which supports sending messages between applications, processes, and servers. A message is any kind of information that is sent from a producer (application that sends the messages) to a consumer (application that receives the messages).</p>
         <p>Producers write their messages, or data, to Kafka topics. These topics are divided into partitions that function like logs. Each message is written to a partition and has a unique offset, or identifier. Consumers can specify a particular offset point where they can begin to read messages. </p>
@@ -29,13 +29,15 @@ Kafka provides high throughput even with very modest hardware, supporting hundre
         <p>The <MadCap:variable name="General.CompanyName" />-Kafka protocol  represents the data and data grid operations. A message consists of the data grid operation type (Write, Update , Remove, etc.) and the actual data object. The data object itself may be represented either as a single object or as a <code>SpaceDocument</code> with key/value pairs.
 Kafka messages are sent via the network, so must be serialized into bytes.
 The default encoder utilizes the Java serialization mechanism, which implies Space classes (domain model) to be <code>Serializable</code>.</p>
-        <p>By default, Kafka messages are uniformly distributed across Kafka partitions. As such, even though data grid operations appear ordered in <code>SpaceSynchronizationEndpoint</code>, this doesn't imply the correct data processing ordering  in Kafka consumers. </p>
-        <p MadCap:conditions="Default.DoNotShow"><span style="color: #1e90ff;">Is there a way to change default (maybe not) Why mention this and not how to guarantee ordering - e.g. 1 partition (lower performance), or some id per partition.....</span>
-        </p>
-        <div class="tc-align-center">
-            <p>
-                <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-data-order.png" alt="xap-kafka-ordering.jpg" class="tc-picture80" />
+        <div class="tc-admon-note">
+            <p>By default, Kafka messages are uniformly distributed across Kafka partitions. As such, even though data grid operations appear ordered in <code>SpaceSynchronizationEndpoint</code>, this doesn't imply the correct data processing ordering  in Kafka consumers. </p>
+            <p MadCap:conditions="Default.DoNotShow"><span style="color: #1e90ff;">Is there a way to change default (maybe not) Why mention this and not how to guarantee ordering - e.g. 1 partition (lower performance), or some id per partition.....</span>
             </p>
+            <div class="tc-align-center">
+                <p>
+                    <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-data-order.png" alt="xap-kafka-ordering.jpg" class="tc-picture80" />
+                </p>
+            </div>
         </div>
         <h1>Running the Example</h1>
         <p>This topic includes an example of <MadCap:variable name="General.CompanyName" /> as a producer, which demonstrates how to configure Kafka persistence. The topic also implements a simple Kafka consumer, which pulls data from the Kafka broker and uses HsqlDB for storage.</p>
@@ -128,7 +130,7 @@ mvn os:deploy
 &lt;/beans&gt;
 </code></pre>
         <div class="tc-admon-refer">
-            <p>For more information about the <MadCap:variable name="General.CompanyName" /> mirror service, see the <a href="https://docs.gigaspaces.com/latest/dev-java/asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency - Write Behind</a> topic in the Developer guide.</p>
+            <p>For more information about the <MadCap:variable name="General.CompanyName" /> mirror service, see the <MadCap:xref href="../dev-java/asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency - Mirror Service</MadCap:xref> topic in the Developer guide.</p>
         </div>
         <h2>Kafka Consumer Service</h2>
         <p>You can configure the Kafka consumer service as shown in the following sample code:</p>
