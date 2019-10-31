@@ -23,13 +23,13 @@
         </div>
         <h1>Index Entry Structure</h1>
         <p>AnalyticsXtreme batch indexing leverages the functionality of Apache Hive, which is an SQL&#160;engine over Hadoop. Hive uses partitions and buckets to categorize data in the Hadoop file system, so you can designate a specific location for each type of data.</p>
-        <p>For example, you may partition your data according to city, but then want to query by customer name. In order to successfully query this in Hive, you need to map the names to the cities.</p>
+        <p>For example, you might partition your data according to city, but then want to query by customer name. In order to successfully query this in Hive, you need to map the names to the cities.</p>
         <div class="tc-admon-note">
             <p> Spark doesn't currently support querying buckets, only partitions.</p>
         </div>
         <p>As batch indexing is a time-based feature, the data is segmented in time slices.</p>
         <h2>Accuracy vs. Size</h2>
-        <p>The <span class="tc-italic">index period </span>is entire period that we want to index. For example, want to index one month out of a full year of data - one month is the index period. The month needs to be segmented into time slices called buckets (this is the index granularity). The more granular you get, the larger the index which is a tradeoff for greater accuracy. The longer the time slice the less granular, so the less accurate but you get better performance/ smaller footprint in memory. Index is deployed in MX space over SSD.</p>
+        <p>The <span class="tc-italic">batch index period </span>is the entire amount of cold data in the batch layer that is indexed. For example, want to index one month out of a full year of data - one month is the index period. The month needs to be segmented into time slices called buckets (this is the index granularity). The more granular you get, the larger the index which is a tradeoff for greater accuracy. The longer the time slice the less granular, so the less accurate but you get better performance/ smaller footprint in memory. Index is deployed in MX space over SSD.</p>
         <p>&#160;</p>
         <p>Speed space is the AX speed layer. Batch index space is MX over SSD&#160;space where the index is stored. <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;driver is used to communicate from the AX&#160;client side. When index is deployed, need to do an initial indexing of the required index period. This index will only be available to optimize search time until it is completely initialized. You can run your query, but you don't get the benefit of the faster search because you weren't able to use the index.</p>
         <p>data is regularly moved from the speed layer to the batch later (only the data that matches the partition/bucket definitions and has a time value). </p>
