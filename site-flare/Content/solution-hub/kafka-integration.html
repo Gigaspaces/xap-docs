@@ -30,7 +30,8 @@ Kafka provides high throughput even with very modest hardware, supporting hundre
 Kafka messages are sent via the network, so must be serialized into bytes.
 The default encoder utilizes the Java serialization mechanism, which implies Space classes (domain model) to be <code>Serializable</code>.</p>
         <p>By default, Kafka messages are uniformly distributed across Kafka partitions. As such, even though data grid operations appear ordered in <code>SpaceSynchronizationEndpoint</code>, this doesn't imply the correct data processing ordering  in Kafka consumers. </p>
-        <p MadCap:conditions="Default.DoNotShow">Is there a way to change default (maybe not) Why mention this and not how to guarantee ordering - e.g. 1 partition (lower performance), or some id per partition.....</p>
+        <p MadCap:conditions="Default.DoNotShow"><span style="color: #1e90ff;">Is there a way to change default (maybe not) Why mention this and not how to guarantee ordering - e.g. 1 partition (lower performance), or some id per partition.....</span>
+        </p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-data-order.png" alt="xap-kafka-ordering.jpg" class="tc-picture80" />
@@ -84,7 +85,8 @@ mvn os:deploy
 </code></pre>
         <h3>Example Code</h3>
         <p>You can configure the <code>kafkaSpaceSynchronizationEndpoint</code> as shown in the following example code, where it is implemented as a <MadCap:variable name="General.CompanyName" /> mirror service:</p>
-        <p MadCap:conditions="Default.DoNotShow">Need some explanation about persistence - also how this does persistence</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <p MadCap:conditions="Default.DoNotShow"><span style="color: #1e90ff;">Need some explanation about persistence - also how this does persistence</span>
+        </p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -130,8 +132,8 @@ mvn os:deploy
         </div>
         <h2>Kafka Consumer Service</h2>
         <p>You can configure the Kafka consumer service as shown in the following sample code:</p>
-        <p MadCap:conditions="Default.DoNotShow">More explanation what this does</p>
-        <p MadCap:conditions="Default.DoNotShow">Seems this is not from example package.</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <p MadCap:conditions="Default.DoNotShow" style="color: #1e90ff;">More explanation what this does</p>
+        <p MadCap:conditions="Default.DoNotShow" style="color: #1e90ff;">Seems this is not from example package.</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -167,7 +169,8 @@ mvn os:deploy
 </code></pre>
         <h2>Kafka Producer Properties</h2>
         <p>The following properties are the default applied to the Kafka producer in the <MadCap:variable name="General.CompanyName" />-Kafka protocol. You can override them if necessary.</p>
-        <p MadCap:conditions="Default.DoNotShow">where/how? Are these the only relevant properties and any for consumer?</p>
+        <p MadCap:conditions="Default.DoNotShow"><span style="color: #1e90ff;">where/how? Are these the only relevant properties and any for consumer?</span>
+        </p>
         <table>
             <thead>
                 <tr>
