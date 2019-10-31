@@ -41,7 +41,7 @@
         <h1><a name="space-routing-property-validation"></a>Space Routing Property Validation</h1>
         <p>The <code>Space Routing</code> property is used to partition the data across different partitions. It is recommended to define such property explicitly to control how data is partitioned and avoid common mistakes like writing data to the wrong partition.</p>
         <p>See more info on <code>routing property</code> <a href="../dev-java/routing-in-partitioned-spaces.html">Java version</a> |<a href="../dev-dotnet/routing-in-partitioned-spaces.html"> .NET version</a>.</p>
-        <p>Starting with XAP 9.7 a new protective mode has been added to protect against writing entries with a <code>null</code> value routing. In case your application contains objects without a routing value you'll get the following exception:</p><pre><code class="language-bash">com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected - no routing value provided when writing an entry of type `MyClass` in a partitioned space.
+        <p>A new protective mode has been added to protect against writing entries with a <code>null</code> value routing. In case your application contains objects without a routing value you'll get the following exception:</p><pre><code class="language-bash">com.gigaspaces.client.protective.ProtectiveModeException: Operation is rejected - no routing value provided when writing an entry of type `MyClass` in a partitioned space.
 </code></pre>
         <p>A Space routing value should be specified before writing the space. Missing routing value would result in a remote client not being able to locate this entry as the routing value will not match the partition the entry is located.</p>
         <div class="tc-admon-note">

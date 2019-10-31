@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -9,7 +9,7 @@
         <p>In a multicast enabled environment, the lookup groups can be set using either the <code>LOOKUPGROUPS</code> environment variable (when using scripts), or by setting <code>-Dcom.gs.jini_lus.groups</code> system property.</p>
         <p>In a unicast environment (where multicast is disabled), the lookup locators can be set using either <code>LOOKUPLOCATORS</code> environment variable (when using scripts), or by setting <code>-Dcom.gs.jini_lus.locators</code> system property. In a unicast environment, the LUS are started on specific machines (usually two LUS instances), and the lookup locators simply point to the two hosts the LUS instances are running on.</p>
         <div class="tc-admon-note">
-            <p>When a <a href="../overview/the-runtime-environment.html#grid-service-container-gsc">XAP Container</a> is started with a specific lookup groups / lookup locators, any Processing Unit instance running within it (and Space instances as well) will inherit the configuration and join the virtualized LUS environment.</p>
+            <p>When a <a href="../overview/the-runtime-environment.html#grid-service-container-gsc">Container</a> is started with a specific lookup groups / lookup locators, any Processing Unit instance running within it (and Space instances as well) will inherit the configuration and join the virtualized LUS environment.</p>
         </div>
         <h1><a name="registering-and-using-a-service"></a>Registering and Using a Service</h1>
         <p>The following diagram shows how a service provider registers a service with the Lookup Service, and how a client subsequently locates the service at the Lookup Service and begins working with the service.</p>
