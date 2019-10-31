@@ -27,10 +27,10 @@
             </tbody>
         </table>
         <p>The Export/Import tool was originally created to help our engineers quickly replicate test scenarios.
-Since its creation this tool has evolved to be an easy-to-use method for migrating data to new XAP deployments, capturing data snapshots,
+Since its creation this tool has evolved to be an easy-to-use method for migrating data to new <MadCap:variable name="General.ProductNameXAP" /> deployments, capturing data snapshots,
 and bootstrapping disparate environments.</p>
-        <p>The Export/Import tool leverages several XAP features that make it effective for each
- use case. The fundamental feature leveraged by Export/Import is XAP's <a href="/xap/14.0/dev-java/task-execution-overview.html">Task Execution API</a>.</p>
+        <p>The Export/Import tool leverages several <MadCap:variable name="General.ProductNameXAP" /> features that make it effective for each
+ use case. The fundamental feature leveraged by Export/Import is <MadCap:variable name="General.ProductNameXAP" />'s <a href="/xap/14.0/dev-java/task-execution-overview.html">Task Execution API</a>.</p>
         <p>When the Export/Import tool is started it will send either an Export or Import task to each partition, and this is where
 the actual operation will be performed. To put it simply each primary instance is responsible for exporting or importing their own data.</p>
         <h2>When is the Export/Import Tool Useful?</h2>
@@ -143,7 +143,7 @@ PS C:\var\import-export&gt;
                     <td>optional</td>
                     <td>n/a</td>
                     <td>n/a</td>
-                    <td>A comma separated list of XAP lookup locators for the target grid.</td>
+                    <td>A comma separated list of <MadCap:variable name="General.DataGrid" /> lookup locators for the target grid.</td>
                 </tr>
                 <tr>
                     <td>-g</td>
@@ -151,7 +151,7 @@ PS C:\var\import-export&gt;
                     <td>optional</td>
                     <td>n/a</td>
                     <td>n/a</td>
-                    <td>A comma separated list of XAP lookup groups for the target grid.</td>
+                    <td>A comma separated list of <MadCap:variable name="General.DataGrid" /> lookup groups for the target grid.</td>
                 </tr>
                 <tr>
                     <td>-u</td>
@@ -159,7 +159,7 @@ PS C:\var\import-export&gt;
                     <td>optional</td>
                     <td>n/a</td>
                     <td>n/a</td>
-                    <td>Specifies an XAP username with read and execute privileges. Required when connecting to a secured grid.</td>
+                    <td>Specifies a <MadCap:variable name="General.DataGrid" /> username with read and execute privileges. Required when connecting to a secured grid.</td>
                 </tr>
                 <tr>
                     <td>-a</td>
@@ -167,7 +167,7 @@ PS C:\var\import-export&gt;
                     <td>optional</td>
                     <td>n/a</td>
                     <td>n/a</td>
-                    <td>Specifies an XAP password corresponding to the specified XAP username. Required when connecting to a secured grid.</td>
+                    <td>Specifies a <MadCap:variable name="General.DataGrid" /> password corresponding to the specified <MadCap:variable name="General.DataGrid" /> username. Required when connecting to a secured grid.</td>
                 </tr>
                 <tr>
                     <td>
@@ -360,7 +360,7 @@ PS C:\var\import-export&gt;
                     <td>optional</td>
                     <td>n/a</td>
                     <td>n/a</td>
-                    <td>A comma separated list of XAP lookup locators for the target grid.</td>
+                    <td>A comma separated list of <MadCap:variable name="General.DataGrid" /> lookup locators for the target grid.</td>
                 </tr>
                 <tr>
                     <td>-g</td>
@@ -368,7 +368,7 @@ PS C:\var\import-export&gt;
                     <td>optional</td>
                     <td>n/a</td>
                     <td>n/a</td>
-                    <td>A comma separated list of XAP lookup groups for the target grid.</td>
+                    <td>A comma separated list of <MadCap:variable name="General.DataGrid" /> lookup groups for the target grid.</td>
                 </tr>
                 <tr>
                     <td>-u</td>
@@ -376,7 +376,7 @@ PS C:\var\import-export&gt;
                     <td>optional</td>
                     <td>n/a</td>
                     <td>n/a</td>
-                    <td>Specifies an XAP username with read and execute privileges. Required when connecting to a secured grid.</td>
+                    <td>Specifies a <MadCap:variable name="General.DataGrid" /> username with read and execute privileges. Required when connecting to a secured grid.</td>
                 </tr>
                 <tr>
                     <td>-a</td>
@@ -384,7 +384,7 @@ PS C:\var\import-export&gt;
                     <td>optional</td>
                     <td>n/a</td>
                     <td>n/a</td>
-                    <td>Specifies an XAP password corresponding to the specified XAP username. Required when connecting to a secured grid.</td>
+                    <td>Specifies a <MadCap:variable name="General.DataGrid" /> password corresponding to the specified <MadCap:variable name="General.DataGrid" /> username. Required when connecting to a secured grid.</td>
                 </tr>
                 <tr>
                     <td> </td>
@@ -479,10 +479,10 @@ regardless of hosts will have access to the export files.
 <br /></p>
         <h4>Why should I use the <code>--jarless</code> option during export?</h4>
         <p>If you do not provided the <code>--jarless</code> option during export you will be required to include your application jars on the Export/Import tool's classpath
-as well as the classpath used by your processing unit running on XAP. The jars would be required on both import and export operations.</p>
-        <p>When <code>--jarless</code> is provided all objects will be read as an XAP <a href="/xap/14.0/dev-java/document-overview.html">Space Document</a> this
+as well as the classpath used by your processing unit running on <MadCap:variable name="General.DataGrid" />. The jars would be required on both import and export operations.</p>
+        <p>When <code>--jarless</code> is provided all objects will be read as a <MadCap:variable name="General.DataGrid" /> <a href="/xap/14.0/dev-java/document-overview.html">Space Document</a> this
 removes the requirement to include your application jars in the classpath. Documents and Space Classes can be interoperable,
-and when following XAP documentation and best practices should be interoperable.
+and when following <MadCap:variable name="General.DataGrid" /> documentation and best practices should be interoperable.
 <br /></p>
         <h4>Why am I receiving a NoClassDefFoundError and/or a ClassNotFoundException?</h4>
         <p>There are several reasons this could be. If you're seeing this on one of your space classes during import it is because

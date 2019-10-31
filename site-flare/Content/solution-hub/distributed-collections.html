@@ -27,15 +27,15 @@
             </tbody>
         </table>
         <h2>Introduction</h2>
-        <p>This is a distributed Java collection implementation on top of Gigaspaces XAP. It currently includes the implementation of <code>java.util.concurrent.BlockingQueue</code> and <code>java.util.Set</code> with a number of features on top of them, e.g. different collocation modes.</p>
+        <p>This is a distributed Java collection implementation on top of Gigaspaces. It currently includes the implementation of <code>java.util.concurrent.BlockingQueue</code> and <code>java.util.Set</code> with a number of features on top of them, e.g. different collocation modes.</p>
         <h2>Building Project</h2>
         <p>This project is based on Maven, to build it run following:</p><pre><code class="language-bash"># with unit tests
-mvn clean package -Dcom.gs.home=&lt;path to xap install&gt;
+mvn clean package -Dcom.gs.home=&lt;path to <MadCap:variable name="General.ProductNameIE" /> install&gt;
 
 # without unit tests
 mvn clean package -DskipTests=true
 </code></pre>
-        <p>The project includes multi-partitioned space unit tests. Please use proper product license key to run these. To pass the licence file to tests, the <code>com.gs.home</code> JVM argument is used. A proper value is path to folder without slash at the end, e.g. <code>/home/ec2-user/gigaspaces-xap-premium-10.2.0-ga</code>.</p>
+        <p>The project includes multi-partitioned space unit tests. Please use proper product license key to run these. To pass the licence file to tests, the <code>com.gs.home</code> JVM argument is used. A proper value is path to folder without slash at the end, e.g. <code>/home/ec2-user/gaspaces-insightedge-enterprise-14.2.0</code>.</p>
         <h2>Using Collections</h2>
         <p>Each collection declaration requires passing <code>Gigaspace</code> bean to the configurer or bean factory. Here is how you can create set and queue via Spring XML and Java configurations:</p>
         <h3>Java Declaration</h3><pre><code class="language-java">GigaSet&lt;Person&gt; set = new GigaSetConfigurer&lt;Person&gt;(gigaSpace).gigaSet();

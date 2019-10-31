@@ -24,7 +24,7 @@
                 </tr>
             </tbody>
         </table>
-        <p>Aggregators provided by the core XAP platform are extensible, allowing developers to modify existing functionality as well as add new features. This flexibility allows the framework to grow with changing requirements and new technologies.  Creating a new aggregator or extending an existing one is a small level of effort for the developer.  This document will describe different patterns to write custom aggregators and some common use cases.</p>
+        <p>Aggregators provided by the core <MadCap:variable name="General.ProductNameXAP" /> platform are extensible, allowing developers to modify existing functionality as well as add new features. This flexibility allows the framework to grow with changing requirements and new technologies.  Creating a new aggregator or extending an existing one is a small level of effort for the developer.  This document will describe different patterns to write custom aggregators and some common use cases.</p>
         <h1>SpaceEntriesAggregator</h1>
         <p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html">SpaceEntriesAggregator</a> is an abstract class that serves as the base class for all aggregators, including the ones provided by the core platform.  Extending this class will provide several methods to allow the user to easily implement a custom aggregator.  The methods are as follows:</p>
         <h2>Aggregate</h2>
@@ -263,7 +263,7 @@ GROUP BY  departmentId
         </div>
         <h1><a name="common-use-cases">&#160;</a>Common Use Cases</h1>
         <h2>Comparing Two Properties From the Same Object</h2>
-        <p>Sometimes there is a need to compare two members of the same object. Currently (XAP 10.2) SQLQuery does not support this type of comparison. To achieve this a user may create a custom aggregator to perform the comparison before performing the aggregation. The following example will emulate a read multiple call. It has a special filter that compares two fields from the same object.</p>
+        <p>Sometimes there is a need to compare two members of the same object. Currently SQLQuery does not support this type of comparison. To achieve this a user may create a custom aggregator to perform the comparison before performing the aggregation. The following example will emulate a read multiple call. It has a special filter that compares two fields from the same object.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title=" Aggregator" style="padding:10px"><pre><code class="language-java">package com.gigaspaces.se.aggregator.example.salaryaggregator;
 

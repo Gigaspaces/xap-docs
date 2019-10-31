@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -27,7 +27,7 @@
             <li>
                 <p>ESM - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have one of this per <MadCap:variable name="General.ProductNameXAP" /> grid.</p>
             </li>
-        </ul><pre><code class="language-bash">XAP VM Memory size = 
+        </ul><pre><code class="language-bash"><MadCap:variable name="General.DataGrid" /> VM Memory size = 
 Guest OS Memory + JVM Memory for all GSCs + JVM Memory for GSM + JVM Memory for LUS + JVM Memory for ESM
 </code></pre><pre><code class="language-bash">JVM Memory for a GSC = 
 JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrentThreads * (-Xss) + "extra memory"
@@ -41,7 +41,7 @@ JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrent
         <h3><a name="compressed-storage-mode"></a>Compressed Storage Mode</h3>
         <p>Compressed Storage mode can be used to reduce the footprint of non-primitive fields when stored within the Space. This option compress the data on the client, where data stays compressed in the Space and is decompressed when it is read back on the client side. This approach may affect performance.</p>
         <div class="tc-admon-note">
-            <p>This option is not available for XAP.NET.</p>
+            <p>This option is not available for <MadCap:variable name="General.XAPNet" />.</p>
         </div>
         <h3><a name="customized-initial-load"></a>Customized Initial Load</h3>
         <p>The default Space Data source Initial Load behavior loads all Space class data into each partition, and later filters out irrelevant objects. This activity may introduce large amount of garbage to be collected. You can use the <code>SQL MOD</code> query to fetch only the relevant data items to be loaded into each partition, which speeds up the initial load time and drastically reduce the amount of garbage generated during this process.</p>

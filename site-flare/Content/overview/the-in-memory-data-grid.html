@@ -8,7 +8,7 @@
         <p>This section describes the <a href="https://www.gigaspaces.com/solution/in-memory-data-grid" target="_blank">In-Memory Data Grid</a> (IMDG) architecture according to the following, in order to provide a comprehensive understanding of its functionality, behavior, and accessibility.</p>
         <ul>
             <li>
-                <p><a href="#components">XAP Components Perspective</a> - explains the key capabilities of the data grid, namely the Open Spaces framework, the space-based core middleware and the middleware facilities it provides, and the SLA-Driven Container.</p>
+                <p><a href="#components"><MadCap:variable name="General.ProductNameXAP" /> Components Perspective</a> - explains the key capabilities of the data grid, namely the Open Spaces framework, the space-based core middleware and the middleware facilities it provides, and the SLA-Driven Container.</p>
             </li>
             <li>
                 <p><a href="#runtime">Runtime Perspective</a> - explains how the GigaSpaces components execute and interact in runtime on multiple physical machines.</p>
@@ -21,7 +21,7 @@
             </li>
         </ul>
         <div class="tc-admon-note">
-            <p>For a general explanation of the data grid architecture, refer to  <a href="product-architecture.html">XAP Architecture</a>.</p>
+            <p>For a general explanation of the data grid architecture, refer to  <a href="product-architecture.html"><MadCap:variable name="General.DataGrid" /> Architecture</a>.</p>
         </div>
         <h1><a name="xap-components-perspective"></a>Data Grid Components Perspective</h1>
         <p>The following diagram shows a component view of <MadCap:variable name="General.ProductNameXAP" />. The main components are described in more detail below.</p>
@@ -304,7 +304,7 @@ Combined, these two facilities enable you to better control your environment and
             <li>
                 <p>The core <a href="../dev-java/the-gigaspace-interface-overview.html">Space API</a>, which is the most recommended, allows you to read objects from the space based on various criteria, write objects to it, remove objects from it and get notified about changes made to objects. It is inspired by the JavaSpaces specification and the tuple space model, although the basic data unit is a POJO, which means the Space entries are simply Java objects. This API supports transactions.</p>
                 <div class="tc-admon-note">
-                    <p>The core Space API is also supported in <a href="../dev-dotnet/index.html">XAP.NET</a>. This allows clients to access the Space via these languages. It also supports <a href="../dev-java/interoperability-overview.html">interoperability</a> between languages, so you can write an object to the Space using one language and read it with another, such as Java.</p>
+                    <p>The core Space API is also supported in <MadCap:variable name="General.XAPNet" />. This allows clients to access the Space via these languages. It also supports <a href="../dev-java/interoperability-overview.html">interoperability</a> between languages, so you can write an object to the Space using one language and read it with another, such as Java.</p>
                 </div>
             </li>
             <li>
