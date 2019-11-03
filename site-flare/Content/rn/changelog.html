@@ -9,13 +9,16 @@
         <h2 MadCap:conditions="Version.15-0-only">Features and Enhancements</h2>
         <ul MadCap:conditions="Version.15-0-only">
             <li>
-                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13849,">
-                </MadCap:snippetText>: Remove GS_OPTIONS_EXT usage from Dockerfile to simplify external usage.</li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13915," />: Support remote classloading in Kubernetes environment.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13728,">
+                </MadCap:snippetText>: Remove JOTM (Java Open Transaction Manager) module from product.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13849," />: Remove GS_OPTIONS_EXT usage from Dockerfile to simplify external usage.</li>
             <li>
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13942," />: upgrade OSHI to version 4.0.0 and JNA to 5.4.0.</li>
             <li>
-                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13660,">
-                </MadCap:snippetText>: Upgrade Apache Calcite to 1.21 and Avatica to 15.0.</li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13660," />: Upgrade Apache Calcite to 1.21 and Avatica to 15.0.</li>
             <li>
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13660," />: Upgrade Apache Calcite to 1.17.</li>
             <li>
@@ -78,10 +81,13 @@
         <h2 MadCap:conditions="Version.15-0-only">Resolved Issues</h2>
         <ul MadCap:conditions="Version.15-0-only">
             <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13931," />: In rare scenarios, the system threw an OutOfMemory Error due to ClassLoaderContext._specificListeners allocations.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13937," />: Manager auto-detection fails when literal IPv6 addresses are used.</li>
+            <li>
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13849," />: GSC stdio sometimes closes prematurely, causing shutdown to hang indefinitely.</li>
             <li>
-                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13878,">
-                </MadCap:snippetText>: SpaceIterator.close() throws an exception when the data isn't fully consumed.</li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13878," />: SpaceIterator.close() throws an exception when the data isn't fully consumed.</li>
             <li>
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13936," />: REST Manager API deployment status shows Pending instead of Failed.</li>
             <li>
