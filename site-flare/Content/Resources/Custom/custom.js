@@ -199,6 +199,48 @@
             document.location.href = $(this).attr('href');
           });
 
+          -$       ("ul.off-canvas-accordion").on("loaded", function() {
+            if (window.location.href.indexOf("/early-access")||("/videos")||("/solution-hub") > -1) {
+                var itemHeight = 0;
+                $('ul.off-canvas-accordion.sidenav > .tree-node-leaf').each(function(){itemHeight += $(this).outerHeight() + 23;
+                });
+                var menuHeight = itemHeight + 40 + 86;
+                var height = $(window).height();
+                var submenuHeight = (height -  100 - menuHeight);
+                $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("max-height",submenuHeight + "px");
+                $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("min-height","350px");
+              }
+        
+        $(window).on('load resize', function () {
+            if (window.location.href.indexOf("/early-access")||("/videos")||("/solution-hub") > -1) {
+                var itemHeight = 0;
+                $('ul.off-canvas-accordion.sidenav > .tree-node-leaf').each(function(){itemHeight += $(this).outerHeight() + 23;
+                });
+                var menuHeight = itemHeight + 40 + 86;
+                
+                var height = $(window).height();
+                var submenuHeight = (height -  100 - menuHeight);
+                $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("max-height",submenuHeight + "px");
+                $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("min-height","350px");
+            }
+        });
+        
+        $(".submenu-toggle-container").on('click', function () {
+            if (window.location.href.indexOf("/early-access")||("/videos")||("/solution-hub") > -1) {
+                var itemHeight = 0;
+                $('ul.off-canvas-accordion.sidenav > .tree-node-leaf').each(function(){itemHeight += $(this).outerHeight() + 23;
+                });
+                var menuHeight = itemHeight + 40 + 86;
+                
+                var height = $(window).height();
+                var submenuHeight = (height -  100 - menuHeight);
+                $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("max-height",submenuHeight + "px");
+                $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("min-height","350px");
+          }
+          });
+      });
+
+
           /*
           $('#version-menu>li>a')
           .on('mouseleave', function (e) {
