@@ -19,7 +19,7 @@
         </ul>
         <p>This topic describes how to do basic and intermediate-level deployment tasks for the data grid and <MadCap:variable name="General.ProductNameIE" /> using simple Helm commands. You can perform these tasks using a Kubernetes minikube, because you only need a single node.</p>
         <div class="tc-admon-tip">
-            <p>Configuring the data grid for <MadCap:variable name="General.ProductNameIE" /> involves the same tasks as configuring the data grid alone. </p>
+            <p>Configuring the data grid for <MadCap:variable name="General.ProductNameIE" /> involves the same tasks as configuring the data grid alone. The deployment and maintenance tasks described below use <code class="language-bash"><MadCap:variable name="General.ProductNameIE"></MadCap:variable></code> Helm charts commands. However, you can also perform these tasks using the xap Helm charts commands.</p>
         </div>
         <h1><a name="getting-started"></a>Deploying and Managing a Data Grid</h1>
         <p>In this topic, you will learn how to do the following:</p>
@@ -32,7 +32,7 @@
         <h2><a name="accessing-the-gigaspaces-helm-charts"></a>Accessing the GigaSpaces Helm Charts</h2>
         <p>The Helm package manager is used for installing <MadCap:variable name="General.ProductNameIE" /> and <MadCap:variable name="General.ProductNameXAP" /> in the Kubernetes environment. Helm makes deploying complex applications more portable, supports automatic rollbacks, and is a familiar pattern for developers that is easy to understand.
 Moreover, since Helm is open source, there are many community charts available with standard configurations for common application services.</p>
-        <p>Helm supports installing charts in <a href="https://docs.helm.sh/helm/#helm-install">a number of ways</a>. A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository.  The <code>insightedge</code> Helm charts are published in the GigaSpaces Helm chart repository at <code>https://resources.gigaspaces.com/helm-charts</code>.</p>
+        <p>Helm supports installing charts in <a href="https://docs.helm.sh/helm/#helm-install">a number of ways</a>. A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository.  The <code class="language-bash">xap </code>and <code>insightedge</code> Helm charts are published in the GigaSpaces Helm charts repository at <code>https://resources.gigaspaces.com/helm-charts</code>.</p>
         <p>There are multiple ways to access these charts in order to install a GigaSpaces product in Kubernetes:</p>
         <ul>
             <li>Install a chart directly from the repo</li>
@@ -40,7 +40,7 @@ Moreover, since Helm is open source, there are many community charts available w
             <li>Unpack the required Helm chart(s) in a local folder</li>
         </ul>
         <h3><a name="adding-a-helm-repo-to-the-repo-list"></a>Adding a Helm Repo to the Repo List</h3>
-        <p>You can point to the GigaSpaces Helm repo, so that Helm can locate the <code>insightedge</code> charts for installation:</p><pre MadCap:conditions="Default.ReleasedVersions"><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts<![CDATA[
+        <p>You can point to the GigaSpaces Helm repo, so that Helm can locate the <code class="language-bash">xap </code>and <code>insightedge</code> charts for installation:</p><pre MadCap:conditions="Default.ReleasedVersions"><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts<![CDATA[
 ]]></code></pre><pre MadCap:conditions="Version.ea-only"><code class="language-bash">helm repo add gigaspaces-ea https://resources.gigaspaces.com/helm-charts-ea</code></pre>
         <p>After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. For example, to install <MadCap:variable name="General.ProductNameIE" />, use the following command:</p><pre MadCap:conditions="Default.ReleasedVersions"><code class="language-bash">helm install gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack" /> --name demo
 </code></pre><pre MadCap:conditions="Version.ea-only"><code class="language-bash">helm install gigaspaces-ea/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack" /> --name demo
@@ -50,7 +50,7 @@ Moreover, since Helm is open source, there are many community charts available w
 </code></pre><pre MadCap:conditions="Version.ea-only"><code class="language-bash">helm fetch gigaspaces/insightedge --version=[%=Versions.helm-version%] --untar
 </code></pre>
         <div class="tc-admon-note">
-            <p>You must fetch every chart that you will be using  in your GigaSpaces application environment.</p>
+            <p>You must fetch every chart that you will be using (for example xap, xap-pu and xap-manager) in your GigaSpaces application environment.</p>
         </div>
         <p>The chart is unpacked in a local folder called insightedge, and then you can install the demo by typing:</p><pre><code class="language-bash">helm install insightedge --name demo
 </code></pre>
@@ -62,7 +62,7 @@ Moreover, since Helm is open source, there are many community charts available w
         <p>To start an <MadCap:variable name="General.ProductNameIE" /> data grid:</p><pre><code class="language-bash">helm install insightedge --name hello
 </code></pre>
         <div class="tc-admon-note">
-            <p>The rest of the data grid tasks described below use command examples from the <code>insightedge</code> Helm chart.</p>
+            <p>The rest of the data grid tasks described below use command examples from the <code>insightedge</code> Helm chart. However, you can also perform these tasks using the <code class="language-bash">xap </code>Helm chart.</p>
         </div>
         <h2><a name="monitoring-the-data-grid-in-kubernetes"></a>Monitoring the Data Grid in Kubernetes</h2>
         <p>You can monitor the <code>hello</code> cluster you deployed using any of the following administration tools.</p>
@@ -90,7 +90,7 @@ Moreover, since Helm is open source, there are many community charts available w
         <div class="tc-admon-note">
             <ul>
                 <li>You must enclose the license key in quotation marks ("...").</li>
-                <li>If you install a Processing Unit using the <code>insightedge-pu</code> chart, use the syntax <code>--set license="&lt;your license key&gt;"</code>.</li>
+                <li>If you install a Processing Unit using the <code>insightedge-pu</code> chart or <code class="language-bash">xap-pu </code>chart, use the syntax <code>--set license="&lt;your license key&gt;"</code>.</li>
             </ul>
         </div>
     </body>
