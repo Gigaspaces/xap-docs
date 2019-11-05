@@ -1,4 +1,4 @@
-(function (w) {
+﻿(function (w) {
   var _self = {
     props: {
       version: '2.0.0',
@@ -24,6 +24,59 @@
       _self.ready();
     },
     ready: function () {
+      
+      /* Responsive resources menu */
+
+      $("ul.sidenav").on("loaded", function() {
+        console.log("loaded")
+        if (window.location.href.indexOf("/early-access")||("/videos")||("/solution-hub") > -1) {
+            var itemHeight = 0;
+            $('ul.off-canvas-accordion.sidenav > .tree-node-leaf').each(function(){itemHeight += $(this).outerHeight() + 23;
+            });
+            var menuHeight = itemHeight + 40 + 86;
+            var height = $(window).height();
+            var submenuHeight = (height -  100 - menuHeight);
+            setTimeout(function(){
+            $('ul.off-canvas-accordion.sidenav > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("max-height" , submenuHeight + "px");
+            $('ul.off-canvas-accordion.sidenav > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("min-height" , "350px");
+          }, 100);
+          }
+        });
+
+    $(window).on('resize', function () {
+        if (window.location.href.indexOf("/early-access")||("/videos")||("/solution-hub") > -1) {
+          console.log("resources")
+            var itemHeight = 0;
+            $('ul.off-canvas-accordion.sidenav > .tree-node-leaf').each(function(){itemHeight += $(this).outerHeight() + 23;
+            });
+            var menuHeight = itemHeight + 40 + 86;
+            var height = $(window).height();
+            var submenuHeight = (height -  100 - menuHeight);
+            setTimeout(function(){
+            $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("max-height",submenuHeight + "px");
+            $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("min-height","350px");
+            console.log("resized");
+          }, 100);
+        }
+    });
+
+      $(document).mouseup(function (e) {
+        if ($('.submenu-toggle-container').is(e.target)) {
+        console.log("clicked")
+          if (window.location.href.indexOf("/early-access")||("/videos")||("/solution-hub") > -1) {
+              var itemHeight = 0;
+              $('ul.off-canvas-accordion.sidenav > .tree-node-leaf').each(function(){itemHeight += $(this).outerHeight() + 23;
+              });
+              var menuHeight = itemHeight + 40 + 86;
+              var height = $(window).height();
+              var submenuHeight = (height -  100 - menuHeight);
+              setTimeout(function(){
+                $('ul.off-canvas-accordion.sidenav > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("max-height" , submenuHeight + "px");
+                $('ul.off-canvas-accordion.sidenav > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("min-height" , "350px");
+                }, 50);
+        }
+      }
+        });  
       $(function () {
         debug('Registering events');
         _self.events.scroll();
@@ -197,47 +250,6 @@
 
           $('#resources-menu ul a').on('touchstart', function (e) {
             document.location.href = $(this).attr('href');
-          });
-
-          $("ul.off-canvas-accordion.sidenav").on("loaded", function() {
-            if (window.location.href.indexOf("/early-access")||("/videos")||("/solution-hub") > -1) {
-                var itemHeight = 0;
-                $('ul.off-canvas-accordion.sidenav > .tree-node-leaf').each(function(){itemHeight += $(this).outerHeight() + 23;
-                });
-                var menuHeight = itemHeight + 40 + 86;
-                var height = $(window).height();
-                var submenuHeight = (height -  100 - menuHeight);
-                $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("max-height",submenuHeight + "px");
-                $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("min-height","350px");
-              }
-            });
-        
-        $(window).on('load resize', function () {
-            if (window.location.href.indexOf("/early-access")||("/videos")||("/solution-hub") > -1) {
-                var itemHeight = 0;
-                $('ul.off-canvas-accordion.sidenav > .tree-node-leaf').each(function(){itemHeight += $(this).outerHeight() + 23;
-                });
-                var menuHeight = itemHeight + 40 + 86;
-                
-                var height = $(window).height();
-                var submenuHeight = (height -  100 - menuHeight);
-                $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("max-height",submenuHeight + "px");
-                $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("min-height","350px");
-            }
-        });
-        
-        $(".submenu-toggle-container").on('click', function () {
-            if (window.location.href.indexOf("/early-access")||("/videos")||("/solution-hub") > -1) {
-                var itemHeight = 0;
-                $('ul.off-canvas-accordion.sidenav > .tree-node-leaf').each(function(){itemHeight += $(this).outerHeight() + 23;
-                });
-                var menuHeight = itemHeight + 40 + 86;
-                
-                var height = $(window).height();
-                var submenuHeight = (height -  100 - menuHeight);
-                $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("max-height",submenuHeight + "px");
-                $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("min-height","350px");
-          }
           });
 
           /*
