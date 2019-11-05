@@ -478,13 +478,13 @@ public class UserDAOSpaceImpl implements UserDAO {
         <h1><a name="deploying-the-data-grid-and-the-application">&#160;</a>Deploying the Data Grid and the Application</h1>
         <p>To deploy the Data Grid and the web Application into the <a href="https://docs.gigaspaces.com/latest/admin/the-runtime-environment.html">GigaSpaces runtime environment</a> perform the following:</p>
         <ul>
-            <li>Download the <a href="/attachment_files/sbp/3rd_party_libraries.zip">3rd party libraries</a> package, and extract it into the <code>\gigaspaces-xap\lib\optional\pu-common</code> folder.</li>
+            <li>Download the <a href="/attachment_files/sbp/3rd_party_libraries.zip">3rd party libraries</a> package, and extract it into the <code><MadCap:variable name="General.HomePath" />\lib\optional\pu-common</code> folder.</li>
             <li>Download the <a href="/attachment_files/sbp/application.war">application.war</a> , <a href="/attachment_files/sbp/myDataGrid.jar">myDataGrid.jar</a> and the <a href="/attachment_files/sbp/myMirror.jar">myMirror.jar</a>.</li>
             <li>Start the <a href="/product_overview/service-grid.html#gsa">GigaSpaces agent</a>:
 On windows run the following command:</li>
-        </ul><pre><code class="language-java">\gigaspaces-xap\bin\gs-agent.bat
+        </ul><pre><code class="language-java"><MadCap:variable name="General.HomePath" />\bin\gs-agent.bat
 </code></pre>
-        <p>On linux run the following command:</p><pre><code class="language-java">\gigaspaces-xap\bin\gs-agent.sh
+        <p>On linux run the following command:</p><pre><code class="language-java">\<MadCap:variable name="General.HomePath" />\bin\gs-agent.sh
 </code></pre>
         <ul>
             <li>Start the HSQLDB database:</li>
@@ -529,9 +529,9 @@ Finished deploying [1] processing unit instances
         <ul>
             <li>To view the deployed application and data grid start the GS-UI:
 On windows run the following command:</li>
-        </ul><pre><code class="language-java">\gigaspaces-xap\bin\gs-ui.bat
+        </ul><pre><code class="language-java"><MadCap:variable name="General.HomePath" />\bin\gs-ui.bat
 </code></pre>
-        <p>On linux run the following command:</p><pre><code class="language-java">\gigaspaces-xap\bin\gs-ui.sh
+        <p>On linux run the following command:</p><pre><code class="language-java"><MadCap:variable name="General.HomePath" />\bin\gs-ui.sh
 </code></pre>
         <ul>
             <li>Once the Data Grid, Mirror and the application will be deployed you should see the following within the GS-UI:</li>

@@ -69,7 +69,7 @@ Logging, Tracing, Transaction management, Job processing statistics, Job restart
         <h2>Spring Batch Usage Scenarios</h2>
         <p>A typical batch program generally reads a large number of records from a database, file, or queue, processes the data in some fashion, and then writes back data in a modified form. Spring Batch automates this basic batch iteration, providing the capability to process similar transactions as a set, typically in an offline environment without any user interaction. Batch jobs are part of most IT projects and Spring Batch is the only open source framework that provides a robust, enterprise-scale solution.</p>
         <h1>GigaSpaces Spring Batch PU</h1>
-        <p>In GigaSpaces XAP, you can implement the <a href="master-worker-pattern.html">Master-Worker pattern</a> using several methods:</p>
+        <p>In GigaSpaces <MadCap:variable name="General.DataGrid" />, you can implement the <a href="master-worker-pattern.html">Master-Worker pattern</a> using several methods:</p>
         <ul>
             <li>Task Executors - Best for scenarios where the processing activity is collocated with the data. Designed for low latency situations.</li>
             <li>Polling Containers - A remote consumer/worker component used with simple processing scenarios.</li>
@@ -508,14 +508,14 @@ public class ItemRequest extends ItemBase{
         <h1>Spring Batch PU Example</h1>
         <p>To run the Spring Batch PU Example execute the following steps:</p>
         <h2>Start a Database</h2>
-        <p>Start an HSQL database. Move into the <code>gigaspaces-xap-premium\bin</code> folder and run the following:</p><pre><code class="language-java">java -cp ../lib/platform/jdbc/hsqldb.jar org.hsqldb.Server -database.0 file:mydb -dbname.0 xdb
+        <p>Start an HSQL database. Move into the <code><MadCap:variable name="General.HomePath" />\bin</code> folder and run the following:</p><pre><code class="language-java">java -cp ../lib/platform/jdbc/hsqldb.jar org.hsqldb.Server -database.0 file:mydb -dbname.0 xdb
 </code></pre>
         <p>This will start an HSQL database used with the Spring Batch PU.</p>
         <h2>Create the Spring Batch PU</h2>
         <ul>
             <li>Download and extract the <a href="/attachment_files/sbp/SpringBatch.zip">Spring Batch PU example</a> into an empty folder.</li>
-            <li>Create a new folder named <code>SpringBatchPU</code> under the <code>gigaspaces-xap-premium\deploy</code> folder.</li>
-            <li>Copy the example <span class="tc-bold">bin folder</span> content into the <code>gigaspaces-xap-premium\deploy\SpringBatchPU</code> folder.</li>
+            <li>Create a new folder named <code>SpringBatchPU</code> under the <code><MadCap:variable name="General.HomePath" />\deploy</code> folder.</li>
+            <li>Copy the example <span class="tc-bold">bin folder</span> content into the <code><MadCap:variable name="General.HomePath" />\deploy\SpringBatchPU</code> folder.</li>
         </ul>
         <h2>Spring Batch PU libraries</h2>
         <p>Include the following libraries with the Spring Batch PU <code>lib</code> folder:
@@ -554,11 +554,11 @@ ehcache-1.2.3.jar
             <li>persistence-api-1.0.jar</li>
         </ul>
         <div class="tc-admon-tip">
-            <p>To speed up the Spring Batch deploy time you should copy these libraries into the <code>\gigaspaces-xap-premium\lib\optional\pu-common</code> folder.</p>
+            <p>To speed up the Spring Batch deploy time you should copy these libraries into the <code><MadCap:variable name="General.HomePath" />\lib\optional\pu-common</code> folder.</p>
         </div>
         <h2>Set Deploy Tool Classpath</h2>
         <p>Add the <code>spring-batch-core-2.1.6.RELEASE.jar</code> to the deploy tool (GS-UI or gs CLI) CLASSPATH.
-You may do that by running the following prior calling the deploy command:</p><pre><code class="language-java">set PRE_CLASSPATH=C:\gigaspaces-xap-premium\deploy\SpringBatchPU\lib\spring-batch-core-2.1.6.RELEASE.jar
+You may do that by running the following prior calling the deploy command:</p><pre><code class="language-java">set PRE_CLASSPATH=C:\<MadCap:variable name="General.HomePath" />\deploy\SpringBatchPU\lib\spring-batch-core-2.1.6.RELEASE.jar
 </code></pre>
         <h2>Deploy the Space</h2>
         <p>Deploy a space call <code>mySapce</code>. You may deploy a single space or a space in a partitioned topology.</p><pre><code class="language-java">gs deploy-space -cluster schema=partitioned-sync2backup total_members=2,0 mySpace

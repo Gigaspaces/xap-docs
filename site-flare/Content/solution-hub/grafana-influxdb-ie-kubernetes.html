@@ -26,7 +26,7 @@
             </tbody>
         </table>
         <h1><a name="overview">&#160;</a>Overview</h1>
-        <p>Monitoring a production environment of any system requires inspecting many statistics; InsightEdge and XAP are no different. The Web Management Console collects and displays various data grid metrics by polling the system's components, but these statistics have some limitations:</p>
+        <p>Monitoring a production environment of any system requires inspecting many statistics; InsightEdge is no different. The Web Management Console collects and displays various data grid metrics by polling the system's components, but these statistics have some limitations:</p>
         <ul>
             <li><span class="tc-bold">History</span> - Statistics are polled and aggregated in memory at runtime, so they're limited to a few minutes of history, whereas in production users often need at least several days' worth of statistics.</li>
             <li><span class="tc-bold">Persistency</span> - If the web server goes down, all statistics are lost.</li>
@@ -37,7 +37,7 @@
             <li><a href="http://influxdb.com/" target="_blank">InfluxDB</a> is an open-source distributed time-series database with a powerful query language.</li>
             <li><a href="http://grafana.org" target="_blank">Grafana</a> is a graph and dashboard builder for visualizing time-series metrics, which supports InfluxDB (and other data sources).</li>
         </ul>
-        <p>These third-party applications can be installed in Kubernetes to enable monitoring, analytics and data visualization for InsightEdge and XAP installed with KubeGrid. This topic describes a sample configuration of InfluxDB and Grafana in Kubernetes, using sample dashboards to display data from the data grid.</p>
+        <p>These third-party applications can be installed in Kubernetes to enable monitoring, analytics and data visualization for InsightEdge installed with KubeGrid. This topic describes a sample configuration of InfluxDB and Grafana in Kubernetes, using sample dashboards to display data from the data grid.</p>
         <div class="tc-admon-note">
             <p>The data in the InfluxDB database is lost if the application is undeployed from your system.</p>
         </div>
@@ -45,7 +45,7 @@
         <p>Before running this demo, create an account and a repository on Docker Hub if you don't already have them. You will also need the following applications installed locally:</p>
         <ul>
             <li>Oracle Virtualbox - tool that runs the guest operating system that hosts the minikube.</li>
-            <li>Docker - the containers that hold the InsightEdge and XAP pods are Docker based.</li>
+            <li>Docker - the containers that hold the InsightEdge pods are Docker based.</li>
             <li>Helm - the package manager that GigaSpaces uses to install products on Kubernetes.</li>
             <li>Minikube - tool that runs a single-node Kubernetes cluster for developing and testing applications in Kubernetes.</li>
             <li>Kubectl - the Kubernetes CLI used to run commands against a Kubernetes cluster.</li>
@@ -180,7 +180,7 @@ sudo docker image ls
             </li>
         </ol>
         <div class="tc-admon-note">
-            <p>For more information about the GigaSpaces Helm charts and how to install and configure InsightEdge and XAP in Kubernetes, see the <a href="https://docs.gigaspaces.com/latest/admin/kubernetes-overview.html">KubeGrid</a> section of the product documentation.</p>
+            <p>For more information about the GigaSpaces Helm charts and how to install and configure InsightEdge  in Kubernetes, see the <a href="https://docs.gigaspaces.com/latest/admin/kubernetes-overview.html">KubeGrid</a> section of the product documentation.</p>
         </div>
         <h1><a name="using-grafana-to-view-insightedge-metrics">&#160;</a>Using Grafana to View InsightEdge Metrics</h1>
         <h2><a name="configuring-the-grafana-client">&#160;</a>Configuring the Grafana Client</h2>

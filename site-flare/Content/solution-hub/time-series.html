@@ -43,7 +43,7 @@
             <li>Low latency</li>
             <li>Write-intensive</li>
         </ul>
-        <p><span class="tc-bold">The following XAP features are utilized:</span>
+        <p><span class="tc-bold">The following <MadCap:variable name="General.ProductNameXAP" /> features are utilized:</span>
         </p>
         <ul>
             <li>Event Processing</li>
@@ -267,7 +267,7 @@ public class BookingRequestProcessor {
             </tr>
         </table>
         <h4>Task Execution</h4>
-        <p>XAP comes with support for executing tasks in a collocated asynchronous manner with the Space. Tasks can be executed directly on a specific cluster member using typical routing declarations. They can also be executed concurrently in <code>broadcast</code> mode on all primary cluster members and reduced to a single result on the client side. Tasks are completely dynamic both in terms of content and class definitions.</p><pre><code class="language-java">@AutowireTask
+        <p><MadCap:variable name="General.ProductNameXAP" /> comes with support for executing tasks in a collocated asynchronous manner with the Space. Tasks can be executed directly on a specific cluster member using typical routing declarations. They can also be executed concurrently in <code>broadcast</code> mode on all primary cluster members and reduced to a single result on the client side. Tasks are completely dynamic both in terms of content and class definitions.</p><pre><code class="language-java">@AutowireTask
 public class DetermineInitialIntervalTask implements Task&lt;Integer&gt; {
 
     private static final long serialVersionUID = -2846168106076276015L;
@@ -312,7 +312,7 @@ public class DetermineInitialIntervalTask implements Task&lt;Integer&gt; {
 </code></pre>
         <p><span class="tc-bold">Distributed Tasks</span>
         </p>
-        <p>A <code>Distributed Task</code> is a task that ends up executing more than once (concurrently) and returns a result that is a reduced operation of all the different executions. This type of task is used as the implementation of the Map-Reduce Pattern provided by XAP. For this demo, it will be used to read all inactive timesSeries objects for a given airline which occurred after the provided interval. Each partition will combine the resultant timeSeries' into a <code>TreeMap</code> and return the reduction to the remote client for aggregation.</p><pre><code class="language-java">@AutowireTask
+        <p>A <code>Distributed Task</code> is a task that ends up executing more than once (concurrently) and returns a result that is a reduced operation of all the different executions. This type of task is used as the implementation of the Map-Reduce Pattern provided by <MadCap:variable name="General.ProductNameXAP" />. For this demo, it will be used to read all inactive timesSeries objects for a given airline which occurred after the provided interval. Each partition will combine the resultant timeSeries' into a <code>TreeMap</code> and return the reduction to the remote client for aggregation.</p><pre><code class="language-java">@AutowireTask
 public class RetrieveCompletedBookingTimeSeriesTask implements DistributedTask&lt;BookingTimeSeries[], TreeMap&lt;String, SourceDestinationAirports&gt;&gt; {
     private static final long serialVersionUID = -2846168106076276015L;
 
@@ -372,7 +372,7 @@ public class RetrieveCompletedBookingTimeSeriesTask implements DistributedTask&l
 private transient IBookingTimeSeriesDAO bookingTimeSeriesDAO;
 </code></pre>
         <h3>Web Processing Unit Container</h3>
-        <p>XAP's web processing unit run the <code>WAR</code> file deployed onto the Service Grid. The Web Processing Unit Container allows you to run your embedded data (Space), business logic and web packages inside the same processing unit or within the same Service Grid. Or you can simply run a pure standard <code>WAR</code> file in a non-Spring and Spring configuration.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" />'s web processing unit run the <code>WAR</code> file deployed onto the Service Grid. The Web Processing Unit Container allows you to run your embedded data (Space), business logic and web packages inside the same processing unit or within the same Service Grid. Or you can simply run a pure standard <code>WAR</code> file in a non-Spring and Spring configuration.</p>
         <p>In this demo, we are using the Web Processing Unit Container to host the web tier as a remote client to the space. Its servlet uses a <code>TaskDelegate</code> pattern to orchestrate regular and distributed tasks which will be executed within the space. It makes use of <code>Task</code> Resource Injection to access the implementation of the DAO interface and Task Routing to execute within the correct space partition.</p><pre><code class="language-java">public class TimeSeriesServlet extends HttpServlet {
 
     private TaskDelegate taskDelegate;
@@ -411,7 +411,7 @@ private transient IBookingTimeSeriesDAO bookingTimeSeriesDAO;
     }
 </code></pre>
         <h3>SLA-Driven Capabilities</h3>
-        <p>The XAP runtime environment provides SLA-driven capabilities via the <code>GSM</code> and the <code>GSC</code> runtime components. The <code>GSC</code> is responsible for running one or more Processing Units; while the GSM is responsible for analyzing the deployment and provisioning the processing unit instances to the available <code>GSCs</code>. The <code>SLA</code> definitions can be provided as part of the processing unit package or during the processing unit's deployment process. They define the number of processing unit instances that should be running and deploy-time requirements such as the amount of free memory or CPU or the clustering topology for processing units which contain a space. The <code>GSM</code> reads the SLA definition, and deploys the processing unit onto the available GSCs according to it.</p>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> runtime environment provides SLA-driven capabilities via the <code>GSM</code> and the <code>GSC</code> runtime components. The <code>GSC</code> is responsible for running one or more Processing Units; while the GSM is responsible for analyzing the deployment and provisioning the processing unit instances to the available <code>GSCs</code>. The <code>SLA</code> definitions can be provided as part of the processing unit package or during the processing unit's deployment process. They define the number of processing unit instances that should be running and deploy-time requirements such as the amount of free memory or CPU or the clustering topology for processing units which contain a space. The <code>GSM</code> reads the SLA definition, and deploys the processing unit onto the available GSCs according to it.</p>
         <p>This demo will use a <code>sla.xml</code> file which contains the SLA definitions within the processing units jar file. This file can be located under the <code>META-INF/spring</code> directory, alongside the processing unit's <code>pu.xml</code> file.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -440,7 +440,7 @@ private transient IBookingTimeSeriesDAO bookingTimeSeriesDAO;
         <h1>Running the Demo</h1>
         <p><span class="tc-bold">Step 1.</span> Download the <a href="/download_files/sbp/realTimeAnalyticsTimeSeries.rar">realTimeAnalyticsTimeSeries.rar</a> file and extract it into a folder named <code>realTimeAnalyticsTimeSeries</code>.<br /></p>
         <p><span class="tc-bold">Step 2.</span> Update setenv.bat to have the right value for <code>JAVA_HOME</code> and <code>JSHOMEDIR</code> variables</p>
-        <p><span class="tc-bold">Step 3.</span> Add <code>maven\bin</code> to your path if you dont have it already installed and run:</p><pre><code class="language-java">\gigaspaces-xap-premium-9.7.x-ga\tools\maven\installmavenrep.bat
+        <p><span class="tc-bold">Step 3.</span> Add <code>maven\bin</code> to your path if you dont have it already installed and run:</p><pre><code class="language-java"><MadCap:variable name="General.HomePath" />\tools\maven\installmavenrep.bat
 </code></pre>
         <p><span class="tc-bold">Step 4.</span> Build the demo by running the following command:</p><pre><code class="language-java">mvn package
 </code></pre>
