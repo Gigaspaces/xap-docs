@@ -49,27 +49,28 @@
                 <tr>
                     <td>com.gs.home</td>
                     <td><MadCap:variable name="General.ProductNameXAP" /> home directory. Not required, if not set explicitly, it is resolved</td>
-                    <td>XAPHOME</td>
+                    <td><MadCap:variable name="General.HomePath" />
+                    </td>
                 </tr>
                 <tr>
                     <td>com.gs.deploy</td>
                     <td>The location of the deploy directory of the GSM.</td>
-                    <td>XAPHOME/deploy</td>
+                    <td><MadCap:variable name="General.HomePath" />/deploy</td>
                 </tr>
                 <tr>
                     <td>com.gs.work</td>
                     <td>The location of the work directory of the GSM and GSC.</td>
-                    <td>XAPHOME/work</td>
+                    <td><MadCap:variable name="General.HomePath" />/work</td>
                 </tr>
                 <tr>
                     <td>com.gs.pu-common</td>
                     <td>The location of common classes used across multiple processing units. The libraries located within this folder loaded into each PU instance classloader (and not into the system classloader as with the <code>com.gigaspaces.lib.platform.ext</code>.</td>
-                    <td>XAPHOME\lib\optional\pu-common</td>
+                    <td><MadCap:variable name="General.HomePath" />\lib\optional\pu-common</td>
                 </tr>
                 <tr>
                     <td>com.gigaspaces.lib.platform.ext</td>
                     <td>PUs shared classloader libraries folder. PU jars located within this folder loaded once into the JVM system classloader and shared between all the PU instances classloaders within the GSC. In most cases this is a better option than the com.gs.pu-common for JDBC drivers and other 3rd party libraries. This is useful option when you want multiple processing units to share the same 3rd party jar files and do not want to repackage the processing unit jar whenever one of these 3rd party jars changes.</td>
-                    <td>XAPHOME\lib\platform\ext</td>
+                    <td><MadCap:variable name="General.HomePath" />\lib\platform\ext</td>
                 </tr>
             </tbody>
         </table>
@@ -1058,7 +1059,7 @@ Refer to <a href="space-jmx-management.html">JMX Management</a></p>
                 <tr>
                     <td>java.util.logging.config.file</td>
                     <td>It indicates file path to the Java logging file location. Use it to enable finest logging troubleshooting of various GigaSpaces Services. You may control this setting via the <code><MadCap:variable name="General.EnvVariablePrefix" />_LOGS_CONFIG_FILE</code> environment variable.</td>
-                    <td>XAPHOME\config\log\xap_logging.properties</td>
+                    <td><MadCap:variable name="General.HomePath" />\config\log\xap_logging.properties</td>
                 </tr>
                 <tr>
                     <td>Logging Categories</td>

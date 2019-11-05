@@ -10,7 +10,7 @@
         </div>
         <h1><a name="project-dependencies"></a>Project Dependencies</h1>
         <p><MadCap:variable name="General.ProductNameIE" /> [%=Versions.xap-version%] runs on Spark [%=Versions.spark-version%] and Scala [%=Versions.scala-version%]. These dependencies will be included when you depend on the <MadCap:variable name="General.ProductNameIE" /> artifacts.</p>
-        <p><MadCap:variable name="General.ProductNameIE" /> .jars are not published to Maven Central Repository yet. To install Maven artifacts run the following command from the <code>&lt;XAP HOME&gt;/insightedge/tools/maven</code> directory:</p><pre><code class="language-bash">insightedge-maven
+        <p><MadCap:variable name="General.ProductNameIE" /> .jars are not published to Maven Central Repository yet. To install Maven artifacts run the following command from the <code><MadCap:variable name="General.HomePath" />/insightedge/tools/maven</code> directory:</p><pre><code class="language-bash">insightedge-maven
 </code></pre>
         <p>For SBT projects include the following:</p><pre><code class="language-bash">resolvers += Resolver.mavenLocal
 resolvers += "Openspaces Maven Repository" at "http://maven-repository.openspaces.org"
@@ -76,7 +76,7 @@ println("total products quantity: " + gridRdd.map(_.quantity).sum())
 </code></pre>
         <p>Under the hood, this will call the regular Spark <code>sc.stop()</code> command, so there is no need to call it manually.</p>
         <h1><a name="running-your-spark-application"></a>Running your Spark Application</h1>
-        <p>After you have packaged a .jar, submit the Spark job via <code>insightedge-submit</code> located in <code>&lt;XAP Home&gt;/insightedge/bin</code> instead of <code>spark-submit</code> as follows:</p><pre><code class="language-bash">insightedge-submit --class com.insightedge.spark.example.YourMainClass --master spark://127.0.0.1:7077 path/to/jar/insightedge-examples.jar
+        <p>After you have packaged a .jar, submit the Spark job via <code>insightedge-submit</code> located in <code>&lt;<MadCap:variable name="General.HomePath" />/insightedge/bin</code> instead of <code>spark-submit</code> as follows:</p><pre><code class="language-bash">insightedge-submit --class com.insightedge.spark.example.YourMainClass --master spark://127.0.0.1:7077 path/to/jar/insightedge-examples.jar
 </code></pre>
     </body>
 </html>

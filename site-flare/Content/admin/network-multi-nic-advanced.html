@@ -150,9 +150,9 @@ URL_PREFIX=-Dcom.gs.cluster.url-protocol-prefix=jini://${<MadCap:variable name="
 </code></pre>
         <p>space-instance:</p><pre><code class="language-bash">${JAVACMD} ${UNIX_ENABLED} ${URL_PREFIX} ${RMI_OPTIONS} ${JAVA_OPTIONS %}}
 
- -Dcom.gs.home=${XAP_HOME}
+ -Dcom.gs.home=${GS_HOME}
 -classpath "${APPEND_TO_CLASSPATH_ARG}${CPS}$
-{XAP_HOME}${CPS}${XAP_HOME}/lib/required/xap-datagrid.jar" com.j_spaces.core.client.SpaceFinder "${SPACE_URL}"
+{GS_HOME}${CPS}${GS_HOME}/lib/required/xap-datagrid.jar" com.j_spaces.core.client.SpaceFinder "${SPACE_URL}"
 </code></pre>
         <p>The <code><MadCap:variable name="General.HomePath" />\bin\start-node1</code> and the <code><MadCap:variable name="General.HomePath" />\bin\start-node2</code> scripts should set <code><MadCap:variable name="General.EnvVariablePrefix" />_NIC_ADDRESS</code> as mentioned above.</p>
         <p>Remember that the <code><MadCap:variable name="General.EnvVariablePrefix" />_NIC_ADDRESS</code> variable is set prior to the call to <code>setExampleEnv</code>, thus overriding the <code><MadCap:variable name="General.EnvVariablePrefix" />_NIC_ADDRESS</code> set in the <code>setenv</code> script.</p><pre><code class="language-bash"><MadCap:variable name="General.EnvVariablePrefix" />_NIC_ADDRESS=192.168.80.146; export <MadCap:variable name="General.EnvVariablePrefix" />_NIC_ADDRESS
