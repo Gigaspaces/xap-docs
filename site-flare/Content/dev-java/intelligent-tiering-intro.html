@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Intelligent Tiered Storage</h1>
+        <h1>Overview</h1>
+        <p>In a traditional deployment, all data grid entries are stored in JVM heaps to provide the fastest performance possible. However, as the repository of data grows and grows, the following issues cvan arise:</p>
+        <ul>
+            <li><span class="tc-bold">Price</span> - While RAM performs much better than a magnetic hard drive, it is also much more expensive. Using <MadCap:variable name="General.ProductNameXAP" />' MemoryXtend module to store hot data in RAM and warm data in SSD provides great business value. Additionally, the PMEM storage option provides performance similar to RAM, but at a cost closer to that of SSD.</li>
+            <li><span class="tc-bold">Garbage Collection</span> - The bigger the JVM heaps get, the harder the garbage collector works. Using MemoryXtend to store and manually manage some of the data off-heap (i.e. in the native heap instead of the managed JVM heap) allows using a smaller JVM heap and relieves the pressure on the garbage collector.</li>
+            <li><span class="tc-bold">Access</span> - As data ages from hot to warm, it resides in relatively fast-access memory. However, cold data is generally moved to a data lake such as HDFS, where querying the data can take much longer. Using AnalyticsXtreme to partition the cold data into frequently accessed and infrequently accessed tiers enables accessing the needed information in a timely way, while the rest of the data is safely archived.</li>
+        </ul>
+        <p>Using <MadCap:variable name="General.ProductNameXAP" />' MemoryXtend and AnalyticsXtreme modules, you can implement intelligent tiering for the full life cycle of the data, from hot to warm, through to cold and archive.</p>
+    </body>
+</html>
