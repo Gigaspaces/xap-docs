@@ -296,13 +296,10 @@ The <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</c
         <p>Here is an example of how to deploy a data grid with 4 partitions, with a backup per partition (total of 8 Spaces), with 2 Spaces per GSC, and the primary and backup running on different machines (even when you have other GSCs running):</p><pre><code class="language-bash">gs deploy-space -cluster schema=partitioned-sync2backup total_members=4,1
    -max-instances-per-vm 2  -max-instances-per-machine 1 MySpace
 </code></pre>
-        <h1><a name="total-max-instances-per-vm"></a>Total Max Instances per VM</h1>
-        <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
-            <p>The option for multiple PU instances per GSC is deprecated and will be removed in a future <MadCap:variable name="General.CompanyName" /> product release.</p>
-        </div>
-        <p>This parameter controls the total amount of PU instances that can be instantiated within a GSC. This is very different than the <code>max-instances-per-vm</code>, which controls how many instances a partition may have within a GSC.  To control the Total Max PU Instances hosted by a GSC, use the <code>com.gigaspaces.grid.gsc.serviceLimit</code> system property and set its value before starting the GigaSpaces agent:</p><pre><code class="language-java">set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gigaspaces.grid.gsc.serviceLimit=1
+        <h1 MadCap:conditions="Version.15-0-died"><a name="total-max-instances-per-vm"></a>Total Max Instances per VM</h1>
+        <p MadCap:conditions="Version.15-0-died">This parameter controls the total amount of PU instances that can be instantiated within a GSC. This is very different than the <code>max-instances-per-vm</code>, which controls how many instances a partition may have within a GSC.  To control the Total Max PU Instances hosted by a GSC, use the <code>com.gigaspaces.grid.gsc.serviceLimit</code> system property and set its value before starting the GigaSpaces agent:</p><pre MadCap:conditions="Version.15-0-died"><code class="language-java">set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gigaspaces.grid.gsc.serviceLimit=1
 </code></pre>
-        <div class="tc-admon-important">
+        <div class="tc-admon-important" MadCap:conditions="Version.15-0-died">
             <p>The default value of the <code>com.gigaspaces.grid.gsc.serviceLimit</code> is <span class="tc-bold">500</span>. This value may not work well for most production environments. With most production environments that have a static deployment configuration, it is advised to keep the <code>com.gigaspaces.grid.gsc.serviceLimit</code> value to <span class="tc-bold">1</span>. Having multiple space instances within the same GSC makes it hard to handle failures, handle garbage collection and resource configuration such as LRMI thread pool , etc.</p>
             <p>By using <code>com.gigaspaces.grid.gsc.serviceLimit=1</code>, you may avoid a scenario where a new Space or failed Space instance is provisioned in a GSC that already hosts a Space instance. This scenario may result in <span class="tc-bold">Memory Shortage Exception</span> or <span class="tc-bold">Out of Memory Error</span> and may cause a provisioning failure.</p>
         </div>
