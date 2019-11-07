@@ -88,7 +88,7 @@ public class Person {
     private String firstName;
     private String lastName;
 
-    // Default constructor (required by XAP)
+    // Default constructor (required by <MadCap:variable name="General.DataGrid" />)
     public Person() {}
 
     @SpaceId
@@ -102,7 +102,7 @@ public class Person {
     // Getters and Setters of firstName and lastName are omitted in this snippet.    
 }
 </code></pre>
-        <p>Note that we've annotated the <code>ssn</code> property's getter with a custom XAP annotation <code>@SpaceId</code> to mark it as the entry's ID.</p>
+        <p>Note that we've annotated the <code>ssn</code> property's getter with a custom <MadCap:variable name="General.DataGrid" /> annotation <code>@SpaceId</code> to mark it as the entry's ID.</p>
         <h2><a name="interacting-with-the-grid"></a>Interacting with the Grid</h2>
         <p>Now that we have a <code>GigaSpace</code> instance connected to our grid and a POJO which can be stored, we can store entries in the grid using the <code>write()</code> method and read them using various <code>read()</code> methods:</p><pre><code class="language-java">System.out.println("Write (store) a couple of entries in the data grid:");
 gigaSpace.write(new Person(1, "Vincent", "Chase"));
@@ -169,7 +169,7 @@ public class Person {
     private String firstName;
     private String lastName;
 
-    // Default constructor (required by XAP)
+    // Default constructor (required by <MadCap:variable name="General.DataGrid" />)
     public Person() {}
 
     public Person(Integer ssn, String firstName, String lastName) {

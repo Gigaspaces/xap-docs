@@ -17,7 +17,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("xapTu
             <p>For more information, see <MadCap:xref href="../dev-java/the-space-configuration.html">The Space URL</MadCap:xref>.</p>
         </div>
         <p>When a client connects to a space, a proxy is created that holds a connection which implements the space API. All client interaction is performed through this proxy.</p>
-        <p>With XAP you can also create a Local Cache and a Local View.</p>
+        <p>With <MadCap:variable name="General.DataGrid" /> you can also create a Local Cache and a Local View.</p>
         <ul>
             <li>Local Cache : This client side cache maintains any object used by the application. The cache data is loaded on demand (lazily), based on the client application's read operations.</li>
             <li>Local View  : This client side cache maintains a specific subset of the data. The subset is predefined by the user. The cache is populated when the client application is started.
@@ -28,7 +28,7 @@ In both cases, updates are performed (objects are added/updated/removed) on the 
             <p>For more information, see the <MadCap:xref href="../dev-java/client-side-caching.html">Client-Side Caching</MadCap:xref> page.</p>
         </div>
         <h1><a name="the-space-object"></a>The Space Object</h1>
-        <p>XAP supports two types of objects that can interact with the Space, POJOs and Documents.</p>
+        <p><MadCap:variable name="General.DataGridInitCap" /> supports two types of objects that can interact with the Space, POJOs and Documents.</p>
         <h2><a name="pojo"></a>POJO</h2>
         <p>Any POJO can be used to interact with the space as long it follows the Java Beans convention. The POJO needs to implement a default constructor, setters and getters for every property you want to store in the Space.</p><pre><code class="language-java">@SpaceClass
 public class User {
@@ -75,7 +75,7 @@ public class User {
         </div>
         <h1><a name="space-document"></a>Space Document</h1>
         <p>The GigaSpaces document API exposes the space as Document Store. A document, which is represented by the class SpaceDocument, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, String, Date, other documents, or collections thereof. Unlike POJOs, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic, users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the class SpaceTypeDescriptor.</p>
-        <p>To create a document we use a Map&lt;String,Object&gt; for its properties. The SpaceDocument object is instantiated by using the type name and properties. XAP provides a special implementation of a Hash Map called  DocumentProperties that provides a fluent API.</p>
+        <p>To create a document we use a Map&lt;String,Object&gt; for its properties. The SpaceDocument object is instantiated by using the type name and properties. <MadCap:variable name="General.DataGrid" /> provides a special implementation of a Hash Map called  DocumentProperties that provides a fluent API.</p>
         <p>Here is an example how you can create a SpaceDocument:</p><pre><code class="language-java">public SpaceDocument createDocumemt() {
      DocumentProperties properties = new DocumentProperties()
        .setProperty("CatalogNumber", "av-9876")
@@ -177,7 +177,7 @@ public class User {
             </p>
         </div>
         <h1><a name="querying-the-space"></a>Querying the Space</h1>
-        <p>Now we are ready to query the space. XAP provides several ways to perform queries against the space:</p>
+        <p>Now we are ready to query the space. <MadCap:variable name="General.DataGrid" /> provides several ways to perform queries against the space:</p>
         <ul>
             <li>Query by ID</li>
             <li>Query by Template</li>
@@ -351,7 +351,7 @@ public class GasStation {
 }
 </code></pre>
         <h3><a name="shapes"></a>Shapes</h3>
-        <p>XAP supports the following shapes:</p>
+        <p><MadCap:variable name="General.DataGridInitCap" /> supports the following shapes:</p>
         <table>
             <thead>
                 <tr>
@@ -412,7 +412,7 @@ public class GasStation {
         <h2><a name="removing-objects-from-space"></a>Removing Objects from the Space</h2>
         <p>To remove objects from a space you can use the take or the clear operation.</p>
         <h3><a name="take-operation"></a>Take Operation</h3>
-        <p>The take operation returns an object and removes it from the space. XAP provides several options for the take operation:</p>
+        <p>The take operation returns an object and removes it from the space. <MadCap:variable name="General.DataGridInitCap" /> provides several options for the take operation:</p>
         <ul>
             <li>Take by ID</li>
             <li>Take by template</li>
@@ -476,7 +476,7 @@ Person oldestPersonInSpace = maxEntry(space, query, "age");
 /// Retrieve the space object with the lowest value for the field "age".
 Person youngestPersonInSpace = minEntry(space, query, "age");
 </code></pre>
-        <p>XAP also supports, <code>Compound</code>, <code>Embedded Fields</code> and <code>Group</code> Aggregation.</p>
+        <p><MadCap:variable name="General.DataGridInitCap" /> also supports, <code>Compound</code>, <code>Embedded Fields</code> and <code>Group</code> Aggregation.</p>
         <div class="tc-admon-refer">
             <p>For more information, see the <MadCap:xref href="../dev-java/aggregators.html">Aggregators</MadCap:xref> topic.</p>
         </div>
@@ -560,12 +560,12 @@ SQLQuery&lt;User&gt; query = new SQLQuery&lt;User&gt;(User.class,"name = 'John D
             <li>use change api instead of update, especially if collections are used.</li>
         </ul>
         <h1><a name="other-data-access-apis"></a>Other Data Access APIs</h1>
-        <p>XAP provides a JDBC Driver, JPA API, MAP and Memcached APIs.</p>
+        <p><MadCap:variable name="General.DataGridInitCap" /> provides a JDBC Driver, JPA API, MAP and Memcached APIs.</p>
         <div class="tc-admon-refer">
             <p>For more information, see the <MadCap:xref href="../dev-java/other-data-access-apis.html">Other Data Access APIs</MadCap:xref> section of the Developer guide.</p>
         </div>
         <h1><a name="spring-integration"></a>Spring Integration</h1>
-        <p>All XAP components can be wired and configured with the application using corresponding Spring Beans.</p>
+        <p>All <MadCap:variable name="General.DataGrid" /> components can be wired and configured with the application using corresponding Spring Beans.</p>
         <p><span class="tc-bold">The GigaSpaces Spring Integration supports:</span>
         </p>
         <ul>
@@ -634,7 +634,7 @@ SQLQuery&lt;User&gt; query = new SQLQuery&lt;User&gt;(User.class,"name = 'John D
 }
 </code></pre>
         <div class="tc-admon-note">
-            <p>In the following parts of this tutorial we will introduce you the different schemas that support the XAP Spring integration. We will also use the Annotations to configure and inject components.</p>
+            <p>In the following parts of this tutorial we will introduce you the different schemas that support the <MadCap:variable name="General.DataGrid" /> Spring integration. We will also use the Annotations to configure and inject components.</p>
         </div>
     </body>
 </html>
