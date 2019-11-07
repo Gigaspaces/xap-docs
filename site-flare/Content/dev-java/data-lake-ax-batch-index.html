@@ -3,19 +3,19 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Intelligent Tiering</h1>
+        <h1 class="tc-pagetitle">AnalyticsXtreme Batch Indexing</h1>
         <p MadCap:conditions="Default.DoNotShow"><MadCap:variable name="General.ProductNameIE" /> only</p>
-        <p>Indexing is an effective way to improve performance in file systems with regular databases. However, organizations can store up to terabytes and petabytes of data in data lakes. Indexing all of the data in the data lake is impractical because the index itself would be very large; while indexing might improve performance, it isn't cost effective because of the memory storage required to support such a large index. </p>
+        <p>Indexing is an effective way to improve performance in file systems with regular databases. However, organizations can store up to terabytes and petabytes of data in data lakes. Indexing all of the data is impractical because it would result in a very large index; while indexing might improve performance, it won't be cost effective because of the storage required to support an index of that size. </p>
         <p>AnalyticsXtreme provides intelligent data tiering with its batch indexing feature, which enables differentiating between older (cold) data  that is still frequently accessed, and data that can be archived because it is only relevant for historical purposes. This keeps the size of the index small while still providing high performance.</p>
-        <p>Using batch indexing, you can create a full data life cycle policy that automatically tiers your aging data into cold and archive storage in your data lake, to complement AnalyticsXtreme's handling of hot and warm data that is ingested in automatic data tiering mode. This end-to-end approach optimizes your data storage, so you can maintain the right balance between performance and cost as data moves between the frequent access and infrequent access tiers.</p>
-        <p>Batch indexing leverages the functionality of Apache Hive, which is an SQL&#160;engine over Hadoop. Hive uses partitions and buckets to categorize data in the Hadoop file system, so you can designate a specific location for each type of data. For example, you might partition your data according to city, but then want to query by customer name. In order to successfully query this in Hive, you must map the names to the cities.</p>
+        <p>Using batch indexing, you can create a full data life cycle policy that automatically tiers your aging data into cold and archive storage in your data lake, to complement AnalyticsXtreme's handling of hot data (stored in RAM) and warm data (stored in SSD via MemoryXtend) that is ingested in automatic data tiering mode. This end-to-end approach optimizes your data storage, so you can maintain the right balance between performance and cost as data moves between the frequent access and infrequent access tiers.</p>
+        <p>Batch indexing  uses partitions and buckets to categorize data in the file system, so you can designate a specific location for each type of data. For example, you might partition your data according to city, but then want to query by customer name. In order to successfully query this, you must map the names to the cities.</p>
         <div class="tc-admon-note">
-            <p>Hive with Hadoop is currently the only supported data storage solution.</p>
+            <p>In <MadCap:variable name="General.ProductNameIE" /> 15.0, <MadCap:variable name="General.ProductNameXAP" /> supports using batch indexing with Hive over any Hive-supported file system or storage layer. Hive over HDFS is a fully tested and verified data storage solution.</p>
         </div>
-        <p>When the batch index is deployed, <MadCap:variable name="General.ProductNameIE"></MadCap:variable> performs an initial indexing of the defined index period. The batch index is available only after it is completely initialized. This doesn't affect the ability to run queries, but if you query your data lake during this period, the performance benefit isn't realized because the batch index isn't accessed until the initialization process completes. </p>
+        <p>When the batch index is deployed, <MadCap:variable name="General.ProductNameIE" /> performs an initial indexing of the defined index period. The batch index is available only after it is completely initialized. This doesn't affect the ability to run AnalyticsXtreme queries, but if you query your data lake during this period, the performance benefit isn't realized because the batch index isn't accessed until the initialization process completes. </p>
         <h1>Data Life Cycle</h1>
         <p>The basic AnalyticsXtreme data life cycle from speed (hot) to batch (cold)  is detailed in the <MadCap:xref href="data-lake-acceleration.html">Data Lake Acceleration</MadCap:xref> topic. Batch indexing, which also leverages <MadCap:variable name="General.CompanyName" />'s MemoryXtend module, extends the life cycle from speed (hot) &gt;&gt; batch (warm) &gt;&gt; indexed data lake (cold) &gt;&gt; unindexed data lake (archive). </p>
-        <p>As data moves from the speed layer to the batch layer, it is added to the batch index when it moves through the speed layer eviction time window (buffer). As the data moves into the batch layer, it is directed to the relevant partitions and buckets in Hive. At this point, the data is still available for frequent access.</p>
+        <p>As data moves from the speed layer to the batch layer, it is added to the batch index when it moves through the speed layer eviction time window (buffer). As the data moves into the batch layer, it is directed to the relevant partitions and buckets. At this point, the data is still available for frequent access.</p>
         <p> As the batch layer time window expires, the data moves into the batch index eviction time window. When this time window expires, the data is expunged from the index and is available only as archived data.</p>
         <p>&#160;</p>
         <div class="tc-align-center">
@@ -24,7 +24,7 @@
             </p>
         </div>
         <h2>Querying with the Batch Index</h2>
-        <p>When a query is executed in the AnalyticsXtreme client, <MadCap:variable name="General.ProductNameIE" /> first checks whether the index is available. If the index is up and running, <MadCap:variable name="General.ProductNameIE" /> verifies that all the required data is within the defined index period (if the time definition exceeds the index period, the index isn't used in the query). If the query matches the defined index period, the query runs using the index and only the relevant partitions are returned (those with data that match the query). The original query from the client is then updated with the partition condition.</p>
+        <p>When a query is executed in the <MadCap:variable name="General.ProductNameXAP" /> client (that has AnalyticsXtreme enabled), <MadCap:variable name="General.ProductNameIE" /> first checks whether the index is available. If the index is up and running, <MadCap:variable name="General.ProductNameIE" /> verifies that all the required data is within the defined index period (if the time definition exceeds the index period, the index isn't used in the query). If the query matches the defined index period, the query runs using the index and only the relevant partitions are returned (those with data that match the query). The original query from the client is then updated with the partition condition.</p>
         <div class="tc-admon-note">
             <p>Null is not a legitimate value.</p>
         </div>
@@ -38,5 +38,12 @@
         <p>In essence, you must balance your need for faster performance vs. memory costs when defining the granularity of the time slices. </p>
         <h2>Example </h2>
         <p>Yael to provide description of example, plus some sample code.</p>
+        <p>&#160;</p>
+        <h1>Limitations</h1>
+        <p>AnalyticsXtreme batch indexing has the following limitations:</p>
+        <ul>
+            <li>JOIN queries are not supported.</li>
+            <li>Hive tables that are bucketed ("bucket by") are not supported.</li>
+        </ul>
     </body>
 </html>
