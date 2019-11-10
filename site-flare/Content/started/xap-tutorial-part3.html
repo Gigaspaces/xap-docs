@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1>Distributed Processing</h1>
         <p>In this part of the tutorial we will introduce you to the different processing services you can run on top of the space.</p>
-        <p>XAP includes a set of built-in service components such as Task Execution and Messaging services, each implementing commonly used Enterprise integration patterns. It's purpose is to make the implementation of distributed applications on-top of the space simpler and less intrusive and allow you to easily build highly scalable and performing applications. All services follow the POJO/Spring based abstraction approach which includes dependency injection and annotations.</p>
+        <p><MadCap:variable name="General.DataGridInitCap" /> includes a set of built-in service components such as Task Execution and Messaging services, each implementing commonly used Enterprise integration patterns. It's purpose is to make the implementation of distributed applications on-top of the space simpler and less intrusive and allow you to easily build highly scalable and performing applications. All services follow the POJO/Spring based abstraction approach which includes dependency injection and annotations.</p>
         <h1><a name="task-execution"></a>Task Execution</h1>
         <p>Task Execution provides a fine-grained API for performing ad-hoc parallel execution of user defined tasks. This framework should be used in the following scenarios:</p>
         <ul>
@@ -159,7 +159,7 @@
         </div>
         <p>By default, the task is broadcasted to all primary nodes. You can also execute a distributed task on selected nodes based on different routing values:</p><pre><code class="language-java">AsyncFuture&lt;List&lt;Merchant&gt;&gt; result = space.execute(task,1,2,3);
 </code></pre>
-        <p>XAP provides out of the box Aggregator Tasks.</p>
+        <p><MadCap:variable name="General.DataGridInitCap" /> provides out of the box Aggregator Tasks.</p>
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../dev-java/aggregators.html">Aggregators</a> page in the Space Interface section of the developer guide.</p>
         </div>
@@ -169,7 +169,7 @@
             <p>For more information, see the <a href="../dev-java/task-execution-overview.html">Task Execution</a> section of the developer guide.</p>
         </div>
         <h1><a name="space-based-remoting"></a>Space-Based Remoting</h1>
-        <p>Spring provides support for various remoting technologies. XAP uses the same concepts to provide remoting, using the space as the underlying protocol.</p>
+        <p>Spring provides support for various remoting technologies. <MadCap:variable name="General.DataGridInitCap" /> uses the same concepts to provide remoting, using the space as the underlying protocol.</p>
         <p>Why would you use the space as the transport layer include:</p>
         <ul>
             <li>
@@ -179,10 +179,10 @@
                 <p>Load-balancing - when using a space with a partitioned cluster topology, each remote invocation is automatically directed to the appropriate partition (based on its routing handler), providing automatic load-balancing.</p>
             </li>
             <li>
-                <p>Performance - remote invocations are represented in fast internal XAP objects, providing fast serialization and transport over the net.</p>
+                <p>Performance - remote invocations are represented in fast internal <MadCap:variable name="General.DataGrid" /> objects, providing fast serialization and transport over the net.</p>
             </li>
             <li>
-                <p>Asynchronous execution - by its nature, remoting support is asynchronous, allowing for much higher throughput of remote invocations. XAP allows you to use asynchronous execution using Futures, and also provides synchronous support (built on top of it).</p>
+                <p>Asynchronous execution - by its nature, remoting support is asynchronous, allowing for much higher throughput of remote invocations. <MadCap:variable name="General.DataGridInitCap" /> allows you to use asynchronous execution using Futures, and also provides synchronous support (built on top of it).</p>
             </li>
             <li>
                 <p>Executor-Based Remoting - Executor-Based Remoting executes synchronous or asynchronous calls between the client and the server. In this mode the client invocation executes a task that invokes the corresponding server method immediately when the call arrives at the server. The server must therefore be collocated with the space.</p>

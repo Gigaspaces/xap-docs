@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -138,7 +138,7 @@ public class AuditListener {
             <p>For more information, see the <a href="../dev-java/event-processing.html">Event Processing</a> section in the developer guide.</p>
         </div>
         <h1><a name="fifo-support"></a>FIFO Support</h1>
-        <p>Sometimes it is necessary to process events in the order the way they have been created. By default events are not ordered. XAP supports FIFO (First In, First Out) processing of events.  To enable FIFO operations you can turn on FIFO support for classes which will participate in such operations.</p>
+        <p>Sometimes it is necessary to process events in the order the way they have been created. By default events are not ordered. <MadCap:variable name="General.DataGridInitCap" /> supports FIFO (First In, First Out) processing of events.  To enable FIFO operations you can turn on FIFO support for classes which will participate in such operations.</p>
         <p>Here is an example how you can enable FIFO support for a class using the <code>@SpaceClass</code> annotation:</p><pre><code class="language-java">@SpaceClass(fifoSupport=FifoSupport.OPERATION)
 public class Payment implements Serializable {
 
@@ -157,7 +157,7 @@ public class Payment implements Serializable {
         </div>
         <h1><a name="master-worker-pattern"></a>Master Worker Pattern</h1>
         <p>The Master-Worker Pattern (sometimes called the Master-Slave or the Map-Reduce pattern) is used for parallel processing. It follows a simple approach that allows applications to perform simultaneous processing across multiple machines or processes via a <code>Master</code> and multiple <code>Workers</code>.
-In GigaSpaces XAP, you can implement the Master-Worker pattern using several methods:</p>
+In GigaSpaces <MadCap:variable name="General.DataGrid" />, you can implement the Master-Worker pattern using several methods:</p>
         <ul>
             <li><a href="/sbp/map-reduce-pattern-executors-example.html">Task Executors</a> - best for a scenario where the processing activity is collocated with the data (the data is stored within the same space as the tasks being executed).</li>
             <li><a href="../dev-java/polling-container-overview.html">Polling Containers</a> - in this case the processing activity runs in a separate machine/VM from the space. This approach should be used when the processing activity consumes a relatively large amount of CPU and takes a large amount of time.</li>

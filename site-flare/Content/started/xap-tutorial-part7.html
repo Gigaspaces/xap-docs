@@ -37,7 +37,7 @@
                 <img src="../Resources/Static/attachment_files/qsg/data-grid-async-persistNew.jpg" alt="image" class="tc-picture80" />
             </p>
         </div>
-        <p>The XAP Mirror Service provides reliable asynchronous persistency. This allows you to asynchronously delegate the operations conducted with the data grid into a backend database, significantly reducing the performance overhead. The Mirror service ensures that data will not be lost in the event of a failure. This way, you can add persistency to your application just by running the Mirror Service, without touching the real-time portion of your application in either configuration or code. This service provides fine-grained control of which object needs to be persisted.</p>
+        <p>The <MadCap:variable name="General.DataGrid" /> Mirror Service provides reliable asynchronous persistency. This allows you to asynchronously delegate the operations conducted with the data grid into a backend database, significantly reducing the performance overhead. The Mirror service ensures that data will not be lost in the event of a failure. This way, you can add persistency to your application just by running the Mirror Service, without touching the real-time portion of your application in either configuration or code. This service provides fine-grained control of which object needs to be persisted.</p>
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../dev-java/asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency  - Write Behind</a> page in the developer guide.</p>
         </div>
@@ -53,7 +53,7 @@ These components provide advanced persistence capabilities for the space archite
             </li>
         </ul>
         <h3><a name="persistence-adapters"></a>Persistence Adapters</h3>
-        <p>XAP comes with built in persistence support for Hibernate, Cassandra and MongoDB. The SpaceDataSource and SpaceSynchronizationEndpoint are provided for you.</p>
+        <p><MadCap:variable name="General.DataGridInitCap" /> comes with built in persistence support for Hibernate, Cassandra and MongoDB. The SpaceDataSource and SpaceSynchronizationEndpoint are provided for you.</p>
         <ul>
             <li>
                 <p>Cassandra adapter
@@ -81,7 +81,7 @@ XAP comes with a built in implementation of Space Persistency APIs for Hibernate
                 </div>
             </li>
         </ul>
-        <p>Let's use our online payment system to demonstrate how we can implement direct persistence with XAP.</p>
+        <p>Let's use our online payment system to demonstrate how we can implement direct persistence with <MadCap:variable name="General.DataGrid" />.</p>
         <p>First, we implement the ORM of our class we want to write into the space and provide persistency. Note that we annotate the class with <code>SpaceClass(persist=true)</code></p><pre><code class="language-java">@Entity
 @Table(name = "Merchant")
 @SpaceClass(persist=true)
