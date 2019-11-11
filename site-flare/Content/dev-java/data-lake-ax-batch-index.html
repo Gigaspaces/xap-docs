@@ -28,7 +28,7 @@
         <div class="tc-admon-note">
             <p>Null is not a legitimate value.</p>
         </div>
-        <p>For example, The client may need to find a customer in the database. If the customer is associated with three time periods that are within the batch index period, the query only searches those three partitions that contain the requested time slices instead of searching all the partitions; this speeds up the query considerably. If the query only applies to a subset of the batch index period, then only the relevant time slices are retrieved. <span class="tc-highlight">Yael, how is this last sentence (the new functionality that you added) different from what was explained right before?</span></p>
+        <p>For example, The client may need to find a customer in the database. If the customer is associated with three time periods that are within the batch index period, the query only searches those three partitions that contain the requested time slices instead of searching all the partitions; this speeds up the query considerably. If the query only applies to a subset of the batch index period, then only the relevant time slices are retrieved. </p>
         <p>The AnalyticsXtreme batch indexing feature supports multiple indexes (defining an index on more than one column of the data) and multiple Hive partitions (data tables that are partitioned by multiple columns) are supported. Ordered index type is also supported.</p>
         <h2>Architecture</h2>
         <p>The batch index is stored in a separate Space, which also maintains a mapping of the batch index values to the Hive partition values. This Space is accessed via the <MadCap:variable name="General.ProductNameIE" /> JDBC driver when the data is queried.</p>
@@ -37,7 +37,7 @@
         <p>The <span class="tc-italic">batch index period </span>is the entire amount of cold data in the batch layer that is indexed. For example, if you want to index one month out of a full year of data, then one month is the batch index period. The month needs to be further segmented into time slices (this is the index granularity). The more granular the time slices, the larger the index becomes, but this also results in greater accuracy and faster performance. The longer the time slice the less granular the indexing, so the query must scan larger chunks of data but the memory footprint is smaller.</p>
         <p>In essence, you must balance your need for faster performance vs. memory costs when defining the granularity of the time slices. </p>
         <h2>Example </h2>
-        <p>Yael to provide description of example, plus some sample code.</p>
+        <p>In the following example there is a table called Person in Hive that is partitioned by columns country and city.</p>
         <p>&#160;</p>
         <h1>Limitations</h1>
         <p>AnalyticsXtreme batch indexing has the following limitations:</p>
