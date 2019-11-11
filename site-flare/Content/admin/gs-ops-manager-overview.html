@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle"><MadCap:variable name="General.ProductNameXAP" /> Ops Manager</h1>
+        <p> The <MadCap:variable name="General.ProductNameXAP" /> Ops Manager is an enterprise-grade management platform that can be implemented for <MadCap:variable name="General.ProductNameXAP" />-based applications across on-premise, cloud, and Kubernetes environments. Ops&#160;Manager is a robust web interface that provides visibility and real-time information about your <MadCap:variable name="General.ProductNameXAP" /> clusters and their services. </p>
+        <p>Using Ops Manager, you can: </p>
+        <ul>
+            <li>View the status of services and microservices to identify healthy and unhealthy clusters</li>
+            <li>Monitor system performance in terms of CPU,&#160;latency, IOPS and memory usage metrics</li>
+            <li>Drill down to service instances to pinpoint performance issues</li>
+            <li>Analyze alert trends and volume filtered by time, type, etc.</li>
+            <li>Download service logs for root-cause analysis</li>
+        </ul>
+        <h1>Understanding the Ops Manager Interface</h1>
+        <div class="tc-admon-note">
+            <p>If you aren't familiar with general <MadCap:variable name="General.ProductNameXAP" /> terminology, see the <MadCap:xref href="../overview/general-terminology.html">General Terms and Concepts</MadCap:xref> topic in the Product Overview.</p>
+        </div>
+        <h2>Services</h2>
+        <p>A service is also known as a Processing Unit in <MadCap:variable name="General.ProductNameXAP" /> products. The following types of services are supported.</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Icon</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&#160;</td>
+                    <td>Stateless </td>
+                    <td>contains one or more microservices. This kind of service may act like a client that interacts with other services.</td>
+                </tr>
+                <tr>
+                    <td>&#160;</td>
+                    <td>Stateful </td>
+                    <td> contains data in a Space instance. A set of stateful services comprise a <MadCap:variable name="General.ProductNameXAP" /> data grid.</td>
+                </tr>
+                <tr>
+                    <td>&#160;</td>
+                    <td>Mirror </td>
+                    <td>a mirror service is stateless and provides asynchronous persistence to ensure that data isn't lost. The mirror acts as a dispatcher, pushing all primary Space partition changes to the database (or any other data source).</td>
+                </tr>
+                <tr>
+                    <td>&#160;</td>
+                    <td>Web </td>
+                    <td>allows deploying web applications using packaged or exploded WAR files.</td>
+                </tr>
+                <tr>
+                    <td>&#160;</td>
+                    <td>Spark </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>&#160;</td>
+                    <td>WAN gateway </td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>In addition to the main services, you can also deploy the following service types.</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Icon</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&#160;</td>
+                    <td>
+                        <li>MemoryXtend</li>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>&#160;</td>
+                    <td>
+                        <li>AnalyticsXtreme</li>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>&#160;</td>
+                    <td>
+                        <li>Notify</li>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>&#160;</td>
+                    <td>Polling</td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Alerts</h2>
+        <p>There are two families of alerts in Ops Manager, availability and resource.</p>
+        <h3>Availability</h3>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>
