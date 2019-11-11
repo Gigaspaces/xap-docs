@@ -45,13 +45,14 @@ The default encoder utilizes the Java serialization mechanism, which implies Spa
             <p>You need to install Kafka to run the example.</p>
         </div>
         <h2>Implementing the GigaSpaces Connector for Apache Kafka</h2>
+        <p>The  <MadCap:variable name="General.ProductNameXAP" /> Connector for Apache Kafka is Confluent verified. We provide example implementations of the Connector as an open-source add on to the <MadCap:variable name="General.ProductNameXAP" /> distribution. </p>
         <p class="tc-todo">To download and install the <MadCap:variable name="General.CompanyName" />-Kafka integration example:</p>
         <ol>
             <li>
-                <p>Download the software package from <a href="https://github.com/Gigaspaces-sbp/xap-kafka" target="_blank">Github</a>.</p>
+                <p>Download the Connector from <a href="https://github.com/Gigaspaces-sbp/xap-kafka" target="_blank">Github</a>.</p>
             </li>
             <li>
-                <p>Unzip the package into an empty folder. The Kafka example is located under <code>&lt;project_root&gt;/example</code>. </p>
+                <p>Unzip the Connector package into an empty folder. The Kafka example is located under <code>&lt;project_root&gt;/example/</code>. </p>
             </li>
             <li>
                 <p>To start Zookeeper and the Kafka server, type the following commands:</p><pre><code class="language-bash">bin/zookeeper-server-start.sh config/zookeeper.properties
@@ -78,6 +79,7 @@ mvn os:deploy
             <li>Data modeling (SpaceDocument).</li>
         </ul>
         <h2>Kafka Persistence</h2>
+        <p>Kafka persistence is essentially an implementation of the SpaceSynchronizationEndpoint. It takes a batch of data sync operations, converts them to a custom message protocol and sends them to the Kafka server using the Kafka Producer API.</p>
         <h3>Library Dependency</h3>
         <p>The following Maven dependency must be included in your project in order to use Kafka persistence. This artifact is built from the <code>&lt;project_rootd&gt;/kafka-persistence</code> source directory.</p><pre><code class="language-xml">&lt;dependency&gt;
     &lt;groupId&gt;com.epam&lt;/groupId&gt;
@@ -86,8 +88,8 @@ mvn os:deploy
 &lt;/dependency&gt;
 </code></pre>
         <h3>Example Code</h3>
-        <p>You can configure the <code>kafkaSpaceSynchronizationEndpoint</code> as shown in the following example code, where it is implemented as a <MadCap:variable name="General.CompanyName" /> mirror service:</p>
-        <p MadCap:conditions="Default.DoNotShow"><span style="color: #1e90ff;">Need some explanation about persistence - also how this does persistence</span>
+        <p>You can configure the <code>kafkaSpaceSynchronizationEndpoint</code> as shown in the following example code, located under <code>&lt;project_root&gt;/example/mirror/src/main/resources/META-INF/spring.</code>where it is implemented as a <MadCap:variable name="General.CompanyName" /> mirror service:</p>
+        <p MadCap:conditions="Default.DoNotShow"><span style="color: #1e90ff;">how this does persistence</span>
         </p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -170,9 +172,7 @@ mvn os:deploy
 &lt;/beans&gt;
 </code></pre>
         <h2>Kafka Producer Properties</h2>
-        <p>The following properties are the default applied to the Kafka producer in the <MadCap:variable name="General.CompanyName" />-Kafka protocol. You can override them if necessary.</p>
-        <p MadCap:conditions="Default.DoNotShow"><span style="color: #1e90ff;">where/how? Are these the only relevant properties and any for consumer?</span>
-        </p>
+        <p>The following properties are the default applied to the Kafka producer in the <MadCap:variable name="General.CompanyName" />-Kafka protocol. You can override them if necessary. </p>
         <table>
             <thead>
                 <tr>
@@ -196,6 +196,7 @@ mvn os:deploy
         </table>
         <div class="tc-admon-note">
             <p> For a full list of available producer properties, see the Kafka <a href="https://docs.confluent.io/current/installation/configuration/producer-configs.html" target="_blank">Producer Configurations</a> page in the Confluent documentation.</p>
+            <p> For a full list of available producer properties, see the Kafka <a href="https://docs.confluent.io/current/installation/configuration/consumer-configs.html" target="_blank">Consumer Configurations</a> page in the Confluent documentation.</p>
         </div>
         <h3>Associating a Kafka Topic with a Space Class</h3>
         <p>In order to associate a Kafka topic with the domain model class, the class must be annotated with the <code>@KafkaTopic</code> annotation and declared as <code>Serializable</code>. See the following sample code.</p><pre><code class="language-java">@KafkaTopic("user_activity")
