@@ -12,12 +12,14 @@
             <p>Most of the considerations described in this topic are also relevant for the client application when running a Local Cache with an LRU Cache policy.</p>
         </div>
         <p>The space memory can be managed using the following mechanisms:</p>
-        <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
-            <p>
-                <MadCap:snippetText src="../Resources/Snippets/EvictionDeprecate.flsnp" /> </p>
-        </div>
         <ul>
-            <li>Eviction policy - You can set the <code>ALL IN CACHE</code> or <code>LRU</code> (Least Recently Used) eviction policy, or a custom implementation.</li>
+            <li>
+                <p>Eviction policy - You can set the <code>ALL IN CACHE</code> or <code>LRU</code> (Least Recently Used) eviction policy, or a custom implementation.</p>
+                <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+                    <p>
+                        <MadCap:snippetText src="../Resources/Snippets/EvictionDeprecate.flsnp" /> </p>
+                </div>
+            </li>
             <li>Memory Manager - Provides options for controlling the JVM that is hosting the Space memory utilization. It allows you to define thresholds for situations where the memory becomes over-utilized.</li>
         </ul>
         <h1><a name="cache-eviction-policies"></a>Cache Eviction Policies</h1>
