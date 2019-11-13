@@ -64,7 +64,7 @@
         <p>The test was set up as follows:</p>
         <ul>
             <li>
-                <p>Version <MadCap:variable name="General.ProductNameXAP" /> 7.1.2.</p>
+                <p>Version XAP 7.1.2.</p>
             </li>
             <li>
                 <p>All objects values are different.</p>
@@ -156,8 +156,8 @@
         <p>The number of active threads and machine cores is an important consideration when calculating the maximum heap size to be allocated for the JVM running the GSC. You should keep memory in reserve for the JVM garbage collection activity, to deal with cleaning allocated resources and reclaiming unused memory. A large heap size means a potentially large number of temporary objects that can generate work for the garbage collection activity. You should have a reasonable balance between the number of cores the machine is running, the number of GSCs/data grids that are running, and the number of active clients/threads accessing the data grid.</p>
         <p>A machine running 4 quad-core cores with fast CPUs (3GHz clock) can handle 20-30 concurrent collocated clients and 100-150 concurrent remote clients without any special delay. This JVM configuration should have at least a 2-3GB heap size to handle the data and additional resources that utilize the memory. With the above, we assume the application business logic is very simple and does not have any IO operations, and the data grid persistency mode is asynchronous.</p>
         <h1><a name="calculating-the-number-of-imdg-partitions"></a>Calculating the Number of Data Grid Partitions</h1>
-        <p MadCap:conditions="Version.15-0-died">Calculating the number of data grid partitions required by an application is essentially on the maximum number of machines available. Theoretically, in an ideal world where you have unlimited budget and resources, you should have a dedicated machine per data grid instance hosted within a dedicated Grid Container (GSC). In the real world, in order to avoid a large hardware budget, you can initially have multiple data grid instances running on the same machine within a single GSC. This deployment topology can be modified later to move closer to the ideal of a dedicated GSC hosting a single data grid instance (one data grid instance per GSC).</p>
-        <p MadCap:conditions="Version.15-0-born">Calculating the number of data grid partitions required by an application is essentially on the maximum number of machines available. You should have a dedicated machine per data grid instance hosted within a dedicated Grid Container (GSC).</p>
+        <p MadCap:conditions="Version.15-0-died">Calculating the number of data grid partitions required by an application is essentially on the maximum number of machines available. Theoretically, in an ideal world where you have unlimited budget and resources, you should have a dedicated machine per data grid instance hosted within a dedicated Grid Service Container (GSC). In the real world, in order to avoid a large hardware budget, you can initially have multiple data grid instances running on the same machine within a single GSC. This deployment topology can be modified later to move closer to the ideal of a dedicated GSC hosting a single data grid instance (one data grid instance per GSC).</p>
+        <p MadCap:conditions="Version.15-0-born">Calculating the number of data grid partitions required by an application is essentially on the maximum number of machines available. You should have a dedicated machine per data grid instance hosted within a dedicated Grid Service Container (GSC).</p>
         <p>The initial required number of GSCs per machine is calculated based on the machine's physical RAM, and the amount of heap memory you want to allocate for the JVM running the GSC. In many cases, the heap size is determined based on the operating system: for a 32-bit OS, you can allocate a 2GB maximum heap size, and for a 64-bit OS, you need 6-10GB maximum heap size (the JVM -Xmx argument). For performance optimization, you should have the initial heap size the same as the maximum size. The sections below demonstrate capacity planning using a simple, real-life example.</p>
         <p>Here are a few basic formulas you can use:</p><pre><code class="language-java">Amount of GSCs per Machine = Amount of Total Machine Cores/2
 </code></pre><pre><code class="language-java">Total Amount of GSC = Amount of GSCs per Machine X Initial amount of Machines
@@ -170,7 +170,7 @@
                 <p>Number of Total Machine Cores - total number of cores the machine is running. For a quad-core with 2 CPUs (Duo) machine this value is 8.</p>
             </li>
             <li>
-                <p>Number of Data-Grid Partitions - number of data grid Partitions you need to set when deploying.</p>
+                <p>Number of Data Grid Partitions - number of data grid partitions you need to set when deploying.</p>
             </li>
             <li>
                 <p>GSC max heap Size - JVM Xmx value</p>
@@ -179,7 +179,7 @@
                 <p>Number of GSCs per machine - number of GSCs you run per machine. This is a GSA parameter.</p>
             </li>
             <li>
-                <p>Total amount of data in-memory - number that should be estimated based on the object footprint you are storing within the space.</p>
+                <p>Total amount of data in memory - number that should be estimated based on the object footprint you are storing within the space.</p>
             </li>
             <li>
                 <p>Scaling Growth Rate - expansion ratio,  usually between 2-10. This value determines how much to expand the data grid capacity without downtime.</p>
