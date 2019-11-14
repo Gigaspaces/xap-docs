@@ -84,7 +84,7 @@ bin/kafka-server-start.sh config/server.properties</code></pre>
     &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-        <h3>Mirror Service Example Code</h3>
+        <h3>Kafka Producer Service</h3>
         <p>You can configure the <code>kafkaSpaceSynchronizationEndpoint</code> as shown in the following example code, located under <code>&lt;project_root&gt;/example/mirror/src/main/resources/META-INF/spring.</code>where it is implemented as a <MadCap:variable name="General.CompanyName" /> mirror service:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -129,7 +129,6 @@ bin/kafka-server-start.sh config/server.properties</code></pre>
         <div class="tc-admon-refer">
             <p>For more information about the <MadCap:variable name="General.CompanyName" /> mirror service, see the <MadCap:xref href="../dev-java/asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency - Mirror Service</MadCap:xref> topic in the Developer guide.</p>
         </div>
-        <h3>Processing Unit Example Code</h3>
         <p>You can configure the Kafka processor service as shown in the following sample code, located under &lt;project root&gt;/example/processor/src/main/resources/META-INF/spring:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -164,6 +163,42 @@ bin/kafka-server-start.sh config/server.properties</code></pre>
     &lt;os-core:giga-space id="gigaSpace" space="space" /&gt;
 &lt;/beans&gt;
 </code></pre>
+        <h3>Kafka Consumer Service</h3>
+        <p>You can configure the Kafka consumer service as shown in the following sample code, located under &lt;project root&gt;/example/consumer/src/main/resources/META-INF/spring:</p><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/core/openspaces-core.xsd"&gt;
+
+    &lt;bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"&gt;
+        &lt;property name="locations"&gt;
+            &lt;list&gt;
+                    &lt;value&gt;classpath:kafka.properties&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+
+    &lt;!-- Kafka Consumer, wrapper around native Kafka producer API --&gt;
+	&lt;bean id="kafkaConsumer" class="com.epam.openspaces.persistency.kafka.consumer.KafkaConsumerFactoryBean"&gt;
+		&lt;property name="consumerProperties"&gt;
+			&lt;props&gt;
+                &lt;!-- Kafka consumer properties. Consult Kafka documentation for a list of available properties --&gt;
+				&lt;prop key="zookeeper.connect"&gt;${zookeeper.connect}&lt;/prop&gt;
+				&lt;prop key="group.id"&gt;${group.id}&lt;/prop&gt;
+				&lt;prop key="zookeeper.session.timeout.ms"&gt;${zookeeper.session.timeout.ms}&lt;/prop&gt;
+				&lt;prop key="zookeeper.sync.time.ms"&gt;${zookeeper.sync.time.ms}&lt;/prop&gt;
+				&lt;prop key="auto.commit.interval.ms"&gt;${auto.commit.interval.ms}&lt;/prop&gt;
+			&lt;/props&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+
+    &lt;!-- Consumer which implements business logic, consumes data from Kafka and saves to database using Hibernate --&gt;
+	&lt;bean id="consumer" class="com.epam.consumer.Consumer"&gt;
+		&lt;property name="consumer" ref="kafkaConsumer" /&gt;
+	&lt;/bean&gt;
+
+&lt;/beans&gt;</pre>
         <h2>Kafka Producer Properties</h2>
         <p>The following properties are the default applied to the Kafka producer in the <MadCap:variable name="General.CompanyName" />-Kafka protocol. You can override them if necessary. </p>
         <table>
