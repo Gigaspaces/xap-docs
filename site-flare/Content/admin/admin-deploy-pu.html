@@ -80,7 +80,9 @@
                         <tr>
                             <td align="left">Option</td>
                             <td align="left">requires-isolation</td>
-                            <td align="left">If this Processing Unit should not share a container, adding this option provisions the Processing Unit in a dedicated container.</td>
+                            <td align="left">
+                                <p align="left">If this Processing Unit should not share a container, adding this option provisions the Processing Unit in a dedicated container.</p>
+                            </td>
                         </tr>
                         <tr>
                             <td align="left">Option</td>
@@ -94,6 +96,11 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+                    <p>
+                        <MadCap:snippetText src="../Resources/Snippets/isolationDeprecate.flsnp" />
+                    </p>
+                </div>
                 <p><span class="tc-italic">Input Example:</span>
                 </p>
                 <p>This example deploys a PU named <span class="tc-bold">myPu</span> with 2 partitions using the mypu.jar file.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu deploy --partitions=2  myPu  mypu.jar

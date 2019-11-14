@@ -55,11 +55,18 @@
                     <tr>
                         <td>Option</td>
                         <td style="white-space: nowrap">--requires-isolation</td>
-                        <td>If this Space should not share a container, adding this option provisions the Space in a dedicated container.</td>
                         <td>
+                            <p>If this Space should not share a container, adding this option provisions the Space in a dedicated container.</p>
+                            <p>&#160;</p>
                         </td>
+                        <td>&#160;</td>
                     </tr>
                 </table>
+                <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+                    <p>
+                        <MadCap:snippetText src="../Resources/Snippets/isolationDeprecate.flsnp" />
+                    </p>
+                </div>
                 <p><span class="tc-italic">Input Example:</span>
                 </p>
                 <p>This example deploys a Space named <span class="tc-bold">mySpace</span> with high availability and two partitions, two instances for the first parition (mySpace~1_1,mySpace~1_2) and two for the second partition (mySpace~2_1,mySpace~2_2). For this example, you must start at least 2 containers.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap space deploy --ha --partitions=2 mySpace

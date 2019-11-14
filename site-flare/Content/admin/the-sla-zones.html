@@ -159,7 +159,9 @@ for (GridServiceAgent gridServiceAgent : agents) {
         <p>In the above case, the primary and the backup will not run on the same zone. If the primary of partition 1 was started on zone1, then the backup of partition 1 will be started on zone2. This comes very handy when defining rack aware deployments.</p>
         <h1><a name="requires-isolation"></a>Requires Isolation</h1>
         <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
-            <p>The "requires isolation" configuration for Processing Units is deprecated and will be removed in a future  release.</p>
+            <p>
+                <MadCap:snippetText src="../Resources/Snippets/isolationDeprecate.flsnp" />
+            </p>
         </div>
         <p>If <code>requires isolation</code> is true a, single processing unit instance takes exclusivity on a given GSC and only it can be deployed onto this GSC, (like GSC -Dcom.gigaspaces.grid.gsc.serviceLimit=1)</p>
         <p>The following example shows the requires isolation configuration:</p>
