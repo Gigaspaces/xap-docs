@@ -31,8 +31,6 @@ Kafka messages are sent via the network, so must be serialized into bytes.
 The default encoder utilizes the Java serialization mechanism, which implies Space classes (domain model) to be <code>Serializable</code>.</p>
         <div class="tc-admon-note">
             <p>By default, Kafka messages are uniformly distributed across Kafka partitions. As such, even though data grid operations appear ordered in <code>SpaceSynchronizationEndpoint</code>, this doesn't imply the correct data processing ordering  in Kafka consumers. </p>
-            <p MadCap:conditions="Default.DoNotShow"><span style="color: #1e90ff;">Is there a way to change default (maybe not) Why mention this and not how to guarantee ordering - e.g. 1 partition (lower performance), or some id per partition.....</span>
-            </p>
             <div class="tc-align-center">
                 <p>
                     <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-data-order.png" alt="xap-kafka-ordering.jpg" class="tc-picture80" />
@@ -59,14 +57,13 @@ The default encoder utilizes the Java serialization mechanism, which implies Spa
 bin/kafka-server-start.sh config/server.properties</code></pre>
             </li>
             <li>
-                <p>To build the project, type the following command:</p><pre><code class="language-bash">cd &lt;project_root&gt;
-mvn clean install
-</code></pre>
+                <p>To build the project, type the following command:</p><pre><code class="language-bash">cd &lt;project_root&gt;/example/dev-scripts
+./rebuild.sh<![CDATA[
+]]></code></pre>
             </li>
             <li>
-                <p>To deploy the example, type the following command:</p><pre><code class="language-bash">cd example
-mvn os:deploy
-</code></pre>
+                <p>To deploy the example, type the following command:</p><pre><code class="language-bash">cd &lt;project_root&gt;/example/dev-scripts
+ ./deploy.sh</code></pre>
             </li>
             <li>Check the log files for messages from the Feeder and Consumer to confirm that the example was installed successfully.</li>
         </ol>
@@ -87,10 +84,8 @@ mvn os:deploy
     &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-        <h3>Example Code</h3>
-        <p>You can configure the <code>kafkaSpaceSynchronizationEndpoint</code> as shown in the following example code, located under <code>&lt;project_root&gt;/example/mirror/src/main/resources/META-INF/spring.</code>where it is implemented as a <MadCap:variable name="General.CompanyName" /> mirror service:</p>
-        <p MadCap:conditions="Default.DoNotShow"><span style="color: #1e90ff;">how this does persistence</span>
-        </p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <h3>Mirror Service Example Code</h3>
+        <p>You can configure the <code>kafkaSpaceSynchronizationEndpoint</code> as shown in the following example code, located under <code>&lt;project_root&gt;/example/mirror/src/main/resources/META-INF/spring.</code>where it is implemented as a <MadCap:variable name="General.CompanyName" /> mirror service:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -134,10 +129,8 @@ mvn os:deploy
         <div class="tc-admon-refer">
             <p>For more information about the <MadCap:variable name="General.CompanyName" /> mirror service, see the <MadCap:xref href="../dev-java/asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency - Mirror Service</MadCap:xref> topic in the Developer guide.</p>
         </div>
-        <h2>Kafka Consumer Service</h2>
-        <p>You can configure the Kafka consumer service as shown in the following sample code:</p>
-        <p MadCap:conditions="Default.DoNotShow" style="color: #1e90ff;">More explanation what this does</p>
-        <p MadCap:conditions="Default.DoNotShow" style="color: #1e90ff;">Seems this is not from example package.</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <h3>Processing Unit Example Code</h3>
+        <p>You can configure the Kafka processor service as shown in the following sample code, located under &lt;project root&gt;/example/processor/src/main/resources/META-INF/spring:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -196,7 +189,6 @@ mvn os:deploy
         </table>
         <div class="tc-admon-note">
             <p> For a full list of available producer properties, see the Kafka <a href="https://docs.confluent.io/current/installation/configuration/producer-configs.html" target="_blank">Producer Configurations</a> page in the Confluent documentation.</p>
-            <p> For a full list of available producer properties, see the Kafka <a href="https://docs.confluent.io/current/installation/configuration/consumer-configs.html" target="_blank">Consumer Configurations</a> page in the Confluent documentation.</p>
         </div>
         <h3>Associating a Kafka Topic with a Space Class</h3>
         <p>In order to associate a Kafka topic with the domain model class, the class must be annotated with the <code>@KafkaTopic</code> annotation and declared as <code>Serializable</code>. See the following sample code.</p><pre><code class="language-java">@KafkaTopic("user_activity")
