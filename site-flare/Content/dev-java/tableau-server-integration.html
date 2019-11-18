@@ -3,8 +3,8 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Integrating <MadCap:variable name="General.ProductNameIE" /> with Tableau </h1>
-        <p>This topic describes how to integrate InsightEdge Connector for Tableau with Tableau Server  to publish data to the server where it can be shared throughout the organization. To integrate with Tableau Server you must:</p>
+        <h1 class="tc-pagetitle">Integrating <MadCap:variable name="General.ProductNameIE" /> with Tableau Server</h1>
+        <p>This topic describes how to publish from <MadCap:variable name="General.ProductNameIE" /> from to Tableau Server, via Tableau desktop, where it can be shared throughout the organization. To integrate with Tableau Server you must:</p>
         <ul>
             <li>Setup the JDBC Connector on Tableau Server</li>
             <li>Set up security on the <MadCap:variable name="General.ProductNameIE" /> server to work with Tableau Server</li>
@@ -15,7 +15,7 @@
         <ul>
             <li>Java 8 or higher</li>
         </ul>
-        <h1>XXX</h1>
+        <h1>Integrating with Tableau Server</h1>
         <h2>Setting Up the  JDBC&#160;Connector on Tableau Server</h2>
         <p>To setup the JDBC Connector:</p>
         <ol>
@@ -48,10 +48,31 @@ tsm pending-changes apply</code></pre>
             </div>
         </div>
         <ul>
-            <li>Create an <MadCap:variable name="General.ProductNameIE" /> user with all permissions. This user will be used to connect to Tableau Server.</li>
+            <li>Create an <MadCap:variable name="General.ProductNameIE" /> <a href="../started/xap-tutorial-part10.html#managing-users">new user</a> with all permissions. This user will be used to connect to Tableau Server.</li>
         </ul>
-        <h2>Querying the Space using Tableau</h2>
-        <p>After the setup process is complete and the connection has been configured, you can execute queries against the <MadCap:variable name="General.ProductNameIE" /> data grid. </p>
-        <p>&#160;</p>
+        <h2>Publishing to Tableau Server</h2>
+        <p>After the setup process is complete and the connection has been configured, you can publish to the server following these steps</p>
+        <ol>
+            <li><a href="tableau-integration.html#Connecti">Connect to the space.</a>
+            </li>
+        </ol>
+        <p>
+            <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_6.png" style="width: 874px;height: 630px;max-width: 50%;" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Create a sheet corresponding to your data.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Static/attachment_files/devguide/tableauSheet.png" style="width: 766px; height: 636px;" class="tc-picture100" />
+        </p>
+        <ol MadCap:continue="true">
+            <li>Select <code class="language-bash">Sign In</code>from the <code class="language-bash">Server </code>menu to sign in to your Tableau Server.</li>
+            <li>Select <code class="language-bash">Publish Data Source</code> from the <code class="language-bash">Server </code> menu and  to select your sheet to publish.</li>
+            <li>Enter any of the options in the <code class="language-bash">Publish Data Source</code> window and click <code class="language-bash">Publish</code>.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Static/attachment_files/devguide/tableauPublish.png" style="width: 766px; height: 636px;" class="tc-picture100" />
+        </p>
+        <p>The data source is published to Tableau Server and the server URL is opened in your browser. Log in and verify that the data is published on the server.</p>
     </body>
 </html>
