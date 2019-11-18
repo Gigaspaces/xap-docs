@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Integrating <MadCap:variable name="General.ProductNameIE" /> with Tableau </h1>
+        <p>This topic describes how to integrate InsightEdge Connector for Tableau with Tableau Server  to publish data to the server where it can be shared throughout the organization. To integrate with Tableau Server you must:</p>
+        <ul>
+            <li>Setup the JDBC Connector on Tableau Server</li>
+            <li>Set up security on the <MadCap:variable name="General.ProductNameIE" /> server to work with Tableau Server</li>
+        </ul>
+        <p>Then you can publish data from the desktop to Tableau Server.</p>
+        <h1>Prerequisites</h1>
+        <p>You must setup the Tableau desktop with <a href="#">JDBC Connector for Tableau</a>. Your server must have the following installed:</p>
+        <ul>
+            <li>Java 8 or higher</li>
+        </ul>
+        <h1>XXX</h1>
+        <h2>Setting Up the  JDBC&#160;Connector on Tableau Server</h2>
+        <p>To setup the JDBC Connector:</p>
+        <ol>
+            <li>
+                <p>Copy the JDBC driver from your desktop <code class="language-bash">&lt;TABLEAU_HOME&gt;</code>\Drivers folder to the same folder on the server.</p>
+            </li>
+            <li>
+                <p>Copy the <MadCap:variable name="General.HomePath" />\tools\tableau\insightedge-connector folder to any folder on the server.</p>
+            </li>
+            <li>
+                <p>To configure insightedge-connector run the following commands:</p><pre><code>tsm configuration  set -frc -k native_api.connect_plugins_path 
+-v C:/&lt;insightedge_connectors folder&gt;
+tsm pending-changes apply</code></pre>
+            </li>
+            <li>
+                <p>To verify <MadCap:conditionalText MadCap:conditions="Default.DoNotShow" style="color: #ff4500;">(is this command required or only for verification)</MadCap:conditionalText> the configuration run the following command:</p><pre><code>tsm settings export --output-config-file config.txt</code></pre>
+            </li>
+        </ol>
+        <p>and verify that <code class="language-bash">config.txt</code> contains the line <code class="language-bash">native_api.connect_plugins_path -v C:/tableau_connectors</code></p>
+        <h2>Setting Up the <MadCap:variable name="General.ProductNameIE" /> Security </h2>
+        <p>To setup security to access Tableau Server</p>
+        <ul>
+            <li>Add the following to setenv-overrides.bat/.sh</li>
+        </ul>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Unix CLI" style="padding:10px"><pre xml:space="preserve"><code class="language-bash">.export XAP_OPTIONS_EXT="-Dcom.gs.security.enabled=true -Dcom.gs.manager.rest.ssl.enabled=false"</code></pre>
+            </div>
+            <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash">set GS_OPTIONS_EXT="-Dcom.gs.security.enabled=true -Dcom.gs.manager.rest.ssl.enabled=false"<![CDATA[
+]]></code></pre>
+            </div>
+        </div>
+        <ul>
+            <li>Create an <MadCap:variable name="General.ProductNameIE" /> user with all permissions. This user will be used to connect to Tableau Server.</li>
+        </ul>
+        <h2>Querying the Space using Tableau</h2>
+        <p>After the setup process is complete and the connection has been configured, you can execute queries against the <MadCap:variable name="General.ProductNameIE" /> data grid. </p>
+        <p>&#160;</p>
+    </body>
+</html>
