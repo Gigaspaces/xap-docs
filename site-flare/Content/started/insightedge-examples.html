@@ -17,8 +17,10 @@
             </ul>
         </div>
         <h1><a name="building-the-examples"></a>Building the Examples</h1>
-        <p>Building the examples is not required, since the package includes a pre-built .jar file. However, if you wish to modify the examples for learning purposes and rebuild them, follow this procedure.</p>
-        <p>Before the first time building the examples, you need to install the <MadCap:variable name="General.ProductNameIE" /> artifacts in your local Maven repository. To do that, run the following from the <code><MadCap:variable name="General.HomePath" />/insightedge/tools/maven</code> directory:</p><pre><code class="language-bash">insightedge-maven
+        <p>Building the examples is not required, since the package includes a pre-built .jar file. However, if you want to modify the examples for learning purposes and rebuild them, follow this procedure.</p>
+        <p MadCap:conditions="Version.15-0-died">Before the first time building the examples, you need to install the <MadCap:variable name="General.ProductNameIE" /> artifacts in your local Maven repository. To do that, run the following from the <code><MadCap:variable name="General.HomePath" />/insightedge/tools/maven</code> directory:</p>
+        <p MadCap:conditions="Version.15-0-born">Before the first time building the examples, you need to install the <MadCap:variable name="General.ProductNameIE" /> artifacts in your local Maven repository. To do that, run the following from the <code><MadCap:variable name="General.HomePath" />/bin/</code> directory:</p><pre MadCap:conditions="Version.15-0-died"><code class="language-bash">insightedge-maven
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-bash"><MadCap:variable name="General.CLI-script-all" /> maven install
 </code></pre>
         <p>Next, use the following command in Maven to build the examples from <code><MadCap:variable name="General.HomePath" />/insightedge/examples</code>:</p><pre><code class="language-bash">mvn clean package
 </code></pre>
