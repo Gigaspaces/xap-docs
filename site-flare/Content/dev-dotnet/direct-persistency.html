@@ -63,8 +63,8 @@
 &lt;/ProcessingUnit&gt;
 </code></pre><a name="distributed"></a>
         <h1><a name="distributed-databases"></a>Distributed Databases</h1>
-        <p>With the distributed databases topology, each IMDG instance uses its own database instance to store its data. In this case both the primary and the backup IMDG instances will update the database once IMDG operation is called or being replicated (to the backup).</p>
-        <p>A Data-Grid running in Direct persistency mode using distributed databases topology (non-central), having all the data within the IMDG would have the following configuration:</p><pre><code class="language-xml">&lt;ProcessingUnit&gt;
+        <p>With the distributed databases topology, each data grid instance uses its own database instance to store its data. In this case both the primary and the backup data grid instances will update the database once data grid operation is called or replicated (to the backup).</p>
+        <p>A data grid running in direct persistency mode using distributed databases topology (non-central), having all the data within the data grid would have the following configuration:</p><pre><code class="language-xml">&lt;ProcessingUnit&gt;
   &lt;EmbeddedSpaces&gt;
     &lt;add Name="space"&gt;
       &lt;ExternalDataSource Type="GigaSpaces.Practices.ExternalDataSource.NHibernate.NHibernateExternalDataSource"&gt;
@@ -84,6 +84,11 @@
             <p>See the <a href="space-persistency-overview.html">Space Persistency</a> section for full details about the properties you may configure.</p>
         </div>
         <h1><a name="supported-options"></a>Supported Options</h1>
+        <div class="tc-admon-note">
+            <p>
+                <MadCap:snippetText src="../Resources/Snippets/EvictionDeprecate.flsnp" />
+            </p>
+        </div>
         <p>The following table lists the supported options:</p>
         <table>
             <thead>
