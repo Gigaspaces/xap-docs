@@ -4,14 +4,14 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Integrating Kafka with <MadCap:variable name="General.CompanyName" /> Products</h1>
+        <p>This topic describes how to implement the <MadCap:variable name="General.ProductNameXAP" /> connector for Apache Kafka, which has been verified by Confluent and is available as an add-on component int he <MadCap:variable name="General.ProductNameXAP" /> software package. Using the connector, you can integrate <MadCap:variable name="General.CompanyName" /> products with Apache Kafka, using our write-behind data grid operations to Kafka to make data available for subscribers. Hadoop or any other data warehousing system can use the data for reporting and processing. <MadCap:variable name="General.CompanyName" /> products can be implemented as the consumer by subscribing to Kafka messages, and as a producer by publishing Kafka messages. Both implementations are described below.</p>
         <h1>Introduction</h1>
         <p><a href="http://kafka.apache.org">Apache Kafka</a> is a distributed publish-subscribe messaging system, which supports sending messages between applications, processes, and servers. A message is any kind of information that is sent from a producer (application that sends the messages) to a consumer (application that receives the messages).</p>
         <p>Producers write their messages, or data, to Kafka topics. These topics are divided into partitions that function like logs. Each message is written to a partition and has a unique offset, or identifier. Consumers can specify a particular offset point where they can begin to read messages. </p>
         <p MadCap:conditions="Default.DoNotShow">A Kafka server is called a broker, and a Kafka cluster contains one or more brokers. Topic partitions can reside on different brokers in the clusters, so that data in a specific topic can be split among multiple brokers. Consumers can be associated with consumer groups (each group reads from a specific topic). This enables high throughput because messages can be written and read in parallel to and from the different brokers in the cluster.</p>
         <p MadCap:conditions="Default.DoNotShow">Kafka is designed to support persistent messaging with a O(1) disk structure that provides constant time performance, even with multiple terabytes of stored messages.
 Kafka provides high throughput even with very modest hardware, supporting hundreds of thousands of messages per second. Messages can be split among Kafka brokers, distributing consumption over a cluster of consumer machines while maintaining per-partition ordering semantics. For example, Kafka is often used to perform parallel data loading to Hadoop.</p>
-        <p>This topic describes how to integrate <MadCap:variable name="General.CompanyName" /> products with Apache Kafka, using our write-behind data grid operations to Kafka to make data available for subscribers. Hadoop or any other data warehousing system can use the data for reporting and processing. <MadCap:variable name="General.CompanyName" /> products can be implemented as the consumer by subscribing to Kafka messages, and as a producer by publishing Kafka messages. Both implementations are described below.</p>
-        <h1>The Space as a Consumer</h1>
+        <h2>The Space as a Consumer</h2>
         <p>The Kafka persistence library provides a wrapper around the native Kafka Consumer API for the <MadCap:variable name="General.CompanyName"></MadCap:variable>-Kafka protocol serialization. For an example of how to use this wrapper, see the <code>com.epam.openspaces.persistency.kafka.consumer.KafkaConsumer</code> example in the <code><MadCap:variable name="General.Home-directory"></MadCap:variable>/example module</code> folder.</p>
         <p>The Space sits behind the Kafka consumer service, and the data objects are passed to the Space instances using routing keys.</p>
         <div class="tc-align-center">
@@ -19,7 +19,7 @@ Kafka provides high throughput even with very modest hardware, supporting hundre
                 <img src="../Resources/Static/attachment_files/solution-hub/gs-kafka-consumer.png" class="tc-picture50" />
             </p>
         </div>
-        <h1>The Space as a Producer</h1>
+        <h2>The Space as a Producer</h2>
         <p>The <MadCap:variable name="General.CompanyName" />-Kafka integration is done via the <code>SpaceSynchronizationEndpoint</code> interface deployed as a Kafka producer service. The service consumes a batch of data grid operations, converts them into custom Kafka messages, and sends these to the Kafka broker using the Kafka Producer API.</p>
         <div class="tc-align-center">
             <p>
@@ -38,19 +38,20 @@ The default encoder utilizes the Java serialization mechanism, which implies Spa
             </div>
         </div>
         <h1>Adding Kafka Streaming to the <MadCap:variable name="General.ProductNameXAP" /> Environment</h1>
-        <p>This topic includes an example of <MadCap:variable name="General.CompanyName" /> as a producer, which demonstrates how to configure Kafka persistence. The topic also implements a simple Kafka consumer, which pulls data from the Kafka broker and uses HsqlDB for storage.</p>
+        <p>This topic includes an example of <MadCap:variable name="General.CompanyName" /> as a producer, which demonstrates how to configure Kafka persistence. It then shows how to implement a simple Kafka consumer, which pulls data from the Kafka broker and uses HsqlDB for storage.</p>
+        <p>Implementing <MadCap:variable name="General.ProductNameXAP" /> as a consumer is also explained along with how to configure the services via the pu.xml file, and how to customize the integration.</p>
         <div class="tc-admon-note">
-            <p>You need to install Kafka to run the example.</p>
+            <p>You need to install Kafka before installing the <MadCap:variable name="General.ProductNameXAP" /> connector.</p>
         </div>
         <h2>Implementing the GigaSpaces Connector for Apache Kafka</h2>
-        <p>The  <MadCap:variable name="General.ProductNameXAP" /> Connector for Apache Kafka is Confluent verified. We provide example implementations of the Connector as an open-source add on to the <MadCap:variable name="General.ProductNameXAP" /> distribution. </p>
-        <p class="tc-todo">To download and install the <MadCap:variable name="General.CompanyName" />-Kafka integration example:</p>
+        <p>The  <MadCap:variable name="General.ProductNameXAP" /> connector for Apache Kafka is Confluent verified. We provide sample implementations of the connector as an open-source add-on to the <MadCap:variable name="General.ProductNameXAP" /> distribution. </p>
+        <p class="tc-todo">To download and install the <MadCap:variable name="General.CompanyName" />-Kafka connector:</p>
         <ol>
             <li>
-                <p>Download the Connector from <a href="https://github.com/Gigaspaces-sbp/xap-kafka" target="_blank">Github</a>.</p>
+                <p>Download the connector from <a href="https://github.com/Gigaspaces-sbp/xap-kafka" target="_blank">Github</a>.</p>
             </li>
             <li>
-                <p>Unzip the Connector package into an empty folder. The Kafka example is located under <code>&lt;project_root&gt;/example/</code>. </p>
+                <p>Unzip the connector package into an empty folder. The connector is located under <code>&lt;project_root&gt;/example/</code>. </p>
             </li>
             <li>
                 <p>To start Zookeeper and the Kafka server, type the following commands:</p><pre><code class="language-bash">bin/zookeeper-server-start.sh config/zookeeper.properties
@@ -62,13 +63,13 @@ bin/kafka-server-start.sh config/server.properties</code></pre>
 ]]></code></pre>
             </li>
             <li>
-                <p>To deploy the example, type the following command:</p><pre><code class="language-bash">cd &lt;project_root&gt;/example/dev-scripts
+                <p>To deploy the connector, type the following command:</p><pre><code class="language-bash">cd &lt;project_root&gt;/example/dev-scripts
  ./deploy.sh</code></pre>
             </li>
-            <li>Check the log files for messages from the Feeder and Consumer to confirm that the example was installed successfully.</li>
+            <li>Check the log files for messages from the Feeder and Consumer to confirm that the connector was installed successfully.</li>
         </ol>
         <h1>Configuring the Services</h1>
-        <p>After you download and install the example, you can configure the pu.xml with any necessary properties, such as </p>
+        <p>After you download and install the connector, you can configure the pu.xml with any necessary properties, such as </p>
         <ul>
             <li>Kafka persistence</li>
             <li>Kafka producer or consumer properties </li>
@@ -84,7 +85,7 @@ bin/kafka-server-start.sh config/server.properties</code></pre>
     &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
-        <h3>Kafka Producer Service</h3>
+        <h2>Kafka Producer Service</h2>
         <p>You can configure the <code>kafkaSpaceSynchronizationEndpoint</code> as shown in the following example code, located under <code>&lt;project_root&gt;/example/mirror/src/main/resources/META-INF/spring.</code>where it is implemented as a <MadCap:variable name="General.CompanyName" /> mirror service:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -163,7 +164,33 @@ bin/kafka-server-start.sh config/server.properties</code></pre>
     &lt;os-core:giga-space id="gigaSpace" space="space" /&gt;
 &lt;/beans&gt;
 </code></pre>
-        <h3>Kafka Consumer Service</h3>
+        <h3>Kafka Producer Properties</h3>
+        <p>The following properties are the default applied to the Kafka producer in the <MadCap:variable name="General.CompanyName" />-Kafka protocol. You can override them if necessary. </p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Default Value</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">key.serializer.class</td>
+                    <td align="left">com.epam.openspaces.persistency.kafka.<br />protocol.impl.serializer.KafkaMessageKeyEncoder</td>
+                    <td align="left">Message key serializer of the default Gigaspace-Kafka protocol.</td>
+                </tr>
+                <tr>
+                    <td align="left">serializer.class</td>
+                    <td align="left">com.epam.openspaces.persistency.kafka.<br />protocol.impl.serializer.KafkaMessageEncoder</td>
+                    <td align="left">Message serializer of the default Gigaspace-Kafka protocol.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <p> For a full list of available producer properties, see the Kafka <a href="https://docs.confluent.io/current/installation/configuration/producer-configs.html" target="_blank">Producer Configurations</a> page in the Confluent documentation.</p>
+        </div>
+        <h2>Kafka Consumer Service</h2>
         <p>You can configure the Kafka consumer service as shown in the following sample code, located under &lt;project root&gt;/example/consumer/src/main/resources/META-INF/spring:</p><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -199,40 +226,14 @@ bin/kafka-server-start.sh config/server.properties</code></pre>
 	&lt;/bean&gt;
 
 &lt;/beans&gt;</pre>
-        <h2>Kafka Producer Properties</h2>
-        <p>The following properties are the default applied to the Kafka producer in the <MadCap:variable name="General.CompanyName" />-Kafka protocol. You can override them if necessary. </p>
-        <table>
-            <thead>
-                <tr>
-                    <th align="left">Property</th>
-                    <th align="left">Default Value</th>
-                    <th align="left">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td align="left">key.serializer.class</td>
-                    <td align="left">com.epam.openspaces.persistency.kafka.<br />protocol.impl.serializer.KafkaMessageKeyEncoder</td>
-                    <td align="left">Message key serializer of the default Gigaspace-Kafka protocol.</td>
-                </tr>
-                <tr>
-                    <td align="left">serializer.class</td>
-                    <td align="left">com.epam.openspaces.persistency.kafka.<br />protocol.impl.serializer.KafkaMessageEncoder</td>
-                    <td align="left">Message serializer of the default Gigaspace-Kafka protocol.</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="tc-admon-note">
-            <p> For a full list of available producer properties, see the Kafka <a href="https://docs.confluent.io/current/installation/configuration/producer-configs.html" target="_blank">Producer Configurations</a> page in the Confluent documentation.</p>
-        </div>
-        <h3>Associating a Kafka Topic with a Space Class</h3>
+        <h2>Associating a Kafka Topic with a Space Class</h2>
         <p>In order to associate a Kafka topic with the domain model class, the class must be annotated with the <code>@KafkaTopic</code> annotation and declared as <code>Serializable</code>. See the following sample code.</p><pre><code class="language-java">@KafkaTopic("user_activity")
 @SpaceClass
 public class UserActivity implements Serializable {
     ...
 }
 </code></pre>
-        <h3>Space Documents</h3>
+        <h2>Space Documents</h2>
         <p>To configure a Kafka topic for a <code>SpaceDocument</code> or <code>Extended SpaceDocument</code>, the <code>KafkaPersistenceConstants.SPACE_DOCUMENT_KAFKA_TOPIC_PROPERTY_NAME</code> property should be added to the document. See the following sample code.</p><pre><code class="language-java">public class Product extends SpaceDocument {
 
 public Product() {
@@ -245,7 +246,7 @@ public Product() {
     &lt;property name="spaceDocumentKafkaTopicName" value="topic_name" /&gt;
 &lt;/bean&gt;
 </code></pre>
-        <h2>Customizing the Integration</h2>
+        <h1>Customizing the Integration</h1>
         <p>You can customize the <MadCap:variable name="General.CompanyName" />-Kafka protocol as necessary, to suit your specific use case and environment. The following guidelines may be helpful:</p>
         <ul>
             <li>Kafka persistence was designed to be extensible and customizable.</li>
