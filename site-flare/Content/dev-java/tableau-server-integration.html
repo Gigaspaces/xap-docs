@@ -55,22 +55,39 @@ tsm pending-changes apply</code></pre>
         </ol>
         <h1>Publishing <MadCap:variable name="General.ProductNameIE" /> Data to Tableau Server</h1>
         <p>After the setup process is complete and the connection has been configured, you can publish dashboards that are created in Tableau Desktop using <MadCap:variable name="General.ProductNameIE" /> data to Tableau Server. </p>
-        <p class="tc-todo">To publish a dashboard with <MadCap:variable name="General.ProductNameIE" /> data to Tableau Server:</p>
+        <p class="tc-todo">To publish a dashboard with <MadCap:variable name="General.ProductNameIE" /> data from Tableau Desktop to Tableau Server:</p>
         <ol>
             <li>
-                <p><a href="tableau-integration.html#Connecti">Connect</a> to the Space (this is configuring the data source).</p>
+                <p><a href="tableau-integration.html#Connecti">Connect</a> to the Space (this is configuring the data source) in Tableau Desktop.</p>
                 <p>
                     <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_6.png" style="width: 874px; height: 630px;" class="tc-picture50" />
                 </p>
             </li>
             <li>
-                <p>In Tableau Desktop, create a sheet that uses <MadCap:variable name="General.ProductNameIE" /> data.</p>
-                <p>
-                    <img src="../Resources/Static/attachment_files/devguide/tableauSheet.png" style="width: 766px; height: 636px;" class="tc-picture100" />
-                </p>
+                <p>In Tableau Desktop, do the following:</p>
+                <ol style="list-style-type: lower-alpha;">
+                    <li>
+                        <p>Create a sheet that uses <MadCap:variable name="General.ProductNameIE" /> data.</p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/devguide/tableauSheet.png" style="width: 766px; height: 636px;" class="tc-picture100" />
+                        </p>
+                    </li>
+                    <li MadCap:conditions="Version.14-5-born">
+                        <p>Select <code class="language-bash">Sign In</code> from the <code class="language-bash">Server </code>menu.</p>
+                    </li>
+                    <li>
+                        <p>Select <code class="language-bash">Publish Data Source</code> from the <code class="language-bash">Server </code> menu.</p>
+                    </li>
+                    <li>
+                        <p>  Select the required options in the <code class="language-bash">Publish Data Source</code> window and click <code class="language-bash">Publish</code>.</p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/devguide/tableauPublish.png" style="width: 766px; height: 636px;" class="tc-picture100" />
+                        </p>
+                        <p>The data source is published to Tableau Server and the Tableau Server URL opens in your browser. </p>
+                    </li>
+                </ol>
             </li>
-            <li MadCap:conditions="Version.14-5-born">In Tableau Server:<ol style="list-style-type: lower-alpha;"><li MadCap:conditions="Version.14-5-born">select <code class="language-bash">Sign In</code> from the <code class="language-bash">Server </code>menu.</li><li><p>Select <code class="language-bash">Publish Data Source</code> from the <code class="language-bash">Server </code> menu.</p></li><li><p>  Select the required options in the <code class="language-bash">Publish Data Source</code> window and click <code class="language-bash">Publish</code>.</p><p><img src="../Resources/Static/attachment_files/devguide/tableauPublish.png" style="width: 766px; height: 636px;" class="tc-picture100" /></p><p>The data source is published to Tableau Server and the Tableau Server URL opens in your browser. </p></li></ol></li>
-            <li MadCap:conditions="Version.14-5-born">Log in and verify that the data is published on Tableau Server.</li>
+            <li MadCap:conditions="Version.14-5-born">Log in to Tableau Server and verify that the data was published.</li>
         </ol>
     </body>
 </html>
