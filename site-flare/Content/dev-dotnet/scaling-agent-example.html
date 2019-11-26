@@ -253,12 +253,12 @@ public class FeedProcessorTpMonitor : IServiceMonitors
 The Scaling Agent monitors the deployed Processors and scales them up on demand. It can be run either as a deployable processing unit, or as a standalone console application. When it is deployed as a processing unit, it is automatically reliable and self healing, like any processing unit that is managed by the service grid.</p>
         <p>To simplify the deployment of the examples, there are several scripts in the example directory.</p>
         <ol>
-            <li>First start a grid service agent by running <code>&lt;XAP.NET installation&gt;\Bin\Gs-Agent.exe</code>.</li>
+            <li>First start a grid service agent by running <code>&lt;<MadCap:variable name="General.XAPNet" /> installation&gt;\Bin\Gs-Agent.exe</code>.</li>
             <li>It is then recommended to run the GigaSpaces Management center to monitor the entire service grid state.</li>
-            <li>After the service grid agent is loaded, in order to deploy the data grid, run <code>&lt;XAP.NET installation&gt;\Examples\ScalingAgent\DeploySpace.bat</code>.</li>
-            <li>Now run <code>&lt;XAP.NET installation&gt;\Examples\ScalingAgent\DeployProcessor.bat</code> to deploy the processor.</li>
-            <li>The next step is to deploy the Scaling Agent. This can be done by running <code>&lt;XAP.NET installation&gt;\Examples\ScalingAgent\DeployAgent.bat</code>, which deploys the agent as a processing unit, or by running <code>&lt;XAP.NET installation&gt;\Examples\ScalingAgent\RunStandaloneAgent.bat</code>, which runs the agent as a standalone application.</li>
-            <li>At this stage, the entire application is deployed and waiting for new feeds to be processed. Start a feeder by executing <code>&lt;XAP.NET installation&gt;\Examples\ScalingAgent\RunFeeder.bat</code>. Use the feeder user interface to specify the rate of feeding, in order to simulate different loads on the cluster.</li>
+            <li>After the service grid agent is loaded, in order to deploy the data grid, run <code>&lt;<MadCap:variable name="General.XAPNet" /> installation&gt;\Examples\ScalingAgent\DeploySpace.bat</code>.</li>
+            <li>Now run <code>&lt;<MadCap:variable name="General.XAPNet" /> installation&gt;\Examples\ScalingAgent\DeployProcessor.bat</code> to deploy the processor.</li>
+            <li>The next step is to deploy the Scaling Agent. This can be done by running <code>&lt;<MadCap:variable name="General.XAPNet" /> installation&gt;\Examples\ScalingAgent\DeployAgent.bat</code>, which deploys the agent as a processing unit, or by running <code>&lt;<MadCap:variable name="General.XAPNet" /> installation&gt;\Examples\ScalingAgent\RunStandaloneAgent.bat</code>, which runs the agent as a standalone application.</li>
+            <li>At this stage, the entire application is deployed and waiting for new feeds to be processed. Start a feeder by executing <code>&lt;<MadCap:variable name="General.XAPNet" /> installation&gt;\Examples\ScalingAgent\RunFeeder.bat</code>. Use the feeder user interface to specify the rate of feeding, in order to simulate different loads on the cluster.</li>
         </ol>
         <h2><a name="feeder-application"></a>Feeder Application</h2>
         <div class="tc-align-center">

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -87,7 +87,7 @@ ISpaceProxy spaceProxy = new SpaceProxyFactory("mySpace").Create();
         <h2><a name="reconnection"></a>Reconnection</h2>
         <p>When working with a <span class="tc-bold">remote Space</span>, the Space may become unavailable (network problems, processing unit relocation, etc.). For information on how such disruptions are handled and configured, refer to <a href="../admin/tuning-proxy-connectivity.html">Proxy Connectivity</a>.</p>
         <h1><a name="local-cache"></a>Local Cache</h1>
-        <p>XAP supports a <a href="local-cache.html">Local Cache</a> (near cache) configuration. This provides a front-end client side cache that is used with the <code>Read</code> operations implicitly . The local cache is loaded on demand or when you perform a <code>Read</code> operation, and is updated implicitly by the Space.</p>
+        <p><MadCap:variable name="General.DataGridInitCap" /> supports a <a href="local-cache.html">Local Cache</a> (near cache) configuration. This provides a front-end client side cache that is used with the <code>Read</code> operations implicitly . The local cache is loaded on demand or when you perform a <code>Read</code> operation, and is updated implicitly by the Space.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/devguide/space-local-cache.png" width="521" height="160" />
@@ -100,7 +100,7 @@ ISpaceProxy localCache = GigaSpacesFactory.CreateLocalCache(spaceProxy);
 
 </code></pre>
         <h1><a name="local-view"></a>Local View</h1>
-        <p>XAP supports a <a href="local-view.html">Local View</a> configuration. This provides a front-end client side cache that is used with any <code>Read</code> or <code>ReadMultiple</code> operations implicitly. The local view is loaded on startup, and is updated implicitly by the Space.</p>
+        <p><MadCap:variable name="General.DataGridInitCap" /> supports a <a href="local-view.html">Local View</a> configuration. This provides a front-end client side cache that is used with any <code>Read</code> or <code>ReadMultiple</code> operations implicitly. The local view is loaded on startup, and is updated implicitly by the Space.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/devguide/space-local-view.png" width="521" height="160" />
@@ -174,6 +174,6 @@ IReadOnlySpaceProxy localView = GigaSpacesFactory.CreateLocalView(spaceProxy, vi
   &lt;/session-factory&gt;
 &lt;/hibernate-configuration&gt;
 </code></pre>
-        <p>The above example configures both a custom JDBC <code>DataSource</code> and a NHibernate <code>SessionFactory</code>, to define and use the XAP built-in <code>NHibernateSpaceDataSource</code>. The XAP data source is then injected into the Space construction and causes the Space to use it.</p>
+        <p>The above example configures both a custom JDBC <code>DataSource</code> and a NHibernate <code>SessionFactory</code>, to define and use the <MadCap:variable name="General.DataGrid" /> built-in <code>NHibernateSpaceDataSource</code>. The <MadCap:variable name="General.DataGrid" /> data source is then injected into the Space construction and causes the Space to use it.</p>
     </body>
 </html>

@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
-        <h1>XAP.NET in 5 Minutes</h1>
+        <h1><MadCap:variable name="General.XAPNet" /> in 5 Minutes</h1>
         <p>This tutorial explains how to deploy and use a XAP <a href="../overview/the-in-memory-data-grid.html">Data Grid</a> from a .NET client application.</p>
         <h1>Downloading and Installing XAP</h1>
-        <p>GigaSpaces XAP.NET is packaged as a standard Windows Installer package (.msi file). After you have downloaded the latest version of XAP from the <a href="https://www.gigaspaces.com/download-center" target="_blank">Download Center</a>, start the installation by double-clicking the .msi file, and the installation wizard will pop up and guide you through the installation process.</p>
+        <p>GigaSpaces <MadCap:variable name="General.XAPNet" /> is packaged as a standard Windows Installer package (.msi file). After you have downloaded the latest version of XAP from the <a href="https://www.gigaspaces.com/download-center" target="_blank">Download Center</a>, start the installation by double-clicking the .msi file, and the installation wizard will pop up and guide you through the installation process.</p>
         <p>Once you accept the license agreement, you will be asked to choose a setup type. Select "Complete' to install all the features in the default path (C:\GigaSpaces\XAP.NET X.x.x). Selecting "Custom' will allow you to customize the installation path, which features will be installed, and more.</p>
         <h1><a name="starting-a-service-grid"></a>Starting a Service Grid</h1>
         <p>A Data Grid requires a <a href="../overview/the-in-memory-data-grid.html">Service Grid</a> to host it. A service grid is composed of one or more machines (service grid nodes) running a <a href="../overview/the-runtime-environment.html#gsa">Service Grid Agent</a> (or <code>GSA</code>), and provides a framework to deploy and monitor applications on those machines, in our case the Data Grid.</p>
@@ -32,14 +32,14 @@
                         <li>In the <span class="tc-bold">Name</span> test box, type <span class="tc-bold">XapDemo</span>. If you wish, change the default location to a path you prefer.</li>
                         <li>Select <span class="tc-bold">OK</span> to continue. Visual Studio creates the project and opens the automatically generated <code>program.cs</code> file.</li>
                         <li>From the <span class="tc-bold">Project</span> menu, select <span class="tc-bold">Add Reference</span>. The <span class="tc-bold">Add Reference</span> dialog appears.</li>
-                        <li>Select the <span class="tc-bold">Browse</span> tab, navigate to the XAP.NET installation folder (e.g. <span class="tc-bold">C:\GigaSpaces[%=Versions.gshome-net-directory%]\NET v4.0</span>). Go into the <span class="tc-bold">Bin</span> folder, select <span class="tc-bold">GigaSpaces.Core.dll</span>, and click <span class="tc-bold">OK</span>.</li>
+                        <li>Select the <span class="tc-bold">Browse</span> tab, navigate to the <MadCap:variable name="General.XAPNet" /> installation folder (e.g. <span class="tc-bold">C:\GigaSpaces[%=Versions.gshome-net-directory%]\NET v4.0</span>). Go into the <span class="tc-bold">Bin</span> folder, select <span class="tc-bold">GigaSpaces.Core.dll</span>, and click <span class="tc-bold">OK</span>.</li>
                         <li>In the <span class="tc-bold">Solution Explorer</span>, make sure you see <span class="tc-bold">GigaSpaces.Core</span> in the project references. There's no need to reference any other assembly.</li>
                     </ol>
                 </div>
             </div>
         </div>
         <div class="tc-admon-important">
-            <p>If you're using XAP.NET x64, note that the <a href="http://connect.microsoft.com/VisualStudio/feedback/details/455103/new-c-console-application-targets-x86-by-default" target="_blank">default platform for Console Applications is x86</a>, and you must <a href="http://msdn.microsoft.com/en-us/library/ms185328.aspx" target="_blank">change it to x64</a>.</p>
+            <p>If you're using <MadCap:variable name="General.XAPNet" /> x64, note that the <a href="http://connect.microsoft.com/VisualStudio/feedback/details/455103/new-c-console-application-targets-x86-by-default" target="_blank">default platform for Console Applications is x86</a>, and you must <a href="http://msdn.microsoft.com/en-us/library/ms185328.aspx" target="_blank">change it to x64</a>.</p>
         </div>
         <h3><a name="implementing-a-pono"></a>Implementing a PONO</h3>
         <p>Any PONO can be stored in the space, so long as it has a default constructor and an ID property. For this tutorial let's define a <code>Person</code> class with the following properties:</p><pre><code class="language-csharp">using GigaSpaces.Core.Metadata;
@@ -52,7 +52,7 @@ public class Person
     public String LastName  {get; set;}
 }
 </code></pre>
-        <p>Note that we've annotated the <code>Ssn</code> property with a custom XAP.NET attribute (<code>[SpaceID]</code>) to mark it as the entries ID.</p>
+        <p>Note that we've annotated the <code>Ssn</code> property with a custom <MadCap:variable name="General.XAPNet" /> attribute (<code>[SpaceID]</code>) to mark it as the entries ID.</p>
         <h3><a name="interacting-with-the-grid"></a>Interacting with the grid</h3>
         <p>First, let's establish a connection to the data grid we've deployed:</p><pre><code class="language-csharp">ISpaceProxy spaceProxy = new SpaceProxyFactory("myDataGrid").Create();
 </code></pre>
