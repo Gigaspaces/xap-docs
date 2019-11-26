@@ -4,10 +4,10 @@
     </head>
     <body>
         <h1>JVM Configuration</h1>
-        <p>This page explains how to configure runtime settings for XAP.NET applications. In general, the development phase of a XAP.NET based application does not require runtime tuning settings as the defaults are usually satisfactory. In later testing and production phases, however, it is sometimes required to customize the default configuration.</p><a name="JvmLocation"></a>
+        <p>This page explains how to configure runtime settings for <MadCap:variable name="General.XAPNet" /> applications. In general, the development phase of a <MadCap:variable name="General.XAPNet" /> based application does not require runtime tuning settings as the defaults are usually satisfactory. In later testing and production phases, however, it is sometimes required to customize the default configuration.</p><a name="JvmLocation"></a>
         <h1><a name="jvm-location"></a>JVM&#160;Location</h1>
-        <p MadCap:conditions="Version.14-2-died">GigaSpaces XAP.NET is bundled with <a href="http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html">Oracle Java SE 8 update 121</a>, aiming to save .NET users the hassle of downloading and installing Java. However, it is quite simple to bind it to a different JVM (For a list of supported JVMs refer to Supported Platforms in the release notes):</p>
-        <p MadCap:conditions="Version.14-2-born">By default, XAP.NET binds to Java using the standard <code>JAVA_HOME</code> environment variable. However, it is quite simple to bind it to a different JVM (For a list of supported JVMs refer to Supported Platforms in the release notes)</p>
+        <p MadCap:conditions="Version.14-2-died">GigaSpaces <MadCap:variable name="General.XAPNet" /> is bundled with <a href="http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html">Oracle Java SE 8 update 121</a>, aiming to save .NET users the hassle of downloading and installing Java. However, it is quite simple to bind it to a different JVM (For a list of supported JVMs refer to Supported Platforms in the release notes):</p>
+        <p MadCap:conditions="Version.14-2-born">By default, <MadCap:variable name="General.XAPNet" /> binds to Java using the standard <code>JAVA_HOME</code> environment variable. However, it is quite simple to bind it to a different JVM (For a list of supported JVMs refer to Supported Platforms in the release notes)</p>
         <ol>
             <li>
                 <p>Edit the <code>Settings.xml</code> file (located in <code>&lt;XapNet&gt;\config\Settings.xml</code>).</p>
@@ -21,7 +21,7 @@
         </div><a name="JvmSettings"></a>
         <h1><a name="jvm-settings"></a>JVM Settings</h1>
         <p>Unlike .NET applications, which are compiled to executable files, java applications are compiled to <code>.class</code> or <code>.jar</code> files which are executed using the <a href="http://java.sun.com/javase/6/docs/technotes/tools/windows/java.html" target="_blank">Java Application Launcher</a> (<code>java.exe</code>) tool. This tool supports various options which control the way the application is executed, such as memory allocation, garbage collection and more.</p>
-        <p>XAP.NET tools and applications use <a href="http://java.sun.com/javase/6/docs/technotes/guides/jni/index.html" target="_blank">Java Native Interface (JNI)</a> instead of <code>java.exe</code> to launch the JVM and execute java code, and use the Application Configuration File to load JVM settings.</p>
+        <p><MadCap:variable name="General.XAPNet" /> tools and applications use <a href="http://java.sun.com/javase/6/docs/technotes/guides/jni/index.html" target="_blank">Java Native Interface (JNI)</a> instead of <code>java.exe</code> to launch the JVM and execute java code, and use the Application Configuration File to load JVM settings.</p>
         <p>To configure JVM settings, add a <code>GigaSpaces</code> section to the application configuration file:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
 &lt;configuration&gt;
    &lt;configSections&gt;
@@ -45,7 +45,7 @@
 &lt;/JvmSettings&gt;
 </code></pre>
         <p>This element also has an attribute called <code>IgnoreUnrecognized</code>, which determines the behavior when an unrecognized option is encountered: <code>true</code> means ignore that option, <code>false</code> means throw an exception and abort. The default is <code>false</code>.</p>
-        <p>In general, this section provides equivalent functionality to <code>java.exe</code> and thus is sufficient. However, since most .NET users are not familiar with common java options, The XAP.NET JVM settings schema provides additional elements which act as aliases and are more readable to non-java users.</p>
+        <p>In general, this section provides equivalent functionality to <code>java.exe</code> and thus is sufficient. However, since most .NET users are not familiar with common java options, The <MadCap:variable name="General.XAPNet" /> JVM settings schema provides additional elements which act as aliases and are more readable to non-java users.</p>
         <h2><a name="jvmdll"></a>JvmDll</h2>
         <p>The <code>java.exe</code> tool supports two mutually exclusive modes, called <code>-client</code> and <code>-server</code>, which determine what VM will be loaded. In fact, client and server are different implementations of the JVM residing in two separate <code>jvm.dll</code> files.</p>
         <p>This option cannot be configured in <code>JvmCustomOptions</code> because it is not supported by <code>JNI</code>. Instead, <code>JvmDll</code> comes to the rescue. For example, this</p><pre><code class="language-java">java.exe -server

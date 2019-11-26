@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -176,7 +176,7 @@ public class ExpiredDataTemplateProvider
     TData[] ReceiveBatch(IQuery&lt;TData&gt; template, ISpaceProxy proxy, ITransaction tx, long receiveTimeout, int batchSize);
 }
 </code></pre>
-        <p>XAP.NET comes with several built-in receive operation-handler implementations:</p>
+        <p><MadCap:variable name="General.XAPNet" /> comes with several built-in receive operation-handler implementations:</p>
         <table>
             <thead>
                 <tr>
@@ -361,7 +361,7 @@ pollingEventListenerContainer.Dispose();
     bool UseTriggerAsTemplate { get; }
 }
 </code></pre>
-        <p>XAP.NET comes with a built-in implementation of this interface, called <code>ReadTriggerOperationHandler</code>. It performs a single blocking Read operation (using the provided receive timeout), thus "peeking" into the Space for relevant event data. If the Read operation returns a value, this means that there is a higher probability that the receive operation will succeed, and the transaction won't be started without a purpose. It can be configured as follows:</p>
+        <p><MadCap:variable name="General.XAPNet" /> comes with a built-in implementation of this interface, called <code>ReadTriggerOperationHandler</code>. It performs a single blocking Read operation (using the provided receive timeout), thus "peeking" into the Space for relevant event data. If the Read operation returns a value, this means that there is a higher probability that the receive operation will succeed, and the transaction won't be started without a purpose. It can be configured as follows:</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Using EventListenerContainerFactory " style="padding:10px"><pre><code class="language-csharp">[PollingEventDriven]
 public class SimpleListener

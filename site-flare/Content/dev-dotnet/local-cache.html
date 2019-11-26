@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -75,7 +75,7 @@ Session otherSession = localCache.Read(template);
         <p>If the supplied template is not ID-based, for instance an <code>SqlQuery</code>, then the Entry will be read from the underlying space proxy without first going through the local cache.</p>
         <p>Since the cache needs to investigate the template to decide whether it is considered ID-based template, this imposes some performance impact on the query instead of using the <code>ReadById</code> method.</p>
         <h1><a name="eviction"></a>Eviction</h1>
-        <p>The Entries stored in the local cache might need to be evicted at some point, due to size limitations, time limitations, etc. This behavior is determined by the eviction strategy the cache has been configured to work with. XAP.NET comes with a few built-in eviction strategies – LRU (Last Recently Used), which is the default strategy, FIFO, LFU, and more. Eviction strategy is a pluggable component that can also be implemented with custom behavior.</p>
+        <p>The Entries stored in the local cache might need to be evicted at some point, due to size limitations, time limitations, etc. This behavior is determined by the eviction strategy the cache has been configured to work with. <MadCap:variable name="General.XAPNet" /> comes with a few built-in eviction strategies – LRU (Last Recently Used), which is the default strategy, FIFO, LFU, and more. Eviction strategy is a pluggable component that can also be implemented with custom behavior.</p>
         <div class="tc-admon-note">
             <p>Refer to <a href="cache-eviction-strategy.html">Cache Eviction Strategy</a> for more information.</p>
         </div><a name="sync"></a>

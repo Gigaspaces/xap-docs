@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -105,7 +105,7 @@ public String MessageID {...}
         </div>
         <h1><a name="under-the-hood"></a>Under the Hood</h1>
         <p>Each public property/field in the object is mapped to a property of the same name and type in the entry. Non-public properties and fields are ignored. This means that any object can be stored in the Space; it does not have to inherit from a specific base class, implement an interface, or have any attributes. The only requirement is to have a parameter-less constructor (it doesn't have to be public), so the object can be created when it is retrieved from the Space.</p>
-        <p>While this generic approach solves simple scenarios easily, in some cases it is not enough. For example, you may want to exclude a specific property from being stored in the Space, or specify that a certain property should be indexed for faster performance. To that end, you can use a set of .NET attributes to control how an object is mapped to an entry. If you don't want to (or can't) use XAP.NET attributes in your code, you can create an XML file that defines those behaviors, commonly called <code>gs.xml</code>.</p>
+        <p>While this generic approach solves simple scenarios easily, in some cases it is not enough. For example, you may want to exclude a specific property from being stored in the Space, or specify that a certain property should be indexed for faster performance. To that end, you can use a set of .NET attributes to control how an object is mapped to an entry. If you don't want to (or can't) use <MadCap:variable name="General.XAPNet" /> attributes in your code, you can create an XML file that defines those behaviors, commonly called <code>gs.xml</code>.</p>
         <div class="tc-admon-note">
             <p>Working with .NET attributes is usually simpler and easier than working with external XML files, so this page demonstrates all the features using attributes. However, every feature shown here can also be implemented using <code>gs.xml</code>.</p>
             <p>Mapping a .NET object to a Space entry does not involve .NET serialization, which means that the <code>[Serializable]</code> indication is not required, and in fact ignored. Even so, it is a good design practice to mark all objects stored in the space as <code>[Serializable]</code>, to maintain .NET standards.</p>
