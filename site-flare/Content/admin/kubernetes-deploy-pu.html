@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle"><a name="deploying-a-processing-unit-in-kubernetes"></a>Deploying a Service in Kubernetes</h1>
+        <h1 class="tc-pagetitle">Deploying a Service in Kubernetes</h1>
         <p>A service (Processing Unit) is a container that can hold any of the following:</p>
         <ul>
             <li>Data only (a Space)</li>
@@ -26,14 +26,14 @@
             <li>Deploy the services that were created when you built the example to Data Pods in Kubernetes, connecting them to the Management Pod.</li>
             <li>View the processor logs to see the data processing results.</li>
         </ol>
-        <h2><a name="building-the-processing-unit-example"></a>Building the Service Example</h2>
+        <h2>Building the Service Example</h2>
         <p>The first step in deploying the sample services to Kubernetes is to build them from the examples directory. The example uses Maven as its build tool, and comes with a build script that runs Maven automatically.</p>
         <p>Open a command window and navigate to the following folder in the <MadCap:variable name="General.ProductNameXAP" /> package:</p><pre><code class="language-bash">cd &lt;product home&gt;/examples/data-app/event-processing/
 </code></pre>
         <p>Type the following command (for Unix environments) to build the processor and feeder services:</p><pre><code class="language-bash">./build.sh package
 </code></pre>
         <p>This build script finalizes the service structure of both the processor and the feeder, and copies the processor JAR file to /examples/data-app/event-processing/processor/target/data-processor/lib, making the /examples/data-app/event-processing/processor/target/data-processor/ a ready-to-use service. The final result is two service JAR files, one under processor/target and another under feeder/target.</p>
-        <h2><a name="providing-a-url-for-kubernetes"></a>Uploading the pu.xml Files</h2>
+        <h2>Uploading the pu.xml Files</h2>
         <p MadCap:conditions="Version.14-2-died">In order to deploy the services on Kubernetes, a URL must be provided. You can use an existing HTTP server, or you can create a local HTTP server using Helm. Ensure that your Kubernetes environment has access to the URL that you provide. If you opt for a local server, we recommend creating it from the examples directory so that it can easily access the service JARs that were created.</p>
         <p MadCap:conditions="Version.14-2-died">Type the following Helm command in the command window to create a local HTTP server:</p><pre MadCap:conditions="Version.14-2-died"><code>helm serve --repo-path . --address &lt;your machine IP&gt;:&lt;port&gt;</code></pre>
         <p MadCap:conditions="Version.14-2-born">In order to deploy the services on Kubernetes, a URL must be provided. You can use an existing HTTP server, (for example, a local HTTP server using Helm), or you can use the GigaSpaces CLI&#160;(or REST API) to upload the Processing Unit files to the Manager Pod.</p>
@@ -109,21 +109,31 @@
         <div class="tc-admon-attention" MadCap:conditions="Version.14-2-born">
             <p>Leave this command window open so the server remains available and Kubernetes can connect to it.</p>
         </div>
-        <h2><a name="deploying-the-gigaspaces-components"></a>Deploying the <MadCap:variable name="General.ProductNameXAP" /> Components</h2>
+        <h2>Deploying the <MadCap:variable name="General.ProductNameXAP" /> Components</h2>
         <p>Similar to deploying a Space cluster, it is best practice to first deploy the Management Pod (with the Manager), and then deploy the Data Pods (first the processor, then the feeder).</p>
         <p class="tc-todo">To deploy the <MadCap:variable name="General.ProductNameXAP" /> components:</p>
         <ol>
-            <li>Open a new command window and navigate to the Helm chart directory (where you fetched the charts from the <MadCap:variable name="General.ProductNameXAP" /> repo).</li>
-            <li>As was done for the Space demo, type the following Helm command to deploy a Management Pod called <code>testmanager</code>:</li>
-        </ol><pre><code class="language-bash">helm install insightedge-manager --name testmanager 
+            <li>
+                <p>Open a new command window and navigate to the Helm chart directory (where you fetched the charts from the <MadCap:variable name="General.ProductNameXAP" /> repo).</p>
+            </li>
+            <li>
+                <p>As you did for the Space demo, type the following Helm command to deploy a Management Pod called <code>testmanager</code>:</p><pre><code class="language-bash">helm install insightedge-manager --name testmanager 
 </code></pre>
-        <p>Next, type the following Helm command to deploy a Data Pod with the processor Processing Unit from the location where it was built in the examples directory:</p><pre><code class="language-bash">helm install insightedge-pu --name processor --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar
+            </li>
+            <li>
+                <p>Type the following Helm command to deploy a Data Pod with the processor service from the location where it was built in the examples directory:</p><pre><code class="language-bash">helm install insightedge-pu --name processor --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar
 </code></pre>
-        <p>Lastly, type the following Helm command to deploy a Data Pod with the feeder Processing Unit from the same directory:</p><pre><code class="language-bash">helm install insightedge-pu --name feeder --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/feeder/target/data-feeder.jar
+            </li>
+            <li>
+                <p>Lastly, type the following Helm command to deploy a Data Pod with the feeder service from the same directory:</p><pre><code class="language-bash">helm install insightedge-pu --name feeder --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/feeder/target/data-feeder.jar
 </code></pre>
-        <h2><a name="monitoring-the-processing-units"></a>Monitoring the Processing Units</h2>
-        <p>You can use one of the Kubernetes tools to view the logs for the processor Data Pod, where you can see that the sample data has been processed.</p>
-        <h1><a name="configuring-the-container-memory-allocation"></a>Configuring the Container Memory Allocation</h1>
+            </li>
+        </ol>
+        <h2>Monitoring the Services</h2>
+        <p>
+            <MadCap:conditionalText MadCap:conditions="Version.15-0-born">You can use the <MadCap:variable name="General.ProductNameXAP" /> Ops Manager to monitor the status and alerts of the <MadCap:variable name="General.ProductNameXAP" /> cluster and services. Alternatively, y</MadCap:conditionalText>
+            <MadCap:conditionalText MadCap:conditions="Version.15-0-died">Y</MadCap:conditionalText>ou can use one of the Kubernetes tools to view the logs for the processor Data Pod, where you can see that the sample data has been processed.</p>
+        <h1>Configuring the Container Memory Allocation</h1>
         <p>The Docker container is always allocated an absolute amount of memory. If this is undefined in the Helm chart, the container will use as much as is necessary to accomodate the data and processes it contains. You can limit the memory allocation for the contents of the Docker container (Data Pod, Manager Pod, processes, etc.) and the heap memory.</p>
         <p>The on-heap memory allocation can be defined as any of the following:</p>
         <ul>
@@ -138,8 +148,8 @@
         <p>You can define the maximum size of the Docker container as an absolute value, and the maximum on-heap memory allocation for the Java running inside the Docker container as a percentage. If you use this approach, make sure you leave enough memory for the Java.</p>
         <p>The following Helm command sets an absolute value for the Docker container, and defines the maximum Java on-heap memory as a percentage of the container memory:</p><pre><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=256Mi,pu.java.heap=75%
 </code></pre>
-        <h1><a name="configuring-the-data-grid-using-the-helm-chart"></a>Configuring the Data Grid Using the Helm Chart</h1>
-        <h2><a name="default-helm-chart"></a>Default Helm Chart</h2>
+        <h1>Configuring the Data Grid Using the Helm Chart</h1>
+        <h2>Default Helm Chart</h2>
         <p>The <MadCap:variable name="General.ProductNameIE" /> Helm chart has a list of supported values that can be configured. To view this list, use the following Helm command:</p><pre><code class="language-bash">helm inspect insightedge
 </code></pre>
         <p>The values.yaml file is printed in the command window, and each configurable value has a short explanation above it. The indentation in this printout indicates a use of a ".' (dot) in the value name. For example, the high availability property for the Platform Manager is listed as follows in the file:</p>
@@ -147,12 +157,30 @@
             <br /><code>ha: false</code>
         </p>
         <p>The value you will set will look like this in the command window: <code>manager.ha=true</code></p>
-        <h2><a name="customizing-a-helm-chart"></a>Customizing a Helm Chart</h2>
+        <h2 MadCap:conditions="Version.15-0-born">Service Types</h2>
+        <p MadCap:conditions="Version.15-0-born">As part of the deployment configuration, Kubernetes services define a logical set of Pods and a policy by which to access them, called <span class="tc-italic">service types</span> in KubeGrid. The following service types are available:</p>
+        <ul MadCap:conditions="Version.15-0-born">
+            <li>
+                <p>LoadBalancer - External load balancer in the cloud with a dedicated IP address.</p>
+            </li>
+            <li>
+                <p>NodePort - Exposes the service on the same port of each selected node.</p>
+            </li>
+        </ul>
+        <p MadCap:conditions="Version.15-0-born">You can configure these service types in the manager and pu Helm charts.</p>
+        <div class="tc-align-center">
+            <p MadCap:conditions="Version.15-0-born">
+                <img src="../Resources/Static/attachment_files/kubernetes/Helm-chart-service-type.png" class="tc-picture30" />
+            </p>
+        </div>
+        <p MadCap:conditions="Version.15-0-born">To view the services and their ports, run the following kubectl command:</p><pre MadCap:conditions="Version.15-0-born"><code class="language-bash">kubectl describe svc &lt;service name&gt;</code> </pre>
+        <p MadCap:conditions="Version.15-0-born">It is strongly recommended to leave the default values. For more information about service types and when it may be advisable to modify the values, see <MadCap:xref href="kubernetes-space-based-remoting.html">Space-Based Remoting in Kubernetes</MadCap:xref>.</p>
+        <h2>Customizing a Helm Chart</h2>
         <p>You can create additional values.yaml files with customized values.</p>
         <p>The following Helm command shows how a custom YAML file can be used to override the values in the original GigaSpaces Helm chart:</p><pre><code class="language-bash">helm install insightedge -f customValues.yaml --name hello
 </code></pre>
-        <h2><a name="overriding-the-processing-unit-properties"></a>Overriding the Processing Unit Properties</h2>
-        <p>It is recommended to define the Processing Unit properties in the pu.xml as placeholders (as described in the Processing Unit <a href="../dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit">Deployment Properties</a> topic), so you can override these properties using the Helm chart.</p>
+        <h2>Overriding the Service Properties</h2>
+        <p>It is recommended to define the service properties in the pu.xml as placeholders (as described in the Processing Unit <a href="../dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit">Deployment Properties</a> topic), so you can override these properties using the Helm chart.</p>
         <p>After defining the properties as placeholders, use the <code>key1=value1;key2=value2</code> format to pass the override values to the Helm chart using either the <code>--set insightedge-pu.properties=&lt;your key-value pairs&gt;</code> command, or using a custom YAML file.</p>
         <h2>Configuring the MemoryXtend Properties</h2>
         <p>The Kubernetes environment supports using MemoryXtend for off-heap RAM<MadCap:conditionalText MadCap:conditions="Version.14-5-born"> and MemoryXtend for Disk (SSD)</MadCap:conditionalText>.</p>

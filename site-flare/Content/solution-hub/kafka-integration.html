@@ -241,7 +241,7 @@ public Product() {
     super.setProperty(SPACE_DOCUMENT_KAFKA_TOPIC_PROPERTY_NAME, "product");
 }
 </code></pre>
-        <p>You can also configure the name of the property that defines the Kafka topic for SpaceDocuments. Set the <code>spaceDocumentKafkaTopicName</code> to the required value, as shown in the sample code below.</p><pre><code class="language-xml">&lt;bean id="kafkaSpaceSynchronizationEndpoint" class="com.epam.openspaces.persistency.kafka.KafkaSpaceSynchrspaceDocumentKafkaTopicNameonizationEndpointFactoryBean"&gt;
+        <p>You can also configure the name of the property that defines the Kafka topic for SpaceDocuments. Set the <code>spaceDocumentKafkaTopicName</code> to the required value, as shown in the sample code below.</p><pre><code class="language-xml">&lt;bean id="kafkaSpaceSynchronizationEndpoint" class="com.epam.openspaces.persistency.kafka.KafkaSpaceSynchronizationEndpointFactoryBean"&gt;
     ...
     &lt;property name="spaceDocumentKafkaTopicName" value="topic_name" /&gt;
 &lt;/bean&gt;
