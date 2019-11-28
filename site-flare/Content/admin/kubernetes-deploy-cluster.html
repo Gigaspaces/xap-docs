@@ -4,16 +4,16 @@
     </head>
     <body>
         <h1 class="tc-pagetitle"><a name="deploying-a-space-cluster"></a>Deploying a Space Cluster in Kubernetes</h1>
-        <p>The demo above created a data grid that contained a single Space instance. Real-life environments generally have to store large volumes of data, and therefore need more than a single Space instance (a cluster).</p>
-        <p>Type the following Helm command to deploy a Space cluster with n Data Pods, with a partition count from 1 to n:</p><pre><code>helm install insightedge --name test --set pu.partitions=n
+        <p>The demo in the <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref> created a data grid that contained a single Space instance. Real-life environments generally have to store large volumes of data, and therefore need more than a single Space instance (a cluster).</p>
+        <p>Type the following Helm command to deploy a Space cluster with <span class="tc-italic">n</span> Data Pods, with a partition count from 1 to <span class="tc-italic">n</span>:</p><pre><code>helm install insightedge --name test --set pu.partitions=n
 		</code></pre>
         <h1><a name="defining-high-availability-ha"></a>Defining High Availability (HA)</h1>
         <p>There are several aspects to configuring a data grid for high availability. Each primary Data Pod needs a minimum of one backup Data Pod, and three Management Pods are deployed instead of one so that a quorum of Platform Managers is always available to manage the Spaces. Both the Data Pods and the Management Pods should have the Pod anti-affinity property set to true, so that the primary/backup sets and the managers are deployed on different nodes. This enables successful failover if a node gets disrupted.</p>
         <div class="tc-admon-note">
-            <p>The Kubernetes minikube runs on a single node and therefore doesn't provide anti-affinity, so you may want to evaluate <MadCap:variable name="General.ProductNameXAP" /> and <MadCap:variable name="General.ProductNameIE" /> high-availability behavior on a Kubernetes cluster that contains multiple nodes.</p>
+            <p>The Kubernetes minikube runs on a single node and therefore doesn't provide anti-affinity, so you may want to evaluate <MadCap:variable name="General.ProductNameIE" /> high-availability behavior on a Kubernetes cluster that contains multiple nodes.</p>
         </div>
         <h2><a name="configuring-high-availability-for-the-platform-manager"></a>Configuring High Availability for the Platform Manager</h2>
-        <p>When the manager high availability property (<code>ha</code>) is set to true, Kubernetes deploys three Management Pods. You should enable the manager high availability property so these Management Pods are deployed on different nodes.</p>
+        <p>When the Manager high availability property (<code>ha</code>) is set to true, Kubernetes deploys three Management Pods. You should enable the Manager high availability property so these Management Pods are deployed on different nodes.</p>
         <p>The following Helm command deploys three Management Pods (instead of one) with high availability enabled:</p><pre><code class="language-bash">helm install insightedge-manager --name test --set manager.ha=true,manager.antiAffinity.enabled=true
 		</code></pre>
         <h2><a name="defining-the-space-topology"></a>Defining the Space Topology</h2>

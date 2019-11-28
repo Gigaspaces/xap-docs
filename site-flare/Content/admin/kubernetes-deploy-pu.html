@@ -3,46 +3,46 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle"><a name="deploying-a-processing-unit-in-kubernetes"></a>Deploying a Processing Unit in Kubernetes</h1>
-        <p>A Processing Unit is a container that can hold any of the following:</p>
+        <h1 class="tc-pagetitle"><a name="deploying-a-processing-unit-in-kubernetes"></a>Deploying a Service in Kubernetes</h1>
+        <p>A service (Processing Unit) is a container that can hold any of the following:</p>
         <ul>
             <li>Data only (a Space)</li>
             <li>Function only (business logic)</li>
             <li>Both data and a function</li>
         </ul>
-        <p>You can use the event-processing example available with the <MadCap:variable name="General.ProductNameXAP" /> and <MadCap:variable name="General.ProductNameIE" /> software packages to see how data is fed to the function and processed in Processing Units. The example creates the following modules:</p>
+        <p>You can use the event-processing example available with the <MadCap:variable name="General.ProductNameXAP" /> software packages to see how data is fed to the function and processed in services. The example creates the following modules:</p>
         <ul>
-            <li>Processor - a Processing Unit with the main task of processing unprocessed data objects. The processing of data objects is accomplished  using both an event container and remoting.</li>
-            <li>Feeder - a Processing Unit that contains two feeders, a standard Space feeder and a JMS feeder, to feed unprocessed data objects that are in turn processed by the processor module. The standard Space feeder feeds unprocessed data objects  by both directly writing them to the Space and using OpenSpaces Remoting. The JMS feeder uses the JMS API to feed unprocessed data objects using a MessageConverter, which converts JMS ObjectMessages into data objects.</li>
+            <li>Processor - a service with the main task of processing unprocessed data objects. The processing of data objects is accomplished  using both an event container and remoting.</li>
+            <li>Feeder - a service that contains two feeders, a standard Space feeder and a JMS feeder, to feed unprocessed data objects that are in turn processed by the processor module. The standard Space feeder feeds unprocessed data objects  by both directly writing them to the Space and using OpenSpaces Remoting. The JMS feeder uses the JMS API to feed unprocessed data objects using a MessageConverter, which converts JMS ObjectMessages into data objects.</li>
         </ul>
         <div class="tc-admon-note">
-            <p>As a prerequisite for running this example, you must install Maven on the machine where you unpacked the GigaSpaces software package.</p>
+            <p>As a prerequisite for running this example, you must install Maven on the machine where you unpacked the <MadCap:variable name="General.ProductNameXAP" /> software package.</p>
         </div>
         <p>To build and deploy the event-processing example in Kubernetes, the following steps are required:</p>
         <ol>
-            <li>Build the sample Processing Units from the GigaSpaces software package.</li>
-            <li>Uploading the Processing Unit files for deployment.</li>
-            <li>Deploy a Platform Manager (Management Pod).</li>
-            <li>Deploy the Processing Units that were created when you built the example to Data Pods in Kubernetes, connecting them to the Management Pod.</li>
+            <li>Build the sample services from the <MadCap:variable name="General.ProductNameXAP" /> software package.</li>
+            <li>Uploading the pu.xml files for deployment.</li>
+            <li>Deploy a Manager (Management Pod).</li>
+            <li>Deploy the services that were created when you built the example to Data Pods in Kubernetes, connecting them to the Management Pod.</li>
             <li>View the processor logs to see the data processing results.</li>
         </ol>
-        <h2><a name="building-the-processing-unit-example"></a>Building the Processing Unit Example</h2>
-        <p>The first step in deploying the sample Processing Units to Kubernetes is to build them from the examples directory. The example uses Maven as its build tool, and comes with a build script that runs Maven automatically.</p>
-        <p>Open a command window and navigate to the following folder in the <MadCap:variable name="General.ProductNameXAP" /> or <MadCap:variable name="General.ProductNameIE" /> package:</p><pre><code class="language-bash">cd &lt;product home&gt;/examples/data-app/event-processing/
+        <h2><a name="building-the-processing-unit-example"></a>Building the Service Example</h2>
+        <p>The first step in deploying the sample services to Kubernetes is to build them from the examples directory. The example uses Maven as its build tool, and comes with a build script that runs Maven automatically.</p>
+        <p>Open a command window and navigate to the following folder in the <MadCap:variable name="General.ProductNameXAP" /> package:</p><pre><code class="language-bash">cd &lt;product home&gt;/examples/data-app/event-processing/
 </code></pre>
-        <p>Type the following command (for Unix environments) to build the processor and feeder Processing Units:</p><pre><code class="language-bash">./build.sh package
+        <p>Type the following command (for Unix environments) to build the processor and feeder services:</p><pre><code class="language-bash">./build.sh package
 </code></pre>
-        <p>This build script finalizes the Processing Unit structure of both the processor and the feeder, and copies the processor JAR file to /examples/data-app/event-processing/processor/target/data-processor/lib, making the /examples/data-app/event-processing/processor/target/data-processor/ a ready-to-use Processing Unit. The final result is two Processing Unit JAR files, one under processor/target and another under feeder/target.</p>
-        <h2><a name="providing-a-url-for-kubernetes"></a>Uploading the Processing Unit Files</h2>
-        <p MadCap:conditions="Version.14-2-died">In order to deploy the Processing Units on Kubernetes, a URL must be provided. You can use an existing HTTP server, or you can create a local HTTP server using Helm. Ensure that your Kubernetes environment has access to the URL that you provide. If you opt for a local server, we recommend creating it from the examples directory so that it can easily access the Processing Unit JARs that were created.</p>
+        <p>This build script finalizes the service structure of both the processor and the feeder, and copies the processor JAR file to /examples/data-app/event-processing/processor/target/data-processor/lib, making the /examples/data-app/event-processing/processor/target/data-processor/ a ready-to-use service. The final result is two service JAR files, one under processor/target and another under feeder/target.</p>
+        <h2><a name="providing-a-url-for-kubernetes"></a>Uploading the pu.xml Files</h2>
+        <p MadCap:conditions="Version.14-2-died">In order to deploy the services on Kubernetes, a URL must be provided. You can use an existing HTTP server, or you can create a local HTTP server using Helm. Ensure that your Kubernetes environment has access to the URL that you provide. If you opt for a local server, we recommend creating it from the examples directory so that it can easily access the service JARs that were created.</p>
         <p MadCap:conditions="Version.14-2-died">Type the following Helm command in the command window to create a local HTTP server:</p><pre MadCap:conditions="Version.14-2-died"><code>helm serve --repo-path . --address &lt;your machine IP&gt;:&lt;port&gt;</code></pre>
-        <p MadCap:conditions="Version.14-2-born">In order to deploy the Processing Units on Kubernetes, a URL must be provided. You can use an existing HTTP server, (for example, a local HTTP server using Helm), or you can use the GigaSpaces CLI&#160;(or REST API) to upload the Processing Unit files to the Manager Pod.</p>
+        <p MadCap:conditions="Version.14-2-born">In order to deploy the services on Kubernetes, a URL must be provided. You can use an existing HTTP server, (for example, a local HTTP server using Helm), or you can use the GigaSpaces CLI&#160;(or REST API) to upload the Processing Unit files to the Manager Pod.</p>
         <div class="tc-admon-note" MadCap:conditions="Version.14-2-born">
             <p MadCap:conditions="Version.14-2-born">Ensure that your Kubernetes environment has access to the URL that you provide.</p>
         </div>
-        <p MadCap:conditions="Version.14-2-born">Use one of the following options to upload the Processing Unit files for deployment. </p>
+        <p MadCap:conditions="Version.14-2-born">Use one of the following options to upload the pu.xml files for deployment. </p>
         <div class="tc-admon-attention" MadCap:conditions="Version.14-2-born">
-            <p>The upload stage does not provide high availability. The Processing Unit files are uploaded only to the active Manager Pod, and is not replicated to other managers.  High availability only takes effect after the Processing Unit has been deployed.</p>
+            <p>The upload stage does not provide high availability. The pu.xml files are uploaded only to the active Manager Pod, and are not replicated to other managers.  High availability only takes effect after the service has been deployed.</p>
         </div>
         <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-2-born">
             <div title="Command Line Interface" style="padding:10px">
@@ -59,7 +59,7 @@
                 </div>
                 <p><span class="tc-italic">Description:</span>
                 </p>
-                <p>Upload a Processing Unit to the service grid.</p>
+                <p>Upload a pu.xml to the target.</p>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
                 <table>
@@ -74,18 +74,18 @@
                         <tr>
                             <td align="left">Parameter</td>
                             <td align="left">file</td>
-                            <td align="left">Path to the Processing Unit file (.jar or .zip).</td>
+                            <td align="left">Path to the service file (.jar or .zip).</td>
                         </tr>
                         <tr>
                             <td align="left">Option</td>
                             <td align="left">--url-only</td>
-                            <td align="left">Return only the processing unit URL after uploading</td>
+                            <td align="left">Return only the service URL after uploading</td>
                         </tr>
                     </tbody>
                 </table>
                 <p><span class="tc-italic">Input Example:</span>
                 </p>
-                <p>This example uploads a PU named <span class="tc-bold">myPu</span> to the mypu.jar file.</p>
+                <p>This example uploads a service named <span class="tc-bold">myPu</span> to the mypu.jar file.</p>
                 <div class="easyui-tabs" plain="true" data-options="">
                     <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" />  pu upload mypu.jar</code></pre>
                     </div>
@@ -100,7 +100,7 @@
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
-                <p>Upload a Processing Unit to the service grid.</p>
+                <p>Upload a service to the target.</p>
                 <p><span class="tc-italic">Example:</span>
                 </p><pre><code>curl -X PUT --header 'Content-Type: multipart/form-data'
 --header 'Accept: text/plain' {"type":"formData"} 'http://localhost:8090/v2/pus/resources'</code></pre>
@@ -109,10 +109,13 @@
         <div class="tc-admon-attention" MadCap:conditions="Version.14-2-born">
             <p>Leave this command window open so the server remains available and Kubernetes can connect to it.</p>
         </div>
-        <h2><a name="deploying-the-gigaspaces-components"></a>Deploying the GigaSpaces Components</h2>
-        <p>Similar to deploying a Space cluster, it is best practice to first deploy the Management Pod (with the Platform Manager), and then deploy the Data Pods (first the processor, then the feeder).</p>
-        <p>Open a new command window and navigate to the charts directory (where you fetched the charts from our repo).</p>
-        <p>As was done for the Space demo, type the following Helm command to deploy a Management Pod called <code>testmanager</code>:</p><pre><code class="language-bash">helm install insightedge-manager --name testmanager 
+        <h2><a name="deploying-the-gigaspaces-components"></a>Deploying the <MadCap:variable name="General.ProductNameXAP" /> Components</h2>
+        <p>Similar to deploying a Space cluster, it is best practice to first deploy the Management Pod (with the Manager), and then deploy the Data Pods (first the processor, then the feeder).</p>
+        <p class="tc-todo">To deploy the <MadCap:variable name="General.ProductNameXAP" /> components:</p>
+        <ol>
+            <li>Open a new command window and navigate to the Helm chart directory (where you fetched the charts from the <MadCap:variable name="General.ProductNameXAP" /> repo).</li>
+            <li>As was done for the Space demo, type the following Helm command to deploy a Management Pod called <code>testmanager</code>:</li>
+        </ol><pre><code class="language-bash">helm install insightedge-manager --name testmanager 
 </code></pre>
         <p>Next, type the following Helm command to deploy a Data Pod with the processor Processing Unit from the location where it was built in the examples directory:</p><pre><code class="language-bash">helm install insightedge-pu --name processor --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar
 </code></pre>
