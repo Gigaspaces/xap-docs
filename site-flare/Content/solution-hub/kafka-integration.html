@@ -191,7 +191,7 @@ bin/kafka-server-start.sh config/server.properties</code></pre>
             <p> For a full list of available producer properties, see the Kafka <a href="https://docs.confluent.io/current/installation/configuration/producer-configs.html" target="_blank">Producer Configurations</a> page in the Confluent documentation.</p>
         </div>
         <h2>Kafka Consumer Service</h2>
-        <p>You can configure the Kafka consumer service as shown in the following sample code, located under &lt;project root&gt;/example/consumer/src/main/resources/META-INF/spring:</p><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <p>You can configure the Kafka consumer service as shown in the following sample code, located under &lt;project root&gt;/example/consumer/src/main/resources/META-INF/spring:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -225,7 +225,7 @@ bin/kafka-server-start.sh config/server.properties</code></pre>
 		&lt;property name="consumer" ref="kafkaConsumer" /&gt;
 	&lt;/bean&gt;
 
-&lt;/beans&gt;</pre>
+&lt;/beans&gt;</code></pre>
         <h2>Associating a Kafka Topic with a Space Class</h2>
         <p>In order to associate a Kafka topic with the domain model class, the class must be annotated with the <code>@KafkaTopic</code> annotation and declared as <code>Serializable</code>. See the following sample code.</p><pre><code class="language-java">@KafkaTopic("user_activity")
 @SpaceClass
