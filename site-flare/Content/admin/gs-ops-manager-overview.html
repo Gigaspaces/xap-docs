@@ -4,13 +4,15 @@
     </head>
     <body>
         <h1 class="tc-pagetitle"><MadCap:variable name="General.ProductNameXAP" /> Ops Manager</h1>
-        <p> The <MadCap:variable name="General.ProductNameXAP" /> Ops Manager is an enterprise-grade management platform that can be implemented for <MadCap:variable name="General.ProductNameXAP" />-based applications across on-premise, cloud, and Kubernetes environments. Ops&#160;Manager is a robust web interface that provides visibility and real-time information about your <MadCap:variable name="General.ProductNameXAP" /> clusters and their services. </p>
+        <p> The <MadCap:variable name="General.ProductNameXAP" /> Ops Manager is an enterprise-grade management platform that can be implemented for <MadCap:variable name="General.ProductNameXAP" />-based applications across on-premise, cloud, and Kubernetes environments. Ops&#160;Manager is a robust web interface that provides visibility and real-time information about your <MadCap:variable name="General.ProductNameXAP" /> clusters and their services. It enables system administrators to better monitor their clusters, and perform troubleshooting activities based on various performance metrics, defined thresholds, and so on.</p>
+        <p>Ops Manager enables reviewing and analyzing data that resides within the cluster. Users can review managed Spaces, their types and properties, and query for data discovery purposes.</p>
         <p>Using Ops Manager, you can: </p>
         <ul>
             <li>View the status of services and microservices to identify healthy and unhealthy clusters</li>
-            <li>Monitor system performance in terms of CPU,&#160;latency, IOPS and memory usage metrics</li>
-            <li>Drill down to service instances to pinpoint performance issues</li>
+            <li>Review and monitor cluster performance in terms of CPU,&#160;latency, IOPS and memory usage metrics</li>
+            <li>Drill down to specific services and review performance metrics and alerts</li>
             <li>Analyze alert trends and volume filtered by time, type, etc.</li>
+            <li>Review individual service instances and analyze alerts per instance</li>
             <li>Download service logs for root-cause analysis</li>
         </ul>
         <h1>Understanding the Ops Manager Interface</h1>
@@ -32,32 +34,44 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>&#160;</td>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-stateless.png" class="tc-picture80" />
+                    </td>
                     <td>Stateless </td>
                     <td>Contains one or more microservices. This kind of service may act like a client that interacts with other services.</td>
                 </tr>
                 <tr>
-                    <td>&#160;</td>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-stateful.png" class="tc-picture80" />
+                    </td>
                     <td>Stateful </td>
                     <td>Contains data in a Space instance. A set of stateful services comprise a <MadCap:variable name="General.ProductNameXAP" /> data grid.</td>
                 </tr>
                 <tr>
-                    <td>&#160;</td>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-mirror.png" />
+                    </td>
                     <td>Mirror </td>
                     <td>A mirror service is stateless and provides asynchronous persistence to ensure that data isn't lost. The mirror acts as a dispatcher, pushing all primary Space partition changes to the database (or any other data source).</td>
                 </tr>
                 <tr>
-                    <td>&#160;</td>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-web.png" class="tc-picture80" />
+                    </td>
                     <td>Web </td>
                     <td>Allows deploying web applications using packaged or exploded WAR files.</td>
                 </tr>
                 <tr MadCap:conditions="Default.DoNotShow">
-                    <td>&#160;</td>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-spark.png" class="tc-picture80" />
+                    </td>
                     <td>Spark </td>
                     <td>&#160;</td>
                 </tr>
                 <tr>
-                    <td>&#160;</td>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-wan.png" class="tc-picture80" />
+                    </td>
                     <td>WAN gateway </td>
                     <td>Replicates services between different clusters for disaster recovery planning and data locality.</td>
                 </tr>
@@ -65,7 +79,7 @@
         </table>
         <p>In addition to the main services, you can also deploy the following service types.</p>
         <table style="width: 100%;" class="tc-standard">
-            <col />
+            <col MadCap:conditions="Default.DoNotShow" />
             <col />
             <col />
             <thead>
@@ -79,7 +93,7 @@
                 <tr>
                     <td>&#160;</td>
                     <td>
-                        <li>MemoryXtend</li>
+                        MemoryXtend
                     </td>
                     <td>Service that has been configured for MemoryXtend (QUESTION -- does this PU send the data to MX or is it the MX "SSD" option in the cloud?)</td>
                 </tr>
@@ -105,11 +119,11 @@
             </tbody>
         </table>
         <h2>Alerts</h2>
-        <p>There are two families of alerts in Ops Manager, availability and resource.</p>
+        <p>There are two families of alerts in Ops Manager, availability and resource. Alert summaries can be viewed at the service level, and users can drill through to specific service instances to view and analyze alerts by group and individually, to assess system and cluster performance to identify problem areas.</p>
         <h3>Availability</h3>
-        <p>TBD</p>
+        <p>Availability alerts describe issues with service availability, namely whether a service is disconnected, unavailable, or overprovisioned (the number of primary and backup service instances don't match).</p>
         <h2>Resource</h2>
-        <p>TBD</p>
+        <p>Resource alerts have to do with system resources, such as CPU usage, RAM, redo log, etc.</p>
         <p>&#160;</p>
     </body>
 </html>
