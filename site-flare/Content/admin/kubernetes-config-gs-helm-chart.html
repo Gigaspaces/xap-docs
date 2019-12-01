@@ -17,35 +17,37 @@
         <p>The following Helm command shows how a custom YAML file can be used to override the values in the original GigaSpaces Helm chart:</p><pre><code class="language-bash">helm install insightedge -f customValues.yaml --name hello
 </code></pre>
         <h1 MadCap:conditions="Version.15-0-born">Kubernetes Services in KubeGrid</h1>
-        <p MadCap:conditions="Version.15-0-born">Kubernetes uses services to externalize specific functionality in clusters to the "outside world". Kubernetes services define a logical set of Pods that support the services themselves, and a policy by which to access them. This policy is defined using the <span class="tc-italic">service type</span>. <MadCap:variable name="General.ProductNameXAP" /> uses the following service types in deployment:</p>
+        <p MadCap:conditions="Version.15-0-born">Kubernetes uses services to externalize functionality in clusters to the "outside world". Kubernetes services define a logical set of Pods that support the services themselves, and a policy by which to access them. This policy is defined using the <span class="tc-italic">service type</span>. <MadCap:variable name="General.ProductNameXAP" /> uses the following service types in deployment:</p>
         <ul MadCap:conditions="Version.15-0-born">
             <li>
-                <p>LoadBalancer - External load balancer that is dedicated to a specific service, and functions as a gateway to the pods that support the service.</p>
+                <p><code>LoadBalancer</code> - External load balancer that is dedicated to a specific service, and functions as a gateway to the pods that support the service.</p>
             </li>
             <li>
-                <p>NodePort - Provides access to the service directly via the node on which the supporting pods are deployed.</p>
+                <p><code>NodePort</code> - Provides access to the service directly via the node on which the supporting pods are deployed.</p>
             </li>
         </ul>
         <h2 MadCap:conditions="Version.15-0-born">How Are Kubernetes Services Deployed in KubeGrid?</h2>
-        <p MadCap:conditions="Version.15-0-born"><span class="tc-highlight">Explain how the manager chart is always important but the pu chart only needs attention when Space-based remoting is required. </span>These service types are configured in the manager and pu Helm charts. The <MadCap:variable name="General.ProductNameXAP" /></p>
-        <p>bla blat</p>
+        <p MadCap:conditions="Version.15-0-born">The <MadCap:variable name="General.ProductNameXAP" /> Helm chart can be modified to suit the needs of your organization and system environment, specifically the <code>manager</code> and <code>pu</code> (service) sections. The <code>manager</code> section is relevant for all <MadCap:variable name="General.ProductNameXAP" /> deployments in Kubernetes, while the <code>pu</code> section only needs attention if you require Space-based remoting.</p>
+        <p MadCap:conditions="Version.15-0-born">The <MadCap:variable name="General.ProductNameXAP" /> <code>manager</code> and <code>pu</code> services are configured as follows: </p>
         <ul>
-            <li>The default service type in <MadCap:variable name="General.ProductNameXAP" /> is LoadBalancer. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">When deploying KubeGrid on minikube, consider these points (add a link to minikube usability)</MadCap:conditionalText></li>
-            <li>Accessing a service of type LoadBalancer is done via the port field in the chart</li>
-            <li>In the chart, the nodePort field is empty by default, meaning that for each service component (api, lrmi, lus etc.), kubernetes will assign a random value to the nodePort in the range of 30000-32767. You can set this value manually if you wish</li>
+            <li>The default service type  is <code>loadBalancer</code>. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">When deploying KubeGrid on minikube, consider these points (add a link to minikube usability)</MadCap:conditionalText></li>
+            <li>The <code>NodePort</code> field is empty by default, meaning that for each process (<code>api</code>, <code>lrmi</code>, and <code>lus</code>), Kubernetes assigns a random value to the node port in the range of 30000-32767. </li>
         </ul>
         <div class="tc-align-center">
             <p MadCap:conditions="Version.15-0-born">
                 <img src="../Resources/Static/attachment_files/kubernetes/Helm-chart-service-type.png" class="tc-picture30" />
             </p>
         </div>
+        <div class="tc-admon-note">
+            <p MadCap:conditions="Version.15-0-born">You can set the <code>NodePort</code> value manually if necessary.</p>
+        </div>
         <p MadCap:conditions="Version.15-0-born">To view the full service configuration, including ports, run the following command:</p><pre MadCap:conditions="Version.15-0-born"><code class="language-bash">kubectl describe svc &lt;service name&gt;</code> </pre>
         <p MadCap:conditions="Version.15-0-born">It is strongly recommended to leave the default port values. For more information about service types and when it may be advisable to modify the values, see <MadCap:xref href="kubernetes-space-based-remoting.html">Space-Based Remoting in Kubernetes</MadCap:xref>.</p>
-        <h1 MadCap:conditions="Version.15-0-born">Upgrading the <MadCap:variable name="General.ProductNameXAP" /> Helm Charts</h1>
-        <p><MadCap:variable name="General.ProductNameXAP" /> supports rolling upgrade of the Helm chart.</p>
-        <p>To enable upgrading the charts while maintaining data consistency, you need to enable the readinessProbe in either the current or the new Helm chart. This ensures that the upgrade process, which first terminates the backup pods, won't begin to upgrade the primary pods before the backup pods have fully recovered and reloaded the data, and can therefore take leadership when the primary pods are terminated.</p>
-        <p>You must mark the reuse-values flag to ensure that all your custom chart configurations (including the license and partition definitions) are not overwritten by the upgrade process. If you don't mark this flag, your system will revert to the default configurations.</p>
-        <p>For example, run the following command to perform a Helm chart upgrade that changes the amount of memory for each service (pu) pod.</p><pre><code class="language-bash">helm upgrade demo xap --set pu.resources.limits.memory=600Mi,pu.readinessProbe.enabled=true --reuse-values</code></pre>
+        <h1 MadCap:conditions="Version.15-0-born">Scaling the <MadCap:variable name="General.ProductNameXAP" /> Helm Charts </h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports rolling updates of the Helm chart.</p>
+        <p>To enable updating the charts while maintaining data consistency, you must enable the readiness probe in either the current or the new Helm chart. This ensures that the update process, which first terminates the backup pods, won't begin to update the primary pods before the backup pods have fully recovered and reloaded the data, and can therefore take leadership when the primary pods are terminated.</p>
+        <p>You must mark the reuse-values flag to ensure that all your custom chart configurations (including the license and partition definitions) are not overwritten by the update process. If you don't mark this flag, your system will revert to the default configurations.</p>
+        <p>For example, run the following command to perform a Helm chart update that changes the amount of memory for each service (pu) pod from 400 MB to 600 MB.</p><pre><code class="language-bash">helm upgrade demo xap --set pu.resources.limits.memory=600Mi,pu.readinessProbe.enabled=true --reuse-values</code></pre>
         <p MadCap:conditions="Version.15-0-born">&#160;</p>
     </body>
 </html>
