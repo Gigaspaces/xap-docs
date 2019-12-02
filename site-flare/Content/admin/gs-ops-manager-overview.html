@@ -40,49 +40,49 @@
             <tbody>
                 <tr>
                     <td>
-                        <img src="../Resources/Static/attachment_files/ops-manager/icon-stateless.png" class="tc-picture80" />
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-stateless.png" class="tc-picture30" />
                     </td>
                     <td>Stateless </td>
                     <td>Contains one or more microservices. This kind of service may act like a client that interacts with other services.</td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="../Resources/Static/attachment_files/ops-manager/icon-stateful.png" class="tc-picture80" />
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-stateful.png" class="tc-picture30" />
                     </td>
                     <td>Stateful </td>
                     <td>Contains data in a Space instance. A set of stateful services comprise a <MadCap:variable name="General.ProductNameXAP" /> data grid.</td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="../Resources/Static/attachment_files/ops-manager/icon-mirror.png" />
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-mirror.png" class="tc-picture30" />
                     </td>
                     <td>Mirror </td>
                     <td>A mirror service is stateless and provides asynchronous persistence to ensure that data isn't lost. The mirror acts as a dispatcher, pushing all primary Space partition changes to the database (or any other data source).</td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="../Resources/Static/attachment_files/ops-manager/icon-web.png" class="tc-picture80" />
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-web.png" class="tc-picture30" />
                     </td>
                     <td>Web </td>
                     <td>Allows deploying web applications using packaged or exploded WAR files.</td>
                 </tr>
                 <tr MadCap:conditions="Default.DoNotShow">
                     <td>
-                        <img src="../Resources/Static/attachment_files/ops-manager/icon-spark.png" class="tc-picture80" />
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-spark.png" class="tc-picture30" />
                     </td>
                     <td>Spark </td>
                     <td>&#160;</td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="../Resources/Static/attachment_files/ops-manager/icon-wan.png" class="tc-picture80" />
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-wan.png" class="tc-picture30" />
                     </td>
                     <td>WAN gateway </td>
                     <td>Replicates services between different clusters for disaster recovery planning and data locality.</td>
                 </tr>
             </tbody>
         </table>
-        <p>In addition to the main services, you can also deploy the following service types.</p>
+        <p>In addition to the main services, you can also deploy the following service sub-types.</p>
         <table style="width: 100%;" class="tc-standard">
             <col MadCap:conditions="Default.DoNotShow" />
             <col />
@@ -123,14 +123,36 @@
                 </tr>
             </tbody>
         </table>
+        <h2>Cluster Metrics</h2>
+        <p>There are three graphs in the cluster overview that display the following information:</p>
+        <ul>
+            <li><span class="tc-bold">Usage </span>- view the average CPU usage, actual RAM&#160;usage, and disk usage.</li>
+            <li><span class="tc-bold">Latency </span>- view the average latency, memory latency (both disk and RAM), and MemoryXtend latency (off-heap and SSD) per second.</li>
+            <li><span class="tc-bold">IOPS </span>- View the reads, writes, and ??? per second.</li>
+        </ul>
+        <p>Ops Manager metrics can be reported to InfluxDB, so that you can use external monitoring and visualization tools (such as Grafana) to perform additional analysis.</p>
+        <h2>Service Overview</h2>
+        <p>You can view the services sorted by health and severity. You can also apply filters by service type and RAM&#160;utilization, or search for specific services by name. Click a service to drill through to see the individual performance metrics and alerts for that service. For deeper analysis, you can create a dump file of the service logs.</p>
         <h2>Alerts</h2>
-        <p>There are two families of alerts in Ops Manager, availability and resource. Alert summaries can be viewed at the service level, and users can drill through to specific service instances to view and analyze alerts by group and individually, to assess system and cluster performance to identify problem areas.</p>
+        <p>There are two types of alerts in Ops Manager, availability and resource. Alert summaries can be viewed at the service level, and users can drill through to specific service instances to view and analyze alerts by group and individually, to assess system and cluster performance and identify problem areas.</p>
         <h3>Availability</h3>
-        <p>Availability alerts describe issues with service availability:</p>
-        <p>disconnected, unavailable, or overprovisioned (the number of primary and backup service instances don't match).</p>
-        <h2>Resource</h2>
-        <p>Resource alerts have to do with system resources, such as CPU usage, RAM, redo log, etc.</p>
-        <h1>Starting Ops Manager</h1>
+        <p>Availability alerts describe issues with service availability. The following alerts are used:</p>
+        <ul>
+            <li><span class="tc-bold">Disconnected </span>- there is no backup service for this primary service.</li>
+            <li><span class="tc-bold">Unavailable </span>- the service isn't responding.</li>
+            <li><span class="tc-bold">Overprovisioned </span>- the number of primary and backup services don't match.</li>
+        </ul>
+        <h3>Resource</h3>
+        <p>Resource alerts have to do with system resources, and the threshold is set by default to 80%. The following resource alerts are available by default:</p>
+        <ul>
+            <li>CPU usage</li>
+            <li>RAM</li>
+            <li>Redo log</li>
+            <li>Disk</li>
+        </ul>
+        <div class="tc-admon-tip">
+            <p>You can configure custom resource alerts per service types, and modify the resource thresholds via the configuration file.</p>
+        </div>
         <p>&#160;</p>
         <p>&#160;</p>
     </body>
