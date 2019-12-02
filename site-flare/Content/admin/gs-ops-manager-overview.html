@@ -16,10 +16,13 @@
             <li>Download service logs for root-cause analysis</li>
         </ul>
         <h1>Accessing Ops Manager</h1>
-        <p>In order to use Ops Manager to view your <MadCap:variable name="General.ProductNameXAP" /> environment, you need to access the Manager's IP&#160;address on port 8090. </p>
+        <p>The Ops Manager is deployed along with the Manager service and the REST&#160;Manager API, and uses the same entry point. In order to open Ops Manager in your browser window and view your <MadCap:variable name="General.ProductNameXAP" /> environment, you need to access the Manager's IP&#160;address on port 8090. </p>
         <p>If your <MadCap:variable name="General.ProductNameXAP" /> environment is deployed on a local agent, use the following URL: <span class="tc-bold">http:/localhost:8090</span>.</p>
-        <p>If your <MadCap:variable name="General.ProductNameXAP" /> environment is deployed on a large cluster, you need to manually obtain the Manager's public IP&#160;address. For example, if you deployed a <MadCap:variable name="General.ProductNameXAP" /> application in Amazon AWS, then you can get the required information from the AWS&#160;Console. The format of the URL&#160;is: <span class="tc-bold">http://&lt;x.x.x.x&gt;:8090</span>.</p>
-        <p>&#160;</p>
+        <p>If your <MadCap:variable name="General.ProductNameXAP" /> environment is deployed on a cluster, you can open Ops Manager using the IP address of any machine that hosts a Manager.</p>
+        <p>If you deploy a <MadCap:variable name="General.ProductNameXAP" /> application in the cloud, you will need to manually obtain the Manager IP&#160;address. If you deploy in Amazon AWS, for example, then you can get the Manager's IP&#160;address from the AWS&#160;Console. The format of the URL&#160;is: <span class="tc-bold">http://&lt;manager IP&#160;address&gt;:8090</span>.</p>
+        <div class="tc-admon-note">
+            <p>If you had a previous version of <MadCap:variable name="General.ProductNameXAP" />,  when you used the Manager IP&#160;address and port in the URL field of your browser to access the REST&#160;Manager API (http://&lt;MANAGER_IP&gt;:8090/), you were automatically redirected to http://&lt;MANAGER_IP&gt;:8090/v2. This information may be stored in your browser cache and prevent you from opening Ops Manager. If this occurs, clear your browser cache to enable access to Ops Manager. </p>
+        </div>
         <h1>Understanding the Ops Manager Interface</h1>
         <div class="tc-admon-note">
             <p>If you aren't familiar with general <MadCap:variable name="General.ProductNameXAP" /> terminology, see the <MadCap:xref href="../overview/general-terminology.html">General Terms and Concepts</MadCap:xref> topic in the Product Overview.</p>
