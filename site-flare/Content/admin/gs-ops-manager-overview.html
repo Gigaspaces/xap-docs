@@ -15,6 +15,11 @@
             <li>Review individual service instances and analyze alerts per instance</li>
             <li>Download service logs for root-cause analysis</li>
         </ul>
+        <h1>Accessing Ops Manager</h1>
+        <p>In order to use Ops Manager to view your <MadCap:variable name="General.ProductNameXAP" /> environment, you need to access the Manager's IP&#160;address on port 8090. </p>
+        <p>If your <MadCap:variable name="General.ProductNameXAP" /> environment is deployed on a local agent, use the following URL: <span class="tc-bold">http:/localhost:8090</span>.</p>
+        <p>If your <MadCap:variable name="General.ProductNameXAP" /> environment is deployed on a large cluster, you need to manually obtain the Manager's public IP&#160;address. For example, if you deployed a <MadCap:variable name="General.ProductNameXAP" /> application in Amazon AWS, then you can get the required information from the AWS&#160;Console. The format of the URL&#160;is: <span class="tc-bold">http://&lt;x.x.x.x&gt;:8090</span>.</p>
+        <p>&#160;</p>
         <h1>Understanding the Ops Manager Interface</h1>
         <div class="tc-admon-note">
             <p>If you aren't familiar with general <MadCap:variable name="General.ProductNameXAP" /> terminology, see the <MadCap:xref href="../overview/general-terminology.html">General Terms and Concepts</MadCap:xref> topic in the Product Overview.</p>
@@ -121,7 +126,8 @@
         <h2>Alerts</h2>
         <p>There are two families of alerts in Ops Manager, availability and resource. Alert summaries can be viewed at the service level, and users can drill through to specific service instances to view and analyze alerts by group and individually, to assess system and cluster performance to identify problem areas.</p>
         <h3>Availability</h3>
-        <p>Availability alerts describe issues with service availability, namely whether a service is disconnected, unavailable, or overprovisioned (the number of primary and backup service instances don't match).</p>
+        <p>Availability alerts describe issues with service availability:</p>
+        <p>disconnected, unavailable, or overprovisioned (the number of primary and backup service instances don't match).</p>
         <h2>Resource</h2>
         <p>Resource alerts have to do with system resources, such as CPU usage, RAM, redo log, etc.</p>
         <h1>Starting Ops Manager</h1>
