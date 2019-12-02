@@ -14,6 +14,9 @@
             <li>Enable remote client access:<ul><li>Point the Space proxy in the remote client to the LUS</li><li>Extract the LUS port and IP&#160;address from the <code>manager</code> service (which sits inside Kubernetes)</li></ul></li>
         </ul>
         <p>External access is provided via the pod URL, which contains either the port value that was defined for the service, or the node port value (which can be either random or assigned). </p>
+        <div class="tc-admon-attention">
+            <p>Kubernetes doesn't support notify containers or local view.</p>
+        </div>
         <h1>Exposing the <MadCap:variable name="General.ProductNameXAP" /> Services</h1>
         <p>You may have to modify the service (<code>pu</code>) section of the Helm chart depending on whether you are in a development or a production environment, and the scale of your cluster. You can also enable or disable Space-based remoting by changing the value of the LRMI process in the <code>pu</code> section of the Helm chart.</p>
         <h2>Selecting the Service Type</h2>
