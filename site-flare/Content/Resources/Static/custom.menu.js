@@ -1,9 +1,9 @@
 ﻿var versionData = {
   '15.5': { 'url': '/15.2', 'label': '15.2 Early Access', 'topicBanner': 'preview' },
-  '15.0': { 'url': '/15.0', 'label': '15.0', 'hide': true },
   'latest': { 'url': '/latest', 'label': '15.0' },	
+  '15.0': { 'url': '/15.0', 'label': '15.0', 'hide': true },
   '14.5': { 'url': '/14.5', 'label': '14.5',  'topicBanner': 'old' },
-    '14.2': { 'url': '/14.2', 'label': '14.2', 'topicBanner': 'old' },
+  '14.2': { 'url': '/14.2', 'label': '14.2', 'topicBanner': 'old' },
   '14.0': { 'url': '/xap/14.0', 'label': '14.0', 'topicBanner': 'old' },
   '12.3': { 'url': '/xap/12.3', 'topicBanner': 'old' },
   '12.2': { 'url': '/xap/12.2', 'topicBanner': 'old' },
