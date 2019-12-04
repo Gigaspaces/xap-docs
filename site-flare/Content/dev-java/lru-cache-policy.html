@@ -6,7 +6,7 @@
         <h1>LRU Cache Policy</h1>
         <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
             <p>
-                <MadCap:snippetText src="../Resources/Snippets/EvictionDeprecate.flsnp" />
+                <MadCap:snippetText src="../Resources/Snippets/Content/EvictionDeprecate.flsnp" />
             </p>
         </div>
         <p>When running in LRU cache policy mode, the space evicts the "oldest" objects from its memory. "Oldest" objects are determined by the time they were written, updated or read in the space. In a persistent space mode, evicting a space object means that a space object is  simply be removed from the space memory, but is still be available through the underlying RDBMS. The space reloads this object back into the space memory only if it was requested by a specific read operation.</p>

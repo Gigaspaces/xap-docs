@@ -5,7 +5,7 @@
     <body>
         <h1>Direct Persistency</h1>
         <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
-            <p>Direct <MadCap:snippetText src="../Resources/Snippets/SynchronousDeprecate.flsnp" /></p>
+            <p>Direct <MadCap:snippetText src="../Resources/Snippets/Content/SynchronousDeprecate.flsnp" /></p>
         </div>
         <p>When running in direct persistency mode (i.e. Read-Write Through) the IMDG interacts with the data source to persist its data where the client application would get the acknowledge for the IMDG operation only after <span class="tc-bold">both</span> the IMDG and the <code>ExternalDataSource</code> acknowledged the operation. With this persistency mode, the IMDG operations performance would be heavily depended on the speed of the <code>ExternalDataSource</code> to commit the data and provide acknowledge back to the IMDG for the successful operation of the transaction. When having a mapping layer in between the IMDG and the data source that converts the IMDG objects to relational database tables data i.e. <a href="http://nhforge.org" target="_blank">NHibernate</a>, the time which takes to perform the conversion would also impact the acknowledge time and the application overall performance.</p>
         <p>The above means you should be careful when using this persistency mode in case your application have the requirement to respond quickly (low latency) and scale in linear manner.</p>
@@ -86,7 +86,7 @@
         <h1><a name="supported-options"></a>Supported Options</h1>
         <div class="tc-admon-note">
             <p>
-                <MadCap:snippetText src="../Resources/Snippets/EvictionDeprecate.flsnp" />
+                <MadCap:snippetText src="../Resources/Snippets/Content/EvictionDeprecate.flsnp" />
             </p>
         </div>
         <p>The following table lists the supported options:</p>

@@ -68,7 +68,7 @@ com.gigaspaces.logger.DeleteBackupPolicy.backup = 10
         <p>For example:</p><pre><code class="language-bash">-Dcom.gigaspaces.logger.RollingFileHandler.debug-level=OFF
 </code></pre>
         <h1><a name="ui-logging"></a>UI - Logging</h1>
-        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" />
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
         <p>The <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> and the <a href="web-management-console.html">Web Management Console</a> are not part of the services, and their configuration should be done separately in the <code>gs-ui.sh</code> or  <code>gs-ui.bat</code> file for the GigaSpaces Management Center, and the<code>gs-webui.sh</code> or <code>gs-webui.bat</code> file for the Web Management Console.</p>
         <p>For example: write to a separate file, you need to add this system property:</p><pre><code class="language-bash">-Dcom.gigaspaces.logger.RollingFileHandler.filename-pattern=D:/Logs/GigaSpaces/gs-ui-{pid}.log
 </code></pre>

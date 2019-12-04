@@ -64,9 +64,16 @@ ProcessingUnit pu = admin.getGridServiceManagers().waitForAtLeastOne().deploy(
             </div>
             <div title="  GigaSpaces UI " style="padding:10px">
                 <ul>
-                    <li>Open the GigaSpaces UI by launching `<MadCap:variable name="General.HomePath" />/bin/gs-ui.sh(bat)</li>
-                    <li>Click the "Deploy Application" button <img src="../Resources/Static/attachment_files/deploy_processing_unit_button.jpg" alt="deploy_processing_unit_button.jpg" /> at the top left of the window</li>
-                    <li>In the deployment wizard, click <span class="tc-bold">...</span> to select your processing unit archive, and then click <span class="tc-bold">Deploy</span></li>
+                    <li>
+                        <p>Open the GigaSpaces UI by launching `<MadCap:variable name="General.HomePath" />/bin/gs-ui.sh(bat)</p>
+                        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
+                    </li>
+                    <li>
+                        <p>Click the "Deploy Application" button <img src="../Resources/Static/attachment_files/deploy_processing_unit_button.jpg" alt="deploy_processing_unit_button.jpg" /> at the top left of the window</p>
+                    </li>
+                    <li>
+                        <p>In the deployment wizard, click <span class="tc-bold">...</span> to select your processing unit archive, and then click <span class="tc-bold">Deploy</span></p>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -145,7 +152,7 @@ if (pu != null) {
         </ol>
         <p>You can script the above procedure via the <a href="administration-and-monitoring-overview.html">Administration and Monitoring API</a>, allowing you to perform system upgrade without downtime.</p>
         <h2><a name="restart-a-running-pu-via-the-gs-ui"></a>Restarting a Running PU via the GigaSpaces Management Center</h2>
-        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" />
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
         <p class="tc-todo">To restart a running PU (all instances) via the GigaSpaces Management Center:</p>
         <ol>
             <li>Start GigaSpaces Management Center.</li>

@@ -8,7 +8,7 @@
         <p>This section describes the <a href="https://www.gigaspaces.com/solution/in-memory-data-grid" target="_blank">In-Memory Data Grid</a> (IMDG) architecture according to the following, in order to provide a comprehensive understanding of its functionality, behavior, and accessibility.</p>
         <ul>
             <li>
-                <p><a href="#components"><MadCap:variable name="General.ProductNameXAP" /> Components Perspective</a> - explains the key capabilities of the data grid, namely the Open Spaces framework, the space-based core middleware and the middleware facilities it provides, and the SLA-Driven Container.</p>
+                <p><a href="#components"><MadCap:variable name="General.ProductNameXAP" /> Component Perspective</a> - explains the key capabilities of the data grid, namely the Open Spaces framework, the space-based core middleware and the middleware facilities it provides, and the SLA-Driven Container.</p>
             </li>
             <li>
                 <p><a href="#runtime">Runtime Perspective</a> - explains how the GigaSpaces components execute and interact in runtime on multiple physical machines.</p>
@@ -21,9 +21,9 @@
             </li>
         </ul>
         <div class="tc-admon-note">
-            <p>For a general explanation of the data grid architecture, refer to  <a href="product-architecture.html"><MadCap:variable name="General.DataGrid" /> Architecture</a>.</p>
+            <p>For a general explanation of the data grid architecture, refer to  <MadCap:xref href="product-architecture.html">Data Grid Architecture</MadCap:xref>.</p>
         </div>
-        <h1><a name="xap-components-perspective"></a>Data Grid Components Perspective</h1>
+        <h1><a name="xap-components-perspective"></a>Data Grid Component Perspective</h1>
         <p>The following diagram shows a component view of <MadCap:variable name="General.ProductNameXAP" />. The main components are described in more detail below.</p>
         <div class="tc-align-center">
             <p>
@@ -31,7 +31,7 @@
             </p>
         </div>
         <h2><a name="openspaces"></a>OpenSpaces</h2>
-        <p>OpenSpaces is the primary framework for developing applications in GigaSpaces. OpenSpaces uses Spring as a POJO-driven development infrastructure, and adds runtime and development components for developing POJO-driven EDA/SOA-based applications, and scaling them out simply across a pool of machines, without dependency on a J2EE container.</p>
+        <p>OpenSpaces is the primary framework for developing applications in <MadCap:variable name="General.ProductNameXAP" />. OpenSpaces uses Spring as a POJO-driven development infrastructure, and adds runtime and development components for developing POJO-driven EDA/SOA-based applications, and scaling them out simply across a pool of machines, without dependency on a J2EE container.</p>
         <p>To achieve these goals, OpenSpaces adds the following components to the Spring development environment:</p>
         <ul>
             <li>
@@ -81,7 +81,14 @@
                         </tr>
                         <tr>
                             <td align="left"><a href="../admin/tools-desktop-ui.html">GigaSpaces Management Center</a> – central management, monitoring and control of all data grid instances on the network.</td>
-                            <td align="left">Allows the entire data grid to be controlled and viewed from an administrator's console.</td>
+                            <td align="left">
+                                <p align="left">Allows the entire data grid to be controlled and viewed from an administrator's console.</p>
+                                <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
+                            </td>
+                        </tr>
+                        <tr MadCap:conditions="Version.15-0-born">
+                            <td align="left">Ops Manager - Browser-based dashboard for monitoring and troubleshooting your <MadCap:variable name="General.ProductNameXAP" /> environment</td>
+                            <td align="left">Enables viewing and administering <MadCap:variable name="General.ProductNameXAP" /> deployments across cloud, on-premise and hybrid platforms.</td>
                         </tr>
                         <tr>
                             <td align="left"><a href="../dev-java/asynchronous-persistency-with-the-mirror.html">Mirror Service</a> – transparent persistence of data from the entire data grid to a legacy database or other data source.</td>
@@ -267,7 +274,7 @@ It supports the following options, from which you can choose:</p>
         <h2><a name="eviction-policy-and-memory-management"></a>Eviction Policy and Memory Management</h2>
         <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
             <p MadCap:conditions="Version.14-5-born">
-                <MadCap:snippetText src="../Resources/Snippets/EvictionDeprecate.flsnp" /> </p>
+                <MadCap:snippetText src="../Resources/Snippets/Content/EvictionDeprecate.flsnp" /> </p>
         </div>
         <p>Since the Space is memory-based, it is essential to verify that it does not overflow and crash. The Space has a number of <a href="../dev-java/memory-management-overview.html">facilities</a> to manage its memory and make sure it does not overflow.
 The first one is the eviction policy. The space supports two eviction policies: <code>ALL_IN_CACHE</code> and <code>LRU</code> (Least Recently Used). With the <code>LRU</code> policy, the Space starts to evict the least used entries when it becomes full. The <code>ALL_IN_CACHE</code> policy never evicts anything from the Space.

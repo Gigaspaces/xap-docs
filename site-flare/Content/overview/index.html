@@ -152,12 +152,15 @@
         <h2><a name="management-and-monitoring"></a>Administration</h2>
         <p>Enterprise users have several <MadCap:variable name="General.CompanyName" /> options for monitoring and troubleshooting deployments. These include:</p>
         <ul>
-            <li>
-                <p><a href="../admin/tools-desktop-ui.html">GigaSpaces Management Center</a>
-                </p>
+            <li MadCap:conditions="Version.15-0-born">
+                <MadCap:xref href="../admin/gs-ops-manager-overview.html">[%=General.ProductNameXAP%] Ops Manager</MadCap:xref>
             </li>
             <li>
                 <p><a href="../admin/tools-web-ui.html">Web Management Console</a>
+                </p>
+            </li>
+            <li>
+                <p><a href="../admin/tools-desktop-ui.html">GigaSpaces Management Center</a>
                 </p>
             </li>
             <li>
@@ -173,6 +176,7 @@
                 </p>
             </li>
         </ul>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
         <h2><a name="rest-orchestration"></a>REST Orchestration</h2>
         <p>In addition to the management center, and web and command line interfaces, <MadCap:variable name="General.CompanyName" /> provides a <a href="../admin/xap-manager-rest.html">grid management API</a> interface exposed through the standard HTTP REST protocol. This REST interface can be called from your custom management and administration scripts to support different deployment and provisioning lifecycle operations. In addition, the REST Manager API provides a <a href="../admin/xap-manager-rest-pluggable.html">plug-in provider</a> to implement your own orchestration/integration endpoints.</p>
         <h2><a name="security-and-auditing"></a>Security and Auditing</h2>
