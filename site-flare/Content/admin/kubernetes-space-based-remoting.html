@@ -9,16 +9,17 @@
             <p>For more information about Space-based remoting, see the <MadCap:xref href="../dev-java/space-based-remoting-overview.html">Space-Based Remoting</MadCap:xref> section of the developer guide.</p>
         </div>
         <p>When deployed on Kubernetes, the server side is isolated, and external access is provided via Kubernetes services. In order to enable Space-based remoting, namely a proxy that communicates with the server (data grid in the Kubernetes cluster), you need to do the following:</p>
-        <ul>
+        <ol>
             <li>Expose each <MadCap:variable name="General.ProductNameXAP" /> service (Processing Unit instance) as a Kubernetes service</li>
             <li>Enable remote client access:<ul><li>Point the Space proxy in the remote client to the LUS</li><li>Extract the LUS port and IP&#160;address from the <code>manager</code> service (which sits inside Kubernetes)</li></ul></li>
-        </ul>
+        </ol>
         <p>External access is provided via the pod URL, which contains either the port value that was defined for the service, or the node port value (which can be either random or assigned). </p>
         <div class="tc-admon-attention">
-            <p>Kubernetes doesn't support notify containers or local view.</p>
+            <p>Notify containers and local view are not currently supported.</p>
         </div>
         <h1>Exposing the <MadCap:variable name="General.ProductNameXAP" /> Services</h1>
         <p>You may have to modify the service (<code>pu</code>) section of the Helm chart depending on whether you are in a development or a production environment, and the scale of your cluster. You can also enable or disable Space-based remoting by changing the value of the LRMI process in the <code>pu</code> section of the Helm chart.</p>
+        <p>You only have to select the service type if you intend to use the node port, as the <MadCap:variable name="General.ProductNameXAP" /> chart is configured with LoadBalancer enabled by default. After you decide which service type you are using, you then have to expose the Space as a service.</p>
         <h2>Selecting the Service Type</h2>
         <p>As explained in the <MadCap:xref href="kubernetes-deploy-pu.html">Deploying a Service in Kubernetes</MadCap:xref>, Kubernetes services use either the LoadBalancer or NodePort service type to enable external access to Pods. Each service type has its advantages and disadvantages, and you may have to weigh them when configuring your environment. Overall, using the NodePort service type (which accesses services using the Nodeport value, which is left undefined by default and so can have a random value) is fine for the development environment, while the LoadBalancer service type (which is defined and therefore doesn't change during runtime) is generally preferred for production environments.</p>
         <p>The following sections provide more details about each service type.</p>
@@ -40,7 +41,7 @@
             <p>This option requires exposing the assigned ports to external access. You also have to ensure that the assigned ports aren't being used by another service in your cluster.</p>
         </div>
         <h2>Exposing the Space as a Service</h2>
-        <p>On the server side, each Space instance must be exposed as a service. To do this, set the <code>service.lrmi.enabled</code> value to <code>true</code>. For example, see the following command:</p><pre xml:space="preserve"><code>helm install insightedge-pu --name testspace --set manager.name=testmanager,set service.lrmi.enabled=true</code></pre>
+        <p>On the server side, each Space instance must be exposed as a service. To do this, set the <code>service.lrmi.enabled</code> value to <code>true</code>. For example, see the following command:</p><pre xml:space="preserve"><code>helm install insightedge-pu --name testspace --set manager.name=testmanager, set service.lrmi.enabled=true</code></pre>
         <div class="tc-admon-note">
             <p>When Space-based remoting is enabled, each Space instance has its own dedicated Kubernetes service, which can result in a high resource requirements. If the service type is <code>loadBalancer</code>, you should disable the <code class="language-bash">lrmi</code> in the service Helm chart when Space-based remoting is no longer required, </p>
         </div>
