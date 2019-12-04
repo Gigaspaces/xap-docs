@@ -11,11 +11,20 @@
         <h2><a name="prerequisites"></a>Prerequisites</h2>
         <p>Before beginning to work with the data grid and <MadCap:variable name="General.ProductNameIE" />, ensure that you have the following installed on your local machine or a VM:</p>
         <ul>
-            <li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">kubectl</a>
+            <li>
+                <p><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">kubectl</a>
+                </p>
             </li>
-            <li><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Helm</a>
+            <li>
+                <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Helm</a>
+                </p>
+                <div class="tc-admon-important">
+                    <p>You must use Helm 2 with KubeGrid. Helm 3 contains a new chart version, which is a breaking change and is not currently supported by KubeGrid. </p>
+                </div>
             </li>
-            <li>Kubernetes cluster (cloud, on-premise, or local via <a href="https://kubernetes.io/docs/setup/minikube/">minikube</a>)</li>
+            <li>
+                <p>Kubernetes cluster (cloud, on-premise, or local via <a href="https://kubernetes.io/docs/setup/minikube/">minikube</a>)</p>
+            </li>
         </ul>
         <p>This topic describes how to do basic and intermediate-level deployment tasks for the data grid and <MadCap:variable name="General.ProductNameIE" /> using simple Helm commands. You can perform these tasks using a Kubernetes minikube, because you only need a single node.</p>
         <div class="tc-admon-tip">
