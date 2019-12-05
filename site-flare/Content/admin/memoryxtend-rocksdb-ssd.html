@@ -70,27 +70,24 @@ Upon a Space read operation, if the object exists in the JVM heap (i.e. a cache 
 </code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:os-core="http://www.openspaces.org/schema/core"xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd"&gt;
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd"&gt;
 
-    &lt;bean id="rocksDbBlobstore" class="com.gigaspaces.blobstore.rocksdb.config.RocksDBBlobStoreDataPolicyFactoryBean"&gt;
-		&lt;property name="root-path" value="/mnt"/&gt;; 
-	<span style="color: #228b22;">&lt;!-- Can instead specify the legacy properties, paths and mappingDir 
-        &lt;property name="paths" value="[/mnt/db1,/mnt/db2]"/&gt;;
-        &lt;property name="mappingDir" value="/tmp/mapping"/&gt;; --&gt;</span>
- 
-	  &lt;/bean&gt;
+    &lt;blob-store:rocksdb-blob-store id="rocksDbBlobstore" persistent="true"/&gt;
 
     &lt;os-core:embedded-space id="space" space-name="mySpace"&gt;
-        &lt;os-core:blob-store-data-policy blob-store-handler="rocksDbBlobstore" persistent="true"/&gt;
+        &lt;os-core:blob-store-data-policy blob-store-handler="rocksDbBlobstore"/&gt;
     &lt;/os-core:embedded-space&gt;
 
     &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
 &lt;/beans&gt;
 </code></pre>
             </div>
-            <div title="Java Code" style="padding:10px"><pre><code class="language-java">// Create RocksDB storage driver:
+            <div title="Java Code" style="padding:10px">
+					<pre MadCap:conditions="Version.15-0-died"><code class="language-java">// Create RocksDB storage driver:
 BlobStoreStorageHandler blobStore = new RocksDBBlobStoreConfigurer()
         .setPaths("[/mnt/db1,/mnt/db2]")
         .setMappingDir("/tmp/mapping")
@@ -101,11 +98,24 @@ EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
                 .setBlobStoreHandler(blobStore)
                 .setPersistent(true));
 GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
-</code></pre>
+					</code></pre>
+					<pre MadCap:conditions="Version.15-0-born"><code class="language-java">// Create RocksDB storage driver:
+BlobStoreStorageHandler blobStore = new RocksDBBlobStoreConfigurer()
+        .setPersistent(true)
+        .create();
+// Create space with that storage driver:
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+					</code></pre>
             </div>
         </div>
-        <div class="tc-admon-attention" MadCap:conditions="Version.14-5-born">
+        <div class="tc-admon-attention" MadCap:conditions="Version.14-5-only">
             <p>The above pu.xml example is relevant only for the service grid environment. For information on how to configure the pu.xml for a Kubernetes environment, see Persistent Volume Storage in Kubernetes below.</p>
+        </div>
+        <div class="tc-admon-note" MadCap:conditions="Version.15-0-born">
+            <p>If you're using Kubernetes, additional configuration may be required - see Persistent Volume Storage in Kubernetes below.</p>
         </div>
         <p>The following table describes the configuration options used in <code>rocksdb-blob-store</code> above.</p>
         <table>
@@ -119,17 +129,28 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
             </thead>
             <tbody>
                 <tr MadCap:conditions="Version.15-0-born">
-                    <td align="left">root-path</td>
-                    <td align="left">
-                        <p align="left"> Specify the root of the path and  all necessary sub directories, for the number of instances, are created automatically under /&lt;root-path&gt;/gs-rocksdb/mapping/.</p>
-                        <p align="left">If root-path is specified, the legacy properties paths and mappingdir are not specified. If root-path is not specified, those properties must be specified.</p>
-                    </td>
+                    <td align="left">persistent</td>
+                    <td align="left">If true, the space will load persisted data when started. Otherwise, the space will purge persisted data and start empty.</td>
                     <td align="left">&#160;</td>
+                    <td align="left">required</td>
+                </tr>
+                <tr MadCap:conditions="Version.15-0-born">
+                    <td align="left">main-path</td>
+                    <td align="left">
+                        <p align="left"> Specify the main path in which all necessary sub directories are created automatically (instance data and metadata).</p>
+                    </td>
+                    <td align="left">
+                        <p align="left">persistent: <code>$GS_HOME/work/memoryxtend/rocksdb</code></p>
+                        <p align="left">transient: processing unit working folder</p>
+                    </td>
                     <td align="left">optional</td>
                 </tr>
                 <tr>
                     <td align="left">paths</td>
-                    <td align="left">A comma-separated array of mount paths used for each Space partition's blobstore. The number of paths in the array should correspond to the number of partition instances in the Space (primaries and backups). For instance, for a two-partition Space with no backups, <code>/mnt/db1</code> corresponds to the first partition, and <code>/mnt/db2</code> to the second one.</td>
+                    <td align="left">
+                        <p align="left">A comma-separated array of mount paths used for each Space partition's blobstore. The number of paths in the array should correspond to the number of partition instances in the Space (primaries and backups). For instance, for a two-partition Space with no backups, <code>/mnt/db1</code> corresponds to the first partition, and <code>/mnt/db2</code> to the second one.</p>
+                        <p MadCap:conditions="Version.15-0-born">Should not be used with main-path.</p>
+                    </td>
                     <td align="left"> </td>
                     <td align="left">
                         <MadCap:conditionalText MadCap:conditions="Version.15-0-died">required</MadCap:conditionalText>
@@ -138,7 +159,10 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
                 </tr>
                 <tr>
                     <td align="left">mapping-dir</td>
-                    <td align="left">A directory in the file system that contains the "partition to blobstore" mapping file. This file is automatically generated by MemoryXtend. If a partition is relocated, the mapping file is updated.</td>
+                    <td align="left">
+                        <p align="left">A directory in the file system that contains the "partition to blobstore" mapping file. This file is automatically generated by MemoryXtend. If a partition is relocated, the mapping file is updated.</p>
+                        <p MadCap:conditions="Version.15-0-born">Should not be used with main-path.</p>
+                    </td>
                     <td align="left"> </td>
                     <td align="left">
                         <MadCap:conditionalText MadCap:conditions="Version.15-0-died">required</MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.15-0-born">optional</MadCap:conditionalText></td>
@@ -161,42 +185,42 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
                     <td align="left"> </td>
                     <td align="left">optional</td>
                 </tr>
-                <tr>
-                    <td align="left">blob-store-handler</td>
-                    <td align="left">Blobstore implementation.</td>
-                    <td align="left"> </td>
-                    <td align="left">required</td>
-                </tr>
             </tbody>
         </table>
         <div class="tc-admon-note">
             <p>For an example of how to configure the on-heap cache properties, see the <a href="memoryxtend-overview.html#on-heap-cache">MemoryXtend overview</a> topic.</p>
         </div>
-        <h1 MadCap:conditions="Version.14-5-born">Persistent Volume Storage in Kubernetes</h1>
-        <p MadCap:conditions="Version.14-5-born">This topic describes the Kubernetes storage model and how it is leveraged by <MadCap:variable name="General.CompanyName" /> to support tiered storage that utilizes external persistent memory. This support enables using <MadCap:variable name="General.CompanyName" />'s MemoryXtend feature for SSD in the Kubernetes environment.</p>
-        <h2 MadCap:conditions="Version.14-5-born">Kubernetes Storage Model</h2>
-        <p MadCap:conditions="Version.14-5-born">The KubeGrid implementation of persistent volume storage utilizes the following Kubernetes entities:</p>
-        <ul>
-            <li MadCap:conditions="Version.14-5-born">Container - The Docker container that hosts the Space.</li>
-            <li MadCap:conditions="Version.14-5-born">Pod - Hosts the container, and is essentially the Processing Unit instance, or service in the data grid.</li>
-            <li MadCap:conditions="Version.14-5-born"><code>storageClass</code> - A Kubernetes wrapper around the physical storage volume that contains the storage profile. Provides the requested storage defined by the <code>persistentVolumeClaim</code>.</li>
-            <li MadCap:conditions="Version.14-5-born"><code>persistentVolumeClaim</code> - The request for Kubernetes to create a <code>persistentVolume</code>. Used to attach (bind) the <code>persistentVolume </code>to the Data Pod.</li>
-            <li MadCap:conditions="Version.14-5-born"><code>persistentVolume</code> - A Kubernetes wrapper around the storage that is bound to the Space. </li>
-        </ul>
-        <p MadCap:conditions="Version.14-5-born">To enable persistent volume storage, the container definition must include a <code>volumeMount</code>, which is a path that is mapped to the external persistent storage. If a <code>volumeMount</code> is defined, this indicates to the pod that external storage is required. The pod definition must include a <code>persistentVolumeClaim</code>, which defines the capacity of the external storage volume. The pod can then create a <code>persistentVolumeClaim</code> when it receives the <code>volumeMount</code> from the container.</p>
-        <p MadCap:conditions="Version.14-5-born">When a <code>persistentVolumeClaim</code> is created, it communicates to the <code>storageClass</code> that external storage is needed. The <code>storageClass </code>dynamically creates a <code>persistentVolume</code>, which is then attached to the <code>persistentVolumeClaim</code> and its associated pod.</p>
-        <p MadCap:conditions="Version.14-5-born">To summarize, the pod creates a <code>persistentVolumeClaim</code>, which interfaces with the <code>storageClass</code> to create a <code>persistentVolume</code> dedicated to that pod.</p>
-        <div class="tc-align-center">
-            <p MadCap:conditions="Version.14-5-born">
-                <img src="../Resources/Static/attachment_files/kubernetes/kubernetes-pvc.png" class="tc-picture80" />
-            </p>
-        </div>
-        <h2 MadCap:conditions="Version.14-5-born">Deploying a Data Pod with MemoryXtend in Kubernetes</h2>
-        <p MadCap:conditions="Version.14-5-born">In order to deploy a Processing Unit with tiered storage in Kubernetes, both the pu.xml and pu Helm charts must be configured with the MemoryXtend definitions. </p>
-        <h3 MadCap:conditions="Version.14-5-born">Defining the Processing Unit pu.xml</h3>
-        <p MadCap:conditions="Version.14-5-born">The pu.xml contains a <code>paths</code> property. This property defines the mount path for the persistent external storage, or blobstore, used by MemoryXtend. </p>
-        <p MadCap:conditions="Version.14-5-born">When using a <MadCap:variable name="General.CompanyName" /> product in a non-containerized environment, such as the service grid, then you must define a path for each Space instance. For example, when configuring MemoryXtend for a  2:1 high availability environment, four Space instances will be deployed so four paths must be defined in the <code>paths</code> array. </p>
-        <MadCap:snippetBlock src="../Resources/Snippets/Content/Kubernetes/k8s-mx-path.flsnp" MadCap:conditions="Version.14-5-born" /><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"&gt;
+        <div MadCap:conditions="Version.14-5-born">
+            <h1>Persistent Volume Storage in Kubernetes</h1>
+            <p>This topic describes the Kubernetes storage model and how it is leveraged by <MadCap:variable name="General.CompanyName" /> to support tiered storage that utilizes external persistent memory. This support enables using <MadCap:variable name="General.CompanyName" />'s MemoryXtend feature for SSD in the Kubernetes environment.</p>
+            <div class="tc-admon-note">
+                <p>Persistent Volume Storage is required for persistent MemoryXtend usage. If you're using MemoryXtend in non-persistent mode, you can skip this section.</p>
+            </div>
+            <h2>Kubernetes Storage Model</h2>
+            <p>The KubeGrid implementation of persistent volume storage utilizes the following Kubernetes entities:</p>
+            <ul>
+                <li>Container - The Docker container that hosts the Space.</li>
+                <li>Pod - Hosts the container, and is essentially the Processing Unit instance, or service in the data grid.</li>
+                <li><code>storageClass</code> - A Kubernetes wrapper around the physical storage volume that contains the storage profile. Provides the requested storage defined by the <code>persistentVolumeClaim</code>.</li>
+                <li><code>persistentVolumeClaim</code> - The request for Kubernetes to create a <code>persistentVolume</code>. Used to attach (bind) the <code>persistentVolume </code>to the Data Pod.</li>
+                <li><code>persistentVolume</code> - A Kubernetes wrapper around the storage that is bound to the Space. </li>
+            </ul>
+            <p>To enable persistent volume storage, the container definition must include a <code>volumeMount</code>, which is a path that is mapped to the external persistent storage. If a <code>volumeMount</code> is defined, this indicates to the pod that external storage is required. The pod definition must include a <code>persistentVolumeClaim</code>, which defines the capacity of the external storage volume. The pod can then create a <code>persistentVolumeClaim</code> when it receives the <code>volumeMount</code> from the container.</p>
+            <p>When a <code>persistentVolumeClaim</code> is created, it communicates to the <code>storageClass</code> that external storage is needed. The <code>storageClass </code>dynamically creates a <code>persistentVolume</code>, which is then attached to the <code>persistentVolumeClaim</code> and its associated pod.</p>
+            <p>To summarize, the pod creates a <code>persistentVolumeClaim</code>, which interfaces with the <code>storageClass</code> to create a <code>persistentVolume</code> dedicated to that pod.</p>
+            <div class="tc-align-center">
+                <p>
+                    <img src="../Resources/Static/attachment_files/kubernetes/kubernetes-pvc.png" class="tc-picture80" />
+                </p>
+            </div>
+            <h2>Deploying a Data Pod with MemoryXtend in Kubernetes</h2>
+            <p MadCap:conditions="Version.15-0-died">In order to deploy a Processing Unit with tiered storage in Kubernetes, both the pu.xml and pu Helm charts must be configured with the MemoryXtend definitions. </p>
+            <p MadCap:conditions="Version.15-0-born">In order to deploy a Processing Unit with tiered storage in Kubernetes, the pu Helm chart must be configured with the MemoryXtend definitions. </p>
+            <div MadCap:conditions="Version.15-0-died">
+                <h3>Defining the Processing Unit pu.xml</h3>
+                <p>The pu.xml contains a <code>paths</code> property. This property defines the mount path for the persistent external storage, or blobstore, used by MemoryXtend. </p>
+                <p>When using a <MadCap:variable name="General.CompanyName" /> product in a non-containerized environment, such as the service grid, then you must define a path for each Space instance. For example, when configuring MemoryXtend for a  2:1 high availability environment, four Space instances will be deployed so four paths must be defined in the <code>paths</code> array. </p>
+                <MadCap:snippetBlock src="../Resources/Snippets/Content/Kubernetes/k8s-mx-path.flsnp" /><pre><code class="language-xml">&lt;bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"&gt;
     &lt;property name="properties"&gt;
         &lt;props&gt;
             &lt;prop key="space-name"&gt;rocksdb&lt;/prop&gt;
@@ -210,75 +234,78 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 &lt;os-core:embedded-space id="space" name="${space-name}"&gt;
     &lt;os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/&gt;								
 &lt;/os-core:embedded-space&gt;</code></pre>
-        <h3 MadCap:conditions="Version.14-5-born">Installing the Helm Chart</h3>
-        <p MadCap:conditions="Version.14-5-born">After the pu.xml has been configured for the MemoryXtend persistent storage option, the next step is installing the Helm chart. Fetch the <MadCap:variable name="General.CompanyName" /> Helm charts as described in <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref>, then use the <code>helm install</code> command to deploy the processing unit. The minimum configuration required for MemoryXtend volume is to set the <code>enabled</code> property to <code>true</code>, and the <code>storage</code> property to the required capacity of the external storage. For example:</p><pre MadCap:conditions="Version.14-5-born"><code>helm install insightedge-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
-        <p MadCap:conditions="Version.14-5-born">The following table describes the properties in the <code>memoryXtendVolume</code> section of the Helm chart.</p>
-        <table style="width: 100%;" class="tc-standard" MadCap:conditions="Version.14-5-born">
-            <col />
-            <col />
-            <col />
-            <col />
-            <thead>
-                <tr>
-                    <th>Property</th>
-                    <th>Description</th>
-                    <th>Default Value</th>
-                    <th>Required</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>memoryXtendVolume.enabled</code>
-                    </td>
-                    <td>Indicates whether MemoryXtend for persistent memory is enabled.</td>
-                    <td>false</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td><code>memoryXtendVolume.volumeMount.name</code>
-                    </td>
-                    <td>Name of the <code>volumeMount</code>.</td>
-                    <td>mx-volume</td>
-                    <td>No</td>
-                </tr>
-                <tr>
-                    <td><code>memoryXtendVolume.volumeMount.mountPath</code>
-                    </td>
-                    <td>Path that is mapped to the external persistent storage (must be identical to the <code>volumeMount </code>path in the Data Pod configuration).</td>
-                    <td><code>/opt/gigaspaces/memoryxtend</code>
-                    </td>
-                    <td>No</td>
-                </tr>
-                <tr>
-                    <td><code>memoryXtendVolume.volumeClaimTemplate.storage</code>
-                    </td>
-                    <td>Capacity of the external persistent memory volume.</td>
-                    <td>&#160;</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td><code>memoryXtendVolume.volumeClaimTemplate.storageClassName</code>
-                    </td>
-                    <td>The <code>storageClass </code>from which the Data Pod is requesting the external persistent memory volume.</td>
-                    <td>&#160;</td>
-                    <td>No</td>
-                </tr>
-                <tr>
-                    <td><code>memoryXtendVolume.volumeClaimTemplate.accessModes</code>
-                    </td>
-                    <td>Mode of access to the external persistent memory volume</td>
-                    <td>ReadWriteOnce</td>
-                    <td>No</td>
-                </tr>
-                <tr>
-                    <td><code>memoryXtendVolume.volumeClaimTemplate.persistentVolumeReclaimPolicy</code>
-                    </td>
-                    <td>Define what to do with the <code>persistentVolume </code>after the <code>persistentVolumeClaim </code>is deleted.</td>
-                    <td>Delete</td>
-                    <td>No</td>
-                </tr>
-            </tbody>
-        </table>
+            </div>
+            <h3>Installing the Helm Chart</h3>
+            <p>
+                <MadCap:conditionalText MadCap:conditions="Version.15-0-died">After the pu.xml has been configured for the MemoryXtend persistent storage option, the next step is installing the Helm chart. </MadCap:conditionalText>Fetch the <MadCap:variable name="General.CompanyName" /> Helm charts as described in <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref>, then use the <code>helm install</code> command to deploy the processing unit. The minimum configuration required for MemoryXtend volume is to set the <code>enabled</code> property to <code>true</code>, and the <code>storage</code> property to the required capacity of the external storage. For example:</p><pre><code>helm install insightedge-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
+            <p>The following table describes the properties in the <code>memoryXtendVolume</code> section of the Helm chart.</p>
+            <table style="width: 100%;" class="tc-standard">
+                <col />
+                <col />
+                <col />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Description</th>
+                        <th>Default Value</th>
+                        <th>Required</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>memoryXtendVolume.enabled</code>
+                        </td>
+                        <td>Indicates whether MemoryXtend for persistent memory is enabled.</td>
+                        <td>false</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><code>memoryXtendVolume.volumeMount.name</code>
+                        </td>
+                        <td>Name of the <code>volumeMount</code>.</td>
+                        <td>mx-volume</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><code>memoryXtendVolume.volumeMount.mountPath</code>
+                        </td>
+                        <td>Path that is mapped to the external persistent storage (must be identical to the <code>volumeMount </code>path in the Data Pod configuration).</td>
+                        <td><code MadCap:conditions="Version.15-0-died">/opt/gigaspaces/memoryxtend</code><code MadCap:conditions="Version.15-0-born">/opt/gigaspaces/work/memoryxtend</code>
+                        </td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><code>memoryXtendVolume.volumeClaimTemplate.storage</code>
+                        </td>
+                        <td>Capacity of the external persistent memory volume.</td>
+                        <td>&#160;</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><code>memoryXtendVolume.volumeClaimTemplate.storageClassName</code>
+                        </td>
+                        <td>The <code>storageClass </code>from which the Data Pod is requesting the external persistent memory volume.</td>
+                        <td>&#160;</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><code>memoryXtendVolume.volumeClaimTemplate.accessModes</code>
+                        </td>
+                        <td>Mode of access to the external persistent memory volume</td>
+                        <td>ReadWriteOnce</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td><code>memoryXtendVolume.volumeClaimTemplate.persistentVolumeReclaimPolicy</code>
+                        </td>
+                        <td>Define what to do with the <code>persistentVolume </code>after the <code>persistentVolumeClaim </code>is deleted.</td>
+                        <td>Delete</td>
+                        <td>No</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h1><a name="off-heap-cache"></a>Off-Heap Cache</h1>
         <p>The data grid can cache the values of indexed fields in the process native (off-heap) memory. This optimizes operations that require only indexed values in order to execute, by fetching the data from off-heap instead of disk. The operations that benefit from this optimization are:</p>
         <ul>
@@ -382,7 +409,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 
     &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
 &lt;/beans&gt;
-</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+</code></pre><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -623,7 +650,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 
     &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
 &lt;/beans&gt;
-</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+</code></pre><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
