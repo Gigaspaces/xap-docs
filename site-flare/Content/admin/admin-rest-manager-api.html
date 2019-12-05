@@ -14,7 +14,10 @@
 </code></pre>
             </div>
         </div>
-        <p>After the <MadCap:variable name="General.ProductNameXAP" /> Manager has started, browse to <a href="http://localhost:8090" target="_blank">localhost:8090</a> and start working with the API.</p>
+        <p>After the <MadCap:variable name="General.ProductNameXAP" /> Manager has started, browse to <MadCap:conditionalText MadCap:conditions="Version.15-0-died"><a href="http://localhost:8090/" target="_blank">localhost:8090/</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born"><a href="localhost:8090/v2">localhost:8090/v2</a></MadCap:conditionalText> and start working with the API.</p>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+            <p>If you had a previous version of <MadCap:variable name="General.ProductNameXAP" />,  when you used the Manager IP&#160;address and port in the URL field of your browser to access the REST&#160;Manager API (<span class="tc-italic">http://&lt;MANAGER_IP&gt;:8090/</span>), you were automatically redirected to <span class="tc-italic">http://&lt;MANAGER_IP&gt;:8090/v2</span>. This IP&#160;address now opens Ops Manager. If you want to open the REST&#160;Manager API, use the <span class="tc-italic">http://&lt;MANAGER_IP&gt;:8090/v2</span> URL.</p>
+        </div>
         <div class="tc-admon-note">
             <p>You must start a <MadCap:variable name="General.ProductNameXAP" /> Manager to access the REST Manager API. You can also start a cluster of <MadCap:variable name="General.ProductNameXAP" /> Managers to ensure high availability. To learn more about the <MadCap:variable name="General.ProductNameXAP" /> Manager, refer to <a href="xap-manager.html">the Manager</a>.</p>
         </div>

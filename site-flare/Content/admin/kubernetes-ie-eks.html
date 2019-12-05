@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Deploying GigaSpaces Platforms on Amazon EKS</h1>
+        <h1 class="tc-pagetitle">Deploying <MadCap:variable name="General.ProductNameXAP" /> Platforms on Amazon EKS</h1>
         <p>This topic explains how to deploy KubeGrid using the Amazon Elastic Container Service for Kubernetes (Amazon EKS). </p>
         <div class="tc-admon-tip">
             <p>Deploying <MadCap:variable name="General.ProductNameIE" /> involves the same tasks as deploying the <MadCap:variable name="General.ProductNameXAP" /> data grid. The deployment tasks described below use <code>insightedge</code> Helm charts. However, you can also perform these tasks using the <code>xap</code> Helm charts (except for Apache Zeppelin, which is part of the <MadCap:variable name="General.ProductNameIE" /> deployment).</p>
@@ -15,7 +15,7 @@
                 <p>Create an AWS&#160;account.</p>
             </li>
             <li>
-                <p>Create an KubeGrid (for example, <MadCap:variable name="General.ProductNameIE" />) Amazon EKS Service role. This user role will need sufficient security policies to administer the Amazon EKS cluster.</p>
+                <p>Create a KubeGrid (for example, <MadCap:variable name="General.ProductNameIE" />) Amazon EKS Service role. This user role will need sufficient security policies to administer the Amazon EKS cluster.</p>
             </li>
             <li>
                 <p>Create the Amazon EKS Cluster VPC for KubeGrid. Note that you will have to create both a cluster stack and a worker node stack in AWS&#160;CloudFormation. </p>
@@ -34,9 +34,14 @@
         <h2>Prerequisites</h2>
         <p>Before deploying KubeGrid, ensure that you have the following installed:</p>
         <ul>
-            <li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">kubectl</a>
+            <li>
+                <p><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">kubectl</a>
+                </p>
             </li>
-            <li><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Helm</a>
+            <li>
+                <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Helm</a>
+                </p>
+                <MadCap:snippetBlock src="../Resources/Snippets/Content/Kubernetes/k8s-helm-version.flsnp" />
             </li>
         </ul>
         <p>Use the following command to fetch the GigaSpaces Helm charts and unpack them locally:</p><pre><code>helm fetch gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-short" /> --untar</code></pre>
@@ -72,14 +77,19 @@ service:
                     <img src="../Resources/Static/attachment_files/kubernetes/kubectl-get-svc-output.png" class="tc-picture100" />
                 </p>
             </li>
-            <li>
-                <p>Copy the <MadCap:variable name="General.ProductNameIE" /> Manager IP&#160;address to a browser window and add the port number (8090). The Rest Manager API&#160;screen should load.</p>
-                <p>&#160;</p>
+            <li MadCap:conditions="Version.15-0-died">
+                <p>Copy the <MadCap:variable name="General.ProductNameIE" /> Manager IP&#160;address to a browser window and add the port number (8090). The REST&#160;Manager API&#160;screen should load.</p>
                 <p>
                     <img src="../Resources/Static/attachment_files/kubernetes/eks-rest-manager.png" class="tc-picture100" />
                 </p>
             </li>
-            <li>Perform a simple test by using one of the REST APIs, for example <code>GET/spaces</code>. </li>
+            <li MadCap:conditions="Version.15-0-died">Perform a simple test by using one of the REST APIs, for example <code>GET/spaces</code>. </li>
+            <li MadCap:conditions="Version.15-0-born">
+                <p>Copy the <MadCap:variable name="General.ProductNameIE" /> Manager IP&#160;address to a browser window and add the port number (8090). The Ops Manager should load.</p>
+                <p>
+                    <img src="gs-ops-manager2.png" class="tc-picture80" />
+                </p>
+            </li>
             <li>
                 <p>Copy the <MadCap:variable name="General.ProductNameIE" /> Zeppelin IP&#160;address into the browser window and add the port (9090). The <MadCap:variable name="General.ProductNameIE" /> Apache Zeppelin web notebook should load.</p>
                 <p>

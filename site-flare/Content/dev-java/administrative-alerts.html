@@ -82,7 +82,8 @@ The alert is configured with a high threshold of 80% and a low threshold of 60% 
         <p>Note that some alert triggers define that an alert is raised each time a certain high threshold is crossed for example. This means that can be are multiple raised alerts at the same time, each indicating its own utilization reading at the time it was triggered. On the other hand, there can only be one resolving alert, which "resolves' the already raised alert/s.</p>
         <p>Since <MadCap:variable name="General.ProductNameXAP" /> is working in a distributed environment, an alert is identified with a specific component (machine, JVM, Space, etc.).</p>
         <h1><a name="viewing-alerts"></a>Viewing Alerts</h1>
-        <p>You can view alerts in the Web Management Console. For information, refer to <a href="../admin/web-management-view-alerts.html">Viewing Alerts</a> in the Administration Guide.</p>
+        <p>You can view alerts in the Web Management Console. For more information, refer to <a href="../admin/web-management-view-alerts.html">Viewing Alerts</a> in the administration guide.</p>
+        <p MadCap:conditions="Version.15-0-born">You can also view alerts on services using the Ops Manager. For more information, see the <MadCap:xref href="../admin/gs-ops-manager-overview.html">[%=General.ProductNameXAP%] Ops Manager</MadCap:xref> topic in the administration guide.</p>
         <h1><a name="listening-for-alerts"></a>Listening for Alerts</h1>
         <p>Alerts can be consumed using a registered event listener by registering with the <code>AlertManager</code> component (which is part of the <a href="administration-and-monitoring-overview.html">Administration and Monitoring API</a>. The listener will be notified of alerts that have been triggered.</p>
         <div class="tc-admon-note">

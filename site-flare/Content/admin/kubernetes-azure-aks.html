@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Deploying GigaSpaces Platforms on Microsoft Azure (AKS)</h1>
+        <h1 class="tc-pagetitle">Deploying <MadCap:variable name="General.ProductNameXAP" /> Platforms on Microsoft Azure (AKS)</h1>
         <p>This topic explains how to deploy KubeGrid on Azure Kubernetes Service (AKS). Before you begin, you should have the following already set up and/or installed in your development environment:</p>
         <ul>
             <li>Azure account</li>
@@ -22,6 +22,7 @@
         <div class="tc-admon-tip">
             <p>Deploying <MadCap:variable name="General.ProductNameIE" /> involves the same tasks as deploying the <MadCap:variable name="General.ProductNameXAP" /> data grid. The deployment tasks described below use <code>insightedge</code> Helm charts. However, you can also perform these tasks using the <code>xap</code> Helm charts (except for Apache Zeppelin, which is part of the <MadCap:variable name="General.ProductNameIE" /> deployment).</p>
         </div>
+        <p MadCap:conditions="Version.15-0-born">After deploying KubeGrid, you can use <MadCap:variable name="General.ProductNameXAP" />'s Ops Manager to monitor and troubleshoot the cluster, or you can use the Kubernetes dashboard as described below.</p>
         <h1>Setting Up the AKS&#160;Environment</h1>
         <p>Before you can install KubeGrid, you need to set up the AKS&#160;environment so that you have a Kubernetes cluster that can host your <MadCap:variable name="General.CompanyName" /> platform with full connectivity. This involves the first three steps mentioned above.</p>
         <h2>Installing the Azure CLI</h2>
@@ -126,6 +127,7 @@ subjects:
         </div>
         <p>Type the following command to add the GigaSpaces Helm charts to the Helm repo:</p><pre><code>helm repo add gigaspaces https://resousrces.gigaspaces.com/helm-charts</code></pre>
         <p>Type the following command to fetch the GigaSpaces Helm charts and unpack them locally:</p><pre><code>helm fetch gigaspaces/insightedge --version=14.0 --untar</code></pre>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/Kubernetes/k8s-helm-version.flsnp" />
         <h2>Installing KubeGrid </h2>
         <p MadCap:conditions="Version.14-5-born">Perform this procedure to install KubeGrid and apply the public IP&#160;address, so that you can use the Apache Zeppelin web notebook with <MadCap:variable name="General.ProductNameIE" />.</p>
         <p MadCap:conditions="Version.14-5-died">If you want a public IP address for Apache Zeppelin when working with <MadCap:variable name="General.ProductNameIE" /> in the AKS environment, the default service type (<code>NodePort</code>) in the   zeppelin Helm chart must be changed to <code>LoadBalancer</code> before applying the Helm install command.</p>

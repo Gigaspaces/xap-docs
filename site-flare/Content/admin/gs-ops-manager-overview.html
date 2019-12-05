@@ -15,10 +15,15 @@
             <li>Review individual service instances and analyze alerts per instance</li>
             <li>Download service logs for root-cause analysis</li>
         </ul>
+        <div class="tc-align-center">
+            <p>
+                <img src="gs-ops-manager2.png" class="tc-picture80" />
+            </p>
+        </div>
         <h1>Accessing Ops Manager</h1>
         <p>The Ops Manager is deployed along with the Manager and the REST&#160;Manager API, and uses the same entry point. In order to open Ops Manager in your browser and view your <MadCap:variable name="General.ProductNameXAP" /> environment, you need to access the Manager's IP&#160;address on port 8090, or use <span class="tc-bold">localhost</span> if your environment is deployed on a local agent. </p>
         <div class="tc-admon-note">
-            <p>If you had a previous version of <MadCap:variable name="General.ProductNameXAP" />,  when you used the Manager IP&#160;address and port in the URL field of your browser to access the REST&#160;Manager API (http://&lt;MANAGER_IP&gt;:8090/), you were automatically redirected to http://&lt;MANAGER_IP&gt;:8090/v2. This information may be stored in your browser cache and prevent you from opening Ops Manager. If this occurs, clear your browser cache to enable access to Ops Manager. </p>
+            <p>If you had a previous version of <MadCap:variable name="General.ProductNameXAP" />,  when you used the Manager IP&#160;address and port in the URL field of your browser to access the REST&#160;Manager API (<span class="tc-italic">http://&lt;MANAGER_IP&gt;:8090/</span>), you were automatically redirected to <span class="tc-italic">http://&lt;MANAGER_IP&gt;:8090/v2</span>. This information may be stored in your browser cache and prevent you from opening Ops Manager. If this occurs, clear your browser cache to enable access to Ops Manager. If you want to open the REST&#160;Manager API, use the <span class="tc-italic">http://&lt;MANAGER_IP&gt;:8090/v2</span> URL.</p>
         </div>
         <h1>Understanding the Ops Manager Interface</h1>
         <div class="tc-admon-note">
@@ -151,7 +156,7 @@
             <li MadCap:conditions="Default.DoNotShow">Disk</li>
         </ul>
         <div class="tc-admon-tip">
-            <p>You can configure custom resource alerts per service types, and modify the resource thresholds via the configuration file.</p>
+            <p>You can configure custom resource alerts per service types, and modify the resource thresholds via the configuration file, which is located at <span class="tc-italic">&lt;<MadCap:variable name="General.Home-directory" />config/ui</span>.</p>
         </div>
         <p>&#160;</p>
         <p>&#160;</p>
