@@ -54,7 +54,7 @@
                                          persistent="false"/&gt;
     &lt;/os-core:embedded-space&gt;
 &lt;/beans&gt;
-</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-only"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -74,9 +74,28 @@
                                          persistent="false"/&gt;
     &lt;/os-core:embedded-space&gt;
 &lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/pmem-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/pmem-blob-store http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/pmem-blob-store/openspaces-pmem-blob-store.xsd"&gt;
+
+	&lt;blob-store:pmem-blob-store id="myBlobStore" memory-pool-size="20GB" pmem-path="/mnt/pmem0/"/&gt;					
+
+    &lt;os-core:embedded-space id="space" name="MySpace"&gt;
+        &lt;!-- cache-entries-percentage=0 in order to make sure that objects are written to the ssd--&gt;
+        &lt;os-core:blob-store-data-policy  blob-store-handler="myBlobStore"
+                                         cache-entries-percentage="20"
+                                         avg-object-size-KB="10"/&gt;
+    &lt;/os-core:embedded-space&gt;
+&lt;/beans&gt;
 </code></pre>
             </div>
-            <div title="Java" style="padding:10px"><pre><code class="language-java">// Create off-heap storage driver:
+            <div title="Java" style="padding:10px"><pre MadCap:conditions="Version.15-0-died"><code class="language-java">// Create off-heap storage driver:
 BlobStoreStorageHandler blobStore = new PmemBlobStoreConfigurer()
         blobStore.setMemoryPoolSize("20GB");
         blobStore.setPmemPath("/mnt/pmem0/");
@@ -88,6 +107,18 @@ EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer(spaceName)
         .cachePolicy(new BlobStoreDataCachePolicy()
                 .setBlobStoreHandler(blobStore)
                 .setPersistent(false));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-java">// Create off-heap storage driver:
+BlobStoreStorageHandler blobStore = new PmemBlobStoreConfigurer()
+        blobStore.setMemoryPoolSize("20GB");
+        blobStore.setPmemPath("/mnt/pmem0/");
+        blobStore.setVerbose(false);
+        .create();
+// Create space with that storage driver:
+String spaceName = "mySpace";
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer(spaceName)
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore));
 GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 </code></pre>
             </div>
