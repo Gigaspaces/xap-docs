@@ -86,8 +86,7 @@ Upon a Space read operation, if the object exists in the JVM heap (i.e. a cache 
 &lt;/beans&gt;
 </code></pre>
             </div>
-            <div title="Java Code" style="padding:10px">
-					<pre MadCap:conditions="Version.15-0-died"><code class="language-java">// Create RocksDB storage driver:
+            <div title="Java Code" style="padding:10px"><pre MadCap:conditions="Version.15-0-died"><code class="language-java">// Create RocksDB storage driver:
 BlobStoreStorageHandler blobStore = new RocksDBBlobStoreConfigurer()
         .setPaths("[/mnt/db1,/mnt/db2]")
         .setMappingDir("/tmp/mapping")
@@ -98,8 +97,7 @@ EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
                 .setBlobStoreHandler(blobStore)
                 .setPersistent(true));
 GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
-					</code></pre>
-					<pre MadCap:conditions="Version.15-0-born"><code class="language-java">// Create RocksDB storage driver:
+					</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-java">// Create RocksDB storage driver:
 BlobStoreStorageHandler blobStore = new RocksDBBlobStoreConfigurer()
         .setPersistent(true)
         .create();
@@ -115,7 +113,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
             <p>The above pu.xml example is relevant only for the service grid environment. For information on how to configure the pu.xml for a Kubernetes environment, see Persistent Volume Storage in Kubernetes below.</p>
         </div>
         <div class="tc-admon-note" MadCap:conditions="Version.15-0-born">
-            <p>If you're using Kubernetes, additional configuration may be required - see Persistent Volume Storage in Kubernetes below.</p>
+            <p>If you're using Kubernetes, additional configuration may be required. See Persistent Volume Storage in Kubernetes below.</p>
         </div>
         <p>The following table describes the configuration options used in <code>rocksdb-blob-store</code> above.</p>
         <table>
@@ -237,7 +235,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
             </div>
             <h3>Installing the Helm Chart</h3>
             <p>
-                <MadCap:conditionalText MadCap:conditions="Version.15-0-died">After the pu.xml has been configured for the MemoryXtend persistent storage option, the next step is installing the Helm chart. </MadCap:conditionalText>Fetch the <MadCap:variable name="General.CompanyName" /> Helm charts as described in <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref>, then use the <code>helm install</code> command to deploy the processing unit. The minimum configuration required for MemoryXtend volume is to set the <code>enabled</code> property to <code>true</code>, and the <code>storage</code> property to the required capacity of the external storage. For example:</p><pre><code>helm install insightedge-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
+                <MadCap:conditionalText MadCap:conditions="Version.15-0-died">After the pu.xml has been configured for the MemoryXtend persistent storage option, the next step is installing the Helm chart. </MadCap:conditionalText>Fetch the <MadCap:variable name="General.CompanyName" /> Helm charts as described in <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref>, then use the <code>helm install</code> command to deploy the Processing Unit. The minimum configuration required for MemoryXtend volume is to set the <code>enabled</code> property to <code>true</code>, and the <code>storage</code> property to the required capacity of the external storage. For example:</p><pre><code>helm install insightedge-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
             <p>The following table describes the properties in the <code>memoryXtendVolume</code> section of the Helm chart.</p>
             <table style="width: 100%;" class="tc-standard">
                 <col />
@@ -409,7 +407,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 
     &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
 &lt;/beans&gt;
-</code></pre><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
@@ -468,7 +466,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
         <table class="tc-borderless">
             <tr>
                 <td style="width:80%;">
-                    <p>The following example deployes a 2 partitions space with a single backup (2,1) in the following manner:</p>
+                    <p>The following example deployes a 2-partition Space with a single backup (2,1) in the following manner:</p>
                     <ul>
                         <li><code>/mnt/db1</code> will be mounted to the 1st primary.</li>
                         <li><code>/mnt/db2</code> will be mounted to the 2nd primary.</li>
@@ -542,8 +540,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
                 <tr>
                     <td align="left">tableFormatConfig</td>
                     <td align="left">Set the configuration for the table format. <br /> The default is BlockBasedTableConfig with <ul><li>noBlockCache = opposite of <code>useCache</code></li><li>blockCacheSize = <code>cacheSize</code></li><li>blockSize = <code>blockSize</code></li><li> filter = BloomFilter(10,false)</li><li>formatVersion = 0</li></ul>The highlighted values are taken from the <code>rocksdb-blob-store</code> namespace / <code>RocksDBBlobStoreConfigurer</code> if provided, otherwise the following defaults are used: <ul><li>useCache = true</li><li>cacheSize = 100MB</li><li>blockSize = 16KB</li></ul>If a custom tableFormatConfig is provided, the values from the namespace/configurer are ignored.</td>
-                    <td align="left">
-                    </td>
+                    <td align="left">&#160;</td>
                 </tr>
             </tbody>
         </table>
@@ -650,7 +647,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
 
     &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
 &lt;/beans&gt;
-</code></pre><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-core="http://www.openspaces.org/schema/core"
