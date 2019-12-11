@@ -3,26 +3,26 @@
     <head>
     </head>
     <body>
-        <h1>Advanced Scenarios</h1>
+        <h1 class="tc-pagetitle">Advanced Scenarios</h1>
         <h1 MadCap:conditions="Version.14-2-died"><a name="customizing-java"></a>Customizing Java</h1>
         <h4 MadCap:conditions="Version.14-2-died"><a name="q-can-i-configure-xap-net-to-work-with-a-different-java-version-or-location"></a>Q. Can I configure <MadCap:variable name="General.XAPNet" /> to work with a different java version or location?</h4>
         <p MadCap:conditions="Version.14-2-died">Yes. See <a href="jvm-configuration.html#jvm-location">Jvm Configuration</a> for more information.</p>
         <h1><a name="customizing-xap"></a>Customizing <MadCap:variable name="General.ProductNameXAP" /></h1>
         <h4><a name="q-can-i-configure-xap-net-to-work-with-an-existing-xap-installation"></a>Q. Can I configure <MadCap:variable name="General.XAPNet" /> to work with an existing <MadCap:variable name="General.ProductNameXAP" /> installation?</h4>
-        <p>GigaSpaces <MadCap:variable name="General.XAPNet" /> is bundled with GigaSpaces <MadCap:variable name="General.ProductNameXAP" /> components required at runtime. Developers engaged in interoperability solutions may prefer working with a full installation of the Java <MadCap:variable name="General.ProductNameXAP" />, which contains additional documentation, examples and tutorials.</p>
-        <p>If you wish to modify your <MadCap:variable name="General.XAPNet" /> installation to use an existing <MadCap:variable name="General.ProductNameXAP" /> installation, edit the <code>Settings.xml</code> file (located in <code>&lt;ProductRoot&gt;\Config</code>) and change the value of <code>&lt;XapNet.Runtime.Path&gt;</code> to the new location.</p>
+        <p>GigaSpaces <MadCap:variable name="General.XAPNet" /> is bundled with the <MadCap:variable name="General.ProductNameXAP" /> components that are required at runtime. Developers engaged in interoperability solutions may prefer working with a full installation of the <MadCap:variable name="General.ProductNameXAP" /> Java , which contains additional documentation, examples and tutorials.</p>
+        <p>If you want to modify your <MadCap:variable name="General.XAPNet" /> installation to use an existing  installation of the <MadCap:variable name="General.ProductNameXAP" /> data grid, edit the <code>Settings.xml</code> file (located in <code>&lt;ProductRoot&gt;\Config</code>) and change the value of <code>&lt;XapNet.Runtime.Path&gt;</code> to the new location.</p>
         <div class="tc-admon-note">
-            <p>Mixing <MadCap:variable name="General.XAPNet" /> and <MadCap:variable name="General.ProductNameXAP" /> versions is not supported - always use the same version and build.</p>
+            <p>Mixing <MadCap:variable name="General.XAPNet" /> and <MadCap:variable name="General.ProductNameXAP" /> data grid versions is not supported - always use the same version and build.</p>
         </div>
         <h1><a name="automated-setup"></a>Automated Setup</h1>
         <h4><a name="q-can-i-run-an-automated-quiet-install-of-xap-net-from-the-command-line"></a>Q. Can I run an automated, quiet install of <MadCap:variable name="General.XAPNet" /> from the command line?</h4>
         <p>Yes. From the command line, type the following:</p><pre><code class="language-xml">C:\&gt;msiexec /i [%=Versions.msi-filename%] /quiet
 </code></pre>
         <div class="tc-admon-note">
-            <p>For more information about installing <code>msi</code> packages from command line, see <a href="http://msdn.microsoft.com/en-us/library/aa372024.aspx">http://msdn.microsoft.com/en-us/library/aa372024.aspx</a>.</p>
+            <p>For more information about installing <code>msi</code> packages from the command line, see <a href="http://msdn.microsoft.com/en-us/library/aa372024.aspx">http://msdn.microsoft.com/en-us/library/aa372024.aspx</a>.</p>
         </div>
         <h1><a name="manual-configuration-without-setup"></a>Manual Configuration without Setup</h1>
-        <h4><a name="q-can-i-package-xap-net-as-a-zip-file-instead-of-windows-installer-msi"></a>Q. Can I package <MadCap:variable name="General.XAPNet" /> as a zip file instead of Windows Installer (msi)?</h4>
+        <h4><a name="q-can-i-package-xap-net-as-a-zip-file-instead-of-windows-installer-msi"></a>Q. Can I package <MadCap:variable name="General.XAPNet" /> as a ZIP file instead of Windows Installer (msi)?</h4>
         <p><MadCap:variable name="General.XAPNet" /> installation is released as an <code>msi</code> file because simply copying the file to the target machine is not enough - a few machine settings need to be configured, and the preferred method of doing this to date is Windows Installer.</p>
         <p>Sometimes, however, you may want to use <MadCap:variable name="General.XAPNet" /> without running setup (e.g. on a production server).
 To do that:</p>
@@ -34,7 +34,7 @@ To do that:</p>
         </div>
         <p><span class="tc-bold">Step 4.</span> The final touch is to configure the location of <MadCap:variable name="General.XAPNet" />.</p>
         <p>This can be achieved in one of the following ways:</p>
-        <h4><a name="environment-variable"></a>Environment variable</h4>
+        <h4><a name="environment-variable"></a>Environment Variable</h4>
         <p>Create an environment variable named <code>XapNet_&lt;version&gt;_SettingsPath</code> which points to the settings file path. For example, for that same [%=Versions.xap-version%] version we would use:</p><pre><code class="language-xml">XapNet_[%=Versions.xap-release%].11600_SettingsPath=C:\GigaSpaces\XAP.NET [%=Versions.xap-release%] x64\NET v4.0\Config\Settings.xml
 </code></pre>
         <h4><a name="windows-registry"></a>Windows Registry</h4>
@@ -44,7 +44,7 @@ To do that:</p>
         <div class="tc-admon-note">
             <p>HKCU is supported as well, and is searched before HKLM.</p>
         </div>
-        <h4><a name="application-configuration-file"></a>Application configuration file:</h4>
+        <h4><a name="application-configuration-file"></a>Application Configuration File</h4>
         <p>Use the <code>XapNetSettingsFile</code> element to configure the location of the settings file. For example:</p><pre><code class="language-xml">&lt;configuration&gt;
     &lt;configSections&gt;
         &lt;section name="GigaSpaces" type="GigaSpaces.Core.Configuration.GigaSpacesCoreConfiguration, GigaSpaces.Core"/&gt;
@@ -57,10 +57,10 @@ To do that:</p>
         <h4><a name="code"></a>Code</h4>
         <p>Use the following code to set the location of the settings file at runtime:</p><pre><code class="language-csharp">    GigaSpacesFactory.Configuration.XapNetSettingsFile.Path = @"C:\GigaSpaces\XAP.NET [%=Versions.xap-release%] x64\NET v4.0\Config\Settings.xml"
 </code></pre>
-        <h4><a name="q-i-need-to-minimize-the-installation-size-can-i-use-a-shared-folder-on-a-server-to-store-part-of-the-installation"></a>Q. I need to minimize the installation size. Can I use a shared folder on a server to store part of the installation?</h4>
+        <p class="tc-todo"><a name="q-i-need-to-minimize-the-installation-size-can-i-use-a-shared-folder-on-a-server-to-store-part-of-the-installation"></a>Q. I need to minimize the installation size. Can I use a shared folder on a server to store part of the installation?</p>
         <p>Yes. You can manually set the registry settings shown above to point both java and <MadCap:variable name="General.DataGrid" /> to a shared folder on a remote server.</p>
         <div class="tc-admon-note">
-            <p>In such scenarios, the shared folder that contains <MadCap:variable name="General.DataGrid" /> must be mapped as a network drive. <MadCap:variable name="General.DataGrid" /> will fail to load if a network path is used (e.g. <code>\\server\share</code>).</p>
+            <p>In such scenarios, the shared folder that contains the <MadCap:variable name="General.ProductNameXAP" /> product must be mapped as a network drive. <MadCap:variable name="General.ProductNameXAP" /> will fail to load if a network path is used (e.g. <code>\\server\share</code>).</p>
         </div>
         <h1><a name="using-gac-global-assembly-cache"></a>Using GAC (Global Assembly Cache)</h1>
         <h4><a name="q-my-application-uses-the-global-assembly-cache-to-locate-3rd-party-assemblies-which-xap-net-assemblies-do-i-need-to-register"></a>Q. My application uses the Global Assembly Cache to locate 3rd party assemblies. Which <MadCap:variable name="General.XAPNet" /> assemblies do I need to register?</h4>

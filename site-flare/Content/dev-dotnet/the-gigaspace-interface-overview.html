@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1>The Space Interface</h1>
+        <h1 class="tc-pagetitle">The Space Interface</h1>
         <p>This section explains how to create and configure a Space, and how to interact with it using the Space API.</p>
         <p>A Space is a logical in-memory service, which can store entries of information. An entry is a domain object; In C#, an entry can be a simple PONO or a SpaceDocument. When a client connects to a Space, a proxy is created that holds a connection which implements the Space API. All client interaction is performed through this proxy.</p>
         <p>The Space is accessed via a programmatic interface that supports the following main functions:</p>
@@ -100,7 +100,7 @@ ISpaceProxy localCache = GigaSpacesFactory.CreateLocalCache(spaceProxy);
 
 </code></pre>
         <h1><a name="local-view"></a>Local View</h1>
-        <p><MadCap:variable name="General.DataGridInitCap" /> supports a <a href="local-view.html">Local View</a> configuration. This provides a front-end client side cache that is used with any <code>Read</code> or <code>ReadMultiple</code> operations implicitly. The local view is loaded on startup, and is updated implicitly by the Space.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports a <a href="local-view.html">Local View</a> configuration. This provides a front-end client side cache that is used with any <code>Read</code> or <code>ReadMultiple</code> operations implicitly. The local view is loaded on startup, and is updated implicitly by the Space.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/devguide/space-local-view.png" width="521" height="160" />
@@ -174,6 +174,6 @@ IReadOnlySpaceProxy localView = GigaSpacesFactory.CreateLocalView(spaceProxy, vi
   &lt;/session-factory&gt;
 &lt;/hibernate-configuration&gt;
 </code></pre>
-        <p>The above example configures both a custom JDBC <code>DataSource</code> and a NHibernate <code>SessionFactory</code>, to define and use the <MadCap:variable name="General.DataGrid" /> built-in <code>NHibernateSpaceDataSource</code>. The <MadCap:variable name="General.DataGrid" /> data source is then injected into the Space construction and causes the Space to use it.</p>
+        <p>The above example configures both a custom JDBC <code>DataSource</code> and a NHibernate <code>SessionFactory</code>, to define and use the <MadCap:variable name="General.DataGrid" />'s built-in <code>NHibernateSpaceDataSource</code>. The <MadCap:variable name="General.DataGrid" /> data source is then injected into the Space construction and causes the Space to use it.</p>
     </body>
 </html>

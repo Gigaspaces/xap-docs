@@ -3,10 +3,10 @@
     <head>
     </head>
     <body>
-        <h1>CA APM Introscope Reporter</h1>
+        <h1 class="tc-pagetitle">CA APM Introscope Reporter</h1>
         <p><a href="http://www.ca.com/us/products/application-performance-management.aspx" target="_blank">CA APM</a> helps to monitor applications and react quickly when certain performance issues may occur. <MadCap:variable name="General.ProductNameXAP" /> provides many metrics like: processing units, spaces and machines that compose the grid. The metrics can be reported to Instroscope, so that its advanced features might be used to further analyze metrics data. <MadCap:variable name="General.ProductNameXAP" /> CA APM Introscope Reporter provides a way to send <MadCap:variable name="General.ProductNameXAP" /> related metrics to Introscope.</p>
         <div class="tc-admon-note">
-            <p><MadCap:variable name="General.ProductNameXAP" />-apm-introscope requires a separate license in addition to the <MadCap:variable name="General.ProductNameXAP" /> commercial license, please contact GigaSpaces Customer Support for more details.</p>
+            <p>The <MadCap:variable name="General.ProductNameXAP" /> APM Introscope integration requires a separate license, in addition to the <MadCap:variable name="General.ProductNameXAP" /> commercial license. Contact <MadCap:variable name="General.ProductNameXAP" /> Customer Support for more details.</p>
         </div>
         <h1><a name="architecture"></a>Architecture</h1>
         <div class="tc-align-center">
@@ -68,7 +68,7 @@ For example, using EPA CA Introscope can monitor directory servers, operating sy
         <h2><a name="starting-introscope-and-xap"></a>Starting Introscope and <MadCap:variable name="General.ProductNameXAP" /></h2>
         <ol>
             <li>Start the Introscope environment (setup instructions cab be found <a href="#development-environment-installation-steps">here</a>).</li>
-            <li>Start the <MadCap:variable name="General.ProductNameXAP" /> grid by running the following command: <code>$<MadCap:variable name="General.Home-directory" />/bin/gs-agent.sh</code>.</li>
+            <li>Start the <MadCap:variable name="General.ProductNameXAP" /> data grid by running the following command: <code>$<MadCap:variable name="General.Home-directory" />/bin/gs-agent.sh</code>.</li>
         </ol>
         <h2><a name="observing-metrics"></a>Observing Metrics</h2>
         <ol>
@@ -81,7 +81,7 @@ For example, using EPA CA Introscope can monitor directory servers, operating sy
         <h2><a name="introscope-properties"></a>Introscope Properties</h2>
         <p>The <MadCap:variable name="General.ProductNameXAP" /> Introscope integration communicates with <code>EPAgent</code> deployed in an Introscope environment. It requires <code>EPAgent</code> to listen on a certain port for metrics data. To enable receiving metrics from network, property <code>introscope.epagent.config.networkDataPort</code> should be uncommented in <code>IntroscopeEPAgent.properties</code> (by default this is <code>EPAgent</code> configuration file, in case another file is used, described steps should be performed on that file) and set to port on which <code>EPAgent</code> will listen for metrics data, e.g.</p><pre><code class="language-properties">introscope.epagent.config.networkDataPort=8003
 </code></pre>
-        <h2><a name="xap-metrics-configuration"></a><MadCap:variable name="General.ProductNameXAP" /> Metrics Configuration</h2>
+        <h2><MadCap:variable name="General.ProductNameXAP" />Metrics Configuration</h2>
         <p>File <code>$<MadCap:variable name="General.Home-directory" />/config/metrics/metrics.xml</code> contains <MadCap:variable name="General.ProductNameXAP" /> metrics configuration. The important part for the integration is a list of reporters - <code>IntroscopeReporter</code> must be added to it. Moreover, it has two mandatory properties:</p>
         <ul>
             <li><code>host </code>- hostname or ip address of a machine with EPAgent. Mandatory.</li>
@@ -126,7 +126,7 @@ For example, using EPA CA Introscope can monitor directory servers, operating sy
         <h4><a name="security-warning"></a>Security Warning</h4>
         <p><code>EPAgent</code> accepts all data that it receives via network (i.e. without authentication). Therefore, access to it must be limited by firewall.</p>
         <h3><a name="data-format"></a>Data Format</h3>
-        <p><code>EPAgent</code> accepts metric data that is sent in specific format. Otherwise, it may log erroneus values or does not log them at all. Each line should contain data for one measured value. There are two formats for a single line: simple format or XML format. The latter one was chosen, since it provides more control over reported data (less restrictions on metric name, possibility to specify type of value).</p>
+        <p><code>EPAgent</code> accepts metric data that is sent in specific format. Otherwise, it may log erroneous values or does not log them at all. Each line should contain data for one measured value. There are two formats for a single line: simple format or XML format. The latter one was chosen, since it provides more control over reported data (less restrictions on metric name, possibility to specify type of value).</p>
         <p>Format of each line is as follows:</p><pre><code class="language-xml">     &lt;metric type="TYPE" name="NAME" value="VALUE" /&gt;
 </code></pre>
         <p>There are three fields that need to be populated: <code>type</code>, <code>name</code> and <code>value</code>. Only the first one requires a short comment. Introscope has few types of metrics defined. Some of them are connected with a little bit of logic - e.g. Introscope may compute average value of all reported values.

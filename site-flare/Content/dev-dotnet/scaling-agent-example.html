@@ -3,10 +3,10 @@
     <head>
     </head>
     <body>
-        <h1>Scaling Agent Example</h1>
+        <h1 class="tc-pagetitle">Scaling Agent Example</h1>
         <p>Example Root|<code><MadCap:variable name="General.HomePath" />\Examples\ScalingAgent</code></p>
         <p>The <a href="../dev-java/administration-and-monitoring-overview.html">Administration and Monitoring API</a> allows you to monitor an application's health and its resources, to enforce a specific pre-defined configurable SLA that scales the application while it is running. This ensures a deterministic response time when there is an increasing number of users accessing the system, and also ensures the high-availability and robustness of the application.</p>
-        <p>The following example illustrates how you can construct a simple processing unit (<span class="tc-bold">The Scaling Agent</span>) to monitor an application deployed into GigaSpaces, and track the load on the application. Once the average throughput per instance of the application breaches a pre-defined limit, the scaling agent reacts and performs the necessary activities to scale the application tier.</p>
+        <p>The following example illustrates how you can construct a simple processing unit (<span class="tc-bold">The Scaling Agent</span>) to monitor an application deployed to <MadCap:variable name="General.ProductNameXAP" />, and track the load on the application. Once the average throughput per instance of the application breaches a pre-defined limit, the scaling agent reacts and performs the necessary activities to scale the application tier.</p>
         <p>The activities to scale up the application could be: starting a new GSC on remote machines, and starting additional application instances. In the same way, the scaling agent can be extended to scale down the application to terminate running GSCs, and reduce the amount of application instances.</p>
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/dotnet/scaling agent .net.jpg" alt="scaling agent .net.jpg" class="tc-picture80" />
