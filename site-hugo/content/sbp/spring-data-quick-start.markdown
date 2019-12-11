@@ -9,30 +9,21 @@ parent: spring-data.html
 
 This guide will walk you through the steps of building a Spring Data application with   XAP. You will use the   Spring Data XAP library to store and retrieve POJOs.
 
+Versions this scenario was done with:
+
+- GigaSpaces relesae 14.5
+- Spring versions 5.2.0, 5.1.7 (second one is aligned with the Spring version supported by 14.5)
+
+
 # Installation
 
-Before using this guide, you have to download [GigaSpaces XAP](http://www.gigaspaces.com/xap-download) and install the maven plugin. If you're not familiar with Maven, refer to [Building Java Projects with Maven](https://spring.io/guides/gs/maven/).
+Before using this guide, you have to download [GigaSpaces XAP](http://www.gigaspaces.com/download-center) and install the maven plugin. If you're not familiar with Maven, refer to [Building Java Projects with Maven](https://spring.io/guides/gs/maven/).
 
 
 To install the XAP maven plugin run the `installmavenrep` script:
 
-{{%tabs%}}
-{{%tab " Windows"%}}
+use the CLI maven install command.
 
-
-```bash
-/tools/maven/installmavenrep.bat
-```
-{{%/tab%}}
-
-{{%tab " Unix"%}}
-
-```bash
-/tools/maven/installmavenrep.sh
-```
-{{%/tab%}}
-
-{{%/tabs%}}
 
 Download the [xap-spring-data](https://github.com/Gigaspaces/xap-spring-data) project and build it with maven using `mvn clean install`.
 

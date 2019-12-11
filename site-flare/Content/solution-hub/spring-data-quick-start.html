@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Building a Spring Data Application with <MadCap:variable name="General.ProductNameXAP" /></h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Aharon Moll</td>
+                    <td>14.5</td>
+                    <td>December 2019</td>
+                    <td>Spring Batch 5.1.7</td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>This topic explains how to build a Spring Data application with   <MadCap:variable name="General.ProductNameXAP" />, using the   Spring Data <MadCap:variable name="General.ProductNameXAP" /> library to store and retrieve POJOs.</p>
+        <div class="tc-admon-note">
+            <p>This project was created using the following software versions:</p>
+            <ul>
+                <li> <MadCap:variable name="General.ProductNameXAP" /> release 14.5</li>
+                <li>Spring versions 5.2.0 and 5.1.7 (Spring version 5.1.7 is officially supported by <MadCap:variable name="General.ProductNameXAP" /> release 14.5)</li>
+            </ul>
+        </div>
+        <h1>Installation</h1>
+        <p>Before using this guide, you have to download [GigaSpaces XAP](http://www.gigaspaces.com/download-center) and install the maven plugin. If you're not familiar with Maven, refer to [Building Java Projects with Maven](https://spring.io/guides/gs/maven/).</p>
+        <p>To install the XAP maven plugin run the `installmavenrep` script:</p>
+        <p>use the CLI maven install command.</p>
+        <p>Download the [xap-spring-data](https://github.com/Gigaspaces/xap-spring-data) project and build it with maven using `mvn clean install`.</p>
+        <p>The recommended way to get started using spring-data-xap in your project is with a dependency management system - the snippet below can be copied and pasted into your build.</p><pre><code class="language-xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.data&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-data-xap&lt;/artifactId&gt;
+         &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+        <h1>Define a Simple Entity</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> is a powerful In-Memory Data Grid that stores data in Spaces, and each Space can be configured in a different manner (replicated, partitioned, etc). With this example we will use an Embedded Space that is running as part of your program. There is no need to run a separate data grid.</p>
+        <p>With this example, we store <code>Book</code> objects.</p><pre><code class="language-java">package hello;
+
+import com.gigaspaces.annotation.pojo.SpaceClass;
+import com.gigaspaces.annotation.pojo.SpaceId;
+
+import java.io.Serializable;
+
+@SpaceClass
+public class Book implements Serializable {
+
+    String id;
+
+    String author;
+
+    Integer copies;
+
+    public Book(){}
+
+    public Book(String id, String author, Integer copies) {
+        this.id = id;
+        this.author = author;
+        this.copies = copies;
+    }
+
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    @SpaceId(autoGenerate = false)
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Integer getCopies() {
+        return copies;
+    }
+
+    public void setCopies(Integer copies) {
+        this.copies = copies;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id='" + id + '\'' +
+                ", author='" + author + '\'' +
+                ", copies=" + copies +
+                '}';
+    }
+}</code></pre>
+        <p>Here you have a <code>Book</code> class with three attributes, the <code>id</code>, the <code>author</code> and the <code>copies</code>. You also have the constructor to populate the entities when creating a new instance and the default constructor.</p>
+        <p>Notice that this class is annotated <code>@SpaceClass</code>. This annotation is not mandatory, you can write objects to the Space without it, but it's used to provide an additional <span class="tc-highlight">[metadata]({{%latestjavaurl%}}/modeling-your-data.html).</span></p>
+        <p>This class also has a getter for `id` marked with `@SpaceId`. This property uniquely identifies the object within the Space, and is similar to a primary key in a database.</p>
+        <p>The next important piece is the number of book copies. Later in this guide, you will use it to demonstrate some queries.</p>
+        <p>The convenient `toString()` method will print out the book's id, author and copies.</p>
+        <h1>Create simple queries</h1>
+        <p>Spring Data XAP focuses on storing data in XAP. It also inherits powerful functionality from the `Spring Data Commons` project, such as the ability to derive queries. Essentially, you don't have to learn the query language of   XAP; you can simply write a handful of methods and the queries are generated for you.</p>
+        <p>To see how this works, lets create an interface that queries `Book` space objects.</p><pre xml:space="preserve"><code class="language-java">package hello;
+
+import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
+
+public interface BookRepository extends CrudRepository&lt;Book, String&gt; {
+
+    List&lt;Book&gt; findByAuthor(String author);
+
+    List&lt;Book&gt; findByCopiesLessThan(Integer copies);
+
+    List&lt;Book&gt; findByAuthorOrCopiesGreaterThan(String author, Integer copies);
+
+}</code></pre>
+        <p>`BookRepository` extends the `CrudRepository` interface and plugs in the type of values and keys with: `Book` and `String`. Out-of-the-box, this interface comes with many operations, including standard CRUD (create-read-update-delete).</p>
+        <p>You can define other queries as needed by simply declaring their method signature. In this case, you add `findByAuthor`, which essentially seeks entities of type `Book` and find the ones that matches on `Author`.</p>
+        <p>You also have:</p>
+        <p>- `findByCopiesLessThan` to find books with a number of copies below a certain number</p>
+        <p>- `findByAuthorOrCopiesGreaterThan` to find books with a certain author or number of copies above a certain number</p>
+        <p>Let's wire this up and see what it looks like!</p>
+        <h1>Create your Program</h1>
+        <p>Here you create the Program class with all the components.</p><pre><code class="language-java">package hello;
+
+import org.openspaces.core.GigaSpace;
+import org.openspaces.core.GigaSpaceConfigurer;
+import org.openspaces.core.space.UrlSpaceConfigurer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.repository.core.support.RepositoryFactorySupport;
+
+import org.springframework.data.xap.repository.config.EnableXapRepositories;
+import org.springframework.data.xap.repository.support.XapRepositoryFactory;
+
+import java.io.IOException;
+
+@Configuration
+@EnableXapRepositories
+public class Application implements CommandLineRunner {
+
+    @Autowired
+    BookRepository bookRepository;
+
+    @Bean
+    GigaSpace spaceClient(){
+        UrlSpaceConfigurer urlConfigurer = new UrlSpaceConfigurer("/./testSpace");
+        return new GigaSpaceConfigurer(urlConfigurer).gigaSpace();
+    }
+
+    @Bean
+    BookRepository bookRepository(){
+        RepositoryFactorySupport factory = new XapRepositoryFactory(spaceClient(), null);
+        return factory.getRepository(BookRepository.class);
+    }
+
+    @Override
+    public void run(String... strings) throws Exception {
+
+        Book thinkingInJava = new Book("1234", "Eccel", 10000);
+        Book effectiveJava = new Book("2345", "Bloch", 20000);
+        Book springInAction = new Book("3456", "Walls", 50000);
+
+        System.out.println("Before writing objects to space...");
+        for (Book book : new Book[] { thinkingInJava, effectiveJava, springInAction }) {
+            System.out.println("\t" + book);
+        }
+
+        bookRepository.save(thinkingInJava);
+        bookRepository.save(effectiveJava);
+        bookRepository.save(springInAction);
+
+        System.out.println("Lookup books by author...");
+        for (String name : new String[] { thinkingInJava.author, effectiveJava.author, effectiveJava.author}) {
+            System.out.println("\t" + bookRepository.findByAuthor(name));
+        }
+
+        System.out.println("Lookup for less popular books...");
+        for (Book book : bookRepository.findByCopiesLessThan(15000)) {
+            System.out.println("\t" + book);
+        }
+
+        System.out.println("Lookup for popular books or books of specific author...");
+        for (Book book : bookRepository.findByAuthorOrCopiesGreaterThan("Bloch", 30000)) {
+            System.out.println("\t" + book);
+        }
+
+        System.exit(0);
+    }
+
+    public static void main(String[] args) throws IOException {
+        SpringApplication.run(Application.class, args);
+    }
+}</code></pre>
+        <p>- In the configuration, you need to add the `@EnableXapRepositories` annotation. The XAP Space is required to store all data. For that, you have the Spring Data XAP   `SpaceClient` bean. &lt;br&gt;</p>
+        <p>- The types are `&lt;String, Book&gt;`, matching the key type (`String`) with the value type (`Book`). &lt;br&gt;</p>
+        <p>- The `public static void main` uses Spring Boot's `SpringApplication.run()` to launch the application and invoke the `CommandLineRunner` that builds the relationships. &lt;br&gt;</p>
+        <p>- The application autowires an instance of `BookRepository` that you just defined. Spring Data XAP will dynamically create a concrete class that implements that interface and will plug in the needed query code to meet the interface's obligations. This repository instance is the used by the `run()` method to demonstrate the functionality.</p>
+        <p>{{%note%}}</p>
+        <p>The Space is created locally using built-in components and an evaluation license. For a production solutions, it is recommends that you use the production version of XAP, where you can create distributed Spaces across multiple nodes.</p>
+        <p>{{%/note%}}</p>
+        <p># Write and Read Objects</p>
+        <p>Lets create some `Book` instances, **SpringInAction**, **ThinkingInJava**, and **EffectiveJava**. Initially, they only exist in memory. After creating them, we store them in the Space.</p>
+        <p>Now we are ready to run some query:</p>
+        <p>- look up books by author&lt;br&gt;</p>
+        <p>- execute query to find less popular books&lt;br&gt;</p>
+        <p>- query to find popular books or books written by specific author</p>
+        <p>You should see something like this:</p><pre><code class="language-bash">Before writing objects to space...
+        Book{id='1234', author='Eccel', copies=10000}
+        Book{id='2345', author='Bloch', copies=20000}
+        Book{id='3456', author='Walls', copies=50000}
+    Lookup books by author...
+        [Book{id='1234', author='Eccel', copies=10000}]
+        [Book{id='2345', author='Bloch', copies=20000}]
+        [Book{id='2345', author='Bloch', copies=20000}]
+    Lookup for less popular books...
+        Book{id='1234', author='Eccel', copies=10000}
+    Lookup for popular books or books of specific author...
+        Book{id='2345', author='Bloch', copies=20000}
+        Book{id='3456', author='Walls', copies=50000}</code></pre>
+    </body>
+</html>
