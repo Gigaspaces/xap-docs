@@ -108,7 +108,7 @@ A web application is still just a processing unit. This means that a META-INF/sp
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../dev-java/web-application-overview.html">Web Application Support</a> section in the developer guide.</p>
         </div>
-        <h1><a name="jetty-instance"></a>Jetty Instance</h1>
+        <h1 class="tc-pagetitle"><a name="jetty-instance"></a>Jetty Instance</h1>
         <p>Jetty itself is configured using Spring, and allows you to control all aspects of both the Jetty instance created, and the web application context. There are two flavors of how Jetty instances are created (by default). The first is the plain mode, where a Jetty instance is created for each web processing unit instance running within a GSC. The second is the shared mode, where a single Jetty instance is created, and shared between all the different web processing unit instances running on the same GSC. A custom Jetty instantiation and handling can also be configured.</p>
         <div class="tc-align-center">
             <img src="../Resources/Static/attachment_files/qsg/web_app_archi.jpg" class="tc-picture80" />
@@ -117,8 +117,8 @@ A web application is still just a processing unit. This means that a META-INF/sp
             <p>For more information, see the <a href="../dev-java/web-application-overview.html">Web Application Support</a> section in the developer guide.</p>
         </div>
         <h1><a name="http-session-management"></a>HTTP Session Management</h1>
-        <p>The XAP-Jetty integration comes with a support for storing the javax.servlet.http.HttpSession in the Space allowing supporting session replication and failover between different web application instances deployed into GigaSpaces containers.</p>
-        <p>The GigaSpaces HTTP Session Management provides the following:</p>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> Jetty integration comes with a support for storing the javax.servlet.http.HttpSession in the Space allowing supporting session replication and failover between different web application instances deployed into GigaSpaces containers.</p>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> HTTP Session Management provides the following:</p>
         <ul>
             <li>
                 <p>Avoid using database as the persistent storage media - Better performance and simplify the deployment</p>
@@ -212,7 +212,7 @@ When deploying, include within the META-INF/spring/pu.properties file the <code>
             <p>For more information, see the <a href="../dev-java/http-session-management.html">HTTP Session Management</a> page in the developer guide.</p>
         </div>
         <h1><a name="load-balancing"></a>Load Balancing</h1>
-        <p>When deploying a highly available web site, usually a load balancer is used to load balance requests between at least two instances of a web containers that run the web applications. When using <MadCap:variable name="General.DataGrid" /> to deploy web applications, running more than one instance of a web application becomes very easy. <MadCap:variable name="General.DataGridInitCap" /> comes with a built-in utility allowing you to dynamically update an Apache httpd web server load-balancing configuration, based on deployed web applications.</p>
+        <p>When deploying a highly available web site, usually a load balancer is used to load balance requests between at least two instances of a web containers that run the web applications. When using <MadCap:variable name="General.ProductNameXAP" /> to deploy web applications, running more than one instance of a web application becomes very easy. <MadCap:variable name="General.ProductNameXAP" /> comes with a built-in utility allowing you to dynamically update an Apache httpd web server load-balancing configuration, based on deployed web applications.</p>
         <p>The integration dynamically creates and updates the mod_proxy_balancer configuration, based on the state of the deployed web applications. Once changes occur (relocation / failover / changes to the number of web application instances), the utility identifies the change, updates the balancer configuration, and sends a soft restart to Apache to take the new configuration into account.</p>
         <div class="tc-align-center">
             <br />

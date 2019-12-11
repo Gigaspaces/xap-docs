@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1>Capacity Planning</h1>
+        <h1 class="tc-pagetitle">Capacity Planning</h1>
         <p>Capacity planning is calculating the number of machines your application requires. This is one of the most important tasks you must complete before moving into production and making your application available to your customers/users. Typically, it should be done during the early stages of your project, in order to budget for the hardware and relevant software products your system will use. At a minimum, capacity planning involves estimating the number of CPUs and cores plus the memory each machine must have.</p>
         <p>Another important deployment decision is to calculate the maximum number of data grid partitions the application requires. This deployment parameter determines the scalability of your application data grid. When the application is deployed, the number of data grid partitions remains constant, but their physical location, their activation mode (primary or backup), and hosting containers are dynamic.</p>
         <p>The data grid instances can fail and relocate themselves to another machine automatically. They can relocate as a result of an SLA (Service Level Agreement) event (for example - CPU and memory utilization breach), or they can relocate based on manual intervention by an administrator. This data grid "mobility" is a critical capability that, beyond providing the application with the ability to scale dynamically and self-heal itself, can prevent over-provisioning and unnecessary overbudgeting of your hardware. You can start small, and grow as needed with your hardware utilization. Your capacity planning should take this fact into consideration.</p>
