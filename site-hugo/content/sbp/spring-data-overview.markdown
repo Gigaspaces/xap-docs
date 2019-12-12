@@ -18,15 +18,15 @@ To start the Data Grid use the following command:
 {{%tab " Windows"%}}
 
 ```bash
-gs-agent.bat
-gs.bat deploy-space -cluster total_members=1,1 space
+gs.bat host run-agent --auto --gsc=2
+gs.bat space deploy --partitions=1 --ha space
 ```
 {{%/tab%}}
-{{%tab " Unix"%}}
+{{%tab " Linux"%}}
 
 ```bash
-./gs-agent.sh
-./gs.sh deploy-space -cluster total_members=1,1 space
+gs.sh host run-agent --auto --gsc=2
+gs.sh space deploy --partitions=1 --ha space
 ```
 {{%/tab%}}
 {{%/tabs%}}
