@@ -173,9 +173,9 @@ public interface BookRepository extends CrudRepository&lt;Book, String&gt; {
         <p>At this point, we can put everything together and build the actual Spring Data application.</p>
         <h1>Building the Application</h1>
         <h2>Creating your Program</h2>
-        <p>After all the necessary parts have been installed and configured, you can create the Program class with all the components. For example, see the code example below, which has the following characteristics:</p>
+        <p>After you have prepared your environment and populated the Space with some test data, you can create the Program class with all the components. For example, see the code example below, which has the following characteristics:</p>
         <ul>
-            <li>The `@EnableGigaspacesRepositories` annotation is added to the configuration.</li>
+            <li>The <code>@EnableGigaspacesRepositories</code> annotation is added to the configuration.</li>
             <li>The Space is required to store all data, which is done using the Spring Data <MadCap:variable name="General.ProductNameXAP" /> <code>SpaceClient</code> bean. </li>
             <li>The types are <code>&lt;String, Book&gt;</code>, matching the key type (<code>String</code>) with the value type (<code>Book</code>). </li>
             <li>The <code>public static void main</code> uses Spring Boot's <code>SpringApplication.run()</code> to launch the application and invoke the <code>CommandLineRunner</code> that builds the relationships. </li>
@@ -255,7 +255,7 @@ public class Application implements CommandLineRunner {
     }
 }</code></pre>
         <div class="tc-admon-note">
-            <p>The Space is created locally using built-in components and an evaluation license. For a production solution,  use the production version of <MadCap:variable name="General.ProductNameXAP" />, where you can create distributed Spaces across multiple nodes.</p>
+            <p>In the above example, the Space is created locally using built-in components and an evaluation license. For a production solution,  use the production version of <MadCap:variable name="General.ProductNameXAP" />, where you can create distributed Spaces across multiple nodes.</p>
         </div>
         <h2>Writing and Reading Objects</h2>
         <p>You can create some <code>Book</code> instances, such as <span class="tc-bold">SpringInAction</span>, <span class="tc-bold">ThinkingInJava</span>, and <span class="tc-bold">EffectiveJava</span>. Initially, they only exist in memory. After creating them, we store them in the Space. After the Book instances are created, you can run queries on them, for example:</p>
