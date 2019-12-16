@@ -173,13 +173,14 @@ public interface BookRepository extends CrudRepository&lt;Book, String&gt; {
         <p>At this point, we can put everything together and build the actual Spring Data application.</p>
         <h1>Building the Application</h1>
         <h2>Creating your Program</h2>
-        <p>After you have prepared your environment and populated the Space with some test data, you can create the Program class with all the components. For example, see the code example below, which has the following characteristics:</p>
+        <p>After you have prepared your environment and populated the Space with some test data, you can create the Program class with all the components, and then run your application. For example, see the code example below, which has the following characteristics:</p>
         <ul>
             <li>The <code>@EnableGigaspacesRepositories</code> annotation is added to the configuration.</li>
             <li>The Space is required to store all data, which is done using the Spring Data <MadCap:variable name="General.ProductNameXAP" /> <code>SpaceClient</code> bean. </li>
             <li>The types are <code>&lt;String, Book&gt;</code>, matching the key type (<code>String</code>) with the value type (<code>Book</code>). </li>
             <li>The <code>public static void main</code> uses Spring Boot's <code>SpringApplication.run()</code> to launch the application and invoke the <code>CommandLineRunner</code> that builds the relationships. </li>
             <li>The application autowires an instance of <code>BookRepository</code> that you just defined. Spring Data <MadCap:variable name="General.ProductNameXAP" /> dynamically creates a concrete class that implements that interface, and plugs in the needed query code to meet the interface's obligations. This repository instance is the used by the <code>run()</code> method to demonstrate the functionality.</li>
+            <li>To run the application, add <code>--spring.main.allow-bean-definition-overriding=true --spring.main.web-application-type=none</code>in your Program arguments.</li>
         </ul><pre><code class="language-java">package hello;
 
 import org.openspaces.core.GigaSpace;
