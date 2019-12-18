@@ -4,10 +4,10 @@
     </head>
     <body>
         <h1 class="tc-pagetitle"> Early Access</h1>
-        <p>There is currently no early access release available for evaluation.</p>
-        <p>This page contains early access information for version <MadCap:variable name="Versions.product-version-long" /> of <MadCap:variable name="General.CompanyName" /> products, scheduled for release during Q4 2019. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!</p>
+        <p MadCap:conditions="Default.DoNotShow">There is currently no early access release available for evaluation.</p>
+        <p>This page contains early access information for version <MadCap:variable name="Versions.product-version-long" /> of <MadCap:variable name="General.CompanyName" /> products, scheduled for release during Q1 2020. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!</p>
         <div class="tc-admon-attention">
-            <p>Early access builds are provided as is, and should not be used in production. The latest stable release is version 14.5.0.</p>
+            <p>Early access builds are provided as is, and should not be used in production. The latest stable release is version 15.0.0.</p>
             <p><a href="https://www.gigaspaces.com/download-center">Download</a> | <a href="https://docs.gigaspaces.com/latest/landing.html">Documentation</a></p>
         </div>
         <h1>15.2.0 M2 (Dec-16-2019)</h1>
@@ -19,19 +19,19 @@
         </ul>
         <h2>Changelog</h2>
         <h3>Features and Enhancements</h3>
-        <ul>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13967," />: Configure the log folder location via either the com.gs.logs system property or the GS_LOGS environment variable.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13966," />: Support environment variable configuration for system locations.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13963," />: Instantiate pending Processing Unit instances right after an undeploy event
-			.</li>
-        </ul>
+        <p>No features or enhancements were completed during this milestone</p>
         <h3>Resolved Issues</h3>
         <ul>
             <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13965," />: The request status of a failed RESTful increment instance command is incorrect due to an underlying NullPointerException.</li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13981," />: When the Kubernetes remote Space access is enabled for the Manager but disabled for the Space, proxies within Kubernetes connect to the Space using the public instead of the private IP address.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13980," />: Kubernetes Space-based remoting fails on minikube with the NodePort service type.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13978," />: The create container API creates a container with Java's default Xmx.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13972," />: Local view fails to start when locator is defined as IPv6.</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13976," />: The CPU metric displayed in the Grafana dashboard processing units shows the value in a range between 0 and 1 instead of 0 and 100.</li>
         </ul>
     </body>
 </html>
