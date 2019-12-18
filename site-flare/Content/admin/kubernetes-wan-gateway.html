@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Deploying a WAN Gateway in Kubernetes</h1>
+        <p>You can deploy a <MadCap:variable name="General.ProductNameXAP" /> WAN&#160;gateway in Kubernetes. The Kubernetes-based WAN gateway has all the functionality of the service-grid based WAN gateway, and provides multi-region replication for fast and efficient disaster recovery.</p>
+        <div class="tc-admon-note">
+            <p>For more information about the <MadCap:variable name="General.ProductNameXAP" />WAN gateway, see the <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref> section of the developer guide.</p>
+        </div>
+        <p>&#160;</p>
+        <p>2 AWS clusters deployed, one for US&#160;and one for DE. </p>
+        <p>prerequisites: 2 things that needed to be modified in the AWS user to enable creating 2 clusters that could connect to each other.</p>
+        <p>&#160;</p>
+        <p>steps to configure the cluster in AWS:</p>
+        <p>added a user with specific permissions. See doc from Saurahb.</p>
+        <p>add EKSadminuser role</p>
+        <p>cloudformation_full_access role</p>
+        <p>define role for K8s cluster.</p>
+        <p>&#160;</p>
+        <p>Security</p>
+        <p>assign trust relationship to K8s user.</p>
+        <p>&#160;</p>
+        <p>deploy the PUs in the clusters and view them in Ops Manager.</p>
+        <p>Can user the REST&#160;Manager API to see that the <MadCap:variable name="General.ProductNameXAP" /> environments are working. Containers will show the two zones. </p>
+        <p>Can use Apache Zeppelin to populate one side and see how the data is replicated (can connect to one cluster, write data</p>
+    </body>
+</html>
