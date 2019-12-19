@@ -43,8 +43,8 @@ In your project (assuming you build it with [Maven](http://maven.apache.org/)) a
     <!-- other dependency elements omitted -->
     <dependency>
         <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-xap</artifactId>
-        <version>1.0.0.RELEASE</version>
+        <artifactId>spring-data-gigaspaces</artifactId>
+        <version>14.5-SNAPSHOT</version>
     </dependency>
 </dependencies>
 ```
