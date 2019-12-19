@@ -6,23 +6,83 @@
         <h1 class="tc-pagetitle">Deploying a WAN Gateway in Kubernetes</h1>
         <p>You can deploy a <MadCap:variable name="General.ProductNameXAP" /> WAN&#160;gateway in Kubernetes. The Kubernetes-based WAN gateway has all the functionality of the service-grid based WAN gateway, and provides multi-region replication for fast and efficient disaster recovery.</p>
         <div class="tc-admon-note">
-            <p>For more information about the <MadCap:variable name="General.ProductNameXAP" />WAN gateway, see the <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref> section of the developer guide.</p>
+            <p>This topic assumes knowledge of how to set up a WAN&#160;gateway in <MadCap:variable name="General.ProductNameXAP" />. If you aren't familiar with how to configure a WAN gateway, see the <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref> section of the developer guide before you continue with the below procedure.</p>
         </div>
+        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
+        <p MadCap:conditions="Default.DoNotShow">2 AWS clusters deployed, one for US&#160;and one for DE. </p>
+        <p MadCap:conditions="Default.DoNotShow">prerequisites: 2 things that needed to be modified in the AWS user to enable creating 2 clusters that could connect to each other.</p>
+        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
+        <p MadCap:conditions="Default.DoNotShow">steps to configure the cluster in AWS:</p>
+        <p MadCap:conditions="Default.DoNotShow">added a user with specific permissions. See doc from Saurabh. Okta user didn't work.</p>
+        <p MadCap:conditions="Default.DoNotShow">add EKSadminuser role</p>
+        <p MadCap:conditions="Default.DoNotShow">cloudformation_full_access role</p>
+        <p MadCap:conditions="Default.DoNotShow">define role for K8s cluster.</p>
+        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
+        <p MadCap:conditions="Default.DoNotShow">Security</p>
+        <p MadCap:conditions="Default.DoNotShow">assign trust relationship to K8s user.</p>
+        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
+        <p MadCap:conditions="Default.DoNotShow">deploy the PUs in the clusters and view them in Ops Manager.</p>
+        <p MadCap:conditions="Default.DoNotShow">Can user the REST&#160;Manager API to see that the <MadCap:variable name="General.ProductNameXAP" /> environments are working. Containers will show the two zones. </p>
+        <p MadCap:conditions="Default.DoNotShow">Can use Apache Zeppelin to populate one side and see how the data is replicated (can connect to one cluster (zone), write data, see if the data is replicated in the other cluster/zone).</p>
+        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
+        <p MadCap:conditions="Default.DoNotShow">summary for configuring Amazon EKS&#160;side to support WAN gateway:</p>
+        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
+        <p MadCap:conditions="Default.DoNotShow">create user</p>
+        <p MadCap:conditions="Default.DoNotShow">assign role</p>
+        <p MadCap:conditions="Default.DoNotShow">assign trust relationship to the user you created (to enable using the CLI to deploy with Helm, etc.).</p>
+        <h1>Setting Up the WAN Gateway</h1>
+        <p>Defining a <MadCap:variable name="General.ProductNameXAP" /> WAN&#160;gateway for deployment in Kubernetes is no different from defining it for a service grid. You can create a pu.xml as described in <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref>. As you need the public IP&#160;address for both the delegator and sink Spaces, it is important to install the WAN&#160;gateway components in the following order in Kubernetes so that the Spaces have their public IP&#160;addresses assigned before you deploy the WAN&#160;gateway:</p>
+        <ol>
+            <li>Manager for each geographical zone</li>
+            <li>Space for each geographical zone</li>
+            <li>WAN gateway for each geographical zone</li>
+        </ol>
+        <p>The following procedure creates a WAN&#160;gateway environment for a cluster located geographically in the U.S. You will need the <MadCap:variable name="General.ProductNameXAP" /> Helm charts, and pu.xml files for the delegator, sink, and WAN gateway components.</p>
+        <h2>Configuring the Helm Chart</h2>
+        <p>Before you install the Helm chart for the <MadCap:variable name="General.ProductNameXAP" /> WAN gateway, you need to update it with the details that define the zone and access points, so that the delegator and sink will be able to communicate and replicate data across the network.</p>
+        <p class="tc-todo">To configure the WAN&#160;gateway Helm chart:</p>
+        <ol>
+            <li>
+                <p>Download the Helm charts as described in the <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref> topic. </p>
+            </li>
+            <li>
+                <p>Add the zone configuration. For example:</p><pre><code class="language-xml"> # heap: Define the size of the on-heap memory for each processing unit instance as either a percentage or an absolute value.
+  heap: limit-150Mi
+  # options: Configure additional Java options for each processing unit instance.
+  options:
+    -Dcom.gs.zones=US
+    -Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174
+    -Dcom.gigaspaces.start.httpPort=9713
+    -Dcom.gigaspaces.system.registryPort=10298</code></pre>
+            </li>
+        </ol>
+        <h2>Installing the WAN Gateway Components</h2>
+        <p>When the Helm chart has been configured correctly, you can begin installing the components. The Manager is always installed first, followed by the services that it will manage. </p>
+        <p class="tc-todo">To install the WAN&#160;gateway components:</p>
+        <ol>
+            <li>
+                <p>Install the Manager. You can use the default configuration.</p><pre><code class="language-bash">helm install insightedge --name demo-us</code></pre>
+            </li>
+            <li>
+                <p>To check the status of the host and services, use the following command:</p><pre><code class="language-bash">kubectl get all</code></pre>
+            </li>
+            <li>
+                <p>Deploy the Space service. You need to enable the LRMI&#160;service so that the Spaces can communicate with each other to replicate the data. (Note the public IP&#160;address that is assigned, so that you can add it to the WAN&#160;gateway pu.xml file. )</p><pre><code class="language-bash">helm install insightedge-pu --name spaceus --set manager.name=demo-us,service.lrmi.enabled=true,resourceUrl=&lt;path to US Space pu.xml&gt;</code><![CDATA[	]]></pre>
+            </li>
+            <li>Repeat step 3 for the second geographical location.</li>
+            <li>
+                <p>After updating the pu.xml file with the Space public IP&#160;addresses for both clusters, you can deploy the WAN&#160;gateways, which also must have the LRMI enabled.</p><pre><code class="language-bash">helm install insightedge-pu --name wangateway-us --set manager.name=demo-us,resourceUrl=&lt;path to WAN gateway pu.xml&gt;,service.lrmi.enabled=true</code></pre>
+            </li>
+        </ol>
+        <p>When all the components have been deployed, you can populate the delegator Space and verify that data replication occurs.</p>
+        <p MadCap:conditions="Default.DoNotShow">ScalaSpaceApp in github</p>
+        <div class="tc-admon-attention">
+            <p>If you have to take a Space and then redeploy it, the public IP&#160;address will change. The WAN&#160;gateway pu.xml must be updated accordingly.</p>
+        </div>
+        <p MadCap:conditions="Default.DoNotShow">then can use Zeppelin to test communication between the clusters.</p>
+        <p MadCap:conditions="Default.DoNotShow">if you want to see information about the WAN gateways you need to look in the logs. info currently not available in Ops Manager.</p>
         <p>&#160;</p>
-        <p>2 AWS clusters deployed, one for US&#160;and one for DE. </p>
-        <p>prerequisites: 2 things that needed to be modified in the AWS user to enable creating 2 clusters that could connect to each other.</p>
         <p>&#160;</p>
-        <p>steps to configure the cluster in AWS:</p>
-        <p>added a user with specific permissions. See doc from Saurahb.</p>
-        <p>add EKSadminuser role</p>
-        <p>cloudformation_full_access role</p>
-        <p>define role for K8s cluster.</p>
         <p>&#160;</p>
-        <p>Security</p>
-        <p>assign trust relationship to K8s user.</p>
-        <p>&#160;</p>
-        <p>deploy the PUs in the clusters and view them in Ops Manager.</p>
-        <p>Can user the REST&#160;Manager API to see that the <MadCap:variable name="General.ProductNameXAP" /> environments are working. Containers will show the two zones. </p>
-        <p>Can use Apache Zeppelin to populate one side and see how the data is replicated (can connect to one cluster, write data</p>
     </body>
 </html>
