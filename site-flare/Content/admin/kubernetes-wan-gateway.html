@@ -38,6 +38,11 @@
             <li>WAN gateway for each geographical zone</li>
         </ol>
         <p>The following procedure creates a WAN&#160;gateway environment for a cluster located geographically in the U.S. You will need the <MadCap:variable name="General.ProductNameXAP" /> Helm charts, and pu.xml files for the delegator, sink, and WAN gateway components.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/kubernetes/wan-gateway.png" class="tc-picture100" />
+            </p>
+        </div>
         <h2>Configuring the Helm Chart</h2>
         <p>Before you install the Helm chart for the <MadCap:variable name="General.ProductNameXAP" /> WAN gateway, you need to update it with the details that define the zone and access points, so that the delegator and sink will be able to communicate and replicate data across the network.</p>
         <p class="tc-todo">To configure the WAN&#160;gateway Helm chart:</p>
