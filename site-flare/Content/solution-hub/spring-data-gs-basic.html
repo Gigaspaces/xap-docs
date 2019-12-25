@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Using Spring Data with <MadCap:variable name="General.ProductNameXAP" /></h1>
+        <p>This section describes the basic usage of Spring Data with <MadCap:variable name="General.ProductNameXAP" />, namely how to define query methods. You can define methods using a specific query syntax as the method name, and the <MadCap:variable name="General.ProductNameXAP" /> repository proxy derives these methods into <MadCap:variable name="General.ProductNameXAP" /> queries. </p>
+        <div class="tc-admon-note">
+            <p>For a full explanation of this mechanism, see the <a href="http://docs.spring.io/spring-data/data-commons/docs/1.9.1.RELEASE/reference/html/#repositories.query-methods" target="_blank">Spring Data Reference</a> documentation. </p>
+        </div>
+        <h1>Defining Query Methods</h1>
+        <p>The following code snippet is an example of a repository declaration with different  methods:</p><pre><code class="language-java">public interface PersonRepository extends XapRepository&lt;Person, String&gt; {
+// you can query objects with exact field match
+List&lt;Person&gt; findByName(String name);
+List&lt;Person&gt; findByAge(Integer age);
+// you can use ranged of search for number fields
+List&lt;Person&gt; findByAgeBetween(Integer minAge, Integer maxAge);
+// you can use boolean expressions to define complex conditions
+List&lt;Person&gt; findByNameAndAge(String name, Integer age);
+List&lt;Person&gt; findByNameOrAge(String name, Integer age);
+}</code></pre>
+        <p>As you can see, different keywords can be used and combined to create desired conditions. The complete list of supported keywords is in <span class="tc-highlight">[Appendix A](./spring-data-appendix.html#appendix-a)</span>.</p>
+        <p>The process of deriving query methods into <MadCap:variable name="General.ProductNameXAP" /> queries depends in large part on the query lookup strategy you choose for the repository. Spring Data <MadCap:variable name="General.ProductNameXAP" /> supports all <a href="http://docs.spring.io/spring-data/data-commons/docs/1.9.1.RELEASE/reference/html/#repositories.query-methods.query-lookup-strategies" target="_blank">common strategies</a>.</p>
+        <p>The default strategy enables both deriving queries from method names and overriding them with custom defined queries. There are several ways to specify custom queries for a method.</p>
+        <h2>@Query Annotation</h2>
+        <p>The following example shows how to implement the <code>@Query</code> annotation on the method:</p><pre><code class="language-java">public interface PersonRepository extends XapRepository&lt;Person, String&gt; {
+@Query("name = ? order by name asc")
+List&lt;Person&gt; findByNameOrdered(String name);
+}</code></pre>
+        <p>The syntax used for <code>@Query</code> is similar to SQL queries.</p>
+        <div class="tc-admon-note">
+            <p>For a full list of SQL query feature, see the <MadCap:xref href="../dev-java/query-sql.html">SQL Query</MadCap:xref> topic in the documentation website. </p>
+        </div>
+        <h2> Importing Named Queries from an External Resource</h2>
+        <p>You can import named queries from an external resource, For example, if you have a <code>named-queries.properties</code> file in the classpath with the following content:</p><pre><code class="language-java">Person.findByNameOrdered=name = ? order by name asc</code></pre>
+        <p>The query strings defined in the file are applied to methods with same names in <code>PersonRepository</code> if you target <code>named-queries.properties</code> in the configuration. In an XML-based configuration, the <code>named-queries-location</code> attribute can be used as shown in the following example:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xap-data="http://www.springframework.org/schema/data/xap"
+xmlns="http://www.springframework.org/schema/beans"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/data/xap http://www.springframework.org/schema/data/xap/spring-xap-1.0.xsd"&gt;
+&lt;xap-data:repositories base-package="com.yourcompany.foo.bar"
+named-queries-location="classpath:named-queries.properties"/&gt;
+&lt;!-- other configuration omitted --&gt;
+&lt;/beans&gt;</code></pre>
+        <p>Similarly, the <code>namedQueriesLocation</code> annotation field can be used in a Java-based configuration, as shown here:</p><pre><code class="language-java">@Configuration
+@EnableXapRepositories(value = "com.yourcompany.foo.bar", namedQueriesLocation = "classpath:named-queries.properties")
+public class ContextConfiguration {
+// bean definitions omitted
+}</code></pre>
+        <h1>Custom Methods</h1>
+        <p>Custom methods can be added to repository interfaces. Spring Data allows you to provide custom repository code and still utilize basic CRUD features and query method functionality. To extend your repository, first define a separate interface with custom methods:</p><pre><code class="language-java">public interface PersonRepositoryCustom {
+String customMethod();
+}
+```
+Then you add an implementation for the defined interface:
+```java
+public class PersonRepositoryCustomImpl implements PersonRepositoryCustom {
+public String customMethod() {
+// your custom implementation
+}
+}</code></pre>
+        <div class="tc-admon-note">
+            <p>Spring Data recognizes an <code>Impl</code> suffix by default to look for custom method implementations.</p>
+        </div>
+        <p>The implementation itself does not depend on Spring Data, so you can inject other beans or property values using standard dependency injection. For example, you can inject <code>GigaSpaces</code> and use it directly in your custom methods.</p>
+        <p>Next, apply the interface with custom methods to your repository declaration as shown below:</p><pre><code class="language-java">public interface PersonRepository extends XapRepository&lt;Person, String&gt;, PersonRepositoryCustom {
+// query methods declarations are omitted
+}</code></pre>
+        <p>This combines basic CRUD methods and your custom functionality, and make it available to the client application.</p>
+        <p>Spring Data looks for implementations of custom methods among all classes located under the <code>base-package</code> attribute in XML or <code>basePackages</code> in Java configuration. It searches for <code>&lt;custom interface name&gt;&lt;suffix&gt;</code> classes, where the suffix is <code>Impl</code> by default. If your project conventions tell you to use another suffix for the implementations, you can specify it using the following syntax.</p>
+        <p>For XML configuration, use the <code>repository-impl-postfix</code> attribute:</p><pre><code class="language-xml">&lt;xap-data:repositories
+base-package="com.yourcompany.foo.bar"
+repository-impl-postfix="FooBar"/&gt;</code></pre>
+        <p>For Java configuration, use <code>repositoryImplementationPostfix</code>:</p><pre><code class="language-java">@Configuration
+@EnableXapRepositories(value = "com.yourcompany.foo.bar", repositoryImplementationPostfix = "FooBar")
+public class ContextConfiguration {
+// bean definitions omitted
+}</code></pre>
+        <p>Another option is to manually put the implementation into the context and use a proper name for it.</p>
+        <p> In XML configuration it looks like this:</p><pre><code class="language-xml">&lt;xap-data:repositories base-package="com.yourcompany.foo.bar"/&gt;
+&lt;bean id="personRepositoryImpl" class="..."&gt;
+&lt;!-- further configuration --&gt;
+&lt;/bean&gt;</code></pre>
+        <p>And similarly in Java-based configuration:</p><pre><code class="language-java">@Configuration
+@EnableXapRepositories("com.yourcompany.foo.bar")
+public class ContextConfiguration {
+@Bean
+public AnyClassHere personRepositoryImpl() {
+// further configuration
+}
+// other bean definitions omitted
+}</code></pre>
+    </body>
+</html>
