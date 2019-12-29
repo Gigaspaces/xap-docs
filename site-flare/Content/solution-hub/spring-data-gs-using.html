@@ -4,11 +4,11 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Using Spring Data with <MadCap:variable name="General.ProductNameXAP" /></h1>
-        <p>This topic describes how to use Spring Data with <MadCap:variable name="General.ProductNameXAP" />. It begins with explaining how to define query methods; you can define methods using a specific query syntax as the method name, and the <MadCap:variable name="General.ProductNameXAP" /> repository proxy derives these methods into <MadCap:variable name="General.ProductNameXAP" /> queries. </p>
+        <p>This topic describes how to use Spring Data with <MadCap:variable name="General.ProductNameXAP" />. It explains how to define query methods; you can use a specific query syntax as the method name, and the <MadCap:variable name="General.ProductNameXAP" /> repository proxy derives these methods into <MadCap:variable name="General.ProductNameXAP" /> queries. </p>
         <div class="tc-admon-note">
             <p>For a full explanation of this mechanism, see the <a href="http://docs.spring.io/spring-data/data-commons/docs/1.9.1.RELEASE/reference/html/#repositories.query-methods" target="_blank">Spring Data Reference</a> documentation. </p>
         </div>
-        <p>After covering the basic usage of Spring Data with <MadCap:variable name="General.ProductNameXAP" />, more advanced features are also described, such as Projection API, Change API, transactions, and support for document storage.</p>
+        <p>After covering the basic usage of Spring Data with <MadCap:variable name="General.ProductNameXAP" />, more advanced features are also described, such as Projection API, Change API, transactions, and Document storage.</p>
         <h1>Basic Usage</h1>
         <h2>Defining Query Methods</h2>
         <p>The following code snippet is an example of a repository declaration with different  methods:</p><pre><![CDATA[
@@ -34,7 +34,8 @@ List&lt;PersonDocument&gt; findByCustomField(String value);
 @Query("age = ? order by id asc")
 List&lt;PersonDocument&gt; findByAgeSortedById(Integer age);
 }</code></pre>
-        <p>As you can see, different keywords can be used and combined to create desired conditions. The complete list of supported keywords is in <span class="tc-highlight">[Appendix A](./spring-data-appendix.html#appendix-a)</span>.</p>
+        <p>As you can see, different keywords can be used and combined to create desired conditions. </p>
+        <p>For a complete list of supported keywords, see <MadCap:xref href="spring-data-gs-appendix.html">Spring Data [%=General.ProductNameXAP%] Appendix</MadCap:xref>.</p>
         <p>The process of deriving query methods into <MadCap:variable name="General.ProductNameXAP" /> queries depends in large part on the query lookup strategy you choose for the repository. Spring Data <MadCap:variable name="General.ProductNameXAP" /> supports all <a href="http://docs.spring.io/spring-data/data-commons/docs/1.9.1.RELEASE/reference/html/#repositories.query-methods.query-lookup-strategies" target="_blank">common strategies</a>.</p>
         <p>The default strategy enables both deriving queries from method names and overriding them with custom defined queries. There are several ways to specify custom queries for a method.</p>
         <h3>@Query Annotation</h3>
@@ -44,7 +45,7 @@ List&lt;Person&gt; findByNameOrdered(String name);
 }</code></pre>
         <p>The syntax used for <code>@Query</code> is similar to SQL queries.</p>
         <div class="tc-admon-note">
-            <p>For a full list of SQL query feature, see the <MadCap:xref href="../dev-java/query-sql.html">SQL Query</MadCap:xref> topic in the documentation website. </p>
+            <p>For a full list of SQL query features, see the <MadCap:xref href="../dev-java/query-sql.html">SQL Query</MadCap:xref> topic in the documentation website. </p>
         </div>
         <h3> Importing Named Queries from an External Resource</h3>
         <p>You can import named queries from an external resource, For example, if you have a <code>named-queries.properties</code> file in the classpath with the following content:</p><pre><code class="language-java">Person.findByNameOrdered=name = ? order by name asc</code></pre>
@@ -79,26 +80,36 @@ public String customMethod() {
         <div class="tc-admon-note">
             <p>Spring Data recognizes an <code>Impl</code> suffix by default to look for custom method implementations.</p>
         </div>
-        <p>The implementation itself does not depend on Spring Data, so you can inject other beans or property values using standard dependency injection. For example, you can inject <code>GigaSpaces</code> and use it directly in your custom methods.</p>
+        <p>The implementation itself doesn't depend on Spring Data, so you can inject other beans or property values using standard dependency injection. For example, you can inject <code>GigaSpaces</code> and use it directly in your custom methods.</p>
         <p>Next, apply the interface with custom methods to your repository declaration as shown below:</p><pre><code class="language-java">public interface PersonRepository extends XapRepository&lt;Person, String&gt;, PersonRepositoryCustom {
 // query methods declarations are omitted
 }</code></pre>
-        <p>This combines basic CRUD methods and your custom functionality, and make it available to the client application.</p>
+        <p>This combines basic CRUD methods and your custom functionality, and makes it available to the client application.</p>
         <p>Spring Data looks for implementations of custom methods among all classes located under the <code>base-package</code> attribute in XML or <code>basePackages</code> in Java configuration. It searches for <code>&lt;custom interface name&gt;&lt;suffix&gt;</code> classes, where the suffix is <code>Impl</code> by default. If your project conventions tell you to use another suffix for the implementations, you can specify it using the following syntax.</p>
-        <p>For XML configuration, use the <code>repository-impl-postfix</code> attribute:</p><pre><code class="language-xml">&lt;xap-data:repositories
+        <div class="easyui-tabs" plain="true">
+            <div title="XML">
+                <p>For XML configuration, use the <code>repository-impl-postfix</code> attribute:</p><pre><code class="language-xml">&lt;xap-data:repositories
 base-package="com.yourcompany.foo.bar"
 repository-impl-postfix="FooBar"/&gt;</code></pre>
-        <p>For Java configuration, use <code>repositoryImplementationPostfix</code>:</p><pre><code class="language-java">@Configuration
+            </div>
+            <div title="Java">
+                <p>For Java configuration, use <code>repositoryImplementationPostfix</code>:</p><pre><code class="language-java">@Configuration
 @EnableXapRepositories(value = "com.yourcompany.foo.bar", repositoryImplementationPostfix = "FooBar")
 public class ContextConfiguration {
 // bean definitions omitted
 }</code></pre>
+            </div>
+        </div>
         <p>Another option is to manually put the implementation into the context and use a proper name for it.</p>
-        <p> In XML configuration it looks like this:</p><pre><code class="language-xml">&lt;xap-data:repositories base-package="com.yourcompany.foo.bar"/&gt;
+        <div class="easyui-tabs" plain="true">
+            <div title="XML">
+                <p> In XML configuration it looks like this:</p><pre><code class="language-xml">&lt;xap-data:repositories base-package="com.yourcompany.foo.bar"/&gt;
 &lt;bean id="personRepositoryImpl" class="..."&gt;
 &lt;!-- further configuration --&gt;
 &lt;/bean&gt;</code></pre>
-        <p>And similarly in Java-based configuration:</p><pre><code class="language-java">@Configuration
+            </div>
+            <div title="Java">
+                <p>And similarly in Java-based configuration:</p><pre><code class="language-java">@Configuration
 @EnableXapRepositories("com.yourcompany.foo.bar")
 public class ContextConfiguration {
 @Bean
@@ -107,6 +118,8 @@ public AnyClassHere personRepositoryImpl() {
 }
 // other bean definitions omitted
 }</code></pre>
+            </div>
+        </div>
         <h1>Advanced Usage</h1>
         <p>This section describes some of the more advanced features available through Spring Data <MadCap:variable name="General.ProductNameXAP" />.</p>
         <h2>Projection API</h2>
@@ -121,7 +134,7 @@ Iterable&lt;Person&gt; personList = repository.findAll(Projection.projections("n
 }
 }</code></pre>
         <div class="tc-admon-note">
-            <p>If you are using Querydsl support, you can apply projection using <code>QueryDslProjection</code>. This approach helps prevent run-time errors when the POJO field is renamed but the projection fields aren't, because they are just strings.</p>
+            <p>If you are using Querydsl support, you can apply projection using <code>QueryDslProjection</code>. This approach helps prevent runtime errors when the POJO field is renamed but the projection fields aren't, because they are just strings.</p>
         </div>
         <p>You can also supply your query methods with <code>Projection</code> by adding an additional argument to the method declaration:</p><pre><code class="language-java">public interface PersonRepository extends XapRepository&lt;Person, String&gt; {
 List&lt;Person&gt; findByName(String name, Projection projection);
@@ -145,7 +158,7 @@ List&lt;Person&gt; findByName(String name, Projection projection);
                 </div>
             </li>
             <li>
-                <p>Add the source processor to your Maven build (the pom.xml file) using the Maven Annotation Processing Tool plugin:</p><pre><code class="language-xml">&lt;project&gt;
+                <p>Add the source processor to your Maven build (the pom.xml file) using the Maven Annotation Processing Tool plugin. This configuration calls <code>XapQueryDslAnnotationProcessor</code> before compiling your project sources. It looks for POJOs marked with <code>@SpaceClass</code> annotation and generates <code>Q...</code> classes for them that allow you to build up Querydsl <code>Predicate</code>s. </p><pre><code class="language-xml">&lt;project&gt;
 &lt;build&gt;
 &lt;plugins&gt;
 ...
@@ -171,7 +184,7 @@ List&lt;Person&gt; findByName(String name, Projection projection);
 &lt;/project&gt;</code></pre>
             </li>
             <li>
-                <p>This configuration calls <code>XapQueryDslAnnotationProcessor</code> before compiling your project sources. It looks for POJOs marked with <code>@SpaceClass</code> annotation and generates <code>Q...</code> classes for them that allow you to build up Querydsl <code>Predicate</code>s. Before using these classes, you have to call this processor with <code>process-sources</code> Maven goal, or just call <code>install</code> if you are already using it:</p><pre><code class="language-bash">mvn clean process-sources
+                <p>Before using these classes, you have to call this processor with <code>process-sources</code> Maven goal, or just call <code>install</code> if you are already using it:</p><pre><code class="language-bash">mvn clean process-sources
 mvn clean install</code><![CDATA[
 ]]></pre>
             </li>
@@ -188,14 +201,14 @@ QPerson.person.name.isNotNull().and(QPerson.person.age.between(minAge, maxAge))
 }</code></pre>
             </li>
         </ol>
-        <p>A full list of supported <code>Predicate</code> methods can be found in<span class="tc-highlight"> [Appendix B](./spring-data-appendix.html#appendix-b)</span>.</p>
+        <p>For a full list of supported <code>Predicate</code> methods, see the <MadCap:xref href="spring-data-gs-appendix.html">Spring Data [%=General.ProductNameXAP%] Appendix</MadCap:xref>.</p>
         <h2>Change API</h2>
         <p>Spring Data <MadCap:variable name="General.ProductNameXAP" /> supports the <MadCap:variable name="General.ProductNameXAP" /> <MadCap:xref href="../dev-java/change-api-overview.html">Change API</MadCap:xref>, which allows updating existing objects in a Space by specifying only the required change instead of passing the entire updated object. This reduces network traffic between the client and the Space. It also can prevent having to read the existing object prior to the change operation, because the change operation can specify how to change the existing property without knowing its current value.</p>
         <p>There are two ways you can use Change API within the <MadCap:variable name="General.ProductNameXAP" /> repositories. </p>
+        <h3>Calling the Native Change API</h3>
         <p>The first option is to call the native Change API by accessing <code>space()</code> in <code>XapRepository</code>. For this option, the <code>GigaSpace.change</code> methods can be used along with <code>ChangeSet</code> class .</p>
-        <div class="tc-admon-note">
-            <p>For a full explanation and code examples, see the <MadCap:xref href="../dev-java/change-api-overview.html">Change API</MadCap:xref> section of the documentation website.</p>
-        </div>
+        <p>For a full explanation and code examples, see the <MadCap:xref href="../dev-java/change-api-overview.html">Change API</MadCap:xref> section of the documentation website.</p>
+        <h3>Using the Change API&#160;with Qerysdl Syntax</h3>
         <p>The second option is to use <code>XapQueryDslPredicateExecutor.change</code> method built in Querydsl style. It accepts the <code>QChangeSet</code> argument, which is just a <code>ChangeSet</code> with Querydsl syntax:</p><pre><code class="language-java">@Service
 public class PersonServiceImpl implements PersonService {
 @Autowired
@@ -210,7 +223,7 @@ QChangeSet.changeSet().increment(QPerson.person.age, 1)
         <div class="tc-admon-note">
             <p>The Querydsl Support section above explains how to use APIs like the Change API with Querydsl syntax.</p>
         </div>
-        <p>The full list of supported change methods can be found in <span class="tc-highlight">[Appendix C](./spring-data-appendix.html#appendix-c)</span>.</p>
+        <p>For a full list of supported Change API methods, see the <MadCap:xref href="spring-data-gs-appendix.html">Spring Data [%=General.ProductNameXAP%] Appendix</MadCap:xref>.</p>
         <h2>Take Operations</h2>
         <p>Spring Data <MadCap:variable name="General.ProductNameXAP" /> supports take operations, which work in the same way as querying the Space, but returned objects are deleted from storage. With this approach there is no need for additional operations when you implement a pattern where consumers or workers are receiving tasks or messages.</p>
         <p>A basic take operation can be performed using object IDs with <code>take(...)</code> methods in the <code>XapRepository</code> interface. More advanced querying is available in Querydsl style using the <code>XapQueryDslPredicateExecutor</code> interface, which accepts <code>Predicate</code> to retrieve one or multiple objects that match the query:</p><pre><code class="language-java">@Service
@@ -232,9 +245,7 @@ return repository.takeOne(QPerson.person.name.eq(name));
             <li>Successfully renewing a lease extends the time period during which the lease is in effect.</li>
             <li>Canceling the lease drops the lease immediately.</li>
         </ul>
-        <div class="tc-admon-note">
-            <p>For more information about leasing, see the <MadCap:xref href="../dev-java/leases-automatic-expiration.html">Lease Time</MadCap:xref> topic in the developer section of the documentation website.</p>
-        </div>
+        <p>For more information about leasing, see the <MadCap:xref href="../dev-java/leases-automatic-expiration.html">Lease Time</MadCap:xref> topic in the developer section of the documentation website.</p>
         <h2>Transactions</h2>
         <p>Spring Data <MadCap:variable name="General.ProductNameXAP" /> supports declarative Spring transactions based on OpenSpaces transaction managers. In order to apply transactional behavior, the transaction manager must be provided as a reference when constructing the <code>GigaSpace</code> bean. For example (using the distributed transaction manager):</p><pre><![CDATA[
 ]]><code class="language-xml">&lt;beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -266,9 +277,7 @@ public void transactionalMethod(Person person) {
 ...
 }
 }</code></pre>
-        <div class="tc-admon-note">
-            <p>For more information about transactions, see the<MadCap:xref href="../dev-java/transaction-overview.html">Transactions</MadCap:xref> section of the documentation website.</p>
-        </div>
+        <p>For more information about transactions, see the<MadCap:xref href="../dev-java/transaction-overview.html">Transactions</MadCap:xref> section of the documentation website.</p>
         <h2> Document Storage Support</h2>
         <p><MadCap:variable name="General.ProductNameXAP" />'s <MadCap:xref href="../dev-java/document-api.html">Document API</MadCap:xref> exposes the Space as a Document Store. A document, which is represented by the class <code>SpaceDocument</code>, is a collection of key-value pairs, where the keys are strings and the values are primitives, <code>String</code>, <code>Date</code>, other documents, or collections thereof. Most importantly, the Space is aware of the internal structure of a document, and so can index document properties at any nesting level and expose rich query semantics for retrieving documents.</p>
         <p>When using Spring Data <MadCap:variable name="General.ProductNameXAP" /> you can declare one or more of your repositories to be a Document Repository. To do so, you must first add a schema definition of the document type to the Space configuration in context:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" name="space"&gt;
@@ -287,9 +296,7 @@ public interface PersonDocumentRepository extends XapDocumentRepository&lt;Space
             <p>If you don't mark your Document Repository with a <code>@SpaceDocumentName</code> annotation, context configuration will fail.</p>
         </div>
         <p>Now <code>PersonDocumentRepository</code> has basic CRUD operations available for <code>SpaceDocument</code> entities.</p>
-        <div class="tc-admon-note">
-            <p> To read more on available document storage features, see the <MadCap:xref href="../dev-java/document-api.html">Document API</MadCap:xref> topic on the documentation website.</p>
-        </div>
+        <p>For more information about available document storage features, see the <MadCap:xref href="../dev-java/document-api.html">Document API</MadCap:xref> topic on the documentation website.</p>
         <p>While documents allow using a dynamic schema, they require give up Java's type-safety for working with typeless key-value pairs. Spring Data <MadCap:variable name="General.ProductNameXAP" /> supports extending the <code>SpaceDocument</code> class to provide a type-safe wrapper for documents that is much easier to code with, while maintaining the dynamic schema. For example, you can declare a <code>PersonDocument</code> wrapper:</p><pre><code class="language-java">public class PersonDocument extends SpaceDocument {
 public static final String TYPE_NAME = "Person";
 public static final String PROPERTY_ID = "id";
