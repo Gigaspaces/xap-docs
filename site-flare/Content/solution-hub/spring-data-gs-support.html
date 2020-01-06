@@ -28,33 +28,46 @@ gs.sh space deploy --partitions=1 --ha space</code></pre>
         <p>To use the <MadCap:variable name="General.ProductNameXAP" /> repository you need to provide a connection to the Space with an instance of <code>GigaSpace</code>. This can be configured with the Spring XML configuration.</p>
         <div class="easyui-tabs" plain="true">
             <div title="Space"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns:os-core="http://www.openspaces.org/schema/core"
-xmlns="http://www.springframework.org/schema/beans"
-xsi:schemaLocation="
-http://www.openspaces.org/schema/core
-http://www.openspaces.org/schema/10.1/core/openspaces-core.xsd
-http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"&gt;
-&lt;!-- A bean representing space proxy (requires active data grid with the same name) --&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:gigaspaces-data="http://www.springframework.org/schema/data/gigaspaces"
+      xmlns:context="http://www.springframework.org/schema/context"
+      xmlns:os-core="http://www.openspaces.org/schema/core"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/data/gigaspaces http://www.springframework.org/schema/data/gigaspaces/spring-data-gigaspaces-15.0.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.openspaces.org/schema/core http://www.openspaces.org/schema/15.0/core/openspaces-core.xsd"&gt;
+
+   &lt;context:annotation-config/&gt;
+   
+&lt;!-- A bean representing the Space proxy (requires an active data grid with the same name) --&gt;
 &lt;os-core:space-proxy id="space" name="space"/&gt;
+
 &lt;!-- GigaSpace interface implementation used for SpaceClient injection --&gt;
 &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
 &lt;/beans&gt;</code></pre>
             </div>
             <div title="Embedded Space"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns:os-core="http://www.openspaces.org/schema/core"
-xmlns="http://www.springframework.org/schema/beans"
-xsi:schemaLocation="
-http://www.openspaces.org/schema/core
-http://www.openspaces.org/schema/10.1/core/openspaces-core.xsd
-http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"&gt;
-&lt;!-- A bean representing an embedded space --&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:gigaspaces-data="http://www.springframework.org/schema/data/gigaspaces"
+      xmlns:context="http://www.springframework.org/schema/context"
+      xmlns:os-core="http://www.openspaces.org/schema/core"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/data/gigaspaces http://www.springframework.org/schema/data/gigaspaces/spring-data-gigaspaces-15.0.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.openspaces.org/schema/core http://www.openspaces.org/schema/15.0/core/openspaces-core.xsd"&gt;
+
+   &lt;context:annotation-config/&gt;
+   
+&lt;!-- A bean representing an embedded Space --&gt;
 &lt;os-core:embedded-space id="space" name="space"/&gt;
+
 &lt;!-- GigaSpace interface implementation used for SpaceClient injection --&gt;
 &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+
 &lt;/beans&gt;</code></pre>
             </div>
         </div>
