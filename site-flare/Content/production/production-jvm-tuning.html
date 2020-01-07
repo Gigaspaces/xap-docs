@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1>JVM Tuning</h1>
-        <p>In most cases, the applications that use <MadCap:variable name="General.ProductNameIE" /> and <MadCap:variable name="General.ProductNameXAP" /> are leveraging machines with very fast CPUs, where the amount of temporary objects created is relatively large for the JVM garbage collector to handle with its default settings. This means careful tuning of the JVM is very important to ensure stable and flawless behavior of the application.</p>
+        <p>In most cases, the applications that use  <MadCap:variable name="General.ProductNameXAP" /> are leveraging machines with very fast CPUs, where the amount of temporary objects created is relatively large for the JVM garbage collector to handle with its default settings. This means careful tuning of the JVM is very important to ensure stable and flawless behavior of the application.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/jvm-vm-memory.jpg" alt="image" class="tc-picture100" />
@@ -19,19 +19,22 @@
                 <p>GSC - The runtime environment. This is where the data grid and the deployed processing units run. This process requires the relevant tuning to address the memory capacity required. Number of GSCs should not exceed: <code>Total # of cores / 4</code>. With virtual machine setup you should have one GSC per VM.</p>
             </li>
             <li>
-                <p>GSM - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have two of these per <MadCap:variable name="General.ProductNameXAP" /> grid.</p>
+                <p>GSM - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have two of these per data grid.</p>
             </li>
             <li>
-                <p>LUS - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have two of these per <MadCap:variable name="General.ProductNameXAP" /> grid.</p>
+                <p>LUS - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have two of these per data grid.</p>
             </li>
             <li>
-                <p>ESM - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have one of this per <MadCap:variable name="General.ProductNameXAP" /> grid.</p>
-            </li>
-        </ul><pre><code class="language-bash"><MadCap:variable name="General.DataGrid" /> VM Memory size = 
-Guest OS Memory + JVM Memory for all GSCs + JVM Memory for GSM + JVM Memory for LUS + JVM Memory for ESM
-</code></pre><pre><code class="language-bash">JVM Memory for a GSC = 
+                <p>ESM - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have one of this per data grid.</p>
+                <p><span class="tc-bold"><MadCap:variable name="General.ProductNameXAP" /> VM Memory size = 
+Guest OS Memory + JVM Memory for all GSCs + JVM Memory for GSM + JVM Memory for LUS + JVM Memory for ESM</span><![CDATA[
+]]></p>
+                <p><span class="tc-bold">JVM Memory for a GSC = 
 JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrentThreads * (-Xss) + "extra memory"
-</code></pre>
+</span>
+                </p>
+            </li>
+        </ul>
         <h2><a name="space-object-footprint"></a>Space Object Footprint</h2>
         <p>It may be necessary to calculate the Space Object Footprint. For instructions on how to do this, refer to <a href="production-capacity-planning.html">Capacity Planning</a>.</p>
         <h3><a name="using-a-compound-index-to-reduce-the-index-footprint"></a>Using a Compound Index to Reduce the Index Footprint</h3>
@@ -60,23 +63,16 @@ JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrent
         </ul>
         <p>The redo logs swap over to the hard disk at some point, therefore is it recommended to place its location on an SSD drive. Do not use a regular hard drive to store redo log data. The redo log data footprint is similar to the actual raw data footprint without indexes.</p>
         <h2><a name="jvm-basic-settings"></a>JVM Basic Settings</h2>
-        <p>This section provides examples of the JVM settings that are recommended for applications that generate A large number of temporary objects. In such situations, you afford long pauses due to garbage collection activity. These settings are appropriate for cases where you are running a IMDG, or when the business logic and the IMDG are co-located. For example, an IMDG with co-located Polling/Notify containers, Task executors, or Service remoting.</p>
-        <h3><a name="jdk-1-6"></a>JDK 1.6</h3>
-        <p>The following JVM settings are for CMS mode, and are useful for low-latency scenarios:</p><pre><code class="language-bash">-server -Xms8g -Xmx8g -Xmn2g -XX:+UseConcMarkSweepGC -XX:+UseParNewGC
--XX:CMSInitiatingOccupancyFraction=60 -XX:+UseCMSInitiatingOccupancyOnly
--XX:MaxPermSize=256m -XX:+ExplicitGCInvokesConcurrent -XX:+UseCompressedOops
--XX:+CMSClassUnloadingEnabled -XX:+CMSParallelRemarkEnabled
-</code></pre>
-        <h3><a name="jdk-1-7-1-8"></a>JDK 1.7 - 1.8</h3>
+        <p>This section provides examples of the JVM settings that are recommended for applications that generate A large number of temporary objects. In such situations, you afford long pauses due to garbage collection activity. These settings are appropriate for cases where you are running a IMDG, or when the business logic and the data grid are co-located. For example, a data grid with co-located polling/notify containers, task executors, or Sservice remoting.</p>
+        <h3><a name="jdk-1-7-1-8"></a>JDK  1.8</h3>
         <p>The following JVM settings are for g1 mode, and are useful for low-latency scenarios:</p><pre><code class="language-bash">-server -Xms8g -Xmx8g -XX:+UseG1GC -XX:MaxGCPauseMillis=500 -XX:InitiatingHeapOccupancyPercent=50 -XX:+UseCompressedOops
-</code></pre>
-        <p>You can use the advanced options for JDK 1.7 with the following suggested values:</p><pre><code class="language-bash">-XX:MaxTenuringThreshold=25 -XX:ParallelGCThreads=8 -XX:ConcGCThreads=8 -XX:G1ReservePercent=10 -XX:G1HeapRegionSize=32m
 </code></pre>
         <div class="tc-admon-tip">
             <p>If your JVM is throwing an "OutOfMemoryException', the JVM process should be restarted. You will have to to add this property to your JVM setting:
 SUN -XX:+HeapDumpOnOutOfMemoryError -XX:OnOutOfMemoryError="kill -9 %p"
 JROCKIT -XXexitOnOutOfMemory</p>
         </div>
+        <p>For information on how to configure your environment for Java 11 or higher, refer to the page about <MadCap:xref href="../rn/java11-guidelines.html">Java 11 Guidelines</MadCap:xref> in the Release Notes.</p>
         <h2><a name="young-generation-size-xmn"></a>Young Generation Size (Xmn)</h2>
         <p>This setting controls the size of the heap allocated for the young generation objects (all the objects that have a short lifetime). Young generation objects are in a specific location in the heap, where the garbage collector passes frequently. All new objects are created in the young generation region (called "eden"). When an object survives (is still "alive") after more than 2-3 gc cleaning cycles, it will be moved to the "old generation" region; these objects are called "survivors". A recommended value for the <code>Xmn</code> should be 33% of the <code>Xmx</code> value.</p>
         <h2><a name="thread-stack-tuning-xss"></a>Thread Stack Tuning (Xss)</h2>
@@ -84,7 +80,7 @@ JROCKIT -XXexitOnOutOfMemory</p>
         <p>On Microsoft Windows OS, the default thread stack size is read from the binary (java.exe). As of Java SE 6, this value is 320k for 32-bit VMs and 1024k for 64-bit VMs.
 You can reduce your thread stack size by running with the -Xss option. For example:</p><pre><code class="language-bash">java -server -Xss384k
 </code></pre>
-        <p>In some versions of Microsoft Windows, the OS may round up thread stack sizes using very coarse granularity. If the requested size is less than the default size by 1K or more, the stack size is rounded up to the default; otherwise, the stack size is rounded up to a multiple of 1MB. 64k is the least amount of stack space allowed per thread.</p>
+        <p>In some versions of Microsoft Windows, the OS may round up thread stack sizes using very coarse granularity. If the requested size is less than the default size by 1K or more, the stack size is rounded up to the default; otherwise, the stack size is rounded up to a multiple of 1 MB. 64K is the least amount of stack space allowed per thread.</p>
         <h2><a name="extra-memory"></a>Extra Memory</h2>
         <p>Extra memory is the memory required for NIO direct memory buffers, JIT code cache, classloaders, Socket Buffers (receive/send), JNI, and GC internal info.
 Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pre><code class="language-java">com.gs.transport_protocol.lrmi.maxBufferSize X com.gs.transport_protocol.lrmi.max-threads
@@ -105,15 +101,7 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pr
                 </p>
             </li>
             <li>
-                <p><a href="http://stackoverflow.com/questions/8111310/java-7-jdk-7-garbage-collection-and-documentation" target="_blank">jdk7 garbage collection and documentation</a>
-                </p>
-            </li>
-            <li>
                 <p><a href="http://blog.sematext.com/2013/06/24/g1-cms-java-garbage-collector" target="_blank">g1 cms java garbage collector</a>
-                </p>
-            </li>
-            <li>
-                <p><a href="http://stackoverflow.com/questions/8262674/java7-g1-options" target="_blank">java7 g1 options</a>
                 </p>
             </li>
             <li>
@@ -132,14 +120,5 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pr
         <p>In order to provide the highest level of performance, <MadCap:variable name="General.ProductNameXAP" /> takes advantage of features in the Java language that allow for effective caching in the face of memory demands. In particular, the <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/ref/SoftReference.html" target="_blank">SoftReference</a> class is used to store data until there is a need for explicit garbage collection, at which point the data stored in soft references will be collected if possible. The system default is 1000, which represents the amount of time (in milliseconds) that objects will survive past their last reference. <code>-XX:SoftRefLRUPolicyMSPerMB</code> is the parameter that allows you to determine how much data is cached by allowing the JVM to control how long it endures; it is recommended to set this value to <span class="tc-bold">500</span> in active, dynamic systems:</p><pre><code class="language-bash">-XX:SoftRefLRUPolicyMSPerMB=500
 </code></pre>
         <p>The above means that softly reachable objects will remain alive for 500 milliseconds after the last time they were referenced.</p>
-        <h2><a name="permanent-generation-space"></a>Permanent Generation Space</h2>
-        <p>For applications that use relatively large amounts of third-party libraries (for example, the PU uses a large amount of JARs), the default permanent generation space size may not be adequate. If this is so, increase the permanent generation space size. Additionally, refer to the suggested parameters above that should be used together with the other CMS parameters (-XX:+CMSClassUnloadingEnabled). The following are suggested values:</p><pre><code class="language-bash">-XX:PermSize=512m -XX:MaxPermSize=512m
-</code></pre>
-        <div class="tc-admon-note">
-            <p><MadCap:variable name="General.ProductNameXAP" /> is a Java-based product. .NET applications that use <MadCap:variable name="General.ProductNameXAP" /> should also be aware of using the JVM libraries as part of the .NET client libraries.</p>
-        </div>
-        <div class="tc-admon-note">
-            <p>Refer to <a href="../admin/tuning-java-virtual-machines.html">Tuning Java Virtual Machines</a> and <a href="http://java.sun.com/javase/technologies/hotspot/gc/gc_tuning_6.html" target="_blank">Java SE 6 HotSpot Virtual Machine Garbage Collection Tuning</a> for more detailed JVM tuning recommendations.</p>
-        </div>
     </body>
 </html>
