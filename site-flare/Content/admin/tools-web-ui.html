@@ -18,7 +18,8 @@
         <p>The property:</p><pre><code class="language-java">-Dcom.gs.security.enabled=true
 </code></pre>
         <div class="tc-admon-note">
-            <p>The Lookup groups and Locators are loaded from the <code>setenv/setenv-overrides</code> script. ץ Lookup groups and Lookup Locators can be configured in the configuration files described in <a href="../started/common-environment-variables.html#extension">Configure Lookup Groups and Locators</a>.</p>
+            <p>The Lookup groups and Locators are loaded from the <code>setenv/setenv-overrides</code> script. They can be configured via the configuration files described in <MadCap:xref href="../started/common-environment-variables.html">Configuring the Environment Variables</MadCap:xref>.</p>
+            <p MadCap:conditions="Version.15-2-born">Additionally, if the Web Management Console is secured, it automatically signs out the user if there is no activity for a defined period of time. The default timeout is 10 minutes, which can be changed using the <code>Dcom.gs.web-ui.idle-session-timeout</code> system property.</p>
         </div>
         <h2><a name="security-properties-file"></a>Security Properties File</h2>
         <p>The security properties file is used to configure the <code>SecurityManager</code>, which is responsible for the authentication and authorization process. The <code>security.properties</code> file is common to all components and is usually located under <code>&lt;product&gt;/config/security/security.properties</code>. To only affect the Web Management Console, use <code>webui-security.properties</code> instead.</p>
