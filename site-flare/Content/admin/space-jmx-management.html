@@ -43,13 +43,12 @@
             </li>
         </ul>
         <p>Step 2. Click <span class="tc-bold">Launch JConsole</span>. </p>
-        <p>Step 3. This opens the JConsole (only if you are running JDK 1.5 and above) of the selected process.</p>
+        <p>Step 3. This opens the JConsole of the selected process.</p>
         <p>Step 4. You can browse the various MBeans.</p>
         <p>Step 5. Make sure you have a deployed space.   </p>
         <p>Step 6. Open a console and type the following command: <code>jconsole</code><br /></p>
         <div class="tc-admon-note">
-            <p>By default, operations in the MBeans <span class="tc-bold">Operations</span> tab that have <MadCap:variable name="General.ProductNameXAP" /> classes as their type are disabled. To enable these, type the following in your console:<br /><code>jconsole -J-Djava.class.path=%JAVA_HOME%\lib\jconsole.jar;GS_HOME\lib\required\xap-datagrid.jar</code> <br />
-Instead of <code>GS_HOME</code>, type the directory where GigaSpaces is installed on your computer.</p>
+            <p>By default, operations in the MBeans <span class="tc-bold">Operations</span> tab that have <MadCap:variable name="General.ProductNameXAP" /> classes as their type are disabled. To enable these, type the following in your console:<br /><code>jconsole -J-Djava.class.path=%JAVA_HOME%\lib\jconsole.jar;GS_HOME\lib\required\xap-datagrid.jar</code> <br />Instead of <code>GS_HOME</code>, type the directory where GigaSpaces is installed on your computer.</p>
         </div>
         <p>Step 7. Connect to the MBean server (choose one of the following options):</p>
         <ul>
@@ -69,19 +68,18 @@ Runtime.getRuntime().exec( "jconsole " + jndiURL );
         <h1><a name="remote-jconsole-connection"></a>Remote JConsole Connection</h1>
         <p>In order to enable monitoring and management from remote systems using JMX jconsole set the following system properties or use the setenv shell variable <span class="tc-bold">REMOTE_JMX</span></p><pre><code class="language-bash">REMOTE_JMX=-Dcom.sun.management.jmxremote.port=5001 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
 </code></pre>
-        <div class="tc-admon-note">
-            <p>For a secure JConsole, use -Dcom.gigaspaces.system.registryRetries=1 and -Dcom.gigaspaces.system.registryPort=5001 (same as the -Dcom.sun.management.jmxremote.port).</p>
-        </div>
-        <h1><a name="viewing-thread-cpu-usage-with-jdk-1-6"></a>Viewing Thread CPU Usage with JDK 1.6</h1>
+        <p>For a secure JConsole, use the following system properties:</p><pre><code class="language-bash">-Dcom.gigaspaces.system.registryRetries=1
+-Dcom.gigaspaces.system.registryPort=6060
+-Dcom.sun.management.jmxremote.port=6060
+-Dcom.sun.management.jmxremote 
+-Dcom.sun.management.jmxremote.authenticate=true
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.access.file=.../jmxremote.access
+-Dcom.sun.management.jmxremote.password.file=.../jmxremote.password</code></pre>
+        <h1><a name="viewing-thread-cpu-usage-with-jdk-1-6"></a>Viewing Thread CPU Usage </h1>
         <p>JConsole includes a <a href="https://arnhem.luminis.eu/top-threads-plugin-for-jconsole/" target="_blank">plugin</a> that displays CPU usage for each JVM thread. This tab is displayed using the <a href="http://java.sun.com/javase/[%=Versions.java-version%]/docs/technotes/guides/management/jconsole.html">-pluginpath</a> JConsole parameter (already implemented in GigaSpaces).</p>
         <p><span class="tc-bold">To view this tab in your JConsole</span>:</p>
         <ul>
-            <li>
-                <p>Install <a href="http://java.sun.com/javase/downloads/index.jsp">JDK 1.6</a> – download <span class="tc-bold">JDK 6 Update 2</span> as seen below:</p>
-                <p>
-                    <img src="../Resources/Static/attachment_files/space_JMX_7_JDK6.jpg" alt="space_JMX_7_JDK6.jpg" class="tc-picture80" />
-                </p>
-            </li>
             <li>
                 <p><a href="https://bitbucket.org/pjtr/topthreads/downloads/topthreads-1.1.jar">Download the topthreads.jar file</a> and add it to your <code><MadCap:variable name="General.HomePath" />\lib\platform\ui</code> folder.</p>
                 <div class="tc-admon-note">
