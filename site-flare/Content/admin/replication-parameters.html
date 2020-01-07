@@ -146,16 +146,13 @@
         <div class="tc-admon-refer">
             <p>For more info refer to <a href="space-instance-recovery.html">Space Instance Recovery</a></p>
         </div>
-        <h1><a name="redo-log-parameters"></a>Redo Log Parameters</h1>
+        <h1><a name="redo-log-parameters"></a>General Redo Log Parameters</h1>
         <table>
             <thead>
                 <tr>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
-                    <th>
-                    </th>
+                    <th>Property</th>
+                    <th>Description</th>
+                    <th>Default Value</th>
                 </tr>
             </thead>
             <tbody>
@@ -282,7 +279,8 @@
         <div class="tc-admon-refer">
             <p>For more information, refer to the <a href="controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</a> topic.</p>
         </div>
-        <h1><a name="durable-notifications-parameters"></a>Durable Notifications Parameters</h1>
+        <h1><a name="durable-notifications-parameters"></a>Durable Notification Parameters</h1>
+        <p>When configuring the redo log memory capacity, it needs to be smaller than the general redo log memory capacity (to prevent creating swap files).</p>
         <table>
             <thead>
                 <tr>
@@ -305,9 +303,10 @@
             </tbody>
         </table>
         <div class="tc-admon-refer">
-            <p>For more information about Durable Notfications, refer to the <a href="../dev-java/durable-notifications.html">Durable Notifications</a> topic in the Developer guide.</p>
+            <p>For more information about Durable Notifications, refer to the <a href="../dev-java/durable-notifications.html">Durable Notifications</a> topic in the Developer guide.</p>
         </div>
         <h1><a name="local-view-parameters"></a>Local View Parameters</h1>
+        <p>When configuring the redo log memory capacity for the local view, it needs to be smaller than the general redo log memory capacity (to prevent creating swap files).</p>
         <table>
             <thead>
                 <tr>

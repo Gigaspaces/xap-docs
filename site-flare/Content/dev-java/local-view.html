@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -130,6 +130,7 @@ GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
                 </tr>
             </tbody>
         </table>
+        <p>When configuring the redo log memory capacity for the local view, it needs to be smaller than the general redo log memory capacity (to prevent creating swap files).</p>
         <h3><a name="notifications"></a>Notifications</h3>
         <p>If local view synchronization is done using notifications, the round-trip-time can be configured using the <code>space-config.dist-cache.events.lease-renew.round-trip-time</code> custom property. For more information about this setting refer to <a href="session-based-messaging-api.html">Session Based Messaging API</a>.</p>
         <h2><a name="batch-synchronization"></a>Batch Synchronization</h2>
