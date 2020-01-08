@@ -3,10 +3,19 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Viewing the Deployed Processing Units</h1>
-        <p><span class="tc-bold">To view information about the deployed Processing Units:</span>
+        <h1 class="tc-pagetitle">Viewing the Deployed Services (Processing Units)</h1>
+        <p><span class="tc-bold">To view information about the deployed <MadCap:variable name="General.ProductNameXAP" /> services:</span>
         </p>
         <div class="easyui-tabs" plain="true" data-options="">
+            <div title="GigaSpaces Ops Manager" style="padding:10px">
+                <p>You can see the following information in the Service Overview:</p>
+                <ul>
+                    <li>Cluster performance:<ul><li>General status of all deployed services (healthy, degraded, unhealthy)</li><li>CPU&#160;performance (with average CPU usage, in percent)</li><li>RAM utilization (with current utilization, in percent)</li><li><p>IOPS by operation (reads, writes, takes, and executes)</p><div class="tc-admon-note"><p>You can show and hide which operations are shown in the graph.</p></div></li></ul></li>
+                    <li>Service information (per individual service):<ul><li>Service name</li><li>Service type (stateful, stateless, mirror, web, gateway)</li><li>Actual vs. planned instances</li><li>Number of availability or resource alerts </li></ul></li>
+                </ul>
+                <p>You can filter the view by service label, type, RAM&#160;utilization, and either alert severity or RAM&#160;utilization. You can also do a text search by service name.</p>
+                <p>To generate and download a service dump, click the icon in the top right corner of the page.</p>
+            </div>
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-bold">Processing Unit</span>
                 </p>
@@ -267,7 +276,7 @@
                     <tr>
                         <td>Status</td>
                         <td>
-                            <p>urrent status of the Processing Unit:
+                            <p>Current status of the Processing Unit:
         </p>
                             <ul>
                                 <li><span class="tc-bold">Intact</span> - the Processing Unit was successfully deployed and is operating normally.</li>
@@ -308,7 +317,7 @@
                 </table>
                 <p>If the Space is highlighted, you can click the <span class="tc-bold">Actions</span> icon and drill through to the Spaces view to see the Space details.</p>
             </div>
-            <div title="GigaSpaces Management Center" style="padding:10px">
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
                 <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
             </div>
             <div title="Administration API" style="padding:10px">

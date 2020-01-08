@@ -7,6 +7,27 @@
         <p><span class="tc-bold">To view the Space runtime information:</span>
         </p>
         <div class="easyui-tabs" plain="true" data-options="">
+            <div title="GigaSpaces Ops Manager" style="padding:10px" MadCap:conditions="Version.15-2-born">
+                <p>The Space Overview page has two tabs, one that shows all Spaces in the cluster, and one that shows only unhealthy Spaces. You can see your Spaces as cards that contain the following information:</p>
+                <ul>
+                    <li>Name of the associated service </li>
+                    <li>Name of the Space</li>
+                    <li>Number of partitions (if configured for high availability)</li>
+                    <li>Type of Space schema (for example, persistent or high availability)</li>
+                    <li>Current RAM&#160;utilization of the Space</li>
+                    <li>Maximum allocated RAM&#160;for the Space</li>
+                    <li>Number of object types in the Space</li>
+                    <li>Number of data entries to the Space</li>
+                </ul>
+                <p>You can filter the view by cache ratio, RAM&#160;utilization, or alert severity. You can also do a free text search by Space name.</p>
+                <p>Click a Space to drill through and see the following additional information in the Overview tab:</p>
+                <ul>
+                    <li>Entries per object type</li>
+                    <li>Data distribution per instance (for the past 5 minutes)</li>
+                    <li>Reads by instance (for the past 5 minutes)</li>
+                    <li>Object types</li>
+                </ul>
+            </div>
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-bold">Space</span>
                 </p>
@@ -316,7 +337,7 @@
                     </tr>
                 </table>
             </div>
-            <div title="GigaSpaces Management Center" style="padding:10px">
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
                 <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
             </div>
             <div title="Administration API" style="padding:10px">
