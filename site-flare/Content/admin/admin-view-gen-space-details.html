@@ -25,8 +25,38 @@
                     <li>Entries per object type</li>
                     <li>Data distribution per instance (for the past 5 minutes)</li>
                     <li>Reads by instance (for the past 5 minutes)</li>
-                    <li>Object types</li>
                 </ul>
+                <p>Object types are listed in a table that contains the following information:</p>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Name of the data object.</td>
+                    </tr>
+                    <tr>
+                        <td>Entries</td>
+                        <td>Number of entries for this object type.</td>
+                    </tr>
+                    <tr>
+                        <td>ID</td>
+                        <td>Pointer to the primary key of the data type in the Space.</td>
+                    </tr>
+                    <tr>
+                        <td>Indexes</td>
+                        <td>Number of indexes applied to this data object.</td>
+                    </tr>
+                    <tr>
+                        <td>Routing</td>
+                        <td>Pointer to the field that identifies the Space partition.</td>
+                    </tr>
+                    <tr>
+                        <td>Notify containers</td>
+                        <td>How many instances of this object type match a template in an event container.</td>
+                    </tr>
+                </table>
             </div>
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-bold">Space</span>
