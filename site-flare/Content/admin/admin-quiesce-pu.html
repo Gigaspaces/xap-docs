@@ -8,48 +8,6 @@
         <div class="tc-admon-note">
             <p>This functionality is not currently available in the Command Line Interface, REST Manager API, or Administration API.</p>
         </div>
-        <h2><a name="querying-a-space"></a>Querying a Space</h2>
-        <p>The Web Management Console and GigaSpaces Management Center support SQL queries, enabling users to perform actions on the data objects in the Space. For example, to query a specific class:</p><pre><code>SELECT * FROM my.company.com.MyPojo WHERE rownum &lt; 1000
-</code></pre>
-        <p><span class="tc-bold">To query a Space:</span>
-        </p>
-        <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Web Management Console" style="padding:10px">
-                <ol>
-                    <li>
-                        <p>In the Spaces view, highlight the Space or the Space instance you want to query.</p>
-                    </li>
-                    <li>
-                        <p>Display the Queries pane in the lower area of the view.</p>
-                    </li>
-                    <li>
-                        <p>Type a query, or click a data type from the Types pane.</p>
-                    </li>
-                    <li>
-                        <p>Click <span class="tc-bold">Execute Query</span>.</p>
-                        <p>The query is executed against the selected Space or Space instance. If there are too many results to display on a single web page, you can navigate using the paging controls at the bottom of the table. Paging is static (results are fetched once per execute request).</p>
-                    </li>
-                    <li>
-                        <p>If you have tried to run multiple queries, you can navigate between them using the <span class="tc-bold">Go Back</span>/<span class="tc-bold">Go Forward</span> buttons, or select a query from the dropdown lists next to these buttons.</p>
-                    </li>
-                    <li>
-                        <p>To export the results of a query:</p>
-                        <ol type="a" style="list-style-type: lower-alpha;">
-                            <li>
-                                <p>Click <span class="tc-bold">Export</span>.</p>
-                            </li>
-                            <li>
-                                <p>Select an action (<span class="tc-bold">Open</span>, <span class="tc-bold">Save</span>, or <span class="tc-bold">Cancel</span>).</p>
-                            </li>
-                        </ol>
-                        <p>The results are exported in a zipped CSV file.</p>
-                    </li>
-                </ol>
-            </div>
-            <div title="GigaSpaces Management Center" style="padding:10px">
-                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
-            </div>
-        </div>
         <h2><a name="deleting-data-from-a-space"></a>Deleting Data from a Space</h2>
         <p>You can clear data from a Space using SQL queries, or via the user interface.</p>
         <p><span class="tc-bold">To delete (clear) data from a Space:</span>
@@ -69,7 +27,7 @@
                 </ol>
                 <p>After you delete the data, you can verify it was removed by looking at the value of the Instances Count column for that data type.</p>
             </div>
-            <div title="GigaSpaces Management Center" style="padding:10px">
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
                 <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
             </div>
         </div>
@@ -174,7 +132,7 @@
                 </ol>
                 <p>The Quiesce Progress window displays the result of the Quiesce process (for example, "Quiesce completed successfully"), and a token that the administrator can use to perform actions on the Processing Unit while it is in quiesced state. It is recommended to copy this token from the window before clicking <span class="tc-bold">OK</span>.</p>
             </div>
-            <div title="GigaSpaces Management Center" style="padding:10px">
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
                 <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
             </div>
             <div title="Administration API" style="padding:10px">
@@ -269,7 +227,7 @@
                 </ol>
                 <p>When the Processing Unit is available again, the status in the Processing Unit view changes to Intact.</p>
             </div>
-            <div title="GigaSpaces Management Center" style="padding:10px">
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
                 <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
             </div>
             <div title="Administration API" style="padding:10px">
@@ -455,7 +413,7 @@ mySpace.getSpaceSuspendTypeChanged().remove(myListener);
                 </ol>
                 <p>The Processing Unit instance is not visible in the Processing Unit view until it has finished restarting. This can take several seconds.</p>
             </div>
-            <div title="GigaSpaces Management Center" style="padding:10px">
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
                 <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
             </div>
             <div title="Administration API" style="padding:10px">
@@ -568,7 +526,7 @@ mySpace.getSpaceSuspendTypeChanged().remove(myListener);
                 </ol>
                 <p>The Processing Unit state is Scheduled in the Processing Unit view until the instance is relocated and initiated. This can take several seconds.</p>
             </div>
-            <div title="GigaSpaces Management Center" style="padding:10px">
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
                 <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
             </div>
             <div title="Administration API" style="padding:10px">
@@ -654,7 +612,7 @@ mySpace.getSpaceSuspendTypeChanged().remove(myListener);
                     <p>This functionality is not available in the Web Management Console.</p>
                 </div>
             </div>
-            <div title="GigaSpaces Management Center" style="padding:10px">
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
                 <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
             </div>
             <div title="Administration API" style="padding:10px">
@@ -740,7 +698,7 @@ mySpace.getSpaceSuspendTypeChanged().remove(myListener);
                     <p>This functionality is not available in the Web Management Console.</p>
                 </div>
             </div>
-            <div title="GigaSpaces Management Center" style="padding:10px">
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
                 <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
             </div>
             <div title="Administration API" style="padding:10px">
