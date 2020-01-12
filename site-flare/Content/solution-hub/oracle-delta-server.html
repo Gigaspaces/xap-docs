@@ -20,7 +20,8 @@
                     <td>9.6</td>
                     <td>Nov 2013</td>
                     <td>&#160;</td>
-                    <td>&#160;</td>
+                    <td><a href="https://github.com/Gigaspaces/solution-hub/tree/master/oracle-delta-server">Oracle Delta Server example</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -34,7 +35,7 @@
             <p><a href="../Resources/Static/attachment_files/sbp/oracle-dserver.png"><img src="../Resources/Static/attachment_files/sbp/oracle-dserver.png" width="400" height="300" class="tc-picture30" /></a>
             </p>
         </div>
-        <p>We will show you how you can implement this scenario with <MadCap:variable name="General.ProductNameXAP" />. A fully functional example is available on <a href="https://github.com/Gigaspaces/oracle-delta-server">GitHub</a>.</p>
+        <p>We will show you how you can implement this scenario with <MadCap:variable name="General.ProductNameXAP" />. A fully functional example is available on <a href="https://github.com/Gigaspaces/solution-hub/tree/master/oracle-delta-server">GitHub</a>.</p>
         <h1><a name="database-change-notification">&#160;</a>Database Change Notification</h1>
         <p>Oracle's Database Change Notification enables client applications to register queries with the database and receive notifications in response to DML or DDL changes on the objects associated with the queries. The notifications are published by the database when the DML or DDL transaction commits. During registration, the application specifies a notification handler and associates a set of interesting queries with the notification handler. A notification handler can be either a server side PL/SQL procedure or a client side callback.</p>
         <p>When the database issues change notification, it can contain some or all of the following information:</p>
@@ -162,7 +163,7 @@ private void initialize() {
 </code></pre>
         <h1><a name="running-the-example">&#160;</a>Running the Example</h1>
         <ol>
-            <li>Download the <a href="https://github.com/Gigaspaces/oracle-delta-server">example</a> from Github.</li>
+            <li>Download the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/oracle-delta-server">example</a> from Github.</li>
             <li>Change the database properties according to your environment:</li>
         </ol><pre><code class="language-java"># Oracle Database Config
 db.type=oracle
