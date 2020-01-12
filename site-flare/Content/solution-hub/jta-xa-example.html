@@ -19,10 +19,8 @@
                     <td>Shravan (Sean) Kumar</td>
                     <td>8.0.1</td>
                     <td>April 2011</td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
+                    <td> </td>
+                    <td> <a href="https://github.com/Gigaspaces/solution-hub/tree/master/helloworld-jta">JTA-XA example</a></td>
                 </tr>
             </tbody>
         </table>
@@ -297,38 +295,67 @@ public class Message  {
             </div>
         </div>
         <h2><a name="running-the-example">&#160;</a>Running the Example</h2>
-        <p>Step 1. Download Apache ActiveMQ from <a href="http://activemq.apache.org/download.html">here</a>.</p>
-        <p>Step 2. Download Atomikos TransactionEssentials from <a href="http://www.atomikos.com/Main/TransactionsEssentialsDownloadForm">here</a>.</p>
-        <p>Step 3. Extract the <a href="/attachment_files/sbp/helloworld-jta.zip">example</a> archive into a folder (calling it &lt;helloworld-jta&gt;). Modify the setDevEnv.bat and build.properties files to have the proper paths for GigaSpaces home, Java home, ActiveMQ home and Atomikos home. Also modify the NIC_ADDR and locators variable to have the proper IP address.</p>
-        <p>Step 4. Open a command shell and navigate to the &lt;helloworld-jta&gt; folder.</p>
-        <p>Step 5. Run the <code>setDevEnv.bat</code> script in the &lt;helloworld-jta&gt; folder to set the environment variables.</p>
-        <p>Step 6. Copy the required JARs to the &lt;helloworld-jta&gt;\lib folder using the <code>copy-libs</code> ant task provided.</p><pre><code class="language-java"> build copy-libs
+        <ol>
+            <li>
+                <p>Download Apache ActiveMQ from <a href="http://activemq.apache.org/download.html">here</a>.</p>
+            </li>
+            <li>
+                <p>Download Atomikos TransactionEssentials from <a href="http://www.atomikos.com/Main/TransactionsEssentialsDownloadForm">here</a>.</p>
+            </li>
+            <li>
+                <p>Extract the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/helloworld-jta">example</a> archive into a folder (calling it &lt;helloworld-jta&gt;). Modify the setDevEnv.bat and build.properties files to have the proper paths for GigaSpaces home, Java home, ActiveMQ home and Atomikos home. Also modify the NIC_ADDR and locators variable to have the proper IP address.</p>
+            </li>
+            <li>
+                <p>Open a command shell and navigate to the &lt;helloworld-jta&gt; folder.</p>
+            </li>
+            <li>
+                <p>Run the <code>setDevEnv.bat</code> script in the &lt;helloworld-jta&gt; folder to set the environment variables.</p>
+            </li>
+            <li>
+                <p>Copy the required JARs to the &lt;helloworld-jta&gt;\lib folder using the <code>copy-libs</code> ant task provided.</p><pre><code class="language-java"> build copy-libs
 </code></pre>
-        <div class="tc-admon-note">
-            <p>The example was tested using the following product versions:</p>
-            <ul>
-                <li>GigaSpaces - <span class="tc-bold">8.0.1</span></li>
-                <li>Apache ActiveMQ - <span class="tc-bold">5.5</span></li>
-                <li>Atomikos TransactionEssentials - <span class="tc-bold">3.7.0</span></li>
-            </ul>
-            <p>If you are using different versions, please make sure all the equivalent JARs are reflected in the <code>copy-libs</code> ant task.</p>
-        </div>
-        <p>Step 7. Start a gs-ui instance using <code>gs-ui.bat</code> script in the &lt;helloworld-jta&gt;&gt; folder.</p>
-        <p>Step 8. Run <code>gs-agent.bat</code>  &lt;helloworld-jta&gt; folder, to start the data grid components (GSA,GSM, LUS, GSM).</p>
-        <p>Step 9. Start the ActiveMQ process using the &lt;ActiveMQHome&gt;<code>\bin\activemq.bat</code> script.</p>
-        <div class="tc-admon-note">
-            <p>If ActiveMQ is running on another server, remember to update the brokerURL in the <code>pu.xml</code> file.</p>
-        </div>
-        <p>Step 10. Deploy the processorSpace cluster by running the <code>deploy-processor</code> ant task.</p><pre><code class="language-java">build deploy-processor
+                <p>&#160;</p>
+                <div class="tc-admon-note">
+                    <p>The example was tested using the following product versions:</p>
+                    <ul>
+                        <li>GigaSpaces - <span class="tc-bold">8.0.1</span></li>
+                        <li>Apache ActiveMQ - <span class="tc-bold">5.5</span></li>
+                        <li>Atomikos TransactionEssentials - <span class="tc-bold">3.7.0</span></li>
+                    </ul>
+                    <p>If you are using different versions, please make sure all the equivalent JARs are reflected in the <code>copy-libs</code> ant task.</p>
+                </div>
+            </li>
+            <li>
+                <p>Start a gs-ui instance using <code>gs-ui.bat</code> script in the &lt;helloworld-jta&gt;&gt; folder.</p>
+            </li>
+            <li>
+                <p>Run <code>gs-agent.bat</code>  &lt;helloworld-jta&gt; folder, to start the data grid components (GSA,GSM, LUS, GSM).</p>
+            </li>
+            <li>
+                <p>Start the ActiveMQ process using the &lt;ActiveMQHome&gt;<code>\bin\activemq.bat</code> script.</p>
+                <div class="tc-admon-note">
+                    <p>If ActiveMQ is running on another server, remember to update the brokerURL in the <code>pu.xml</code> file.</p>
+                </div>
+            </li>
+            <li>
+                <p>Deploy the processorSpace cluster by running the <code>deploy-processor</code> ant task.</p><pre><code class="language-java">build deploy-processor
 </code></pre>
-        <p>Step 11. Run the feeder process using the <code>run-feeder</code> ant task.</p><pre><code class="language-java"> build run-feeder
+            </li>
+            <li>
+                <p>Run the feeder process using the <code>run-feeder</code> ant task.</p><pre><code class="language-java"> build run-feeder
 </code></pre>
-        <p>Step 12. If you check the data grid logs, you will notice that the Message-0 (id=0) is rolled back and all other messages are processed successfully and sent to the JMS server.</p>
-        <div class="tc-admon-note">
-            <p>Message-0 (id=0) will keep going back to the Polling container logic, because the space update and JMS message both are rolled back. This is done intentionally to demonstrate XA.</p>
-        </div>
-        <p>Step 13. You can validate the JMS messages received by the Queue using a test JMS client included. You can run the client using the <code>jms-client</code> ant task.</p><pre><code class="language-java"> build jms-client
+            </li>
+            <li>
+                <p>If you check the data grid logs, you will notice that the Message-0 (id=0) is rolled back and all other messages are processed successfully and sent to the JMS server.</p>
+                <div class="tc-admon-note">
+                    <p>Message-0 (id=0) will keep going back to the Polling container logic, because the space update and JMS message both are rolled back. This is done intentionally to demonstrate XA.</p>
+                </div>
+            </li>
+            <li>
+                <p>You can validate the JMS messages received by the Queue using a test JMS client included. You can run the client using the <code>jms-client</code> ant task.</p><pre><code class="language-java"> build jms-client
 </code></pre>
+            </li>
+        </ol>
         <h2><a name="references">&#160;</a>References</h2>
         <ul>
             <li>JTA/XA support information, <a href="https://docs.gigaspaces.com/latest/dev-java/transaction-management.html">Transaction Management</a>.</li>
