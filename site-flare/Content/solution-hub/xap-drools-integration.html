@@ -19,15 +19,14 @@
                     <td>Allen Terleto</td>
                     <td>10.0.1</td>
                     <td>September 2014</td>
-                    <td>
-                    </td>
-                    <td><a href="https://github.com/Gigaspaces/xap-drools-integration">Github link</a>
+                    <td>&#160;</td>
+                    <td><a href="https://github.com/Gigaspaces/solution-hub/tree/master/gigaspaces-drools-integration">Drools integration</a>
                     </td>
                 </tr>
             </tbody>
         </table>
         <h1><a name="summary">&#160;</a>Summary</h1>
-        <p>This article illustrates how to integrate the Drools Rule Engine with GigaSpaces <MadCap:variable name="General.DataGrid" />.</p>
+        <p>This article illustrates how to integrate the Drools Rule Engine with the GigaSpaces <MadCap:variable name="General.DataGrid" />.</p>
         <h1><a name="overview">&#160;</a>Overview</h1>
         <p>Drools is a business rule management system (BRMS) with a forward and backward chaining inference-based rules engine using an enhanced implementation of the <a href="http://en.wikipedia.org/wiki/Rete_algorithm">Rete algorithm</a>. Reasons to use Drools include:</p>
         <ul>
@@ -61,24 +60,24 @@ A package is a collection of rules and other related constructs, such as imports
             <li>Consistency</li>
             <li>Scalability</li>
         </ul>
-        <p>Let's discuss these gaps within the context of a stateless application hosted in clustered environment and explain how an integration with <MadCap:variable name="General.DataGrid" /> would benefit its use of Drools.</p>
+        <p>Let's discuss these gaps within the context of a stateless application hosted in clustered environment and explain how an integration with <MadCap:variable name="General.ProductNameXAP" /> would benefit its use of Drools.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/drools/drools2.png" alt="drools1" class="tc-picture80" />
             </p>
         </div>
         <h3><a name="distribution">&#160;</a>Distribution</h3>
-        <p>Drools was not created as a distributed solution. In order to maintain seamless load-balancing in a clustered environment, each instance of an enterprise application would require identical data in its <code>KnowledgeBase(s)</code>. Since <MadCap:variable name="General.DataGrid" /> is inherently a distributed environment it allows the clustered enterprise applications to distribute their rules across multiple <a href="https://docs.gigaspaces.com/latest/admin/data-partitioning.html">Data Grid partitions (Space)</a>. In addition, the enterprise applications would use a common reference proxy to the Space allowing them to avoid the burden on managing data locality.</p>
+        <p>Drools was not created as a distributed solution. In order to maintain seamless load-balancing in a clustered environment, each instance of an enterprise application would require identical data in its <code>KnowledgeBase(s)</code>. The <MadCap:variable name="General.ProductNameXAP" /> data grid is inherently a distributed environment, so it allows the clustered enterprise applications to distribute their rules across multiple <a href="https://docs.gigaspaces.com/latest/admin/data-partitioning.html">Data Grid partitions (Spaces)</a>. In addition, enterprise applications use a common reference proxy to the Space, allowing them to avoid the burden on managing data locality.</p>
         <h3><a name="failover">&#160;</a>Failover</h3>
-        <p>Without <MadCap:variable name="General.DataGrid" /> the data in the <code>KnowledgeBase</code> would be lost, in the case of node failure within the cluster, and could not be recovered by the standard failover mechanism. Data grid provides data failover out of the box via its <a href="https://docs.gigaspaces.com/latest/admin/asynchronous-replication.html">asynchronous replication</a> to back up cluster topology. In the case of a <MadCap:variable name="General.DataGrid" /> primary partition failure, the backup partition would become the primary, preventing data loss and maintaining data integrity throughout the entire process.</p>
+        <p>Without <MadCap:variable name="General.ProductNameXAP" />, the data in the <code>KnowledgeBase</code> would be lost, in the case of node failure within the cluster, and could not be recovered by the standard failover mechanism. <MadCap:variable name="General.ProductNameXAP" /> provides data failover out of the box via its <a href="https://docs.gigaspaces.com/latest/admin/asynchronous-replication.html">asynchronous replication</a> to back up cluster topology. In the case of a <MadCap:variable name="General.ProductNameXAP" /> primary partition failure, the backup partition becomes the primary, preventing data loss and maintaining data integrity throughout the entire process.</p>
         <h3><a name="redundancy">&#160;</a>Redundancy</h3>
-        <p>Storing the KnowledgeBase's data in each clustered JVM memory is redundant and costly in terms of memory footprint. Integration with <MadCap:variable name="General.DataGrid" /> removes the enterprise application's need to locally store data because the <code>KnowledgeBase</code> resides in a partition hosted on the Data Grid.</p>
+        <p>Storing the KnowledgeBase's data in each clustered JVM memory is redundant and costly in terms of memory footprint. Integration with <MadCap:variable name="General.ProductNameXAP" /> removes the enterprise application's need to locally store data because the <code>KnowledgeBase</code> resides in a partition hosted on the Data Grid.</p>
         <h3><a name="consistency">&#160;</a>Consistency</h3>
-        <p>Similar to the concerns of load balancing, enterprise applications require all clustered JVMs to not only store identical data but also ensure consistency upon any change. Instead of building a custom solution to update the entire cluster, <MadCap:variable name="General.DataGrid" /> can be used to ensure data consistency. By utilizing <MadCap:variable name="General.DataGrid" />'s built-in <a href="https://docs.gigaspaces.com/latest/dev-java/routing-in-partitioned-spaces.html">Routing Mechanism</a>, all instances of the cluster can seamlessly be routed to the unique partition that is storing the relevant KnowledgeBase(s) and always receive a consistent result.</p>
+        <p>Similar to the concerns of load balancing, enterprise applications require all clustered JVMs to not only store identical data but also ensure consistency upon any change. Instead of building a custom solution to update the entire cluster, <MadCap:variable name="General.ProductNameXAP" /> can be used to ensure data consistency. By utilizing <MadCap:variable name="General.ProductNameXAP" />'s built-in <a href="https://docs.gigaspaces.com/latest/dev-java/routing-in-partitioned-spaces.html">Routing Mechanism</a>, all instances of the cluster can seamlessly be routed to the unique partition that is storing the relevant KnowledgeBase(s) and always receive a consistent result.</p>
         <h3><a name="scalability">&#160;</a>Scalability</h3>
-        <p>An enterprise application hosting multiple instances of KnowledgeBases can be limited by the memory constraints of its underlying JVM. Turning to a 64-bit JVM could extend memory resources, but its benefits are eventually offset by incurring an increased garbage collection penalty. With <MadCap:variable name="General.DataGrid" />, KnowledgeBases can be distributed across separate partitions each hosted on top of their own individual 64-bit JVM, allowing Drool's production/working memory to scale into the Terabytes.</p>
+        <p>An enterprise application hosting multiple instances of KnowledgeBases can be limited by the memory constraints of its underlying JVM. Turning to a 64-bit JVM could extend memory resources, but its benefits are eventually offset by incurring an increased garbage collection penalty. With <MadCap:variable name="General.ProductNameXAP" />, KnowledgeBases can be distributed across separate partitions each hosted on top of their own individual 64-bit JVM, allowing Drool's production/working memory to scale into the Terabytes.</p>
         <h1><a name="integration-pattern">&#160;</a>Integration Pattern</h1>
-        <p>To demonstrate <MadCap:variable name="General.DataGrid" />'s integration with Drools, we designed a pattern in the form of a Maven project. The project is distributed into 4 Maven Modules, each with an individual purpose:</p>
+        <p>To demonstrate <MadCap:variable name="General.ProductNameXAP" />'s integration with Drools, we designed a pattern in the form of a Maven project. The project is distributed into 4 Maven Modules, each with an individual purpose:</p>
         <table>
             <thead>
                 <tr>
@@ -108,9 +107,9 @@ A package is a collection of rules and other related constructs, such as imports
         <p>The combination of these modules provide you with a working project to deploy a Data Grid, load/compile/remove rules from DRL files, execute rules from a one-off process and/or expose them as JSON Restful Web Service.</p>
         <p>Let's review each module to understand their code and patterns.</p>
         <h2><a name="common-module">&#160;</a>Common Module</h2>
-        <p>The main purpose of this module is to define the data model for the entire Data Grid. The data model includes a <a href="https://docs.gigaspaces.com/latest/dev-java/pojo-overview.html">POJO</a> representation of Facts, Drools Rules, Knowledge Packages, KnowledgeBases, etc.</p>
+        <p>The main purpose of this module is to define the data model for the entire data grid. The data model includes a <a href="https://docs.gigaspaces.com/latest/dev-java/pojo-overview.html">POJO</a> representation of Facts, Drools Rules, Knowledge Packages, KnowledgeBases, etc.</p>
         <p>Facts are representations of business entities which will be referenced in either or both the condition and consequence of rules. In order for client applications to dynamically create rules, they must first define Facts which will be loaded into a KnowledgeBase's Working Memory before Rules execution can occur. Therefore the Fact POJO must be created and deployed with the Space module before new dynamic rules can be compiled and executed using them as a reference.</p>
-        <p>The integration between Drools and <MadCap:variable name="General.DataGrid" /> is represented as the <a href="https://docs.gigaspaces.com/latest/dev-java/pojo-support.html">Space Class</a> called KnowledgeBaseWrapper. This object stores a KnowledgeBase in the Data Grid along with all of its compiled content (i.e. rules, definitions, globals, fact types, etc.). Therefore it is a wrapper of the Drools Production/Working Memory, which is enhanced with the routing capabilities of a Space class along with additional attributes compensating for the KnowledgeBase's lack of transparency.</p>
+        <p>The integration between Drools and <MadCap:variable name="General.ProductNameXAP" /> is represented as the <a href="https://docs.gigaspaces.com/latest/dev-java/pojo-support.html">Space Class</a> called KnowledgeBaseWrapper. This object stores a KnowledgeBase in the data grid along with all of its compiled content (i.e. rules, definitions, globals, fact types, etc.). Therefore it is a wrapper of the Drools Production/Working Memory, which is enhanced with the routing capabilities of a Space class along with additional attributes compensating for the KnowledgeBase's lack of transparency.</p>
         <p>The remaining POJOs are meant to be informative tools for management and governance purposes. Their role is to provide the user with metadata type information about the contents of KnowledgeBase without having to execute operations against the actual objects.</p>
         <h2><a name="client-module">&#160;</a>Client Module</h2>
         <p>This module implements classes encapsulating stand-alone functional processes to load, analyze, execute and remove Rules and Facts. These processes can be simply instantiated by running their main methods and will interact with the space via the Space Proxy. If you are using an Eclipse IDE you can just click on the class and choose Run As Configurations to start the process.</p>
@@ -221,7 +220,7 @@ end
 </code></pre>
         <p>The client module also allows the removal of an individual rule as an alternative to changing the element inside <code>RuleSet.xml</code> from &lt;add&gt; to &lt;remove&gt;. To remove a specific rule using this utility you need only to change the arguments when running the RemoveRule class as an application.</p>
         <h2><a name="space-module">&#160;</a>Space Module</h2>
-        <p>This module creates a deployable artifact (JAR) which instantiates Stateful processing unit(s) representing the Data Grid (Space). By default, the Space uses the SLA.xml file to deploy the predetermined amount of primary and backup partitions with the clustering topology set to <code>partitioned-sync2backup</code>.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        <p>This module creates a deployable artifact (JAR) which instantiates Stateful processing unit(s) representing the data grid (Space). By default, the Space uses the SLA.xml file to deploy the predetermined amount of primary and backup partitions with the clustering topology set to <code>partitioned-sync2backup</code>.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-sla="http://www.openspaces.org/schema/sla"
@@ -246,8 +245,8 @@ end
 
 &lt;/beans&gt;
 </code></pre>
-        <p>In addition to hosting data, this processing unit takes advantage of<MadCap:variable name="General.DataGrid" />'s collocation of business logic in the form of Event Processing and Space Based Remoting.</p>
-        <p>The event processor of choice is the Polling Container, which listens for specific events to occur on the Space. As part of our integration pattern, we opted to decouple the adding/removing of Rule Events to the Space from the compilation and injection of those rules to their respective KnowledgeBase. Since loading a single instance of a KnowledgeBase creates a bottleneck for a queue of 100+ rules, it makes sense to allow the client (remote client proxy) to fire and forget while the server (space) does its work at its own pace. Upon notification of an event, the collocated event handler looks up the KnowledgeBase from the Data Grid and adds the new rule to the KnowledgeBase, assuming compilation was successful. It alsos updates the metadata type Space Classes to keep track of the KnowledgeBase contents for transparency.</p><pre><code class="language-java">@SpaceDataEvent
+        <p>In addition to hosting data, this processing unit takes advantage of <MadCap:variable name="General.ProductNameXAP" />'s collocation of business logic in the form of event processing and Space-based remoting.</p>
+        <p>The event processor of choice is the Polling Container, which listens for specific events to occur on the Space. As part of our integration pattern, we opted to decouple the adding/removing of Rule Events to the Space from the compilation and injection of those rules to their respective KnowledgeBase. Since loading a single instance of a KnowledgeBase creates a bottleneck for a queue of 100+ rules, it makes sense to allow the client (remote client proxy) to fire and forget while the server (Space) does its work at its own pace. Upon notification of an event, the collocated event handler looks up the KnowledgeBase from the data grid and adds the new rule to the KnowledgeBase, assuming compilation was successful. It alsos updates the metadata type Space Classes to keep track of the KnowledgeBase contents for transparency.</p><pre><code class="language-java">@SpaceDataEvent
 public DroolsRuleAddEvent addRule(DroolsRuleAddEvent droolsRuleAddEvent) {
     String ruleSet = droolsRuleAddEvent.getRuleSet();
     String knowledgePackageName = droolsRuleAddEvent.getPackageName();
@@ -284,7 +283,7 @@ public DroolsRuleAddEvent addRule(DroolsRuleAddEvent droolsRuleAddEvent) {
         return null;
  }
 </code></pre>
-        <p><a href="https://docs.gigaspaces.com/latest/dev-java/space-based-remoting-overview.html">Space Based Remoting</a> is a combination of an interface located in the common module and an implementation of the interface that is deployed co-located with the space. The interface is shared by both the space and the client(s) via the common module. To expose the interface as a Remoting Service, a simple annotation was added to the implementation class as well as a annotation scan within the <a href="https://docs.gigaspaces.com/latest/dev-java/configuring-processing-unit-elements.html">pu.xml</a>.</p>
+        <p><a href="https://docs.gigaspaces.com/latest/dev-java/space-based-remoting-overview.html">Space-based remoting</a> is a combination of an interface located in the common module and an implementation of the interface that is deployed co-located with the space. The interface is shared by both the space and the client(s) via the common module. To expose the interface as a Remoting Service, a simple annotation was added to the implementation class as well as a annotation scan within the <a href="https://docs.gigaspaces.com/latest/dev-java/configuring-processing-unit-elements.html">pu.xml</a>.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title=" Configuration" style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -426,7 +425,7 @@ public class RulesExecutionServiceImpl implements IRulesExecutionService {
 }
 </code></pre>
         <h3><a name="web-services-module">&#160;</a>Web Services Module</h3>
-        <p>This module creates a deployable artifact (WAR) that instantiates a Stateless processing unit(s) hosting JSON Restful Web Services on top of <MadCap:variable name="General.DataGrid" />'s <a href="https://docs.gigaspaces.com/latest/dev-java/web-jetty-processing-unit-container.html">Jetty Processing Unit Container</a>.</p>
+        <p>This module creates a deployable artifact (WAR) that instantiates a Stateless processing unit(s) hosting JSON Restful Web Services on top of <MadCap:variable name="General.ProductNameXAP" />'s <a href="https://docs.gigaspaces.com/latest/dev-java/web-jetty-processing-unit-container.html">Jetty Processing Unit Container</a>.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/drools/drools4.png" alt="drools1" class="tc-picture50" />
@@ -482,7 +481,7 @@ public class RulesExecutionServiceImpl implements IRulesExecutionService {
                     </p>
                 </div>
                 <div title="Step 3: XAP Installation" style="padding:10px;">
-                    <p>If <MadCap:variable name="General.DataGrid" /> is not installed, download the <a href="http://www.gigaspaces.com/xap-download">latest version</a> and add JSHOMEDIR to your system variables.</p>
+                    <p>If <MadCap:variable name="General.ProductNameXAP" /> is not installed, download the <a href="https://www.gigaspaces.com/downloads/">latest version</a> and add JSHOMEDIR to your system variables.</p>
                     <p>
                         <img src="../Resources/Static/attachment_files/drools/drools14.png" alt="drools1" class="tc-picture30" />
                     </p>
@@ -492,19 +491,19 @@ public class RulesExecutionServiceImpl implements IRulesExecutionService {
                     </p>
                 </div>
                 <div title="Step 4: Download Example" style="padding:10px;">
-                    <p>Download the <a href="https://github.com/Gigaspaces/xap-drools-integration">example</a> and extract.</p>
+                    <p>Download the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/gigaspaces-drools-integration">example</a> and extract.</p>
                     <p>
                         <img src="../Resources/Static/attachment_files/drools/drools16.png" alt="drools1" class="tc-picture50" />
                     </p>
                 </div>
-                <div title="Step 5: Execute maven command" style="padding:10px;">
+                <div title="Step 5: Execute Maven command" style="padding:10px;">
                     <p>Navigate to the project root and execute the mvn package command.</p>
                     <p>
                         <img src="../Resources/Static/attachment_files/drools/drools17.png" alt="drools1" class="tc-picture50" />
                     </p>
                 </div>
-                <div title="Step 6: Start the XAP agent" style="padding:10px;">
-                    <p>Navigate to the <MadCap:variable name="General.DataGrid" /> bin directory and double-click gs-agent.bat.</p>
+                <div title="Step 6: Start the GigaSpaces agent" style="padding:10px;">
+                    <p>Navigate to the <MadCap:variable name="General.ProductNameXAP" /> bin directory and double-click gs-agent.bat.</p>
                     <p>
                         <img src="../Resources/Static/attachment_files/drools/drools18.png" alt="drools1" class="tc-picture50" />
                     </p>
@@ -525,7 +524,7 @@ public class RulesExecutionServiceImpl implements IRulesExecutionService {
                         <img src="../Resources/Static/attachment_files/drools/drools24.png" alt="drools1" class="tc-picture50" />
                     </p>
                 </div>
-                <div title="Step 10: View Data Grid" style="padding:10px;">
+                <div title="Step 10: View the Data Grid" style="padding:10px;">
                     <p>Confirm that the <code>Space</code> was created by clicking the <code>Data Grid</code> tab.</p>
                     <p>
                         <img src="../Resources/Static/attachment_files/drools/drools25.png" alt="drools1" />
@@ -543,7 +542,7 @@ public class RulesExecutionServiceImpl implements IRulesExecutionService {
                         <img src="../Resources/Static/attachment_files/drools/drools27.png" alt="drools1" class="tc-picture50" />
                     </p>
                 </div>
-                <div title="Step 13: Loading the rules" style="padding:10px;">
+                <div title="Step 13: Load the rules" style="padding:10px;">
                     <p>Run DroolsRuleLoader.java and FactLoader.java as a Java Application.</p>
                     <p>
                         <img src="../Resources/Static/attachment_files/drools/drools28.png" alt="drools1" class="tc-picture50" />
