@@ -21,7 +21,7 @@
                     <td>January 2019</td>
                     <td>
                     </td>
-                    <td align="center"><a href="https://github.com/Gigaspaces/insightedge-grafana-connector">InsightEdge-Grafana Connector</a>
+                    <td align="center"><a href="https://github.com/Gigaspaces/solution-hub/tree/master/grafana-connector">InsightEdge-Grafana Connector</a>
                     </td>
                 </tr>
             </tbody>
@@ -50,13 +50,13 @@
         <h1><a name="downloading-and-configuring-the-insightedge-grafana-connector">&#160;</a>Downloading and Configuring the InsightEdge-Grafana Connector</h1>
         <p>The first step in integrating InsightEdge with Grafana is to download and configure the connector so that Grafana can access the data from the InsightEdge-based application.</p>
         <div class="tc-admon-note">
-            <p>The sample configuration files are located in the <span class="tc-italic">&lt;host directory&gt;/timeseries-rest/tree/master/src/main/resources</span> folder. When you run the connector, the <a href="https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/java/com/gigaspaces/Main.java">Main</a> requires two parameters, the path to the <code>grafana-insightedge.properties</code> file and the path to the <code>tableData.txt</code> file (if you create different ones).</p>
+            <p>The sample configuration files are located in the <span class="tc-italic">&lt;host directory&gt;/timeseries-rest/tree/master/src/main/resources</span> folder. When you run the connector, the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/grafana-connector/src/main">Main</a> requires two parameters, the path to the <code>grafana-insightedge.properties</code> file and the path to the <code>tableData.txt</code> file (if you create different ones).</p>
         </div>
         <p>To install the InsightEdge-Grafana connector:</p>
         <ol>
             <li>Clone the contents of the github repo.</li>
             <li>
-                <p>Modify the <a href="https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/resources/grafana-insightedge.properties">grafana-insightedge.properties file</a> to suit your local evironment (host, port, space name, lookup group, and lookup locator (optional)) or create a new properties file.</p>
+                <p>Modify the <a href="https://github.com/Gigaspaces/solution-hub/blob/master/grafana-connector/grafana-insightedge.properties">grafana-insightedge.properties file</a> to suit your local environment (host, port, space name, lookup group, and lookup locator (optional)) or create a new properties file.</p>
                 <p>Sample configuration:</p><pre><code>CONNECTOR_HOST=HostName
 CONNECTOR_PORT=8082
 <MadCap:variable name="General.EnvVariablePrefix" />_SPACE_NAME=demo
@@ -68,7 +68,7 @@ CONNECTOR_PORT=8082
                 </div>
             </li>
             <li>
-                <p>Modify the <a href="https://github.com/Gigaspaces/insightedge-grafana-connector/blob/master/src/main/resources/tablesData.txt">tablesData.txt file</a> or create a new tableData.txt file that the connector will use to categorize the data.</p>
+                <p>Modify the <a href="https://github.com/Gigaspaces/solution-hub/blob/master/grafana-connector/tablesData.txt">tablesData.txt file</a> or create a new tableData.txt file that the connector will use to categorize the data.</p>
                 <p>Sample data values:</p><pre><code>TelemetryVolt,com.gigaspaces.Telemetry,longDate,volt,machineID
 TelemetryRotate,com.gigaspaces.Telemetry,longDate,rotate,machineID
 TelemetryPressure,com.gigaspaces.Telemetry,longDate,pressure,machineID
