@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Integration testing with scalatest</h1>
+        <h1 class="tc-pagetitle">Integration Testing with Scalatest</h1>
         <table>
             <thead>
                 <tr>
@@ -19,10 +19,8 @@
                     <td>Jason Nerothin</td>
                     <td>9.7.2</td>
                     <td>March 2014</td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
+                    <td> </td>
+                    <td> <a href="https://github.com/Gigaspaces/solution-hub/tree/master/gs-i10n-testing">i10n-testing-example</a></td>
                 </tr>
             </tbody>
         </table>
@@ -30,7 +28,7 @@
         <p>We describe here a technique for implementing a <MadCap:variable name="General.ProductNameXAP" /> integration (i10n) test using a scalatest <a href="http://www.scalatest.org/getting_started_with_fun_suite">FunSuite</a>.</p>
         <h1><a name="usage">&#160;</a>Usage</h1>
         <p>We provide an <code>abstract FunSuite</code> that is a <code>BeforeAndAfterAllConfigMap</code> in this <a href="https://gist.github.com/jasonnerothin/fd55a2c0475b5e4f2f1d#file-gsi10nsuite">gist</a>. Simply implemented, the subclass need only provide a small number of properties and a Spring context file. The superclass uses this information to seed a <code>ConfigMap</code>, which then configures a nested <code>ProcessingUnitContainerProvider</code>, which in turn provisions a protected <code>GigaSpace</code> proxy.</p>
-        <p>Here's example configuration from a <a href="https://github.com/GigaSpaces/gs-executor-remoting/blob/master/src/test/scala/com/gigaspaces/sbp/WatchRepairSuite.scala">working example</a> that tests against and embedded Space:</p><pre><code class="language-scala">
+        <p>Here's example configuration from a <a href="https://github.com/GigaSpaces/solution-hub/tree/master/gs-i10n-testing/src/test/scala/com/gigaspaces/sbp/WatchRepairSuite.scala">working example</a> that tests against an embedded Space:</p><pre><code class="language-scala">
   // "defaults" is a protected member, and is 
   // the only required configuration necessary to 
   // successfully initialize the FunSuite.
@@ -46,7 +44,7 @@
   )
 
 </code></pre>
-        <p>In this example, the test code truly <span class="tc-bold">is</span> an integration test - designed to run against a running <MadCap:variable name="General.DataGrid" />. (Note the reference to <a href="https://github.com/GigaSpaces/gs-executor-remoting/blob/master/src/main/resources/META-INF/Spring/pu.xml">pu.xml file</a>, which is available on the test classpath.)</p>
+        <p>In this example, the test code truly <span class="tc-bold">is</span> an integration test - designed to run against a running <MadCap:variable name="General.DataGrid" />. (Note the reference to <a href="https://github.com/GigaSpaces/solution-hub/tree/master/gs-i10n-testing/src/main/resources/META-INF/Spring/pu.xml">pu.xml file</a>, which is available on the test classpath.)</p>
         <p>We could as easily have run in-process by using <code>SpaceMode.Embedded</code>. This makes IDE-driven debugging easier, as it does not incur the workflow overhead of setting up a remote agent or debugger. Here's the code from another <a href="https://github.com/GigaSpaces/gs-executor-remoting/tree/ide">working example</a>:</p><pre><code class="language-scala"> 
    defaults = Map[String, Any](
      schemaProperty -&gt; "partitioned-sync2backup"
@@ -67,7 +65,7 @@
   }
 
 </code></pre>
-        <p>An end-to-end example can be forked from <a href="https://github.com/GigaSpaces/gs-executor-remoting/">here</a>.</p>
+        <p>An end-to-end example can be forked from <a href="https://github.com/Gigaspaces/solution-hub/tree/master/gs-i10n-testing">here</a>.</p>
         <h1><a name="considerations">&#160;</a>Considerations</h1>
         <ul>
             <li>Running multiple partitions from within an i10n test cannot be run with a <span class="tc-bold">XAP Lite</span> license.<br /></li>
