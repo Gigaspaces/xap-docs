@@ -19,9 +19,10 @@
                     <td>Chris Roffler</td>
                     <td>9.6</td>
                     <td>Nov 2013</td>
+                    <td> </td>
                     <td>
-                    </td>
-                    <td>
+                        <p><a href="https://github.com/Gigaspaces/solution-hub/blob/master/db2gs.jar">DB2 demo</a>
+                        </p>
                     </td>
                 </tr>
             </tbody>
@@ -31,19 +32,19 @@
         <MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://youtu.be/tBdphj2hjXk," />
         <p>The Delta Server described with this pattern responsible for getting notifications from the database for any user activity (excluding data grid updates) and delegate these to the data grid. You may specify the exact data set updates to be delegated to the data grid.</p>
         <h1><a name="scenario">&#160;</a>Scenario</h1>
-        <p>We have an In Memory Data Grid (IMDG) that is used for querying information. The initial load of the IMDG was performed from a DB2 Database. The IMDG is not used as a system of record in this case meaning that any changes to the objects in the IMDG are not propagated back into the Database. Non-Aware Data-Grid Clients are updating the Database. These updates (insert,update and delete) need to be reflected in the IMDG.</p>
+        <p>We have an In-Memory Data Grid (IMDG) that is used for querying information. The initial load of the data grid was performed from a DB2 Database. The data grid is not used as a system of record in this case, meaning that any changes to the objects in the data grid are not propagated back to the database. Non-Aware Data-Grid Clients are updating the Database. These updates (insert, update and delete) need to be reflected in the data grid.</p>
         <div class="tc-align-center">
             <p><a href="../Resources/Static/attachment_files/sbp/ibm-d-server.png"><img src="../Resources/Static/attachment_files/sbp/ibm-d-server.png" width="400" height="300" /></a>
             </p>
         </div>
-        <p>We will show you how you can implement this scenario with <MadCap:variable name="General.ProductNameXAP" />. A fully functional example is available for <a href="/download_files/sbp/db2gs.jar">download</a>.</p>
+        <p>We will show you how you can implement this scenario with <MadCap:variable name="General.ProductNameXAP" />. A fully functional example is available for <a href="https://github.com/Gigaspaces/solution-hub/blob/master/db2gs.jar">download</a>.</p>
         <h1><a name="prerequisites">&#160;</a>Prerequisites</h1>
         <ul>
             <li>DB2 Advanced Server 10+ installation using default user (db2inst1) and group (dasadmin1)</li>
             <li>MQ Server 7+ installed using the default user group mqm and add user db2inst1 to mqm group</li>
         </ul>
         <h1><a name="installation">&#160;</a>Installation</h1>
-        <p>For simplicity, we install and execute this demo using the DB2 default user db2inst1. Log in to the Linux machine using the user db2inst1. <a href="/download_files/sbp/db2gs.jar">download</a> the sample code and extract to a folder say /home/db2inst1/db2mqrep. We'll refer to this path as DEMO_HOME.</p>
+        <p>For simplicity, we install and execute this demo using the DB2 default user db2inst1. Log in to the Linux machine using the user db2inst1. <a href="https://github.com/Gigaspaces/solution-hub/blob/master/db2gs.jar">Download</a> the sample code and extract to a folder, say /home/db2inst1/db2mqrep. We'll refer to this path as DEMO_HOME.</p>
         <p>The following JAR&#160;files are needed for this example:</p><pre><code class="language-java">
  These files must be copied from the MQ server that you are running against.
 
@@ -85,7 +86,7 @@
  Connecting to database "PUBSRC"...
  .........
 </code></pre>
-        <h3><a name="setting-up-the-mq-queue-managers">&#160;</a>Setting up the MQ Queue Managers</h3>
+        <h3><a name="setting-up-the-mq-queue-managers">&#160;</a>Setting Up the MQ Queue Managers</h3>
         <p>If the db2inst1 account is not part of the mqm group, then you need to add it to the group.
  In this step we will setup the replication for the database changes. Execute the following script using the asnclp command:</p><pre><code class="language-java"> asnclp -f demomq.asnclp
 </code></pre>
@@ -148,6 +149,6 @@
  db2 "insert into employee(empno, firstnme, lastname, edlevel,workdept) values ('000016','SALLY','JOHNSON',18,'A00')";
 
 </code></pre>
-        <p>If you start the GigaSpaces Managemennt Center, you should see under "mySpace" the entries we have inserted into the database.</p>
+        <p>If you start the GigaSpaces Management Center, you should see under "mySpace" the entries we have inserted into the database.</p>
     </body>
 </html>
