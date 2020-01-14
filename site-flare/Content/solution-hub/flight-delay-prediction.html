@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Building a Prediction Model with <MadCap:variable name="General.ProductNameIE" /></h1>
+        <p>&#160;</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th align="center">Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Yoram Weinreb</td>
+                    <td>15.0</td>
+                    <td>January 2020</td>
+                    <td>&#160;</td>
+                    <td align="center"><a href="https://github.com/Gigaspaces/solution-hub/tree/master/flights_delay">Flight delay prediction model</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The flight delay prediction model can be used either as a cloud-based application or as a local installation on your machine. If you opt to install it locally, follow the instructions below to install the necessary software and configure the environment so you can run the model.</p>
+        <h2>Prerequisites</h2>
+        <h3>Hardware</h3>
+        <p>Your local machine should have a minimum of 1 GB free space to install the necessary software to run the Flight Delay prediction model, and 5 GB of RAM to run it.</p>
+        <h3>Software</h3>
+        <ul>
+            <li>InsightEdge release 15.0 or higher</li>
+            <li>Kafka server 0.82 or higher</li>
+            <li><a href="https://insightedge-gettingstarted.s3.amazonaws.com/flightdelays20172018.csv.zip">Flight Delay AWS package 1 (flightdelays20172018)</a>
+            </li>
+            <li><a href="https://insightedge-gettingstarted.s3.amazonaws.com/weather2017_8.csv.zip">Flight Delay AWS package 2 - weather2017_</a>8</li>
+        </ul>
+        <h2>Setting Up the Environment</h2>
+        <p>Installing and configuring the prediction model involves the following steps:</p>
+        <ol>
+            <li>Installing the software.</li>
+            <li>Starting and configuring InsightEdge and the data grid.</li>
+            <li>Setting up Apache Zeppelin.</li>
+            <li>Configuring Kafka as the producer.</li>
+            <li>Running the model.</li>
+        </ol>
+        <h3>Installing the Required Software</h3>
+        <ol>
+            <li>Download and install <a href="https://www.gigaspaces.com/downloads/">InsightEdge</a>.</li>
+            <li>Download, install, and run Kafka as described in the <a href="https://kafka.apache.org/quickstart">Kafka documentation</a>.</li>
+        </ol>
+        <h4>Configuring Apache Zeppelin</h4>
+        <p>InsightEdge provides Apache Zeppelin as part of its standard software package. To use the Flight Delay prediction model, you need the  INSIGHTEDGE-GETTING-STARTED web notebook, along with the INSIGHTEDGE-GETTING-STARTED-2 notebook. Configure the following:</p>
+        <ol>
+            <li>
+                <p> Copy the demo notebooks from the Zeppelin notebook folder in the InsightEdge installation directory:</p><pre><code class="language-bash">$ cp -R ./zeppelin_notebooks/* &lt;InsightEdge Install Dir&gt;/insightedge/zeppelin/notebook/</code></pre>
+            </li>
+            <li>
+                <p>Set the Kafka server URL for the prediction model:</p><pre><code class="language-bash">$ export KAFKA_URL=192.168.99.102:29092</code></pre>
+            </li>
+        </ol>
+        <h3>Preparing the Data Files</h3>
+        <p>Using the Flight Delay prediction model requires feeding data to InsightEdge and then querying it to create the predictions. This data is contained in the following files that must be downloaded and extracted.</p>
+        <ol>
+            <li>
+                <p>Download the following two  files from AWS:</p><pre><code class="language-bash">$ wget https://insightedge-gettingstarted.s3.amazonaws.com/flightdelays20172018.csv.zip
+$ wget https://insightedge-gettingstarted.s3.amazonaws.com/weather2017_8.csv.zip</code><![CDATA[
+]]></pre>
+            </li>
+            <li>
+                <p>Unzip the files, and export the file path:</p><pre><code class="language-bash">$ unzip flightdelays20172018.csv.zip
+$ export flight_delay_path=&lt;data file path&gt;
+
+$ unzip weather2017_8.csv.zip
+$ export weather_info=&lt;data file path&gt;</code></pre>
+            </li>
+        </ol>
+        <h3>Setting Up InsightEdge</h3>
+        <p>Run InsightEdge with the following configuration to support the prediction model.</p>
+        <ol>
+            <li>
+                <p>Start InsightEdge  with 5 GSCs:</p><pre><code class="language-bash">$ ./gs.sh host run-agent --auto --gsc=5</code></pre>
+            </li>
+            <li>
+                <p>Start an in-memory Space called `flights_space` with 4 partitions:</p><pre><code class="language-bash">$ ./gs.sh space deploy --partitions=4 flights_space</code></pre>
+            </li>
+        </ol>
+        <h3>Setting up the Apache Zeppelin Notebook</h3>
+        <p>After the InsightEdge platform has been started, the next step is to set up the INSIGHTEDGE-GETTING-STARTED web notebook to point to the prediction model data.</p>
+        <ol>
+            <li>Launch the Apache Zeppelin notebook in your web browser using the following URL: `http://&lt;InsightEdge IP&gt;:9090/#/notebook/INSIGHTEDGE-GETTING-STARTED`</li>
+            <li>From the top right dropdown menu, select <span class="tc-bold">Interpreter</span> and change the insightedge_jdbc default.url value from <code>demo</code> to <code>flights_space</code>.</li>
+            <li>Save your changes and return to the notebook.</li>
+            <li>Run the notebook (you will see the data populated) and wait until all the paragraphs are run.</li>
+        </ol>
+        <h3>Starting a Kafka Producer</h3>
+        <p>This model simulates a flight data feeder component. Kafka must be deployed as a producer (feeder unit) so it can stream the 2019 flight data to InsightEdge.</p>
+        <ol>
+            <li>Configure the following properties:<ul><li>kafka.bootstrapServer: The IP address of the Apache Zookeeper module used by Kafka.</li><li>feeder.flights.path: The full path that is used to save the data file.</li></ul></li>
+            <li>
+                <p>To build the feeder service (Processing Unit) JAR, run the following:</p><pre><span class="tc-bold">$ mvn clean package -f ./kafkaFeederPU/pom.xml</span></pre>
+            </li>
+            <li>
+                <p>Copy the feeder data file from its location at `./data/data.csv` to `/tmp/data.csv`.</p>
+            </li>
+            <li>
+                <p>Use the following command to set up the Kafka producer:</p><pre><code class="language-bash">$ &lt;InsightEdge_Dir&gt;/bin/gs.sh pu deploy --property=kafka.bootstrapServer=127.0.0.1 --property=feeder.flights.path=/tmp/data.csv feeder./kafkaFeederPU/target/kafka-pers-feeder.jar</code><![CDATA[
+]]></pre>
+            </li>
+        </ol>
+        <h3>Running the Prediction Simulation</h3>
+        <p>After the Kafka producer is started, you can run the INSIGHTEDGE-GETTING-STARTED-2 notebook to run the paragraphs that contain the prediction models.</p>
+    </body>
+</html>
