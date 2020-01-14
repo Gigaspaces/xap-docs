@@ -19,8 +19,8 @@
 
 var resourcesData = {
   'Resources': { 'url': '#' },
-  'GigaSpaces Cloud': { 'url': '/gigaspaces-cloud' },	
   'Early Access': { 'url': '/early-access.html' },
+  'GigaSpaces Cloud': { 'url': '/gigaspaces-cloud.html' },  
   'Videos': { 'url': '/videos.html' },
   'Solution Hub': { 'url': '/solution-hub/intro.html' },
   'Blog': { 'url': 'http://blog.gigaspaces.com', 'target': '_blank' },
