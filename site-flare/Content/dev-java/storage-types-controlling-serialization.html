@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
         <h1><a name="available-storage-types"></a>Storage Types</h1>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/storage-type-deprecate.flsnp" />
         <p>Each non-primitive space object property can be assigned a storage type decoration which determines how it is serialized and stored in the space. There are 3 storage types that are available:</p>
         <ul>
             <li><code>OBJECT</code>, which means that the property will be stored as a regular Java object in the space.</li>
@@ -28,8 +29,7 @@
             </div>
         </div>
         <p>
-            <br />
-The default storage type can be determined for the entire space and/or for a specific space class. If a default storage type is not defined for the space, then the default value is OBJECT. Each property for which a storage type was not defined gets the class's default storage type if that exists and the space storage type if it doesn't.</p>
+            <br />The default storage type can be determined for the entire space and/or for a specific space class. If a default storage type is not defined for the space, then the default value is OBJECT. Each property for which a storage type was not defined gets the class's default storage type if that exists and the space storage type if it doesn't.</p>
         <h1><a name="why-use-a-storage-type-different-than-object"></a>Why Use a Storage Type Other than OBJECT</h1>
         <p>There are a few motivations for changing the default storage type for a certain property:</p>
         <ul>
