@@ -113,7 +113,7 @@ Direct memory buffer usage for Socket Buffer utilization on the GSC side:</p><pr
             <p>It is highly recommended to use the latest JDK release when using these options.</p>
         </div>
         <h2><a name="capturing-detailed-garbage-collection-statistics"></a>Capturing Detailed Garbage Collection Statistics</h2>
-        <p>To capture detailed information about garbage collection and how it is performing, add the following parameters to the JVM settings:</p><pre><code class="language-bash">-verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:/path/to/log/directory/gc-log-file.log
+        <p>To capture detailed information about garbage collection and how it is performing, add the following parameters to the JVM settings:</p><pre><code class="language-bash">-verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -Xloggc:/path/to/log/directory/gc-log-file.log
 </code></pre>
         <p>Modify the path and file names appropriately. You must use a different file name for each invocation in order to not overwrite the files from multiple processes.</p>
         <p>Adding <code>%p</code> to the log name, for example <code>gc-log-file_%p.log</code>, tells the JVM&#160;to generate an individual log file per PID.</p>
