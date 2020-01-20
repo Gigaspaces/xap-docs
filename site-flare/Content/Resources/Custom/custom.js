@@ -90,6 +90,7 @@
         _self.methods.generateNavItems();
         _self.methods.placeTopicFooter();
         _self.methods.scrollToTop();
+        _self.methods.addClipboardButtons();
 
         $('<div id="sidebar-toggle" />')
           .click(function () {
@@ -162,6 +163,20 @@
            var newIpnLink = "#" + charLink + restLink;
           $(this).attr("href",newIpnLink);
           });
+      },
+      addClipboardButtons: function() {
+        var clipboardButton = '<div class="clipboard"><button title="Copy to clipboard"></button></div>';
+        $('pre').prepend(clipboardButton);
+        $('.clipboard').click( function() {
+          var clipboardText = $(this).next('code');
+          var clipboardRange = document.createRange();
+          clipboardRange.selectNodeContents(clipboardText[0]);
+          var selectedText = window.getSelection();
+          selectedText.removeAllRanges();
+          selectedText.addRange(clipboardRange);
+          document.execCommand('copy');
+          return false;
+        });
       },
       generateNavItems: function () {
         _self.utils.getFile({
@@ -252,34 +267,6 @@
             document.location.href = $(this).attr('href');
           });
 
-          /*
-          $('#version-menu>li>a')
-          .on('mouseleave', function (e) {
-            e.preventDefault();
-            $('#version-menu>li').removeClass('open');
-          });
-          
-          $('#version-menu>li>a')
-          .on('touchstart', function (e) {
-            e.preventDefault();
-            $('#version-menu>li').toggleClass('open');
-          });
-          $('#resources-menu>li>a')
-          .on('mouseenter', function (e) {
-            e.preventDefault();
-            $('#resources-menu>li').addClass('open');
-          });
-          $('#resources-menu>li>a')
-          .on('mouseleave', function (e) {
-            e.preventDefault();
-            $('#resources-menu>li').removeClass('open');
-          });
-          $('#resources-menu>li>a')
-          .on('touchstart', function (e) {
-            e.preventDefault();
-            $('#resources-menu>li').toggleClass('open');
-          });
-          */
         $('#search-icon')
           .click(function (e) {
             e.preventDefault();
