@@ -3,13 +3,13 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Getting Started with GigaSpaces Cloud</h1>
+        <h1 class="tc-pagetitle">Getting Started with <MadCap:variable name="General.ProductNameXAP" /> Cloud</h1>
         <h1>Overview</h1>
-        <p>GigaSpaces Cloud with InsightEdge-as-a-service is available to select customers on a trial basis, and can be accessed via the GigaSpaces website. To sign up for your trial GigaSpaces Cloud account, go to  www.gigaspaces.com and <span class="tc-highlight">What is the behavior here?&#160;how does the user get to <MadCap:variable name="General.ProductNameXAP"></MadCap:variable> Cloud page?</span></p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> Cloud with InsightEdge-as-a-service is available to select customers on a trial basis, and can be accessed via the GigaSpaces website. To sign up for your trial <MadCap:variable name="General.ProductNameXAP" /> Cloud account, go to  www.gigaspaces.com and <span class="tc-textred">What is the behavior here?&#160;how does the user get to <MadCap:variable name="General.ProductNameXAP" /> Cloud page?</span></p>
         <p MadCap:conditions="Default.DoNotShow"> click <span class="tc-bold">Try Free</span> at the top of the page to open the <MadCap:variable name="General.ProductNameXAP" /> sign-in page.</p>
-        <p>GigaSpaces Cloud with InsightEdge-as-a-service enables fast access for those that want to try out InsightEdge, and explore its features and capabilities. You can create an account that is free for 14 days and deploy a project, including loading data from various data sources, implementing stateful and stateless services, performing interactive queries and visualization, and more.</p>
-        <p>In addition to project deployment, you can explore our demo applications, reviewing the workflow, evaluating sample components and exploring the code.</p>
-        <p>At the end of your trial period, you can contact GigaSpaces for any followup questions you have about the technical capabilities of the product, or about exploring additional business scenarios.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> Cloud with InsightEdge-as-a-service enables fast access for those that want to try out InsightEdge and explore its features and capabilities. You can create an account that is free for 14 days and use it to deploy a project, including loading data from various data sources, implementing stateful and stateless services, performing interactive queries and visualization, and more.</p>
+        <p>In addition to project deployment, you can explore our demo applications, including reviewing the workflow, evaluating sample components and exploring the code.</p>
+        <p>At the end of your trial period, you can contact <MadCap:variable name="General.ProductNameXAP" /> for any followup questions you have about the technical capabilities of the product, or about exploring additional business scenarios.</p>
         <h1>Creating an Account</h1>
         <ol>
             <li>To create your free account, fill in the following fields<ol style="list-style-type: lower-alpha;"><li><p><span class="tc-bold">Company</span> - Must have a minimum of 3 characters.</p></li><li><p><span class="tc-bold">Full Name</span>: This is the user name that will appear for anyone in your organization that also becomes a member. <span class="tc-highlight" MadCap:conditions="Default.DoNotShow">Are any characters invalid? Limit on number of characters? Is the screen user name different from the actual person’s name on the account? Will this be a future feature?</span></p></li><li><p><span class="tc-bold">Email</span> - Enter a valid business email address.</p></li><li><p><span class="tc-bold">Password</span> - Must be at least 6 characters in length.<MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><span class="tc-textred">(Are there recommendations or restrictions regarding password characters, length, etc.?)</span></MadCap:conditionalText></p><p><span class="tc-textblue" MadCap:conditions="Default.DoNotShow">I’m not sure. Please check directly with Arthur. It will be good to add this to the documentation</span></p></li></ol></li>
@@ -25,11 +25,13 @@
             <li>GigaSpaces Ops Manager for monitoring your cloud environment, querying the data, and visualizing the queries in Apache Zeppelin.</li>
             <li>Grafana for visualizing the data in a BI dashboard.</li>
         </ul>
-        <p>You can bookmark these links for easy access.</p>
+        <div class="tc-admon-tip">
+            <p>You can bookmark these links for easy access.</p>
+        </div>
         <h1><a name="Configur"></a>Configuring Your Account Settings</h1>
         <p>After your account is created, you can configure the following settings in the Application Settings page:</p>
         <ul>
-            <li><span class="tc-bold">Workload type</span> - Select one of the following options:<ul><li><span class="tc-bold">General purpose</span></li><li><span class="tc-bold">Compute optimized</span> for speed</li><li><span class="tc-bold">Memory optimized</span> for size .</li></ul></li>
+            <li><span class="tc-bold">Workload type</span> - Select one of the following options:<ul><li><span class="tc-bold">General purpose</span></li><li><span class="tc-bold">Compute optimized</span> for speed</li><li><span class="tc-bold">Memory optimized</span> for size.</li></ul></li>
             <li><span class="tc-bold">Memory allocation</span> - select the amount of RAM you want  allocated to your trial account.</li>
             <li><span class="tc-bold">High availability</span> - Turn on this feature for a primary/backup configuration.</li>
             <li><span class="tc-bold">MemoryXtend</span> - Turn on this feature to enable tiered storage. You must configure the following additional parameters:<ul><li><span class="tc-bold">Storage performance</span> - select whether you want standard or SSD persistent memory performance for storing your cold data.</li><li><p><span class="tc-bold">Storage size</span> - use the slider to configure the capacity of the external persistent memory.</p><div class="tc-admon-note"><p>For more information about MemoryXtend, see the <MadCap:xref href="dev-java/intelligent-tiering-intro.html">Intelligent Tiered Storage</MadCap:xref> section in the developer guide.</p></div></li></ul></li>
@@ -40,15 +42,15 @@
         </p>
         <p>When you are finished configuring your account, click <span class="tc-bold">Launch the Application</span>.</p>
         <div class="tc-admon-note">
-            <p>Note: Information about your account, such as the amount of time left in your trial period, is displayed at the bottom of the application settings area.</p>
+            <p>Information about your account, such as the amount of time left in your trial period, is displayed at the bottom of the application settings area.</p>
         </div>
         <h1>Logging In to an Existing Account</h1>
-        <p>If you already have a GigaSpaces Cloud account, click <span class="tc-bold">Sign in</span>, and log into your account using your email and password. <span class="tc-highlight" MadCap:conditions="Default.DoNotShow">Also, it lets you log in if you created but didn't configure an account. This should be blocked -- you should be required to complete the configuration because there's nothing available in the dashboard. </span></p>
+        <p>If you already have a <MadCap:variable name="General.ProductNameXAP" /> Cloud account, click <span class="tc-bold">Sign in</span>, and log in to your account using your email and password. <span class="tc-highlight" MadCap:conditions="Default.DoNotShow">Also, it lets you log in if you created but didn't configure an account. This should be blocked -- you should be required to complete the configuration because there's nothing available in the dashboard. </span></p>
         <div class="tc-admon-note">
-            <p>If you forgot your password, click <span class="tc-bold">Forgot password?</span> and follow the instructions on the Reset Password page. Yo'll get an email with instructions on how to reset your password.</p>
+            <p>If you forgot your password, click <span class="tc-bold">Forgot password?</span> and follow the instructions on the Reset Password page. You'll get an email with instructions on how to reset your password.</p>
         </div>
         <h1>Using your GigaSpaces Cloud Environment</h1>
-        <p>The GigaSpaces Cloud has a management interface where you can access your application, manage group members <MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><span class="tc-textred">(why does everyone have these rights? Are there going to be users with different levels of access?)</span> </MadCap:conditionalText>, and configure your application settings.</p>
+        <p>GigaSpaces Cloud has a management interface where you can access your application, manage group members<MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><span class="tc-textred">(why does everyone have these rights? Are there going to be users with different levels of access?)</span> </MadCap:conditionalText>, and configure your application settings.</p>
         <p MadCap:conditions="Default.DoNotShow"><span class="tc-textblue">Penina: order should be dashboard, application settings, users</span>
         </p>
         <p MadCap:conditions="Default.DoNotShow"><span class="tc-textred">Sharon, then they should be displayed that way in the tool.</span>
