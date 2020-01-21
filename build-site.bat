@@ -16,6 +16,10 @@ if %DOCS_PUBLISH%==production (
 )
 echo DOCS_BUILD_GOALS=%DOCS_BUILD_GOALS%, DOCS_PUBLISH=%DOCS_PUBLISH%
 
+if %DOCS_BUILD_GOALS%==none (
+  echo *** Skipping build - goals=none ***
+  goto publish
+)
 echo *** Purging previous output ***
 rmdir output /S /Q
 mkdir output
@@ -27,6 +31,7 @@ if not defined DOCS_BUCKET echo Publishing skipped - destination not defined && 
 echo *** Add noindex element to output ***
 call jarvis.bat generate-noindex %~dp0
 
+:publish
 echo *** Publishing output ***
 copy static\%DOCS_PUBLISH% output
 if not defined DOCS_BUCKET (
