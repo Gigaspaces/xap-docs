@@ -6,7 +6,7 @@ if NOT %DOCS_PUBLISH%==none (
   if %DOCS_PUBLISH%==staging set DOCS_BUCKET=docs-staging.gigaspaces.com
   if %DOCS_PUBLISH%==new-website set DOCS_BUCKET=docs-new-website.gigaspaces.com
   if %DOCS_PUBLISH%==production set DOCS_BUCKET=docs.gigaspaces.com-v2
-  if not defined DOCS_BUCKET echo echo Aborted - unsupported destination [%DOCS_PUBLISH%] && goto end
+  if not defined DOCS_BUCKET echo Aborted - unsupported destination [%DOCS_PUBLISH%] && goto end
 )
 
 if %DOCS_PUBLISH%==production (
@@ -30,7 +30,7 @@ call jarvis.bat generate-noindex %~dp0
 echo *** Publishing output ***
 copy static\%DOCS_PUBLISH% output
 if not defined DOCS_BUCKET (
-  echo echo Publishing skipped - unsupported destination [%DOCS_PUBLISH%]
+  echo Publishing skipped - unsupported destination [%DOCS_PUBLISH%]
 ) else (
   echo Publishing site to %DOCS_PUBLISH% at !DOCS_BUCKET!...
   set AWS_PROFILE=%DOCS_PUBLISH%
@@ -51,7 +51,12 @@ exit /b
 
 :build-flare
 echo *** Building flare site ***
-"C:\Program Files\MadCap Software\MadCap Flare 14\Flare.app\madbuild.exe" -project site-flare\XAP-Import-Test-1.flprj -batch "InsightEdge-batch"
+if not defined GS_FLARE_HOME set GS_FLARE_HOME=%ProgramFiles%\MadCap Software
+if not defined GS_FLARE_BIN for /f "delims=" %%F in ('dir /b /s "%GS_FLARE_HOME%\\madbuild.exe"') do set GS_FLARE_BIN=%%F
+if not defined GS_FLARE_BIN echo Aborting - Flare not found under %GS_FLARE_HOME% && goto end
+if not exist "%GS_FLARE_BIN%" echo Aborting - Flare not found at %GS_FLARE_BIN% && goto end
+echo GS_FLARE_BIN=%GS_FLARE_BIN%
+"%GS_FLARE_BIN%" -project site-flare\XAP-Import-Test-1.flprj -batch "InsightEdge-batch"
 exit /b
 
 :end
