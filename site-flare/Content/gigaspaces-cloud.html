@@ -5,7 +5,7 @@
     <body>
         <h1 class="tc-pagetitle">Getting Started with <MadCap:variable name="General.ProductNameXAP" /> Cloud</h1>
         <h1>Overview</h1>
-        <p><MadCap:variable name="General.ProductNameXAP" /> Cloud with InsightEdge-as-a-service is available to select customers on a trial basis, and can be accessed via the GigaSpaces website. To sign up for your trial <MadCap:variable name="General.ProductNameXAP" /> Cloud account, go to  www.gigaspaces.com and <span class="tc-textred">What is the behavior here?&#160;how does the user get to <MadCap:variable name="General.ProductNameXAP" /> Cloud page?</span></p>
+        <p MadCap:conditions="Default.DoNotShow"><MadCap:variable name="General.ProductNameXAP" /> Cloud with InsightEdge-as-a-service is available to select customers on a trial basis, and can be accessed via the GigaSpaces website. To sign up for your trial <MadCap:variable name="General.ProductNameXAP" /> Cloud account, go to  www.gigaspaces.com and <span class="tc-textred">What is the behavior here?&#160;how does the user get to <MadCap:variable name="General.ProductNameXAP" /> Cloud page?</span></p>
         <p MadCap:conditions="Default.DoNotShow"> click <span class="tc-bold">Try Free</span> at the top of the page to open the <MadCap:variable name="General.ProductNameXAP" /> sign-in page.</p>
         <p><MadCap:variable name="General.ProductNameXAP" /> Cloud with InsightEdge-as-a-service enables fast access for those that want to try out InsightEdge and explore its features and capabilities. You can create an account that is free for 14 days and use it to deploy a project, including loading data from various data sources, implementing stateful and stateless services, performing interactive queries and visualization, and more.</p>
         <p>In addition to project deployment, you can explore our demo applications, including reviewing the workflow, evaluating sample components and exploring the code.</p>
@@ -17,13 +17,13 @@
             <li>Click <span class="tc-bold">Create Account</span>.</li>
         </ol>
         <p>
-            <img src="Resources/Static/attachment_files/gigaspaces-cloud/gscloud-create-account.png" />
+            <img src="Resources/Static/attachment_files/gigaspaces-cloud/gscloud-create-account.png" class="tc-picture30" />
         </p>
         <p>The account takes about five minutes to set up. When it's ready, you'll receive a notification email to the address that you supplied. This email also provides several access links to your account and its associated tools, namely:</p>
         <ul>
             <li>Your  selected demo application.</li>
             <li>GigaSpaces Ops Manager for monitoring your cloud environment, querying the data, and visualizing the queries in Apache Zeppelin.</li>
-            <li>Grafana for visualizing the data in a BI dashboard.</li>
+            <li>Grafana for an additional monitoring option.</li>
         </ul>
         <div class="tc-admon-tip">
             <p>You can bookmark these links for easy access.</p>
@@ -31,14 +31,14 @@
         <h1><a name="Configur"></a>Configuring Your Account Settings</h1>
         <p>After your account is created, you can configure the following settings in the Application Settings page:</p>
         <ul>
-            <li><span class="tc-bold">Workload type</span> - Select one of the following options:<ul><li><span class="tc-bold">General purpose</span></li><li><span class="tc-bold">Compute optimized</span> for speed</li><li><span class="tc-bold">Memory optimized</span> for size.</li></ul></li>
-            <li><span class="tc-bold">Memory allocation</span> - select the amount of RAM you want  allocated to your trial account.</li>
+            <li><span class="tc-bold">Workload type</span> - Select one of the following options:<ul><li><span class="tc-bold">General purpose</span></li><li><span class="tc-bold">Compute optimized</span> for speed</li><li><span class="tc-bold">Memory optimized</span> for size</li></ul></li>
+            <li><span class="tc-bold">Memory allocation</span> - select the amount of RAM (in GB) you want  allocated to your trial account.</li>
             <li><span class="tc-bold">High availability</span> - Turn on this feature for a primary/backup configuration.</li>
-            <li><span class="tc-bold">MemoryXtend</span> - Turn on this feature to enable tiered storage. You must configure the following additional parameters:<ul><li><span class="tc-bold">Storage performance</span> - select whether you want standard or SSD persistent memory performance for storing your cold data.</li><li><p><span class="tc-bold">Storage size</span> - use the slider to configure the capacity of the external persistent memory.</p><div class="tc-admon-note"><p>For more information about MemoryXtend, see the <MadCap:xref href="dev-java/intelligent-tiering-intro.html">Intelligent Tiered Storage</MadCap:xref> section in the developer guide.</p></div></li></ul></li>
+            <li><span class="tc-bold">MemoryXtend</span> - Turn on this feature to enable tiered storage. You must configure the following additional parameters:<ul><li><span class="tc-bold">Storage performance</span> - select whether you want standard or SSD persistent memory performance for storing your cold data.</li><li><p><span class="tc-bold">Storage size</span> - use the slider to configure the capacity (in GB) of the external persistent memory.</p><div class="tc-admon-note"><p>For more information about MemoryXtend, see the <MadCap:xref href="dev-java/intelligent-tiering-intro.html">Intelligent Tiered Storage</MadCap:xref> section in the developer guide.</p></div></li></ul></li>
             <li><span class="tc-bold">Demo applications</span> - select from the following options:<ul><li><span class="tc-bold">None</span> - No application is applied, but you can review and use several basic Zeppelin notebooks.</li><li><span class="tc-bold">Data discovery for trading</span> - a simple workflow that loads data from an  external .csv file, visualizes the data using an Apache Zeppelin Notebook (including diagrams and charts), and enables executing multiple SQL queries.</li><li><span class="tc-bold">Predict flight delays using ML</span> - a prediction model that uses sample flight and weather data to forecast flight delays at a specific airport, using Kafka as a producer and InsightEdge as the consumer.</li></ul></li>
         </ul>
         <p>
-            <img src="Resources/Static/attachment_files/gigaspaces-cloud/gscloud-configure-account.png" />
+            <img src="Resources/Static/attachment_files/gigaspaces-cloud/gscloud-configure-account.png" class="tc-picture80" />
         </p>
         <p>When you are finished configuring your account, click <span class="tc-bold">Launch the Application</span>.</p>
         <div class="tc-admon-note">
