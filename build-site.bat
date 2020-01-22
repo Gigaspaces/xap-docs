@@ -56,7 +56,7 @@ exit /b
 
 :build-flare
 echo *** Building flare site ***
-if not defined GS_FLARE_HOME set GS_FLARE_HOME=%ProgramFiles%\MadCap Software
+if not defined GS_FLARE_HOME set GS_FLARE_HOME=%ProgramW6432%\MadCap Software
 if not defined GS_FLARE_BIN for /f "delims=" %%F in ('dir /b /s "%GS_FLARE_HOME%\\madbuild.exe"') do set GS_FLARE_BIN=%%F
 if not defined GS_FLARE_BIN echo Aborting - Flare not found under %GS_FLARE_HOME% && goto end
 if not exist "%GS_FLARE_BIN%" echo Aborting - Flare not found at %GS_FLARE_BIN% && goto end
