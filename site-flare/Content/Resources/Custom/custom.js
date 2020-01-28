@@ -175,6 +175,12 @@
           selectedText.removeAllRanges();
           selectedText.addRange(clipboardRange);
           document.execCommand('copy');
+          selectedText.removeRange(clipboardRange);
+          var selectedButton = $(this).children('button');
+          selectedButton.addClass('success');
+          setTimeout(function(){
+            $(selectedButton).removeClass('success');
+          }, 2000);
           return false;
         });
       },
