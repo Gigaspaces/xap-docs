@@ -9,46 +9,46 @@
         <div class="tc-admon-note">
             <p>This topic assumes knowledge of how to set up a WAN&#160;gateway in <MadCap:variable name="General.ProductNameXAP" />. If you aren't familiar with how to configure a WAN gateway, see the <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref> section of the developer guide before you continue with the below procedure.</p>
         </div>
-        <h1>Configuring your AWS&#160;Environment</h1>
-        <p>In order to create the necessary clusters and configure them for the WAN gateway, there are several requirements that must be met:</p>
+        <h1 MadCap:conditions="Default.DoNotShow">Configuring your AWS&#160;Environment</h1>
+        <p MadCap:conditions="Default.DoNotShow">In order to create the necessary clusters and configure them for the WAN gateway, there are several requirements that must be met:</p>
         <ul>
-            <li>Configure the user(s) with the correct EKS&#160;permissions and roles (as explained below).</li>
-            <li>Ensure that the AWS VPC limit is sufficient to allow creating multiple clusters.</li>
-            <li>Install the AWS&#160;CLI on the local machine.</li>
-            <li>Install eksctl on the local machine.</li>
+            <li MadCap:conditions="Default.DoNotShow">Configure the user(s) with the correct EKS&#160;permissions and roles (as explained below).</li>
+            <li MadCap:conditions="Default.DoNotShow">Ensure that the AWS VPC limit is sufficient to allow creating multiple clusters.</li>
+            <li MadCap:conditions="Default.DoNotShow">Install the AWS&#160;CLI on the local machine.</li>
+            <li MadCap:conditions="Default.DoNotShow">Install eksctl on the local machine.</li>
         </ul>
-        <h2>User Access </h2>
-        <p>You need to ensure that you have the necessary user access rights and tools to create multiple clusters and connect them to each other. The AWS&#160;user that creates the clusters needs to have full rights over cluster formation, which is enabled by making sure the user has the following AWS Managed Permissions:</p>
+        <h2 MadCap:conditions="Default.DoNotShow">User Access </h2>
+        <p MadCap:conditions="Default.DoNotShow">You need to ensure that you have the necessary user access rights and tools to create multiple clusters and connect them to each other. The AWS&#160;user that creates the clusters needs to have full rights over cluster formation, which is enabled by making sure the user has the following AWS Managed Permissions:</p>
         <ul>
-            <li><span class="tc-bold">IAMFullAcess</span>
+            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">IAMFullAcess</span>
             </li>
-            <li><span class="tc-bold">AmazonEKSClusterPolicy</span>
+            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">AmazonEKSClusterPolicy</span>
             </li>
-            <li><span class="tc-bold">AmazonEKSServicePolicy</span>
+            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">AmazonEKSServicePolicy</span>
             </li>
-            <li><span class="tc-bold">AmazonEKS_CNI_Policy</span>
+            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">AmazonEKS_CNI_Policy</span>
             </li>
-            <li><span class="tc-bold">AmazonEC2FullAccess</span>
-            </li>
-        </ul>
-        <p>Additionally, the user needs the <span class="tc-bold">EKS admin policy </span>(with <span class="tc-bold">cloudformation_full_access </span>enabled), which allows full access and admin rights to the cluster via both the AWS CLI&#160;and AWS&#160;cloud management.</p>
-        <h2>User Roles</h2>
-        <p>After the appropriate user has been created, you need to create a user role for EKS&#160;cluster creation that has the following enabled:</p>
-        <ul>
-            <li><span class="tc-bold">AmazonEKSClusterPolicy</span>
-            </li>
-            <li><span class="tc-bold">cloudformation_full_access </span>
-            </li>
-            <li><span class="tc-bold">AmazonEKSServicePolicy</span>
-            </li>
-            <li><span class="tc-bold">IAMFullAcess</span>
-            </li>
-            <li><span class="tc-bold">EKS-adminuserattachrolepolicy</span>
+            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">AmazonEC2FullAccess</span>
             </li>
         </ul>
-        <h2>(Optional) Trust Relationship</h2>
-        <p>If you have two different users (for example, one user that creates the clusters and another user that configures them), then you need to assign a trust relationship to the user that will be configuring the cluster. This ensures that the second user can use the AWS CLI and the Helm chart to configure the necessary aspects of the cluster.</p>
-        <p>&#160;</p>
+        <p MadCap:conditions="Default.DoNotShow">Additionally, the user needs the <span class="tc-bold">EKS admin policy </span>(with <span class="tc-bold">cloudformation_full_access </span>enabled), which allows full access and admin rights to the cluster via both the AWS CLI&#160;and AWS&#160;cloud management.</p>
+        <h2 MadCap:conditions="Default.DoNotShow">User Roles</h2>
+        <p MadCap:conditions="Default.DoNotShow">After the appropriate user has been created, you need to create a user role for EKS&#160;cluster creation that has the following enabled:</p>
+        <ul>
+            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">AmazonEKSClusterPolicy</span>
+            </li>
+            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">cloudformation_full_access </span>
+            </li>
+            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">AmazonEKSServicePolicy</span>
+            </li>
+            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">IAMFullAcess</span>
+            </li>
+            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">EKS-adminuserattachrolepolicy</span>
+            </li>
+        </ul>
+        <h2 MadCap:conditions="Default.DoNotShow">(Optional) Trust Relationship</h2>
+        <p MadCap:conditions="Default.DoNotShow">If you have two different users (for example, one user that creates the clusters and another user that configures them), then you need to assign a trust relationship to the user that will be configuring the cluster. This ensures that the second user can use the AWS CLI and the Helm chart to configure the necessary aspects of the cluster.</p>
+        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
         <p MadCap:conditions="Default.DoNotShow">&#160;</p>
         <p MadCap:conditions="Default.DoNotShow">2 AWS clusters deployed, one for US&#160;and one for DE. </p>
         <p MadCap:conditions="Default.DoNotShow">deploy the PUs in the clusters and view them in Ops Manager.</p>
@@ -73,6 +73,8 @@
                 <img src="../Resources/Static/attachment_files/kubernetes/wan-gateway.png" class="tc-picture100" />
             </p>
         </div>
+        <h2>Initializing Helm</h2>
+        <p>Type the following command to initialize Helm on your machine:</p><pre><code class="language-bash">helm init --service-account tiller</code></pre>
         <h2>Configuring the Helm Chart</h2>
         <div class="tc-admon-note">
             <p>Helm must be installed before you download the <MadCap:variable name="General.ProductNameXAP" /> Helm chart.</p>
@@ -92,6 +94,7 @@
     -Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174
     -Dcom.gigaspaces.start.httpPort=9713
     -Dcom.gigaspaces.system.registryPort=10298</code></pre>
+                <p>&#160;</p>
             </li>
         </ol>
         <h2>Installing the WAN Gateway Components</h2>
@@ -99,7 +102,7 @@
         <p class="tc-todo">To install the WAN&#160;gateway components:</p>
         <ol>
             <li>
-                <p>Install the Manager. You can use the default configuration.</p><pre><code class="language-bash">helm install insightedge --name demo-us</code></pre>
+                <p>Install the Manager. You can use the default configuration.</p><pre><code class="language-bash">helm install gigaspaces/xap-manager --name mymanager --version=15.0.0 --set image.repository=dixsonhuie/xap-enterprise-wan-logging,image.tag=15.0 --namespace gigaspaces-central-ns</code></pre>
             </li>
             <li>
                 <p>To check the status of the host and services, use the following command:</p><pre><code class="language-bash">kubectl get all</code></pre>
