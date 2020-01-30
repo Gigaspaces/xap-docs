@@ -139,23 +139,6 @@
         <p>The service overview shows a summary of all services vs. unhealthy services. You can also view the services sorted by health and severity. Additionally, you can apply filters by service type and RAM&#160;utilization, or search for specific services by name. Click a service to drill through to see the individual performance metrics and alerts for that service. For deeper analysis, you can create a dump file of the service logs via the download button in the upper right-hand corner.</p>
         <p>In addition to reviewing the performance of individual services, you can drill down to the partition and instance level to review metrics such as CPU&#160;usage and memory consumption per specific instance.</p>
         <h2>Alerts</h2>
-        <p>There are two types of alerts in Ops Manager, availability and resource. Alert summaries can be viewed at the service level, and you can drill through to specific service instances to view and analyze alerts by group and individually, to assess system and cluster performance and identify problem areas.</p>
-        <h3>Availability</h3>
-        <p>Availability alerts describe issues with service availability. The following alerts are used:</p>
-        <ul>
-            <li><span class="tc-bold">Unavailable </span>- the partition isn't responding (neither backup nor primary).</li>
-            <li><span class="tc-bold">No backup</span>- there is no backup service for this primary service.</li>
-            <li><span class="tc-bold">Overprovisioned </span>- the number of primary and backup services don't match.</li>
-        </ul>
-        <h3>Resource</h3>
-        <p>Resource alerts have to do with system resources. The following resource alerts are available:</p>
-        <ul>
-            <li>CPU usage</li>
-            <li>RAM</li>
-            <li>Redo log</li>
-            <li MadCap:conditions="Default.DoNotShow">Disk</li>
-        </ul>
-        <p>By default, the resource alerts are configured with a threshold of 80%. You can customize the resource thresholds for service types or individual services, as well as configure custom resource alerts, using the Ops Manager configuration file, which is located at <span class="tc-italic">&lt;<MadCap:variable name="General.Home-directory" />config/ui</span>.</p>
-        <p>&#160;</p>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/Admin/ops-manager-alerts.flsnp" />
     </body>
 </html>

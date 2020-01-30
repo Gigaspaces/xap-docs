@@ -7,17 +7,23 @@
         <div class="tc-admon-note">
             <p>This functionality is not currently available in the Command Line Interface, REST Manager API, or Administration API.</p>
         </div>
-        <p>The Web Management Console <MadCap:conditionalText MadCap:conditions="Version.15-2-died">and GigaSpaces Management Center </MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-born">and GigaSpaces Ops Manager</MadCap:conditionalText> support SQL queries, enabling users to perform actions on the data objects in the Space. For example, to query a specific class:</p><pre><code>SELECT * FROM my.company.com.MyPojo WHERE rownum &lt; 1000
+        <p>The <MadCap:conditionalText MadCap:conditions="Version.15-2-born">GigaSpaces Ops Manager and the </MadCap:conditionalText>Web Management Console <MadCap:conditionalText MadCap:conditions="Version.15-2-died">and GigaSpaces Management Center </MadCap:conditionalText> support SQL queries, enabling users to perform actions on the data objects in the Space.</p>
+        <p>For example, to query a specific class:</p><pre><code>SELECT * FROM my.company.com.MyPojo WHERE rownum &lt; 1000
 </code></pre>
         <p><span class="tc-bold">To query a Space:</span>
         </p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="GigaSpaces Ops Manager" style="padding:10px">
+            <div title="GigaSpaces Ops Manager" style="padding:10px" MadCap:conditions="Version.15-2-born">
                 <ol>
                     <li>In the Spaces Overview page, click a Space to drill down to the Space details. </li>
                     <li>Click the SQL Editor tab. </li>
                     <li>Modify the SQL&#160;query as necessary, and click <span class="tc-bold">Run Query</span>. The time it took the query to complete is shown below the query area, and the results are displayed in the Results area.</li>
                 </ol>
+                <p> The query must contain the full class name. Additionally, the query must contain a row limit, and <MadCap:variable name="General.ProductNameXAP" /> adds a 1000-row limit by default if you try to run your query without adding the limit yourself. </p>
+                <div class="tc-admon-note">
+                    <p>The maximum number of rows allowed in a query is 10,000.</p>
+                </div>
+                <p>You can also export your query results to a CSV&#160;file.</p>
             </div>
             <div title="Web Management Console" style="padding:10px">
                 <ol>
