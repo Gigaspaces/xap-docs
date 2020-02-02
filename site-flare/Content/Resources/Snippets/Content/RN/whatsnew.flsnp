@@ -110,6 +110,45 @@
         <h2 MadCap:conditions="Version.15-0-only">Dynamic Schema Versioning </h2>
         <p MadCap:conditions="Version.15-0-only">InsightEdge supports dynamic schema definition by allowing you to write and update data without a predefined schema.  You can easily make changes to the data model  while ensuring it will be compatible with JDBC and BI tools. The result is more reliable code integration, faster development, and lower administration overhead.</p>
         <p MadCap:conditions="Version.15-0-only"><span class="tc-iconinfo">&#160;</span> For more information, see the new section on Querying with JDBC&#160;in the <MadCap:xref href="../../../../dev-java/document-api.html">Document API</MadCap:xref> topic.</p>
+        <h1 MadCap:conditions="Version.15-2-only">Platform Enhancements</h1>
+        <h2 MadCap:conditions="Version.15-2-only">GigaOps Stack</h2>
+        <p MadCap:conditions="Version.15-2-only"> </p>
+        <p MadCap:conditions="Version.15-2-only"><MadCap:variable name="General.ProductNameXAP" /> introduces the GigaOps Stack, a comprehensive platform with the following components:</p>
+        <ul>
+            <li MadCap:conditions="Version.15-2-only">Ops Manager - the new web-based for monitoring and administering all aspects of your <MadCap:variable name="General.ProductNameXAP" />-based application.</li>
+            <li MadCap:conditions="Version.15-2-only">ElasticGrid  - <MadCap:variable name="General.ProductNameXAP" />' new orchestration option for open cloud, on-premise  or hybrid systems that automates deployment, scaling, and management of virtualized and containerized applications.</li>
+            <li MadCap:conditions="Version.15-2-only">gsctl CLI - a standalone CLI tool for creating, provisioning and installing <MadCap:variable name="General.ProductNameXAP" /> clusters in the cloud or on-premise.</li>
+            <li MadCap:conditions="Version.15-2-only">Monitoring - <MadCap:variable name="General.ProductNameXAP" />' new monitoring  stack based on InfluxDB and Grafana.</li>
+        </ul>
+        <h2 MadCap:conditions="Version.15-2-only">Auto Data Source Connect</h2>
+        <p MadCap:conditions="Version.15-2-only">Users can easily import selected data directly to a Space by setting up a data source connection via Ops Manager. The option for configuration a data source includes the ability to review and select the specific data for import, and applying indexing. </p>
+        <h2 MadCap:conditions="Version.15-2-only"><MadCap:variable name="General.ProductNameXAP" /> Ops Manager </h2>
+        <p MadCap:conditions="Version.15-2-only">The Ops Manager has the following new functionality:</p>
+        <ul>
+            <li MadCap:conditions="Version.15-2-only">Space View - users can see an overview of the Spaces in the clusters, and drill through to individual Spaces to see metadata, data distribution, index statistics, and more.</li>
+            <li MadCap:conditions="Version.15-2-only">Interactive queries - users can configure interactive SQL&#160;queries within Ops Manager to retrieve data from the Space.</li>
+        </ul>
+        <h2 MadCap:conditions="Version.15-2-only">Memory-Level Storage Adapters</h2>
+        <p MadCap:conditions="Version.15-2-only"><MadCap:variable name="General.ProductNameXAP" /> now provides a Property Storage Adapter API to apply compression or encryption for a property. It contains the following general-purpose, built-in adapters:</p>
+        <ul>
+            <li>Encryption adapters that encrypt/decrypt designated property values using the AES algorithm.</li>
+            <li>Binary adapter for storing values in binary serialized format.</li>
+            <li>ZIP&#160;adapter that applies compression/decompression using the Zip algorithm.</li>
+        </ul>
+        <h1 MadCap:conditions="Version.15-2-only">Kubernetes Improvements</h1>
+        <p MadCap:conditions="Version.15-2-only">This release provides the following improvements for Kubernetes-based <MadCap:variable name="General.ProductNameXAP" /> applications:</p>
+        <ul>
+            <li MadCap:conditions="Version.15-2-only">Auto-scaling - this new feature enables users to submit ad-hoc scaling requests so that not all pods restart at the same time.</li>
+            <li MadCap:conditions="Version.15-2-only">Multi-region replication - users can set up WAN gateways in the Kubernetes  to enable replication between regions for disaster recovery purposes.</li>
+        </ul>
+        <h1 MadCap:conditions="Version.15-2-only">Third-Party Integration Updates</h1>
+        <p MadCap:conditions="Version.15-2-only">The <MadCap:variable name="General.ProductNameXAP" />-Tableau driver now appears automatically in the Tableau list of connectors.</p>
+        <p MadCap:conditions="Version.15-2-only">Additionally, the following third-party integrations have been updated for release 15.2:</p>
+        <ul>
+            <li MadCap:conditions="Version.15-2-only">Cassandra connector for data persistence</li>
+            <li MadCap:conditions="Version.15-2-only"><MadCap:variable name="General.ProductNameXAP" /> Enterprise Operator in Openshift OperatorHub</li>
+            <li MadCap:conditions="Version.15-2-only">Building a <MadCap:variable name="General.ProductNameXAP" />-Spring Data application</li>
+        </ul>
         <h1>Third-Party Product Changes</h1>
         <p MadCap:conditions="Version.ea-only">There are currently no third-party changes or updates.</p>
         <ul>
@@ -143,7 +182,7 @@
             <li MadCap:conditions="Version.14-5-only"><a href="http://projects.spring.io/spring-security/">Spring Security</a> integration has been upgraded to 5.1.5.<div class="tc-admon-attention"><p MadCap:conditions="Version.14-5-only">As of Spring Security 5.x,   a password encoder must be defined.</p></div></li>
         </ul>
         <h1>Deprecated and End-Of-Life  Features and Functionality</h1>
-        <p MadCap:conditions="Version.ea-only">There are currently no deprecated or end-of-life features and functionality.</p>
+        <p MadCap:conditions="Default.DoNotShow">There are currently no deprecated or end-of-life features and functionality.</p>
         <p MadCap:conditions="Version.14-0-only,Version.15-0-only">The following functionality is deprecated as of this release:</p>
         <ul MadCap:conditions="Version.15-0-only">
             <li><MadCap:variable name="General.CompanyName" /> Management Center</li>
@@ -157,7 +196,9 @@
             <li MadCap:conditions="Version.14-0-only">The gs-agent script (use the <code>insightedge host run-agent</code> or <code>xap host run-agent</code> command instead)</li>
         </ul>
         <p MadCap:conditions="Version.14-0-only">The following functionality is end of life as of this release:</p>
-        <ul MadCap:conditions="Version.14-0-only">
+        <p MadCap:conditions="Version.15-2-only">The following functionality is end of life as of this release:</p>
+        <ul>
+            <li MadCap:conditions="Version.15-2-only">GSIterator</li>
             <li MadCap:conditions="Version.14-0-only">XAP.NET for Microsoft .NET v3.5</li>
         </ul>
         <p MadCap:conditions="Version.14-0-only">In addition, we recommend that you review GigaSapaces' updated Java and Spring Framework policies on the <MadCap:xref href="../../../../rn/lifecycle.html">Product Life Cycle and End-of-Life Policy</MadCap:xref> page.</p>
