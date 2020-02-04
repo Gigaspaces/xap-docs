@@ -125,7 +125,7 @@
                     <p>If you try to start a global container that is already running under this Grid Service Agent, you get a notification message and the container isn't started.</p>
                 </div>
             </div>
-            <div title="GigaSpaces Management Center" style="padding:10px">
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
                 <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
             </div>
             <div title="Administration API" style="padding:10px">
@@ -172,6 +172,11 @@
                             <td align="left">container ID</td>
                             <td align="left">ID of the container to be terminated.</td>
                         </tr>
+                        <tr MadCap:conditions="Version.15-2-born">
+                            <td align="left">Option</td>
+                            <td align="left">zones</td>
+                            <td align="left">Specify the zone(s) where the container should be terminated.</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -217,7 +222,7 @@
                     <p>If you terminated a global container, it is started again with a new name.</p>
                 </div>
             </div>
-            <div title="GigaSpaces Management Center" style="padding:10px">
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
                 <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
             </div>
             <div title="Administration API" style="padding:10px">
@@ -232,19 +237,19 @@
                 <p><span class="tc-italic">Command:</span>
                 </p>
                 <p MadCap:conditions="Version.14-5-died"><code>xap container restart &lt;container ID&gt;</code> or <code>insightedge container restart &lt;container ID&gt;</code></p>
-                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> container restart &lt;container ID&gt;</code>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all"></MadCap:variable> container restart &lt;container ID&gt;</code>
                 </p>
                 <p><span class="tc-italic">Description:</span>
                 </p>
                 <p>This command restarts the specified container.</p>
                 <p><span class="tc-italic">Input Example:</span>
-                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap container restart admin~11100
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath"></MadCap:variable>/bin/xap container restart admin~11100
 </code></pre>
                 <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> container restart admin~11100
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows"></MadCap:variable> container restart admin~11100
 </code></pre>
                     </div>
-                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> container restart admin~11100
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux"></MadCap:variable> container restart admin~11100
 </code></pre>
                     </div>
                 </div>
@@ -311,6 +316,58 @@
             </div>
             <div title="Administration API" style="padding:10px">
                 <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+        <h1><a name="restarting-a-container"></a>Creating a Container</h1>
+        <div class="tc-admon-note">
+            <p>This functionality is only available with the Command Line Interface.</p>
+        </div>
+        <p><span class="tc-bold">To create a container:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap container create &lt;container ID&gt;</code> or <code>insightedge container create &lt;container ID&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> container create &lt;container ID&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command creates the specified container.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap container restart admin~11100
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> container create admin~11100
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> container create admin~11100
+</code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">container ID</td>
+                            <td align="left">ID of the container to be created.</td>
+                        </tr>
+                        <tr MadCap:conditions="Version.15-2-born">
+                            <td align="left">Option</td>
+                            <td align="left">count</td>
+                            <td align="left">Number of containers to be created.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </body>
