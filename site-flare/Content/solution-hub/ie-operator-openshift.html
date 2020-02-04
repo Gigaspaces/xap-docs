@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Deploying <MadCap:variable name="General.ProductNameIE" /> in OpenShift</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th align="center">Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Yoram Weinreb</td>
+                    <td>15.0</td>
+                    <td>February 2020</td>
+                    <td> </td>
+                    <td align="center"> </td>
+                </tr>
+            </tbody>
+        </table>
+        <p># Deploying The Insightedge Enterprise Operator</p>
+        <p>1. Create a project.</p>
+        <p>1. In the Openshift OperatorHub, navigate to the **Insightedge Enterprise Operator** certified operator (you can filter the view by beginning to type the operator name in the search field) and click it.</p>
+        <p>1. Click **Install**.</p>
+        <p>1. On the Create Operator Subscription page, review the default settings and click **Subscribe**.</p>
+        <p>1. On the Installed Options page, when the status of your operator is **InstallSucceeded** (and **up to date**), click **InsightEdge Enterprise Operator** in the Name column.</p>
+        <p>1. Click **Create Instance**.</p>
+        <p>1. (Optional) In the editor view, rename the deployment and modify the environment values, for example:</p>
+        <p>-  To configure high availability: `manager.ha=true,manager.antiAffinity.enabled=true`</p>
+        <p>-  To specify the number of partitions: `pu.partitions=n`</p>
+        <p>-  To specify the pod memory allocation: `pu.resources.limits.memory=256Mi,pu.java.heap=75%`</p>
+        <p>-  To implement MemoryXtend (Persistent  Volume): `memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar`</p>
+        <p>1. Navigate to the Workloads&gt;Pods page to verify that all the pods are up and running.</p>
+        <p>1. Navigate to the Project page and click your project to open the project details page.</p>
+        <p>1. Click the Workloads tab to see the list of pods in your project. You can click a pod to view the connection details (service ports) for that pod.</p>
+        <p>_**Note**_: `insightedge-manager` uses the web interface endpoint, and Apache Zeppelin uses the interactive notebook endpoint.</p>
+    </body>
+</html>
