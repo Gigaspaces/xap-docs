@@ -19,9 +19,8 @@
                     <td>Shay Hassidim</td>
                     <td>7.0</td>
                     <td>August 2009</td>
-                    <td>
-                    </td>
-                    <td>
+                    <td> </td>
+                    <td><a href="https://github.com/Gigaspaces/solution-hub/blob/master/MasterWorker.zip" target="_blank">Master/Worker pattern</a>
                     </td>
                 </tr>
             </tbody>
@@ -45,9 +44,6 @@
         <p>When running multiple <code>Workers</code>, processing is load-balanced across all the workers in an even manner. When there is a large amount of activity, you might need to run a partitioned space to allow the space layer to store a large number of <code>Request</code> objects (there will always be a small number of <code>Result</code> objects in the space), and to cope with a large number of <code>Workers</code>. This makes sure that your system can scale, and the space layer does not act as a bottleneck.</p>
         <p>When running the space in clustered partitioned mode, you cannot run the workers in blocking mode without assigning a value to the <code>Request</code> object routing field. The <a href="#example-2-designated-workers">Designated Workers approach</a> allows you to run the workers against a partitioned space, in blocking mode.</p>
         <p>The following sections include code samples and configuration that illustrate the Master-Worker implementation via Polling Containers, using the Random Workers and Designated Workers approach.</p>
-        <div class="tc-admon-tip">
-            <p>We invite you to <a href="/attachment_files/sbp/MasterWorker.zip">download</a> the code examples and configuration files used with this article.</p>
-        </div>
         <h1><a name="example-1-random-workers">&#160;</a>Example 1 - Random Workers</h1>
         <p>With the Random Workers approach, each worker can consume <code>Request</code> objects from <span class="tc-bold">every</span> space partition. In this case, the non-blocking mode is used. The workers scan the partitions in a round-robin fashion for a <code>Request</code> object to consume and execute. With this approach, there might be a small delay until the workers consume a <code>Request</code> object. This approach might generate some chatting over the network, since the workers connect to all existing partitions to look for <code>Request</code> objects to consume and in case none is found, wait for some time and then try again.</p>
         <table class="tc-borderless">
@@ -487,7 +483,7 @@ public class Result extends Base {
             </div>
         </div>
         <h1><a name="net-implementation">&#160;</a>.NET Implementation</h1>
-        <p>Here is an <a href="/download_files/sbp/MasterWorkerForDotNet.zip">example</a> of the Master Worker Pattern for .NET.</p>
+        <p>Here is an <a href="https://github.com/Gigaspaces/solution-hub/blob/master/MasterWorkerForDotNet.zip" target="_blank">example</a> of the Master Worker Pattern for .NET.</p>
         <h1><a name="references">&#160;</a>References</h1>
         <ul>
             <li><a href="http://java.sun.com/developer/Books/JavaSpaces/chapter11.html">JavaSpaces Principles, Patterns, and Practice: Chapter 11</a>
