@@ -11,7 +11,7 @@
             <li>Create a class and annotate it with <code>com.gigaspaces.manager.rest.CustomManagerResource</code>.</li>
             <li>Create a method for each path you wish to intercept, and annotate it with an HTTP operation (e.g. <code>@GET</code>) and a <code>@Path</code> annotation with the relevant path.</li>
             <li>Use JAX-RS parameter annotations (e.g. <code>@QueryParam</code>) to map HTTP request parameters to your method.</li>
-            <li>If you wish to use <code>Admin</code>, create an appropiate field and annotate it with JAX-RS <code>@Context</code> annotation.</li>
+            <li>If you wish to use <code>Admin</code>, create an appropriate field and annotate it with JAX-RS <code>@Context</code> annotation.</li>
         </ol>
         <p>For example:</p><pre><code class="language-java">@CustomManagerResource
 @Path("/demo")
@@ -30,7 +30,10 @@ public class BasicPluggableOperationTest {
 </code></pre>
         <p>This class maps an HTTP <code>GET</code> operation in the <code>/demo/report</code> path to a <code>report</code> method. It accepts a query parameter, and uses an injected <code>Admin</code> instance to perform user-defined code (in this case, a custom report).  For example, <code>http://localhost:8090/v2/demo/report?hostname=mypc</code>.</p>
         <p>To run the example, compile it and package it into a .jar file, then copy the .jar to <code><MadCap:variable name="General.HomePath" />/lib/platform/manager/plugins</code> and start the <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
-        <p>Note that some JAX-RS features are not supported - see <a href="#jax-rs-support">JAX-RS Support</a> below for detailed information.</p>
+        <p>Some JAX-RS features are not supported - see <a href="#jax-rs-support">JAX-RS Support</a> below for detailed information.</p>
+        <div class="tc-admon-note">
+            <p>You must declare a new path, not one that already exists in the built-in REST&#160;Manager API. For example, <code>@Path("/pus/...")</code> won't work because <code>path/pus</code> already exists in the REST&#160;Manager API.</p>
+        </div>
         <h1><a name="configuration"></a>Configuration</h1>
         <p>When the <MadCap:variable name="General.ProductNameXAP" /> Manager starts, it scans the <code><MadCap:variable name="General.HomePath" />/lib/platform/manager/plugins</code> for classes in the jar files with the JAX-RS annotations and registers them.
 You can override the location using the following system property:</p><pre><code class="language-bash">com.gs.manager.rest.plugins.path="pathToJar"
