@@ -7,6 +7,15 @@ body
 	font-family: 'Rubik', sans-serif;
 }
 
+.landing .off-canvas-content, .landing .sidenav-layout, .landing .off-canvas-wrapper {
+	height: auto;
+	max-height: unset;
+}
+
+.landing .off-canvas-wrapper-inner .outer-row {
+	max-width: 100%;
+}
+
 .landing .sidenav-wrapper
 {
 	display: none;
@@ -86,6 +95,12 @@ body
 .landing .page-404 .region-top p
 {
 	font-size: 1.3rem;
+	text-align: center;
+}
+
+.landing .page-404 .region-wrapper img
+{
+	max-width: 100%;
 }
 
 .landing .page-404 + #footer
@@ -191,7 +206,7 @@ body
 
 .landing .region-bottom .region-wrapper
 {
-	margin: 0 8rem;
+	margin: 0 7.6rem;
 }
 
 .landing .region-bottom .mc-wrapper .mc-viewport
@@ -359,9 +374,9 @@ body
 
 .content .main-section .sidenav-layout
 {
-	height: calc(100vh - 86px - 3rem) !important;
+	height: calc(100vh - 66px - 3rem) !important;
 	position: relative;
-	max-width: 100%;
+	max-width: 95%;
 	margin-left: 5%;
 }
 
@@ -374,6 +389,10 @@ MadCap|breadcrumbsProxy
 	max-width: 90%;
 	padding-bottom: 20px;
 	padding-top: 0px;
+}
+
+.content .breadcrumbs {
+	flex-basis: 100%;
 }
 
 /* .content .breadcrumbs {
@@ -742,6 +761,8 @@ MadCap|breadcrumbsProxy
 	position: relative;
 }
 
+
+
 /* .content .ipn-content.closed .sidenav-wrapper #ipn-toggle {
   right: -20px;
 }
@@ -987,7 +1008,8 @@ pre
 	position: relative;
 }
 
-div.clipboard {
+div.clipboard 
+{
 	/* background-color: #006db8; */
 	border: 1px solid transparent;
     border-radius: 12px;
@@ -1012,12 +1034,14 @@ div.clipboard {
 	height: 100%;
 }
 
-.clipboard button.success {
+.clipboard button.success 
+{
 	background: url('images/icons/copy-paste-success.svg') no-repeat center center;
 	background-size: 16px 16px;
 }
 
-.clipboard button.success:hover {
+.clipboard button.success:hover 
+{
 	background: url('images/icons/copy-paste-success.svg') no-repeat center center;
 	background-size: 16px 16px;
 }
@@ -1174,8 +1198,21 @@ h1
 	padding-right: 30px;
 }
 
+.off-canvas-wrapper-inner .main-section {
+	flex-wrap: wrap;
+}
+
 @media tablet
+
 {
+	.off-canvas-wrapper-inner {
+		overflow: hidden;
+	}
+
+	.off-canvas-wrapper-inner .main-section {
+		overflow: hidden;
+	}
+
 	.content .off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested
 	{
 		max-height: 9999px;
@@ -1192,6 +1229,10 @@ h1
 		padding-top: 2px;
 	}
 
+	.landing .off-canvas-wrapper-inner .outer-row {
+		max-width: 90%;
+		}
+	
 	.landing .slideshow p
 	{
 		min-height: 140px;
@@ -1223,6 +1264,7 @@ h1
 	.off-canvas-wrapper
 	{
 		overflow-y: hidden;
+		overflow: auto;
 	}
 
 	.landing .region-top
@@ -1271,7 +1313,8 @@ h1
 	.title-bar-layout a.logo
 	{
 		width: 40px;
-		background-position: left center;
+		background-position: -10px center;
+		background-size: 200px;
 	}
 
 	span.web-size-only
@@ -1300,6 +1343,7 @@ h1
 
 	.content .main-section .sidenav-layout
 	{
+		max-width: 100%;
 		margin-left: 0;
 		height: auto !important;
 	}
