@@ -28,9 +28,10 @@
       /* Responsive resources menu */
 
       $("ul.sidenav").on("loaded", function() {
-        console.log("loaded")
-        if (window.location.href.indexOf("/early-access")||("/videos")||("/solution-hub") > -1) {
-            var itemHeight = 0;
+        // console.log("loaded")
+        if (
+          (window.location.href.indexOf("/early-access") > -1) || (window.location.href.indexOf("/videos") > -1) || (window.location.href.indexOf("/solution-hub") > -1)) {
+          var itemHeight = 0;
             $('ul.off-canvas-accordion.sidenav > .tree-node-leaf').each(function(){itemHeight += $(this).outerHeight() + 23;
             });
             var menuHeight = itemHeight + 40 + 86;
@@ -44,8 +45,9 @@
         });
 
     $(window).on('resize', function () {
-        if (window.location.href.indexOf("/early-access")||("/videos")||("/solution-hub") > -1) {
-          console.log("resources")
+      if (
+        (window.location.href.indexOf("/early-access") > -1) || (window.location.href.indexOf("/videos") > -1) || (window.location.href.indexOf("/solution-hub") > -1)) {
+      //  console.log("resources")
             var itemHeight = 0;
             $('ul.off-canvas-accordion.sidenav > .tree-node-leaf').each(function(){itemHeight += $(this).outerHeight() + 23;
             });
@@ -55,16 +57,17 @@
             setTimeout(function(){
             $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("max-height",submenuHeight + "px");
             $('ul.off-canvas-accordion > .is-accordion-submenu-parent > .is-accordion-submenu.nested').css("min-height","350px");
-            console.log("resized");
+            // console.log("resized");
           }, 100);
         }
     });
 
       $(document).mouseup(function (e) {
         if ($('.submenu-toggle-container').is(e.target)) {
-        console.log("clicked")
-          if (window.location.href.indexOf("/early-access")||("/videos")||("/solution-hub") > -1) {
-              var itemHeight = 0;
+        // console.log("clicked")
+        if (
+          (window.location.href.indexOf("/early-access") > -1) || (window.location.href.indexOf("/videos") > -1) || (window.location.href.indexOf("/solution-hub") > -1)) {
+             var itemHeight = 0;
               $('ul.off-canvas-accordion.sidenav > .tree-node-leaf').each(function(){itemHeight += $(this).outerHeight() + 23;
               });
               var menuHeight = itemHeight + 40 + 86;
@@ -291,6 +294,7 @@
           });
 
           $(window).resize(function() {
+            _self.methods.placeTopicFooter();
             if ($("input").is(":focus")) {
           } else {
               if ($(this).width() > 803) {
