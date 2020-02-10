@@ -20,27 +20,30 @@
                     <td>15.0</td>
                     <td>February 2020</td>
                     <td> </td>
-                    <td align="center"><a href="https://access.redhat.com/containers/?tab=images#/registry.connect.redhat.com/gigaspaces/insightedge-enterprise-operator">OpenShift OperatorHub</a>
+                    <td align="center"><a href="https://github.com/Gigaspaces/solution-hub/tree/master/gigaspaces-cassandra">GigaSpaces-Cassandra integration</a>
                     </td>
                 </tr>
             </tbody>
         </table>
         <h1>Overview</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> can be integrated with Cassandra for data persistence and reload. This topic describes a project that enables connecting to a Cassandra data source, loading the data to a <MadCap:variable name="General.ProductNameXAP" /> cluster, and then writing back the data with changes to the Cassandra cluster.</p>
-        <p>The project is divided into the following modules:</p>
-        <ul>
-            <li><span class="tc-bold">gigaspaces-cassandra-parent</span>: This module defines all the dependencies needed on other modules and versions.</li>
-            <li><span class="tc-bold">gigaspaces-cassandra-datasource</span>: This is the main module that defines the data source and mirror for Cassandra.</li>
-            <li><span class="tc-bold">gigaspaces-cassandra-mapper-processor </span>and <span class="tc-bold">gigaspaces-cassandra-mapper-runtime</span>: Extensions to the Cassandra mappers</li>
-        </ul>
-        <h2>Required Software and Versions</h2>
-        <p>The Gigaspaces-Cassandra data source is based on the Cassandra  4.4 Java driver, which is compatible with the following third-party software  needed for this integration:</p>
+        <div class="tc-admon-note">
+            <p>For more information about how to integrate with Cassandra, see the <a href="https://docs.datastax.com/en/developer/java-driver/4.4/" target="_blank">DataStax</a> documentation.</p>
+        </div>
+        <h2>Prerequisites</h2>
+        <h3>Environment</h3>
+        <p>In order to run this integration, you need to have a Cassandra project up and running. If you don't already have a Cassandra project, then you can use the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/gigaspaces-cassandra/gigaspaces-cassandra-docs/gigaspaces-cassandra-mapper-example1" target="_blank">example</a> provided with the integration package.</p>
+        <h3>Required Software and Versions</h3>
+        <p>The Gigaspaces-Cassandra datasource uses the Cassandra  4.4 Java driver, which is compatible with the following third-party software  needed for this integration:</p>
         <ul>
             <li>Apache Cassandra 2.1 and higher</li>
             <li>DataStax Enterprise 4.7 and higher</li>
             <li> DataStax Apollo</li>
             <li>Java 8 or higher</li>
         </ul>
+        <div class="tc-admon-attention">
+            <p>If you are using a Windows machine to run the <MadCap:variable name="General.ProductNameXAP" />-Cassandra integration, don't use an Apache Cassandra release higher than 3.11.5.</p>
+        </div>
         <h1>Getting Started with the Cassandra Integration</h1>
         <p>The Gigaspaces-cassandra-mapper-example1 show how to convert a cassandra entity mappers project to be used by the gigaspaces cassandra datasource to load and persist back changes to cassandra.</p>
         <p>&#160;</p>
