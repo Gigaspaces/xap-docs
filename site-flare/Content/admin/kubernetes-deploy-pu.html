@@ -160,5 +160,10 @@
         <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
             <p MadCap:conditions="Version.14-5-born">For information about the Kubernetes persistent volume storage model, refer to the <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/" target="_blank">Kubernetes documentation</a>.</p>
         </div>
+        <h1>Specifying a Node Pool</h1>
+        <p>Depending on the workload in your system, you may want more control over which node a service (pod) resides on. This can help ensure that a service runs on a machine that is configured for tiered storage (attached to an SSD, for example), or that pods from different services that communicate frequently with the same availability zone are co-located. </p>
+        <p>
+            <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">A node pool is a group of machines (nodes) in a cluster that all have the same configuration. When you define a service, you can deploy the associated pod to a specific node pool by setting the nodeSelector, which means that the service will only be deployed on a node from that node pool. </MadCap:conditionalText>You can specify which node pools to access using the following Helm command:</p><pre><code class="language-bash">helm install insightedge --name demo --set manager.nodeSelector.enabled=true,manager.nodeSelector.selector="disktype: ssd",pu.nodeSelector.enabled=true,pu.nodeSelector.selector="disktype: ssd"</code></pre>
+        <p>&#160;</p>
     </body>
 </html>
