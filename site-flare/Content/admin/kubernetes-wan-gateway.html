@@ -75,6 +75,20 @@
         </div>
         <h2>Initializing Helm</h2>
         <p>Type the following command to initialize Helm on your machine:</p><pre><code class="language-bash">helm init --service-account tiller</code></pre>
+        <h2>Installing the <MadCap:variable name="General.ProductNameXAP" /> Manager per Geographical Site</h2>
+        <p>The Manager is always installed first, followed by the service(s) that it will manage. </p>
+        <p class="tc-todo">To install the Manager:</p>
+        <ol>
+            <li>
+                <p>You can use the default configuration to install the Manager for each geographical location. Use the following command to install a Manager for the U.S. location:</p><pre><code class="language-bash">helm install gigaspaces/xap-manager --name usmanager --version=15.0.0 --namespace gigaspaces-us</code></pre>
+            </li>
+            <li>Repeat step 1 for the second geographical location (for this example, the Germany location).</li>
+            <li>
+                <p>To check the status of the host and services (to ensure that the Managers have been installed properly), use the following command:</p><pre><code class="language-bash">kubectl get all</code></pre>
+            </li>
+        </ol>
+        <h2>Installing the <MadCap:variable name="General.ProductNameXAP" /> Service</h2>
+        <p>The next step is to install a service (Processing Unit) for each geographical site. You do this using a pu.xml file that is configured as described in the <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref>. When installing a service, review the pu.properties file to make sure that <span class="tc-highlight">STOPPED HERE TO WORK WITH ESTER</span>.</p>
         <h2>Configuring the Helm Chart</h2>
         <div class="tc-admon-note">
             <p>Helm must be installed before you download the <MadCap:variable name="General.ProductNameXAP" /> Helm chart.</p>
@@ -98,22 +112,22 @@
             </li>
         </ol>
         <h2>Installing the WAN Gateway Components</h2>
-        <p>When the Helm chart has been configured correctly, you can begin installing the components. The Manager is always installed first, followed by the services that it will manage. </p>
-        <p class="tc-todo">To install the WAN&#160;gateway components:</p>
         <ol>
             <li>
-                <p>Install the Manager. You can use the default configuration.</p><pre><code class="language-bash">helm install gigaspaces/xap-manager --name mymanager --version=15.0.0 --set image.repository=dixsonhuie/xap-enterprise-wan-logging,image.tag=15.0 --namespace gigaspaces-central-ns</code></pre>
+                <p>Review the pu.properties file inside each service JAR file to ensure that it is configured correctly. For example, to configure the U.S. properties, you can set the following. These properties will be used to override the property placeholders under the <code>gatewayLookups</code> section of the Helm chart. This host and discovery-port are the host and ports exposed by Kubernetes in the Helm manager install.</p><pre><code>local-gateway-name=us
+local-spaceUrl=jini://*/*/usSpace
+local-lookup-host=&lt;us-host&gt;
+local-lookup-port=4174
+local-communication-port=8200
+remote-gateway-name=germany
+remote-lookup-host=&lt;germany-host&gt;
+remote-lookup-port=4174
+remote-communication-port=8200</code></pre>
             </li>
             <li>
-                <p>To check the status of the host and services, use the following command:</p><pre><code class="language-bash">kubectl get all</code></pre>
+                <p>After updating the service JAR&#160;with the Space public IP&#160;addresses for both clusters, you can deploy the WAN&#160;gateways, which also must have the LRMI enabled. For example, type the following command to deploy the WAN gateway for the U.S. site.</p><pre><code class="language-bash">helm install insightedge-pu --name wangateway-us --set manager.name=demo-us,resourceUrl=&lt;path to WAN gateway pu.xml&gt;,service.lrmi.enabled=true</code></pre>
             </li>
-            <li>
-                <p>Deploy the Space service. You need to enable the LRMI&#160;service so that the Spaces can communicate with each other to replicate the data. (Note the public IP&#160;address that is assigned, so that you can add it to the WAN&#160;gateway pu.xml file. )</p><pre><code class="language-bash">helm install insightedge-pu --name spaceus --set manager.name=demo-us,service.lrmi.enabled=true,resourceUrl=&lt;path to US Space pu.xml&gt;</code><![CDATA[	]]></pre>
-            </li>
-            <li>Repeat step 3 for the second geographical location.</li>
-            <li>
-                <p>After updating the pu.xml file with the Space public IP&#160;addresses for both clusters, you can deploy the WAN&#160;gateways, which also must have the LRMI enabled.</p><pre><code class="language-bash">helm install insightedge-pu --name wangateway-us --set manager.name=demo-us,resourceUrl=&lt;path to WAN gateway pu.xml&gt;,service.lrmi.enabled=true</code></pre>
-            </li>
+            <li>Repeat step 7 for the second geographical location.</li>
         </ol>
         <p>When all the components have been deployed, you can populate the delegator Space and verify that data replication occurs.</p>
         <p MadCap:conditions="Default.DoNotShow">ScalaSpaceApp in github</p>
