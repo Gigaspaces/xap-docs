@@ -5,69 +5,19 @@
     <body>
         <h1 class="tc-pagetitle">Multi-Region Replication in Kubernetes</h1>
         <p>You can implement multi-region replication in Kubernetes by deploying a <MadCap:variable name="General.ProductNameXAP" /> WAN&#160;gateway. The Kubernetes-based WAN gateway has all the functionality of the service-grid based WAN gateway, and provides multi-region replication for fast and efficient disaster recovery. </p>
-        <p>This topic describes how to set up a WAN&#160;gateway for a <MadCap:variable name="General.ProductNameXAP" /> environment on AWS Kubernetes clusters. You need to create two clusters, one for each region that will host <MadCap:variable name="General.ProductNameXAP" />, deploy <MadCap:variable name="General.ProductNameXAP" /> on each cluster, and then deploy a WAN gateway for each region. </p>
+        <p>This topic describes how to set up a WAN&#160;gateway for a <MadCap:variable name="General.ProductNameXAP" /> environment in cloud-based Kubernetes clusters. You have to create two clusters, one for each region that will host <MadCap:variable name="General.ProductNameXAP" />, deploy <MadCap:variable name="General.ProductNameXAP" /> on each cluster, and then deploy a WAN gateway for each region. </p>
         <div class="tc-admon-note">
             <p>This topic assumes knowledge of how to set up a WAN&#160;gateway in <MadCap:variable name="General.ProductNameXAP" />. If you aren't familiar with how to configure a WAN gateway, see the <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref> section of the developer guide before you continue with the below procedure.</p>
+            <p>This topic also assumes knowledge of how to install <MadCap:variable name="General.ProductNameXAP" /> in a Kubernetes environment. For more information, see the <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref> topic in the Orchestration section of the administration guide.</p>
         </div>
-        <h1 MadCap:conditions="Default.DoNotShow">Configuring your AWS&#160;Environment</h1>
-        <p MadCap:conditions="Default.DoNotShow">In order to create the necessary clusters and configure them for the WAN gateway, there are several requirements that must be met:</p>
-        <ul>
-            <li MadCap:conditions="Default.DoNotShow">Configure the user(s) with the correct EKS&#160;permissions and roles (as explained below).</li>
-            <li MadCap:conditions="Default.DoNotShow">Ensure that the AWS VPC limit is sufficient to allow creating multiple clusters.</li>
-            <li MadCap:conditions="Default.DoNotShow">Install the AWS&#160;CLI on the local machine.</li>
-            <li MadCap:conditions="Default.DoNotShow">Install eksctl on the local machine.</li>
-        </ul>
-        <h2 MadCap:conditions="Default.DoNotShow">User Access </h2>
-        <p MadCap:conditions="Default.DoNotShow">You need to ensure that you have the necessary user access rights and tools to create multiple clusters and connect them to each other. The AWS&#160;user that creates the clusters needs to have full rights over cluster formation, which is enabled by making sure the user has the following AWS Managed Permissions:</p>
-        <ul>
-            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">IAMFullAcess</span>
-            </li>
-            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">AmazonEKSClusterPolicy</span>
-            </li>
-            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">AmazonEKSServicePolicy</span>
-            </li>
-            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">AmazonEKS_CNI_Policy</span>
-            </li>
-            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">AmazonEC2FullAccess</span>
-            </li>
-        </ul>
-        <p MadCap:conditions="Default.DoNotShow">Additionally, the user needs the <span class="tc-bold">EKS admin policy </span>(with <span class="tc-bold">cloudformation_full_access </span>enabled), which allows full access and admin rights to the cluster via both the AWS CLI&#160;and AWS&#160;cloud management.</p>
-        <h2 MadCap:conditions="Default.DoNotShow">User Roles</h2>
-        <p MadCap:conditions="Default.DoNotShow">After the appropriate user has been created, you need to create a user role for EKS&#160;cluster creation that has the following enabled:</p>
-        <ul>
-            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">AmazonEKSClusterPolicy</span>
-            </li>
-            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">cloudformation_full_access </span>
-            </li>
-            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">AmazonEKSServicePolicy</span>
-            </li>
-            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">IAMFullAcess</span>
-            </li>
-            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">EKS-adminuserattachrolepolicy</span>
-            </li>
-        </ul>
-        <h2 MadCap:conditions="Default.DoNotShow">(Optional) Trust Relationship</h2>
-        <p MadCap:conditions="Default.DoNotShow">If you have two different users (for example, one user that creates the clusters and another user that configures them), then you need to assign a trust relationship to the user that will be configuring the cluster. This ensures that the second user can use the AWS CLI and the Helm chart to configure the necessary aspects of the cluster.</p>
-        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
-        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
-        <p MadCap:conditions="Default.DoNotShow">2 AWS clusters deployed, one for US&#160;and one for DE. </p>
-        <p MadCap:conditions="Default.DoNotShow">deploy the PUs in the clusters and view them in Ops Manager.</p>
-        <p MadCap:conditions="Default.DoNotShow">Can user the REST&#160;Manager API to see that the <MadCap:variable name="General.ProductNameXAP" /> environments are working. Containers will show the two zones. </p>
-        <p MadCap:conditions="Default.DoNotShow">Can use Apache Zeppelin to populate one side and see how the data is replicated (can connect to one cluster (zone), write data, see if the data is replicated in the other cluster/zone).</p>
-        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
-        <p MadCap:conditions="Default.DoNotShow">summary for configuring Amazon EKS&#160;side to support WAN gateway:</p>
-        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
-        <p MadCap:conditions="Default.DoNotShow">create user</p>
-        <p MadCap:conditions="Default.DoNotShow">assign role</p>
-        <p MadCap:conditions="Default.DoNotShow">assign trust relationship to the user you created (to enable using the CLI to deploy with Helm, etc.).</p>
         <h1>Setting Up the WAN Gateway</h1>
-        <p>Defining a <MadCap:variable name="General.ProductNameXAP" /> WAN&#160;gateway for deployment in Kubernetes is no different from defining it for a service grid. You can create a pu.xml as described in <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref>. As you need the public IP&#160;address for both the delegator and sink Spaces, it is important to install the WAN&#160;gateway components in the following order in Kubernetes so that the Spaces have their public IP&#160;addresses assigned before you deploy the WAN&#160;gateway:</p>
+        <p>Defining a <MadCap:variable name="General.ProductNameXAP" /> WAN&#160;gateway for deployment in Kubernetes is the same as defining it for a service grid, namely by uploading the service JAR (pu.xml) as described in <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref>. You need the public IP&#160;address for both the delegator and sink, so install the WAN&#160;gateway components in the following order in Kubernetes to ensure that the Spaces have their public IP&#160;addresses assigned before you deploy the WAN&#160;gateways:</p>
         <ol>
             <li>Manager for each geographical zone</li>
             <li>Space for each geographical zone</li>
             <li>WAN gateway for each geographical zone</li>
         </ol>
-        <p>The following procedure creates a WAN&#160;gateway environment for a cluster located geographically in the U.S. You will need the <MadCap:variable name="General.ProductNameXAP" /> Helm charts, and pu.xml files for the delegator, sink, and WAN gateway components.</p>
+        <p>The procedure described in this topic creates a WAN&#160;gateway environment for two clusters, one located geographically in the U.S. and the other in Germany. You will need the <MadCap:variable name="General.ProductNameXAP" /> Helm charts, and pu.xml files for the delegator, sink, and WAN gateway components.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/kubernetes/wan-gateway.png" class="tc-picture100" />
@@ -75,30 +25,36 @@
         </div>
         <h2>Initializing Helm</h2>
         <p>Type the following command to initialize Helm on your machine:</p><pre><code class="language-bash">helm init --service-account tiller</code></pre>
+        <div class="tc-admon-note">
+            <p>Helm must be installed before you download the <MadCap:variable name="General.ProductNameXAP" /> Helm chart.</p>
+        </div>
         <h2>Installing the <MadCap:variable name="General.ProductNameXAP" /> Manager per Geographical Site</h2>
         <p>The Manager is always installed first, followed by the service(s) that it will manage. </p>
         <p class="tc-todo">To install the Manager:</p>
         <ol>
             <li>
-                <p>You can use the default configuration to install the Manager for each geographical location. Use the following command to install a Manager for the U.S. location:</p><pre><code class="language-bash">helm install gigaspaces/xap-manager --name usmanager --version=15.0.0 --namespace gigaspaces-us</code></pre>
-            </li>
-            <li>Repeat step 1 for the second geographical location (for this example, the Germany location).</li>
-            <li>
-                <p>To check the status of the host and services (to ensure that the Managers have been installed properly), use the following command:</p><pre><code class="language-bash">kubectl get all</code></pre>
-            </li>
-        </ol>
-        <h2>Installing the <MadCap:variable name="General.ProductNameXAP" /> Service</h2>
-        <p>The next step is to install a service (Processing Unit) for each geographical site. You do this using a pu.xml file that is configured as described in the <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref>. When installing a service, review the pu.properties file to make sure that <span class="tc-highlight">STOPPED HERE TO WORK WITH ESTER</span>.</p>
-        <h2>Configuring the Helm Chart</h2>
-        <div class="tc-admon-note">
-            <p>Helm must be installed before you download the <MadCap:variable name="General.ProductNameXAP" /> Helm chart.</p>
-        </div>
-        <p>Before you install the Helm chart for the <MadCap:variable name="General.ProductNameXAP" /> WAN gateway, you need to update it with the details that define the zone and access points, so that the delegator and sink will be able to communicate and replicate data across the network.</p>
-        <p class="tc-todo">To configure the WAN&#160;gateway Helm chart:</p>
-        <ol>
-            <li>
                 <p>Download the Helm charts as described in the <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref> topic. </p>
             </li>
+            <li>
+                <p>You can use the default configuration to install the Manager for each geographical location. Use the following command to install a Manager for the U.S. location:</p><pre><code class="language-bash">helm install gigaspaces/xap-manager --name usmanager --version=15.0.0 --namespace gigaspaces-us</code></pre>
+            </li>
+            <li>Repeat step 2 for the second geographical location.</li>
+        </ol>
+        <div class="tc-admon-note">
+            <p>To check the status of the host and services (to ensure that the Managers have been installed properly), use the following command:</p><pre><code class="language-bash">kubectl get all</code></pre>
+        </div>
+        <h2>Installing the <MadCap:variable name="General.ProductNameXAP" /> Service</h2>
+        <p>The next step is to install a service (Processing Unit) for each geographical site, which is defined in the service JAR as described in the <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref>. It is important to verify that all of the WAN gateway-related properties have been correctly for each geographical location. For example, see the following property set for the U.S. cluster.</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="usSpace" gateway-targets="gatewayTargets"/&gt;
+
+&lt;os-gateway:targets id="gatewayTargets"
+  local-gateway-name="us" bulk-size="1000"
+  max-redo-log-capacity="1000000"&gt;
+  &lt;os-gateway:target name="germany" /&gt;
+&lt;/os-gateway:targets&gt;</code> </pre>
+        <h2>Installing the WAN Gateway Service</h2>
+        <p>Before you install the Helm chart for the <MadCap:variable name="General.ProductNameXAP" /> WAN gateway, you need to update it with the details that define the zone and access points, so that the delegator and sink are able to communicate and replicate data across the network.</p>
+        <p class="tc-todo">To configure the WAN&#160;gateway Helm chart:</p>
+        <ol>
             <li>
                 <p>Add the zone configuration. For example, see the following snippet from the Helm chart that defines the zone and the designates the ports that will be used for communication (the discovery port is the default port):</p><pre><code class="language-xml"> # heap: Define the size of the on-heap memory for each processing unit instance as either a percentage or an absolute value.
   heap: limit-150Mi
@@ -108,13 +64,9 @@
     -Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174
     -Dcom.gigaspaces.start.httpPort=9713
     -Dcom.gigaspaces.system.registryPort=10298</code></pre>
-                <p>&#160;</p>
             </li>
-        </ol>
-        <h2>Installing the WAN Gateway Components</h2>
-        <ol>
             <li>
-                <p>Review the pu.properties file inside each service JAR file to ensure that it is configured correctly. For example, to configure the U.S. properties, you can set the following. These properties will be used to override the property placeholders under the <code>gatewayLookups</code> section of the Helm chart. This host and discovery-port are the host and ports exposed by Kubernetes in the Helm manager install.</p><pre><code>local-gateway-name=us
+                <p>Review the properties in the WAN&#160;gateway JAR file to ensure that it is configured correctly. For example, to configure the U.S. properties, you can set the following. These properties will be used to override the property placeholders under the <code>gatewayLookups</code> section of the Helm chart. This host and discovery-port are the host and ports exposed by Kubernetes in the Helm manager install.</p><pre><code>local-gateway-name=us
 local-spaceUrl=jini://*/*/usSpace
 local-lookup-host=&lt;us-host&gt;
 local-lookup-port=4174
@@ -125,17 +77,14 @@ remote-lookup-port=4174
 remote-communication-port=8200</code></pre>
             </li>
             <li>
-                <p>After updating the service JAR&#160;with the Space public IP&#160;addresses for both clusters, you can deploy the WAN&#160;gateways, which also must have the LRMI enabled. For example, type the following command to deploy the WAN gateway for the U.S. site.</p><pre><code class="language-bash">helm install insightedge-pu --name wangateway-us --set manager.name=demo-us,resourceUrl=&lt;path to WAN gateway pu.xml&gt;,service.lrmi.enabled=true</code></pre>
+                <p>After updating the JAR&#160;with the Space public IP&#160;addresses for both clusters, you can deploy the WAN&#160;gateways, which also must have the LRMI enabled. For example, type the following command to deploy the WAN gateway for the U.S. site.</p><pre><code class="language-bash">helm install insightedge-pu --name wangateway-us --set manager.name=usmanager,resourceUrl=&lt;path to WAN gateway pu JAR&gt;,service.lrmi.enabled=true</code></pre>
             </li>
             <li>Repeat step 7 for the second geographical location.</li>
         </ol>
-        <p>When all the components have been deployed, you can populate the delegator Space and verify that data replication occurs.</p>
-        <p MadCap:conditions="Default.DoNotShow">ScalaSpaceApp in github</p>
+        <p>When all the components have been deployed, you can populate the delegator and verify that data replication occurs.</p>
         <div class="tc-admon-attention">
-            <p>If you have to take a Space and then redeploy it, the public IP&#160;address will change. The WAN&#160;gateway pu.xml must be updated accordingly.</p>
+            <p>If you have to take down a Space and then redeploy it, the public IP&#160;address will change. The WAN&#160;gateway service JAR&#160;must be updated accordingly.</p>
         </div>
-        <p MadCap:conditions="Default.DoNotShow">then can use Zeppelin to test communication between the clusters.</p>
-        <p MadCap:conditions="Default.DoNotShow">if you want to see information about the WAN gateways you need to look in the logs. info currently not available in Ops Manager.</p>
         <p>To see information about your WAN&#160;gateways, you can view the system logs. </p>
         <p>To test whether your data is replicating between your clusters, you can use Apache Zeppelin to write data to the delegator and then query the sink.</p>
         <p>&#160;</p>
