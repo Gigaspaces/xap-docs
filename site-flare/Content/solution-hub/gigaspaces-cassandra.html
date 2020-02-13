@@ -50,7 +50,7 @@
         <p class="tc-todo">To install a sample Cassandra server:</p>
         <ol>
             <li>
-                <p>Open a command window and navigate to the <code>gigaspaces-cassandra-mapper-example1a</code> file.</p>
+                <p>In the command line, navigate to the <code>gigaspaces-cassandra-mapper-example1a</code> file.</p>
             </li>
             <li>
                 <p>Type the following command to build the example:</p><pre><code class="language-bash">maven install</code></pre>
@@ -58,12 +58,12 @@
             <li>Run the <code>Example1aMain.java</code> file. </li>
         </ol>
         <h2>Configuring Cassandra for <MadCap:variable name="General.ProductNameIE" /></h2>
-        <p>The next step in the integration process is to adapt the Cassandra project, which converts the Cassandra mapper into a <MadCap:variable name="General.ProductNameXAP" /> mapper. Several things need to be changed. For example, you must add the <MadCap:variable name="General.ProductNameXAP" /> Space annotation, which creates mixed POJO entities that contain annotations for both Cassandra and <MadCap:variable name="General.ProductNameXAP" />. </p>
+        <p>The next step in the integration process is to adapt the Cassandra project, converting the Cassandra mapper into a <MadCap:variable name="General.ProductNameXAP" /> mapper. Several things need to be changed. For example, you must add the <MadCap:variable name="General.ProductNameXAP" /> Space annotation, which creates mixed POJO entities that contain annotations for both Cassandra and <MadCap:variable name="General.ProductNameXAP" />. </p>
         <div class="tc-admon-note">
             <p>For more information about <MadCap:variable name="General.ProductNameXAP" /> POJOs, see the <MadCap:xref href="../dev-java/pojo-overview.html">POJO Support</MadCap:xref> topic in the developer guide.</p>
         </div>
         <p class="tc-todo">To port the Cassandra server to the <MadCap:variable name="General.ProductNameXAP" />-Cassandra data source:</p>
-        <p>Open a command window and navigate to the <code>gigaspaces-cassandra-mapper-example1b</code> file.</p>
+        <p>In the command line, navigate to the <code>gigaspaces-cassandra-mapper-example1b</code> file.</p>
         <p>First you need to add the gigaspaces cassandra datasource dependency :</p><pre><code class="language-java">&lt;dependency&gt;
      &lt;groupId&gt;org.openspaces&lt;/groupId&gt;
      &lt;artifactId&gt;gigaspaces-cassandra-datasource&lt;/artifactId&gt;
