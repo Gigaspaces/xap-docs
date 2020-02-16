@@ -11,7 +11,7 @@
             <p>This topic also assumes knowledge of how to install <MadCap:variable name="General.ProductNameXAP" /> in a Kubernetes environment. For more information, see the <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref> topic in the Orchestration section of the administration guide.</p>
         </div>
         <h1>Setting Up the WAN Gateway</h1>
-        <p>Defining a <MadCap:variable name="General.ProductNameXAP" /> WAN&#160;gateway for deployment in Kubernetes is the same as defining it for a service grid, namely by uploading the service JAR (pu.xml) as described in <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref>. You need the public IP&#160;address for both the delegator and sink, so install the WAN&#160;gateway components in the following order in Kubernetes to ensure that the Spaces have their public IP&#160;addresses assigned before you deploy the WAN&#160;gateways:</p>
+        <p>When defining a <MadCap:variable name="General.ProductNameXAP" /> WAN&#160;gateway for deployment in Kubernetes, you should always set it up in the following order: </p>
         <ol>
             <li>Manager for each geographical zone</li>
             <li>Space for each geographical zone</li>
@@ -43,8 +43,8 @@
         <div class="tc-admon-note">
             <p>To check the status of the host and services (to ensure that the Managers have been installed properly), use the following command:</p><pre><code class="language-bash">kubectl get all</code></pre>
         </div>
-        <h2>Installing the <MadCap:variable name="General.ProductNameXAP" /> Service</h2>
-        <p>The next step is to install a service (Processing Unit) for each geographical site, which is defined in the service JAR as described in the <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref>. It is important to verify that all of the WAN gateway-related properties have been correctly for each geographical location. For example, see the following property set for the U.S. cluster.</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="usSpace" gateway-targets="gatewayTargets"/&gt;
+        <h2>Installing the <MadCap:variable name="General.ProductNameXAP" /> Space Service</h2>
+        <p>The next step is to install a Space service (Processing Unit) for each geographical site, which is defined in the service JAR as described in the <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref>. It is important to verify that all of the WAN gateway-related properties have been configured correctly for each geographical location. For example, see the following property set for the U.S. cluster.</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="usSpace" gateway-targets="gatewayTargets"/&gt;
 
 &lt;os-gateway:targets id="gatewayTargets"
   local-gateway-name="us" bulk-size="1000"
@@ -52,21 +52,18 @@
   &lt;os-gateway:target name="germany" /&gt;
 &lt;/os-gateway:targets&gt;</code> </pre>
         <h2>Installing the WAN Gateway Service</h2>
-        <p>Before you install the Helm chart for the <MadCap:variable name="General.ProductNameXAP" /> WAN gateway, you need to update it with the details that define the zone and access points, so that the delegator and sink are able to communicate and replicate data across the network.</p>
+        <p>Before you install the Helm chart for the <MadCap:variable name="General.ProductNameXAP" /> WAN gateway, you need to update it with the details that define the zone and access points (public IP&#160;addresses for the Space services), so that the delegator and sink are able to communicate and replicate data across the network.</p>
         <p class="tc-todo">To configure the WAN&#160;gateway Helm chart:</p>
         <ol>
             <li>
-                <p>Add the zone configuration. For example, see the following snippet from the Helm chart that defines the zone and the designates the ports that will be used for communication (the discovery port is the default port):</p><pre><code class="language-xml"> # heap: Define the size of the on-heap memory for each processing unit instance as either a percentage or an absolute value.
-  heap: limit-150Mi
-  # options: Configure additional Java options for each processing unit instance.
-  options:
-    -Dcom.gs.zones=US
+                <p>Edit the Helm chart as shown in the following snippet from the Helm chart. This example defines the zone and the designates the ports that will be used for communication (the discovery port is the default port):</p><pre><code class="language-xml"> -Dcom.gs.zones=US
     -Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174
     -Dcom.gigaspaces.start.httpPort=9713
     -Dcom.gigaspaces.system.registryPort=10298</code></pre>
             </li>
             <li>
-                <p>Review the properties in the WAN&#160;gateway JAR file to ensure that it is configured correctly. For example, to configure the U.S. properties, you can set the following. These properties will be used to override the property placeholders under the <code>gatewayLookups</code> section of the Helm chart. This host and discovery-port are the host and ports exposed by Kubernetes in the Helm manager install.</p><pre><code>local-gateway-name=us
+                <p>Configure the properties for the WAN&#160;gateway in the JAR&#160;file, which override the property placeholders under the <code>gatewayLookups</code> section of the Helm chart. This host and discovery port are the host and ports exposed by Kubernetes in the Helm manager install.
+For example, to configure the U.S. properties, you can set the following. </p><pre><code>local-gateway-name=us
 local-spaceUrl=jini://*/*/usSpace
 local-lookup-host=&lt;us-host&gt;
 local-lookup-port=4174
@@ -79,14 +76,13 @@ remote-communication-port=8200</code></pre>
             <li>
                 <p>After updating the JAR&#160;with the Space public IP&#160;addresses for both clusters, you can deploy the WAN&#160;gateways, which also must have the LRMI enabled. For example, type the following command to deploy the WAN gateway for the U.S. site.</p><pre><code class="language-bash">helm install insightedge-pu --name wangateway-us --set manager.name=usmanager,resourceUrl=&lt;path to WAN gateway pu JAR&gt;,service.lrmi.enabled=true</code></pre>
             </li>
-            <li>Repeat step 7 for the second geographical location.</li>
+            <li>Repeat step 3 for the second geographical location.</li>
         </ol>
-        <p>When all the components have been deployed, you can populate the delegator and verify that data replication occurs.</p>
         <div class="tc-admon-attention">
             <p>If you have to take down a Space and then redeploy it, the public IP&#160;address will change. The WAN&#160;gateway service JAR&#160;must be updated accordingly.</p>
         </div>
         <h1>Testing and Monitoring the WAN&#160;Gateway</h1>
-        <p>To test whether your data is replicating between your clusters, you can use Apache Zeppelin to write data to the delegator and then query the sink.</p>
+        <p>To test whether your data is replicating between your clusters, you can use a Java client or Apache Zeppelin to write data to the source and then query the target.</p>
         <p>To see information about your WAN&#160;gateways, you can view the system logs. </p>
         <p>&#160;</p>
         <p>&#160;</p>
