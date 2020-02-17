@@ -14,10 +14,11 @@
                     <li>Type of service (stateful, stateless, mirror, web, or gateway)</li>
                     <li>Number of hosts</li>
                     <li>Actual vs. planned partitions</li>
-                    <li>CPU&#160;performance (with average CPU usage, in percent)</li>
-                    <li>RAM utilization (with current utilization, in percent)</li>
+                    <li>CPU&#160;performance (with average CPU usage over time, in percent)</li>
+                    <li>RAM utilization (with current utilization over time, in percent)</li>
+                    <li>IOPS (reads, writes, takes, and executes)</li>
                 </ul>
-                <p>Below the performance graphs, the service instances are listed in a table that contains the following information per instance. You can sort the view by alert type, and do a free text search.</p>
+                <p>Below the performance graphs, the service instances are listed in a table that contains the following information per instance. </p>
                 <table>
                     <tr>
                         <th>Parameter</th>
@@ -25,7 +26,11 @@
                     </tr>
                     <tr>
                         <td>ID</td>
-                        <td>ID&#160;of the service instance.</td>
+                        <td>Name of the service instance.</td>
+                    </tr>
+                    <tr>
+                        <td>Mode</td>
+                        <td>Mode of the instance (primary or backup)</td>
                     </tr>
                     <tr>
                         <td>PID</td>
@@ -33,7 +38,11 @@
                     </tr>
                     <tr>
                         <td>Host </td>
-                        <td>Name of the machine or JVM hosting the service instance.</td>
+                        <td>Name and IP address of the machine or JVM hosting the service instance.</td>
+                    </tr>
+                    <tr>
+                        <td>Partition status</td>
+                        <td>Indicates whether the partition is connected or disconnected.</td>
                     </tr>
                     <tr>
                         <td>CPU</td>
@@ -44,6 +53,7 @@
                         <td>Amount of JVM heap being used by the service instance, in percent (actual/allocated).</td>
                     </tr>
                 </table>
+                <p>You can filter the table by alert type and instance mode, and sort by any of the columns. You can also do a free text search for the instance name.</p>
             </div>
             <div title="Command Line Interface" style="padding:10px">
                 <p><span class="tc-bold">Processing Unit</span>
