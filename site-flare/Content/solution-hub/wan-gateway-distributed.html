@@ -19,9 +19,8 @@
                     <td>Shay  Hassidim</td>
                     <td>12.0.1</td>
                     <td>March 2017</td>
-                    <td>
-                    </td>
-                    <td align="center"><a href="/download_files/sbp/wan-replication_multi_gw.zip">Example</a>
+                    <td> </td>
+                    <td align="center"><a href="https://github.com/Gigaspaces/solution-hub/tree/master/wan-replication_multi_gw" target="_blank">Multi-instance gateway example</a>
                     </td>
                 </tr>
             </tbody>
@@ -38,10 +37,10 @@
         </div>
         <h1><a name="example">&#160;</a>Example</h1>
         <ol>
-            <li>Download the <a href="/download_files/sbp/wan-replication_multi_gw.zip">example</a> and extract its contents (<span class="tc-bold">deploy</span> and <span class="tc-bold">scripts</span> folders) to an empty folder.<ul><li>Deploy - This folder includes the PU folders for the Space and gateway.</li><li>Scripts – This folder includes all the start agents and deploy scripts.</li></ul></li>
-            <li>Move the contents of the deploy folder into the <code>&lt;GIGASPACES_HOME&gt;\deploy</code> folder.</li>
+            <li>Download the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/wan-replication_multi_gw" target="_blank">example</a> and extract its contents (<span class="tc-bold">deploy</span> and <span class="tc-bold">scripts</span> folders) to an empty folder.<ul><li>Deploy - This folder includes the PU folders for the Space and gateway.</li><li>Scripts – This folder includes all the start agents and deploy scripts.</li></ul></li>
+            <li>Move the contents of the deploy folder into the <code>&lt;<MadCap:variable name="General.HomePath" />&gt;\deploy</code> folder.</li>
             <li>
-                <p>Open the scripts folder and edit the <code>setExampleEnv.bat/sh</code> script to include the machine IP address as the <code><MadCap:variable name="General.EnvVariablePrefix" />_NIC_ADDRESS</code>, and the root folder location as <code>GS_HOME</code>.</p>
+                <p>Open the scripts folder and edit the <code>setExampleEnv.bat/sh</code> script to include the machine IP address as the <code><MadCap:variable name="General.EnvVariablePrefix" />_NIC_ADDRESS</code>, and the root folder location as <code><MadCap:variable name="General.HomePath" /></code>.</p>
                 <p>The <span class="tc-bold">scripts</span> folder contains the necessary scripts to start the Grid Service Agent for each site, and the <code>deployAll.bat/sh script</code> that is used to automate the deployment of all gateways and Space instances. This allows you to run the entire setup on a single machine.</p>
             </li>
             <li>Run <code>startAgent-GB.bat/sh</code> script to start the GB (London) site agents.</li>

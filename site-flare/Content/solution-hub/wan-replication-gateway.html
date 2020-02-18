@@ -19,9 +19,8 @@
                     <td>Shay Hassidim</td>
                     <td>8.0.3</td>
                     <td>April 2013</td>
-                    <td>
-                    </td>
-                    <td>
+                    <td> </td>
+                    <td><a href="https://github.com/Gigaspaces/solution-hub/tree/master/wan-gateway-examples-all/WAN_Replication_MultiMaster" target="_blank">WAN&#160;gateway multi-master example</a>
                     </td>
                 </tr>
             </tbody>
@@ -49,8 +48,12 @@
             </p>
         </div>
         <h1>Installing the Example</h1>
-        <p>Step 1. Download the <a href="https://github.com/Gigaspaces/wan-gateway-examples/archive/master.zip">WAN_Gateway_example.zip</a>. It includes two folders: <span class="tc-bold">deploy</span> and <span class="tc-bold">scripts</span>. View on <a href="https://github.com/Gigaspaces/wan-gateway-examples/tree/master/WAN_Replication_MultiMaster">GitHub</a></p>
-        <p>Step 2. Extract the file and and copy the contents of the <span class="tc-bold">deploy folder</span> to the <code><MadCap:variable name="General.HomePath" /> \deploy</code> folder. It should looks like this:</p><pre><code class="language-java">Directory of D:<MadCap:variable name="General.HomePath" />\deploy
+        <ol>
+            <li>
+                <p>Download the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/wan-gateway-examples-all/WAN_Replication_MultiMaster" target="_blank">example</a>. It includes two folders: <span class="tc-bold">deploy</span> and <span class="tc-bold">scripts</span>. </p>
+            </li>
+            <li>
+                <p>Copy the contents of the <span class="tc-bold">deploy folder</span> to the <code><MadCap:variable name="General.HomePath" /> \deploy</code> folder. It should looks like this:</p><pre><code class="language-java">Directory of D:<MadCap:variable name="General.HomePath" />\deploy
 
 09/11/2011  04:41 AM    &lt;DIR&gt;          .
 09/11/2011  04:41 AM    &lt;DIR&gt;          ..
@@ -62,7 +65,9 @@
 09/11/2011  05:15 AM    &lt;DIR&gt;          wan-space-RU
 09/11/2011  04:42 AM    &lt;DIR&gt;          wan-space-US
 </code></pre>
-        <p>Step 3. Open the <code>scripts</code> folder and edit the <code>setExampleEnv.bat/sh</code> to include the machine IP address for the <code>NIC_ADDR</code>,  and the GigaSpaces root folder location for <code>GS_HOME</code>.</p>
+            </li>
+            <li>Open the <code>scripts</code> folder and edit the <code>setExampleEnv.bat/sh</code> to include the machine IP address for the <code>NIC_ADDR</code>,  and the GigaSpaces root folder location for <code><MadCap:variable name="General.HomePath" /></code>.</li>
+        </ol>
         <h1>Running the Example</h1>
         <p>The <code>scripts</code> folder contains scripts that are used to start the <a href="/product_overview/service-grid.html#gsa">Grid Service Agent</a> for each site, along with a deploy script for all sites. This allows you to run the entire setup on one machine to test. Here are the steps to run the example:</p>
         <ol>

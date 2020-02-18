@@ -19,9 +19,8 @@
                     <td>Ali Hodroj</td>
                     <td>8.0.7</td>
                     <td>July 2013</td>
-                    <td>
-                    </td>
-                    <td>
+                    <td> </td>
+                    <td><a href="https://github.com/Gigaspaces/solution-hub/tree/master/wan-gateway-examples-all/WAN_Replication_PassThrough" target="_blank">WAN gateway pass-through example</a>
                     </td>
                 </tr>
             </tbody>
@@ -464,9 +463,9 @@
         </div>
         <h1>Installing and Running the Example</h1>
         <ol>
-            <li>Download the <a href="https://github.com/Gigaspaces/wan-gateway-samples/archive/master.zip">WAN-Gateway-Examples.zip</a>. It includes two folders: <span class="tc-bold">deploy</span> and <span class="tc-bold">scripts</span>. View on <a href="https://github.com/Gigaspaces/wan-gateway-examples/tree/master/WAN_Replication_PassThrough">GitHub</a></li>
-            <li>Extract the file and and copy the contents of the <span class="tc-bold">deploy</span> folder to the <code>\&lt;GIGASPACES_HOME&gt;\deploy</code> folder.</li>
-            <li>Extract the <code>scripts</code> folder to an arbitrary location and edit the <code>setExampleEnv.bat/sh</code> script to include the machine IP address for <code>NIC_ADDR</code> and the GigaSpaces root folder location for <code>GS_HOME</code>.</li>
+            <li>Download the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/wan-gateway-examples-all/WAN_Replication_PassThrough" target="_blank">example</a>. It includes two folders: <span class="tc-bold">deploy</span> and <span class="tc-bold">scripts</span>. </li>
+            <li>Copy the contents of the <span class="tc-bold">deploy</span> folder to the <code>\<MadCap:variable name="General.HomePath" />\deploy</code> folder.</li>
+            <li>Extract the <code>scripts</code> folder to an arbitrary location and edit the <code>setExampleEnv.bat/sh</code> script to include the machine IP address for <code>NIC_ADDR</code> and the GigaSpaces root folder location for <code><MadCap:variable name="General.HomePath" /></code>.</li>
         </ol>
         <p>The <code>scripts</code> folder contains the necessary scripts to start the <a href="/product_overview/service-grid.html#gsa">Grid Service Agent</a> for each cluster, in addition to a deploy script <code>deployAll.bat/sh</code> that is used to automate the deployment of all three gateways and Space instances. This allows you to run the entire setup on one machine to simplify testing. Here are the steps to run the example:</p>
         <ol>
