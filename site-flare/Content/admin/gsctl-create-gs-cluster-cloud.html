@@ -4,21 +4,49 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster in the Cloud</h1>
-        <p><MadCap:variable name="General.ProductNameXAP" /> provides a standalone tool for creating a cluster and deploying a <MadCap:variable name="General.ProductNameXAP" /> environment in the cloud.</p>
-        <p>gigaspaces&gt;gsctl repo in Github - download tool</p>
-        <p>prepare your environment:</p>
-        <p>Java 8 or higher (??) installed on workstation</p>
-        <p>Cloud account and appropriate credentials as described in the cloud platform documentation. For example, in AWS you need a valid AWS&#160;account, and your credentials must include <code>aws_access_key_id</code>, <code>aws_secret_access_key</code>, and <code>region</code>.</p>
-        <p>for AWS, execute the following:</p>
-        <p>Ensure that the .AWS folder exists in the home directory on your machine.</p>
-        <p>The .AWS folder must contain config and credentials files with the correct configuration. For example:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-config-files.png" class="tc-picture50" />
-        </p>
-        <p>Create an empty directory and make it the current directory . Fore example, gs_demo.</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-new-directory.png" class="tc-picture30" />
-        </p>
+        <p>This topic describes how to use the <MadCap:variable name="General.ProductNameXAP" /> standalone CLI&#160;tool to create, provision and install <MadCap:variable name="General.ProductNameXAP" /> clusters in the cloud. While the example described here is deployed in AWS, you can use gsctl in any cloud environment.</p>
+        <p>You will learn how to do the following:</p>
+        <ul>
+            <li>Create a <MadCap:variable name="General.ProductNameXAP" /> cluster</li>
+            <li>Deploy <MadCap:variable name="General.ProductNameXAP" /> services in the cluster</li>
+            <li>Undeploy the <MadCap:variable name="General.ProductNameXAP" /> services and tear down the cluster</li>
+        </ul>
+        <h1>Prerequisites</h1>
+        <p>Before beginning to work with the gsctl tool, ensure that you have the following:</p>
+        <ul>
+            <li>
+                <p>Java 8 or higher (??) installed on your local workstation</p>
+            </li>
+            <li>
+                <p>Cloud account and appropriate credentials as described in the cloud platform documentation.</p>
+                <p>For example, to deploy in AWS you need the following:</p>
+                <ul>
+                    <li>Valid AWS&#160;account</li>
+                    <li>Credentials that include <code>aws_access_key_id</code>, <code>aws_secret_access_key</code>, and <code>region</code></li>
+                </ul>
+            </li>
+        </ul>
+        <h1>Downloading the Tool</h1>
+        <p>The gsctl tool is available from the<MadCap:variable name="General.ProductNameXAP" /> <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github repo</a>.</p>
+        <h1>Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster </h1>
+        <p>Follow the steps in the following procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services.</p>
+        <ol>
+            <li>
+                <p>Verify that an .AWS folder exists in the home directory on your local machine.</p>
+            </li>
+            <li>
+                <p>Verify that te .AWS folder contains config and credentials files with the correct configuration. For example, the credentials file should include <code>aws_access_key_id</code>, <code>aws_secret_access_key</code>, and <code>region</code> as mentioned above.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-config-files.png" class="tc-picture50" />
+                </p>
+            </li>
+            <li>
+                <p>Create an empty directory and make it the current directory . In this example, the directory name is <code>gsDemo</code>.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-new-directory.png" class="tc-picture30" />
+                </p>
+            </li>
+        </ol>
         <p>Download the most current version of the gsctl.jar file (example uses wget) .</p>
         <p>
             <img src="../Resources/Static/attachment_files/gigaops-stack/download-via-cli.png" class="tc-picture50" />
