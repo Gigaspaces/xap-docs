@@ -4,8 +4,7 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster in the Cloud</h1>
-        <p>This topic describes how to use the <MadCap:variable name="General.ProductNameXAP" /> standalone CLI&#160;tool to create, provision and install <MadCap:variable name="General.ProductNameXAP" /> clusters in the cloud. While the example described here is deployed in AWS, you can use gsctl in any cloud environment.</p>
-        <p>You will learn how to do the following:</p>
+        <p>This topic describes how to use the <MadCap:variable name="General.ProductNameXAP" /> standalone CLI&#160;tool to create, provision and install <MadCap:variable name="General.ProductNameXAP" /> clusters on Amazon Web Services (AWS). You will learn how to do the following:</p>
         <ul>
             <li>Create a <MadCap:variable name="General.ProductNameXAP" /> cluster</li>
             <li>Deploy <MadCap:variable name="General.ProductNameXAP" /> services in the cluster</li>
@@ -15,29 +14,29 @@
         <p>Before beginning to work with the gsctl tool, ensure that you have the following:</p>
         <ul>
             <li>
-                <p>Java 8 or higher (??) installed on your local workstation</p>
+                <p>Java 8 or higher (??) installed on your local workstation.</p>
             </li>
             <li>
-                <p>Cloud account and appropriate credentials as described in the cloud platform documentation.</p>
-                <p>For example, to deploy in AWS you need the following:</p>
-                <ul>
-                    <li>Valid AWS&#160;account</li>
-                    <li>Credentials that include <code>aws_access_key_id</code>, <code>aws_secret_access_key</code>, and <code>region</code></li>
-                </ul>
+                <p>AWS&#160;account and appropriate credentials as described in the <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html" target="_blank">AWS Command Line Interface documentation</a></p>
+                <div class="tc-admon-note">
+                    <p>To deploy a <MadCap:variable name="General.ProductNameXAP" /> cluster in AWS you need the following:</p>
+                    <ul>
+                        <li>Valid AWS&#160;account</li>
+                        <li>Credentials that include <code>aws_access_key_id</code> and <code>aws_secret_access_key</code></li>
+                        <li>Configuration parameters that include a defined <code>region</code></li>
+                    </ul>
+                </div>
             </li>
         </ul>
         <h1>Downloading the Tool</h1>
         <p>The gsctl tool is available from the<MadCap:variable name="General.ProductNameXAP" /> <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github repo</a>.</p>
         <h1>Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster </h1>
-        <p>Follow the steps in the following procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services.</p>
+        <p>Follow the steps in the procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services.</p>
         <ol>
             <li>
-                <p>Verify that an .AWS folder exists in the home directory on your local machine.</p>
-            </li>
-            <li>
-                <p>Verify that te .AWS folder contains config and credentials files with the correct configuration. For example, the credentials file should include <code>aws_access_key_id</code>, <code>aws_secret_access_key</code>, and <code>region</code> as mentioned above.</p>
+                <p>Verify that an <code>.aws</code> folder exists in the home directory on your local machine, and that it contains the config and credentials files. The credentials file should include your <code>aws_access_key_id</code> and <code>aws_secret_access_key</code>, and the config files should include your <code>region</code> and <code>output</code> definitions.</p>
                 <p>
-                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-config-files.png" class="tc-picture50" />
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-config-files.png" />
                 </p>
             </li>
             <li>
