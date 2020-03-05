@@ -63,6 +63,9 @@ if not defined GS_FLARE_BIN echo Aborting - Flare not found under %GS_FLARE_HOME
 if not exist "%GS_FLARE_BIN%" echo Aborting - Flare not found at %GS_FLARE_BIN% && exit /b 1
 echo GS_FLARE_BIN=%GS_FLARE_BIN%
 "%GS_FLARE_BIN%" -project site-flare\XAP-Import-Test-1.flprj -batch "InsightEdge-batch"
+echo build-flare completed with errorlevel=%ERRORLEVEL%
+rem Ignore errorlevel == 7 (missing link warning)
+if %ERRORLEVEL%==7 exit /b 0
 exit /b %ERRORLEVEL%
 
 :end
