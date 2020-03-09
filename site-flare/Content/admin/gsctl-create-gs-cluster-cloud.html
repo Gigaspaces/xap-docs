@@ -6,18 +6,18 @@
         <h1 class="tc-pagetitle">Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster in the Cloud</h1>
         <p>This topic describes how to use the <MadCap:variable name="General.ProductNameXAP" /> standalone CLI&#160;tool to create, provision and install <MadCap:variable name="General.ProductNameXAP" /> clusters on Amazon Web Services (AWS). You will learn how to do the following:</p>
         <ul>
-            <li>Create a <MadCap:variable name="General.ProductNameXAP" /> cluster</li>
-            <li>Deploy <MadCap:variable name="General.ProductNameXAP" /> services in the cluster</li>
-            <li>Undeploy the <MadCap:variable name="General.ProductNameXAP" /> services and tear down the cluster</li>
+            <li>Create a <MadCap:variable name="General.ProductNameXAP" /> cluster.</li>
+            <li>Deploy <MadCap:variable name="General.ProductNameXAP" /> services in the cluster.</li>
+            <li>Undeploy the <MadCap:variable name="General.ProductNameXAP" /> services and tear down the cluster.</li>
         </ul>
-        <h1>Prerequisites</h1>
+        <h2>Prerequisites</h2>
         <p>Before beginning to work with the gsctl tool, ensure that you have the following:</p>
         <ul>
             <li>
                 <p>Java 8 or higher (??) installed on your local workstation.</p>
             </li>
             <li>
-                <p>AWS&#160;account and appropriate credentials as described in the <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html" target="_blank">AWS Command Line Interface documentation</a></p>
+                <p>AWS&#160;account and appropriate credentials as described in the <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html" target="_blank">AWS Command Line Interface documentation</a>.</p>
                 <div class="tc-admon-note">
                     <p>To deploy a <MadCap:variable name="General.ProductNameXAP" /> cluster in AWS you need the following:</p>
                     <ul>
@@ -28,288 +28,118 @@
                 </div>
             </li>
         </ul>
-        <h1>Downloading the Tool</h1>
+        <h2>Downloading the Tool</h2>
         <p>The gsctl tool is available from the<MadCap:variable name="General.ProductNameXAP" /> <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github repo</a>.</p>
         <h1>Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster </h1>
         <p>Follow the steps in the procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services.</p>
+        <p class="tc-todo">To create a cluster:</p>
         <ol>
             <li>
                 <p>Verify that an <code>.aws</code> folder exists in the home directory on your local machine, and that it contains the config and credentials files. The credentials file should include your <code>aws_access_key_id</code> and <code>aws_secret_access_key</code>, and the config files should include your <code>region</code> and <code>output</code> definitions.</p>
                 <p>
-                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-config-files.png" />
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-config-files.png" class="tc-picture50" />
                 </p>
             </li>
             <li>
-                <p>Create an empty directory and make it the current directory . In this example, the directory name is <code>gsDemo</code>.</p>
+                <p>Create an empty directory on your machine. In this example, the directory name is <code>gsDemo</code>.</p>
                 <p>
-                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-new-directory.png" class="tc-picture30" />
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-new-directory.png" class="tc-picture50" />
+                </p>
+            </li>
+            <li>Download the most current version of the gsctl.jar file from <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github</a> to the directory you created (gsDemo) and extract the contents.</li>
+            <li>
+                <p>Open a command window and type the following:</p><pre><code class="language-bash">java -jar gsctl.jar init --cluster-name=gs_demo_cluster</code></pre>
+                <p>This command creates a provision.yml file. You can use the default values, or you can modify it to supply your AWS&#160;resources, such as <code>VPC</code>, <code>keyName</code>, and <code>securityGroups</code> values:</p><pre><code class="language-bash">aws:
+  keyName: null
+  vpcId: null
+  vpcSubnetId: null
+  securityGroup: null
+  amiId: null
+  userName: null
+servers:
+  label: "GS Cluster [GS_CLUSTER] Server Group"
+  groups:
+  - type: "m4.xlarge"
+    tags: null
+    count: 3
+clients:
+  label: "GS Cluster [GS_CLUSTER] Client Group"
+  groups:
+  - type: "m4.xlarge"
+    tags: null
+    count: 3
+gsManagers: 3
+name: "GS_CLUSTER"</code></pre>
+            </li>
+            <li>
+                <p>To create a cluster, run the following command:</p><pre><code class="language-bash">Run java -jar gsctl.jar create</code></pre>
+                <p>The cloud platform begins to create the cluster:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-create-cluster-process.png" class="tc-picture80" />
+                </p>
+                <p>You can monitor the progress of the cluster in your cloud platform dashboard, for example the VPC&#160;Dashboard in AWS:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/aws-vpc-dashboard-create-cluster.png" class="tc-picture80" />
+                </p>
+                <p>The process of creating the cluster takes only a few minutes until the nodes are up and running:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-running.png" class="tc-picture80" />
                 </p>
             </li>
         </ol>
-        <p>Download the most current version of the gsctl.jar file (example uses wget) .</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/download-via-cli.png" class="tc-picture50" />
-        </p>
-        <p>Execute the gsctl command.</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/execute-gsctl-command.png" />
-        </p>
-        <p>the config file and .gsctl directories are created:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/execute-gsctl.png" class="tc-picture50" />
-        </p>
-        <p>you can inspect the configuration file and modify as necessary.</p>
-        <p>Next, need to create the cluster. Run the following command:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-create-cluster-command.png" />
-        </p>
-        <p>The cloud platform begins to create the cluster:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-create-cluster-process.png" class="tc-picture50" />
-        </p>
-        <p>You can monitor the progress of the cluster in your cloud platform dashboard, for example the VPC&#160;Dashboard in AWS:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/aws-vpc-dashboard-create-cluster.png" class="tc-picture50" />
-        </p>
-        <p>The process of creating the cluster takes only a few minutes until the nodes are up and running:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-running.png" class="tc-picture80" />
-        </p>
-        <p>When the cluster is up and running, you can deploy <MadCap:variable name="General.ProductNameXAP" /> services:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-deploy-gs-services.png" class="tc-picture50" />
-        </p>
-        <p>make a note of the URLs for the services so you can view them via the Ops Manager. </p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-ops-manager.png" class="tc-picture100" />
-        </p>
-        <p>&#160;</p>
-        <p>You can also view Grafana dashboards (part of <MadCap:variable name="General.ProductNameXAP" /> setup and deployment - commands from readme):</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-grafana.png" class="tc-picture100" />
-        </p>
-        <p>The setup commands include Telegraf, so you can view metrics in Grafana too:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-telegraf.png" />
-        </p>
-        <p>Removing a <MadCap:variable name="General.ProductNameXAP" /> Cluster</p>
-        <p>You can delete your cluster when you no longer need it, in order to release the cloud resources.</p>
-        <p>In the same directory where you created the </p>
-        <p>cluster, run the following command:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-command.png" />
-        </p>
-        <p>The cluster is taken down:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-process.png" class="tc-picture50" />
-        </p>
-        <h1>Running <MadCap:variable name="General.CompanyName" /> Products in Standalone Mode</h1>
-        <p>You can start a data grid, run a Space or a Processing Unit, or start <MadCap:variable name="General.ProductNameIE" /> in standalone mode.</p>
-        <div class="easyui-tabs" plain="true" data-options="">
-            <div title="XAP Open Source" style="padding:10px">
-                <h2><a name="run-xap-in-demo-mode"></a>Starting a Data Grid in Demo Mode</h2>
-                <p>To run  a Space in demo mode, type the following command:</p>
-                <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
-                    <MadCap:snippetBlock src="../Resources/Snippets/InsighedgeXap.flsnp" />
-                </div>
-                <p><span class="tc-italic">Command:</span>
+        <h1>Deploying the <MadCap:variable name="General.ProductNameXAP" /> Services</h1>
+        <p>After your cluster is up and running, you can deploy the <MadCap:variable name="General.ProductNameXAP" /> services. The gsctl tool comes with sample feeder and processor services in the Services folder.</p>
+        <p class="tc-todo">To deploy the sample <MadCap:variable name="General.ProductNameXAP" /> services:</p>
+        <ol>
+            <li>
+                <p>First, deploy the stateful service (the Space example) Type the following command:</p><pre><code class="language-bash">java -jar gsctl.jar deploy stateful mySpace processor.jar</code></pre>
+                <p>A processor service called mySpace is deployed.</p>
+            </li>
+            <li>
+                <p>Next, deploy the stateless service (the feeder example). Type the following command:</p><pre><code class="language-bash">java -jar gsctl.jar deploy stateless myFeeder feeder.jar</code></pre>
+                <p>A feeder service called myFeeder is deployed.</p>
+            </li>
+            <li>
+                <p>Now you can monitor your services using the available administration and monitoring tools.</p>
+                <ul>
+                    <li>
+                        <p>To get the Ops Manager URL, run the following command:</p><pre><code class="language-bash">java -jar gsctl.jar service-address manager</code></pre>
+                        <p>Open the Ops Manager in your browser to view the deployed <MadCap:variable name="General.ProductNameXAP" /> services.</p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-ops-manager.png" class="tc-picture100" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>To get the Grafana URL, run the following command:</p><pre><code class="language-bash">java -jar gsctl.jar service-address grafana</code></pre>
+                        <p>Open Grafana in your browser to view the dashboards for the <MadCap:variable name="General.ProductNameXAP" /> services.</p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-grafana.png" class="tc-picture100" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>The setup commands include Telegraf, so you can also view the cluster metrics in Grafana.</p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-telegraf.png" />
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <h1>Removing a <MadCap:variable name="General.ProductNameXAP" /> Cluster</h1>
+        <p>You can delete your cluster when you no longer need it, in order to release the cloud resources. First, undeploy the <MadCap:variable name="General.ProductNameXAP" /> stateful service, and then tear down the cluster.</p>
+        <p class="tc-todo">To remove the <MadCap:variable name="General.ProductNameXAP" /> cluster:</p>
+        <ol>
+            <li>
+                <p>In the directory where you deployed the <MadCap:variable name="General.ProductNameXAP" /> services, type the following command:</p><pre><code class="language-bash">java -jar gsctl.jar undeploy mySpace</code></pre>
+                <p>The Space is undeployed from the cluster.</p>
+            </li>
+            <li>
+                <p>In the directory where you created the cluster, run the following command:</p><pre><code class="language-bash">java -jar gsctl.jar destroy</code></pre>
+                <p>This tears down the cluster and deletes any dynamically created resources.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-process.png" class="tc-picture80" />
                 </p>
-                <div class="easyui-tabs" plain="true" data-options="">
-                    <div title="Linux/Mac" style="padding:10px"><pre><code>./<MadCap:variable name="General.CLI-script-Linux" /> demo </code></pre>
-                    </div>
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> demo</code></pre>
-                    </div>
-                </div>
-                <p><span class="tc-italic">Description:</span>
-                </p>
-                <p>Runs a Space in high availability mode (2 primaries with 1 backup each).</p>
-                <p><span class="tc-italic">Parameters and Options:</span>
-                </p>
-                <p>None.</p>
-                <p><span class="tc-italic">Input Example:</span>
-                </p>
-                <div class="easyui-tabs" plain="true" data-options="">
-                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> demo </code></pre>
-                    </div>
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> demo </code></pre>
-                    </div>
-                </div>
-                <h2><a name="run-a-standalone-space"></a>Running a Standalone Space</h2>
-                <p>To run a standalone Space, type the following command:</p>
-                <p><span class="tc-italic">Command:</span>
-                </p>
-                <div class="easyui-tabs" plain="true" data-options="">
-                    <div title="Linux/Mac" style="padding:10px"><pre><code>./<MadCap:variable name="General.CLI-script-Linux" /> space run </code></pre>
-                    </div>
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space run</code></pre>
-                    </div>
-                </div>
-                <p><span class="tc-italic">Description:</span>
-                </p>
-                <p>Runs a standalone Space in a stateful Processing Unit.</p>
-                <p><span class="tc-italic">Parameters and Options:</span>
-                </p>
-                <table>
-                    <col />
-                    <col style="width: 262px;" />
-                    <col />
-                    <thead>
-                        <tr>
-                            <th align="left">Item</th>
-                            <th align="left">Name</th>
-                            <th align="left">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td align="left">Parameter</td>
-                            <td align="left">name</td>
-                            <td align="left">Name of the Space.</td>
-                        </tr>
-                        <tr>
-                            <td align="left">Option</td>
-                            <td align="left">—lus</td>
-                            <td align="left">Start a lookup service.</td>
-                        </tr>
-                        <tr>
-                            <td align="left">Option</td>
-                            <td align="left">—partitions=&lt;partitions&gt;</td>
-                            <td align="left">Define the number of partitions to use.</td>
-                        </tr>
-                        <tr>
-                            <td align="left">Option</td>
-                            <td align="left">—ha</td>
-                            <td align="left">Run the Space with high availability (adding a backup per partition).</td>
-                        </tr>
-                        <tr>
-                            <td align="left">Option</td>
-                            <td align="left">—instances=1_1,1_2</td>
-                            <td align="left">Specify one or more instances to run. If no instances are specified, runs all instances.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p><span class="tc-italic">Input Example:</span>
-                </p>
-                <p>This example runs a Space named <span class="tc-bold">mySpace</span> with high availability and 2 partitions. The commands start two instances for the first partition (1_1, 1_2) and two instances for the second partition (2_1, 2_2).</p>
-                <div class="easyui-tabs" plain="true" data-options="">
-                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> space run --lus --partitions=2 --ha mySpace </code></pre>
-                    </div>
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space run --lus --partitions=2 --ha mySpace</code></pre>
-                    </div>
-                </div>
-                <p>To run instances separately, run each of the following commands on different hosts (note that –lus is specified for discovery):</p>
-                <div class="easyui-tabs" plain="true" data-options="">
-                    <div title="Linux/Mac" style="padding:10px"><pre><code><MadCap:variable name="General.CLI-script-Linux" /> space run --lus --partitions=2 --ha --instances=1_1 mySpace
-<MadCap:variable name="General.CLI-script-Linux" /> space run --partitions=2 --ha --instances=1_2 mySpace
-<MadCap:variable name="General.CLI-script-Linux" /> space run --lus --partitions=2 --ha --instances=2_1 mySpace
-<MadCap:variable name="General.CLI-script-Linux" /> space run --partitions=2 --ha --instances=2_2 mySpace </code></pre>
-                    </div>
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space run --lus --partitions=2 --ha --instances=1_1 mySpace
-<MadCap:variable name="General.CLI-script-Windows" /> space run --partitions=2 --ha --instances=1_2 mySpace
-<MadCap:variable name="General.CLI-script-Windows" /> space run --lus --partitions=2 --ha --instances=2_1 mySpace
-<MadCap:variable name="General.CLI-script-Windows" /> space run --partitions=2 --ha --instances=2_2 mySpace</code></pre>
-                    </div>
-                </div>
-                <h2><a name="run-a-standalone-processing-unit"></a>Running a Standalone Processing Unit</h2>
-                <p>To run a standalone Processing Unit, run the following command:</p>
-                <p><span class="tc-italic">Command:</span>
-                </p>
-                <div class="easyui-tabs" plain="true" data-options="">
-                    <div title="Linux/Mac" style="padding:10px"><pre><code>./<MadCap:variable name="General.CLI-script-Linux" /> pu run </code></pre>
-                    </div>
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu run</code></pre>
-                    </div>
-                </div>
-                <p><span class="tc-italic">Description:</span>
-                </p>
-                <p>Runs a standalone Processing Unit.</p>
-                <p><span class="tc-italic">Parameters and Options:</span>
-                </p>
-                <table>
-                    <col />
-                    <col style="width: 262px;" />
-                    <col />
-                    <thead>
-                        <tr>
-                            <th align="left">Item</th>
-                            <th align="left">Name</th>
-                            <th align="left">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td align="left">Parameter</td>
-                            <td align="left">path</td>
-                            <td align="left">Relative/absolute path of a Processing Unit directory or archive file.</td>
-                        </tr>
-                        <tr>
-                            <td align="left">Option</td>
-                            <td align="left">—lus</td>
-                            <td align="left">Start a lookup service.</td>
-                        </tr>
-                        <tr>
-                            <td align="left">Option</td>
-                            <td align="left">—partitions=&lt;partitions&gt;</td>
-                            <td align="left">Define the number of partitions to use.</td>
-                        </tr>
-                        <tr>
-                            <td align="left">Option</td>
-                            <td align="left">—ha</td>
-                            <td align="left">Run the Space with high availability (adding a backup per partition).</td>
-                        </tr>
-                        <tr>
-                            <td align="left">Option</td>
-                            <td align="left">—instances=1_1,1_2</td>
-                            <td align="left">Specify one or more instances to run. If no instances are specified, runs all instances.</td>
-                        </tr>
-                        <tr MadCap:conditions="Version.14-5-born">
-                            <td align="left">Option</td>
-                            <td align="left">--property=&lt;String,String&gt;</td>
-                            <td align="left">Context properties.</td>
-                        </tr>
-                        <tr MadCap:conditions="Version.14-5-born">
-                            <td align="left">Option</td>
-                            <td align="left">--properties=&lt;properties&gt;</td>
-                            <td align="left">Location of context-level properties file.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p><span class="tc-italic">Input Example:</span>
-                </p>
-                <p>This example deploys a Processing Unit that contains a Space named <span class="tc-bold">mySpace</span> with high availability and 2 partitions.</p>
-                <div class="easyui-tabs" plain="true" data-options="">
-                    <div title="Linux/Mac" style="padding:10px"><pre><code><MadCap:variable name="General.CLI-script-Linux" /> pu run --lus --ha --partitions=2 myPu.jar</code></pre>
-                    </div>
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu run --lus --ha --partitions=2 myPu.jar</code></pre>
-                    </div>
-                </div>
-            </div>
-            <div title="InsightEdge Open Source" style="padding:10px">
-                <h2><a name="run-insightedge-in-demo-mode"></a>Running <MadCap:variable name="General.ProductNameIE" /> in Demo Mode</h2>
-                <p>To run <MadCap:variable name="General.ProductNameIE" /> in demo mode, type the following command:</p>
-                <p><span class="tc-italic">Command:</span>
-                </p>
-                <div class="easyui-tabs" plain="true" data-options="">
-                    <div title="Linux/Mac" style="padding:10px"><pre><code>./<MadCap:variable name="General.CLI-script-Linux" /> demo</code></pre>
-                    </div>
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> demo</code></pre>
-                    </div>
-                </div>
-                <p><span class="tc-italic">Description:</span>
-                </p>
-                <p>Run Spark in standalone mode (master, worker and Apache Zeppelin), and run a Space in high availability mode (2 primaries with 1 backup each).</p>
-                <p><span class="tc-italic">Parameters and Options:</span>
-                </p>
-                <p>None.</p>
-                <p><span class="tc-italic">Input Example:</span>
-                </p>
-                <div class="easyui-tabs" plain="true" data-options="">
-                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> demo</code></pre>
-                    </div>
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> demo</code></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </li>
+        </ol>
     </body>
 </html>
