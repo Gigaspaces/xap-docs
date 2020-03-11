@@ -4,26 +4,28 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Orchestration</h1>
-        <p>The <MadCap:variable name="General.ProductNameIEP" /> and <MadCap:variable name="General.ProductNameXAP" /> can be deployed on-premise, in cloud environments, or in a hybrid environment. GigaSpaces supports a number of deployment and orchestration options to suit every organization's specific business needs.</p>
-        <h1><a name="the-gigaspaces-service-grid"></a>The GigaSpaces Service Grid</h1>
-        <p>The original GigaSpaces runtime environment is the Service Grid. This orchestration method is responsible for materializing the configuration of the Processing Units, provisioning the instances to the runtime infrastructure, and making sure they continue to run properly over time. Core components of the Service Grid include the Grid Service Manager, Grid Service Agent, and the <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
-        <h1><a name="docker"></a>Docker</h1>
-        <p>GigaSpaces products can be deployed on the Service Grid using Docker images that are available online through Docker Hub. Using Docker simplifies environment setup on-premise as well as moving to the cloud, because all the major cloud vendors support Docker. The following Docker images are available on <a href="https://hub.docker.com/r/gigaspaces/">Docker Hub</a> (each Docker image provides instructions on how to use it):</p>
+        <p> <MadCap:variable name="General.ProductNameXAP" /> provides several cluster managers that you can use to deploy locally, on-premise, in the cloud, or in a hybrid environment. </p>
+        <h1>Standalone Mode</h1>
+        <p>This is a simple cluster manager that creates a cluster on your local machine. Use standalone mode to evaluate <MadCap:variable name="General.ProductNameXAP" /> products, or during development and testing.</p>
+        <h1><a name="the-gigaspaces-service-grid"></a>Service Grid</h1>
+        <p>The service grid is an on-premise system for deploying and managing virtualized applications. This orchestration method is responsible for materializing the configuration of the Processing Units, provisioning the instances to the runtime infrastructure, and making sure they continue to run properly over time. Core components of the Service Grid include the Grid Service Manager, Grid Service Agent, and the <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
+        <h2><a name="docker"></a>Docker</h2>
+        <p><MadCap:variable name="General.ProductNameXAP" /> products can be deployed on the Service Grid using Docker images that are available online through Docker Hub. Using Docker simplifies environment setup on-premise as well as moving to the cloud, because all the major cloud vendors support Docker. The following Docker images are available on <a href="https://hub.docker.com/r/gigaspaces/">Docker Hub</a> (each Docker image provides instructions on how to use it):</p>
         <ul>
             <li><a href="https://hub.docker.com/r/gigaspaces/insightedge/">gigaspaces/insightedge</a> - Contains the <MadCap:variable name="General.ProductNameIE" /> open source edition.</li>
             <li><a href="https://hub.docker.com/r/gigaspaces/insightedge-enterprise/">gigaspaces/insightedge-enterprise</a> - Contains the <MadCap:variable name="General.ProductNameIE" /> Enterprise edition (requires a license key).</li>
-            <li><a href="https://hub.docker.com/r/gigaspaces/xap/">gigaspaces/xap</a> - Contains the <MadCap:variable name="General.ProductNameXAP" /> open source edition.</li>
-            <li><a href="https://hub.docker.com/r/gigaspaces/xap-enterprise/">gigaspaces/xap-enterprise</a> - Contains the <MadCap:variable name="General.ProductNameXAPEnt" /> edition (requires a license key).</li>
+            <li><a href="https://hub.docker.com/r/gigaspaces/xap/">gigaspaces/xap</a> - Contains the XAP open source edition.</li>
+            <li><a href="https://hub.docker.com/r/gigaspaces/xap-enterprise/">gigaspaces/xap-enterprise</a> - Contains the XAP <MadCap:variable name="General.ProductNameXAPEnt" /> edition (requires a license key).</li>
         </ul>
         <h1><a name="kubernetes"></a>Kubernetes</h1>
-        <p><MadCap:variable name="General.ProductNameIE" /> and the <MadCap:variable name="General.ProductNameXAP" /> data grid support the Kubernetes environment. Kubernetes can be used in any type of environment (on-premise, cloud, or hybrid) and is supported by every major cloud provider, including public cloud platforms like AWS, Microsoft Azure, GCP and others. Benefits of using the Kubernetes orchestration platform include:</p>
+        <p> <MadCap:variable name="General.ProductNameXAP" /> products can be deployed in Kubernetes. Kubernetes can be used in any type of environment (on-premise, cloud, or hybrid) and is supported by every major cloud provider, including public cloud platforms like AWS, Microsoft Azure, and GCP. Benefits of using the Kubernetes orchestration platform include:</p>
         <ul>
-            <li>The ability to deploy GigaSpaces-based applications in whatever environment best suits the business needs of the enterprise.</li>
-            <li>Kubernetes synergizes with <MadCap:variable name="General.ProductNameIE" /> and the <MadCap:variable name="General.ProductNameXAP" /> data grid, simplifying the operationalizing of machine learning and transactional processing at scale.</li>
-            <li><MadCap:variable name="General.ProductNameIE" /> and the <MadCap:variable name="General.ProductNameXAP" /> data grid utilize key features of Kubernetes, such as cloud-native orchestration automation with self-healing, cooperative multi-tenancy, and RBAC authorization.</li>
+            <li>The ability to deploy <MadCap:variable name="General.ProductNameXAP" />-based applications in whatever environment best suits the business needs of the enterprise.</li>
+            <li>Kubernetes synergizes with <MadCap:variable name="General.ProductNameXAP" /> products, simplifying the operationalizing of machine learning and transactional processing at scale.</li>
+            <li><MadCap:variable name="General.ProductNameXAP" /> utilizes key features of Kubernetes, such as cloud-native orchestration automation with self-healing, cooperative multi-tenancy, and RBAC authorization.</li>
             <li>Auto-deployment of data services and deep learning and machine learning frameworks, such as Apache Spark jobs, stateful services (Processing Units), as well as the Apache Zeppelin web notebook.</li>
         </ul>
-        <h1>Cloud</h1>
-        <p>Cloud environments are scalable, reliable, and highly available, as well as highly cost effective. You can deploy the <MadCap:variable name="General.ProductNameIE" /> platform from cloud marketplaces such as Amazon Web Services (AWS)&#160;and Microsoft Azure, enabling you to easily test, buy and deploy without having to commit to owning and maintaining an on-premise infrastructure. </p>
+        <h1 MadCap:conditions="Version.15-2-born">ElastiGrid</h1>
+        <p MadCap:conditions="Version.15-2-born">Cloud environments are scalable, reliable, and highly available, as well as highly cost effective. You can deploy <MadCap:variable name="General.ProductNameXAP" /> in the cloud, enabling you to easily test, buy and deploy without having to commit to owning and maintaining an on-premise infrastructure. ElastiGrid is part of the GigaOps stack, and can be used to automatically deploy <MadCap:variable name="General.ProductNameXAP" /> services on your cloud-based cluster using a single gsctl command.</p>
     </body>
 </html>

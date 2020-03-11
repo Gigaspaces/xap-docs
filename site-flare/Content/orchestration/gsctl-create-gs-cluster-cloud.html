@@ -14,7 +14,7 @@
         <p>Before beginning to work with the gsctl tool, ensure that you have the following:</p>
         <ul>
             <li>
-                <p>Java 8 or higher (??) installed on your local workstation.</p>
+                <p>Java 8 or higher installed on your local workstation.</p>
             </li>
             <li>
                 <p>AWS&#160;account and appropriate credentials as described in the <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html" target="_blank">AWS Command Line Interface documentation</a>.</p>
@@ -37,7 +37,7 @@
             <li>
                 <p>Verify that an <code>.aws</code> folder exists in the home directory on your local machine, and that it contains the config and credentials files. The credentials file should include your <code>aws_access_key_id</code> and <code>aws_secret_access_key</code>, and the config files should include your <code>region</code> and <code>output</code> definitions.</p>
                 <p>
-                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-config-files.png" class="tc-picture50" />
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-config-files.png" class="tc-picture30" />
                 </p>
             </li>
             <li>
@@ -49,7 +49,10 @@
             <li>Download the most current version of the gsctl.jar file from <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github</a> to the directory you created (gsDemo) and extract the contents.</li>
             <li>
                 <p>Open a command window and type the following:</p><pre><code class="language-bash">java -jar gsctl.jar init --cluster-name=gs_demo_cluster</code></pre>
-                <p>This command creates a provision.yml file. You can use the default values, or you can modify it to supply your AWS&#160;resources, such as <code>VPC</code>, <code>keyName</code>, and <code>securityGroups</code> values:</p><pre><code class="language-bash">aws:
+                <p>This command creates a provision.yml file. You can modify this file to supply your AWS&#160;resources, such as <code>VPC</code>, <code>keyName</code>, and <code>securityGroups</code> values.</p>
+                <div class="tc-admon-note">
+                    <p>If you don't update the provision.yml file manually, it will use the resources in the .aws folder.</p>
+                </div><pre><code class="language-bash">aws:
   keyName: null
   vpcId: null
   vpcSubnetId: null
@@ -136,7 +139,7 @@ name: "GS_CLUSTER"</code></pre>
                 <p>In the directory where you created the cluster, run the following command:</p><pre><code class="language-bash">java -jar gsctl.jar destroy</code></pre>
                 <p>This tears down the cluster and deletes any dynamically created resources.</p>
                 <p>
-                    <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-process.png" class="tc-picture80" />
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-process.png" class="tc-picture100" />
                 </p>
             </li>
         </ol>
