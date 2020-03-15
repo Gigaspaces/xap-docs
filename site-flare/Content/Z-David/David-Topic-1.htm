@@ -4,6 +4,27 @@
     </head>
     <body>
         <h1>David-Topic-1</h1>
-        <p>Delete this text and replace it with your own content.</p>
+        <p>Delete this text and replace it with your own <code>content</code>.</p><pre><code class="language-java">// Create a document template using the POJO class name:
+SpaceDocument template = new SpaceDocument(MyPojo.class.getName());
+// Count all entries matching the template:
+int count = gigaSpace.count(template);</code></pre>
+        <ol>
+            <li>
+                <p>Bullet point 1</p>
+                <div class="tc-admon-tip">
+                    <p>xxx</p>
+                </div>
+            </li>
+            <li>
+                <p>Bullet point 2</p>
+            </li>
+            <li>
+                <p>Bullet point 3</p>
+            </li>
+        </ol>
+        <div class="tc-admon-note">
+            <p>anything</p>
+        </div>
+        <p>&#160;</p>
     </body>
 </html>
