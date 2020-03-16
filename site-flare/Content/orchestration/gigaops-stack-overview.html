@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">GigaOps Stack</h1>
+        <p>When using the simplest orchestration options, implementing <MadCap:variable name="General.ProductNameXAP" /> products involves several activities:</p>
+        <ul>
+            <li>Creating and maintaining the infrastructure (on-premise or cloud servers), starting with:</li>
+            <ol>
+                <li>Downloading and installing <MadCap:variable name="General.ProductNameXAP" /> on every server </li>
+                <li>Provisioning and editing the configuration files (for example, applying the license, defining environment variables, and defining the lookup service)</li>
+                <li>Running the platform and monitoring it for problems or failure</li>
+            </ol>
+            <li>Developing applications on top of <MadCap:variable name="General.ProductNameXAP" /></li>
+            <li>Periodic upgrade of <MadCap:variable name="General.ProductNameXAP" /> and/or the hosted applications</li>
+        </ul>
+        <p>Organizations that have the resources may develop a script or a tool that handles the installation, provisioning and monitoring, otherwise the orchestration is completely manual.</p>
+        <p>A simpler and more robust level of orchestration is to use Kubernetes, which is an open-source container system for automating application deployment, scaling, and management. If you have a Kubernetes cluster, deploying <MadCap:variable name="General.ProductNameXAP" /> and your applications is relatively easy. However, although cloud providers allow running a Kubernetes cluster, provisioning and maintaining an on-premise cluster can be difficult and complex, especially regarding configuration. In addition, while developing on Kubernetes is relatively simple, the situation can get complex when you're ready to expose your application to the outside world.</p>
+        <p>The GigaOps Stack reduces the complexity of all aspects required to implement <MadCap:variable name="General.ProductNameXAP" /> products, proving a self-service cluster with end-to-end provisioning, ability to deploy new services, auto-recovery, self-monitoring, and tracing.</p>
+        <p>The GigaOps Stack is comprised of the following:</p>
+        <ul>
+            <li><span class="tc-bold">gsctl</span> - a standalone CLI tool that you can use to create, provision, and install <MadCap:variable name="General.ProductNameXAP" /> clusters in the cloud or on premise.</li>
+            <li><span class="tc-bold">Ops Manager</span> - the <MadCap:variable name="General.ProductNameXAP" /> native administration and monitoring tool, which is web based and runs automatically when <MadCap:variable name="General.ProductNameXAP" /> services are deployed.</li>
+            <li><span class="tc-bold">Monitoring stack</span> - based on InfluxDB, Grafana, and Telegraf for monitoring <MadCap:variable name="General.ProductNameXAP" /> cluster activity and metrics using dashboards</li>
+            <li>ElastiGrid or Kubernetes orchestration</li>
+        </ul>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <!--
+## Using Apache Zeppelin with <MadCap:variable name="General.ProductNameIE" />
+
+Apache Zeppelin is a multi-purpose web notebook that supports data ingestion and discovery, as well as data analytics, visualization, and collaboration.
+
+Apache Zeppelin contains a built-in Apache Spark integration. This provides the following:
+
+- Automatic SparkContext and SQLContext injection
+- Runtime JAR dependency loading from the local file system or Maven repository
+- Ability to view job progress and cancel jobs 
+
+The Zeppelin notebook packaged with <MadCap:variable name="General.ProductNameIE" /> includes several <MadCap:variable name="General.ProductNameIE" /> demo applications, along with <MadCap:variable name="General.ProductNameIE" />-specific settings that can be configured in the Spark interpreter in order to establish the connection between Spark and the data grid. 
+
+KubeGrid runs Apache Zeppelin in a dedicated Pod, to enable ???
+-->
+    </body>
+</html>
