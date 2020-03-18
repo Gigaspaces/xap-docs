@@ -7,13 +7,13 @@
         <p> <MadCap:variable name="General.ProductNameXAP" /> provides several orchestration options so that you can deploy <MadCap:variable name="General.ProductNameIE" /> wherever it suits your needs; locally, on-premise, in the cloud, or in a hybrid environment. </p>
         <h1>Standalone Mode</h1>
         <p>This is a simple cluster manager that creates a cluster on your local machine. Use standalone mode to evaluate <MadCap:variable name="General.ProductNameXAP" /> products, or during development and testing.</p>
-        <h1 MadCap:conditions="Default.DoNotShow">GigaOps Stack</h1>
-        <p MadCap:conditions="Default.DoNotShow"> The GigaOps stack is comprised of the following:</p>
+        <h1 MadCap:conditions="Version.15-2-born">GigaOps Stack</h1>
+        <p MadCap:conditions="Version.15-2-born"> The GigaOps stack is comprised of the following:</p>
         <ul>
-            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">gsctl</span> - a standalone CLI tool that you can use to create, provision, and install <MadCap:variable name="General.ProductNameXAP" /> clusters in the cloud or on premise.</li>
-            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">Ops Manager</span> - the <MadCap:variable name="General.ProductNameXAP" /> native administration and monitoring tool, which is web based and runs automatically when <MadCap:variable name="General.ProductNameXAP" /> services are deployed.</li>
-            <li MadCap:conditions="Default.DoNotShow"><span class="tc-bold">Monitoring stack</span> - based on InfluxDB, Grafana, and Telegraf for monitoring <MadCap:variable name="General.ProductNameXAP" /> cluster activity and metrics using dashboards</li>
-            <li MadCap:conditions="Default.DoNotShow">ElastiGrid or Kubernetes orchestration</li>
+            <li MadCap:conditions="Version.15-2-born"><span class="tc-bold">gsctl</span> - a standalone CLI tool that you can use to create, provision, and install <MadCap:variable name="General.ProductNameXAP" /> clusters in the cloud or on premise.</li>
+            <li MadCap:conditions="Version.15-2-born"><span class="tc-bold">Ops Manager</span> - the <MadCap:variable name="General.ProductNameXAP" /> native administration and monitoring tool, which is web based and runs automatically when <MadCap:variable name="General.ProductNameXAP" /> services are deployed.</li>
+            <li MadCap:conditions="Version.15-2-born"><span class="tc-bold">Monitoring stack</span> - based on InfluxDB, Grafana, and Telegraf for monitoring <MadCap:variable name="General.ProductNameXAP" /> cluster activity and metrics using dashboards</li>
+            <li MadCap:conditions="Version.15-2-born">ElastiGrid or KubeGrid orchestration</li>
         </ul>
         <h2 MadCap:conditions="Version.15-2-born">ElastiGrid</h2>
         <p MadCap:conditions="Version.15-2-born">Cloud environments are scalable, reliable, and highly available, as well as highly cost effective. You can deploy <MadCap:variable name="General.ProductNameXAP" /> in the cloud, enabling you to easily test, buy and deploy without having to commit to owning and maintaining an on-premise infrastructure. ElastiGrid is <MadCap:variable name="General.ProductNameXAP" />' orchestration option for cloud, on-premise, or hybrid environments that provides automated deployment, scaling, and management of virtualized and containerized applications. </p>
@@ -24,9 +24,8 @@
             <li MadCap:conditions="Version.15-2-born">Multi-region federation that enables linking multiple clusters</li>
             <li MadCap:conditions="Version.15-2-born">Scalability for changing workload requirements</li>
         </ul>
-        <p MadCap:conditions="Version.15-2-born">&#160;</p>
-        <h1>Kubernetes</h1>
-        <h2 MadCap:conditions="Default.DoNotShow">KubeGrid</h2>
+        <h1 MadCap:conditions="Version.15-2-died">Kubernetes</h1>
+        <h2 MadCap:conditions="Version.15-2-born">KubeGrid</h2>
         <p><MadCap:variable name="General.ProductNameXAP" /> products can be deployed in Kubernetes using the KubeGrid orchestration option. Kubernetes can be used in any type of environment (on-premise, cloud, or hybrid) and is supported by every major cloud provider, including public cloud platforms like AWS, Microsoft Azure, and GCP. Benefits of using KubeGrid include:</p>
         <ul>
             <li>The ability to deploy <MadCap:variable name="General.ProductNameXAP" />-based applications in whatever environment best suits the business needs of the enterprise.</li>
@@ -44,22 +43,19 @@
             <li><a href="https://hub.docker.com/r/gigaspaces/xap/">gigaspaces/xap</a> - Contains the XAP open source edition.</li>
             <li><a href="https://hub.docker.com/r/gigaspaces/xap-enterprise/">gigaspaces/xap-enterprise</a> - Contains the XAP <MadCap:variable name="General.ProductNameXAPEnt" /> edition (requires a license key).</li>
         </ul>
-        <p>&#160;</p>
-        <p MadCap:conditions="Version.15-2-born">&#160;</p>
         <h1 MadCap:conditions="Version.15-2-born">Orchestration Option Comparison</h1>
         <p MadCap:conditions="Version.15-2-born">You can compare the following parameters between the orchestration options, in order to determine which one best suits your needs:</p>
-        <ul MadCap:conditions="Default.DoNotShow">
-            <li>Zero configuration required - Can you deploy and run <MadCap:variable name="General.ProductNameXAP" /> on demand, or easily on existing machines?</li>
-            <li>Auto provisioning - Can you start a cluster from zero?</li>
-            <li>Auto-scaling - Does the environment automatically add and remove nodes as needed?</li>
-            <li>Performance penalty - Does communication between containers affect the performance (speed) of the application?</li>
-            <li>Ease of use - How easy is it to develop applications on top of <MadCap:variable name="General.ProductNameXAP" />?</li>
-            <li>Support for <MadCap:variable name="General.ProductNameXAP" /> product evolution - Can you perform a gradual and controlled upgrade process for the product version and/or processing unit services?</li>
-            <li>Supported environments - Can your cluster run across regions and even cloud providers?</li>
-            <li>Supported processes - What type of processes are supported (container or native process)?</li>
+        <ul MadCap:conditions="Version.15-2-born">
+            <li MadCap:conditions="Version.15-2-born">Zero configuration required - Can you deploy and run <MadCap:variable name="General.ProductNameXAP" /> on demand, or easily on existing machines?</li>
+            <li MadCap:conditions="Version.15-2-born">Auto provisioning - Can you start a cluster from zero?</li>
+            <li MadCap:conditions="Version.15-2-born">Auto-scaling - Does the environment automatically add and remove nodes as needed?</li>
+            <li MadCap:conditions="Version.15-2-born">Performance penalty - Does communication between containers affect the performance (speed) of the application?</li>
+            <li MadCap:conditions="Version.15-2-born">Ease of use - How easy is it to develop applications on top of <MadCap:variable name="General.ProductNameXAP" />?</li>
+            <li MadCap:conditions="Version.15-2-born">Support for <MadCap:variable name="General.ProductNameXAP" /> product evolution - Can you perform a gradual and controlled upgrade process for the product version and/or processing unit services?</li>
+            <li MadCap:conditions="Version.15-2-born">Supported environments - Can your cluster run across regions and even cloud providers?</li>
+            <li MadCap:conditions="Version.15-2-born">Supported processes - What type of processes are supported (container or native process)?</li>
         </ul>
-        <p>&#160;</p>
-        <table style="width: 100%;" MadCap:conditions="Default.DoNotShow">
+        <table style="width: 100%;" MadCap:conditions="Version.15-2-born">
             <col />
             <col />
             <col />
@@ -183,6 +179,5 @@
                 </tr>
             </tbody>
         </table>
-        <p>&#160;</p>
     </body>
 </html>
