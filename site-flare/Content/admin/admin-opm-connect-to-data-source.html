@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Connect to data source</h1>
+        <p>This topic explains how to define and deploy a data source for your project.</p>
+        <h1><a name="choosing-a-data-source"></a>Select data source</h1>
+        <p>The data source type allows you to choose one of the defined data types: HSQL, MySQL or MSSql. If your data source type is not one of these, select Other and you will be prompted for additional information.</p>
+        <h1><a name="Maven properties"></a>Maven properties</h1>
+        <p>The data source type allows you to choose one of the defined data types: HSQL, MySQL or MSSql. If your data source type is not one of these, select Other and you will be prompted for additional informati</p>
+        <p>&#160;</p>
+        <ul>
+            <li>HSQL -- HyperSQL</li>
+            <li>MySQL  </li>
+            <li>MsSQL -- Microsoft SQL Server</li>
+            <li>Other -- ?????????????????????</li>
+        </ul>
+        <p>There are several environment variables that must be set in order for your <MadCap:variable name="General.ProductNameIE" /> cluster to function correctly. The environment variables are located in the <code><MadCap:variable name="General.HomePath" />/bin/setenv-overrides.sh/bat</code> file, and can be configured as described in the <a href="../started/common-environment-variables.html">Configuration</a> page of the Getting Started guide.</p>
+        <ul>
+            <li>
+                <p><code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS</code> - Must be configured on each machine and is required for the master node, which starts the <MadCap:variable name="General.ProductNameXAP" /> Manager along with Apache Zookeeper for high availability. See the <a href="xap-manager.html">the Manager</a> page for more information.</p>
+            </li>
+            <li>
+                <p><code><MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS</code> - This property is used to discover <MadCap:variable name="General.ProductNameXAP" /> components across the network.</p>
+            </li>
+            <li>
+                <p><code><MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS</code> - Set this value based on the size of the JVMs that will host the Processing Unit instances. For example, you can configure the amount of memory required as <code>-Xmx5g -Xms5g</code>.</p>
+            </li>
+        </ul>
+        <h2><a name="starting-a-cluster-locally"></a>Starting a Cluster Locally</h2>
+        <p>The run-agent command automatically resolves which service to run on the current host.
+The resolution is based on the <code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS</code> environment variable, but when undefined it will use localhost as the server IP.</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs.sh host run-agent --auto
+</code></pre>
+        <p>This command will run a <MadCap:variable name="General.ProductNameXAP" /> Manager, Web Management Console, Spark master, Spark worker and the Zeppelin interpreter.</p>
+        <p>REST URL - <a href="http://localhost:8090">http://localhost:8090</a>
+Web Management Console - <a href="http://localhost:8099">http://localhost:8099</a>
+Spark master - <a href="http://localhost:8080/">http://localhost:8080/</a>
+Spark worker - <a href="http://localhost:8081/">http://localhost:8081/</a>
+Zeppelin - <a href="http://localhost:9090/">http://localhost:9090/</a></p>
+        <h2><a name="starting-a-master-node"></a>Starting a Master Node</h2>
+        <p>Master nodes consist of a <MadCap:variable name="General.ProductNameXAP" /> Manager and a Spark master. On each master node, run the following:</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs.sh host run-agent --manager --spark-master
+</code></pre>
+        <h2><a name="starting-slave-nodes"></a>Starting Slave Nodes</h2>
+        <p>Slave nodes consist of <MadCap:variable name="General.ProductNameXAP" /> containers and a Spark worker. On each slave node, run the following:</p>
+        <p>Use <code>--containers=n</code> to put <MadCap:variable name="General.ProductNameXAP" /> containers on a specific machine. If not specified, no <MadCap:variable name="General.ProductNameXAP" /> containers will be started.</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs.sh host run-agent --spark-worker [--containers=n]
+</code></pre>
+        <p>After installation, you can verify that the Spark workers are up and running using the Spark master web UI at <code>http://your-master-ip-here:8080</code>.</p>
+        <h1><a name="deploying-an-empty-space"></a>Deploying an Empty Space</h1><pre><code class="language-bash">#   topology 2,1 starts 2 primary partitions with 1 backup partition for each primary
+<MadCap:variable name="General.HomePath" />/bin/gs.sh space deploy --partitions=2 --ha insightedge-space
+</code></pre>
+    </body>
+</html>
