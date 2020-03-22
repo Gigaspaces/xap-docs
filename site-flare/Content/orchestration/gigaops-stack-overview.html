@@ -18,6 +18,7 @@
         <p>Organizations that have the resources may develop a script or a tool that handles the installation, provisioning and monitoring, otherwise the orchestration is completely manual.</p>
         <p>A simpler and more robust level of orchestration is to use Kubernetes, which is an open-source container system for automating application deployment, scaling, and management. If you have a Kubernetes cluster, deploying <MadCap:variable name="General.ProductNameXAP" /> and your applications is relatively easy. However, although cloud providers allow running a Kubernetes cluster, provisioning and maintaining an on-premise cluster can be difficult and complex, especially regarding configuration. In addition, while developing on Kubernetes is relatively simple, the situation can get complex when you're ready to expose your application to the outside world.</p>
         <p>The GigaOps Stack reduces the complexity of all aspects required to implement <MadCap:variable name="General.ProductNameXAP" /> products via a self-service cluster with end-to-end provisioning, ability to deploy new services, auto-recovery, self-monitoring, and tracing.</p>
+        <h1>Stack Components</h1>
         <p>The GigaOps Stack is comprised of the following:</p>
         <ul>
             <li><span class="tc-bold">gsctl</span> - a standalone CLI tool that you can use to create, provision, and install <MadCap:variable name="General.ProductNameXAP" /> clusters in the cloud or on premise.</li>
@@ -35,13 +36,13 @@
         <h4>Auto-Provisioning</h4>
         <p>With the GigaOps Stack, the installation and configuration process is completely automated. This saves time and resources, and prevents errors that might otherwise occur due to manual configuration of the environment.</p>
         <h4>Elastic Orchestration</h4>
-        <p>&#160;</p>
+        <p>The GigaOps Stack manages orchestration, scheduling, service life cycle, and resource prioritization across the environment. The stack makes global decisions about scheduling, and can detect and respond to cluster events. For example, identifying healthy and unhealthy nodes so that it can make decisions about where to place pods.</p>
         <p>&#160;</p>
         <h4>Canary Deployment</h4>
         <p>The GigaOps Stack supports canary deployment, so you can apply <MadCap:variable name="General.ProductNameXAP" /> upgrades or custom application upgrades to a small subset of users before introducing the change on a widespread scale. </p>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Static/attachment_files/gigaops-stack/canary-deployment.png" class="tc-picture30" />
+                <img src="../Resources/Static/attachment_files/gigaops-stack/canary-deployment.png" class="tc-picture80" />
             </p>
         </div>
         <h4>Auto-Scaling</h4>

@@ -4,7 +4,9 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster in the Cloud</h1>
-        <p>This topic describes how to use the <MadCap:variable name="General.ProductNameXAP" /> standalone CLI&#160;tool to create, provision and install <MadCap:variable name="General.ProductNameXAP" /> clusters on Amazon Web Services (AWS). You will learn how to do the following:</p>
+        <p>&#160;</p>
+        <p>gsctl is a simple CLI tool for creating <MadCap:variable name="General.ProductNameXAP" /> clusters. You can create a cluster in minutes with a single command – <code>run java -jar gsctl.jar create</code>.</p>
+        <p>This topic describes how to use gsctl to create, provision and install <MadCap:variable name="General.ProductNameXAP" /> clusters on Amazon Web Services (AWS). You will learn how to do the following:</p>
         <ul>
             <li>Create a <MadCap:variable name="General.ProductNameXAP" /> cluster.</li>
             <li>Deploy <MadCap:variable name="General.ProductNameXAP" /> services in the cluster.</li>
@@ -42,9 +44,6 @@
             </li>
             <li>
                 <p>Create an empty directory on your machine. In this example, the directory name is <span class="tc-bold">gsDemo</span>.</p>
-                <p>
-                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-new-directory.png" class="tc-picture50" />
-                </p>
             </li>
             <li>Download the most current version of the gsctl.jar file from <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github</a> to the directory you created (gsDemo) and extract the contents.</li>
             <li>
@@ -84,7 +83,7 @@ name: "GS_CLUSTER"</code></pre>
                 <p>
                     <img src="../Resources/Static/attachment_files/gigaops-stack/aws-vpc-dashboard-create-cluster.png" class="tc-picture80" />
                 </p>
-                <p>The process of creating the cluster takes only a few minutes until the nodes are up and running:</p>
+                <p>The process of creating the cluster takes only a few minutes until the nodes are up and running. YOu can see the Master (server) nodes and Worker (client) nodes are now running and have passed the status checks.</p>
                 <p>
                     <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-running.png" class="tc-picture80" />
                 </p>
