@@ -1,5 +1,4 @@
 # xap-docs
-xxxxx
 
 This repo hosts XAP documentation, based on markdown and Hugo.
 
@@ -12,6 +11,7 @@ It's important for us to encourage your feedback and contribution. Contributing 
 
 - Download [Hugo](https://github.com/spf13/hugo/releases) and unzip it
 - Clone the [xap-docs](https://github.com/Gigaspaces/xap-docs) repository 
+- To avoid merge problems, configure `git` to pull with rebase by typing the following from the command line: `git config --global --bool pull.rebase true`
 
 # Running
 
