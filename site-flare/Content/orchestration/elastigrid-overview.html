@@ -26,8 +26,15 @@
             </p>
         </div>
         <p>&#160;</p>
-        <p>Additionally, ElasticGrid supports multi-region connectivity so you can replicate data between regions and cloud-based clusters. </p>
-        <p>ElasticGrid has the following functionality:</p>
+        <p>Overall, ElasticGrid has the following advantages when compared to Kubernetes:</p>
+        <ul>
+            <li>Better performance for <MadCap:variable name="General.ProductNameXAP"></MadCap:variable> products - up to 20% faster</li>
+            <li>Broader installation options - supports VMs in addition to Docker containers</li>
+            <li>Supports more environments - can be used in hybrid environments that include both cloud and on premise </li>
+            <li>Simplified networking and security configuration</li>
+            <li>Lower cost for worker nodes (GKE/EKS/AKS)</li>
+        </ul>
+        <p>In addition to the above advantages, ElasticGrid has the following functionality:</p>
         <ul>
             <li>Provides auto-provisioning and installation with built-in monitoring. You benefit from declarative software installation and orchestration, so you can focus is on writing the type of software you want to install and its requirements in terms of memory and CPU, and ElasticGrid installs and manages your software on the cluster according to the constraints that you defined. As the cluster changes, ElasticGrid makes adjustments, so your infrastructure is always suited to your workload demands.</li>
             <li>Collects metrics on the host machines and all the software defined on the nodes, and displays them using built-in Grafana dashboards. ElasticGrid uses standard metrics tools, so you can easily design your own dashboards in addition to those that <MadCap:variable name="General.ProductNameXAP" /> provides.</li>
@@ -44,7 +51,7 @@
             </p>
         </div>
         <p>In this topology, one master is the leader, and any other masters are followers. The master nodes accept jobs, manage the worker nodes, and allocate tasks among them. The leader replicates data to the followers, and the followers forward updates to the leader.</p>
-        <p>This is how the master nodes connect to each other in a multi-region topology:</p>
+        <p>Additionally, ElasticGrid supports multi-region connectivity so you can replicate data between regions and cloud-based clusters. This is how the master nodes connect to each other in a multi-region topology:</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/gigaops-stack/multi-region.png" class="tc-picture50" />
