@@ -11,10 +11,10 @@
             <tbody>
                 <tr>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/attachment_files/gigaops-stack/simple-container.png" class="tc-picture50" />
+                        <img src="../Resources/Static/attachment_files/gigaops-stack/non-containerized.png" class="tc-picture80" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/attachment_files/gigaops-stack/non-containerized.png" class="tc-picture50" />
+                        <img src="../Resources/Static/attachment_files/gigaops-stack/simple-container.png" class="tc-picture80" />
                     </td>
                 </tr>
             </tbody>
@@ -35,21 +35,22 @@
             <li>Uses Zipkin, a distributed tracing system, to enable outputting tracing that you can use to troubleshoot latency issues.</li>
         </ul>
         <h1>Architecture</h1>
-        <p>ElasticGrid has a master-worker architecture. The master is the brain of the cluster and manages all the jobs and workers, along with scheduling and tasks. There can be multiple masters in a cluster. The worker communicates with the master using Remote Procedure Calls (RPC). When a worker registers with a master, it provides information about itself; available resources, attributes, and installed drivers. The master can then use this information to decide how to schedule and allocate tasks among the workers.</p>
+        <p>ElasticGrid has a master-worker architecture. The master is the brain of the cluster and manages all the jobs and workers, along with scheduling and tasks. There can be multiple masters in a cluster. </p>
+        <p>Workers communicate with the masters using Remote Procedure Calls (RPC). When a worker registers with a master, it provides information about itself; available resources, attributes, and installed drivers. The master can then use this information to decide how to schedule and allocate tasks among the workers.</p>
         <p>This is how the master-worker relationship may look in a single-region topology.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/gigaops-stack/single-region.png" class="tc-picture50" />
             </p>
         </div>
-        <p>In this topology, one master is the leader, and any other masters are followers. The master nodes accept jobs, manages the worker nodes, and allocate tasks among them.</p>
+        <p>In this topology, one master is the leader, and any other masters are followers. The master nodes accept jobs, manage the worker nodes, and allocate tasks among them. The leader replicates data to the followers, and the followers forward updates to the leader.</p>
         <p>This is how the master nodes connect to each other in a multi-region topology:</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/gigaops-stack/multi-region.png" class="tc-picture50" />
             </p>
         </div>
-        <p>The regions function independently from each other, and have a loose coupling that enables submitting jobs or queries between the regions. The master node serving as the leader processes all the queries and transactions. While all the master nodes in a region make their scheduling decisions in parallel (ElasticGrid is optimistically concurrent), the leader coordinates all the activity to ensure the correct load balancing across the worker nodes.</p>
+        <p>In this topology, the regions function independently from each other, and have a loose coupling that enables submitting jobs or queries between the regions. The master node serving as the leader processes all the queries and transactions. While all the master nodes in a region make their scheduling decisions in parallel (ElasticGrid is optimistically concurrent), the leader coordinates all the activity to ensure the correct load balancing across the worker nodes.</p>
         <h1>Deploying <MadCap:variable name="General.ProductNameXAP" /> on ElastiGrid</h1>
         <p>The gsctl utility is used to create the ElastiGrid cluster and deploy <MadCap:variable name="General.ProductNameXAP" />, much like using Helm to install <MadCap:variable name="General.ProductNameXAP" /> on Kubernetes. For information on how to deploy <MadCap:variable name="General.ProductNameXAP" /> on ElastiGrid, see xxx.</p>
         <p>&#160;</p>
