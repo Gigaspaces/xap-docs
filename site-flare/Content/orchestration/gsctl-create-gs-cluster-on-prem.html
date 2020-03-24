@@ -3,16 +3,16 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster in the Cloud</h1>
+        <h1 class="tc-pagetitle">Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster On Premise</h1>
         <p>&#160;</p>
         <p>gsctl is a simple CLI tool for creating <MadCap:variable name="General.ProductNameXAP" /> clusters. You can create a cluster in minutes with a single command – <code>run java -jar gsctl.jar create</code>.</p>
-        <p>In this topic, you will learn how to create, provision and install a <MadCap:variable name="General.ProductNameXAP" /> cluster on Amazon Web Services (AWS) and then remove it by doing the following:</p>
+        <p>In this topic, you will learn how to create, provision and install a <MadCap:variable name="General.ProductNameXAP" /> cluster on an on-premise machine, and then remove it by doing the following:</p>
         <ul>
             <li>Create a <MadCap:variable name="General.ProductNameXAP" /> cluster.</li>
             <li>Deploy <MadCap:variable name="General.ProductNameXAP" /> services in the cluster.</li>
             <li>Undeploy the <MadCap:variable name="General.ProductNameXAP" /> services and tear down the cluster.</li>
         </ul>
-        <h2>Prerequisites</h2>
+        <h2>General Prerequisites</h2>
         <p>Before beginning to work with the gsctl tool, ensure that you have the following:</p>
         <ul>
             <li>
@@ -31,6 +31,15 @@
             </li>
             <li><span class="tc-bold">Windows only</span>:&#160;Set the following environment variables manually:<ul><li>AWS_ACCESS_KEY_ID</li><li>AWS_SECRET_ACCESS_KEY</li><li>REGION</li></ul></li>
         </ul>
+        <h2>On-Premise Prerequisites</h2>
+        <p>In addition to the general prerequisites listed above, you need to do the following when installing an on-premise cluster:</p>
+        <ul>
+            <li>Disable the password prompt when using sudo</li>
+            <li>Unzip the pre-installed software package</li>
+            <li>Ensure that you have a single pem file for all your on-premise machines</li>
+            <li>Verify connectivity to all the machines from your workstation</li>
+            <li>Centos machines only - disable the firewall (firewalld service) and make sure it is set to stay disabled on start (for example, when the machine reboots)</li>
+        </ul>
         <h2>Downloading the Utility</h2>
         <p>The gsctl tool is available from the<MadCap:variable name="General.ProductNameXAP" /> <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github repo</a>.</p>
         <h1>Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster </h1>
@@ -38,56 +47,51 @@
         <p class="tc-todo">To create a cluster:</p>
         <ol>
             <li>
-                <p>Verify that an <code>.aws</code> folder exists in the home directory on your local machine, and that it contains the config and credentials files. The credentials file should include your <code>aws_access_key_id</code> and <code>aws_secret_access_key</code>, and the config files should include your <code>region</code> and <code>output</code> definitions.</p>
-                <p>
-                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-config-files.png" class="tc-picture30" />
-                </p>
-            </li>
-            <li>
                 <p>Create an empty directory on your machine. In this example, the directory name is <span class="tc-bold">gsDemo</span>.</p>
             </li>
             <li>Download the most current version of the gsctl.jar file from <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github</a> to the directory you created (gsDemo) and extract the contents.</li>
+            <li>Add the pem file to this directory.</li>
             <li>
-                <p>Open a command window and type the following:</p><pre><code class="language-bash">java -jar gsctl.jar init --cluster-name=gs_demo_cluster</code></pre>
-                <p>This command creates a provision.yml file. You can modify this file to supply your AWS&#160;resources, such as <code>VPC</code>, <code>keyName</code>, and <code>securityGroups</code> values.</p>
-                <div class="tc-admon-note">
-                    <p>If you don't update the provision.yml file manually, it will use the resources in the .aws folder.</p>
-                </div><pre><code class="language-bash">aws:
-  keyName: null
-  vpcId: null
-  vpcSubnetId: null
-  securityGroup: null
-  amiId: null
-  userName: null
-servers:
-  label: "GS Cluster [GS_CLUSTER] Server Group"
-  groups:
-  - type: "m4.xlarge"
-    tags: null
-    count: 3
-clients:
-  label: "GS Cluster [GS_CLUSTER] Client Group"
-  groups:
-  - type: "m4.xlarge"
-    tags: null
-    count: 3
-gsManagers: 3
-name: "GS_CLUSTER"</code></pre>
+                <p>Open a command window and type the following:</p><pre><code class="language-bash">java -jar gsctl.jar init --mode=on-premise --cluster-name=gs_demo_cluster</code></pre>
+                <p>This command creates a cluster.yaml file. Modify this file as follows:</p>
+                <ul>
+                    <li>
+                        <p>keyName - name of your pem file (without the .pem extension)</p>
+                    </li>
+                    <li>
+                        <p>userName</p>
+                    </li>
+                    <li>
+                        <p>profiles - the on-premise worker (client) name, along with the IP&#160;addresses of the host machines</p>
+                        <div class="tc-admon-attention">
+                            <p>You must have 3 masters (gsManagers) and at least 1 worker.</p>
+                        </div>
+                    </li>
+                </ul><pre><code class="language-bash">gsManagers: 3
+aws: null
+onPremise:
+  keyName: "pem file"
+  userName: "user name"
+  masters:
+    label: "GS Cluster [gs_demo_cluster] Master Group"
+    profiles:
+    - name: "default on premise master name"
+      hosts:
+      - "127.0.1.93"
+      - "127.0.1.95"
+      - "127.0.1.96"
+  workers:
+    label: "GS Cluster [gs_demo_cluster] Worker Group"
+    profiles:
+    - name: "default on premise worker name"
+      hosts:
+      - "127.0.1.97"
+      - "127.0.1.98"
+      - "127.0.1.99"
+name: "gs_demo_cluster"</code></pre>
             </li>
             <li>
                 <p>To create a cluster, run the following command:</p><pre><code class="language-bash">java -jar gsctl.jar create</code></pre>
-                <p>The cloud platform begins to create the cluster:</p>
-                <p>
-                    <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-create-cluster-new.png" class="tc-picture50" />
-                </p>
-                <p>You can monitor the progress of the cluster in your cloud platform dashboard, for example the VPC&#160;Dashboard in AWS:</p>
-                <p>
-                    <img src="../Resources/Static/attachment_files/gigaops-stack/aws-vpc-dashboard-create-cluster.png" class="tc-picture80" />
-                </p>
-                <p>The process of creating the cluster takes only a few minutes until the nodes are up and running. You can see when the Master (server) nodes and Worker (client) nodes are running and have passed the status checks.</p>
-                <p>
-                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-running.png" class="tc-picture80" />
-                </p>
             </li>
         </ol>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-deploy-gs-service.flsnp" />

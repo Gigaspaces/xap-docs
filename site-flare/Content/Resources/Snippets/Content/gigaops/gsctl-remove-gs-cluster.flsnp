@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <body>
+        <h1>Removing a <MadCap:variable name="General.ProductNameXAP" /> Cluster</h1>
+        <p>You can delete your cluster when you no longer need it, in order to release the cloud resources. First, undeploy the <MadCap:variable name="General.ProductNameXAP" /> stateful service, and then tear down the cluster.</p>
+        <p class="tc-todo">To remove the <MadCap:variable name="General.ProductNameXAP" /> cluster:</p>
+        <ol>
+            <li>
+                <p>In the directory where you deployed the <MadCap:variable name="General.ProductNameXAP" /> services, type the following command:</p>
+                <pre>
+                    <code class="language-bash">java -jar gsctl.jar undeploy mySpace</code>
+                </pre>
+                <p>The Space is undeployed from the cluster.</p>
+            </li>
+            <li>
+                <p>In the directory where you created the cluster, run the following command:</p>
+                <pre>
+                    <code class="language-bash">java -jar gsctl.jar destroy</code>
+                </pre>
+                <p>This tears down the cluster and deletes any dynamically created resources.</p>
+                <p>
+                    <img src="../../../Static/attachment_files/gigaops-stack/gsctl-destroy-process.png" class="tc-picture50" />
+                </p>
+            </li>
+        </ol>
+    </body>
+</html>
