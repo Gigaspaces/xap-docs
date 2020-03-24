@@ -7,14 +7,14 @@
         <p> <MadCap:variable name="General.ProductNameXAP" /> provides several orchestration options so that you can deploy <MadCap:variable name="General.ProductNameIE" /> wherever it suits your needs; locally, on-premise, in the cloud, or in a hybrid environment. </p>
         <ul>
             <li>Standalone -  a simple cluster manager that makes it easy to set up a cluster.</li>
-            <li>ElasticGrid  - Supports open cloud, on-premise  or hybrid environments and automates deploying, scaling, and managing virtualized and containerized applications.</li>
+            <li>ElasticGrid  - Supports public cloud, on-premise  or hybrid environments and automates deploying, scaling, and managing virtualized and containerized applications.</li>
             <li>KubeGrid -  the <MadCap:variable name="General.ProductNameXAP" /> implementation of the Kubernetes open-source system that automates deploying, scaling, and managing containerized applications.</li>
             <li>ServiceGrid - on-premise orchestration for deploying and managing virtualized applications.</li>
         </ul>
         <h1>Standalone Mode</h1>
         <p>This is a simple cluster manager that creates a cluster on your local machine. Use standalone mode to evaluate <MadCap:variable name="General.ProductNameXAP" /> products, or during development and testing.</p>
         <h1 MadCap:conditions="Version.15-2-born">ElasticGrid</h1>
-        <p MadCap:conditions="Version.15-2-born">Public and private environments are scalable, reliable, and highly available, as well as highly cost effective. You can deploy <MadCap:variable name="General.ProductNameXAP" /> in any environment, enabling you to easily test and deploy without having to commit to owning and maintaining an on-premise infrastructure. ElasticGrid is <MadCap:variable name="General.ProductNameXAP" />' orchestration option for cloud, on-premise, or hybrid environments that provides automated deployment, scaling, and management of virtualized and containerized applications. </p>
+        <p MadCap:conditions="Version.15-2-born"> ElasticGrid is <MadCap:variable name="General.ProductNameXAP" />' orchestration option for cloud, on-premise, or hybrid environments that provides automated deployment, scaling, and management of virtualized and containerized applications. Public and private environments are scalable, reliable, and highly available, as well as highly cost effective. You can use <MadCap:variable name="General.ProductNameXAP" /> in any environment, enabling you to easily test and deploy your <MadCap:variable name="General.ProductNameXAP" />-based applications.</p>
         <p MadCap:conditions="Version.15-2-born">ElasticGrid has the following benefits:</p>
         <ul>
             <li MadCap:conditions="Version.15-2-born">Ability to run containers and virtualized applications on the same infrastructure</li>
@@ -24,7 +24,8 @@
         </ul>
         <h1 MadCap:conditions="Version.15-2-died">Kubernetes</h1>
         <h1 MadCap:conditions="Version.15-2-born">KubeGrid</h1>
-        <p><MadCap:variable name="General.ProductNameXAP" /> products can be deployed in Kubernetes using the KubeGrid orchestration option. Kubernetes can be used in any type of environment (on-premise, cloud, or hybrid) and is supported by every major cloud provider, including public cloud platforms like AWS, Microsoft Azure, and GCP. Benefits of using KubeGrid include:</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> products can be deployed in Kubernetes using the KubeGrid orchestration option. Kubernetes can be used in any type of environment (on-premise, cloud, or hybrid) and is supported by every major cloud provider, including public cloud platforms like AWS, Microsoft Azure, and GCP. </p>
+        <p>Benefits of using KubeGrid include:</p>
         <ul>
             <li>The ability to deploy <MadCap:variable name="General.ProductNameXAP" />-based applications in whatever environment best suits the business needs of the enterprise.</li>
             <li>Kubernetes synergizes with <MadCap:variable name="General.ProductNameXAP" /> products, simplifying the operationalizing of machine learning and transactional processing at scale.</li>
@@ -46,12 +47,12 @@
         <ul MadCap:conditions="Version.15-2-born">
             <li MadCap:conditions="Version.15-2-born">Zero configuration required - Can you deploy and run <MadCap:variable name="General.ProductNameXAP" /> on demand, or easily on existing machines?</li>
             <li MadCap:conditions="Version.15-2-born">Auto provisioning - Can you start a cluster from zero?</li>
-            <li MadCap:conditions="Version.15-2-born">Auto-scaling - Does the environment automatically add and remove nodes as needed?</li>
+            <li MadCap:conditions="Version.15-2-born">Auto-scaling - Does the environment dynamically allocate/de-allocate resources (memory,  compute and storage) as well as add or remove nodes?</li>
             <li MadCap:conditions="Version.15-2-born">Ease of use - How easy is it to configure network and security requirements?</li>
             <li MadCap:conditions="Version.15-2-born">Support for <MadCap:variable name="General.ProductNameXAP" /> product evolution - Can you perform a gradual and controlled upgrade process for the product version and/or microservices? Can you evaluate the effect of your upgrade and of application changes?</li>
-            <li MadCap:conditions="Version.15-2-born">Troubleshooting - Can you obtain and analyze tracing for your system and applications?</li>
             <li MadCap:conditions="Version.15-2-born">Supported environments - Can your cluster run across regions and multi-cloud providers?</li>
             <li MadCap:conditions="Version.15-2-born">Supported apps - What type of applications are supported (container or virtualized process)?</li>
+            <li MadCap:conditions="Version.15-2-born">Troubleshooting - Can you monitor your system, get alerts, and obtain and analyze tracing and centralized logging for your system and applications?</li>
         </ul>
         <table style="width: 100%;" MadCap:conditions="Version.15-2-born">
             <col />
@@ -91,18 +92,11 @@
                     <td>No</td>
                 </tr>
                 <tr>
-                    <td>No performance penalty</td>
-                    <td>Yes</td>
-                    <td>No</td>
-                    <td>Yes</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
                     <td>Ease of use (network and security configuration)</td>
                     <td>Yes</td>
                     <td>No</td>
                     <td>Yes</td>
-                    <td>No</td>
+                    <td>Yes</td>
                 </tr>
                 <tr>
                     <td>Supports rolling upgrades</td>
@@ -144,7 +138,7 @@
                     <td>Yes</td>
                 </tr>
                 <tr>
-                    <td>Hybrid</td>
+                    <td>Hybrid or multi-cloud</td>
                     <td>Yes</td>
                     <td>No</td>
                     <td>No</td>
@@ -186,6 +180,13 @@
                     <td>Centralized log processing</td>
                     <td>Yes</td>
                     <td>Yes</td>
+                    <td>No</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>Distributed tracing</td>
+                    <td>Yes</td>
+                    <td>No</td>
                     <td>No</td>
                     <td>No</td>
                 </tr>

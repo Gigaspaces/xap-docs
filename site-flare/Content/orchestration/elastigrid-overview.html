@@ -5,20 +5,6 @@
     <body>
         <h1 class="tc-pagetitle">ElasticGrid</h1>
         <p>ElasticGrid is a highly available, distributed cluster and application scheduler. It supports data centers along with long-running services, batch jobs, and other critical functions, and can manage virtual machines (VMs) and containers across cloud, on premise, and hybrid environments. </p>
-        <table style="width: 100%;" class="tc-borderless">
-            <col />
-            <col />
-            <tbody>
-                <tr>
-                    <td style="text-align: center;">
-                        <img src="../Resources/Static/attachment_files/gigaops-stack/non-containerized.png" class="tc-picture80" />
-                    </td>
-                    <td style="text-align: center;">
-                        <img src="../Resources/Static/attachment_files/gigaops-stack/simple-container.png" class="tc-picture80" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
         <p>ElasticGrid performs service discovery and service mesh, ensuring secure communication between services.</p>
         <div class="tc-align-center">
             <p>
@@ -34,12 +20,13 @@
             <li>Simplified networking and security configuration</li>
             <li>Lower cost for worker nodes (GKE/EKS/AKS)</li>
         </ul>
+        <h2>ElasticGrid Functionality</h2>
         <p>In addition to the above advantages, ElasticGrid has the following functionality:</p>
         <ul>
-            <li>Provides auto-provisioning and installation with built-in monitoring. You benefit from declarative software installation and orchestration, so you can focus is on writing the type of software you want to install and its requirements in terms of memory and CPU, and ElasticGrid installs and manages your software on the cluster according to the constraints that you defined. As the cluster changes, ElasticGrid makes adjustments, so your infrastructure is always suited to your workload demands.</li>
-            <li>Collects metrics on the host machines and all the software defined on the nodes, and displays them using built-in Grafana dashboards. ElasticGrid uses standard metrics tools, so you can easily design your own dashboards in addition to those that <MadCap:variable name="General.ProductNameXAP" /> provides.</li>
-            <li> Supports rolling upgrades, so there is zero downtime of the system. You can use the Grafana dashboards to monitor performance before and after upgrade, or during canary deployment of your software.</li>
-            <li>Uses Zipkin, a distributed tracing system, to enable outputting tracing that you can use to troubleshoot latency issues.</li>
+            <li>Provides <span class="tc-bold">auto-provisioning and installation with built-in monitoring</span>. You benefit from declarative software installation and orchestration, so you can focus on defining the type of software you want to install and its requirements in terms of memory and CPU, and ElasticGrid installs and manages your software on the cluster according to the constraints that you defined. As the cluster changes, ElasticGrid makes adjustments, so your infrastructure is always suited to your workload demands.</li>
+            <li>Collects metrics on the host machines and all the software defined on the nodes, and displays them using <span class="tc-bold">built-in Grafana dashboards</span>. ElasticGrid uses standard metrics tools, so you can easily design your own dashboards in addition to those that <MadCap:variable name="General.ProductNameXAP" /> provides.</li>
+            <li> Supports <span class="tc-bold">rolling upgrades</span>, so there is zero downtime of the system. You can use the Grafana dashboards to monitor performance before and after upgrade, or during canary deployment of your software.</li>
+            <li>Offers <span class="tc-bold">distributed tracing </span>using Zipkin, so you can troubleshoot latency issues.</li>
         </ul>
         <h1>Architecture</h1>
         <p>ElasticGrid has a master-worker architecture. The master is the brain of the cluster and manages all the jobs and workers, along with scheduling and tasks. There can be multiple masters in a cluster. </p>

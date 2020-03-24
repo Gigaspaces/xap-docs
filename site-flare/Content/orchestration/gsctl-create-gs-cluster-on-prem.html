@@ -12,27 +12,13 @@
             <li>Deploy <MadCap:variable name="General.ProductNameXAP" /> services in the cluster.</li>
             <li>Undeploy the <MadCap:variable name="General.ProductNameXAP" /> services and tear down the cluster.</li>
         </ul>
-        <h2>General Prerequisites</h2>
-        <p>Before beginning to work with the gsctl tool, ensure that you have the following:</p>
+        <h2>Prerequisites</h2>
+        <p>Before beginning to work with the gsctl tool, you must do the following:</p>
         <ul>
             <li>
-                <p>Java 8 or higher installed on your local workstation.</p>
+                <p>Verify that Java 8 or higher is installed on your local workstation.</p>
             </li>
-            <li>
-                <p>AWS&#160;account and appropriate credentials as described in the <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html" target="_blank">AWS Command Line Interface documentation</a>.</p>
-                <div class="tc-admon-note">
-                    <p>To deploy a <MadCap:variable name="General.ProductNameXAP" /> cluster in AWS you need the following:</p>
-                    <ul>
-                        <li>Valid AWS&#160;account</li>
-                        <li>Credentials that include <code>aws_access_key_id</code> and <code>aws_secret_access_key</code></li>
-                        <li>Configuration parameters that include a defined <code>region</code></li>
-                    </ul>
-                </div>
-            </li>
-            <li><span class="tc-bold">Windows only</span>:&#160;Set the following environment variables manually:<ul><li>AWS_ACCESS_KEY_ID</li><li>AWS_SECRET_ACCESS_KEY</li><li>REGION</li></ul></li>
         </ul>
-        <h2>On-Premise Prerequisites</h2>
-        <p>In addition to the general prerequisites listed above, you need to do the following when installing an on-premise cluster:</p>
         <ul>
             <li>Disable the password prompt when using sudo</li>
             <li>Unzip the pre-installed software package</li>
