@@ -6,7 +6,7 @@
         <h1 class="tc-pagetitle">Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster in the Cloud</h1>
         <p>&#160;</p>
         <p>gsctl is a simple CLI tool for creating <MadCap:variable name="General.ProductNameXAP" /> clusters. You can create a cluster in minutes with a single command – <code>run java -jar gsctl.jar create</code>.</p>
-        <p>This topic describes how to use gsctl to create, provision and install <MadCap:variable name="General.ProductNameXAP" /> clusters on Amazon Web Services (AWS). You will learn how to do the following:</p>
+        <p>In this topic, you will learn how to create, provision and install a <MadCap:variable name="General.ProductNameXAP" /> cluster on Amazon Web Services (AWS) and then remove it by doing the following:</p>
         <ul>
             <li>Create a <MadCap:variable name="General.ProductNameXAP" /> cluster.</li>
             <li>Deploy <MadCap:variable name="General.ProductNameXAP" /> services in the cluster.</li>
@@ -29,8 +29,9 @@
                     </ul>
                 </div>
             </li>
+            <li><span class="tc-bold">Windows only</span>:&#160;Set the following environment variables manually:<ul><li>AWS_ACCESS_KEY_ID</li><li>AWS_SECRET_ACCESS_KEY</li><li>REGION</li></ul></li>
         </ul>
-        <h2>Downloading the Tool</h2>
+        <h2>Downloading the Utility</h2>
         <p>The gsctl tool is available from the<MadCap:variable name="General.ProductNameXAP" /> <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github repo</a>.</p>
         <h1>Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster </h1>
         <p>Follow the steps in the procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services.</p>
@@ -77,13 +78,13 @@ name: "GS_CLUSTER"</code></pre>
                 <p>To create a cluster, run the following command:</p><pre><code class="language-bash">java -jar gsctl.jar create</code></pre>
                 <p>The cloud platform begins to create the cluster:</p>
                 <p>
-                    <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-create-cluster-process.png" class="tc-picture80" />
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-create-cluster-new.png" class="tc-picture50" />
                 </p>
                 <p>You can monitor the progress of the cluster in your cloud platform dashboard, for example the VPC&#160;Dashboard in AWS:</p>
                 <p>
                     <img src="../Resources/Static/attachment_files/gigaops-stack/aws-vpc-dashboard-create-cluster.png" class="tc-picture80" />
                 </p>
-                <p>The process of creating the cluster takes only a few minutes until the nodes are up and running. YOu can see the Master (server) nodes and Worker (client) nodes are now running and have passed the status checks.</p>
+                <p>The process of creating the cluster takes only a few minutes until the nodes are up and running. You can see when the Master (server) nodes and Worker (client) nodes are running and have passed the status checks.</p>
                 <p>
                     <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-running.png" class="tc-picture80" />
                 </p>
@@ -97,30 +98,35 @@ name: "GS_CLUSTER"</code></pre>
                 <p>First, deploy the stateful service (the Space example). Type the following command to deploy a processor service called <span class="tc-bold">mySpace</span>:</p><pre><code class="language-bash">java -jar gsctl.jar deploy stateful mySpace processor.jar</code></pre>
             </li>
             <li>
-                <p>Next, deploy the stateless service (the feeder example). Type the following command to deploy a feeder service called <span class="tc-bold">myFeeder</span>:</p>
+                <p>Next, deploy the stateless service (the feeder example). Type the following command to deploy a feeder service called <span class="tc-bold">myFeeder</span>:</p><pre><code>java -jar gsctl.jar deploy stateless myFeeder feeder.jar</code></pre>
                 <p>A feeder service called myFeeder is deployed.</p>
             </li>
             <li>
-                <p>Now you can monitor your services using the available administration and monitoring tools.</p>
+                <p>Now you can monitor your services using the available administration and monitoring tools. To access the tools, do the following:</p>
                 <ul>
                     <li>
-                        <p>To get the Ops Manager URL, run the following command:</p><pre><code class="language-bash">java -jar gsctl.jar service-address manager</code></pre>
-                        <p>Open the Ops Manager in your browser to view the deployed <MadCap:variable name="General.ProductNameXAP" /> services.</p>
+                        <p>Run the following command:</p><pre><code>java -jar gsctl.jar list-services</code></pre>
+                        <p>This returns all the manager services with their URLs.</p>
                         <p>
-                            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-ops-manager.png" class="tc-picture100" />
+                            <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-list-services.png" class="tc-picture50" />
                         </p>
                     </li>
                     <li>
-                        <p>To get the Grafana URL, run the following command:</p><pre><code class="language-bash">java -jar gsctl.jar service-address grafana</code></pre>
-                        <p>Open Grafana in your browser to view the dashboards for the <MadCap:variable name="General.ProductNameXAP" /> services.</p>
+                        <p>Copy any of the manager URLs into your browser to open Ops Manager and view the deployed <MadCap:variable name="General.ProductNameXAP" /> services.</p>
                         <p>
-                            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-grafana.png" class="tc-picture100" />
+                            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-ops-manager.png" class="tc-picture80" />
                         </p>
                     </li>
                     <li>
-                        <p>The setup commands include Telegraf, so you can also view the cluster metrics in Grafana.</p>
+                        <p>Copy the grafana URL to your browser to open Grafana and navigate to the pre-defined dashboards:</p>
                         <p>
-                            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-telegraf.png" />
+                            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-grafana.png" class="tc-picture80" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>Select the Telegraf system metrics dashboard in Grafana to view the cluster metrics.</p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-telegraf.png" class="tc-picture80" />
                         </p>
                     </li>
                 </ul>
@@ -138,7 +144,7 @@ name: "GS_CLUSTER"</code></pre>
                 <p>In the directory where you created the cluster, run the following command:</p><pre><code class="language-bash">java -jar gsctl.jar destroy</code></pre>
                 <p>This tears down the cluster and deletes any dynamically created resources.</p>
                 <p>
-                    <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-process.png" class="tc-picture100" />
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-process.png" class="tc-picture50" />
                 </p>
             </li>
         </ol>
