@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Adjusting the Size of a Cluster</h1>
+        <p>&#160;</p>
+        <p>While ElasticGrid performs auto-scaling so that the cluster adjusts its size automatically to adapt to the current workload, you can also change the size manually if necessary by adding or removing nodes.</p>
+        <h1>Adding a Node</h1>
+        <p>Follow the steps in the procedure to add a node to a <MadCap:variable name="General.ProductNameXAP" /> cluster.</p>
+        <p class="tc-todo">To add a node:</p>
+        <ol>
+            <li>
+                <p>Type the following command:</p><pre><span class="tc-bold">java -jar gsctl.jar add-node</span></pre>
+            </li>
+            <li>Download the most current version of the gsctl.jar file from <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github</a> to the directory you created (gsDemo) and extract the contents.</li>
+            <li>
+                <p>To create a cluster, run the following command:</p><pre><code class="language-bash">java -jar gsctl.jar create</code></pre>
+                <p>The cloud platform begins to create the cluster:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-create-cluster-new.png" class="tc-picture50" />
+                </p>
+                <p>You can monitor the progress of the cluster in your cloud platform dashboard, for example the VPC&#160;Dashboard in AWS:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/aws-vpc-dashboard-create-cluster.png" class="tc-picture80" />
+                </p>
+                <p>The process of creating the cluster takes only a few minutes until the nodes are up and running. You can see when the Master (server) nodes and Worker (client) nodes are running and have passed the status checks.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-running.png" class="tc-picture80" />
+                </p>
+            </li>
+        </ol>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-deploy-gs-service.flsnp" />
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-remove-gs-cluster.flsnp" />
+        <p>
+            <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-process.png" />
+        </p>
+    </body>
+</html>
