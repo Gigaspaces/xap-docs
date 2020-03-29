@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Download Service Blueprint and Deploy</h1>
+        <p>To download and deploy the service blueprint, click <b>Download Service Blueprint</b> This creates a zip file with scripts and files necessary to deploy the system. These files can be customized as required.</p>
+        <p>There are two options for the Blueprint:</p>
+        <ul>
+            <li>Manual -- Deployment customized by user. </li>
+            <li>Automatic -- Pre-configured for deployment on the user's local machine.</li>
+        </ul>
+        <h2>Deploying to the user's local machine</h2>
+        <p>The Service Blueprint zip file is deployed as follows:</p>
+        <ul>
+            <li>Unzip the Blueprint in the <code>bin </code>directory of the local <MadCap:variable name="General.ProductNameXAP" />installation.</li>
+            <li>At the command prompt, run the following batch command:<br /><code>gs.bat host run-agent --auto --gsc=3</code></li>
+            <li>A browser window will open. Enter the following URL:<br /><code>http://localhost:8090</code></li>
+        </ul>
+        <p>The Ops Manager Landing Page now displays in the local host. </p>
+    </body>
+</html>
