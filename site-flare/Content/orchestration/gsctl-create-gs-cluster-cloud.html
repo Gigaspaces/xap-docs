@@ -25,20 +25,21 @@
                     <ul>
                         <li>Valid AWS&#160;account</li>
                         <li>Credentials that include <code>aws_access_key_id</code> and <code>aws_secret_access_key</code></li>
-                        <li>Configuration parameters that include a defined <code>region</code></li>
+                        <li>Configuration parameters that include a defined <code>aws_region</code></li>
                     </ul>
                 </div>
             </li>
-            <li><span class="tc-bold">Windows only</span>:&#160;Set the following environment variables manually:<ul><li>AWS_ACCESS_KEY_ID</li><li>AWS_SECRET_ACCESS_KEY</li><li>REGION</li></ul></li>
+            <li><span class="tc-bold">Windows only</span>:&#160;Set the following environment variables manually:<ul><li>AWS_ACCESS_KEY_ID</li><li>AWS_SECRET_ACCESS_KEY</li><li>AWS_REGION</li></ul></li>
         </ul>
         <h2>Downloading the Utility</h2>
-        <p>The gsctl tool is available from the<MadCap:variable name="General.ProductNameXAP" /> <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github repo</a>.</p>
+        <p>The gsctl tool can be downloaded from a <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/gsctl/15.2.0/gsctl.jar" target="_blank">dedicated repository</a>.</p>
+        <p MadCap:conditions="Default.DoNotShow">https://gigaspaces-releases-eu.s3.amazonaws.com/gsctl-ea/15.2.0-rc5/gsctl.jar</p>
         <h1>Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster </h1>
         <p>Follow the steps in the procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services.</p>
         <p class="tc-todo">To create a cluster:</p>
         <ol>
             <li>
-                <p>Verify that an <code>.aws</code> folder exists in the home directory on your local machine, and that it contains the config and credentials files. The credentials file should include your <code>aws_access_key_id</code> and <code>aws_secret_access_key</code>, and the config files should include your <code>region</code> and <code>output</code> definitions.</p>
+                <p>Verify that an <code>.aws</code> folder exists in the home directory on your local machine, and that it contains the config and credentials files. The credentials file should include your <code>aws_access_key_id</code> and <code>aws_secret_access_key</code>, and the config files should include your <code>aws_region</code> and <code>output</code> definitions.</p>
                 <p>
                     <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-config-files.png" class="tc-picture30" />
                 </p>
@@ -49,7 +50,7 @@
             <li>Download the most current version of the gsctl.jar file from <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github</a> to the directory you created (gsDemo) and extract the contents.</li>
             <li>
                 <p>Open a command window and type the following:</p><pre><code class="language-bash">java -jar gsctl.jar init --cluster-name=gs_demo_cluster</code></pre>
-                <p>This command creates a provision.yml file. You can modify this file to supply your AWS&#160;resources, such as <code>VPC</code>, <code>keyName</code>, and <code>securityGroups</code> values.</p>
+                <p>This command creates a provision.yml file. You can modify this file to supply your AWS&#160;resources, such as <code>VPC</code>, <code>keyName</code>, and <code>securityGroups</code> values. If you edit the AWS&#160;section, you must provide all the values.</p>
                 <div class="tc-admon-note">
                     <p>If you don't update the provision.yml file manually, it will use the resources in the .aws folder.</p>
                 </div><pre><code class="language-bash">aws:
