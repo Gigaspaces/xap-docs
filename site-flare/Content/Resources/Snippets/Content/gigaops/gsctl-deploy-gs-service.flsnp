@@ -2,20 +2,21 @@
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <body>
         <h1>Deploying the <MadCap:variable name="General.ProductNameXAP" /> Services</h1>
-        <p>After your cluster is up and running, you can deploy the <MadCap:variable name="General.ProductNameXAP" /> services. The gsctl tool comes with sample feeder and processor services in the Services folder.</p>
+        <p>After your cluster is up and running, you can deploy <MadCap:variable name="General.ProductNameXAP" /> services. The gsctl utility supports deploying stateful, stateless, and web services. The default service type is stateless.</p>
+        <p>The gsctl tool comes with sample feeder (stateful) and processor (stateless) services in the Services folder.</p>
         <p class="tc-todo">To deploy the sample <MadCap:variable name="General.ProductNameXAP" /> services:</p>
         <ol>
             <li>
-                <p>First, deploy the stateful service (the Space example). Type the following command to deploy a processor service called <span class="tc-bold">mySpace</span>:</p><pre><code class="language-bash">java -jar gsctl.jar deploy stateful mySpace processor.jar</code></pre>
+                <p>When deploying the sample services, you should first deploy the feeder service . As this is a stateful service, you need to specify both the service type and service name. Type the following command to deploy a processor service called <span class="tc-bold">mySpace</span>:</p><pre><code class="language-bash">deploy --type=stateful mySpace data-processor.jar</code></pre>
             </li>
             <li>
-                <p>Next, deploy the stateless service (the feeder example). Type the following command to deploy a feeder service called <span class="tc-bold">myFeeder</span>:</p><pre><code>java -jar gsctl.jar deploy stateless myFeeder feeder.jar</code></pre>
+                <p>Next, deploy the feeder service. As this is a stateless service, you only have to specify the service name. Type the following command to deploy a feeder service called <span class="tc-bold">myFeeder</span>:</p><pre><code>deploy myFeeder data-feeder.jar</code></pre>
             </li>
             <li>
                 <p>Now you can monitor your services using the available administration and monitoring tools. To access the tools, do the following:</p>
                 <ul>
                     <li>
-                        <p>Run the following command:</p><pre><code>java -jar gsctl.jar list-services</code></pre>
+                        <p>Run the following command:</p><pre><code>list-services</code></pre>
                         <p>This returns all the manager services with their URLs.</p>
                         <p>
                             <img src="../../../Static/attachment_files/gigaops-stack/gsctl-list-services.png" class="tc-picture50" />

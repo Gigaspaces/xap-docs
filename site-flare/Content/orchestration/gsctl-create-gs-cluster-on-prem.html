@@ -26,29 +26,39 @@
             <li>Verify connectivity to all the machines from your workstation</li>
             <li>Centos machines only - disable the firewall (firewalld service) and make sure it is set to stay disabled on start (for example, when the machine reboots)</li>
         </ul>
-        <h2>Downloading the Utility</h2>
-        <p>The gsctl tool is available from the<MadCap:variable name="General.ProductNameXAP" /> <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github repo</a>.</p>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/download-run-gsctl.flsnp" />
+        <ol MadCap:continue="false">
+            <li>
+                <p>To start the interactive shell, open a command window and type the following:</p>
+                <div class="easyui-tabs" plain="true">
+                    <div title="Linux/MacOS"><pre><code class="language-bash">java -jar gsctl.jar init --mode=op</code></pre>
+                    </div>
+                    <div title="Windows"><pre><code class="language-bash">java -jar C:\gsDemo\gsctl.jar init --mode=op</code></pre>
+                    </div>
+                </div>
+            </li>
+        </ol>
         <h1>Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster </h1>
-        <p>Follow the steps in the procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services.</p>
+        <p>Follow the steps in the procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services. All of the procedures on this page describe the short notation as used from inside the interactive shell.</p>
         <p class="tc-todo">To create a cluster:</p>
         <ol>
             <li>
                 <p>Create an empty directory on your machine. In this example, the directory name is <span class="tc-bold">gsDemo</span>.</p>
             </li>
-            <li>Download the most current version of the gsctl.jar file from <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github</a> to the directory you created (gsDemo) and extract the contents.</li>
+            <li>Download the most current version of the gsctl.jar file from the dedicated repository to the directory you created (gsDemo) and extract the contents.</li>
             <li>Add the pem file to this directory.</li>
             <li>
-                <p>Open a command window and type the following:</p><pre><code class="language-bash">java -jar gsctl.jar init --mode=on-premise --cluster-name=gs_demo_cluster</code></pre>
-                <p>This command creates a cluster.yaml file. Modify this file as follows:</p>
+                <p>Open a command window and type the following to define a cluster called <code>gs_demo_cluster</code>:</p><pre><code class="language-bash">init  --cluster-name=gs_demo_cluster</code></pre>
+                <p>This command creates also a cluster.yaml file. Modify the yaml file as follows:</p>
                 <ul>
                     <li>
-                        <p>keyName - name of your pem file (without the .pem extension)</p>
+                        <p><code>keyName</code> - name of your pem file (without the .pem extension)</p>
                     </li>
                     <li>
-                        <p>userName</p>
+                        <p><code>userName</code> - name of the on-premise machine being used to create the cluster</p>
                     </li>
                     <li>
-                        <p>profiles - the on-premise worker (client) name, along with the IP&#160;addresses of the host machines</p>
+                        <p><code>profiles</code> - the on-premise worker (client) name, along with the IP&#160;addresses of the host machines</p>
                         <div class="tc-admon-attention">
                             <p>You must have 3 masters (gsManagers) and at least 1 worker.</p>
                         </div>
@@ -77,7 +87,7 @@ onPremise:
 name: "gs_demo_cluster"</code></pre>
             </li>
             <li>
-                <p>To create a cluster, run the following command:</p><pre><code class="language-bash">java -jar gsctl.jar create</code></pre>
+                <p>To create the cluster, run the following command:</p><pre><code class="language-bash">create</code></pre>
             </li>
         </ol>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-deploy-gs-service.flsnp" />

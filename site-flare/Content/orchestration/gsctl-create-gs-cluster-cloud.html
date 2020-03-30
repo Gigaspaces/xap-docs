@@ -31,11 +31,20 @@
             </li>
             <li><span class="tc-bold">Windows only</span>:&#160;Set the following environment variables manually:<ul><li>AWS_ACCESS_KEY_ID</li><li>AWS_SECRET_ACCESS_KEY</li><li>AWS_REGION</li></ul></li>
         </ul>
-        <h2>Downloading the Utility</h2>
-        <p>The gsctl tool can be downloaded from a <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/gsctl/15.2.0/gsctl.jar" target="_blank">dedicated repository</a>.</p>
-        <p MadCap:conditions="Default.DoNotShow">https://gigaspaces-releases-eu.s3.amazonaws.com/gsctl-ea/15.2.0-rc5/gsctl.jar</p>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/download-run-gsctl.flsnp" />
+        <ol MadCap:continue="false">
+            <li>
+                <p>To start the interactive shell, open a command window and type the following:</p>
+                <div class="easyui-tabs" plain="true">
+                    <div title="Linux/MacOS"><pre><code class="language-bash">java -jar gsctl.jar</code></pre>
+                    </div>
+                    <div title="Windows"><pre><code class="language-bash">java -jar C:\gsDemo\gsctl.jar</code></pre>
+                    </div>
+                </div>
+            </li>
+        </ol>
         <h1>Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster </h1>
-        <p>Follow the steps in the procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services.</p>
+        <p>Follow the steps in the procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services. All of the procedures on this page describe the short notation as used from inside the interactive shell.</p>
         <p class="tc-todo">To create a cluster:</p>
         <ol>
             <li>
@@ -45,12 +54,8 @@
                 </p>
             </li>
             <li>
-                <p>Create an empty directory on your machine. In this example, the directory name is <span class="tc-bold">gsDemo</span>.</p>
-            </li>
-            <li>Download the most current version of the gsctl.jar file from <a href="https://github.com/Gigaspaces/gsctl" target="_blank">Github</a> to the directory you created (gsDemo) and extract the contents.</li>
-            <li>
-                <p>Open a command window and type the following:</p><pre><code class="language-bash">java -jar gsctl.jar init --cluster-name=gs_demo_cluster</code></pre>
-                <p>This command creates a provision.yml file. You can modify this file to supply your AWS&#160;resources, such as <code>VPC</code>, <code>keyName</code>, and <code>securityGroups</code> values. If you edit the AWS&#160;section, you must provide all the values.</p>
+                <p>Open a command window and type the following to initialize the utility and define a cluster called <code>gs_demo_cluster</code>:</p><pre><code class="language-bash">init --cluster-name=gs_demo_cluster</code></pre>
+                <p>The <code>init</code> command creates a provision.yml file, which you can modify to supply your AWS&#160;resources, such as <code>VPC</code>, <code>keyName</code>, and <code>securityGroups</code> values. If you edit any parameter in the AWS&#160;section, you must provide all the values for the section.</p>
                 <div class="tc-admon-note">
                     <p>If you don't update the provision.yml file manually, it will use the resources in the .aws folder.</p>
                 </div><pre><code class="language-bash">aws:
@@ -76,7 +81,7 @@ gsManagers: 3
 name: "GS_CLUSTER"</code></pre>
             </li>
             <li>
-                <p>To create a cluster, run the following command:</p><pre><code class="language-bash">java -jar gsctl.jar create</code></pre>
+                <p>To deploy the cluster in the cloud, run the following command:</p><pre><code class="language-bash">create</code></pre>
                 <p>The cloud platform begins to create the cluster:</p>
                 <p>
                     <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-create-cluster-new.png" class="tc-picture50" />
@@ -94,7 +99,7 @@ name: "GS_CLUSTER"</code></pre>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-deploy-gs-service.flsnp" />
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-remove-gs-cluster.flsnp" />
         <p>
-            <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-process.png" />
+            <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-process.png" class="tc-picture50" />
         </p>
     </body>
 </html>
