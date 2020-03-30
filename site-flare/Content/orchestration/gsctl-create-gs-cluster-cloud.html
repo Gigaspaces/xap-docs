@@ -55,9 +55,9 @@
             </li>
             <li>
                 <p>Open a command window and type the following to initialize the utility and define a cluster called <code>gs_demo_cluster</code>:</p><pre><code class="language-bash">init --cluster-name=gs_demo_cluster</code></pre>
-                <p>The <code>init</code> command creates a provision.yml file, which you can modify to supply your AWS&#160;resources, such as <code>VPC</code>, <code>keyName</code>, and <code>securityGroups</code> values. If you edit any parameter in the AWS&#160;section, you must provide all the values for the section.</p>
+                <p>The <code>init</code> command creates a cluster.yaml file, which you can modify to supply your AWS&#160;resources, such as <code>VPC</code>, <code>keyName</code>, and <code>securityGroups</code> values. If you edit any parameter in the AWS&#160;section, you must provide all the values for the section.</p>
                 <div class="tc-admon-note">
-                    <p>If you don't update the provision.yml file manually, it will use the resources in the .aws folder.</p>
+                    <p>By default, the utility creates all the resources from the credentials and config files in the .aws folder.</p>
                 </div><pre><code class="language-bash">aws:
   keyName: null
   vpcId: null
