@@ -18,8 +18,6 @@
             <li>
                 <p>Verify that Java 8 or higher is installed on your local workstation.</p>
             </li>
-        </ul>
-        <ul>
             <li>Disable the password prompt when using sudo</li>
             <li>Install <a href="https://linuxize.com/post/how-to-unzip-files-in-linux/#installing-unzip" target="_blank">Unzip</a> on all the cluster machines</li>
             <li>Ensure that you have a single pem file for all your on-premise machines</li>
@@ -27,17 +25,6 @@
             <li>Centos machines only - disable the firewall (firewalld service) and make sure it is set to stay disabled on start (for example, when the machine reboots)</li>
         </ul>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/download-run-gsctl.flsnp" />
-        <ol MadCap:continue="false">
-            <li>
-                <p>To start the interactive shell, open a command window and type the following:</p>
-                <div class="easyui-tabs" plain="true">
-                    <div title="Linux/MacOS"><pre><code class="language-bash">java -jar gsctl.jar init --mode=op</code></pre>
-                    </div>
-                    <div title="Windows"><pre><code class="language-bash">java -jar C:\gsDemo\gsctl.jar init --mode=op</code></pre>
-                    </div>
-                </div>
-            </li>
-        </ol>
         <h1>Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster </h1>
         <p>Follow the steps in the procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services. All of the procedures on this page describe the short notation as used from inside the interactive shell.</p>
         <p class="tc-todo">To create a cluster:</p>
@@ -48,7 +35,7 @@
             <li>Download the most current version of the gsctl.jar file from the dedicated repository to the directory you created (gsDemo) and extract the contents.</li>
             <li>Add the pem file to this directory.</li>
             <li>
-                <p>Open a command window and type the following to define a cluster called <code>gs_demo_cluster</code>:</p><pre><code class="language-bash">init  --cluster-name=gs_demo_cluster</code></pre>
+                <p>Open a command window and type the following to define a cluster called <code>gs_demo_cluster</code>:</p><pre><code class="language-bash">init  --mode=on-prem --cluster-name=gs_demo_cluster</code></pre>
                 <p>This command creates also a cluster.yaml file. Modify the yaml file as follows:</p>
                 <ul>
                     <li>
@@ -91,6 +78,7 @@ name: "gs_demo_cluster"</code></pre>
             </li>
         </ol>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-deploy-gs-service.flsnp" />
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-monitor-gs-service.flsnp" />
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-remove-gs-cluster.flsnp" />
         <p>
             <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-process-cropped.png" class="tc-picture50" />

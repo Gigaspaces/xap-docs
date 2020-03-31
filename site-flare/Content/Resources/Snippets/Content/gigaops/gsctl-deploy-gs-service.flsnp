@@ -2,7 +2,7 @@
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <body>
         <h1>Deploying the <MadCap:variable name="General.ProductNameXAP" /> Services</h1>
-        <p>After your cluster is up and running, you can deploy <MadCap:variable name="General.ProductNameXAP" /> services. The gsctl utility supports deploying stateful, stateless, and web services. The default service type is stateless.</p>
+        <p>After your cluster is up and running, you can deploy <MadCap:variable name="General.ProductNameXAP" /> services and microservices. The gsctl utility supports deploying stateful, stateless, and web services. The default service type is stateless.</p>
         <p>The gsctl tool comes with sample feeder (stateful) and processor (stateless) services in the Services folder. You must use the default artifact repository when deploying the sample services. </p>
         <div class="tc-admon-note">
             <p>For more information about the artifact repository, see the <MadCap:xref href="../../../../orchestration/gsctl-manage-product-version.html">Managing the [%=General.ProductNameXAP%] Product Version</MadCap:xref> topic.</p>
@@ -13,37 +13,7 @@
                 <p>When deploying the sample services, you should first deploy the processor service . As this is a stateful service, you need to specify both the service type and service name. Type the following command to deploy a processor service called <span class="tc-bold">mySpace</span>:</p><pre><code class="language-bash">deploy --type=stateful mySpace data-processor.jar</code></pre>
             </li>
             <li>
-                <p>Next, deploy the feeder service. As this is a stateless service, you only have to specify the service name. Type the following command to deploy a feeder service called <span class="tc-bold">myFeeder</span>:</p><pre><code>deploy myFeeder data-feeder.jar</code></pre>
-            </li>
-            <li>
-                <p>Now you can monitor your services using the available administration and monitoring tools. To access the tools, do the following:</p>
-                <ul>
-                    <li>
-                        <p>Run the following command:</p><pre><code>list-services</code></pre>
-                        <p>This returns all the services with their URLs.</p>
-                        <p>
-                            <img src="../../../Static/attachment_files/gigaops-stack/gsctl-list-services.png" class="tc-picture30" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Copy any of the <MadCap:variable name="General.ProductNameXAP" />Manager URLs into your browser to open Ops Manager and view the deployed <MadCap:variable name="General.ProductNameXAP" /> services.</p>
-                        <p>
-                            <img src="../../../Static/attachment_files/gigaops-stack/cloud-cluster-ops-manager.png" class="tc-picture80" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Copy the grafana URL to your browser to open Grafana and navigate to the pre-defined dashboards:</p>
-                        <p>
-                            <img src="../../../Static/attachment_files/gigaops-stack/cloud-cluster-grafana.png" class="tc-picture80" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Select the Telegraf system metrics dashboard in Grafana to view the cluster metrics.</p>
-                        <p>
-                            <img src="../../../Static/attachment_files/gigaops-stack/cloud-cluster-telegraf.png" class="tc-picture80" />
-                        </p>
-                    </li>
-                </ul>
+                <p>Next, deploy the feeder service. As this is a stateless service, you only have to specify the service name. Type the following command to deploy a feeder service called <span class="tc-bold">myFeeder</span>:</p><pre><code>deploy --type=stateless myFeeder data-feeder.jar</code></pre>
             </li>
         </ol>
     </body>

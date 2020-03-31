@@ -32,17 +32,6 @@
             <li><span class="tc-bold">Windows only</span>:&#160;Set the following environment variables manually:<ul><li>AWS_ACCESS_KEY_ID</li><li>AWS_SECRET_ACCESS_KEY</li><li>AWS_REGION</li></ul></li>
         </ul>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/download-run-gsctl.flsnp" />
-        <ol MadCap:continue="false">
-            <li>
-                <p>To start the interactive shell, open a command window and type the following:</p>
-                <div class="easyui-tabs" plain="true">
-                    <div title="Linux/MacOS"><pre><code class="language-bash">java -jar gsctl.jar</code></pre>
-                    </div>
-                    <div title="Windows"><pre><code class="language-bash">java -jar C:\gsDemo\gsctl.jar</code></pre>
-                    </div>
-                </div>
-            </li>
-        </ol>
         <h1>Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster </h1>
         <p>Follow the steps in the procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services. All of the procedures on this page describe the short notation as used from inside the interactive shell.</p>
         <p class="tc-todo">To create a cluster:</p>
@@ -97,6 +86,7 @@ name: "GS_CLUSTER"</code></pre>
             </li>
         </ol>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-deploy-gs-service.flsnp" />
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-monitor-gs-service.flsnp" />
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-remove-gs-cluster.flsnp" />
         <p>
             <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-process.png" class="tc-picture50" />

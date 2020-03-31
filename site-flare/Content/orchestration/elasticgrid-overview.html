@@ -39,16 +39,16 @@
             </p>
         </div>
         <p>In this topology, one master is the leader, and any other masters are followers. The master nodes accept jobs, manage the worker nodes, and allocate tasks among them. The leader replicates data to the followers, and the followers forward updates to the leader. The worker nodes are data centers, and there may be more than one data center registered with a master node.</p>
-        <h2>Multi-Region Topology</h2>
-        <p>ElasticGrid supports multi-region connectivity so you can federate multiple regions together into a single cluster. This is how the master nodes connect to each other in a multi-region topology.</p>
-        <div class="tc-align-center">
+        <h2 MadCap:conditions="Default.DoNotShow">Multi-Region Topology</h2>
+        <p MadCap:conditions="Default.DoNotShow">ElasticGrid supports multi-region connectivity so you can federate multiple regions together into a single cluster. This is how the master nodes connect to each other in a multi-region topology.</p>
+        <div class="tc-align-center" MadCap:conditions="Default.DoNotShow">
             <p>
                 <img src="../Resources/Static/attachment_files/gigaops-stack/multi-region.png" class="tc-picture50" />
             </p>
         </div>
-        <p>In this topology, the regions function independently from each other, and have a loose coupling that enables submitting jobs or queries between the regions. The master node serving as the leader processes all the queries and transactions. While all the master nodes in a region make their scheduling decisions in parallel (ElasticGrid is optimistically concurrent), the leader coordinates all the activity to ensure the correct load balancing across the worker nodes.</p>
-        <h1>Deploying <MadCap:variable name="General.ProductNameXAP" /> on ElastiGrid</h1>
-        <p>The gsctl utility is used to create the ElastiGrid cluster and deploy <MadCap:variable name="General.ProductNameXAP" />, much like using Helm to install <MadCap:variable name="General.ProductNameXAP" />, and deploy services and Spark jobs, on Kubernetes. For information on how to deploy <MadCap:variable name="General.ProductNameXAP" /> on ElastiGrid, see <MadCap:xref href="gsctl-create-gs-cluster-cloud.html">Creating a [%=General.ProductNameXAP%] Cluster in the Cloud</MadCap:xref>.</p>
+        <p MadCap:conditions="Default.DoNotShow">In this topology, the regions function independently from each other, and have a loose coupling that enables submitting jobs or queries between the regions. The master node serving as the leader processes all the queries and transactions. While all the master nodes in a region make their scheduling decisions in parallel (ElasticGrid is optimistically concurrent), the leader coordinates all the activity to ensure the correct load balancing across the worker nodes.</p>
+        <h1>Deploying <MadCap:variable name="General.ProductNameXAP" /> on ElasticGrid</h1>
+        <p>The gsctl utility is used to create the ElasticGrid cluster and deploy <MadCap:variable name="General.ProductNameXAP" />, much like using Helm to install <MadCap:variable name="General.ProductNameXAP" />, and deploy services and Spark jobs, on Kubernetes. For information on how to deploy <MadCap:variable name="General.ProductNameXAP" /> on ElasticGrid, see <MadCap:xref href="gsctl-create-gs-cluster-cloud.html">Creating a [%=General.ProductNameXAP%] Cluster in the Cloud</MadCap:xref>.</p>
         <p>&#160;</p>
         <p>&#160;</p>
         <p>&#160;</p>
