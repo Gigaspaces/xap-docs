@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -25,10 +25,10 @@
         <div class="tc-admon-note">
             <ul>
                 <li>
-                    <p>The Compressed storage type compresses non-primitive fields using the zip utilities, which is a different approach than the compact serialization pattern.</p>
+                    <p>The Compressed storage type <MadCap:conditionalText MadCap:conditions="Version.15-2-born"> or Zip property storage adapter</MadCap:conditionalText> compresses non-primitive fields using the zip utilities, which is a different approach than the compact serialization pattern.</p>
                 </li>
                 <li>
-                    <p>The Binary storage type stores non-primitive fields within the Space in their byte array form. It does not compress or reduce the footprint of the data like the compact serialization pattern does. This approach makes it unnecessary to introduce the nested Space object data type to the Space JVM, or to de-serialize it on the Space side. The Binary storage type may improve performance when the Space object stores large collections.</p>
+                    <p>The Binary storage type <MadCap:conditionalText MadCap:conditions="Version.15-2-born"> or Binary property storage adapter</MadCap:conditionalText> stores non-primitive fields within the Space in their byte array form. It does not compress or reduce the footprint of the data like the compact serialization pattern does. This approach makes it unnecessary to introduce the nested Space object data type to the Space JVM, or to de-serialize it on the Space side. The Binary storage type may improve performance when the Space object stores large collections.</p>
                 </li>
                 <li>
                     <p>C++ and .Net API data objects may undergo some compaction when sent across the network.</p>

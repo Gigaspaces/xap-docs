@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -25,7 +25,7 @@ The Externalization mechanism stores all the metadata, but writes out only the l
         </p>
         <div class="tc-admon-note">
             <ul>
-                <li>When implementing the <code>Externalizable</code> interface, the storage type of the nested property needs to be of type <a href="storage-types-controlling-serialization.html">OBJECT</a>.</li>
+                <li>Implementing <code>Externalizable</code> on a property with a storage type other than <a href="storage-types-controlling-serialization.html">OBJECT</a><MadCap:conditionalText MadCap:conditions="Version.15-2-born"> or with any property storage adapter</MadCap:conditionalText> is not supported.</li>
                 <li>Implementing <code>Externalizable</code> for the Space class itself is not supported.</li>
             </ul>
         </div>
