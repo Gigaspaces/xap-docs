@@ -4,321 +4,287 @@
     </head>
     <body>
         <h1 class="tc-pagetitle"> Early Access</h1>
-        <p MadCap:conditions="Default.DoNotShow">There is currently no early access release available for evaluation.</p>
-        <p>This page contains early access information for version <MadCap:variable name="Versions.product-version-long" /> of <MadCap:variable name="General.CompanyName" /> products, scheduled for release during Q1 2020. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!</p>
-        <div class="tc-admon-attention">
+        <p>There is currently no early access release available for evaluation.</p>
+        <p MadCap:conditions="Default.DoNotShow">This page contains early access information for version <MadCap:variable name="Versions.product-version-long" /> of <MadCap:variable name="General.CompanyName" /> products, scheduled for release during Q1 2020. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!</p>
+        <div class="tc-admon-attention" MadCap:conditions="Default.DoNotShow">
             <p>Early access builds are provided as is, and should not be used in production. The latest stable release is version 15.0.0.</p>
             <p><a href="https://www.gigaspaces.com/download-center">Download</a> | <a href="https://docs.gigaspaces.com/latest/landing.html">Documentation</a></p>
         </div>
-        <h1>15.2.0 RC1 (Mar-22-2020)</h1>
-        <h2>Download Links</h2>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 RC1 (Mar-22-2020)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-rc1.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-rc1.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-rc1.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-rc1.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-rc1.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-rc1.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13995," />: Introduce a new Space iterator implementation.</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14050," />: Add ability to monitor the read distribution of the data objects.
 			</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14038," />: Add ability to monitor the number and sizes of the data objects per partition.			</li>
         </ul>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
         <ul>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13953," />: Improved the performance of text-based Space indexing.</li>
-        </ul>
-        <ul>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13975," />: Simplify Tableau integration using Tableau Connector (.taco) file.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14065," />: Expose configuration of login timeout for shared JDBC connection used by GigaSpaces Ops Manager.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13918," />: Add target name to replication log message and use sub-logger.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14064," />: Add new CLI command for retrieving request status by ID.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14063," />: Add new CLI command to scale stateful processing unit service in Kubernetes.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14033," />: Avoid duplication in Maven dependencies.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14027," />: When a 'gs' cli command fails, print verbose info if the GS_CLI_VERBOSE environment variable is set to true.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14058," />: Remove redundant com.springsource.org.aopalliance.jar from packaging.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14061," />: Enhance the '--zones' and '--primary-zones' options in the 'pu deploy' CLI command to accept multiple comma-separated zones.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13676," />: Improved error logging when executing invalid SQL queries from Ops Manager.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14012," />: Support quotes and white spaces in JavaCommandBuilder#optionsFromEn.</li>
-        </ul>
-        <h3>Resolved Issues</h3>
-        <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14032," />: User gets a warning message because open source code uses deprecated hibernate.Criteria.</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13982," />: Customer cannot submit Spark job in InsightEdge version 15.0 with specific Kubernetes versions.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14022," />: XAP won't start when running Java 11 on Windows 10.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13917," />: When query results are exported from the Web Management Console, they are missing the first row.</li>
-            <li>
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14054," />: ProcessingUnit class loader does not prioritize local slf4j over system slf4j.</li>
         </ul>
-        <p>&#160;</p>
-        <h1>15.2.0 M15 (Mar-15-2020)</h1>
-        <h2>Download Links</h2>
+        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M15 (Mar-15-2020)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m15.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m15.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m15.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m15.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m15.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m15.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog </h2>
-        <h3>Features and Enhancements</h3>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog </h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14049," />: Add new REST API for modifying a statefulset on Kubernetes during runtime.</li>
         </ul>
-        <h3>Resolved Issues</h3>
-        <p>No resolved issues were completed during this milestone.</p>
-        <p>&#160;</p>
-        <p>&#160;</p>
-        <h1>15.2.0 M14 (Mar-08-2020)</h1>
-        <h2>Download Links</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
+        <p MadCap:conditions="Default.DoNotShow">No resolved issues were completed during this milestone.</p>
+        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
+        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M14 (Mar-08-2020)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m14.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m14.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m14.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m14.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m14.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m14.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14049," />: Add new REST API for modifying a statefulset on Kubernetes during runtime.</li>
         </ul>
-        <h3>Resolved Issues</h3>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14052,">
                 </MadCap:snippetText>: Space iterator requires EXECUTE Space user privileges in a secured Space.</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14045," />: Support Tableau 2019.4.</li>
         </ul>
-        <h1>15.2.0 M13 (Mar-01-2020)</h1>
-        <h2>Download Links</h2>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M13 (Mar-01-2020)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m13.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m13.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m13.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m13.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m13.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m13.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14026,">
                 </MadCap:snippetText>: Support JDBC queries on top of DataFrames.</li>
         </ul>
-        <h3>Resolved Issues</h3>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
         <ul>
             <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14045," />: Suport Tableau 2019.4.</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14044,">
                 </MadCap:snippetText>: Java 11 - Fixed areas where code didn't parse the Java version correctly.</li>
         </ul>
-        <h1>15.2.0 M12 (Feb-23-2020)</h1>
-        <h2>Download Links</h2>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M12 (Feb-23-2020)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m12.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m12.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m12.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m12.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m12.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m12.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
-        <p>No features or enhancements were completed during this milestone.</p>
-        <h3>Resolved Issues</h3>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
+        <p MadCap:conditions="Default.DoNotShow">No features or enhancements were completed during this milestone.</p>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14031," />: Kubernetes service (PU) startup sequence handles an inaccessible manager incorrectly, leading to a stray service instance.</li>
         </ul>
-        <h1>15.2.0 M11 (Feb-16-2020)</h1>
-        <h2>Download Links</h2>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M11 (Feb-16-2020)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m11.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m11.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m11.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m11.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m11.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m11.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14025," />: Use String as the default type for idProperty in type descriptor.</li>
         </ul>
-        <h3>Resolved Issues</h3>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14024," />: spark.read.grid(collectionName) doesn't work if the collection isn't written via the DataFrame API.</li>
         </ul>
-        <h1>15.2.0 M10 (Feb-09-2020)</h1>
-        <h2>Download Links</h2>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M10 (Feb-09-2020)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m10.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m10.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m10.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m10.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m10.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m10.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
-        <p>No features or enhancements were completed during this milestone.</p>
-        <h3>Resolved Issues</h3>
-        <p>No resolved issues were completed during this milestone.</p>
-        <h1>15.2.0 M9 (Feb-02-2020)</h1>
-        <h2>Download Links</h2>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
+        <p MadCap:conditions="Default.DoNotShow">No features or enhancements were completed during this milestone.</p>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
+        <p MadCap:conditions="Default.DoNotShow">No resolved issues were completed during this milestone.</p>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M9 (Feb-02-2020)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m9.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m9.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m9.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m9.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m9.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m9.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13998," />: When running the interactive gs shell, start continuous commands in a separate window (if the OS supports this).</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14018," />: Added '--zones' option to 'container kill' CLI command to kill containers from specific zone(s).</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14017," />: Added '--zones' option to 'container list' CLI command to show containers from specific zone(s).</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14016," />: Added '--count' option to 'container create' CLI command to create multiple containers.</li>
         </ul>
-        <h3>Resolved Issues</h3>
-        <p>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
+        <p MadCap:conditions="Default.DoNotShow">
             <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14020," />: The 'pu deploy --property' CLI command mishandles properties containing a ';' (semi-colon) character.</p>
-        <h1>15.2.0 M8 (Jan-27-2020)</h1>
-        <h2>Download Links</h2>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M8 (Jan-27-2020)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m8.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m8.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m8.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m8.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m8.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m8.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
-        <p>No features or enhancements were completed during this milestone.</p>
-        <h3>Resolved Issues</h3>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
+        <p MadCap:conditions="Default.DoNotShow">No features or enhancements were completed during this milestone.</p>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14010," />: Using z.load in Apache Zeppelin paragraphs stopped working.</li>
         </ul>
-        <h1>15.2.0 M7 (Jan-19-2020)</h1>
-        <h2>Download Links</h2>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M7 (Jan-19-2020)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m7.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m7.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m7.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m7.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m7.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m7.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13999," />: Add nodeSelector option to GigaSpaces Helm charts.</li>
         </ul>
-        <h3>Resolved Issues</h3>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14003," />: Installing interpreters in Zeppelin stopped working.</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14008," />: Can only deploy one environment on a Kubernetes cluster.</li>
         </ul>
-        <h1>15.2.0 M6 (Jan-12-2020)</h1>
-        <h2>Download Links</h2>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M6 (Jan-12-2020)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m6b.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m6b.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m6b.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m6b.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m6b.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m6b.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13977," />: Add PropertyStorageAdapter API to let users control property storage (e.g. compress, encrypt).</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13979," />: Support property encryption with AES using AesGcmAdapter and AesCbcAdapter.</li>
         </ul>
-        <h3>Resolved Issues</h3>
-        <p>No resolved issues were completed during this milestone.</p>
-        <h1>15.2.0 M5 (Jan-05-2020)</h1>
-        <h2>Download Links</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
+        <p MadCap:conditions="Default.DoNotShow">No resolved issues were completed during this milestone.</p>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M5 (Jan-05-2020)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m5b.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m5b.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m5b.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m5b.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m5b.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m5b.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13919," />: Add session timeout for the Web Management Console.</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13986," />: GigaSpaces Ops Manager Spaces view.</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13990," />: Load service configuration values from the gs-service-config.yaml file if it exists.</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13991," />: Support the yaml properties files when running 'pu deploy' and 'pu run' commands.</li>
         </ul>
-        <h3>Resolved Issues</h3>
-        <p>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
+        <p MadCap:conditions="Default.DoNotShow">
             <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13993," />: ClassNotFoundException is thrown when submitting a Spark job with --conf spark.executor.extraClassPath on Kubernetes.</p>
-        <h1>15.2.0 M4 (Dec-30-2019)</h1>
-        <h2>Download Links</h2>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M4 (Dec-30-2019)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m4.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m4.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m4.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m4.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m4.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m4.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
-        <p>No features or enhancements were completed during this milestone,</p>
-        <h3>Resolved Issues</h3>
-        <p>No resolved issues were completed during this milestone.</p>
-        <h1>15.2.0 M3 (Dec-23-2019)</h1>
-        <h2>Download Links</h2>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
+        <p MadCap:conditions="Default.DoNotShow">No features or enhancements were completed during this milestone,</p>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
+        <p MadCap:conditions="Default.DoNotShow">No resolved issues were completed during this milestone.</p>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M3 (Dec-23-2019)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m3.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m3.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m3.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m3.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m3.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m3.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
-        <p>No features or enhancements were completed during this milestone.</p>
-        <h3>Resolved Issues</h3>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
+        <p MadCap:conditions="Default.DoNotShow">No features or enhancements were completed during this milestone.</p>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13984," />: Spark version bundled with InsightEdge doesn't support recent Kubernetes release (SPARK-28921).</li>
         </ul>
-        <h1>15.2.0 M2 (Dec-16-2019)</h1>
-        <h2>Download Links</h2>
+        <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M2 (Dec-16-2019)</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m2.zip">InsightEdge Enterprise</a>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.2.0/gigaspaces-insightedge-enterprise-15.2.0-m2.zip">InsightEdge Enterprise</a>
             </li>
-            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m2.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m2.msi">XAP.NET Enterprise</a></li>
+            <li MadCap:conditions="Default.DoNotShow"><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap-enterprise-15.2.0-m2.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.2.0/gigaspaces-xap.net-15.2.0-m2.msi">XAP.NET Enterprise</a></li>
         </ul>
-        <h2>Changelog</h2>
-        <h3>Features and Enhancements</h3>
-        <p>No features or enhancements were completed during this milestone</p>
-        <h3>Resolved Issues</h3>
+        <h2 MadCap:conditions="Default.DoNotShow">Changelog</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
+        <p MadCap:conditions="Default.DoNotShow">No features or enhancements were completed during this milestone</p>
+        <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
         <ul>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13981," />: When the Kubernetes remote Space access is enabled for the Manager but disabled for the Space, proxies within Kubernetes connect to the Space using the public instead of the private IP address.</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13980," />: Kubernetes Space-based remoting fails on minikube with the NodePort service type.</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13978," />: The create container API creates a container with Java's default Xmx.</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13972," />: Local view fails to start when locator is defined as IPv6.</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13976," />: The CPU metric displayed in the Grafana dashboard processing units shows the value in a range between 0 and 1 instead of 0 and 100.</li>
         </ul>
     </body>
