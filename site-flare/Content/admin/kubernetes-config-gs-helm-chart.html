@@ -43,13 +43,6 @@
         </div>
         <p MadCap:conditions="Version.15-0-born">To view the full service configuration, including ports, run the following command:</p><pre MadCap:conditions="Version.15-0-born"><code class="language-bash">kubectl describe svc &lt;service name&gt;</code> </pre>
         <p MadCap:conditions="Version.15-0-born">It is strongly recommended to leave the default port values. For more information about service types and when it may be advisable to modify the values, see <MadCap:xref href="kubernetes-space-based-remoting.html">Space-Based Remoting in Kubernetes</MadCap:xref>.</p>
-        <h1 MadCap:conditions="Version.15-0-born">Scaling the System Using the <MadCap:variable name="General.ProductNameXAP" /> Helm Chart </h1>
-        <p><MadCap:variable name="General.ProductNameXAP" /> supports rolling updates of the Helm chart so that you can scale your system up or down as necessary. Configure the following to ensure that you keep your data and system configuration intact:</p>
-        <ul>
-            <li><span class="tc-bold">Readiness probe</span> - To update the chart while maintaining data consistency, you must enable the readiness probe in either the current or the new Helm chart. This ensures that the update process, which first terminates the backup pods, won't begin to update the primary pods before the backup pods have fully recovered and reloaded the data, and can therefore take leadership when the primary pods are terminated.</li>
-            <li><span class="tc-bold">Reuse- values flag</span> - You must mark the reuse-values flag to ensure that all your custom chart configurations (including the license and partition definitions) are not overwritten by the update process. If you don't mark this flag, your system will revert to the default configurations.</li>
-        </ul>
-        <p>For example, run the following command to change the amount of memory for each service (pu) pod from 400 MB to 600 MB.</p><pre><code class="language-bash">helm upgrade demo xap --set pu.resources.limits.memory=600Mi,pu.readinessProbe.enabled=true --reuse-values</code></pre>
         <p MadCap:conditions="Version.15-0-born">&#160;</p>
     </body>
 </html>
