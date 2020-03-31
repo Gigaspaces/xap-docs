@@ -15,7 +15,7 @@
         </div>
         <p>Batch indexing, which supports all AnalyticsXtreme functionality, uses partitions and buckets to categorize data in the file system or object store, so you can designate a specific location for each type of data. For example, you might partition your data according to city, but then want to query using SQL, JDBC, or Spark by customer name. In order to successfully query this, you must map the names to the cities.</p>
         <div class="tc-admon-note">
-            <p>In <MadCap:variable name="General.ProductNameIE" /> 15.0, <MadCap:variable name="General.ProductNameXAP" /> supports using batch indexing with Hive over any Hive-supported file system or storage layer. Hive over HDFS is a fully tested and verified data storage solution.</p>
+            <p><MadCap:variable name="General.ProductNameXAP" /> supports using batch indexing with Hive over any Hive-supported file system or storage layer. Hive over HDFS is a fully tested and verified data storage solution.</p>
         </div>
         <p>When the batch index is deployed, <MadCap:variable name="General.ProductNameIE" /> performs an initial indexing of the defined index period. The batch index is available only after it is completely initialized. This doesn't affect the ability to run AnalyticsXtreme queries, but if you query your data lake during this period, the performance benefit isn't realized because the batch index isn't accessed until the initialization process completes. </p>
         <h1>Data Life Cycle with Batch Index</h1>
