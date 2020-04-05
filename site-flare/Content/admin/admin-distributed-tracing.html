@@ -3,12 +3,12 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">OpenTracing Compatibility</h1>
-        <p>This topic describes how to leverage OpenTracing in your GigaSpaces services.</p>
+        <h1 class="tc-pagetitle">Distributed Tracing</h1>
+        <p>This topic describes how to leverage Distributed Tracing in your GigaSpaces cluster to identify latency issues.</p>
         <h1><span class="tc-bold">Overview</span>
         </h1>
         <p>Distributed tracing is quickly becoming a must-have component in the tools that organizations use to monitor their complex, microservice-based architectures. This helps engineers to pinpoint errors and identify performance bottlenecks.</p>
-        <p>GigaSpaces monitoring stack includes Zipkin, a distributed tracing system that gathers timing data to enable troubleshooting latency issues in the system. This enables more effective performance tuning.</p>
+        <p>GigaSpaces monitoring, part of the <MadCap:xref href="../orchestration/gigaops-stack-overview.html">GigaOps Stack</MadCap:xref>, includes Zipkin, a distributed tracing system that gathers timing data to enable troubleshooting latency issues in the system. This enables more effective performance tuning.</p>
         <p>OpenTracing is a vendor-agnostic API for tracing and allows users to instrument their own services or libraries for distributed tracing.</p>
         <p>For more information, view <a href="https://opentracing.io/docs/overview/">https://opentracing.io/docs/overview/</a></p>
         <h1>Tracing with <MadCap:variable name="General.ProductNameXAP" /></h1>
@@ -39,10 +39,8 @@
 &lt;version&gt;15.2.0&lt;/version&gt;
 &lt;/dependency&gt;
  </code></pre> </p>
-        <p>The screenshots below show a “trace” of data sampled by Zipkin of multiple microservices running on a GigaSpaces distributed cluster:</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/Tracing-Monitoring-1.png" />
-        </p>
+        <p>The screenshot below shows a “trace” of data sampled by Zipkin of multiple microservices running on a GigaSpaces distributed cluster:</p>
+        <p>&#160;</p>
         <p>
             <img src="../Resources/Static/attachment_files/Tracing-Monitoring-2.png" />
         </p>
@@ -51,9 +49,11 @@
         <h2>Elastic Grid</h2>
         <p>One of the built-in services that are provided in ElasticGrid is Zipkin service. In addition, if the above ZipkinTracerBean is configured, it will automatically detect that it is running in ElasticGrid and therefore will allow you to turn the global tracing on and off by monitoring Consul for the key “gigaspaces/tracing”.</p>
         <h2>Additional Resources</h2>
-        <p>Elastic Grid</p>
-        <p>Microservices example with OpenTracing enabled:</p>
-        <p> <a href="https://github.com/Gigaspaces/microservices-demo/tree/15.2.0">https://github.com/Gigaspaces/microservices-demo/tree/15.2.0</a></p>
+        <p>
+            <MadCap:xref href="../orchestration/elasticgrid-overview.html">ElasticGrid</MadCap:xref>
+        </p>
+        <p><a href="https://github.com/Gigaspaces/microservices-demo/tree/15.2.0">Microservices example with OpenTracing enabled</a>
+        </p>
         <p>&#160;</p>
         <p>&#160;</p>
     </body>
