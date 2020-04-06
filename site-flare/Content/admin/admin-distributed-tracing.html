@@ -26,17 +26,17 @@
         <h2>Zipkin Built-In tracer</h2>
         <p>GigaSpaces provides a built-in bean <code class="language-java">com.gigaspaces.tracing.ZipkinTracerBean</code> that can be used to send the traces to Zipkin as the tracing endpoint. This bean will register a GlobalTracer that can be used by the user’s code. Same GlobalTracer will be used in the GigaSpaces proxy for the synchronous methods.</p><pre><code class="language-java">@Bean
  public ZipkinTracerBean tracerBean() {
- return new ZipkinTracerBean("GatewayService")
- .setZipkinUrl("http://zipkin.company.com")
- .setStartActive(true);
+     return new ZipkinTracerBean("GatewayService")
+         .setZipkinUrl("http://zipkin.company.com")
+         .setStartActive(true);
  }
 </code></pre>
         <p>This bean is part of the <code class="language-java">xap-reporter</code> module. To use it you need to add it to your processing unit jar file with its dependencies.</p>
         <p><pre><code>
 &lt;dependency&gt;
-&lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;
-&lt;artifactId&gt;xap-reporter&lt;/artifactId&gt;
-&lt;version&gt;15.2.0&lt;/version&gt;
+    &lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;
+    &lt;artifactId&gt;xap-reporter&lt;/artifactId&gt;
+    &lt;version&gt;15.2.0&lt;/version&gt;
 &lt;/dependency&gt;
  </code></pre> </p>
         <p>The screenshot below shows a “trace” of data sampled by Zipkin of multiple microservices running on a GigaSpaces distributed cluster:</p>
