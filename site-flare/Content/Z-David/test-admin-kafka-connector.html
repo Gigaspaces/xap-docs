@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1><MadCap:variable name="General.ProductNameXAP" /> Kafka Sink Connector</h1>
+        <p>The Kafka connector allows GigaSpaces processing Units to communicate with Kafka-enabled data services.</p>
+        <h1>Prerequisites</h1>
+        <ul>
+            <li>Installation of Kafka and Kafka Connect</li>
+            <li>Installation of Insightedge v15.2</li>
+            <li>Git, Maven and JDK 8</li>
+        </ul>
+        <h1>Summary of Installation Steps</h1>
+        <p>&#160;</p>
+        <ol>
+            <li>GSA process should survive a user logoff.</li>
+            <li>GSA command windows should be hidden so that they are not closed accidentally by users.</li>
+            <li>GSA process should restart automatically after a machine restart and all GigaSpaces infrastructure should be available without user/administrator intervention.</li>
+        </ol>
+        <h1><a name="psexec"></a>psexec</h1>
+        <p>If your requirement is only item 1 and/or 2 above, you can use psexec (SysInternals/Microsoft tool, <a href="http://technet.microsoft.com/en-us/sysinternals/bb897553">http://technet.microsoft.com/en-us/sysinternals/bb897553</a>). When you start the GSA using psexec from a remote machine in the network the process does not open command windows and does not get terminated on a logoff of the user.</p>
+        <h1><a name="windows-service"></a>Windows Service</h1>
+        <p>If you need to fulfill all 3 reasons above, then you have to create a windows service for GSA.</p>
+        <p>Easiest way to convert GSA into service is to use the .NET version of the product and create windows service using the instructions that are documented in the <a href="../dev-dotnet/installation-overview.html"><MadCap:variable name="General.XAPNet" /> installation</a> documentation.</p>
+        <p>Some users are not comfortable using the .NET version of the product and want to use only Java version of the product. In such cases, there are many software that can help in converting a Java Application (like GigaSpaces) to a Windows Service.</p>
+        <div class="tc-admon-refer">
+            <ul>
+                <li><a href="http://wrapper.tanukisoftware.org/">Java Service Wrapper</a>
+                </li>
+                <li><a href="http://commons.apache.org/daemon/procrun.html">Apache Commons Daemon - Procrun</a>
+                </li>
+                <li><a href="http://launch4j.sourceforge.net/">Launch4J</a>
+                </li>
+                <li><a href="http://sourceforge.net/projects/yajsw/">Yet Another Java Service Wrapper</a>
+                </li>
+            </ul>
+        </div>
+        <h1><a name="example"></a>Example</h1>
+        <p>An example GSA windows service configuration created using <a href="http://wrapper.tanukisoftware.org/">Java Service Wrapper</a> can be downloaded from <a href="/download_files/myApp.zip">here</a>. It was created using the <a href="http://wrapper.tanukisoftware.com/doc/english/integrate-simple-win.html#allTogether">instructions</a> on Tanuki software website.</p>
+        <ul>
+            <li>
+                <p>Modify the wrapper.config file per your environment. For downloading wrapper.jar go to <a href="http://wrapper.tanukisoftware.org/">Java Service Wrapper</a>, download wrapper-windows-xxx-xx-x.x.xx-pro.zip which fits to your platform, unzip it and copy wrapper-windows-xxx-xx-x.x.xx-pro\lib\wrapper.jar to your myApp\lib dir (or to any dir on your file system and point to it in your classpath)</p>
+            </li>
+            <li>
+                <p>Set the values for all the environment variables (look for set.xxx) per your environment.</p>
+            </li>
+            <li>
+                <p>This example starts 2 GSC's, GSM and a LUS. Modify these settings as needed.</p>
+            </li>
+            <li>
+                <p>Also modify Additional Java parameters (look for wrapper.java.additional.xxx) defined in the wrapper.config file.</p>
+            </li>
+            <li>
+                <p>Install the service using the included <code>InstallGSAService-NT.bat</code> script.</p>
+            </li>
+            <li>
+                <p>After the install you should be able to see the service in the Windows Services applet.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/ServicesView.jpg" alt="ServicesView.jpg" class="tc-picture100" />
+                </p>
+            </li>
+            <li>
+                <p>Service is installed with Startup Type of "Manual". Change it to "Automatic" to start the service automatically after every restart.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/ServicesAutoStart.jpg" alt="ServicesAutoStart.jpg" class="tc-picture50" />
+                </p>
+            </li>
+            <li>
+                <p>Use the <code>UninstallGSAService-NT.bat</code> script to uninstall the service.</p>
+            </li>
+        </ul>
+        <h1><a name="other-information"></a>Other Information</h1>
+        <ul>
+            <li>It is recommended that the <code>deploy</code> command be run manually instead of defining this as a windows service.</li>
+            <li>Typically, GigaSpaces cluster spans multiple machines and redundant instances of GSM's and LUS's run on different machines. If a machine is restarted, deployment will still be intact and be managed by available redundant GSM that is running on other machine. Once the machine and GSC's are restarted missing PU instances are deployed by GSM into these newly started GSC's as needed.</li>
+            <li>To convert other individual components (GSC, GSM or LUS) into windows service, same instructions can be used with simple modifications.</li>
+        </ul>
+    </body>
+</html>

@@ -4,12 +4,37 @@
     </head>
     <body>
         <h1 class="tc-pagetitle"> Early Access</h1>
-        <p>There is currently no early access release available for evaluation.</p>
-        <p MadCap:conditions="Default.DoNotShow">This page contains early access information for version <MadCap:variable name="Versions.product-version-long" /> of <MadCap:variable name="General.CompanyName" /> products, scheduled for release during Q1 2020. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!</p>
-        <div class="tc-admon-attention" MadCap:conditions="Default.DoNotShow">
+        <p MadCap:conditions="Default.DoNotShow">There is currently no early access release available for evaluation.</p>
+        <p>This page contains early access information for version <MadCap:variable name="Versions.product-version-long" /> of <MadCap:variable name="General.CompanyName" /> products, scheduled for release during Q2 2020. Early access builds are intended for those who want to get involved in the development process and try out new features and functionality early on, and even affect the final outcome. If you have any feedback on early access features, we'd love to hear it!</p>
+        <div class="tc-admon-attention">
             <p>Early access builds are provided as is, and should not be used in production. The latest stable release is version 15.0.0.</p>
             <p><a href="https://www.gigaspaces.com/download-center">Download</a> | <a href="https://docs.gigaspaces.com/latest/landing.html">Documentation</a></p>
         </div>
+        <h1>15.5.0 M2 (Apr-20-2020)</h1>
+        <h2>Download Links</h2>
+        <ul>
+            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/insightedge/15.5.0/gigaspaces-insightedge-enterprise-15.5.0-m2.zip">InsightEdge Enterprise</a>
+            </li>
+            <li><a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.5.0/gigaspaces-xap-enterprise-15.5.0-m2.zip">XAP Enterprise</a> | <a href="https://gigaspaces-releases-eu.s3.amazonaws.com/xap/15.5.0/gigaspaces-xap.net-15.5.0-m2.msi">XAP.NET Enterprise</a></li>
+        </ul>
+        <h2>Changelog</h2>
+        <h3>Features and Enhancements</h3>
+        <ul>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14077," />: Improved performance using getLastStatistics instead of  getStatistics</li>
+        </ul>
+        <h3>Resolved Issues</h3>
+        <ul>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14097," />: Error when exporting a cluster with a reallocated resource</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14091," />: Destroy terminates all instances related to the vpc provided by the user</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14083," />: When there is a dash in the space name, the Object type drill down does not work</li>
+            <li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14078," />: GSCTL import command does not import jobs in on-premise mode</li>
+        </ul>
+        <p>&#160;</p>
         <h1 MadCap:conditions="Default.DoNotShow">15.2.0 RC1 (Mar-22-2020)</h1>
         <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
@@ -21,21 +46,24 @@
         <h3 MadCap:conditions="Default.DoNotShow">Features and Enhancements</h3>
         <ul>
             <li MadCap:conditions="Default.DoNotShow">
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13995," />: Introduce a new Space iterator implementation.</li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13995,">
+                </MadCap:snippetText>: Introduce a new Space iterator implementation.</li>
             <li MadCap:conditions="Default.DoNotShow">
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14050," />: Add ability to monitor the read distribution of the data objects.
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14050,">
+                </MadCap:snippetText>: Add ability to monitor the read distribution of the data objects.
 			</li>
             <li MadCap:conditions="Default.DoNotShow">
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14038," />: Add ability to monitor the number and sizes of the data objects per partition.			</li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14038,">
+                </MadCap:snippetText>: Add ability to monitor the number and sizes of the data objects per partition.			</li>
         </ul>
         <h3 MadCap:conditions="Default.DoNotShow">Resolved Issues</h3>
         <ul>
             <li MadCap:conditions="Default.DoNotShow">
-                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14032," />: User gets a warning message because open source code uses deprecated hibernate.Criteria.</li>
+                <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14032,">
+                </MadCap:snippetText>: User gets a warning message because open source code uses deprecated hibernate.Criteria.</li>
             <li MadCap:conditions="Default.DoNotShow">
                 <MadCap:snippetText src="Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13982," />: Customer cannot submit Spark job in InsightEdge version 15.0 with specific Kubernetes versions.</li>
         </ul>
-        <p MadCap:conditions="Default.DoNotShow">&#160;</p>
         <h1 MadCap:conditions="Default.DoNotShow">15.2.0 M15 (Mar-15-2020)</h1>
         <h2 MadCap:conditions="Default.DoNotShow">Download Links</h2>
         <ul>
