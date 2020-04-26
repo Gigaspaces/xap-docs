@@ -20,55 +20,130 @@
                     <td>15.2</td>
                     <td>April 2020</td>
                     <td> </td>
-                    <td align="center">(none)
+                    <td align="center"><a href="https://github.com/GigaSpaces-ProfessionalServices/gigaspaces-kafka-connector">github</a>
                     </td>
-                </tr>
+                </tr>z
             </tbody>
         </table>
-        <p>Red Hat OpenShift is an enterprise-ready Kubernetes container platform with full-stack automated operations to manage hybrid cloud and multi-cloud deployments. <MadCap:variable name="General.ProductNameIE" /> is now a certified Red Hat OpenShift Operator, so <MadCap:variable name="General.ProductNameIE" /> customers can download the <MadCap:variable name="General.ProductNameIE" /> Enterprise Operator from the Red Hat Container Catalog. This enables developing and deploying time-sensitive applications that need performance and scale for transactional processing, along with faster analytics and machine learning on streaming, hot and historical data to enable faster and smarter insights and actions.</p>
-        <p>Red Hat OpenShift, combined with <MadCap:variable name="General.ProductNameXAP" />' multi-region and cloud replication module, helps to improve the efficiency of  cloud and multi-cloud migration initiatives; enterprises can optimize bandwidth and reduce data transfer costs between regions and cloud providers. Data can also be replicated more efficiently, and predefined filters can be leveraged to replicate the desired data changes, custom aggregations and compression. Additionally, data can be encrypted and anonymized in transit to help support privacy regulations such as GDPR.</p>
-        <h1>Deploying The Insightedge Enterprise Operator</h1>
-        <p>In order to deploy the <MadCap:variable name="General.ProductNameIE" /> Enterprise Operator, you need to first create a  project in your environment (on-premise, cloud, or hybrid). Then follow the instructions below to download and install the Operator.</p>
-        <p class="tc-todo">To deploy the <MadCap:variable name="General.ProductNameIE" /> Enterprise Operator:</p>
-        <ol>
+        <p><a href="https://www.confluent.io/resources/kafka-the-definitive-guide">Kafka</a> is enterprise software that provides a publish/subscribe data communication service. Kafka can be used to indicate the location of output data for a <MadCap:variable name="General.ProductNameXAP" /><a href="https://docs.gigaspaces.com/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition"> SpaceType Descriptor</a>. </p>
+        <h1>Prerequisites</h1>
+        <p>In order to deploy the <MadCap:variable name="General.ProductNameIE" /> Kakfka Sink Connector, the following prerequisites are required:</p>
+        <ul>
             <li>
-                <p>In the Openshift OperatorHub, navigate to the <span class="tc-bold">Insightedge Enterprise Operator</span> certified operator (you can filter the view by beginning to type the operator name in the search field) and click it.</p>
+                <p>Install Kafka and Kafka Connect</p>
             </li>
             <li>
-                <p>Click <span class="tc-bold">Install</span>.</p>
+                <p>Install <a href="https://docs.gigaspaces.com/latest/started/installation.html?Highlight=download)">Insightedge v15.2</a></p>
             </li>
-            <li>
-                <p>On the Create Operator Subscription page, review the default settings and click <span class="tc-bold">Subscribe</span>.</p>
+            <li>Install Git, Maven and JDK 8</li>
+        </ul>
+        <h1>Installation Steps</h1>
+        <ul>
+            <li><code>git clone</code> the repo</li>
+            <li><code>mvn clean package</code>
             </li>
-            <li>
-                <p>On the Installed Options page, when the status of your operator is <span class="tc-bold">InstallSucceeded</span> (and <span class="tc-bold">up to date</span>), click <span class="tc-bold">InsightEdge Enterprise Operator</span> in the Name column.</p>
-            </li>
-            <li>
-                <p>Click <span class="tc-bold">Create Instance</span>.</p>
-            </li>
-            <li>
-                <p>(Optional) In the editor view, rename the deployment and modify the environment values, for example:</p>
-                <ul>
-                    <li>
-                        <p> To configure high availability: </p><pre><code class="language-bash">manager.ha=true,manager.antiAffinity.enabled=true</code></pre>
-                    </li>
-                    <li>
-                        <p> To specify the number of partitions: </p><pre><code class="language-bash">pu.partitions=n</code></pre>
-                    </li>
-                    <li>
-                        <p> To specify the pod memory allocation: </p><pre><code class="language-bash">pu.resources.limits.memory=256Mi,pu.java.heap=75%</code></pre>
-                    </li>
-                    <li>
-                        <p> To implement MemoryXtend (Persistent  Volume): </p><pre><code class="language-bash">memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&amp;lt;my-server&amp;gt;/path/to/my-pu.jar</code></pre>
-                    </li>
-                </ul>
-            </li>
-            <li>Navigate to the Workloads&gt;Pods page to verify that all the pods are up and running.</li>
-            <li>Navigate to the Project page and click your project to open the Project details page.</li>
-            <li>Click the Workloads tab to see the list of pods in your project. You can click a pod to view the connection details (service ports) for that pod.</li>
-        </ol>
+            <li>Move the generated jar (from the target folder) to the Kafka connect connector's <code>lib </code>folder.</li>
+            <li>Define the connector configuration as outlined below.</li>
+        </ul>
+        <p>Schema and type definitions for the data can be expressed via the json file as shown below.</p>
         <div class="tc-admon-note">
-            <p><code>insightedge-manager</code> uses the web interface endpoint, and Apache Zeppelin uses the interactive notebook endpoint.</p>
+            <p>The maven Kafka artifacts in the <code>pom.xml</code> file must match the Kafka version.</p>
         </div>
+        <div class="tc-admon-note">
+            <p>If you have developed a GigaSpaces data model, you do not have to provide a json file. Instead, you can provide the generated jar file containing the relevant POJOs.</p>
+        </div>
+        <h1>Configuration</h1>
+        <h2>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector properties file,<code>connect-gigaspaces-sink.properties</code> .</h2><pre><code>
+bootstrap.servers=localhost:9092
+name=gigaspaces-kafka
+connector.class=com.gigaspaces.kafka.connector.GigaspacesSinkConnector
+tasks.max=1
+topics=Pet,Person
+gs.connector.name=gs
+# True -- start gs inside the same JVM as connector; False - separate JVM (default)
+gs.space.embedded=false
+# Name of the target gs Space
+gs.space.name=demo
+# Location of GS Manager:
+gs.space.locator=127.0.0.1:4174
+#Choose one of the following -- Jar file or Json file: 
+gs.model.json.path=&lt;path to gigaspaces kafka connector repo&gt;/example/resources/model.json
+#
+plugin.path=&lt;path to gigaspaces kafka connector repo&gt;
+value.converter=org.apache.kafka.connect.json.JsonConverter
+value.converter.schemas.enable=false
+key.converter=org.apache.kafka.connect.storage.StringConverter
+# Currently the connector does not support Kafka schema.
+key.converter.schemas.enable=false
+#key.converter.schemas.enable=true
+#value.converter.schemas.enable=true
+offset.storage.file.filename=/tmp/connect.offsets
+# Flush much faster than normal, which is useful for testing/debugging
+offset.flush.interval.ms=10000
+				</code></pre>
+        <p>&#160;</p>
+        <h2>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector model schema json file.</h2>
+        <div class="tc-admon-note">
+            <p>These Json fields map to the Space Type Descriptor in GS. For more information, see <a href="https://docs.gigaspaces.com/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition">Space type Descriptor</a> in the GigaSpaces documentation center.</p>
+        </div>
+        <p>&#160;</p><pre><code class="language-json">
+[{
+    "type": "com.gs.Person",
+    "FixedProperties": {
+    "firstname": "java.lang.String",
+    "lastname": "java.lang.String",
+    "age": "java.lang.Integer",
+    "num": "java.lang.Integer"
+    },
+    "Indexes": {
+    "compoundIdx": {"type":"EQUAL", "properties": ["firstname", "lastname"], "unique": false},
+    "ageIdx": {"type":"ORDERED", "properties": ["age"], "unique": false}
+    },
+    "Id": "num",
+    "RoutingProperty": "firstname"
+},
+{
+    "type": "com.gs.Pet",
+    "FixedProperties": {
+    "kind": "java.lang.String",
+    "name": "java.lang.String",
+    "age": "java.lang.Integer"
+    },
+    "Indexes": {
+    "compoundIdx": {"type":"EQUAL", "properties": ["kind", "name"], "unique": false},
+    "ageIdx": {"type":"ORDERED", "properties": ["age"], "unique": false}
+    },
+    "RoutingProperty": "name"
+}]				
+		</code></pre>
+        <h1>Running the Example</h1>
+        <div class="tc-admon-note">
+            <p>The steps must be run in the order indicated below.</p>
+        </div>
+        <p>In this example, we will consume data from a text file using the <code>FileStreamSource</code> source connector. 
+		This connector will publish the lines it reads to the type topics in Kafka. 
+			The <MadCap:variable name="General.CompanyName" /> sink connector will read the data from the topics and store them in the in-memory grid (the "Space"). 
+			All files are under the <code>example/resources</code> folder.</p>
+        <ol>
+            <li>Start Gigaspaces and have a Space running. In this example, we are running the demo project: <code>gs.sh demo</code></li>
+            <li>Start Zookeeper.
+<div class="tc-admon-note"><p>Do not use port 2181.</p></div></li>
+            <li>Start Kafka using the same port used for Zookeeper.</li>
+            <li>Start the connect with the source and sink connectors and see how the data is consumed and published to the space, as shown below:
+            <p><code>connect-standalone connect-standalone.properties people-source.properties pet-source.properties connect-gigaspaces-sink.properties</code></p><div class="tc-admon-note"><p>The three connectors properties are found in <code>&lt;path to gigaspaces kafka connector repo&gt;/example/resources</code>.</p></div><div class="tc-admon-note"><p>Ensure that the file parameter in the <code>people-source.properties</code> file and the <code>pet-source.properties</code> file points to the location of the corresponding txt files.</p></div></li>
+            <li>Connect to the <MadCap:variable name="General.CompanyName" /> UI and view the types that were defined and the data that was inserted into the spaces by the connector.</li>
+            <li>
+                <p>From the Ops Manager screen, choose <b>Analyze Ops Manager</b>:<br /><img src="../Resources/Static/images/Analyze-OPS-MGR.png" class="tc-picture50" /><br /></p>
+                <p>&#160;</p>
+            </li>
+            <li>
+				In the Spaces Overview, select the <code>demo </code>Space:
+<br /><img src="../Resources/Static/images/demo-OPS-MGR-2.png" class="tc-picture50" /><![CDATA[            ]]></li>
+            <li>
+			You can now see the two object types, <b>Pet</b> and <b>Person</b>, and the number of entries for each object:	
+				<br /><img src="../Resources/Static/images/demo-object-types-OPS-MGR-2.png" class="tc-picture80" /><![CDATA[
+			]]></li>
+        </ol>
+        <p>&#160;</p>
     </body>
 </html>
