@@ -16,7 +16,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>David Freedman</td>
+                    <td>Yoram Weinreb</td>
                     <td>15.2</td>
                     <td>April 2020</td>
                     <td> </td>
@@ -52,8 +52,7 @@
         <div class="tc-admon-note">
             <p>If you have developed a GigaSpaces data model, you do not have to provide a json file. Instead, you can provide the generated jar file containing the relevant POJOs.</p>
         </div>
-        <h1>Configuration</h1>
-        <h2>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector properties file,<code>connect-gigaspaces-sink.properties</code> .</h2><pre><code>
+        <h1>Configuration</h1>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector properties file,<code>connect-gigaspaces-sink.properties</code> .<pre><code>
 bootstrap.servers=localhost:9092
 name=gigaspaces-kafka
 connector.class=com.gigaspaces.kafka.connector.GigaspacesSinkConnector
@@ -69,24 +68,15 @@ gs.space.locator=127.0.0.1:4174
 #Choose one of the following -- Jar file or Json file: 
 gs.model.json.path=&lt;path to gigaspaces kafka connector repo&gt;/example/resources/model.json
 #
-plugin.path=&lt;path to gigaspaces kafka connector repo&gt;
-value.converter=org.apache.kafka.connect.json.JsonConverter
-value.converter.schemas.enable=false
-key.converter=org.apache.kafka.connect.storage.StringConverter
+plugin.path=&lt;path to gigaspaces kafka connector repo&gt;<br /><br />value.converter=org.apache.kafka.connect.json.JsonConverter
+value.converter.schemas.enable=false<br /><br />key.converter=org.apache.kafka.connect.storage.StringConverter
 # Currently the connector does not support Kafka schema.
 key.converter.schemas.enable=false
 #key.converter.schemas.enable=true
-#value.converter.schemas.enable=true
-offset.storage.file.filename=/tmp/connect.offsets
+#value.converter.schemas.enable=true<br /><br />offset.storage.file.filename=/tmp/connect.offsets
 # Flush much faster than normal, which is useful for testing/debugging
 offset.flush.interval.ms=10000
-				</code></pre>
-        <p>&#160;</p>
-        <h2>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector model schema json file.</h2>
-        <div class="tc-admon-note">
-            <p>These Json fields map to the Space Type Descriptor in GS. For more information, see <a href="https://docs.gigaspaces.com/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition">Space type Descriptor</a> in the GigaSpaces documentation center.</p>
-        </div>
-        <p>&#160;</p><pre><code class="language-json">
+				</code></pre><p>&#160;</p><h2>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector model schema json file.</h2><div class="tc-admon-note"><p>These Json fields map to the Space Type Descriptor in GS. For more information, see <a href="https://docs.gigaspaces.com/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition">Space type Descriptor</a> in the GigaSpaces documentation center.</p></div><p>&#160;</p><pre><code class="language-json">
 [{
     "type": "com.gs.Person",
     "FixedProperties": {
@@ -115,35 +105,15 @@ offset.flush.interval.ms=10000
     },
     "RoutingProperty": "name"
 }]				
-		</code></pre>
-        <h1>Running the Example</h1>
-        <div class="tc-admon-note">
-            <p>The steps must be run in the order indicated below.</p>
-        </div>
-        <p>In this example, we will consume data from a text file using the <code>FileStreamSource</code> source connector. 
+		</code></pre><h1>Running the Example</h1><div class="tc-admon-note"><p>The steps must be run in the order indicated below.</p></div><p>In this example, we will consume data from a text file using the <code>FileStreamSource</code> source connector. 
 		This connector will publish the lines it reads to the type topics in Kafka. 
 			The <MadCap:variable name="General.CompanyName" /> sink connector will read the data from the topics and store them in the in-memory grid (the "Space"). 
-			All files are under the <code>example/resources</code> folder.</p>
-        <ol>
-            <li>Start Gigaspaces and have a Space running. In this example, we are running the demo project: <code>gs.sh demo</code></li>
-            <li>Start Zookeeper.
-<div class="tc-admon-note"><p>Do not use port 2181.</p></div></li>
-            <li>Start Kafka using the same port used for Zookeeper.</li>
-            <li>Start the connect with the source and sink connectors and see how the data is consumed and published to the space, as shown below:
-            <p><code>connect-standalone connect-standalone.properties people-source.properties pet-source.properties connect-gigaspaces-sink.properties</code></p><div class="tc-admon-note"><p>The three connectors properties are found in <code>&lt;path to gigaspaces kafka connector repo&gt;/example/resources</code>.</p></div><div class="tc-admon-note"><p>Ensure that the file parameter in the <code>people-source.properties</code> file and the <code>pet-source.properties</code> file points to the location of the corresponding txt files.</p></div></li>
-            <li>Connect to the <MadCap:variable name="General.CompanyName" /> UI and view the types that were defined and the data that was inserted into the spaces by the connector.</li>
-            <li>
-                <p>From the Ops Manager screen, choose <b>Analyze Ops Manager</b>:<br /><img src="../Resources/Static/images/Analyze-OPS-MGR.png" class="tc-picture50" /><br /></p>
-                <p>&#160;</p>
-            </li>
-            <li>
+			All files are under the <code>example/resources</code> folder.</p><ol><li>Start Gigaspaces and have a Space running. In this example, we are running the demo project: <code>gs.sh demo</code></li><li>Start Zookeeper.
+<div class="tc-admon-note"><p>Do not use port 2181.</p></div></li><li>Start Kafka using the same port used for Zookeeper.</li><li>Start the connect with the source and sink connectors and see how the data is consumed and published to the space, as shown below:
+            <p><code>connect-standalone connect-standalone.properties people-source.properties pet-source.properties connect-gigaspaces-sink.properties</code></p><div class="tc-admon-note"><p>The three connectors properties are found in <code>&lt;path to gigaspaces kafka connector repo&gt;/example/resources</code>.</p></div><div class="tc-admon-note"><p>Ensure that the file parameter in the <code>people-source.properties</code> file and the <code>pet-source.properties</code> file points to the location of the corresponding txt files.</p></div></li><li>Connect to the <MadCap:variable name="General.CompanyName" /> Ops Manager using the <a href="../admin/gs-ops-manager-overview.html#Ops-Manager-URL">Ops Manager URL</a>, and view the types that were defined and the data that was inserted into the spaces by the connector.</li><li><p>From the Ops Manager screen, choose <b>Analyze my data</b>:<br /><img src="../Resources/Static/images/Analyze-OPS-MGR.png" class="tc-picture50" /><br /></p><p>&#160;</p></li><li>
 				In the Spaces Overview, select the <code>demo </code>Space:
-<br /><img src="../Resources/Static/images/demo-OPS-MGR-2.png" class="tc-picture50" /><![CDATA[            ]]></li>
-            <li>
+<br /><img src="../Resources/Static/images/demo-OPS-MGR-2.png" class="tc-picture50" /><![CDATA[            ]]></li><li>
 			You can now see the two object types, <b>Pet</b> and <b>Person</b>, and the number of entries for each object:	
 				<br /><img src="../Resources/Static/images/demo-object-types-OPS-MGR-2.png" class="tc-picture80" /><![CDATA[
-			]]></li>
-        </ol>
-        <p>&#160;</p>
-    </body>
+			]]></li></ol><p>&#160;</p></body>
 </html>
