@@ -76,7 +76,7 @@ key.converter.schemas.enable=false
 #value.converter.schemas.enable=true<br /><br />offset.storage.file.filename=/tmp/connect.offsets
 # Flush much faster than normal, which is useful for testing/debugging
 offset.flush.interval.ms=10000
-				</code></pre><p>&#160;</p><h2>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector model schema json file.</h2><div class="tc-admon-note"><p>These Json fields map to the Space Type Descriptor in GS. For more information, see <a href="https://docs.gigaspaces.com/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition">Space type Descriptor</a> in the GigaSpaces documentation center.</p></div><p>&#160;</p><pre><code class="language-json">
+				</code></pre><p>&#160;</p>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector model schema json file.<div class="tc-admon-note"><p>These Json fields map to the Space Type Descriptor in GS. For more information, see <a href="https://docs.gigaspaces.com/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition">Space type Descriptor</a> in the GigaSpaces documentation center.</p></div><p>&#160;</p><pre><code class="language-json">
 [{
     "type": "com.gs.Person",
     "FixedProperties": {
@@ -112,8 +112,8 @@ offset.flush.interval.ms=10000
 <div class="tc-admon-note"><p>Do not use port 2181.</p></div></li><li>Start Kafka using the same port used for Zookeeper.</li><li>Start the connect with the source and sink connectors and see how the data is consumed and published to the space, as shown below:
             <p><code>connect-standalone connect-standalone.properties people-source.properties pet-source.properties connect-gigaspaces-sink.properties</code></p><div class="tc-admon-note"><p>The three connectors properties are found in <code>&lt;path to gigaspaces kafka connector repo&gt;/example/resources</code>.</p></div><div class="tc-admon-note"><p>Ensure that the file parameter in the <code>people-source.properties</code> file and the <code>pet-source.properties</code> file points to the location of the corresponding txt files.</p></div></li><li>Connect to the <MadCap:variable name="General.CompanyName" /> Ops Manager using the <a href="../admin/gs-ops-manager-overview.html#Ops-Manager-URL">Ops Manager URL</a>, and view the types that were defined and the data that was inserted into the spaces by the connector.</li><li><p>From the Ops Manager screen, choose <b>Analyze my data</b>:<br /><img src="../Resources/Static/images/Analyze-OPS-MGR.png" class="tc-picture50" /><br /></p><p>&#160;</p></li><li>
 				In the Spaces Overview, select the <code>demo </code>Space:
-<br /><img src="../Resources/Static/images/demo-OPS-MGR-2.png" class="tc-picture50" /><![CDATA[            ]]></li><li>
-			You can now see the two object types, <b>Pet</b> and <b>Person</b>, and the number of entries for each object:	
-				<br /><img src="../Resources/Static/images/demo-object-types-OPS-MGR-2.png" class="tc-picture80" /><![CDATA[
+<br /><img src="../Resources/Static/images/demo-OPS-MGR.png" class="tc-picture50" /><![CDATA[            ]]></li><li>
+			You can now see the two object types, <code>Pet</code> and <code>Person</code>, and the number of entries for each object:	
+				<br /><img src="../Resources/Static/images/demo-object-types-OPS-MGR.png" class="tc-picture80" /><![CDATA[
 			]]></li></ol><p>&#160;</p></body>
 </html>
