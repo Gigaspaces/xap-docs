@@ -14,8 +14,7 @@
         <p>The value you will set will look like this in the command window: <code>manager.ha=true</code></p>
         <h2>Customizing a Helm Chart</h2>
         <p>You can create additional values.yaml files with customized values.</p>
-        <p>The following Helm command shows how a custom YAML file can be used to override the values in the original GigaSpaces Helm chart:</p><pre><code class="language-bash">helm install insightedge -f customValues.yaml --name hello
-</code></pre>
+        <p>The following Helm command shows how a custom YAML file can be used to override the values in the original GigaSpaces Helm chart:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge -f customValues.yaml --name hello</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install hello insightedge -f customValues.yaml </code></pre>
         <h1 MadCap:conditions="Version.15-0-born">Kubernetes Services in KubeGrid</h1>
         <p MadCap:conditions="Version.15-0-born">Kubernetes uses services to externalize functionality in clusters to the "outside world". Kubernetes services define a logical set of Pods that support the services themselves, and a policy by which to access them. This policy is defined using the <span class="tc-italic">service type</span>. <MadCap:variable name="General.ProductNameXAP" /> uses the following service types in deployment:</p>
         <ul MadCap:conditions="Version.15-0-born">

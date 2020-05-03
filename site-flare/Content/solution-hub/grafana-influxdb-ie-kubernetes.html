@@ -87,15 +87,13 @@
         <p>To install and configure InfluxDB in Kubernetes:</p>
         <ol>
             <li>
-                <p>In the command window, type the following:</p><pre><code>helm install --name ie-metrics stable/influxdb
-</code></pre>
+                <p>In the command window, type the following:</p><pre MadCap:conditions="Version.15-5-died"><code>helm install --name ie-metrics stable/influxdb</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code>helm install ie-metrics stable/influxdb</code></pre>
                 <div class="tc-admon-note">
                     <p>This installation is only for the purposes of running the demo, so the credentials aren't set.</p>
                 </div>
             </li>
             <li>
-                <p>Set port forwarding by typing the the following command:</p><pre><code>kubectl port-forward --namespace default $(kubectl get pods --namespace default -l app=ie-metrics-influxdb -o jsonpath='{ .items[0].metadata.name }') 8086:8086
-</code></pre>
+                <p>Set port forwarding by typing the the following command:</p><pre><code>kubectl port-forward --namespace default $(kubectl get pods --namespace default -l app=ie-metrics-influxdb -o jsonpath='{ .items[0].metadata.name }') 8086:8086</code></pre>
             </li>
             <li>
                 <p>Run the InfluxDB CLI and do the following to create an InfluxDB database for the demo:</p>
@@ -116,8 +114,7 @@
         <p>To install Grafana in Kubernetes:</p>
         <ol>
             <li>
-                <p>In the command window, type the following:</p><pre><code>helm install --name ie-grafana stable/grafana
-</code></pre>
+                <p>In the command window, type the following:</p><pre MadCap:conditions="Version.15-5-died"><code>helm install --name ie-grafana stable/grafana</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code>helm install  ie-grafana stable/grafana</code></pre>
             </li>
             <li>
                 <p>Set the port forwarding for Grafana in one of the following ways:</p>
@@ -175,8 +172,7 @@ sudo docker image ls
 </code></pre>
             </li>
             <li>
-                <p>Deploy InsightEdge in Kubernetes:</p><pre><code>helm install insightedge --name demo
-</code></pre>
+                <p>Deploy InsightEdge in Kubernetes:</p><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge --name demo</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code>helm install demo insightedge</code></pre>
             </li>
         </ol>
         <div class="tc-admon-note">

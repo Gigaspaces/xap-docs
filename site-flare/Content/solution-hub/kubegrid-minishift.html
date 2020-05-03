@@ -145,8 +145,7 @@ oc create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=defa
 </code></pre>
             </li>
             <li>
-                <p>After adding the GigaSpaces Helm repo, install the required chart(s) by referencing the chart name and product package version. For example, to install InsightEdge, use the following command:</p><pre><code>helm install gigaspaces/insightedge --version=14.0.1 --name demo
-</code></pre>
+                <p>After adding the GigaSpaces Helm repo, install the required chart(s) by referencing the chart name and product package version. For example, to install InsightEdge, use the following command:</p><pre MadCap:conditions="Version.15-5-died"><code>helm install gigaspaces/insightedge --version=14.0.1 --name demo</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code style="background-color: #00ffff;">helm install demo gigaspaces/insightedge --version=14.0.1</code></pre>
             </li>
         </ol>
         <p>For more information about InsightEdge KubeGrid deployment options, see the <a href="https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html">Deploying a Data Grid in Kubernetes</a> topic.</p>

@@ -18,7 +18,7 @@
             <li>
                 <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Helm</a>
                 </p>
-                <MadCap:snippetBlock src="../Resources/Snippets/Content/Kubernetes/k8s-helm-version.flsnp" />
+                <MadCap:snippetBlock src="../Resources/Snippets/Content/Kubernetes/k8s-helm-version.flsnp" MadCap:conditions="NewSet.Ask RnD" />
             </li>
             <li>
                 <p>Kubernetes cluster (cloud, on-premise, or local via <a href="https://kubernetes.io/docs/setup/minikube/">minikube</a>)</p>
@@ -48,27 +48,24 @@ Moreover, since Helm is open source, there are many community charts available w
             <li>Unpack the required Helm chart(s) in a local folder</li>
         </ul>
         <h3><a name="adding-a-helm-repo-to-the-repo-list"></a>Adding a Helm Repo to the Repo List</h3>
-        <p>You can point to the GigaSpaces Helm repo, so that Helm can locate the <code class="language-bash">xap </code>and <code>insightedge</code> charts for installation:</p><pre MadCap:conditions="Default.ReleasedVersions"><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts<![CDATA[
+        <p>You can point to the GigaSpaces Helm repo, so that Helm can locate the <code class="language-bash">xap </code>and <code>insightedge</code> charts for installation:</p><pre MadCap:conditions="Default.ReleasedVersions,NewSet.Ask RnD"><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts<![CDATA[
 ]]></code></pre><pre MadCap:conditions="Version.ea-only"><code class="language-bash">helm repo add gigaspaces-ea https://resources.gigaspaces.com/helm-charts-ea</code></pre>
-        <p>After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. For example, to install <MadCap:variable name="General.ProductNameIE" />, use the following command:</p><pre MadCap:conditions="Default.ReleasedVersions"><code class="language-bash">helm install gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack" /> --name demo
-</code></pre><pre MadCap:conditions="Version.ea-only"><code class="language-bash">helm install gigaspaces-ea/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack" /> --name demo
+        <p>After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. For example, to install <MadCap:variable name="General.ProductNameIE" />, use the following command:</p><pre MadCap:conditions="Default.ReleasedVersions,NewSet.Ask RnD"><code class="language-bash">helm install gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack" /> --name demo
+</code></pre><pre MadCap:conditions="Version.ea-only,NewSet.Ask RnD"><code class="language-bash">helm install gigaspaces-ea/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack" /> --name demo
 </code></pre>
         <h3><a name="fetching-the-gigaspaces-helm-charts-from-the-gigaspaces-repository"></a>Fetching the GigaSpaces Helm Charts from the GigaSpaces Repository</h3>
-        <p>Another option is to fetch the GigaSpaces Helm charts that you need and unpack them locally, so you don’t have to repeat the repo name and package version in each command (which has the added benefit of making the commands shorter). For example, if you fetch and unpack the Helm chart using the following command:</p><pre MadCap:conditions="Default.ReleasedVersions"><code class="language-bash">helm fetch gigaspaces/insightedge --version=[%=Versions.helm-version%] --untar
-</code></pre><pre MadCap:conditions="Version.ea-only"><code class="language-bash">helm fetch gigaspaces/insightedge --version=[%=Versions.helm-version%] --untar
+        <p>Another option is to fetch the GigaSpaces Helm charts that you need and unpack them locally, so you don’t have to repeat the repo name and package version in each command (which has the added benefit of making the commands shorter). For example, if you fetch and unpack the Helm chart using the following command:</p><pre MadCap:conditions="Default.ReleasedVersions,NewSet.Ask RnD"><code class="language-bash">helm fetch gigaspaces/insightedge --version=[%=Versions.helm-version%] --untar
+</code></pre><pre MadCap:conditions="Version.ea-only,NewSet.Ask RnD"><code class="language-bash">helm fetch gigaspaces/insightedge --version=[%=Versions.helm-version%] --untar
 </code></pre>
         <div class="tc-admon-note">
             <p>You must fetch every chart that you will be using (for example xap, xap-pu and xap-manager) in your GigaSpaces application environment.</p>
         </div>
-        <p>The chart is unpacked in a local folder called insightedge, and then you can install the demo by typing:</p><pre><code class="language-bash">helm install insightedge --name demo
-</code></pre>
+        <p>The chart is unpacked in a local folder called insightedge, and then you can install the demo by typing:</p><pre MadCap:conditions="Version.15-5-died,NewSet.Ask RnD"><code class="language-bash">helm install insightedge --name demo</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install demo insightedge</code></pre>
         <p>All of the commands in the examples below assume that the Helm chart was fetched and stored in a local folder, but you can modify the commands to accomodate the other Helm install options (remote location, repo reference, etc.).</p>
         <h2><a name="starting-a-data-grid-in-kubernetes"></a>Starting a Data Grid in Kubernetes</h2>
         <p>In the directory where you unpacked the Helm chart(s), run the following Helm command in the command window to start a data grid in Kubernetes. This deploys a Kubernetes cluster called <code>hello</code>, which contains a data grid comprised of one Space in a Data Pod, and one Platform Manager called <code>hello-xap-manager</code> in a Management Pod. The Platform Manager manages the Space, the Manager service, and the headless service. There are no backup instances specified.</p>
-        <p>To start a data grid:</p><pre><code class="language-bash">helm install xap --name hello
-</code></pre>
-        <p>To start an <MadCap:variable name="General.ProductNameIE" /> data grid:</p><pre><code class="language-bash">helm install insightedge --name hello
-</code></pre>
+        <p>To start a data grid:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install xap --name hello</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install hello xap</code></pre>
+        <p>To start an <MadCap:variable name="General.ProductNameIE" /> data grid:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name hello</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install hello insightedge</code></pre>
         <div class="tc-admon-note">
             <p>The rest of the data grid tasks described below use command examples from the <code>insightedge</code> Helm chart. However, you can also perform these tasks using the <code class="language-bash">xap </code>Helm chart.</p>
         </div>
@@ -87,14 +84,11 @@ Moreover, since Helm is open source, there are many community charts available w
         </ul><pre><code class="language-bash">kubectl describe pod
 </code></pre>
         <h2><a name="deleting-a-data-grid-from-the-kubernetes-environment"></a>Deleting a Data Grid from the Kubernetes Environment</h2>
-        <p>To delete the <code>hello</code> Space cluster, use the following Helm command. It removes the release, but leaves the logs and data so you can inspect them at a future time. This command will remove both the Platform Manager and the Space.</p><pre><code class="language-bash">helm del hello
-</code></pre>
-        <p>If you want to remove the release and delete all the <code>hello</code> release data from the server, add the <code>--purge</code> option.</p><pre><code class="language-bash">helm del --purge hello
-</code></pre>
+        <p>To delete the <code>hello</code> Space cluster, use the following Helm command. It removes the release, but leaves the logs and data so you can inspect them at a future time. This command will remove both the Platform Manager and the Space.</p><pre MadCap:conditions="NewSet.Ask RnD"><code class="language-bash">helm del hello</code></pre>
+        <p>If you want to remove the release and delete all the <code>hello</code> release data from the server, add the <code>--purge</code> option.</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm del --purge hello</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm del hello</code></pre>
         <h1><a name="applying-a-product-license"></a>Applying a Product License</h1>
         <p>The Kubernetes installation comes with a 24-hour trial <code>tryme</code> license, to enable users to perform one-click installation and explore the <MadCap:variable name="General.ProductNameIEP" /> and <MadCap:variable name="General.ProductNameXAP" /> functionality. However, if you want a longer trial license, you can apply the evaluation license key that you received in the email that was sent to you after you downloaded your <MadCap:variable name="General.ProductNameIE" /> or <MadCap:variable name="General.ProductNameXAP" /> commercial edition from the Download Center. These instructions are also applicable for applying a your official product license after you purchase a GigaSpaces product.</p>
-        <p>When the data grid starts, it checks for a valid license. You can apply the license by setting the <code>pu.license</code> property. For example, to apply the license for <MadCap:variable name="General.ProductNameIE" />, use the following Helm command:</p><pre><code class="language-bash">helm install insightedge --name hello --set pu.license="&lt;your license key&gt;"
-</code></pre>
+        <p>When the data grid starts, it checks for a valid license. You can apply the license by setting the <code>pu.license</code> property. For example, to apply the license for <MadCap:variable name="General.ProductNameIE" />, use the following Helm command:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name hello --set pu.license="&lt;your license key&gt;"</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install hello insightedge --set pu.license="&lt;your license key&gt;"</code></pre>
         <div class="tc-admon-note">
             <ul>
                 <li>You must enclose the license key in quotation marks ("...").</li>

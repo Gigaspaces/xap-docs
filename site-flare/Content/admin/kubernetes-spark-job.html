@@ -33,10 +33,8 @@
         <p>After the service account has been created and configured, you can apply it in the Spark submit:</p><pre><code class="language-bash">--conf spark.kubernetes.authenticate.driver.serviceAccountName=spark
 </code></pre>
         <h2>Deploying the Data Grid on Kubernetes</h2>
-        <p>Run the following Helm command in the command window to start a basic data grid called <code>demo</code>:</p><pre><code class="language-bash">helm install insightedge --name demo
-</code></pre>
-        <p>For the application to connect to the <code>demo</code> data grid, the name of the manager must be provided. This is required when running on a Kubernetes cluster (not a minikube).</p><pre><code class="language-bash">--conf spark.insightedge.space.manager=demo
-</code></pre>
+        <p>Run the following Helm command in the command window to start a basic data grid called <code>demo</code>:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name demo</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install demo insightedge</code></pre>
+        <p>For the application to connect to the <code>demo</code> data grid, the name of the manager must be provided. This is required when running on a Kubernetes cluster (not a minikube).</p><pre MadCap:conditions="NewSet.Ask RnD"><code class="language-bash">--conf spark.insightedge.space.manager=demo</code></pre>
         <h2><a name="submitting-spark-jobs-with-insightedge-submit"></a>Submitting Spark Jobs with <MadCap:variable name="General.ProductNameIE" /> Submit</h2>
         <p>The <code>insightedge-submit</code> script is located in the <MadCap:variable name="General.ProductNameIE" /> home directory, in <code>insightedge/bin</code>. This script is similar to the <code>spark-submit</code> command used by Spark users to submit Spark jobs. The following examples run both a pure Spark example and an <MadCap:variable name="General.ProductNameIE" /> example by calling this script.</p>
         <h3><a name="sparkpi-example"></a>SparkPi Example</h3>
@@ -84,11 +82,27 @@ local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
         </div>
         <p>The <code>insightedge-submit</code> script accepts any Space name when running an <MadCap:variable name="General.ProductNameIE" /> example in Kubernetes, by  adding the configuration property: <code>--conf spark.insightedge.space.name=&lt;space name&gt;</code>.</p>
         <p>For example, the Helm commands below will install the following stateful sets: <code>testmanager-insightedge-manager</code>, <code>testmanager-insightedge-zeppelin</code>, <code>testspace-demo-*\[i\]*</code></p>
-        <p>The <MadCap:variable name="General.ProductNameIE" /> submit command will submit the SaveRDD example with the <code>testspace</code> and <code>testmanager</code> configuration parameters.</p><pre><code class="language-bash">$ helm install insightedge-manager --name testmanager
+        <p>The <MadCap:variable name="General.ProductNameIE" /> submit command will submit the SaveRDD example with the <code>testspace</code> and <code>testmanager</code> configuration parameters.</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">$ helm install insightedge-manager --name testmanager
 
 $ helm install insightedge-zeppelin --name testzeppelin
 
 $ helm install insightedge-pu --name testspace --set manager.name=testmanager 
+
+$ ./insightedge-submit \
+--master k8s://https://192.168.99.100:8443 \
+--deploy-mode cluster \
+--name i9e-saveRdd \
+--class org.insightedge.examples.basic.SaveRdd \
+--conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version%] \
+--conf spark.insightedge.space.name=testspace \
+--conf spark.insightedge.space.manager=testmanager \
+local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
+</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">$ helm install testmanager insightedge-manager
+
+$ helm install testzeppelin insightedge-zeppelin
+
+$ helm install testspace insightedge-pu --set manager.name=testmanager 
 
 $ ./insightedge-submit \
 --master k8s://https://192.168.99.100:8443 \

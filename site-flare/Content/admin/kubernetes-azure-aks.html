@@ -113,7 +113,7 @@ subjects:
         </div>
         <ol>
             <li>
-                <p>Type the following command to add a basic Tiller deployment to the AKS cluster:</p><pre><code>helm init --service-account tiller</code></pre>
+                <p>Type the following command to add a basic Tiller deployment to the AKS cluster:</p><pre MadCap:conditions="NewSet.Ask RnD"><code>helm init --service-account tiller</code></pre>
                 <p>The output should show all the artifacts that are created for Tiller, the URLs for the stable repo and local repo, and confirm that HELM_HOME has been configured. You should also see the following confirmation message.</p>
                 <p>
                     <img src="../Resources/Static/attachment_files/kubernetes/tiller-install-aks.png" class="tc-picture100" />
@@ -143,7 +143,7 @@ service:
                 <p>Save the file.</p>
             </li>
             <li>
-                <p>Type the following command to deploy <MadCap:variable name="General.ProductNameIE" /> in AKS:</p><pre><code class="language-xml">helm install insightedge --name demo</code></pre>
+                <p>Type the following command to deploy <MadCap:variable name="General.ProductNameIE" /> in AKS:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-xml">helm install insightedge --name demo</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-xml">helm install demo insightedge</code></pre>
                 <p>You should see the following output:</p>
                 <p>
                     <img src="../Resources/Static/attachment_files/kubernetes/insightedge-demo-installed.png" class="tc-picture100" />
