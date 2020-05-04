@@ -110,7 +110,7 @@
       max-redo-log-capacity="1000000"&gt;
       &lt;os-gateway:target name="germany" /&gt;
     &lt;/os-gateway:targets&gt;</code> </pre>
-        <p>For more information about defining the service JAR, refer to <MadCap:xref href="../dev-java/multi-site-replication-overview.html#configuring-a-space-with-gateway-targets">Configuring a Space With Gateway Targets</MadCap:xref>.</p><pre MadCap:conditions="Version.15-5-died,NewSet.Ask RnD" xml:space="preserve"><code>helm install insightedge-pu --name your-space-pu-name --set manager.name=your-manager,resourceUrl=&lt;path to Space pu JAR&gt;,[service.lrmi.enabled=true</code>  </pre>
+        <p>For more information about defining the service JAR, refer to <MadCap:xref href="../dev-java/multi-site-replication-overview.html#configuring-a-space-with-gateway-targets">Configuring a Space With Gateway Targets</MadCap:xref>.</p><pre MadCap:conditions="Version.15-5-died,NewSet.Ask RnD" xml:space="preserve" style="background-color: #00ffff;"><code>helm install insightedge-pu --name your-space-pu-name --set manager.name=your-manager,resourceUrl=&lt;path to Space pu JAR&gt;,[service.lrmi.enabled=true</code>  </pre>
         <p>Installing the WAN Gateway Service</p>
         <p>Before you install the Helm chart for the <MadCap:variable name="General.ProductNameXAP" /> WAN gateway, you need to update it with the details that define the zone and access points (public IP&#160;addresses for the Space services), so that the delegator and sink are able to communicate and replicate data across the network.</p>
         <p class="tc-todo">To configure the WAN&#160;gateway Helm chart:</p>
