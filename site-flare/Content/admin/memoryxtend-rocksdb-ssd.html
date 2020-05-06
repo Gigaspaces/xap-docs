@@ -235,7 +235,21 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
             </div>
             <h3>Installing the Helm Chart</h3>
             <p>
-                <MadCap:conditionalText MadCap:conditions="Version.15-0-died">After the pu.xml has been configured for the MemoryXtend persistent storage option, the next step is installing the Helm chart. </MadCap:conditionalText>Fetch the <MadCap:variable name="General.CompanyName" /> Helm charts as described in <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref>, then use the <code>helm install</code> command to deploy the Processing Unit. The minimum configuration required for MemoryXtend volume is to set the <code>enabled</code> property to <code>true</code>, and the <code>storage</code> property to the required capacity of the external storage. For example:</p><pre MadCap:conditions="NewSet.Ask RnD"><code>helm install insightedge-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre><pre MadCap:conditions="NewSet.Ask RnD"><code>helm install insightedge-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
+                <MadCap:conditionalText MadCap:conditions="Version.15-0-died">After the pu.xml has been configured for the MemoryXtend persistent storage option, the next step is installing the Helm chart. </MadCap:conditionalText>Fetch the <MadCap:variable name="General.CompanyName" /> Helm charts as described in <MadCap:xref href="kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref>, then use the <code>helm install</code> command to deploy the Processing Unit. The minimum configuration required for MemoryXtend volume is to set the <code>enabled</code> property to <code>true</code>, and the <code>storage</code> property to the required capacity of the external storage. For example:</p>
+            <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
+                <p MadCap:conditions="Version.15-5-born">
+                    <div class="easyui-tabs" plain="true">
+                        <div title="Helm 3">
+                            <p><pre><code>helm install my-pu --set insightedge-pu  memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
+                            </p>
+                        </div>
+                        <div title="Helm 2">
+                            <p><pre><code>helm install insightedge-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
+                            </p>
+                        </div>
+                    </div>
+                </p>
+            </div>
             <p>The following table describes the properties in the <code>memoryXtendVolume</code> section of the Helm chart.</p>
             <table style="width: 100%;" class="tc-standard">
                 <col />

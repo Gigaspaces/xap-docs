@@ -83,7 +83,9 @@
             <li>
                 <p>Type the following command to access the <MadCap:variable name="General.CompanyName" /> Helm charts and unpack them locally to a folder named <code>insightedge</code>:</p><pre MadCap:conditions="NewSet.Ask RnD"><code class="language-bash">helm fetch gigaspaces/insightedge --untar</code></pre>
             </li>
-            <li>After adding the <MadCap:variable name="General.CompanyName" /> Helm charts, type the following command to deploy the <MadCap:variable name="General.ProductNameIE" /> demo on Amazon EKS:<pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name demo</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install demo insightedge</code></pre></li>
+            <li>After adding the <MadCap:variable name="General.CompanyName" /> Helm charts, type the following command to deploy the <MadCap:variable name="General.ProductNameIE" /> demo on Amazon EKS:<pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge --name demo</code></pre><p MadCap:conditions="Version.15-5-born"><div class="easyui-tabs" plain="true"><div title="Helm 3"><p><pre><code>helm install demo insightedge</code></pre></p></div><div title="Helm 2"><p>
+			<pre><code>helm install insightedge --name demo</code></pre>
+				</p></div></div></p></li>
         </ol>
         <div class="tc-admon-note">
             <p>For more information about <MadCap:variable name="General.ProductNameIE" /> KubeGrid deployment options, see the <a href="https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html" target="_blank">Deploying a Data Grid in Kubernetes</a> topic.</p>

@@ -87,7 +87,25 @@
         <p>To install and configure InfluxDB in Kubernetes:</p>
         <ol>
             <li>
-                <p>In the command window, type the following:</p><pre MadCap:conditions="Version.15-5-died"><code>helm install --name ie-metrics stable/influxdb</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code>helm install ie-metrics stable/influxdb</code></pre>
+                <p>In the command window, type the following:</p>
+                <p>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><code class="language-bash">helm install ie-metrics stable/influxdb</code>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><code class="language-bash">helm install --name ie-metrics stable/influxdb</code>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                    <div title="Helm 2" MadCap:conditions="Version.15-5-died">
+                        <p><code class="language-bash">helm install --name ie-metrics stable/influxdb </code>
+                        </p>
+                    </div>
+                </p>
                 <div class="tc-admon-note">
                     <p>This installation is only for the purposes of running the demo, so the credentials aren't set.</p>
                 </div>
@@ -114,7 +132,25 @@
         <p>To install Grafana in Kubernetes:</p>
         <ol>
             <li>
-                <p>In the command window, type the following:</p><pre MadCap:conditions="Version.15-5-died"><code>helm install --name ie-grafana stable/grafana</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code>helm install  ie-grafana stable/grafana</code></pre>
+                <p>In the command window, type the following:</p>
+                <p>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><code class="language-bash">helm install  ie-grafana stable/grafana</code>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><code class="language-bash">helm install --name ie-grafana stable/grafana</code>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                    <div title="Helm 2" MadCap:conditions="Version.15-5-died">
+                        <p><code class="language-bash">helm install --name ie-grafana stable/grafana </code>
+                        </p>
+                    </div>
+                </p>
             </li>
             <li>
                 <p>Set the port forwarding for Grafana in one of the following ways:</p>
@@ -172,7 +208,25 @@ sudo docker image ls
 </code></pre>
             </li>
             <li>
-                <p>Deploy InsightEdge in Kubernetes:</p><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge --name demo</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code>helm install demo insightedge</code></pre>
+                <p>Deploy InsightEdge in Kubernetes:</p>
+                <p>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><code class="language-bash">helm install demo insightedge</code>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><code class="language-bash">helm install insightedge --name demo</code>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                    <div title="Helm 2" MadCap:conditions="Version.15-5-died">
+                        <p><code class="language-bash">helm install insightedge --name demo </code>
+                        </p>
+                    </div>
+                </p>
             </li>
         </ol>
         <div class="tc-admon-note">
