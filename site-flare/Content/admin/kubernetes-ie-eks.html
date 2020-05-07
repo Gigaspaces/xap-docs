@@ -63,7 +63,21 @@ service:
                 <li>Save both files.</li>
             </ol>
             <li>
-                <p>Type the following command to deploy <MadCap:variable name="General.ProductNameIE" /> in Amazon EKS:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-xml">helm install insightedge --name demo --set pu.partitions=2,pu.ha=true</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-xml">helm install demo insightedge --set pu.partitions=2,pu.ha=true</code></pre>
+                <p>Type the following command to deploy <MadCap:variable name="General.ProductNameIE" /> in Amazon EKS:</p>
+                <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge --name demo --set pu.partitions=2,pu.ha=true</code></pre>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code>helm install demo insightedge --set pu.partitions=2,pu.ha=true </code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><pre><code>helm install insightedge --name demo --set pu.partitions=2,pu.ha=true</code></pre>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                </div>
             </li>
         </ol>
         <h2>Verifying the KubeGrid Installation</h2>

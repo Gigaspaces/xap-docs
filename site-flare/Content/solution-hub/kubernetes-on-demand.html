@@ -83,9 +83,7 @@
             <li>
                 <p>Type the following command to access the <MadCap:variable name="General.CompanyName" /> Helm charts and unpack them locally to a folder named <code>insightedge</code>:</p><pre MadCap:conditions="NewSet.Ask RnD"><code class="language-bash">helm fetch gigaspaces/insightedge --untar</code></pre>
             </li>
-            <li>After adding the <MadCap:variable name="General.CompanyName" /> Helm charts, type the following command to deploy the <MadCap:variable name="General.ProductNameIE" /> demo on Amazon EKS:<pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge --name demo</code></pre><p MadCap:conditions="Version.15-5-born"><div class="easyui-tabs" plain="true"><div title="Helm 3"><p><pre><code>helm install demo insightedge</code></pre></p></div><div title="Helm 2"><p>
-			<pre><code>helm install insightedge --name demo</code></pre>
-				</p></div></div></p></li>
+            <li>After adding the <MadCap:variable name="General.CompanyName" /> Helm charts, type the following command to deploy the <MadCap:variable name="General.ProductNameIE" /> demo on Amazon EKS:<pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge --name demo</code></pre><p MadCap:conditions="Version.15-5-born"><div class="easyui-tabs" plain="true"><div title="Helm 3"><p><pre><code>helm install demo insightedge</code></pre></p></div><div title="Helm 2"><p><pre><code>helm install insightedge --name demo</code></pre></p></div></div></p></li>
         </ol>
         <div class="tc-admon-note">
             <p>For more information about <MadCap:variable name="General.ProductNameIE" /> KubeGrid deployment options, see the <a href="https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html" target="_blank">Deploying a Data Grid in Kubernetes</a> topic.</p>
@@ -109,7 +107,25 @@ https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta4/aio/deploy/r
         <h1>Removing the <MadCap:variable name="General.ProductNameIE" /> Deployment from the Cloud</h1>
         <p>When you are done working with the <MadCap:variable name="General.CompanyName" /> application in the cluster, you can take it down from AWS. You need to first delete the  application, and then you can delete the cluster.</p>
         <p class="tc-todo">To remove the <MadCap:variable name="General.CompanyName" /> deployment from the cloud:</p>
-        <p>To delete <MadCap:variable name="General.ProductNameIE" />, type the following command:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm delete --purge demo</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm delete demo</code></pre>
+        <p>To delete <MadCap:variable name="General.ProductNameIE" />, type the following command:</p>
+        <p>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><code class="language-bash">helm del demo</code>
+                        </p>
+                    </div>
+                    <div title="Helm 2">
+                        <p><code class="language-bash">helm del --purge demo</code>
+                        </p>
+                    </div>
+                </div>
+            </p>
+            <div title="Helm 2" MadCap:conditions="Version.15-5-died">
+                <p><code class="language-bash">helm del --purge demo</code>
+                </p>
+            </div>
+        </p>
         <p>To delete the Kubernetes cluster from AWS, type the following command:</p><pre><code class="language-bash">eksctl delete cluster --name=cluster-6 --region=us-east-1</code></pre>
     </body>
 </html>

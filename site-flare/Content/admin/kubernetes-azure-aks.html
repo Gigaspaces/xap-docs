@@ -143,7 +143,21 @@ service:
                 <p>Save the file.</p>
             </li>
             <li>
-                <p>Type the following command to deploy <MadCap:variable name="General.ProductNameIE" /> in AKS:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-xml">helm install insightedge --name demo</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-xml">helm install demo insightedge</code></pre>
+                <p>Type the following command to deploy <MadCap:variable name="General.ProductNameIE" /> in AKS:</p>
+                <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge --name demo</code></pre>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code>helm install demo insightedge </code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><pre><code>helm install insightedge --name demo</code></pre>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                </div>
                 <p>You should see the following output:</p>
                 <p>
                     <img src="../Resources/Static/attachment_files/kubernetes/insightedge-demo-installed.png" class="tc-picture100" />

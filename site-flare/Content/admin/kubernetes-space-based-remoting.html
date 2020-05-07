@@ -36,7 +36,21 @@
                 <img src="../Resources/Static/attachment_files/kubernetes/remote-loadbalancer.png" class="tc-picture50" />
             </p>
         </div>
-        <p><code>LoadBalancer</code> is the default configuration for KubeGrid, so there is no need to specify a service type when installing the Helm chart. For example, you can install <MadCap:variable name="General.ProductNameIE" /> with the following command:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager, service.lrmi.InitialNodePort=31200</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install testspace insightedge-pu --set manager.name=testmanager, service.lrmi.InitialNodePort=31200</code></pre>
+        <p><code>LoadBalancer</code> is the default configuration for KubeGrid, so there is no need to specify a service type when installing the Helm chart. For example, you can install <MadCap:variable name="General.ProductNameIE" /> with the following command:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-pu --name testspace --set manager.name=testmanager, service.lrmi.InitialNodePort=31200</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm install testspace insightedge-pu --set manager.name=testmanager, service.lrmi.InitialNodePort=31200 </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2">
+                        <p><pre><code>helm install insightedge-pu --name testspace --set manager.name=testmanager, service.lrmi.InitialNodePort=31200</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
         <h3>NodePort</h3>
         <p>The <code>NodePort</code> service type exposes each service on a specific node port that can be assigned randomly, or specified when you install the Helm chart. When using the <code>NodePort</code> service type, the pod registers in the LUS&#160;with the assigned IP address.</p>
         <p>The problem with specifying node ports is that pods may move to different nodes during runtime, for example if the current node crashes. This means that they then have different node port values and services can't find the pods on the new nodes. Additionally some cloud services such as Amazon AWS require setting firewall rules that open node ports explicitly in order to support remote client access.</p>
@@ -46,12 +60,40 @@
                 <img src="../Resources/Static/attachment_files/kubernetes/remote-nodeport.png" class="tc-picture50" />
             </p>
         </div>
-        <p><code>NodePort</code> isn't the default service type, so you need to specify it when you install the Helm chart. For example, see the following Helm install command:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager, service.type=NodePort, service.lrmi.InitialNodePort=31200</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install testspace insightedge-pu --set manager.name=testmanager, service.type=NodePort, service.lrmi.InitialNodePort=31200</code></pre>
+        <p><code>NodePort</code> isn't the default service type, so you need to specify it when you install the Helm chart. For example, see the following Helm install command:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-pu --name testspace --set manager.name=testmanager, service.type=NodePort, service.lrmi.InitialNodePort=31200</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm install testspace insightedge-pu --set manager.name=testmanager, service.type=NodePort, service.lrmi.InitialNodePort=31200 </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2">
+                        <p><pre><code>helm install insightedge-pu --name testspace --set manager.name=testmanager, service.type=NodePort, service.lrmi.InitialNodePort=31200</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
         <div class="tc-admon-note" MadCap:conditions="Version.15-0-born">
             <p>This option requires exposing the assigned ports to external access. You also have to ensure that the assigned ports aren't being used by another service in your cluster.</p>
         </div>
         <h2>Exposing the Space as a Service</h2>
-        <p>On the server side, each Space instance must be exposed as a service. To do this, set the <code>service.lrmi.enabled</code> value to <code>true</code>. For example, see the following command:</p><pre xml:space="preserve" MadCap:conditions="Version.15-5-died"><code>helm install insightedge-pu --name testspace --set manager.name=testmanager, set service.lrmi.enabled=true</code></pre><pre xml:space="preserve" MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code>helm install testspace insightedge-pu --set manager.name=testmanager, set service.lrmi.enabled=true</code></pre>
+        <p>On the server side, each Space instance must be exposed as a service. To do this, set the <code>service.lrmi.enabled</code> value to <code>true</code>. For example, see the following command:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-pu --name testspace --set manager.name=testmanager, set service.lrmi.enabled=true</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm install testspace insightedge-pu --set manager.name=testmanager, set service.lrmi.enabled=true </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2">
+                        <p><pre><code>helm install insightedge-pu --name testspace --set manager.name=testmanager, set service.lrmi.enabled=true</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
         <div class="tc-admon-note">
             <p>When Space-based remoting is enabled, each Space instance has its own dedicated Kubernetes service, which can result in a high resource requirements. If the service type is <code>loadBalancer</code>, you should disable the <code class="language-bash">lrmi</code> in the service Helm chart when Space-based remoting is no longer required, </p>
         </div>

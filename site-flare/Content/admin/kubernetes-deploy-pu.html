@@ -117,13 +117,55 @@
                 <p>Open a new command window and navigate to the Helm chart directory (where you fetched the charts from the <MadCap:variable name="General.ProductNameXAP" /> repo).</p>
             </li>
             <li>
-                <p>As you did for the Space demo, type the following Helm command to deploy a Management Pod called <code>testmanager</code>:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-manager --name testmanager</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install testmanager insightedge-manager</code></pre>
+                <p>As you did for the Space demo, type the following Helm command to deploy a Management Pod called <code>testmanager</code>:</p>
+                <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-manager --name testmanager</code></pre>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code>helm install testmanager insightedge-manager</code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><pre><code>helm install insightedge-manager --name testmanager</code></pre>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                </div>
             </li>
             <li>
-                <p>Type the following Helm command to deploy a Data Pod with the processor service from the location where it was built in the examples directory:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-pu --name processor --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install processor insightedge-pu --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar</code></pre>
+                <p>Type the following Helm command to deploy a Data Pod with the processor service from the location where it was built in the examples directory:</p>
+                <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-pu --name processor --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar</code></pre>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code>helm install processor insightedge-pu --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar </code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><pre><code>helm install insightedge-pu --name processor --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar</code></pre>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                </div>
             </li>
             <li>
-                <p>Lastly, type the following Helm command to deploy a Data Pod with the feeder service from the same directory:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-pu --name feeder --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/feeder/target/data-feeder.jar</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install feeder insightedge-pu --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/feeder/target/data-feeder.jar</code></pre>
+                <p>Lastly, type the following Helm command to deploy a Data Pod with the feeder service from the same directory:</p>
+                <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-pu --name feeder --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/feeder/target/data-feeder.jar</code></pre>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code>helm install feeder insightedge-pu --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/feeder/target/data-feeder.jar </code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><pre><code>helm install insightedge-pu --name feeder --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/feeder/target/data-feeder.jar</code></pre>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                </div>
             </li>
         </ol>
         <h2>Monitoring the <MadCap:variable name="General.ProductNameXAP" /> Services</h2>
@@ -138,10 +180,52 @@
             <li>A negative absolute value for the heap memory, calculating the heap size as (<span class="tc-italic">[total allocated container resources] - [XMib]</span>).</li>
             <li>A percentage of the Docker container.</li>
         </ul>
-        <p>The following Helm command allocates the amount of memory for both the Docker container and for the on-heap memory as an absolute value:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=256m</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install test insightedge --set pu.resources.limits.memory=512Mi,pu.java.heap=256m</code></pre>
-        <p>The following Helm commands allocates the amount of memory for the Docker container, and sets aside a specific amount of memory for the container to use. The rest of the memory is available to the Java heap.</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=limit-150m</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install test insightedge --set pu.resources.limits.memory=512Mi,pu.java.heap=limit-150m</code></pre>
+        <p>The following Helm command allocates the amount of memory for both the Docker container and for the on-heap memory as an absolute value:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=256m</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm install test insightedge --set pu.resources.limits.memory=512Mi,pu.java.heap=256m </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2">
+                        <p><pre><code>helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=256m</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <p>The following Helm commands allocates the amount of memory for the Docker container, and sets aside a specific amount of memory for the container to use. The rest of the memory is available to the Java heap.</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=limit-150m</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm install test insightedge --set pu.resources.limits.memory=512Mi,pu.java.heap=limit-150m </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2">
+                        <p><pre><code>helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=limit-150m</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
         <p>You can define the maximum size of the Docker container as an absolute value, and the maximum on-heap memory allocation for the Java running inside the Docker container as a percentage. If you use this approach, make sure you leave enough memory for the Java.</p>
-        <p>The following Helm command sets an absolute value for the Docker container, and defines the maximum Java on-heap memory as a percentage of the container memory:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=256Mi,pu.java.heap=75%</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install test insightedge --set pu.resources.limits.memory=256Mi,pu.java.heap=75%</code></pre>
+        <p>The following Helm command sets an absolute value for the Docker container, and defines the maximum Java on-heap memory as a percentage of the container memory:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge --name test --set pu.resources.limits.memory=256Mi,pu.java.heap=75%</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm install test insightedge --set pu.resources.limits.memory=256Mi,pu.java.heap=75% </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2">
+                        <p><pre><code>helm install insightedge --name test --set pu.resources.limits.memory=256Mi,pu.java.heap=75%</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
         <h2>Overriding the <MadCap:variable name="General.ProductNameXAP" /> Service Properties</h2>
         <p>It is recommended to define the service properties in the pu.xml as placeholders (as described in the Processing Unit <a href="../dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit">Deployment Properties</a> topic), so you can override these properties using the Helm chart.</p>
         <p>After defining the properties as placeholders, use the <code>key1=value1;key2=value2</code> format to pass the override values to the Helm chart using either the <code>--set insightedge-pu.properties=&lt;your key-value pairs&gt;</code> command, or using a custom YAML file.</p>
@@ -158,7 +242,35 @@
         <p MadCap:conditions="Version.15-2-born">Depending on the workload in your system, you may want more control over which node a service (pod) resides on. This can help ensure that a service runs on a machine that is configured for tiered storage (attached to an SSD, for example), or that pods from different services that communicate frequently with the same availability zone are co-located. </p>
         <p MadCap:conditions="Version.15-2-born">
             <MadCap:conditionalText MadCap:conditions="Version.15-2-born">A node pool is a group of machines (nodes) in a cluster that all have the same configuration. When you define a service, you can deploy the associated pod to a specific node pool by setting the nodeSelector, which means that the service will only be deployed on a node from that node pool. </MadCap:conditionalText>You can specify which node pools to access using the following Helm commands.</p>
-        <p MadCap:conditions="Version.15-2-born">To configure a management pod with a specific node pool for MemoryXtend:</p><pre MadCap:conditions="Version.15-2-born,NewSet.Ask RnD"><code class="language-bash">helm install insightedge --name demo --set manager.nodeSelector.enabled=true,manager.nodeSelector.selector="disktype: ssd"</code></pre>
-        <p MadCap:conditions="Version.15-2-born">To configure a data pod with a specific node pool for MemoryXtend:</p><pre MadCap:conditions="Version.15-2-born,NewSet.Ask RnD"><code class="language-bash">helm install insightedge --name demo --set pu.nodeSelector.enabled=true,pu.nodeSelector.selector="disktype: ssd"</code></pre>
+        <p MadCap:conditions="Version.15-2-born">To configure a management pod with a specific node pool for MemoryXtend:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge --name demo --set manager.nodeSelector.enabled=true,manager.nodeSelector.selector="disktype: ssd"</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm install demo insightedge --set manager.nodeSelector.enabled=true,manager.nodeSelector.selector="disktype: ssd" </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2">
+                        <p><pre><code>helm install insightedge --name demo --set manager.nodeSelector.enabled=true,manager.nodeSelector.selector="disktype: ssd"</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <p MadCap:conditions="Version.15-2-born">To configure a data pod with a specific node pool for MemoryXtend:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge --name demo --set pu.nodeSelector.enabled=true,pu.nodeSelector.selector="disktype: ssd"</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm install demo insightedge --set pu.nodeSelector.enabled=true,pu.nodeSelector.selector="disktype: ssd"</code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2">
+                        <p><pre><code>helm install insightedge --name demo --set pu.nodeSelector.enabled=true,pu.nodeSelector.selector="disktype: ssd"</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
     </body>
 </html>
