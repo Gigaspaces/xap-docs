@@ -96,22 +96,31 @@
                 </p>
                 <p>&#160;</p>
             </li>
-            <li>Repeat step 2 for the second geographical location.</li>
+            <li>Repeat step 2 for the second geographical location, using for example name of <code>germanymanager</code> and namespace of <code>gigaspaces-germany</code>.</li>
         </ol>
         <div class="tc-admon-note">
-            <p>To check the status of the host and services (to ensure that the Managers have been installed properly), use the following command:</p><code class="language-bash">kubectl get all</code>
+            <p>To check the status of the host and services (to ensure that the Managers have been installed properly), use the following commands:</p><code class="language-bash">kubectl get services -n gigaspaces-us</code>
+            <p><code class="language-bash">kubectl get services -n gigaspaces-germany</code>
+            </p>
+            <p>An example of the kubectl output is shown below:</p>
+            <p>
+                <img src="../Resources/Static/attachment_files/kubectl get services example.jpg" />
+            </p>
         </div>
         <h2>Installing the <MadCap:variable name="General.ProductNameXAP" /> Space Service</h2>
         <p>The next step is to install a Space service (Processing Unit) for each geographical site, which is defined in the service JAR as described in <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref>. It is important to verify that all of the WAN gateway-related properties have been configured correctly for each geographical location. For example, see the following property set for the U.S. cluster.
 			
-			</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="usSpace" gateway-targets="gatewayTargets"/&gt;
+			</p>
+        <div class="tc-admon-note">
+            <p>For example configurations, see <a href="https://github.com/Gigaspaces/solution-hub/tree/master/wan-gateway-kubernetes">https://github.com/Gigaspaces/solution-hub/tree/master/wan-gateway-kubernetes</a>.</p>
+        </div><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="usSpace" gateway-targets="gatewayTargets"/&gt;
     &lt;os-gateway:targets id="gatewayTargets"
       local-gateway-name="us" bulk-size="1000"
       max-redo-log-capacity="1000000"&gt;
       &lt;os-gateway:target name="germany" /&gt;
     &lt;/os-gateway:targets&gt;</code> </pre>
         <p>For more information about defining the service JAR, refer to <MadCap:xref href="../dev-java/multi-site-replication-overview.html#configuring-a-space-with-gateway-targets">Configuring a Space With Gateway Targets</MadCap:xref>.</p>
-        <p>Installing the WAN Gateway Service</p>
+        <h2>Installing the WAN Gateway Service</h2>
         <p>Before you install the Helm chart for the <MadCap:variable name="General.ProductNameXAP" /> WAN gateway, you need to update it with the details that define the zone and access points (public IP&#160;addresses for the Space services), so that the delegator and sink are able to communicate and replicate data across the network.</p>
         <p class="tc-todo">To configure the WAN&#160;gateway Helm chart:</p>
         <ol>
@@ -121,10 +130,31 @@
 -Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174
 -Dcom.gigaspaces.start.httpPort=9713
 -Dcom.gigaspaces.system.registryPort=10298</code></pre>
+                <p>After updating the JAR&#160;with the Space public IP&#160;addresses for both clusters, you can deploy the WAN&#160;gateways, which also must have the LRMI enabled. For example, type the following command to deploy the WAN gateway for the U.S. site.</p>
+                <p>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code>helm install wangateway-us insightedge-pu --set manager.name=usmanager,resourceUrl=&lt;path to WAN gateway pu JAR&gt;,service.lrmi.enabled=true</code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><pre><code>helm install insightedge-pu --name wangateway-us --set manager.name=usmanager,resourceUrl=&lt;path to WAN gateway pu JAR&gt;,service.lrmi.enabled=true</code></pre>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                    <div title="Helm 2" MadCap:conditions="Version.15-5-died"><pre><code>helm install insightedge-pu --name wangateway-us --set manager.name=usmanager,resourceUrl=&lt;path to WAN gateway pu JAR&gt;,service.lrmi.enabled=true</code></pre>
+                    </div>
+                </p>
             </li>
             <li>
-                <p>Configure the properties for the WAN&#160;gateway in the JAR&#160;file, which override the property placeholders under the <code>gatewayLookups</code> section of the Helm chart. This host and discovery port are the host and ports exposed by Kubernetes in the Helm manager install.
-				For example, to configure the U.S. properties, you can set the following. </p><pre><code>local-gateway-name=us
+                <p>Configure the properties for the WAN&#160;gateway in the JAR&#160;file, which override the property placeholders under the <code>gatewayLookups</code> section of the Helm chart. 
+				For example, to configure the U.S. properties, you can set the following. </p>
+                <div class="tc-admon-important">
+                    <p>The host and discovery port are the host and ports exposed by Kubernetes in the Helm manager install.
+			</p>
+                </div><pre><code>local-gateway-name=us
 local-spaceUrl=jini://*/*/usSpace
 local-lookup-host=&lt;us-host&gt;
 local-lookup-port=4174
