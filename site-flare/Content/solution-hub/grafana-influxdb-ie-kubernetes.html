@@ -199,8 +199,21 @@ sudo docker image ls
                 <ul>
                     <li>Download the Helm charts to your local machine. The following command fetches the InsightEdge charts and extracts them:
 <br /></li>
-                </ul><pre><code>helm fetch gigaspaces/insightedge --version=14.0.1 --untar
-</code></pre>
+                </ul>
+                <div><pre MadCap:conditions="Version.15-5-died"><code>helm fetch gigaspaces/insightedge --version=14.0.1 --untar</code></pre>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code>helm pull gigaspaces/insightedge --version=14.0.1 --untar </code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><pre><code>helm fetch gigaspaces/insightedge --version=14.0.1 --untar</code></pre>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                </div>
             </li>
             <li>
                 <p>To instruct Helm to install InsightEdge using the custom Docker image, modify the following property in the <code>insightedge/charts/insightedge-pu/values.yaml</code> file, where &lt;username&gt; is your Docker Hub account:</p><pre><code>repository:

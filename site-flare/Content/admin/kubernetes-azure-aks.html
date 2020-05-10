@@ -113,11 +113,18 @@ subjects:
         </div>
         <ol>
             <li>
-                <p>Type the following command to add a basic Tiller deployment to the AKS cluster:</p><pre MadCap:conditions="NewSet.Ask RnD"><code>helm init --service-account tiller</code></pre>
-                <p>The output should show all the artifacts that are created for Tiller, the URLs for the stable repo and local repo, and confirm that HELM_HOME has been configured. You should also see the following confirmation message.</p>
-                <p>
+                <p MadCap:conditions="Version.15-5-died">Type the following command to add a basic Tiller deployment to the AKS cluster:</p><pre MadCap:conditions="NewSet.Ask RnD"><code>helm init --service-account tiller</code></pre>
+                <p MadCap:conditions="Version.15-5-died">The output should show all the artifacts that are created for Tiller, the URLs for the stable repo and local repo, and confirm that HELM_HOME has been configured. You should also see the following confirmation message.</p>
+                <p MadCap:conditions="Version.15-5-died">
                     <img src="../Resources/Static/attachment_files/kubernetes/tiller-install-aks.png" class="tc-picture100" />
                 </p>
+                <li MadCap:conditions="Version.15-5-born">
+                    <p>For Helm 2, type the following command to add a basic Tiller deployment to the AKS cluster:</p><pre MadCap:conditions="NewSet.Ask RnD"><code>helm init --service-account tiller</code></pre>
+                    <p>The output should show all the artifacts that are created for Tiller, the URLs for the stable repo and local repo, and confirm that HELM_HOME has been configured. You should also see the following confirmation message.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/kubernetes/tiller-install-aks.png" class="tc-picture100" />
+                    </p>
+                </li>
             </li>
             <li>Verify that Helm is running by typing <code>helm search</code> at the prompt. This should generate a list of all the contents of the stable repo with their details.</li>
         </ol>

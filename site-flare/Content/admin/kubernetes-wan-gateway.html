@@ -28,24 +28,10 @@
             </p>
         </div>
         <h2>Initializing Helm</h2>
-        <p>Type the following command to initialize Helm on your machine:</p>
-        <p>
-            <p MadCap:conditions="Version.15-5-born">
-                <div class="easyui-tabs" plain="true">
-                    <div title="Helm 3">
-                        <p>(Code/instructions here for Helm 3)</p>
-                    </div>
-                    <div title="Helm 2">
-                        <p><code class="language-bash">helm init --service-account tiller</code>
-                        </p>
-                    </div>
-                </div>
-            </p>
-            <div title="Helm 2" MadCap:conditions="Version.15-5-died">
-                <p><code class="language-bash">helm init --service-account tiller</code>
-                </p>
-            </div>
-        </p>
+        <p class="tc-todo" MadCap:conditions="Version.15-5-died">To deploy the Helm Tiller service, type the following command:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm init --service-account tiller</code></pre>
+        <div MadCap:conditions="Version.15-5-born">
+            <p class="tc-todo">For Helm 2, to deploy the Helm Tiller service, type the following command:</p><pre><code class="language-bash">helm init --service-account tiller</code></pre>
+        </div>
         <div class="tc-admon-note">
             <p>Helm must be installed before you download the <MadCap:variable name="General.ProductNameXAP" /> Helm chart.</p>
         </div>
@@ -60,10 +46,13 @@
                     <p MadCap:conditions="Version.15-5-born">
                         <div class="easyui-tabs" plain="true">
                             <div title="Helm 3">
-                                <p>(Code/instructions here for Helm 3)</p>
+                                <div title="Helm 2">
+                                    <p><pre><code class="language-bash">helm pull gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-long" /> --untar </code></pre>
+                                    </p>
+                                </div>
                             </div>
                             <div title="Helm 2">
-                                <p><code class="language-bash"><code class="language-bash">helm fetch gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-long" /> --untar </code></code>
+                                <p><pre><code class="language-bash">helm fetch gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-long"></MadCap:variable> --untar </code></pre>
                                 </p>
                             </div>
                         </div>

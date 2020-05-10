@@ -73,15 +73,30 @@
         </div>
         <h3>Deploying the Helm Service</h3>
         <p>To deploy the Helm Tiller service with access to manage resources in your cluster, you need to create a service account for Tiller to use. To do this, create a configuration file, apply the configuration as shown in the <a href="https://github.com/helm/helm/blob/master/docs/rbac.md" target="_blank">Service account with cluster-admin role</a> Helm example, and then initialize it.</p>
-        <p class="tc-todo">To deploy the Helm Tiller service:</p>
-        <ul>
-            <li>Type the following command:</li>
-        </ul><pre MadCap:conditions="NewSet.Ask RnD"><code class="language-bash">helm init --service-account tiller</code></pre>
+        <p class="tc-todo" MadCap:conditions="Version.15-5-died">To deploy the Helm Tiller service, type the following command:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm init --service-account tiller</code></pre>
+        <div MadCap:conditions="Version.15-5-born">
+            <p class="tc-todo">For Helm 2, to deploy the Helm Tiller service, type the following command:</p><pre><code class="language-bash">helm init --service-account tiller</code></pre>
+        </div>
+        <p>&#160;</p>
         <h3>Deploying KubeGrid</h3>
         <p class="tc-todo">To deploy KubeGrid and the <MadCap:variable name="General.ProductNameIE" /> demo:</p>
         <ol>
             <li>
-                <p>Type the following command to access the <MadCap:variable name="General.CompanyName" /> Helm charts and unpack them locally to a folder named <code>insightedge</code>:</p><pre MadCap:conditions="NewSet.Ask RnD"><code class="language-bash">helm fetch gigaspaces/insightedge --untar</code></pre>
+                <p>Type the following command to access the <MadCap:variable name="General.CompanyName" /> Helm charts and unpack them locally to a folder named <code>insightedge</code>:</p>
+                <div><pre MadCap:conditions="Version.15-5-died"><code>helm fetch gigaspaces/insightedge --untar</code></pre>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code>helm pull gigaspaces/insightedge --untar </code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><pre><code>helm fetch gigaspaces/insightedge --untar</code></pre>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                </div>
             </li>
             <li>After adding the <MadCap:variable name="General.CompanyName" /> Helm charts, type the following command to deploy the <MadCap:variable name="General.ProductNameIE" /> demo on Amazon EKS:<pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge --name demo</code></pre><p MadCap:conditions="Version.15-5-born"><div class="easyui-tabs" plain="true"><div title="Helm 3"><p><pre><code>helm install demo insightedge</code></pre></p></div><div title="Helm 2"><p><pre><code>helm install insightedge --name demo</code></pre></p></div></div></p></li>
         </ol>

@@ -48,15 +48,46 @@ Moreover, since Helm is open source, there are many community charts available w
             <li>Unpack the required Helm chart(s) in a local folder</li>
         </ul>
         <h3><a name="adding-a-helm-repo-to-the-repo-list"></a>Adding a Helm Repo to the Repo List</h3>
-        <p>You can point to the GigaSpaces Helm repo, so that Helm can locate the <code class="language-bash">xap </code>and <code>insightedge</code> charts for installation:</p><pre MadCap:conditions="Default.ReleasedVersions,NewSet.Ask RnD"><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts<![CDATA[
-]]></code></pre><pre MadCap:conditions="Version.ea-only"><code class="language-bash">helm repo add gigaspaces-ea https://resources.gigaspaces.com/helm-charts-ea</code></pre>
-        <p>After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. For example, to install <MadCap:variable name="General.ProductNameIE" />, use the following command:</p><pre MadCap:conditions="Default.ReleasedVersions,NewSet.Ask RnD" style="background-color: #00ffff;"><code class="language-bash">helm install gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack" /> --name demo
-</code></pre><pre MadCap:conditions="Version.ea-only,NewSet.Ask RnD" style="background-color: #00ffff;"><code class="language-bash">helm install gigaspaces-ea/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack" /> --name demo
-</code></pre>
+        <p>You can point to the GigaSpaces Helm repo, so that Helm can locate the <code class="language-bash">xap </code>and <code>insightedge</code> charts for installation:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts</code></pre>
+        <p>After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. For example, to install <MadCap:variable name="General.ProductNameIE" />, use the following command:</p>
+        <p>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><code class="language-bash">helm install demo gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack" /></code>
+                        </p>
+                    </div>
+                    <div title="Helm 2">
+                        <p><code class="language-bash">helm install gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack" /> --name demo</code>
+                        </p>
+                    </div>
+                </div>
+            </p>
+            <div title="Helm 2" MadCap:conditions="Version.15-5-died">
+                <p><code class="language-bash">helm install gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack" /> --name demo </code>
+                </p>
+            </div>
+        </p>
         <h3><a name="fetching-the-gigaspaces-helm-charts-from-the-gigaspaces-repository"></a>Fetching the GigaSpaces Helm Charts from the GigaSpaces Repository</h3>
-        <p>Another option is to fetch the GigaSpaces Helm charts that you need and unpack them locally, so you don’t have to repeat the repo name and package version in each command (which has the added benefit of making the commands shorter). For example, if you fetch and unpack the Helm chart using the following command:</p><pre MadCap:conditions="Default.ReleasedVersions,NewSet.Ask RnD"><code class="language-bash">helm fetch gigaspaces/insightedge --version=[%=Versions.helm-version%] --untar
-</code></pre><pre MadCap:conditions="Version.ea-only,NewSet.Ask RnD"><code class="language-bash">helm fetch gigaspaces/insightedge --version=[%=Versions.helm-version%] --untar
-</code></pre>
+        <p>Another option is to fetch the GigaSpaces Helm charts that you need and unpack them locally, so you don’t have to repeat the repo name and package version in each command (which has the added benefit of making the commands shorter). For example, if you <MadCap:conditionalText MadCap:conditions="Version.15-5-born">fetch (Helm 2) or pull (Helm 3)</MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.15-5-died">fetch </MadCap:conditionalText>and unpack the Helm chart using the following command:</p>
+        <p>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><code class="language-bash">helm pull gigaspaces/insightedge --version=[%=Versions.helm-version%] --untar</code>
+                        </p>
+                    </div>
+                    <div title="Helm 2">
+                        <p><code class="language-bash">helm fetch gigaspaces/insightedge --version=[%=Versions.helm-version%] --untar</code>
+                        </p>
+                    </div>
+                </div>
+            </p>
+            <div title="Helm 2" MadCap:conditions="Version.15-5-died">
+                <p><code class="language-bash">helm fetch gigaspaces/insightedge --version=[%=Versions.helm-version%] --untar </code>
+                </p>
+            </div>
+        </p>
         <div class="tc-admon-note">
             <p>You must fetch every chart that you will be using (for example xap, xap-pu and xap-manager) in your GigaSpaces application environment.</p>
         </div>
@@ -127,19 +158,34 @@ Moreover, since Helm is open source, there are many community charts available w
         <p>You can monitor the <code>hello</code> cluster you deployed using any of the following administration tools.</p>
         <ul>
             <li>Helm: Run the following command to print the status of the "hello' release in the command window.</li>
-        </ul><pre><code class="language-bash">helm status hello
-</code></pre>
+        </ul><pre><code class="language-bash">helm status hello</code></pre>
         <ul>
             <li>Kubernetes dashboard: run the following command to open a dashboard in your browser, where you can see all the Pods and services by clicking the various tabs. For example, if you're using minikube:</li>
-        </ul><pre><code class="language-bash">minikube dashboard
-</code></pre>
+        </ul><pre><code class="language-bash">minikube dashboard</code></pre>
         <ul>
             <li>Kubectl: run the following command to print the name, description, and status of the Pods in the command window. A list of events is also printed, which can be used for troubleshooting purposes. For example, if you detected a problem in one of the Pods, you can see the Pod termination reason and exit code.</li>
-        </ul><pre><code class="language-bash">kubectl describe pod
-</code></pre>
+        </ul><pre><code class="language-bash">kubectl describe pod</code></pre>
         <h2><a name="deleting-a-data-grid-from-the-kubernetes-environment"></a>Deleting a Data Grid from the Kubernetes Environment</h2>
-        <p>To delete the <code>hello</code> Space cluster, use the following Helm command. It removes the release, but leaves the logs and data so you can inspect them at a future time. This command will remove both the Platform Manager and the Space.</p><pre MadCap:conditions="NewSet.Ask RnD" style="background-color: #00ffff;"><code class="language-bash">helm del hello</code></pre>
-        <p>If you want to remove the release and delete all the <code>hello</code> release data from the server, add the <code>--purge</code> option.</p>
+        <p>To delete the <code>hello</code> Space cluster, use the following Helm command. It removes the release, but leaves the logs and data so you can inspect them at a future time. This command will remove both the Platform Manager and the Space.</p>
+        <p>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><code class="language-bash">helm del hello --keep-history</code>
+                        </p>
+                    </div>
+                    <div title="Helm 2">
+                        <p><code class="language-bash">helm del hello</code>
+                        </p>
+                    </div>
+                </div>
+            </p>
+            <div title="Helm 2" MadCap:conditions="Version.15-5-died">
+                <p><code class="language-bash">helm del hello </code>
+                </p>
+            </div>
+        </p>
+        <p>If you want to remove the release and delete all the <code>hello</code> release data from the server, use the following command:</p>
         <p>
             <p MadCap:conditions="Version.15-5-born">
                 <div class="easyui-tabs" plain="true">
@@ -148,13 +194,13 @@ Moreover, since Helm is open source, there are many community charts available w
                         </p>
                     </div>
                     <div title="Helm 2">
-                        <p><code class="language-bash">helm del --purge hello</code>
+                        <p><code class="language-bash">helm del hello --purge</code>
                         </p>
                     </div>
                 </div>
             </p>
             <div title="Helm 2" MadCap:conditions="Version.15-5-died">
-                <p><code class="language-bash">helm del --purge hello </code>
+                <p><code class="language-bash">helm del hello --purge</code>
                 </p>
             </div>
         </p>
