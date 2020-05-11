@@ -34,6 +34,7 @@ if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 
 if not defined DOCS_BUCKET echo Publishing skipped - destination not defined && goto end
 
+if %DOCS_BUILD_PROFILE%==default echo Skipping noindex generation - profile=%DOCS_BUILD_PROFILE% && goto publish
 echo *** Add noindex element to output ***
 call jarvis.bat generate-noindex %~dp0
 
