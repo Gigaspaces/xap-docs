@@ -7,14 +7,33 @@
         <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.x.<MadCap:conditionalText MadCap:conditions="Version.ea-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
         <h1 MadCap:conditions="Version.15-5-only">15.5</h1>
         <h2 MadCap:conditions="Version.15-5-only">Features and Enhancements</h2>
+        <ul>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14095,">
+                </MadCap:snippetText>: Support helm 3</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14081,">
+                </MadCap:snippetText>: GSCTL hybrid support</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14094,">
+                </MadCap:snippetText>: Upgrade Zookeeper version to 3.5.7</li>
+        </ul>
         <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14085," />: Expose instances log in Ops Manager</li>
             <li MadCap:conditions="Version.15-5-only">
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14077," />: Improved performance using getLastStatistics instead of getStatistics</li>
         </ul>
         <h2 MadCap:conditions="Version.15-5-only">Resolved Issues</h2>
-        <ul MadCap:conditions="Version.15-5-only">
+        <ul>
             <li>
-                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14085," />: Expose instances log in Ops Manager</li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14096," />: Failing validation phase couldn't destroy the cluster and its dynamic resources on AWS mode</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14093," />: A timeout exception is raised while waiting for services to deploy on Import command</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14092," />: Export doesn't backup newly added instances since create</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
             <li MadCap:conditions="Version.15-5-only">
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14097," />: Error when exporting a cluster with a reallocated resource</li>
             <li MadCap:conditions="Version.15-5-only">
