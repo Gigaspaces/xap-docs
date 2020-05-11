@@ -10,11 +10,16 @@ if NOT %DOCS_PUBLISH%==none (
 )
 
 if %DOCS_PUBLISH%==production (
+  set DOCS_BUILD_PROFILE=full
+) else (
+  if "%2"=="" (set DOCS_BUILD_PROFILE=default) else (set DOCS_BUILD_PROFILE=%2)
+)
+if %DOCS_PUBLISH%==production (
   set DOCS_BUILD_GOALS=all
 ) else (
-  if "%2"=="" (set DOCS_BUILD_GOALS=flare) else (set DOCS_BUILD_GOALS=%2)
+  if "%3"=="" (set DOCS_BUILD_GOALS=flare) else (set DOCS_BUILD_GOALS=%3)
 )
-echo DOCS_BUILD_GOALS=%DOCS_BUILD_GOALS%, DOCS_PUBLISH=%DOCS_PUBLISH%
+echo DOCS_BUILD_PROFILE=%DOCS_BUILD_PROFILE%, DOCS_BUILD_GOALS=%DOCS_BUILD_GOALS%, DOCS_PUBLISH=%DOCS_PUBLISH%
 
 if %DOCS_BUILD_GOALS%==none (
   echo *** Skipping build - goals=none ***
@@ -62,7 +67,7 @@ if not defined GS_FLARE_BIN for /f "delims=" %%F in ('dir /b /s "%GS_FLARE_HOME%
 if not defined GS_FLARE_BIN echo Aborting - Flare not found under %GS_FLARE_HOME% && exit /b 1
 if not exist "%GS_FLARE_BIN%" echo Aborting - Flare not found at %GS_FLARE_BIN% && exit /b 1
 echo GS_FLARE_BIN=%GS_FLARE_BIN%
-"%GS_FLARE_BIN%" -project site-flare\XAP-Import-Test-1.flprj -batch "InsightEdge-batch"
+"%GS_FLARE_BIN%" -project site-flare\XAP-Import-Test-1.flprj -batch "InsightEdge-batch-%DOCS_BUILD_PROFILE%"
 echo build-flare completed with errorlevel=%ERRORLEVEL%
 rem Ignore errorlevel == 7 (missing link warning)
 if %ERRORLEVEL%==7 exit /b 0
