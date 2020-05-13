@@ -12,7 +12,7 @@
             <li>
                 <p>SLA enforcement: The <a href="../overview/the-runtime-environment.html#gsm">GigaSpaces Manager</a> is also responsible for enforcing your processing unit's <a href="../admin/the-sla-overview.html">Service Level Agreement</a>, or SLA. At deployment time, it will create a specified number of processing unit instances (based on the SLA) and provision them to the running containers while enforcing all the <a href="../admin/the-sla-overview.html">deployment requirements</a>, such as memory and CPU utilization, or specific deployment zones. At runtime, it will monitor the processing unit instances, and if any of them fail to fulfill the SLA or become unavailable it will re-instantiate the processing unit automatically on another container.</p>
             </li>
-            <li>
+            <li MadCap:conditions="Version.15-2-died">
                 <p>Automatic machine provisioning and dynamic SLA enforcement: Elastic Processing Units are a new type of <a href="the-processing-unit-overview.html">Processing Unit</a>. Elastic PUs provision machines and start <a href="../overview/the-runtime-environment.html#gsc">GigaSpaces Containers</a> automatically based on the processing units' Memory and CPU requirements. When the available machines do not meet the requirements, the manager provisions new machines and balances the Processing Unit deployment across machines. This also occurs when a machine fails, or when the requirements changes while the application is running.</p>
             </li>
         </ul>
@@ -77,26 +77,27 @@ ProcessingUnit pu = admin.getGridServiceManagers().waitForAtLeastOne().deploy(
                 </ul>
             </div>
         </div>
-        <h1><a name="elastic-processing-unit-deployment-using-the-admin-api"></a>Elastic Processing Unit Deployment using the Admin API</h1>
-        <p>When deploying a partitioned Processing Unit or a partitioned Space it is recommended to use the new <a href="elastic-processing-unit-overview.html">Elastic Processing Unit</a>. This can be done via the <a href="administration-and-monitoring-overview.html">Admin API</a>. The following example shows how to deploy a processing unit as an Elastic PU.</p>
-        <h2><a name="step-1-start-a-gigaspaces-agent-on-each-machine"></a>Step 1 - Start a GigaSpaces agent on each machine:</h2>
-        <p>You should have <span class="tc-bold">one GigaSpaces agent</span> running the ESM. No GSCs should be started.</p>
-        <div class="easyui-tabs" plain="true" data-options="">
-            <div title="  Windows " style="padding:10px"><pre><code class="language-java">rem Agent deployment that potentially can start management processes
+        <div MadCap:conditions="Version.15-2-died">
+            <h1><a name="elastic-processing-unit-deployment-using-the-admin-api"></a>Elastic Processing Unit Deployment using the Admin API</h1>
+            <p>When deploying a partitioned Processing Unit or a partitioned Space it is recommended to use the new <a href="elastic-processing-unit-overview.html">Elastic Processing Unit</a>. This can be done via the <a href="administration-and-monitoring-overview.html">Admin API</a>. The following example shows how to deploy a processing unit as an Elastic PU.</p>
+            <h2><a name="step-1-start-a-gigaspaces-agent-on-each-machine"></a>Step 1 - Start a GigaSpaces agent on each machine:</h2>
+            <p>You should have <span class="tc-bold">one GigaSpaces agent</span> running the ESM. No GSCs should be started.</p>
+            <div class="easyui-tabs" plain="true" data-options="">
+                <div title="  Windows " style="padding:10px"><pre><code class="language-java">rem Agent deployment that potentially can start management processes
 set <MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS=myGroup
 set <MadCap:variable name="General.EnvVariablePrefix" />_HOME=d:\gigaspaces
 start cmd /c "%<MadCap:variable name="General.EnvVariablePrefix" />_HOME%\bin\gs-agent.bat --global.esm=1 --global.gsm=2 --global.lus=2"
 </code></pre>
-            </div>
-            <div title="  Linux " style="padding:10px"><pre><code class="language-java"># Agent deployment that potentially can start management processes
+                </div>
+                <div title="  Linux " style="padding:10px"><pre><code class="language-java"># Agent deployment that potentially can start management processes
 
 export <MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS=myGroup
 export <MadCap:variable name="General.EnvVariablePrefix" />_HOME=~/gigaspaces
 nohup <MadCap:variable name="General.HomePath" />/bin/gs-agent.sh --global.esm=1 --global.gsm=2 --global.lus=2 &gt; /dev/null 2&gt;&amp;1 &amp;
 </code></pre>
+                </div>
             </div>
-        </div>
-        <h2><a name="step-2-run-the-deployment-code"></a>Step 2 - Run the deployment code:</h2><pre><code class="language-java">// Wait for the discovery of the managers and at least one agent
+            <h2><a name="step-2-run-the-deployment-code"></a>Step 2 - Run the deployment code:</h2><pre><code class="language-java">// Wait for the discovery of the managers and at least one agent
 Admin admin = new AdminFactory().addGroup("myGroup").create();
 admin.getGridServiceAgents().waitForAtLeastOne();
 admin.getElasticServiceManagers().waitForAtLeastOne();
@@ -122,7 +123,7 @@ ProcessingUnit pu = gsm.deploy(
 // Wait until the deployment is complete.
 pu.waitForSpace().waitFor(pu.getTotalNumberOfInstances());
 </code></pre>
-        <h2><a name="step-3-scale-the-pu-by-increasing-the-memory-and-cpu-capacity"></a>Step 3 - Scale the PU by increasing the memory and CPU capacity:</h2><pre><code class="language-java">// Scale in runtime to the desired memory and CPU capacity
+            <h2><a name="step-3-scale-the-pu-by-increasing-the-memory-and-cpu-capacity"></a>Step 3 - Scale the PU by increasing the memory and CPU capacity:</h2><pre><code class="language-java">// Scale in runtime to the desired memory and CPU capacity
 pu.scale(
     new ManualCapacityScaleConfigurer()
        .memoryCapacity(256,MemoryUnit.GIGABYTES)
@@ -130,7 +131,7 @@ pu.scale(
        .create()
 );
 </code></pre>
-        <h2><a name="step-4-to-undeploy-the-processing-unit-run-the-following"></a>Step 4 - To undeploy the Processing Unit run the following:</h2><pre><code class="language-java">// Wait up to 10 seconds for the processing unit to be discovered
+            <h2><a name="step-4-to-undeploy-the-processing-unit-run-the-following"></a>Step 4 - To undeploy the Processing Unit run the following:</h2><pre><code class="language-java">// Wait up to 10 seconds for the processing unit to be discovered
 ProcessingUnit pu = admin.getProcessingUnits()
    .waitFor("myPU",10,TimeUnit.SECONDS);
 if (pu != null) {
@@ -140,7 +141,8 @@ if (pu != null) {
    pu.undeployAndWait(3, TimeUnit.MINUTES);
 }
 </code></pre>
-        <p>Since we are un deploying an Elastic Processing Unit, this will also terminate all the GSCs hosting the PU.</p>
+            <p>Since we are un deploying an Elastic Processing Unit, this will also terminate all the GSCs hosting the PU.</p>
+        </div>
         <h1><a name="hot-deploy"></a>Hot Deploy</h1>
         <p>To enable business continuity in a better manner, having system upgrade without any downtime, here is a simple procedure you should follow when you would like to perform a hot deploy, upgrading a PU that includes both a business logic and a collocated embedded space:</p>
         <ol>
