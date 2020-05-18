@@ -33,10 +33,10 @@ For example, a user may have a <code>Grid Authority</code> of type <code>Provisi
             </tbody>
         </table>
         <p>In distributed systems, it may be confusing as to which service is performing the authorization. The GSM is responsible for deploying, un-deploying, scaling, relocating, restarting and destroying of processing units. The GSA (if available) is responsible for starting, terminating restarting of GSC/GSM/LUS. The GSC on the other hand, mainly delegates the calls to the managing GSM (e.g. relocate).</p>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Version.15-2-died">
             <p>When deploying an <a href="../dev-java/elastic-processing-unit-overview.html">elastic processing unit</a>, the <span class="tc-italic">Provision PU</span> privilege is not enough - <span class="tc-italic">Manage PU</span> and <span class="tc-italic">Manage Grid</span> are required as well, since an elastic PU requires scaling and grid management.</p>
         </div>
-        <div MadCap:conditions="Version.15-2-died">
+        <div>
             <h1><a name="monitor-authority"></a>Monitor Authority</h1>
             <p>The <span class="tc-bold">Monitor Authority</span> consists of privileges for monitoring the Grid and its Processing Units.
 Note that the monitoring is secured only by the "tooling' (CLI/UI).</p>

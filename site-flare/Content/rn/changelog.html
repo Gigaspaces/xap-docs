@@ -7,7 +7,7 @@
         <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.x.<MadCap:conditionalText MadCap:conditions="Version.ea-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
         <h1 MadCap:conditions="Version.15-5-only">15.5</h1>
         <h2 MadCap:conditions="Version.15-5-only">Features and Enhancements</h2>
-        <ul>
+        <ul MadCap:conditions="Version.15-5-only">
             <li>
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14095,">
                 </MadCap:snippetText>: Support helm 3</li>
@@ -25,7 +25,7 @@
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14077," />: Improved performance using getLastStatistics instead of getStatistics</li>
         </ul>
         <h2 MadCap:conditions="Version.15-5-only">Resolved Issues</h2>
-        <ul>
+        <ul MadCap:conditions="Version.15-5-only">
             <li>
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14096," />: Failing validation phase couldn't destroy the cluster and its dynamic resources on AWS mode</li>
             <li>
@@ -164,6 +164,9 @@
         </ul>
         <h2 MadCap:conditions="Version.15-2-only">Resolved Issues</h2>
         <ul MadCap:conditions="Version.15-2-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14101,">
+                </MadCap:snippetText>: Kafka wrong host advertised as a consul service</li>
             <li>
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14032,">
                 </MadCap:snippetText>: User gets a warning message because open source code uses deprecated hibernate.Criteria.</li>
