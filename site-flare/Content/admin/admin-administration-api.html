@@ -10,7 +10,7 @@
         <p>In order to use this feature, include the <code><MadCap:variable name="General.HomePath" />/lib/platform/service-grid/xap-admin.jar</code> file on your classpath or use maven dependencies:</p><pre><code class="language-xml">&lt;dependency&gt;
     &lt;groupId&gt;com.gigaspaces&lt;/groupId&gt;
     &lt;artifactId&gt;xap-admin&lt;/artifactId&gt;
-    &lt;version&gt;[%=Versions.maven-version%]&lt;/version&gt;
+    &lt;version&gt;[%=Versions.maven-version-MX%]&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
         <div class="tc-admon-refer">
@@ -246,7 +246,7 @@ public void space() {
     }
 </code></pre>
             </div>
-                <div MadCap:conditions="Version.15-2-died" title=" ESM " style="padding:10px"><pre><code class="language-java">    public void findStartedElasticServiceManagers() {
+            <div MadCap:conditions="Version.15-2-died" title=" ESM " style="padding:10px"><pre><code class="language-java">    public void findStartedElasticServiceManagers() {
         Admin admin = new AdminFactory().createAdmin();
 
         // wait at least for one agent
@@ -259,7 +259,7 @@ public void space() {
         }
     }
 </code></pre>
-                </div>
+            </div>
         </div>
         <div class="tc-admon-refer">
             <p>A fully running example of a <a href="/sbp/scaling-agent.html">Scaling Agent</a> is available in the Solutions &amp; Patterns section.</p>

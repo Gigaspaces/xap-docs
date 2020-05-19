@@ -18,7 +18,7 @@
         </ol>
         <h2>Setting Spark Configuration Property</h2>
         <p><MadCap:variable name="General.ProductNameIE" /> provides a Docker image designed to be used in a container runtime environment, such as Kubernetes. This Docker image is used in the examples below to demonstrate how to submit the Apache Spark <code>SparkPi</code> example and the <MadCap:variable name="General.ProductNameIE" /> <code>SaveRDD</code> example.</p>
-        <p>The following Spark configuration property <code>spark.kubernetes.container.image</code> is required when submitting Spark jobs for an <MadCap:variable name="General.ProductNameIE" /> application. Note how this configuration is applied to the examples in the <a href="#submitting-spark-jobs-with-insightedge-submit">Submitting Spark Jobs </a>section:</p><pre><code class="language-bash">--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version%]
+        <p>The following Spark configuration property <code>spark.kubernetes.container.image</code> is required when submitting Spark jobs for an <MadCap:variable name="General.ProductNameIE" /> application. Note how this configuration is applied to the examples in the <a href="#submitting-spark-jobs-with-insightedge-submit">Submitting Spark Jobs </a>section:</p><pre><code class="language-bash">--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version-MX%]
 </code></pre>
         <h2>Getting the Kubernetes Master URL</h2>
         <p>You can get the Kubernetes master URL using kubectl. Type the following command to print out the URL that will be used in the Spark and <MadCap:variable name="General.ProductNameIE" /> examples when submitting Spark jobs to the Kubernetes scheduler.</p><pre><code class="language-bash">kubectl cluster-info
@@ -58,7 +58,7 @@
 --name spark-pi \
 --class org.apache.spark.examples.SparkPi \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version%] \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version-MX%] \
 local:///opt/gigaspaces/insightedge/spark/examples/jars/spark-examples_2.11-[%=Versions.spark-version%].jar
 
 </code></pre>
@@ -78,7 +78,7 @@ local:///opt/gigaspaces/insightedge/spark/examples/jars/spark-examples_2.11-[%=V
 --name i9e-saveRdd \
 --class org.insightedge.examples.basic.SaveRdd \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version%] \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version-MX%] \
 --conf spark.insightedge.space.manager=demo \
 local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
 
@@ -128,7 +128,7 @@ $ helm install insightedge-pu --name testspace --set manager.name=testmanager</c
 --name i9e-saveRdd \
 --class org.insightedge.examples.basic.SaveRdd \
 --conf spark.kubernetes.authenticate.driver.serviceAccountName=spark \
---conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version%] \
+--conf spark.kubernetes.container.image=gigaspaces/insightedge-enterprise:[%=Versions.helm-version-MX%] \
 --conf spark.insightedge.space.name=testspace \
 --conf spark.insightedge.space.manager=testmanager \
 local:///opt/gigaspaces/insightedge/examples/jars/insightedge-examples.jar
