@@ -18,7 +18,9 @@
             <li>
                 <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Helm</a>
                 </p>
-                <MadCap:snippetBlock src="../Resources/Snippets/Content/Kubernetes/k8s-helm-version.flsnp" MadCap:conditions="NewSet.Ask RnD" />
+                <div class="tc-admon-important" MadCap:conditions="Version.15-5-died">
+                    <p>You must use Helm 2 with KubeGrid. Helm 3 contains a new chart version, which is a breaking change and is not currently supported by KubeGrid. </p>
+                </div>
             </li>
             <li>
                 <p>Kubernetes cluster (cloud, on-premise, or local via <a href="https://kubernetes.io/docs/setup/minikube/">minikube</a>)</p>
@@ -47,7 +49,7 @@ Moreover, since Helm is open source, there are many community charts available w
             <li>Add the GigaSpaces Helm chart repo to the Helm repo list</li>
             <li>Unpack the required Helm chart(s) in a local folder</li>
         </ul>
-        <h3><a name="adding-a-helm-repo-to-the-repo-list"></a>Adding a Helm Repo to the Repo List</h3>
+        <h3><a name="adding-a-helm-repo-to-the-repo-list"></a><a name="Adding_a_Helm_Repo_to_the_Repo_List"></a>Adding a Helm Repo to the Repo List</h3>
         <p>You can point to the GigaSpaces Helm repo, so that Helm can locate the <code class="language-bash">xap </code>and <code>insightedge</code> charts for installation:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts</code></pre>
         <p>After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. For example, to install <MadCap:variable name="General.ProductNameIE" />, use the following command:</p>
         <p>
@@ -91,7 +93,7 @@ Moreover, since Helm is open source, there are many community charts available w
         <div class="tc-admon-note">
             <p>You must fetch every chart that you will be using (for example xap, xap-pu and xap-manager) in your GigaSpaces application environment.</p>
         </div>
-        <p>The chart is unpacked in a local folder called insightedge, and then you can install the demo by typing:</p>
+        <p><a name="The_chart_is_unpacked"></a>The chart is unpacked in a local folder called insightedge, and then you can install the demo by typing:</p>
         <p>
             <p MadCap:conditions="Version.15-5-born">
                 <div class="easyui-tabs" plain="true">
