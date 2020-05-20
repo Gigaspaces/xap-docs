@@ -28,12 +28,12 @@
             </p>
         </div>
         <h2>Initializing Helm</h2>
+        <div class="tc-admon-note">
+            <p>Helm must be installed before you download the <MadCap:variable name="General.ProductNameXAP" /> Helm chart.</p>
+        </div>
         <p class="tc-todo" MadCap:conditions="Version.15-5-died">To deploy the Helm Tiller service, type the following command:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm init --service-account tiller</code></pre>
         <div MadCap:conditions="Version.15-5-born">
             <p class="tc-todo">For Helm 2, to deploy the Helm Tiller service, type the following command:</p><pre><code class="language-bash">helm init --service-account tiller</code></pre>
-        </div>
-        <div class="tc-admon-note">
-            <p>Helm must be installed before you download the <MadCap:variable name="General.ProductNameXAP" /> Helm chart.</p>
         </div>
         <h2>Installing the <MadCap:variable name="General.ProductNameXAP" /> Manager per Geographical Site</h2>
         <p>The Manager is always installed first, followed by the service(s) that it will manage. </p>
@@ -91,7 +91,7 @@
             <p>To check the status of the host and services (to ensure that the Managers have been installed properly), use the following commands:</p><code class="language-bash">kubectl get services -n gigaspaces-us</code>
             <p><code class="language-bash">kubectl get services -n gigaspaces-germany</code>
             </p>
-            <p>An example of the kubectl output is shown below:</p>
+            <p>An example of kubectl output is shown below:</p>
             <p>
                 <img src="../Resources/Static/attachment_files/kubectl get services example.jpg" />
             </p>
