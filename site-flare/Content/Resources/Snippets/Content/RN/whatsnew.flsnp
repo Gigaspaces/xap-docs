@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <body>
-        <h1 MadCap:conditions="Version.15-5-only">Helm 3 Support</h1>
-        <p MadCap:conditions="Version.15-5-only">In addition to existing Helm 2 support, Helm 3 support has also been added. In cases where the syntax differs between Helm 2 and Helm 3, examples are given in both formats, as shown <a href="https://docs.gigaspaces.com/[%=Versions.xap-release%]/admin/kubernetes-data-grid.html#AddingaHelmRepototheRepoList">here</a>.</p>
+        <div MadCap:conditions="Version.15-5-only">
+            <h1>Helm 3 Support</h1>
+            <p>In addition to existing Helm 2 support, Helm 3 support has been added. In cases where the syntax differs between Helm 2 and Helm 3, examples are given in both formats, as shown <a href="https://docs.gigaspaces.com/[%=Versions.xap-release%]/admin/kubernetes-data-grid.html#AddingaHelmRepototheRepoList">here</a>.</p>
+            <h1>gsctl Hybrid Support</h1>
+            <p>GigaSpaces now supports hybrid staging of server clusters in mixed on-Premise and AWS Cloud configurations. </p>
+            <p MadCap:conditions="Default.DoNotShow"><span class="tc-iconinfo">&#160;</span> For more information, see (new link).</p>
+            <h1>View Log in Ops Manager</h1>
+            <p>Logs can now be viewed directly from the Ops Manager screen. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">See an example here.</MadCap:conditionalText></p>
+        </div>
         <h1 MadCap:conditions="Version.14-0-only">Kubernetes Integration</h1>
         <p MadCap:conditions="Version.14-0-only">The InsightEdge Platform and the <MadCap:variable name="General.ProductNameXAP" /> data grid both support the Kubernetes environment. Benefits include:</p>
         <ul>
@@ -172,7 +179,10 @@
             <li MadCap:conditions="Version.15-2-only">Building a <MadCap:variable name="General.ProductNameXAP" /> <a href="../../../../solution-hub/spring-data-quick-start.html">Spring Data</a> application</li>
         </ul>
         <h1>Third-Party Product Changes</h1>
-        <p MadCap:conditions="Version.ea-only">There are currently no third-party changes or updates.</p>
+        <p MadCap:conditions="Default.DoNotShow">There are currently no third-party changes or updates.</p>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li><a href="https://zookeeper.apache.org/">Apache Zookeeper</a> has been upgraded to 3.5.7.</li>
+        </ul>
         <ul MadCap:conditions="Version.15-2-only">
             <li><a href="http://hibernate.org/" target="_blank">Hibernate</a> has been upgraded to 5.3.10</li>
         </ul>
