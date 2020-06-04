@@ -58,7 +58,8 @@
         </ul>
         <p>You can use the Azure portal to check your AKS resource group, and to verify that your cluster is up and running.</p>
         <h1>Deploying Kubernetes on the AKS Cluster</h1>
-        <p>After you set up your Azure AKS environment, you have to deploy Kubernetes on the AKS cluster by configuring kubectl to connect to the cluster, and setting up a Tiller service account (the Helm server-side, in-cluster component).</p>
+        <p MadCap:conditions="Version.15-5-died">After you set up your Azure AKS environment, you have to deploy Kubernetes on the AKS cluster by configuring kubectl to connect to the cluster, and setting up a Tiller service account (the Helm server-side, in-cluster component).</p>
+        <p MadCap:conditions="Version.15-5-born">After you set up your Azure AKS environment, you have to deploy Kubernetes on the AKS cluster by configuring kubectl to connect to the cluster, and (if you are using Helm 2) setting up a Tiller service account (the Helm server-side, in-cluster component).</p>
         <h2>Configuring Kubectl</h2>
         <p>In order to use the AKS cluster you created to host Kubernetes and KubeGrid, kubectl needs to be able to connect to the cluster. </p>
         <div class="tc-admon-note">
@@ -106,28 +107,37 @@ subjects:
                 <p>Apply the service account and role binding that you specified in the file using the following command:</p><pre><code>kubectl apply -f helm-rbac.yaml</code></pre>
             </li>
         </ol>
-        <h2>Deploying Tiller in the AKS Cluster</h2>
-        <p>The final step in setting up the environment is deploying Tiller in the cluster so you can interact directly with the Kubernetes API&#160;server to administer the Kubernetes resources.</p>
-        <div class="tc-admon-note">
-            <p>If you don't have Helm installed, follow the instructions in the <a href="https://docs.helm.sh/using_helm/#quickstart-guide" target="_blank">Helm documentation</a> to install it.</p>
+        <p>&#160;</p>
+        <div MadCap:conditions="Version.15-5-died">
+            <h1>Deploying Tiller in the AKS Cluster</h1>
+            <p>The final step in setting up the environment is deploying Tiller in the cluster so you can interact directly with the Kubernetes API&#160;server to administer the Kubernetes resources.</p>
+            <div class="tc-admon-note">
+                <p>If you don't have Helm installed, follow the instructions in the <a href="https://docs.helm.sh/using_helm/#quickstart-guide" target="_blank">Helm documentation</a> to install it.</p>
+            </div>
+            <p>Type the following command to add a basic Tiller deployment to the AKS cluster:</p><code class="language-bash">helm init --service-account tiller</code>
+            <p>The output should show all the artifacts that are created for Tiller, the URLs for the stable repo and local repo, and confirm that HELM_HOME has been configured. You should also see the following confirmation message.</p>
+            <p>
+                <img src="../Resources/Static/attachment_files/kubernetes/tiller-install-aks.png">
+                </img>
+            </p>
         </div>
-        <ol>
-            <li>
-                <p MadCap:conditions="Version.15-5-died">Type the following command to add a basic Tiller deployment to the AKS cluster:</p><pre MadCap:conditions="NewSet.Ask RnD"><code>helm init --service-account tiller</code></pre>
-                <p MadCap:conditions="Version.15-5-died">The output should show all the artifacts that are created for Tiller, the URLs for the stable repo and local repo, and confirm that HELM_HOME has been configured. You should also see the following confirmation message.</p>
-                <p MadCap:conditions="Version.15-5-died">
-                    <img src="../Resources/Static/attachment_files/kubernetes/tiller-install-aks.png" class="tc-picture100" />
-                </p>
-                <li MadCap:conditions="Version.15-5-born">
-                    <p>For Helm 2, type the following command to add a basic Tiller deployment to the AKS cluster:</p><pre MadCap:conditions="NewSet.Ask RnD"><code>helm init --service-account tiller</code></pre>
-                    <p>The output should show all the artifacts that are created for Tiller, the URLs for the stable repo and local repo, and confirm that HELM_HOME has been configured. You should also see the following confirmation message.</p>
-                    <p>
-                        <img src="../Resources/Static/attachment_files/kubernetes/tiller-install-aks.png" class="tc-picture100" />
-                    </p>
-                </li>
-            </li>
-            <li>Verify that Helm is running by typing <code>helm search</code> at the prompt. This should generate a list of all the contents of the stable repo with their details.</li>
-        </ol>
+        <div MadCap:conditions="Version.15-5-born">
+            <h1>Deploying Tiller in the AKS Cluster (Helm 2 Only)</h1>
+            <p>If you are using Helm2, the final step in setting up the environment is deploying Tiller in the cluster so you can interact directly with the Kubernetes API&#160;server to administer the Kubernetes resources.</p>
+            <div class="tc-admon-note">
+                <p>If you don't have Helm installed, follow the instructions in the <a href="https://docs.helm.sh/using_helm/#quickstart-guide" target="_blank">Helm documentation</a> to install it.</p>
+            </div>
+            <p>Type the following command to add a basic Tiller deployment to the AKS cluster:</p><code class="language-bash">helm init --service-account tiller</code>
+            <p>The output should show all the artifacts that are created for Tiller, the URLs for the stable repo and local repo, and confirm that HELM_HOME has been configured. You should also see the following confirmation message.</p>
+            <p>
+                <img src="../Resources/Static/attachment_files/kubernetes/tiller-install-aks.png">
+                </img>
+            </p>
+        </div>
+        <h2>Verify Operation</h2>
+        <p>Verify that Helm is running by typing <code>helm search</code> at the prompt. This should generate a list of all the contents of the stable repo with their details.</p>
+        <p><![CDATA[        
+        ]]></p>
         <h1>Deploying KubeGrid on Azure AKS</h1>
         <div class="tc-admon-note">
             <p>This page provides general information on how to deploy KubeGrid in a Kubernetes cluster. For detailed installation and configuration instructions, see <MadCap:xref href="kubernetes-data-grid.html">Deploying a Data Grid in Kubernetes</MadCap:xref>.</p>
