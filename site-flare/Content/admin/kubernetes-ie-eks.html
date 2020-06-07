@@ -41,7 +41,9 @@
             <li>
                 <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Helm</a>
                 </p>
-                <MadCap:snippetBlock src="../Resources/Snippets/Content/Kubernetes/k8s-helm-version.flsnp" />
+                <div class="tc-admon-important" MadCap:conditions="Version.15-5-died">
+                    <p>You must use Helm 2 with KubeGrid. Helm 3 contains a new chart version, which is a breaking change and is not currently supported by KubeGrid. </p>
+                </div>
             </li>
         </ul>
         <p>Use the following command to fetch the GigaSpaces Helm charts and unpack them locally:</p>

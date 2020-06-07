@@ -28,15 +28,15 @@
         <h2><a name="configuring-high-availability-for-the-platform-manager"></a>Configuring High Availability for the Platform Manager</h2>
         <p>When the Manager high availability property (<code>ha</code>) is set to true, Kubernetes deploys three Management Pods. You should enable the Manager high availability property so these Management Pods are deployed on different nodes.</p>
         <p>The following Helm command deploys three Management Pods (instead of one) with high availability enabled:</p>
-        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-manager --name test --set manager.ha=true,manager.antiAffinity.enabled=true</code></pre>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-manager --name test --set ha=true,antiAffinity.enabled=true</code></pre>
             <p MadCap:conditions="Version.15-5-born">
                 <div class="easyui-tabs" plain="true">
                     <div title="Helm 3">
-                        <p><pre><code>helm install test insightedge-manager --set manager.ha=true,manager.antiAffinity.enabled=true </code></pre>
+                        <p><pre><code>helm install test insightedge-manager --set ha=true,antiAffinity.enabled=true </code></pre>
                         </p>
                     </div>
                     <div title="Helm 2">
-                        <p><pre><code>helm install insightedge-manager --name test --set manager.ha=true,manager.antiAffinity.enabled=true</code></pre>
+                        <p><pre><code>helm install insightedge-manager --name test --set ha=true,antiAffinity.enabled=true</code></pre>
                         </p>
                     </div>
                 </div>

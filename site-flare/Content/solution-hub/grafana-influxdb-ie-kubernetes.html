@@ -89,7 +89,7 @@
             <li>
                 <p>In the command window, type the following:</p>
                 <p>
-                    <p MadCap:conditions="Version.15-5-born">
+                    <p MadCap:conditions="Default.DoNotShow">
                         <div class="easyui-tabs" plain="true">
                             <div title="Helm 3">
                                 <p><code class="language-bash">helm install ie-metrics stable/influxdb</code>
@@ -101,7 +101,7 @@
                             </div>
                         </div>
                     </p>
-                    <div title="Helm 2" MadCap:conditions="Version.15-5-died">
+                    <div title="Helm 2">
                         <p><code class="language-bash">helm install --name ie-metrics stable/influxdb </code>
                         </p>
                     </div>
@@ -134,7 +134,7 @@
             <li>
                 <p>In the command window, type the following:</p>
                 <p>
-                    <p MadCap:conditions="Version.15-5-born">
+                    <p MadCap:conditions="Default.DoNotShow">
                         <div class="easyui-tabs" plain="true">
                             <div title="Helm 3">
                                 <p><code class="language-bash">helm install  ie-grafana stable/grafana</code>
@@ -146,7 +146,7 @@
                             </div>
                         </div>
                     </p>
-                    <div title="Helm 2" MadCap:conditions="Version.15-5-died">
+                    <div title="Helm 2">
                         <p><code class="language-bash">helm install --name ie-grafana stable/grafana </code>
                         </p>
                     </div>
@@ -200,8 +200,8 @@ sudo docker image ls
                     <li>Download the Helm charts to your local machine. The following command fetches the InsightEdge charts and extracts them:
 <br /></li>
                 </ul>
-                <div><pre MadCap:conditions="Version.15-5-died"><code>helm fetch gigaspaces/insightedge --version=14.0.1 --untar</code></pre>
-                    <p MadCap:conditions="Version.15-5-born">
+                <div><pre><code>helm fetch gigaspaces/insightedge --version=14.0.1 --untar</code></pre>
+                    <p MadCap:conditions="Default.DoNotShow">
                         <div class="easyui-tabs" plain="true">
                             <div title="Helm 3">
                                 <p><pre><code>helm pull gigaspaces/insightedge --version=14.0.1 --untar </code></pre>
@@ -223,7 +223,7 @@ sudo docker image ls
             <li>
                 <p>Deploy InsightEdge in Kubernetes:</p>
                 <p>
-                    <p MadCap:conditions="Version.15-5-born">
+                    <p MadCap:conditions="Default.DoNotShow">
                         <div class="easyui-tabs" plain="true">
                             <div title="Helm 3">
                                 <p><code class="language-bash">helm install demo insightedge</code>
@@ -235,7 +235,7 @@ sudo docker image ls
                             </div>
                         </div>
                     </p>
-                    <div title="Helm 2" MadCap:conditions="Version.15-5-died">
+                    <div title="Helm 2">
                         <p><code class="language-bash">helm install insightedge --name demo </code>
                         </p>
                     </div>

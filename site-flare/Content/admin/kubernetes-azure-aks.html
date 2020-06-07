@@ -142,9 +142,25 @@ subjects:
         <div class="tc-admon-note">
             <p>This page provides general information on how to deploy KubeGrid in a Kubernetes cluster. For detailed installation and configuration instructions, see <MadCap:xref href="kubernetes-data-grid.html">Deploying a Data Grid in Kubernetes</MadCap:xref>.</p>
         </div>
-        <p>Type the following command to add the GigaSpaces Helm charts to the Helm repo:</p><pre><code>helm repo add gigaspaces https://resousrces.gigaspaces.com/helm-charts</code></pre>
-        <p>Type the following command to fetch the GigaSpaces Helm charts and unpack them locally:</p><pre><code>helm fetch gigaspaces/insightedge --version=14.0 --untar</code></pre>
-        <MadCap:snippetBlock src="../Resources/Snippets/Content/Kubernetes/k8s-helm-version.flsnp" />
+        <p>Type the following command to add the GigaSpaces Helm charts to the Helm repo:</p><pre><code>helm repo add gigaspaces http://resources.gigaspaces.com.s3.amazonaws.com/helm-charts</code></pre>
+        <p>Type the following command to fetch the GigaSpaces Helm charts and unpack them locally:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm fetch gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-long" /> --untar</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm pull gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-long" /> --untar </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2">
+                        <p><pre><code>helm fetch gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-long" /> --untar</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <div class="tc-admon-important" MadCap:conditions="Version.15-5-died">
+            <p>You must use Helm 2 with KubeGrid. Helm 3 contains a new chart version, which is a breaking change and is not currently supported by KubeGrid. </p>
+        </div>
         <h2>Installing KubeGrid </h2>
         <p MadCap:conditions="Version.14-5-born">Perform this procedure to install KubeGrid and apply the public IP&#160;address, so that you can use the Apache Zeppelin web notebook with <MadCap:variable name="General.ProductNameIE" />.</p>
         <p MadCap:conditions="Version.14-5-died">If you want a public IP address for Apache Zeppelin when working with <MadCap:variable name="General.ProductNameIE" /> in the AKS environment, the default service type (<code>NodePort</code>) in the   zeppelin Helm chart must be changed to <code>LoadBalancer</code> before applying the Helm install command.</p>

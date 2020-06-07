@@ -147,8 +147,8 @@ oc create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=defa
             <li>
                 <p>After adding the GigaSpaces Helm repo, install the required chart(s) by referencing the chart name and product package version. For example, to install InsightEdge, use the following command:</p>
                 <p>&#160;</p>
-                <div><pre MadCap:conditions="Version.15-5-died"><code>helm install gigaspaces/insightedge --version=14.0.1 --name demo</code></pre>
-                    <p MadCap:conditions="Version.15-5-born">
+                <div><pre><code>helm install gigaspaces/insightedge --version=14.0.1 --name demo</code></pre>
+                    <p MadCap:conditions="Default.DoNotShow">
                         <div class="easyui-tabs" plain="true">
                             <div title="Helm 3">
                                 <p><pre><code>helm install demo gigaspaces/insightedge --version=14.0.1</code></pre>
