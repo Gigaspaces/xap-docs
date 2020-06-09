@@ -9,7 +9,7 @@
 </p>
         <p>&#160;</p>
         <p>You can implement multi-region replication in Kubernetes by deploying a <MadCap:variable name="General.ProductNameXAP" /> WAN&#160;gateway. The Kubernetes-based WAN gateway has all the functionality of the service-grid based WAN gateway, and provides multi-region replication for fast and efficient disaster recovery. </p>
-        <p>This topic describes how to set up a WAN&#160;gateway for a <MadCap:variable name="General.ProductNameXAP" /> environment in cloud-based Kubernetes clusters. You have to create two clusters, one for each region that will host <MadCap:variable name="General.ProductNameXAP" />, deploy <MadCap:variable name="General.ProductNameXAP" /> on each cluster, and then deploy a WAN gateway for each region. </p>
+        <p>This topic describes how to set up a WAN&#160;gateway for a <MadCap:variable name="General.ProductNameXAP" /> environment in cloud-based Kubernetes clusters. You can create two or more clusters, one for each region that will host <MadCap:variable name="General.ProductNameXAP" />, deploy <MadCap:variable name="General.ProductNameXAP" /> on each cluster, and then deploy a WAN gateway for each region. We will use two clusters in this example.</p>
         <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
             <p>This topic assumes knowledge of how to set up a WAN&#160;gateway in <MadCap:variable name="General.ProductNameXAP" />. If you aren't familiar with how to configure a WAN gateway, see the <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref> section of the developer guide before you continue with the below procedure.</p>
             <p>This topic also assumes knowledge of how to install <MadCap:variable name="General.ProductNameXAP" /> in a Kubernetes environment. For more information, see the <MadCap:xref href="../admin/kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref> topic in the Orchestration section of the administration guide.</p>
@@ -52,7 +52,7 @@
                             </div>
                             <div title="Helm 2">
                                 <p><pre><code>helm install gigaspaces/xap-manager --name mymanager --version=<MadCap:variable name="Versions.product-version-long" />--namespace <b>gigaspaces-central-ns</b> 
---set image.repository=dixsonhuie/xap-enterprise-wan-logging,image.tag=15.0</code></pre>
+--set image.repository=sample/xap-enterprise-wan-logging,image.tag=15.0</code></pre>
                                 </p>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
             <p><code class="language-bash">kubectl get services -n <b>gigaspaces-west-ns</b></code>
             </p>
             <p>An example of kubectl output is shown below. </p>
-            <p>Note that the <b>central</b> manager host is external ip address is identified as:</p>
+            <p>Note that in the example below, the <b>central</b> manager host is external ip address is identified as:</p>
             <p style="font-weight: bold;">a8e09518a36e111eabe4f06ed48642f1-815235200.ca-central-1.elb.amazonaws.com</p>
             <p>and the <b>west</b> manager host external ip address is identified as:</p>
             <p style="font-weight: bold;">abb7ac8f136e211ea8b1d06a0d35ff23-880727685.eu-west-2.elb.amazonaws.com</p>
@@ -86,9 +86,9 @@
             </p>
         </div>
         <h2>Installing the <MadCap:variable name="General.ProductNameXAP" /> Space Service</h2>
-        <p>The next step is to install a Space service (Processing Unit) for each geographical site, which is defined in the service JAR as described in <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref>. It is important to verify that all of the WAN gateway-related properties have been configured correctly for each geographical location. <![CDATA[
+        <p>The next step is to install a Space service (Processing Unit) for each geographical site, which is defined in the service JAR as described in <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref>. It is important to verify that all of the WAN gateway-related properties have been configured correctly for each geographical location. 
 			
-			]]></p>
+			</p>
         <div class="tc-admon-note">
             <p>For example configurations, see <a href="https://github.com/Gigaspaces/solution-hub/tree/master/wan-gateway-kubernetes">https://github.com/Gigaspaces/solution-hub/tree/master/wan-gateway-kubernetes</a>.</p>
         </div>
@@ -104,10 +104,13 @@ remote-gateway-name=<b>central</b></code></pre>
         <p>For more information about defining the service JAR, refer to <MadCap:xref href="../dev-java/multi-site-replication-overview.html#configuring-a-space-with-gateway-targets">Configuring a Space With Gateway Targets</MadCap:xref>.</p>
         <p>&#160;</p>
         <h2>Install the central space</h2>
-        <p>helm install gigaspaces/xap-pu --name myspace-ca --version=15.0.0 --set manager.name=mymanager,partitions=1,resourceUrl=https://github.com/dixsonhuie/mirrorexample2/blob/master/iks/wan-space-central.jar?raw=true --set service.lrmi.enabled=true --set image.repository=dixsonhuie/xap-enterprise-wan-logging,image.tag=15.0 --namespace gigaspaces-central-ns</p>
+        <div class="tc-admon-note">
+            <p>In the examples below, the flag <code class="language-bash">--set service.lrmi.enabled=true</code> indicates that xxxxxxxxxxxxxxxxxxxxxxxxxx.</p>
+        </div>
+        <p>helm install gigaspaces/xap-pu --name myspace-ca --version=15.0.0 --set manager.name=mymanager,partitions=1,resourceUrl=https://github.com/sample/mirrorexample2/blob/master/iks/wan-space-central.jar?raw=true --set service.lrmi.enabled=true --set image.repository=sample/xap-enterprise-wan-logging,image.tag=15.0 --namespace gigaspaces-central-ns</p>
         <p>&#160;</p>
         <h2>Install the west space</h2>
-        <p>helm install gigaspaces/xap-pu --name myspace-gb --version=15.0.0 --set manager.name=mymanager,partitions=1,resourceUrl=https://github.com/dixsonhuie/mirrorexample2/blob/master/iks/wan-space-west.jar?raw=true --set service.lrmi.enabled=true --set image.repository=dixsonhuie/xap-enterprise-wan-logging,image.tag=15.0 --namespace gigaspaces-west-ns</p>
+        <p>helm install gigaspaces/xap-pu --name myspace-gb --version=15.0.0 --set manager.name=mymanager,partitions=1,resourceUrl=https://github.com/sample/mirrorexample2/blob/master/iks/wan-space-west.jar?raw=true --set service.lrmi.enabled=true --set image.repository=sample/xap-enterprise-wan-logging,image.tag=15.0 --namespace gigaspaces-west-ns</p>
         <p>&#160;</p>
         <p>Before deploying the gateway pu.jar, make sure the pu.properties is properly configured</p>
         <h3>Example for pu.properties <b>central</b></h3>
@@ -143,10 +146,10 @@ remote-gateway-name=<b>central</b></code></pre>
 			</p>
         </div>
         <h2>Install the gateway</h2>
-        <p><code>helm install gigaspaces/xap-pu --name gateway-ca --version=15.0.0 --set manager.name=mymanager,resourceUrl=https://github.com/dixsonhuie/mirrorexample2/blob/master/iks/wan-gateway-central.jar?raw=true --set service.lrmi.enabled=true --set java.options="-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174\,-Dcom.gs.transport_protocol.lrmi.bind-port=8200" --set image.repository=dixsonhuie/xap-enterprise-wan-logging,image.tag=15.0 --namespace gigaspaces-central-ns</code>
+        <p><code>helm install gigaspaces/xap-pu --name gateway-ca --version=15.0.0 --set manager.name=mymanager,resourceUrl=https://github.com/sample/mirrorexample2/blob/master/iks/wan-gateway-central.jar?raw=true --set service.lrmi.enabled=true --set java.options="-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174\,-Dcom.gs.transport_protocol.lrmi.bind-port=8200" --set image.repository=sample/xap-enterprise-wan-logging,image.tag=15.0 --namespace gigaspaces-central-ns</code>
         </p>
         <p>&#160;</p>
-        <p><code>helm install gigaspaces/xap-pu --name gateway-gb --version=15.0.0 --set manager.name=mymanager,resourceUrl=https://github.com/dixsonhuie/mirrorexample2/blob/master/iks/wan-gateway-west.jar?raw=true --set service.lrmi.enabled=true --set java.options="-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174\,-Dcom.gs.transport_protocol.lrmi.bind-port=8200" --set image.repository=dixsonhuie/xap-enterprise-wan-logging,image.tag=15.0 --namespace gigaspaces-west-ns</code>
+        <p><code>helm install gigaspaces/xap-pu --name gateway-gb --version=15.0.0 --set manager.name=mymanager,resourceUrl=https://github.com/sample/mirrorexample2/blob/master/iks/wan-gateway-west.jar?raw=true --set service.lrmi.enabled=true --set java.options="-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174\,-Dcom.gs.transport_protocol.lrmi.bind-port=8200" --set image.repository=sample/xap-enterprise-wan-logging,image.tag=15.0 --namespace gigaspaces-west-ns</code>
         </p>
         <p>&#160;</p>
         <p><code>kubectl exec -it gateway-gb-xap-pu-0 -n gigaspaces-west-ns --bash</code>

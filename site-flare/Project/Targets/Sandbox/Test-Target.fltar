@@ -2,13 +2,12 @@
 <CatapultTarget
   Version="2"
   Comment="MadCap HTML5 Target"
-  Type="WebHelp2"
+  Type="MsWord"
   Destinations=""
   GlossaryTermConversion="marked"
   MasterPage="/Content/Resources/MasterPages/content.flmsp"
   ConditionTagExpression="include[Default.DoNotShow or Default.ReleasedVersions or Default.PrintOnly or Default.ScreenOnly]exclude[Version.14-0-born or Version.14-0-died or Version.14-0-only or Version.14-2-born or Version.14-2-died or Version.14-2-only or Version.14-5-born or Version.14-5-died or Version.14-5-only]"
   MasterToc="/Project/TOCs/Sandbox/test-pages.fltoc"
-  Skin="/Project/Skins/HTML5 - Side Navigation.flskn"
   ExcludeUnreferencedContent="true"
   MoveOutputContentToRoot="true"
   InsertMOTW="true"
@@ -18,7 +17,8 @@
     CollapseMargins="true"
     GenerateTOCProxy="true"
     GenerateIndexProxy="true"
-    GenerateGlossaryProxy="true" />
+    GenerateGlossaryProxy="true"
+    OutputFormat="docx" />
   <Variables>
     <Variable
       Name="Versions/java-version">9</Variable>
