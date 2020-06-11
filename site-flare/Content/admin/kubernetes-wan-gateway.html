@@ -105,7 +105,7 @@ remote-gateway-name=<b>central</b></code></pre>
         <p>&#160;</p>
         <h2>Install the central space</h2>
         <div class="tc-admon-note">
-            <p>In the examples below, the flag <code class="language-bash">--set service.lrmi.enabled=true</code> indicates that xxxxxxxxxxxxxxxxxxxxxxxxxx.</p>
+            <p>In the examples below, the flag <code class="language-bash">--set service.lrmi.enabled=true</code> allows remote access to the cluster. It should be enabled to allow a client outside the Kubernetes cluster to connect to the service.</p>
         </div>
         <p>helm install gigaspaces/xap-pu --name myspace-ca --version=<MadCap:variable name="Versions.product-version-long" /> --set manager.name=mymanager,partitions=1,resourceUrl=https://github.com/sample/mirrorexample2/blob/master/iks/wan-space-central.jar?raw=true --set service.lrmi.enabled=true --set image.repository=sample/xap-enterprise-wan-logging,image.tag=<MadCap:variable name="Versions.product-version-short" /> --namespace gigaspaces-central-ns</p>
         <p>&#160;</p>
