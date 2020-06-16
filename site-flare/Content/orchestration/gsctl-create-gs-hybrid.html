@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Creating a Hybrid <MadCap:variable name="General.ProductNameXAP" /> Cluster – Cloud and Onprem</h1>
+        <p>In addition to creating a cluster that is either <a href="gsctl-create-gs-cluster-on-prem.html">onprem</a> or in the <a href="gsctl-create-gs-cluster-cloud.html">cloud</a>, it is also possible to create a <b>hybrid</b> cluster – a cluster that is provisioned in both environments.</p>
+        <p>In this topic, we will create a hybrid cluster that has both local onprem and AWS cloud components.</p>
+        <p>We will use the <code class="language-bash">gsctl</code> command, a simple CLI tool for creating <MadCap:variable name="General.ProductNameXAP" /> clusters, as follows: </p>
+        <ul>
+            <li>Create a <MadCap:variable name="General.ProductNameXAP" /> cluster.</li>
+            <li>Deploy <MadCap:variable name="General.ProductNameXAP" /> services in the cluster.</li>
+            <li>Undeploy the <MadCap:variable name="General.ProductNameXAP" /> services and tear down the cluster.</li>
+        </ul>
+        <h2>Prerequisites</h2>
+        <p>Before beginning to work with the gsctl tool, ensure that you have the following:</p>
+        <ul>
+            <li>
+                <p>Java 8 or higher installed on your local workstation.</p>
+            </li>
+            <li>
+                <p>AWS&#160;account and appropriate credentials as described in the <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html" target="_blank">AWS Command Line Interface documentation</a>.</p>
+                <div class="tc-admon-note">
+                    <p>To deploy a <MadCap:variable name="General.ProductNameXAP"></MadCap:variable> cluster in AWS you need the following:</p>
+                    <ul>
+                        <li>Valid AWS&#160;account</li>
+                        <li>Credentials that include <code>aws_access_key_id</code> and <code>aws_secret_access_key</code></li>
+                        <li>Configuration parameters that include a defined <code>aws_region</code></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <p>In addition, perform the following setup tasks:</p>
+        <ul>
+            <li>Disable the password prompt when using sudo</li>
+            <li>Install <a href="https://linuxize.com/post/how-to-unzip-files-in-linux/#installing-unzip" target="_blank">Unzip</a> on all the cluster machines</li>
+            <li>Ensure that you have a single pem file for all your on-premise machines</li>
+            <li>Verify connectivity to all the machines from your workstation</li>
+            <li>Centos machines only - disable the firewall (firewalld service) and make sure it is set to stay disabled on start (for example, when the machine reboots)</li>
+        </ul>
+        <ul>
+            <li><span class="tc-bold">Windows only</span>:&#160;Set the following environment variables manually:<ul><li>AWS_ACCESS_KEY_ID</li><li>AWS_SECRET_ACCESS_KEY</li><li>AWS_REGION</li></ul></li>
+        </ul>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/download-run-gsctl.flsnp" />
+        <h1>Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster </h1>
+        <p>Follow the steps in the procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services. All of the procedures on this page describe the short notation as used from inside the interactive shell.</p>
+        <p class="tc-todo">To create a cluster:</p>
+        <ol>
+            <li>
+                <li>
+                    <p>Verify that an <code>.aws</code> folder exists in the home directory on your local machine, and that it contains the config and credentials files. The credentials file should include your <code>aws_access_key_id</code> and <code>aws_secret_access_key</code>, and the config files should include your <code>aws_region</code> and <code>output</code> definitions.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-config-files.png" class="tc-picture30" />
+                    </p>
+                </li>
+            </li>
+            <li>Create an empty directory on your machine. In this example, the directory name is <span class="tc-bold">gsDemo</span>.</li>
+            <li>Download the most current version of the gsctl.jar file from the dedicated repository to the directory you created (gsDemo) and extract the contents.</li>
+            <li>Add the pem file to this directory.</li>
+            <li>
+                <p>Open a command window and type the following to define a cluster called <code>gs_demo_cluster</code>:</p><pre><code class="language-bash">init  --cluster-name=gs_demo_cluster -aws=1 -op=1</code></pre>
+                <p>This command also creates a cluster.yaml file, which you can modify to supply your AWS&#160;resources, such as <code>VPC</code>, <code>keyName</code>, and <code>securityGroups</code> values. If you edit any parameter in the AWS&#160;section, you must provide all the values for the section.</p>
+                <div class="tc-admon-note">
+                    <p>By default, the utility creates all the resources from the credentials and config files in the .aws folder.</p>
+                </div>
+                <p>Also modify the yaml file as follows:</p>
+                <ul>
+                    <li>
+                        <p><code>keyName</code> - name of your pem file (without the .pem extension)</p>
+                    </li>
+                    <li>
+                        <p><code>userName</code> - name of the on-premise machine being used to create the cluster</p>
+                    </li>
+                    <li>
+                        <p><code>profiles</code> - the on-premise worker (client) name, along with the IP&#160;addresses of the host machines</p>
+                        <div class="tc-admon-attention">
+                            <p>You must have 3 masters (gsManagers) and at least 1 worker.</p>
+                        </div>
+                    </li>
+                </ul><pre><code class="language-bash">aws:
+  keyName: null
+  vpcId: null
+  vpcSubnetId: null
+  securityGroup: null
+  amiId: null
+  userName: null
+servers:
+  label: "GS Cluster [GS_CLUSTER] Server Group"
+  groups:
+  - type: "m4.xlarge"
+    tags: null
+    count: 3
+clients:
+  label: "GS Cluster [GS_CLUSTER] Client Group"
+  groups:
+  - type: "m4.xlarge"
+    tags: null
+    count: 3
+gsManagers: 3
+name: "GS_CLUSTER"</code></pre><pre xml:space="preserve"><code class="language-bash">
+onPremise:
+  keyName: "pem file"
+  userName: "user name"
+  masters:
+    label: "GS Cluster [gs_demo_cluster] Master Group"
+    profiles:
+    - name: "default on premise master name"
+      hosts:
+      - "127.0.1.93"
+      - "127.0.1.95"
+      - "127.0.1.96"
+  workers:
+    label: "GS Cluster [gs_demo_cluster] Worker Group"
+    profiles:
+    - name: "default on premise worker name"
+      hosts:
+      - "127.0.1.97"
+      - "127.0.1.98"
+      - "127.0.1.99"
+name: "gs_demo_cluster"</code></pre>
+            </li>
+            <li>
+                <p>To create the omprem component of the cluster, and deploy the cloud component, run the following command:</p><pre><code class="language-bash">create</code></pre>
+            </li>
+        </ol>
+        <p>The cloud platform begins to create the cluster:</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-create-cluster-new.png" class="tc-picture50" />
+        </p>
+        <p>You can monitor the progress of the cluster in your cloud platform dashboard, for example the VPC&#160;Dashboard in AWS:</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/gigaops-stack/aws-vpc-dashboard-create-cluster.png" class="tc-picture80" />
+        </p>
+        <p>The process of creating the cluster takes only a few minutes until the nodes are up and running. You can see when the Master (server) nodes and Worker (client) nodes are running and have passed the status checks.</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-cluster-running.png" class="tc-picture80" />
+        </p>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-deploy-gs-service.flsnp" />
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-monitor-gs-service.flsnp" />
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-remove-gs-cluster.flsnp" />
+        <p>
+            <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-process-cropped.png" class="tc-picture50" />
+        </p>
+    </body>
+</html>
