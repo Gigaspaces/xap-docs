@@ -76,35 +76,36 @@ key.converter.schemas.enable=false
 #value.converter.schemas.enable=true<br /><br />offset.storage.file.filename=/tmp/connect.offsets
 # Flush much faster than normal, which is useful for testing/debugging
 offset.flush.interval.ms=10000
-				</code></pre><p>&#160;</p>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector model schema json file.<div class="tc-admon-note"><p>These Json fields map to the Space Type Descriptor in GS. For more information, see <a href="https://docs.gigaspaces.com/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition">Space type Descriptor</a> in the GigaSpaces documentation center.</p></div><p>&#160;</p><pre><code class="language-json">
-[{
-    "type": "com.gs.Person",
-    "FixedProperties": {
-    "firstname": "java.lang.String",
-    "lastname": "java.lang.String",
-    "age": "java.lang.Integer",
-    "num": "java.lang.Integer"
-    },
-    "Indexes": {
-    "compoundIdx": {"type":"EQUAL", "properties": ["firstname", "lastname"], "unique": false},
-    "ageIdx": {"type":"ORDERED", "properties": ["age"], "unique": false}
-    },
-    "Id": "num",
-    "RoutingProperty": "firstname"
-},
-{
-    "type": "com.gs.Pet",
-    "FixedProperties": {
-    "kind": "java.lang.String",
-    "name": "java.lang.String",
-    "age": "java.lang.Integer"
-    },
-    "Indexes": {
-    "compoundIdx": {"type":"EQUAL", "properties": ["kind", "name"], "unique": false},
-    "ageIdx": {"type":"ORDERED", "properties": ["age"], "unique": false}
-    },
-    "RoutingProperty": "name"
-}]				
+				</code></pre><p>&#160;</p>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector model schema json file.<div class="tc-admon-note"><p>These JSON fields map to the Space Type Descriptor in GS. For more information, see <a href="https://docs.gigaspaces.com/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition">Space type Descriptor</a> in the GigaSpaces documentation center.</p></div><p>&#160;</p><pre><code class="language-json">
+				[{
+				"type": "com.gs.Person",
+				"FixedProperties": {
+				"firstname": "java.lang.String",
+				"lastname": "java.lang.String",
+				"age": "java.lang.Integer",
+				"num": "java.lang.Integer"
+				},
+				"Indexes": {
+				"compoundIdx": {"type":"EQUAL", "properties": ["firstname", "lastname"], "unique": false},
+				"ageIdx": {"type":"ORDERED", "properties": ["age"], "unique": false}
+				},
+				"Id": {"field":"num", "autogenerate": false},
+				"RoutingProperty": "firstname"
+				},
+				{
+				"type": "com.gs.Pet",
+				"FixedProperties": {
+				"kind": "java.lang.String",
+				"name": "java.lang.String",
+				"age": "java.lang.Integer"
+				},
+				"Indexes": {
+				"compoundIdx": {"type":"EQUAL", "properties": ["kind", "name"], "unique": false},
+				"ageIdx": {"type":"ORDERED", "properties": ["age"], "unique": false}
+				},
+				"Id": {"field":"name"},
+				"RoutingProperty": "name"
+				}]}]				
 		</code></pre><h1>Running the Example</h1><div class="tc-admon-note"><p>The steps must be run in the order indicated below.</p></div><p>In this example, we will consume data from a text file using the <code>FileStreamSource</code> source connector. 
 		This connector will publish the lines it reads to the type topics in Kafka. 
 			The <MadCap:variable name="General.CompanyName" /> sink connector will read the data from the topics and store them in the in-memory grid (the "Space"). 
