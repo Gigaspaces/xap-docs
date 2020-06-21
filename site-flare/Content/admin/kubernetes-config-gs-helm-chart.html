@@ -6,25 +6,29 @@
         <h1 class="tc-pagetitle">Configuring the Data Grid Using the Helm Chart</h1>
         <h1>Default Helm Chart</h1>
         <p>The <MadCap:variable name="General.ProductNameIE" /> Helm chart has a list of supported values that can be configured. To view this list, use the following Helm command:</p>
-        <div><pre MadCap:conditions="Version.15-5-died"><code>helm inspect insightedge</code></pre>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm inspect insightedge-pu</code></pre>
             <p MadCap:conditions="Version.15-5-born">
                 <div class="easyui-tabs" plain="true">
                     <div title="Helm 3">
-                        <p><pre><code>helm show insightedge</code></pre>
+                        <p><pre><code>helm show all insightedge-pu</code></pre>
                         </p>
                     </div>
                     <div title="Helm 2">
-                        <p><pre><code>helm inspect insightedge</code></pre>
+                        <p><pre><code>helm inspect insightedge-pu</code></pre>
                         </p>
                     </div>
                 </div>
             </p>
         </div>
         <p>The values.yaml file is printed in the command window, and each configurable value has a short explanation above it. The indentation in this printout indicates a use of a ".' (dot) in the value name. For example, the high availability property for the Platform Manager is listed as follows in the file:</p>
-        <p><code>manager:</code>
-            <br /><code>ha: false</code>
-        </p>
-        <p>The value you will set will look like this in the command window: <code>manager.ha=true</code></p>
+
+
+
+
+
+<pre><code class="language-bash">manager:
+    ha: false</code></pre>
+The value you will set will look like this in the command window: <code>manager.ha=true</code>
         <h2>Customizing a Helm Chart</h2>
         <p>You can create additional values.yaml files with customized values.</p>
         <p>The following Helm command shows how a custom YAML file can be used to override the values in the original GigaSpaces Helm chart:</p>
