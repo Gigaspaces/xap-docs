@@ -6,7 +6,7 @@
         <h1>Application</h1>
         <p>This section lists helpful recommendations for tuning your application when using <MadCap:variable name="General.ProductNameXAP" /> to boost its performance, and improving its scalability.</p>
         <ul>
-            <li onclick="window.location.hash='#1'">Better Data Model</li>
+			<li onclick="document.getElementById('scroll01').scrollIntoView();">Better Data Model</li>
             <li><a href="#1">Better Data Model</a>
             </li>
             <li><a href="#2">Use readById</a>
@@ -50,7 +50,7 @@
             <li><a href="#21">Benchmarking Your Tuning</a>
             </li>
         </ul><a name="1"></a>
-        <h1><a name="better-data-model"></a>Better Data Model</h1>
+        <h1><a name="better-data-model" id="scroll01"></a>Better Data Model</h1>
         <p>Consider embedded relationship model when possible instead of having separate space objects.</p><a name="2"></a>
         <h1><a name="use-readbyid"></a>Use readById</h1>
         <p>This will will avoid query the data. Will provide access directly to the data without any broadcast calls to the entire cluster.</p><a name="3"></a>
