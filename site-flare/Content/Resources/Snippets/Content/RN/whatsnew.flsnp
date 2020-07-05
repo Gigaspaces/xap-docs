@@ -6,15 +6,12 @@
             <p>This release provides the following improvement for Kubernetes-based <MadCap:variable name="General.ProductNameXAP" /> applications:</p>
             <ul>
                 <li>Helm 3 Support -- In addition to existing Helm 2 support, Helm 3 support has been added. In cases where the syntax differs between Helm 2 and Helm 3, examples are given in both formats, as shown <a href="https://docs.gigaspaces.com/[%=Versions.xap-release%]/admin/kubernetes-data-grid.html#AddingaHelmRepototheRepoList">here</a>.</li>
+                <li>Auto Recovery from Failure During Vertical Scaling<ul><li>The default action in the event of an error on a vertical scale in Kubernetes will now automatically perform a rollback.</li></ul></li>
             </ul>
             <h1>Platform Enhancements</h1>
             <div>
-                <h2>Enhance Mirror Service with Apache Kafka</h2>
-                <p>Apache Kafka can now be used as a buffer between the mirror service and the actual synchronization endpoint.</p>
-            </div>
-            <div>
-                <h2>Add Option for Auto Revert on Vertical Scale in Kubernetes</h2>
-                <p>The default action in the event of an error on a vertical scale in Kubernetes, is to automatically perform a rollback.</p>
+                <h2>Additional Fail-safe Mechanism to Address Network Connectivity Issues</h2>
+                <p>Apache Kafka can now be used as a buffer between the mirror service and the actual synchronization endpoint. This provides a reliable data pipeline for database persistence via an enhanced mirror service with Apache Kafka. </p>
             </div>
             <div>
                 <h2>gsctl Hybrid Support</h2>
