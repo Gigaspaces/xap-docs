@@ -240,7 +240,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
                 <p MadCap:conditions="Version.15-5-born">
                     <div class="easyui-tabs" plain="true">
                         <div title="Helm 3">
-                            <p><pre><code>helm install my-pu --set insightedge-pu  memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
+                            <p><pre><code>helm install my-pu insightedge-pu --set   memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
                             </p>
                         </div>
                         <div title="Helm 2">
