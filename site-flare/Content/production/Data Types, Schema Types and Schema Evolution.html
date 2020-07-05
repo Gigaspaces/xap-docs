@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Data Types, Schema Types and Schema Evolution</h1>
+        <h1>What Kinds of Data Organization are Available in <MadCap:variable name="General.ProductNameXAP" />?</h1>
+        <p>When a Data Store object is defined in <MadCap:variable name="General.ProductNameXAP" />, the object can be defined as a <a href="https://docs.gigaspaces.com/latest/dev-java/pojo-overview.html">Space Object</a> or a <a href="https://docs.gigaspaces.com/latest/dev-java/document-overview.html">Space Document</a>.</p>
+        <p>Within each object type, the data schema can be defined with:</p>
+        <ul>
+            <li>Fixed or static properties (columns), sometimes referred to as  <i>schema on write</i>,</li>
+            <li><a href="https://docs.gigaspaces.com/latest/dev-dotnet/poco-dynamic-properties.html?Highlight=dynamic">Dynamic properties</a>, sometimes referred to as <i>schema on read</i>, or</li>
+            <li>Hybrid properties, a combination of both fixed and dynamic properties.</li>
+        </ul>
+        <p>The choice of object type and schema definition can have a profound impact on an application's memory footprint and processing speed. Fortunately, <MadCap:variable name="General.ProductNameXAP" /> provides a technique called<b> <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></b>that allows an existing schema to be changed wiht minimal impact on the system.</p>
+        <h1>Deciding on the Type of Data Store</h1>
+        <p>The choice of Space Object or Space Document depends on the planned use and variability of the data in the object.</p>
+        <p>A Space Object is generally used when most of the data in the data store has the same format, and optimum read/write speed is required. A Space Object generally has a simpler schema that is streamlined for fastest possible access.</p>
+        <p>A Space Document is indicated when different object instances (rows) within the data store can have varying types of data. A Space Document provides for the maximum amount of flexibility, at the cost of some additional time for data access.</p>
+        <h1>Deciding on the Type of Schema</h1>
+        <p>The type of data schema is a fundamental property of the Data Store and will impact the speed and flexibility of the data .</p>
+        <h2>Fixed Schema</h2>
+        <p>As the name implies, a fixed schema has fields with hard-coded data definitions.  Fixed schema data objects are also referred to as schema-on-write objects. Although the data definitions themselves may offer some flexibility (such as a variable-length string), the overall schema is fixed when the object is created.</p>
+        <p>A fixed schema may be appropriate when the data in each instance of an object (like each row in a table) will have the same layout.</p>
+        <p>A fixed schema provides the fastest possible data access.</p>
+        <h3>Use Cases</h3>
+        <p>&lt;&lt;Operational use cases explained here&gt;&gt;</p>
+        <h2>Dynamic Schema</h2>
+        <p>A dynamic schema allows the greatest amount of flexibility for field definitions. Dynamic schema data objects are also referred to as schema-on-read objects.
+</p>
+        <p>Each object instance (row) of data with a dynamic schema can have properties (columns) with different field definitions. In addition, the definition of a field can be changed at run time. </p>
+        <h3>Use Cases</h3>
+        <p>&lt;&lt;Analytical use cases explained here&gt;&gt;</p>
+        <h2>Hybrid schema</h2>
+        <p>A hybrid schema, as the name implies, is either a  Space Object with some dynamic properties (e.g. JSON based); or a Space Document with some fixed properties. In both cases, the object has a mix of both fixed and dynamic properties.</p>
+        <h3>Use Cases</h3>
+        <p>&lt;&lt;??? use cases explained here&gt;&gt;</p>
+        <h1>Schema Evolution -- Changing a Schema</h1>
+        <p>When a change is required to the underlying structure or schema of an object, this change process is referred to as <b>Schema Evolution</b>.</p>
+        <h2>Methods for Schema Evolution</h2>
+        <p>There are three general approaches for schema evolution:</p>
+        <ul>
+            <li>Use of dynamic properties</li>
+            <li>Copy/redefinition of a fixed-schema object</li>
+            <li>Online transformation of a fixed-schema object -- <b>Schema Evolution Without Downtime</b>.</li>
+        </ul>
+        <h3>Schema Evolution by Use of Dynamic Properties</h3>
+        <p>xxxxxxxxxxxxx</p>
+        <h3>Schema Evolution of Fixed Properties by Copying an Object</h3>
+        <p>xxxxxx</p>
+        <p>mention:</p>
+        <p>undeploy PU</p>
+        <p>Modify schema</p>
+        <p>redeploy PU</p>
+        <h3>Schema Evolution of Fixed Properties via <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h3>
+        <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> can make the process of changing a fixed schema efficient and painless.</p>
+        <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> works by creating a mirror service and copying the original Space (V1) to the new Space (V2). The copying process is done via a Kafka messaging layer and does not require the Space or stateful services that use the Document Store to be offline. Note that the V1 and V2 spaces co-exist side-by-side.</p>
+        <p>The schema evolution process copies each entry from the V1 object to the V2 object. A Type Adapter (data transformer) -- a function which transforms V1 to V2  --  performs the necessary conversion of the schema, on an entry-by-entry basis, as shown in the following diagram:</p>
+        <p>
+            <img src="../Resources/Static/images/SEWD overview.jpg" />
+        </p>
+        <p>While the copying process is underway, all requests are logged for later processing with the new V2 object. No data is lost. There is no downtime and no requirement to make the SO offline.</p>
+        <h3>Schema Changes Allowed with <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h3>
+        <p>The following types of changes can be performed:</p>
+        <ul>
+            <li>Add a new field</li>
+            <li>Remove an existing field</li>
+            <li>Change the field type of an existing field</li>
+        </ul>
+        <h3>When is <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> the Right Approach?</h3>
+        <p>Because <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> makes online changes to a fixed-schema object, the object’s schema can be updated from time to time -- providing much of the flexibility of a Space Document.</p>
+        <p>The resulting object has all of the advantages of afixed schema -- optimal read/write processing and minimal memory footprint -- without a need for the system to consult metadata for each data access.</p>
+        <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> is a powerful tool to use n your production environment  when the following requirements are important in your system:</p>
+        <ul>
+            <li>Occasional changes to an object’s fixed schema.</li>
+            <li>No down time -- during the <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> process, all services and processes using the object continue to run.</li>
+            <li>Optimal read/write access after the schema change</li>
+            <li>Support for various services deployments strategies for A/B testing and gradual deployment of new services and versions</li>
+        </ul>
+        <h3>Installation Requirements and Considerations for <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h3>
+        <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> is currently available for Space Documents. Support for Space Objects will be added in a future release.</p>
+        <p>Since <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> uses Kafka as the data messaging layer, the user must provide their own Kafka cluster. We require the IP address of the user’s existing Kafka ??server??.</p>
+        <p>?? Mention "Side-by-side, canary-blue-green deployment (A/B)" somewhere.</p>
+        <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> is currently implemented for in-memory Space Objects. MemoryXtend will be supported in a future release.</p>
+        <p>Capacity planning should include the CPU and RAM resources to accommodate both spaces, V1 and V2 side-by-side during the Schema Evolution process.</p>
+        <p>Kafka considerations:</p>
+        <ul>
+            <li>Kafka buffer size</li>
+            <li>Number of threads</li>
+            <li>Deployment Strategy</li>
+        </ul>
+        <p>During the Schema Evolution process, all data requests are logged.</p>
+        <h3>How to Implement <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h3>
+        <p>The steps to run <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> are as follows:</p>
+        <ul>
+            <li>Determine the schema changes that are required.</li>
+            <li>Create a Type Adapter object with the data conversion rules</li>
+            <li>Generate a JAR file from the patcher program</li>
+            <li>Define the connection to Kafka.</li>
+            <li>Perform the client sync. Note that because the first operation will fail and throw an exception, the user must provide custom code to handle the exception.</li>
+            <li>Xxxxx</li>
+            <li>Xxxxx</li>
+        </ul>
+        <h3>Hands/on example of <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h3>
+        <p>xxxxxxxxxxxxxxxxxxxxxxxx</p>
+        <h3>Support/Troubleshooting</h3>
+        <p>Metrics, logs, alerts. Some data in GUI, e.g. CPU consumption</p>
+        <p>How to address network issues ((or multiple DB targets??)</p>
+        <p>Exceeding memory log size?</p>
+        <p>&#160;</p>
+    </body>
+</html>
