@@ -5,12 +5,14 @@
             <h1>Kubernetes Improvements</h1>
             <p>This release provides the following improvement for Kubernetes-based <MadCap:variable name="General.ProductNameXAP" /> applications:</p>
             <ul>
-                <li>Helm 3 Support -- In addition to existing Helm 2 support, Helm 3 support has been added. In cases where the syntax differs between Helm 2 and Helm 3, examples are given in both formats, as shown <a href="https://docs.gigaspaces.com/[%=Versions.xap-release%]/admin/kubernetes-data-grid.html#AddingaHelmRepototheRepoList">here</a>.</li>
-                <li>Auto Recovery from Failure During Vertical Scaling<ul><li>The default action in the event of an error on a vertical scale in Kubernetes will now automatically perform a rollback.</li></ul></li>
+                <li>Helm 3 Support – In addition to existing Helm 2 support, Helm 3 support has been added. In cases where the syntax differs between Helm 2 and Helm 3, examples are given in both formats, as shown <a href="https://docs.gigaspaces.com/[%=Versions.xap-release%]/admin/kubernetes-data-grid.html#AddingaHelmRepototheRepoList">here</a>.</li>
+                <li>
+                    <p>Vertical Scaling Auto Recovery – The default action in the event of an error on a vertical scale in Kubernetes will now automatically perform a rollback.</p>
+                </li>
             </ul>
             <h1>Platform Enhancements</h1>
             <div>
-                <h2>Additional Fail-safe Mechanism to Address Network Connectivity Issues</h2>
+                <h2>Asynchronous Persistency Enhancement</h2>
                 <p>Apache Kafka can now be used as a buffer between the mirror service and the actual synchronization endpoint. This provides a reliable data pipeline for database persistence via an enhanced mirror service with Apache Kafka. </p>
             </div>
             <div>
@@ -21,7 +23,7 @@
             <h1><MadCap:variable name="General.ProductNameXAP"></MadCap:variable> Ops Manager </h1>
             <p>The Ops Manager has the following new functionality:</p>
             <ul>
-                <li>View Logs -- Logs can now be viewed directly from the Ops Manager screen. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">See an example here.</MadCap:conditionalText></li>
+                <li>View Logs – Logs can now be viewed directly from the Ops Manager screen. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">See an example here.</MadCap:conditionalText></li>
             </ul>
         </div>
         <h1 MadCap:conditions="Version.14-0-only">Kubernetes Integration</h1>
