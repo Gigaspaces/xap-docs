@@ -47,7 +47,7 @@
         <h3>Schema Evolution of Fixed Properties via <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h3>
         <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> can make the process of changing a fixed schema efficient and painless.</p>
         <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> works by creating a mirror service and copying the original Space (V1) to the new Space (V2). The copying process is done via a Kafka messaging layer and does not require the Space or stateful services that use the Document Store to be offline. Note that the V1 and V2 spaces co-exist side-by-side. External users are redirected to the new service, and the old service is closed. </p>
-        <p>The schema evolution process copies each entry from the V1 object to the V2 object. A Type Adapter (data transformer) - a function which transforms V1 to V2  -  performs the necessary conversion of the schema, on an entry-by-entry basis, as shown in the following diagram:</p>
+        <p>The schema evolution process copies each entry from the V1 object to the V2 object. A Type Adapter (data transformer) - a function which transforms V1 to V2  -  performs the necessary conversion of the schema, on an entry-by-entry basis, as shown in the following diagram: </p>
         <p>
             <img src="../Resources/Static/images/SEWD overview.jpg" />
         </p>
