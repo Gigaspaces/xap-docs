@@ -23,18 +23,12 @@
         <p>As the name implies, a fixed schema has fields with hard-coded data definitions.  Fixed schema data objects are also referred to as schema-on-write objects. Although the data definitions themselves may offer some flexibility (such as a variable-length string), the overall schema is fixed when the object is created.</p>
         <p>A fixed schema may be appropriate when the data in each instance of an object (like each row in a table) will have the same layout.</p>
         <p>A fixed schema provides the fastest possible data access.</p>
-        <h3>Use Cases</h3>
-        <p>&lt;&lt;Operational use cases explained here&gt;&gt;</p>
         <h2>Dynamic Schema</h2>
         <p>A dynamic schema allows the greatest amount of flexibility for field definitions. Dynamic schema data objects are also referred to as schema-on-read objects.
 </p>
         <p>Each object instance (row) of data with a dynamic schema can have properties (columns) with different field definitions. In addition, the definition of a field can be changed at run time. </p>
-        <h3>Use Cases</h3>
-        <p>&lt;&lt;Analytical use cases explained here&gt;&gt;</p>
         <h2>Hybrid schema</h2>
         <p>A hybrid schema, as the name implies, is either a  Space Object with some dynamic properties (e.g. JSON based); or a Space Document with some fixed properties. In both cases, the object has a mix of both fixed and dynamic properties.</p>
-        <h3>Use Cases</h3>
-        <p>&lt;&lt;??? use cases explained here&gt;&gt;</p>
         <h1>Schema Evolution -- Changing a Schema</h1>
         <p>When a change is required to the underlying structure or schema of an object, this change process is referred to as <b>Schema Evolution</b>.</p>
         <h2>Methods for Schema Evolution</h2>
@@ -45,20 +39,25 @@
             <li>Online transformation of a fixed-schema object -- <b>Schema Evolution Without Downtime</b>.</li>
         </ul>
         <h3>Schema Evolution by Use of Dynamic Properties</h3>
-        <p>xxxxxxxxxxxxx</p>
-        <h3>Schema Evolution of Fixed Properties by Copying an Object</h3>
-        <p>xxxxxx</p>
-        <p>mention:</p>
-        <p>undeploy PU</p>
-        <p>Modify schema</p>
-        <p>redeploy PU</p>
+        <p>The easiest way to achieve schema evolution is via dynamic properties - each entry can store a set of dynamic properties, which are not bound by the type schema. In this case schema evolution is automatic - your app simply starts writing entries with additional properties. No change is required in the space.</p>
+        <p>The downside is that the memory requirement increases - because there's no schema for those properties, each entry's memory footprint is larger.</p>
+        <h3>Schema Evolution of Fixed Properties by Copying the Data Store</h3>
+        <p>This approach is to undeploy the <MadCap:variable name="General.ProductNameXAP" />service, modify the schema in the external database, and then re-deploying the <MadCap:variable name="General.ProductNameXAP" /> service. This will initial-load the modified schema and data.</p>
+        <p>This results in an efficient footprint in memory, but requires some downtime while the data store is being copied.</p>
         <h3>Schema Evolution of Fixed Properties via <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h3>
         <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> can make the process of changing a fixed schema efficient and painless.</p>
-        <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> works by creating a mirror service and copying the original Space (V1) to the new Space (V2). The copying process is done via a Kafka messaging layer and does not require the Space or stateful services that use the Document Store to be offline. Note that the V1 and V2 spaces co-exist side-by-side.</p>
-        <p>The schema evolution process copies each entry from the V1 object to the V2 object. A Type Adapter (data transformer) -- a function which transforms V1 to V2  --  performs the necessary conversion of the schema, on an entry-by-entry basis, as shown in the following diagram:</p>
+        <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> works by creating a mirror service and copying the original Space (V1) to the new Space (V2). The copying process is done via a Kafka messaging layer and does not require the Space or stateful services that use the Document Store to be offline. Note that the V1 and V2 spaces co-exist side-by-side. External users are redirected to the new service, and the old service is closed. </p>
+        <p>The schema evolution process copies each entry from the V1 object to the V2 object. A Type Adapter (data transformer) - a function which transforms V1 to V2  -  performs the necessary conversion of the schema, on an entry-by-entry basis, as shown in the following diagram:</p>
         <p>
             <img src="../Resources/Static/images/SEWD overview.jpg" />
         </p>
+        <ol>
+            <li>Client interacts with stateful service (i.e. service that contains a space)</li>
+            <li>Data changes from space V1 are mirrored into database with schema V1.</li>
+            <li>Data changes are streamlined into service V2, using a customized Type Adapter.</li>
+            <li>Client interacts with service V2.</li>
+            <li>Data changes from space V2 are mirrored into database with schema V2.</li>
+        </ol>
         <p>While the copying process is underway, all requests are logged for later processing with the new V2 object. No data is lost. There is no downtime and no requirement to make the SO offline.</p>
         <h3>Schema Changes Allowed with <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h3>
         <p>The following types of changes can be performed:</p>
