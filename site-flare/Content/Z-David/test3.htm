@@ -5,5 +5,106 @@
     <body>
         <h1>test3</h1>
         <p>Delete this text and replace it with your own content.</p>
+        <p>&#160;</p>
+        <table style="width: 100%;" class="tc-borderless">
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>&#160;</th>
+                    <th>&#160;</th>
+                    <th>&#160;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <table style="" class="tc-standard">
+            <caption>Options for Schema Evolution</caption>
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <tr>
+                <td><b>Type of data in the Data Store</b>
+                </td>
+                <td><b>Meaning</b>
+                </td>
+                <td><b>Procedure for Schema Evolution</b>
+                </td>
+                <td><b>Resources allocation during the schema transformation</b>
+                </td>
+                <td><b>Resulting memory footprint of the properties</b>
+                </td>
+                <td><b>Requires downtime</b>
+                </td>
+                <td><b>Schema strategy</b>
+                </td>
+                <td><b>Schema Transformation duration</b>
+                </td>
+                <td><b>Data transformation</b>
+                </td>
+                <td><b>Index functionality</b>
+                </td>
+            </tr>
+            <tr>
+                <td>Dynamic properties only </td>
+                <td>Define a data store that has dynamic, schema-on-read properties</td>
+                <td>Option A: No special procedure - Just change the dynamic properties for the data store</td>
+                <td>Low</td>
+                <td>Relatively high</td>
+                <td>No</td>
+                <td>In place</td>
+                <td>Immediate</td>
+                <td>null fields by default to v1,v2 holds the new schema</td>
+                <td>only equality index, no range index</td>
+            </tr>
+            <tr>
+                <td rowspan="2">Fixed properties only</td>
+                <td rowspan="2">Define a data store that has fixed, schema-on-write properties</td>
+                <td>Option B: Recreate the data store.Time-consuming -- undeploy the data store and any PUs that use the data store; modify the schema; redeploy</td>
+                <td>High</td>
+                <td>Relatively low</td>
+                <td>Yes</td>
+                <td>In place</td>
+                <td>Dependent on the space size and network bandwidth to the external DB</td>
+                <td>all v1 is transformed to v2</td>
+                <td>any index</td>
+            </tr>
+            <tr>
+                <td>Option C: <b>Side-by-Side Schema Evolution.</b>Create a new data store without downtime.</td>
+                <td>Double the normal memory and CPU requirements</td>
+                <td>Relatively low</td>
+                <td>No</td>
+                <td>side by side</td>
+                <td>Minutes to hours</td>
+                <td>all v1 is transformed to v2</td>
+                <td>any index</td>
+            </tr>
+            <tr>
+                <td>Hybrid -- both fixed and dynamic properties</td>
+                <td>Define a data store that has some fixed properties, and some dynamic properties</td>
+                <td colspan="8">If you are changing only dynamic properties, proceed as Option A above.If you are changing fixed properties, or both kinds of properties, proceed as Option B or Option C above.</td>
+            </tr>
+        </table>
     </body>
 </html>
