@@ -3,17 +3,17 @@
     <head>
     </head>
     <body>
-        <h1><MadCap:variable name="General.CompanyName" /> Data Modeling</h1>
+        <h1 class="tc-pagetitle"><MadCap:variable name="General.CompanyName" /> Data Modeling</h1>
         <div>
             <h1>What Kinds of Data Stores are Available in <MadCap:variable name="General.ProductNameXAP" />?</h1>
             <p>When a Data Store object is defined in <MadCap:variable name="General.ProductNameXAP" />, the object can be defined as a <a href="https://docs.gigaspaces.com/latest/dev-java/pojo-overview.html">Space Object</a> or a <a href="https://docs.gigaspaces.com/latest/dev-java/document-overview.html">Space Document</a>.</p>
             <p>Within each object type, the data schema can be defined with:</p>
             <ul>
                 <li>Fixed or static properties (columns), sometimes referred to as  <i>schema on write</i>,</li>
-                <li><a href="https://docs.gigaspaces.com/latest/dev-dotnet/poco-dynamic-properties.html?Highlight=dynamic">Dynamic properties</a>, sometimes referred to as <i>schema on read</i>, or</li>
+                <li><a href="https://docs.gigaspaces.com/latest/dev-java/dynamic-properties.html">Dynamic properties</a>, sometimes referred to as <i>schema on read</i>, or</li>
                 <li>Hybrid, a combination of both fixed and dynamic properties.</li>
             </ul>
-            <p>The choice of object type and schema definition can have a profound impact on an application's memory footprint and processing speed. Fortunately, <MadCap:variable name="General.ProductNameXAP" /> provides a technique called<b> <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></b>that allows an existing schema to be changed wiht minimal impact on the system.</p>
+            <p>The choice of object type and schema definition can have a profound impact on an application's memory footprint and processing speed. </p>
         </div>
         <div>
             <h1>Deciding on the Type of Data Store</h1>
@@ -22,6 +22,9 @@
             <p>A Space Document is indicated when different object instances (rows) within the data store can have varying types of data. A Space Document provides for the maximum amount of flexibility, at the cost of some additional time for data access.</p>
             <h1>Deciding on the Type of Schema</h1>
             <p>The type of data schema is a fundamental property of the Data Store and will impact the speed and flexibility of the data .</p>
+            <div class="tc-admon-note">
+                <p>A schema definition can be changed. See <MadCap:xref href="../production/Data-Types,-Schema-Types-and-Schema-Evolution.html">Data Types, Schema Types and Schema Evolution</MadCap:xref> for a discussion of the various options to change a schema. </p>
+            </div>
             <h2>Fixed Schema</h2>
             <p>As the name implies, a fixed schema has fields with compile-time data definitions.  Fixed schema data objects are also referred to as schema-on-write objects. Although the data definitions themselves may offer some flexibility (such as a variable-length string), the overall schema is fixed when the object is created.</p>
             <p>A fixed schema may be appropriate when the data in each instance of an object (like each row in a table) will have the same layout.</p>
