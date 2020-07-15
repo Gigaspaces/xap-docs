@@ -4,17 +4,16 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">On Demand Object Analysis</h1>
-        <p>On Demand Object Analysis shows the real-time memory footprint of an <MadCap:variable name="General.ProductNameIEP" />Space Object.</p>
+        <p>On Demand Object Analysis shows the real-time memory footprint of an <MadCap:variable name="General.ProductNameIE" /> Space Object.</p>
         <h1>What Aspects of a Space Object are we Analyzing?</h1>
         <p><MadCap:variable name="General.ProductNameIE" /> enables developers to store and manage data within a Space Object. </p>
         <p>The Space Object contains one or more Object Types, comparable to tables within a database. Object data is stored in memory, and optionally on disk, as configured by the system administrator.</p>
         <p>Based on the properties of each Object Type, and the number of occurrences of each property, On Demand Object Analysis calculates the amount of memory stored within a Space Object. In addition, it calculates the memory footprint of the object indexes.</p>
-        <p>A comparison is also made between these values and the total amount of memory allocated to the <MadCap:variable name="General.ProductNameIE" /> cluster and its partitions.</p>
         <p>Two or more Object Analyses can be compared, to spot trends of increasing or decreasing memory consumption.
         </p>
-        <p>This process is done after theinitial provisioning and load of sample data, and is on-going while new services are deployed and additional data is stored within the space.</p>
+        <p>This process is done after the initial provisioning and load of sample data, and is on-going while new services are deployed and additional data is stored within the space.</p>
         <p>One use of On Demand Object Analysis is by developers when deploying new services, to determine memory usage. It can be done in a separated staging environment or as part of the initial data load.</p>
-        <p>Administrators can use object analysis on a daily or weekly basis, to analyze for system health and determine the memory usage for the entire Space Object or for specific object types. It is possible to analyze the data size at the partition level, to identify cases where a specific partition is overloaded with data that could potentially impact its performance.</p>
+        <p>Administrators can use object analysis on a daily or weekly basis, to analyze system health and to determine the memory usage for the entire Space Object or for specific object types. It is possible to analyze the data size at the partition level, to identify cases where a specific partition is overloaded with data that could potentially impact its performance.</p>
         <p>&#160;</p>
         <div class="tc-admon-note">
             <p>Although  Object Analysis results are a close approximation of memory usage, some variations may exist between the reported results and the exact amount of memory used. </p>
@@ -53,14 +52,11 @@
             <p>
                 <img src="../Resources/Static/images/ODOA-can-click-icon-instead-to-see-report.jpg" />
             </p>
-            <p>&#160;</p>
-            <p>of the Spaces, Objects, Properties and Indexes. Alternatively, you can choose the action View Latest Report from the command menu.</p>
             <div class="tc-admon-note">
-                <p>If the Object analysis is not successful, press Review Logs to view determine the cause of the failure.</p>
+                <p>If the Object analysis is not successful, press Review Logs to determine the cause of the failure.</p>
             </div>
-            <p>
-                <img src="../Resources/Static/images/Object-Analysis-070.jpg" />
-            </p>
+            <h1>The Object Analysis Report</h1>
+            <p>The report appears as follows:</p>
             <p style="text-align: center;">
                 <img src="../Resources/Static/images/ODOA-report-01.jpg" />
             </p>
@@ -77,7 +73,7 @@
             <h2>Notes on Indexes Analysis</h2>
             <p>Indexes are stored within the Space and used for fast access to data stored either in-memory, and on-disk. This means that indexes compete with object type data for partition memory resources.</p>
             <p>This is why it is important to analyze index sizes and take them in consideration as part of system monitoring and future planning.</p>
-            <p>Index sizes are calculated as part of object analysis run and the calculated sizes can be seen within the object types reports. Each object type contains its indexes and their calculated sizes, including the ability to compare with the previous object analysis.</p>
+            <p>Index sizes are calculated as part of the object analysis, and the calculated sizes can be seen within the object types reports. Each object type contains its indexes and their calculated sizes, including the ability to compare with the previous object analysis.</p>
             <h2>List of Object Types</h2>
             <p>If you scroll down the Object analysis Report, you will see a list of Object Types:</p>
             <p>
