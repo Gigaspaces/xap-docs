@@ -19,84 +19,82 @@
         <p>When a change is required to the underlying structure or schema of an object, this change process is referred to as Schema Evolution.</p>
         <p>There are three general approaches for schema evolution:</p>
         <ul>
-            <li>Use of dynamic properties</li>
-            <li>In-place schema evolution with downtime</li>
-            <li>Changing schema using static properties and redeploying the space - <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" />.</li>
+            <li><b>Use of dynamic properties</b> -- define a data store that has dynamic, schema-on-read properties</li>
+            <li><b>In-place schema evolution redeploying the space</b> -- define a data store that has fixed, schema-on-write properties -- requires downtime</li>
+            <li><b><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></b> -- define a data store with any combinstion of dynamic and fixed properties -- no downtime.</li>
         </ul>
         <p>A summary of these three methods of Schema Evolution is shown in the table below.</p>
-        <table style="" summary="xxxxxxxxxxx" class="tc-standard">
+        <table style="width: 100%;">
             <caption>Options for Schema Evolution</caption>
+            <col style="width: 320px;" />
+            <col style="width: 116px;" />
+            <col style="width: 213px;" />
+            <col style="width: 178px;" />
+            <col style="width: 115px;" />
+            <col style="width: 118px;" />
+            <col style="width: 166px;" />
+            <col style="width: 152px;" />
             <col />
-            <col />
-            <col />
-            <col />
-            <col />
-            <col />
-            <col />
-            <col />
-            <col />
-            <col />
-            <tr>
-                <td><b>Type of data in the Data Store</b>
-                </td>
-                <td><b>Meaning</b>
-                </td>
-                <td><b>Procedure for Schema Evolution</b>
-                </td>
-                <td><b>Resources allocation during the schema transformation</b>
-                </td>
-                <td><b>Resulting memory footprint of the properties</b>
-                </td>
-                <td><b>Requires downtime</b>
-                </td>
-                <td><b>Schema strategy</b>
-                </td>
-                <td><b>Schema Transformation duration</b>
-                </td>
-                <td><b>Data transformation</b>
-                </td>
-                <td><b>Index functionality</b>
-                </td>
-            </tr>
-            <tr>
-                <td>Dynamic properties only </td>
-                <td>Define a data store that has dynamic, schema-on-read properties</td>
-                <td>Option A: No special procedure - Just change the dynamic properties for the data store</td>
-                <td>Low</td>
-                <td>Relatively high</td>
-                <td>No</td>
-                <td>In place</td>
-                <td>Immediate</td>
-                <td>null fields by default to v1,v2 holds the new schema</td>
-                <td>only equality index, no range index</td>
-            </tr>
-            <tr>
-                <td rowspan="2">Fixed properties only</td>
-                <td rowspan="2">Define a data store that has fixed, schema-on-write properties</td>
-                <td>Option B: Recreate the data store. Time-consuming -- undeploy the data store and any PUs that use the data store; modify the schema; redeploy.</td>
-                <td>High</td>
-                <td>Relatively low</td>
-                <td>Yes</td>
-                <td>In place</td>
-                <td>Dependent on the space size and network bandwidth to the external DB</td>
-                <td>all v1 is transformed to v2</td>
-                <td>any index</td>
-            </tr>
-            <tr>
-                <td>Option C: <b>Side-by-Side Schema Evolution.</b>Create a new data store without downtime.</td>
-                <td>Double the normal memory and CPU requirements</td>
-                <td>Relatively low</td>
-                <td>No</td>
-                <td>side by side</td>
-                <td>Minutes to hours</td>
-                <td>all v1 is transformed to v2</td>
-                <td>any index</td>
-            </tr>
-            <tr>
-                <td>Hybrid -- both fixed and dynamic properties</td>
-                <td>Define a data store that has some fixed properties, and some dynamic properties</td>
-                <td colspan="8">If you are changing only dynamic properties, proceed as Option A above.If you are changing fixed properties, or both kinds of properties, proceed as Option B or Option C above.</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th><b>Schema Evolution method</b>
+                    </th>
+                    <th><b>Type of properties</b>
+                    </th>
+                    <th><b>Resources allocated during schema transformation</b>
+                    </th>
+                    <th><b>Resulting memory footprint of properties</b>
+                    </th>
+                    <th><b>Requires downtime</b>
+                    </th>
+                    <th><b>Schema strategy</b>
+                    </th>
+                    <th><b>Schema transformation duration</b>
+                    </th>
+                    <th><b>Data transformation</b>
+                    </th>
+                    <th><b>Index functionality</b>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Option A: Use of dynamic properties</b>
+                    </td>
+                    <td>Dynamic</td>
+                    <td>Low</td>
+                    <td>Some overhead</td>
+                    <td>No</td>
+                    <td>In place</td>
+                    <td>Immediate</td>
+                    <td>Null fields by default to v1,v2 holds the new schema</td>
+                    <td>Only equality index, no range index</td>
+                </tr>
+                <tr>
+                    <td><b>Option B: In-place schema evolution redeploying the space</b>
+                        <br />Time-consuming -- undeploy the data store and any PUs that use the data store; modify the schema; redeploy.</td>
+                    <td>Dynamic and fixed</td>
+                    <td>Low</td>
+                    <td>None</td>
+                    <td>Yes</td>
+                    <td>In place</td>
+                    <td>Dependent on the space size and network bandwidth to the external DB</td>
+                    <td>All v1 is transformed to v2</td>
+                    <td>Any index</td>
+                </tr>
+                <tr>
+                    <td><b>Option C: Side-by-Side Schema Evolution</b>
+                        <br />Create a new data store without downtime.</td>
+                    <td>Dynamic and fixed</td>
+                    <td>Double the normal memory and CPU requirements</td>
+                    <td>None</td>
+                    <td>No</td>
+                    <td>Side by side</td>
+                    <td>Minutes to hours</td>
+                    <td>All v1 is transformed to v2</td>
+                    <td>Any index</td>
+                </tr>
+            </tbody>
         </table>
         <h1>Schema Evolution by Use of Dynamic Properties</h1>
         <p>The easiest way to achieve schema evolution is via dynamic properties - each entry can store a set of dynamic properties, which are not bound by the type schema. In this case schema evolution is automatic - your app simply starts writing entries with additional properties. No change is required in the space.</p>
@@ -110,7 +108,7 @@
         <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> works by creating a mirror service and copying the original space (V1) to the new space (V2). The copying process is done via a Kafka messaging layer and does not require the Space or stateful services that use the Document Store to be offline. Note that the V1 and V2 spaces co-exist side-by-side. External users are redirected to the new service, and the old service is closed. </p>
         <p>The schema evolution process copies each entry from the V1 object to the V2 object. A Type Adapter  - a function which transforms V1 to V2  -  performs the necessary conversion of the schema, on an entry-by-entry basis, as shown in the following diagram: </p>
         <p>
-            <img src="../Resources/Static/images/SEWD overview.jpg" />
+            <img src="../Resources/Static/images/Schema-evolution-from-ppt.jpg" />
         </p>
         <ol>
             <li>Client interacts with stateful service (i.e. service that contains a space).</li>
