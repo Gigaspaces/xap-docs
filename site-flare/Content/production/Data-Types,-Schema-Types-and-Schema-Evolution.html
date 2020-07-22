@@ -139,7 +139,7 @@
         <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> is currently available for Space Documents. Support for Space Objects will be added in a future release.</p>
         <p>Since <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> uses Kafka as the data messaging layer, the user must provide their own Kafka cluster. We require the Kafka connection string of the user’s existing Kafka installation.</p>
         <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> is currently implemented for in-memory Space Objects. MemoryXtend will be supported in a future release.</p>
-        <p>Capacity planning should include the CPU and RAM resources to accommodate both spaces, V1 and V2 side-by-side during the Schema Evolution process.</p>
+        <p>Capacity planning should include the CPU and RAM resources to accom modate both spaces, V1 and V2 side-by-side during the Schema Evolution process.</p>
         <p>&#160;</p>
         <h1>Three Building Blocks of <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h1>
         <p>In order to implement side-by-side Schema Evolution, three basic components or building blocks are required.</p>
@@ -185,7 +185,7 @@
             <li>A running Kafka cluster</li>
             <li>A physical Space synchronization endpoint</li>
             <li>The xap-Kafka jar located under GS_HOME/lib/optional/Kafka should be copied to GS_HOME/lib/optional/pu-common before service deployment</li>
-            <li>The mirror service jar should be packaged with the Kafka-clients jar</li>
+            <li>The mirror service jar should be packaged with the <a href="https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients/2.5.0">Kafka-clients jar</a></li>
         </ul>
         <p>A new Kafka endpoint implementation is now part of the <MadCap:variable name="General.CompanyName" />product. Its bootstrap requires the Kafka cluster connection data AND the physical endpoint connection data. The physical endpoint is defined as the primary endpoint, as shown below.</p>
         <p>
@@ -202,7 +202,8 @@
         <h3>Kafka Mirror with Multiple Synchronization Endpoints</h3>
         <p>In the Kafka synchronization endpoint, the user can add secondary persistence endpoints. Each endpoint starts a new consumer process that consumes the mirror messages and persists them to the endpoint. By design, each secondary endpoint persists data from the last message persisted to the primary endpoint, which means it doesn’t consume all previous messages.</p>
         <h2>Third Building Block: Service to Service Data Transfer AKA Service Traffic Redirection</h2>
-        <p>Service as a space synchronization endpoint</p>
+        <p><b>Service as a space synchronization endpoint</b>
+        </p>
         <p>The final building block of SE is the new <code>GigaSpaceSynchronizationEndpoint</code> implementation. In this implementation, the Space acts as a persistence endpoint to another service. The implementation also allows data to be adapted before writing it to the Space endpoint. After deployment, traffic from the source service will be replicated and adapted to the target service, including write, update and removal of entries.</p>
         <h3>Configuration of the Endpoint</h3>
         <p>Configuration uses the following information:</p>
@@ -210,6 +211,7 @@
             <li>The Space name (requires)</li>
             <li>A collection of zero or n custom type adapters that adapt source service types (optional)</li>
             <li>Target service lookup groups (optional)</li>
+            <li>Target service lookup locators (optional)</li>
         </ul>
         <p>
             <img src="../Resources/Static/images/SBSSE-code-07.jpg" />
