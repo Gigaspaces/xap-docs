@@ -201,8 +201,8 @@
         <p>By commenting out the primary endpoint, space data will be persisted only to Kafka. To resume primary endpoint persistence, one should just redeploy the original mirror service.</p>
         <h3>Kafka Mirror with Multiple Synchronization Endpoints</h3>
         <p>In the Kafka synchronization endpoint, the user can add secondary persistence endpoints. Each endpoint starts a new consumer process that consumes the mirror messages and persists them to the endpoint. By design, each secondary endpoint persists data from the last message persisted to the primary endpoint, which means it doesn’t consume all previous messages.</p>
-        <h2>Third Building Block: Service to Service Data Transfer AKA Service Traffic Redirection</h2>
-        <p><b>Service as a space synchronization endpoint</b>
+        <h2>Third Building Block: Service to Service Data Transfer ***AKA Service Traffic Redirection</h2>
+        <p><b>***Service as a space synchronization endpoint</b>
         </p>
         <p>The final building block of SE is the new <code>GigaSpaceSynchronizationEndpoint</code> implementation. In this implementation, the Space acts as a persistence endpoint to another service. The implementation also allows data to be adapted before writing it to the Space endpoint. After deployment, traffic from the source service will be replicated and adapted to the target service, including write, update and removal of entries.</p>
         <h3>Configuration of the Endpoint</h3>
