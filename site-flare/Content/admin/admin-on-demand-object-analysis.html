@@ -9,7 +9,7 @@
         <p><MadCap:variable name="General.ProductNameIE" /> enables developers to store and manage data within a Space Object. </p>
         <p>The Space Object contains one or more Object Types, comparable to tables within a database. Object data is stored in memory, and optionally on disk, as configured by the system administrator.</p>
         <p>Based on the properties of each Object Type, and the number of occurrences of each property, On Demand Object Analysis calculates the amount of memory stored within a Space Object. In addition, it calculates the memory footprint of the object indexes.</p>
-        <p>Two or more Object Analyses can be compared, to spot trends of increasing or decreasing memory consumption.
+        <p MadCap:conditions="Default.DoNotShow">Two or more Object Analyses can be compared, to spot trends of increasing or decreasing memory consumption.
         </p>
         <p>This process is done after the initial provisioning and load of sample data, and is on-going while new services are deployed and additional data is stored within the space.</p>
         <p>One use of On Demand Object Analysis is by developers when deploying new services, to determine memory usage. It can be done in a separated staging environment or as part of the initial data load.</p>
@@ -43,6 +43,12 @@
                 <img src="../Resources/Static/images/ODOA-Banner-OA-in-progress.jpg" />
             </p>
             <h1>Results of Object Analysis</h1>
+            <p>The result of the Object Analysis is two-fold: </p>
+            <ol>
+                <li>The Object Analysis Report is generated.</li>
+                <li>The Space and Object screens has additional information.</li>
+            </ol>
+            <h1>1. Object Analysis Report</h1>
             <p>When the analysis is complete, a message will appear as follows:</p>
             <p>
                 <img src="../Resources/Static/images/ODOA-Banner-OA-completed.jpg" />
@@ -55,7 +61,7 @@
             <div class="tc-admon-note">
                 <p>If the Object analysis is not successful, press Review Logs to determine the cause of the failure.</p>
             </div>
-            <h1>The Object Analysis Report</h1>
+            <h1>Contents of the Object Analysis Report</h1>
             <p>The report appears as follows:</p>
             <p style="text-align: center;">
                 <img src="../Resources/Static/images/ODOA-list-of-objects.jpg" />
