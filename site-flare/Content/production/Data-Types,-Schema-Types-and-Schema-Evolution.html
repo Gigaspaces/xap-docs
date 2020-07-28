@@ -220,8 +220,23 @@
 How to Implement Side-by-Side Schema Evolution
         
         </h1>
-        <p>Starting point: A long running service with mirror persistence to a regular endpoint</p>
-        <p>Preliminary Step: Undeploy the existing mirror service and deploy a new Kafka enhanced mirror service. This requires the existence of a reachable Kafka cluster</p>
+        <ul>
+            <li>Starting point: A long running service with mirror persistence to a regular endpoint</li>
+            <li>Preliminary Step: Undeploy the existing mirror service and deploy a new Kafka enhanced mirror service. This requires the existence of a reachable Kafka cluster.</li>
+            <li>Pause the write to MongoDB.</li>
+            <li>Deploy a new temporary V1 mirror. This disables kafka's primary endpoint to MongoDB. The data is therefore logged by Kafka.</li>
+            <li>Load V1 database to V2, with Type Adapter. </li>
+            <li>Connect traffic from V1 to V2 - replicating and adapting (via the Type Adapter).</li>
+            <li>Deploy the final, steady-state mirror, which contains the V2 space as a secondary endpoint, and MongoDB as a primary endpoint. This will ensure that data is written to MongoDB, and also replicated and adapted to V2.</li>
+        </ul>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>.</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
         <p>&#160;</p>
     </body>
 </html>
