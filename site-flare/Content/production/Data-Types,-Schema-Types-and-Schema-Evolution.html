@@ -136,14 +136,31 @@
             <li>Support for various services deployments strategies for A/B testing and gradual deployment of new services and versions</li>
         </ul>
         <h2>Installation Requirements and Considerations for <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h2>
-        <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> is currently available for Space Documents. Support for Space Objects will be added in a future release.</p>
+        <div class="tc-admon-note"><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> is currently available for  in-memory Space Documents. Support for Space Objects and for MemoryXtend will be added in a future release.</div>
         <p>Since <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> uses Kafka as the data messaging layer, the user must provide their own Kafka cluster. We require the Kafka connection string of the user’s existing Kafka installation.</p>
-        <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> is currently implemented for in-memory Space Objects. MemoryXtend will be supported in a future release.</p>
-        <p>Capacity planning should include the CPU and RAM resources to accom modate both spaces, V1 and V2 side-by-side during the Schema Evolution process.</p>
+        <p>Capacity planning should include the CPU and RAM resources to accommodate both spaces, V1 and V2 side-by-side during the Schema Evolution process.</p>
         <p>&#160;</p>
         <h1>Three Building Blocks of <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h1>
-        <p>In order to implement side-by-side Schema Evolution, three basic components or building blocks are required.</p>
-        <h2>First Building Block: APIs</h2>
+        <p>In order to implement side-by-side Schema Evolution, three basic components or building blocks are required:</p>
+        <ul>
+            <li>Specify the APIs and TypeAdapter code to transform data from V1 to V2. </li>
+            <li>Create the Kakfka bridge between the Space and the external database.</li>
+            <li>Create the Kafka bridge between Space V1 and Space V2</li>
+        </ul>
+        <h2>First Building Block: APIs and TypeAdapter</h2>
+        <p>This building block pauses direct updates to V1 and does an initial data load of V1 data, with transformation, to V2.</p>
+        <p>This is a temporary situation, until all of the data from V1 is loaded to V2.</p>
+        <p>
+            <img src="../Resources/Static/images/BB1--three-building-blocks,-schema-evolution.jpg" />
+        </p>
+        <ol>
+            <li>Client interacts with Space V1.<br />The client continues to interact with Space V1 during this initial load process. Space V1 is continuously available.</li>
+            <li><span style="color: #ff4500; font-weight: bold;">Paused --</span> Updates to database with schema V1 are captured by Kafka but not used to update the database at this time. <br />This data will be written to database with schema V1 <b>and</b> database with schema V2, after the initial load is complete.</li>
+            <li>Data is loaded (copied) from database with schema V1 to Space V2, undergoing a transformation via the Type Adapter..</li>
+            <li>Client interacts with Space V2.<br />The client continues to interact with Space V2 during this initial load process. Space V2 is continuously available.</li>
+            <li>Data changes from Space V2 are mirrored into database with schema V2.</li>
+        </ol>
+        <p>&#160;</p>
         <p>Two APIs are invoked for <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></p>
         <h3>The SpaceTypeSchemaAdapter API</h3>
         <p>This API is used to convert data from the V1 schema to the V2 schema.</p>
@@ -151,13 +168,15 @@
             <img src="../Resources/Static/images/SBSSE-code-01.jpg" />
         </p>
         <p>The type adapter is implemented by the user for each type they plan to adapt. The typeName is used to fetch the specific type adapter.</p>
-        <p><b>Notes:</b>
-        </p>
-        <p>In order to use it in schema evolution, the adapter(s) must be present in the CLASSPATH of the new service.</p>
-        <p>The adapters are used in two places: when uploading the V1 Space data source, and when redirecting V1 traffic to V2.</p>
+        <div class="tc-admon-note">
+            <p>In order to use it in schema evolution, the adapter(s) must be present in the CLASSPATH of the new service.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>The adapters are used in two places: when uploading data to the V1 Space from an external database, and when redirecting V1 traffic to V2.</p>
+        </div>
         <h3>Dynamic Space Data Source Loading: The SpaceDataSource API</h3>
         <p>The SpaceDataSource API is an existing feature that enables loading data from an external data source (database, s3 etc.) upon service deployment. (see <a href="https://docs-staging.gigaspaces.com/15.5/dev-java/space-data-source-api.html?Highlight=data%20source">here</a>).</p>
-        <p>With dynamic data source loading, the service can load the data source at any given time. This new API also allows an optional adaptation of the data during the loading.</p>
+        <p>With dynamic data source loading, the service can load the data source at any given time. This API also allows an optional adaptation of the data during the loading.</p>
         <p>The API starting point is the <MadCap:variable name="General.CompanyName" />class, where a new <code>asyncLoad </code>method was introduced:</p>
         <p>
             <img src="../Resources/Static/images/SBSSE-code-02.jpg" />
@@ -171,20 +190,18 @@
         <p>
             <img src="../Resources/Static/images/SBSSE-code-04.jpg" />
         </p>
-        <p><b>TBD: The load execution result</b>
-        </p>
-        <h2>Second Building Block: Mirror Enhanced with Apache Kafka</h2>
-        <p>The mirror service is responsible for persisting Space data to a user-defined endpoint (database, files, S3 etc.). There is a single mirror instance per service, and data from all partitions is funneled to it.</p>
+        <h2>Second Building Block: Kafka Bridge Between Space and External Database</h2>
+        <p>The mirror service is responsible for persisting Space data to a user-defined endpoint (database, files, another Space, etc.). There is a single mirror instance per service, and data from all partitions is funneled to it.</p>
         <p>In a regular usage of the mirror, the data is persisted directly to the user-defined endpoint. The new enhanced mirror uses Apache Kafka as a buffer between the mirror and the physical endpoint.</p>
         <p>Apache Kafka is a highly available, scalable message-based application with parallel multi-message writes/reads (in Kafka terminology, producer/consumer). Instead of persisting Space data directly to the endpoint, data is persisted to Kafka as a Kafka message. Another mirror process is responsible for consuming the Kafka messages and persisting them to the “real” endpoint.</p>
-        <p>Without this enhancement, endpoint persistence failures would result in a slowing of the service and a larger memory consumption. With Kafka as a buffer, failures in the physical endpoint will not affect the service functionality. This enhancement also enables stopping the endpoint persistence for extended periods of time (relevant for V1-&gt;V2 traffic redirection).</p>
+        <p>This enhancement provides endpoint persistence, reduced service processing time, and a smaller memory consumption. With Kafka as a buffer, failures in the physical endpoint will not affect the service functionality. This enhancement also enables stopping the endpoint persistence for extended periods of time (relevant for V1-&gt;V2 traffic redirection).</p>
         <h3>Integrating the Mirror with Kafka</h3>
         <p><b>Prerequisites:</b>
         </p>
         <ul>
             <li>A running Kafka cluster</li>
             <li>A physical Space synchronization endpoint</li>
-            <li>The xap-Kafka jar located under GS_HOME/lib/optional/Kafka should be copied to GS_HOME/lib/optional/pu-common before service deployment</li>
+            <li>The gs-Kafka jar located under GS_HOME/lib/optional/Kafka should be copied to GS_HOME/lib/optional/pu-common before service deployment</li>
             <li>The mirror service jar should be packaged with the <a href="https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients/2.5.0">Kafka-clients jar</a></li>
         </ul>
         <p>A new Kafka endpoint implementation is now part of the <MadCap:variable name="General.CompanyName" />product. Its bootstrap requires the Kafka cluster connection data AND the physical endpoint connection data. The physical endpoint is defined as the primary endpoint, as shown below.</p>
@@ -192,7 +209,6 @@
             <img src="../Resources/Static/images/SBSSE-code-05.jpg" />
         </p>
         <p>On service deployment, Space data will be written as Kafka messages to a newly-created Kafka topic called “&lt;service-name&gt;-topic”. The consumption process will consume the message of this topic, and write them to the primary endpoint.</p>
-        <p><b>NOTE:</b> Here should be a section that talks about Kafka considerations, in terms of capacity planning.</p>
         <h3>Pausing the Primary Endpoint</h3>
         <p>As discussed above, the Kafka mirror allows pausing persistence to the primary endpoint without performance penalty.This pause/resume is done by manually undeploying the mirror service and deploying an new mirror service with the following configuration:</p>
         <p>
@@ -201,9 +217,17 @@
         <p>By commenting out the primary endpoint, space data will be persisted only to Kafka. To resume primary endpoint persistence, one should just redeploy the original mirror service.</p>
         <h3>Kafka Mirror with Multiple Synchronization Endpoints</h3>
         <p>In the Kafka synchronization endpoint, the user can add secondary persistence endpoints. Each endpoint starts a new consumer process that consumes the mirror messages and persists them to the endpoint. By design, each secondary endpoint persists data from the last message persisted to the primary endpoint, which means it doesn’t consume all previous messages.</p>
-        <h2>Third Building Block: Service to Service Data Transfer ***AKA Service Traffic Redirection</h2>
-        <p><b>***Service as a space synchronization endpoint</b>
+        <h2>Third Building Block: Kafka Bridge Between Space V1 and Space V2</h2>
+        <p>
+            <img src="../Resources/Static/images/Schema-evolution-from-ppt.jpg" />
         </p>
+        <ol>
+            <li>Client interacts with stateful service (i.e. service that contains a space).</li>
+            <li>Data changes from space V1 are mirrored into database with schema V1.</li>
+            <li>Data changes are streamlined into service V2, using a user-defined Type Adapter.</li>
+            <li>Client interacts with service V2.</li>
+            <li>Data changes from space V2 are mirrored into database with schema V2.</li>
+        </ol>
         <p>The final building block of SE is the new <code>GigaSpaceSynchronizationEndpoint</code> implementation. In this implementation, the Space acts as a persistence endpoint to another service. The implementation also allows data to be adapted before writing it to the Space endpoint. After deployment, traffic from the source service will be replicated and adapted to the target service, including write, update and removal of entries.</p>
         <h3>Configuration of the Endpoint</h3>
         <p>Configuration uses the following information:</p>
