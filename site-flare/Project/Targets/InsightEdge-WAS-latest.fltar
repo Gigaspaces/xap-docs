@@ -5,7 +5,7 @@
   Type="WebHelp2"
   Destinations=""
   GlossaryTermConversion="marked"
-  ConditionTagExpression="include[Default.ReleasedVersions or Version.14-0-born or Version.14-2-born or Version.14-5-born or Version.15-0-born], exclude[Default.DoNotShow or NewSet.StagingOnly or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-2-only or Version.14-5-died or Version.14-5-only or Version.15-0-died or Version.15-0-only or Version.15-2-died or Version.15-5-born or Version.15-5-only or Version.ea-only]"
+  MasterPage="/Content/Resources/MasterPages/content.flmsp"
   Skin="/Project/Skins/HTML5 - Side Navigation.flskn"
   ExcludeUnreferencedContent="true"
   MoveOutputContentToRoot="true"
@@ -13,16 +13,19 @@
   UseCustomTopicFileExtension="true"
   CustomTopicFileExtension="html"
   MasterToc="/Project/TOCs/Production/Master-TOC.fltoc"
+  EnableSitemap="true"
+  SitemapWebUrl="https://docs.gigaspaces.com/latest/"
   DefaultUrl="/Content/index.html"
-  MasterPage="/Content/Resources/MasterPages/content.flmsp"
-  MobileBreakpoint="820">
+  MobileBreakpoint="820"
+  ConditionTagExpression="include[Default.ReleasedVersions or Version.14-0-born or Version.14-2-born or Version.14-5-born or Version.15-0-born or Version.ea-only AND NOT NewSet.StagingOnly&#xD;&#xA;], exclude[Default.DoNotShow or NewSet.StagingOnly or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-2-only or Version.14-5-died or Version.14-5-only or Version.15-0-died or Version.15-0-only or Version.15-2-died or Version.15-2-only or Version.15-5-died]">
   <PrintedOutput
     CollapseMargins="true"
     GenerateTOCProxy="true"
     GenerateIndexProxy="true"
-    GenerateGlossaryProxy="true"
-    OutputFormat="doc" />
+    GenerateGlossaryProxy="true" />
   <Variables>
+    <Variable
+      Name="Versions/java-version">8</Variable>
     <Variable
       Name="Versions/maven-version-MX">15.2.0</Variable>
     <Variable
@@ -84,11 +87,10 @@
     <Variable
       Name="Versions/spring-long">5.1.7</Variable>
     <Variable
-      Name="Versions/java-version">11</Variable>
-    <Variable
       Name="Versions/hibernate-short">5</Variable>
     <Variable
       Name="General/EnvVariablePrefix">GS</Variable>
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
+  <Destinations></Destinations>
 </CatapultTarget>
