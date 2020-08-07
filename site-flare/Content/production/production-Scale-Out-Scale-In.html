@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Cross-Network Scale Out/Scale In</h1>
+        <div>
+            <h1>What Kinds of Data Stores are Available in <MadCap:variable name="General.ProductNameXAP" />?</h1>
+            <p>When a Data Store object is defined in <MadCap:variable name="General.ProductNameXAP" />, the object can be defined as a <a href="https://docs.gigaspaces.com/latest/dev-java/pojo-overview.html">Space Object</a> or a <a href="https://docs.gigaspaces.com/latest/dev-java/document-overview.html">Space Document</a>.</p>
+            <p>Within each object type, the data schema can be defined with:</p>
+            <ul>
+                <li>Fixed or static properties (columns), sometimes referred to as  <i>schema on write</i>,</li>
+                <li><a href="https://docs.gigaspaces.com/latest/dev-java/dynamic-properties.html">Dynamic properties</a>, sometimes referred to as <i>schema on read</i>, or</li>
+                <li>Hybrid, a combination of both fixed and dynamic properties.</li>
+            </ul>
+            <p>The choice of object type and schema definition can have a profound impact on an application's memory footprint and processing speed, and on the procedure required to make a change in the schema.</p>
+        </div>
+        <h1>Schema Evolution - Changing a Schema</h1>
+        <p>When a change is required to the underlying structure or schema of an object, this change process is referred to as Schema Evolution.</p>
+        <p>There are three general approaches for schema evolution:</p>
+        <ul>
+            <li><b>Use of dynamic properties</b> -- define a data store that has dynamic, schema-on-read properties</li>
+            <li><b>In-place schema evolution redeploying the space</b> -- define a data store that has fixed, schema-on-write properties -- requires downtime</li>
+            <li><b><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></b> -- define a data store with any combinstion of dynamic and fixed properties -- no downtime.</li>
+        </ul>
+        <p>A summary of these three methods of Schema Evolution is shown in the table below.</p>
+        <table style="width: 100%;">
+            <caption>Options for Schema Evolution</caption>
+            <col style="width: 269px;" />
+            <col style="width: 123px;" />
+            <col style="width: 152px;" />
+            <col style="width: 139px;" />
+            <col style="width: 119px;" />
+            <col style="width: 124px;" />
+            <col style="width: 152px;" />
+            <col style="width: 152px;" />
+            <col style="width: -230px;" />
+            <thead>
+                <tr>
+                    <th><b>Schema Evolution method</b>
+                    </th>
+                    <th><b>Property Type</b>
+                    </th>
+                    <th><b>Resource usage during schema transformation</b>
+                    </th>
+                    <th><b>Memory footprint of properties</b>
+                    </th>
+                    <th><b>Requires downtime?</b>
+                    </th>
+                    <th><b>Schema strategy</b>
+                    </th>
+                    <th><b>Schema transformation duration</b>
+                    </th>
+                    <th><b>Data transformation</b>
+                    </th>
+                    <th><b>Index functionality</b>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>Option A: Use of dynamic properties</b>
+                    </td>
+                    <td>Dynamic</td>
+                    <td>Low</td>
+                    <td>Some overhead</td>
+                    <td>No</td>
+                    <td>In place</td>
+                    <td>Immediate</td>
+                    <td>Null fields by default to v1,v2 holds the new schema</td>
+                    <td>Only equality index, no range index</td>
+                </tr>
+                <tr>
+                    <td><b>Option B: In-place schema evolution redeploying the space</b>
+                        <br />Time-consuming -- undeploy the data store and any PUs that use the data store; modify the schema; redeploy.</td>
+                    <td>Dynamic and fixed</td>
+                    <td>Low</td>
+                    <td>None</td>
+                    <td>Yes</td>
+                    <td>In place</td>
+                    <td>Dependent on the space size and network bandwidth to the external DB</td>
+                    <td>All v1 is transformed to v2</td>
+                    <td>Any index</td>
+                </tr>
+                <tr>
+                    <td><b>Option C: Side-by-Side Schema Evolution</b>
+                        <br />Create a new data store without downtime.</td>
+                    <td>Dynamic and fixed</td>
+                    <td>Double the normal memory and CPU requirements</td>
+                    <td>None</td>
+                    <td>No</td>
+                    <td>Side by side</td>
+                    <td>Minutes to hours</td>
+                    <td>All v1 is transformed to v2</td>
+                    <td>Any index</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Schema Evolution by Use of Dynamic Properties</h1>
+        <p>The easiest way to achieve schema evolution is via dynamic properties - each entry can store a set of dynamic properties, which are not bound by the type schema. In this case schema evolution is automatic - your app simply starts writing entries with additional properties. No change is required in the space.</p>
+        <p>The downside is that the memory requirement increases - because there's no schema for those properties, each entry's memory footprint is larger.</p>
+        <h1>In-place Schema Evolution with Downtime</h1>
+        <p>This approach is to undeploy the <MadCap:variable name="General.ProductNameXAP" />service, modify the schema in the external database, and then re-deploy the <MadCap:variable name="General.ProductNameXAP" /> service. This will initial-load the modified schema and data.</p>
+        <p>This results in an efficient footprint in memory, but requires some downtime while the data store is being copied.</p>
+        <h1><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" />
+        </h1>
+        <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> can make the process of changing a fixed schema efficient and painless.</p>
+        <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> works by creating a mirror service and copying the original space (V1) to the new space (V2). The copying process is done via a Kafka messaging layer and does not require the Space or stateful services that use the Document Store to be offline. Note that the V1 and V2 spaces co-exist side-by-side. External users are redirected to the new service, and the old service is closed. </p>
+        <p>The schema evolution process copies each entry from the V1 object to the V2 object. A Type Adapter  - a function which transforms V1 to V2  -  performs the necessary conversion of the schema, on an entry-by-entry basis, as shown in the following diagram: </p>
+        <p>
+            <img src="../Resources/Static/images/Schema-evolution-from-ppt.jpg" />
+        </p>
+        <ol>
+            <li>Client interacts with stateful service (i.e. service that contains a space).</li>
+            <li>Data changes from space V1 are mirrored into database with schema V1.</li>
+            <li>Data changes are streamlined into service V2, using a user-defined Type Adapter.</li>
+            <li>Client interacts with service V2.</li>
+            <li>Data changes from space V2 are mirrored into database with schema V2.</li>
+        </ol>
+        <p>While the copying process is underway, all requests are logged for later processing with the new V2 object. No data is lost. There is no downtime and no requirement to make the space offline.</p>
+        <p>Because <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> makes online changes to a fixed-schema object, the object’s schema can be updated from time to time -- providing much of the flexibility of a Space Document.</p>
+        <p>The resulting object has all of the advantages of a fixed schema -- optimal read/write processing and minimal memory footprint -- without a need for the system to interpret dynamic fields.</p>
+        <h2>Schema Changes Allowed with <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h2>
+        <p>The following types of changes can be performed:</p>
+        <ul>
+            <li>Add a new field</li>
+            <li>Remove an existing field</li>
+            <li>Change the field type of an existing field</li>
+        </ul>
+        <h2>When is <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> the Right Approach?</h2>
+        <p><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> is a powerful tool to use in your production environment  when the following requirements are important in your system:</p>
+        <ul>
+            <li>Occasional changes to an object’s fixed schema.</li>
+            <li>No down time -- during the <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> process, all services and processes using the object continue to run.</li>
+            <li>Optimal read/write access after the schema change, with minimal memory footprint</li>
+            <li>Support for various services deployments strategies for A/B testing and gradual deployment of new services and versions</li>
+        </ul>
+        <h2>Installation Requirements and Considerations for <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h2>
+        <div class="tc-admon-note"><MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> is currently available for  in-memory Space Documents. Support for Space Objects and for MemoryXtend will be added in a future release.</div>
+        <p>Since <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /> uses Kafka as the data messaging layer, the user must provide their own Kafka cluster. We require the Kafka connection string of the user’s existing Kafka installation.</p>
+        <p>Capacity planning should include the CPU and RAM resources to accommodate both spaces, V1 and V2 side-by-side during the Schema Evolution process.</p>
+        <p>&#160;</p>
+        <h1>Three Building Blocks of <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></h1>
+        <p>In order to implement side-by-side Schema Evolution, three basic components or building blocks are required:</p>
+        <ul>
+            <li>Specify the APIs and TypeAdapter code to transform data from V1 to V2. </li>
+            <li>Create the Kakfka bridge between the Space and the external database.</li>
+            <li>Create the Kafka bridge between Space V1 and Space V2</li>
+        </ul>
+        <h2>First Building Block: APIs and TypeAdapter</h2>
+        <p>This building block pauses direct updates to V1 and does an initial data load of V1 data, with transformation, to V2.</p>
+        <p>This is a temporary situation, until all of the data from V1 is loaded to V2.</p>
+        <p>
+            <img src="../Resources/Static/images/BB1--three-building-blocks,-schema-evolution.jpg" />
+        </p>
+        <ol>
+            <li>Client interacts with Space V1.<br />The client continues to interact with Space V1 during this initial load process. Space V1 is continuously available.</li>
+            <li><span style="color: #ff4500; font-weight: bold;">Paused --</span> Updates to database with schema V1 are captured by Kafka but not used to update the database at this time. <br />This data will be written to database with schema V1 <b>and</b> database with schema V2, after the initial load is complete.</li>
+            <li>Data is loaded (copied) from database with schema V1 to Space V2, undergoing a transformation via the Type Adapter..</li>
+            <li>Client interacts with Space V2.<br />The client continues to interact with Space V2 during this initial load process. Space V2 is continuously available.</li>
+            <li>Data changes from Space V2 are mirrored into database with schema V2.</li>
+        </ol>
+        <p>&#160;</p>
+        <p>Two APIs are invoked for <MadCap:variable name="General.SchemaEvolutionWithoutDowntime" /></p>
+        <h3>The SpaceTypeSchemaAdapter API</h3>
+        <p>This API is used to convert data from the V1 schema to the V2 schema.</p>
+        <p>
+            <img src="../Resources/Static/images/SBSSE-code-01.jpg" />
+        </p>
+        <p>The type adapter is implemented by the user for each type they plan to adapt. The typeName is used to fetch the specific type adapter.</p>
+        <div class="tc-admon-note">
+            <p>In order to use it in schema evolution, the adapter(s) must be present in the CLASSPATH of the new service.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>The adapters are used in two places: when uploading data to the V1 Space from an external database, and when redirecting V1 traffic to V2.</p>
+        </div>
+        <h3>Dynamic Space Data Source Loading: The SpaceDataSource API</h3>
+        <p>The SpaceDataSource API is an existing feature that enables loading data from an external data source (database, s3 etc.) upon service deployment. (see <a href="https://docs-staging.gigaspaces.com/15.5/dev-java/space-data-source-api.html?Highlight=data%20source">here</a>).</p>
+        <p>With dynamic data source loading, the service can load the data source at any given time. This API also allows an optional adaptation of the data during the loading.</p>
+        <p>The API starting point is the <MadCap:variable name="General.CompanyName" />class, where a new <code>asyncLoad </code>method was introduced:</p>
+        <p>
+            <img src="../Resources/Static/images/SBSSE-code-02.jpg" />
+        </p>
+        <p>The data load request contains two pieces of data: the connection to the data source and an (optional) collection of type adapters. </p>
+        <p>The data source connection is wrapped in the <code>SpaceDataSourceFactory</code> interface:</p>
+        <p>
+            <img src="../Resources/Static/images/SBSSE-code-03.jpg" />
+        </p>
+        <p>The product provides a packaged implementation for a MongoDB data source:</p>
+        <p>
+            <img src="../Resources/Static/images/SBSSE-code-04.jpg" />
+        </p>
+        <h2>Second Building Block: Kafka Bridge Between Space and External Database</h2>
+        <p>The mirror service is responsible for persisting Space data to a user-defined endpoint (database, files, another Space, etc.). There is a single mirror instance per service, and data from all partitions is funneled to it.</p>
+        <p>In a regular usage of the mirror, the data is persisted directly to the user-defined endpoint. The new enhanced mirror uses Apache Kafka as a buffer between the mirror and the physical endpoint.</p>
+        <p>Apache Kafka is a highly available, scalable message-based application with parallel multi-message writes/reads (in Kafka terminology, producer/consumer). Instead of persisting Space data directly to the endpoint, data is persisted to Kafka as a Kafka message. Another mirror process is responsible for consuming the Kafka messages and persisting them to the “real” endpoint.</p>
+        <p>This enhancement provides endpoint persistence, reduced service processing time, and a smaller memory consumption. With Kafka as a buffer, failures in the physical endpoint will not affect the service functionality. This enhancement also enables stopping the endpoint persistence for extended periods of time (relevant for V1-&gt;V2 traffic redirection).</p>
+        <h3>Integrating the Mirror with Kafka</h3>
+        <p><b>Prerequisites:</b>
+        </p>
+        <ul>
+            <li>A running Kafka cluster</li>
+            <li>A physical Space synchronization endpoint</li>
+            <li>The gs-Kafka jar located under GS_HOME/lib/optional/Kafka should be copied to GS_HOME/lib/optional/pu-common before service deployment</li>
+            <li>The mirror service jar should be packaged with the <a href="https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients/2.5.0">Kafka-clients jar</a></li>
+        </ul>
+        <p>A new Kafka endpoint implementation is now part of the <MadCap:variable name="General.CompanyName" />product. Its bootstrap requires the Kafka cluster connection data AND the physical endpoint connection data. The physical endpoint is defined as the primary endpoint, as shown below.</p>
+        <p>
+            <img src="../Resources/Static/images/SBSSE-code-05.jpg" />
+        </p>
+        <p>On service deployment, Space data will be written as Kafka messages to a newly-created Kafka topic called “&lt;service-name&gt;-topic”. The consumption process will consume the message of this topic, and write them to the primary endpoint.</p>
+        <h3>Pausing the Primary Endpoint</h3>
+        <p>As discussed above, the Kafka mirror allows pausing persistence to the primary endpoint without performance penalty.This pause/resume is done by manually undeploying the mirror service and deploying an new mirror service with the following configuration:</p>
+        <p>
+            <img src="../Resources/Static/images/SBSSE-code-06.jpg" />
+        </p>
+        <p>By commenting out the primary endpoint, space data will be persisted only to Kafka. To resume primary endpoint persistence, one should just redeploy the original mirror service.</p>
+        <h3>Kafka Mirror with Multiple Synchronization Endpoints</h3>
+        <p>In the Kafka synchronization endpoint, the user can add secondary persistence endpoints. Each endpoint starts a new consumer process that consumes the mirror messages and persists them to the endpoint. By design, each secondary endpoint persists data from the last message persisted to the primary endpoint, which means it doesn’t consume all previous messages.</p>
+        <h2>Third Building Block: Kafka Bridge Between Space V1 and Space V2</h2>
+        <p>
+            <img src="../Resources/Static/images/Schema-evolution-from-ppt.jpg" />
+        </p>
+        <ol>
+            <li>Client interacts with stateful service (i.e. service that contains a space).</li>
+            <li>Data changes from space V1 are mirrored into database with schema V1.</li>
+            <li>Data changes are streamlined into service V2, using a user-defined Type Adapter.</li>
+            <li>Client interacts with service V2.</li>
+            <li>Data changes from space V2 are mirrored into database with schema V2.</li>
+        </ol>
+        <p>The final building block of SE is the new <code>GigaSpaceSynchronizationEndpoint</code> implementation. In this implementation, the Space acts as a persistence endpoint to another service. The implementation also allows data to be adapted before writing it to the Space endpoint. After deployment, traffic from the source service will be replicated and adapted to the target service, including write, update and removal of entries.</p>
+        <h3>Configuration of the Endpoint</h3>
+        <p>Configuration uses the following information:</p>
+        <ul>
+            <li>The Space name (required)</li>
+            <li>A collection of zero or n custom type adapters that adapt source service types (optional)</li>
+            <li>Target service lookup groups (optional)</li>
+        </ul>
+        <p>
+            <img src="../Resources/Static/images/SBSSE-code-07.jpg" />
+        </p>
+        <h1>
+How to Implement Side-by-Side Schema Evolution
+        
+        </h1>
+        <ul>
+            <li>Starting point: A long running service with mirror persistence to a regular endpoint</li>
+            <li>Preliminary Step: Undeploy the existing mirror service and deploy a new Kafka enhanced mirror service. This requires the existence of a reachable Kafka cluster.</li>
+            <li>Pause the write to MongoDB.</li>
+            <li>Deploy a new temporary V1 mirror. This disables kafka's primary endpoint to MongoDB. The data is therefore logged by Kafka.</li>
+            <li>Load V1 database to V2, with Type Adapter. </li>
+            <li>Connect traffic from V1 to V2 - replicating and adapting (via the Type Adapter).</li>
+            <li>Deploy the final, steady-state mirror, which contains the V2 space as a secondary endpoint, and MongoDB as a primary endpoint. This will ensure that data is written to MongoDB, and also replicated and adapted to V2.</li>
+        </ul>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>.</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">On Demand Scale Up/Scale Down</h1>
+        <h1>Vertical Scaling</h1>
+        <p><b>Vertical scaling</b>, referred to as <b href="production-scale-up-scale-down.html">Scale Up/Scale Down</b>, allows  the amount of RAM and CPU to be increased or decreased - without downtime - for an active GigaSpaces cluster.</p>
+        <p>For example, additional memory or CPUs may be added to an existing physical node.</p>
+        <p style="text-align: center;">
+            <img src="../Resources/Static/images/Scaling-example-of-vertical-scaling.jpg">
+            </img>
+        </p>
+        <p>Scale Up/Scale Down can be used for applications that have many "atomic" transactions (logical units of work), often using relational databases.</p>
+        <div class="tc-admon-note">
+            <p>This feature is available in both the Elasticgrid and the Kubernetes environment.</p>
+        </div>
+        <h2>Advantages</h2>
+        <ul>
+            <li>Resources are located close physical proximity. <br></br>This allows faster access to related data, such as credit/debit table updates in a closed (atomic) unit of work..</li>
+            <li>A performance gain is realized, because their is more RAM and CPU on each update.</li>
+        </ul>
+        <h2>Use Cases</h2>
+        <p>If an application expects a significant increase in resource requirements at, for example, 9 am daily, the system may be scaled up -  to perhaps 20 times greater CPU capacity in the morning. Later in the day, the user will scale the system back down to its default level.</p>
+        <p>Another example is Black Friday or Digital Monday, during which the system expects marked peaks of activity. Up scaling can be performed before the expected busy period, and down scaling can be done when normal activity levels resume.</p>
+        <p>In this way, SLA/performance levels can be met consistently throughout the day.</p>
+        <div class="tc-admon-note">
+            <p>Scaling is performed by the user on demand, at the time that they want to change the resource levels. Scaling can be performed either by entering a command in the command line, or by requesting the scaling in the Ops Manager.</p>
+        </div>
+        <h1>Which Partitions to Scale Up/Scale Down?</h1>
+        <p>Partitions can be selected for scaling in two ways:</p>
+        <ul>
+            <li><b>Service leve</b>l - scale all of the partitions that use a particular GigaSpaces service. <br />An example is a service used for a shopping cart. At certain times the user may wish to Scale Up/Scale Down all of the partitions using the service, no matter where they are located.</li>
+            <li><b>Single partition</b> - Scale a single partition only. <br />An example is a partition that handles flight requests to a particular airport. At times it may be necessary to scale the resource for that particular partition, depending on seasonal travel patterns.</li>
+        </ul>
+        <h1>What Frameworks are Available for Scale Up/Scale Down?</h1>
+        <p>Scale Up/Scale/Down can be performed in each of the <MadCap:variable name="General.ProductNameXAP" /> environments:</p>
+        <ul>
+            <li>Ops Manager</li>
+            <li>Command Line Interface</li>
+            <li>REST-API</li>
+        </ul>
+        <p>For all of these environments, two basic decisions are required: which partitions to scale, and how much to scale.</p>
+        <p>Regarding which partitions, the user can request that all partitions using a particular service should be scaled, or they can choose a specific partition. </p>
+        <p>Regarding the amount to scale up or down, the user chooses a value for CPUs and RAM, which will be applied to all of the partitions that are scaled.</p>
+        <h2>Scale Up/Scale Down Using the Ops Manager</h2>
+        <h3>Selecting Partitions by Service</h3>
+        <p>From the Service screen for the stateful service that you wish to scale, hover over the three dots on the top of the screen, and click <b>Scale up/down</b>:</p>
+        <p>
+            <img src="../Resources/Static/images/SUSD-select-susd-from-menu.jpg" />
+        </p>
+        <p>The Scale Up/down screen appears:</p>
+        <p>
+            <img src="../Resources/Static/images/SUSD-the-susd-screen-appears.jpg" />
+        </p>
+        <p>In this example, the screen provides the following information:</p>
+        <ul>
+            <li>The most common partition size for partitions using this service is <b>four </b>units (four CPU cores).</li>
+            <li>The most common RAM size is <b>200 MiB</b> <span class="tc-highlight">&lt;&lt;link to Mib-MB conversion table&gt;&gt;</span></li>
+        </ul>
+        <p>To choose a new number of CPUs and RAM size for all of the partitions using this service, you can click on one of the suggested CPU and RAM sizes. Alternatively, you can click the <b>Custom </b>checkbox to choose any value.</p>
+        <p>In this example, the user chose a new custom number of CPUs of <b>44</b>, and a new RAM size of <b>350 MiB</b>:</p>
+        <p>
+            <img src="../Resources/Static/images/SUSD-in-this-example.jpg" />
+        </p>
+        <p>Note that the original values for CPUs and RAM are shown in light blue. You can easily go back to the original values by clicking these buttons.</p>
+        <p>Click <b>Restore to service default </b>if you wish to reset the values to the original values used when the service was first run.</p>
+        <p>Click <b>Apply</b> to accept the values shown. A confirmation screen will display:</p>
+        <p>
+            <img src="../Resources/Static/images/SUSD-click-apply-to-accept.jpg" />
+        </p>
+        <p>Click <b>Run Scale</b> to proceed with the scaling request, or <b>Cancel </b>to abort the request.</p>
+        <p>The next screen shows the scaling request in progress:</p>
+        <p>
+            <img src="../Resources/Static/images/SUSD-the-next-screen-shows-scaling-req.jpg" />
+        </p>
+        <p>The blue banner on the top of the screen is a progress indicator with messages indicating the stage of the scaling:</p>
+        <p>
+            <img src="../Resources/Static/images/SUSD-scaling-service-in-progress.jpg" />
+        </p>
+        <p>Note that for performance reasons, and to ensure high availability and service resilience, scaling is done in small "batches" of partitions. In this example, 100 instances are being scaled, in ten batches of ten partitions each.</p>
+        <p>When scaling completes successfully, a message is displayed:</p>
+        <p>
+            <img src="../Resources/Static/images/SUSD-scaling-service-completed.jpg" />
+        </p>
+        <p>If an error occurs, an appropriate message will display:</p>
+        <p>
+            <img src="../Resources/Static/images/SUSD-scaling-partly-completed.jpg" />
+        </p>
+        <p>and the right side of the screen will show an option to display an error log:</p>
+        <p>
+            <img src="../Resources/Static/images/SUSD-scaling-show-error-log.jpg" />
+        </p>
+        <p>Note that in the event that one or more of the scaling requests fails, the successful scaling requests are not undone. For a particular partition that has a scaling error (possibly caused by lack of system resources), that partition will be restored to its original settings, without any data loss.</p>
+        <p>Once the scaling request has completed, a cube-shaped icon displays on the top right of the screen. You can hover over this icon to see a brief description of the scaling result:</p>
+        <p>
+            <img src="../Resources/Static/images/SUSD-service-scaled-up.jpg" />
+        </p>
+        <h3>Selecting a Specific Partition to Scale</h3>
+        <p>From the Service screen for the stateful service that you wish to scale, hover over the three dots that are on the same row as the partition instance that you wish to scale, and click <b>Scale up/down</b>:</p>
+        <p>In this example, the user is scaling partition number 333.</p>
+        <p>Note that you can select either the primary instance of the partition or the secondary instance. Either choice will scale the same partition.</p>
+        <p>The Scale Up/Scale Down screen will display, as discussed in <span class="tc-highlight">&lt;&lt;link to Selecting Partitions by Service&gt;&gt;</span> above:</p>
+        <p>
+            <img src="../Resources/Static/images/SUSD-selecting-specific-partition-333.jpg" />
+        </p>
+        <p>Note that in this case, the particular partition number, Partition 333, is displayed on the top of the screen.</p>
+        <h2>Viewing the Scaling Log</h2>
+        <p>After running a scale up or scale down procedure, a log file is available with detailed information about the request.</p>
+        <p>To view the log file for a service-level scaling, <span class="tc-highlight"> ??? how???</span></p>
+        <p>To view the log file for a partition scale request, click on Logs viewer on the menu that appears when hovering over the three dots and one of the partition instances:</p>
+        <p>
+            <img src="../Resources/Static/images/SUSD-viewing-scaling-log.jpg" />
+        </p>
+        <h1>Scale Up/Scale Down Using the Command Line interface</h1>
+        <p>xxxxxxxxxxxxx</p>
+        <h1>Scale Up/Scale Down Using the REST-API</h1>
+        <p>xxxxxxxxxxxxx</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>.</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>
