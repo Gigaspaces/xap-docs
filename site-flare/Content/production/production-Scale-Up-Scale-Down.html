@@ -56,7 +56,7 @@
         <p>In this example, the screen provides the following information:</p>
         <ul>
             <li>The most common partition size for partitions using this service is <b>four </b>units (four CPU cores).</li>
-            <li>The most common RAM size is <b>200 MiB</b> <span class="tc-highlight">&lt;&lt;link to Mib-MB conversion table&gt;&gt;</span></li>
+            <li>The most common RAM size is <b>200 MiB</b> (200 Mebibytes, or 209.7152 MB -- see <a href="https://www.gbmb.org/mib-to-mb">Mebibyte-to-MB Conversion Table</a>).</li>
         </ul>
         <p>To choose a new number of CPUs and RAM size for all of the partitions using this service, you can click on one of the suggested CPU and RAM sizes. Alternatively, you can click the <b>Custom </b>checkbox to choose any value.</p>
         <p>In this example, the user chose a new custom number of CPUs of <b>44</b>, and a new RAM size of <b>350 MiB</b>:</p>
@@ -112,10 +112,66 @@
         <p>
             <img src="../Resources/Static/images/SUSD-viewing-scaling-log.jpg" />
         </p>
-        <h1>Scale Up/Scale Down Using the Command Line interface</h1>
-        <p>xxxxxxxxxxxxx</p>
+        <h1>Scale Up/Scale Down Using the Command Line Interface</h1>
+        <p>Vertical scaling is performed via the command line command of <b>scale-vertical</b>, which can be abbreviated to <b>scale-v</b>.</p>
+        <h1>Scale-Vertical</h1>
+        <h2>Syntax</h2><pre><code>gs&gt;<b> pu scale-vertical </b>   --partitions=[<b>partition-list</b>]   --memory=[<b>memory-value</b>]   --cpu=[<b>cpu-value</b>]   [<b>processing-unit-name</b>]</code></pre>
+        <h2>Description</h2>
+        <p>Increase or decrease the memory and CPU for the partitions in a processing  unit.</p>
+        <h2>Options</h2>
+        <table>
+            <col style="width: 144px;" />
+            <col style="width: 621px;" />
+            <col style="width: 235px;" />
+            <thead>
+                <tr>
+                    <th align="left">Option</th>
+                    <th align="left">Description</th>
+                    <th align="left">Examples</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><b>partition-list</b>
+                    </td>
+                    <td align="left">
+                        <p align="left">The list of processing unit partitions to be scaled.</p>
+                        <p align="left">If this parameter is omitted, all partitions will be scaled.</p>
+                        <p align="left">This parameter must be omitted for a non-stateful processing unit.</p>
+                    </td>
+                    <td align="left">
+                        <p align="left"> <b>--partitions=1,2,3</b></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left"><b>memory-value</b>
+                    </td>
+                    <td align="left">The new amount of memory allocated to each partition, in units of <a href="https://www.gbmb.org/mb-to-mib">Mebibytes</a>.</td>
+                    <td align="left"><b>--memory=500Mi</b><![CDATA[                    ]]></td>
+                </tr>
+                <tr>
+                    <td align="left"><b>cpu-value</b>
+                    </td>
+                    <td align="left">The new amount of CPU resources allocated to each partition, in units of millicores. One millicore is equivalent to 1/1000 of a CPU.</td>
+                    <td align="left"><b>--cpu=5000m</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left"><b>processing-unit-name</b>
+                    </td>
+                    <td align="left">The name of the processing unit to be scaled up or down.</td>
+                    <td align="left"><b>myProcessingUnit</b><![CDATA[                    ]]></td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Example</h2>
+        <p>The following example scales partitions <b>100</b> and <b>112</b> in processing unit <b>myProcessingUnit</b> to <b>800Mebibytes</b> and <b>4</b> CPUs. </p>
+        <p>Note that if a partition initially had a lower value for these parameters, then this is considered a scale up operation for that partition; otherwise it is a scale down operation.</p><pre><code>pu scale-vertical   --partitions=100,112   --memory=800Mi   --cpu=4000m   myProcessingUnit
+</code></pre>
+        <p>&#160;</p>
         <h1>Scale Up/Scale Down Using the REST-API</h1>
-        <p>xxxxxxxxxxxxx</p>
+        <p><span class="tc-highlight">xxxxxxxxxxxxx</span>
+        </p>
         <p>&#160;</p>
         <p>&#160;</p>
         <p>.</p>
