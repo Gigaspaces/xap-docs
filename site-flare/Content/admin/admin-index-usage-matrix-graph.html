@@ -11,11 +11,17 @@
         <p>In order to analyze index efficiency, the user can review two types of information within the Ops Manager:</p>
         <ul>
             <li>Index size - the memory footprint of the index</li>
-            <li>The relative percentage of index hits out of the total number of read accesses of the object type.. </li>
+            <li>The relative percentage of index usage, out of the total number of index hits via reads and queries of applications</li>
         </ul>
         <p>This information is stored as part of InsightEdge metrics, and can be reviewed using Grafana or Ops Manager.</p>
         <h1>Viewing Index Usage Statistics</h1>
-        <p><MadCap:variable name="General.ProductNameIE" /> enables users to capture and review index usage information in two charts:</p>
+        <p>Within Ops Manager there are two indications to help analyze index efficiency: </p>
+        <ul>
+            <li><b>Index size</b> - click on the Indexes tab within the table to review the indexes of each object type. After executing object analysis, you can see an estimate of the size of each index.</li>
+            <li><b>Relative index usage</b> - the percent each index is used, compared to the overall queries of the specific object type.</li>
+        </ul>
+        <p> The combination of the these two indications provides information of index size compared with its actual usage. </p>
+        <p>Additional indications of trends and total number of hits are available within Grafana:</p>
         <ul>
             <li>The Index Hits Trend Chart shows the total number of hits in a given time period. It is possible to monitor the last 24 or 48 hours in order to identify indexes with no or minimal usage.</li>
             <li>The Total Number of Hits per Index Chart shows a summary or total view of all index hits from the beginning of the deployment.</li>
