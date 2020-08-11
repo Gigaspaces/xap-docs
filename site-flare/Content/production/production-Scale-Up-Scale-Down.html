@@ -40,11 +40,11 @@
         <h3>Selecting Partitions by Service</h3>
         <p>From the Service screen for the stateful service that you wish to scale, hover over the three dots on the top of the screen, and click <b>Scale up/down</b>:</p>
         <p>
-            <img src="../Resources/Static/images/SUSD-select-susd-from-menu.jpg" />
+            <img src="../Resources/Static/images/SUSD-select-susd-from-menu.jpg" class="tc-picture30" />
         </p>
         <p>The Scale Up/down screen appears:</p>
         <p>
-            <img src="../Resources/Static/images/SUSD-the-susd-screen-appears.jpg" />
+            <img src="../Resources/Static/images/SUSD-the-susd-screen-appears.jpg" class="tc-picture50" />
         </p>
         <p>In this example, the screen provides the following information:</p>
         <ul>
@@ -54,18 +54,18 @@
         <p>To choose a new number of CPUs and RAM size for all of the partitions using this service, you can click on one of the suggested CPU and RAM sizes. Alternatively, you can click the <b>Custom </b>checkbox to choose any value.</p>
         <p>In this example, the user chose a new custom number of CPUs of <b>44</b>, and a new RAM size of <b>350 MiB</b>:</p>
         <p>
-            <img src="../Resources/Static/images/SUSD-in-this-example.jpg" />
+            <img src="../Resources/Static/images/SUSD-in-this-example.jpg" class="tc-picture50" />
         </p>
         <p>Note that the original values for CPUs and RAM are shown in light blue. You can easily go back to the original values by clicking these buttons.</p>
         <p>Click <b>Restore to service default </b>if you wish to reset the values to the original values used when the service was first run.</p>
         <p>Click <b>Apply</b> to accept the values shown. A confirmation screen will display:</p>
         <p>
-            <img src="../Resources/Static/images/SUSD-click-apply-to-accept.jpg" />
+            <img src="../Resources/Static/images/SUSD-click-apply-to-accept.jpg" class="tc-picture50" />
         </p>
         <p>Click <b>Run Scale</b> to proceed with the scaling request, or <b>Cancel </b>to abort the request.</p>
         <p>The next screen shows the scaling request in progress:</p>
         <p>
-            <img src="../Resources/Static/images/SUSD-the-next-screen-shows-scaling-req.jpg" />
+            <img src="../Resources/Static/images/SUSD-the-next-screen-shows-scaling-req.jpg" class="tc-picture50" />
         </p>
         <p>The blue banner on the top of the screen is a progress indicator with messages indicating the stage of the scaling:</p>
         <p>
@@ -95,7 +95,7 @@
         <p>Note that you can select either the primary instance of the partition or the secondary instance. Either choice will scale the same partition.</p>
         <p>The Scale Up/Scale Down screen will display, as discussed in <span class="tc-highlight">&lt;&lt;link to Selecting Partitions by Service&gt;&gt;</span> above:</p>
         <p>
-            <img src="../Resources/Static/images/SUSD-selecting-specific-partition-333.jpg" />
+            <img src="../Resources/Static/images/SUSD-selecting-specific-partition-333.jpg" class="tc-picture50" />
         </p>
         <p>Note that in this case, the particular partition number, Partition 333, is displayed on the top of the screen.</p>
         <h2>Viewing the Scaling Log</h2>
@@ -103,9 +103,9 @@
         <p>To view the log file for a service-level scaling, <span class="tc-highlight"> ??? how???</span></p>
         <p>To view the log file for a partition scale request, click on Logs viewer on the menu that appears when hovering over the three dots and one of the partition instances:</p>
         <p>
-            <img src="../Resources/Static/images/SUSD-viewing-scaling-log.jpg" />
+            <img src="../Resources/Static/images/SUSD-viewing-scaling-log.jpg" class="tc-picture100" />
         </p>
-        <h1>Scale Up/Scale Down Using the Command Line Interface</h1>
+        <h1>Scale Up/Scale Down Using the <MadCap:variable name="General.ProductNameXAP" />Command Line Interface</h1>
         <p>Vertical scaling is performed via the command line command of <b>scale-vertical</b>, which can be abbreviated to <b>scale-v</b>.</p>
         <h1>Scale-Vertical</h1>
         <h2>Syntax</h2><pre><code>gs&gt;<b> pu scale-vertical </b>   --partitions=[<b>partition-list</b>]   --memory=[<b>memory-value</b>]   --cpu=[<b>cpu-value</b>]   [<b>processing-unit-name</b>]</code></pre>
@@ -162,9 +162,16 @@
         <p>Note that if a partition initially had a lower value for these parameters, then this is considered a scale up operation for that partition; otherwise it is a scale down operation.</p><pre><code>pu scale-vertical   --partitions=100,112   --memory=800Mi   --cpu=4000m   myProcessingUnit
 </code></pre>
         <p>&#160;</p>
-        <h1>Scale Up/Scale Down Using the REST-API</h1>
-        <p><span class="tc-highlight">xxxxxxxxxxxxx</span>
-        </p>
+        <h1>Scale Up/Scale Down Using the REST Manager API</h1>
+        <p>As in the previous example, the following example scales partitions <b>100</b> and <b>112</b> in processing unit <b>myProcessingUnit</b> to <b>800Mebibytes</b> and <b>4</b> CPUs.
+        </p><pre MadCap:conditions="Version.15-2-born"><code class="language-bash"><span class="tc-highlight">curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '[ \ 
+   { \ 
+     "xxx": "yyy", \ 
+     "xxx": "yyy", \ 
+     "xxx": "yyy" \ 
+   } \ 
+ ] \ 
+ ' 'http://192.168.99.171:30890/v2/kubernetes/statefulsets/mySpace-insightedge-pu-2</span>'</code></pre>
         <p>&#160;</p>
         <p>&#160;</p>
         <p>.</p>
