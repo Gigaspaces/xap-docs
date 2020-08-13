@@ -297,7 +297,7 @@ How to Implement Side-by-Side Schema Evolution
         <p>
             <img src="../Resources/Static/images/BB1--three-building-blocks,-schema-evolution.jpg" style="margin: auto;" />
         </p>
-        <div style="border-radius: 25px;width:50%; margin: auto; border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;background-color: #e0ffff;">
+        <div style="border-radius: 25px;width:60%; margin: auto; border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;background-color: #e0ffff;">
             <ol>
                 <li>Client interacts with Space V1.<br />The client continues to interact with Space V1 during this initial load process. Space V1 is continuously available.</li>
                 <li>Paused -- Updates to database with schema V1 are captured by Kafka but not used to update the database at this time.<br />This data will be written to database with schema V1 and database with schema V2, after the initial load is complete.</li>
@@ -323,7 +323,7 @@ How to Implement Side-by-Side Schema Evolution
             <img src="../Resources/Static/images/Schema-evolution-from-ppt.jpg" />
         </p>
         <div>
-            <div style="border-radius: 25px;width:50%; margin: auto; border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;background-color: #e0ffff;">
+            <div style="border-radius: 25px;width:55%; margin: auto; border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;background-color: #e0ffff;">
                 <ol>
                     <li> Client interacts with stateful service (i.e. service that contains a space).</li>
                     <li> Data changes from space V1 are mirrored into database with schema V1.</li>
