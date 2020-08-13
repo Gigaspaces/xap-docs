@@ -139,14 +139,19 @@
                 <tr>
                     <td align="left"><b>memory-value</b>
                     </td>
-                    <td align="left">The new amount of memory allocated to each partition, in units of <a href="https://www.gbmb.org/mb-to-mib">Mebibytes</a>.</td>
-                    <td align="left"><b>--memory=500Mi</b><![CDATA[                    ]]></td>
+                    <td align="left">The new amount of memory allocated to each partition, in units of <a href="https://www.gbmb.org/mb-to-mib">Mebibytes</a> for Kubernetes, or megabytes for ElasticGrid.</td>
+                    <td align="left">
+                        <p align="left"><b>--memory=500Mi</b> (Kubernetes)</p>
+                        <p align="left"> <b>--memory=500</b> (ElasticGrid)                  </p>
+                    </td>
                 </tr>
                 <tr>
                     <td align="left"><b>cpu-value</b>
                     </td>
                     <td align="left">The new amount of CPU resources allocated to each partition, in units of millicores. One millicore is equivalent to 1/1000 of a CPU.</td>
-                    <td align="left"><b>--cpu=5000m</b>
+                    <td align="left">
+                        <p align="left"><b>--cpu=5000m</b> (Kubernetes)</p>
+                        <p align="left"><b>--cpu=5000</b> (ElasticGrid)</p>
                     </td>
                 </tr>
                 <tr>
@@ -164,14 +169,11 @@
         <p>&#160;</p>
         <h1>Scale Up/Scale Down Using the REST Manager API</h1>
         <p>As in the previous example, the following example scales partitions <b>100</b> and <b>112</b> in processing unit <b>myProcessingUnit</b> to <b>800Mebibytes</b> and <b>4</b> CPUs.
-        </p><pre MadCap:conditions="Version.15-2-born"><code class="language-bash"><span class="tc-highlight">curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '[ \ 
-   { \ 
-     "xxx": "yyy", \ 
-     "xxx": "yyy", \ 
-     "xxx": "yyy" \ 
-   } \ 
- ] \ 
- ' 'http://192.168.99.171:30890/v2/kubernetes/statefulsets/mySpace-insightedge-pu-2</span>'</code></pre>
+        </p><pre><code class="language-bash">
+curl -X POST --header 'Content-Type: application/json' 
+                             --header 'Accept: text/plain' 
+'https://172.17.0.4:8090/v2/pus/myProcessingUnit/scale-v?partitionIds=100,112&amp;memory=800Mi&amp;cpu=400m'
+</code></pre>
         <p>&#160;</p>
         <p>&#160;</p>
         <p>.</p>
