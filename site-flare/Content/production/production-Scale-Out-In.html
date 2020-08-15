@@ -38,7 +38,7 @@
         </ul>
         <p>&#160;</p>
         <div class="tc-admon-important">
-            <p>During the Scale Out operation, the first read/write operation will trigger a Java exception, which can be handled as follows:
+            <p>During a Scale Out operation, the first read/write operation will trigger a Java exception, which can be handled as follows. The example is for a writeMultiple operation.
 			</p><pre><code class="language-java">
 try {
     gigaSpace.writeMultiple(entries);
@@ -52,7 +52,12 @@ catch (WriteMultipleException e) {
         <h2>Scale Out/In APIs</h2>
         <p>Scale Out/In can be performed using the Ops Manager user interface, the Command Line Interface (CLI), and programmatically using REST-API. </p>
         <h2>Types of Scale Out/In</h2>
-        <p>Scale Out/In can be performed for selected partitions, or for all partitions using a particular service. Both types of Scale Out/In are shown below.</p>
+        <p>Scale Out/In can be performed in two ways:</p>
+        <ul>
+            <li>To change the number of partitions used by a <b>Space</b>, </li>
+            <li>To change the number of partitions allocated to a particular <b>service</b>. </li>
+        </ul>
+        <p>Both types of Scale Out/In are shown below.</p>
         <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
             <p>The terminology for scaling is relative: If there are <b>three </b>partitions of size 60Mb, 80Mb and 100Mb, scaling to <b>five </b>partitions of 85Mb will scale <b>all five partitions</b> to 85Mb. This is a <b>Scale Out </b>because more partitions are deployed. </p>
             <p>Note that RAM is increased for two partitions (60Mb to 85Mb; 80Mb to 85Mb) and decreased for one partition (100Mb to 85Mb).</p>
@@ -60,35 +65,116 @@ catch (WriteMultipleException e) {
         <div class="tc-admon-note">
             <p>The terminology for scaling is relative: If there are three partitions using a service, scaling to to five partitions is a Scale Out , while scaling to two partitions is a Scale In.</p>
         </div>
-        <h2>Scale Out/In for a Partition</h2>
-        <p>In this method of horizontal scaling, you specify one or more partitions to scale. </p>
+        <h2>Scale Out/In for a Space</h2>
+        <p>In this method of horizontal scaling, you specify the number of partitions for a Space. </p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="GigaSpaces Ops Manager" style="padding:10px" MadCap:conditions="Version.15-2-born">
-                <p>Ops Manager</p>
+            <div title="GigaSpaces Ops Manager" style="padding:10px">
+                <p>Ops Manager -- need GUI here</p>
             </div>
             <div title="Command Line Interface" style="padding:10px">
-                <p>yyyyy cli here xxxxx </p>
+                <div title="Command Line Interface" style="padding:10px">
+                    <p><span class="tc-bold">Scale Out (Add) or Scale-In (Remove) Partitions</span>
+                    </p>
+                    <p><span class="tc-italic">Command:</span>
+                    </p>
+                    <p><code>pu scale-horizontal &lt;space-name&gt; &lt;num-partitions&gt;</code> or <code>pu scale-h &lt;space-name&gt; &lt;partitions&gt;</code></p>
+                    <p><span class="tc-italic">Description:</span>
+                    </p>
+                    <p>The Space is rescaled to the desired number of partitions.</p>
+                    <p><span class="tc-italic">Input Example:</span>
+                    </p><pre><code class="language-bash">pu scale-horizontal mySpace 4
+</code></pre>
+                    <p><span class="tc-italic">Output Example:</span>
+                    </p>
+                    <p><pre><code class="language-bash">
+REQUEST DETAILS
+ID 6 
+Description Scale out pu (mySpace) partitions by 2 
+Status running 
+Status Url http://127.0.1.1:8090/v2/pus/mySpace/instances 
+Submitted By anonymous 
+Submitted From 127.0.0.1 
+Submitted At 2020-05-20 16:32:01
+</code></pre>
+                    </p>
+                    <p><span class="tc-italic">Parameters and Options:</span>
+                    </p>
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>space-name</td>
+                            <td>Name of the Space to rescale</td>
+                        </tr>
+                        <tr>
+                            <td>partitions</td>
+                            <td>Number of partitions for the Space</td>
+                        </tr>
+                    </table>
+                </div>
+                <p><span class="tc-bold">Request Status of a Scale Out/In Request</span>
+                </p>
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p><code>pu request status &lt;request-id&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>The status of the scaling request is displayed.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre><code class="language-bash">pu request-status 6
+</code></pre>
+                <p><span class="tc-italic">Output Example:</span>
+                </p>
+                <p><pre><code class="language-bash">
+REQUEST DETAILS
+ID 6 
+Description Scale out pu (mySpace) partitions by 2 
+Status successful
+Status Url http://127.0.1.1:8090/v2/pus/mySpace/instances 
+Submitted By anonymous 
+Submitted From 127.0.0.1 
+Submitted At 2020-05-20 16:32:01
+Completed at 2020-05-20 16:32:31
+</code></pre>
+                </p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>request-id</td>
+                        <td>ID of the scaling request</td>
+                    </tr>
+                </table>
             </div>
             <div title="REST Manager API" style="padding:10px">
-                <p>zzzzz rest man here zzzzz  </p>
+                <p>REST-API need here  </p>
             </div>
         </div>
         <p>&#160;</p>
         <h2>Scale Out/In for a Service</h2>
-        <p>In this method of horizontal scaling, all partitions that use a particular service are scaled. The number of partitions can be increased or decreased.</p>
+        <p>In this method of horizontal scaling ,the number of partitions allocated to a particular service is increased or decreased.</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="GigaSpaces Ops Manager" style="padding:10px" MadCap:conditions="Version.15-2-born">
+            <div title="GigaSpaces Ops Manager" style="padding:10px">
                 <p>Click on the service card of the desired service in Ops Manager. The Service Details screen will display:</p>
                 <p>
                     <img src="../Resources/Static/images/SOSI--click-on-ellipsis-menu.jpg" />
                 </p>
                 <p>Note the ellipsis menu (three vertical dots). Click on the option Scale Out/In. Depending on the method of orchestration you are using, the next screen will appear as follows:</p>
-                <p>ServiceGrid:</p>
+                <p><b>ServiceGrid:</b>
+                </p>
                 <p>
                     <img src="../Resources/Static/images/SOSI-service-grid.jpg" />
                 </p>
-                <p>In the example above, there are currently 16 partitions using the service. You can choose one of the suggested numbers of partitions, or press Custom to choose any number of partitions. Note that the new partitions will all have the same allocation of RAM and CPU as the existing partitions.</p>
-                <p>Kubernetes and ElasticGrid:</p>
+                <p>In the example above, there are currently 16 partitions alocated for the service. You can choose one of the suggested numbers of partitions, or press Custom to choose any number of partitions. Note that the new partitions will all have the same allocation of RAM and CPU as the existing partitions.</p>
+                <p><b>Kubernetes and ElasticGrid:</b>
+                </p>
                 <p>
                     <img src="../Resources/Static/images/SOSI-Kubernetes-and-ElasticGrid.jpg" />
                 </p>
@@ -108,58 +194,14 @@ catch (WriteMultipleException e) {
                 <p>
                     <img src="../Resources/Static/images/SOSI-Suspended.jpg" />
                 </p>
-                <p>&#160;</p>
-                <p>&#160;</p>
-                <p>&#160;</p>
-                <p>&#160;</p>
-                <p>&#160;</p>
             </div>
             <div title="Command Line Interface" style="padding:10px">
-                <p>yyyyy cli here xxxxx </p>
+                <p>CLI for SOSI a service here </p>
             </div>
             <div title="REST Manager API" style="padding:10px">
-                <p>zzzzz rest man here zzzzz  </p>
+                <p>REST-API for SOSI here </p>
             </div>
         </div>
-        <p>&#160;</p>
-        <p>&#160;</p>
-        <p>&#160;</p>
-        <h2>Adding a partition</h2>
-        <p>pu scale-horizontal/scale-h mySpace 4</p>
-        <p>(the space had 2 partitions, so this is a scale up of 2 partitions)</p>
-        <p>&gt;&gt; Request ID   6</p>
-        <p>&gt;&gt; Status can be tracked using the command: request status 6</p>
-        <p>request status 6</p>
-        <p>&#160;</p>
-        <p>Discussion</p>
-        <p>REST API Example</p>
-        <p>Memory and cpu params are applicable in scale out when using ElasticGrid (not applicable in ServiceGrid)</p>
-        <p>Removing a partition</p>
-        <p>Here is how to do it and how to monitor it:</p>
-        <p>pu scale horizontal mySpace 1</p>
-        <p>(the space had 4 partitions, so this is a scale down of 3 partitions)</p>
-        <p>REST API Example</p>
-        <p>Monitoring the Status of the system</p>
-        <p>8. &lt;&lt;Yael&gt;&gt;&lt;</p>
-        <p>Ops Manager Example</p>
-        <p>(I will add for add and remove partition)</p>
-        <p>From Sharon's zoom on wednesday -- https://projects.invisionapp.com/share/SBY7HABU2YM#/screens/427253429</p>
-        <p>*sharon-deploy-service-and-view-log*</p>
-        <p>Looking at the details of a service --</p>
-        <p>&lt;&lt;note the undeploy command (for service deploy, not here)&gt;&gt;</p>
-        <p>Scale out/in is here, so click on it:</p>
-        <p>Above screenshot is for servicegrid orchestration.</p>
-        <p>(e.g. a table with tabs for different orch)</p>
-        <p>in SG, see number of current partitions for this service and can change, then Apply:</p>
-        <p>only in K and Elasticgrid will have cpu and ram not in SG</p>
-        <p>in K and EG, can add new psrtitions that have a different size than the existing partition.</p>
-        <p>but in sg, when add new partitions, they will be same size as other partitions. no cpu and ram options.</p>
-        <p>Scale Now:</p>
-        <p>Suspended:</p>
-        <p>.</p>
-        <p>&#160;</p>
-        <p>&#160;</p>
-        <p>&#160;</p>
         <p>&#160;</p>
         <p>&#160;</p>
         <p>&#160;</p>
