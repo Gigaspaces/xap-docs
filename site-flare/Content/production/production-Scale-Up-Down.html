@@ -100,10 +100,22 @@
         <p>Note that in this case, the particular partition number, Partition 333, is displayed on the top of the screen.</p>
         <h2>Viewing the Scaling Log</h2>
         <p>After running a scale up or scale down procedure, a log file is available with detailed information about the request.</p>
-        <p>To view the log file for a partition scale request, click on Logs viewer on the menu that appears when hovering over the three dots and one of the partition instances:</p>
+        <p>To view the log file for a partition scale request, click on <b>View Log</b> on the menu that appears when hovering over the three dots on one of the partition instances:</p>
         <p>
             <img src="../Resources/Static/images/SUSD-viewing-scaling-log.jpg" class="tc-picture100" />
         </p>
+        <p>This displays the log for the partition:</p>
+        <p>
+            <img src="../Resources/Static/images/SUSD-view-log.jpg" />
+        </p>
+        <p>The log entries are displayed in chronological order, with the most recent entries at the top of the listing.</p>
+        <p>Note the numbered items indicated in the example above:</p>
+        <ol>
+            <li>If Auto-Refresh is off (default), the log is not refreshed. Auto-Refresh on causes the log to be dynamically refreshed as new entries are generated. </li>
+            <li>When auto-Refresh is off, click here to refresh the log.</li>
+            <li>Click here to download the log file.</li>
+            <li>Using the browser's built-in Find capability, you can search for text in the log.</li>
+        </ol>
         <h1>Scale Up/Down Using the <MadCap:variable name="General.ProductNameXAP" />Command Line Interface</h1>
         <p>Vertical scaling is performed via the command line command of <b>scale-vertical</b>, which can be abbreviated to <b>scale-v</b>.</p>
         <h1>Scale-Vertical</h1>
