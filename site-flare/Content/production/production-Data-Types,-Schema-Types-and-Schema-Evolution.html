@@ -231,7 +231,7 @@ class="com.gigaspaces.persistency.MongoSpaceSynchronizationEndpointBeanFactory"&
         </div>
         <p>&#160;</p>
         <p>On service deployment, Space data will be written as Kafka messages to a newly-created Kafka topic called “&lt;service-name&gt;-topic”. The consumption process will consume the message of this topic, and write them to the primary endpoint.</p>
-        <h3>Pausing the Primary Endpoint</h3>
+        <h3><a name="Pausing"></a>Pausing the Primary Endpoint</h3>
         <p>As discussed above, the Kafka mirror allows pausing persistence to the primary endpoint without performance penalty. This pause/resume is done by manually undeploying the mirror service and deploying an new mirror service with the following configuration:</p>
         <div style="padding:10px"><pre><code class="language-java">
 &lt;bean id="kafkaSpaceSynchronizationEndpoint" class="org.openspaces.persistency.kafka.KafkaSpaceSynchronizationEndpointBeanFactory" &gt; 
@@ -281,7 +281,7 @@ How to Implement Side-by-Side Schema Evolution
             <li>An available Apache Kafka cluster</li>
             <li>An implementation of SpaceTypeSchemaAdapter for each evolved type found in the running service</li>
         </ul>
-        <h2>Step1: Initial Load of Database with Schema V2</h2>
+        <h2>Step 1: Initial Load of Database with Schema V2</h2>
         <p>In this step, data from the original database (with schema V1) is copied to database with schema V2. During this copy process, each row of data from schema V1 is transformed to the format of schema V2.</p>
         <div class="tc-admon-note">
             <p>During the initial load process, any new data written to the schema V1 database is saved in the Kafka buffer.</p>
@@ -289,7 +289,7 @@ How to Implement Side-by-Side Schema Evolution
         <ol style="list-style-type: lower-alpha;">
             <li>Deploy the V2 service, packaged with the type adapter implementations.</li>
             <li>If V1 mirror service is not using Kafka as a bridge, undeploy the existing mirror.</li>
-            <li>Redeploy the mirror enhanced with Kafka, with the persistence endpoint defined as the <b>disabled (paused) </b>primary endpoint. <span class="tc-highlight">&lt;&lt;put here link to pausing the endpoint section&gt;&gt;</span>.</li>
+            <li>Redeploy the mirror enhanced with Kafka, with the persistence endpoint defined as thethe <b>disabled (paused) </b>primary endpoint  - see <b><MadCap:xref href="#Pausing">Pausing the Primary Endpoint</MadCap:xref></b>.</li>
             <li>This will result in space data persisted only to Kafka. This is only a temporary situation.</li>
             <li>With the primary endpoint disabled, it is possible to perform the dynamic space data source loading from V1 primary endpoint to V2 service. (put link to this feature section)</li>
         </ol>
