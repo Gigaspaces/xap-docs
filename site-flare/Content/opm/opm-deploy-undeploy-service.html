@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Deploy and Undeploy Commands in Ops Manager</h1>
+        <p>Ops Manager can be used to deploy and undeploy a service.</p>
+        <h1>Deploy Command in Ops Manager</h1>
+        <p>On the Services Overview screen, click on the plus sign:</p>
+        <p>
+            <img src="../Resources/Static/images/OPM-deploy-service-plus-to-deploy.jpg" class="tc-picture90" />
+        </p>
+        <p>Then we see the Deploy Service screen:</p>
+        <p>
+            <img src="../Resources/Static/images/OPM-deploy-service-dialog-box.jpg" class="tc-picture50" />
+        </p>
+        <ul>
+            <li><b>Service name</b> - Any name </li>
+            <li><b>Resource</b> - Location of the Java jar file for the service. Can be in a local file, or point to a URL.</li>
+            <li><b>Properties</b> - Freestyle, name and value. Click on <b>+</b> to add a property and value, delete <span class="tc-highlight">(or minus sign?)</span> to remove.<br />If for example you add a property named "color" and a property value of "red", then this name-value pair will be available to the Java programmer in a configuration file.</li>
+            <li><b>Topology</b> - Click on the Topology dropdown to choose the service type:<br /><img src="../Resources/Static/images/OPM-deploy-service-topology-dropdown.jpg" class="tc-picture50" /></li>
+        </ul>
+        <p>If you click on <b>stateful</b>, you see this screen:</p>
+        <p>
+            <img src="../Resources/Static/images/OPM-deploy-service-topology-stateful.jpg" class="tc-picture50" />
+        </p>
+        <p MadCap:conditions="Default.DoNotShow">Note for RAM units -- It's not clear right now if Kubernetes will be supported in GA. If it is supported, then the RAM units for Kubernetes environment should automatically show as MiB (Mebibytes), not MB.</p>
+        <p>If in the previous screen you click on <b>stateless</b>, you see this screen:</p>
+        <p>
+            <img src="../Resources/Static/images/OPM-deploy-service-topology-stateless.jpg" class="tc-picture50" />
+        </p>
+        <p>In this screen, choose the resources that you wish to make available for the service. Note that there is no High availability for a stateless service.</p>
+        <p>&#160;</p>
+        <p>After you click <b>Apply</b>, a message appears in the screen banner, indicating that the service deployment is in progress:</p>
+        <p>
+            <img src="../Resources/Static/images/OPM-deploy-service-in-progress.jpg" class="tc-picture90" />
+        </p>
+        <p>&#160;</p>
+        <p>When the service deployment is completed, a message indicating this fact appears in the screen banner.</p>
+        <p>
+            <img src="../Resources/Static/images/OPM-deploy-service-completed.jpg" class="tc-picture90" />
+        </p>
+        <h1>Undeploy Command in Ops Manager</h1>
+        <p>On the Services Overview screen, click on the service card for the service that you wish to undeploy. The Service Detail screen will appear.</p>
+        <p>Click on <b>Undeploy</b> to undeploy the service.</p>
+        <p>After you click on Undeploy, it will ask for confirmation, then will undeploy the service.</p>
+    </body>
+</html>
