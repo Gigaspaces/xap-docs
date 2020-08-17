@@ -83,12 +83,21 @@
                 <div title="Command Line Interface" style="padding:10px">
                     <p><span class="tc-bold">Scale Out (Add) or Scale-In (Remove) Partitions</span>
                     </p>
-                    <p><span class="tc-italic">Command:</span>
+                    <p>&#160;</p>
+                    <p><span class="tc-italic">Command (ServiceGrid):</span>
                     </p>
-                    <p><code>pu scale-horizontal &lt;space-name&gt; &lt;num-partitions&gt;</code> or <code>pu scale-h &lt;space-name&gt; &lt;partitions&gt;</code></p>
+                    <p><code>pu scale-horizontal &lt;space-name&gt; &lt;num-partitions&gt;</code> <br />or <br /><code>pu scale-h &lt;space-name&gt; &lt;partitions&gt;</code></p>
+                    <p>&#160;</p>
+                    <p><span class="tc-italic">Command (ElasticGrid):</span>
+                    </p>
+                    <p><![CDATA[  ]]><code>pu scale-horizontal &lt;space-name&gt; &lt;num-partitions&gt;</code> &lt;memory&gt; &lt;cpu&gt;<br />or<br /><code>pu scale-h &lt;space-name&gt; &lt;partitions&gt; &lt;memory&gt; &lt;cpu&gt;</code></p>
                     <p><span class="tc-italic">Description:</span>
                     </p>
-                    <p>The Space is rescaled to the desired number of partitions.</p>
+                    <p>&#160;</p>
+                    <p>The Space is rescaled to the desired number of partitions. </p>
+                    <div class="tc-admon-note">
+                        <p>For ElasticGrid, the memory and CPU allocations for new partitions may be specified, otherwise the default values for the service are used.</p>
+                    </div>
                     <p><span class="tc-italic">Input Example:</span>
                     </p><pre><code class="language-bash">pu scale-horizontal mySpace 4
 </code></pre>
@@ -108,18 +117,28 @@ Submitted At 2020-05-20 16:32:01
                     <p><span class="tc-italic">Parameters and Options:</span>
                     </p>
                     <table>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Description</th>
-                        </tr>
-                        <tr>
-                            <td>space-name</td>
-                            <td>Name of the Space to rescale</td>
-                        </tr>
-                        <tr>
-                            <td>partitions</td>
-                            <td>Number of partitions for the Space</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>space-name</td>
+                                <td>Name of the Space to rescale</td>
+                            </tr>
+                            <tr>
+                                <td>partitions</td>
+                                <td>Number of partitions for the Space</td>
+                            </tr>
+                            <tr>
+                                <td>memory</td>
+                                <td>Memory allocated for the Space (ElasticGrid only)</td>
+                            </tr>
+                            <tr>
+                                <td>cpu</td>
+                                <td>CPU allocated for the Space (ElasticGrid only)</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
                 <p><span class="tc-bold">Request Status of a Scale Out/In Request</span>
@@ -163,12 +182,21 @@ Completed at 2020-05-20 16:32:31
             </div>
         </div>
         <div title="REST Manager API" style="padding:10px">
-            <h1>Scale Out/In Using the REST-MANAGER API</h1><pre><code class="language-bash">
+            <h1>Scale Out/In Using the REST-MANAGER API</h1>
+            <p>ServiceGrid:</p><pre><code class="language-bash">
 curl -X POST --header 'Content-Type: application/json' 
              --header 'Accept: text/plain' 
-'https://172.17.0.4:8090/v2/pus/myProcessingUnit/scale-h?spaceName=mySpace&amp;numPartitions=4'
+'https://172.17.0.4:8090/v2/pus/myProcessingUnit/scale-h?target=4'
 </code></pre>
         </div>
+        <div title="REST Manager API" style="padding:10px">
+            <p>Elasticgrid:</p><pre><code class="language-bash">
+curl -X POST --header 'Content-Type: application/json' 
+             --header 'Accept: text/plain' 
+'https://172.17.0.4:8090/v2/pus/myProcessingUnit/scale-h?target=4&amp;memory=55&amp;cpu=400'
+</code></pre>
+        </div>
+        <p>&#160;</p>
         <h1>Programming Note</h1>
         <div class="tc-admon-important">
             <p>During a Scale Out operation, the first read/write operation will trigger a Java exception, which can be handled as follows. The example is for a writeMultiple operation.
