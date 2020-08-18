@@ -86,11 +86,11 @@
                     <p>&#160;</p>
                     <p><span class="tc-italic">Command (ServiceGrid):</span>
                     </p>
-                    <p><code>pu scale-horizontal &lt;space-name&gt; &lt;num-partitions&gt;</code> <br />or <br /><code>pu scale-h &lt;space-name&gt; &lt;partitions&gt;</code></p>
+                    <p><code>pu scale-horizontal &lt;pu-name&gt; &lt;num-partitions&gt;</code> <br />or <br /><code>pu scale-h &lt;pu-name&gt; &lt;partitions&gt;</code></p>
                     <p>&#160;</p>
                     <p><span class="tc-italic">Command (ElasticGrid):</span>
                     </p>
-                    <p><![CDATA[  ]]><code>pu scale-horizontal &lt;space-name&gt; &lt;num-partitions&gt;</code> &lt;memory&gt; &lt;cpu&gt;<br />or<br /><code>pu scale-h &lt;space-name&gt; &lt;partitions&gt; &lt;memory&gt; &lt;cpu&gt;</code></p>
+                    <p><![CDATA[  ]]><code>pu scale-horizontal &lt;pu-name&gt; &lt;num-partitions&gt;</code> &lt;memory&gt; &lt;cpu&gt;<br />or<br /><code>pu scale-h &lt;pu-name&gt; &lt;partitions&gt; &lt;memory&gt; &lt;cpu&gt;</code></p>
                     <p><span class="tc-italic">Description:</span>
                     </p>
                     <p>&#160;</p>
@@ -99,7 +99,7 @@
                         <p>For ElasticGrid, the memory and CPU allocations for new partitions may be specified, otherwise the default values for the service are used.</p>
                     </div>
                     <p><span class="tc-italic">Input Example:</span>
-                    </p><pre><code class="language-bash">pu scale-horizontal mySpace 4
+                    </p><pre><code class="language-bash">pu scale-horizontal myPu 4
 </code></pre>
                     <p><span class="tc-italic">Output Example:</span>
                     </p>
