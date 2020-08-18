@@ -51,16 +51,16 @@
         <h3>Selecting Partitions by Service</h3>
         <p>From the Service screen for the stateful service that you wish to scale, hover over the three dots on the top of the screen, and click <b>Scale up/down</b>:</p>
         <p>
-            <img src="../Resources/Static/images/SUSD-select-susd-from-menu.jpg" class="tc-picture25" />
+            <img src="../Resources/Static/images/SUSD-bigger-select-susd-from-menu.jpg" class="tc-picture90" />
         </p>
         <p><a id="units_explained">The Scale Up/Down screen appears</a>.</p>
         <p>
-            <img src="../Resources/Static/images/SUSD-the-susd-screen-appears.jpg" class="tc-picture50" />
+            <img src="../Resources/Static/images/SUSD-the-newer-susd-screen-appears.jpg" class="tc-picture50" />
         </p>
         <p>In this example, the screen provides the following information:</p>
         <ul>
-            <li>The most common partition size for partitions using this service is <b>four </b>units (four CPU cores). Note that in Kubernetes this value would be shown as 4000m -- four thousand millicores.</li>
-            <li>The most common RAM size is <b>200 MiB</b> (200 Mebibytes, or 209.7152 MB -- see <a href="https://www.gbmb.org/mib-to-mb">Mebibyte-to-MB Conversion Table</a>).</li>
+            <li>The most common partition size for partitions using this service is <b>500</b>MHz. Note that in Kubernetes this value would be expressed as millicores.</li>
+            <li>The most common RAM size is <b>512MB</b>. Note that in Kubernetes this value would be expressed as Mebibytes (see <a href="https://www.gbmb.org/mib-to-mb">Mebibyte-to-MB Conversion Table</a>).</li>
         </ul>
         <p>To choose a new number of CPUs and RAM size for all of the partitions using this service, you can click on one of the suggested CPU and RAM sizes. Alternatively, you can click the <b>Custom </b>checkbox to choose any value.</p>
         <p>In this example, the user chose a new custom number of CPUs of <b>44</b>, and a new RAM size of <b>350 MiB</b>:</p>
@@ -82,9 +82,9 @@
         <div class="tc-admon-attention">
             <p>After you click on <b>Run Scale</b>, the scaling process will begin. At that point, it is not possible to cancel the scaling operation.</p>
         </div>
-        <p>The next screen shows the scaling request in progress:</p>
+        <p>The next screen shows the scaling request in progress. </p>
         <p>
-            <img src="../Resources/Static/images/SUSD-the-next-screen-shows-scaling-req.jpg" class="tc-picture50" />
+            <img src="../Resources/Static/images/SUSD-the-next-screen-shows-scaling-req.jpg" class="tc-picture90" />
         </p>
         <p>The blue banner on the top of the screen is a progress indicator with messages indicating the stage of the scaling:</p>
         <p>
@@ -117,24 +117,8 @@
             <img src="../Resources/Static/images/SUSD-selecting-specific-partition-333.jpg" class="tc-picture50" />
         </p>
         <p>Note that in this case, the particular partition number, Partition 333, is displayed on the top of the screen.</p>
-        <h2>Viewing the Scaling Log</h2>
-        <p>After running a scale up or scale down procedure, a log file is available with detailed information about the request.</p>
-        <p>To view the log file for a partition scale request, click on <b>View Log</b> on the menu that appears when hovering over the three dots on one of the partition instances:</p>
-        <p>
-            <img src="../Resources/Static/images/SUSD-viewing-scaling-log.jpg" class="tc-picture100" />
-        </p>
-        <p>This displays the log for the partition:</p>
-        <p>
-            <img src="../Resources/Static/images/SUSD-view-log.jpg" />
-        </p>
-        <p>The log entries are displayed in chronological order, with the most recent entries at the top of the listing.</p>
-        <p>Note the numbered items indicated in the example above:</p>
-        <ol>
-            <li>If Auto-Refresh is off (default), the log is not refreshed. Auto-Refresh on causes the log to be dynamically refreshed as new entries are generated. </li>
-            <li>When auto-Refresh is off, click here to refresh the log.</li>
-            <li>Click here to download the log file.</li>
-            <li>Using the browser's built-in Find capability, you can search for text in the log.</li>
-        </ol>
+        <h2>Viewing the Partition Log</h2>
+        <p>A log file is available with detailed information about the partition. For instructions on viewing the log file, see <MadCap:xref href="../opm/opm-view-log-files.html">Viewing Partition Log Files with Ops Manager.</MadCap:xref></p>
         <h1>Scale Up/Down Using the <MadCap:variable name="General.ProductNameXAP" />Command Line Interface</h1>
         <p>Vertical scaling is performed via the command line command of <b>scale-vertical</b>, which can be abbreviated to <b>scale-v</b>.</p>
         <h1>Scale-Vertical</h1>
