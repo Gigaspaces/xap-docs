@@ -44,7 +44,7 @@
                         <td>Notify containers</td>
                         <td>How many instances of this object type match a template in an event container.</td>
                     </tr>
-                    <tr>
+                    <tr MadCap:conditions="Version.15-5-born">
                         <td>SQL editor</td>
                         <td>
                             <p>Press on the SQL Editor tab to see a SQL SELECT statement for the selected Object Type, in this example the Person Object.</p>
@@ -54,7 +54,22 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr MadCap:conditions="Version.15-5-died">
+                        <td>SQL editor</td>
+                        <td>
+                            <p>Press on the SQL Editor tab to see a SQL SELECT statement for the selected Object Type, in this example the Person Object.</p>
+                            <p>Press <b>Run Query</b>. The results will appear in the Query Results table on the bottom of the page.<br /><img src="../Resources/Static/attachment_files/01 SQL OPM.png" class="tc-picture80" /></p>
+                            <div class="tc-admon-note">
+                                <p>The user can edit the query, for example:</p>
+                                <p>
+                                    <br />
+                                    <img src="../Resources/Static/attachment_files/02 SQL OPM.png" />
+                                    <br />
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr MadCap:conditions="Version.15-5-born">
                         <td>Explain Plan</td>
                         <td>
                             <p>The <b>Explain Plan</b> of a query can be viewed In the Ops Manager when running a query in the SQL Query Editor. When running a query while the “Run with Explain Plan” checkbox is checked, the output of the query explain plan is shown in a collapsible view above the query results table.</p>
