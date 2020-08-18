@@ -6,21 +6,22 @@
         <h1 class="tc-pagetitle">Deploy and Undeploy Commands in Ops Manager</h1>
         <p>Ops Manager can be used to deploy and undeploy a service.</p>
         <h1>Deploy Command in Ops Manager</h1>
-        <p>On the Services Overview screen, click on the plus sign:</p>
+        <p>With the deploy command, a business user can introduce new services to the grid. These can be either stateful services including a Space and data, or stateless services with business logic.</p>
+        <p>On the Services screen, click on the deploy option (plus sign) to introduce a new service to the grid:</p>
         <p>
             <img src="../Resources/Static/images/OPM-deploy-service-plus-to-deploy.jpg" class="tc-picture90" />
         </p>
         <p>Then we see the Deploy Service screen:</p>
         <p>
-            <img src="../Resources/Static/images/OPM-deploy-service-dialog-box.jpg" class="tc-picture50" />
+            <img src="../Resources/Static/images/OPM-deploy-service-dialog-box.jpg" class="tc-picture70" />
         </p>
         <ul>
-            <li><b>Service name</b> - Any name </li>
+            <li><b>Service name</b> - The name of the new service that will be introduced to the grid </li>
             <li><b>Resource</b> - Location of the Java jar file for the service. Can be in a local file, or point to a URL.</li>
-            <li><b>Properties</b> - Freestyle, name and value. Click on <b>+</b> to add a property and value, delete <span class="tc-highlight">(or minus sign?)</span> to remove.<br />If for example you add a property named "color" and a property value of "red", then this name-value pair will be available to the Java programmer in a configuration file.</li>
+            <li><b>Properties</b> - Freestyle, name and value. Click on <b>+</b> to add a property and value, delete <span class="tc-highlight">(or minus sign?)</span> to remove.<br />The defined properties and their values are used as part of the deploy process for various configuration purposes.</li>
             <li><b>Topology</b> - Click on the Topology dropdown to choose the service type:<br /><img src="../Resources/Static/images/OPM-deploy-service-topology-dropdown.jpg" class="tc-picture50" /></li>
         </ul>
-        <p>If you click on <b>stateful</b>, you see this screen:</p>
+        <p>If you click on <b>stateful</b>, you see the following screen. Note that for a stateful service, you will be able to review a list of properties.</p>
         <p>
             <img src="../Resources/Static/images/OPM-deploy-service-topology-stateful.jpg" class="tc-picture50" />
         </p>
@@ -41,8 +42,10 @@
             <img src="../Resources/Static/images/OPM-deploy-service-completed.jpg" class="tc-picture90" />
         </p>
         <h1>Undeploy Command in Ops Manager</h1>
-        <p>On the Services Overview screen, click on the service card for the service that you wish to undeploy. The Service Detail screen will appear.</p>
-        <p>Click on <b>Undeploy</b> to undeploy the service.</p>
-        <p>After you click on Undeploy, it will ask for confirmation, then will undeploy the service.</p>
+        <p>On the Service screen for the service you wish to undeploy, Overview screen, click on <b>Undeploy</b> to undeploy the service.</p>
+        <p>
+            <img src="../Resources/Static/images/OPM-deploy-service-undeploy-command.jpg" />
+        </p>
+        <p>After you click on Undeploy, the system will ask for confirmation, then it will undeploy the service.</p>
     </body>
 </html>
