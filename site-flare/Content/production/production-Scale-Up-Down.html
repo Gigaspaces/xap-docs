@@ -118,7 +118,7 @@
         </p>
         <p>Note that in this case, the particular partition number, Partition 333, is displayed on the top of the screen.</p>
         <h2>Viewing the Partition Log</h2>
-        <p>A log file is available with detailed information about the partition. For instructions on viewing the log file, see <MadCap:xref href="../opm/opm-view-log-files.html">Viewing Partition Log Files with Ops Manager.</MadCap:xref></p>
+        <p>A log file is available with detailed information about the partition. For instructions on viewing the log file manually, see <MadCap:xref href="../opm/opm-view-log-files.html">Viewing Partition Log Files with Ops Manager.</MadCap:xref></p>
         <h1>Scale Up/Down Using the <MadCap:variable name="General.ProductNameXAP" />Command Line Interface</h1>
         <p>Vertical scaling is performed via the command line command of <b>scale-vertical</b>,  abbreviated as <b>scale-v</b>.</p>
         <h1>Scale-Vertical</h1>
@@ -176,12 +176,12 @@
                 </tr>
             </tbody>
         </table>
-        <h2>Example</h2>
+        <h2>Example (Kubernetes)</h2>
         <p>The following example scales partitions <b>100</b> and <b>112</b> in processing unit <b>myProcessingUnit</b> to <b>800Mebibytes</b> and <b>4</b> CPUs. </p>
         <p>Note that if a partition initially had a lower value for these parameters, then this is considered a scale up operation for that partition; otherwise it is a scale down operation.</p><pre><code>pu scale-vertical   --partitions=100,112   --memory=800Mi   --cpu=4000m   myProcessingUnit
 </code></pre>
         <p>&#160;</p>
-        <h1>Scale Up/Down Using the REST Manager API</h1>
+        <h1>Scale Up/Down Using the REST Manager API (Kubernetes)</h1>
         <p>As in the previous example, the following example scales partitions <b>100</b> and <b>112</b> in processing unit <b>myProcessingUnit</b> to <b>800Mebibytes</b> and <b>400m</b> CPU.
         </p><pre><code class="language-bash">
 curl -X POST --header 'Content-Type: application/json' 
