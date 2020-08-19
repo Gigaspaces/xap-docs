@@ -3,19 +3,19 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Scale Out/In</h1>
+        <h1 class="tc-pagetitle">On Demand Scale Out/In</h1>
         <div class="tc-admon-important">
-            <p>Scale Out/In is at <a href="../rn/lifecycle.html#feature-levels">Beta feature level</a>. It will be available as a fully supported feature in the next release.</p>
+            <p>On Demand Scale Out/In is at <a href="../rn/lifecycle.html#feature-levels">Beta feature level</a>. It will be available as a fully supported feature in the next release.</p>
         </div>
         <h1>Horizontal Scaling</h1>
-        <p>Horizontal scaling, referred to as <b><a href="production-Scale-Out-In.html">Scale Out/Scale In</a></b>, means to add or reduce the number of partitions allocated to a service.</p>
+        <p>Horizontal scaling, referred to as <b><a href="production-Scale-Out-In.html">On Demand Scale Out/In</a></b>, means to add or reduce the number of partitions allocated to a service.</p>
         <p style="text-align: center;">
             <img src="../Resources/Static/images/Scaling-example-of-horizontal-scaling.jpg" class="tc-picture30">
             </img>
         </p>
         <p>Big data is often stored in geographically dispersed nodes, which includes partitioning of databases.</p>
-        <p>If the application involves few cross-partition joins, it may be appropriate for Scale Out/Scale In.</p>
-        <p>NoSQL databases often use Scale Out/Scale In.</p>
+        <p>If the application involves few cross-partition joins, it may be appropriate for On Demand Scale Out/In.</p>
+        <p>NoSQL databases often use On Demand Scale Out/In.</p>
         <h2>Advantages</h2>
         <ul>
             <li>Horizontal scaling can be less expensive than vertical scaling - it is generally less expensive to add cloud storage, than to purchase new physical machines.</li>
@@ -23,10 +23,10 @@
             <li>Horizontal scaling supports linear increases in capacity on the fly - RAM or CPU capacity can be increased or decreased while maintaining a constant RAM:CPU ratio .</li>
         </ul>
         <div class="tc-admon-attention">
-            <p>Scale Out/In will cause a temporary quiesce of the affected partitions. It is recommended to perform the scaling operation during an off-peak period.</p>
+            <p>On Demand Scale Out/In will cause a temporary quiesce of the affected partitions. It is recommended to perform the scaling operation during an off-peak period.</p>
         </div>
         <h2>Pre-requisites</h2>
-        <p>Scale Out/In is available for a partitioned cluster schema with a high availability cluster.</p>
+        <p>On Demand Scale Out/In is available for a partitioned cluster schema with a high availability cluster.</p>
         <p>To enable Scale Out, the service must be deployed with the following property:</p>
         <p><code class="language-bash">--property pu.dynamic-partitioning=true</code>
         </p>
@@ -37,18 +37,18 @@
             <p>in ServiceGrid, the GSC's must be initially spawned by the user before performing a Scale Out operation.</p>
         </div>
         <p>&#160;</p>
-        <h2>Scale Out/In APIs</h2>
-        <p>Scale Out/In can be performed using the Ops Manager user interface, the Command Line Interface (CLI), and programmatically using REST-API. </p>
+        <h2>On Demand Scale Out/In APIs</h2>
+        <p>On Demand Scale Out/In can be performed using the Ops Manager user interface, the Command Line Interface (CLI), and programmatically using REST-API. </p>
         <div class="tc-admon-note">
             <p>The terminology for scaling is relative: If there are <b>three</b> partitions using a service, scaling to to <b>five</b> partitions is a <b>Scale Out</b> , while scaling to <b>two</b> partitions is a <b>Scale In</b>.</p>
         </div>
-        <h1>Scale Out/In Using the Ops Manager</h1>
+        <h1>On Demand Scale Out/In Using the Ops Manager</h1>
         <div title="GigaSpaces Ops Manager" style="padding:10px">
             <p>Click on the service card of the desired service in Ops Manager. The Service Details screen will display:</p>
             <p>
                 <img src="../Resources/Static/images/SOSI--click-on-ellipsis-menu.jpg" />
             </p>
-            <p>Note the ellipsis menu (three vertical dots). Click on the option Scale Out/In. Depending on the method of orchestration you are using, the next screen will appear as follows:</p>
+            <p>Note the ellipsis menu (three vertical dots). Click on the option On Demand Scale Out/In. Depending on the method of orchestration you are using, the next screen will appear as follows:</p>
             <p><b>ServiceGrid:</b>
             </p>
             <p>
@@ -78,7 +78,7 @@
             </p>
         </div>
         <div title="Command Line Interface" style="padding:10px">
-            <h1>Scale Out/In using the Command Line Interface </h1>
+            <h1>On Demand Scale Out/In using the Command Line Interface </h1>
             <div title="Command Line Interface" style="padding:10px">
                 <div title="Command Line Interface" style="padding:10px">
                     <p><span class="tc-bold">Scale Out (Add) or Scale-In (Remove) Partitions</span>
@@ -141,7 +141,7 @@ Submitted At 2020-05-20 16:32:01
                         </tbody>
                     </table>
                 </div>
-                <p><span class="tc-bold">Request Status of a Scale Out/In Request</span>
+                <p><span class="tc-bold">Request Status of a On Demand Scale Out/In Request</span>
                 </p>
                 <p><span class="tc-italic">Command:</span>
                 </p>
@@ -182,7 +182,7 @@ Completed at 2020-05-20 16:32:31
             </div>
         </div>
         <div title="REST Manager API" style="padding:10px">
-            <h1>Scale Out/In Using the REST-MANAGER API</h1>
+            <h1>On Demand Scale Out/In Using the REST-MANAGER API</h1>
             <p>ServiceGrid:</p><pre><code class="language-bash">
 curl -X POST --header 'Content-Type: application/json' 
              --header 'Accept: text/plain' 
@@ -211,7 +211,7 @@ catch (WriteMultipleException e) {
             <p>Subsequent read/write operations will not raise this exception.</p>
         </div>
         <h1>Unsupported Features</h1>
-        <p>The following features are not currently supported for Scale Out/In:</p>
+        <p>The following features are not currently supported for On Demand Scale Out/In:</p>
         <ul>
             <li>AutoGeneratedId</li>
             <li>Fifo</li>

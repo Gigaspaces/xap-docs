@@ -8,12 +8,12 @@
         <p>It is critically important to be able to rescale an application while it is online, without downtime or performance degradation. GS provides this capability.</p>
         <p>GS allows two kinds of dynamic, online rescaling: vertical scaling, and horizontal scaling.</p>
         <h1>Vertical Scaling</h1>
-        <p><b>Vertical scaling</b>, referred to as <b href="production-Scale-Up-Down.html"><a href="production-Scale-Up-Down.html">Scale Up/Scale Down</a></b>, allows  the amount of RAM and CPU to be increased or decreased - without downtime - for an active GigaSpaces cluster.</p>
+        <p><b>Vertical scaling</b>, referred to as <b href="production-Scale-Up-Down.html"><a href="production-Scale-Up-Down.html">On Demand Scale Up/Down</a></b>, allows  the amount of RAM and CPU to be increased or decreased - without downtime - for an active GigaSpaces cluster.</p>
         <p>For example, additional memory or CPUs may be added to an existing physical node.</p>
         <p style="text-align: center;">
             <img src="../Resources/Static/images/Scaling-example-of-vertical-scaling.jpg" />
         </p>
-        <p>Scale Up/Scale Down can be used for applications that have many "atomic" transactions (logical units of work), often using relational databases.</p>
+        <p>On Demand Scale Up/Down can be used for applications that have many "atomic" transactions (logical units of work), often using relational databases.</p>
         <h2>Advantages</h2>
         <ul>
             <li>Resources are located close physical proximity. <br />This allows faster access to related data, such as credit/debit table updates in a closed (atomic) unit of work..</li>
@@ -22,14 +22,14 @@
         <h2>Use Case</h2>
         <p>Vertical scaling can be used for a traditional DBMS where atomic transactions are performed in the same physical node.</p>
         <h1>Horizontal Scaling</h1>
-        <p>Horizontal scaling, referred to as <b><a href="production-Scale-Out-In.html">Scale Out/Scale In</a></b>, means to add or reduce the number of partitions used for an application.</p>
+        <p>Horizontal scaling, referred to as <b><a href="production-Scale-Out-In.html">On Demand Scale Out/In</a></b>, means to add or reduce the number of partitions used for an application.</p>
         <p>For example, additional partitions may be created in the same server, or alternatively, servers may be added or removed.</p>
         <p style="text-align: center;">
             <img src="../Resources/Static/images/Scaling-example-of-horizontal-scaling.jpg" />
         </p>
         <p>Big data is often stored in geographically dispersed nodes, which includes partitioning of databases.</p>
-        <p>If the application involves few cross-partition joins, it may be appropriate for Scale Out/Scale In.</p>
-        <p>NoSQL databases often use Scale Out/Scale In.</p>
+        <p>If the application involves few cross-partition joins, it may be appropriate for On Demand Scale Out/In.</p>
+        <p>NoSQL databases often use On Demand Scale Out/In.</p>
         <h2>Advantages</h2>
         <ul>
             <li>Horizontal scaling can be less expensive than vertical scaling - it is generally less expensive to add cloud storage, than to purchase new physical machines.</li>
