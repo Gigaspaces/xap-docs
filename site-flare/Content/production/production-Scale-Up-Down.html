@@ -5,7 +5,7 @@
     <body>
         <h1 class="tc-pagetitle">On Demand Scale Up/Down</h1>
         <h1>Types of Scaling</h1>
-        <p>Vertical scaling, referred to as <b href="production-scale-up-scale-down.html">Scale Up/Down</b> and the subject of this topic, allows  the amount of RAM and CPU to be increased or decreased - without downtime - for an active GigaSpaces cluster. For example, additional memory or CPUs may be added to an existing physical node.</p>
+        <p>Vertical scaling, referred to as <b href="production-scale-up-scale-down.html">On Demand Scale Up/Down</b> and the subject of this topic, allows  the amount of RAM and CPU to be increased or decreased - without downtime - for an active GigaSpaces cluster. For example, additional memory or CPUs may be added to an existing physical node.</p>
         <p>Another form of scaling, horizontal scaling, referred to as <b><a href="production-Scale-Out-In.html">On Demand Scale Out/In</a></b>, means to add or reduce the number of partitions used for an application. For example, additional partitions may be created in the same server, or alternatively, servers may be added or removed.</p>
         <p>For an overview of both types of scaling, see <MadCap:xref href="production-Rescaling-your-application-in-GigaSpaces.html">Rescaling Your Application in [%=General.CompanyName%]</MadCap:xref>.</p>
         <h2>Advantages of On Demand Scale Up/Down</h2>
@@ -14,7 +14,7 @@
             <li>A performance gain is realized, because their is more RAM and CPU on each update.</li>
         </ul>
         <div class="tc-admon-note">
-            <p>Scale Up/Down is supported in Kubernetes and ElasticGrid. It is not currently supported in ServiceGrid.</p>
+            <p>On Demand Scale Up/Down is supported in Kubernetes and ElasticGrid. It is not currently supported in ServiceGrid.</p>
         </div>
         <h2>Use Cases</h2>
         <p>If an application expects a significant increase in resource requirements at, for example, 9 am daily, the system may be scaled up -  to perhaps 20 times greater CPU capacity in the morning. Later in the day, the user will scale the system back down to its default level.</p>
@@ -34,7 +34,7 @@
         <ul>
             <li>Scale at the <b>Service level</b> - scale all of the partitions that use the service. </li>
         </ul>
-        <h2>What APIs are Available for Scale Up/Down?</h2>
+        <h2>What APIs are Available for On Demand Scale Up/Down?</h2>
         <p>Scale Up/Scale/Down can be performed in each of the <MadCap:variable name="General.ProductNameXAP" /> interfaces:</p>
         <ul>
             <li>Ops Manager</li>
@@ -47,7 +47,7 @@
         <p>For all of these environments, two basic decisions are required: which partitions to scale, and how much to scale.</p>
         <p>Regarding which partitions, the user can request that all partitions using a particular service should be scaled, or they can choose a specific partition. </p>
         <p>Regarding the amount to scale up or down, the user chooses a value for CPUs and RAM, which will be applied to all of the partitions that are scaled.</p>
-        <h2>Scale Up/Down Using the Ops Manager</h2>
+        <h2>On Demand Scale Up/Down Using the Ops Manager</h2>
         <h3>Selecting Partitions by Service</h3>
         <p>From the Service screen for the stateful service that you wish to scale, hover over the three dots on the top of the screen, and click <b>Scale up/down</b>:</p>
         <p>
@@ -119,7 +119,7 @@
         <p>Note that in this case, the particular partition number, Partition 333, is displayed on the top of the screen.</p>
         <h2>Viewing the Partition Log</h2>
         <p>A log file is available with detailed information about the partition. For instructions on viewing the log file manually, see <MadCap:xref href="../opm/opm-view-log-files.html">Viewing Partition Log Files with Ops Manager.</MadCap:xref></p>
-        <h1>Scale Up/Down Using the <MadCap:variable name="General.ProductNameXAP" />Command Line Interface</h1>
+        <h1>On Demand Scale Up/Down Using the <MadCap:variable name="General.ProductNameXAP" />Command Line Interface</h1>
         <p>Vertical scaling is performed via the command line command of <b>scale-vertical</b>,  abbreviated as <b>scale-v</b>.</p>
         <h1>Scale-Vertical</h1>
         <h2>Syntax</h2><pre><code>gs&gt;<b> pu scale-vertical </b>   --partitions=[<b>partition-list</b>]   --memory=[<b>memory-value</b>]   --cpu=[<b>cpu-value</b>]   [<b>service-name</b>]</code></pre>
