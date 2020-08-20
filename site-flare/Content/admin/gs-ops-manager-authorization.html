@@ -14,7 +14,7 @@
         <p>InsightEdge Ops Manager provides advanced capabilities of services monitoring, data analysis, and connectivity to multiple data sources. These capabilities are divided into a list of screens and features with permissions for logging user roles:</p>
         <ul>
             <li><b>Admin</b> (superuser) – has access to all capabilities including features related to services orchestration that has high impact on the environment resources consumption (e.g. scale up/down of service partitions).</li>
-            <li><b>Engineer</b> – can deploy one or many services and connect with client applications and other components such as databases, ETL’s etc. An Engineer will deploy services, will test them – function and performance - and analyze the data behavior within the Space.</li>
+            <li><b>Manager</b> – can deploy one or many services and connect with client applications and other components such as databases, ETL’s etc. A Manager will deploy services, will test them – function and performance - and analyze the data behavior within the Space.</li>
             <li><b>Viewer</b> – data expert with a goal to optimize system behavior/performance. Responsible for defining the distribution rules of data in partitions, monitoring and analyzing applications' read performance, checking for resource bottlenecks, analyzing the sizes of data entities, including indexes and the efficiency of indexes over time.</li>
         </ul>
         <h2>Roles and Permissions in Ops Manager</h2>
@@ -43,7 +43,7 @@
                         <p><b>Outcome</b>: User role with no permission to monitor services will not be able to access these screens through the landing page or navigation panel. All screens related to services monitoring are hidden.</p>
                     </td>
                     <td>
-                        <p>Admin, Engineer</p>
+                        <p>Admin, Manager</p>
                     </td>
                 </tr>
                 <tr MadCap:conditions="Version.15-2-born">
@@ -55,7 +55,7 @@
                         <p><b>Outcome</b>: User role with no permission to deploy a service will not see/be able to activate the deploy feature at any orchestration layer – ServiceGrid, K8s, ElasticGrid.</p>
                     </td>
                     <td>
-                        <p>Admin, Engineer</p>
+                        <p>Admin, Manager</p>
                     </td>
                 </tr>
                 <tr MadCap:conditions="Version.15-2-born">
@@ -79,7 +79,7 @@
                         <p><b>Outcome</b>: The Download Logs feature is available in the user interface for user role that has permission to download to their client.</p>
                     </td>
                     <td>
-                        <p>Admin, Engineer</p>
+                        <p>Admin, Manager</p>
                     </td>
                 </tr>
                 <tr>
@@ -91,7 +91,7 @@
                         <p><b>Outcome</b>: User role with no permission to analyze data will not be able to access these screens through the landing page nor navigation panel. All screens related to data analysis and queries are hidden.</p>
                     </td>
                     <td>
-                        <p>Admin, Engineer, viewer</p>
+                        <p>Admin, Manager, viewer</p>
                     </td>
                 </tr>
                 <tr MadCap:conditions="Version.15-8-born">
@@ -103,7 +103,7 @@
                         <p><b>Outcome</b>: Partial list of Spaces is available for specific user role according to the definition.</p>
                     </td>
                     <td>
-                        <p>Admin, Engineer, viewer</p>
+                        <p>Admin, Manager, viewer</p>
                     </td>
                 </tr>
                 <tr MadCap:conditions="Version.15-8-born">
@@ -115,7 +115,7 @@
                         <p><b>Outcome</b>: Partial list of object types is available for user role according to their permissions.</p>
                     </td>
                     <td>
-                        <p>Admin, Engineer, viewer</p>
+                        <p>Admin, Manager, viewer</p>
                     </td>
                 </tr>
                 <tr>
@@ -127,7 +127,7 @@
                         <p><b>Outcome</b>: The SQL query tab is hidden at both Space and object type levels for user role with no permission.</p>
                     </td>
                     <td>
-                        <p>Admin, Engineer, viewer</p>
+                        <p>Admin, Manager, viewer</p>
                     </td>
                 </tr>
                 <tr MadCap:conditions="Version.15-2-born">
@@ -150,7 +150,7 @@
                         <p>Control the visibility of the Reports tab in Space/object type screens. User role with no permission for reports, will not be able to review this tab and open a report from the history list.</p>
                     </td>
                     <td>
-                        <p>Admin, Engineer, viewer</p>
+                        <p>Admin, Manager, viewer</p>
                     </td>
                 </tr>
                 <tr>
@@ -162,7 +162,7 @@
                         <p><b>Outcome</b>: User role with no permission to connect to data sources will not be able to access these screens through the landing page or navigation panel. All screens related to data analysis and queries are hidden.</p>
                     </td>
                     <td>
-                        <p>Admin, Engineer</p>
+                        <p>Admin, Manager</p>
                     </td>
                 </tr>
                 <tr>
@@ -174,7 +174,7 @@
                         <p><b>Outcome</b>: The automatic deploy of a blueprint is available/visible only for user roles that have this permission.&#160;</p>
                     </td>
                     <td>
-                        <p>Admin, Engineer</p>
+                        <p>Admin, Manager</p>
                     </td>
                 </tr>
             </tbody>
