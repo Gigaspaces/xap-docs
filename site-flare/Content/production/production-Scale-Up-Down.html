@@ -53,31 +53,35 @@
         <p>
             <img src="../Resources/Static/images/SUSD-bigger-select-susd-from-menu.jpg" class="tc-picture90" />
         </p>
+        <p>Note that the appearance of the three-dot menu will be different for Kubernetes and for ElasticGrid:</p>
+        <div class="easyui-tabs" plain="true">
+            <div title="Kubernetes">
+                <p>
+                    <img src="../Resources/Static/images/susd-for-Kubernetes--three-dot menu-has-scale-up-down.jpg" />
+                </p>
+            </div>
+            <div title="ElasticGrid">
+                <p>
+                    <img src="../Resources/Static/images/susd-for-ElasticGrid---three-dot-menu-has-scale-in-out-in-up-down.jpg" />
+                </p>
+            </div>
+        </div>
         <p><a id="units_explained">The Scale Up/Down screen appears</a>.</p>
         <p>
-            <img src="../Resources/Static/images/SUSD-the-newer-susd-screen-appears.jpg" class="tc-picture50" />
+            <img src="../Resources/Static/images/susd-dialog-box-in-Kubernetes.jpg" class="tc-picture80" />
         </p>
-        <p>In this example, the screen provides the following information:</p>
-        <ul>
-            <li>The most common partition size for partitions using this service is <b>500</b>MHz. Note that in Kubernetes this value would be expressed as millicores.</li>
-            <li>The most common RAM size is <b>512MB</b>. Note that in Kubernetes this value would be expressed as Mebibytes (see <a href="https://www.gbmb.org/mib-to-mb">Mebibyte-to-MB Conversion Table</a>).</li>
-        </ul>
-        <p>To choose a new number of CPUs and RAM size for all of the partitions using this service, you can click on one of the suggested CPU and RAM sizes. Alternatively, you can click the <b>Custom </b>checkbox to choose any value.</p>
-        <p>In this example, the user chose a new custom number of CPUs of <b>44</b>, and a new RAM size of <b>350 MiB</b>:</p>
-        <p>
-            <img src="../Resources/Static/images/SUSD-in-this-example.jpg" class="tc-picture50" />
-        </p>
-        <p>Note that the original values for CPUs and RAM are shown in light blue. You can easily go back to the original values by clicking these buttons.</p>
-        <p MadCap:conditions="Default.DoNotShow">Click <b>Restore to service default </b>if you wish to reset the values to the original values used when the service was first run.</p>
+        <p>In this Kubernetes example, the user chose a CPU value of 500m (millicores), and a RAM size of 600 MiB. Note that for ElasticGrid, these values would be expressed in MHz and Mb. Light blue values indicate the original, default values for these parameters.</p>
         <p>Click <b>Apply</b> to accept the values shown. A confirmation screen will display:</p>
         <p>
-            <img src="../Resources/Static/images/SUSD-click-apply-to-accept.jpg" class="tc-picture30" />
+            <img src="../Resources/Static/images/susd-scale-entire-service.jpg" class="tc-picture50" />
         </p>
         <p>Click <b>Run Scale</b> to proceed with the scaling request, or <b>Cancel </b>to abort the request.</p>
         <div class="tc-admon-note">
             <p>We are scaling up or down on the <b>service</b> level. </p>
-            <p>This means that all of the partitions using this service (in this case 50 partitions, and because of High Availability, 100 instances), will be rescaled.</p>
-            <p>Each of these 100 instances will be rescaled to 44 CPUs and 350 Mb.</p>
+            <p>This means that all of the partitions using this service will be rescaled. Each of these 100 instances will be rescaled to 500m and 600 MiB.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>During the scaling process, both the original instances and the new instances will co-exist in memory. This will require a temporary increase in the total amount of system resources.</p>
         </div>
         <div class="tc-admon-attention">
             <p>After you click on <b>Run Scale</b>, the scaling process will begin. At that point, it is not possible to cancel the scaling operation.</p>
@@ -114,9 +118,9 @@
         <p>Note that you can select either the primary instance of the partition or the secondary instance. Either choice will scale the same partition.</p>
         <p>The Scale Up/Down screen will display, as discussed <a href="#units_explained">above</a>:</p>
         <p>
-            <img src="../Resources/Static/images/SUSD-selecting-specific-partition-333.jpg" class="tc-picture50" />
+            <img src="../Resources/Static/images/SUSD-selecting-specific-partition-14079.bmp" class="tc-picture50" />
         </p>
-        <p>Note that in this case, the particular partition number, Partition 333, is displayed on the top of the screen.</p>
+        <p>Note that in this case, the particular partition number, Partition 14079, is displayed on the top of the screen.</p>
         <h2>Viewing the Partition Log</h2>
         <p>A log file is available with detailed information about the partition. For instructions on viewing the log file manually, see <MadCap:xref href="../opm/opm-view-log-files.html">Viewing Partition Log Files with Ops Manager.</MadCap:xref></p>
         <h1>On Demand Scale Up/Down Using the <MadCap:variable name="General.ProductNameXAP" />Command Line Interface</h1>
