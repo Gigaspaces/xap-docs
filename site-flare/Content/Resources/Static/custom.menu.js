@@ -1,7 +1,30 @@
 ﻿var versionData = {
-    '15.5': { 'url': '/15.5', 'label': '15.5 Early Access', 'topicBanner': 'preview' },
-	'latest': { 'url': '/latest', 'label': '15.2' },	
-  '15.2': { 'url': '/15.2', 'label': '15.2', 'hide': true },
+	
+//pre-ga 15.5, was:
+	
+//	'15.5': { 'url': '/15.5', 'label': '15.5 Early Access', 'topicBanner': 'preview' },
+//	'latest': { 'url': '/latest', 'label': '15.2' },	
+//	'15.2': { 'url': '/15.2', 'label': '15.2', 'hide': true },
+//	'15.0': { 'url': '/15.0', 'label': '15.0',  'topicBanner': 'old' },
+//	'latest': { 'url': '/latest', 'label': '15.2' },	
+	
+
+	'15.8': { 'url': '/15.8', 'label': '15.8 Early Access', 'topicBanner': 'preview' },
+		
+	'15.5': { 'url': '/15.5', 'label': '15.5', 'hide': true },
+	'latest': { 'url': '/latest', 'label': '15.5' },	
+	
+	'15.2': { 'url': '/15.2', 'label': '15.2',  'topicBanner': 'old' },
+	
+
+	
+		
+	
+ //   '15.5': { 'url': '/15.5', 'label': '15.5 Early Access', 'topicBanner': 'preview' },
+//	'latest': { 'url': '/latest', 'label': '15.2' },	
+//  '15.2': { 'url': '/15.2', 'label': '15.2', 'hide': true },
+	
+	
   '15.0': { 'url': '/15.0', 'label': '15.0',  'topicBanner': 'old' },
   '14.5': { 'url': '/14.5', 'label': '14.5',  'topicBanner': 'old' },
   '14.2': { 'url': '/14.2', 'label': '14.2', 'topicBanner': 'old' },
