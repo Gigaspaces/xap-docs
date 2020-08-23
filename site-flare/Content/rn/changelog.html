@@ -5,6 +5,15 @@
     <body>
         <h1 class="tc-pagetitle">Changelog</h1>
         <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.x.<MadCap:conditionalText MadCap:conditions="Version.15-8-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
+        <div MadCap:conditions="Version.15-8-only">
+            <h1 MadCap:conditions="Version.15-5-only">15.8</h1>
+            <h2>Features and Enhancements</h2>
+            <p>There are no features and enhancements at this time.</p>
+            <h2>Resolved Issues</h2>
+            <p>There are no resolved issues at this time.</p>
+            <h2>Known Issues</h2>
+            <p>There are no known issues at this time.</p>
+        </div>
         <h1 MadCap:conditions="Version.15-5-only">15.5</h1>
         <h2 MadCap:conditions="Version.15-5-only">Features and Enhancements</h2>
         <ul MadCap:conditions="Version.15-5-only">
@@ -193,7 +202,7 @@
         </ul>
         <h2 MadCap:conditions="Version.15-5-only">Known Issues</h2>
         <li MadCap:conditions="Version.15-5-only">
-            <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14078," />: Gxxxxxxxxxxxxxxxxxxxxxxxxn on-premise mode</li>
+            <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14170," />: Edge case when the deployment of a service failed and the job will remain in Nomad. <br />Use the following <code class="language-bash">curl </code>command to purge the service from Nomad:</li><code class="language-bash" MadCap:conditions="Version.15-5-only">curl -X PUT --insecure --silent -H "X-Nomad-Token: ${TOKEN}"</code>
         <p>&#160;</p>
         <h1 MadCap:conditions="Version.15-2-only">15.2</h1>
         <h2 MadCap:conditions="Version.15-2-only">Features and Enhancements</h2>
@@ -803,7 +812,7 @@
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13386," />: "Only Live Services Log Dump" doesn't work as expected.</li>
         </ul>
         <div class="tc-admon-note">
-            <p>The complete list of changes is also available in<MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText>.</p>
+            <p>The complete list of changes is also available in<MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-born"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText>.</p>
         </div>
     </body>
 </html>

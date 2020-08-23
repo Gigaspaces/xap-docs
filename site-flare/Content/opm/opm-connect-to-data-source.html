@@ -17,8 +17,18 @@
             <li>Space name (default is demo) - define the Space name that will be deployed within the <MadCap:variable name="General.ProductNameIEP" /></li>
         </ul>
         <h1>Data source properties</h1>
-        <p>These properties define the connection to the selected data source. This enables easy connection, review, and selection of data at the source database that is used to create the <MadCap:variable name="General.ProductNameXAP" /> Object Types.</p>
-        <p>The data source type allows you to choose from one of the built-in data types connectors - <b> MySQL</b>,  <b>MSSQL </b>or <b>HSQL </b>. Alternatively, it is possible to select Other to configure a connection to a new data source.</p>
+        <p>These properties define the connection to the selected data source. This enables easy connection, review, and selection of data at the source database that is used to create the <MadCap:variable name="General.ProductNameXAP" /> Object Types. <br /></p>
+        <p>The data source type allows you to choose from one of the built-in data types connectors:</p>
+        <ul>
+            <li>  MySQL</li>
+            <li MadCap:conditions="Version.15-5-born">Amazon RDS (MySQL)</li>
+            <li> MS SQL</li>
+            <li MadCap:conditions="Version.15-5-born">Azure SQL</li>
+            <li> HSQL</li>
+            <li MadCap:conditions="Version.15-5-born">Oracle</li>
+            <li MadCap:conditions="Version.15-5-born">PostgreSQL</li>
+        </ul>
+        <p> Alternatively, it is possible to select Other to configure a connection to a new data source.</p>
         <h2>Maven properties</h2>
         <p>Defines the JDBC driver’s maven coordinates (group, artifact and version). Note that this will get auto-filled if you select a built-in data type with the latest version at the time of GigaSpaces Ops Manager release, but you can choose an older/newer version if needed.</p>
         <h2>Driver class</h2>
