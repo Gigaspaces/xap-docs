@@ -10,7 +10,7 @@
         <p>For an overview of both types of scaling, see <MadCap:xref href="production-Rescaling-your-application-in-GigaSpaces.html">Rescaling Your Application in [%=General.CompanyName%]</MadCap:xref>.</p>
         <h2>Advantages of On Demand Scale Up/Down</h2>
         <ul>
-            <li>Resources are located close physical proximity. This allows faster access to related data, such as credit/debit table updates in a closed (atomic) unit of work..</li>
+            <li>Resources are located in close physical proximity. This allows faster access to related data, such as credit/debit table updates in a closed (atomic) unit of work..</li>
             <li>A performance gain is realized, because their is more RAM and CPU on each update.</li>
         </ul>
         <div class="tc-admon-note">
@@ -25,7 +25,10 @@
         </div>
         <h2>Which Partitions to Scale Up/Down?</h2>
         <p>The option of which partitions to scale depends on the service type.</p>
-        <p>For s <b>Stateful</b> service - </p>
+        <div class="tc-admon-note">
+            <p>For a Stateful service, the service must be deployed with High Availability to enable the Scale Up/Down functionality.</p>
+        </div>
+        <p>For a <b>Stateful</b> service - </p>
         <ul>
             <li>Scale at the <b>Service level</b> - scale all of the partitions that use the service. <br />An example is a service used for a shopping cart. At certain times the user may wish to Scale Up/Down all of the partitions using the service, no matter where they are located.</li>
             <li>Scale a <b>Single partition</b>. <br />An example is a partition that handles flight requests to a particular airport. At times it may be necessary to scale the resource for that particular partition, depending on seasonal travel patterns.</li>
@@ -35,7 +38,7 @@
             <li>Scale at the <b>Service level</b> - scale all of the partitions that use the service. </li>
         </ul>
         <h2>What APIs are Available for On Demand Scale Up/Down?</h2>
-        <p>Scale Up/Scale/Down can be performed in each of the <MadCap:variable name="General.ProductNameXAP" /> interfaces:</p>
+        <p>Scale Up/Down can be performed in each of the <MadCap:variable name="General.ProductNameXAP" /> interfaces:</p>
         <ul>
             <li>Ops Manager</li>
             <li>Command Line Interface </li>
@@ -110,11 +113,10 @@
         <p>During the scale process, if the scaling of one of the partition fails (possibly caused by lack of system resources), this partition will be reverted to its previous configuration and the scale process will be stopped (the next partitions won't be scaled). <br />An error message will display, and the partitions that have already scaled, will stay scaled.<br />No data loss will occur.</p>
         <p>Once the scaling request has completed, a cube-shaped icon displays on the top right of the screen. You can hover over this icon to see a brief description of the scaling result:</p>
         <p>
-            <img src="../Resources/Static/images/SUSD-service-scaled-up.jpg" class="tc-picture30" />
+            <img src="../Resources/Static/images/SUSD-service-scaled-up-fixed.jpg" class="tc-picture30" />
         </p>
         <h3>Selecting a Specific Partition to Scale</h3>
         <p>From the Service screen for the stateful service that you wish to scale, hover over the three dots that are on the same row as the partition instance that you wish to scale, and click <b>Scale up/down</b>:</p>
-        <p>In this example, the user is scaling partition number 333.</p>
         <p>Note that you can select either the primary instance of the partition or the secondary instance. Either choice will scale the same partition.</p>
         <p>The Scale Up/Down screen will display, as discussed <a href="#units_explained">above</a>:</p>
         <p>
@@ -123,7 +125,7 @@
         <p>Note that in this case, the particular partition number, Partition 14079, is displayed on the top of the screen.</p>
         <h2>Viewing the Partition Log</h2>
         <p>A log file is available with detailed information about the partition. For instructions on viewing the log file manually, see <MadCap:xref href="../opm/opm-view-log-files.html">Viewing Partition Log Files with Ops Manager.</MadCap:xref></p>
-        <h1>On Demand Scale Up/Down Using the <MadCap:variable name="General.ProductNameXAP" />Command Line Interface</h1>
+        <h1>On Demand Scale Up/Down Using the <MadCap:variable name="General.ProductNameXAP" /> Command Line Interface</h1>
         <p>Vertical scaling is performed via the command line command of <b>scale-vertical</b>,  abbreviated as <b>scale-v</b>.</p>
         <h1>Scale-Vertical</h1>
         <h2>Syntax</h2><pre><code>gs&gt;<b> pu scale-vertical </b>   --partitions=[<b>partition-list</b>]   --memory=[<b>memory-value</b>]   --cpu=[<b>cpu-value</b>]   [<b>service-name</b>]</code></pre>
@@ -181,12 +183,12 @@
             </tbody>
         </table>
         <h2>Example (Kubernetes)</h2>
-        <p>The following example scales partitions <b>100</b> and <b>112</b> in processing unit <b>myProcessingUnit</b> to <b>800Mebibytes</b> and <b>4</b> CPUs. </p>
+        <p>The following example scales partitions <b>100</b> and <b>112</b> in processing unit <b>myProcessingUnit</b> to <b>800MiB</b> and <b>4</b> CPUs. </p>
         <p>Note that if a partition initially had a lower value for these parameters, then this is considered a scale up operation for that partition; otherwise it is a scale down operation.</p><pre><code>pu scale-vertical   --partitions=100,112   --memory=800Mi   --cpu=4000m   myProcessingUnit
 </code></pre>
         <p>&#160;</p>
         <h1>Scale Up/Down Using the REST Manager API (Kubernetes)</h1>
-        <p>As in the previous example, the following example scales partitions <b>100</b> and <b>112</b> in processing unit <b>myProcessingUnit</b> to <b>800Mebibytes</b> and <b>400m</b> CPU.
+        <p>As in the previous example, the following example scales partitions <b>100</b> and <b>112</b> in processing unit <b>myProcessingUnit</b> to <b>800MiB</b> and <b>400m</b> CPU.
         </p><pre><code class="language-bash">
 curl -X POST --header 'Content-Type: application/json' 
              --header 'Accept: text/plain' 

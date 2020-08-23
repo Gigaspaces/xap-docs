@@ -63,8 +63,20 @@
                         <p>On-Demand Scale Up/Down for a Service and a Partition </p>
                     </td>
                     <td>
-                        <p>Enable/disable the view and activation of Scale Up/Down feature at the level of a service (all partitions) and for a single partition. This is valid for Kubernetes and ElasticGrid.</p>
+                        <p>Enable/disable the view and activation of the Scale Up/Down feature at the level of a service (all partitions) and for a single partition. This is valid for Kubernetes and ElasticGrid.</p>
                         <p><b>Outcome</b>: The Scale Up/Down feature at service or partition level is hidden for user role that does not have permission.</p>
+                    </td>
+                    <td>
+                        <p>Admin</p>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Version.15-2-born">
+                    <td>
+                        <p>On-Demand Scale Out/In for a Service</p>
+                    </td>
+                    <td>
+                        <p>Enable/disable the view and activation of the Scale Out/In feature at the level of a service. This is valid for ElasticGrid and ServiceGrid orchestration methods.</p>
+                        <p><b>Outcome</b>: The Scale Out/In feature at service level is hidden for user role that does not have permission.</p>
                     </td>
                     <td>
                         <p>Admin</p>
@@ -84,6 +96,18 @@
                 </tr>
                 <tr>
                     <td>
+                        <p>View Logs</p>
+                    </td>
+                    <td>
+                        <p>Enable/disable the ability to viewing partition log files with Ops Manager. This feature is valid at all orchestration layers.</p>
+                        <p><b>Outcome</b>: The View Logs feature is available in the user interface for user role that has this permission.</p>
+                    </td>
+                    <td>
+                        <p>Admin, Manager</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <p>Analyze my Data Screen</p>
                     </td>
                     <td>
@@ -94,7 +118,7 @@
                         <p>Admin, Manager, Viewer</p>
                     </td>
                 </tr>
-                <tr MadCap:conditions="Version.15-8-born">
+                <tr MadCap:conditions="Default.DoNotShow">
                     <td>
                         <p>1..N Spaces Analysis</p>
                     </td>
@@ -106,7 +130,7 @@
                         <p>Admin, Manager, Viewer</p>
                     </td>
                 </tr>
-                <tr MadCap:conditions="Version.15-8-born">
+                <tr MadCap:conditions="Default.DoNotShow">
                     <td>
                         <p>1..N Object Types Analysis</p>
                     </td>
@@ -130,7 +154,7 @@
                         <p>Admin, Manager, Viewer</p>
                     </td>
                 </tr>
-                <tr MadCap:conditions="Version.15-2-born">
+                <tr MadCap:conditions="">
                     <td>
                         <p>Objects Analysis</p>
                     </td>
@@ -142,7 +166,7 @@
                         <p>Admin</p>
                     </td>
                 </tr>
-                <tr MadCap:conditions="Version.15-2-born">
+                <tr MadCap:conditions="Default.DoNotShow">
                     <td>
                         <p>Reports Tab</p>
                     </td>
