@@ -12,7 +12,7 @@
             <li>
                 <p>SLA enforcement: The <a href="../overview/the-runtime-environment.html#gsm">GigaSpaces Manager</a> is also responsible for enforcing your processing unit's <a href="../admin/the-sla-overview.html">Service Level Agreement</a>, or SLA. At deployment time, it will create a specified number of processing unit instances (based on the SLA) and provision them to the running containers while enforcing all the <a href="../admin/the-sla-overview.html">deployment requirements</a>, such as memory and CPU utilization, or specific deployment zones. At runtime, it will monitor the processing unit instances, and if any of them fail to fulfill the SLA or become unavailable it will re-instantiate the processing unit automatically on another container.</p>
             </li>
-            <li MadCap:conditions="Version.15-2-died">
+            <li MadCap:conditions="Version.15-2-died,Default.DoNotShow">
                 <p>Automatic machine provisioning and dynamic SLA enforcement: Elastic Processing Units are a new type of <a href="the-processing-unit-overview.html">Processing Unit</a>. Elastic PUs provision machines and start <a href="../overview/the-runtime-environment.html#gsc">GigaSpaces Containers</a> automatically based on the processing units' Memory and CPU requirements. When the available machines do not meet the requirements, the manager provisions new machines and balances the Processing Unit deployment across machines. This also occurs when a machine fails, or when the requirements changes while the application is running.</p>
             </li>
         </ul>
