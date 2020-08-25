@@ -29,11 +29,18 @@
             <li><code>gs-tableau-package</code> - script that creates a standalone connector package.</li>
         </ul>
         <h3>Adding the <MadCap:variable name="General.ProductNameIE" /> JDBC Driver to Tableau  </h3>
+        <div class="tc-admon-important" MadCap:conditions="Version.15-2-born">
+            <p>In Tableau 2020.2 and 2020.3 a class loader isolation was introduced that, by default, does not allow Tableau to connect to our Space.</p>
+            <p>To override the default and fix this issue, proceed as follows:</p>
+            <p> &#160;&#160; Edit the gs-tableau.bat script -- </p>
+            <p> &#160;&#160; Under <span class="tc-bold">:RUN_TABLEAU</span> in the "start" line, add this line:</p>
+            <p>&#160;&#160;&#160;&#160; <code class="language-bash"> -DJdbcDriverCustomLoad=false</code></p>
+            <p>This will cause the Tableau to run as before and to be able to connect to our space..</p>
+        </div>
         <p>The <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector is based on the Tableau Connector SDK and JDBC integration. The setup process includes providing proprietary requirements about various file locations and execution arguments. <MadCap:variable name="General.CompanyName" /> provides a script that automates the setup process and starts Tableau Desktop with the <MadCap:variable name="General.CompanyName"></MadCap:variable>-<MadCap:variable name="General.ProductNameIE"></MadCap:variable> connector enabled. </p>
         <p>
 			To setup the <MadCap:variable name="General.CompanyName" />-Tableau integration, run the <code>&lt;product&gt;/tools/tableau/gs-tableau.bat</code> script. 
-			<MadCap:conditionalText MadCap:conditions="Version.15-2-born">If you're using Tableau 2020.1 or later, you can now start Tableau as usual and use the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector. If you're using an older version of Tableau you'll need to start it using the gs-tableau.bat script to use the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector.</MadCap:conditionalText>
-			</p>
+			<MadCap:conditionalText MadCap:conditions="Version.15-2-born">If you're using Tableau 2020.1 or later, you can now start Tableau as usual and use the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector. If you're using an older version of Tableau you'll need to start it using the gs-tableau.bat script to use the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector.</MadCap:conditionalText></p>
         <div class="tc-admon-note">
             <p>
 		The first time this script runs it requires elevated permissions, because it automatically packages and copies the <MadCap:variable name="General.ProductNameIE" /> JDBC driver to Tableau's installation files, which generally reside in the <code>Program Files</code> folder.
