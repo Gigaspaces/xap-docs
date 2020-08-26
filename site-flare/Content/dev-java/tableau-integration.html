@@ -22,7 +22,7 @@
         <h1>Setting Up the  <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;Connector </h1>
         <h2>Windows Environment</h2>
         <p>The <MadCap:variable name="General.CompanyName" />-Tableau integration package provides an automated script that creates the JDBC&#160;connector for Tableau Desktop, so that Tableau Desktop can query the <MadCap:variable name="General.ProductNameIE" /> data grid directly using the <MadCap:variable name="General.ProductNameIE" /> JDBC driver. You can customize some default values for the setup process if necessary, as well as create standalone packages for other Tableau users so they can run analytics on data from <MadCap:variable name="General.ProductNameIE" /> .</p>
-        <p>The integration package is available in the <code>&lt;product&gt;/tools/tableau</code> folder of the <MadCap:variable name="General.ProductNameIE" /> software package. It contains the following files:</p>
+        <p id="view-tableau-class-loader-issue">The integration package is available in the <code>&lt;product&gt;/tools/tableau</code> folder of the <MadCap:variable name="General.ProductNameIE" /> software package. It contains the following files:</p>
         <ul>
             <li><code>gs-tableau.bat</code> - runs the setup process for the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> JDBC&#160;connector.</li>
             <li><code>gs-tableau-env</code> - environment variables that can be used to customize certain default values for the setup process.</li>
@@ -34,7 +34,8 @@
             <p>To override the default and fix this issue, proceed as follows:</p>
             <p> &#160;&#160; Edit the gs-tableau.bat script -- </p>
             <p> &#160;&#160; Under <span class="tc-bold">:RUN_TABLEAU</span> in the "start" line, add this line:</p>
-            <p>&#160;&#160;&#160;&#160; <code class="language-bash"> -DJdbcDriverCustomLoad=false</code></p>
+            <p>&#160;&#160;&#160;&#160; <code class="language-bash"> -DJdbcDriverCustomLoad=false</code>
+            </p>
             <p>This will cause the Tableau to run as before and to be able to connect to our space..</p>
         </div>
         <p>The <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector is based on the Tableau Connector SDK and JDBC integration. The setup process includes providing proprietary requirements about various file locations and execution arguments. <MadCap:variable name="General.CompanyName" /> provides a script that automates the setup process and starts Tableau Desktop with the <MadCap:variable name="General.CompanyName"></MadCap:variable>-<MadCap:variable name="General.ProductNameIE"></MadCap:variable> connector enabled. </p>
