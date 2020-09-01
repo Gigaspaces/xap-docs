@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -116,7 +116,7 @@
         <ul>
             <li>Should be performed with transactions - this allows the client to roll back the Space to its initial state prior to when the operation was started, in case of a failure.</li>
             <li>Make sure <code>null</code> values are not part of the passed array.</li>
-            <li>
+            <li MadCap:conditions="Default.DoNotShow">
                 <p>Verify that duplicated entries (with the same ID) do not appear as part of the passed array, because the identity of the object is determined based on its <code>ID</code> and not based on its reference. This is extremely important with an embedded Space, because <code>writeMultiple</code> injects the ID value into the object after the write operation (when autogenerate=false).</p>
             </li>
             <li>
@@ -129,6 +129,18 @@
                 </ul>
             </li>
         </ul>
+        <h2>Duplicate Entries in Write Multiple</h2>
+        <p>Duplicate entries (with the same ID) are not allowed when using the <code class="language-bash">WRITE_ONLY</code> write modifier. This is because the identity of the object is determined based on its ID and not based on its reference. <br />This is extremely important with an embedded Space, because writeMultiple injects the ID value into the object after the write operation (when <code class="language-bash">autogenerate=false</code>).</p>
+        <p>While duplicate entries are allowed with the <code class="language-bash">WRITE_OR_UPDATE</code> modifier, they are not allowed when using MemoryXtend and RocksDB. </p>
+        <p>There are some cases where you may wish to allow duplicates in a single write batch - for example, when you load CSV files using the CSVReader or InsightEdge API, and you do not have full control of the file content.</p>
+        <p>In such cases, you can configure the space property <code class="language-bash">space-config.engine.blobstore.rocksdb.allow_duplicate_uids</code> to <code class="language-bash">true</code>. This flag is automatically enabled when using InsightEdge.</p>
+        <p>If enabled, the behavior is that duplicate entries are removed on the client side, before sending the objects to the Space. This leaves the last entry with the same ID as the updated entry.</p>
+        <div class="tc-admon-note">
+            <p><code class="language-bash">PARTIAL_UPDATE</code> and <code class="language-bash">WRITE_ONLY</code> modifiers are not allowed with the space property <br /><code class="language-bash">space-config.engine.blobstore.rocksdb.allow_duplicate_uids</code> set to <code class="language-bash">true</code>.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p> If the same batch has a write and an update, the last entry will be used and it will be a write operation. This is important if you have an event container.</p>
+        </div>
         <h2><a name="return-previous-value"></a>Return Previous Value</h2>
         <p>When updating an object that already exists in the Space, in some scenarios it is useful to get the previous value of the object (before the update). This previous value is returned in result <code>LeaseContext.getObject()</code> when using the <code>RETURN_PREV_ON_UPDATE</code> modifier.</p><pre><code class="language-java">  LeaseContext&lt;MyData&gt; lc = space.write(myobject,WriteModifiers.RETURN_PREV_ON_UPDATE.add(WriteModifiers.UPDATE_OR_WRITE));
   MyData previousValue = lc.getObject();
