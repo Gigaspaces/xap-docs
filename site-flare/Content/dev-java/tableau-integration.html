@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Integrating <MadCap:variable name="General.ProductNameIE" /> with Tableau Desktop</h1>
-        <p>This topic describes how to integrate Tableau Desktop with <MadCap:variable name="General.ProductNameIE" /> using the <MadCap:variable name="General.ProductNameIE" /> JDBC connector to retrieve data for visualization and business intelligence needs.</p>
+        <p MadCap:conditions="Version.15-5-born">This topic describes how to integrate Tableau Desktop with <MadCap:variable name="General.ProductNameIE" /> using the <MadCap:variable name="General.ProductNameIE" /> JDBC connector to retrieve data for visualization and business intelligence needs.</p>
         <h1>Prerequisites</h1>
         <p>Your host machine must have the following installed:</p>
         <ul>
@@ -29,14 +29,11 @@
             <li><code>gs-tableau-package</code> - script that creates a standalone connector package.</li>
         </ul>
         <h3>Adding the <MadCap:variable name="General.ProductNameIE" /> JDBC Driver to Tableau  </h3>
-        <div class="tc-admon-important" MadCap:conditions="Version.15-2-born">
-            <p>In Tableau 2020.2 and 2020.3 a class loader isolation was introduced that, by default, does not allow Tableau to connect to our Space.</p>
-            <p>To override the default and fix this issue, proceed as follows:</p>
-            <p> &#160;&#160; Edit the gs-tableau.bat script -- </p>
+        <div class="tc-admon-important" MadCap:conditions="Version.15-5-born">
+            <p>In Tableau 2020.2 and later, a class loader isolation option was introduced.</p>
+            <p>It is necessary to disable this option by editing the <code class="language-bash">gs-tableau.bat </code>script as follows: </p>
             <p> &#160;&#160; Under <span class="tc-bold">:RUN_TABLEAU</span> in the "start" line, add this line:</p>
-            <p>&#160;&#160;&#160;&#160; <code class="language-bash"> -DJdbcDriverCustomLoad=false</code>
-            </p>
-            <p>This will cause the Tableau to run as before and to be able to connect to our space..</p>
+            <p>&#160;&#160;&#160;&#160; <code class="language-bash"> -DJdbcDriverCustomLoad=false</code></p>
         </div>
         <p>The <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector is based on the Tableau Connector SDK and JDBC integration. The setup process includes providing proprietary requirements about various file locations and execution arguments. <MadCap:variable name="General.CompanyName" /> provides a script that automates the setup process and starts Tableau Desktop with the <MadCap:variable name="General.CompanyName"></MadCap:variable>-<MadCap:variable name="General.ProductNameIE"></MadCap:variable> connector enabled. </p>
         <p>
