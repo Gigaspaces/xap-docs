@@ -131,7 +131,7 @@
         </ul>
         <h2>Duplicate Entries in Write Multiple</h2>
         <p>Duplicate entries (with the same ID) are not allowed when using the <code class="language-bash">WRITE_ONLY</code> write modifier. This is because the identity of the object is determined based on its ID and not based on its reference. <br />This is extremely important with an embedded Space, because writeMultiple injects the ID value into the object after the write operation (when <code class="language-bash">autogenerate=false</code>).</p>
-        <p>While duplicate entries are allowed with the <code class="language-bash">WRITE_OR_UPDATE</code> modifier, they are not allowed when using MemoryXtend and RocksDB. </p>
+        <p>While duplicate entries are allowed with the <code class="language-bash">WRITE_OR_UPDATE</code> modifier, they are not allowed when using MemoryXtend for Disk (RocksDB). </p>
         <p>There are some cases where you may wish to allow duplicates in a single write batch - for example, when you load CSV files using the CSVReader or InsightEdge API, and you do not have full control of the file content.</p>
         <p>In such cases, you can configure the space property <code class="language-bash">space-config.engine.blobstore.rocksdb.allow_duplicate_uids</code> to <code class="language-bash">true</code>. This flag is automatically enabled when using InsightEdge.</p>
         <p>If enabled, the behavior is that duplicate entries are removed on the client side, before sending the objects to the Space. This leaves the last entry with the same ID as the updated entry.</p>
