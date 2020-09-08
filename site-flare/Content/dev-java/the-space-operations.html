@@ -134,7 +134,7 @@
         <p>While duplicate entries are allowed with the <code class="language-bash">WRITE_OR_UPDATE</code> modifier, they are not allowed when using MemoryXtend for Disk (RocksDB). </p>
         <p>There are some cases where you may wish to allow duplicates in a single write batch - for example, when you load CSV files using the CSVReader or InsightEdge API, and you do not have full control of the file content.</p>
         <p>In such cases, you can configure the space property <code class="language-bash">space-config.engine.blobstore.rocksdb.allow_duplicate_uids</code> to <code class="language-bash">true</code>. This flag is automatically enabled when using InsightEdge.</p>
-        <p>If enabled, the behavior is that duplicate entries are removed on the client side, before sending the objects to the Space. This leaves the last entry with the same ID as the updated entry.</p>
+        <p>If enabled, the behavior is that duplicate entries are removed on the client side, before sending the objects to the Space. Only the last duplicate entry will be used to update the Space.</p>
         <div class="tc-admon-note">
             <p><code class="language-bash">PARTIAL_UPDATE</code> and <code class="language-bash">WRITE_ONLY</code> modifiers are not allowed with the space property <br /><code class="language-bash">space-config.engine.blobstore.rocksdb.allow_duplicate_uids</code> set to <code class="language-bash">true</code>.</p>
         </div>
