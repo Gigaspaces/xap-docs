@@ -26,15 +26,17 @@
             </li>
             <li MadCap:conditions="Version.15-2-died">
                 <p>ESM - Lightweight process. Does not require any tuning unless you have very large cluster (over 100 nodes). You should have one of this per data grid.</p>
-                <p><span class="tc-bold"><MadCap:variable name="General.ProductNameXAP" /> VM Memory size = 
-Guest OS Memory + JVM Memory for all GSCs + JVM Memory for GSM + JVM Memory for LUS + JVM Memory for ESM</span><![CDATA[
-]]></p>
-                <p><span class="tc-bold">JVM Memory for a GSC = 
-JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrentThreads * (-Xss) + "extra memory"
-</span>
-                </p>
             </li>
         </ul>
+        <p><span class="tc-bold"><MadCap:variable name="General.ProductNameXAP" /> VM Memory size = 
+Guest OS Memory + JVM Memory for all GSCs + JVM Memory for GSM + JVM Memory for LUS</span>
+            <MadCap:conditionalText MadCap:conditions="Version.15-2-died"><span class="tc-bold"> + JVM Memory for ESM</span><![CDATA[
+]]></MadCap:conditionalText>
+        </p>
+        <p><span class="tc-bold">JVM Memory for a GSC = 
+JVM Max Heap (-Xmx value) + JVM Perm Size (-XX:MaxPermSize) + NumberOfConcurrentThreads * (-Xss) + "extra memory"
+</span>
+        </p>
         <h2><a name="space-object-footprint"></a>Space Object Footprint</h2>
         <p>It may be necessary to calculate the Space Object Footprint. For instructions on how to do this, refer to <a href="production-capacity-planning.html">Capacity Planning</a>.</p>
         <h3><a name="using-a-compound-index-to-reduce-the-index-footprint"></a>Using a Compound Index to Reduce the Index Footprint</h3>
