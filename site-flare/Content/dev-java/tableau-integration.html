@@ -32,7 +32,7 @@
         <div class="tc-admon-important" MadCap:conditions="Version.15-5-born">
             <p>In Tableau 2020.2 and later, a class loader isolation option was introduced.</p>
             <p>It is necessary to disable this option by editing the <code class="language-bash">gs-tableau.bat </code>script as follows: </p>
-            <p> &#160;&#160; Under <span class="tc-bold">:RUN_TABLEAU</span> in the "start" line, add this line:</p>
+            <p> &#160;&#160; Under <span class="tc-bold">:RUN_TABLEAU</span>, add this parameter to the "start" line:</p>
             <p>&#160;&#160;&#160;&#160; <code class="language-bash"> -DJdbcDriverCustomLoad=false</code></p>
         </div>
         <p>The <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector is based on the Tableau Connector SDK and JDBC integration. The setup process includes providing proprietary requirements about various file locations and execution arguments. <MadCap:variable name="General.CompanyName" /> provides a script that automates the setup process and starts Tableau Desktop with the <MadCap:variable name="General.CompanyName"></MadCap:variable>-<MadCap:variable name="General.ProductNameIE"></MadCap:variable> connector enabled. </p>
