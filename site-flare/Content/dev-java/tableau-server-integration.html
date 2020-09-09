@@ -28,8 +28,10 @@
                 <p>Copy the <MadCap:variable name="General.HomePath" />\tools\tableau\insightedge-connector folder to any folder on the server.</p>
             </li>
             <li>
-                <p>To configure the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;connector, run the following commands:</p><pre><code>tsm configuration  set -frc -k native_api.connect_plugins_path 
+                <p>To configure the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;connector, run the following commands:</p><pre MadCap:conditions="Version.15-5-died"><code>tsm configuration  set -frc -k native_api.connect_plugins_path 
 -v C:/&lt;insightedge_connectors folder&gt;
+tsm pending-changes apply</code></pre><pre MadCap:conditions="Version.15-5-born"><code>tsm configuration  set -frc -k native_api.connect_plugins_path -v C:/&lt;insightedge_connectors folder&gt;
+tsm configuration set -k JdbcDriverCustomLoad -v  false --force-keys
 tsm pending-changes apply</code></pre>
             </li>
             <li>
