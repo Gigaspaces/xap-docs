@@ -4,8 +4,8 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Creating a Hybrid <MadCap:variable name="General.ProductNameXAP" /> Cluster – Cloud and Onprem</h1>
-        <p>In addition to creating a cluster that is either <a href="gsctl-create-gs-cluster-on-prem.html">onprem</a> or in the <a href="gsctl-create-gs-cluster-cloud.html">cloud</a>, it is also possible to create a <b>hybrid</b> cluster – a cluster that is provisioned in both environments.</p>
-        <p>In this topic, we will create a hybrid cluster that has both local onprem and AWS cloud components.</p>
+        <p>In addition to creating a cluster that is either <a href="gsctl-create-gs-cluster-on-prem.html">on-premise</a> or in the <a href="gsctl-create-gs-cluster-cloud.html">cloud</a>, it is also possible to create a <b>hybrid</b> cluster – a cluster that is provisioned in both environments.</p>
+        <p>In this topic, we will create a hybrid cluster that has both local on-premise and AWS cloud components.</p>
         <p>We will use the <code class="language-bash">gsctl</code> command, a simple CLI tool for creating <MadCap:variable name="General.ProductNameXAP" /> clusters, as follows: </p>
         <ul>
             <li>Create a <MadCap:variable name="General.ProductNameXAP" /> cluster.</li>
@@ -58,7 +58,7 @@
             <li>Download the most current version of the gsctl.jar file from the dedicated repository to the directory you created (gsDemo) and extract the contents.</li>
             <li>Add the pem file to this directory.</li>
             <li>
-                <p>Open a command window and type the following to define a cluster called <code>gs_demo_cluster</code>:</p><pre><code class="language-bash">init  --cluster-name=gs_demo_cluster -aws=1 -op=1</code></pre>
+                <p>Open a command window and type the following to define a cluster called <code>gs_demo_cluster</code>:</p><pre><code class="language-bash">init --cluster-name=gs_demo_cluster --aws=1 --on-prem=1</code></pre>
                 <p>This command also creates a cluster.yaml file, which you can modify to supply your AWS&#160;resources, such as <code>VPC</code>, <code>keyName</code>, and <code>securityGroups</code> values. If you edit any parameter in the AWS&#160;section, you must provide all the values for the section.</p>
                 <div class="tc-admon-note">
                     <p>By default, the utility creates all the resources from the credentials and config files in the .aws folder.</p>
@@ -77,55 +77,67 @@
                             <p>You must have 3 masters (gsManagers) and at least 1 worker.</p>
                         </div>
                     </li>
-                </ul><pre><code class="language-bash">aws:
-  keyName: null
-  vpcId: null
-  vpcSubnetId: null
-  securityGroup: null
-  amiId: null
-  userName: null
-servers:
-  label: "GS Cluster [GS_CLUSTER] Server Group"
-  groups:
-  - type: "m4.xlarge"
-    tags: null
-    count: 3
-clients:
-  label: "GS Cluster [GS_CLUSTER] Client Group"
-  groups:
-  - type: "m4.xlarge"
-    tags: null
-    count: 3
+                </ul><pre><code class="language-bash">name: gs_demo_cluster
 gsManagers: 3
-name: "GS_CLUSTER"</code></pre><pre xml:space="preserve"><code class="language-bash">
-onPremise:
-  keyName: "pem file"
-  userName: "user name"
-  masters:
-    label: "GS Cluster [gs_demo_cluster] Master Group"
-    profiles:
-    - name: "default on premise master name"
-      hosts:
-      - "127.0.1.93"
-      - "127.0.1.95"
-      - "127.0.1.96"
-  workers:
-    label: "GS Cluster [gs_demo_cluster] Worker Group"
-    profiles:
-    - name: "default on premise worker name"
-      hosts:
-      - "127.0.1.97"
-      - "127.0.1.98"
-      - "127.0.1.99"
-name: "gs_demo_cluster"</code></pre>
+clusterComponents:
+- type: "AWS"
+name: "AWS_1"
+userName: "&lt;auto-generate&gt;"
+keyName: "&lt;auto-generate&gt;"
+vpcId: "&lt;auto-generate&gt;"
+vpcSubnetId: "&lt;auto-generate&gt;"
+securityGroup: "&lt;auto-generate&gt;"
+amiId: "&lt;auto-generate&gt;"
+#iamInstanceProfileArn: "&lt;auto-generate&gt;"      #uncomment the lines below in order to use volumes
+#volumes:
+#  ebs:
+#  - name: "default aws master name"
+#    id: "&lt;required parameter&gt;"
+masters:
+label: "GS Cluster [gs_demo_cluster_aws] Master Group"
+profiles:
+- name: "default aws master name"
+type: "m4.xlarge"
+tags: []
+count: 2       # Make sure that total masters count from all components together equals to 3
+workers:
+label: "GS Cluster [gs_demo_cluster_aws] Worker Group"
+profiles:
+- name: "default aws worker name"
+type: "m4.xlarge"
+tags: []
+count: 3
+- type: "OnPremise"
+name: "OnPremise_1"
+userName: "root"
+keyName: "sshkey"
+masters:
+label: "GS Cluster [gs_demo_cluster_on_prem] Master Group"
+profiles:
+- name: "default on premise master name"
+tags: []
+hosts:
+- "172.17.0.2"
+workers:
+label: "GS Cluster [gs_demo_cluster_on_prem] Worker Group"
+profiles:
+- name: "default on premise worker name"
+tags: []
+hosts:
+- "172.17.0.5"
+- "172.17.0.6"
+- "172.17.0.7"</code></pre>
             </li>
             <li>
-                <p>To create the omprem component of the cluster, and deploy the cloud component, run the following command:</p><pre><code class="language-bash">create</code></pre>
+                <p>To create the on-premises component of the cluster, and deploy the cloud component, run the following command:</p><pre><code class="language-bash">create</code></pre>
             </li>
         </ol>
         <p>The cloud platform begins to create the cluster:</p>
-        <p>
+        <p MadCap:conditions="Version.15-5-died">
             <img src="../Resources/Static/images/gsctl-create-cluster-new-gamma.jpg" class="tc-picture70" />
+        </p>
+        <p MadCap:conditions="Version.15-5-born">
+            <img src="../Resources/Static/images/ElasticGrid_YK_IMAGE_1_125_125.png" />
         </p>
         <p>You can monitor the progress of the cluster in your cloud platform dashboard, for example the VPC&#160;Dashboard in AWS:</p>
         <p>
@@ -139,7 +151,7 @@ name: "gs_demo_cluster"</code></pre>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-monitor-gs-service.flsnp" />
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-remove-gs-cluster.flsnp" />
         <p>
-            <img src="../Resources/Static/images/gsctl-destroy-process-cropped-gamma.jpg" class="tc-picture60" />
+            <img src="../Resources/Static/images/ElasticGrid_YK_IMAGE_5_125_125.png" class="tc-picture60" />
         </p>
     </body>
 </html>
