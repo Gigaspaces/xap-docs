@@ -15,7 +15,7 @@
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14277," />:  ElasticGrid - allow public access for AWS Cluster</li>
                 <li>
-                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14267," />:  ElasticGrid - pass AWS credentials via add/remove node request</li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14267," />:  ElasticGrid - use AWS credentials from the client host for node add/remove commands</li>
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14263," />:  ElasticGrid - Use --server=&lt;node-ip&gt; to communicate with cluster</li>
                 <li>
@@ -69,7 +69,7 @@
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14261," />: Stateful blueprints fail to compile using Java 11 due to missing javax.annotation dependency </li>
                 <li>
-                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14243," />: Creating gsctl cluster on AWS using user-provided security group -- may fail when the inbound rule contains rule for the deploying machine IP </li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14243," />:  ElasticGrid - Creating AWS cluster using user-provided security group may fail when the inbound rules contain a rule for the client machine IP </li>
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14074," />: After upgrading to 15 version, classNotFound exception due to usage of symbolic links </li>
                 <li>
@@ -107,7 +107,7 @@
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14228," />:  After gsm restarted, exception [java.sql.SQLException: statement is closed] thrown for gsc </li>
                 <li>
-                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14232," />:  Failure in gsctl node add, if wrong component name was provided </li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14232," />:   'gsctl node add' command fails if a wrong component name was provided </li>
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14220," />:  ElasticGrid node add does not work with profile name that includes spaces </li>
                 <li>
@@ -131,7 +131,7 @@
                     </MadCap:snippetText>:  ElasticGrid - allow public access for AWS Cluster</li>
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14267,">
-                    </MadCap:snippetText>:  ElasticGrid - pass AWS credentials via add/remove node request</li>
+                    </MadCap:snippetText>:  ElasticGrid - use AWS credentials from the client host for node add/remove commands</li>
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14263,">
                     </MadCap:snippetText>:  ElasticGrid - Use --server=&lt;node-ip&gt; to communicate with cluster</li>
@@ -185,7 +185,7 @@
                     </MadCap:snippetText>: Stateful blueprints fail to compile using Java 11 due to missing javax.annotation dependency </li>
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14243,">
-                    </MadCap:snippetText>: Creating gsctl cluster on AWS using user-provided security group -- may fail when the inbound rule contains rule for the deploying machine IP </li>
+                    </MadCap:snippetText>:  ElasticGrid - Creating AWS cluster using user-provided security group may fail when the inbound rules contain a rule for the client machine IP </li>
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14074,">
                     </MadCap:snippetText>: After upgrading to 15 version, classNotFound exception due to usage of symbolic links </li>
@@ -239,7 +239,7 @@
                     </MadCap:snippetText>:  After gsm restarted, exception [java.sql.SQLException: statement is closed] thrown for gsc </li>
                 <li>
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14232,">
-                    </MadCap:snippetText>:  Failure in gsctl node add, if wrong component name was provided </li>
+                    </MadCap:snippetText>:   'gsctl node add' command fails if a wrong component name was provided </li>
                 <li MadCap:conditions="Default.DoNotShow">
                     <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14220,">
                     </MadCap:snippetText>:  ElasticGrid node add does not work with profile name that includes spaces </li>
