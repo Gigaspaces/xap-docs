@@ -16,13 +16,17 @@
         <p>Before beginning to work with the gsctl tool, ensure that you have the following:</p>
         <ul>
             <li>
-                <p>
+                <p MadCap:conditions="Version.15-5-died">
                     <MadCap:annotation MadCap:createDate="2020-09-14T22:42:51.9154343+03:00" MadCap:creator="david" MadCap:initials="DFB" MadCap:comment="Restore &quot;or higher&quot; after SP is published." MadCap:editor="david" MadCap:editDate="2020-09-14T22:57:01.4050344+03:00">Java 8</MadCap:annotation>
-                    <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">
-                        <MadCap:annotation MadCap:createDate="2020-09-14T22:42:51.9154343+03:00" MadCap:creator="david" MadCap:initials="DFB" MadCap:comment="Restore &quot;or higher&quot; after SP is published." MadCap:editor="david" MadCap:editDate="2020-09-14T22:57:01.4050344+03:00"> or higher</MadCap:annotation>
-                    </MadCap:conditionalText>
                     <MadCap:annotation MadCap:createDate="2020-09-14T22:42:51.9154343+03:00" MadCap:creator="david" MadCap:initials="DFB" MadCap:comment="Restore &quot;or higher&quot; after SP is published." MadCap:editor="david" MadCap:editDate="2020-09-14T22:57:01.4050344+03:00"> installed on your local workstation.</MadCap:annotation>
                 </p>
+                <li MadCap:conditions="Version.15-5-born">
+                    <p>
+                        <MadCap:annotation MadCap:createDate="2020-09-14T22:42:51.9154343+03:00" MadCap:creator="david" MadCap:initials="DFB" MadCap:comment="Restore &quot;or higher&quot; after SP is published." MadCap:editor="david" MadCap:editDate="2020-09-14T22:57:01.4050344+03:00">Java 8</MadCap:annotation>
+                        <MadCap:annotation MadCap:createDate="2020-09-14T22:42:51.9154343+03:00" MadCap:creator="david" MadCap:initials="DFB" MadCap:comment="Restore &quot;or higher&quot; after SP is published." MadCap:editor="david" MadCap:editDate="2020-09-14T22:57:01.4050344+03:00"> or higher</MadCap:annotation>
+                        <MadCap:annotation MadCap:createDate="2020-09-14T22:42:51.9154343+03:00" MadCap:creator="david" MadCap:initials="DFB" MadCap:comment="Restore &quot;or higher&quot; after SP is published." MadCap:editor="david" MadCap:editDate="2020-09-14T22:57:01.4050344+03:00"> installed on your local workstation.</MadCap:annotation>
+                    </p>
+                </li>
             </li>
             <li>
                 <p>AWS&#160;account and appropriate credentials as described in the <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html" target="_blank">AWS Command Line Interface documentation</a>.</p>
@@ -106,7 +110,7 @@ count: 3</code></pre>
             </li>
             <li>
                 <p>To deploy the cluster in the cloud, run the following command:</p><pre><code class="language-bash">create</code></pre>
-                <p>The cloud platform begins to create the cluster:</p>
+                <p>The cloud platform begins to create the cluster: </p>
                 <p>
                     <img src="../Resources/Static/images/gsctl-create-cluster-new_60_brt.png" class="tc-picture80" MadCap:conditions="Version.15-5-died" />
                 </p>
@@ -127,8 +131,11 @@ count: 3</code></pre>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-deploy-gs-service.flsnp" />
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-monitor-gs-service.flsnp" />
         <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-remove-gs-cluster.flsnp" />
-        <p>
+        <p MadCap:conditions="Version.15-5-died">
             <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-destroy-process.png" class="tc-picture50" />
+        </p>
+        <p MadCap:conditions="Version.15-5-born">
+            <img src="../Resources/Static/images/ElasticGrid_YK_IMAGE_6-125.png" class="tc-picture50" />
         </p>
     </body>
 </html>
