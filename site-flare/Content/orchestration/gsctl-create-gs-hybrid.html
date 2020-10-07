@@ -3,8 +3,8 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Creating a Hybrid <MadCap:variable name="General.ProductNameXAP" /> Cluster – Cloud and Onprem</h1>
-        <p>In addition to creating a cluster that is either <a href="gsctl-create-gs-cluster-on-prem.html">on-premise</a> or in the <a href="gsctl-create-gs-cluster-cloud.html">cloud</a>, it is also possible to create a <b>hybrid</b> cluster – a cluster that is provisioned in both environments.</p>
+        <h1 class="tc-pagetitle">Creating a Hybrid <MadCap:variable name="General.ProductNameXAP" /> Cluster – Cloud and On-Premise</h1>
+        <p>In addition to creating a cluster that is either <a href="gsctl-create-gs-cluster-on-prem.html">On-Premise</a> or in the <a href="gsctl-create-gs-cluster-cloud.html">cloud</a>, it is also possible to create a <b>hybrid</b> cluster – a cluster that is provisioned in both environments.</p>
         <p>In this topic, we will create a hybrid cluster that has both local on-premise and AWS cloud components.</p>
         <p>We will use the <code class="language-bash">gsctl</code> command, a simple CLI tool for creating <MadCap:variable name="General.ProductNameXAP" /> clusters, as follows: </p>
         <ul>
@@ -21,7 +21,7 @@
             <li>
                 <p>AWS&#160;account and appropriate credentials as described in the <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html" target="_blank">AWS Command Line Interface documentation</a>.</p>
                 <div class="tc-admon-note">
-                    <p>To deploy a <MadCap:variable name="General.ProductNameXAP"></MadCap:variable> cluster in AWS you need the following:</p>
+                    <p>To deploy a <MadCap:variable name="General.ProductNameXAP" /> cluster in AWS you need the following:</p>
                     <ul>
                         <li>Valid AWS&#160;account</li>
                         <li>Credentials that include <code>aws_access_key_id</code> and <code>aws_secret_access_key</code></li>
@@ -29,8 +29,14 @@
                     </ul>
                 </div>
             </li>
+            <li>
+                <p>A VPC and subnet with a connection to your network environment (VPN). The connection between a single ec2 instance and one of your On-Premise machines must work both ways.</p>
+            </li>
+            <li>
+                <p>The subnet auto-assigning public IP address must be enabled.</p>
+            </li>
         </ul>
-        <p>In addition, perform the following setup tasks:</p>
+        <p>In addition, perform the following setup tasks for On-Premise components:</p>
         <ul>
             <li>Disable the password prompt when using sudo</li>
             <li>Install <a href="https://linuxize.com/post/how-to-unzip-files-in-linux/#installing-unzip" target="_blank">Unzip</a> on all the cluster machines</li>
@@ -47,23 +53,19 @@
         <p class="tc-todo">To create a cluster:</p>
         <ol>
             <li>
-                <li>
-                    <p>Verify that an <code>.aws</code> folder exists in the home directory on your local machine, and that it contains the config and credentials files. The credentials file should include your <code>aws_access_key_id</code> and <code>aws_secret_access_key</code>, and the config files should include your <code>aws_region</code> and <code>output</code> definitions.</p>
-                    <p>
-                        <img src="../Resources/Static/attachment_files/gigaops-stack/cloud-config-files.png" class="tc-picture50" />
-                    </p>
-                </li>
-            </li>
+                <!-- <li> -->
+                Verify that an <code>.aws</code> folder exists in the home directory on your local machine, and that it contains the config and credentials files. The credentials file should include your <code>aws_access_key_id</code> and <code>aws_secret_access_key</code>, and the config files should include your <code>aws_region</code> and <code>output</code> definitions.
+                <p><img src="../Resources/Static/attachment_files/gigaops-stack/cloud-config-files.png" class="tc-picture50" /></p><!--  </li> --></li>
             <li>Create an empty directory on your machine. In this example, the directory name is <span class="tc-bold">gsDemo</span>.</li>
             <li>Download the most current version of the gsctl.jar file from the dedicated repository to the directory you created (gsDemo) and extract the contents.</li>
             <li>Add the pem file to this directory.</li>
             <li>
                 <p>Open a command window and type the following to define a cluster called <code>gs_demo_cluster</code>:</p><pre><code class="language-bash">init --cluster-name=gs_demo_cluster --aws=1 --on-prem=1</code></pre>
-                <p>This command also creates a cluster.yaml file, which you can modify to supply your AWS&#160;resources, such as <code>VPC</code>, <code>keyName</code>, and <code>securityGroups</code> values. If you edit any parameter in the AWS&#160;section, you must provide all the values for the section.</p>
+                <p>This command also creates a cluster.yaml file, which you can modify to supply your AWS&#160;resources. In this case you must provide the vpc id and subnet id that your IT has previously created. Other resources can be created automatically on the <code>create </code>command if you leave the value.</p>
                 <div class="tc-admon-note">
-                    <p>By default, the utility creates all the resources from the credentials and config files in the .aws folder.</p>
+                    <p>By default, the utility creates all required resources, except vpc and subnet id in hybrid mode.</p>
                 </div>
-                <p>Also modify the yaml file as follows:</p>
+                <p>Also modify the yaml file as follows, in the on-Premise component section:</p>
                 <ul>
                     <li>
                         <p><code>keyName</code> - name of your pem file (without the .pem extension)</p>
@@ -74,7 +76,7 @@
                     <li>
                         <p><code>profiles</code> - the on-premise worker (client) name, along with the IP&#160;addresses of the host machines</p>
                         <div class="tc-admon-attention">
-                            <p>You must have 3 masters (gsManagers) and at least 1 worker.</p>
+                            <p>You must have 3 masters (gsManagers) and at least 1 worker across the cluster.</p>
                         </div>
                     </li>
                 </ul><pre><code class="language-bash">name: gs_demo_cluster
@@ -129,7 +131,7 @@ hosts:
 - "172.17.0.7"</code></pre>
             </li>
             <li>
-                <p>To create the on-premises component of the cluster, and deploy the cloud component, run the following command:</p><pre><code class="language-bash">create</code></pre>
+                <p>To create the hybrid cluster, run the following command:</p><pre><code class="language-bash">create</code></pre>
             </li>
         </ol>
         <p>The cloud platform begins to create the cluster:</p>
