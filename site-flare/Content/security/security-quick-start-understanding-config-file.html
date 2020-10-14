@@ -70,21 +70,21 @@
                             <td>Write and update operations</td>
                         </tr>
                         <tr style="height : 15.75px;">
-                            <td>TAKE</td>
+                            <td>SPACE_TAKE</td>
                             <td>Take and Clear operations
 </td>
                         </tr>
                         <tr style="height : 15.75px;">
-                            <td>EXECUTE</td>
+                            <td>SPACE_EXECUTE</td>
                             <td>Execute tasks</td>
                         </tr>
                         <tr style="height : 15.75px;">
-                            <td>ALTER</td>
+                            <td>SPACE_ALTER</td>
                             <td>Register type descriptor, Clean and Drop-Class operations
 </td>
                         </tr>
                         <tr style="height : 15.75px;">
-                            <td>CREATE</td>
+                            <td>SPACE_CREATE</td>
                             <td>Write only (no update) operations</td>
                         </tr>
                     </tbody>
@@ -117,10 +117,9 @@
             </tbody>
         </table>
         <h1>Creating Your Own Roles — the Security Configuration File</h1>
-        <p>The default security configuration file is located at <code style="font-weight: bold;">../config/security/security-config.xml</code>. You can download the file <a href="security-config.xml" download="security-config.xml">here.</a></p>
+        <p>The default security configuration file is located at <code style="font-weight: bold;">../config/security/security-config.xml</code>. </p>
         <p>The relevant lines in the files are described in the following table.
-As you can see below, you may modify lines 14 to 19 to define your own roles.			
-			</p>
+As you can see below, you may modify lines 14 to 19 to define your own roles.	</p>
         <table style="width: 100%;" class="tc-standard">
             <col />
             <col style="width: 933px;" />
@@ -174,6 +173,9 @@ Define the class used for password encryption. In this example, no password encr
 These roles are assigned to users on lines 28-39 below.
 </p>
                         <p>This is where you can define your own roles.</p>
+                        <div class="tc-admon-note">
+                            <p>When naming user-defined roles, begin the name with <b>ROLE_</b>.</p>
+                        </div>
                     </td>
                 </tr>
                 <tr>
