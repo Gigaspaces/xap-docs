@@ -29,6 +29,15 @@
         <p>This command runs a docker container with an LDAP server and exposes it on port 389. In addition, it initiates it with the default domain example.org, and a default administrator user with username:admin and password:admin.</p>
         <p>Refer to  <a href="https://github.com/osixia/docker-openldap">this documentation </a>for more information regarding the docker image and how to change its default values.</p>
         <p>Note that we supplied the ldap-sample.ldif file to the container to be used along with the default settings — this exports the ldap-sample.ldif file into the LDAP and adds our users.</p>
+        <div class="tc-admon-note">
+            <p>The files used in this example are found in the following locations:</p>
+            <ul>
+                <li><code class="language-bash">../config/security/ldap-security-config.xml</code>
+                </li>
+                <li><code class="language-bash">../config/security/ldap-sample.ldif</code>
+                </li>
+            </ul>
+        </div>
         <p>After running the command you should see the following output:</p>
         <p>
             <img src="../Resources/Static/images/LDAP-01.png" style="width: 1071px;height: 846px;" />
