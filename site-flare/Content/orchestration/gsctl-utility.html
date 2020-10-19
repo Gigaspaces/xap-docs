@@ -33,6 +33,23 @@
             </li>
         </ul>
         <p>Once the <MadCap:variable name="General.ProductNameXAP" /> cluster is up, you can use this tool from any computer desired You will only need the Nomad Token and one of the node’s public IP address:</p><code class="language-bash">java -jar gsctl.jar --token=mynomadtoken --server=node1ipaddress ...</code>
+        <p>&#160;</p>
+        <div class="tc-admon-note">
+            <p>Regarding the IP address:</p>
+            <ul>
+                <li>
+                    <p>An example IP address is as follows: <code class="language-bash" style="font-weight: bold;">https://127.1.1.1:8090</code><br />The IP address must start with <code class="language-bash" style="font-weight: bold;">https</code>, and must include the port, in this example, <code class="language-bash" style="font-weight: bold;">8090</code>.</p>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p>The IP address should be a master node's public IP. </p>
+                </li>
+                <li>
+                    <p>Run the command line instruction <code class="language-bash" style="font-weight: bold;">java -jar gsctl.jar node list</code> to see a list of IP addresses.</p>
+                </li>
+            </ul>
+        </div>
         <h1>Consul Integration</h1>
         <p>Consul is installed on every machine in the cluster and allows easy service discovery by using DNS names. For example, assume we have a service named <code class="language-bash">influxdb </code>running in the cluster. Other services can use the DNS name <code class="language-bash">influxdb.service.consul</code> to find it.</p>
         <p>Running the <code class="language-bash">list-services</code> command will display all the services that are installed. Their names can be suffixed with <code class="language-bash">.service.consul</code> so they also can be found within the cluster.</p>
@@ -44,25 +61,14 @@
         <h1>Built-in services</h1>
         <p>The <code class="language-bash">init </code>command creates default files that can be customized to the user’s need.</p>
         <p>One of the files is the <code class="language-bash">services.yaml</code> file that configures the built-in services that will run on the cluster, and determines if the user wishes to use persistency.</p>
-        <p>An example of the services.yaml file:</p>
+        <h2>An example of the services.yaml file:</h2>
         <div class="easyui-tabs" plain="true">
-            <div title="grafana">
-                <p><pre><code>&#160;&#160;enabled:&#160;true
-&#160;&#160;constraints:
-&#160;&#160;&#160;targetComponents:
-&#160;&#160;&#160;-&#160;"*"
-&#160;&#160;&#160;targetProfiles:
-&#160;&#160;&#160;-&#160;"*"
-&#160;&#160;&#160;persistency:
-&#160;&#160;&#160;&#160;enabled:&#160;false
-&#160;&#160;&#160;&#160;sticky:&#160;false
-&#160;&#160;&#160;&#160;volumes:&#160;[]
-&#160;&#160;properties:&#160;{}
-</code></pre>
-                </p>
-            </div>
-            <div title="influxDB">
-                <p><pre><code>&#160;&#160;enabled:&#160;true
+            <div title="Grafana/influxDB/Zeppelin/Zipkin/Kafka/Telegraf/MongoDB">
+                <p><pre><code>builtInServices:
+.
+.
+.
+grafana/influxdb/zeppelin/zipkin/kafka/telegraf/mongodb:&#160;&#160;enabled:&#160;true
 &#160;&#160;constraints:
 &#160;&#160;&#160;targetComponents:
 &#160;&#160;&#160;-&#160;"*"
@@ -77,7 +83,11 @@
                 </p>
             </div>
             <div title="manager">
-                <p><pre><code>&#160;&#160;enabled:&#160;true
+                <p><pre><code>builtInServices:
+.
+.
+.
+manager:&#160;&#160;enabled:&#160;true
 &#160;&#160;constraints:
 &#160;&#160;&#160;targetComponents:
 &#160;&#160;&#160;-&#160;"*"
@@ -91,82 +101,11 @@
 &#160;&#160;&#160;sslEnabled:&#160;"true"</code></pre>
                 </p>
             </div>
-            <div title="zeppelin">
-                <p><pre><code>&#160;&#160;enabled:&#160;true
-&#160;&#160;constraints:
-&#160;&#160;&#160;targetComponents:
-&#160;&#160;&#160;-&#160;"*"
-&#160;&#160;&#160;targetProfiles:
-&#160;&#160;&#160;-&#160;"*"
-&#160;&#160;&#160;persistency:
-&#160;&#160;&#160;&#160;enabled:&#160;false
-&#160;&#160;&#160;&#160;sticky:&#160;false
-&#160;&#160;&#160;&#160;volumes:&#160;[]
-&#160;&#160;properties:&#160;{}
-</code></pre>
-                </p>
-            </div>
-            <div title="zipkin">
-                <p><pre><code>&#160;&#160;enabled:&#160;true
-&#160;&#160;constraints:
-&#160;&#160;&#160;targetComponents:
-&#160;&#160;&#160;-&#160;"*"
-&#160;&#160;&#160;targetProfiles:
-&#160;&#160;&#160;-&#160;"*"
-&#160;&#160;&#160;persistency:
-&#160;&#160;&#160;&#160;enabled:&#160;false
-&#160;&#160;&#160;&#160;sticky:&#160;false
-&#160;&#160;&#160;&#160;volumes:&#160;[]
-&#160;&#160;properties:&#160;{}
-</code></pre>
-                </p>
-            </div>
-            <div title="kafka">
-                <p><pre><code>&#160;&#160;enabled:&#160;true
-&#160;&#160;constraints:
-&#160;&#160;&#160;targetComponents:
-&#160;&#160;&#160;-&#160;"*"
-&#160;&#160;&#160;targetProfiles:
-&#160;&#160;&#160;-&#160;"*"
-&#160;&#160;&#160;persistency:
-&#160;&#160;&#160;&#160;enabled:&#160;false
-&#160;&#160;&#160;&#160;sticky:&#160;false
-&#160;&#160;&#160;&#160;volumes:&#160;[]
-&#160;&#160;properties:&#160;{}
-</code></pre>
-                </p>
-            </div>
-            <div title="telegraf">
-                <p><pre><code>&#160;&#160;enabled:&#160;true
-&#160;&#160;constraints:
-&#160;&#160;&#160;targetComponents:
-&#160;&#160;&#160;-&#160;"*"
-&#160;&#160;&#160;targetProfiles:
-&#160;&#160;&#160;-&#160;"*"
-&#160;&#160;&#160;persistency:
-&#160;&#160;&#160;&#160;enabled:&#160;false
-&#160;&#160;&#160;&#160;sticky:&#160;false
-&#160;&#160;&#160;&#160;volumes:&#160;[]
-&#160;&#160;properties:&#160;{}
-</code></pre>
-                </p>
-            </div>
-            <div title="mongodb">
-                <p><pre><code>&#160;&#160;enabled:&#160;true
-&#160;&#160;constraints:
-&#160;&#160;&#160;targetComponents:
-&#160;&#160;&#160;-&#160;"*"
-&#160;&#160;&#160;targetProfiles:
-&#160;&#160;&#160;-&#160;"*"
-&#160;&#160;&#160;persistency:
-&#160;&#160;&#160;&#160;enabled:&#160;false
-&#160;&#160;&#160;&#160;sticky:&#160;false
-&#160;&#160;&#160;&#160;volumes:&#160;[]
-&#160;&#160;properties:&#160;{}
-</code></pre>
-                </p>
-            </div>
         </div>
         <p>For example, if you don’t wish to have the MongoDB service running, change <code class="language-bash" style="font-weight: bold;">enabled: true</code><b> </b>to<b> </b><code class="language-bash" style="font-weight: bold;">enabled: false</code>.</p>
+        <h2>An example of the cluster.yaml file for persistent data:</h2><pre><code>; Cluster yaml file, the definition of a profile name:
+        <p>name: mishel</p><p>gsManagers: 3</p><p>clusterComponents:</p><p>- type: "AWS"</p><p>name: "AWS_1"</p><p>.</p><p>.</p><p>.</p><p>masters:</p><p>label: "GS Cluster [gs-demo] Master Group"</p><p>profiles:</p><p>- name: "my-profile-name"</p><p>type: "m4.xlarge"</p><p>tags: []</p><p>count: 2</p></code></pre>
+        <h2>An example of the services.yaml file for persistent data:</h2><pre><code>Services yaml file, use case of targeting an influxDB by profile name: topic targeting services on the first page of doc.
+        <p>builtInServices:</p><p>grafana:</p><p>enabled: true</p><p>constraints:</p><p>targetComponents:</p><p>- "*"</p><p>targetProfiles:</p><p>- "my-profile-name”</p><p>persistency:</p><p>enabled: true</p><p>sticky: true</p><p>volumes: []</p><p>properties: {}</p></code></pre>
     </body>
 </html>
