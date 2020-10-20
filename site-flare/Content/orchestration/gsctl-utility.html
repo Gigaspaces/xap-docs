@@ -103,9 +103,8 @@ manager:&#160;&#160;enabled:&#160;true
             </div>
         </div>
         <p>For example, if you don’t wish to have the MongoDB service running, change <code class="language-bash" style="font-weight: bold;">enabled: true</code><b> </b>to<b> </b><code class="language-bash" style="font-weight: bold;">enabled: false</code>.</p>
-        <h2>For an example of cluster.yaml and services.yaml for persistent data, see <a href="gsctl-utility-volumes.html#example-persistent-data">here</a>.</h2><pre><code>; Cluster yaml file, the definition of a profile name:
-        <p>name: mishel</p><p>gsManagers: 3</p><p>clusterComponents:</p><p>- type: "AWS"</p><p>name: "AWS_1"</p><p>.</p><p>.</p><p>.</p><p>masters:</p><p>label: "GS Cluster [gs-demo] Master Group"</p><p>profiles:</p><p>- name: "my-profile-name"</p><p>type: "m4.xlarge"</p><p>tags: []</p><p>count: 2</p></code></pre>
-        <h2>An example of the services.yaml file for persistent data:</h2><pre><code>Services yaml file, use case of targeting an influxDB by profile name: topic targeting services on the first page of doc.
-        <p>builtInServices:</p><p>grafana:</p><p>enabled: true</p><p>constraints:</p><p>targetComponents:</p><p>- "*"</p><p>targetProfiles:</p><p>- "my-profile-name”</p><p>persistency:</p><p>enabled: true</p><p>sticky: true</p><p>volumes: []</p><p>properties: {}</p></code></pre>
-    </body>
+        <div class="tc-admon-note">
+            <p>
+            See <a href="gsctl-utility-volumes.html#example-persistent-data">here</a> for examples of yaml files for persistent volumes.</p>
+        </div><![CDATA[    ]]></body>
 </html>
