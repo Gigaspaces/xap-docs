@@ -79,7 +79,7 @@
             </li>
         </ul>
         <h1>Configuring cluster yaml file:</h1>
-        <h3>1. To use persistency feature we should provide <b>iamInstanceProfileArn</b> with the following policy: set it as "&lt;auto-generate&gt;" or create one by your own with the following rules:</h3>
+        <h3><b>1.</b> To use persistency feature we should provide <b>iamInstanceProfileArn</b> with the following policy: set it as "&lt;auto-generate&gt;" or create one  with the following rules:</h3>
         <p style="font-weight: bold;">Policy (policyDocument):</p><pre><code>
 				{
 				&#160;"Version":&#160;"2012-10-17",
@@ -131,8 +131,7 @@
 				&#160;]
 }
 </code></pre>
-        <h3>2. Provide in the volumes section a list of IDs of an ebs volume created earlier and give for each volume a name for the gsctl environment. (we’ll later use that name to reference that volume so it must be unique).</h3>
-        <h2>Configuring cluster yaml file</h2><pre><code>
+        <h3><b>2.</b> Provide in the volumes section a list of IDs of an EBS volume created earlier and give for each volume a name for the gsctl environment. (We’ll later use that name to reference that volume so it must be unique).</h3><pre><code>
 				name:&#160;mishel
 				gsManagers:&#160;3
 				clusterComponents:
@@ -150,9 +149,9 @@
 					&#160;&#160;&#160;&#160;&#160;&#160;id:&#160;"vol-073d1c863cd698702"
 
 </code></pre>
-        <h2>Configuring services.yaml file</h2>
-        <p>Now we must choose the service we want to attach it a volume <b>OR</b> choose the sticky option to persist the data to the machine it runs on.</p>
-        <p>In case of sticky, the system should make a <b>best-effort attempt</b> to keep the allocation on the same machine and that the data will be kept through the whole lifecycle.</p>
+        <h1>Configuring services.yaml file</h1>
+        <p>Now we must choose the service. We want to attach it a volume <b>OR</b> choose the sticky option to persist the data to the machine it runs on.</p>
+        <p>In case of sticky, the system should make a <b>best-effort attempt</b> to keep the allocation on the same machine and to ensure that the data will be kept through the whole life cycle.</p>
         <h3>Attaching the volume to the service</h3>
         <ul>
             <li>
@@ -203,16 +202,15 @@
 				&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;volumes:&#160;[]
 				&#160;&#160;&#160;&#160;properties:&#160;{}
 		</code></pre>
-        <p>We can also target a profile or component that the service will run on:</p>
-        <p>Choose “*” to allow placement on any profile/component (default).</p>
-        <h2>An example of the cluster.yaml file for persistent data:</h2><pre><code>; Cluster yaml file, the definition of a profile name:
+        <p>We can also target a profile or component that the service will run on: Choose “*” to allow placement on any profile/component (default).</p>
+        <h2 id="example-persistent-data">An example of the cluster.yaml file for persistent data:</h2><pre><code>; Cluster yaml file, the definition of a profile name:
         <p>name: mishel</p><p>gsManagers: 3</p><p>clusterComponents:</p><p>- type: "AWS"</p><p>name: "AWS_1"</p><p>.</p><p>.</p><p>.</p><p>masters:</p><p>label: "GS Cluster [gs-demo] Master Group"</p><p>profiles:</p><p>- name: "my-profile-name"</p><p>type: "m4.xlarge"</p><p>tags: []</p><p>count: 2</p></code></pre>
         <h2>An example of the services.yaml file for persistent data:</h2><pre><code>Services yaml file, use case of targeting an influxDB by profile name: topic targeting services on the first page of doc.
         <p>builtInServices:</p><p>grafana:</p><p>enabled: true</p><p>constraints:</p><p>targetComponents:</p><p>- "*"</p><p>targetProfiles:</p><p>- "my-profile-name”</p><p>persistency:</p><p>enabled: true</p><p>sticky: true</p><p>volumes: []</p><p>properties: {}</p></code></pre>
         <h1>Considerations</h1>
         <ul>
             <li>
-                <p>Note that currently we only support persisting grafana dashboards and the data they get from Telegraf which feeds influxDB. (Therefore only persisting influxDB and grafana).</p>
+                <p>Note that currently we support persisting Grafana dashboards and the data they get from Telegraf which feeds InfluxDB — therefore only persisting InfluxDB and Grafana.</p>
             </li>
             <li>
                 <p>constraints available for all the services except mongoDB</p>
