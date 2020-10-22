@@ -7,9 +7,44 @@
         <p>This document shows how to set up <MadCap:variable name="General.ProductNameXAP" /> security using an LDAP security model. </p>
         <h1>What is an LDAP Server?</h1>
         <p><a href="https://tldp.org/HOWTO/LDAP-HOWTO/whatisldap.html#:~:text=LDAP stands for Lightweight Directory,other connection oriented transfer services.">LDAP</a> (Lightweight Directory Access Protocol) is often used by organizations as a central repository for user information and as an authentication service. It can also be used to store role information for application users.</p>
-        <h1>What is LDIF?</h1>
+        <h1>What is LDIF? </h1>
         <p><a href="https://tldp.org/HOWTO/LDAP-HOWTO/moreonldif.html">LDIF</a> (LDAP Data Interchange Format) is a standard plain text data interchange format for representing LDAP  directory content and update requests. LDIF conveys directory content as a set of records, one record for each object or entry.</p>
-        <h1>Preparing the Environment for an LDAP Server</h1>
+        <div>
+            <h1>Understanding the LDIF file structure</h1>
+            <p>As mentioned above, we have used the ldif example provided with <MadCap:variable name="General.ProductNameXAP" /> in order to export the user data to the LDAP server. A raw LDIF file looks like this:</p>
+            <p>
+                <img src="../Resources/Static/images/LDAP-02-150-percent.png" />
+            </p>
+            <div>
+                <h2>Roles Definition in the LDIF File</h2>
+                <p>As you can see (open the file and read the documented comments for a deeper explanation), we have added an organizational unit (hereinafter ou) called <b>groups</b>. This organizational unit will hold domain names (hereinafter <b>dn</b>) that will define the different roles and their permissions, for example:</p>
+                <p>
+                    <img src="../Resources/Static/images/LDAP-03.png" style="width: 731px;height: 282px;" />
+                </p>
+                <p>We can see here that this dn has a Common Name (hereinafter <b>cn</b>) called ROLE_ANALYST, it is under the groups ou and it has three child ous: MONITOR_JVM, MONITOR_PU and SPACE_READ.</p>
+                <p>These children ou define the privileges granted for this specific role.</p>
+                <p>In addition, the dn can include members (in our example it is anna) that define which users have this role.</p>
+                <p>You can add as many roles, members and privileges as you need.</p>
+                <div class="tc-admon-note">
+                    <p>we recommend following the convention where the cn is ROLE_{role description}.</p>
+                </div>
+            </div>
+            <div>
+                <h2>User Definition in the LDIF File</h2>
+                <p>In addition, we have added an ou called people. This ou will be used to encapsulate the users as its children.</p>
+                <p>
+                    <img src="../Resources/Static/images/LDAP-04.png" style="width: 711px;height: 166px;" />
+                </p>
+                <p>A child user appears as follows:</p>
+                <p>
+                    <img src="../Resources/Static/images/LDAP-05.png" style="width: 711px;height: 344px;" />
+                </p>
+                <div>
+                    <p>Note that each user has a uid with his username, and a userPassword with his password. In this example we used plain text passwords, but in production mode we recommend encrypted passwords.</p>
+                </div>
+            </div>
+        </div>
+        <h1>Preparing the Environment for an LDAP Server </h1>
         <p>In this example we are going to demonstrate how to connect to a docker-based LDAP environment. If you already have an LDAP server for your organization customize this example in order to connect Insightedge to your server.</p>
         <h2>Adding the LDAP JAR files</h2>
         <p>In order for the solution to run you should add the following files to the build’s “/lib/optional/spring” folder:</p>
@@ -32,9 +67,9 @@
         <div class="tc-admon-note">
             <p>The files used in this example are found in the following locations:</p>
             <ul>
-                <li><code class="language-bash">../config/security/ldap-security-config.xml</code>
+                <li><code class="language-bash">&lt;prod zip&gt;/config/security/ldap-security-config.xml</code>
                 </li>
-                <li><code class="language-bash">../config/security/ldap-sample.ldif</code>
+                <li><code class="language-bash">&lt;prod zip&gt;/config/security/ldap-sample.ldif</code>
                 </li>
             </ul>
         </div>
@@ -42,33 +77,6 @@
         <p>
             <img src="../Resources/Static/images/LDAP-01.png" style="width: 1071px;height: 846px;" />
         </p>
-        <h1>Understanding the LDIF file structure</h1>
-        <p>As mentioned above, we have used the ldif example provided with <MadCap:variable name="General.ProductNameXAP" /> in order to export the user data to the LDAP server. A raw LDIF file looks like this:</p>
-        <p>
-            <img src="../Resources/Static/images/LDAP-02-150-percent.png" />
-        </p>
-        <h2>Roles Definition in the LDIF File</h2>
-        <p>As you can see (open the file and read the documented comments for a deeper explanation), we have added an organizational unit (hereinafter ou) called <b>groups</b>. This organizational unit will hold domain names (hereinafter <b>dn</b>) that will define the different roles and their permissions, for example:</p>
-        <p>
-            <img src="../Resources/Static/images/LDAP-03.png" style="width: 731px;height: 282px;" />
-        </p>
-        <p>We can see here that this dn has a Common Name (hereinafter <b>cn</b>) called ROLE_ANALYST, it is under the groups ou and it has three child ous: MONITOR_JVM, MONITOR_PU and SPACE_READ.</p>
-        <p>These children ou define the privileges granted for this specific role.</p>
-        <p>In addition, the dn can include members (in our example it is anna) that define which users have this role.</p>
-        <p>You can add as many roles, members and privileges as you need.</p>
-        <div class="tc-admon-note">
-            <p>we recommend following the convention where the cn is ROLE_{role description}.</p>
-        </div>
-        <h2>User Definition in the LDIF File</h2>
-        <p>In addition, we have added an ou called people. This ou will be used to encapsulate the users as its children.</p>
-        <p>
-            <img src="../Resources/Static/images/LDAP-04.png" style="width: 711px;height: 166px;" />
-        </p>
-        <p>A child user appears as follows:</p>
-        <p>
-            <img src="../Resources/Static/images/LDAP-05.png" style="width: 711px;height: 344px;" />
-        </p>
-        <p>Note that each user has a uid with his username, and a userPassword with his password. In this example we used plain text passwords, but in production mode we recommend encrypted passwords.</p>
         <h2>Extracting the LDAP Local IP Address</h2>
         <p>Use the following command to extract the container’s local ip address:</p>
         <p><pre><code>docker container inspect my-ldap | grep IPAddress</code></pre>
