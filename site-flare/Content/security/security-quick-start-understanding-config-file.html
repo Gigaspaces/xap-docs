@@ -12,84 +12,88 @@
         </div>
         <p>Authorities are cumulative — if a user is assigned two authorities, they are able to execute all of the functions for both authorities. Below is a list of authorities that are available in <MadCap:variable name="General.ProductNameXAP" />.</p>
         <p>&#160;</p>
-        <div class="easyui-accordion">
-            <div title="Authorities used in pre-configured roles">
-                <table cellspacing="0">
-                    <col style="width: 557px;" />
-                    <col style="width: 963px;" />
-                    <thead>
-                        <tr style="height : 15.75px;">
-                            <th style="font-weight: bold;">Authority</th>
-                            <th style="font-weight: bold;">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>MANAGE_GRID</td>
-                            <td>Start, terminate, restart of GSC/GSM/LUS</td>
-                        </tr>
-                        <tr>
-                            <td>MANAGE_PU</td>
-                            <td>Scale up/down, scale in/out, relocate, restart PU instance, destroy PU instance</td>
-                        </tr>
-                        <tr>
-                            <td>MONITOR_JVM</td>
-                            <td>Monitoring of JVM statistics</td>
-                        </tr>
-                        <tr>
-                            <td>MONITOR_PU</td>
-                            <td>Monitoring of Processing Units (classes, connections, statistics, etc.)
+        <div title="Authorities used in pre-configured roles">
+            <table cellspacing="0">
+                <col style="width: 557px;" />
+                <col style="width: 963px;" />
+                <thead>
+                    <tr style="height : 15.75px;">
+                        <th style="font-weight: bold;text-align: center;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: none;border-left-width: 1px;border-left-color: #e0e0e0;" colspan="2">Authorities Used in Pre-configured Roles</th>
+                    </tr>
+                    <tr style="height : 15.75px;">
+                        <th style="font-weight: bold;">Authority</th>
+                        <th style="font-weight: bold;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>MANAGE_GRID</td>
+                        <td>Start, terminate, restart of GSC/GSM/LUS</td>
+                    </tr>
+                    <tr>
+                        <td>MANAGE_PU</td>
+                        <td>Scale up/down, scale in/out, relocate, restart PU instance, destroy PU instance</td>
+                    </tr>
+                    <tr>
+                        <td>MONITOR_JVM</td>
+                        <td>Monitoring of JVM statistics</td>
+                    </tr>
+                    <tr>
+                        <td>MONITOR_PU</td>
+                        <td>Monitoring of Processing Units (classes, connections, statistics, etc.)
 </td>
-                        </tr>
-                        <tr>
-                            <td>PROVISION_PU</td>
-                            <td>Deploy, undeploy of processing units
+                    </tr>
+                    <tr>
+                        <td>PROVISION_PU</td>
+                        <td>Deploy, undeploy of processing units
 </td>
-                        </tr>
-                        <tr>
-                            <td>SPACE_READ</td>
-                            <td>Read, Count and Notify operations
+                    </tr>
+                    <tr>
+                        <td>SPACE_READ</td>
+                        <td>Read, Count and Notify operations
 </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div title="Click here to see additional authorities">
-                <table cellspacing="0">
-                    <col style="width : 141.75px;" />
-                    <col style="width : 240.75px;" />
-                    <thead>
-                        <tr style="height : 15.75px;">
-                            <th style="font-weight: bold;">Authority</th>
-                            <th style="font-weight: bold;">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="height : 15.75px;">
-                            <td>SPACE_WRITE</td>
-                            <td>Write and update operations</td>
-                        </tr>
-                        <tr style="height : 15.75px;">
-                            <td>SPACE_TAKE</td>
-                            <td>Take and Clear operations
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div title="Click here to see additional authorities">
+            <table cellspacing="0">
+                <col style="width : 141.75px;" />
+                <col style="width : 240.75px;" />
+                <thead>
+                    <tr style="height : 15.75px;">
+                        <th style="font-weight: bold;text-align: center;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: none;border-left-width: 1px;border-left-color: #e0e0e0;" colspan="2">Additional Authorities</th>
+                    </tr>
+                    <tr style="height : 15.75px;">
+                        <th style="font-weight: bold;">Authority</th>
+                        <th style="font-weight: bold;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="height : 15.75px;">
+                        <td>SPACE_WRITE</td>
+                        <td>Write and update operations</td>
+                    </tr>
+                    <tr style="height : 15.75px;">
+                        <td>SPACE_TAKE</td>
+                        <td>Take and Clear operations
 </td>
-                        </tr>
-                        <tr style="height : 15.75px;">
-                            <td>SPACE_EXECUTE</td>
-                            <td>Execute tasks</td>
-                        </tr>
-                        <tr style="height : 15.75px;">
-                            <td>SPACE_ALTER</td>
-                            <td>Register type descriptor, Clean and Drop-Class operations
+                    </tr>
+                    <tr style="height : 15.75px;">
+                        <td>SPACE_EXECUTE</td>
+                        <td>Execute tasks</td>
+                    </tr>
+                    <tr style="height : 15.75px;">
+                        <td>SPACE_ALTER</td>
+                        <td>Register type descriptor, Clean and Drop-Class operations
 </td>
-                        </tr>
-                        <tr style="height : 15.75px;">
-                            <td>SPACE_CREATE</td>
-                            <td>Write only (no update) operations</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                    </tr>
+                    <tr style="height : 15.75px;">
+                        <td>SPACE_CREATE</td>
+                        <td>Write only (no update) operations</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <p>&#160;</p>
         <h1>What is a Role?</h1>
