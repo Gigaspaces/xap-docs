@@ -171,56 +171,55 @@ spring-security-config-location=../config/security/security-config.xml
         <p>Note that the .xml file location is relative to the /bin/ folder.</p>
         <h2>Modify the ldap-security-config.xml File</h2>
         <p>Open the<code style="font-weight: bold;"> ldap-security-config.xml</code> file and make sure that its contextSource has the correct IP address of the LDAP server:</p><pre><code>
-				&lt;bean id="contextSource"
-					class="org.springframework.security.ldap.DefaultSpringSecurityContextSource"&gt;
-					&lt;constructor-arg value="ldap://172.17.0.2:389/dc=example,dc=org" /&gt;
-					&lt;property name="userDn" value="cn=admin,dc=example,dc=org" /&gt;
-					&lt;property name="password" value="admin" /&gt;
-					&lt;!--
-					Most LDAP providers do not allow anonymous binding, therefore we'll
-					need to provide a manager DN and password to bind with.
-		
-					&lt;property name="userDn" value="cn=manager,dc=example,dc=com" /&gt;
-					&lt;property name="password" value="password" /&gt;
-					--&gt;
-				&lt;/bean&gt;
-				</code></pre>
+&lt;bean id="contextSource"
+	class="org.springframework.security.ldap.DefaultSpringSecurityContextSource"&gt;
+	&lt;constructor-arg value="ldap://172.17.0.2:389/dc=example,dc=org" /&gt;
+	&lt;property name="userDn" value="cn=admin,dc=example,dc=org" /&gt;
+	&lt;property name="password" value="admin" /&gt;
+	&lt;!--
+	Most LDAP providers do not allow anonymous binding, therefore we'll
+	need to provide a manager DN and password to bind with.
+	&lt;property name="userDn" value="cn=manager,dc=example,dc=com" /&gt;
+	&lt;property name="password" value="password" /&gt;
+	--&gt;
+&lt;/bean&gt;
+</code></pre>
         <p>Note that since the LDAP server does not allow anonymous queries we should also specify the userDn (the administrator) and his password (default: admin).</p>
         <h1>A Deeper Look into the ldap-security-config.xml File</h1>
         <p>We can see that the populator is set to search for the roles in the “groups” ou:</p><pre><code>
-				&lt;bean id="populator"
-				class="org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator"&gt;
-				&lt;constructor-arg ref="contextSource" /&gt;
-				&lt;!--  group based DN - we will be searching for groups in "ou=groups,dc=example,dc=com" --&gt;
-				&lt;constructor-arg value="ou=groups" /&gt;
-				&lt;!-- the name of the attribute that will contain role information (which
-				effectively translates to a user's granted authorities. Default is "cn" --&gt;
-				&lt;property name="groupRoleAttribute" value="ou" /&gt;
-				&lt;!-- case normalization to upper case. Default is true --&gt;
-				&lt;property name="convertToUpperCase" value="false" /&gt;
-				&lt;!-- role prefix to append to the group name. Default is "ROLE_". --&gt;
-				&lt;property name="rolePrefix" value="" /&gt;
-				&lt;/bean&gt;
-				</code></pre>
+&lt;bean id="populator"
+class="org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator"&gt;
+&lt;constructor-arg ref="contextSource" /&gt;
+&lt;!--  group based DN - we will be searching for groups in "ou=groups,dc=example,dc=com" --&gt;
+&lt;constructor-arg value="ou=groups" /&gt;
+&lt;!-- the name of the attribute that will contain role information (which
+effectively translates to a user's granted authorities. Default is "cn" --&gt;
+&lt;property name="groupRoleAttribute" value="ou" /&gt;
+&lt;!-- case normalization to upper case. Default is true --&gt;
+&lt;property name="convertToUpperCase" value="false" /&gt;
+&lt;!-- role prefix to append to the group name. Default is "ROLE_". --&gt;
+&lt;property name="rolePrefix" value="" /&gt;
+&lt;/bean&gt;
+</code></pre>
         <p>In addition, we can see that the authenticator has set the username to be the uid, and the members to be part of the “people” ou.</p>
         <p>Also, the encoder used for decoding the passwords is NoOpPassowrdEncoder as we saved our passwords in plain text.</p><pre><code>
-				&lt;bean id="authenticator"
-				class="org.springframework.security.ldap.authentication.PasswordComparisonAuthenticator"&gt;
-				&lt;constructor-arg ref="contextSource" /&gt;
-				&lt;!--  how to find a user in LDAP --&gt;
-				&lt;property name="userDnPatterns"&gt;
-				&lt;list&gt;
-				&lt;!-- {0} servers as a pattern argument placeholder for a username --&gt;
-				&lt;value&gt;uid={0},ou=people&lt;/value&gt;
-				&lt;/list&gt;
-				&lt;/property&gt;
-				&lt;property name="passwordEncoder"&gt;
-				&lt;!-- This PasswordEncoder is a legacy implementation and using it is considered insecure.
-				Instead use BCryptPasswordEncoder, Pbkdf2PasswordEncoder or DelegatingPasswordEncoder 	--&gt;
-				&lt;bean class="org.springframework.security.crypto.password.NoOpPasswordEncoder" /&gt;
-				&lt;/property&gt;
-				&lt;bean&gt;
-				</code></pre>
+&lt;bean id="authenticator"
+class="org.springframework.security.ldap.authentication.PasswordComparisonAuthenticator"&gt;
+&lt;constructor-arg ref="contextSource" /&gt;
+&lt;!--  how to find a user in LDAP --&gt;
+&lt;property name="userDnPatterns"&gt;
+&lt;list&gt;
+&lt;!-- {0} servers as a pattern argument placeholder for a username --&gt;
+&lt;value&gt;uid={0},ou=people&lt;/value&gt;
+&lt;/list&gt;
+&lt;/property&gt;
+&lt;property name="passwordEncoder"&gt;
+&lt;!-- This PasswordEncoder is a legacy implementation and using it is considered insecure.
+Instead use BCryptPasswordEncoder, Pbkdf2PasswordEncoder or DelegatingPasswordEncoder 	--&gt;
+&lt;bean class="org.springframework.security.crypto.password.NoOpPasswordEncoder" /&gt;
+&lt;/property&gt;
+&lt;bean&gt;
+</code></pre>
         <div class="tc-admon-note">
             <p>In production it is recommended to use encryption for the passwords, and use its relevant decoder.</p>
         </div>
