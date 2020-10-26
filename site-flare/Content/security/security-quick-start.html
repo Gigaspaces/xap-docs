@@ -10,6 +10,9 @@
         <p>The Quick Start security model defines three levels of user — administrator, manager or viewer – and requires a login to use the GUI, command line or REST API. Users, passwords and permissions are defined in an XML file in clear text.</p>
         <h1>What are the Supported Security Models?</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> supports three security providers or models: in-memory, LDAP and JDBC. We will start with the simplest security model, in-memory, and then explain the more complex models of LDAP and JDBC in later topics.</p>
+        <div class="tc-admon-note">
+            <p>In additon to in-memory, LDAP and JDBC, any other Authentication provider compatible with <MadCap:xref href="introducing-spring-security.html">Spring Security</MadCap:xref> is supported.</p>
+        </div>
         <h1>Enable Security - Set the GS_OPTIONS_EXT Environmental Variable</h1>
         <div class="tc-admon-note">
             <p>This example of in-memory security uses a flat file with clear text for the user and password. This is for learning purposes only, and is not a secure method for production use.</p>

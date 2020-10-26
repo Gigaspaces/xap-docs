@@ -11,16 +11,52 @@
         <p><a href="https://tldp.org/HOWTO/LDAP-HOWTO/moreonldif.html">LDIF</a> (LDAP Data Interchange Format) is a standard plain text data interchange format for representing LDAP  directory content and update requests. LDIF conveys directory content as a set of records, one record for each object or entry.</p>
         <div>
             <h1>Understanding the LDIF file structure</h1>
-            <p>As mentioned above, we have used the ldif example provided with <MadCap:variable name="General.ProductNameXAP" /> in order to export the user data to the LDAP server. A raw LDIF file looks like this:</p>
-            <p>
-                <img src="../Resources/Static/images/LDAP-02-150-percent.png" />
-            </p>
+            <div class="tc-admon-note">
+                <p>LDIF samples are from <code class="language-bash" style="font-weight: bold;">&lt;prod zip&gt;/config/security/ldap-sample.ldif</code>.</p>
+            </div>
+            <p>As mentioned above, we have used the LDIFexample provided with <MadCap:variable name="General.ProductNameXAP" /> in order to export the user data to the LDAP server. A raw LDIF is shown below.</p>
+            <p>&#160;</p><pre xml:space="preserve">
+<code>version: 1
+#################<br /># Define Roles  #
+#################
+
+# create the groups ou (used to define the role groups)
+
+dn: ou=groups,dc=example,dc=org
+objectclass: top
+objectclass: organizationalUnit
+ou: groups
+
+# create a an analyst role and attach with the following settings:
+# Privilages: MONITOR_PU, SPACE_READ
+# Members   : gs-viewer
+
+dn: cn=ROLE_VIEWER,ou=groups,dc=example,dc=org
+objectclass: top
+objectclass: groupOfNames
+cn: ROLE_VIEWER
+member: uid=gs-viewer,ou=people,dc=example,dc=org
+ou: MONITOR_JVM
+ou: MONITOR_PU
+ou: SPACE_READ
+
+# create a a developer role and attach with the following settings:
+# Privilages: PROVISION_PU, MONITOR_PU, SPACE_READ
+# Members   : gs-mngr
+
+dn: cn=ROLE_MNGR,ou=groups,dc=example,dc=org
+objectclass: top
+objectclass: groupOfNames
+cn: ROLE_MNGR
+member: uid=gs-mngr,ou=people,dc=example,dc=org
+ou: MONITOR_JVM
+ou: MONITOR_PU
+ou: SPACE_READ
+ou: PROVISION_PU
+				</code></pre>
             <div>
                 <h2>Roles Definition in the LDIF File</h2>
-                <p>As you can see (open the file and read the documented comments for a deeper explanation), we have added an organizational unit (hereinafter ou) called <b>groups</b>. This organizational unit will hold domain names (hereinafter <b>dn</b>) that will define the different roles and their permissions, for example:</p>
-                <p>
-                    <img src="../Resources/Static/images/LDAP-03.png" style="width: 731px;height: 282px;" />
-                </p>
+                <p>As you can see (open the file and read the documented comments for a deeper explanation), we have added an organizational unit (hereinafter ou) called <b>groups</b>. This organizational unit will hold domain names (hereinafter <b>dn</b>) that will define the different roles and their permissions, for example:</p><pre><code>dn: cn=ROLE_MNGR,ou=groups,dc=example,dc=org<br />objectclass: top<br />objectclass: groupOfNames<br />cn: ROLE_MNGR<br />member: uid=gs-mngr,ou=people,dc=example,dc=org<br />ou: MONITOR_JVM<br />ou: MONITOR_PU<br />ou: SPACE_READ</code></pre>
                 <p>We can see here that this dn has a Common Name (hereinafter <b>cn</b>) called ROLE_ANALYST, it is under the groups ou and it has three child ous: MONITOR_JVM, MONITOR_PU and SPACE_READ.</p>
                 <p>These children ou define the privileges granted for this specific role.</p>
                 <p>In addition, the dn can include members (in our example it is anna) that define which users have this role.</p>
@@ -31,14 +67,11 @@
             </div>
             <div>
                 <h2>User Definition in the LDIF File</h2>
-                <p>In addition, we have added an ou called people. This ou will be used to encapsulate the users as its children.</p>
-                <p>
-                    <img src="../Resources/Static/images/LDAP-04.png" style="width: 711px;height: 166px;" />
-                </p>
-                <p>A child user appears as follows:</p>
-                <p>
-                    <img src="../Resources/Static/images/LDAP-05.png" style="width: 711px;height: 344px;" />
-                </p>
+                <p>In addition, we have added an ou called people. This ou will be used to encapsulate the users as its children.</p><pre><code># create the people ou so which encapsulates the users.<br></br>dn: ou=people,dc=example,dc=org<br></br>objectclass: top<br></br>objectclass: organizationalUnit<br></br>ou: people</code></pre>
+                <p>A child user appears as follows:</p><pre><code># add a user with uid = admin, and password = admin
+
+dn: uid=gs-admin,ou=people,dc=example,dc=org<br />objectclass: top<br />objectclass: person<br />objectclass: organizationalPerson<br />objectclass: inetOrgPerson<br />cn: Firstname Lastname<br />sn: Firstname<br />uid: Lastname<br />userPassword: gs-admin				
+				</code></pre>
                 <div>
                     <p>Note that each user has a uid with his username, and a userPassword with his password. In this example we used plain text passwords, but in production mode we recommend encrypted passwords.</p>
                 </div>
@@ -131,27 +164,63 @@
             </div>
         </div>
         <h2>Edit the Security Properties File</h2>
-        <p>Edit the properties config file, located at <code style="font-weight: bold;">/config/security/security.properties</code>, to point to <code style="font-weight: bold;">ldap-security-config.xml</code>:</p>
-        <p>
-            <img src="../Resources/Static/images/LDAP-10-160.png" />
-        </p>
+        <p>Edit the properties config file, located at <code style="font-weight: bold;">/config/security/security.properties</code>, to point to <code style="font-weight: bold;">ldap-security-config.xml</code>:</p><pre><code>
+com.gs.security.security-manager.class=com.gigaspaces.security.spring.SpringSecurityManager
+spring-security-config-location=../config/security/security-config.xml								
+				</code></pre>
         <p>Note that the .xml file location is relative to the /bin/ folder.</p>
         <h2>Modify the ldap-security-config.xml File</h2>
-        <p>Open the<code style="font-weight: bold;"> ldap-security-config.xml</code> file and make sure that its contextSource has the correct IP address of the LDAP server:</p>
-        <p>
-            <img src="../Resources/Static/images/LDAP-11.png" style="width: 819px;height: 276px;" />
-        </p>
+        <p>Open the<code style="font-weight: bold;"> ldap-security-config.xml</code> file and make sure that its contextSource has the correct IP address of the LDAP server:</p><pre><code>
+				&lt;bean id="contextSource"
+					class="org.springframework.security.ldap.DefaultSpringSecurityContextSource"&gt;
+					&lt;constructor-arg value="ldap://172.17.0.2:389/dc=example,dc=org" /&gt;
+					&lt;property name="userDn" value="cn=admin,dc=example,dc=org" /&gt;
+					&lt;property name="password" value="admin" /&gt;
+					&lt;!--
+					Most LDAP providers do not allow anonymous binding, therefore we'll
+					need to provide a manager DN and password to bind with.
+		
+					&lt;property name="userDn" value="cn=manager,dc=example,dc=com" /&gt;
+					&lt;property name="password" value="password" /&gt;
+					--&gt;
+				&lt;/bean&gt;
+				</code></pre>
         <p>Note that since the LDAP server does not allow anonymous queries we should also specify the userDn (the administrator) and his password (default: admin).</p>
         <h1>A Deeper Look into the ldap-security-config.xml File</h1>
-        <p>We can see that the populator is set to search for the roles in the “groups” ou:</p>
-        <p>
-            <img src="../Resources/Static/images/LDAP-12.png" style="width: 810px;height: 235px;" />
-        </p>
+        <p>We can see that the populator is set to search for the roles in the “groups” ou:</p><pre><code>
+				&lt;bean id="populator"
+				class="org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator"&gt;
+				&lt;constructor-arg ref="contextSource" /&gt;
+				&lt;!--  group based DN - we will be searching for groups in "ou=groups,dc=example,dc=com" --&gt;
+				&lt;constructor-arg value="ou=groups" /&gt;
+				&lt;!-- the name of the attribute that will contain role information (which
+				effectively translates to a user's granted authorities. Default is "cn" --&gt;
+				&lt;property name="groupRoleAttribute" value="ou" /&gt;
+				&lt;!-- case normalization to upper case. Default is true --&gt;
+				&lt;property name="convertToUpperCase" value="false" /&gt;
+				&lt;!-- role prefix to append to the group name. Default is "ROLE_". --&gt;
+				&lt;property name="rolePrefix" value="" /&gt;
+				&lt;/bean&gt;
+				</code></pre>
         <p>In addition, we can see that the authenticator has set the username to be the uid, and the members to be part of the “people” ou.</p>
-        <p>In addition you can see that the encoder used for decoding the passwords is NoOpPassowrdEncoder as we saved our passwords in plain text.</p>
-        <p>
-            <img src="../Resources/Static/images/LDAP-13.png" style="width: 817px;height: 272px;" />
-        </p>
+        <p>Also, the encoder used for decoding the passwords is NoOpPassowrdEncoder as we saved our passwords in plain text.</p><pre><code>
+				&lt;bean id="authenticator"
+				class="org.springframework.security.ldap.authentication.PasswordComparisonAuthenticator"&gt;
+				&lt;constructor-arg ref="contextSource" /&gt;
+				&lt;!--  how to find a user in LDAP --&gt;
+				&lt;property name="userDnPatterns"&gt;
+				&lt;list&gt;
+				&lt;!-- {0} servers as a pattern argument placeholder for a username --&gt;
+				&lt;value&gt;uid={0},ou=people&lt;/value&gt;
+				&lt;/list&gt;
+				&lt;/property&gt;
+				&lt;property name="passwordEncoder"&gt;
+				&lt;!-- This PasswordEncoder is a legacy implementation and using it is considered insecure.
+				Instead use BCryptPasswordEncoder, Pbkdf2PasswordEncoder or DelegatingPasswordEncoder 	--&gt;
+				&lt;bean class="org.springframework.security.crypto.password.NoOpPasswordEncoder" /&gt;
+				&lt;/property&gt;
+				&lt;bean&gt;
+				</code></pre>
         <div class="tc-admon-note">
             <p>In production it is recommended to use encryption for the passwords, and use its relevant decoder.</p>
         </div>
