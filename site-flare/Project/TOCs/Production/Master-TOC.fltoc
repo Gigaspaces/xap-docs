@@ -1302,13 +1302,14 @@
       <TocEntry
         Title="[%=System.LinkedTitle%]"
         Link="/Content/orchestration/gsctl-utility.html"
-        conditions="Version.15-5-born" />
+        conditions="Version.15-5-born,NewSet.NotReadyForProduction" />
       <TocEntry
         Title="[%=System.LinkedTitle%]"
         Link="/Content/orchestration/gsctl-basic-Amazon-policy.html" />
       <TocEntry
         Title="[%=System.LinkedTitle%]"
-        Link="/Content/orchestration/gsctl-utility-volumes.html" />
+        Link="/Content/orchestration/gsctl-utility-volumes.html"
+        conditions="NewSet.NotReadyForProduction" />
       <TocEntry
         Title="[%=System.LinkedTitle%]"
         Link="/Content/orchestration/gsctl-scale-cluster-size.html"
@@ -1940,7 +1941,8 @@
       Link="/Content/security/index.html">
       <TocEntry
         Title="[%=System.LinkedTitle%]"
-        Link="/Content/security/security-quick-start.html">
+        Link="/Content/security/security-quick-start.html"
+        conditions="NewSet.NotReadyForProduction">
         <TocEntry
           Title="[%=System.LinkedTitle%]"
           Link="/Content/security/security-quick-start-understanding-config-file.html"></TocEntry>
