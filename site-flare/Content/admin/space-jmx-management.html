@@ -66,7 +66,7 @@ String jndiURL = containerConfig.jndiUrl;
 Runtime.getRuntime().exec( "jconsole " + jndiURL );
 </code></pre>
         <h1><a name="remote-jconsole-connection"></a><a name="Remote_JConsole_Connection"></a>Remote JConsole Connection</h1>
-        <div>
+        <div MadCap:conditions="Version.15-8-born">
             <p>The Grid Service Agent (GSA) exposes a JMX remote port for each child component (for example GSC). The port is determined by adding the agent id to a base port.</p>
             <p>The base port should be defined using the environment variable <code>GS_JMX_REMOTE_BASE_PORT</code>, which will be the port of the GSA, and child processes will be <code>GS_JMX_REMOTE_BASE_PORT</code> + id.</p>
             <p>For example:</p>
@@ -87,7 +87,7 @@ Runtime.getRuntime().exec( "jconsole " + jndiURL );
                 <p>It is important to verify that all expected ports are open in the firewall.</p>
             </div>
         </div>
-        <div MadCap:conditions="Default.DoNotShow">
+        <div MadCap:conditions="Version.15-8-died">
             <p>In order to enable monitoring and management from remote systems using JMX jconsole set the following system properties or use the setenv shell variable <span class="tc-bold">REMOTE_JMX</span></p><pre><code class="language-bash">REMOTE_JMX=-Dcom.sun.management.jmxremote.port=5001 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
 </code></pre>
             <p>For a secure JConsole, use the following system properties:</p><pre><code class="language-bash">-Dcom.gigaspaces.system.registryRetries=1
