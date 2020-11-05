@@ -65,7 +65,7 @@ ContainerConfig containerConfig = ( ( IJSpaceContainerAdmin )spaceProxy.getConta
 String jndiURL = containerConfig.jndiUrl;
 Runtime.getRuntime().exec( "jconsole " + jndiURL );
 </code></pre>
-        <h1><a name="remote-jconsole-connection"></a>Remote JConsole Connection</h1>
+        <h1><a name="remote-jconsole-connection"></a><a name="Remote_JConsole_Connection"></a>Remote JConsole Connection</h1>
         <p>In order to enable monitoring and management from remote systems using JMX jconsole set the following system properties or use the setenv shell variable <span class="tc-bold">REMOTE_JMX</span></p><pre><code class="language-bash">REMOTE_JMX=-Dcom.sun.management.jmxremote.port=5001 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
 </code></pre>
         <p>For a secure JConsole, use the following system properties:</p><pre><code class="language-bash">-Dcom.gigaspaces.system.registryRetries=1
