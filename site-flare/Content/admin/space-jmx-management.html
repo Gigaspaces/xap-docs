@@ -66,9 +66,31 @@ String jndiURL = containerConfig.jndiUrl;
 Runtime.getRuntime().exec( "jconsole " + jndiURL );
 </code></pre>
         <h1><a name="remote-jconsole-connection"></a><a name="Remote_JConsole_Connection"></a>Remote JConsole Connection</h1>
-        <p>In order to enable monitoring and management from remote systems using JMX jconsole set the following system properties or use the setenv shell variable <span class="tc-bold">REMOTE_JMX</span></p><pre><code class="language-bash">REMOTE_JMX=-Dcom.sun.management.jmxremote.port=5001 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
+        <div>
+            <p>The Grid Service Agent (GSA) exposes a JMX remote port for each child component (for example GSC). The port is determined by adding the agent id to a base port.</p>
+            <p>The base port should be defined using the environment variable <code>GS_JMX_REMOTE_BASE_PORT</code>, which will be the port of the GSA, and child processes will be <code>GS_JMX_REMOTE_BASE_PORT</code> + id.</p>
+            <p>For example:</p>
+            <ul>
+                <li>
+                    <p>GSA base port 6060</p>
+                </li>
+                <li>
+                    <p>GSC port 6061</p>
+                </li>
+                <li>
+                    <p>GSC port 6062</p>
+                </li>
+            </ul>
+            <h2>Example of definition:</h2><pre><code class="language-bash">export EXT_JAVA_OPTIONS="-Dcom.sun.management.jmxremote.authenticate=true<br />-Dcom.sun.management.jmxremote.ssl=false<br />-Dcom.sun.management.jmxremote.access.file=[PATH_TO]/jmxremote.access<br />-Dcom.sun.management.jmxremote.password.file=[PATH_TO]/jmxremote.password"<br />export GS_JMX_REMOTE_BASE_PORT=[YOUR_PORT_VAL]<![CDATA[
+]]></code></pre>
+            <div class="tc-admon-note">
+                <p>It is important to verify that all expected ports are open in the firewall.</p>
+            </div>
+        </div>
+        <div MadCap:conditions="Default.DoNotShow">
+            <p>In order to enable monitoring and management from remote systems using JMX jconsole set the following system properties or use the setenv shell variable <span class="tc-bold">REMOTE_JMX</span></p><pre><code class="language-bash">REMOTE_JMX=-Dcom.sun.management.jmxremote.port=5001 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
 </code></pre>
-        <p>For a secure JConsole, use the following system properties:</p><pre><code class="language-bash">-Dcom.gigaspaces.system.registryRetries=1
+            <p>For a secure JConsole, use the following system properties:</p><pre><code class="language-bash">-Dcom.gigaspaces.system.registryRetries=1
 -Dcom.gigaspaces.system.registryPort=6060
 -Dcom.sun.management.jmxremote.port=6060
 -Dcom.sun.management.jmxremote 
@@ -76,6 +98,7 @@ Runtime.getRuntime().exec( "jconsole " + jndiURL );
 -Dcom.sun.management.jmxremote.ssl=false
 -Dcom.sun.management.jmxremote.access.file=.../jmxremote.access
 -Dcom.sun.management.jmxremote.password.file=.../jmxremote.password</code></pre>
+        </div>
         <h1><a name="viewing-thread-cpu-usage-with-jdk-1-6"></a>Viewing Thread CPU Usage </h1>
         <p>JConsole includes a <a href="https://arnhem.luminis.eu/top-threads-plugin-for-jconsole/" target="_blank">plugin</a> that displays CPU usage for each JVM thread. This tab is displayed using the <a href="http://java.sun.com/javase/[%=Versions.java-version%]/docs/technotes/guides/management/jconsole.html">-pluginpath</a> JConsole parameter (already implemented in GigaSpaces).</p>
         <p><span class="tc-bold">To view this tab in your JConsole</span>:</p>
