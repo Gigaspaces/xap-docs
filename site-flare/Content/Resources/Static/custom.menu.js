@@ -52,7 +52,7 @@ var resourcesData = {
 };
 
 var buttonsData = [
-  '<button type="button" onclick="location.href=\'http://www.gigaspaces.com/download-center\'" class="navbar-btn btn-download">Download</button>'
+  '<button type="button" onclick="location.href=\'https://www.gigaspaces.com/downloads\'" class="navbar-btn btn-download">Download</button>'
 ];
 
 var topicBanner = {
