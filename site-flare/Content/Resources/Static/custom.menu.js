@@ -47,7 +47,7 @@ var resourcesData = {
   'GigaSpaces Cloud': { 'url': '/gigaspaces-cloud.html', },  
   'Solution Hub': { 'url': '/solution-hub/intro.html' },
   'Videos': { 'url': '/videos.html' },
-  'Blog': { 'url': 'http://gigaspaces.com/blog', 'target': '_blank' },
+  'Blog': { 'url': 'https://www.gigaspaces.com/blog', 'target': '_blank' },
   'Forum': { 'url': 'http://ask.gigaspaces.org', 'target': '_blank' }
 };
 
