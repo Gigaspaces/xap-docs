@@ -4,6 +4,10 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Product Overview</h1>
+        <p><a name="In-Memory_Data_Grid"></a>
+        </p>
+        <p><a name="Smart_In-Memory_Data_Grid"></a>
+        </p>
         <h1><a name="in-memory-data-grid"></a>In-Memory Data Grid</h1>
         <p>The core in-memory data grid for the <MadCap:variable name="General.ProductNameIEP" /> is designed to support ultra-low latency and high-throughput applications that follow <a href="space-based-architecture.html">Space-Based Architecture</a> design patterns. The data grid is based on <MadCap:variable name="General.CompanyName" />' Spring-based <a href="product-architecture.html#openspaces">OpenSpaces Framework</a> as the primary development environment, and uses the <MadCap:variable name="General.CompanyName" /> Space-based runtime to deliver core middleware facilities: messaging, data caching and parallelization.</p>
         <p>The following is a brief overview of some  data grid capabilities.</p>
@@ -113,7 +117,7 @@
         </ul>
         <p>The services will usually operate on data that is stored within the same space partition, providing memory access within the same process address space. This mode of interaction allows the minimal latency possible, as data is accessed by reference, as opposed to serialization required for out-of-process communication.</p>
         <p>Processing units can be deployed through the <a href="../admin/gigaspaces-management-center.html">GigaSpaces Management Center</a>, <a href="../admin/web-management-console.html">Web Management Console</a>, <a href="../admin/tools-cli.html">Command Line Interface</a> and <a href="../admin/admin-rest-manager-api.html">REST Manager API</a>.</p>
-        <h1><a name="analytics-and-big-data"></a>Analytics and Big Data</h1>
+        <h1><a name="analytics-and-big-data"></a><a name="Smart_Analytics_and_Big_Data"></a>Analytics and Big Data</h1>
         <p>The <MadCap:variable name="General.ProductNameIEP" /> provides a first-class integration between Apache Spark and any data grid capability. This allows hybrid/transactional analytics processing by co-locating Spark jobs in-place with low-latency data grid applications. The platform includes a full Spark distribution that is managed by a highly-available clustering tier that provides auto-healing, as well as local and geographical redundancy. The following is a sample of available <MadCap:variable name="General.ProductNameIE" /> analytics capabilities:</p>
         <ul>
             <li>
@@ -181,7 +185,7 @@
         <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
         <h2><a name="rest-orchestration"></a>REST Orchestration</h2>
         <p>In addition to the management center, and web and command line interfaces, <MadCap:variable name="General.CompanyName" /> provides a <a href="../admin/xap-manager-rest.html">grid management API</a> interface exposed through the standard HTTP REST protocol. This REST interface can be called from your custom management and administration scripts to support different deployment and provisioning lifecycle operations. In addition, the REST Manager API provides a <a href="../admin/xap-manager-rest-pluggable.html">plug-in provider</a> to implement your own orchestration/integration endpoints.</p>
-        <h2><a name="security-and-auditing"></a>Security and Auditing</h2>
+        <h2><a name="security-and-auditing"></a><a name="Smart_Security_and_Auditing"></a>Security and Auditing</h2>
         <p><MadCap:variable name="General.CompanyName" /> provides security features that allow the administrators to implement security controls across any component. Security management in <MadCap:variable name="General.CompanyName" /> products consists of security controls to access the entire platform stack, from <a href="../security/securing-the-transport-layer-using-ssl.html">SSL encryption of data traffic</a> to <a href="../security/securing-xap-components.html">role-based authentication/authorization</a> for deployment, data access and provisioning.</p>
         <div class="tc-align-center">
             <p>

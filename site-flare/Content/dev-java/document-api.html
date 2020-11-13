@@ -3,13 +3,15 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Document API</h1>
+        <h1 class="tc-pagetitle"><a name="Smart_Document_API"></a>Document API</h1>
         <p>Unlike POJOs, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a Document is much more dynamic - users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the class <code>SpaceTypeDescriptor</code>.</p>
         <p>Before a certain Document instance is written to the Space, its type should be introduced to it. The type has a name and controls metadata such as identifier property, routing property and which properties are initially indexed (naturally, you can also index new properties at runtime after adding them to your Documents).</p>
         <div class="tc-admon-note">
             <p>The Type controls <span class="tc-bold">metadata</span>, so only the metadata is part of the type. A Document can introduce new properties at will.</p>
         </div>
         <p>Note that the Document type does not describe the properties themselves (except for the names of the ID and Routing properties). These are completely dynamic and each instance can have a different set of properties, although in most cases Document instances of the same type are likely to have identical or similar set of properties.</p>
+        <p><a name="Smart_Schema_Evolution"></a>
+        </p>
         <h1><a name="schema-evolution"></a>Schema Evolution</h1>
         <p>A <code>SpaceDocument</code> is completely dynamic by nature, so it is very easy to change or evolve your data model without taking down the Space. Simply change your application code to add additional properties or remove existing ones, and you're good to go. Even better, old and new versions can co-exist because the Space doesn't enforce any restrictions regarding the property set of Documents that belong to a certain type. This is a much more lightweight model in comparison to the classic POJO model, where a recompilation and in many cases a full Space restart is required to change the data schema.</p>
         <p>If the POJO model can't be replaced with the Document model, yet some level of schema evolution is desired within the POJO model, <a href="dynamic-properties.html">Dynamic Properties</a> can be used.</p>
