@@ -5,6 +5,29 @@
     <body style="text-align: left;">
         <h1 class="tc-pagetitle" style="text-align: left;">What is the <MadCap:variable name="General.ProductNameXAP" /> Smart Portfolio? </h1>
         <p style="text-align: left;"><MadCap:variable name="General.ProductNameXAP" /> Smart Portfolio is a partitioned, distributed in-memory data store and analytics system that dramatically improves the performance of caching, Operational Data Stores, and transactions. </p>
+        <h1><MadCap:variable name="General.ProductNameXAP" /> Product Architecture</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> uses an in-memory core architecture developed with a Space-based design model. <MadCap:variable name="General.ProductNameXAP" /> design components include the following:</p>
+        <ul>
+            <li>
+                <p><a href="https://docs.gigaspaces.com/latest/overview/product-architecture.html#SpaceBasedRemoting">Space-Based Remoting</a>
+                    <br />Remote service invocations using <a href="https://docs.gigaspaces.com/latest/overview/about-jini.html">Jini Network Architecture</a> that provide location transparency for enterprise-wide data access</p>
+            </li>
+            <li>
+                <p><a href="https://docs.gigaspaces.com/latest/overview/product-architecture.html#CoreAPI">Core API</a> and <a href="https://docs.gigaspaces.com/latest/overview/product-architecture.html#InMemoryDataGrid">In-Memory Data Grid</a><br />Direct access to a RAM-based data grid or Space</p>
+            </li>
+            <li>
+                <p><a href="https://docs.gigaspaces.com/latest/overview/product-architecture.html#Events">Messaging and Events</a>
+                    <br />Object-based event processing, based on and extending the properties of Java EE message-driven beans</p>
+            </li>
+            <li>
+                <p><a href="https://docs.gigaspaces.com/latest/overview/product-architecture.html#Integrations">Integrations</a>
+                    <br />Integration capabilities with non-<MadCap:variable name="General.ProductNameXAP" /> components</p>
+            </li>
+            <li>
+                <MadCap:xref href="../admin/data-partitioning.html">Data Partitioning<br /></MadCap:xref>Load balancing via data partitioning allows code and data to be spread across many individual <a href="https://docs.gigaspaces.com/latest/dev-java/the-processing-unit-overview.html">Processing Units</a>, located in a heterogeneous mix of server instances
+on on-prem and cloud machines. <br />Smart data partitioning locates frequently-access data in the same partition as the code that uses the data (co-location), and allows horizontal and vertical scaling to perform dynamic, rule-based scaling of the system. </li>
+        </ul>
+        <p>See <MadCap:xref href="../overview/product-architecture.html">Data Grid Architecture</MadCap:xref>  for more details of the <MadCap:variable name="General.ProductNameXAP" /> product architecture.</p>
         <h1 style="text-align: left;">Components of the <MadCap:variable name="General.ProductNameXAP"></MadCap:variable> Smart Portfolio</h1>
         <p style="text-align: left;"><MadCap:variable name="General.ProductNameXAP" /> consists of three products: <b><a href="#SmartCache">SmartCache</a></b>, SmartODS and Smart Augmented Transactions. </p>
         <ul>
