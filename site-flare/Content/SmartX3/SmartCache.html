@@ -8,15 +8,17 @@
         <h1 class="tc-pagetitle" style="text-align: left;">What is <MadCap:variable name="General.ProductNameXAP" /> SmartCache? </h1>
         <p style="text-align: left;"><MadCap:variable name="General.ProductNameXAP" /> SmartCache is part of the <MadCap:variable name="General.ProductNameXAP" /> <a href="smart-overview.html">Smart Portfolio</a>— SmartCache, SmartODS and Smart Augmented Transactions. </p>
         <p style="text-align: left;">SmartCache provides fast, scalable cache from any data store.</p>
-        <h1>SmartCache Overview — Overview of Data Stores</h1>
+        <h1>SmartCache Overview — Data Stores</h1>
         <p style="text-align: left;">The SmartCache environment can be illustrated as follows:</p>
         <p style="text-align: center;">
             <img src="../Resources/Static/images/smart-cache-no-numbers-simplified-diagram.jpg" class="tc-picture65" />
         </p>
-        <h1>SmartCache Overview — Internal Data Stores</h1>
-        <p style="text-align: center;">
-            <img src="../Resources/Static/images/Smart-data-internal-diagram.jpg" class="tc-picture60" />
-        </p>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>SmartCache Overview — Internal Data Stores</h1>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/images/Smart-data-internal-diagram.jpg" class="tc-picture60" />
+            </p>
+        </div>
         <h2 style="text-align: left;">Details of SmartCache Technologies</h2>
         <p style="text-align: left;">Here are some of the detailed technologies that make SmartCache smart.</p>
         <h3>One-Click Connect to Existing Data Source</h3>
@@ -26,6 +28,12 @@
         </p>
         <p>Database tables can be imported as-is, or can be limited to selected columns and other properties using the Ops Manager GUI, and without writing custom code.</p>
         <p>Data can be stored on-prem, in the cloud, or a hybrid combination of cloud and on-prem.</p>
+        <div>
+            <h3>SmartCache Internal Data Stores</h3>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/images/Smart-data-internal-diagram.jpg" class="tc-picture60" />
+            </p>
+        </div>
         <h3>Rule-Managed Data Tiers</h3>
         <p>User-defined business rules allows you to place the most <i>important </i>data in "hot" storage (RAM), while other data can be in "warm" (SSD) or "cold" (HD) storage. </p>
         <p style="text-align: center;">
@@ -35,16 +43,54 @@
             <p>"Important" does not necessarily mean "most frequently accessed" — for example, your business rules may place premium customers in hot storage, even if their data is less frequently required. </p>
         </div>
         <h2>Smart Data Co-Location</h2>
-        <p>Distributed server-side data aggregation and code co-location peovides high concurrency, full data integrity and reduces networking and serialization overhead.</p>
+        <p>Distributed server-side data aggregation and code co-location provides high concurrency, full data integrity and reduces networking and serialization overhead.</p>
         <p style="text-align: center;">
             <img src="../Resources/Static/images/smartcache-aggregation-diagram.jpg" style="width: 598px;height: 441px;" />
         </p>
+        <div>
+            <h3>Customized Routing</h3>
+            <p>When the objects are written to the Data Grid, they are routed to the proper partition, according to a predefined attribute in the object that acts as the routing index</p>
+            <p>
+Content-Based Routing
+ — Partitioning is done according to<code> routing field&#160;@SpaceRouting</code><![CDATA[
+]]><br />Formula: hash(@SpaceRouting) modulo (partition count)+1</p>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/images/Smart-routing-diagram.jpg" class="tc-picture60" />
+            </p>
+        </div>
         <h3>Multi-Index Queries</h3>
         <p>Unlike simple key-value data stores, SmartCache uses secondary, tertiary, ...<i> n</i>-ary indexes to organize your data. </p>
         <p>This means that where a key-value approach would duplicate the entire data store for each defined index, SmartCache allows a virtually unlimited number of indexes to be maintained — with very little RAM or processing overhead.</p>
         <p style="text-align: center;">
             <img src="../Resources/Static/images/smartcache-vs-key-value-grayed-part.jpg" style="width: 550px;height: 414px;" />
         </p>
+        <div>
+            <h3>Aggregation</h3>
+            <p>Perform an aggregation activity across data stored within space
+Aggregators are executed by iterating the internal data grid structure that maintains the space objects
+Out of the box aggregators such as SUM, AVG, MIN, GROUP BY, etc. as well as CUSTOM AGGREGATION LOGIC
+Fast scan - No materialization of the original user data grid object when performing this iteration
+</p>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/images/Smart-aggregation-diagram.jpg" class="tc-picture60" />
+            </p>
+        </div>
+        <table style="width: 100%;margin-left: auto;margin-right: auto;">
+            <col />
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <div>
+                            <h3>Event Processing</h3><code class="language-java"><p>@EventDriven @Polling</p><p>public class SimpleListener {</p><p>@EventTemplate</p><p>public SQLQuery&lt;Payment&gt; eventTemplate() {</p><p>return new SQLQuery&lt;Payment&gt;(Payment.class,</p><p>"status = PENDING");</p><p>}</p><p>@SpaceDataEvent</p><p>public Payment eventProcessor(Payment payment) {</p><p>payment.status = isValid(payment) ?</p><p>ACCEPTED : REJECTED;</p><p>return order;</p><p>}</p><p>}</p></code>
+                        </div>
+                    </td>
+                    <td>
+                        <img src="../Resources/Static/images/Smart-bigger--event-processing.jpg" style="width: 818px;height: 427px;" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <h3>Artificial Intelligence Ops (AIOps) for Multi-Directional Scaling</h3>
         <p>User-defined rules can automatically scale up/down or scale out/in when system demands change.<br /> For example a rule could state:</p>
         <blockquote>
