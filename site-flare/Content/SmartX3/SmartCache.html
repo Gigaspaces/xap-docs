@@ -3,12 +3,8 @@
     <head>
     </head>
     <body style="text-align: left;">
-        <h1 class="tc-pagetitle" style="text-align: left;" MadCap:conditions="NewSet.StagingOnly">
-            <MadCap:snippetText src="../Resources/Snippets/SmartCache.flsnp" />
-            <MadCap:snippetText src="../Resources/Snippets/SmartODS.flsnp" />
-            <MadCap:snippetText src="../Resources/Snippets/SmartAT.flsnp" />
-        </h1>
         <p style="text-align: left;" MadCap:conditions="NewSet.StagingOnly,Default.DoNotShow">This is staging-only </p>
+        <MadCap:snippetBlock src="../Resources/Snippets/Smart-YES-cache-YES-ods-YES-at.flsnp" MadCap:conditions="NewSet.StagingOnly,Version.15-8-born" />
         <h1 class="tc-pagetitle" style="text-align: left;" MadCap:conditions="NewSet.ProductionOnly,Default.DoNotShow">This is prod-only </h1>
         <h1 class="tc-pagetitle" style="text-align: left;">What is <MadCap:variable name="General.ProductNameXAP" /> SmartCache? </h1>
         <p style="text-align: left;"><MadCap:variable name="General.ProductNameXAP" /> SmartCache is part of the <MadCap:variable name="General.ProductNameXAP" /> <a href="smart-overview.html">Smart Portfolio</a>— SmartCache, SmartODS and Smart Augmented Transactions. </p>
@@ -36,13 +32,13 @@
         <div>
             <h3>SmartCache Internal Data Stores</h3>
             <p style="text-align: center;">
-                <img src="../Resources/Static/images/Smart-data-internal-diagram.jpg" class="tc-picture60" />
+                <img src="../Resources/Static/images/Smart-data-internal-diagram.jpg" class="tc-picture50" />
             </p>
         </div>
         <h3>Rule-Managed Data Tiers</h3>
         <p>User-defined business rules allows you to place the most <i>important </i>data in "hot" storage (RAM), while other data can be in "warm" (SSD) or "cold" (HD) storage. </p>
         <p style="text-align: center;">
-            <img src="../Resources/Static/images/smartcache-data-tiering-diagram.jpg" style="width: 726px;height: 361px;" />
+            <img src="../Resources/Static/images/smartcache-data-tiering-diagram.jpg" style="width: 726px; height: 361px;" class="tc-picture50" />
         </p>
         <div class="tc-admon-note">
             <p>"Important" does not necessarily mean "most frequently accessed" — for example, your business rules may place premium customers in hot storage, even if their data is less frequently required. </p>
@@ -50,7 +46,7 @@
         <h2>Smart Data Co-Location</h2>
         <p>Distributed server-side data aggregation and code co-location provides high concurrency, full data integrity and reduces networking and serialization overhead.</p>
         <p style="text-align: center;">
-            <img src="../Resources/Static/images/smartcache-aggregation-diagram.jpg" style="width: 598px;height: 441px;" />
+            <img src="../Resources/Static/images/smartcache-aggregation-diagram.jpg" style="width: 598px; height: 441px;" class="tc-picture40" />
         </p>
         <div>
             <h3>Customized Routing</h3>
@@ -60,14 +56,14 @@ Content-Based Routing
  — Partitioning is done according to<code> routing field&#160;@SpaceRouting</code><![CDATA[
 ]]><br />Formula: hash(@SpaceRouting) modulo (partition count)+1</p>
             <p style="text-align: center;">
-                <img src="../Resources/Static/images/Smart-routing-diagram.jpg" class="tc-picture60" />
+                <img src="../Resources/Static/images/Smart-routing-diagram.jpg" class="tc-picture50" />
             </p>
         </div>
         <h3>Multi-Index Queries</h3>
         <p>Unlike simple key-value data stores, SmartCache uses secondary, tertiary, ...<i> n</i>-ary indexes to organize your data. </p>
         <p>This means that where a key-value approach would duplicate the entire data store for each defined index, SmartCache allows a virtually unlimited number of indexes to be maintained — with very little RAM or processing overhead.</p>
         <p style="text-align: center;">
-            <img src="../Resources/Static/images/smartcache-vs-key-value-grayed-part.jpg" style="width: 550px;height: 414px;" />
+            <img src="../Resources/Static/images/smartcache-vs-key-value-grayed-part.jpg" style="width: 550px; height: 414px;" class="tc-picture40" />
         </p>
         <div>
             <h3>Aggregation</h3>
@@ -77,11 +73,11 @@ Out of the box aggregators such as SUM, AVG, MIN, GROUP BY, etc. as well as CUST
 Fast scan - No materialization of the original user data grid object when performing this iteration
 </p>
             <p style="text-align: center;">
-                <img src="../Resources/Static/images/Smart-aggregation-diagram.jpg" class="tc-picture60" />
+                <img src="../Resources/Static/images/Smart-aggregation-diagram.jpg" class="tc-picture40" />
             </p>
         </div>
         <table style="width: 100%;margin-left: auto;margin-right: auto;">
-            <col />
+            <col style="width: 502px;" />
             <col />
             <tbody>
                 <tr>
@@ -91,7 +87,7 @@ Fast scan - No materialization of the original user data grid object when perfor
                         </div>
                     </td>
                     <td>
-                        <img src="../Resources/Static/images/Smart-bigger--event-processing.jpg" style="width: 818px;height: 427px;" />
+                        <img src="../Resources/Static/images/Smart-bigger--event-processing.jpg" style="width: 818px; height: 427px;" class="tc-picture50" />
                     </td>
                 </tr>
             </tbody>
