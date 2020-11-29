@@ -96,13 +96,5 @@
       Name="Versions/dash-ea">-ea</Variable>
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
-  <PreBuild>cd $(ProjectDirectory)
-set pd=$(ProjectDirectory)
-echo xxx
-
-cd C:\Users\david\Desktop\scripts\
-echo yyy
-start /wait vbscript-prebuild.wsf
-
-</PreBuild>
+  <PreBuild></PreBuild>
 </CatapultTarget>
