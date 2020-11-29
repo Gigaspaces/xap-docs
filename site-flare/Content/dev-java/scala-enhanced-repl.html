@@ -23,18 +23,18 @@ Please enjoy the predefined 'admin' val.
 xap&gt;
 </code></pre>
         <p>We'll start by deploying a single space to the service grid, notice we already have an admin instance in scope to simplify this process.:</p>
-        <h4>Command:</h4><pre><code class="language-scala">xap&gt; val gsm = admin.getGridServiceManagers.waitForAtLeastOne</code></pre>
+        <h4>Command:</h4><pre><code class="language-scala">val gsm = admin.getGridServiceManagers.waitForAtLeastOne</code></pre>
         <h4>Output:</h4>
         <p>gsm: org.openspaces.admin.gsm.GridServiceManager = org.openspaces.admin.internal.gsm.DefaultGridServiceManager@ca43aa97</p>
         <h4>Command:</h4><pre><code class="language-scala">
-xap&gt; gsm.deploy(new org.openspaces.admin.space.SpaceDeployment("mySpace"))</code></pre>
+gsm.deploy(new org.openspaces.admin.space.SpaceDeployment("mySpace"))</code></pre>
         <h4>Output:</h4>
         <p>
 res0: org.openspaces.admin.pu.ProcessingUnit = org.openspaces.admin.internal.pu.DefaultProcessingUnit@59479eba
 </p>
         <p>&#160;</p>
         <p>We'll use some helper method that is imported into the session scope (from <code>org.openspaces.scala.repl.GigaSpacesScalaReplUtils</code>) to get a <code>GigaSpace</code> proxy:</p>
-        <h4>Command:</h4><pre><code class="language-scala">xap&gt; val Some(gigaSpace) = getGigaSpace("mySpace")</code></pre>
+        <h4>Command:</h4><pre><code class="language-scala">val Some(gigaSpace) = getGigaSpace("mySpace")</code></pre>
         <h4>Output:</h4>
         <p><code class="language-scala">
 gigaSpace: org.openspaces.core.GigaSpace = mySpace_container:mySpace
@@ -42,14 +42,12 @@ gigaSpace: org.openspaces.core.GigaSpace = mySpace_container:mySpace
         </p>
         <p>&#160;</p>
         <p>Now we'll execute a task using another helper method:</p>
-        <h4>Command:</h4><pre><code class="language-scala">xap&gt; execute(gigaSpace) { holder =&gt; holder.clusterInfo.getNumberOfInstances}</code></pre>
+        <h4>Command:</h4><pre><code class="language-scala">execute(gigaSpace) { holder =&gt; holder.clusterInfo.getNumberOfInstances}</code></pre>
         <h4>Output:</h4>
         <p><code class="language-scala">
 res1: com.gigaspaces.async.AsyncFuture[Integer] = org.openspaces.core.transaction.internal.InternalAsyncFuture@f1423ba</code>
         </p>
-        <h4>Command:</h4><pre><code class="language-scala">
-
-xap&gt; val numberOfInstances = res1.get</code></pre>
+        <h4>Command:</h4><pre><code class="language-scala">val numberOfInstances = res1.get</code></pre>
         <h4>Output:</h4>
         <p><code class="language-scala">
 numberOfInstances: Integer = 1
@@ -57,14 +55,12 @@ numberOfInstances: Integer = 1
         </p>
         <p>&#160;</p>
         <p>Let's define a new case class and write an entry to the space:</p>
-        <h4>Command:</h4><pre><code class="language-scala">xap&gt; case class Data @SpaceClassConstructor() (@BeanProperty @SpaceId id: String = null, @BeanProperty content: String = null)</code></pre>
+        <h4>Command:</h4><pre><code class="language-scala">case class Data @SpaceClassConstructor() (@BeanProperty @SpaceId id: String = null, @BeanProperty content: String = null)</code></pre>
         <h4>Output:</h4>
         <p><code class="language-scala">
 defined class Data</code>
         </p>
-        <h4>Command:</h4><pre><code class="language-scala">
-
-xap&gt; gigaSpace.write(Data(id = "id1", content = "my data content"))</code></pre>
+        <h4>Command:</h4><pre><code class="language-scala">gigaSpace.write(Data(id = "id1", content = "my data content"))</code></pre>
         <h4>Output:</h4>
         <p><code class="language-scala">
 res2: com.j_spaces.core.LeaseContext[Data] = SpaceEntryLease[uid=-792314720^58^id1^0^0,typeName=Data,routingValue=id1,expirationTime=9223372036854775807]
@@ -72,13 +68,12 @@ res2: com.j_spaces.core.LeaseContext[Data] = SpaceEntryLease[uid=-792314720^58^i
         </p>
         <p>&#160;</p>
         <p>Now execute a task that reads this entry and returns is <code>content</code> property:</p>
-        <h4>Command:</h4><pre><code class="language-scala">xap&gt; execute(gigaSpace) { holder =&gt;holder.gigaSpace.read(Data()).content}</code></pre>
+        <h4>Command:</h4><pre><code class="language-scala">execute(gigaSpace) { holder =&gt;holder.gigaSpace.read(Data()).content}</code></pre>
         <h4>Output:</h4>
         <p><code class="language-scala">
 res3: com.gigaspaces.async.AsyncFuture[String] = org.openspaces.core.transaction.internal.InternalAsyncFuture@7c767c0d</code>
         </p>
-        <h4>Command:</h4><pre><code class="language-scala">
-xap&gt; val dataContent = res3.get<![CDATA[
+        <h4>Command:</h4><pre><code class="language-scala">val dataContent = res3.get<![CDATA[
 ]]></code></pre>
         <h4>Output:</h4>
         <p><code class="language-scala">
