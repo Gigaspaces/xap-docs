@@ -97,17 +97,11 @@
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
   <PreBuild>cd $(ProjectDirectory)
-echo "xxxxx"
-echo "xxxxx"
-echo "xxxxx"
-echo "xxxxx"
-echo "xxxxx"
-echo "xxxxx"
-echo "xxxxx"
-echo "xxxxx"
-echo "xxxxx"
-echo "xxxxx"
-echo "xxxxx"
-echo "xxxxx"
+set pd=$(ProjectDirectory)
+
+cd C:\Users\david\Desktop\scripts\
+
+start /wait vbscript-prebuild.wsf
+
 </PreBuild>
 </CatapultTarget>
