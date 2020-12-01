@@ -3,13 +3,13 @@
     <head>
     </head>
     <body style="text-align: left;">
-        <h1 class="tc-pagetitle" style="text-align: left;">What is the <MadCap:variable name="General.ProductNameIE" /><![CDATA[  ]]>Portfolio? </h1>
+        <h1 class="tc-pagetitle" style="text-align: left;">The <MadCap:variable name="General.ProductNameIE" /> Portfolio </h1>
         <p>The InsightEdge Portfolio — SmartCache, SmartODS and Smart Augmented Transactions — is based on the InsightEdge Core, which is a distributed In-Memory storage and processing engine.</p>
-        <h2><MadCap:variable name="General.ProductNameIEP" /> Core</h2>
-        <p>The <MadCap:variable name="General.ProductNameIEP" />Core platform is essentially an in-memory data grid which is designed to support ultra-low latency and high-throughput applications that follow Space-Based Architecture design patterns. The data grid is based on GigaSpaces' Spring-based OpenSpaces Framework as the primary development environment, and uses the GigaSpaces Space-based runtime to deliver core middleware facilities: messaging, data caching and parallelization.
+        <h2><MadCap:variable name="General.ProductNameIE" /> Core</h2>
+        <p><MadCap:variable name="General.ProductNameIE" /> Core is essentially an in-memory data grid which is designed to support ultra-low latency and high-throughput applications that follow Space-Based Architecture design patterns. The data grid is based on GigaSpaces' Spring-based OpenSpaces Framework as the primary development environment, and uses the GigaSpaces Space-based runtime to deliver core middleware facilities: messaging, data caching and parallelization.
 
 </p>
-        <p><MadCap:variable name="General.ProductNameIEP" />supports a variety of data models, including POJO, PONO, Documents, Key/Value, Geospatial, and Full Text.
+        <p><MadCap:variable name="General.ProductNameIE" /> supports a variety of data models, including POJO, PONO, Documents, Key/Value, Geospatial, and Full Text.
 
 Accessing the platform can be done using multiple API patterns, such as SQL, Event Processing, RPC and Remoting, Map/Reduce, Aggregators, and Transaction Management.
 
@@ -24,8 +24,8 @@ The data grid also functions as an application server that enables applications 
         <p style="text-align: center;" MadCap:conditions="Default.DoNotShow">
             <img src="../Resources/Static/images/Smart-InsightEdge-Core-2.png" class="tc-picture70" />
         </p>
-        <p style="text-align: center;"><MadCap:variable name="General.ProductNameIEP" /> Core Architecture</p>
-        <div class="tc-admon-note"><a href="../overview/terminology.html" class="MCTopicPopup MCTopicPopupHotSpot MCXref xref">
+        <p style="text-align: center;" MadCap:conditions="Default.DoNotShow"><MadCap:variable name="General.ProductNameIE" /> Core Components</p>
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow"><a href="../overview/terminology.html" class="MCTopicPopup MCTopicPopupHotSpot MCXref xref">
 				Click here 
 			</a>
 			for an explanation of <MadCap:variable name="General.ProductNameXAP" /> terminology.</div>
@@ -52,19 +52,23 @@ The data grid also functions as an application server that enables applications 
 on on-prem and cloud machines. <br />Smart data partitioning locates frequently-access data in the same partition as the code that uses the data (co-location), and allows horizontal and vertical scaling to perform dynamic, rule-based scaling of the system. </li>
             </ul>
         </div>
-        <p>See <MadCap:xref href="../overview/product-architecture.html">Data Grid Architecture</MadCap:xref>  for more details of the <MadCap:variable name="General.ProductNameXAP" /> product architecture.</p>
-        <p><MadCap:variable name="General.ProductNameIEP" /> provides enterprise-grade <a href="../production/production-failover-considerations.html">Failover Considerations</a> capabilities.
+        <p MadCap:conditions="Default.DoNotShow">See <MadCap:xref href="../overview/product-architecture.html">Data Grid Architecture</MadCap:xref>  for more details of the <MadCap:variable name="General.ProductNameXAP" /> product architecture.</p>
+        <p><MadCap:variable name="General.ProductNameIE" /> provides enterprise-grade high availability capabilities and 
 
-<MadCap:variable name="General.ProductNameIEP" />can be scaled up and out on-line with no downtime.
+can be scaled up and out on-line with no downtime.
 
-<MadCap:variable name="General.ProductNameIEP" />can be installed on-prem, in the cloud, or in a hybrid environment, including Kubernetes and OpenShift, or using its own orchestration deployments support.</p>
-        <h1 style="text-align: left;">Components of the <MadCap:variable name="General.ProductNameXAP" /> Smart Portfolio</h1>
-        <h2><MadCap:variable name="General.ProductNameIEP" /> Smart Cache</h2>
+<MadCap:variable name="General.ProductNameIE" /> can be deployed on-prem, in the cloud, or in a hybrid environment, including Kubernetes and OpenShift, or using its own orchestration mechanism.</p>
+        <p>See <MadCap:xref href="../overview/index.html"> [%=General.ProductNameIE%] Core</MadCap:xref> for more information.</p>
+        <h1 style="text-align: left;">Components of the <MadCap:variable name="General.ProductNameIE" /> Smart Portfolio</h1>
+        <h2><MadCap:variable name="General.ProductNameIE" /> Smart Cache</h2>
         <p>Smart Cache provides fast, scalable cache from any data store. It is fully SQL-99 compliant, and can connect in one click to any operational data store. Additionally it provides out-of-the-box advanced persistency options.</p>
-        <h2><MadCap:variable name="General.ProductNameIEP" /> Smart ODS</h2>
+        <p>See <MadCap:xref href="SmartCache.html">[%=General.ProductNameIE%] Smart Cache </MadCap:xref>for more information.</p>
+        <h2><MadCap:variable name="General.ProductNameIE" /> Smart ODS</h2>
         <p>Smart ODS is an advanced Operational Data Store, also referred to as a Digital Integration Hub (DIH), which is an application architecture that aggregates multiple back-end systems of record data sources into a low-latency and scale-out, high-performance data store that can host server side applications for co-located data and processing for optimal performance. Operations can be managed in a fully transactional interface. It also provides remote replication of data to other clusters on-prem or in the cloud.</p>
-        <h2><MadCap:variable name="General.ProductNameIEP" /> Smart Augmented Transactions</h2>
+        <p>See <MadCap:xref href="SmartODS.html">[%=General.ProductNameIE%] Smart ODS </MadCap:xref>for more information.</p>
+        <h2><MadCap:variable name="General.ProductNameIE" /> Smart Augmented Transactions</h2>
         <p>Smart Augmented Transactions is an in-memory Translytical platform that unifies streaming, real-time transactional and analytical processing capabilities, which augments the Smart ODS capabilities with Spark and Machine Learning and Deep Learning capabilities.</p>
+        <p>See <MadCap:xref href="SmartAugmentedTransactions.html">[%=General.ProductNameIE%] Smart Augmented Transactions </MadCap:xref>for more information.</p>
         <div MadCap:conditions="Default.DoNotShow">
             <p style="text-align: left;">consists of three products: Smart Cache, Smart ODS and Smart Augmented Transactions. </p>
             <ul>
@@ -148,97 +152,97 @@ on on-prem and cloud machines. <br />Smart data partitioning locates frequently-
                 <tr>
                     <td>Cloud, On-premise &amp; Hybrid</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 35px;height: 37px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 37px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
                     <td>1-click cloud deployment</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 35px;height: 37px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 35px;height: 37px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 35px;height: 37px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 35px;height: 37px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
                     <td>SQL</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
                     <td>Auto Tiering (Hot, Warm, Cold)</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 35px;height: 37px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 34px;height: 34px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
                     <td>Pre-built Codeless DB Connectors</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
                     <td>Server Side aggregations</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
                     <td>Support for multiple indexes</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
                     <td>Multi-Model Store (Un/Semi/Structured)</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
@@ -246,10 +250,10 @@ on on-prem and cloud machines. <br />Smart data partitioning locates frequently-
 </td>
                     <td>&#160;</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
@@ -258,10 +262,10 @@ Federation of Multiple data stores
 </td>
                     <td>&#160;</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
@@ -269,10 +273,10 @@ Federation of Multiple data stores
 </td>
                     <td>&#160;</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
@@ -280,10 +284,10 @@ Federation of Multiple data stores
 Kafka</td>
                     <td>&#160;</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
@@ -292,10 +296,10 @@ Multi-Region Replication
 </td>
                     <td>&#160;</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
@@ -303,10 +307,10 @@ Multi-Region Replication
 </td>
                     <td>&#160;</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
@@ -315,7 +319,7 @@ Spark</td>
                     <td>&#160;</td>
                     <td style="text-align: center;">&#160;</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
@@ -324,7 +328,7 @@ Spark</td>
                     <td>&#160;</td>
                     <td>&#160;</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
@@ -334,7 +338,7 @@ Data Lake Indexing (AnalyticsXtreme)
                     <td>&#160;</td>
                     <td>&#160;</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
                 <tr>
@@ -343,12 +347,12 @@ Data Lake Indexing (AnalyticsXtreme)
                     <td>&#160;</td>
                     <td>&#160;</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/checkmark.jpg" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
                 </tr>
             </tbody>
         </table>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
             <p>Click for More Details:</p>
             <ul>
                 <li>
