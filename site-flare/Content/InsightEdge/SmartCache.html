@@ -11,14 +11,16 @@
         <p style="text-align: center;">
             <img src="../Resources/Static/images/smart-cache-diagram-with-numbers.png" class="tc-picture80" />
         </p>
-        <p style="text-align: center;">Overview diagram of Smart Cache</p>
-        <h2>1. One-Click Connect</h2>
-        <p> <MadCap:variable name="General.ProductNameIE" /> provides a simple wizard interface to connect to any relational data source. First the user selects either a database or data warehouse, defines various properties of the data source and the naming of the space and stateful service at  <MadCap:variable name="General.ProductNameIE" />, then the platform automatically scans the data source and presents it for the user to review the data structure, choose the required data to load, with the option to rename tables, columns and change indexes. Then the user can choose between two options: Download the generated project files, customize as required and deploy or automatically deploy on the cluster. For more information <a href="https://docs.gigaspaces.com/opm/opm-connect-to-data-source.html">click here.</a></p>
-        <p style="text-align: center;">
-            <img src="../Resources/Static/images/smart-cache-one-click-connect.png" style="width: 613px;height: 676px;" />
-        </p>
-        <p style="text-align: center;">One-Click connect interface</p>
-        <h2>2. Rule-Managed Data Tiers</h2>
+        <div>
+            <p style="text-align: center;">Overview diagram of Smart Cache</p>
+            <h2>1. One-Click Connect to Data Source</h2>
+            <p> <MadCap:variable name="General.ProductNameIE" /> provides a simple wizard interface to connect to any relational data source. First the user selects either a database or data warehouse, defines various properties of the data source and the naming of the space and stateful service at  <MadCap:variable name="General.ProductNameIE" />, then the platform automatically scans the data source and presents it for the user to review the data structure, choose the required data to load, with the option to rename tables, columns and change indexes. Then the user can choose between two options: Download the generated project files, customize as required and deploy or automatically deploy on the cluster. For more information <a href="https://docs.gigaspaces.com/opm/opm-connect-to-data-source.html">click here.</a></p>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/images/smart-cache-one-click-connect-75.png" style="width: 613px;height: 676px;" class="tc-picture50" />
+            </p>
+            <p style="text-align: center;">One-Click connect interface</p>
+        </div>
+        <h2>2. Automated Data Tiering</h2>
         <p>Data is stored in multiple data storage tiers — hot (in-memory), warm (SSD), and cold
 (disk/external data store)					</p>
         <div>
@@ -84,6 +86,7 @@ Fast scan - No materialization of the original user data grid object when perfor
         <p>Using Java and .NET APIs, advanced capabilities are available — such as object store, and <a href="https://docs.gigaspaces.com/solution-hub/modeling-your-data.html">various data modeling options</a>.
 </p>
         <p><a href="https://docs.gigaspaces.com/latest/admin/admin-rest-manager-api.html?Highlight=rest">REST-API</a> and <a href="https://docs.gigaspaces.com/latest/admin/tools-cli.html">command line</a> interfaces are also available.</p>
+        <p>Smart Cache can easily integrate with BI tools such as <a href="https://docs.gigaspaces.com/latest/dev-java/tableau-integration.html">Tableau</a>, Looker, and PowerBI.</p>
         <h1>Deploy Anywhere</h1>
         <div>
             <p>Deployment options include:</p>
@@ -140,8 +143,8 @@ Fast scan - No materialization of the original user data grid object when perfor
         <div MadCap:conditions="Default.DoNotShow">
             <h3>Hybrid Mix of On-Prem and Cloud Storage</h3>
             <p>Using <MadCap:variable name="General.ProductNameXAP" />'s built-in ElasticGrid, or using Kubernetes, SmartCaching allows a configurable, dynamically changeable combination of on-prem and cloud storage. Data can be stored locally and replicated globally, allowing wide-area access with excellent concurrency and data integrity.</p>
+            <h3><a href="https://docs.gigaspaces.com/latest/started/first-data-grid.html">Click here</a> to get started with Smart Cache.</h3>
         </div>
         <h3 MadCap:conditions="Default.DoNotShow">Connect and Trigger SQL and Custom SDK queries</h3>
-        <h2><a href="https://docs.gigaspaces.com/latest/started/first-data-grid.html">Click here</a> to get started with Smart Cache.</h2>
     </body>
 </html>
