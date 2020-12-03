@@ -5,23 +5,25 @@
     <body style="text-align: left;">
         <MadCap:snippetBlock src="../Resources/Snippets/Smart-YES-cache-YES-ods-YES-at.flsnp" MadCap:conditions="Version.15-5-born,Default.DoNotShow" />
         <h1 class="tc-pagetitle" style="text-align: left;"><MadCap:variable name="General.ProductNameIE" /> Smart Cache </h1>
-        <p style="text-align: left;"><MadCap:variable name="General.ProductNameIE" /> Smart Cache is part of the <MadCap:variable name="General.ProductNameXAP" /> <a href="smart-overview.html">Portfolio </a>— Smart Cache, SmartODS and Smart Augmented Transactions. </p>
-        <p style="text-align: left;">Smart Cache provides fast, scalable cache from any data store. It is fully SQL-99 compliant, and can connect in one click to any operational data store. Additionally it provides out-of-the-box advanced persistency options..</p>
+        <p style="text-align: left;"><MadCap:variable name="General.ProductNameIE" /> Smart Cache is part of the <a href="smart-overview.html"><MadCap:variable name="General.ProductNameIE"></MadCap:variable> Portfolio</a> — Smart Cache, Smart ODS and Smart Augmented Transactions. </p>
+        <p style="text-align: left;">Smart Cache provides fast, scalable cache from any data store. It is fully SQL-99 compliant, and can connect in one click to any operational data store. Additionally it provides out-of-the-box advanced persistency options.</p>
         <h1>Smart Cache Overview</h1>
         <p style="text-align: center;">
-            <img src="../Resources/Static/images/smart-cache-diagram-with-numbers.png" class="tc-picture65" />
+            <img src="../Resources/Static/images/smart-cache-diagram-with-numbers.png" class="tc-picture80" />
         </p>
         <p style="text-align: center;">Overview diagram of Smart Cache</p>
-        <h2>
-            <img src="../Resources/Static/images/green-01.jpg" style="width: auto;height: auto;vertical-align: middle;" /> One-Click Connect</h2>
-        <p><span class="tc-highlight">&lt;&lt;&lt;show slides of index hits and footprints ????? &gt;&gt;&gt;</span><![CDATA[
-					]]></p>
-        <h2>
-            <img src="../Resources/Static/images/green-02.jpg" style="width: auto;height: auto;vertical-align: middle;" /> Rule-Managed Data Tiers</h2>
+        <h2>1. One-Click Connect</h2>
+        <p> <MadCap:variable name="General.ProductNameIE" /> provides a simple wizard interface to connect to any relational data source. First the user selects either a database or data warehouse, defines various properties of the data source and the naming of the space and stateful service at  <MadCap:variable name="General.ProductNameIE" />, then the platform automatically scans the data source and presents it for the user to review the data structure, choose the required data to load, with the option to rename tables, columns and change indexes. Then the user can choose between two options: Download the generated project files, customize as required and deploy or automatically deploy on the cluster. For more information <a href="https://docs.gigaspaces.com/opm/opm-connect-to-data-source.html">click here.</a></p>
+        <p style="text-align: center;">
+            <img src="../Resources/Static/images/smart-cache-one-click-connect.png" style="width: 613px;height: 676px;" />
+        </p>
+        <p style="text-align: center;">One-Click connect interface</p>
+        <h2>2. Rule-Managed Data Tiers</h2>
         <p>Data is stored in multiple data storage tiers — hot (in-memory), warm (SSD), and cold
-					</p>
+(disk/external data store)					</p>
         <div>
-            <p>User-defined business rules allows you to place the most <i>important </i>data in "hot" storage (RAM), while other data can be in "warm" (SSD) or "cold" (HD) storage. </p>
+            <p>User-defined business rules allows you to place the most <i>important </i>data in hot storage, while other data can be in warm or cold storage. </p>
+            <p> <MadCap:variable name="General.ProductNameIE" /> manages the full data lifecycle by automatically storing the relevant data in the relevant tiers, federating the queries under the hood to gather all the data in optimal latency and evicting the data according to various policies, from least-recently-used (LRU) to user custom policies. Click <a href="https://docs.gigaspaces.com/latest/admin/memoryxtend-overview.html">here</a> for more information about tiered storage.</p>
             <p style="text-align: center;">
                 <img src="../Resources/Static/images/smartcache-data-tiering-diagram.jpg" style="width: 726px; height: 361px;" class="tc-picture50" />
             </p>
@@ -29,9 +31,13 @@
                 <p>"Important" does not necessarily mean "most frequently accessed" — for example, your business rules may place premium customers in hot storage, even if their data is less frequently required. </p>
             </div>
         </div>
-        <h2>
-            <img src="../Resources/Static/images/green-03.jpg" style="width: auto;height: auto;vertical-align: middle;" /> Advanced Indexing and Smart Data Co-Location</h2>
-        <p>Distributed server-side data aggregation and code co-location provides high concurrency, full data integrity and reduces networking and serialization overhead.</p>
+        <h2>3. Optimized Performance</h2>
+        <h3>Advanced Indexing</h3>
+        <p>Smart Cache provides unlimited amount of secondary <a href="https://docs-staging.gigaspaces.com/latest/dev-java/indexing-overview.html">indexes</a> for the stored data, such as Exact, Range, Collections, Compound, Text, and Geo Spatial for optimal performance.</p>
+        <p>Unlike key-value stores that need to duplicate the entire data store for each defined index,  <MadCap:variable name="General.ProductNameIE" /> only creates additional indexing data structures on one instance of data. </p>
+        <h3>Smart Data Co-Location<br /></h3>
+        <h3>Server Side Aggregations</h3>
+        <p>Distributed server-side data <a href="https://docs-staging.gigaspaces.com/latest/dev-java/aggregators.html?Highlight=aggregations">aggregation</a> and code co-location provides high concurrency, full data integrity and reduces networking and serialization overhead.</p>
         <p style="text-align: center;">
             <img src="../Resources/Static/images/smartcache-aggregation-diagram.jpg" style="width: 598px; height: 441px;" class="tc-picture40" />
         </p>
@@ -68,8 +74,7 @@ Fast scan - No materialization of the original user data grid object when perfor
         <p MadCap:conditions="Default.DoNotShow">Enterprise ready designed for 99.999% availability and data replication, and enterprise security
  
 					</p>
-        <h2>
-            <img src="../Resources/Static/images/green-04.jpg" style="width: auto;height: auto;vertical-align: middle;" /> AIOps</h2>
+        <h2>4. AIOps</h2>
         <h3>Artificial Intelligence Ops (AIOps) for Multi-Directional Scaling</h3>
         <p>User-defined rules can automatically scale up/down or scale out/in when system demands change.<br></br> For example a rule could state:</p>
         <blockquote>
@@ -80,8 +85,7 @@ Fast scan - No materialization of the original user data grid object when perfor
         <p MadCap:conditions="Default.DoNotShow">High performance compute engine with millisecond response time for digital applications
  
 					</p>
-        <h2>
-            <img src="../Resources/Static/images/green-05.jpg" style="width: auto;height: auto;vertical-align: middle;" /> APIs</h2>
+        <h2>5. APIs</h2>
         <div>
             <p style="text-align: center;">
                 <img src="../Resources/Static/images/Smart-data-internal-diagram.jpg" class="tc-picture50" />
