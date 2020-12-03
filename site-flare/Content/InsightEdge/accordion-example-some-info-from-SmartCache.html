@@ -12,29 +12,29 @@
             <img src="../Resources/Static/images/smart-cache-diagram-with-numbers.png" class="tc-picture80" />
         </p>
         <p style="text-align: center;">Overview diagram of Smart Cache</p>
-        <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
-            <div class="easyui-accordion">
-                <div title="1. One-Click Connect">
-                    <p>para 1</p>
-                    <p>para 2</p>
-                </div> <!--x end of accordion 1 --><div title="2. Rule-Managed Data Tiers"><p>para 1</p><p>para 2</p></div> <!--x end of accordion 2 --><div title="3. Optimized Performance"><p>para 1</p><p>para 2</p></div> <!--x end of accordion 3 --><div title="4. AIOps"><p>para 1</p><p>para 2</p></div> <!--x end of accordion 4 --><div title="5. APIs"><p>para 1</p><p>para 2</p></div> <!--x end of accordion 5 --></div>
-            <h2>1. One-Click Connect</h2>
-            <p> <MadCap:variable name="General.ProductNameIE" /> provides a simple wizard interface to connect to any relational data source. First the user selects either a database or data warehouse, defines various properties of the data source and the naming of the space and stateful service at  <MadCap:variable name="General.ProductNameIE" />, then the platform automatically scans the data source and presents it for the user to review the data structure, choose the required data to load, with the option to rename tables, columns and change indexes. Then the user can choose between two options: Download the generated project files, customize as required and deploy or automatically deploy on the cluster. For more information <a href="https://docs.gigaspaces.com/opm/opm-connect-to-data-source.html">click here.</a></p>
+        <h2 onclick="if (div-1.style.display === 'none') {div-1.style.display = 'block';} else {div-1style.display = 'none';}">hhhhhhhhhhhhh1. One-Click Connect</h2>
+        <div id="div-1">
+            <p><MadCap:variable name="General.ProductNameIE" /> provides a simple wizard interface to connect to any relational data source. First the user selects either a database or data warehouse, defines various properties of the data source and the naming of the space and stateful service at  <MadCap:variable name="General.ProductNameIE" />, then the platform automatically scans the data source and presents it for the user to review the data structure, choose the required data to load, with the option to rename tables, columns and change indexes. Then the user can choose between two options: Download the generated project files, customize as required and deploy or automatically deploy on the cluster. For more information <a href="https://docs.gigaspaces.com/opm/opm-connect-to-data-source.html">click here.</a></p>
             <p style="text-align: center;">
                 <img src="../Resources/Static/images/smart-cache-one-click-connect.png" style="width: 613px;height: 676px;" />
             </p>
             <p style="text-align: center;">One-Click connect interface</p>
-            <h2>2. Rule-Managed Data Tiers</h2>
-            <p>Data is stored in multiple data storage tiers — hot (in-memory), warm (SSD), and cold
-(disk/external data store)					</p>
+        </div>
+        <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+            <div class="easyui-accordion">
+                <div title="1. One-Click Connect">
+                    <h2>1. One-Click Connect</h2>
+                    <p><MadCap:variable name="General.ProductNameIE"></MadCap:variable> provides a simple wizard interface to connect to any relational data source. First the user selects either a database or data warehouse, defines various properties of the data source and the naming of the space and stateful service at  <MadCap:variable name="General.ProductNameIE"></MadCap:variable>, then the platform automatically scans the data source and presents it for the user to review the data structure, choose the required data to load, with the option to rename tables, columns and change indexes. Then the user can choose between two options: Download the generated project files, customize as required and deploy or automatically deploy on the cluster. For more information <a href="https://docs.gigaspaces.com/opm/opm-connect-to-data-source.html">click here.</a></p>
+                    <p style="text-align: center;">
+                        <img src="../Resources/Static/images/smart-cache-one-click-connect.png" style="width: 613px;height: 676px;">
+                        </img>
+                    </p>
+                    <p style="text-align: center;">One-Click connect interface</p>
+                </div> <!--x end of accordion 1 --><div title="2. Rule-Managed Data Tiers"><h2>2. Rule-Managed Data Tiers</h2><p>Data is stored in multiple data storage tiers — hot (in-memory), warm (SSD), and cold
+(disk/external data store)					</p><div><p>User-defined business rules allows you to place the most <i>important </i>data in hot storage, while other data can be in warm or cold storage. </p><p><MadCap:variable name="General.ProductNameIE"></MadCap:variable> manages the full data lifecycle by automatically storing the relevant data in the relevant tiers, federating the queries under the hood to gather all the data in optimal latency and evicting the data according to various policies, from least-recently-used (LRU) to user custom policies. Click <a href="https://docs.gigaspaces.com/latest/admin/memoryxtend-overview.html">here</a> for more information about tiered storage.</p><p style="text-align: center;"><img src="../Resources/Static/images/smartcache-data-tiering-diagram.jpg" style="width: 726px; height: 361px;" class="tc-picture50"></img></p><div class="tc-admon-note"><p>"Important" does not necessarily mean "most frequently accessed" — for example, your business rule</p></div></div></div> <!--x end of accordion 2 --> <!--x end of accordion 3 --> <!--x end of accordion 4 --> <!--x end of accordion 5 --></div>
             <div>
-                <p>User-defined business rules allows you to place the most <i>important </i>data in hot storage, while other data can be in warm or cold storage. </p>
-                <p> <MadCap:variable name="General.ProductNameIE" /> manages the full data lifecycle by automatically storing the relevant data in the relevant tiers, federating the queries under the hood to gather all the data in optimal latency and evicting the data according to various policies, from least-recently-used (LRU) to user custom policies. Click <a href="https://docs.gigaspaces.com/latest/admin/memoryxtend-overview.html">here</a> for more information about tiered storage.</p>
-                <p style="text-align: center;">
-                    <img src="../Resources/Static/images/smartcache-data-tiering-diagram.jpg" style="width: 726px; height: 361px;" class="tc-picture50" />
-                </p>
                 <div class="tc-admon-note">
-                    <p>"Important" does not necessarily mean "most frequently accessed" — for example, your business rules may place premium customers in hot storage, even if their data is less frequently required. </p>
+                    <p>requently accessed" — for example, your business rules may place premium customers in hot storage, even if their data is less frequently required. </p>
                 </div>
             </div>
             <h2>3. Optimized Performance</h2>
