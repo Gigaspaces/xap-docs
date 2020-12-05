@@ -5,8 +5,11 @@
     <body style="text-align: left;">
         <h1 class="tc-pagetitle" style="text-align: left;">The <MadCap:variable name="General.ProductNameIE" /> Portfolio </h1>
         <p>The InsightEdge Portfolio — Smart Cache, Smart ODS and Smart Augmented Transactions — is based on the InsightEdge Core, which is a distributed In-Memory storage and processing engine.</p>
+        <p style="text-align: center;">
+            <img src="../Resources/Static/images/smart-overiew-IE-portfolio.png" style="width: 896px;height: 377px;" />
+        </p>
         <h2><MadCap:variable name="General.ProductNameIE" /> Core</h2>
-        <p><MadCap:variable name="General.ProductNameIE" /> Core is essentially an in-memory data grid which is designed to support ultra-low latency and high-throughput applications that follow Space-Based Architecture design patterns. The data grid is based on GigaSpaces' Spring-based OpenSpaces Framework as the primary development environment, and uses the GigaSpaces Space-based runtime to deliver core middleware facilities: messaging, data caching and parallelization.
+        <p>At the core of all InsightEdge products is the InsightEdge core engine. It is essentially an in-memory data grid which is designed to support ultra-low latency and high-throughput applications that follow Space-Based Architecture design patterns. The data grid is based on GigaSpaces' Spring-based OpenSpaces Framework as the primary development environment, and uses the GigaSpaces Space-based runtime to deliver core middleware facilities: messaging, data caching and parallelization.
 
 </p>
         <p><MadCap:variable name="General.ProductNameIE" /> supports a variety of data models, including POJO, PONO, Documents, Key/Value, Geospatial, and Full Text.
@@ -61,14 +64,14 @@ can be scaled up and out on-line with no downtime.
         <p>See <MadCap:xref href="../overview/index.html"> [%=General.ProductNameIE%] Core</MadCap:xref> for more information.</p>
         <h1 style="text-align: left;">Components of the <MadCap:variable name="General.ProductNameIE" /> Portfolio</h1>
         <h2><MadCap:variable name="General.ProductNameIE" /> Smart Cache</h2>
-        <p>Smart Cache provides fast, scalable cache from any data store. It is fully <a href="https://docs-staging.gigaspaces.com/latest/dev-java/query-sql.html">SQL-99</a> compliant, and can <a href="https://docs-staging.gigaspaces.com/latest/opm/opm-connect-to-data-source.html">connect in one click</a> to any operational data store. Additionally it provides out-of-the-box advanced <a href="https://docs-staging.gigaspaces.com/latest/dev-java/space-persistency-overview.html">persistency</a> options.</p>
+        <p>Smart Cache provides fast, scalable cache from any data store. It is fully <a href="https://docs.gigaspaces.com/latest/dev-java/query-sql.html">SQL-99</a> compliant, and can <a href="https://docs.gigaspaces.com/latest/opm/opm-connect-to-data-source.html">connect in one click</a> to any operational data store. Additionally it provides out-of-the-box advanced <a href="https://docs.gigaspaces.com/latest/dev-java/space-persistency-overview.html">persistency</a> options.</p>
         <p>See <MadCap:xref href="SmartCache.html">[%=General.ProductNameIE%] Smart Cache </MadCap:xref>for more information.</p>
         <h2><MadCap:variable name="General.ProductNameIE" /> Smart ODS</h2>
         <p>Smart ODS is an advanced <a href="https://www.gigaspaces.com/blog/digital-integration-hub-dih/">Operational Data Store</a>, also referred to as a <a href="https://www.gigaspaces.com/blog/digital-integration-hub-dih/">Digital Integration Hub</a> (DIH), which is an application architecture that aggregates multiple back-end systems of record data sources into a low-latency and scale-out, high-performance data store that can host server side applications for co-located data and processing for optimal performance. </p>
-        <p>Operations can be managed in a fully <a href="https://docs-staging.gigaspaces.com/latest/dev-java/jms-transactions-in-gigaspaces.html">transactional</a> interface. It also provides <a href="https://docs-staging.gigaspaces.com/latest/dev-java/multi-site-replication-overview.html">remote replication</a> of data to other clusters on-prem or in the cloud.</p>
+        <p>Operations can be managed in a fully <a href="https://docs.gigaspaces.com/latest/dev-java/jms-transactions-in-gigaspaces.html">transactional</a> interface. It also provides <a href="https://docs.gigaspaces.com/latest/dev-java/multi-site-replication-overview.html">remote replication</a> of data to other clusters on-prem or in the cloud.</p>
         <p>See <MadCap:xref href="SmartODS.html">[%=General.ProductNameIE%] Smart ODS </MadCap:xref>for more information.</p>
         <h2><MadCap:variable name="General.ProductNameIE" /> Smart Augmented Transactions</h2>
-        <p>Smart Augmented Transactions is an in-memory Translytical platform that unifies streaming, real-time transactional and analytical processing capabilities, which augments the Smart ODS capabilities with <a href="https://docs-staging.gigaspaces.com/latest/analytics/running-sparksession-in-pu.html">Spark</a> and <a href="https://docs-staging.gigaspaces.com/latest/dev-java/insightedge-mllib.html">Machine Learning</a> and Deep Learning capabilities.</p>
+        <p>Smart Augmented Transactions is an in-memory Translytical platform that unifies streaming, real-time transactional and analytical processing capabilities, which augments the Smart ODS capabilities with <a href="https://docs.gigaspaces.com/latest/analytics/running-sparksession-in-pu.html">Spark</a> and <a href="https://docs.gigaspaces.com/latest/dev-java/insightedge-mllib.html">Machine Learning</a> and Deep Learning capabilities.</p>
         <p>See <MadCap:xref href="SmartAugmentedTransactions.html">[%=General.ProductNameIE%] Smart Augmented Transactions </MadCap:xref>for more information.</p>
         <div MadCap:conditions="Default.DoNotShow">
             <p style="text-align: left;">consists of three products: Smart Cache, Smart ODS and Smart Augmented Transactions. </p>
@@ -138,20 +141,23 @@ can be scaled up and out on-line with no downtime.
         <h1>Comparison Chart of <MadCap:variable name="General.ProductNameIE" /> Components</h1>
         <table style="width: 70%;margin-left: auto;margin-right: auto;">
             <col />
-            <col />
-            <col />
-            <col />
+            <col style="width: 164px;" />
+            <col style="width: 143px;" />
+            <col style="width: 144px;" />
             <thead>
                 <tr>
                     <th style="font-weight: bold;">Feature</th>
-                    <th style="font-weight: bold;">Smart Cache</th>
-                    <th style="font-weight: bold;">Smart ODS</th>
-                    <th style="font-weight: bold;">Smart Augmented Transactions</th>
+                    <th style="font-weight: bold;"><a href="SmartCache.html">Smart Cache</a>
+                    </th>
+                    <th style="font-weight: bold;"><a href="SmartODS.html">Smart ODS</a>
+                    </th>
+                    <th style="font-weight: bold;"><a href="SmartAugmentedTransactions.html">Smart Augmented Transactions</a>
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Cloud, On-premise &amp; Hybrid</td>
+                    <td><a href="https://docs-staging.gigaspaces.com/latest/orchestration/gsctl-create-gs-cluster-cloud.html">Cloud</a>, <a href="https://docs-staging.gigaspaces.com/latest/orchestration/gsctl-create-gs-cluster-on-prem.html">On-premise</a> &amp; <a href="https://docs-staging.gigaspaces.com/latest/orchestration/gsctl-create-gs-hybrid.html">Hybrid</a></td>
                     <td style="text-align: center;">
                         <img src="../Resources/Static/images/check-mark-black.png" style="width: 35px;height: 35px;" />
                     </td>
@@ -163,7 +169,8 @@ can be scaled up and out on-line with no downtime.
                     </td>
                 </tr>
                 <tr>
-                    <td>1-click cloud deployment</td>
+                    <td><a href="https://docs-staging.gigaspaces.com/latest/orchestration/gsctl-utility.html?Highlight=gsctl">1-click cloud deployment</a>
+                    </td>
                     <td style="text-align: center;">
                         <img src="../Resources/Static/images/check-mark-black.png" style="width: 35px;height: 37px;" />
                     </td>
@@ -175,7 +182,8 @@ can be scaled up and out on-line with no downtime.
                     </td>
                 </tr>
                 <tr>
-                    <td>SQL</td>
+                    <td><a href="https://docs-staging.gigaspaces.com/latest/dev-java/sql-query-intro.html">SQL</a>
+                    </td>
                     <td style="text-align: center;">
                         <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
@@ -187,7 +195,7 @@ can be scaled up and out on-line with no downtime.
                     </td>
                 </tr>
                 <tr>
-                    <td>Auto Tiering (Hot, Warm, Cold)</td>
+                    <td><a href="https://docs-staging.gigaspaces.com/latest/admin/memoryxtend-overview.html?Highlight=memoryxtend">Auto Tiering</a> (Hot, Warm, Cold)</td>
                     <td style="text-align: center;">
                         <img src="../Resources/Static/images/check-mark-black.png" style="width: 34px;height: 34px;" />
                     </td>
@@ -199,7 +207,7 @@ can be scaled up and out on-line with no downtime.
                     </td>
                 </tr>
                 <tr>
-                    <td>Pre-built Codeless DB Connectors</td>
+                    <td>Pre-built <a href="https://docs-staging.gigaspaces.com/latest/opm/opm-connect-to-data-source.html?Highlight=connect%20to%20data">Codeless DB Connectors</a></td>
                     <td style="text-align: center;">
                         <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
@@ -211,19 +219,8 @@ can be scaled up and out on-line with no downtime.
                     </td>
                 </tr>
                 <tr>
-                    <td>Server Side aggregations</td>
-                    <td style="text-align: center;">
-                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    <td><a href="https://docs-staging.gigaspaces.com/latest/dev-java/aggregators.html?Highlight=aggregations">Server Side aggregations</a>
                     </td>
-                    <td style="text-align: center;">
-                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
-                    </td>
-                    <td style="text-align: center;">
-                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Support for multiple indexes</td>
                     <td style="text-align: center;">
                         <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
@@ -235,7 +232,7 @@ can be scaled up and out on-line with no downtime.
                     </td>
                 </tr>
                 <tr>
-                    <td>Multi-Model Store (Un/Semi/Structured)</td>
+                    <td>Support for <a href="https://docs-staging.gigaspaces.com/latest/dev-java/indexing-overview.html?Highlight=indexing">multiple indexes</a></td>
                     <td style="text-align: center;">
                         <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
                     </td>
@@ -247,7 +244,19 @@ can be scaled up and out on-line with no downtime.
                     </td>
                 </tr>
                 <tr>
-                    <td>Strong Consistency (ACID)
+                    <td><a href="https://docs-staging.gigaspaces.com/latest/dev-java/modeling-your-data.html">Multi-Model Store</a> (Un/Semi/Structured)</td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs-staging.gigaspaces.com/latest/dev-java/transaction-overview.html?Highlight=transactions">Strong Consistency</a> (ACID)
 </td>
                     <td>&#160;</td>
                     <td style="text-align: center;">
@@ -258,8 +267,54 @@ can be scaled up and out on-line with no downtime.
                     </td>
                 </tr>
                 <tr>
-                    <td>
-Federation of Multiple data stores
+                    <td><![CDATA[
+]]><a href="https://docs-staging.gigaspaces.com/latest/opm/opm-connect-to-data-source.html?Highlight=connect%20data">Federation of Multiple data stores</a><![CDATA[
+]]></td>
+                    <td>&#160;</td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs-staging.gigaspaces.com/latest/dev-java/task-execution-overview.html">Microservices
+</a>
+                    </td>
+                    <td>&#160;</td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><![CDATA[	
+]]><a href="https://docs-staging.gigaspaces.com/latest/solution-hub/kafka-integration.html?Highlight=kafka">Kafka</a></td>
+                    <td>&#160;</td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><![CDATA[
+]]><a href="https://docs-staging.gigaspaces.com/latest/dev-java/multi-site-replication-overview.html">Multi-Region Replication</a><![CDATA[
+]]></td>
+                    <td>&#160;</td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>EDA (<a href="https://docs-staging.gigaspaces.com/latest/dev-java/event-processing.html">Event Driven Analytic</a>s)
 </td>
                     <td>&#160;</td>
                     <td style="text-align: center;">
@@ -270,53 +325,8 @@ Federation of Multiple data stores
                     </td>
                 </tr>
                 <tr>
-                    <td>Microservices
-</td>
-                    <td>&#160;</td>
-                    <td style="text-align: center;">
-                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
-                    </td>
-                    <td style="text-align: center;">
-                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>	
-Kafka</td>
-                    <td>&#160;</td>
-                    <td style="text-align: center;">
-                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
-                    </td>
-                    <td style="text-align: center;">
-                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-Multi-Region Replication
-</td>
-                    <td>&#160;</td>
-                    <td style="text-align: center;">
-                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
-                    </td>
-                    <td style="text-align: center;">
-                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>EDA (Event Driven Analytics)
-</td>
-                    <td>&#160;</td>
-                    <td style="text-align: center;">
-                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
-                    </td>
-                    <td style="text-align: center;">
-                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-Spark</td>
+                    <td><![CDATA[
+]]><a href="https://docs-staging.gigaspaces.com/latest/analytics/running-sparksession-in-pu.html">Spark</a></td>
                     <td>&#160;</td>
                     <td style="text-align: center;">&#160;</td>
                     <td style="text-align: center;">
@@ -324,8 +334,7 @@ Spark</td>
                     </td>
                 </tr>
                 <tr>
-                    <td>Combined transaction &amp; analytical processing
-</td>
+                    <td><a href="https://docs-staging.gigaspaces.com/latest/dev-java/insightedge-apis.html">Translytical Processing</a> (combined transaction &amp; analytical processing)</td>
                     <td>&#160;</td>
                     <td>&#160;</td>
                     <td style="text-align: center;">
@@ -334,7 +343,7 @@ Spark</td>
                 </tr>
                 <tr>
                     <td>
-Data Lake Indexing (AnalyticsXtreme)
+Data Lake Indexing (<a href="https://docs-staging.gigaspaces.com/latest/dev-java/data-lake-acceleration.html?Highlight=analyticsxtreme">AnalyticsXtreme</a>)
 </td>
                     <td>&#160;</td>
                     <td>&#160;</td>
@@ -343,7 +352,7 @@ Data Lake Indexing (AnalyticsXtreme)
                     </td>
                 </tr>
                 <tr>
-                    <td>Deep Learning (Tensor, Caffe &amp; Torch)	
+                    <td>Deep Learning (<a href="https://www.gigaspaces.com/blog/what-is-natural-language-processing-and-how-it-can-work-for-your-business/">TensorFlow, Caffe &amp; Torch</a>)	
 </td>
                     <td>&#160;</td>
                     <td>&#160;</td>
