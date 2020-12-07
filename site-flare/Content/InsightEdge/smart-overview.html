@@ -9,7 +9,9 @@
             <img src="../Resources/Static/images/smart-overiew-IE-portfolio.png" style="width: 896px;height: 377px;" />
         </p>
         <h2><MadCap:variable name="General.ProductNameIE" /> Core</h2>
-        <p>At the core of all InsightEdge products is the InsightEdge core engine. It is essentially an in-memory data grid which is designed to support ultra-low latency and high-throughput applications that follow Space-Based Architecture design patterns. The data grid is based on GigaSpaces' Spring-based OpenSpaces Framework as the primary development environment, and uses the GigaSpaces Space-based runtime to deliver core middleware facilities: messaging, data caching and parallelization.
+        <p>At the core of all InsightEdge products is the <a href="https://docs.gigaspaces.com/latest/overview/index.html">InsightEdge core engine</a>. It is essentially an in-memory data grid which is designed to support ultra-low latency and high-throughput applications that follow Space-Based Architecture design patterns. </p>
+        <h3><MadCap:variable name="General.ProductNameIE" /> Data Grid</h3>
+        <p>The data grid is based on GigaSpaces' Spring-based OpenSpaces Framework as the primary development environment, and uses the GigaSpaces Space-based runtime to deliver core middleware facilities: messaging, data caching and parallelization.
 
 </p>
         <p><MadCap:variable name="General.ProductNameIE" /> supports a variety of data models, including POJO, PONO, Documents, Key/Value, Geospatial, and Full Text.
@@ -17,13 +19,19 @@
 Accessing the platform can be done using multiple API patterns, such as SQL, Event Processing, RPC and Remoting, Map/Reduce, Aggregators, and Transaction Management.
 
 </p>
-        <p>The platform support multiple data tiers and provides full data lifecycle management, on RAM, SSD/Flash, PMEM, Disk and external data stores.
-
-Using the platform, high availability, replication and persistence are provided out-of-the-box, with Multi-Data Center Replication and Data Persistency.
-
-The data grid also functions as an application server that enables applications running on the data grid to be scaled out linearly, using Space-Based Architecture (SBA) as a primary design pattern. With SBA, applications are built out of a set of self-sufficient units, known as Processing Units (PU). These units are completely independent of each other, so that the application can scale indefinitely without increasing complexity, just by adding more units. SBA is based on the Tuple Space paradigm. SBA it follows many of the principles of Service-Oriented Architecture and Event-Driven Architecture, as well as elements of grid computing.
+        <h3> Data Tiers</h3>
+        <p>The platform support multiple <a href="https://docs.gigaspaces.com/latest/admin/memoryxtend-overview.html">data tiers</a> and provides full data lifecycle management, on RAM, SSD/Flash, PMEM, Disk and external data stores.
+</p>
+        <h3>High Availability and Persistency </h3>
+        <p>Using the platform, <a href="https://docs.gigaspaces.com/latest/admin/data-grid-clustering.html?Highlight=master%20replica">high availability</a>, <a href="https://docs.gigaspaces.com/latest/admin/replication.html">replication</a> and <a href="https://docs.gigaspaces.com/latest/admin/memoryxtend-overview.html?Highlight=memoryxtend">persistence</a> are provided out-of-the-box, with Multi-Data Center Replication and Data Persistency.
 
 </p>
+        <h3> Space-Based Architecture </h3>
+        <p>The data grid also functions as an application server that enables applications running on the data grid to be scaled out linearly, using <a href="https://docs.gigaspaces.com/latest/overview/space-based-architecture.html">Space-Based Architecture</a> (SBA) as a primary design pattern. </p>
+        <p>With SBA, applications are built out of a set of self-sufficient units, known as <a href="https://docs.gigaspaces.com/latest/dev-java/the-processing-unit-overview.html">Processing Units</a> (PU). These units are completely independent of each other, so that the application can scale indefinitely without increasing complexity, just by adding more units. SBA is based on the Tuple Space paradigm. SBA it follows many of the principles of Service-Oriented Architecture and <a href="https://docs.gigaspaces.com/latest/dev-java/event-processing.html">Event-Driven Architecture</a>, as well as elements of grid computing.
+
+</p>
+        <p>&#160;</p>
         <p style="text-align: center;" MadCap:conditions="Default.DoNotShow">
             <img src="../Resources/Static/images/Smart-InsightEdge-Core-2.png" class="tc-picture70" />
         </p>
@@ -197,7 +205,7 @@ can be scaled up and out on-line with no downtime.
                 <tr>
                     <td><a href="https://docs.gigaspaces.com/latest/admin/memoryxtend-overview.html?Highlight=memoryxtend">Auto Tiering</a> (Hot, Warm, Cold)</td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 34px;height: 34px;" />
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 33px;height: 33px;" />
                     </td>
                     <td style="text-align: center;">
                         <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
@@ -209,7 +217,7 @@ can be scaled up and out on-line with no downtime.
                 <tr>
                     <td>Pre-built <a href="https://docs.gigaspaces.com/latest/opm/opm-connect-to-data-source.html?Highlight=connect%20to%20data">Codeless DB Connectors</a></td>
                     <td style="text-align: center;">
-                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                        <img src="../Resources/Static/images/new-black-check-mark-clip-art-check-clipart-black.jpg" style="width: 33px;height: 34px;" />
                     </td>
                     <td style="text-align: center;">
                         <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
@@ -256,7 +264,19 @@ can be scaled up and out on-line with no downtime.
                     </td>
                 </tr>
                 <tr>
-                    <td><a href="https://docs.gigaspaces.com/latest/dev-java/transaction-overview.html?Highlight=transactions">Strong Consistency</a> (ACID)
+                    <td><a href="https://docs.gigaspaces.com/latest/admin/consistency-level.html">Strong Consistency</a> </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                    <td style="text-align: center;">
+                        <img src="../Resources/Static/images/check-mark-black.png" style="width: 36px;height: 39px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="https://docs.gigaspaces.com/latest/dev-java/transaction-overview.html">Transactions</a> (ACID)
 </td>
                     <td>&#160;</td>
                     <td style="text-align: center;">

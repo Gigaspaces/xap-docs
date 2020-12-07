@@ -7,14 +7,15 @@
             <h1 class="tc-pagetitle" style="text-align: left;"><MadCap:variable name="General.ProductNameIE" /> Smart ODS</h1>
             <p style="text-align: left;"><MadCap:variable name="General.ProductNameIE" /> Smart ODS is part of the <a href="smart-overview.html"><MadCap:variable name="General.ProductNameIE" /> Portfolio</a> — Smart Cache, Smart ODS and Smart Augmented Transactions. </p>
             <p>InsightEdge Smart ODS is a distributed in-memory <a href="https://www.gigaspaces.com/blog/digital-integration-hub-dih/">Digital Integration Hub</a> (DIH), with unparalleled low-latency, high-performance and scale that aggregates and offloads from multiple back-end systems of record and data stores on premise and on cloud. With a unified API layer, digital applications can be decoupled from disparate systems of record to increase agility and ensure always-on services.</p>
+            <p>When an existing Operational Data Store is already deployed, Smart ODS can augment it to gain better performance, indexing, data integration and ETL replacement. It can be done by either mirroring the ODS actions to the data stores, or by using Smart ODS’s built-in Change Data Capture (CDC) that connects directly with your systems of record, non-intrusively (agentless). </p>
             <h2 style="text-align: left;">Smart ODS System Overview</h2>
             <p style="text-align: left;">The Smart ODS environment can be illustrated as follows:</p>
             <p style="text-align: center;">
-                <img src="../Resources/Static/images/smart-ods-simplified-diagram.jpg" style="width: 745px;height: 445px;">
+                <img src="../Resources/Static/images/smart-ods-simplified-diagram.red.png" style="width: 885px;height: 528px;">
                 </img>
             </p>
             <h1>Overview diagram of Smart ODS</h1>
-            <h2>1A. One-Click Connect to Data Sources
+            <h2>1. One-Click Connect to Data Sources
 </h2>
             <div>
                 <p> <MadCap:variable name="General.ProductNameIE" /> provides a simple wizard interface to connect to any multiple relational data sources. First the user selects either a database or data warehouse, defines various properties of the data source and the naming of the space and stateful service at  <MadCap:variable name="General.ProductNameIE" />, then the platform automatically scans the data source and presents it for the user to review the data structure, choose the required data to load, with the option to rename tables, columns and change indexes. Then the user can choose between two options: Download the generated project files, customize as required and deploy or automatically deploy on the cluster. For more information <a href="https://docs.gigaspaces.com/opm/opm-connect-to-data-source.html">click here.</a></p>
@@ -24,10 +25,8 @@
                 <p style="text-align: center;">One-Click connect interface</p>
             </div>
             <p>&#160;</p>
-            <h2>1B. Augmenting an Existing ODS
-</h2>
-            <p>When an existing Operational Data Store is already deployed, Smart ODS can augment it to gain better performance, indexing, data integration and ETL replacement. It can be done by either mirroring the ODS actions to the data stores, or by using Smart ODS’s built-in Change Data Capture (CDC) that connects directly with your systems of record, non-intrusively (agentless). </p>
-            <p>Data ingestion from the CDC is in millisecond latency and keeps the ODS always in sync with all the different data sources. This is delivered as part of Smart ODS with unified installation and orchestration.</p>
+            <p>Connection to the data source can be either by mirroring the ODS actions to the data store, or by using Smart ODS’s built-in Change Data Capture (CDC) that connects directly with the systems of record, non-intrusively (agentless).
+ Data ingestion from the CDC is in millisecond latency and keeps the ODS always in sync with all the different data sources. This is delivered as part of Smart ODS with unified installation and orchestration.</p>
             <h2>2. Automated Data Tiering
 </h2>
             <p>Data is stored in multiple data storage tiers — hot (in-memory), warm (SSD), and cold
