@@ -8,14 +8,14 @@
         <p style="text-align: left;">Smart Cache provides fast, scalable cache from any data store. It is fully SQL-99 compliant, and can connect in one click to any operational data store. Additionally it provides out-of-the-box advanced persistency options.</p>
         <h1>Smart Cache Overview</h1>
         <p style="text-align: center;">
-            <img src="../Resources/Static/images/smart-cache-diagram-with-numbers.png" class="tc-picture80" />
+            <img src="Resources/Static/images/smart-cache-diagram-with-numbers.png" class="tc-picture80" />
         </p>
         <div>
             <p style="text-align: center;">Overview diagram of Smart Cache</p>
             <h2>1. One-Click Connect to Data Source</h2>
             <p> <MadCap:variable name="General.ProductNameIE" /> provides a simple wizard interface to connect to any relational data source. First the user selects either a database or data warehouse, defines various properties of the data source and the naming of the space and stateful service at  <MadCap:variable name="General.ProductNameIE" />, then the platform automatically scans the data source and presents it for the user to review the data structure, choose the required data to load, with the option to rename tables, columns and change indexes. Then the user can choose between two options: Download the generated project files, customize as required and deploy or automatically deploy on the cluster. For more information <a href="https://docs.gigaspaces.com/opm/opm-connect-to-data-source.html">click here.</a></p>
             <p style="text-align: center;">
-                <img src="../Resources/Static/images/smart-cache-one-click-connect-75.png" style="width: 517px;height: 570px;" class="tc-picture50" />
+                <img src="Resources/Static/images/smart-cache-one-click-connect-75.png" style="width: 517px;height: 570px;" class="tc-picture50" />
             </p>
             <p style="text-align: center;">One-Click connect interface</p>
         </div>
@@ -26,7 +26,7 @@
             <p>User-defined business rules allows you to place the most <i>important </i>data in hot storage, while other data can be in warm or cold storage. </p>
             <p> <MadCap:variable name="General.ProductNameIE" /> manages the full data lifecycle by automatically storing the relevant data in the relevant tiers, federating the queries under the hood to gather all the data in optimal latency and evicting the data according to various policies, from least-recently-used (LRU) to user custom policies. Click <a href="https://docs.gigaspaces.com/latest/admin/memoryxtend-overview.html">here</a> for more information about tiered storage.</p>
             <p style="text-align: center;">
-                <img src="../Resources/Static/images/smartcache-data-tiering-diagram-new.png" style="width: 726px;height: 361px;" class="tc-picture50" />
+                <img src="Resources/Static/images/smartcache-data-tiering-diagram-new.png" style="width: 726px;height: 361px;" class="tc-picture50" />
             </p>
             <div class="tc-admon-note">
                 <p>"Important" does not necessarily mean "most frequently accessed" — for example, your business rules may place premium customers in hot storage, even if their data is less frequently required. </p>
@@ -37,7 +37,7 @@
         <p>Smart Cache provides unlimited amount of secondary <a href="https://docs.gigaspaces.com/latest/dev-java/indexing-overview.html">indexes</a> for the stored data, such as Exact, Range, Collections, Compound, Text, and Geo Spatial for optimal performance.</p>
         <p>Unlike key-value stores that need to duplicate the entire data store for each defined index,  <MadCap:variable name="General.ProductNameIE" /> only creates additional indexing data structures on one instance of data. </p>
         <p style="text-align: center;">
-            <img src="../Resources/Static/images/smart-index-vs-key-value.png" class="tc-picture40" />
+            <img src="Resources/Static/images/smart-index-vs-key-value.png" class="tc-picture40" />
         </p>
         <p style="text-align: center;">Smart Cache advanced indexing</p>
         <h3>Server-Side Aggregations</h3>
@@ -48,12 +48,12 @@ Out of the box aggregators such as SUM, AVG, MIN, GROUP BY, etc. as well as CUST
 Fast scan - No materialization of the original user data grid object when performing this iteration
 </p>
             <p style="text-align: center;">
-                <img src="../Resources/Static/images/Smart-aggregation-diagram.jpg" class="tc-picture40" />
+                <img src="Resources/Static/images/Smart-aggregation-diagram.jpg" class="tc-picture40" />
             </p>
         </div>
         <p>Distributed server-side data <a href="https://docs.gigaspaces.com/latest/dev-java/aggregators.html?Highlight=aggregations">aggregation</a> and code co-location provides high concurrency, full data integrity and reduces networking and serialization overhead.</p>
         <p style="text-align: center;">
-            <img src="../Resources/Static/images/smartcache-aggregation-diagram.jpg" style="width: 480px;height: 353px;" class="tc-picture40" />
+            <img src="Resources/Static/images/smartcache-aggregation-diagram.jpg" style="width: 480px;height: 353px;" class="tc-picture40" />
         </p>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
             <div>
@@ -61,7 +61,7 @@ Fast scan - No materialization of the original user data grid object when perfor
                 <p>When the objects are written to the Data Grid, they are <a href="https://docs.gigaspaces.com/latest/dev-java/routing-in-partitioned-spaces.html?Highlight=routing">routed</a> to the proper partition, according to a predefined attribute in the object that acts as the routing index.
 </p>
                 <p style="text-align: center;">
-                    <img src="../Resources/Static/images/Smart-routing-diagram.jpg" style="width: 604px;height: 161px;" />
+                    <img src="Resources/Static/images/Smart-routing-diagram.jpg" style="width: 604px;height: 161px;" />
                 </p>
             </div>
         </div>
@@ -77,7 +77,7 @@ Fast scan - No materialization of the original user data grid object when perfor
         <h2>5. APIs</h2>
         <div>
             <p style="text-align: center;">
-                <img src="../Resources/Static/images/Smart-data-internal-diagram.jpg" style="width: 765px;height: 428px;" />
+                <img src="Resources/Static/images/Smart-data-internal-diagram.jpg" style="width: 765px;height: 428px;" />
             </p>
             <p style="text-align: center;">Smart Cache APIs</p>
         </div>
@@ -101,14 +101,14 @@ Fast scan - No materialization of the original user data grid object when perfor
                 </li>
             </ul>
             <p style="text-align: center;">
-                <img src="../Resources/Static/images/smart-cache-deploy-anwhere.png" class="tc-picture100" style="width: 786px;height: 360px;" />
+                <img src="Resources/Static/images/smart-cache-deploy-anwhere.png" class="tc-picture100" style="width: 786px;height: 360px;" />
             </p>
             <p style="text-align: center;">Multiple deployment options of Smart Cache</p>
         </div>
         <div MadCap:conditions="Default.DoNotShow">
             <h1>Smart Cache Overview — Internal Data Stores</h1>
             <p style="text-align: center;">
-                <img src="../Resources/Static/images/Smart-data-internal-diagram.jpg" class="tc-picture60" />
+                <img src="Resources/Static/images/Smart-data-internal-diagram.jpg" class="tc-picture60" />
             </p>
         </div>
         <div MadCap:conditions="Default.DoNotShow">
@@ -117,7 +117,7 @@ Fast scan - No materialization of the original user data grid object when perfor
             <p style="text-align: left;">Smart Cache's Ops Manager GUI provides built-in connectors to the most popular databases: </p>
         </div>
         <p style="text-align: center;" MadCap:conditions="Default.DoNotShow">
-            <img src="../Resources/Static/images/smart-one-click-connect.jpg" class="tc-picture60" />
+            <img src="Resources/Static/images/smart-one-click-connect.jpg" class="tc-picture60" />
         </p>
         <div MadCap:conditions="Default.DoNotShow">
             <p>Database tables can be imported as-is, or can be limited to selected columns and other properties using the Ops Manager GUI, and without writing custom code.</p>
@@ -134,7 +134,7 @@ Fast scan - No materialization of the original user data grid object when perfor
                         </div>
                     </td>
                     <td>
-                        <img src="../Resources/Static/images/Smart-bigger--event-processing.jpg" style="width: 818px; height: 427px;" class="tc-picture50" />
+                        <img src="Resources/Static/images/Smart-bigger--event-processing.jpg" style="width: 818px; height: 427px;" class="tc-picture50" />
                     </td>
                 </tr>
             </tbody>
