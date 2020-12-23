@@ -233,7 +233,7 @@
                         <p>The client system is version 12.3 or older</p>
                     </li>
                     <li>
-                        <p>AND the server-side system is a later release of 14.5 or higher</p>
+                        <p>AND the server-side system is a later release of 14.2 or higher</p>
                     </li>
                     <li>
                         <p>AND the old client did a Change operation.</p>
@@ -385,7 +385,7 @@
                         <p>The client system is version 12.3 or older</p>
                     </li>
                     <li>
-                        <p>AND the server-side system is a later release of 14.5 or higher</p>
+                        <p>AND the server-side system is a later release of 14.2 or higher</p>
                     </li>
                     <li>
                         <p>AND the old client did a Change operation.</p>
@@ -594,7 +594,7 @@
                     <p>The client system is version 12.3 or older</p>
                 </li>
                 <li>
-                    <p>AND the server-side system is a later release of 14.5 or higher</p>
+                    <p>AND the server-side system is a later release of 14.2 or higher</p>
                 </li>
                 <li>
                     <p>AND the old client did a Change operation.</p>
@@ -937,7 +937,7 @@
                     <p>The client system is version 12.3 or older</p>
                 </li>
                 <li>
-                    <p>AND the server-side system is a later release of 14.5 or higher</p>
+                    <p>AND the server-side system is a later release of 14.2 or higher</p>
                 </li>
                 <li>
                     <p>AND the old client did a Change operation.</p>
@@ -1031,7 +1031,7 @@
                     <p>The client system is version 12.3 or older</p>
                 </li>
                 <li>
-                    <p>AND the server-side system is a later release of 14.5 or higher</p>
+                    <p>AND the server-side system is a later release of 14.2 or higher</p>
                 </li>
                 <li>
                     <p>AND the old client did a Change operation.</p>
@@ -1096,6 +1096,25 @@
             <li>
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13783," />: XAP Manager relinquish leadership event is delayed by remote call.</li>
         </ul>
+        <h2 MadCap:conditions="Version.14-2-only">Known Issues</h2>
+        <div MadCap:conditions="Version.14-2-only">
+            <p>For client version 12.3 or older, there is a possibility that the redo log will be corrupted and not available for system recovery.</p>
+            <p>This can only happen if all of the following conditions are true:</p>
+            <ul>
+                <li>
+                    <p>The client system is version 12.3 or older</p>
+                </li>
+                <li>
+                    <p>AND the server-side system is a later release of 14.2 or higher</p>
+                </li>
+                <li>
+                    <p>AND the old client did a Change operation.</p>
+                </li>
+                <li>
+                    <p>AND  the redo log exceeds RAM capacity and goes to the hard drive,.</p>
+                </li>
+            </ul>
+        </div>
         <h1 MadCap:conditions="Version.14-0-only">14.0.1</h1>
         <h2 MadCap:conditions="Version.14-0-only">Features and Enhancements</h2>
         <ul MadCap:conditions="Version.14-0-only">
