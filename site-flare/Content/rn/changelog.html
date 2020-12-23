@@ -225,7 +225,25 @@
             </ul>
             <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time.</p>
             <h2>Known Issues</h2>
-            <p>There are no known issues at this time.</p>
+            <div MadCap:conditions="NewSet.JustAColorForDivs">
+                <p>For client version 12.3 or older, there is a possibility that the redo log will be corrupted and not available for system recovery.</p>
+                <p>This can only happen if all of the following conditions are true:</p>
+                <ul>
+                    <li>
+                        <p>The client system is version 12.3 or older</p>
+                    </li>
+                    <li>
+                        <p>AND the server-side system is a later release of 14.5 or higher</p>
+                    </li>
+                    <li>
+                        <p>AND the old client did a Change operation.</p>
+                    </li>
+                    <li>
+                        <p>AND  the redo log exceeds RAM capacity and goes to the hard drive,.</p>
+                    </li>
+                </ul>
+            </div>
+            <p>.</p>
         </div>
         <div MadCap:conditions="Version.15-5-only">
             <h1 MadCap:conditions="Version.15-5-only">15.5.1</h1>
@@ -359,7 +377,25 @@
             </ul>
             <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time.</p>
             <h2>Known Issues</h2>
-            <p>There are no known issues at this time.</p>
+            <div MadCap:conditions="NewSet.JustAColorForDivs">
+                <p>For client version 12.3 or older, there is a possibility that the redo log will be corrupted and not available for system recovery.</p>
+                <p>This can only happen if all of the following conditions are true:</p>
+                <ul>
+                    <li>
+                        <p>The client system is version 12.3 or older</p>
+                    </li>
+                    <li>
+                        <p>AND the server-side system is a later release of 14.5 or higher</p>
+                    </li>
+                    <li>
+                        <p>AND the old client did a Change operation.</p>
+                    </li>
+                    <li>
+                        <p>AND  the redo log exceeds RAM capacity and goes to the hard drive,.</p>
+                    </li>
+                </ul>
+            </div>
+            <p MadCap:conditions="Default.DoNotShow">There are no known issues at this time.</p>
         </div>
         <h1 MadCap:conditions="Version.15-5-only">15.5.0</h1>
         <h2 MadCap:conditions="Version.15-5-only">Features and Enhancements</h2>
@@ -550,6 +586,24 @@
             <li MadCap:conditions="Version.15-5-only">
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14206," />: Tableau 2020.02 (or later) support requires disabling custom load.<br /></li>
         </ul>
+        <div MadCap:conditions="Version.15-5-only">
+            <p>For client version 12.3 or older, there is a possibility that the redo log will be corrupted and not available for system recovery.</p>
+            <p>This can only happen if all of the following conditions are true:</p>
+            <ul>
+                <li>
+                    <p>The client system is version 12.3 or older</p>
+                </li>
+                <li>
+                    <p>AND the server-side system is a later release of 14.5 or higher</p>
+                </li>
+                <li>
+                    <p>AND the old client did a Change operation.</p>
+                </li>
+                <li>
+                    <p>AND  the redo log exceeds RAM capacity and goes to the hard drive,.</p>
+                </li>
+            </ul>
+        </div>
         <p>&#160;</p>
         <h1 MadCap:conditions="Version.15-2-only">15.2</h1>
         <h2 MadCap:conditions="Version.15-2-only">Features and Enhancements</h2>
@@ -874,6 +928,25 @@
             <li>
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13812," />: Full recovery does not preserve the FIFO grouping order.</li>
         </ul>
+        <h2 MadCap:conditions="Version.15-0-only">Known Issues</h2>
+        <div MadCap:conditions="Version.15-0-only">
+            <p>For client version 12.3 or older, there is a possibility that the redo log will be corrupted and not available for system recovery.</p>
+            <p>This can only happen if all of the following conditions are true:</p>
+            <ul>
+                <li>
+                    <p>The client system is version 12.3 or older</p>
+                </li>
+                <li>
+                    <p>AND the server-side system is a later release of 14.5 or higher</p>
+                </li>
+                <li>
+                    <p>AND the old client did a Change operation.</p>
+                </li>
+                <li>
+                    <p>AND  the redo log exceeds RAM capacity and goes to the hard drive,.</p>
+                </li>
+            </ul>
+        </div>
         <h1 MadCap:conditions="Version.14-5-only">14.5.0</h1>
         <h2 MadCap:conditions="Version.14-5-only">Features and Enhancements</h2>
         <ul MadCap:conditions="Version.14-5-only">
@@ -949,6 +1022,25 @@
             <li>
                 <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13831," />: Command line generator does not quote the com.gs.home path if it contains space characters.</li>
         </ul>
+        <h2 MadCap:conditions="Version.14-5-only">Known Issues</h2>
+        <div MadCap:conditions="Version.14-5-only">
+            <p>For client version 12.3 or older, there is a possibility that the redo log will be corrupted and not available for system recovery.</p>
+            <p>This can only happen if all of the following conditions are true:</p>
+            <ul>
+                <li>
+                    <p>The client system is version 12.3 or older</p>
+                </li>
+                <li>
+                    <p>AND the server-side system is a later release of 14.5 or higher</p>
+                </li>
+                <li>
+                    <p>AND the old client did a Change operation.</p>
+                </li>
+                <li>
+                    <p>AND  the redo log exceeds RAM capacity and goes to the hard drive,.</p>
+                </li>
+            </ul>
+        </div>
         <h1 MadCap:conditions="Version.14-2-only">14.2.0</h1>
         <h2 MadCap:conditions="Version.14-2-only">Features and Enhancements</h2>
         <ul MadCap:conditions="Version.14-2-only">
