@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Test Multiple Conditions</h1>
+        <p>this text has no conditions</p>
+        <p MadCap:conditions="Default.DoNotShow">this text has DoNotShow</p>
+        <p MadCap:conditions="Default.DoNotShow,Version.15-0-only">this text has DoNotShow and 15.0 only</p>
+        <p MadCap:conditions="NewSet.JustAColorForDivs">this text has an irrelevant condition -- JustAColorForDivs</p>
+        <p>BORN:</p>
+        <p>this text has 14.0 born</p>
+        <p MadCap:conditions="Version.14-2-born">this text has 14.2 born</p>
+        <p MadCap:conditions="Version.14-5-born">this text has 14.5 born</p>
+        <p MadCap:conditions="Version.15-0-born">this text has 15.0 born</p>
+        <p MadCap:conditions="Version.15-2-born">this text has 15.2 born</p>
+        <p MadCap:conditions="Version.15-5-born">this text has 15.5 born</p>
+        <p MadCap:conditions="Version.15-8-born">this text has 15.8 born</p>
+        <p>DIED:</p>
+        <p MadCap:conditions="Version.14-0-died">this text has 14.0 died</p>
+        <p MadCap:conditions="Version.14-2-died">this text has 14.2 died</p>
+        <p MadCap:conditions="Version.14-5-died">this text has 14.5 died</p>
+        <p MadCap:conditions="Version.15-0-died">this text has 15.0 died</p>
+        <p MadCap:conditions="Version.15-2-died">this text has 15.2 died</p>
+        <p MadCap:conditions="Version.15-5-died">this text has 15.5 died</p>
+        <p MadCap:conditions="Version.15-8-died">this text has 15.8 died</p>
+        <p MadCap:conditions="NewSet.StagingOnly">this text hasStagingOnly</p>
+        <p MadCap:conditions="NewSet.StagingOnly">ONLY:</p>
+        <p MadCap:conditions="Version.14-0-only">this text has 14.0 only</p>
+        <p MadCap:conditions="Version.14-2-only">this text has 14.2 only</p>
+        <p MadCap:conditions="Version.14-5-only">this text has 14.5 only</p>
+        <p MadCap:conditions="Version.15-0-only">this text has 15.0 only</p>
+        <p MadCap:conditions="Version.15-2-only">this text has 15.2 only</p>
+        <p MadCap:conditions="Version.15-5-only">this text has 15.5 only</p>
+        <p MadCap:conditions="Version.15-8-only">this text has 15.8 only</p>
+        <p MadCap:conditions="Version.15-5-only">&#160;</p>
+        <p MadCap:conditions="Version.15-5-only,NewSet.StagingOnly">this text has 15.5 only AND StagingOnly</p>
+        <p MadCap:conditions="Version.15-5-born,NewSet.StagingOnly">this text has 15.5 born AND stagingOnly</p>
+        <p MadCap:conditions="NewSet.StagingOnly,Version.15-8-born">this text has 15.8 born AND stagingOnly</p>
+        <p MadCap:conditions="NewSet.StagingOnly,Version.15-8-only">this text has 15.8 only AND stagingOnly</p>
+        <p MadCap:conditions="Version.15-8-only,NewSet.ProductionOnly">this text has 15.8 only AND ProductionOnly</p>
+        <p MadCap:conditions="NewSet.ProductionOnly">this text has ProductionOnly</p>
+        <p>&#160;</p>
+    </body>
+</html>
