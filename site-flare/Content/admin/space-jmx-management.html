@@ -81,8 +81,8 @@ Runtime.getRuntime().exec( "jconsole " + jndiURL );
                     <p>GSC port 6062</p>
                 </li>
             </ul>
-            <h2>Example of definition:</h2><pre><code class="language-bash">export EXT_JAVA_OPTIONS="-Dcom.sun.management.jmxremote.authenticate=true<br />-Dcom.sun.management.jmxremote.ssl=false<br />-Dcom.sun.management.jmxremote.access.file=[PATH_TO]/jmxremote.access<br />-Dcom.sun.management.jmxremote.password.file=[PATH_TO]/jmxremote.password"<br />export GS_JMX_REMOTE_BASE_PORT=[YOUR_PORT_VAL]<![CDATA[
-]]></code></pre>
+            <h2>Example of definition:</h2><pre><code class="language-bash">export GS_OPTIONS_EXT="-Dcom.sun.management.jmxremote.authenticate=true<br />-Dcom.sun.management.jmxremote.ssl=false<br />-Dcom.sun.management.jmxremote.access.file=[PATH_TO]/jmxremote.access<br />-Dcom.sun.management.jmxremote.password.file=[PATH_TO]/jmxremote.password"<br />export GS_JMX_REMOTE_BASE_PORT=[YOUR_PORT_VAL]
+</code></pre>
             <div class="tc-admon-note">
                 <p>It is important to verify that all expected ports are open in the firewall.</p>
             </div>
