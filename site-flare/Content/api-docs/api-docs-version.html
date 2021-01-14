@@ -6,7 +6,7 @@
         <h1 class="tc-pagetitle"> API Documentation</h1>
         <p>This page contains links to the <MadCap:variable name="General.CompanyName" /> API&#160;documentation for release <MadCap:variable name="Versions.product-version-short" />.</p>
         <div class="easyui-tabs" plain="true">
-            <div title="APIs">
+            <div title="APIs" MadCap:conditions="Version.15-8-died">
                 <ul>
                     <li><a href="https://resources.gigaspaces.com/api/xap/[%=Versions.product-version-long%]/java/index.html" target="_blank">Javadocs</a>
                     </li>
@@ -14,6 +14,12 @@
                     </li>
                 </ul>
             </div>
+            <ul MadCap:conditions="Version.15-8-born">
+                <li><a href="https://resources.gigaspaces.com/api/[%=Versions.product-version-long%]/java/index.html" target="_blank">Javadocs</a>
+                </li>
+                <li><a href="https://resources.gigaspaces.com/api/[%=Versions.product-version-long%]/dotnet/Index.html" target="_blank"><MadCap:variable name="General.XAPNet" /></a>
+                </li>
+            </ul>
             <div title="Schemas">
                 <ul>
                     <li><a href="https://resources.gigaspaces.com/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd" title="See downloaded file" alt="See downloaded file">openspaces-core.xsd</a>
