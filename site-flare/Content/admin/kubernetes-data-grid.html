@@ -248,21 +248,49 @@ Moreover, since Helm is open source, there are many community charts available w
                     </div>
                 </p>
             </div>
-            <h2><a name="deploying-the-spaces"></a>Deploying the Spaces</h2>
-            <p>After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager. Use the following Helm command to deploy a cluster of Data Pods called <code class="language-bash">testspace</code>, and to specify that the cluster should connect to the <code class="language-bash">testmanager</code> Management Pod:</p>
-            <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager</code></pre>
-                <p MadCap:conditions="Version.15-5-born">
-                    <div class="easyui-tabs" plain="true">
-                        <div title="Helm 3">
-                            <p><pre><code class="language-bash">helm install testspace insightedge-pu --set manager.name=testmanager</code></pre>
-                            </p>
+            <h2><a name="deploying-the-spaces"></a>Deploying Spaces</h2>
+            <p>After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager.</p>
+            <div MadCap:conditions="Version.15-8-died">
+                <p>Use the following Helm command to deploy a cluster of Data Pods called <code class="language-bash">testspace</code>, and to specify that the cluster should connect to the <code class="language-bash">testmanager</code> Management Pod:</p>
+                <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager</code></pre>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code class="language-bash">helm install testspace insightedge-pu --set manager.name=testmanager</code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><pre><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager</code></pre>
+                                </p>
+                            </div>
                         </div>
-                        <div title="Helm 2">
-                            <p><pre><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager</code></pre>
-                            </p>
+                    </p>
+                </div>
+            </div>
+            <div MadCap:conditions="Version.15-8-born">
+                <p>There are two methods available to deploy a space: using Kubernetes Operator (default method), or using Helm Charts.</p>
+                <div class="tc-admon-note">
+                    <p>Kubernetes Operator is installed by default, and is the recommended method for deploying a Space. If you use Helm Charts, Scale Out/In is not available using the Ops Manager or the Command Line Interface.</p>
+                </div>
+                <h3>Deploy a Space using Kubernetes Operator</h3>
+                <p>See <MadCap:xref href="../orchestration/gsctl-create-gs-cluster-cloud.html">Creating a [%=General.ProductNameXAP%] Cluster in the Cloud</MadCap:xref> for information on creating a Space object.</p>
+                <h3>Deploy a Space using Helm Charts</h3>
+                <p>Use the following Helm command to deploy a cluster of Data Pods called <code class="language-bash">testspace</code>, and to specify that the cluster should connect to the <code class="language-bash">testmanager</code> Management Pod:</p>
+                <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager</code></pre>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code class="language-bash">helm install testspace insightedge-pu --set manager.name=testmanager</code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><pre><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager</code></pre>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </p>
+                    </p>
+                </div>
+                <p>&#160;</p>
             </div>
         </div>
         <h1><a name="applying-a-product-license"></a>Applying a Product License</h1>
