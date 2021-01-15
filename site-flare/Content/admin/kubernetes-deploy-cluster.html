@@ -62,46 +62,48 @@
                 </div>
             </p>
         </div>
-        <h1><a name="deploying-multiple-spaces-on-kubernetes"></a>Deploying Multiple Spaces on Kubernetes</h1>
-        <p>If you want to deploy multiple data grids in the same Kubernetes environment, to better utilize resources it is best to deploy one Platform Manager cluster and then configure the Spaces to use this cluster, instead of deploying each data grid with its own Platform Manager.</p>
-        <p>To enable users to customize the installation, we provide several additional Helm charts that can be used to define specific constellations in more advanced scenarios:</p>
-        <ul>
-            <li>Manager (<code class="language-bash">insightedge-manager</code> or <code class="language-bash">xap-manager</code>)</li>
-            <li>Processing Unit (<code class="language-bash">insightedge-pu</code> or <code class="language-bash">xap-pu</code>)</li>
-            <li>Apache Zeppelin (<code class="language-bash">insightedge-zeppelin</code>)</li>
-        </ul>
-        <p>Before using these charts for the first time, you must fetch the charts as described in Getting Started section.</p>
-        <h2><a name="deploying-the-platform-manager"></a>Deploying the Platform Manager</h2>
-        <p>The helm command by default creates a Management Pod and a Data Pod together. When deploying a Platform Manager that will connect to multiple Spaces, you have to disable the part of the command that creates the Data Pod. Type the following Helm command to create a Management Pod called <code class="language-bash">testmanager</code> without the accompanying Space:</p>
-        <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-manager --name testmanager</code></pre>
-            <p MadCap:conditions="Version.15-5-born">
-                <div class="easyui-tabs" plain="true">
-                    <div title="Helm 3">
-                        <p><pre><code class="language-bash">helm install testmanager insightedge-manager </code></pre>
-                        </p>
+        <div MadCap:conditions="NewSet.JustAnotherColorForDivs,Default.DoNotShow">
+            <h1><a name="deploying-multiple-spaces-on-kubernetes"></a>Deploying Multiple Spaces on Kubernetes</h1>
+            <p>If you want to deploy multiple data grids in the same Kubernetes environment, to better utilize resources it is best to deploy one Platform Manager cluster and then configure the Spaces to use this cluster, instead of deploying each data grid with its own Platform Manager.</p>
+            <p>To enable users to customize the installation, we provide several additional Helm charts that can be used to define specific constellations in more advanced scenarios:</p>
+            <ul>
+                <li>Manager (<code class="language-bash">insightedge-manager</code> or <code class="language-bash">xap-manager</code>)</li>
+                <li>Processing Unit (<code class="language-bash">insightedge-pu</code> or <code class="language-bash">xap-pu</code>)</li>
+                <li>Apache Zeppelin (<code class="language-bash">insightedge-zeppelin</code>)</li>
+            </ul>
+            <p>Before using these charts for the first time, you must fetch the charts as described in Getting Started section.</p>
+            <h2><a name="deploying-the-platform-manager"></a>Deploying the Platform Manager</h2>
+            <p>The helm command by default creates a Management Pod and a Data Pod together. When deploying a Platform Manager that will connect to multiple Spaces, you have to disable the part of the command that creates the Data Pod. Type the following Helm command to create a Management Pod called <code class="language-bash">testmanager</code> without the accompanying Space:</p>
+            <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-manager --name testmanager</code></pre>
+                <p MadCap:conditions="Version.15-5-born">
+                    <div class="easyui-tabs" plain="true">
+                        <div title="Helm 3">
+                            <p><pre><code class="language-bash">helm install testmanager insightedge-manager </code></pre>
+                            </p>
+                        </div>
+                        <div title="Helm 2">
+                            <p><pre><code class="language-bash">helm install insightedge-manager --name testmanager</code></pre>
+                            </p>
+                        </div>
                     </div>
-                    <div title="Helm 2">
-                        <p><pre><code class="language-bash">helm install insightedge-manager --name testmanager</code></pre>
-                        </p>
+                </p>
+            </div>
+            <h2><a name="deploying-the-spaces"></a>Deploying the Spaces</h2>
+            <p>After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager. Use the following Helm command to deploy a cluster of Data Pods called <code class="language-bash">testspace</code>, and to specify that the cluster should connect to the <code class="language-bash">testmanager</code> Management Pod:</p>
+            <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager</code></pre>
+                <p MadCap:conditions="Version.15-5-born">
+                    <div class="easyui-tabs" plain="true">
+                        <div title="Helm 3">
+                            <p><pre><code class="language-bash">helm install testspace insightedge-pu --set manager.name=testmanager</code></pre>
+                            </p>
+                        </div>
+                        <div title="Helm 2">
+                            <p><pre><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager</code></pre>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </p>
-        </div>
-        <h2><a name="deploying-the-spaces"></a>Deploying the Spaces</h2>
-        <p>After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager. Use the following Helm command to deploy a cluster of Data Pods called <code class="language-bash">testspace</code>, and to specify that the cluster should connect to the <code class="language-bash">testmanager</code> Management Pod:</p>
-        <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager</code></pre>
-            <p MadCap:conditions="Version.15-5-born">
-                <div class="easyui-tabs" plain="true">
-                    <div title="Helm 3">
-                        <p><pre><code class="language-bash">helm install testspace insightedge-pu --set manager.name=testmanager</code></pre>
-                        </p>
-                    </div>
-                    <div title="Helm 2">
-                        <p><pre><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager</code></pre>
-                        </p>
-                    </div>
-                </div>
-            </p>
+                </p>
+            </div>
         </div>
     </body>
 </html>
