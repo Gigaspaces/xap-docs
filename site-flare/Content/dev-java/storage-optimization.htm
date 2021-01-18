@@ -6,9 +6,9 @@
         <h1>Storage Optimization</h1>
         <p>Storage Optimization is a feature of <MadCap:variable name="General.ProductNameIE" /> that reduces the memory footprint (RAM) of the the properties of a Space Object, with minimal impact on system performance.</p>
         <h1>How Does Storage Optimization Work?</h1>
-        <p>In order to reduce the system's RAM footprint, storage-optimized properties are  stored and packed together in a binary format. This reduces the amount of memory required for the fields.</p>
+        <p>In order to reduce the system's RAM footprint, storage-optimized properties are  stored and packed together in a binary format. This reduces the amount of memory required for the properties.</p>
         <h1>How to Decide Whether to Use Storage Optimization?</h1>
-        <p>The decision whether or not to use Storage Optimization is similar to how you decide whether to index a field.</p>
+        <p>The decision whether or not to use Storage Optimization is similar to how you decide whether to index a property.</p>
         <p>The reduced memory footprint achieved with Storage Optimization is most effective if the Space Object has a high proportion of non-indexed properties that are used primarily in read requests. Properties that are used in queries as keys or aggregated values may not benefit as much from Storage Optimization, due to the frequency of serialization-deserialization that is required.</p>
         <h1>How to Configure Storage Optimization?</h1>
         <p>Storage Optimization can be configured when the data is modeled using the Ops Manager user interface, or by specifying annotations in the Java code.</p>
@@ -17,24 +17,23 @@
         <p style="text-align: center;">
             <img src="../Resources/Static/images/storage-optimization-object-toggle.png" style="width: 829px;height: 441px;" />
         </p>
-        <p>Clicking on the toggle will select Storage Optimization for every non-indexed property in the object. You can then individually toggle each field to turn off Storage Optimize if desired.</p>
-        <h2>Implement Storage Optimization via the Java API</h2>
-        <h3>Storage Optimization Options: Selective Layout and Non-Selective Layout</h3>
+        <p>Clicking on the toggle will select Storage Optimization for every non-indexed property in the object. You can then individually toggle each property to turn off Storage Optimize if desired.</p>
+        <h2>Implement Storage Optimization via the Java API </h2>
+        <h3>Storage Optimization Options: Selective Layout and Non-Selective Layout </h3>
         <p>Two methods are available for Storage Optimization: the default of <b>Selective</b> (direct) Layout, and <b>Non-Selective</b> Layout.</p>
-        <p>With <b>Selective</b> (direct) layout, the header of the binary data includes pointers to allow direct access of each field. Selective layout reduces the CPU overhead of Storage Optimization, with a small increase in the memory footprint.</p>
+        <p>With <b>Selective</b> (direct) layout, the header of the binary data includes indexes to allow direct access of each property. Selective layout reduces the CPU overhead of Storage Optimization, with a small increase in the memory footprint.</p>
         <p>
-            <img src="../Resources/Static/images/storage-optimization-selective-aka-direct-layout.png" />
+            <img src="../Resources/Static/images/storage-optimization-selective-aka-direct-layout.png" style="width: 762px;height: 103px;" />
         </p>
         <p>With <b>Non-Selective</b> layout, the properties are stored in binary format, without any indexing mechanism. This means that, for example, in order to locate the third optimized property, the system must first pass through the first and second optimized properties. Selective layout minimizes the memory footprint, with a slight increase in CPU overhead.</p>
         <p>
-            <img src="../Resources/Static/images/storage-optimization-non-selective-aka-sequential-layout.png" />
+            <img src="../Resources/Static/images/storage-optimization-non-selective-aka-sequential-layout.png" style="width: 647px;height: 108px;" />
         </p>
-        <p>&#160;</p>
-        <div class="tc-admon-note">
-            <p>Storage Optimization Mode must be defined on the Object (class) level.</p>
-        </div>
         <div>
             <h3>Invoke Storage Optimization for a Class</h3>
+            <div class="tc-admon-note">
+                <p>Storage Optimization Mode must be defined on the Object (class) level.</p>
+            </div>
             <p>Storage Optimization is specified at the class level with either Selective optimization (the default), or Non-Selective optimization.</p>
             <div class="easyui-tabs" plain="true">
                 <div title="Annotate Class with Selective (Direct) Layout"><pre><code class="language-java">			
