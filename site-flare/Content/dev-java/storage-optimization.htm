@@ -76,16 +76,16 @@ public class TestObject {
                 </li>
                 <li>
                     <p><b>Storage compression</b> — StorageType.COMPRESSED<br />This option uses bitwise manipulation to store smaller values in fewer bytes.</p>
-                </li>
-            </ul>
-            <ul style="list-style-type: circle;">
-                <li>
-                    <p>Very large values for the data type may require more bytes, e.g. a large <code class="language-java">long </code>property may require 9 bytes instead of 8 bytes.</p>
-                </li>
-            </ul>
-            <ul style="list-style-type: circle;">
-                <li>
-                    <p><code class="language-java">String </code>types and user defined serializable types will be compressed using zip. This is usually effective for large values only.</p>
+                    <ul>
+                        <li>
+                            <p>Very large values for the data type may require more bytes, e.g. a large <code class="language-java">long </code>property may require 9 bytes instead of 8 bytes.</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <p><code class="language-java">String </code>types and user defined serializable types will be compressed using zip. This is usually effective for large values only.</p>
+                        </li>
+                    </ul>
                 </li>
             </ul>
             <p>By default, specifying Storage Optimization for the class sets <code class="language-java">StorageType.BINARY</code> (storage optimization) for all non-indexed properties in the class, and <code class="language-java">StorageType.OBJEC</code>T (no storage optimization) for indexed items. This default can be overridden for individual properties, as follows.</p>
