@@ -36,7 +36,7 @@
             <p> Kubernetes can be installed in two ways:</p>
             <ul>
                 <li>
-                    <p>Using a basic Helm chart to start Manager, and GigaSpaces Tools (Ops Manager/CLI/API) for processing units management</p>
+                    <p>Using a basic Helm chart to start Manager, and GigaSpaces Tools (Ops Manager/<a href="https://docs-staging.gigaspaces.com/15.8/admin/tools-cli.html">CLI</a>/API) for processing units management</p>
                 </li>
                 <li>
                     <p>Using Helm charts only</p>
@@ -55,7 +55,7 @@
         <h2><a name="accessing-the-gigaspaces-helm-charts"></a>Accessing the GigaSpaces Helm Charts</h2>
         <p>The Helm package manager is used for installing <MadCap:variable name="General.ProductNameIE" /> and <MadCap:variable name="General.ProductNameXAP" /> in the Kubernetes environment. Helm makes deploying complex applications more portable, supports automatic rollbacks, and is a familiar pattern for developers that is easy to understand.
 Moreover, since Helm is open source, there are many community charts available with standard configurations for common application services.</p>
-        <p>A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository.  The <code class="language-bash">xap </code>and <code>insightedge</code> Helm charts are published in the GigaSpaces Helm charts repository at <code>https://resources.gigaspaces.com/helm-charts</code>.</p>
+        <p>A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository.  The <code class="language-bash">xap </code>, <code>insightedge</code>, <code>Smart Cache</code>, <code>Smart ODS</code> and <code>Smart Augmented Transactions</code> Helm charts are published in the GigaSpaces Helm charts repository at <code>https://resources.gigaspaces.com/helm-charts</code>.</p>
         <p>There are multiple ways to access these charts in order to install a GigaSpaces product in Kubernetes:</p>
         <ul>
             <li>Install a chart directly from the repo</li>
@@ -184,26 +184,8 @@ Moreover, since Helm is open source, there are many community charts available w
             <li>Kubectl: run the following command to print the name, description, and status of the Pods in the command window. A list of events is also printed, which can be used for troubleshooting purposes. For example, if you detected a problem in one of the Pods, you can see the Pod termination reason and exit code.</li>
         </ul><pre><code class="language-bash">kubectl describe pod</code></pre>
         <h2><a name="deleting-a-data-grid-from-the-kubernetes-environment"></a>Deleting a Data Grid from the Kubernetes Environment</h2>
-        <p>To delete the <code>hello</code> Space cluster, use the following Helm command. It removes the release, but leaves the logs and data so you can inspect them at a future time. This command will remove both the Platform Manager and the Space.</p>
-        <p>
-            <p MadCap:conditions="Version.15-5-born">
-                <div class="easyui-tabs" plain="true">
-                    <div title="Helm 3">
-                        <p><code class="language-bash">helm del hello --keep-history</code>
-                        </p>
-                    </div>
-                    <div title="Helm 2">
-                        <p><code class="language-bash">helm del hello</code>
-                        </p>
-                    </div>
-                </div>
-            </p>
-            <div title="Helm 2" MadCap:conditions="Version.15-5-died">
-                <p><code class="language-bash">helm del hello </code>
-                </p>
-            </div>
-        </p>
-        <p>If you want to remove the release and delete all the <code>hello</code> release data from the server, use the following command:</p>
+        <p>To delete the <code>hello</code> Space cluster, use the <code style="font-weight: bold;">del</code> Helm command.  This command will remove both the Platform Manager and the Space.</p>
+        <p><b>To remove the release and delete all the </b><code style="font-weight: bold;">hello</code><b> release data from the server,</b> use the following command:</p>
         <p>
             <p MadCap:conditions="Version.15-5-born">
                 <div class="easyui-tabs" plain="true">
@@ -222,9 +204,26 @@ Moreover, since Helm is open source, there are many community charts available w
                 </p>
             </div>
         </p>
+        <p><b>To remove the release, but leave the logs and data</b> so you can inspect them at a future time, use the following command:</p>
+        <p MadCap:conditions="Version.15-5-born">
+            <div class="easyui-tabs" plain="true">
+                <div title="Helm 3">
+                    <p><code class="language-bash">helm del hello --keep-history</code>
+                    </p>
+                </div>
+                <div title="Helm 2">
+                    <p><code class="language-bash">helm del hello</code>
+                    </p>
+                </div>
+            </div>
+        </p>
+        <div title="Helm 2" MadCap:conditions="Version.15-5-died">
+            <p><code class="language-bash">helm del hello </code>
+            </p>
+        </div>
         <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
             <h1><a name="deploying-multiple-spaces-on-kubernetes"></a>Deploying Multiple Spaces on Kubernetes</h1>
-            <p>If you want to deploy multiple data grids in the same Kubernetes environment, to better utilize resources it is best to deploy one Platform Manager cluster and then configure the Spaces to use this cluster, instead of deploying each data grid with its own Platform Manager.</p>
+            <p>If you want to deploy multiple Spaces in the same Kubernetes environment, to better utilize resources it is best to deploy one Platform Manager cluster and then configure the Spaces to use this cluster, instead of deploying each Space with its own Platform Manager.</p>
             <p>To enable users to customize the installation, we provide several additional Helm charts that can be used to define specific constellations in more advanced scenarios:</p>
             <ul>
                 <li>Manager (<code class="language-bash">insightedge-manager</code> or <code class="language-bash">xap-manager</code>)</li>
@@ -268,11 +267,11 @@ Moreover, since Helm is open source, there are many community charts available w
                 </div>
             </div>
             <div MadCap:conditions="Version.15-8-born">
-                <p>There are two methods available to deploy a space: using Kubernetes Operator (default method), or using Helm Charts.</p>
+                <p>There are two methods available to deploy a space: using GigaSpaces Tools (recommended method), or using Helm Charts.</p>
                 <div class="tc-admon-note">
                     <p>Kubernetes Operator is installed by default, and is the recommended method for deploying a Space. If you use Helm Charts, Scale Out/In is not available using the Ops Manager or the Command Line Interface.</p>
                 </div>
-                <h3>Deploy a Space using Kubernetes Operator</h3>
+                <h3>Deploy a Space using GigaSpaces Toolsr</h3>
                 <p>See <MadCap:xref href="../orchestration/gsctl-create-gs-cluster-cloud.html">Creating a [%=General.ProductNameXAP%] Cluster in the Cloud</MadCap:xref> for information on creating a Space object.</p>
                 <h3>Deploy a Space using Helm Charts</h3>
                 <p>Use the following Helm command to deploy a cluster of Data Pods called <code class="language-bash">testspace</code>, and to specify that the cluster should connect to the <code class="language-bash">testmanager</code> Management Pod:</p>
