@@ -59,8 +59,8 @@ Moreover, since Helm is open source, there are many community charts available w
         <p>A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository.  The <code>xap</code>, <code>insightedge</code>, <code>smart-cache</code>, <code>smart-ods</code> and <code>smart-augmented-transactions</code> Helm charts are published in the GigaSpaces Helm charts repository at <code>https://resources.gigaspaces.com/helm-charts</code>.</p>
         <p>Two ways to access and install these charts, in order to install a GigaSpaces product in Kubernetes, are discussed below:</p>
         <ul>
-            <li>Option 1: Install a chart directly from the repo and add the GigaSpaces Helm chart repo to the Helm repo list</li>
-            <li>Option 2: Unpack the required Helm chart(s) in a local folder </li>
+            <li><b>Option 1:</b> Install a chart directly from the repo and add the GigaSpaces Helm chart repo to the Helm repo list.</li>
+            <li><b>Option 2:</b> Unpack the required Helm chart(s) in a local folder.</li>
         </ul>
         <h3><a name="adding-a-helm-repo-to-the-repo-list"></a><a name="Adding_a_Helm_Repo_to_the_Repo_List"></a>Option 1: Add a Helm Repo to the Repo List</h3>
         <p>You can point to the GigaSpaces Helm repo, so that Helm can locate the <code class="language-bash">xap </code>and <code>insightedge</code> charts for installation:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts</code></pre>
