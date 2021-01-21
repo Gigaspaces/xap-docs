@@ -10,13 +10,13 @@
         <h1>What is a Standard Space Object?</h1>
         <p>A Standard Object has its data <i>split</i> ("sharded") among the different partitions in the cluster. The sharding process spreads the data between the partitions according to the Object’s routing key. Each piece of data is stored only once, in one of the partitions, and may be duplicated to replica partitions only.</p>
         <p>
-            <img src="../Resources/Static/images/broadcast-objects-4-boxes-1.png" />
+            <img src="../Resources/Static/images/broadcast-objects-4-boxes-1.png" style="width: 763px;height: 138px;" />
         </p>
         <p>In this example of a Standard Object Type, each partition holds an independent group of Object Instances. Thus, only 1/Nth of the data is located per each of the Processing Unit Instances (N = number of partitions).</p>
         <h1>What is a Broadcast Object?</h1>
         <p>A Broadcast Object is a Space Object Type that has its data <i>duplicated</i> among all partitions. Each Object Instance is repeated in every partition. The full object data is located in all Processing Unit instances.</p>
         <p>
-            <img src="../Resources/Static/images/broadcast-objects-4-boxes-2.png" />
+            <img src="../Resources/Static/images/broadcast-objects-4-boxes-2.png" style="width: 763px;height: 145px;" />
         </p>
         <p>In this example of a Broadcast Object, all 40 of the data items are colocated in all of the Processing Units.</p>
         <h1>What is Colocated Data and Processing?</h1>
@@ -66,15 +66,14 @@ builder.create();
         <h2>Ops Manager</h2>
         <p>A Broadcast Object can be defined using the One-Click Connect feature of Ops Manager by setting the “Broadcast Object” toggle.</p>
         <p style="text-align: left;">
-            <img src="../Resources/Static/images/broadcast-objects-object-toggle.png" style="width: 710px;height: 129px;" />
+            <img src="../Resources/Static/images/broadcast-objects-object-toggle-high-res.jpg" style="width: 710px;height: 129px;" />
         </p>
         <p>When viewing a Broadcast Object in the Object Screen in Ops Manager, it will list it as a Broadcast Object under the Object Name.</p>
         <p style="text-align: left;">
-            <img src="../Resources/Static/images/broadcast-objects-shows-as-bo.png" style="width: 271px;height: 77px;" />
+            <img src="../Resources/Static/images/broadcast-objects-shows-as-bo-high-res.jpg" style="width: 271px;height: 77px;" />
         </p>
-        <div class="tc-admon-note">
-            <p>Defining a Broadcast Object in .NET Client SDK is currently not supported.</p>
-        </div>
+        <h1>Limitations</h1>
+        <p>Defining a Broadcast Object in .NET Client SDK is not currently supported.</p>
         <p>&#160;</p>
         <p>&#160;</p>
         <p>&#160;</p>
