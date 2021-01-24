@@ -14,10 +14,10 @@
         <p>Storage Optimization can be configured when the data is modeled using the Ops Manager user interface, or by specifying annotations in the Java code.</p>
         <h2>Configure Storage Optimization via Ops Manager</h2>
         <p>In Ops Manager one-click connect, a toggle on the top of the screen lets you specify Storage Optimization for the Space Object:</p>
-        <p style="text-align: center;">
-            <img src="../Resources/Static/images/storage-optimization-object-toggle.png" style="width: 829px;height: 441px;" />
+        <p style="text-align: left;">
+            <img src="../Resources/Static/images/storage-optimization-object-toggle-high-res.jpg" style="width: 829px;height: 441px;" />
         </p>
-        <p>Clicking on the toggle will select Storage Optimization for every non-indexed property in the object. You can then individually toggle each property to turn off Storage Optimize if desired.</p>
+        <p>Clicking on the toggle will select Storage Optimization for every non-indexed property in the object. You can then individually toggle each property to turn off Storage Optimization if desired.</p>
         <h2>Configure Storage Optimization via the API </h2>
         <h3>Storage Optimization Options: Direct Layout and Sequential Layout </h3>
         <p>Two methods are available for Storage Optimization: the default of <b>Direct</b> Layout, and <b>Sequential</b> Layout.</p>
@@ -88,7 +88,7 @@ public class TestObject {
                     </ul>
                 </li>
             </ul>
-            <p>By default, specifying Storage Optimization for the class sets <code class="language-java">StorageType.BINARY</code> (storage optimization) for all non-indexed properties in the class, and <code class="language-java">StorageType.OBJEC</code>T (no storage optimization) for indexed items. This default can be overridden for individual properties, as follows.</p>
+            <p>By default, specifying Storage Optimization for the class sets <code class="language-java">StorageType.BINARY</code> (storage optimization) for all non-indexed properties in the class, and <code class="language-java">StorageType.OBJECT</code> (no storage optimization) for indexed items. This default can be overridden for individual properties, as follows.</p>
             <div class="easyui-tabs" plain="true">
                 <div title="Turn OFF Storage Optimization"><pre><code class="language-java">		
 @SpaceClass
@@ -127,12 +127,24 @@ public class TestObject {
 </code></pre>
                 </div>
             </div>
-            <p>&#160;</p>
         </div>
+        <h1>Viewing Storage Optimization Settings in the Object Screen</h1>
+        <p>Using the <MadCap:xref href="../admin/gs-ops-manager-overview.html">[%=General.ProductNameXAP%] Ops Manager</MadCap:xref>, you can view the status of a Space Object. The Storage Optimized icon is display next to fields that are using Storage Optimization.</p>
+        <p>
+            <img src="../Resources/Static/images/storage-optimization-view-space-in-ops-manager.png" style="width: 398px;height: 389px;" />
+        </p>
         <h1>Limitations</h1>
-        <p>.NET is not currently supported.</p>
-        <p>MemoryXtend is not currently supported.</p>
-        <p>Direct layout is limited to 64K bytes per object entry.</p>
+        <ul>
+            <li>
+                <p>.NET is not currently supported.</p>
+            </li>
+            <li>
+                <p>MemoryXtend is not currently supported.</p>
+            </li>
+            <li>
+                <p>Direct layout is limited to 64K bytes per object entry.</p>
+            </li>
+        </ul>
         <p>&#160;</p>
     </body>
 </html>
