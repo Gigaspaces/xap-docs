@@ -8,7 +8,7 @@
         <p>This topic describes how to set up a WAN&#160;gateway for a <MadCap:variable name="General.ProductNameXAP" /> environment in cloud-based Kubernetes clusters. You have to create two clusters, one for each region that will host <MadCap:variable name="General.ProductNameXAP" />, deploy <MadCap:variable name="General.ProductNameXAP" /> on each cluster, and then deploy a WAN gateway for each region. </p>
         <div class="tc-admon-note">
             <p>This topic assumes knowledge of how to set up a WAN&#160;gateway in <MadCap:variable name="General.ProductNameXAP" />. If you aren't familiar with how to configure a WAN gateway, see the <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref> section of the developer guide before you continue with the below procedure.</p>
-            <p>This topic also assumes knowledge of how to install <MadCap:variable name="General.ProductNameXAP" /> in a Kubernetes environment. For more information, see the <MadCap:xref href="../admin/kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref> topic in the Orchestration section of the administration guide.</p>
+            <p>This topic also assumes knowledge of how to install <MadCap:variable name="General.ProductNameXAP" /> in a Kubernetes environment. For more information, see the <MadCap:xref href="../admin/kubernetes-data-grid-helm-only.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref> topic in the Orchestration section of the administration guide.</p>
         </div>
         <h1>Setting Up the WAN Gateway</h1>
         <p>When defining a <MadCap:variable name="General.ProductNameXAP" /> WAN&#160;gateway for deployment in Kubernetes, you should always set it up in the following order: </p>
@@ -33,7 +33,7 @@
         <p class="tc-todo">To install the Manager:</p>
         <ol>
             <li>
-                <p>Download the Helm charts as described in the <MadCap:xref href="../admin/kubernetes-data-grid.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref> topic. </p>
+                <p>Download the Helm charts as described in the <MadCap:xref href="../admin/kubernetes-data-grid-helm-only.html">Getting Started with GigaSpaces in Kubernetes</MadCap:xref> topic. </p>
             </li>
             <li>
                 <p>You can use the default configuration to install the Manager for each geographical location. Use the following command to install a Manager for the U.S. location:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install gigaspaces/xap-manager --name usmanager --version=15.0.0 --namespace gigaspaces-us</code></pre><pre MadCap:conditions="Version.15-5-born,NewSet.Ask RnD"><code class="language-bash">helm install usmanager gigaspaces/xap-manager --version=15.0.0 --namespace gigaspaces-us</code></pre>
