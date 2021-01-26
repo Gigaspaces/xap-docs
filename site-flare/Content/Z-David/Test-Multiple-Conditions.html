@@ -3,7 +3,10 @@
     <head>
     </head>
     <body>
-        <h1>Test Multiple Conditions</h1>
+        <h1>Test Multiple Conditions </h1>
+        <p MadCap:conditions="Version.15-0-born,Version.15-5-died">this text has 15.0 born and 15.5 died.</p>
+        <p MadCap:conditions="Version.15-0-born">this text has 15.0 born and 15.5 died, in two separate paragraphs (1 of 2).</p>
+        <p MadCap:conditions="Version.15-5-died">this text has 15.0 born and 15.5 died, in two separate paragraphs (2 of 2).</p>
         <p>this text has no conditions</p>
         <p MadCap:conditions="Default.DoNotShow">this text has DoNotShow</p>
         <p MadCap:conditions="Default.DoNotShow,Version.15-0-only">this text has DoNotShow and 15.0 only</p>
