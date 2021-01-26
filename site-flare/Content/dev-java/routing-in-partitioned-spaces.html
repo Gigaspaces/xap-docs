@@ -6,7 +6,7 @@
         <h1>Routing In Partitioned Spaces</h1>
         <p>A <a href="../overview/terminology.html">partitioned space</a> provides the ability to perform space operations against multiple spaces from a single proxy transparently. The primary goal of the partitioned space is to provide unlimited In-Memory space storage size and group objects into the same partition to speed up performance. The initial intention is to write data into the partitioned space, and route query operations based on the template data.</p>
         <p>Note that in such a configuration, the different spaces defined as partitions are not aware of each other ("Share Nothing") - the client proxy is the one that is aware of the partitioned space configuration.</p>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Version.15-8-born">
             <p>If an object has an expected total data capacity that is much smaller than a partition, and it is infrequently updated, it can be set as a <MadCap:xref href="broadcast-objects.html">Broadcast Object</MadCap:xref> for optimized JOIN performance.</p>
         </div>
         <p>&#160;</p>
