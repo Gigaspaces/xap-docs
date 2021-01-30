@@ -8,23 +8,12 @@
 //	'15.0': { 'url': '/15.0', 'label': '15.0',  'topicBanner': 'old' },
 //	'latest': { 'url': '/latest', 'label': '15.2' },	
 	
-// pre-ga 15.8 was:
 
-	// '15.8': { 'url': '/15.8', 'label': '15.8 Early Access', 'topicBanner': 'preview' },
+	'15.8': { 'url': '/15.8', 'label': '15.8 Early Access', 'topicBanner': 'preview' },
 		
-	// '15.5': { 'url': '/15.5', 'label': '15.5', 'hide': true },
-	// 'latest': { 'url': '/latest', 'label': '15.5' },	
+	'15.5': { 'url': '/15.5', 'label': '15.5', 'hide': true },
+	'latest': { 'url': '/latest', 'label': '15.5' },	
 	
-	// '15.2': { 'url': '/15.2', 'label': '15.2',  'topicBanner': 'old' },
-	
-//
-
-	'16.0': { 'url': '/16.0', 'label': '16.0 Early Access', 'topicBanner': 'preview' },
-		
-	'15.8': { 'url': '/15.8', 'label': '15.8', 'hide': true },
-	'latest': { 'url': '/latest', 'label': '15.8' },	
-	
-	'15.5': { 'url': '/15.2', 'label': '15.2',  'topicBanner': 'old' },
 	'15.2': { 'url': '/15.2', 'label': '15.2',  'topicBanner': 'old' },
 	
 
