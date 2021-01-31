@@ -68,5 +68,5 @@ var buttonsData = [
 
 var topicBanner = {
   old: '<div class="tc-topic-banner old"><p>This page describes an older version of the product. The latest stable version is <a href="/latest">15.5</a>.</p></div>',
-  preview: '<div class="tc-topic-banner preview"><p>This page describes the beta version of the product. The latest stable version is <a href="/latest">15.5</a>.</p></div>'
+  preview: '<div class="tc-topic-banner preview"><p>This page describes the beta version of the product. The latest stable version is <a href="/latest">15.8</a>.</p></div>'
 };
