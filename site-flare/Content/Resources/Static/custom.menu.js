@@ -24,7 +24,7 @@
 	'15.8': { 'url': '/15.8', 'label': '15.8', 'hide': true },
 	'latest': { 'url': '/latest', 'label': '15.8' },	
 	
-	'15.5': { 'url': '/15.2', 'label': '15.2',  'topicBanner': 'old' },
+	'15.5': { 'url': '/15.5', 'label': '15.5',  'topicBanner': 'old' },
 	'15.2': { 'url': '/15.2', 'label': '15.2',  'topicBanner': 'old' },
 	
 
