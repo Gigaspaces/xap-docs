@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <ul>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition01"><b>Service name</b> —  the name of the new service that will be introduced to the grid</li>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition02"><b>Resource</b> — location of the Java jar file for the service. Can be in a local file, or point to a URL</li>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition03"><b>Cluster schema:</b> — <b>Partitioned</b> — a Space with one or more partitions</li>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition04"><b>Cluster schema:</b> — <b>Single space</b> — a Space with only one instance</li>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition05"><b>Number of partitions</b> — the number of primary partitions for the space</li>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition05A"><b>Number of instances</b> — the number of instances for the service</li>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition06"><b>High availability</b> — Provide a backup partition for each primary partition.</li>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition07"><b>Enable scale in/out</b> — Provide horizontal scaling capability for the Space.</li>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition08"> <b>Anti affinity</b> — Ensure that primary and backup partitions are allocated on different nodes.</li>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition09"><b>Advanced — Context Properties</b> — Name and value pairs for additional properties. Click on <b>+</b> to add a property and value, delete  to remove.<br />The defined properties and their values are used as part of the deploy process for various configuration purposes.</li>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition10"><b>MemoryXtend — Memory threshold:</b> xxxxx</li>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition11"><b>MemoryXtend — Off-heap options</b>:</li>
+            <ul MadCap:conditions="SnippetConditions.SnippetCondition11">
+                <li><b>Avg. object size</b> — xxxx</li>
+                <li><b>Cache entries percentage</b> — xxxxx</li>
+            </ul>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition12"><b>MemoryXtend — SSD options</b>:</li>
+            <ul MadCap:conditions="SnippetConditions.SnippetCondition12">
+                <li><b>Persistent</b> — xxxx</li>
+                <li><b>Volume Claim Template configuration</b> — <b>Storage size</b> (Kubernetes only) — xxxx</li>
+                <li><b>Volume Claim Template configuration</b> — <b>Storage class name</b> (Kubernetes only) — xxxx</li>
+                <li><b>Avg. object size</b> — xxxxx</li>
+                <li><b>Cache entries percentage</b> — xxxx</li>
+                <li><b>Fsync</b> — xxxx</li>
+            </ul>
+        </ul>
+    </body>
+</html>

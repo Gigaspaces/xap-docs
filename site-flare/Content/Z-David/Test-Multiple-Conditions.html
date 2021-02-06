@@ -43,6 +43,7 @@
         <p MadCap:conditions="NewSet.StagingOnly,Version.15-8-only">this text has 15.8 only AND stagingOnly</p>
         <p MadCap:conditions="Version.15-8-only,NewSet.ProductionOnly">this text has 15.8 only AND ProductionOnly</p>
         <p MadCap:conditions="NewSet.ProductionOnly">this text has ProductionOnly</p>
-        <p>&#160;</p>
+        <MadCap:snippetBlock src="../Resources/Snippets/TestSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition01], exclude[SnippetConditions.SnippetCondition02]" />
+        <MadCap:snippetBlock src="../Resources/Snippets/TestSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition02], exclude[SnippetConditions.SnippetCondition01]" />
     </body>
 </html>

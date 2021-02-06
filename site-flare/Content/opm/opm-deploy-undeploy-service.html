@@ -7,12 +7,117 @@
         <p>Ops Manager can be used to deploy and undeploy a service.</p>
         <h1>Deploy Command in Ops Manager</h1>
         <p>With the deploy command, a business user can introduce new services to the grid. These can be either stateful services including a Space and data, or stateless services with business logic.</p>
-        <p>On the Services screen, click on the deploy option (plus sign) to introduce a new service to the grid. The Deploy Service menu will display.</p>
         <p>
             <img src="../Resources/Static/images/OPM-deploy-service-plus-to-deploy.jpg" class="tc-picture90" />
         </p>
-        <h3>Deploy Service Menu</h3>
-        <p style="text-align: center;">
-            <img src="../Resources/Static/images/ops-manager-deploy-service-menu.png" style="width: 372px;height: 297px;" />
-        </p>The options are as follows:<ul><li><p><b>Deploy Space Service</b> — xxxxxx</p></li><li><p><b>Deploy Stateful Service</b> — xxx</p></li><li><p><b>Deploy Stateless Service</b> — xxxxx</p></li><li><p><b>Deploy web App</b> — xxxxx</p></li></ul><p>Each option is explained in detail below.</p><div MadCap:conditions="NewSet.JustAnotherColorForDivs"><h2>Deploy Space Service — General Options</h2><p style="text-align: left;"><img src="../Resources/Static/images/ops-manager-mx-6-of-6.png" MadCap:conditions="NewSet.JustAColorForDivs" /></p><div><p>Service name — </p><p>Number of partitions — </p><p>High availability — </p><p>Advanced — define optional additional properties</p><p>MemoryXtend — </p></div></div><div MadCap:conditions="NewSet.JustAColorForDivs,Default.DoNotShow"><p>None — </p><p>Off-heap — </p><p>SSD — </p><p>Persistent — </p><p>Volume Claim Template configuration (Kubernetes only) — </p><p>Storage size — </p><p>Storage class name — </p><p>SSD options — </p><p>Avg object size — </p><p>Cache entries percentage — </p><p>Fsync — </p></div><div MadCap:conditions="NewSet.JustAnotherColorForDivs"><h2>Deploy Space Service — Overview of MemoryXtend Options</h2><p style="text-align: left;"><img src="../Resources/Static/images/ops-manager-mx-5-of-6.png" /></p><p>None</p><p>Off-heap</p><p>SSD</p></div><div MadCap:conditions="NewSet.JustAnotherColorForDivs"><h2>Deploy Space Service — MemoryXtend — Off-heap</h2><p>&#160;</p><p>&#160;</p><p style="text-align: left;"><img src="../Resources/Static/images/ops-manager-mx-3-of-6.png" /></p><p>Memory threshold</p><p>Avg object size</p><p>Cache entries percentage</p></div><div MadCap:conditions="NewSet.JustAnotherColorForDivs"><h3>Deploy Space Service — MemoryXtend — SSD</h3><p style="text-align: left;"><img src="../Resources/Static/images/ops-manager-mx-1-of-6.png" /></p><p>Persistent</p><p>Volume Claim Template configuration (Kubernetes only) — </p><ul><li><p>Storage size — </p></li><li><p>Storage class name — </p></li></ul><p>Avg object size — </p><p>Cache entries percentage — </p><p>Fsync — </p></div><h2>Deploy Stateful Service — Basic Properties</h2><p style="text-align: left;"><img src="../Resources/Static/images/ops-manager-deploy-stateful-service-2.png" /></p><p>Service name</p><p>Resource — URL or JAR file</p><p>Number of partitions</p><p>High availability</p><p>Enable scale in/out</p><p>Anti affinity</p><h2>Deploy Stateful Service — Advanced Properties</h2><p style="text-align: left;"><img src="../Resources/Static/images/ops-manager-deploy-stateful-service-6.png" /></p><p>Property name</p><p>Property value</p><h2>Deploy Stateless Service — Basic Properties</h2><p style="text-align: left;"><img src="../Resources/Static/images/ops-manager-deploy-stateless-service-1.png" /></p><p>Service name</p><p>Resource</p><p>Number of instances</p><p>&#160;</p><h2>Deploy Stateless Service — Advanced Properties</h2><p style="text-align: left;"><img src="../Resources/Static/images/ops-manager-deploy-stateless-service-2.png" /></p><p>Property name</p><p>Property value</p><h2>Deploy Web App Service — Basic Properties</h2><p style="text-align: left;"><img src="../Resources/Static/images/ops-manager-deploy-webapp-service-1.png" /></p><p>Service name</p><p>Resource</p><p>Number of instances</p><h2>Deploy Web App Service — Advanced Properties</h2><p style="text-align: left;"><img src="../Resources/Static/images/ops-manager-deploy-webapp-service-2.png" /></p><p>&#160;</p><p>Property name</p><p>Property value</p><div MadCap:conditions="Version.15-8-died"><p>Then we see the Deploy Service screen:</p><p style="text-align: center;"><img src="../Resources/Static/images/OPM-deploy-service-dialog-box.jpg" class="tc-picture70" /></p><ul><li><b>Service name</b> - The name of the new service that will be introduced to the grid </li><li><b>Resource</b> - Location of the Java jar file for the service. Can be in a local file, or point to a URL.</li><li><b>Properties</b> - Freestyle, name and value. Click on <b>+</b> to add a property and value, delete  to remove.<br />The defined properties and their values are used as part of the deploy process for various configuration purposes.</li><li><b>Topology</b> - Click on the Topology dropdown to choose the service type:</li></ul><p style="text-align: center;"><br /><img src="../Resources/Static/images/OPM-deploy-service-topology-dropdown.jpg" class="tc-picture40" /></p><p>If you click on <b>stateful</b>, you see the following screen. Note that for a stateful service, you will be able to review a list of properties.</p><p style="text-align: center;"><img src="../Resources/Static/images/OPM-deploy-service-topology-stateful.jpg" class="tc-picture40" /></p><p MadCap:conditions="Default.DoNotShow">Note for RAM units -- It's not clear right now if Kubernetes will be supported in GA. If it is supported, then the RAM units for Kubernetes environment should automatically show as MiB (Mebibytes), not MB.</p><p>If in the previous screen you click on <b>stateless</b>, you see this screen:</p><p style="text-align: center;"><img src="../Resources/Static/images/OPM-deploy-service-topology-stateless.jpg" class="tc-picture40" /></p><p>In this screen, choose the resources that you wish to make available for the service. Note that there is no High availability for a stateless service.</p></div><h2>View Service Deployment</h2><p>After you click <b>Apply</b>, a message appears in the screen banner, indicating that the service deployment is in progress:</p><p><img src="../Resources/Static/images/OPM-deploy-service-in-progress.jpg" class="tc-picture90" /></p><p>&#160;</p><p>When the service deployment is completed, a message indicating this fact appears in the screen banner.</p><p><img src="../Resources/Static/images/OPM-deploy-service-completed.jpg" class="tc-picture90" /></p><h1>Undeploy Command in Ops Manager</h1><p>On the Service screen for the service you wish to undeploy, Overview screen, click on <b>Undeploy service</b> to undeploy the service.</p><p><img src="../Resources/Static/images/OPM-undeploy-service.jpg" class="tc-picture90" /></p><p>After you click on Undeploy, the system will ask for confirmation, then it will undeploy the service.</p></body>
+        <p>On the Services screen, click on the deploy option (plus sign) to introduce a new service to the grid. The Deploy Service menu will display.</p>
+        <p style="text-align: left;">
+            <img src="../Resources/Static/images/ops-manager-deploy-service-menu.png" style="width: 318px;height: 253px;" />
+            <br />
+        </p>
+        <p>Each option is explained below.</p>
+        <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+            <h2>Deploy Space Service — Basic Options</h2>
+            <p>&#160;</p>
+            <!-- <div class="easyui-accordion" data-options="selected:'-1'"> -->
+            <p style="text-align: left;">
+                <img src="../Resources/Static/images/ops-manager-mx-6-of-6.png" MadCap:conditions="NewSet.JustAColorForDivs" />
+            </p>
+            <MadCap:snippetBlock src="../Resources/Snippets/ServicePropertiesSnippet.flsnp" MadCap:conditionTagExpression="exclude[SnippetConditions.SnippetCondition02 or SnippetConditions.SnippetCondition05A or SnippetConditions.SnippetCondition07 or SnippetConditions.SnippetCondition08 or SnippetConditions.SnippetCondition09 or SnippetConditions.SnippetCondition10 or SnippetConditions.SnippetCondition11 or SnippetConditions.SnippetCondition12 or SnippetConditions.SnippetCondition13 or SnippetConditions.SnippetCondition14 or SnippetConditions.SnippetCondition15]" />
+        </div>
+        <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+            <h2>Deploy Space Service — MemoryXtend — Off-heap</h2>
+            <p>&#160;</p>
+            <p>&#160;</p>
+            <p style="text-align: left;">
+                <img src="../Resources/Static/images/ops-manager-mx-3-of-6.png" />
+            </p>
+            <MadCap:snippetBlock src="../Resources/Snippets/ServicePropertiesSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition10 or SnippetConditions.SnippetCondition11], exclude[SnippetConditions.SnippetCondition01 or SnippetConditions.SnippetCondition02 or SnippetConditions.SnippetCondition03 or SnippetConditions.SnippetCondition04 or SnippetConditions.SnippetCondition05 or SnippetConditions.SnippetCondition05A or SnippetConditions.SnippetCondition06 or SnippetConditions.SnippetCondition07 or SnippetConditions.SnippetCondition08 or SnippetConditions.SnippetCondition09 or SnippetConditions.SnippetCondition12 or SnippetConditions.SnippetCondition13 or SnippetConditions.SnippetCondition14 or SnippetConditions.SnippetCondition15]" />
+        </div>
+        <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+            <h3>Deploy Space Service — MemoryXtend — SSD</h3>
+            <p style="text-align: left;">
+                <img src="../Resources/Static/images/ops-manager-mx-1-of-6.png" />
+            </p>
+            <MadCap:snippetBlock src="../Resources/Snippets/ServicePropertiesSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition12], exclude[SnippetConditions.SnippetCondition01 or SnippetConditions.SnippetCondition02 or SnippetConditions.SnippetCondition03 or SnippetConditions.SnippetCondition04 or SnippetConditions.SnippetCondition05 or SnippetConditions.SnippetCondition05A or SnippetConditions.SnippetCondition06 or SnippetConditions.SnippetCondition07 or SnippetConditions.SnippetCondition08 or SnippetConditions.SnippetCondition09 or SnippetConditions.SnippetCondition10 or SnippetConditions.SnippetCondition11 or SnippetConditions.SnippetCondition13 or SnippetConditions.SnippetCondition14 or SnippetConditions.SnippetCondition15]" />
+        </div>
+        <h2>Deploy Stateful Service — Basic Options</h2>
+        <p style="text-align: left;">
+            <img src="../Resources/Static/images/ops-manager-deploy-stateful-service-2.png" />
+        </p>
+        <MadCap:snippetBlock src="../Resources/Snippets/ServicePropertiesSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition01 or SnippetConditions.SnippetCondition02 or SnippetConditions.SnippetCondition03 or SnippetConditions.SnippetCondition04 or SnippetConditions.SnippetCondition05 or SnippetConditions.SnippetCondition06 or SnippetConditions.SnippetCondition08], exclude[SnippetConditions.SnippetCondition05A or SnippetConditions.SnippetCondition07 or SnippetConditions.SnippetCondition09 or SnippetConditions.SnippetCondition10 or SnippetConditions.SnippetCondition11 or SnippetConditions.SnippetCondition12 or SnippetConditions.SnippetCondition13 or SnippetConditions.SnippetCondition14 or SnippetConditions.SnippetCondition15]" />
+        <h2>Deploy Stateful Service — Advanced Options</h2>
+        <p style="text-align: left;">
+            <img src="../Resources/Static/images/ops-manager-deploy-stateful-service-6.png" />
+        </p>
+        <MadCap:snippetBlock src="../Resources/Snippets/ServicePropertiesSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition09], exclude[SnippetConditions.SnippetCondition01 or SnippetConditions.SnippetCondition02 or SnippetConditions.SnippetCondition03 or SnippetConditions.SnippetCondition04 or SnippetConditions.SnippetCondition05 or SnippetConditions.SnippetCondition05A or SnippetConditions.SnippetCondition06 or SnippetConditions.SnippetCondition07 or SnippetConditions.SnippetCondition08 or SnippetConditions.SnippetCondition10 or SnippetConditions.SnippetCondition11 or SnippetConditions.SnippetCondition12 or SnippetConditions.SnippetCondition13 or SnippetConditions.SnippetCondition14 or SnippetConditions.SnippetCondition15]" />
+        <h2>Deploy Stateless Service — Basic Properties</h2>
+        <p style="text-align: left;">
+            <img src="../Resources/Static/images/ops-manager-deploy-stateless-service-1.png" />
+        </p>
+        <p>&#160;</p>
+        <MadCap:snippetBlock src="../Resources/Snippets/ServicePropertiesSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition01 or SnippetConditions.SnippetCondition02 or SnippetConditions.SnippetCondition05A], exclude[SnippetConditions.SnippetCondition03 or SnippetConditions.SnippetCondition04 or SnippetConditions.SnippetCondition05 or SnippetConditions.SnippetCondition06 or SnippetConditions.SnippetCondition07 or SnippetConditions.SnippetCondition08 or SnippetConditions.SnippetCondition09 or SnippetConditions.SnippetCondition10 or SnippetConditions.SnippetCondition11 or SnippetConditions.SnippetCondition12 or SnippetConditions.SnippetCondition13 or SnippetConditions.SnippetCondition14 or SnippetConditions.SnippetCondition15]" />
+        <p>&#160;</p>
+        <h2>Deploy Stateless Service — Advanced Properties</h2>
+        <p style="text-align: left;">
+            <img src="../Resources/Static/images/ops-manager-deploy-stateless-service-2.png" />
+        </p>
+        <p>&#160;</p>
+        <MadCap:snippetBlock src="../Resources/Snippets/ServicePropertiesSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition09], exclude[SnippetConditions.SnippetCondition01 or SnippetConditions.SnippetCondition02 or SnippetConditions.SnippetCondition03 or SnippetConditions.SnippetCondition04 or SnippetConditions.SnippetCondition05 or SnippetConditions.SnippetCondition05A or SnippetConditions.SnippetCondition06 or SnippetConditions.SnippetCondition07 or SnippetConditions.SnippetCondition08 or SnippetConditions.SnippetCondition10 or SnippetConditions.SnippetCondition11 or SnippetConditions.SnippetCondition12 or SnippetConditions.SnippetCondition13 or SnippetConditions.SnippetCondition14 or SnippetConditions.SnippetCondition15]" />
+        <h2>Deploy Web App Service — Basic Properties</h2>
+        <p style="text-align: left;">
+            <img src="../Resources/Static/images/ops-manager-deploy-webapp-service-1.png" />
+        </p>
+        <p>&#160;</p>
+        <MadCap:snippetBlock src="../Resources/Snippets/ServicePropertiesSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition01 or SnippetConditions.SnippetCondition02 or SnippetConditions.SnippetCondition05A], exclude[SnippetConditions.SnippetCondition03 or SnippetConditions.SnippetCondition04 or SnippetConditions.SnippetCondition05 or SnippetConditions.SnippetCondition06 or SnippetConditions.SnippetCondition07 or SnippetConditions.SnippetCondition08 or SnippetConditions.SnippetCondition09 or SnippetConditions.SnippetCondition10 or SnippetConditions.SnippetCondition11 or SnippetConditions.SnippetCondition12 or SnippetConditions.SnippetCondition13 or SnippetConditions.SnippetCondition14 or SnippetConditions.SnippetCondition15]" />
+        <h2>Deploy Web App Service — Advanced Properties</h2>
+        <p style="text-align: left;">
+            <img src="../Resources/Static/images/ops-manager-deploy-webapp-service-2.png" />
+        </p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <MadCap:snippetBlock src="../Resources/Snippets/ServicePropertiesSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition09], exclude[SnippetConditions.SnippetCondition01 or SnippetConditions.SnippetCondition02 or SnippetConditions.SnippetCondition03 or SnippetConditions.SnippetCondition04 or SnippetConditions.SnippetCondition05 or SnippetConditions.SnippetCondition05A or SnippetConditions.SnippetCondition06 or SnippetConditions.SnippetCondition07 or SnippetConditions.SnippetCondition08 or SnippetConditions.SnippetCondition10 or SnippetConditions.SnippetCondition11 or SnippetConditions.SnippetCondition12 or SnippetConditions.SnippetCondition13 or SnippetConditions.SnippetCondition14 or SnippetConditions.SnippetCondition15]" />
+        <div MadCap:conditions="Version.15-8-died">
+            <p>Then we see the Deploy Service screen:</p>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/images/OPM-deploy-service-dialog-box.jpg" class="tc-picture70" />
+            </p>
+            <ul>
+                <li><b>Service name</b> - The name of the new service that will be introduced to the grid </li>
+                <li><b>Resource</b> - Location of the Java jar file for the service. Can be in a local file, or point to a URL.</li>
+                <li><b>Properties</b> - Freestyle, name and value. Click on <b>+</b> to add a property and value, delete  to remove.<br />The defined properties and their values are used as part of the deploy process for various configuration purposes.</li>
+                <li><b>Topology</b> - Click on the Topology dropdown to choose the service type:</li>
+            </ul>
+            <p style="text-align: center;">
+                <br />
+                <img src="../Resources/Static/images/OPM-deploy-service-topology-dropdown.jpg" class="tc-picture40" />
+            </p>
+            <p>If you click on <b>stateful</b>, you see the following screen. Note that for a stateful service, you will be able to review a list of properties.</p>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/images/OPM-deploy-service-topology-stateful.jpg" class="tc-picture40" />
+            </p>
+            <p MadCap:conditions="Default.DoNotShow">Note for RAM units -- It's not clear right now if Kubernetes will be supported in GA. If it is supported, then the RAM units for Kubernetes environment should automatically show as MiB (Mebibytes), not MB.</p>
+            <p>If in the previous screen you click on <b>stateless</b>, you see this screen:</p>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/images/OPM-deploy-service-topology-stateless.jpg" class="tc-picture40" />
+            </p>
+            <p>In this screen, choose the resources that you wish to make available for the service. Note that there is no High availability for a stateless service.</p>
+        </div>
+        <h2>View Service Deployment</h2>
+        <p>After you click <b>Apply</b>, a message appears in the screen banner, indicating that the service deployment is in progress:</p>
+        <p>
+            <img src="../Resources/Static/images/OPM-deploy-service-in-progress.jpg" class="tc-picture90" />
+        </p>
+        <p>&#160;</p>
+        <p>When the service deployment is completed, a message indicating this fact appears in the screen banner.</p>
+        <p>
+            <img src="../Resources/Static/images/OPM-deploy-service-completed.jpg" class="tc-picture90" />
+        </p>
+        <h1>Undeploy Command in Ops Manager</h1>
+        <p>On the Service screen for the service you wish to undeploy, Overview screen, click on <b>Undeploy service</b> to undeploy the service.</p>
+        <p>
+            <img src="../Resources/Static/images/OPM-undeploy-service.jpg" class="tc-picture90" />
+        </p>
+        <p>After you click on Undeploy, the system will ask for confirmation, then it will undeploy the service.</p>
+    </body>
 </html>
