@@ -115,7 +115,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
         <div class="tc-admon-note" MadCap:conditions="Version.15-0-born">
             <p>If you're using Kubernetes, additional configuration may be required. See Persistent Volume Storage in Kubernetes below.</p>
         </div>
-        <p>The following table describes the configuration options used in <code>rocksdb-blob-store</code> above.</p>
+        <p><a name="The"></a>The following table describes the configuration options used in <code>rocksdb-blob-store</code> above.</p>
         <table>
             <thead>
                 <tr>
@@ -127,7 +127,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
             </thead>
             <tbody>
                 <tr MadCap:conditions="Version.15-0-born">
-                    <td align="left">persistent</td>
+                    <td align="left"><a name="ssd-persistent"></a>persistent</td>
                     <td align="left">If true, the space will load persisted data when started. Otherwise, the space will purge persisted data and start empty.</td>
                     <td align="left">&#160;</td>
                     <td align="left">required</td>
@@ -623,7 +623,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
                     <td align="left">put</td>
                 </tr>
                 <tr>
-                    <td align="left">fsync</td>
+                    <td align="left"><a name="ssd-fsync"></a>fsync</td>
                     <td align="left">By default, each write returns after the data is pushed to the operating system. The transfer from operating system memory to the underlying persistent storage happens asynchronously. When sync is configured to true, each write operation doesn't return until the data being written has been pushed all the way to persistent storage. <br /> This parameter should be set to true while storing data to file systems like ext3, which can lose files after a reboot. <br />If this property is set, the <code>fsync</code> that is passed to the <code>rocksdb-blob-store</code> namespace/<code>RocksDBBlobStoreConfigurer</code> (if any) is ignored.</td>
                     <td align="left">false</td>
                 </tr>

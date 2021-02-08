@@ -14,20 +14,19 @@
             <li MadCap:conditions="SnippetConditions.SnippetCondition07"><b>Enable scale in/out</b> — Provide horizontal scaling capability for the Space.</li>
             <li MadCap:conditions="SnippetConditions.SnippetCondition08"> <b>Anti affinity</b> — Ensure that primary and backup partitions are allocated on different nodes.</li>
             <li MadCap:conditions="SnippetConditions.SnippetCondition09"><b>Advanced — Context Properties</b> — Name and value pairs for additional properties. Click on <b>+</b> to add a property and value, delete  to remove.<br />The defined properties and their values are used as part of the deploy process for various configuration purposes.</li>
-            <li MadCap:conditions="SnippetConditions.SnippetCondition10"><b>MemoryXtend — Memory threshold:</b> xxxxx</li>
+            <li MadCap:conditions="SnippetConditions.SnippetCondition10"><b>MemoryXtend — Memory threshold:</b> The amount of used memory that triggers an exception when a write, update or initial load operation is attempted— see  <MadCap:xref href="../../admin/memoryxtend-ohr.html#defining-the-memory-threshold">Defining the Memory Threshold</MadCap:xref></li>
             <li MadCap:conditions="SnippetConditions.SnippetCondition11"><b>MemoryXtend — Off-heap options</b>:</li>
             <ul MadCap:conditions="SnippetConditions.SnippetCondition11">
-                <li><b>Avg. object size</b> — xxxx</li>
-                <li><b>Cache entries percentage</b> — xxxxx</li>
+                <li><b>Avg. object size</b> — an estimate of the average object size in the memory cache — see <MadCap:xref href="../../admin/memoryxtend-overview.html#Caching">Caching in MemoryXtend</MadCap:xref></li>
+                <li><b>Cache entries percentage</b> — the amount of RAM in the the heap that is used for caching — see <MadCap:xref href="../../admin/memoryxtend-overview.html#default-cache-lru">Default Cache - LRU</MadCap:xref></li>
             </ul>
             <li MadCap:conditions="SnippetConditions.SnippetCondition12"><b>MemoryXtend — SSD options</b>:</li>
             <ul MadCap:conditions="SnippetConditions.SnippetCondition12">
-                <li><b>Persistent</b> — xxxx</li>
-                <li><b>Volume Claim Template configuration</b> — <b>Storage size</b> (Kubernetes only) — xxxx</li>
-                <li><b>Volume Claim Template configuration</b> — <b>Storage class name</b> (Kubernetes only) — xxxx</li>
-                <li><b>Avg. object size</b> — xxxxx</li>
-                <li><b>Cache entries percentage</b> — xxxx</li>
-                <li><b>Fsync</b> — xxxx</li>
+                <li><b>Persistent</b> — determines if the Space will load persisted data when loaded. See <MadCap:xref href="../../admin/memoryxtend-rocksdb-ssd.html#ssd-persistent" target="_blank" class="zzz">SSD Persistent Data.</MadCap:xref></li>
+                <li><b>Volume Claim Template configuration</b> — <b>Storage size</b> and <b>Storage class name</b> — (both items are Kubernetes only) — see <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Kubernetes documentation</a></li>
+                <li><b>Avg. object size</b> — an estimate of the average object size in the memory cache — see <MadCap:xref href="../../admin/memoryxtend-overview.html#Caching">Caching in MemoryXtend</MadCap:xref></li>
+                <li><b>Cache entries percentage</b> — the amount of RAM in the the heap that is used for caching — see <MadCap:xref href="../../admin/memoryxtend-overview.html#default-cache-lru">Default Cache - LRU</MadCap:xref></li>
+                <li><b>Fsync</b> — See <MadCap:xref href="../../admin/memoryxtend-rocksdb-ssd.html#ssd-fsync" class="ssd-fsync">SSD fsync</MadCap:xref></li>
             </ul>
         </ul>
     </body>
