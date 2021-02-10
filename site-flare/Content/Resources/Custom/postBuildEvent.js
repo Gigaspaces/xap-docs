@@ -38,10 +38,15 @@ function processBuildFolder(srcFolder) {
   fso.CopyFolder(srcFolder.Path, sDstPath);
   var dstFolder = fso.GetFolder(sDstPath);
   log("Processing HTML files...");
-  processFilesWithExtension(dstFolder, ".html", [
+  var replaceTerms = [
     { "find": /=\"\S*?Resources\/Static\//g, "replace": '="/' },
-    { "find": /https:\/\/docs\.gigaspaces\.com/g, "replace": '' }
-  ]);
+    { "find": /https:\/\/docs\.gigaspaces\.com/g, "replace": '' }    
+  ];
+  // If is numeric, add meta tag to prevent search engines like google from indexing pages:
+  if (!isNaN(sVersion)) {
+      replaceTerms.push({ "find": '    <head>', "replace": '    <head>\n        <meta name="robots" content="noindex" />' });
+  }
+  processFilesWithExtension(dstFolder, ".html", replaceTerms);
   log("Processing static resources...");
   processStaticResources(fso.GetFolder(dstFolder.Path + "\\Resources\\Static"), sOutputPath);
   if (srcFolder.Name === "ie-resources") {
