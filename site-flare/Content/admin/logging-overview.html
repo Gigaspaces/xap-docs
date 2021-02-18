@@ -9,6 +9,9 @@
             <p>Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with <MadCap:variable name="General.ProductNameXAPPrem" />).</p>
         </div>
         <p><MadCap:variable name="General.ProductNameXAP" /> makes logging calls using the Java platform's core logging facilities. For a detailed explanation of the Java logging framework, refer to <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/logging/overview.html" target="_blank">Java Logging Overview</a> on the Oracle website.</p>
+        <div class="tc-admon-tip">
+            <p>Logging options can be defined during <MadCap:xref href="#configuration">Configuration</MadCap:xref>, and changed dynamically at <MadCap:xref href="#logging-management-at-runtime" class="rt">Runtime</MadCap:xref>.</p>
+        </div>
         <h1><a name="configuration"></a>Configuration</h1>
         <p>The logging configuration is initialized using a configuration file that is read at startup. This configuration file is in the standard <code>java.util.Properties</code> format. It configures custom versions of both <code>java.util.logging.Handler</code> and <code>java.util.logging.Formatter</code>, and default levels for frequently used loggers (categories).</p>
         <h2><a name="default-configuration"></a>Default Configuration</h2>
@@ -61,6 +64,83 @@ export <MadCap:variable name="General.EnvVariablePrefix" />_LOGS_CONFIG_FILE=myf
         <p>The stack trace of a <code>java.lang.RuntimeException</code> is always be logged, regardless of the level definition.</p>
         <h1><a name="logging-management-at-runtime"></a>Logging Management at Runtime</h1>
         <p>You can change various logger level settings while the system is up and running, without having to restart. This can be very useful in production environments when you have to troubleshoot the system, but cannot restart it.</p>
+        <div MadCap:conditions="Version.15-8-born">
+            <h2>Runtime Logging Management via Ops Manager/Command Line/REST-API</h2>
+            <p>The logging options can be changed dynamically via one of the following approaches:</p>
+            <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="NewSet.JustAColorForDivs">
+                <div title="GigaSpaces Ops Manager" style="padding:10px" MadCap:conditions="Version.15-0-born">
+                    <p>Click the card in the Services area of the Cluster overview page. On the top right of the screen, click on the three-dot menu. The following popup will appear:</p>
+                    <p>
+                        <img src="../Resources/Static/images/ops-manager-change-log-level.png" />
+                    </p>
+                    <p>Click Change Log Level, and the following popup will appear:</p>
+                    <p>
+                        <img src="../Resources/Static/images/ops-manager-log-levels.png" />
+                    </p>
+                    <p>In this example, <code class="language-bash">com.gigaspaces.core.common</code> is the name of the log file that you wish to change. You can see the list of log files in <MadCap:variable name="General.HomePath" />/config/log/xap_logging.properties </p>
+                    <p>The dropdown list allows you to choose a logging level. In this example, the new logging level is <b>FINEST</b>. Click <a href="https://docs.oracle.com/en/java/javase/15/docs/api/java.logging/java/util/logging/class-use/Level.html">here</a> for information on logging levels. </p>
+                </div>
+                <div title="Command Line Interface" style="padding:10px">
+                    <p><span class="tc-italic">Command example:</span>
+                    </p>
+                    <p><code>gs logger set-level --service=demo com.gigaspaces.core.common FINE</code>
+                    </p>
+                    <p><span class="tc-italic">Description:</span>
+                    </p>
+                    <p>For the log file for service <code class="language-bash">demo com.gigaspaces.core.common</code>, set the log level to FINE..</p>
+                </div>
+                <div title="REST Manager API" style="padding:10px">
+                    <p><span class="tc-italic">Path</span>
+                    </p>
+                    <p><code>POST/pus/{id}/log-level</code>
+                    </p>
+                    <p><span class="tc-italic">Description</span>
+                    </p>
+                    <p>Dynamically change the logging level for a log file used by a service.</p>
+                    <p><span class="tc-italic">Example Request</span>
+                    </p><pre><code class="language-bash">curl -X POST --header 'Accept: application/json' 'http://localhost:8090/v2/pus?id=demo&amp;log=com.gigaspaces.core.common&amp;level=FINEST'
+</code></pre>
+                    <p>This example changes the logging level for the log file  <span class="tc-bold">com.gigaspaces.core.common</span> in service <span class="tc-bold">demo</span> to <span class="tc-bold">FINEST</span>.</p>
+                    <p><span class="tc-italic">Options:</span>
+                    </p>
+                    <table>
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <thead>
+                            <tr>
+                                <th>Option</th>
+                                <th>Description</th>
+                                <th>Sample Data</th>
+                                <th>Required</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>The name of the service that contains the log you are modifying</td>
+                                <td>demo</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>log</td>
+                                <td>The name of the log file you wish to change — see the list of log files in <MadCap:variable name="General.HomePath" />/config/log/xap_logging.properties </td>
+                                <td>com.gigaspaces.core.common</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>level</td>
+                                <td>The new logging level. Click <a href="https://docs.oracle.com/en/java/javase/15/docs/api/java.logging/java/util/logging/class-use/Level.html">here</a> for information on logging levels.</td>
+                                <td>FINEST</td>
+                                <td>Yes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <h2 MadCap:conditions="Version.15-8-born">Runtime Logging Management via JMX</h2>
+        </div>
         <p>To do this, connect to the JMX Bean of the Java logging facility via a monitoring tool such as JConsole. You can start JConsole for a specific running GSC or GSM using the <MadCap:variable name="General.CompanyName" /> Management Center (<code>&lt;product&gt;\bin\gs-ui.sh(bat)</code>).</p>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
         <p><span class="tc-bold">To change the logging level in JConsole</span>
@@ -98,7 +178,7 @@ export <MadCap:variable name="General.EnvVariablePrefix" />_LOGS_CONFIG_FILE=myf
             </li>
         </ul>
         <h1><a name="logging-level"></a>Logging Level</h1>
-        <p>The <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/util/logging/Level.html" target="_blank">logging level</a> class defines a set of standard logging levels that can be used to control logging output. The logging levels are ordered, and are specified by ordered integers/constants.</p>
+        <p>The <a href="https://docs.oracle.com/en/java/javase/[%=Versions.java-version%]/docs/api/java.logging/java/util/logging/Level.html" target="_blank">logging level</a> class defines a set of standard logging levels that can be used to control logging output. The logging levels are ordered, and are specified by ordered integers/constants.</p>
         <div class="tc-admon-note">
             <p>Enabling logging at a given level also enables logging at all higher levels.</p>
         </div>
