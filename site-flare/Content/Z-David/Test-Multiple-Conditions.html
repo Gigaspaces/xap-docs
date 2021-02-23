@@ -45,5 +45,12 @@
         <p MadCap:conditions="NewSet.ProductionOnly">this text has ProductionOnly</p>
         <MadCap:snippetBlock src="../Resources/Snippets/TestSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition01], exclude[SnippetConditions.SnippetCondition02]" />
         <MadCap:snippetBlock src="../Resources/Snippets/TestSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition02], exclude[SnippetConditions.SnippetCondition01]" />
+        <p>&#160;</p>
+        <div MadCap:conditions="Version.15-5-died">
+            <p>This paragraph, and the following two paragraphs, are in a group that is 15.5 died</p>
+            <p MadCap:conditions="Version.15-2-died">This text is 15.2 died</p>
+            <p MadCap:conditions="Version.15-2-born">This text is 15.2 born</p>
+        </div>
+        <p>&#160;</p>
     </body>
 </html>
