@@ -6,6 +6,71 @@
         <h1 class="tc-pagetitle">Changelog</h1>
         <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.x.<MadCap:conditionalText MadCap:conditions="Version.16-0-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
         <p MadCap:conditions="Version.16-0-only">There are no features and enhancements at this time. </p>
+        <div MadCap:conditions="Version.16-0-only">
+            <h1>16.0</h1>
+            <h2>Features and Enhancements</h2>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14415," />: Match performance of read/takeByIds with a single Id to that of read/takeById API </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14389," />: Move heap report to zookeeper</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14391," />: Upgrade Spring Security to 5.4.2</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14390," />: Upgrade Spring to 5.2.12</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14387," />: End of Life - Sigar integration</li>
+            </ul>
+            <h2>Resolved Issues</h2>
+            <div MadCap:conditions="NewSet.YetAnotherColorForDivs">
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14422," />:  Block unauthorized features in REST and Ops-UI</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14417," />:  REST: Path variable with dot (.) is  truncated in URL</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14388," />:  Upgrade from 12.3 to 15.5.1 log regression — unable to create log per PU using  slf4j logger api and  Log4j configuration</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14404," />:  Service Dump does not complete if an exception is thrown during operation</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14406," />:  Add scroll bar for data types and indexes table</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14396," />:  Query time shown in OpsManager is incorrect</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14400," />:  Scale operation on single Space should not be allowed</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14401," />:  Service card is green despite number of actual instances greater than planned</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14395," />:  Logging mismatch between context and log name
+				</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14398," />:  Kubernetes scale up doesn't allow scale up/down right after first scale without changing the last values (OPS-UI)</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14393," />:  OPS-UI: NPE while writing to single space </li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14394," />:  Deploying/undeploying a space succeeds but returns an operation timeout in the CLI</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14392," />:  Operation fails when scale up/down in Kubernetes is performed with same existing resource (Memory/CPU) values</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14386," />:  Zeppelin Notebook and Spark examples use the same case class
+				</li>
+                </ul>
+            </div>
+            <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time. </p>
+            <h2>Known Issues</h2>
+            <p>There are no known issues at this time.</p>
+            <p>.</p>
+        </div>
         <div MadCap:conditions="Version.15-8-only">
             <h1>15.8</h1>
             <h2>Features and Enhancements</h2>
