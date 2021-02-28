@@ -211,7 +211,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
                     <img src="../Resources/Static/attachment_files/kubernetes/kubernetes-pvc.png" class="tc-picture80" />
                 </p>
             </div>
-            <h2>Deploying a Data Pod with MemoryXtend in Kubernetes</h2>
+            <h1>Deploying a Data Pod with MemoryXtend in Kubernetes</h1>
             <p MadCap:conditions="Version.15-0-died">In order to deploy a Processing Unit with tiered storage in Kubernetes, both the pu.xml and pu Helm charts must be configured with the MemoryXtend definitions. </p>
             <p MadCap:conditions="Version.15-0-born">In order to deploy a Processing Unit with tiered storage in Kubernetes, the pu Helm chart must be configured with the MemoryXtend definitions. </p>
             <div MadCap:conditions="Version.15-0-died">
@@ -254,9 +254,9 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
             </div>
             <div MadCap:conditions="Version.15-8-born">
                 <p>Two methods are available to deploy the data pod: using Kubernetes Operator (preferred method), and using Helm charts (deprecated method).</p>
-                <h3>Deploying the Data Pod using Kubernetes Operator (preferred method)</h3>
+                <h2>Deploying the Data Pod using Kubernetes Operator (preferred method)</h2>
                 <p>Follow the procedure described in <MadCap:xref href="kubernetes-data-grid-with-helm-and-operator.html" MadCap:conditions="Version.15-8-born">Getting Started with GigaSpaces in Kubernetes</MadCap:xref> to install the initial Helm chart and to deploy the processing unit. </p>
-                <h3>Deploying the Data Pod using Helm Charts (deprecated method)</h3>
+                <h2>Deploying the Data Pod using Helm Charts (deprecated method)</h2>
                 <p>Fetch the <MadCap:variable name="General.CompanyName" /> Helm charts as described in <MadCap:xref href="kubernetes-data-grid-helm-only.html" MadCap:conditions="Version.15-8-died">Getting Started with GigaSpaces in Kubernetes Using Helm Charts Only</MadCap:xref>, then use the <code>helm install</code> command to deploy the Processing Unit. The minimum configuration required for MemoryXtend volume is to set the <code>enabled</code> property to <code>true</code>, and the <code>storage</code> property to the required capacity of the external storage. For example:</p>
                 <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-pu --name my-pu --set memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&lt;my-server&gt;/path/to/my-pu.jar</code></pre>
                     <p MadCap:conditions="Version.15-5-born">
@@ -273,7 +273,7 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
                     </p>
                 </div>
             </div>
-            <h3>MemoryXtend Properties</h3>
+            <h2>MemoryXtend Properties</h2>
             <p>The following table describes the properties in the <code>memoryXtendVolume</code> section of the Helm chart.</p>
             <table style="width: 100%;" class="tc-standard">
                 <col />
