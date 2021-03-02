@@ -89,6 +89,8 @@
       Name="Versions/hibernate-short">5</Variable>
     <Variable
       Name="General/EnvVariablePrefix">GS</Variable>
+    <Variable
+      Name="Links/ApiJavaDoc">https://resources.gigaspaces.com/api/[%=Versions.product-version-long%]/java</Variable>
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
 </CatapultTarget>
