@@ -82,7 +82,7 @@ Runtime.getRuntime().exec( "jconsole " + jndiURL );
                 </li>
             </ul>
             <div class="tc-admon-attention">
-                <p>JMX can be disabled by setting <code class="language-bash">GS_OPTIONS_EXT</code> to <code class="language-bash">-Dcom.gs.jndi.enabled=false</code>in the <code class="language-bash">setenv-overrides.sh/bat</code> file.</p>
+                <p>JMX can be disabled by setting <code class="language-bash">GS_OPTIONS_EXT</code> to <code class="language-bash">-Dcom.gs.jndi.enabled=false</code> in the <code class="language-bash">setenv-overrides.sh/bat</code> file.</p>
             </div>
             <h2>Example of definition:</h2><pre><code class="language-bash">export GS_OPTIONS_EXT="-Dcom.sun.management.jmxremote.authenticate=true<br />-Dcom.sun.management.jmxremote.ssl=false<br />-Dcom.sun.management.jmxremote.access.file=[PATH_TO]/jmxremote.access<br />-Dcom.sun.management.jmxremote.password.file=[PATH_TO]/jmxremote.password"<br />export GS_JMX_REMOTE_BASE_PORT=[YOUR_PORT_VAL]
 </code></pre>
