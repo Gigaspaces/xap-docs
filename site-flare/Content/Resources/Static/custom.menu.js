@@ -4,7 +4,7 @@
 	'16.0': { 'url': '/16.0/landing.html', 'label': '16.0 Early Access', 'topicBanner': 'preview' },
 		
 	'15.8': { 'url': '/15.8/landing.html', 'label': '15.8', 'hide': true },
-	'latest': { 'url': '/latest', 'label': '15.8' },	
+	'latest': { 'url': '/latest/landing.html', 'label': '15.8' },	
 	
 	'15.5': { 'url': '/15.5/landing.html', 'label': '15.5',  'topicBanner': 'old' },
 	'15.2': { 'url': '/15.2/index.html', 'label': '15.2',  'topicBanner': 'old' },
