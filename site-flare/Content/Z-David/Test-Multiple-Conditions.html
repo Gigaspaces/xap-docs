@@ -4,6 +4,8 @@
     </head>
     <body>
         <h1>Test Multiple Conditions </h1>
+        <p MadCap:conditions="NewSet.XperimentalOnlyEXCLUDE">this text is excluded from xperimental but included for others</p>
+        <p MadCap:conditions="NewSet.XperimentalOnlyINCLUDE">this text is included in xperimental but excluded for others</p>
         <p MadCap:conditions="Version.15-0-born,Version.15-5-died">this text has 15.0 born and 15.5 died.</p>
         <p MadCap:conditions="Version.15-0-born">this text has 15.0 born and 15.5 died, in two separate paragraphs (1 of 2).</p>
         <p MadCap:conditions="Version.15-5-died">this text has 15.0 born and 15.5 died, in two separate paragraphs (2 of 2).</p>
