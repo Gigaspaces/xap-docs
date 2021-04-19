@@ -3,17 +3,24 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle"><MadCap:variable name="General.ProductNameIE" /> JDBC&#160;Driver</h1>
         <div MadCap:conditions="NewSet.StagingOnly">
+            <h1 class="tc-pagetitle">JDBC&#160;Client</h1>
             <p>Traditionally, customers adopting our platform come from a database (SQL) background.
 In order to give them a familiar interface for looking into what data exists in the grid, we created a SQL adapter that lets them query the grid as if it's a traditional database.</p>
             <p>This gives the opportunity to plug in existing visualization tools like:<br />* <a href="tableau-integration.html">Tableau</a> <br />* <a href="https://www.microstrategy.com/us" target="_blank">MicroStrategy</a><br />* <a href="https://www.visualintelligence.co.nz/qlikview/" target="_blank">QlikView</a><br />directly into the grid and use a drag and drop interface to look into grid data.</p>
-            <p>The JDBC driver supports read queries for the purposes of data visualization, BI and reporting.</p>
-            <div class="tc-admon-refer">
-                <p>For more information, refer to the <a href="jdbc-driver.html">JDBC Driver</a> topic in the Developer guide.</p>
-            </div>
+            <p>Two options are available for SQL support:</p>
+            <ul>
+                <li>
+                    <p>
+                        <MadCap:xref href="#SQL">[%=General.ProductNameIE%]SQL Driver</MadCap:xref> — provides full SQL-99 support</p>
+                </li>
+                <li>
+                    <p> <MadCap:xref href="#XAP">XAP SQL Driver</MadCap:xref> — optimized for fast read-only queries</p>
+                </li>
+            </ul>
+            <p>Each option is explained in detail below.</p>
             <div MadCap:conditions="NewSet.JustAColorForDivs">
-                <h1 class="tc-pagetitle">SQL Driver</h1>
+                <h1 class="tc-pagetitle"><a name="SQL"></a><MadCap:variable name="General.ProductNameIE" />SQL Driver</h1>
                 <p>The <MadCap:variable name="General.ProductNameIE" /> JDBC Driver is broadly compatible with the ANSI SQL Core specification. It allows database-driven applications to interact with the Space via SQL read queries. The driver performs query optimization if needed and translates the SQL query into Space operations.</p>
                 <h1><a name="installation"></a>Installation</h1>
                 <p>Include all the JAR files from the <MadCap:variable name="General.HomePath" /><code>\insightedge\lib\jdbc</code> and <code><MadCap:variable name="General.HomePath" />\lib\required</code> directories in your project.</p>
@@ -259,7 +266,7 @@ Category :Aviation
                         </tr>
                     </tbody>
                 </table>
-                <p>Other properties are inherited from the Apache <code>Calcite</code> <a href="https://calcite.apache.org/docs/adapter.html#jdbc-connect-string-parameters" target="_blank">jdbc-connect-string-parameters</a>.</p>
+                <p>Other properties are inherited from the Apache <MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><code>Calcite</code></MadCap:conditionalText> <a href="https://calcite.apache.org/docs/adapter.html#jdbc-connect-string-parameters" target="_blank">jdbc-connect-string-parameters</a>.</p>
                 <h2>Examples</h2>
                 <p>Accessing an embedded Space with a custom log level:</p><pre><code class="language-bash">jdbc:insightedge:url=/./mySpace;logLevel=DEBUG
 </code></pre>
@@ -376,84 +383,90 @@ This will allow you to create more sufficient queries.</p>
                     <li>Embedded objects can't be used in the queries.</li>
                     <li>Document's dynamic properties can't be used in the queries.</li>
                 </ul>
+                <h1 class="tc-pagetitle"><MadCap:variable name="General.ProductNameIE" />SQL Clients</h1>
+                <p>The InsightEdge JDBC driver can be used with existing visualization tools, to gain insight into the data grid by using the specific tool-provided features such as drag and drop.</p>
+                <p>Examples:</p>
+                <ul>
+                    <li>
+                        <p><a href="https://www.tableau.com/" target="_blank">Tableau</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p><a href="https://www.microstrategy.com/us" target="_blank">MicroStrategy</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p><a href="https://www.visualintelligence.co.nz/qlikview/" target="_blank">QlikView</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p><a href="http://squirrel-sql.sourceforge.net/" target="_blank">SquirreL</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p><a href="http://sqlline.sourceforge.net/" target="_blank">SQLLine</a>
+                        </p>
+                    </li>
+                </ul>
+                <h1><a name="squirrel"></a>SquirreL</h1>
+                <p><span class="tc-bold">To install SquirreL for use with the <MadCap:variable name="General.ProductNameIEP" />:</span>
+                </p>
+                <ol>
+                    <li>
+                        <p>Download and install <a href="http://squirrel-sql.sourceforge.net/#installation" target="_blank">SquirreL</a>.</p>
+                    </li>
+                    <li>
+                        <p>Copy all of the <MadCap:variable name="General.ProductNameXAP" /> JAR files (located in <MadCap:variable name="General.HomePath" /><code>\lib\required</code>) to the squirreL <code>lib</code> folder.</p>
+                    </li>
+                    <li>
+                        <p>Copy all of the <MadCap:variable name="General.ProductNameIE" /> JAR files (<code><MadCap:variable name="General.HomePath" />\insightedge\lib\jdbc</code>) to the squirreL <code>lib</code> folder.</p>
+                    </li>
+                    <li>
+                        <p>Start SquirreL.</p>
+                    </li>
+                    <li>
+                        <p>Click the <span class="tc-bold">Drivers</span> vertical tab on the left, and then click <span class="tc-bold">+</span> to add a new driver.
+</p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/xap-sql/squirrel-driver.png" alt="image" class="tc-picture100" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>Click the <span class="tc-bold">Aliases</span> vertical tab on the left, and then click <span class="tc-bold">+</span> to add a new connection. Sample URL: <code>jdbc:insightedge:url=jini://*/*/mySpace?locators=127.0.0.1&amp;groups=xap-<MadCap:variable name="Versions.product-version-svc-pack-MX" /></code></p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/xap-sql/squirrel-alias.png" alt="image" class="tc-picture50" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>Create a connection to the <MadCap:variable name="General.ProductNameXAP" /> data grid.
+</p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/xap-sql/squirrel-connect.png" alt="image" class="tc-picture100" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>Run a test query, for example <code>SELECT * FROM Product;</code> (the data grid was filled with <code>Product</code> objects in advance).
+</p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/xap-sql/squirrel-query.png" alt="image" class="tc-picture100" />
+                        </p>
+                    </li>
+                </ol>
+            </div>
+            <div MadCap:conditions="NewSet.JustAColorForDivs">
+                <h1><a name="XAP"></a>XAP SQL Driver</h1>
+                <p MadCap:conditions="Default.DoNotShow">The XAP JDBC driver supports read queries for the purposes of data visualization, BI and reporting.</p>
+                <div class="tc-admon-refer">
+                    <p>For more information, refer to the <a href="jdbc-driver.html">JDBC Driver</a> topic in the Developer guide.</p>
+                </div>
             </div>
         </div>
-        <div MadCap:conditions="NewSet.JustAnotherColorForDivs,NewSet.StagingOnly">
-            <h1 class="tc-pagetitle">SQL Clients</h1>
-            <p>The InsightEdge JDBC driver can be used with existing visualization tools, to gain insight into the data grid by using the specific tool-provided features such as drag and drop.</p>
-            <p>Examples:</p>
-            <ul>
-                <li>
-                    <p><a href="https://www.tableau.com/" target="_blank">Tableau</a>
-                    </p>
-                </li>
-                <li>
-                    <p><a href="https://www.microstrategy.com/us" target="_blank">MicroStrategy</a>
-                    </p>
-                </li>
-                <li>
-                    <p><a href="https://www.visualintelligence.co.nz/qlikview/" target="_blank">QlikView</a>
-                    </p>
-                </li>
-                <li>
-                    <p><a href="http://squirrel-sql.sourceforge.net/" target="_blank">SquirreL</a>
-                    </p>
-                </li>
-                <li>
-                    <p><a href="http://sqlline.sourceforge.net/" target="_blank">SQLLine</a>
-                    </p>
-                </li>
-            </ul>
-            <h1><a name="squirrel"></a>SquirreL</h1>
-            <p><span class="tc-bold">To install SquirreL for use with the <MadCap:variable name="General.ProductNameIEP" />:</span>
-            </p>
-            <ol>
-                <li>
-                    <p>Download and install <a href="http://squirrel-sql.sourceforge.net/#installation" target="_blank">SquirreL</a>.</p>
-                </li>
-                <li>
-                    <p>Copy all of the <MadCap:variable name="General.ProductNameXAP" /> JAR files (located in <MadCap:variable name="General.HomePath" /><code>\lib\required</code>) to the squirreL <code>lib</code> folder.</p>
-                </li>
-                <li>
-                    <p>Copy all of the <MadCap:variable name="General.ProductNameIE" /> JAR files (<code><MadCap:variable name="General.HomePath" />\insightedge\lib\jdbc</code>) to the squirreL <code>lib</code> folder.</p>
-                </li>
-                <li>
-                    <p>Start SquirreL.</p>
-                </li>
-                <li>
-                    <p>Click the <span class="tc-bold">Drivers</span> vertical tab on the left, and then click <span class="tc-bold">+</span> to add a new driver.
-</p>
-                    <p>
-                        <img src="../Resources/Static/attachment_files/xap-sql/squirrel-driver.png" alt="image" class="tc-picture100" />
-                    </p>
-                </li>
-                <li>
-                    <p>Click the <span class="tc-bold">Aliases</span> vertical tab on the left, and then click <span class="tc-bold">+</span> to add a new connection. Sample URL: <code>jdbc:insightedge:url=jini://*/*/mySpace?locators=127.0.0.1&amp;groups=xap-<MadCap:variable name="Versions.product-version-svc-pack-MX" /></code></p>
-                    <p>
-                        <img src="../Resources/Static/attachment_files/xap-sql/squirrel-alias.png" alt="image" class="tc-picture50" />
-                    </p>
-                </li>
-                <li>
-                    <p>Create a connection to the <MadCap:variable name="General.ProductNameXAP" /> data grid.
-</p>
-                    <p>
-                        <img src="../Resources/Static/attachment_files/xap-sql/squirrel-connect.png" alt="image" class="tc-picture100" />
-                    </p>
-                </li>
-                <li>
-                    <p>Run a test query, for example <code>SELECT * FROM Product;</code> (the data grid was filled with <code>Product</code> objects in advance).
-</p>
-                    <p>
-                        <img src="../Resources/Static/attachment_files/xap-sql/squirrel-query.png" alt="image" class="tc-picture100" />
-                    </p>
-                </li>
-            </ol>
-        </div>
         <div MadCap:conditions="NewSet.JustAColorForDivs,NewSet.ProductionOnly">
+            <h1 class="tc-pagetitle"><MadCap:variable name="General.ProductNameIE" /> JDBC&#160;Driver</h1>
             <p>Traditionally, customers adopting our platform come from a database (SQL) background.
 In order to give them a familiar interface for looking into what data exists in the grid, we created a SQL adapter that lets them query the grid as if it's a traditional database.</p>
             <p>This gives the opportunity to plug in existing visualization tools like:<br />* <a href="tableau-integration.html">Tableau</a> <br />* <a href="https://www.microstrategy.com/us" target="_blank">MicroStrategy</a><br />* <a href="https://www.visualintelligence.co.nz/qlikview/" target="_blank">QlikView</a><br />directly into the grid and use a drag and drop interface to look into grid data.</p>
-            <p>The JDBC driver is based on <a href="https://calcite.apache.org/" target="_blank">Apache Calcite</a> and was designed to allow only SQL-compatible read operations against data stored in the grid.
+            <p>The JDBC driver is <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">based on <a href="https://calcite.apache.org/" target="_blank">Apache Calcite</a> and was </MadCap:conditionalText>designed to allow only SQL-compatible read operations against data stored in the grid.
 It does not support create/update/delete operations. Furthermore, the driver was not designed for low latency requirements, although it was developed for integration with applications such as visualization tools, which support JDBC-compliant data sources.</p>
             <div class="tc-admon-refer">
                 <p>If you are looking for a low-latency JDBC driver with CRUD capability, refer to the <a href="jdbc-driver.html">JDBC Driver</a> topic in the Developer guide.</p>
