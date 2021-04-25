@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Tiered Storage</h1>
+        <p>Tiered Storage provides a smart way to optimize the RAM footprint of your application data. </p>
+        <p>Data can be stored in two tiers:</p>
+        <ul>
+            <li>
+                <p>"Hot" RAM memory — priority data, used for read/write operations and analysis requiring fastest access</p>
+            </li>
+            <li>
+                <p>"Warm" SSD — additional data used mostly for read-only, analytical purposes</p>
+            </li>
+        </ul>
+        <p>Business rules help you make a smart decision for what data is stored in each tier. The Hot/Warm decision can be based on the data content, or by data aging considerations. </p>
+        <p>Using Tiered Storage can increase your effective data capacity by a factor of ten or more.</p>
+        <p style="text-align: center;">
+            <img src="../Resources/Images/x-tiered-storage.png" style="width: 794px;height: 511px;" />
+        </p>
+        <h2>Optimizing the Use of Tiered Storage</h2>
+        <p>In order to get the most out of this feature, please note the following:</p>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h2>How to Implement Tiered Storage in XML</h2>
+            <p>Tiered Storage is implemented by parameters coded in the XML file for the Space. The relevant sections of the XML file are shown below.</p>
+            <h3>Sample XML Code</h3>
+            <p>The following XML specifies that for the table named <b>Order</b>, the <b>orderTime</b> field will be compared to the current time. For records where the orderTime field is withing 24 hours of the current time, the record will be in Hot storage and Warm storage. After that time, it will be in Warm storage only.</p><pre><code class="language-xml">        
+&lt;os-core:tiered-storage&gt;
+ &lt;os-core:tables&gt;
+ &lt;os-core:table name="com.mycompany.app.model.<b>Order</b>" time-column="<b>orderTime</b>"&gt;
+ &lt;os-core:cache-rule period="<b>PT24H</b>"/&gt;
+ &lt;/os-core:table&gt;
+ &lt;/os-core:tables&gt;
+&lt;/os-core:tiered-storage&gt;
+</code></pre>
+            <p>&#160;</p>
+            <p>The following XML specifies that for the table named <b>Customer</b>, the <b>club</b> field will be compared to the string "<b>PLATINUM</b>". Matching records be in Hot storage and Warm storage. Other records will be in Warm storage only.</p>
+            <p>It also specifies that for the <b>TransientCustomer</b> table, all data will be stored in Hot storage only. </p><pre><code class="language-xml">              
+&lt;os-core:tiered-storage&gt;
+ &lt;os-core:tables&gt;
+ &lt;os-core:table name="com.mycompany.app.model.<b>Customer</b>"&gt;
+ &lt;os-core:cache-rule criteria="<b>club</b> <b>=</b> <b>'PLATINUM'</b>"/&gt;
+ &lt;/os-core:table&gt;
+ &lt;os-core:table name="com.mycompany.app.model.<b>TransientCustomer</b>" <b>transient="true"</b>/&gt;
+ &lt;/os-core:tables&gt;
+&lt;/os-core:tiered-storage&gt;
+</code></pre>
+            <p>&#160;</p>
+            <p>Following is a summary of XML parameters.</p>
+            <table style="width: 100%;">
+                <col />
+                <col />
+                <tbody>
+                    <tr>
+                        <td>XML Parameter</td>
+                        <td>Meaning</td>
+                    </tr>
+                    <tr>
+                        <td><code>tiered-storage</code>
+                        </td>
+                        <td>Beginning of Tiered Storage definitions for a Space</td>
+                    </tr>
+                    <tr>
+                        <td><code>tables</code>
+                        </td>
+                        <td>Beginning of list of tables</td>
+                    </tr>
+                    <tr>
+                        <td><code>table name=<i>name-of-table</i></code>
+                        </td>
+                        <td>Tiered rules for a table (object type)</td>
+                    </tr>
+                    <tr>
+                        <td><code>time-column=<i>name-of-field</i></code>
+                        </td>
+                        <td>Name of the field (property) in the table that will be evaluated for eviction from RAM. Must be of Java type <code class="language-java">TimeStamp</code>, <code class="language-java">Long </code>or <code class="language-java">Instant</code>.<br /></td>
+                    </tr>
+                    <tr>
+                        <td><code>retention=<i>period</i></code>
+                        </td>
+                        <td>After the <code style="font-style: italic;">period</code> amount of time has passed without accessing the field, it will be removed from Hot storage (RAM). <br /><code style="font-style: italic;">period</code> must be a format supported by the Java <a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html#i49:~:text=occurs-,parse,public static Duration parse(CharSequence text)">Duration</a> class.<br />Examples: <br /><code>PT15M</code> (15 minutes)<br /><code>PT20S</code> (20 seconds)<br /></td>
+                    </tr>
+                    <tr>
+                        <td><code>cache-rule criteria="<i>fieldname operator value</i>"</code>
+                        </td>
+                        <td>
+                            <p>Rule to determine which data to place in Hot storage. <br /><code style="font-style: italic;">fieldname</code> can be any Java primitive field type. <br /><code style="font-style: italic;">operator</code> can be 
+							<b>= &#160;&#160;!= &#160;&#160;&gt;= &#160;&#160;&lt;=  </b><br /><code style="font-style: italic;">value</code> is a compatible value for comparision to the field.</p>
+                            <p>Examples: </p>
+                            <p><code>cache-rule criteria="club! = 'BASIC'"</code>
+                            </p>
+                            <p><code>cache-rule criteria="active = true"</code>
+                            </p>
+                            <p><code style="background-color: #00ffff;">cache-rule criteria="startdate &lt;= now() - 3 days'"</code>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr MadCap:conditions="Default.DoNotShow">
+                        <td><code>period=<i>timevalue</i></code>
+                        </td>
+                        <td>The Hot tier eviction rule. Data failing this rule will be removed from the Hot tier (but will still be in the Warm tier). <code style="font-style: italic;">timevalue </code>can be any value that is a valid for the <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/Duration.html#parse(java.lang.CharSequence):~:text=public static Duration parse​(CharSequence text)">parse method of a Java Duration object</a>. </td>
+                    </tr>
+                    <tr>
+                        <td>&#160;</td>
+                        <td>&#160;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+            <h2>How to Implement Tiered Storage in Java Code</h2>
+            <p>Tiered Storage is implemented by setting parameter values in the Java code definition for the Space. Relevant parts of the Java code are shown below.</p>
+            <h3>Sample Java Code</h3>
+            <p>The following Java code specifies that for the table named <b>Customer</b>, the <b>club</b> field will be compared to the string "<b>PLATINUM</b>". Matching records will be stored in Hot storage and Warm storage. Other records will be in Warm storage only.</p>
+            <p>It also specifies that for the <b>TransientCustomer</b> table, all data will be stored in Hot storage only.</p>
+            <p>In addition, records in the <b>Purchase</b> table will be stored in Hot and Warm storage for 30 seconds. After that time, they will be stored in Warm storage only.</p><pre><code class="language-java"> @Override 
+protected void configure(EmbeddedSpaceFactoryBean factoryBean) {
+ super.configure(factoryBean); 
+ TieredStorageConfig tieredStorageConfig = new TieredStorageConfig(); 
+ Map&lt;String, TieredStorageTableConfig&gt; tables = new HashMap&lt;&gt;();
+ tables.put(<b>Customer</b>.class.getName(), new TieredStorageTableConfig().sethame(Customer.class.getName()).<b>setCriteria("club =  'PLATINUM'")</b>); 
+ tables.put(<b>TransientCustomer</b>.class.getName(), new TieredStorageTableConfig().setName(TransientCustomer.class.getName()).<b>setTransient(true)</b>); 
+ tables.put(<b>Purchase</b>.class.getName(), new TieredStorageTableConfig.setName(Purchase.class.getName().setTimeColumn("orderTime").<b>setPeriod(Duration.ofSeconds(30)</b>));
+ tieredStorageConfig.setTables(tables); 
+ factoryBean.setTieredStorageConfig(tieredStorageConfig); 
+</code></pre>
+            <p>&#160;</p>
+            <p>&#160;</p>
+        </div>
+        <p>&#160;</p>
+    </body>
+</html>
