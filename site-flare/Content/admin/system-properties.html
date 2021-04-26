@@ -74,33 +74,64 @@
                 </tr>
             </tbody>
         </table>
-        <h1><a name="security"></a>Security</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Property name</th>
-                    <th>Description</th>
-                    <th>Default</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>com.gs.security.enabled</td>
-                    <td>Security property indicating whether the GSM and GSC should be loaded in a secured mode.</td>
-                    <td>false</td>
-                </tr>
-                <tr>
-                    <td>com.gs.security.properties-file</td>
-                    <td>Identifies the security properties file location</td>
-                    <td>&lt;path/filename&gt;</td>
-                </tr>
-                <tr>
-                    <td>com.gs.security.disable-commit-abort-authentication</td>
-                    <td>Disable transaction authentication</td>
-                    <td>false</td>
-                </tr>
-            </tbody>
-        </table>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h1><a name="security"></a>Security</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property name</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>com.gs.security.enabled</td>
+                        <td>Security property indicating whether the GSM and GSC should be loaded in a secured mode.</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>com.gs.security.properties-file</td>
+                        <td>Identifies the security properties file location</td>
+                        <td>&lt;path/filename&gt;</td>
+                    </tr>
+                    <tr>
+                        <td>com.gs.security.disable-commit-abort-authentication</td>
+                        <td>Disable transaction authentication</td>
+                        <td>false</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+            <h1><a name="security"></a>Secured Space</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property name</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>com.gs.proxypool.capacity</td>
+                        <td>Proxy capacity of the data structure</td>
+                        <td>50 proxies</td>
+                    </tr>
+                    <tr>
+                        <td>com.gs.proxypool.waiting-timeout</td>
+                        <td>Timeout — maximum time to wait for a place (proxy) in the data structure</td>
+                        <td>3 *60*1000 (in millis) — 3 minutes</td>
+                    </tr>
+                    <tr>
+                        <td>com.gs.proxypool.expiration-time</td>
+                        <td>Expiration time after which the unused proxies are evicted</td>
+                        <td>15*60*1000 (in millis) — 15 minutes</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h1><a name="change-code-without-restarts"></a>Change code without restarts</h1>
         <table>
             <thead>

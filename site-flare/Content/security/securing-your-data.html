@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -335,5 +335,21 @@ Statement st = conn.createStatement();
         <div class="tc-admon-note">
             <p>An alternative method for querying the Space using SQL syntax is the <a href="../dev-java/query-sql.html">SQLQuery</a> class, with a privileged GigaSpace proxy.</p>
         </div>
+        <h1>Accessing a Secured Space via <MadCap:variable name="General.ProductNameXAP" /> Tools</h1>
+        <p>When accessing a query on a secured Space, the related proxy has three important properties: capacity, timeout and eviction. These properties and their default values are described in the <MadCap:xref href="../admin/system-properties.html#security">Security</MadCap:xref> topic.</p>
+        <ul MadCap:conditions="Default.DoNotShow">
+            <li>
+                <p><b>Capacity</b> — <code>com.gs.proxypool.capacity</code> — the proxy capacity of the data structure. Default: 50 proxies.</p>
+            </li>
+            <li>
+                <p><b>Timeout</b> — <code>com.gs.proxypool.waiting-timeout</code> — timeout of waiting for place in the data structure. Default : 3 *60*1000 (in millis).</p>
+            </li>
+            <li>
+                <p><b>Eviction</b> — <code>com.gs.proxypool.expiration-time</code> — expiration time after which the unused proxies are evicted. Default 15*60*1000 (in millis).</p>
+            </li>
+        </ul>
+        <p>These properties can be modified in the <code>setenv-overrides.bat/sh</code> file. For example, to change the capacity to 100 proxies:</p><code class="language-bash">export GS_OPTIONS_EXT='<b>-Dcom.gs.proxypool.capacity=50</b> -Dcom.gs.security.enabled=true -Dcom.gs.manager.rest.ssl.enabled=false'</code>
+        <p>&#160;</p>
+        <p>&#160;</p>
     </body>
 </html>
