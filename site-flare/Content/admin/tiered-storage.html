@@ -15,12 +15,26 @@
             </li>
         </ul>
         <p>Business rules help you make a smart decision for what data is stored in each tier. The Hot/Warm decision can be based on the data content, or by data aging considerations. </p>
-        <p>Using Tiered Storage can increase your effective data capacity by a factor of ten or more.</p>
+        <p>Using Tiered Storage can increase effective data capacity by a factor of ten or more.</p>
         <p style="text-align: center;">
             <img src="../Resources/Images/x-tiered-storage.png" style="width: 794px;height: 511px;" />
         </p>
         <h2>Optimizing the Use of Tiered Storage</h2>
         <p>In order to get the most out of this feature, please note the following:</p>
+        <ul>
+            <li>
+                <p>In most cases (except for transient data — <a href="#transient-param">see below</a>), data in the Hot tier is also stored in the Warm tier. </p>
+            </li>
+            <li>
+                <p>Queries use the Hot tier if all of the required data is in the Hot tier.</p>
+            </li>
+            <li>
+                <p>Tiered Storage uses primitive properties types.</p>
+            </li>
+            <li>
+                <p>Warm storage is not automatically persistent. Persistence is established via the standard <MadCap:xref href="../dev-java/space-persistency-overview.html">Space Persistency</MadCap:xref> feature of <MadCap:variable name="General.ProductNameXAP" />.</p>
+            </li>
+        </ul>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
             <h2>How to Implement Tiered Storage in XML</h2>
             <p>Tiered Storage is implemented by parameters coded in the XML file for the Space. The relevant sections of the XML file are shown below.</p>
@@ -96,6 +110,11 @@
                             </p>
                         </td>
                     </tr>
+                    <tr>
+                        <td id="transient-param"><code>transient=<i>true</i>|<i>false</i></code>
+                        </td>
+                        <td>Specify if the data is in the Hot tier only. Default is <code>transient=false</code>.</td>
+                    </tr>
                     <tr MadCap:conditions="Default.DoNotShow">
                         <td><code>period=<i>timevalue</i></code>
                         </td>
@@ -126,7 +145,33 @@ protected void configure(EmbeddedSpaceFactoryBean factoryBean) {
  factoryBean.setTieredStorageConfig(tieredStorageConfig); 
 </code></pre>
             <p>&#160;</p>
-            <p>&#160;</p>
+            <div MadCap:conditions="NewSet.JustAColorForDivs">
+                <p>Following is a summary of the relevant Java code.</p>
+                <table style="width: 100%;">
+                    <col>
+                    </col>
+                    <col>
+                    </col>
+                    <tbody>
+                        <tr>
+                            <td>Code</td>
+                            <td>Meaning</td>
+                        </tr>
+                        <tr>
+                            <td>Customer.class.getName()).<b>setCriteria("club =  'PLATINUM'")</b></td>
+                            <td>Rule to determine which data to place in Hot storage. <br />In this example, rows of data in the <i>Customer</i> table are placed in Hot storage is the <i>club</i> field is equal to "PLATINUM".</td>
+                        </tr>
+                        <tr>
+                            <td>TransientCustomer.class.getName()).<b>setTransient(true)</b></td>
+                            <td>Rule to determine which data is in Hot storage only. <br />In this example, all data in the TransientCustomer table is stored in Hot storage, but not in Warm storage.</td>
+                        </tr>
+                        <tr>
+                            <td>Purchase.class.getName().setTimeColumn("orderTime").<b>setPeriod(Duration.ofSeconds(30)</b>)</td>
+                            <td>Rule to specify the maximum amount of time that certain data will be in Hot storage. <br />In this example, for the <i>Purchase</i> table, the <i>orderTime</i> fields will be kept in Hot storage for a maximum of 30 seconds.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <p>&#160;</p>
     </body>
