@@ -4,11 +4,13 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Intelligent Data Tiering</h1>
-        <p>As the data requirements for your applications increase, you may reach a point where you must make a smart decision how to tier your data storage -- which data should be in rapid-access RAM, and which data can be stored in less expensive media. <MadCap:variable name="General.ProductNameIE" /> provides several ways to manage this data tiering.</p>
+        <p>As the data requirements for your applications increase, you may reach a point where you must make a smart decision how to tier your data storage -- which data should be in rapid-access RAM, and which data can be stored in lower cost media. </p>
+        <p><MadCap:variable name="General.ProductNameIE" /> provides several ways to manage the automatic data life cycle for multiple storage tiers, so you can balance your storage media costs and required performance for different data that you wish to store and process.</p>
         <h2>How Do We Decide Which Data is Most Important?</h2>
-        <p>The decision — which data must be in RAM and which data can reside in SSD — can be based on several criteria:</p>
+        <p>This decision — which data must be in RAM and which data can reside in lower tiers — can be based on several criteria:</p>
         <ul>
             <li>
+                <p>Required SLA</p>
                 <p> Frequency of access/data aging</p>
             </li>
             <li>
@@ -22,10 +24,10 @@
         <ul>
             <li>
                 <p>
-                    <MadCap:xref href="../admin/tiered-storage.html">Tiered Storage</MadCap:xref> — Automatically tier your data between RAM (hot tier) and SSD (warm tier) according to business rules, or based on time of day. Data in the hot tier is highly mutable and supports both operational and analytical workloads. Data in the warm tier is primarily for read access and used in analytical workloads.</p>
+                    <MadCap:xref href="../admin/tiered-storage.html">Tiered Storage</MadCap:xref> — Automatically tier your data between RAM (Hot tier) and SSD (Warm tier) according to business rules, or based on time. For example, data may be placed in the Hot tier for premium customers, or if the data has been accessed within the previous two weeks. <br />Note that data in the Hot tier is highly mutable and supports both operational and analytical workloads, while data in the Warm tier is primarily for read access or for use in analytical workloads.</p>
             </li>
             <li>
-                <p>MemoryXtend — Tier RAM and SSD, but keep all indexes in RAM for better performance, for operational workloads</p>
+                <p><a href="https://docs.gigaspaces.com/latest/admin/memoryxtend-overview.html">MemoryXtend</a> — Tier RAM and SSD, but keep all indexes in RAM for better performance. MemoryXtend is designed for operational workloads.</p>
             </li>
             <li>
                 <p><a href="https://docs.gigaspaces.com/latest/dev-java/data-lake-acceleration.html">AnalyticsXtreme</a> — Real-time data analytics over a data lake of real-time and historical data</p>

@@ -4,42 +4,42 @@
     </head>
     <body>
         <h1>Tiered Storage</h1>
-        <p>Tiered Storage provides a smart way to optimize the RAM footprint of your application data. </p>
+        <p>Tiered Storage provides seamless tiering of data between different storage tiers, to balance performance and storage media costs.. </p>
         <p>Data can be stored in two tiers:</p>
         <ul>
             <li>
-                <p>"Hot" RAM memory — priority data, used for read/write operations and analysis requiring fastest access</p>
+                <p><b>Hot Tier</b> <b>— RAM</b>: Priority data, used for read/write operations and analysis requiring fastest access</p>
             </li>
             <li>
-                <p>"Warm" SSD — additional data used mostly for read-only, analytical purposes</p>
+                <p><b>Warm Tier — SSD</b> (recommended media): Additional data used mostly for read-only, analytical purposes</p>
             </li>
         </ul>
-        <p>Business rules help you make a smart decision for what data is stored in each tier. The Hot/Warm decision can be based on the data content, or by data aging considerations. </p>
-        <p>Using Tiered Storage can increase effective data capacity by a factor of ten or more.</p>
+        <p>By defining business rules, you direct the system which data to store in the Hot tier and which in the Warm tier. The Hot/Warm decision can be based on the data content, or by data aging considerations. </p>
+        <p>Using Tiered Storage can increase effective data capacity by a factor of ten.</p>
         <p style="text-align: center;">
-            <img src="../Resources/Images/x-tiered-storage.png" style="width: 794px;height: 511px;" />
+            <img src="../Resources/Images/x-tiered-storage-no-border.png" style="width: 691px;height: 444px;" />
         </p>
         <h2>Optimizing the Use of Tiered Storage</h2>
         <p>In order to get the most out of this feature, please note the following:</p>
         <ul>
             <li>
-                <p>In most cases (except for transient data — <a href="#transient-param">see below</a>), data in the Hot tier is also stored in the Warm tier. </p>
+                <p>Data in the Hot tier is also stored in the Warm tier (except for transient objects — <a href="#transient-param">see below</a>). </p>
             </li>
             <li>
                 <p>Queries use the Hot tier if all of the required data is in the Hot tier.</p>
             </li>
             <li>
-                <p>Tiered Storage uses primitive properties types.</p>
+                <p>Tiered Storage supports only primitive property types.</p>
             </li>
             <li>
-                <p>Warm storage is not automatically persistent. Persistence is established via the standard <MadCap:xref href="../dev-java/space-persistency-overview.html">Space Persistency</MadCap:xref> feature of <MadCap:variable name="General.ProductNameXAP" />.</p>
+                <p>Warm storage is not automatically persistent. Persistence is established via the standard <MadCap:xref href="../dev-java/space-persistency-overview.html">Space Persistency</MadCap:xref> feature of <MadCap:variable name="General.ProductNameIE" />.</p>
             </li>
         </ul>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
-            <h2>How to Implement Tiered Storage in XML</h2>
+            <h2>How to Configure Tiered Storage in XML</h2>
             <p>Tiered Storage is implemented by parameters coded in the XML file for the Space. The relevant sections of the XML file are shown below.</p>
             <h3>Sample XML Code</h3>
-            <p>The following XML specifies that for the table named <b>Order</b>, the <b>orderTime</b> field will be compared to the current time. For records where the orderTime field is withing 24 hours of the current time, the record will be in Hot storage and Warm storage. After that time, it will be in Warm storage only.</p><pre><code class="language-xml">        
+            <p>The following XML specifies that for the table named <b>Order</b>, the <b>orderTime</b> field will be compared to the current time. For records where the orderTime field is within 24 hours of the current time, the record will be in Hot storage and Warm storage. After that time, it will be in Warm storage only.</p><pre><code class="language-xml">        
 &lt;os-core:tiered-storage&gt;
  &lt;os-core:tables&gt;
  &lt;os-core:table name="com.mycompany.app.model.<b>Order</b>" time-column="<b>orderTime</b>"&gt;
@@ -120,15 +120,11 @@
                         </td>
                         <td>The Hot tier eviction rule. Data failing this rule will be removed from the Hot tier (but will still be in the Warm tier). <code style="font-style: italic;">timevalue </code>can be any value that is a valid for the <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/Duration.html#parse(java.lang.CharSequence):~:text=public static Duration parse​(CharSequence text)">parse method of a Java Duration object</a>. </td>
                     </tr>
-                    <tr>
-                        <td>&#160;</td>
-                        <td>&#160;</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
         <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
-            <h2>How to Implement Tiered Storage in Java Code</h2>
+            <h2>How to Configure Tiered Storage in Java Code</h2>
             <p>Tiered Storage is implemented by setting parameter values in the Java code definition for the Space. Relevant parts of the Java code are shown below.</p>
             <h3>Sample Java Code</h3>
             <p>The following Java code specifies that for the table named <b>Customer</b>, the <b>club</b> field will be compared to the string "<b>PLATINUM</b>". Matching records will be stored in Hot storage and Warm storage. Other records will be in Warm storage only.</p>
@@ -148,7 +144,7 @@ protected void configure(EmbeddedSpaceFactoryBean factoryBean) {
             <div MadCap:conditions="NewSet.JustAColorForDivs">
                 <p>Following is a summary of the relevant Java code.</p>
                 <table style="width: 100%;">
-                    <col>
+                    <col style="width: 603px;">
                     </col>
                     <col>
                     </col>
@@ -159,7 +155,11 @@ protected void configure(EmbeddedSpaceFactoryBean factoryBean) {
                         </tr>
                         <tr>
                             <td>Customer.class.getName()).<b>setCriteria("club =  'PLATINUM'")</b></td>
-                            <td>Rule to determine which data to place in Hot storage. <br />In this example, rows of data in the <i>Customer</i> table are placed in Hot storage is the <i>club</i> field is equal to "PLATINUM".</td>
+                            <td>
+                                <p>Rule to determine which data to place in Hot storage. <br />In this example, rows of data in the <i>Customer</i> table are placed in Hot storage is the <i>club</i> field is equal to "PLATINUM".</p>
+                                <p>Note that the <code style="font-style: italic;">operator</code> can be 
+							<b>= &#160;&#160;!= &#160;&#160;&gt;= &#160;&#160;&lt;=  </b></p>
+                            </td>
                         </tr>
                         <tr>
                             <td>TransientCustomer.class.getName()).<b>setTransient(true)</b></td>
