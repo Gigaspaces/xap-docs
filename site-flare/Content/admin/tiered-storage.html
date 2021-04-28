@@ -29,7 +29,7 @@
                 <p>Queries use the Hot tier if all of the required data is in the Hot tier.</p>
             </li>
             <li>
-                <p>Tiered Storage supports only primitive property types.</p>
+                <p>Tiered Storage supports primitive property types, and Java Timestamp and Instant classes .</p>
             </li>
             <li>
                 <p>Warm storage is not automatically persistent. Persistence is established via the standard <MadCap:xref href="../dev-java/space-persistency-overview.html">Space Persistency</MadCap:xref> feature of <MadCap:variable name="General.ProductNameIE" />.</p>
@@ -106,7 +106,7 @@
                             </p>
                             <p><code>cache-rule criteria="active = true"</code>
                             </p>
-                            <p><code style="background-color: #00ffff;">cache-rule criteria="startdate &lt;= now() - 3 days'"</code>
+                            <p><code style="background-color: #00ffff;">cache-rule criteria="age &gt;=30'"</code>
                             </p>
                         </td>
                     </tr>
