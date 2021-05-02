@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1>Tiered Storage</h1>
+        <h1 class="tc-pagetitle">Tiered Storage</h1>
         <p>Tiered Storage provides seamless tiering of data between different storage tiers, to balance performance and storage media costs.. </p>
         <p>Data can be stored in two tiers:</p>
         <ul>
@@ -17,9 +17,9 @@
         <p>By defining business rules, you direct the system which data to store in the Hot tier and which in the Warm tier. The Hot/Warm decision can be based on the data content, or by data aging considerations. </p>
         <p>Using Tiered Storage can increase effective data capacity by a factor of ten.</p>
         <p style="text-align: center;">
-            <img src="../Resources/Images/x-tiered-storage-no-border.png" style="width: 691px;height: 444px;" />
+            <img src="../Resources/Images/x-tiered-storage-no-border.png" style="width: 595px;height: 382px;" />
         </p>
-        <h2>Optimizing the Use of Tiered Storage</h2>
+        <h1>Optimizing the Use of Tiered Storage</h1>
         <p>In order to get the most out of this feature, please note the following:</p>
         <ul>
             <li>
@@ -36,7 +36,7 @@
             </li>
         </ul>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
-            <h2>How to Configure Tiered Storage in XML</h2>
+            <h1>How to Configure Tiered Storage in XML</h1>
             <p>Tiered Storage is implemented by parameters coded in the XML file for the Space. The relevant sections of the XML file are shown below.</p>
             <h3>Sample XML Code</h3>
             <p>The following XML specifies that for the table named <b>Order</b>, the <b>orderTime</b> field will be compared to the current time. For records where the orderTime field is within 24 hours of the current time, the record will be in Hot storage and Warm storage. After that time, it will be in Warm storage only.</p><pre><code class="language-xml">        
@@ -123,7 +123,7 @@
             </table>
         </div>
         <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
-            <h2>How to Configure Tiered Storage in Java Code</h2>
+            <h1>How to Configure Tiered Storage in Java Code</h1>
             <p>Tiered Storage is implemented by setting parameter values in the Java code definition for the Space. Relevant parts of the Java code are shown below.</p>
             <h3>Sample Java Code</h3>
             <p>The following Java code specifies that for the table named <b>Customer</b>, the <b>club</b> field will be compared to the string "<b>PLATINUM</b>". Matching records will be stored in Hot storage and Warm storage. Other records will be in Warm storage only.</p>
@@ -143,7 +143,7 @@ protected void configure(EmbeddedSpaceFactoryBean factoryBean) {
             <div MadCap:conditions="NewSet.JustAColorForDivs">
                 <p>Following is a summary of the relevant Java code.</p>
                 <table style="width: 100%;">
-                    <col>
+                    <col style="width: 481px;">
                     </col>
                     <col>
                     </col>
