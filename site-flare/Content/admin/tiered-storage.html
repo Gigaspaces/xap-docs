@@ -143,7 +143,7 @@ protected void configure(EmbeddedSpaceFactoryBean factoryBean) {
             <div MadCap:conditions="NewSet.JustAColorForDivs">
                 <p>Following is a summary of the relevant Java code.</p>
                 <table style="width: 100%;">
-                    <col >
+                    <col>
                     </col>
                     <col>
                     </col>
@@ -165,7 +165,7 @@ protected void configure(EmbeddedSpaceFactoryBean factoryBean) {
                             <td>Rule to determine which data is in Hot storage only. <br />In this example, all data in the TransientCustomer table is stored in Hot storage, but not in Warm storage.</td>
                         </tr>
                         <tr>
-                            <td>Purchase.class.getName().setTimeColumn("orderTime").<b>setPeriod(Duration.ofSeconds(30)</b>)</td>
+                            <td>Purchase.class.getName().setTimeColumn("orderTime")<br />.<b>setPeriod(Duration.ofSeconds(30)</b>)</td>
                             <td>Rule to specify the maximum amount of time that certain data will be in Hot storage. <br />In this example, for the <i>Purchase</i> table, the <i>orderTime</i> fields will be kept in Hot storage for a maximum of 30 seconds.</td>
                         </tr>
                     </tbody>
