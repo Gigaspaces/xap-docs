@@ -300,10 +300,10 @@ ResultSet rs = stmt.executeQuery("SELECT ID AS Identifier, NAME AS FullName FROM
         </div>
         <ul>
             <li>Table aliases – tables are allowed to use aliases throughout the query.</li>
-            <li>Using a sub-query in the <code>FROM</code> clause.</li>
+            <li MadCap:conditions="Default.DoNotShow">Using a sub-query in the <code>FROM</code> clause.</li>
         </ul>
         <div class="row">
-            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true" MadCap:conditions="Default.DoNotShow">
                 <div title="Click here for example..." style="padding:10px;"><pre><code class="language-java">Connection conn;
 Statement stmt = conn.createStatement();
 ResultSet rs = stmt.executeQuery("SELECT * FROM STUDENT WHERE GRADE &gt;= (SELECT AVG(GRADE) FROM STUDENT)");
