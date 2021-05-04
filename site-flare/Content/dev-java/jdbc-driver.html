@@ -283,7 +283,7 @@ System.out.println("The Result:" + Arrays.asList(result_str));
             <li>Aggregate functions: <code>COUNT</code>, <code>MAX</code>, <code>MIN</code>, <code>SUM</code>, <code>AVG</code>.</li>
             <li>All basic logical operations to create conditions: =, &lt;&gt;, &lt;,&gt;, &gt;=, &lt;=, <code>[NOT]</code> like, is <code>[NOT]</code> <code>null</code>, <code>IN</code>, <code>BETWEEN</code>.</li>
             <li>Nested fields query - You may use as part of the select statement nested fields within collections (maps) or objects within the Space object.</li>
-            <li>Multiple tables <code>Join</code> - Join supports the selection of multiple tables. It uses the Cartesian product of the tables data to form the result set. The join will perform well when having tables with small/medium size (up to 1,000,000 rows).</li>
+            <li>Multiple tables <code>(inner left Join)</code> - Join supports the selection of multiple tables. It uses the Cartesian product of the tables data to form the result set. The join will perform well when having tables with small/medium size (up to 1,000,000 rows).</li>
             <li><code>ORDER BY</code> for multiple columns.</li>
             <li><code>GROUP BY</code> for multiple columns.</li>
             <li><code>DISTINCT</code> (although not when used with functions or aggregations)</li>
@@ -317,10 +317,10 @@ ResultSet rs = stmt.executeQuery("SELECT * FROM STUDENT WHERE GRADE &gt;= (SELEC
         <ul>
             <li><code>sysdate</code> - a keyword suggesting current time and date.</li>
             <li><code>rownum</code> - a keyword to use in <code>WHERE</code> clauses, setting the number of rows to select.</li>
-            <li>Select for update – allowing the locking of rows in order to update them later.</li>
+            <li MadCap:conditions="Default.DoNotShow">Select for update – allowing the locking of rows in order to update them later.</li>
             <li>Remote and embedded query processes configuration – allows fast access to the space using embedded mode.</li>
-            <li>Optimistic locking.</li>
-            <li>Batch Processing.</li>
+            <li MadCap:conditions="Default.DoNotShow">Optimistic locking.</li>
+            <li MadCap:conditions="Default.DoNotShow">Batch Processing.</li>
             <li>Increment a field in an UPDATE statement.</li>
         </ul>
         <div class="row">
@@ -337,7 +337,8 @@ int result = stmt.executeUpdate("UPDATE PERSON SET VERSION = VERSION + 1 WHERE I
         </div>
         <ul>
             <li>A statement caching mechanism is provided to speed up statement parsing.</li>
-            <li>Meta Data API.</li>
+            <li MadCap:conditions="Default.DoNotShow">Meta Data API.</li>
+            <li>Support SYSTABLES.</li>
             <li>Connection pool.</li>
             <li>All JDBC basic types including Blob and Clob.</li>
         </ul>
