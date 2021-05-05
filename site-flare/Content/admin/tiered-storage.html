@@ -35,6 +35,9 @@
                 <p>Warm storage is not automatically persistent. Persistence is established via the standard <MadCap:xref href="../dev-java/space-persistency-overview.html">Space Persistency</MadCap:xref> feature of <MadCap:variable name="General.ProductNameIE" />.</p>
             </li>
         </ul>
+        <div class="tc-admon-note">
+            <p>For tables configured as Tiered Storage (see below), if no rules are defined for the table, its data will be stored in the Warm tier only.</p>
+        </div>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
             <h1>How to Configure Tiered Storage in XML</h1>
             <p>Tiered Storage is implemented by parameters coded in the XML file for the Space. The relevant sections of the XML file are shown below.</p>
@@ -83,7 +86,7 @@
                     <tr>
                         <td><code>table name=<i>name-of-table</i></code>
                         </td>
-                        <td>Tiered rules for a table (object type)</td>
+                        <td>Tiered rule for a table (object type)</td>
                     </tr>
                     <tr>
                         <td><code>time-column=<i>name-of-field</i></code>
@@ -91,9 +94,9 @@
                         <td>Name of the field (property) in the table that will be evaluated for eviction from RAM. Must be of Java type <code class="language-java">TimeStamp</code>, <code class="language-java">Long </code>or <code class="language-java">Instant</code>.<br /></td>
                     </tr>
                     <tr>
-                        <td><code>retention=<i>period</i></code>
+                        <td><code>period=<i>period</i></code>
                         </td>
-                        <td>After the <code style="font-style: italic;">period</code> amount of time has passed without accessing the field, it will be removed from Hot storage (RAM). <br /><code style="font-style: italic;">period</code> must be a format supported by the Java <a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html#i49:~:text=occurs-,parse,public static Duration parse(CharSequence text)">Duration</a> class.<br />Examples: <br /><code>PT15M</code> (15 minutes)<br /><code>PT20S</code> (20 seconds)<br /></td>
+                        <td>After the <code style="font-style: italic;">period</code> amount of time has passed, it will be removed from Hot storage (RAM). <br /><code style="font-style: italic;">period</code> must be a format supported by the Java <a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html#i49:~:text=occurs-,parse,public static Duration parse(CharSequence text)">Duration</a> class.<br />Examples: <br /><code>PT15M</code> (15 minutes)<br /><code>PT20S</code> (20 seconds)<br /></td>
                     </tr>
                     <tr>
                         <td><code>cache-rule criteria="<i>fieldname operator value</i>"</code>
@@ -166,7 +169,7 @@ protected void configure(EmbeddedSpaceFactoryBean factoryBean) {
                         </tr>
                         <tr>
                             <td>Purchase.class.getName().setTimeColumn("orderTime")<br />.<b>setPeriod(Duration.ofSeconds(30)</b>)</td>
-                            <td>Rule to specify the maximum amount of time that certain data will be in Hot storage. <br />In this example, for the <i>Purchase</i> table, the <i>orderTime</i> fields will be kept in Hot storage for a maximum of 30 seconds.</td>
+                            <td>Rule to specify the amount of time that certain data will be in Hot storage. <br />In this example, for the <i>Purchase</i> table, the <i>orderTime</i> fields will be kept in Hot storage for 30 seconds.</td>
                         </tr>
                     </tbody>
                 </table>
