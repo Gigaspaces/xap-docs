@@ -226,6 +226,24 @@
                 </div>
             </p>
         </div>
+        <div MadCap:conditions="NewSet.StagingOnly">
+            <h2>Configuring Additional Java Options</h2>
+            <p>You can configure additional Java options for each Platform Manager instance by using the <code class="language-java">java.options</code> parameter, as shown below.</p>
+            <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name test --set pu.java.options="-XX:+PrintGCDetails"</code></pre>
+                <p MadCap:conditions="Version.15-5-born">
+                    <div class="easyui-tabs" plain="true">
+                        <div title="Helm 3">
+                            <p><pre><code class="language-bash">helm install test insightedge --set pu.java.options="-XX:+PrintGCDetails" </code></pre>
+                            </p>
+                        </div>
+                        <div title="Helm 2">
+                            <p><pre><code class="language-bash">helm install insightedge --name test --set pu.java.options="-XX:+PrintGCDetails"</code></pre>
+                            </p>
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
         <h2>Overriding the <MadCap:variable name="General.ProductNameXAP" /> Service Properties</h2>
         <p>It is recommended to define the service properties in the pu.xml as placeholders (as described in the Processing Unit <a href="../dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit">Deployment Properties</a> topic), so you can override these properties using the Helm chart.</p>
         <p>After defining the properties as placeholders, use the <code>key1=value1;key2=value2</code> format to pass the override values to the Helm chart using either the <code>--set properties=&lt;your key-value pairs&gt;</code> command, or using a custom YAML file. </p>
