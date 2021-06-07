@@ -74,6 +74,12 @@ builder.create();
         </p>
         <h1>Limitations</h1>
         <p>Defining a Broadcast Object in .NET Client SDK is not currently supported.</p>
+        <div MadCap:conditions="NewSet.StagingOnly">
+            <p>A transaction to write multiple mixed entries (broadcast and non-broadcast) is not allowed,</p>
+            <p>Explicit routing property, auto generated id, Take and Change are not allowed. Note that Take with null returns only non- broadcast entries.</p>
+            <p>A transaction that includes an operation that is related to a broadcast table is not supported.</p>
+            <p>Embedded operations will not propagate to all partitions and should be avoided</p>
+        </div>
         <p>&#160;</p>
         <p>&#160;</p>
         <p>&#160;</p>
