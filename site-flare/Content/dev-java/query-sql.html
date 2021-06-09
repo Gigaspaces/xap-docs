@@ -212,7 +212,7 @@ query.setParameter(2,collection);
         </div>
         <h1><a name="date-properties"></a>Date Properties</h1>
         <p>A <code>Date</code> property can be matched either using the Date instance value or its string representation. For example:</p><pre><code class="language-java">// Query using a Date instance value:
-... = new SQLQuery&lt;MyClass&gt;(MyClass.class, "birthday &lt; ?", new java.util.Date(2020, 11, 20));
+... = new SQLQuery&lt;MyClass&gt;(MyClass.class, "birthday &lt; ?", new java.sql.Date(2020, 11, 20));
 // Query using a Date string representation:
 ... = new SQLQuery&lt;MyClass&gt;(MyClass.class ,"birthday &lt; '2020-12-20'");
 </code></pre>
