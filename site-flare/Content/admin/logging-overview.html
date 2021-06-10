@@ -35,6 +35,9 @@ export <MadCap:variable name="General.EnvVariablePrefix" />_LOGS_CONFIG_FILE=myf
 </code></pre>
         <p>If your application initializes the logging facility via the Logging API (e.g. <code>LogManager.readConfiguration(InputStream ins)</code>), you may want to disable the <MadCap:variable name="General.ProductNameXAP" /> configuration altogether. When the <MadCap:variable name="General.ProductNameXAP" /> logging configuration is disabled, your Java logging settings take their place. This is done using the following system property:</p><pre><code class="language-bash">-Dcom.gs.logging.disabled=true
 </code></pre>
+        <div class="tc-admon-note" MadCap:conditions="Version.15-8-born">
+            <p>Your own configuration file may also be used instead of the platform's default. This is done by setting the configuration file location or via URL using a system property.</p>
+        </div>
         <h1><a name="troubleshooting"></a>Troubleshooting</h1>
         <p>To troubleshoot and detect which logging properties file was loaded and from where, set the following system property to <span class="tc-bold">true</span>. This property already exists in the scripts (for convenience) and by default is set to <span class="tc-bold">false</span>.</p><pre><code class="language-bash">-Dcom.gs.logging.debug=true
 </code></pre>
