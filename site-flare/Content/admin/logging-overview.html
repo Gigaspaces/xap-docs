@@ -26,7 +26,7 @@
             <p>The recommended way to define system properties when starting service grid components is to wrap the original script, e.g. <code>gsc.sh(bat)</code> with a wrapper script which include the <MadCap:conditionalText MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT</MadCap:conditionalText> variable. The <code>setenv.sh(bat)</code> script, which is used by these components, will pick these options automatically and use them as JVM arguments.</p>
         </div>
         <h2><a name="overriding-the-configuration-file"></a>Overriding the Configuration File</h2>
-        <p>Your own configuration file may also be used instead of the platform's default. This is done by setting the configuration file location using a system property:</p><pre><code class="language-bash">-Djava.util.logging.config.file=myfile.properties
+        <p>Your own configuration file may also be used instead of the platform's default. This is done via URL, or by setting the configuration file location using a system property:</p><pre><code class="language-bash">-Djava.util.logging.config.file=myfile.properties
 </code></pre>
         <p><MadCap:variable name="General.ProductNameXAP" /> scripts rely on the exported environment variable <code><MadCap:variable name="General.EnvVariablePrefix" />_LOGS_CONFIG_FILE</code> (declared in <code><MadCap:variable name="General.HomePath" />/bin/setenv script</code>). The preferred way to apply your override file is to use a wrapper script; export the new setting of this variable and call the original script. This ensures that when <code>setenv.sh(bat)</code> is called from within the platform's scripts, it will pick up the override.</p><pre><code class="language-bash"># unix
 
@@ -35,9 +35,6 @@ export <MadCap:variable name="General.EnvVariablePrefix" />_LOGS_CONFIG_FILE=myf
 </code></pre>
         <p>If your application initializes the logging facility via the Logging API (e.g. <code>LogManager.readConfiguration(InputStream ins)</code>), you may want to disable the <MadCap:variable name="General.ProductNameXAP" /> configuration altogether. When the <MadCap:variable name="General.ProductNameXAP" /> logging configuration is disabled, your Java logging settings take their place. This is done using the following system property:</p><pre><code class="language-bash">-Dcom.gs.logging.disabled=true
 </code></pre>
-        <div class="tc-admon-note" MadCap:conditions="Version.15-8-born">
-            <p>Your own configuration file may also be used instead of the platform's default. This is done by setting the configuration file location or via URL using a system property.</p>
-        </div>
         <h1><a name="troubleshooting"></a>Troubleshooting</h1>
         <p>To troubleshoot and detect which logging properties file was loaded and from where, set the following system property to <span class="tc-bold">true</span>. This property already exists in the scripts (for convenience) and by default is set to <span class="tc-bold">false</span>.</p><pre><code class="language-bash">-Dcom.gs.logging.debug=true
 </code></pre>
