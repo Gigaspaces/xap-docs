@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -41,7 +41,21 @@ public static class Address implements Serializable {
 }
 </code></pre>
             </div>
-            <div title="  Multiple Indexes Annotation " style="padding:10px"><pre><code class="language-java">@SpaceClass
+            <div title="  Multiple Indexes Annotation " style="padding:10px">
+                <div class="tc-admon-note" MadCap:conditions="Version.15-5-born">
+                    <p>Multiple annotations to a field can be written using repeatable annotations instead of compound annotations, as show below.</p>
+                    <div>
+                        <p>With compound annotations:</p>
+                        <p><pre><code class="language-java">@SpaceIndexes( { @SpaceIndex(path = "socialSecurity", type = SpaceIndexType.ORDERED), @SpaceIndex(path = "address.zipCode", type = SpaceIndexType.EQUAL)}) </code></pre>
+                        </p>
+                    </div>
+                    <div>
+                        <p>With repeatable annotations:</p>
+                        <p><pre><code class="language-java">@SpaceIndex(path = "socialSecurity", type = SpaceIndexType.ORDERED)
+@SpaceIndex(path = "address.zipCode", type = SpaceIndexType.EQUAL)</code></pre>
+                        </p>
+                    </div>
+                </div><pre><code class="language-java">@SpaceClass
 public static class Person {
     private int id;
     private Info personalInfo;
