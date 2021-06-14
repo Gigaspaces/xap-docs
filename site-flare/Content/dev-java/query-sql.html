@@ -148,6 +148,15 @@ results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num
             <br /><code class="language-sql">LEFT JOIN customers c</code>
             <br /><code class="language-sql">ON o.customer_id = c.customer_id;</code>
         </div>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-8-born">
+            <p>For a LEFT Join, joining more than one table is not supported.<br />For example, the following statement is not supported:</p><code class="language-sql">SELECT first_name, last_name, order_date, amount</code>
+            <br /><code class="language-sql">FROM orders o</code>
+            <br /><code class="language-sql">LEFT JOIN customers c</code>
+            <br /><code class="language-sql">ON o.customer_id = c.customer_id;</code>
+            <br /><code class="language-sql">LEFT JOIN products p</code>
+            <br /><code class="language-sql">ON o.product_id = p.product_id;</code>
+            <br />
+        </div>
         <h1><a name="comparing-null-values"></a>Comparing Null Values</h1>
         <p><code>SQLQuery</code> comparisons evaluate the non-null values for a field. If you want to include objects with null values in a <code>SQLQuery</code> you must add another condition to your clause.</p>
         <p>For example, if you have an object with a property named message of type <code>String</code> that is set to <code>null</code> and you write it to the Space, then write a <code>SQLQuery</code> with the where clause is:
