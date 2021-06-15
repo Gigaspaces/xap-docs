@@ -152,7 +152,7 @@ results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num
             <p>For a LEFT Join, joining more than one table is not supported.<br />For example, the following statement is not supported:</p><code class="language-sql">SELECT first_name, last_name, order_date, amount</code>
             <br /><code class="language-sql">FROM orders o</code>
             <br /><code class="language-sql">LEFT JOIN customers c</code>
-            <br /><code class="language-sql">ON o.customer_id = c.customer_id;</code>
+            <br /><code class="language-sql">ON o.customer_id = c.customer_id</code>
             <br /><code class="language-sql">LEFT JOIN products p</code>
             <br /><code class="language-sql">ON o.product_id = p.product_id;</code>
             <br />
