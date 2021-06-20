@@ -21,6 +21,32 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
                 <p>REST API for managing the environment remotely from any platform.</p>
             </li>
         </ul>
+        <div MadCap:conditions="NewSet.StagingOnly">
+            <h1>Configuring <MadCap:variable name="General.ProductNameXAP" /> Manager</h1>
+            <p><MadCap:variable name="General.ProductNameXAP" /> Manager stores statistical data in an HSQLDB database. </p>
+            <div class="tc-admon-important">
+                <p>It is important to monitor the size of the data in the HSQLDB database. If the maximum amount of data is exceeded and excess data is not deleted, <MadCap:variable name="General.ProductNameXAP" /> Manager may automatically restart.</p>
+            </div>
+            <p>The retention policy for this data can be configured as follows:</p>
+            <p style="background-color: #98fb98;">**The following will be release-dependent**</p>
+            <ul>
+                <li>
+                    <p>The maximum amount of data to save (default: last five minutes of data)<br />(Explanation of how to set this parameter here, for various releases)</p>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p>How often to check if this maximum amount of data has been reached (default: every five minutes)<br></br>(Explanation of how to set this parameter here, for various releases)</p>
+                </li>
+                <li>
+                    <p>When to delete excess data (default: as soon as the maximum is detected)<br></br>(Explanation of how to set this parameter here, for various releases)</p>
+                </li>
+            </ul>
+            <h2>Disabling Data retention</h2>
+            <p style="background-color: #98fb98;">**The following will be release-dependent**</p>
+            <p>If desired, HSQLDB data retention can be disabled as follows:</p><code class="language-bash">-Dcom.gs.hsqldb.all-metrics-recording.enabled=false
+<br />-Dcom.gs.ops-ui.enabled=false</code>
+        </div>
         <h1><a name="getting-started"></a>Getting Started</h1>
         <p>The easiest way to get started is to run a standalone Manager on your machine - simply run the following command:</p>
         <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-died">
