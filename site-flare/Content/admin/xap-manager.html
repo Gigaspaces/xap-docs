@@ -25,7 +25,7 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
             <h1>Configuring <MadCap:variable name="General.ProductNameXAP" /> Manager</h1>
             <p><MadCap:variable name="General.ProductNameXAP" /> Manager stores statistical data in an HSQLDB database. </p>
             <div class="tc-admon-important">
-                <p>It is important to monitor the size of the data in the HSQLDB database. If the maximum amount of data is exceeded and excess data is not deleted, <MadCap:variable name="General.ProductNameXAP" /> Manager may automatically restart.</p>
+                <p>It is important to monitor the size of the data in the HSQLDB database. If the maximum amount of data is exceeded and excess data is not deleted, <MadCap:variable name="General.ProductNameXAP" /> Manager may automatically restart. The log will show an  error: <code>OutOfMemoryError</code>.</p>
             </div>
             <p>The retention policy for this data can be configured as follows:</p>
             <p style="background-color: #98fb98;">**The following will be release-dependent**</p>
