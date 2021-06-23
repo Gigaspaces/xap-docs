@@ -21,36 +21,6 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
                 <p>REST API for managing the environment remotely from any platform.</p>
             </li>
         </ul>
-        <div MadCap:conditions="NewSet.StagingOnly">
-            <h1>Configuring <MadCap:variable name="General.ProductNameXAP" /> Manager</h1>
-            <p><MadCap:variable name="General.ProductNameXAP" /> Manager stores statistical data in an HSQLDB database. </p>
-            <div class="tc-admon-important">
-                <p> It is important to monitor the size of the HSQLDB database (<code>{GS_HOME}/work/db/metricsdb.data</code>), and change the data retention policy if necessary.</p>
-                <p><MadCap:variable name="General.ProductNameXAP" />provides reasonable default values for the retention policy. Depending on cluster size, and number of types and indexes, these default values may not remove old data fast enough from the database, causing the database to increase in size on disk, and possibly also causing internal database memory issues.</p>
-            </div>
-            <p>The retention policy for this data can be configured as follows:</p>
-            <ul>
-                <li>
-                    <p>How long to keep data in the database:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.retain-duration="PT10M"</code> (default is ten minutes)</p>
-                </li>
-                <li>
-                    <p>How often to run the delete task:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.delay-duration="PT1M"</code> (default is one minute)</p>
-                </li>
-                <li MadCap:conditions="Version.15-5-born">
-                    <p>How many rows to delete each time:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.batch-size=20000</code> (default is 20,000)</p>
-                </li>
-                <li MadCap:conditions="Version.15-5-died">
-                    <p>Note that the number of rows to delete each time is a fixed value of 10,000.</p>
-                </li>
-            </ul>
-            <h2>Disabling Data Retention</h2>
-            <p>If desired, HSQLDB data retention can be disabled as follows:</p>
-            <p MadCap:conditions="Version.15-2-born"><code class="language-bash">-Dcom.gs.hsqldb.all-metrics-recording.enabled=false
-<br />-Dcom.gs.ops-ui.enabled=false</code>
-            </p>
-            <p MadCap:conditions="Version.15-2-died"><code class="language-bash">-Dcom.gs.newwebui.enabled=false</code>
-            </p>
-        </div>
         <h1><a name="getting-started"></a>Getting Started</h1>
         <p>The easiest way to get started is to run a standalone Manager on your machine - simply run the following command:</p>
         <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-died">
@@ -131,6 +101,39 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
             <p>Apache Zookeeper requires that each Manager can reach the other Managers. If you change the Apache Zookeeper ports, make sure you use the same port on all machines. If that is not possible for some reason, you may specify the ports via the <code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS</code> environment variable.  For example:</p><pre><code class="language-bash"><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS="alpha;zookeeper=2000:3000;lus=4242,bravo;zookeeper=2100:3100,charlie;zookeeper=2200:3200"
 </code></pre>
             <p>When using this syntax in Unix/Linux systems, make sure to wrap it in quotes (as shown), because of the semi-colons.</p>
+        </div>
+        <div MadCap:conditions="NewSet.StagingOnly,Version.15-0-born">
+            <h2>Configuring <MadCap:variable name="General.ProductNameXAP" /> Manager</h2>
+            <p><MadCap:variable name="General.ProductNameXAP" /> Manager stores statistical data in an HSQLDB database. The data is held for a predefined period of time, in order to show related metrics in the Ops Manager.</p>
+            <div class="tc-admon-important">
+                <p> It is important to monitor the size of the HSQLDB database (<code>{GS_HOME}/work/db/metricsdb.data</code>), and change the data retention policy if necessary.</p>
+                <p><MadCap:variable name="General.ProductNameXAP" />provides reasonable default values for the retention policy. Depending on cluster size, and number of types and indexes, these default values may not remove old data fast enough from the database, causing the database to increase in size on disk, and possibly also causing internal database memory issues.</p>
+            </div>
+            <p>The retention policy for this data can be configured as follows:</p>
+            <ul>
+                <li>
+                    <p>How long to keep data in the database:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.retain-duration="PT10M"</code> (default is ten minutes)</p>
+                </li>
+                <li>
+                    <p>How often to run the delete task:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.delay-duration="PT1M"</code> (default is one minute)</p>
+                </li>
+                <li>
+                    <p>HSQLDB port:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.port=9101</code> (default is 9101)</p>
+                </li>
+                <li MadCap:conditions="Version.15-5-born">
+                    <p>How many rows to delete each time:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.batch-size=20000</code> (default is 20,000)</p>
+                </li>
+                <li MadCap:conditions="Version.15-5-died">
+                    <p>Note that the number of rows to delete each time is a fixed value of 10,000.</p>
+                </li>
+            </ul>
+            <h2>Disabling HSQLDB Usage</h2>
+            <p>If desired, HSQLDB data retention can be disabled as follows:</p>
+            <p MadCap:conditions="Version.15-2-born"><code class="language-bash">-Dcom.gs.hsqldb.all-metrics-recording.enabled=false
+<br />-Dcom.gs.ops-ui.enabled=false</code>
+            </p>
+            <p MadCap:conditions="Version.15-2-died"><code class="language-bash">-Dcom.gs.newwebui.enabled=false</code>
+            </p>
         </div>
         <h2><a name="apache-zookeeper"></a>Apache Zookeeper</h2>
         <p>Apache ZooKeeper's behavior is governed by its configuration file (<code>zoo.cfg</code>).
