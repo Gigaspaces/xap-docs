@@ -7,6 +7,7 @@
                 <MadCap:xref href="../../../../dev-java/intelligent-tiering-intro.html">Intelligent Data Tiering</MadCap:xref> allows data to be stored in RAM or in lower tiers, based on business rules and data aging. </p>
             <h1>Enhanced Support for Secured Space</h1>
             <p><a href="https://docs-staging.gigaspaces.com/latest/security/securing-your-data.html?Highlight=secured%20space#:~:text=Layer-,Secured%20Space,Custom%20Security%20regarding%20extensions,-Namespace">Secured Space</a> can now be accessed via the standard <MadCap:variable name="General.ProductNameIE" /> tools — CLI, REST-API, and Ops Manager — and the <a href="https://docs-staging.gigaspaces.com/latest/security/securing-your-data.html?Highlight=secured%20space#:~:text=Layer-,Secured%20Space,Custom%20Security%20regarding%20extensions,-Namespace">related proxy properties</a> can be customized.</p>
+            <p>&#160;</p>
         </div>
         <div MadCap:conditions="Version.15-8-only">
             <h1>Cloud Native Orchestration — Lifecycle Management on Kubernetes</h1>
@@ -325,27 +326,48 @@
             <li MadCap:conditions="Version.14-5-only"><a href="http://projects.spring.io/spring-security/">Spring Security</a> integration has been upgraded to 5.1.5.<div class="tc-admon-attention"><p MadCap:conditions="Version.14-5-only">As of Spring Security 5.x,   a password encoder must be defined.</p></div></li>
         </ul>
         <h1>Deprecated and End-Of-Life  Features and Functionality</h1>
-        <p>There are currently no deprecated or end-of-life features and functionality.</p>
-        <p MadCap:conditions="Version.14-0-only,Version.15-0-only,Version.15-2-only">The following functionality is deprecated as of this release:</p>
-        <ul MadCap:conditions="Version.15-0-only">
-            <li><MadCap:variable name="General.CompanyName" /> Management Center</li>
-            <li>LRU and custom eviction policies</li>
-            <li>Direct persistency</li>
-            <li>Option for multiple Processing Units per GSC (stateful service limit &gt;1). See <a href="../../../../admin/the-sla-overview.html">Service Level Agreement</a> for the <code>serviceLimit</code> setting, with a default value of 1.</li>
-            <li>"Requires isolation" feature</li>
-        </ul>
-        <ul MadCap:conditions="Version.14-0-only">
-            <li MadCap:conditions="Version.14-0-only">Legacy command line interface (use the new command line interface that was introduced in release 12.3 instead)</li>
-            <li MadCap:conditions="Version.14-0-only">The gs-agent script (use the <code>insightedge host run-agent</code> or <code>xap host run-agent</code> command instead)</li>
-        </ul>
-        <p MadCap:conditions="Version.14-0-only">The following functionality is end of life as of this release:</p>
-        <p MadCap:conditions="Version.15-2-only,Version.15-5-only">The following functionality is end of life as of this release:</p>
-        <ul>
-            <li MadCap:conditions="Version.15-5-only">ESM</li>
-            <li MadCap:conditions="Version.15-2-only">GSIterator</li>
-            <li MadCap:conditions="Version.14-0-only">XAP.NET for Microsoft .NET v3.5</li>
-        </ul>
-        <p MadCap:conditions="Version.14-0-only">In addition, we recommend that you review GigaSapaces' updated Java and Spring Framework policies on the <MadCap:xref href="../../../../rn/lifecycle.html">Product Life Cycle and End-of-Life Policy</MadCap:xref> page.</p>
+        <div MadCap:conditions="Version.16-0-only">
+            <p>There are currently no deprecated or end-of-life features and functionality.</p>
+        </div>
+        <div MadCap:conditions="Version.15-8-only">
+            <p>There are currently no deprecated or end-of-life features and functionality.</p>
+        </div>
+        <div MadCap:conditions="Version.15-2-only">
+            <p>The following functionality is deprecated as of this release:</p>
+            <ul>
+                <li>GSIterator</li>
+            </ul>
+        </div>
+        <div MadCap:conditions="Version.15-0-only">
+            <p>The following functionality is deprecated as of this release:</p>
+            <ul>
+                <li><MadCap:variable name="General.CompanyName" /> Management Center</li>
+                <li>LRU and custom eviction policies</li>
+                <li>Direct persistency</li>
+                <li>Option for multiple Processing Units per GSC (stateful service limit &gt;1). See <a href="../../../../admin/the-sla-overview.html">Service Level Agreement</a> for the <code>serviceLimit</code> setting, with a default value of 1.</li>
+                <li>"Requires isolation" feature</li>
+            </ul>
+        </div>
+        <div MadCap:conditions="Version.15-5-only">
+            <p>The following functionality is deprecated as of this release:</p>
+            <ul>
+                <li MadCap:conditions="Version.15-5-only">ESM</li>
+            </ul>
+        </div>
+        <div MadCap:conditions="Version.14-0-only">
+            <div>
+                <p>The following functionality is deprecated as of this release:</p>
+                <ul>
+                    <li>Legacy command line interface (use the new command line interface that was introduced in release 12.3 instead)</li>
+                    <li>The gs-agent script (use the <code>insightedge host run-agent</code> or <code>xap host run-agent</code> command instead)</li>
+                </ul>
+                <p>The following functionality is end of life as of this release: </p>
+            </div>
+            <ul>
+                <li>XAP.NET for Microsoft .NET v3.5</li>
+            </ul>
+            <p>In addition, we recommend that you review GigaSpaces updated Java and Spring Framework policies on the <MadCap:xref href="../../../../rn/lifecycle.html">Product Life Cycle and End-of-Life Policy</MadCap:xref> page.</p>
+        </div>
         <p MadCap:conditions="Version.14-2-only">There are no end-of-life or deprecated features in this release.</p>
         <h3 MadCap:conditions="Version.14-5-only">Deprecated Features and Functionality</h3>
         <ul>
