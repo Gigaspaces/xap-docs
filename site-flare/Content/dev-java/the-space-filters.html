@@ -127,6 +127,9 @@
 &lt;/bean&gt;
 </code></pre>
             </div>
+            <div class="tc-admon-note" MadCap:conditions="NewSet.StagingOnly">
+                <p>If you wish to change the <code class="language-java">beforeWrite </code>object, do not use a delegate implementation of <code>ISpaceFilter</code>, Instead, implement <code class="language-java">ISpaceFilter</code>.</p>
+            </div>
         </div>
         <h1>ISpaceFilter</h1>
         <p>An actual implementation of the <code>ISpaceFilter</code> interface can be provided using the <code>SpaceFilterProviderFactory</code> class. Here is a very simple example of an <code>ISpaceFilter</code> implementation:</p><pre><code class="language-java">public class SimpleFilter implements ISpaceFilter {
@@ -187,8 +190,9 @@
 &lt;/bean&gt;
 </code></pre>
             </div>
+            <p MadCap:conditions="NewSet.StagingOnly">In order to change the object, use setFieldValue of the entry.</p>
         </div>
-        <h1><a name="accessing-a-space-within-a-space-filter"></a>Accessing a Space within a Space Filter</h1>
+        <h1><a name="accessing-a-space-within-a-space-filter"></a>Accessing a Space wies </h1>
         <p>Accessing a space within a space filter can cause a cycle construction exception, since the space can not be injected to the filter (because the space was not constructed yet). There are options to solve this with pure Spring, but OpenSpaces provides a simpler option by using the <a href="pojo-grid-annotations.html">GigaSpacesLateContext</a> annotation.</p>
         <h1><a name="space-replication-filters"></a>Space Replication Filters</h1>
         <p>The <code>UrlSpaceFactoryBean</code> allows you to configure <a href="../admin/cluster-replication-filters.html">Cluster Replication Filters</a>. It uses the space support for a <code>ReplicationFilterProvider</code> which is a wrapper for an <code>IReplicationFilter</code> implementation and its characteristics (such as <code>activeWhenBackup</code>). This allows you to provide space replication filters without changing the space schema.</p>
