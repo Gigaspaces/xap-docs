@@ -155,6 +155,113 @@
 }
 </code></pre>
         <p>The following Spring configuration registers this filter for before write (<code>0</code>), before read (<code>2</code>), and before take (<code>3</code>) operations:</p>
+        <table style="width: 100%;">
+            <colgroup>
+                <col style="width: 10%;">
+                </col>
+                <col />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>Before write operation</td>
+                    <td><pre><code class="language-java">public final static int BEFORE_WRITE = 0;</code></pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>After write operation</td>
+                    <td><pre><code class="language-java">public final static int AFTER_WRITE = 1;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>Before read operation</td>
+                    <td><pre><code class="language-java">public final static int BEFORE_READ = 2;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>Before take operation</td>
+                    <td><pre><code class="language-java">public final static int BEFORE_TAKE = 3;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>Before notify register operation</td>
+                    <td><pre><code class="language-java">public final static int BEFORE_NOTIFY = 4;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>Before authentication operation on a secured space</td>
+                    <td><pre><code class="language-java">public final static int BEFORE_AUTHENTICATION = 6;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>Before update operation</td>
+                    <td><pre><code class="language-java">public final static int BEFORE_UPDATE = 9;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>After update operation</td>
+                    <td><pre><code class="language-java">public final static int AFTER_UPDATE = 10;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>Before readMultiple operation</td>
+                    <td><pre><code class="language-java">public final static int BEFORE_READ_MULTIPLE = 11;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>After readMultiple operation</td>
+                    <td><pre><code class="language-java">public final static int AFTER_READ_MULTIPLE = 12;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>Before takeMultiple operation</td>
+                    <td><pre><code class="language-java">public final static int BEFORE_TAKE_MULTIPLE = 13;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>After takeMultiple operation</td>
+                    <td><pre><code class="language-java">public final static int AFTER_TAKE_MULTIPLE = 14;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>Before notify trigger operation, indicates that a matched notify template was found to the current entry event</td>
+                    <td><pre><code class="language-java">public final static int BEFORE_NOTIFY_TRIGGER = 15;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>After notify trigger operation, indicates that a notify trigger was successful</td>
+                    <td><pre><code class="language-java">public final static int AFTER_NOTIFY_TRIGGER = 16;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>Before all notify trigger operation, indicates that at least one notify template is matched to the current entry event</td>
+                    <td><pre><code class="language-java">public final static int BEFORE_ALL_NOTIFY_TRIGGER = 17;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>After all notify trigger operation, indicates that all notify templates that are matched to the current entry event were triggered and returned or failed. @see  net.jini.core.event.RemoteEventListener#notify(net.jini.core.event.RemoteEvent)</td>
+                    <td><pre><code class="language-java">public final static int AFTER_ALL_NOTIFY_TRIGGER = 18;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>Before execute operation</td>
+                    <td><pre><code class="language-java">public final static int BEFORE_EXECUTE = 20;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>After execute operation</td>
+                    <td><pre><code class="language-java">public final static int AFTER_EXECUTE = 21;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>After read operation</td>
+                    <td><pre><code class="language-java">public final static int AFTER_READ = 22;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>After take operation</td>
+                    <td><pre><code class="language-java">public final static int AFTER_TAKE = 23;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>Before change operation</td>
+                    <td><pre><code class="language-java">public final static int BEFORE_CHANGE = 24;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>After change operation</td>
+                    <td><pre><code class="language-java">public final static int AFTER_CHANGE = 25;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>Called before entry remove due to lease expression or lease cancel. @see net.jini.core.lease.Lease#cancel()</td>
+                    <td><pre><code class="language-java">public final static int BEFORE_REMOVE = 52;</code></pre></td>
+                </tr>
+                <tr>
+                    <td>Called after entry remove due to lease expression or lease cancel. @see net.jini.core.lease.Lease#cancel()</td>
+                    <td><pre><code class="language-java">public final static int AFTER_REMOVE = 53;</code></pre></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleFilter" class="eg.SimpleFilter" /&gt;
 
