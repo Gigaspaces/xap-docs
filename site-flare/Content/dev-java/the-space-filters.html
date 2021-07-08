@@ -127,10 +127,10 @@
 &lt;/bean&gt;
 </code></pre>
             </div>
-            <div class="tc-admon-note" MadCap:conditions="NewSet.StagingOnly">
+            <div class="tc-admon-note">
                 <p>If you wish to change the <code class="language-java">beforeWrite </code>object, do not use a delegate implementation of <code>ISpaceFilter</code>, Instead, implement <code class="language-java">ISpaceFilter</code>.</p>
             </div>
-            <div class="tc-admon-note" MadCap:conditions="NewSet.StagingOnly">
+            <div class="tc-admon-note">
                 <p>Delegator filters cannot be used to change the object. If you need to change the object, implement the <code class="language-java">IFilter</code> interface.</p>
             </div>
         </div>
@@ -323,7 +323,7 @@
 &lt;/bean&gt;
 </code></pre>
             </div>
-            <p MadCap:conditions="NewSet.StagingOnly">In order to change the object, use setFieldValue of the entry.</p>
+            <p>In order to change the object, use setFieldValue of the entry.</p>
         </div>
         <h1><a name="accessing-a-space-within-a-space-filter"></a>Accessing a Space wies </h1>
         <p>Accessing a space within a space filter can cause a cycle construction exception, since the space can not be injected to the filter (because the space was not constructed yet). There are options to solve this with pure Spring, but OpenSpaces provides a simpler option by using the <a href="pojo-grid-annotations.html">GigaSpacesLateContext</a> annotation.</p>
