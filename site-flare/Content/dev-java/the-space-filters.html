@@ -157,138 +157,140 @@
     }
 }
 </code></pre>
-        <p>The following Spring configuration registers this filter for before write (<code>0</code>), before read (<code>2</code>), and before take (<code>3</code>) operations:</p>
-        <table style="width: 100%;">
-            <colgroup>
-                <col style="width: 10%;">
-                </col>
-                <col />
-            </colgroup>
-            <tbody>
-                <tr>
-                    <td>Before write operation</td>
-                    <td><pre><code class="language-java">public final static int BEFORE_WRITE = 0;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>After write operation</td>
-                    <td><pre><code class="language-java">public final static int AFTER_WRITE = 1;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Before read operation</td>
-                    <td><pre><code class="language-java">public final static int BEFORE_READ = 2;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Before take operation</td>
-                    <td><pre><code class="language-java">public final static int BEFORE_TAKE = 3;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Before notify register operation</td>
-                    <td><pre><code class="language-java">public final static int BEFORE_NOTIFY = 4;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Before authentication operation on a secured space</td>
-                    <td><pre><code class="language-java">public final static int BEFORE_AUTHENTICATION = 6;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Before update operation</td>
-                    <td><pre><code class="language-java">public final static int BEFORE_UPDATE = 9;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>After update operation</td>
-                    <td><pre><code class="language-java">public final static int AFTER_UPDATE = 10;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Before readMultiple operation</td>
-                    <td><pre><code class="language-java">public final static int BEFORE_READ_MULTIPLE = 11;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>After readMultiple operation</td>
-                    <td><pre><code class="language-java">public final static int AFTER_READ_MULTIPLE = 12;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Before takeMultiple operation</td>
-                    <td><pre><code class="language-java">public final static int BEFORE_TAKE_MULTIPLE = 13;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>After takeMultiple operation</td>
-                    <td><pre><code class="language-java">public final static int AFTER_TAKE_MULTIPLE = 14;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Before notify trigger operation, indicates that a matched notify template was found to the current entry event</td>
-                    <td><pre><code class="language-java">public final static int BEFORE_NOTIFY_TRIGGER = 15;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>After notify trigger operation, indicates that a notify trigger was successful</td>
-                    <td><pre><code class="language-java">public final static int AFTER_NOTIFY_TRIGGER = 16;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Before all notify trigger operation, indicates that at least one notify template is matched to the current entry event</td>
-                    <td><pre><code class="language-java">public final static int BEFORE_ALL_NOTIFY_TRIGGER = 17;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>After all notify trigger operation, indicates that all notify templates that are matched to the current entry event were triggered and returned or failed. @see  net.jini.core.event.RemoteEventListener#notify(net.jini.core.event.RemoteEvent)</td>
-                    <td><pre><code class="language-java">public final static int AFTER_ALL_NOTIFY_TRIGGER = 18;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Before execute operation</td>
-                    <td><pre><code class="language-java">public final static int BEFORE_EXECUTE = 20;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>After execute operation</td>
-                    <td><pre><code class="language-java">public final static int AFTER_EXECUTE = 21;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>After read operation</td>
-                    <td><pre><code class="language-java">public final static int AFTER_READ = 22;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>After take operation</td>
-                    <td><pre><code class="language-java">public final static int AFTER_TAKE = 23;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Before change operation</td>
-                    <td><pre><code class="language-java">public final static int BEFORE_CHANGE = 24;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>After change operation</td>
-                    <td><pre><code class="language-java">public final static int AFTER_CHANGE = 25;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Called before entry remove due to lease expression or lease cancel. @see net.jini.core.lease.Lease#cancel()</td>
-                    <td><pre><code class="language-java">public final static int BEFORE_REMOVE = 52;</code></pre>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Called after entry remove due to lease expression or lease cancel. @see net.jini.core.lease.Lease#cancel()</td>
-                    <td><pre><code class="language-java">public final static int AFTER_REMOVE = 53;</code></pre>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p>&#160;</p>
         <div class="easyui-tabs" plain="true" data-options="">
+            <p>In order to change the object, use setFieldValue of the entry. The full list of setFieldValue entries is shown below:</p>
+            <table>
+                <colgroup>
+                    <col style="width: 40%;">
+                    </col>
+                    <col style="width: 5%;" />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td>Before write operation</td>
+                        <td><code class="language-java">0</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>After write operation</td>
+                        <td><code class="language-java">1</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Before read operation</td>
+                        <td><code class="language-java">2</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Before take operation</td>
+                        <td><code class="language-java">3</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Before notify register operation</td>
+                        <td><code class="language-java">4</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Before authentication operation on a secured space</td>
+                        <td><code class="language-java">6</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Before update operation</td>
+                        <td><code class="language-java">9</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>After update operation</td>
+                        <td><code class="language-java">10</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Before readMultiple operation</td>
+                        <td><code class="language-java">11</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>After readMultiple operation</td>
+                        <td><code class="language-java">12</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Before takeMultiple operation</td>
+                        <td><code class="language-java">13</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>After takeMultiple operation</td>
+                        <td><code class="language-java">14</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Before notify trigger operation, indicates that a matched notify template was found to the current entry event</td>
+                        <td><code class="language-java">15</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>After notify trigger operation, indicates that a notify trigger was successful</td>
+                        <td><code class="language-java">16</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Before all notify trigger operation, indicates that at least one notify template is matched to the current entry event</td>
+                        <td><code class="language-java">17</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>After all notify trigger operation, indicates that all notify templates that are matched to the current entry event were triggered and returned or failed. @see  net.jini.core.event.RemoteEventListener#notify(net.jini.core.event.RemoteEvent)</td>
+                        <td><code class="language-java">18</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Before execute operation</td>
+                        <td><code class="language-java">20</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>After execute operation</td>
+                        <td><code class="language-java">21</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>After read operation</td>
+                        <td><code class="language-java">22</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>After take operation</td>
+                        <td><code class="language-java">23</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Before change operation</td>
+                        <td><code class="language-java">24</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>After change operation</td>
+                        <td><code class="language-java">25</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Called before entry remove due to lease expression or lease cancel. @see net.jini.core.lease.Lease#cancel()</td>
+                        <td><code class="language-java">52</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Called after entry remove due to lease expression or lease cancel. @see net.jini.core.lease.Lease#cancel()</td>
+                        <td><code class="language-java">53</code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>For example, the following Spring configuration registers this filter for before write (<code>0</code>), before read (<code>2</code>), and before take (<code>3</code>) operations:</p>
+        <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
             <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleFilter" class="eg.SimpleFilter" /&gt;
 
 &lt;os-core:embedded-space id="space" space-name="mySpace"&gt;
@@ -323,9 +325,8 @@
 &lt;/bean&gt;
 </code></pre>
             </div>
-            <p>In order to change the object, use setFieldValue of the entry.</p>
         </div>
-        <h1><a name="accessing-a-space-within-a-space-filter"></a>Accessing a Space wies </h1>
+        <h1><a name="accessing-a-space-within-a-space-filter"></a>Accessing a Space within a Space Filter </h1>
         <p>Accessing a space within a space filter can cause a cycle construction exception, since the space can not be injected to the filter (because the space was not constructed yet). There are options to solve this with pure Spring, but OpenSpaces provides a simpler option by using the <a href="pojo-grid-annotations.html">GigaSpacesLateContext</a> annotation.</p>
         <h1><a name="space-replication-filters"></a>Space Replication Filters</h1>
         <p>The <code>UrlSpaceFactoryBean</code> allows you to configure <a href="../admin/cluster-replication-filters.html">Cluster Replication Filters</a>. It uses the space support for a <code>ReplicationFilterProvider</code> which is a wrapper for an <code>IReplicationFilter</code> implementation and its characteristics (such as <code>activeWhenBackup</code>). This allows you to provide space replication filters without changing the space schema.</p>
