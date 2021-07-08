@@ -127,12 +127,12 @@
 &lt;/bean&gt;
 </code></pre>
             </div>
-            <div class="tc-admon-note">
-                <p>If you wish to change the <code class="language-java">beforeWrite </code>object, do not use a delegate implementation of <code>ISpaceFilter</code>, Instead, implement <code class="language-java">ISpaceFilter</code>.</p>
-            </div>
-            <div class="tc-admon-note">
-                <p>Delegator filters cannot be used to change the object. If you need to change the object, implement the <code class="language-java">IFilter</code> interface.</p>
-            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>If you wish to change the <code class="language-java">beforeWrite </code>object, do not use a delegate implementation of <code>ISpaceFilter</code>, Instead, implement <code class="language-java">ISpaceFilter</code>.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>Delegator filters cannot be used to change the object. If you need to change the object, implement the <code class="language-java">IFilter</code> interface.</p>
         </div>
         <h1>ISpaceFilter</h1>
         <p>An actual implementation of the <code>ISpaceFilter</code> interface can be provided. Following is a very simple example. Note that in the <code class="language-java">init</code> method you get access to the related Space.</p><pre><code class="language-java">public class SimpleFilter implements ISpaceFilter {
