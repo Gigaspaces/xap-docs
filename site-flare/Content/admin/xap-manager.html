@@ -112,16 +112,14 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
                 <p> It is important to monitor the size of the HSQLDB database (<code>{GS_HOME}/work/db/metricsdb.data</code>), and change the data retention policy if necessary.</p>
                 <p><MadCap:variable name="General.ProductNameXAP" />provides reasonable default values for the retention policy. Depending on cluster size, and number of types and indexes, these default values may not remove old data fast enough from the database, causing the database to increase in size on disk, and possibly also causing internal database memory issues.</p>
             </div>
+            <p>The HSQLDB port can be set as follows:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.port=9101</code> (default is 9101)</p>
             <p>The retention policy for this data can be configured as follows:</p>
             <ul>
                 <li>
-                    <p>How long to keep data in the database:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.retain-duration="PT10M"</code> (default is ten minutes)</p>
+                    <p>How long to keep data in the database:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.retain-duration=PT10M</code> (default is ten minutes)</p>
                 </li>
                 <li>
-                    <p>How often to run the delete task:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.delay-duration="PT1M"</code> (default is one minute)</p>
-                </li>
-                <li>
-                    <p>HSQLDB port:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.port=9101</code> (default is 9101)</p>
+                    <p>How often to run the delete task:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.delay-duration=PT1M</code> (default is one minute)</p>
                 </li>
                 <li MadCap:conditions="Version.15-5-born">
                     <p>How many rows to delete each time:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.batch-size=20000</code> (default is 20,000)</p>
