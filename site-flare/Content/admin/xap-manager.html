@@ -112,7 +112,7 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
                 <p> It is important to monitor the size of the HSQLDB database (<code>{GS_HOME}/work/db/metricsdb.data</code>), and change the data retention policy if necessary.</p>
                 <p><MadCap:variable name="General.ProductNameXAP" />provides reasonable default values for the retention policy. Depending on cluster size, and number of types and indexes, these default values may not remove old data fast enough from the database, causing the database to increase in size on disk, and possibly also causing internal database memory issues.</p>
             </div>
-            <p>The HSQLDB port can be set as follows:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.port=9101</code> (default is 9101)</p>
+            <p>The HSQLDB port can be set as follows:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.port=9101</code> (default is 9101)<br /><code class="language-bash">-Dcom.gs.ui.query-timeout=700</code> <br /><code class="language-bash">-Dcom.gs.ui.metrics.db.host=DBHost</code> (usually no need to change)<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.name=metricsdb</code><br /></p>
             <p>The retention policy for this data can be configured as follows:</p>
             <ul>
                 <li>
