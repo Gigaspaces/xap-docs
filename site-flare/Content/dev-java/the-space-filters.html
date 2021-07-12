@@ -326,7 +326,7 @@
         <h1><a name="accessing-a-space-within-a-space-filter"></a>Accessing a Space within a Space Filter </h1>
         <p>Accessing a space within a space filter can cause a cycle construction exception, since the space can not be injected to the filter (because the space was not constructed yet). There are options to solve this with pure Spring, but OpenSpaces provides a simpler option by using the <a href="pojo-grid-annotations.html">GigaSpacesLateContext</a> annotation.</p>
         <h1><a name="space-replication-filters"></a>Space Replication Filters</h1>
-        <p>The <code>UrlSpaceFactoryBean</code> allows you to configure <a href="../admin/cluster-replication-filters.html">Cluster Replication Filters</a>. It uses the space support for a <code>ReplicationFilterProvider</code> which is a wrapper for an <code>IReplicationFilter</code> implementation and its characteristics (such as <code>activeWhenBackup</code>). This allows you to provide space replication filters without changing the space schema.</p>
+        <p>The <code>UrlSpaceFactoryBean</code> allows you to configure <a href="../admin/cluster-replication-filters.html">Cluster Replication Filters</a>. It uses the space support for a <code>ReplicationFilterProvider</code> which is a wrapper for an <code>IReplicationFilter</code> implementation and its characteristics (such as <code>activeWhenBackup</code>). This allows you to provide space replication filters without changing the space schema. </p>
         <div class="tc-admon-note">
             <p>Space replication filters can only be used with embedded spaces.</p>
         </div>
@@ -338,6 +338,7 @@
 
     public void process(int direction, IReplicationFilterEntry replicationFilterEntry, String remoteSpaceMemberName) {
         // process logic here
+        // In order to change the object you should use replicationFilterEntry setFileldValue method
     }
 
     public void close() {
