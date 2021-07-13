@@ -59,7 +59,7 @@
                 <p><a href="../dev-java/asynchronous-persistency-with-the-mirror.html">Write-behind - Mirror</a>: For persisting the cache data asynchronously.</p>
             </li>
         </ul>
-        <p>Persistence logic can either be the out-of-the-box <a href="../dev-java/hibernate-space-persistency.html">Hibernate external data source</a>, or any custom persistence logic that implements the <a href="../dev-java/space-persistency-overview.html">Space Persistency</a> extension points.</p>
+        <p>Persistence logic can either be the out-of-the-box <a href="../dev-java/hibernate-space-persistency.html">Hibernate external data source</a>, or any custom persistence logic that implements the <a href="../dev-java/persistency-for-a-database.html">Space Persistency</a> extension points.</p>
         <p>The in-line cache ensures maximum performance when fetching data where the database is outside the critical path of the application transaction. (This makes more sense than it might seem: database contention is a primary source of application performance failure.)</p>
         <div class="tc-admon-note">
             <p>For best performance, use the <a href="../dev-java/all-in-cache-cache-policy.html">ALL-IN-CACHE cache policy</a> with the <a href="../dev-java/asynchronous-persistency-with-the-mirror.html">write-behind mirror</a>. This will ensure maximum hit rate when accessing the cache. With this mode, you should make sure the cache can accommodate <span class="tc-italic">all</span> the data you will access.</p>
@@ -80,7 +80,7 @@
                 <p>The total size of data stored within the database (or any other data source) is equal to or less than the amount of data stored in memory. Ideally, you should use the <code>ALL_IN_CACHE</code> cache policy mode.</p>
             </li>
             <li>
-                <p>The original data model of the data within the database (or any other data source) is similar to the data model of the objects in memory. <a href="../dev-java/space-persistency-overview.html">Space Persistency</a> will work very well; the data will be loaded automatically from the database into the cache, and every change to the data in the cache will be propagated to the database behind the scenes.</p>
+                <p>The original data model of the data within the database (or any other data source) is similar to the data model of the objects in memory. <a href="../dev-java/persistency-for-a-database.html">Space Persistency</a> will work very well; the data will be loaded automatically from the database into the cache, and every change to the data in the cache will be propagated to the database behind the scenes.</p>
             </li>
         </ul><a name="side-cache"></a>
         <h1><a name="side-cache"></a>Side Cache</h1>
@@ -93,7 +93,7 @@
                 <p>If the object is found within the cache, the application uses it.</p>
             </li>
             <li>
-                <p>If the object isn't found within the cache, the application fetches it from the database and then the application writes it into the cache. Another option is to turn on the space <a href="../dev-java/space-persistency-overview.html">Data source</a> and allow it to load the data on cache miss in a lazy manner.</p>
+                <p>If the object isn't found within the cache, the application fetches it from the database and then the application writes it into the cache. Another option is to turn on the space <a href="../dev-java/persistency-for-a-database.html">Data source</a> and allow it to load the data on cache miss in a lazy manner.</p>
             </li>
             <li>
                 <p>The next time the application attempts to fetch the same object, it will be read from the cache (unless the object has been expired, evicted or removed explicitly).</p>
@@ -150,7 +150,7 @@
                 <p>The total amount of data stored in the database (or any other data source) is relatively much higher than the amount of data stored in-memory. In this case, you should be running the space in <code>LRU</code> cache policy mode.</p>
             </li>
             <li>
-                <p>The original data model of the data within the database (or any other data source) is very different than the data model of the objects in-memory. In this case, the built-in <a href="../dev-java/space-persistency-overview.html">Space Persistency</a> implementation  may not be relevant. A customized mapping logic should be implemented on the client application side to load data from the database and push it into the cache.</p>
+                <p>The original data model of the data within the database (or any other data source) is very different than the data model of the objects in-memory. In this case, the built-in <a href="../dev-java/persistency-for-a-database.html">Space Persistency</a> implementation  may not be relevant. A customized mapping logic should be implemented on the client application side to load data from the database and push it into the cache.</p>
             </li>
         </ul><a name="client-cache"></a>
         <h1><a name="client-cache"></a>Client Cache</h1>

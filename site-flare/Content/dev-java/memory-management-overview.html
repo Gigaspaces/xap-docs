@@ -28,7 +28,7 @@
             <li><a href="all-in-cache-cache-policy.html">ALL IN CACHE Policy</a> (code 1) - Assumes the JVM hosting the Space instance has enough heap to hold all data in memory.</li>
             <li><a href="lru-cache-policy.html">LRU Cache Policy</a> (code 0) - Assumes the JVM hosting the Space instance does not have enough heap to hold all data in memory.</li>
         </ul>
-        <p>By default, the ALL IN CACHE policy is used for an in-memory data grid, and LRU Cache policy is used for a persistent Space with <a href="space-persistency-overview.html">Space Persistency</a> enabled.</p>
+        <p>By default, the ALL IN CACHE policy is used for an in-memory data grid, and LRU Cache policy is used for a persistent Space with <a href="persistency-for-a-database.html">Space Persistency</a> enabled.</p>
         <p>These policies are defined via the the <code>space-config.engine.cache_policy</code> property. The following example describes how it is configured:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"&gt;
     &lt;os-core:properties&gt;
         &lt;props&gt;
@@ -109,7 +109,7 @@ User[] evictedUsers = gigaSpace.takeMultiple(template, Integer.MAX_VALUE, TakeMo
         <h1><a name="exceeding-the-physical-memory-capacity"></a>Exceeding the Physical Memory Capacity</h1>
         <p>The overall Space capacity is not necessarily limited to the capacity of its physical memory. Currently, there are two options for exceeding this limit:</p>
         <ul>
-            <li><span class="tc-bold">Using an LRU and <a href="space-persistency-overview.html">Space Persistency</a></span> - in this mode, all the Space data is kept in the database so the Space capacity is dependent on database capacity rather than the memory capacity. The Space maintains (in memory) a partial image of the persistent view in an LRU basis.</li>
+            <li><span class="tc-bold">Using an LRU and <a href="persistency-for-a-database.html">Space Persistency</a></span> - in this mode, all the Space data is kept in the database so the Space capacity is dependent on database capacity rather than the memory capacity. The Space maintains (in memory) a partial image of the persistent view in an LRU basis.</li>
             <li><span class="tc-bold">Using <a href="../overview/terminology.html">Partitioned Space</a></span> - in this mode, the Space utilizes the physical memory of multiple JVMs. This means the application using the Space is able to access all the Space instances transparently, as if they were a single Space with a higher memory capacity.</li>
         </ul>
         <h1><a name="memory-manager-parameters"></a>Memory Manager Parameters</h1>

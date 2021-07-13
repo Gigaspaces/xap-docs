@@ -2,10 +2,10 @@
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <body>
         <div MadCap:conditions="Version.16-0-only">
-            <h1>Performance Tuning</h1>
-            <p>For all workloads: 10%-15% overhead reduction due to improvements to the serialization mechanism</p>
-            <p>Workloads using POJOs: 10%-15% improvement to the creation of user objects</p>
-            <p>ID-based workloads: 10%-15% improvement by optimizing the thread configuration. For this purpose, a <MadCap:xref href="../../../../admin/tuning.html">Performance Tuning</MadCap:xref><MadCap:annotation MadCap:createDate="2021-07-12T21:18:11.4640379+03:00" MadCap:creator="David" MadCap:initials="DA" MadCap:comment="Ask Meron for config parameters. \r\nOn what workload will it improve, e.g. reads/writes/writes by ID. ID-based workloads. Config number of threads? Need new page for this?" MadCap:editor="David" MadCap:editDate="2021-07-12T21:30:19.1185116+03:00"> parameter was added</MadCap:annotation>.</p>
+            <h1>Performance Improvements</h1>
+            <p>Up to 15% performance improvement for all workloads</p>
+            <p>Additional 15% improvement for creation of POJOs</p>
+            <p>ID-based workloads: 10%-15% improvement by optimizing the thread configuration. For this purpose, a <MadCap:xref href="../../../../admin/tuning.html">Performance Tuning</MadCap:xref><MadCap:annotation MadCap:createDate="2021-07-12T21:18:11.4640379+03:00" MadCap:creator="David" MadCap:initials="DA" MadCap:comment="Ask Meron for config parameters. \r\nOn what workload will it improve, e.g. reads/writes/writes by ID. ID-based workloads. Config number of threads? Need new page for this?" MadCap:editor="David" MadCap:editDate="2021-07-13T10:20:49.5230583+03:00"> parameter was added</MadCap:annotation>.</p>
             <h1>Enhanced Data Tiering</h1>
             <ul>
                 <li>
@@ -16,17 +16,14 @@
                     <p> &lt;&lt;&lt;Link Here to Persistent Data Tiering&gt;&gt;&gt; saves and restores tiered data to provide faster deployment and redeployment of <MadCap:annotation MadCap:createDate="2021-07-12T21:42:53.6125049+03:00" MadCap:creator="David" MadCap:initials="DA" MadCap:comment="??? or Space? Application? Processing Unit???" MadCap:editor="David" MadCap:editDate="2021-07-12T21:43:12.0607226+03:00">data</MadCap:annotation>. </p>
                 </li>
             </ul>
-            <h1>Postgres-Enabled Data Gateway</h1>
+            <h1>Data Gateway</h1>
             <p> Data Gateway allows seamless integration with BI tools such as Power BI and Tableau.</p>
-            <h1>
-                <MadCap:annotation MadCap:createDate="2021-07-12T21:41:24.5532003+03:00" MadCap:creator="David" MadCap:initials="DA" MadCap:comment="Ask Yuval is there is anything new" MadCap:editor="David" MadCap:editDate="2021-07-12T21:41:36.4281027+03:00">Kubertnetes Improvements</MadCap:annotation>
-            </h1>
+            <h1>Improved JDBC Driver</h1>
+            <p>Optimized ANSI SQL-99 support and improved performance</p>
             <h1>
                 <MadCap:annotation MadCap:createDate="2021-07-12T21:40:04.3294038+03:00" MadCap:creator="David" MadCap:initials="DA" MadCap:comment="Talk to Ari" MadCap:editor="David" MadCap:editDate="2021-07-12T21:40:15.6765741+03:00">Improved Metrics Dashboard</MadCap:annotation>
             </h1>
             <p>Simpler and more effective monitoring using a new detailed dashboard of system status and metrics.</p>
-            <h1>Improved JDBC/ODBC Drivers</h1>
-            <p>Optimized ANSI SQL-99 support and improved performance</p>
             <h1>Enhanced Support for Secured Space</h1>
             <p><a href="https://docs-staging.gigaspaces.com/latest/security/securing-your-data.html?Highlight=secured%20space#:~:text=Layer-,Secured%20Space,Custom%20Security%20regarding%20extensions,-Namespace">Secured Space</a> can now be accessed via the standard <MadCap:variable name="General.ProductNameIE" /> tools — CLI, REST-API, and Ops Manager — and the <a href="https://docs-staging.gigaspaces.com/latest/security/securing-your-data.html?Highlight=secured%20space#:~:text=Layer-,Secured%20Space,Custom%20Security%20regarding%20extensions,-Namespace">related proxy properties</a> can be customized.</p>
             <p>&#160;</p>

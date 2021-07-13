@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -58,7 +58,7 @@ GigaSpace localCache = new GigaSpaceConfigurer(localCacheConfigurer).gigaSpace()
         <p>Transactional operations are always executed on the master Space.</p>
         <h1><a name="space-persistency"></a>Space Persistency</h1>
         <p>The local cache uses the entry's version to determine whether the local entry is up-to-date or stale when handling updates. Usually this mechanism is transparent to the user and does not require declaring a version property, because the master Space and local cache maintain version information implicitly for each entry.</p>
-        <p>The exception is a master Space with <a href="space-persistency-overview.html">Space persistency</a> enabled. For example, suppose that an entry in the master Space has version 7, and gets stored in the local cache, then evicted from the master Space and later reloaded from the data source. If the version is not persisted and reloaded, it will be set to 1 and the local cache will ignore upcoming updates on that entry because its cached version is 7. In that case, it is the user's responsibility to make sure that the entry's version is persisted and loaded in the data source, using the following rules:</p>
+        <p>The exception is a master Space with <a href="persistency-for-a-database.html">Space persistency</a> enabled. For example, suppose that an entry in the master Space has version 7, and gets stored in the local cache, then evicted from the master Space and later reloaded from the data source. If the version is not persisted and reloaded, it will be set to 1 and the local cache will ignore upcoming updates on that entry because its cached version is 7. In that case, it is the user's responsibility to make sure that the entry's version is persisted and loaded in the data source, using the following rules:</p>
         <ol>
             <li>
                 <p>Each POJO class should declare a <a href="pojo-overview.html#metadata">SpaceVersion</a> property.</p>

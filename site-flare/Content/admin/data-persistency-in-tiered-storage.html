@@ -3,41 +3,16 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Tiered Storage</h1>
-        <p>Tiered Storage provides seamless tiering of data between different storage tiers, to balance performance and storage media costs.. </p>
-        <p>Data can be stored in two tiers:</p>
-        <ul>
-            <li>
-                <p><b>Hot Tier</b> <b>— RAM</b>: Priority data, used for read/write operations and analysis requiring fastest access</p>
-            </li>
-            <li>
-                <p><b>Warm Tier — SSD</b> (recommended media): Additional data used mostly for read-only, analytical purposes</p>
-            </li>
-        </ul>
-        <p>By defining business rules, you direct the system which data to store in the Hot tier and which in the Warm tier. The Hot/Warm decision can be based on the data content, or by data aging considerations. </p>
-        <p>Using Tiered Storage can increase effective data capacity by a factor of ten.</p>
+        <h1 class="tc-pagetitle">Data Persistency in Tiered Storage</h1>
+        <p>Tiered Storage can be configured so that data is stored in a permanent repository. The data can be saved when the tiered storage is undeployed, and restored when it is redeployed. </p>
+        <h1>Why Use Data Persistency?</h1>
+        <p>During the normal use of Tiered Storage, priority data is stored in the Hot tier, and other data is stored in the Warm tier:</p>
         <p style="text-align: center;">
             <img src="../Resources/Images/x-tiered-storage-no-border.png" style="width: 595px;height: 382px;" />
         </p>
-        <h1>Optimizing the Use of Tiered Storage</h1>
-        <p>In order to get the most out of this feature, please note the following:</p>
-        <ul>
-            <li>
-                <p>Data in the Hot tier is also stored in the Warm tier (except for transient objects — <a href="#transient-param">see below</a>). </p>
-            </li>
-            <li>
-                <p>Queries use the Hot tier if all of the required data is in the Hot tier.</p>
-            </li>
-            <li>
-                <p>Tiered Storage supports primitive property types, and Java Timestamp and Instant classes .</p>
-            </li>
-            <li>
-                <p>Warm storage is not automatically persistent. Persistence is established via the standard <MadCap:xref href="../dev-java/persistency-for-a-database.html">Space Persistency</MadCap:xref> feature of <MadCap:variable name="General.ProductNameIE" />.</p>
-            </li>
-        </ul>
-        <div class="tc-admon-note">
-            <p>For tables configured as Tiered Storage (see below), if no rules are defined for the table, its data will be stored in the Warm tier only.</p>
-        </div>
+        <p>The initial loading of data into each tier can be a time-consuming process, starting with the System of Record or other external data sources. Additionally, data in both tiers can be updated during the normal course of operations during the day.</p>
+        <p>Using data persistency, data in both tiers is stored in a system repository. When the data is undeployed, the user has an option to persist the data. Subsequent redeployment of the data is performed at optimum speed. </p>
+        <h1>Configuring Data Persistency for Tiered Storage</h1>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
             <h1>How to Configure Tiered Storage in XML</h1>
             <p>Tiered Storage is implemented by parameters coded in the XML file for the Space. The relevant sections of the XML file are shown below.</p>

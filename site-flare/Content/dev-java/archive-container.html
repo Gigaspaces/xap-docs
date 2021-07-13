@@ -21,10 +21,10 @@
             </li>
         </ul>
         <h2><a name="archive-container-vs-space-persistency"></a>Archive Container vs. Space Persistency</h2>
-        <p>The Archive Container differs from <a href="space-persistency-overview.html">Space Persistency</a> in the following ways:</p>
+        <p>The Archive Container differs from <a href="persistency-for-a-database.html">Space Persistency</a> in the following ways:</p>
         <ul>
             <li>Persisted objects are not read back from the Big-Data storage into the Space.</li>
-            <li>Objects are persisted from multiple partitions in parallel directly to the Big-Data storage (not going through the <a href="space-persistency-overview.html">Space Persistency</a>).</li>
+            <li>Objects are persisted from multiple partitions in parallel directly to the Big-Data storage (not going through the <a href="persistency-for-a-database.html">Space Persistency</a>).</li>
             <li>Archive Container uses the <a href="polling-container-overview.html">Polling Container</a> behind the scenes, which can be co-located with each space partition.</li>
         </ul>
         <h2><a name="archive-container-running-side-by-side-with-space-persistency"></a>Archive Container Running Side-by-Side with Space Persistency</h2>
