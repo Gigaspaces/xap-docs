@@ -2,30 +2,65 @@
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <body>
         <div MadCap:conditions="Version.16-0-only">
-            <h1>Performance Improvements</h1>
-            <p>Up to 15% performance improvement for all workloads</p>
-            <p>Additional 15% improvement for creation of POJOs</p>
-            <p>ID-based workloads: 10%-15% improvement by optimizing the thread configuration. For this purpose, a <MadCap:xref href="../../../../admin/tuning.html">Performance Tuning</MadCap:xref> parameter has been added.</p>
-            <h1>Enhanced Data Tiering</h1>
-            <ul>
-                <li>
-                    <p>
-                        <MadCap:xref href="../../../../dev-java/intelligent-tiering-intro.html">Intelligent Data Tiering</MadCap:xref> allows data to be stored in RAM or in lower tiers, based on business rules and data aging. </p>
-                </li>
-                <li>
-                    <p> &lt;&lt;&lt;Link Here to Persistent Data Tiering&gt;&gt;&gt; saves and restores tiered data to provide faster deployment and redeployment of <MadCap:annotation MadCap:createDate="2021-07-12T21:42:53.6125049+03:00" MadCap:creator="David" MadCap:initials="DA" MadCap:comment="??? or Space? Application? Processing Unit???" MadCap:editor="David" MadCap:editDate="2021-07-12T21:43:12.0607226+03:00">data</MadCap:annotation>. </p>
-                </li>
-            </ul>
-            <h1>Data Gateway</h1>
-            <p> Data Gateway allows seamless integration with BI tools such as Power BI and Tableau.</p>
-            <h1>Improved JDBC Driver</h1>
-            <p>Optimized ANSI SQL-99 support and improved performance</p>
-            <h1>
-                <MadCap:annotation MadCap:createDate="2021-07-12T21:40:04.3294038+03:00" MadCap:creator="David" MadCap:initials="DA" MadCap:comment="Talk to Ari" MadCap:editor="David" MadCap:editDate="2021-07-12T21:40:15.6765741+03:00">Improved Metrics Dashboard</MadCap:annotation>
-            </h1>
-            <p>Simpler and more effective monitoring using a new detailed dashboard of system status and metrics.</p>
-            <h1>Enhanced Support for Secured Space</h1>
-            <p><a href="https://docs-staging.gigaspaces.com/latest/security/securing-your-data.html?Highlight=secured%20space#:~:text=Layer-,Secured%20Space,Custom%20Security%20regarding%20extensions,-Namespace">Secured Space</a> can now be accessed via the standard <MadCap:variable name="General.ProductNameIE" /> tools — CLI, REST-API, and Ops Manager — and the <a href="https://docs-staging.gigaspaces.com/latest/security/securing-your-data.html?Highlight=secured%20space#:~:text=Layer-,Secured%20Space,Custom%20Security%20regarding%20extensions,-Namespace">related proxy properties</a> can be customized.</p>
+            <div>
+                <h1>
+                    <MadCap:annotation MadCap:createDate="2021-07-14T14:36:36.5716771+03:00" MadCap:creator="David" MadCap:initials="DA" MadCap:comment="why good? \r\nbalancing codst snd performance. BVFM. \r\noptimized for sql queries. footpring reduction (indexes not saved toi disk). \r\n" MadCap:editor="David" MadCap:editDate="2021-07-14T14:38:35.2246327+03:00">Enhanced Data Tiering</MadCap:annotation>
+                </h1>
+                <ul>
+                    <li>
+                        <p><b>Balancing cost and performance</b> — <MadCap:xref href="../../../../dev-java/intelligent-tiering-intro.html">Intelligent Data Tiering</MadCap:xref> allows data to be <i>intelligently</i> stored in RAM or in lower tiers, based on business rules and data aging. </p>
+                        <ul>
+                            <li>
+                                <p>"Hot" data tier in RAM, optimized for SQL queries and priority data</p>
+                            </li>
+                            <li>
+                                <p>"Warm" data tier in SSD, for a 10x increase in data capacity, reduced memory footprint, and minimal or no impact on system performance </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><b>Faster deployment and redeployment of </b>
+                            <MadCap:annotation MadCap:createDate="2021-07-12T21:42:53.6125049+03:00" MadCap:creator="David" MadCap:initials="DA" MadCap:comment="??? or Space? Application? Processing Unit???" MadCap:editor="David" MadCap:editDate="2021-07-12T21:43:12.0607226+03:00"><b>data</b> via  Persistent data option to automatically save and restore tiered data</MadCap:annotation>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div>
+                    <h1>Improved SQL <MadCap:annotation MadCap:createDate="2021-07-14T14:39:48.7633165+03:00" MadCap:creator="David" MadCap:initials="DA" MadCap:comment="interface/??? \r\n&quot;enhanced sql coverage and performance&quot;\r\noptimized coverage and performance. integrated wiht one interface.\r\n\r\nOlder drivers will be supported deprecated announces in the next few months (nice, not alarming)." MadCap:editor="David" MadCap:editDate="2021-07-14T14:41:39.4320890+03:00">Interface</MadCap:annotation></h1>
+                    <p><b>Enhanced ANSI SQL-99 support</b> and <b>optimized performance</b> with new integrated SQL driver. Support of older drivers will be reviewed in a future release.</p>
+                </div>
+            </div>
+            <div>
+                <h1>
+                    <MadCap:annotation MadCap:createDate="2021-07-14T14:39:35.5001881+03:00" MadCap:creator="David" MadCap:initials="DA" MadCap:comment="mention jdbc odbc" MadCap:editor="David" MadCap:editDate="2021-07-14T14:39:42.6423325+03:00">Data Gateway</MadCap:annotation>
+                </h1>
+                <ul>
+                    <li>
+                        <p><b>Seamless integration with BI tools</b> such as Power BI and Tableau</p>
+                    </li>
+                    <li>
+                        <p> Improved <b>JDBC and ODBC</b> support</p>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h1>
+                    <MadCap:annotation MadCap:createDate="2021-07-14T14:35:12.6960292+03:00" MadCap:creator="David" MadCap:initials="DA" MadCap:comment="Ask Lee for presentation for SEI. Eti will send text from Moshe.\r\nall together -- up to 50% together.\r\n" MadCap:editor="David" MadCap:editDate="2021-07-14T14:36:26.6968768+03:00">Performance Improvements</MadCap:annotation>
+                </h1>
+                <p><b>Up to 50% performance improvements</b> for standard workloads, creation of POJOs, and ID-based queries</p>
+                <p><b>Optimize thread configuration and speed performance</b> with improved guidelines and easier implementation of <MadCap:xref href="../../../../admin/tuning.html">Performance Tuning</MadCap:xref> parameters</p>
+            </div>
+            <div>
+                <h1>
+                    <MadCap:annotation MadCap:createDate="2021-07-12T21:40:04.3294038+03:00" MadCap:creator="David" MadCap:initials="DA" MadCap:comment="Talk to Ari. UX mostly that's better. some functionality?" MadCap:editor="David" MadCap:editDate="2021-07-14T14:43:40.0098751+03:00">Improved Metrics Dashboard</MadCap:annotation>
+                </h1>
+                <p><b>Simpler and more effective monitoring</b> using a new detailed dashboard of system status and metrics</p>
+            </div>
+            <div>
+                <h1>Enhanced Support for Secured Space</h1>
+                <p><a href="https://docs-staging.gigaspaces.com/latest/security/securing-your-data.html?Highlight=secured%20space#:~:text=Layer-,Secured%20Space,Custom%20Security%20regarding%20extensions,-Namespace" style="font-weight: bold;">Secured Space</a> can now be accessed via the standard <MadCap:variable name="General.ProductNameIE" /> tools — CLI, REST-API, and Ops Manager — and the <a href="https://docs-staging.gigaspaces.com/latest/security/securing-your-data.html?Highlight=secured%20space#:~:text=Layer-,Secured%20Space,Custom%20Security%20regarding%20extensions,-Namespace">related proxy properties</a> can be customized.</p>
+            </div>
             <p>&#160;</p>
         </div>
         <div MadCap:conditions="Version.15-8-only">
