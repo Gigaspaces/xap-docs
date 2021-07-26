@@ -6,46 +6,194 @@
         <h1 class="tc-pagetitle">Undeploying a Processing Unit</h1>
         <p><span class="tc-bold">Removing a Processing Unit from the Service Grid</span>.</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Command Line Interface" style="padding:10px">
-                <p><span class="tc-italic">Command:</span>
-                </p>
-                <p MadCap:conditions="Version.14-5-died"><code>xap pu undeploy &lt;name&gt;</code> and <code>insightedge pu undeploy &lt;name&gt;</code></p>
-                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu undeploy &lt;name&gt;</code>
-                </p>
-                <p><span class="tc-italic">Input Example:</span>
-                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu undeploy myPu
+            <div title="Command Line Interface" style="padding:10px" MadCap:conditions="Default.DoNotShow">
+                <div>
+                    <p><span class="tc-italic">Command:</span>
+                    </p>
+                    <p MadCap:conditions="Version.14-5-died"><code>xap pu undeploy &lt;name&gt;</code> and <code>insightedge pu undeploy &lt;name&gt;</code></p>
+                    <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu undeploy &lt;name&gt;</code>
+                    </p>
+                    <p><span class="tc-italic">Input Example:</span>
+                    </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu undeploy myPu
 </code></pre>
-                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
-                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu undeploy myPu
+                    <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                        <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu undeploy myPu
 </code></pre>
+                        </div>
+                        <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu undeploy myPu
+</code></pre>
+                        </div>
                     </div>
-                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu undeploy myPu
-</code></pre>
-                    </div>
+                    <p><span class="tc-italic">Parameters and Options:</span>
+                    </p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th align="left">Item</th>
+                                <th align="left">Name</th>
+                                <th align="left">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="left">Parameter</td>
+                                <td align="left">name</td>
+                                <td align="left">The name of the Pu to undeploy</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Option</td>
+                                <td align="left">keep-file</td>
+                                <td align="left">Keep the undeployed file for future use.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <p><span class="tc-italic">Parameters and Options:</span>
-                </p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th align="left">Item</th>
-                            <th align="left">Name</th>
-                            <th align="left">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td align="left">Parameter</td>
-                            <td align="left">name</td>
-                            <td align="left">The name of the Pu to undeploy</td>
-                        </tr>
-                        <tr>
-                            <td align="left">Option</td>
-                            <td align="left">keep-file</td>
-                            <td align="left">Keep the undeployed file for future use.</td>
-                        </tr>
-                    </tbody>
-                </table>
+            </div>
+            <div title="Command Line Interface" style="padding:10px" MadCap:conditions="Version.14-5-born">
+                <div>
+                    <p><span class="tc-italic">Command:</span>
+                    </p>
+                    <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu undeploy &lt;name&gt;</code>
+                    </p>
+                    <p><span class="tc-italic">Input Example:</span>
+                    </p>
+                    <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                        <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu undeploy myPu
+</code></pre>
+                        </div>
+                        <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu undeploy myPu
+</code></pre>
+                        </div>
+                    </div>
+                    <p><span class="tc-italic">Parameters and Options:</span>
+                    </p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th align="left">Item</th>
+                                <th align="left">Name</th>
+                                <th align="left">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="left">Parameter</td>
+                                <td align="left">name</td>
+                                <td align="left">The name of the Pu to undeploy</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Option</td>
+                                <td align="left">keep-file</td>
+                                <td align="left">Keep the undeployed file for future use.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div title="Command Line Interface" style="padding:10px" MadCap:conditions="Version.14-5-died">
+                <div>
+                    <p><span class="tc-italic">Command:</span>
+                    </p>
+                    <p MadCap:conditions="Version.14-5-died"><code>xap pu undeploy &lt;name&gt;</code> and <code>insightedge pu undeploy &lt;name&gt;</code></p>
+                    <p><span class="tc-italic">Input Example:</span>
+                    </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu undeploy myPu
+</code></pre>
+                    <p><span class="tc-italic">Parameters and Options:</span>
+                    </p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th align="left">Item</th>
+                                <th align="left">Name</th>
+                                <th align="left">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="left">Parameter</td>
+                                <td align="left">name</td>
+                                <td align="left">The name of the Pu to undeploy</td>
+                            </tr>
+                            <tr>
+                                <td align="left">Option</td>
+                                <td align="left">keep-file</td>
+                                <td align="left">Keep the undeployed file for future use.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div title="Command Line Interface" style="padding:10px" MadCap:conditions="Version.16-0-born">
+                <div>
+                    <p><span class="tc-italic">Command:</span>
+                    </p>
+                    <p><code><MadCap:variable name="General.CLI-script-all" /> pu undeploy &lt;name&gt;</code>
+                    </p>
+                    <p><span class="tc-italic">Input Example:</span>
+                    </p>
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu undeploy myPu
+</code></pre>
+                        </div>
+                        <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu undeploy myPu
+</code></pre>
+                        </div>
+                    </div>
+                    <p><span class="tc-italic">Parameters and Options:</span>
+                    </p>
+                    <table>
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <thead>
+                            <tr>
+                                <th align="left">Item</th>
+                                <th align="left">Name</th>
+                                <th align="left">Description</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="left">Parameter</td>
+                                <td align="left">name</td>
+                                <td align="left">The name of the Pu to undeploy</td>
+                                <td>String </td>
+                            </tr>
+                            <tr>
+                                <td align="left">Option</td>
+                                <td align="left">keep-file</td>
+                                <td align="left">Keep the undeployed file for future use.</td>
+                                <td>
+                                    <p>Boolean — </p>
+                                    <p><code>false </code>(default) — the data will not be saved</p>
+                                    <p><code>true </code> — the data for the PU will be saved. It can be used later to restore the PU.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">Option</td>
+                                <td align="left">drain-mode</td>
+                                <td align="left">Specify the desired drain behavior on shutdown.</td>
+                                <td>
+                                    <p><code>none</code>(default) — undeploy without draining the PU (no data is saved)</p>
+                                    <p><code>attempt</code>— undeploy with a maximum time of <code>drain-timeout</code>. If the undeploy takes longer than <code>drain-timeout</code>, the undeploy will still be performed.</p>
+                                    <p><code>required</code>— undeploy with a maximum time of <code>drain-timeout</code>. If the undeploy takes longer than <code>drain-timeout</code>, the undeploy will not be performed.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">Option</td>
+                                <td align="left">drain-timeout</td>
+                                <td align="left">Specify the desired timeout interval for the drain phase</td>
+                                <td>
+                                    <p>Time value (for <code>drain-mode=attempt</code> or <code>drain-mode=required</code> only) — </p>
+                                    <p><code>1m </code>(default) — wait for drain for one minute.</p>
+                                    <p><code>50s </code>— wait for drain for 50 seconds.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div title="REST Manager API" style="padding:10px">
                 <p><span class="tc-italic">Path</span>
@@ -68,9 +216,31 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>name</td>
-                            <td>Provide the name of the PU you are un deploying.</td>
+                            <td>id</td>
+                            <td>Provide the name of the PU you are undeploying.</td>
                             <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>keepFile</td>
+                            <td>Boolean: <code>false </code>(default) — do not keep the file. <code>true </code>— keep the undeployed file for future redeployment.</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>drainMode</td>
+                            <td>
+                                <p>Specify the desired drain behavior on shutdown.</p>
+                                <p> <code>attempt</code>— undeploy with a maximum time of <code>drain-timeout</code>. If the undeploy takes longer than <code>drain-timeout</code>, the undeploy will still be performed.</p>
+                                <p><code>required</code>— undeploy with a maximum time of <code>drain-timeout</code>. If the undeploy takes longer than <code>drain-timeout</code>, the undeploy will not be performed.</p>
+                            </td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>drainTimeout</td>
+                            <td>
+                                <p>Timeout to wait for the drain to complete. </p>
+                                <p>Examples: <code>5m </code>(default, one minute). <code>50s </code>(50 seconds) </p>
+                            </td>
+                            <td>No</td>
                         </tr>
                     </tbody>
                 </table>
