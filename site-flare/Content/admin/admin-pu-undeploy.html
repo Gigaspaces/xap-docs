@@ -4,7 +4,8 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Undeploying a Processing Unit</h1>
-        <p><span class="tc-bold">Removing a Processing Unit from the Service Grid</span>.</p>
+        <p><span class="tc-bold">Removing a Processing Unit from the Service Grid</span>
+        </p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="Command Line Interface" style="padding:10px" MadCap:conditions="Default.DoNotShow">
                 <div>
@@ -206,7 +207,23 @@
                 <p>This example undeploys a Processing Unit  named <span class="tc-bold">myPU</span>.</p>
                 <p><span class="tc-italic">Options:</span>
                 </p>
-                <table>
+                <table MadCap:conditions="Version.16-0-died">
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>name</td>
+                            <td>Provide the name of the PU you are un deploying.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table MadCap:conditions="Version.16-0-born">
                     <thead>
                         <tr>
                             <th>Option</th>
