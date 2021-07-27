@@ -11,7 +11,7 @@
             <img src="../Resources/Static/images/OPM-deploy-service-plus-to-deploy.jpg" class="tc-picture90" />
         </p>
         <p>On the Services screen, click on the deploy option (plus sign) to introduce a new service to the grid. </p>
-        <div MadCap:conditions="Version.15-8-born">
+        <div MadCap:conditions="Version.15-8-only">
             <p>The Deploy Service menu will display.</p>
             <p style="text-align: left;">
                 <img src="../Resources/Static/images/ops-manager-deploy-service-menu.png" style="width: 274px;height: 217px;" />
@@ -76,7 +76,7 @@
             <p>&#160;</p>
             <MadCap:snippetBlock src="../Resources/Snippets/ServicePropertiesSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition09], exclude[SnippetConditions.SnippetCondition01 or SnippetConditions.SnippetCondition02 or SnippetConditions.SnippetCondition03 or SnippetConditions.SnippetCondition04 or SnippetConditions.SnippetCondition05 or SnippetConditions.SnippetCondition05A or SnippetConditions.SnippetCondition06 or SnippetConditions.SnippetCondition07 or SnippetConditions.SnippetCondition08 or SnippetConditions.SnippetCondition10 or SnippetConditions.SnippetCondition11 or SnippetConditions.SnippetCondition12 or SnippetConditions.SnippetCondition13 or SnippetConditions.SnippetCondition14 or SnippetConditions.SnippetCondition15]" />
         </div>
-        <div MadCap:conditions="Version.15-8-died">
+        <div MadCap:conditions="Version.15-5-only">
             <p>Then we see the Deploy Service screen:</p>
             <p style="text-align: center;">
                 <img src="../Resources/Static/images/OPM-deploy-service-dialog-box.jpg" class="tc-picture70" />
@@ -102,21 +102,23 @@
             </p>
             <p>In this screen, choose the resources that you wish to make available for the service. Note that there is no High availability for a stateless service.</p>
         </div>
-        <h2>View Service Deployment</h2>
-        <p>After you click <b>Apply</b>, a message appears in the screen banner, indicating that the service deployment is in progress: </p>
-        <p>
-            <img src="../Resources/Static/images/OPM-deploy-service-in-progress.jpg" class="tc-picture90" />
-        </p>
-        <p>&#160;</p>
-        <p>When the service deployment is completed, a message indicating this fact appears in the screen banner.</p>
-        <p>
-            <img src="../Resources/Static/images/OPM-deploy-service-completed.jpg" class="tc-picture90" />
-        </p>
-        <h1>Undeploy Command in Ops Manager</h1>
-        <p>On the Service screen for the service you wish to undeploy, Overview screen, click on <b>Undeploy service</b> to undeploy the service.</p>
-        <p>
-            <img src="../Resources/Static/images/OPM-undeploy-service.jpg" class="tc-picture90" />
-        </p>
-        <p>After you click on Undeploy, the system will ask for confirmation, then it will undeploy the service.</p>
+        <div MadCap:conditions="Version.16-0-died">
+            <h2>View Service Deployment</h2>
+            <p>After you click <b>Apply</b>, a message appears in the screen banner, indicating that the service deployment is in progress: </p>
+            <p>
+                <img src="../Resources/Static/images/OPM-deploy-service-in-progress.jpg" class="tc-picture90" />
+            </p>
+            <p>&#160;</p>
+            <p>When the service deployment is completed, a message indicating this fact appears in the screen banner.</p>
+            <p>
+                <img src="../Resources/Static/images/OPM-deploy-service-completed.jpg" class="tc-picture90" />
+            </p>
+            <h1>Undeploy Command in Ops Manager</h1>
+            <p>On the Service screen for the service you wish to undeploy, Overview screen, click on <b>Undeploy service</b> to undeploy the service.</p>
+            <p>
+                <img src="../Resources/Static/images/OPM-undeploy-service.jpg" class="tc-picture90" />
+            </p>
+            <p>After you click on Undeploy, the system will ask for confirmation, then it will undeploy the service.</p>
+        </div>
     </body>
 </html>
