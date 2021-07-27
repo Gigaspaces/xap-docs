@@ -13,13 +13,29 @@
                         <p>Less expensive SSD storage (Warm tier) for a <span class="tc-textblue">20x increase in data capacity</span>, reduced memory footprint, and minimal or no impact on system performance. </p>
                     </li>
                 </ul>
-                <p>Enhancements to data tiering in release 16.0 include —  </p>
+                <p>Enhancements to data tiering in release 16.0:  </p>
                 <ul>
                     <li>
-                        <p>Business rules and data aging to place data in the Hot or Warm tier </p>
+                        <p><span class="tc-textblue">Business rules</span> and <span class="tc-textblue">data aging</span> to place data in the Hot or Warm tier </p>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h1>Enhanced Data Persistency</h1>
+                <ul>
+                    <li>
+                        <p><span class="tc-textblue">Improved system resiliency</span> — local, synchronized persistency via tiered storage</p>
+                        <ul>
+                            <li>
+                                <p>The "undeploy" operation now only unregisters the service, no data is lost</p>
+                            </li>
+                            <li>
+                                <p>New "delete" operation supports explicit data deletion requests</p>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <p>Faster deployment via data persistency — automatically saving and restoring tiered data using the persistent data option. No need to perform full re-sync with system of record upon system restart.</p>
+                        <p><span class="tc-textblue">Faster deployment</span>  — automatically saving and restoring tiered data using the persistent data option. No need to perform full re-sync with system of record upon system restart.</p>
                     </li>
                 </ul>
             </div>
