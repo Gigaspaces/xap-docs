@@ -20,7 +20,8 @@
         <p>InfluxDB and Grafana are both open-source and free, but are not bundled in <MadCap:variable name="General.ProductNameXAP" /> distribution. Installation is straightforward, as described below. Note that <MadCap:variable name="General.ProductNameXAP" />'s default metrics configuration is set to match the default settings of InfluxDB and Grafana, so if this is your first time we recommend leaving the default configuration to simplify the process.</p>
         <h1><a name="installing-and-configuring-influxdb"></a>Installing and Configuring InfluxDB</h1>
         <p>To install InfluxDB (0.9 or later), download from <a href="https://influxdb.com/download/index.html" target="_blank">here</a> and follow the <a href="https://influxdb.com/docs/v0.9/introduction/installation.html" target="_blank">installation instructions</a>.</p>
-        <p>To configure InfluxDB,  edit the <span class="tc-bold">metrics.xml</span> file (found under <code><MadCap:variable name="General.HomePath" />/config/metrics</code>). Change the following part according to your InfluxDB host (myhost) and database name (mydb) that stores metrics:</p><pre><code class="language-xml">
+        <p MadCap:conditions="Version.16-0-born">To configure InfluxDB,  edit the <span class="tc-bold">metrics.xml</span> file, found under<code><![CDATA[  ]]><MadCap:variable name="General.HomePath"></MadCap:variable>/charts/xap-manager/config</code> for Kubernetes, and under <code><MadCap:variable name="General.HomePath" />/config/metrics</code> for ServiceGrid. Change the following part according to your InfluxDB host (myhost) and database name (mydb) that stores metrics:</p>
+        <p MadCap:conditions="Version.16-0-died">To configure InfluxDB,  edit the <span class="tc-bold">metrics.xml</span> file, found under <code><MadCap:variable name="General.HomePath" />/config/metrics</code> for ServiceGrid. Change the following part according to your InfluxDB host (myhost) and database name (mydb) that stores metrics:</p><pre><code class="language-xml">
     &lt;grafana&gt;
         &lt;datasources&gt;
             &lt;datasource name="influxdb"&gt;
@@ -42,7 +43,8 @@
 </code></pre>
         <h1><a name="installing-and-configuring-grafana"></a>Installing and Configuring Grafana</h1>
         <p>To install Grafana (2.5 or later), download from <a href="http://grafana.org/download/" target="_blank">here</a>, and follow the <a href="http://docs.grafana.org/installation/" target="_blank">installation instructions</a>.</p>
-        <p>After installation, you need to configure Grafana to work with <MadCap:variable name="General.ProductNameXAP" />'s metrics configuration, which is located at <code><MadCap:variable name="General.HomePath" />/config/metrics/metrics.xml</code>. Assuming you've installed InfluxDB and Grafana without changing the defaults, all you need to do is uncomment the InfluxDB <code>reporter</code> and <code>grafana</code> elements, as shown below:</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
+        <p MadCap:conditions="Version.16-0-born">After installation, you need to configure Grafana to work with <MadCap:variable name="General.ProductNameXAP" />'s metrics configuration, which is located at <code><![CDATA[  ]]><MadCap:variable name="General.HomePath" />/charts/xap-manager/config/metrics.xml</code> for Kubernetes, and at <code><MadCap:variable name="General.HomePath" />/config/metrics/metrics.xml</code> for ServiceGrid. Assuming you've installed InfluxDB and Grafana without changing the defaults, all you need to do is uncomment the InfluxDB <code>reporter</code> and <code>grafana</code> elements, as shown below:</p>
+        <p MadCap:conditions="Version.16-0-died">After installation, you need to configure Grafana to work with <MadCap:variable name="General.ProductNameXAP" />'s metrics configuration, which is located at <code><MadCap:variable name="General.HomePath" />/config/metrics/metrics.xml</code>. Assuming you've installed InfluxDB and Grafana without changing the defaults, all you need to do is uncomment the InfluxDB <code>reporter</code> and <code>grafana</code> elements, as shown below:</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
     &lt;reporters&gt;
         &lt;reporter name="influxdb"&gt;
             &lt;property name="host" value="localhost"/&gt;
@@ -72,21 +74,41 @@
         </div>
         <h1><a name="getting-started"></a>Getting Started</h1>
         <p>After you install InfluxDB and Grafana and configure the <code>metrics.xml</code> file, start the Web Management Console and navigate to the <span class="tc-bold">Monitoring</span> tab - you'll see Grafana's home page (you'll probably get a login page on the first time - just type in the default <code>admin</code>/<code>admin</code>, and you'll get the home page):</p>
-        <p>
-            <img src="../Resources/Static/attachment_files/web-console/monitor.jpg" alt="image" class="tc-picture100" />
-        </p>
-        <p>Since we haven't deployed anything yet, the <span class="tc-bold">Dashboards</span> list is empty. If you deploy a Space or any other processing unit, a default dashboard is created for each, with graphs showing commonly used metrics.</p>
-        <h1><a name="dashboards"></a>Dashboards</h1>
-        <p>
-            <img src="../Resources/Static/attachment_files/web-console/monitor1.jpg" alt="image" class="tc-picture100" />
-        </p>
-        <h2><a name="default-space-dashboard"></a>Default Space Dashboard</h2>
-        <p>
-            <img src="../Resources/Static/attachment_files/web-console/monitor2.jpg" alt="image" class="tc-picture100" />
-        </p>
-        <h2><a name="default-processing-unit-dashboard"></a>Default Processing Unit Dashboard</h2>
-        <p>
-            <img src="../Resources/Static/attachment_files/web-console/monitor3.jpg" alt="image" class="tc-picture100" />
-        </p>
+        <div MadCap:conditions="Version.16-0-born">
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/monitor.jpg" alt="image" class="tc-picture100" />
+            </p>
+            <p>Since we haven't deployed anything yet, the <span class="tc-bold">Dashboards</span> list is empty. If you deploy a Space or any other processing unit, a default dashboard is created for each, with graphs showing commonly used metrics.</p>
+            <h1><a name="dashboards"></a>Dashboards</h1>
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/monitor1.jpg" alt="image" class="tc-picture100" />
+            </p>
+            <h2><a name="default-space-dashboard"></a>Default Space Dashboard</h2>
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/monitor2.jpg" alt="image" class="tc-picture100" />
+            </p>
+            <h2><a name="default-processing-unit-dashboard"></a>Default Processing Unit Dashboard</h2>
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/monitor3.jpg" alt="image" class="tc-picture100" />
+            </p><span class="tc-highlight" style="font-weight: bold;">HOW TO TURN OFF GRAFANA METRICS (FOR KUBERNETES ONLY</span>
+        </div>
+        <div MadCap:conditions="Version.16-0-died">
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/monitor.jpg" alt="image" class="tc-picture100" />
+            </p>
+            <p>Since we haven't deployed anything yet, the <span class="tc-bold">Dashboards</span> list is empty. If you deploy a Space or any other processing unit, a default dashboard is created for each, with graphs showing commonly used metrics.</p>
+            <h1><a name="dashboards"></a>Dashboards</h1>
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/monitor1.jpg" alt="image" class="tc-picture100" />
+            </p>
+            <h2><a name="default-space-dashboard"></a>Default Space Dashboard</h2>
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/monitor2.jpg" alt="image" class="tc-picture100" />
+            </p>
+            <h2><a name="default-processing-unit-dashboard"></a>Default Processing Unit Dashboard</h2>
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/monitor3.jpg" alt="image" class="tc-picture100" />
+            </p>
+        </div>
     </body>
 </html>
