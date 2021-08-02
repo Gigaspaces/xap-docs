@@ -73,20 +73,28 @@
             <p>We recommend verifying that the default database exists. Some InfluxDB packages do not automatically create the default <code>mydb</code> database. You can use the InfluxDB <a href="https://influxdb.com/docs/v0.9/tools/web_admin.html">Web Admin</a> or <a href="https://influxdb.com/docs/v0.9/tools/shell.html">shell</a> to check if the database exists, and create it if needed. For more information, see the <a href="https://influxdb.com/docs/v0.9/introduction/getting_started.html#logging-in-and-creating-your-first-database">Getting Started with InfluxDB</a> topic on the InfluxDB website .</p>
         </div>
         <h1><a name="getting-started"></a>Getting Started</h1>
-        <p>After you install InfluxDB and Grafana and configure the <code>metrics.xml</code> file, start the Web Management Console and navigate to the <span class="tc-bold">Monitoring</span> tab - you'll see Grafana's home page (you'll probably get a login page on the first time - just type in the default <code>admin</code>/<code>admin</code>, and you'll get the home page):</p>
+        <p>After you install InfluxDB and Grafana and configure the <code>metrics.xml</code> file, start the Web Management Console and navigate to the <span class="tc-bold">Monitoring</span> tab - you'll see Grafana's home page (you'll probably get a login page on the first time - just type in the default <code>admin</code>/<code>admin</code>, and you'll get the home page.</p>
         <div MadCap:conditions="Version.16-0-born">
-            <p><span style="background-color: #98fb98;">Following are examples of pre-defined dashboards:</span>
-            </p>
             <h1><a name="dashboards"></a>Dashboards</h1>
+            <p>Following are examples of predefined dashboards.</p>
+            <h2>GigaSpaces Spaces Dashboard</h2>
             <p>
                 <img src="../Resources/Static/images/grafana-1.png" alt="image" class="tc-picture100" />
             </p>
-            <h2><a name="default-space-dashboard"></a>Default Space Dashboard</h2>
+            <h2>GigaSpaces Infrastructure</h2>
             <p>
                 <img src="../Resources/Static/images/grafana-2.png" alt="image" class="tc-picture100" />
             </p>
-            <h2><a name="default-processing-unit-dashboard"></a>Default Processing Unit Dashboard</h2><span class="tc-highlight" style="font-weight: bold;">HOW TO TURN OFF GRAFANA METRICS (FOR KUBERNETES ONLY</span>
+            <h1>How to Disable Grafana Metrics</h1>
+            <p>By default, Grafana metrics are automatically enabled during product installation. </p>
+            <p>If you wish to disable Grafana metrics, proceed as follows:</p>
+            <ul>
+                <li>
+                    <p>In the installation of the umbrella chart, include the following parameter:<br /><code>-- set metrics.enabled=false</code></p>
+                </li>
+            </ul>
         </div>
+        <p>&#160;</p>
         <div MadCap:conditions="Version.16-0-died">
             <p>
                 <img src="../Resources/Static/attachment_files/web-console/monitor.jpg" alt="image" class="tc-picture100" />
