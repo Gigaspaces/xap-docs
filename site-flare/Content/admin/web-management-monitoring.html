@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Using Grafana for Monitoring and Analytics</h1>
+        <h1 class="tc-pagetitle"><a name="top"></a>Using Grafana for Monitoring and Analytics</h1>
         <h1><a name="overview"></a>Overview</h1>
         <p>Monitoring a production environment of any system requires inspecting many statistics. <MadCap:conditionalText MadCap:conditions="Version.15-0-born"><MadCap:variable name="General.ProductNameXAP" /> provides the Ops Manager for general monitoring and troubleshooting, and t</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-died">T</MadCap:conditionalText>he Web Management Console provides various metrics (by polling the system's components) with the following limitations:</p>
         <ul>
@@ -90,7 +90,10 @@
             <p>If you wish to disable Grafana metrics, proceed as follows:</p>
             <ul>
                 <li>
-                    <p>In the installation of the umbrella chart, include the following parameter:<br /><code>-- set metrics.enabled=false</code></p>
+                    <p>Create a chart with dependencies to other charts (known as an umbrella chart) which are completely external, using the <code>requirements.yaml</code> file (A YAML file listing dependencies for the chart).</p>
+                </li>
+                <li>
+                    <p>In the installation of the umbrella chart, include the following parameter: <code>-- set metrics.enabled=false</code></p>
                 </li>
             </ul>
         </div>
