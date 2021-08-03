@@ -72,13 +72,25 @@
             <p style="text-align: left;">
                 <img src="../Resources/Static/images/ops-manager-deploy-webapp-service-2.png" />
             </p>
-            <h2>Deploy Data Gateway Service — Basic Properties</h2>
+            <h2><a name="Deploy"></a>Deploy Data Gateway Service — Basic Properties</h2>
             <p style="text-align: left;">
                 <img src="../Resources/Static/images/ops-manager-deploy-webapp-service-1.png" />
             </p>
             <p>&#160;</p>
             <MadCap:snippetBlock src="../Resources/Snippets/ServicePropertiesSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition01 or SnippetConditions.SnippetCondition02 or SnippetConditions.SnippetCondition05A], exclude[SnippetConditions.SnippetCondition02A or SnippetConditions.SnippetCondition03 or SnippetConditions.SnippetCondition04 or SnippetConditions.SnippetCondition05 or SnippetConditions.SnippetCondition06 or SnippetConditions.SnippetCondition07 or SnippetConditions.SnippetCondition08 or SnippetConditions.SnippetCondition09 or SnippetConditions.SnippetCondition10 or SnippetConditions.SnippetCondition11 or SnippetConditions.SnippetCondition12 or SnippetConditions.SnippetCondition13 or SnippetConditions.SnippetCondition14 or SnippetConditions.SnippetCondition15]" />
             <MadCap:snippetBlock src="../Resources/Snippets/ServicePropertiesSnippet.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition09], exclude[SnippetConditions.SnippetCondition01 or SnippetConditions.SnippetCondition02 or SnippetConditions.SnippetCondition02A or SnippetConditions.SnippetCondition03 or SnippetConditions.SnippetCondition04 or SnippetConditions.SnippetCondition05 or SnippetConditions.SnippetCondition05A or SnippetConditions.SnippetCondition06 or SnippetConditions.SnippetCondition07 or SnippetConditions.SnippetCondition08 or SnippetConditions.SnippetCondition10 or SnippetConditions.SnippetCondition11 or SnippetConditions.SnippetCondition12 or SnippetConditions.SnippetCondition13 or SnippetConditions.SnippetCondition14 or SnippetConditions.SnippetCondition15]" />
+            <h1>Undeploy Command in Ops Manager</h1>
+            <p>On the Service screen for the service you wish to undeploy, Overview screen, click on <b>Undeploy service</b> to undeploy the service.</p>
+            <p>
+                <img src="../Resources/Static/images/OPM-Deploy-Undeploy-5-undeploy-in-menu.png" class="tc-picture90" />
+            </p>
+            <p>After you click on Undeploy, the system will display a screen asking for the Undeploy method:.</p>
+            <p>
+                <img src="../Resources/Static/images/OPM-Deploy-Undeploy-7-undeploy-options.png" />
+            </p>
+            <p>Choose <b>None</b> to undeploy without saving data.</p>
+            <p>Choose <b>Attempt</b> to undeploy while attempting to save data. If the data cannot be saved, the service will still be undeployed.</p>
+            <p>Choose <b>Required</b> to undeploy while saving data. If the data cannot be saved, the service will not be undeployed.</p>
         </div>
         <div MadCap:conditions="Version.15-8-only">
             <p>The Deploy Service menu will display.</p>
