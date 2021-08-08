@@ -5,16 +5,16 @@
     <body style="text-align: left;">
         <div>
             <h1 class="tc-pagetitle" style="text-align: left;"><MadCap:variable name="General.ProductNameIE" /> Smart DIH</h1>
-            <p style="text-align: left;"><MadCap:variable name="General.ProductNameIE" /> Smart ODS is part of the <a href="smart-overview.html"><MadCap:variable name="General.ProductNameIE" /> Portfolio</a> — Smart Cache, Smart ODS and Smart Augmented Transactions. </p>
-            <p>InsightEdge Smart ODS is a distributed in-memory <a href="https://www.gigaspaces.com/blog/digital-integration-hub-dih/">Digital Integration Hub</a> (DIH), with unparalleled low-latency, high-performance and scale that aggregates and offloads from multiple back-end systems of record and data stores on premise and on cloud. With a unified API layer, digital applications can be decoupled from disparate systems of record to increase agility and ensure always-on services.</p>
-            <p>When an existing Operational Data Store is already deployed, Smart ODS can augment it to gain better performance, indexing, data integration and ETL replacement. It can be done by either mirroring the ODS actions to the data stores, or by using Smart ODS’s built-in Change Data Capture (CDC) that connects directly with your systems of record, non-intrusively (agentless). </p>
-            <h2 style="text-align: left;">Smart ODS System Overview</h2>
-            <p style="text-align: left;">The Smart ODS environment can be illustrated as follows:</p>
+            <p style="text-align: left;" MadCap:conditions="Version.16-0-died"><MadCap:variable name="General.ProductNameIE" /> Smart DIH is part of the <a href="smart-overview.html"><MadCap:variable name="General.ProductNameIE" /> Portfolio</a> — Smart Cache and Smart DIH. </p>
+            <p>InsightEdge Smart DIH is a distributed in-memory <a href="https://www.gigaspaces.com/blog/digital-integration-hub-dih/">Digital Integration Hub</a> (DIH), with unparalleled low-latency, high-performance and scale that aggregates and offloads from multiple back-end systems of record and data stores on premise and on cloud. With a unified API layer, digital applications can be decoupled from disparate systems of record to increase agility and ensure always-on services.</p>
+            <p>When an existing Operational Data Store is already deployed, Smart DIH can augment it to gain better performance, indexing, data integration and ETL replacement. It can be done by either mirroring the DIH actions to the data stores, or by using Smart DIH’s built-in Change Data Capture (CDC) that connects directly with your systems of record, non-intrusively (agentless). </p>
+            <h2 style="text-align: left;">Smart DIH System Overview</h2>
+            <p style="text-align: left;">The Smart DIH environment can be illustrated as follows:</p>
             <p style="text-align: center;">
-                <img src="Resources/Static/images/smart-ods-simplified-diagram.red.png" style="width: 885px;height: 528px;">
+                <img src="Resources/Static/images/smart-DIH-simplified-diagram.png" style="width: 885px;height: 528px;">
                 </img>
             </p>
-            <p style="text-align: center;">Architecture  of Smart ODS</p>
+            <p style="text-align: center;">Architecture  of Smart DIH</p>
             <h2>1. One-Click Connect to Data Sources
 </h2>
             <div>
@@ -25,8 +25,8 @@
                 <p style="text-align: center;">One-Click connect interface</p>
             </div>
             <p>&#160;</p>
-            <p>Connection to the data source can be either by mirroring the ODS actions to the data store, or by using Smart ODS’s built-in Change Data Capture (CDC) that connects directly with the systems of record, non-intrusively (agentless).
- Data ingestion from the CDC is in millisecond latency and keeps the ODS always in sync with all the different data sources. This is delivered as part of Smart ODS with unified installation and orchestration.</p>
+            <p>Connection to the data source can be either by mirroring the DIH actions to the data store, or by using Smart DIH’s built-in Change Data Capture (CDC) that connects directly with the systems of record, non-intrusively (agentless).
+ Data ingestion from the CDC is in millisecond latency and keeps the DIH always in sync with all the different data sources. This is delivered as part of Smart DIH with unified installation and orchestration.</p>
             <h2>2. Automated Data Tiering
 </h2>
             <p>Data is stored in multiple data storage tiers — hot (in-memory), warm (SSD), and cold
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <h2>3. High Availability and Remote Replication</h2>
-            <p>InsideEdge Smart ODS is an enterprise-grade product that provides 5-nines availability. The platform is highly available by having primary and backup instances of data partitions.</p>
+            <p>InsideEdge Smart DIH is an enterprise-grade product that provides 5-nines availability. The platform is highly available by having primary and backup instances of data partitions.</p>
             <p style="text-align: center;">
                 <img src="Resources/Static/images/smart-ods-high-availibility.png" style="width: 452px;height: 216px;" />
             </p>
@@ -85,7 +85,7 @@
             </p>
             <h2>5. Event Driven Architecture
 </h2>
-            <p>InsightEdge ODS provides the user with a rich API to capture of real-time events and data streams, to automatically trigger notifications, based on defined business logic. Digital apps and external business processes can easily subscribe to any event in pull or push mode without impact on performance.</p>
+            <p>InsightEdge DIH provides the user with a rich API to capture of real-time events and data streams, to automatically trigger notifications, based on defined business logic. Digital apps and external business processes can easily subscribe to any event in pull or push mode without impact on performance.</p>
             <p style="text-align: center;">
                 <img src="Resources/Static/images/smart-ods-event-driven-architecture.png" style="width: 397px;height: 315px;" />
             </p>
@@ -94,14 +94,14 @@
                 <img src="Resources/Static/images/smart-ods-api-diagram.png" style="width: 765px;height: 428px;" />
             </p>
             <div>
-                <p style="text-align: center;">Smart ODS APIs</p>
+                <p style="text-align: center;">Smart DIH APIs</p>
             </div>
-            <p>Smart ODS supports the full SQL-99 standard, allowing complex queries to be performed with optimal speed and minimal memory footprint. <a href="https://docs.gigaspaces.com/latest/dev-java/jdbc-driver.html">Standard SQL requests</a> used for relational data manipulation can be used without requiring source code changes. </p>
+            <p>Smart DIH supports the full SQL-99 standard, allowing complex queries to be performed with optimal speed and minimal memory footprint. <a href="https://docs.gigaspaces.com/latest/dev-java/jdbc-driver.html">Standard SQL requests</a> used for relational data manipulation can be used without requiring source code changes. </p>
             <p>Using Java and .NET APIs, advanced capabilities are available — such as object store, and <a href="https://docs.gigaspaces.com/solution-hub/modeling-your-data.html">various data modeling options</a>.
 </p>
             <p>InsideEdge features native integration with <a href="https://docs.gigaspaces.com/latest/solution-hub/kafka-integration.html?Highlight=kafka">Kafka</a> to consume and produce data to and from Kafka topics.</p>
             <p><a href="https://docs.gigaspaces.com/latest/admin/admin-rest-manager-api.html?Highlight=rest">REST-API</a> and <a href="https://docs.gigaspaces.com/latest/admin/tools-cli.html">command line</a> interfaces are also available.</p>
-            <p>Smart ODS can easily integrate with BI tools such as <a href="https://docs.gigaspaces.com/latest/dev-java/tableau-integration.html">Tableau</a>, Looker, and PowerBI.</p>
+            <p>Smart DIH can easily integrate with BI tools such as <a href="https://docs.gigaspaces.com/latest/dev-java/tableau-integration.html">Tableau</a>, Looker, and PowerBI.</p>
             <h1>Deploy Anywhere</h1>
             <div>
                 <p>Deployment options include:</p>
@@ -119,9 +119,9 @@
                         </p>
                     </li>
                 </ul>
-                <p style="text-align: center;">Multiple deployment options of Smart ODS</p>
+                <p style="text-align: center;">Multiple deployment options of Smart DIH</p>
             </div>
-            <h2><a href="https://docs.gigaspaces.com/latest/started/first-data-grid.html">Click here</a> to get started with Smart ODS.</h2>
+            <h2><a href="https://docs.gigaspaces.com/latest/started/first-data-grid.html">Click here</a> to get started with Smart DIH.</h2>
         </div>
         <p style="text-align: left;">&#160;</p>
         <p>&#160;</p>
