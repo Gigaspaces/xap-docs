@@ -6,9 +6,9 @@
         <h1 class="tc-pagetitle"><a name="top"></a>Connect to a Data Source</h1>
         <p>This page explains how to easily connect to data sources and upload data to InsightEdge space. The workflow has three steps:</p>
         <ul>
-            <li><b><MadCap:xref href="#Connect">Connect to a Data source</MadCap:xref></b> - select either a database or data warehouse. Define various properties of the data source and the naming of the space and stateful service at <MadCap:variable name="General.ProductNameIE" />.</li>
-            <li><b><MadCap:xref href="#Define">Define a Data Schema</MadCap:xref></b> - review the data structure within the selected data source and choose the required data to load.</li>
-            <li><b><MadCap:xref href="#Deploy">Deploy and Run the System</MadCap:xref></b> - choose between two options: <ul><li>Download the generated project files, customize as required and deploy </li><li>Automatically deploy at your local machine.</li></ul></li>
+            <li>Select either a database or data warehouse. Define various properties of the data source and the naming of the space and stateful service at <MadCap:variable name="General.ProductNameIE" />.</li>
+            <li>Review the data structure within the selected data source and choose the required data to load.</li>
+            <li>Choose between two options to deploy and run the system: <ul><li>Download the generated project files, customize as required and deploy </li><li>Automatically deploy at your local machine.</li></ul></li>
         </ul>
         <h1><MadCap:variable name="General.ProductNameXAP" /> target properties</h1>
         <p>The IT administrator define the service and space names within the <MadCap:variable name="General.ProductNameIEP" />:</p>
@@ -36,7 +36,11 @@
         <h2>Hibernate dialect</h2>
         <p>Defines the dialect Hibernate should use to connect to the database. Note that this will get auto-filled if you select a built-in data type, but some databases use different dialects for different versions, so you may need to change it.</p>
         <h2>Connection string</h2>
-        <p>Enter a connection string to the location of your source database</p>
+        <p>Enter a connection string to the location of your source database.</p>
+        <div class="tc-admon-note">
+            <p>If the database selected is MYSQL, and if JDK 8-291 or later is used,  then the following text must be added to the connection string:<br /></p>
+            <p><code>enabledTLSProtocols=TLSv1.2</code> <br />For example:<br /><code>jdbc:mysql://localhost:3306/securities_master<b>?enabledTLSProtocols=TLSv1.2</b></code></p>
+        </div>
         <h2>Username and Password</h2>
         <p>If your database is secured, enter the user name and password used for the source database.</p>
         <h2>Advanced properties<br /></h2>These properties are required when choosing "other" as the data source.
