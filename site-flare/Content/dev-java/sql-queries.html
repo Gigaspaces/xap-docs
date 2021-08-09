@@ -7,7 +7,7 @@
             <h1 class="tc-pagetitle">SQL Queries</h1>
             <p>We have an embedded SQL engine for parsing, validating, optimizing and executing SQL queries on the data stored in a Space. Our SQL engine is SQL-99 compatible and supports all read operations<MadCap:conditionalText MadCap:conditions="Default.DoNotShow"> (please refer to section xxxx for SQL feature coverage)</MadCap:conditionalText>.</p>
             <p>Executing an SQL query can be done either by using our Data Gateway using the <a href="https://www.postgresql.org/docs/current/protocol.html">PostgreSQL wire protocol</a> or by using our JDBC v3 package.</p>
-            <h2>Connecting through Data Gateway</h2>
+            <h2><a name="Connecti"></a>Connecting through Data Gateway</h2>
             <p>Our Data Gateway is a GigaSpaces Service that supports the PostgreSQL wire protocol. This allows existing applications and tools built on PostgreSQL to access GigaSpaces Data Gateway seamlessly and without any code change.</p>
             <p>BI tools like Tableau, PowerBI, MicroStrategy and others can integrate with GigaSpaces just by using their built-in Postgres JDBC or ODBC driver.</p>
             <h3>Connection String</h3>
@@ -42,7 +42,7 @@ Connecting the data grid through JDBC is done using a connection string as shown
             <p><code>props.put("com.gs.embeddedQP.enabled", "true")</code>;</p>
             <p><code>Connection conn = DriverManager.getConnection("jdbc:gigaspaces:v3:localhost/mySpace", props);</code>
             </p>
-            <h2>JDBC v3 Configuration Extensions</h2>
+            <h2><a name="JDBC"></a>JDBC v3 Configuration Extensions</h2>
             <p>For enhanced flexibility of query parsing and to allow quick migration from different SQL dialect, we provide the following extensions that need to be set as part of the context properties of the Space, or as System properties at the client side when running an embedded query processor. Note that using those extensions may have some performance impact, that can be avoided by modifying the original query to meet our native SQL dialect.</p>
             <h3>Change Inequality Operator</h3>
             <p>Change the default<b> </b><code style="font-weight: bold;">&lt;&gt;</code> inequality operator to <code style="font-weight: bold;">!=</code></p>
@@ -68,7 +68,7 @@ Connecting the data grid through JDBC is done using a connection string as shown
             <p>Table names are equivalent to the full class names of the data model in the Space. The class name should also be enclosed by quotation marks like in the following example:</p>
             <p><code>SELECT * FROM “com.mycompany.model.MyData”</code>
             </p>
-            <h2>Query Analysis</h2>
+            <h2><a name="Query"></a>Query Analysis</h2>
             <p>Use<code> EXPLAIN PLAN FOR SELECT …</code> to give us a better understanding of why a specific query fails. The physical plan of the query is written to the log under the name <code>com.gigaspaces.jdbc.v3</code> and will assist us in troubleshooting failures.</p>
             <h2>Simple Query Example</h2>
             <p><code>Properties props = new Properties();
