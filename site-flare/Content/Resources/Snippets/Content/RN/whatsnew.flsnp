@@ -11,7 +11,7 @@
                         <p>Fast, relatively expensive RAM storage (Hot tier) for fast SQL queries</p>
                     </li>
                     <li>
-                        <p>Less expensive SSD storage (Warm tier) for up to <span class="tc-textblue">20x increase in data capacity</span>, reduced memory footprint, and minimal or no impact on system performance. </p>
+                        <p>Less expensive SSD storage (Warm tier) for up to <i>20x increase in data capacity</i>, reduced memory footprint, and minimal or no impact on system performance. </p>
                     </li>
                 </ul>
                 <p>Enhancements to data tiering in release 16.0:  </p>
@@ -26,7 +26,8 @@
                 <h1>Data Persistency</h1>
                 <ul>
                     <li>
-                        <p><span class="tc-textblue">Improved system resiliency</span> — local, synchronized persistency via tiered storage</p>
+                        <p>
+                            <MadCap:xref href="../../../../admin/data-persistency-in-tiered-storage.html" class="text-of-bookmarked-paragraph">Improved system resilency</MadCap:xref> — local, synchronized persistency via tiered storage</p>
                         <ul>
                             <li>
                                 <p>The "undeploy" operation now only unregisters the service, with no need to reload data. The data is preserved and re-attached upon re-deploy.</p>
@@ -37,7 +38,7 @@
                         </ul>
                     </li>
                     <li>
-                        <p><span class="tc-textblue">Faster deployment</span>  — automatically saving and restoring tiered data using the persistent data option. No need to perform full re-sync with system of record upon system restart.</p>
+                        <p>Faster deployment  — <MadCap:xref href="../../../../opm/opm-deploy-undeploy-service.html#ops-manager-undeploy-screenshot" class="ss-opm-undeploy">automatically save and restore</MadCap:xref> tiered data using the persistent data option. No need to perform full re-sync with system of record upon system restart.</p>
                     </li>
                 </ul>
             </div>
@@ -46,13 +47,14 @@
                     <h1>Fast and Comprehensive SQL Engine</h1>
                     <ul>
                         <li>
-                            <p><span class="tc-textblue">Enhanced ANSI SQL-99 support</span> — more than 90% coverage of ANSI-99 SQL read operations</p>
+                            <p><i>Enhanced ANSI SQL-99 support</i> — more than 90% coverage of ANSI-99 SQL read operations</p>
                         </li>
                         <li>
-                            <p><span class="tc-textblue">Optimized performance</span> with new integrated SQL driver</p>
+                            <p><i>Optimized performance</i> and <MadCap:xref href="../../../../dev-java/sql-queries.html#JDBC" class="jdbc-v3-extended-configuration-options">extended configuration options</MadCap:xref> with new integrated SQL driver</p>
                         </li>
                         <li>
-                            <p><span class="tc-textblue">Explain&#160;Plan</span> for easier query tracing and optimization</p>
+                            <p>
+                                <MadCap:xref href="../../../../dev-java/sql-queries.html#Query" class="explain-plan-for-select">Explain Plan for Select</MadCap:xref> for easier query tracing and optimization</p>
                         </li>
                     </ul>
                     <p MadCap:conditions="Default.DoNotShow">Support of older drivers will be reviewed in a future release.</p>
@@ -63,10 +65,10 @@
                 <h1>Data Gateway</h1>
                 <ul>
                     <li>
-                        <p><span class="tc-textblue">Seamless integration with BI tools</span> — <span class="tc-textblue">PostgreSQL driver</span> provides simplified integration for BI tools such as Power BI and Tableau.</p>
+                        <p><i>Seamless integration with BI tools</i> — <MadCap:xref href="../../../../dev-java/sql-queries.html#Connecti" class="postgreSQL-driver">PostgreSQL driver</MadCap:xref> provides simplified integration for BI tools such as Power BI and Tableau.</p>
                     </li>
                     <li>
-                        <p> Improved <span class="tc-textblue">JDBC </span> support and new <span class="tc-textblue">ODBC </span>support — enables lightweight clients, with simplified integration and faster time to value.</p>
+                        <p> Improved <i>JDBC </i> support and new <i>ODBC </i>support — enables lightweight clients, with simplified integration and faster time to value.</p>
                     </li>
                 </ul>
             </div>
@@ -74,10 +76,10 @@
                 <h1>Improved Kubernetes Support</h1>
                 <ul>
                     <li>
-                        <p><span class="tc-textblue">Docker-based deployment</span> based on Kubernetes microservices design patterns — aligned with industry-standard CI/CD practices</p>
+                        <p><i>Docker-based deployment</i> based on Kubernetes microservices design patterns — aligned with industry-standard CI/CD practices</p>
                     </li>
                     <li>
-                        <p><span class="tc-textblue">Deploy</span> and <span class="tc-textblue">undeploy</span> using native Kubernetes API</p>
+                        <p>Deploy and undeploy using <i>native Kubernetes API</i></p>
                     </li>
                     <li>
                         <p><span class="tc-textblue">Openshift 4.4+ integration</span> fully aligned with generic Kubernetes orchestration </p>
@@ -86,30 +88,31 @@
             </div>
             <div>
                 <h1>Performance Improvements</h1>
-                <p>Accumulated improvement potential of <span class="tc-textblue">up to 50%</span>:</p>
+                <p>Accumulated improvement potential of <i>up to 50%</i>:</p>
                 <ul>
                     <li>
-                        <p>Improvement to the <span class="tc-textblue">serialization mechanism</span> to reduce the overhead by 10-15%. This improvement is relevant for all workload types.</p>
+                        <p><i>Improvement to the serialization mechanism</i> to reduce the overhead by 10-15%. This improvement is relevant for all workload types.</p>
                     </li>
                     <li>
-                        <p>Improvement to the mechanism <span class="tc-textblue">creating user objects</span> (POJOs) increases performance by 10-15%.</p>
+                        <p><i>Improvement to the mechanism creating user objects</i> (POJOs) increases performance by 10-15%.</p>
                     </li>
                 </ul>
                 <ul>
                     <li>
-                        <p><span class="tc-textblue">Optimize thread configuration and performance</span> with a single <MadCap:xref href="../../../../admin/tuning.html">thread configuration</MadCap:xref> parameters for 10-15% improvement. Such optimization is mostly relevant for ID-based workloads</p>
+                        <p><i>Optimize thread configuration and performance</i> with a single <MadCap:xref href="../../../../admin/tuning.html">thread configuration</MadCap:xref> parameter for 10-15% improvement. This optimization is mostly relevant for ID-based workloads.</p>
                     </li>
                 </ul>
             </div>
             <div>
                 <h1>Detailed Grafana Dashboards</h1>
-                <p><span class="tc-textblue">Simpler and more effective monitoring</span> using a new detailed Grafana-based dashboard of system status and metrics</p>
+                <p><i>Simpler and more effective monitoring</i> using a <MadCap:xref href="../../../../admin/web-management-monitoring.html#GigaSpac" class="new-detailed-Grafana-based-dashboard">new detailed Grafana-based dashboard</MadCap:xref> of system status and metrics</p>
             </div>
             <div>
                 <h1>Support for Secured Space</h1>
                 <ul>
                     <li>
-                        <p><a href="https://docs-staging.gigaspaces.com/latest/security/securing-your-data.html?Highlight=secured%20space#:~:text=Layer-,Secured%20Space,Custom%20Security%20regarding%20extensions,-Namespace">Secured Space</a> can now be accessed via the standard <MadCap:variable name="General.ProductNameIE" /> tools — CLI, REST-API, and Ops Manager — and the <a href="https://docs-staging.gigaspaces.com/latest/security/securing-your-data.html?Highlight=secured%20space#:~:text=Layer-,Secured%20Space,Custom%20Security%20regarding%20extensions,-Namespace">related proxy properties</a> can be customized</p>
+                        <p>
+                            <MadCap:xref href="../../../../security/securing-your-data.html" class="secured-space">Secured Space</MadCap:xref> can now be accessed via the standard <MadCap:variable name="General.ProductNameIE" /> tools — CLI, REST-API, and Ops Manager — and the related proxy properties can be customized</p>
                     </li>
                     <li>
                         <p>Multi-user support </p>
