@@ -94,9 +94,18 @@
             <p>
                 <img src="../Resources/Static/images/OPM-Deploy-Undeploy-7-undeploy-options.png" />
             </p>
-            <p>Choose <b>None</b> to undeploy without saving data.</p>
-            <p>Choose <b>Attempt</b> to undeploy while attempting to save data. If the data cannot be saved, the service will still be undeployed.</p>
-            <p>Choose <b>Required</b> to undeploy while saving data. If the data cannot be saved, the service will not be undeployed.</p>
+            <p>The drain mode parameter has the following options:</p>
+            <ul>
+                <li>
+                    <p><b>None</b> — no drain before undeploy</p>
+                </li>
+                <li>
+                    <p><b>Attempt</b> — undeploy even if drain didn't complete in timeout</p>
+                </li>
+                <li>
+                    <p><b>Required</b> — undeploy only if drain succeeded in timeout</p>
+                </li>
+            </ul>
         </div>
         <div MadCap:conditions="Version.15-8-only">
             <p>The Deploy Service menu will display.</p>

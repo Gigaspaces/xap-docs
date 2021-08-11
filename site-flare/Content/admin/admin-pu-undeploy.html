@@ -177,9 +177,9 @@
                                 <td align="left">drain-mode</td>
                                 <td align="left">Specify the desired drain behavior on shutdown.</td>
                                 <td>
-                                    <p><code>none</code> (default) — undeploy without draining the PU (no data is saved)</p>
-                                    <p><code>attempt</code>— undeploy with a maximum time of <code>drain-timeout</code>. If the undeploy takes longer than <code>drain-timeout</code>, the undeploy will still be performed.</p>
-                                    <p><code>required</code>— undeploy with a maximum time of <code>drain-timeout</code>. If the undeploy takes longer than <code>drain-timeout</code>, the undeploy will not be performed.</p>
+                                    <p><code>none</code> (default) — no drain before undeploy <br></br></p>
+                                    <p> <code>attempt</code>— undeploy even if drain didn't complete in timeout (<code>drain-timeout</code></p>
+                                    <p><code>required</code>— undeploy only if drain succeeded in timeout ( <code>drain-timeout</code>)</p>
                                 </td>
                             </tr>
                             <tr>
@@ -245,9 +245,9 @@
                         <tr>
                             <td>drainMode</td>
                             <td>
-                                <p>Specify the desired drain behavior on shutdown.<br /><code>none</code> (default) — undeploy without draining the PU (no data is saved)<br /></p>
-                                <p> <code>attempt</code>— undeploy with a maximum time of <code>drain-timeout</code>. If the undeploy takes longer than <code>drain-timeout</code>, the undeploy will still be performed.</p>
-                                <p><code>required</code>— undeploy with a maximum time of <code>drain-timeout</code>. If the undeploy takes longer than <code>drain-timeout</code>, the undeploy will not be performed.</p>
+                                <p>Specify the desired drain behavior on shutdown.<br /><code>none</code> (default) — no drain before undeploy <br /></p>
+                                <p> <code>attempt</code>— undeploy even if drain didn't complete in timeout (<code>drain-timeout</code></p>
+                                <p><code>required</code>— undeploy only if drain succeeded in timeout ( <code>drain-timeout</code>)</p>
                             </td>
                             <td>No</td>
                         </tr>
