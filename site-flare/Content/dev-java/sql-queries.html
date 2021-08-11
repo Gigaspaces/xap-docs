@@ -26,20 +26,20 @@
                 <div title="Command Line Interface" style="padding:10px">
                     <p><span class="tc-italic">Command example:</span>
                     </p>
-                    <p><code>gs data-gateway deploy --instances=3 --properties=c:/properties/ -p kl=v1 k2=v2 myService</code>
+                    <p><code>gs data-gateway deploy --instances=3 --properties=file://config/myfile.properties -p kl=v1 k2=v2 myService</code>
                     </p>
                     <p><span class="tc-italic">Description:</span>
                     </p>
-                    <p>For the service <code>myService</code>, whose properties file is located at <code>c:/properties</code>, deploy the service with <code>3</code> instances. Use the context properties of <code>k1=v1</code> and <code>k2=v2</code>.</p>
+                    <p>For the service <code>myService</code>, whose properties file is located at <code> //config/myfile.properties</code>, deploy the service with <code>3</code> instances. Use the context properties of <code>k1=v1</code> and <code>k2=v2</code>.</p>
                 </div>
                 <div title="REST Manager API" style="padding:10px">
-                    <p><span class="tc-italic">Path</span>
-                    </p><span class="tc-highlight"><code>POST/data-gateway/{name}/xxxxxxxxxxxxxxxxxxxxxxl</code></span>
+                    <p MadCap:conditions="Default.DoNotShow"><span class="tc-italic">Path</span>
+                    </p><span class="tc-highlight"><code MadCap:conditions="Default.DoNotShow">POST/data-gateway/{name}/xxxxxxxxxxxxxxxxxxxxxxl</code></span>
                     <p><span class="tc-italic">Description</span>
                     </p>
-                    <p>For the service <code>myService</code>, whose properties file is located at <code>c:/properties</code>, deploy the service with <code>3</code> instances. Use the context properties of <code>k1=v1</code> and <code>k2=v2</code>.</p>
+                    <p>For the service <code>myService</code>, whose properties file is located at <code> //config/myfile.properties</code>, deploy the service with <code>3</code> instances. Use the context properties of <code>k1=v1</code> and <code>k2=v2</code>.</p>
                     <p><span class="tc-italic">Example Request</span>
-                    </p><pre><code class="language-bash">curl -X POST --header 'Accept: application/json' 'http://localhost:8090/v2/data-gateway?name=myService&amp;instances=3&amp;contextProperties=c:/properties kl=v1 k2=v2'
+                    </p><pre><code class="language-bash">curl -X POST --header 'Accept: application/json' 'http://localhost:8090/v2/data-gateway?name=myService&amp;instances=3&amp;contextProperties=file://config/myfile.properties%20kl=v1%20k2=v2'
 </code></pre>
                     <p><span class="tc-italic">Options:</span>
                     </p>
@@ -72,7 +72,7 @@
                             <tr>
                                 <td>contextProperties</td>
                                 <td>The location of the properties file, and optional additional context properties</td>
-                                <td>c:/properties kl=v1 k2=v2</td>
+                                <td>file://config/myfile.properties kl=v1 k2=v2</td>
                                 <td>No</td>
                             </tr>
                         </tbody>
