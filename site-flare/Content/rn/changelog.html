@@ -4,9 +4,44 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Changelog</h1>
-        <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.x.<MadCap:conditionalText MadCap:conditions="Version.16-2-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
+        <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.x.<MadCap:conditionalText MadCap:conditions="Version.16-1-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
         <p MadCap:conditions="Version.16-0-only,Default.DoNotShow">There are no features and enhancements at this time. </p>
         <p>&#160;</p>
+        <div MadCap:conditions="Version.16-1-only">
+            <h1>16.1</h1>
+            <h2>Features and Enhancements</h2>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14566," />: Allow coding Instance SLA - currently class path issue</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14586," />: Upgrade Netty to 4.1.66</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14587," />: Upgrade H2 to 1.4.200</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14581," />: Add property for Primary Key First</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14573," />: Support SUM aggregation with scalar</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14572," />: upgrade Avatica to 1.18.0</li>
+            </ul>
+            <h2>Resolved Issues</h2>
+            <div MadCap:conditions="NewSet.YetAnotherColorForDivs">
+                <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14591," />: xap-jdbc.jar is not installed when running "gs maven install" command</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14557," />: Unable to run with Custom SSL Filter using manager due to class loader issues</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14553," />: GS_LUS_OPTIONS for xmx are not taken when gs script runs without a manager</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14571," />: NPE when running query with NULLIF</li>
+                </ul>
+            </div>
+            <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time. </p>
+            <h2>Known Issues</h2>
+            <p>There are no known issues at this time.</p>
+            <p>&#160;</p>
+        </div>
         <div MadCap:conditions="Version.16-0-only">
             <h1>16.0</h1>
             <h2>Features and Enhancements</h2>
@@ -1629,6 +1664,7 @@
             <p MadCap:conditions="Version.15-5-only">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText>.</p>
             <p MadCap:conditions="Version.15-8-only">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText>.</p>
             <p MadCap:conditions="Version.16-0-only">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17797" target="_blank">Jira</a></MadCap:conditionalText>.</p>
+            <p MadCap:conditions="Version.16-1-only">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"><a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"><a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"><a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"><a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17797" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-1-only"><a href="https://insightedge.atlassian.net/issues/?filter=17813" target="_blank">Jira.</a></MadCap:conditionalText></p>
         </div>
     </body>
 </html>
