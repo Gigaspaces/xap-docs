@@ -86,7 +86,7 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
                     <td>Zookeeper</td>
                     <td><code>com.gs.manager.zookeeper.discovery.port</code>
                         <br /><code>com.gs.manager.zookeeper.leader-election.port</code>
-                        <p><code>com.gs.zookeeper.client.port 2181</code>
+                        <p><code MadCap:conditions="Version.15-8-born">com.gs.zookeeper.client.port 2181</code>
                         </p>
                     </td>
                     <td>2888<br />3888</td>
@@ -107,7 +107,7 @@ along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeep
         <div class="tc-admon-note">
             <p>Configuring manager servers includes LUS definitions. When you define <code>GS_MANAGER_SERVERS</code>, do not define<code> GS_LOOKUP_LOCATORS</code>.</p>
         </div>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Version.15-8-born">
             <p>Zookeeper client port can also be modified by declaring the environment variable <code>GS_ZOOKEEPER_CLIENT_PORT</code> and also through the Zookeeper config file located at <code>config/zookeeper/zoo.cfg</code>.</p>
             <p>If defining more than one property, the order of priorities (highest to lowest) is -- java property, environment variable, config file.</p>
             <p>When using the Admin API standalone client, you can configure the port using the Java system property or the environmental variable.</p>
