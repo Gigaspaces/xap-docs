@@ -1,8 +1,9 @@
 ﻿var versionData = {
 	
 
-	'16.0': { 'url': '/16.1/landing.html', 'label': '16.1 Early Access', 'topicBanner': 'preview' },
-	'16.0': { 'url': '/16.0/landing.html', 'label': '16.0', 'topicBanner': 'preview' },
+	'16.1': { 'url': '/16.1/landing.html', 'label': '16.1 Early Access', 'topicBanner': 'preview' },
+	//	'16.0': { 'url': '/16.0/landing.html', 'label': '16.0', 'topicBanner': 'preview' },
+		'16.0': { 'url': '/16.0/landing.html', 'label': '16.0', 'topicBanner': 'preview' },
 		
 	'16.0': { 'url': '/16.0/landing.html', 'label': '16.0', 'hide': true },
 	'latest': { 'url': '/latest/landing.html', 'label': '16.0' },	
