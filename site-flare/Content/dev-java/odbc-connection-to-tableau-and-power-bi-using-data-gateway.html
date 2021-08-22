@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">ODBC Connection to Tableau and PowerBI Using Data Gateway</h1>
+        <h1>ODBC Connection to Tableau u\Using Data Gateway</h1>
+        <div>
+            <p>In order to create an ODBC connect to Tableau, proceed as follows.</p>
+            <ul>
+                <li>
+                    <p>Install ODBC Driver for PostgreSQL (tested on v10.03) to be used by Tableau.</p>
+                </li>
+                <li>
+                    <p>Open Tableau (tested on v2020.4).</p>
+                </li>
+                <li>
+                    <p>In the left panel where the title is "To a Server", choose "More..." and select "Other Databases (ODBC)".</p>
+                </li>
+                <li>
+                    <p>In the dialog, choose "Driver" and then choose “PostgreSQL Unicode(x64)”.</p>
+                </li>
+                <li>
+                    <p>Click <b>Connect</b>.</p>
+                </li>
+                <li>
+                    <p>The PostgreSQL Connection dialog box will appear as follows:</p>
+                    <p>
+                        <img src="../Resources/Static/images/odbc-connection-to-tableau-1.png" />
+                    </p>
+                    <p>In the Connection dialog type the following:</p>
+                    <ul>
+                        <li>
+                            <p>Database: &lt;space-name&gt; for example: mySpace</p>
+                        </li>
+                        <li>
+                            <p>Server: &lt;gateway-endpoint-address&gt; for example: localhost</p>
+                        </li>
+                        <li>
+                            <p>In Kubernetes it’ll be the load balancer endpoint</p>
+                        </li>
+                        <li>
+                            <p>port: &lt;data-gateway-bind-port&gt; default: 5432</p>
+                        </li>
+                        <li>
+                            <p>Choose SSL Mode: disable</p>
+                        </li>
+                        <li>
+                            <p>Click <b>OK</b></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Click Sign In</p>
+                </li>
+                <li>
+                    <p>To see your schema then on the left panel where the title is "Table" look for the 'search' icon and click on it (next to “Enter table name”), then click twice on the schema you’d like to load from the space.<br /></p>
+                    <p>
+                        <img src="../Resources/Static/images/odbc-connection-to-tableau-2.png" />
+                    </p>
+                </li>
+            </ul>
+            <h1>ODBC Connection to PowerBI Using Data Gateway</h1>
+            <p>In order to create an ODBC connect to PowerBI, proceed as follows.</p>
+            <ul>
+                <li>
+                    <p>Install ODBC Driver for PostgreSQL (tested on v10.03) to be used by PowerBI.</p>
+                </li>
+                <li>
+                    <p>Launch the “ODBC Data Source Administrator” in your machine:</p>
+                    <p>
+                        <img src="../Resources/Static/images/odbc-connection-to-tableau-3.png" />
+                    </p>
+                </li>
+                <li>
+                    <p>Add DSN data source -&gt; choose PostgreSQL Unicode (x64)</p>
+                </li>
+                <li>
+                    <p>In the connection dialog enter the following information:</p>
+                    <ul>
+                        <li>
+                            <p>Data Source (you can edit the name): “GigaSpaces”</p>
+                        </li>
+                        <li>
+                            <p>Database: &lt;space-name&gt; for example: mySpace</p>
+                        </li>
+                        <li>
+                            <p>Server: &lt;data-gateway-endpoint-address&gt; for example: localhost</p>
+                        </li>
+                        <li>
+                            <p>In Kubernetes it’ll be the load balancer endpoint</p>
+                        </li>
+                        <li>
+                            <p>port: &lt;gateway-bind-port&gt; default: 5432</p>
+                        </li>
+                        <li>
+                            <p>Username: admin</p>
+                        </li>
+                        <li>
+                            <p>Password: 1234</p>
+                        </li>
+                        <li>
+                            <p>*Username and password aren’t checked at the moment, please write down something</p>
+                        </li>
+                        <li>
+                            <p>SSL Mode: disable</p>
+                        </li>
+                        <li>
+                            <p>Click <b>Save</b></p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Open PowerBI -&gt; click on “Get Data” -&gt; choose “Other” -&gt; “ODBC” -&gt; Connect:</p>
+                    <p>
+                        <img src="../Resources/Static/images/odbc-connection-to-tableau-4.png" />
+                    </p>
+                </li>
+                <li>
+                    <p>Choose Data source name (DSN) which you created before: “GigaSpaces” -&gt; click “OK”</p>
+                </li>
+                <li>
+                    <p>In the navigator, navigate to the schema of your Space and choose it -&gt; click <b>Load</b>:</p>
+                    <p>
+                        <img src="../Resources/Static/images/odbc-connection-to-tableau-5.png" />
+                    </p>
+                </li>
+                <li>
+                    <p>PowerBI will load the schema and it will be shown in the “Fields” section of your screen.</p>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
