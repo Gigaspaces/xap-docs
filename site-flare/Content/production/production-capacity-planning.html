@@ -23,6 +23,49 @@
         <div class="tc-admon-note">
             <p>It is not necessary to specify the maximum number of partitions for services that are not co-located with data grid instances. These can be scaled dynamically without having to specify maximum instances.</p>
         </div>
+        <div MadCap:conditions="Version.15-5-born">
+            <h1>Capacity Planning Using Ops Manager </h1>
+            <p>Using the Ops manage in the testing enviroment, you can plan capacity according to the expected number of objects per each type.</p>
+            <ol>
+                <li>
+                    <p>Trigger an Object Analysis by pressing the Run Objects Analysis icon on the Ops Manager Space view screen (the circle Icon on the right):</p>
+                    <p>
+                        <img src="../Resources/Static/images/capacity-planning-using-ops-manager-1.png" style="width: 1022px;height: 590px;" />
+                    </p>
+                </li>
+            </ol>
+            <div class="tc-admon-note">
+                <p>There will be no option to generate a report if the space has no backup.</p>
+            </div>
+            <p>When the analysis is complete, a message will appear as follows:</p>
+            <p>
+                <img src="../Resources/Static/images/capacity-planning-using-ops-manager-2.png" style="width: 703px;height: 72px;" />
+            </p>
+            <p>Press <b>Show object analysis report</b> to view the memory usage report.</p>
+            <p>Alternatively, you can click the icon next to the Report icon to see the report.</p>
+            <p>When generating a report we will take a heap dump of the relevant backup and will query it, based on that we will conclude avg property footprint and index footprint. If a previous report exists we will compare the current report with it and show the changes.</p>
+            <p>This is mainly intended at development and testing stages to optimize data structure and  capacity planning.</p>
+            <p>but can also run by admin once in a while to see that memory consumption behaves as expected.</p>
+            <p>The reports are kept as JSON at :GS_HOME/config/ui/heapReports</p>
+            <p>There will be no option to generate reports in case there is no backup.</p>
+            <p>You can see per type how much each property consume on average:</p>
+            <p>And in a type definition at the index tab you can also see index efficiency, estimation of its memory consumption vs its usage:</p>
+            <p>(In the properties tab you will see estimate ram per each property)</p>
+            <p>After getting estimations for how much memory will be consumed in the system by each type and the expected number of objects per each, You should decide on the proper number of partitions, and if you should use memoryXtend in order to reduce the RAM usage</p>
+            <p>see: MemoryXtend</p>
+            <p>In addition, You can consider reducing object footprints by storing some of the properties in binary or compressed modes.</p>
+            <p>Starting in version 15.8 we offer OOTB implementations for reducing memory footprint with minimal effect on performance.</p>
+            <p>Some consideration regarding the number of partitions:</p>
+            <p>1. How many cores are needed per processing and doing the calculations on X data</p>
+            <p>2. How fast should be the initial load from the data source?</p>
+            <p>3. How fust should query, or tasks return?</p>
+            <p>The more partitions you have, the More parallelism is possible, and you can divide the work into more process</p>
+            <p>The larger the heap of one partition - the more GC tuning will be required.</p>
+            <p>The partition number is a balance between CPU and memory requirement</p>
+            <p>And routing properties should be chosen in a way memory consumption is evenly balanced between the partitions</p>
+            <p>We added data distribution per partition graph to help visualize it.</p>
+            <p>&#160;</p>
+        </div>
         <h1><a name="object-footprint-within-the-imdg"></a>Object Footprint Within the Data Grid</h1>
         <p>The object footprint within the data grid is determined based on the following:</p>
         <ul>
