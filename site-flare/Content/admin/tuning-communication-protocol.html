@@ -115,7 +115,7 @@
                 </tr>
                 <tr>
                     <td><a name="com.gs.t"></a>com.gs.transport_protocol<br />.lrmi.max-threads</td>
-                    <td><MadCap:variable name="General.DataGrid" /> maintains a thread pool on the server side (at the GSC process level), that manages incoming remote requests. This parameter specifies the maximum size of this thread pool. <a href="#com.gs.transport_protocol.lrmi.max-threads">see note below</a></td>
+                    <td><MadCap:variable name="General.DataGrid" /> maintains a thread pool on the server side (at the GSC process level), that manages incoming remote requests. This parameter specifies the maximum size of this thread pool. <a href="#com.gs.transport_protocol.lrmi.max-threads" style="font-weight: bold;">See note below.</a></td>
                     <td>128</td>
                     <td>Server</td>
                     <td>Threads</td>
@@ -370,7 +370,7 @@
         </ul>
         <p>This property value must be tuned to have a larger value. By default this pool can grow up to 128 threads. This means there can be a maximum of 128 threads (across all clients and grid members) total accessing the space instance running in a given GSC process simultaneously.</p>
         <p>With a system that may trigger a notify listener (that performs remote space access) or a remote service or a task 128 times, very quickly this would consume the entire LRMI thread pool causing new remote requests (by the listener or any other remote activities) to wait until there would be available LRMI threads to handle incoming requests. This may slow down the application performance dramatically causing existing connections to drop.</p>
-        <h3>Decreasing <span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span>:</h3>
+        <h3>Decreasing <span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span></h3>
         <p>For some workloads, decreasing this parameter actually improves performance significantly. </p>
         <p>Examples include workloads which perform write or readById on multiple threads or where most operations are short (e.g. read by id, write, vs. a read which returns lots of results), and require little resources (cpu, disk, network).</p>
         <p MadCap:conditions="Version.16-0-born">This parameter can also be set via the environmental variable <code>GS_LRMI_THREAD_POOL_MAX</code>.</p>
