@@ -361,8 +361,8 @@
             <p>Please note the following regarding parameter <span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span>. </p>
         </div>
         <h2>Tuning <span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span></h2>
-        <p>This property controls  the maximum number of threads (across all clients and grid members) accessing the space instance running in a given GSC process simultaneously. </p>
-        <p>The default value of 128 is suitable for common workloads, but some workloads may be optimized from increasing this value, whereas others may benefit by decreasing it.</p>
+        <p>This property controls the maximum number of threads per space instance which handle incoming operations (i.e. maximum number of remote operations handled simultaneously). </p>
+        <p>The default value of 128 is suitable for common workloads, but some workloads may be optimized from increasing this value, whereas others may benefit by decreasing it. </p>
         <div class="tc-admon-note">
             <p>It is suggested to benchmark the effect of increasing/decreasing the value of <span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span> to find the optimum value for your system.</p>
         </div>
