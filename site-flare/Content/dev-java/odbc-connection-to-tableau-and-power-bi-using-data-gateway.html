@@ -26,18 +26,15 @@
                 <li>
                     <p>The PostgreSQL Connection dialog box will appear as follows:</p>
                     <p>
-                        <img src="../Resources/Static/images/odbc-connection-to-tableau-1.png" style="width: 963px;height: 533px;" />
+                        <img src="../Resources/Static/images/odbc-connection-to-tableau-1-new.png" style="width: 963px;height: 533px;" />
                     </p>
-                    <p>In the Connection dialog type the following:</p>
+                    <p>In the Connection dialog, type the following:</p>
                     <ul>
                         <li>
                             <p>Database: &lt;space-name&gt; for example: mySpace</p>
                         </li>
                         <li>
-                            <p>Server: &lt;gateway-endpoint-address&gt; for example: localhost</p>
-                        </li>
-                        <li>
-                            <p>In Kubernetes it’ll be the load balancer endpoint</p>
+                            <p>Server: &lt;gateway-endpoint-address&gt; for example: localhost. In Kubernetes, it will be the load balancer endpoint.</p>
                         </li>
                         <li>
                             <p>port: &lt;data-gateway-bind-port&gt; default: 5432</p>
@@ -54,7 +51,7 @@
                     <p>Click Sign In</p>
                 </li>
                 <li>
-                    <p>To see your schema then on the left panel where the title is "Table" look for the 'search' icon and click on it (next to “Enter table name”), then click twice on the schema you’d like to load from the space.<br /></p>
+                    <p>To see your schema then on the left panel where the title is "Table" look for the "search" icon and click on it (next to “Enter table name”), then click twice on the schema you wish to load from the Space.<br /></p>
                     <p>
                         <img src="../Resources/Static/images/odbc-connection-to-tableau-2.png" style="width: 534px;height: 272px;" />
                     </p>
@@ -76,7 +73,7 @@
                     <p>Add DSN data source -&gt; choose PostgreSQL Unicode (x64)</p>
                 </li>
                 <li>
-                    <p>In the connection dialog enter the following information:</p>
+                    <p>In the connection dialog, enter the following information:</p>
                     <ul>
                         <li>
                             <p>Data Source (you can edit the name): “GigaSpaces”</p>
@@ -85,10 +82,7 @@
                             <p>Database: &lt;space-name&gt; for example: mySpace</p>
                         </li>
                         <li>
-                            <p>Server: &lt;data-gateway-endpoint-address&gt; for example: localhost</p>
-                        </li>
-                        <li>
-                            <p>In Kubernetes it’ll be the load balancer endpoint</p>
+                            <p>Server: &lt;data-gateway-endpoint-address&gt; for example: localhost. In Kubernetes, it will be the load balancer endpoint.</p>
                         </li>
                         <li>
                             <p>port: &lt;gateway-bind-port&gt; default: 5432</p>
@@ -97,10 +91,7 @@
                             <p>Username: admin</p>
                         </li>
                         <li>
-                            <p>Password: 1234</p>
-                        </li>
-                        <li>
-                            <p>*Username and password aren’t checked at the moment, please write down something</p>
+                            <p>Password: 1234. Note that username and password are not currently verified.</p>
                         </li>
                         <li>
                             <p>SSL Mode: disable</p>
@@ -117,7 +108,7 @@
                     </p>
                 </li>
                 <li>
-                    <p>Choose Data source name (DSN) which you created before: “GigaSpaces” -&gt; click “OK”</p>
+                    <p>Choose Data source name (DSN) which you created previously: “GigaSpaces” -&gt; click “OK”</p>
                 </li>
                 <li>
                     <p>In the navigator, navigate to the schema of your Space and choose it -&gt; click <b>Load</b>:</p>
