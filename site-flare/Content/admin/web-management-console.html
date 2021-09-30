@@ -14,7 +14,6 @@
         </div>
         <h1><a name="security"></a>Security</h1>
         <h2><a name="ssl-connection"></a>SSL Connection</h2>
-        <p>In order to run the Web Management Console server with SSL ( using the HTTPS protocol instead of HTTP), parameters must be provided as arguments to the <code>gs-webui</code> script.</p>
         <div MadCap:conditions="Version.16-1-born">
             <p>Parameters can be passed using one of the following methods: Specifying a custom properties file (recommended method), or specifying individual properties. Both methods are explained below.</p>
             <div class="easyui-tabs" plain="true">
@@ -26,8 +25,17 @@
                 </div>
                 <div title="Individual properties">
                     <ul>
-                        <li><code>ssl.keyManagerPassword</code> - Password (if any) for the specific key within the key store.<li><code>ssl.keyManagerPassword</code> - Password (if any) for the specific key within the key store. Optional parameter.<br /></li><div class="tc-admon-note"><p>If there is no&#160;<code>keyManagerPassword</code>, then the&#160;<code>keyStorePassword</code>&#160;(see below) is used instead.
-                </p></div><li><code>ssl.keyStorePassword</code> - Password for the key store.</li><li><code>ssl.keyStorePath</code> - File or URL of the SSL Key store.</li><li><code>ssl.trustStorePath</code> - File name or URL of the trust store location.</li><li><code>ssl.trustStorePassword</code> - Password for the trust store.</li></li>
+                        <li>
+                            <li><code>ssl.keyManagerPassword</code> - Password (if any) for the specific key within the key store. Optional parameter.<br /></li>
+                            <div class="tc-admon-note">
+                                <p>If there is no&#160;<code>keyManagerPassword</code>, then the&#160;<code>keyStorePassword</code>&#160;(see below) is used instead.
+                </p>
+                            </div>
+                            <li><code>ssl.keyStorePassword</code> - Password for the key store.</li>
+                            <li><code>ssl.keyStorePath</code> - File or URL of the SSL Key store.</li>
+                            <li><code>ssl.trustStorePath</code> - File name or URL of the trust store location.</li>
+                            <li><code>ssl.trustStorePassword</code> - Password for the trust store.</li>
+                        </li>
                     </ul>
                 </div>
             </div>
