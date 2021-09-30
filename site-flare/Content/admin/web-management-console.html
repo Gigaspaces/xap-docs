@@ -14,23 +14,35 @@
         </div>
         <h1><a name="security"></a>Security</h1>
         <h2><a name="ssl-connection"></a>SSL Connection</h2>
-        <p>In order to run the Web Management Console server with SSL ( using the HTTPS protocol instead of HTTP), the following parameters must be provided as arguments to the <code>gs-webui</code> script:</p>
-        <ul>
-            <li MadCap:conditions="Version.16-1-died"><code>ssl.keyManagerPassword</code> - Password (if any) for the specific key within the key store.</li>
-            <li MadCap:conditions="Version.16-1-born"><code>ssl.keyManagerPassword</code> - Password (if any) for the specific key within the key store. Optional parameter.<br /></li>
-            <div class="tc-admon-note" MadCap:conditions="Version.16-1-born">
-                <p>If there is no&#160;<code>keyManagerPassword</code>, then the&#160;<code>keyStorePassword</code>&#160;(see below) is used instead.
-                </p>
+        <p>In order to run the Web Management Console server with SSL ( using the HTTPS protocol instead of HTTP), parameters must be provided as arguments to the <code>gs-webui</code> script.</p>
+        <div MadCap:conditions="Version.16-1-born">
+            <p>Parameters can be passed using one of the following methods: Specifying a custom properties file (recommended method), or specifying individual properties. Both methods are explained below.</p>
+            <div class="easyui-tabs" plain="true">
+                <div title="Custom properties file">
+                    <p><code>ssl.custom.properties</code> - Path to ssl properties file.<br /> Example of usage: <code>./gs-webui.sh -ssl.custom.properties /home/evgeny/dev/cases/ssl-props.properties</code></p>
+                    <div class="tc-admon-note">
+                        <p>The following&#160;mandatory properties are expected in the properties file:<br /><code>ssl.keyStorePath=/PATH/xxx-key-store.jks</code><br /><code>ssl.keyStorePassword=passw-xxx-key-store</code><br /><code>ssl.trustStorePath=/PATH/xxx-trust-store.jks</code><br /><code>ssl.trustStorePassword=passw-xxx-trust-store</code></p>
+                    </div>
+                </div>
+                <div title="Individual properties">
+                    <ul>
+                        <li><code>ssl.keyManagerPassword</code> - Password (if any) for the specific key within the key store.<li><code>ssl.keyManagerPassword</code> - Password (if any) for the specific key within the key store. Optional parameter.<br /></li><div class="tc-admon-note"><p>If there is no&#160;<code>keyManagerPassword</code>, then the&#160;<code>keyStorePassword</code>&#160;(see below) is used instead.
+                </p></div><li><code>ssl.keyStorePassword</code> - Password for the key store.</li><li><code>ssl.keyStorePath</code> - File or URL of the SSL Key store.</li><li><code>ssl.trustStorePath</code> - File name or URL of the trust store location.</li><li><code>ssl.trustStorePassword</code> - Password for the trust store.</li></li>
+                    </ul>
+                </div>
             </div>
-            <li><code>ssl.keyStorePassword</code> - Password for the key store.</li>
-            <li><code>ssl.keyStorePath</code> - File or URL of the SSL Key store.</li>
-            <li><code>ssl.trustStorePath</code> - File name or URL of the trust store location.</li>
-            <li><code>ssl.trustStorePassword</code> - Password for the trust store.</li>
-            <li MadCap:conditions="Version.16-1-born"><code>ssl.custom.properties</code> - Path to ssl properties file.<br /> Example of usage: <code>./gs-webui.sh -ssl.custom.properties /home/evgeny/dev/cases/ssl-props.properties</code></li>
-            <div class="tc-admon-note" MadCap:conditions="Version.16-1-born">
-                <p>The following&#160;mandatory properties are expected in the properties file:<br /><code>ssl.keyStorePath=/PATH/xxx-key-store.jks</code><br /><code>ssl.keyStorePassword=passw-xxx-key-store</code><br /><code>ssl.trustStorePath=/PATH/xxx-trust-store.jks</code><br /><code>ssl.trustStorePassword=passw-xxx-trust-store</code></p>
-            </div>
-        </ul>
+        </div>
+        <p>&#160;</p>
+        <div MadCap:conditions="Version.16-1-died">
+            <p>In order to run the Web Management Console server with SSL ( using the HTTPS protocol instead of HTTP), the following parameters must be provided as arguments to the <code>gs-webui</code> script:</p>
+            <ul>
+                <li><code>ssl.keyManagerPassword</code> - Password (if any) for the specific key within the key store.</li>
+                <li><code>ssl.keyStorePassword</code> - Password for the key store.</li>
+                <li><code>ssl.keyStorePath</code> - File or URL of the SSL Key store.</li>
+                <li><code>ssl.trustStorePath</code> - File name or URL of the trust store location.</li>
+                <li><code>ssl.trustStorePassword</code> - Password for the trust store.</li>
+            </ul>
+        </div>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Linux " style="padding:10px"><pre><code class="language-bash">#Specify SSL via a command line argument
 ./gs-webui.sh -ssl.keyManagerPassword &lt;passw&gt; -ssl.keyStorePassword &lt;passw&gt; -ssl.keyStorePath &lt;key-store-path&gt; -ssl.trustStorePath &lt;trust-store-path&gt; -ssl.trustStorePassword &lt;passw&gt;
