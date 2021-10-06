@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Data Integration</h1>
+        <p>Data Integration allows data to be loaded into the GigaSpaces data grid using easily-defined, reusable Data Pipelines that require no user code. Data Integration can access CDC-based data.</p>
+        <p>A metrics dashboard shows data activity, including data volumes and statistics and any data validation errors or other access errors.</p>
+        <h1>Information Required to Define a Data Pipeline</h1>
+        <p>In order to create a new data pipeline, the following information is required:</p>
+        <ul>
+            <li>
+                <p>The name of the data pipeline, type of connector, URL of the data source, and user/password or other authentication data. This information identifies where the data flow is located. The current implementation of Data Pipeline uses DBSH's CR8 implementation of a CDC data source.</p>
+            </li>
+            <li>
+                <p>Selection of which tables and fields to use in the data source</p>
+            </li>
+            <li>
+                <p>The name of the target Gigaspace Space that will access the data.</p>
+            </li>
+            <li>
+                <p>Any validations to be performed on the source data, with stipulations of what to do if data errors occur.</p>
+            </li>
+            <li>
+                <p>Definition of optional Tiered Storage and Storage Optimization features</p>
+            </li>
+            <li>
+                <p>Actions to be performed if errors occur in the data loading process or if the target Space is redeployed.</p>
+            </li>
+        </ul>
+        <h1>Procedure to Define a Data Pipeline</h1>
+        <p>A Data Pipeline can be defined via the Ops Manager GUI, the Windows/Unix Command Line, or using the REST-API.</p>
+        <p>&#160;</p>
+        <div title="GigaSpaces Ops Manager" style="padding:10px" MadCap:conditions="Version.15-0-born">
+            <p>Click on <MadCap:xref href="../../opm/opm-deploy-undeploy-service.html#Deploy" class="Deploy-Data-Gateway-Service">Deploy Data Gateway Service</MadCap:xref> in Ops Manager to deploy the service:</p>
+            <MadCap:snippetBlock src="../../Resources/Snippets/Content/deploy-data-gateway-ops-manager.flsnp" />
+        </div>
+    </body>
+</html>
