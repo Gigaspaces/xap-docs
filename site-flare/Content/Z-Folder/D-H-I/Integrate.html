@@ -30,10 +30,72 @@
         </ul>
         <h1>Procedure to Define a Data Pipeline</h1>
         <p>A Data Pipeline can be defined via the Ops Manager GUI, the Windows/Unix Command Line, or using the REST-API.</p>
-        <p>&#160;</p>
-        <div title="GigaSpaces Ops Manager" style="padding:10px" MadCap:conditions="Version.15-0-born">
-            <p>Click on <MadCap:xref href="../../opm/opm-deploy-undeploy-service.html#Deploy" class="Deploy-Data-Gateway-Service">Deploy Data Gateway Service</MadCap:xref> in Ops Manager to deploy the service:</p>
-            <MadCap:snippetBlock src="../../Resources/Snippets/Content/deploy-data-gateway-ops-manager.flsnp" />
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="NewSet.JustAColorForDivs">
+            <div title="GigaSpaces Ops Manager" style="padding:10px" MadCap:conditions="Version.15-0-born">
+                <p>Click on <span class="tc-highlight">xxxxx </span>in Ops Manager to define the Data Pipeline:</p>
+                <p>
+                    <img src="../../Resources/Static/images/dummy-image.png" style="width: 422px;height: 421px;" />
+                </p>
+            </div>
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command example:</span>
+                </p>
+                <p><span class="tc-highlight">Batch command here</span>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p><span class="tc-highlight">Description of batch command here.</span>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p MadCap:conditions="Default.DoNotShow"><span class="tc-italic">Path</span>
+                </p><span class="tc-highlight"><code MadCap:conditions="Default.DoNotShow">POST/data-gateway/{name}/xxxxxxxxxxxxxxxxxxxxxxl</code></span>
+                <p><span class="tc-italic">Description</span>
+                </p>
+                <p>Description here.</p>
+                <p><span class="tc-italic">Example Request</span>
+                </p><pre><code class="language-bash"><span class="tc-highlight">curl -X POST --header 'Accept: application/json' 'http://localhost:8090/v2/data-gateway?name=myService&amp;instances=3&amp;contextProperties=file://config/myfile.properties%20kl=v1%20k2=v</span>2'
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <col style="width: 196px;" />
+                    <col />
+                    <col />
+                    <col />
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Sample Data</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="tc-highlight">name</span>
+                            </td>
+                            <td><span class="tc-highlight">The name of the data gateway service that you wish to deploy</span>
+                            </td>
+                            <td><span class="tc-highlight">myService</span>
+                            </td>
+                            <td><span class="tc-highlight">Yes</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>instances</td>
+                            <td>The number of instances to deploy</td>
+                            <td>3</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>contextProperties</td>
+                            <td>The location of the properties file, and optional additional context properties</td>
+                            <td>file://config/myfile.properties kl=v1 k2=v2</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        <p>&#160;</p>
     </body>
 </html>
