@@ -4,7 +4,7 @@
     </head>
     <body style="text-align: left;">
         <div>
-            <h1 class="tc-pagetitle" style="text-align: left;"><MadCap:variable name="General.ProductNameIE" /> Smart DIH</h1>
+            <h1 class="tc-pagetitle" style="text-align: left;"><MadCap:variable name="General.ProductNameXAP" /> Smart DIH </h1>
             <p style="text-align: left;" MadCap:conditions="Version.16-0-died"><MadCap:variable name="General.ProductNameIE" /> Smart DIH is part of the <a href="smart-overview.html"><MadCap:variable name="General.ProductNameIE" /> Portfolio</a> — Smart Cache and Smart DIH. </p>
             <p>InsightEdge Smart DIH is a distributed in-memory <a href="https://www.gigaspaces.com/blog/digital-integration-hub-dih/">Digital Integration Hub</a> (DIH), with unparalleled low-latency, high-performance and scale that aggregates and offloads from multiple back-end systems of record and data stores on premise and on cloud. With a unified API layer, digital applications can be decoupled from disparate systems of record to increase agility and ensure always-on services.</p>
             <p>When an existing Operational Data Store is already deployed, Smart DIH can augment it to gain better performance, indexing, data integration and ETL replacement. It can be done by either mirroring the DIH actions to the data stores, or by using Smart DIH’s built-in Change Data Capture (CDC) that connects directly with your systems of record, non-intrusively (agentless). </p>
@@ -15,18 +15,10 @@
                 </img>
             </p>
             <p style="text-align: center;">Architecture  of Smart DIH</p>
-            <h2>1. One-Click Connect to Data Sources
-</h2>
-            <div>
-                <p> <MadCap:variable name="General.ProductNameIE" /> provides a simple wizard interface to connect to any multiple relational data sources. First the user selects either a database or data warehouse, defines various properties of the data source and the naming of the space and stateful service at  <MadCap:variable name="General.ProductNameIE" />, then the platform automatically scans the data source and presents it for the user to review the data structure, choose the required data to load, with the option to rename tables, columns and change indexes. Then the user can choose between two options: Download the generated project files, customize as required and deploy or automatically deploy on the cluster. For more information <a href="https://docs.gigaspaces.com/opm/opm-connect-to-data-source.html">click here.</a></p>
-                <p style="text-align: center;">
-                    <img src="Resources/Static/images/smart-cache-one-click-connect-75.png" style="width: 613px;height: 676px;" class="tc-picture50" />
-                </p>
-                <p style="text-align: center;">One-Click connect interface</p>
-            </div>
-            <p>&#160;</p>
-            <p>Connection to the data source can be either by mirroring the DIH actions to the data store, or by using Smart DIH’s built-in Change Data Capture (CDC) that connects directly with the systems of record, non-intrusively (agentless).
- Data ingestion from the CDC is in millisecond latency and keeps the DIH always in sync with all the different data sources. This is delivered as part of Smart DIH with unified installation and orchestration.</p>
+            <h2>1. Connect to Data Source<![CDATA[
+]]></h2>
+            <MadCap:snippetBlock src="Resources/Snippets/Content/one-click-or-data-pipeline.flsnp" />
+            <MadCap:snippetBlock src="Resources/Snippets/Content/one-click-or-data-pipeline.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition01]" />
             <h2>2. Automated Data Tiering
 </h2>
             <p>Data is stored in multiple data storage tiers — hot (in-memory), warm (SSD), and cold
