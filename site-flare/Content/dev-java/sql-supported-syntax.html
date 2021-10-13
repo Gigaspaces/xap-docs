@@ -5,13 +5,217 @@
     <body>
         <div>
             <h1 class="tc-pagetitle">SQL Supported Syntax</h1>
-            <p>The following SQL statements and options are supported.</p>
-            <h2>
-                <MadCap:xref href="../word-import/Statements Calcite BNF.htm">Statements (Calcite BNF) </MadCap:xref>
-            </h2>
-            <h2>
-                <MadCap:xref href="../word-import/Aggregate Functions.htm">Aggregate Functions</MadCap:xref>
-            </h2>
+            <p>The following SQL statements and operations are supported.</p>
+            <p>&#160;</p>
+            <div MadCap:conditions="NewSet.JustAColorForDivs">
+                <h1><a name="_Toc84959195"></a>Statements </h1>
+                <p class="p_1"><span class="span_5">statement</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160; |&#160;&#160; explain</p>
+                <p class="p_6">&#160; |&#160;&#160; describe</p>
+                <p class="p_6">&#160; |&#160;&#160; query</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">statementList</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; statement [ ';' statement ]* [ ';' ]</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">explain</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; EXPLAIN PLAN</p>
+                <p class="p_1"><span class="span_7">&#160;&#160;&#160;&#160; </span><span class="span_6">&#160;&#160;&#160;&#160;&#160; FOR { query }</span>
+                </p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">Describe</span><span class="span_6">: </span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; DESCRIBE DATABASE databaseName</p>
+                <p class="p_6">&#160; |&#160;&#160; DESCRIBE CATALOG [ databaseName . ] catalogName</p>
+                <p class="p_6">&#160; |&#160;&#160; DESCRIBE SCHEMA [ [ databaseName . ] catalogName ] . schemaName</p>
+                <p class="p_6">&#160; |&#160;&#160; DESCRIBE [ TABLE ] [ [ [ databaseName . ] catalogName . ] schemaName . ] tableName [ columnName ]</p>
+                <p class="p_6">&#160; |&#160;&#160; DESCRIBE [ STATEMENT ] { query }</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">query</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; values</p>
+                <p class="p_1"><span class="span_6">&#160; |&#160;&#160; WITH </span><span class="span_5">withItem</span><span class="span_6"> [ , withItem ]* query</span>
+                </p>
+                <p class="p_6">&#160; |&#160;&#160; {</p>
+                <p class="p_1"><span class="span_6">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </span><span class="span_5">select</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; |&#160;&#160; selectWithoutFrom</p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; }</p>
+                <p class="p_1"><span class="span_6">&#160;&#160;&#160;&#160;&#160; [ ORDER BY orderItem [, </span><span class="span_5">orderItem</span><span class="span_6"> ]* ]</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ LIMIT [ start, ] { count | ALL } ]</p>
+                <p class="p_7">&#160;&#160;&#160;&#160; </p>
+                <p class="p_1"><span class="span_5">withItem</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; name</p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ '(' column [, column ]* ')' ]</p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; AS '(' query ')'</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">orderItem</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; expression [ ASC | DESC ] [ NULLS FIRST | NULLS LAST ]</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">select</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; SELECT [ ALL | DISTINCT ]</p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; { * | projectItem [, projectItem ]* }</p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; FROM tableExpression</p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ WHERE booleanExpression ]</p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ GROUP BY { groupItem [, groupItem ]* } ]</p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ HAVING booleanExpression ]</p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; </p>
+                <p class="p_1"><span class="span_5">selectWithoutFrom</span><span class="span_6">: [Scalar]</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; SELECT [ ALL | DISTINCT ]</p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; { * | projectItem [, projectItem ]* }</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">projectItem</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; expression [ [ AS ] columnAlias ]</p>
+                <p class="p_6">&#160; |&#160;&#160; tableAlias . *</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">tableExpression</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; tableReference [, tableReference ]*</p>
+                <p class="p_1"><span class="span_6">&#160; |&#160;&#160; tableExpression [ NATURAL ] [ { LEFT | RIGHT }</span> <span class="span_6">] JOIN tableExpression [ joinCondition ]</span></p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">joinCondition</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; ON booleanExpression</p>
+                <p class="p_6">&#160; |&#160;&#160; USING '(' column [, column ]* ')'</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">tableReference</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; tablePrimary</p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ FOR SYSTEM_TIME AS OF expression ]</p>
+                <p class="p_1"><span class="span_7">&#160;&#160;&#160;&#160; </span><span class="span_6"> [ [ AS ] alias [ '(' columnAlias [, columnAlias ]* ')' ] ]</span>
+                </p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">tablePrimary</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ [ catalogName . ] schemaName . ] tableName</p>
+                <p class="p_1"> <span class="span_6">&#160;&#160;&#160;&#160; '(' TABLE [ [ catalogName . ] schemaName . ] tableName ')'</span></p>
+                <p class="p_1"><span class="span_7">&#160; </span><span class="span_6">|&#160;&#160; [ LATERAL ] '(' query ')'</span>
+                </p>
+                <p class="p_1"><span class="span_7">&#160; </span><span class="span_6">|&#160;&#160; [ LATERAL ] TABLE '(' [ SPECIFIC ] functionName '(' expression [, expression ]* ')' ')'</span>
+                </p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">columnDecl</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; column type [ NOT NULL ]</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">optionValue</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; stringLiteral</p>
+                <p class="p_6">&#160; |&#160;&#160; numericLiteral</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">columnOrList</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; column</p>
+                <p class="p_6">&#160; |&#160;&#160; '(' column [, column ]* ')'</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">exprOrList</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; expr</p>
+                <p class="p_6">&#160; |&#160;&#160; '(' expr [, expr ]* ')'</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">values</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; VALUES expression [, expression ]*</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_1"><span class="span_5">groupItem</span><span class="span_6">:</span>
+                </p>
+                <p class="p_6">&#160;&#160;&#160;&#160;&#160; expression</p>
+                <p class="p_6">&#160; |&#160;&#160; '(' ')'</p>
+                <p class="p_6">&#160; |&#160;&#160; '(' expression [, expression ]* ')'</p>
+                <p class="p_1"> <span class="span_6"> |&#160;&#160; GROUPING SETS '(' groupItem [, groupItem ]* ')'</span></p>
+            </div>
+            <h1>Aggregate Functions</h1>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <p class="p_1">&#160;</p>
+                <table class="table_1">
+                    <col class="col_16" />
+                    <col class="col_17" />
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">COUNT(*) :: BIGINT</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the number of input rows.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">COUNT(any) :: BIGINT</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the number of input rows in which the input value is not null.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">COUNT(DISTINCT *) :: BIGINT</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the number of input rows in which the input value is unique.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">COUNT(DISTINCT any) :: BIGINT</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the number of input rows in which the input value is unique and not null.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_20"><span class="span_9">SUM(TINYINT | SMALLINT | INT) :: BIGINT</span><span class="span_3">, </span><span class="span_9">SUM(BIGINT | DECIMAL) :: DECIMAL</span><span class="span_3">, </span><span class="span_9">SUM(REAL) :: REAL</span><span class="span_3">, </span><span class="span_9">SUM(DOUBLE) :: DOUBLE</span>
+                            </p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the sum of the non-null input values.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_20"><span class="span_9">SUM(DISTINCT TINYINT | SMALLINT | INT) :: BIGINT</span><span class="span_3">, </span><span class="span_9">SUM(DISTINCT BIGINT | DECIMAL) :: DECIMAL</span><span class="span_3">, </span><span class="span_9">SUM(DISTINCT REAL) :: REAL</span><span class="span_3">, </span><span class="span_9">SUM(DISTINCT DOUBLE) :: DOUBLE</span>
+                            </p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the sum of the unique, non-null input values.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_20"><span class="span_9">AVG(DECIMAL) :: DECIMAL</span><span class="span_3">, </span><span class="span_9">AVG(DOUBLE) :: DOUBLE</span>
+                            </p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the mean of all the non-null input values.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_20"><span class="span_9">AVG(DISTINCT DECIMAL) :: DECIMAL</span><span class="span_3">, </span><span class="span_9">AVG(DISTINCT DOUBLE) :: DOUBLE</span>
+                            </p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the mean of all the unique, non-null input values.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">MIN(any) :: same type as the input</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the minimum of the non-null input values. Applicable also to OBJECT type, if the underlying value is java.lang.Comparable.</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
             <h2>
                 <MadCap:xref href="../word-import/Comparison Operators.htm">Comparison Operators</MadCap:xref>
             </h2>
