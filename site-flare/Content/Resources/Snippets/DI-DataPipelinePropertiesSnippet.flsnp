@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div MadCap:conditions="SnippetConditions.SnippetCondition01">
+            <p><b>GigaSpaces properties</b>
+            </p>
+            <ul>
+                <li> <b>Data Pipeline name</b> —  the name of the new Data Pipeline that will be introduced to the grid</li>
+                <li><b>Space Name</b> — the Space that will be connected to the Data Pipeline</li>
+                <li><b>Connector Type</b> — Available option: CR8</li>
+                <li><b>Connector host</b>  — the host IP address for the Data Pipeline</li>
+                <li><b>Connector port</b>  — the host port for the Data Pipeline</li>
+            </ul>
+        </div>
+        <div MadCap:conditions="SnippetConditions.SnippetCondition01">
+            <p><b>Data source properties</b>
+            </p>
+            <ul>
+                <li> <b>Type</b> — the type of data source for the Data Pipeline. Available options: MSSQL and DB2</li>
+                <li><b>Host</b> — </li>
+                <li><b>Port</b> — </li>
+                <li><b>Database name</b>  — </li>
+                <li><b>Admin schema name</b>  — </li>
+                <li><b>Admin schema password</b>  — </li>
+            </ul>
+        </div>
+        <div MadCap:conditions="SnippetConditions.SnippetCondition02">
+            <ul>
+                <li>
+                    <p><b>Data pipeline overview</b>
+                    </p>
+                </li>
+                <li>
+                    <p><b>Name</b> — the number of primary partitions for the space</p>
+                </li>
+                <li>
+                    <p><b>Origin</b>   — Identifying information to access the external image file</p>
+                </li>
+                <li>
+                    <p><b>Space name</b> — the number of instances for the service</p>
+                </li>
+                <li>
+                    <p><b>Status</b>  — the port which the gateway server will bind to in the host. The user should allocated a port, typically 5432, and bind it to a routable IP address, in case there are several IPs for a specific host.</p>
+                </li>
+                <li>
+                    <p><b>Up time</b>  — Externally available IP address for the service </p>
+                </li>
+                <li>
+                    <p><b>Total operations</b> — Provide a backup partition for each primary partition.</p>
+                </li>
+                <li>
+                    <p><b>Operations per second</b> — Provide horizontal scaling capability.</p>
+                </li>
+            </ul>
+        </div>
+        <div MadCap:conditions="SnippetConditions.SnippetCondition03">
+            <p><b>Table configuration</b>
+            </p>
+            <ul>
+                <li>
+                    <p><b>DB name:</b> — Ensure that primary and backup partitions are allocated on different nodes.</p>
+                </li>
+                <li>
+                    <p><b>DB schema</b> — Name and value pairs for additional properties. Click on <b>+</b> to add a property and value, delete  to remove.<br />The defined properties and their values are used as part of the deploy process for various configuration purposes.</p>
+                </li>
+                <li>
+                    <p><b>Type name:</b> The amount of used memory that triggers an exception when a write, update or initial load operation is attempted— see  <MadCap:xref href="../../admin/memoryxtend-ohr.html#defining-the-memory-threshold">Defining the Memory Threshold</MadCap:xref></p>
+                </li>
+                <li>
+                    <p><b>Space ID</b>: — </p>
+                </li>
+                <li>
+                    <p><b>Routing ID</b>: — </p>
+                </li>
+                <li>
+                    <p><b>Broadcast</b>: — </p>
+                </li>
+                <li>
+                    <p><b>Storage optimized</b>: — </p>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
