@@ -4,6 +4,9 @@
     </head>
     <body>
         <h1>Test Multiple Conditions </h1>
+        <div MadCap:conditions="Version.16-0-only,Default.DoNotShow">
+            <p>test.... There are currently no deprecated or end-of-life features and functionality.</p>
+        </div>
         <p MadCap:conditions="Version.15-0-only,Version.15-2-only,Version.15-5-only">This text has multiple "only"s -- 15.0 only, 15.2 only, 15.5 only</p>
         <p MadCap:conditions="Version.14-5-born,Version.15-2-died">this text is born 14.5, died in 15.2</p>
         <p MadCap:conditions="NewSet.XperimentalOnlyEXCLUDE">this text is excluded from xperimental but included for others</p>
