@@ -20,13 +20,15 @@
                 </div>
             </p>
         </div>
-        <h2><a name="defining-the-space-topology"></a>Using the Processing Unit Custom Resource</h2>
+        <h1><a name="defining-the-space-topology"></a>Using the Processing Unit Custom Resource to Deploy the Space Cluster</h1>
         <p>GigaSpaces uses the Custom Resources Definition (CRD) feature of Kubernetes to define a resource type called Processing Unit. With a properly defined <code>yaml</code> file, the <code> kubectl apply</code> command can be used to deploy a GigaSpaces Processing Unit.</p>
-        <p>For example, in the command line execute the following command —</p><pre><code class="language-bash">kubectl apply -f <i>filename.yaml</i></code></pre>
-        <p>— to deploy a Space cluster with four primaries and four backups. </p>
+        <p>For example, in the command line execute the following command to deploy the <code>yaml</code>file called <code>filename.yaml</code>:</p><pre><code class="language-bash">kubectl apply -f <i>filename.yaml</i></code></pre>
         <div class="easyui-accordion">
             <div title="">
-                <p>Click below to see a sample  <code>yaml</code> file. This file specifies four primary instances, four backup instances, and also specifies that each backup instance will be on a different host than its primary instance.</p>
+                <p>Click below to see a sample  <code>yaml</code> file. This sample file specifies four primary instances, four backup instances, and also specifies that each backup instance will be on a different host than its primary instance.</p>
+            </div>
+            <div class="tc-admon-note">
+                <p>The Processing Unit  will use one stateful set per stateful pu.</p>
             </div>
             <div title="Sample yaml file">
                 <p>apiVersion: gigaspaces.com/v1</p>
@@ -96,10 +98,7 @@
                 </ul>
             </li>
         </ul>
-        <p>Enter the following command to deploy the Processing Unit:</p>
-        <div class="tc-admon-note">
-            <p>The Processing Unit  will use one stateful set per stateful pu.</p>
-        </div><pre><code class="language-bash">kubectl apply -f filename.yaml</code></pre>
+        <h1><a name="defining-the-space-topology"></a>Displaying the Status of the Space Cluster</h1>
         <p>Enter the following command to see the status of the Processing Units:</p><pre><code class="language-bash">kubectl get pus</code></pre>
         <div class="easyui-accordion">
             <div title="">
@@ -109,6 +108,7 @@
                 </p>
             </div>
         </div>
+        <h1><a name="defining-the-space-topology"></a>Deleting the Space Cluster</h1>
         <p>Enter the following command to delete a Processing Unit:</p><pre><code class="language-bash">kubectl delete pu <i>name-of-processing-unit</i></code></pre>
     </body>
 </html>
