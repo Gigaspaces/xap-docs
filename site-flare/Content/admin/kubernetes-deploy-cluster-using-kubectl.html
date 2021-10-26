@@ -4,14 +4,14 @@
     </head>
     <body>
         <h1 class="tc-pagetitle"><a name="deploying-a-space-cluster"></a>Deploying a Space Cluster in Kubernetes Using <code>kubectl</code></h1>
-        <p>GigaSpaces uses the Custom Resources Definition (CRD) feature of Kubernetes to define a resource type called Processing Unit. With a properly defined <code>yaml</code> file, the <code> kubectl apply</code> command can be used to deploy a GigaSpaces Space object consisting of <i>n</i> number of processing units.</p>
-        <p>For example, in the command line type the <code>kubectl apply</code>command to deploy a Space cluster with four primary processing units and four backup processing units. </p>
+        <p>GigaSpaces uses the Custom Resources Definition (CRD) feature of Kubernetes to define a resource type called Processing Unit. With a properly defined <code>yaml</code> file, the <code> kubectl apply</code> command can be used to deploy a GigaSpaces Processing Unit.</p>
+        <p>For example, in the command line type the <code>kubectl apply</code>command to deploy a Space cluster with four primaries and four backups. </p>
         <p>Note the highlighted entries in the <code>yaml </code>file:</p>
         <ul>
             <li><span class="tc-highlight">kind: ProcessingUnit</span>
                 <ul>
                     <li>
-                        <p>Defines a custom resource type, Processing Unit</p>
+                        <p>Specifies the Processing Unit custom resource type</p>
                     </li>
                 </ul>
             </li>
@@ -20,7 +20,7 @@
                 </p>
                 <ul>
                     <li>
-                        <p>Four primary processing units are deployed</p>
+                        <p>Four primary instances are deployed</p>
                     </li>
                 </ul>
             </li>
@@ -29,7 +29,7 @@
                 </p>
                 <ul>
                     <li>
-                        <p>Four additional backup processing units are deployed</p>
+                        <p>Four additional backup instances are deployed</p>
                     </li>
                 </ul>
             </li>
@@ -38,7 +38,7 @@
                 </p>
                 <ul>
                     <li>
-                        <p>Applicable only if <code>ha: true</code>) If this option is set to <code>true</code>, then the four backup processing units will be deployed on different hosts from the four primary processing units.</p>
+                        <p>Applicable only if <code>ha: true</code>) If this option is set to <code>true</code>, then the four backup instances will each be deployed on different hosts from their primary instance.</p>
                     </li>
                 </ul>
             </li>
@@ -67,7 +67,7 @@
                 </p>
                 <p>image:</p>
                 <p>repository: gigaspaces/xap-enterprise</p>
-                <p>tag: 16.1.0-m8-wed-31</p>
+                <p>tag: 16.1.0</p>
                 <p>javaHeap: limit-150Mi</p>
                 <p>license: tryme</p>
                 <p>manager:</p>
@@ -76,12 +76,11 @@
                 <p>api: 8090</p>
                 <p>multiCast: false</p>
                 <p>productType: xap</p>
-                <p>properties: image.tag=16.1.0-m8-wed-31;image.repository=gigaspaces/xap-enterprise;pu.dynamic-partitioning=true</p>
-                <p>resourceUrl: https://yohana-gs.s3.eu-west-1.amazonaws.com/data-processor.jar</p>
+                <p>properties: image.tag=16.1.0;image.repository=gigaspaces/xap-enterprise;pu.dynamic-partitioning=true</p>
+                <p>resourceUrl: https://demo-gs.s3.eu-west-1.amazonaws.com/data-processor.jar</p>
                 <p>resources :</p>
-                <p>- id: null</p>
-                <p>limits :</p>
-                <p>cpu: null</p>
+                <p> limits :</p>
+                <p> cpu: null</p>
                 <p>memory: 550Mi</p>
                 <p>requests: null</p>
             </div>
