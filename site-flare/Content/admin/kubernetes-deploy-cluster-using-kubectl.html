@@ -3,107 +3,101 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle"><a name="deploying-a-space-cluster"></a>Deploying a Space Cluster in Kubernetes Using kubectl</h1>
-        <p>The demo in the <MadCap:xref href="kubernetes-data-grid-helm-only.html" MadCap:conditions="Version.15-8-died">Getting Started with GigaSpaces in Kubernetes Using Helm Charts</MadCap:xref><MadCap:xref href="kubernetes-data-grid-with-helm-and-operator.html" MadCap:conditions="Version.15-8-born">Getting Started with GigaSpaces in Kubernetes Using Helm Charts and Operator</MadCap:xref> created a data grid that contained a single Space instance. Real-life environments generally have to store large volumes of data, and therefore need more than a single Space instance (a cluster).</p>
-        <p>Type the following Helm command to deploy a Space cluster with <span class="tc-italic">n</span> Data Pods, with a partition count from 1 to <span class="tc-italic">n</span>:</p>
-        <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name test --set pu.partitions=n</code></pre>
-            <p MadCap:conditions="Version.15-5-born">
-                <div class="easyui-tabs" plain="true">
-                    <div title="Helm 3">
-                        <p><pre><code class="language-bash">helm install test insightedge --set pu.partitions=n </code></pre>
-                        </p>
-                    </div>
-                    <div title="Helm 2">
-                        <p><pre><code class="language-bash">helm install insightedge --name test --set pu.partitions=n</code></pre>
-                        </p>
-                    </div>
-                </div>
-            </p>
-        </div>
-        <h1><a name="defining-high-availability-ha"></a>Defining High Availability (HA)</h1>
-        <p>There are several aspects to configuring a data grid for high availability. Each primary Data Pod needs a minimum of one backup Data Pod, and three Management Pods are deployed instead of one so that a quorum of Platform Managers is always available to manage the Spaces. Both the Data Pods and the Management Pods should have the Pod anti-affinity property set to true, so that the primary/backup sets and the managers are deployed on different nodes. This enables successful failover if a node gets disrupted.</p>
-        <div class="tc-admon-note">
-            <p>The Kubernetes minikube runs on a single node and therefore doesn't provide anti-affinity, so you may want to evaluate <MadCap:variable name="General.ProductNameIE" /> high-availability behavior on a Kubernetes cluster that contains multiple nodes.</p>
-        </div>
-        <h2><a name="configuring-high-availability-for-the-platform-manager"></a>Configuring High Availability for the Platform Manager</h2>
-        <p>When the Manager high availability property (<code class="language-bash">ha</code>) is set to true, Kubernetes deploys three Management Pods. You should enable the Manager high availability property so these Management Pods are deployed on different nodes.</p>
-        <p>The following Helm command deploys three Management Pods (instead of one) with high availability enabled:</p>
-        <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-manager --name test --set ha=true,antiAffinity.enabled=true</code></pre>
-            <p MadCap:conditions="Version.15-5-born">
-                <div class="easyui-tabs" plain="true">
-                    <div title="Helm 3">
-                        <p><pre><code class="language-bash">helm install test insightedge-manager --set ha=true,antiAffinity.enabled=true </code></pre>
-                        </p>
-                    </div>
-                    <div title="Helm 2">
-                        <p><pre><code class="language-bash">helm install insightedge-manager --name test --set ha=true,antiAffinity.enabled=true</code></pre>
-                        </p>
-                    </div>
-                </div>
-            </p>
-        </div>
-        <h2><a name="defining-the-space-topology"></a>Defining the Space Topology</h2>
-        <p>When you set the Space high availability property to true, Kubernetes deploys a backup Data Pod for each primary Data Pod. You must also enable the Space anti-affinity (<code class="language-bash">antiAffinity</code>) property so that the backup Data Pods are deployed on different nodes than the primary Data Pods.</p>
-        <div class="tc-admon-note">
-            <p>If you apply Pod anti-affinity on a minikube, not all of the Pods will be deployed, because the environment contains only a single node.</p>
-        </div>
-        <p>The following Helm command deploys a Space cluster called <code class="language-bash">test</code> in a high availability topology, with anti-affinity enabled:</p>
-        <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name test --set pu.ha=true,pu.antiAffinity.enabled=true</code></pre>
-            <p MadCap:conditions="Version.15-5-born">
-                <div class="easyui-tabs" plain="true">
-                    <div title="Helm 3">
-                        <p><pre><code class="language-bash">helm install test insightedge --set pu.ha=true,pu.antiAffinity.enabled=true </code></pre>
-                        </p>
-                    </div>
-                    <div title="Helm 2">
-                        <p><pre><code class="language-bash">helm install insightedge --name test --set pu.ha=true,pu.antiAffinity.enabled=true</code></pre>
-                        </p>
-                    </div>
-                </div>
-            </p>
-        </div>
-        <div MadCap:conditions="NewSet.JustAnotherColorForDivs,Default.DoNotShow">
-            <h1><a name="deploying-multiple-spaces-on-kubernetes"></a>Deploying Multiple Spaces on Kubernetes</h1>
-            <p>If you want to deploy multiple data grids in the same Kubernetes environment, to better utilize resources it is best to deploy one Platform Manager cluster and then configure the Spaces to use this cluster, instead of deploying each data grid with its own Platform Manager.</p>
-            <p>To enable users to customize the installation, we provide several additional Helm charts that can be used to define specific constellations in more advanced scenarios:</p>
-            <ul>
-                <li>Manager (<code class="language-bash">insightedge-manager</code> or <code class="language-bash">xap-manager</code>)</li>
-                <li>Processing Unit (<code class="language-bash">insightedge-pu</code> or <code class="language-bash">xap-pu</code>)</li>
-                <li>Apache Zeppelin (<code class="language-bash">insightedge-zeppelin</code>)</li>
-            </ul>
-            <p>Before using these charts for the first time, you must fetch the charts as described in Getting Started section.</p>
-            <h2><a name="deploying-the-platform-manager"></a>Deploying the Platform Manager</h2>
-            <p>The helm command by default creates a Management Pod and a Data Pod together. When deploying a Platform Manager that will connect to multiple Spaces, you have to disable the part of the command that creates the Data Pod. Type the following Helm command to create a Management Pod called <code class="language-bash">testmanager</code> without the accompanying Space:</p>
-            <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-manager --name testmanager</code></pre>
-                <p MadCap:conditions="Version.15-5-born">
-                    <div class="easyui-tabs" plain="true">
-                        <div title="Helm 3">
-                            <p><pre><code class="language-bash">helm install testmanager insightedge-manager </code></pre>
-                            </p>
-                        </div>
-                        <div title="Helm 2">
-                            <p><pre><code class="language-bash">helm install insightedge-manager --name testmanager</code></pre>
-                            </p>
-                        </div>
-                    </div>
+        <h1 class="tc-pagetitle"><a name="deploying-a-space-cluster"></a>Deploying a Space Cluster in Kubernetes Using <code>kubectl</code></h1>
+        <p>GigaSpaces uses the Custom Resources Definition (CRD) feature of Kubernetes to define a resource type called Processing Unit. With a properly defined <code>yaml</code> file, the <code> kubectl apply</code> command can be used to deploy a GigaSpaces Space object consisting of <i>n</i> number of processing units.</p>
+        <p>For example, in the command line type the <code>kubectl apply</code>command to deploy a Space cluster with four primary processing units and four backup processing units. </p>
+        <p>Note the highlighted entries in the <code>yaml </code>file:</p>
+        <ul>
+            <li><span class="tc-highlight">kind: ProcessingUnit</span>
+                <ul>
+                    <li>
+                        <p>Defines a custom resource type, Processing Unit</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><span class="tc-highlight">partitions: 4</span>
                 </p>
+                <ul>
+                    <li>
+                        <p>Four primary processing units are deployed</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><span class="tc-highlight">ha: true</span>
+                </p>
+                <ul>
+                    <li>
+                        <p>Four additional backup processing units are deployed</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><span class="tc-highlight">antiAffinity: true</span>
+                </p>
+                <ul>
+                    <li>
+                        <p>Applicable only if <code>ha: true</code>) If this option is set to <code>true</code>, then the four backup processing units will be deployed on different hosts from the four primary processing units.</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p>Enter the following command to deploy the Processing Unit:</p>
+        <div class="tc-admon-note">
+            <p>The Processing Unit  will use one stateful set per stateful pu.</p>
+        </div><pre><code class="language-bash">kubectl apply -f filename.yaml</code></pre>
+        <div class="easyui-accordion">
+            <div title="">
+                <p>Click below to see the sample  <code>yaml</code> file.</p>
             </div>
-            <h2><a name="deploying-the-spaces"></a>Deploying the Spaces</h2>
-            <p>After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager. Use the following Helm command to deploy a cluster of Data Pods called <code class="language-bash">testspace</code>, and to specify that the cluster should connect to the <code class="language-bash">testmanager</code> Management Pod:</p>
-            <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager</code></pre>
-                <p MadCap:conditions="Version.15-5-born">
-                    <div class="easyui-tabs" plain="true">
-                        <div title="Helm 3">
-                            <p><pre><code class="language-bash">helm install testspace insightedge-pu --set manager.name=testmanager</code></pre>
-                            </p>
-                        </div>
-                        <div title="Helm 2">
-                            <p><pre><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager</code></pre>
-                            </p>
-                        </div>
-                    </div>
+            <div title="Sample yaml file">
+                <p>apiVersion: gigaspaces.com/v1</p>
+                <p><span class="tc-highlight">kind: ProcessingUnit</span>
+                </p>
+                <p>metadata :</p>
+                <p>name: data-processor</p>
+                <p>namespace: default</p>
+                <p>spec :</p>
+                <p><span class="tc-highlight">partitions: 4</span>
+                </p>
+                <p><span class="tc-highlight">ha: true</span>
+                </p>
+                <p><span class="tc-highlight">antiAffinity: true</span>
+                </p>
+                <p>image:</p>
+                <p>repository: gigaspaces/xap-enterprise</p>
+                <p>tag: 16.1.0-m8-wed-31</p>
+                <p>javaHeap: limit-150Mi</p>
+                <p>license: tryme</p>
+                <p>manager:</p>
+                <p>name: testmanager</p>
+                <p>ports :</p>
+                <p>api: 8090</p>
+                <p>multiCast: false</p>
+                <p>productType: xap</p>
+                <p>properties: image.tag=16.1.0-m8-wed-31;image.repository=gigaspaces/xap-enterprise;pu.dynamic-partitioning=true</p>
+                <p>resourceUrl: https://yohana-gs.s3.eu-west-1.amazonaws.com/data-processor.jar</p>
+                <p>resources :</p>
+                <p>- id: null</p>
+                <p>limits :</p>
+                <p>cpu: null</p>
+                <p>memory: 550Mi</p>
+                <p>requests: null</p>
+            </div>
+        </div>
+        <p>Enter the following command to see the status of the Processing Units:</p>
+        <div class="tc-admon-note">
+            <p>The Processing Unit  will use one stateful set per stateful pu.</p>
+        </div><pre><code class="language-bash">kubectl get pus</code></pre>
+        <div class="easyui-accordion">
+            <div title="">
+                <p>Sample output appears as follows:</p>
+                <p>
+                    <img src="../Resources/Static/images/kubernetes-sample-get-pus.png" />
                 </p>
             </div>
         </div>
+        <p>Enter the following command to delete a Processing Unit:</p><pre><code class="language-bash">kubectl delete pu <i>name-of-processing-unit</i></code></pre>
     </body>
 </html>
