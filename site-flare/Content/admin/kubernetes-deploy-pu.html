@@ -21,7 +21,7 @@
         <p>To build and deploy the event-processing example in Kubernetes, the following steps are required:</p>
         <ol>
             <li>Build the sample services from the <MadCap:variable name="General.ProductNameXAP" /> software package.</li>
-            <li>Uploading the pu.xml files for deployment.</li>
+            <li>Uploading the pu.jar files for deployment.</li>
             <li>Deploy a Manager (Management Pod).</li>
             <li>Deploy the services that were created when you built the example to Data Pods in Kubernetes, connecting them to the Management Pod.</li>
             <li>View the processor logs to see the data processing results.</li>
@@ -40,7 +40,7 @@
         <div class="tc-admon-note" MadCap:conditions="Version.14-2-born">
             <p MadCap:conditions="Version.14-2-born">Ensure that your Kubernetes environment has access to the URL that you provide.</p>
         </div>
-        <p MadCap:conditions="Version.14-2-born">Use one of the following options to upload the pu.xml files for deployment. </p>
+        <p MadCap:conditions="Version.14-2-born">Use one of the following options to upload the pu.jar files for deployment. </p>
         <div class="tc-admon-attention" MadCap:conditions="Version.14-2-born">
             <p>The upload stage does not provide high availability. The pu.jar files are uploaded only to the active Manager Pod, and are not replicated to other managers.  High availability only takes effect after the service has been deployed.</p>
         </div>
@@ -59,7 +59,7 @@
                 </div>
                 <p><span class="tc-italic">Description:</span>
                 </p>
-                <p>Upload a pu.xml to the target.</p>
+                <p>Upload a pu.jar to the target.</p>
                 <p><span class="tc-italic">Parameters and Options:</span>
                 </p>
                 <table>
