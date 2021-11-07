@@ -18,7 +18,7 @@
             <li>A performance gain is realized, because their is more RAM and CPU on each update.</li>
         </ul>
         <div class="tc-admon-note">
-            <p>On Demand Scale Up/Down is supported in Kubernetes and ElasticGrid. It is not currently supported in ServiceGrid.</p>
+            <p>On Demand Scale Up/Down is supported in Kubernetes<MadCap:conditionalText MadCap:conditions="Version.16-0-died"> and ElasticGrid</MadCap:conditionalText>. It is not currently supported in ServiceGrid.</p>
         </div>
         <h2>Use Cases</h2>
         <p>If an application expects a significant increase in resource requirements at, for example, 9 am daily, the system may be scaled up -  to perhaps 20 times greater CPU capacity in the morning. Later in the day, the user will scale the system back down to its default level.</p>
@@ -60,7 +60,7 @@
         <p>
             <img src="../Resources/Static/images/SUSD-bigger-select-susd-from-menu.jpg" class="tc-picture90" />
         </p>
-        <p>Note that the appearance of the three-dot menu will be different for Kubernetes and for ElasticGrid:</p>
+        <p MadCap:conditions="Version.16-0-died">Note that the appearance of the three-dot menu will be different for Kubernetes and for ElasticGrid:</p>
         <div class="easyui-tabs" plain="true">
             <div title="Kubernetes">
                 <p>
@@ -77,7 +77,7 @@
         <p>
             <img src="../Resources/Static/images/susd-dialog-box-in-Kubernetes.jpg" class="tc-picture80" />
         </p>
-        <p>In this Kubernetes example, the user chose a CPU value of 500m (millicores), and a RAM size of 600 MiB. Note that for ElasticGrid, these values would be expressed in MHz and Mb. Light blue values indicate the original, default values for these parameters.</p>
+        <p>In this Kubernetes example, the user chose a CPU value of 500m (millicores), and a RAM size of 600 MiB. <MadCap:conditionalText MadCap:conditions="Version.16-0-died">Note that for ElasticGrid, these values would be expressed in MHz and Mb. </MadCap:conditionalText>Light blue values indicate the original, default values for these parameters.</p>
         <p>Click <b>Apply</b> to accept the values shown. A confirmation screen will display:</p>
         <p>
             <img src="../Resources/Static/images/susd-scale-entire-service.jpg" class="tc-picture30" />
@@ -163,19 +163,21 @@
                 <tr>
                     <td align="left"><b>memory-value</b>
                     </td>
-                    <td align="left">The new amount of memory allocated to each partition, in units of <a href="https://www.gbmb.org/mb-to-mib">Mebibytes</a> for Kubernetes, or megabytes for ElasticGrid.</td>
+                    <td align="left">The new amount of memory allocated to each partition, in units of <a href="https://www.gbmb.org/mb-to-mib">Mebibytes</a> for Kubernetes<MadCap:conditionalText MadCap:conditions="Version.16-0-died">, or megabytes for ElasticGrid</MadCap:conditionalText>.</td>
                     <td align="left">
                         <p align="left"><b>--memory=500Mi</b> (Kubernetes)</p>
-                        <p align="left"> <b>--memory=500</b> (ElasticGrid)                  </p>
+                        <p align="left" MadCap:conditions="Version.16-0-died"> <b>--memory=500</b> (ElasticGrid)                  </p>
                     </td>
                 </tr>
                 <tr>
                     <td align="left"><b>cpu-value</b>
                     </td>
-                    <td align="left">The new amount of CPU resources allocated to each partition, in units of millicores (Kubernetes) or Mhz (ElasticGrid). One millicore is equivalent to 1/1000 of a CPU.</td>
+                    <td align="left">The new amount of CPU resources allocated to each partition, in units of millicores (Kubernetes)<MadCap:conditionalText MadCap:conditions="Version.16-0-died"> or Mhz (ElasticGrid)</MadCap:conditionalText>. One millicore is equivalent to 1/1000 of a CPU.</td>
                     <td align="left">
                         <p align="left"><b>--cpu=500m</b> (Kubernetes)</p>
-                        <p align="left"><b>--cpu=500</b> (ElasticGrid)</p>
+                        <p align="left">
+                            <MadCap:conditionalText MadCap:conditions="Version.16-0-died"><b>--cpu=500</b> (ElasticGrid)</MadCap:conditionalText>
+                        </p>
                     </td>
                 </tr>
                 <tr>
