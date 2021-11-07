@@ -37,7 +37,7 @@
         <div class="tc-admon-note">
             <p>Capacity planning should include the RAM resources to accommodate the additional partitions during the Scaling Out process. </p>
         </div>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Version.16-0-died">
             <p>ElasticGrid and ServiceGrid orchestration methods are supported. Kubernetes will be supported in the next release.</p>
         </div>
         <div class="tc-admon-attention">
@@ -62,7 +62,9 @@
                 <img src="../Resources/Static/images/SOSI-service-grid.jpg" class="tc-picture40" />
             </p>
             <p>In the example above, there are currently 16 partitions alocated for the service. You can choose one of the suggested numbers of partitions, or press Custom to choose any number of partitions. Note that the new partitions will all have the same allocation of RAM and CPU as the existing partitions.</p>
-            <p><b>Kubernetes and ElasticGrid:</b>
+            <p><b>Kubernetes</b>
+                <MadCap:conditionalText MadCap:conditions="Version.16-0-died"><b> and ElasticGrid</b>
+                </MadCap:conditionalText><b>:</b>
             </p>
             <p style="text-align: center;">
                 <img src="../Resources/Static/images/SOSI-Kubernetes-and-ElasticGrid.jpg" class="tc-picture40" />
@@ -94,15 +96,16 @@
                     <p><span class="tc-italic">Command (ServiceGrid):</span>
                     </p>
                     <p><code>pu scale-horizontal &lt;pu-name&gt; &lt;num-partitions&gt;</code> <br />or <br /><code>pu scale-h &lt;pu-name&gt; &lt;partitions&gt;</code></p>
-                    <p>&#160;</p>
-                    <p><span class="tc-italic">Command (ElasticGrid):</span>
-                    </p>
-                    <p><![CDATA[  ]]><code>pu scale-horizontal &lt;pu-name&gt; &lt;num-partitions&gt;</code> &lt;memory&gt; &lt;cpu&gt;<br />or<br /><code>pu scale-h &lt;pu-name&gt; &lt;partitions&gt; &lt;memory&gt; &lt;cpu&gt;</code></p>
+                    <div MadCap:conditions="Version.16-0-died">
+                        <p>&#160;</p>
+                        <p><span class="tc-italic">Command (ElasticGrid):</span>
+                        </p>
+                        <p><![CDATA[  ]]><code>pu scale-horizontal &lt;pu-name&gt; &lt;num-partitions&gt;</code> &lt;memory&gt; &lt;cpu&gt;<br />or<br /><code>pu scale-h &lt;pu-name&gt; &lt;partitions&gt; &lt;memory&gt; &lt;cpu&gt;</code></p>
+                    </div>
                     <p><span class="tc-italic">Description:</span>
                     </p>
-                    <p>&#160;</p>
                     <p>The Space is rescaled to the desired number of partitions. </p>
-                    <div class="tc-admon-note">
+                    <div class="tc-admon-note" MadCap:conditions="Version.16-0-died">
                         <p>For ElasticGrid, the memory and CPU allocations for new partitions may be specified, otherwise the default values for the service are used.</p>
                     </div>
                     <p><span class="tc-italic">Input Example:</span>
@@ -137,11 +140,11 @@ Submitted At 2020-05-20 16:32:01
                                 <td>partitions</td>
                                 <td>Number of partitions for the Space</td>
                             </tr>
-                            <tr>
+                            <tr MadCap:conditions="Version.16-0-died">
                                 <td>memory</td>
                                 <td>Memory allocated for the Space (ElasticGrid only)</td>
                             </tr>
-                            <tr>
+                            <tr MadCap:conditions="Version.16-0-died">
                                 <td>cpu</td>
                                 <td>CPU allocated for the Space (ElasticGrid only)</td>
                             </tr>
@@ -190,13 +193,13 @@ Completed at 2020-05-20 16:32:31
         </div>
         <div title="REST Manager API" style="padding:10px">
             <h1>On Demand Scale Out/In Using the REST-MANAGER API</h1>
-            <p>ServiceGrid:</p><pre><code class="language-bash">
+            <p MadCap:conditions="Version.16-0-died">ServiceGrid:</p><pre><code class="language-bash">
 curl -X POST --header 'Content-Type: application/json' 
              --header 'Accept: text/plain' 
 'https://172.17.0.4:8090/v2/pus/myProcessingUnit/scale-h?target=4'
 </code></pre>
         </div>
-        <div title="REST Manager API" style="padding:10px">
+        <div title="REST Manager API" style="padding:10px" MadCap:conditions="Version.16-0-died">
             <p>Elasticgrid:</p><pre><code class="language-bash">
 curl -X POST --header 'Content-Type: application/json' 
              --header 'Accept: text/plain' 
