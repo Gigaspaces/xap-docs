@@ -18,12 +18,20 @@
             <p><b>Data source properties</b>
             </p>
             <ul>
-                <li> <b>Type</b> — the type of data source for the Data Pipeline. Available options: MSSQL and DB2</li>
-                <li><b>Host</b> — </li>
-                <li><b>Port</b> — </li>
-                <li><b>Database name</b>  — </li>
-                <li><b>Admin schema name</b>  — </li>
-                <li><b>Admin schema password</b>  — </li>
+                <li><b>Type</b> — the type of data source for the Data Pipeline. Available options: MSSQL and DB2</li>
+                <li><b>Host</b> — IP or DNS host name of the source database server</li>
+                <li><b>Port</b> — Db2 z/OS source database port</li>
+                <li><b>Database name</b>  — Location name of the Db2 z/OS database</li>
+                <li><b>Admin schema name</b>  — A cr8admin login user on the source database that
+has all required privileges from the section “Db2
+z/OS prerequisites”</li>
+                <li><b>Admin schema password</b>  — Database password of the admin schema on the
+source database that has required privileges</li>
+                <div class="tc-admon-note">
+                    <p>After the first validation this parameter will be
+automatically encrypted by the CR8 and replaced
+inside the configuration file.</p>
+                </div>
             </ul>
         </div>
         <div MadCap:conditions="SnippetConditions.SnippetCondition02">
