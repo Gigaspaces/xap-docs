@@ -16,7 +16,7 @@
             <li>Creating a resource group for your AKS cluster.</li>
             <li>Creating an AKS cluster for KubeGrid.</li>
             <li>Configuring kubectl to connect to your AKS&#160;cluster.</li>
-            <li>Creating a service account for Helm and deploying Tiller<MadCap:conditionalText MadCap:conditions="Version.15-5-born"> (Helm 2 only)</MadCap:conditionalText>.</li>
+            <li>Creating a service account for Helm<MadCap:conditionalText MadCap:conditions="Version.16-1-died"> and deploying Tiller</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-born,Version.16-1-died"> (Helm 2 only)</MadCap:conditionalText>.</li>
             <li>Deploying KubeGrid using the <MadCap:variable name="General.CompanyName" /> |Helm charts.</li>
         </ol>
         <div class="tc-admon-tip">
@@ -59,7 +59,7 @@
         <p>You can use the Azure portal to check your AKS resource group, and to verify that your cluster is up and running.</p>
         <h1>Deploying Kubernetes on the AKS Cluster</h1>
         <p MadCap:conditions="Version.15-5-died">After you set up your Azure AKS environment, you have to deploy Kubernetes on the AKS cluster by configuring kubectl to connect to the cluster, and setting up a Tiller service account (the Helm server-side, in-cluster component).</p>
-        <p MadCap:conditions="Version.15-5-born">After you set up your Azure AKS environment, you have to deploy Kubernetes on the AKS cluster by configuring kubectl to connect to the cluster, and (if you are using Helm 2) setting up a Tiller service account (the Helm server-side, in-cluster component).</p>
+        <p MadCap:conditions="Version.15-5-born">After you set up your Azure AKS environment, you have to deploy Kubernetes on the AKS cluster by configuring kubectl to connect to the cluster<MadCap:conditionalText MadCap:conditions="Version.16-1-died">, and (if you are using Helm 2) setting up a Tiller service account (the Helm server-side, in-cluster component)</MadCap:conditionalText>.</p>
         <h2>Configuring Kubectl</h2>
         <p>In order to use the AKS cluster you created to host Kubernetes and KubeGrid, kubectl needs to be able to connect to the cluster. </p>
         <div class="tc-admon-note">
@@ -109,8 +109,7 @@ subjects:
                 </li>
             </ol>
         </div>
-        <p>&#160;</p>
-        <div MadCap:conditions="Version.15-5-born">
+        <div MadCap:conditions="Version.15-5-born,Version.16-1-died">
             <h2>Creating a Service Account for Helm (Helm 2 Only)</h2>
             <p>In addtion to configuring kubectl, you need to create a service account for Helm in Azure.</p>
             <ol>
@@ -185,7 +184,7 @@ subjects:
                         <p><pre><code>helm pull gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-long" /> --untar </code></pre>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><pre><code>helm fetch gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-long" /> --untar</code></pre>
                         </p>
                     </div>
@@ -218,7 +217,7 @@ service:
                                 <p><pre><code>helm install demo insightedge </code></pre>
                                 </p>
                             </div>
-                            <div title="Helm 2">
+                            <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                                 <p><pre><code>helm install insightedge --name demo</code></pre>
                                 </p>
                             </div>

@@ -68,7 +68,7 @@ Moreover, since Helm is open source, there are many community charts available w
             <p>If you're using minikube,  note that the default kubernetes services created by GigaSpaces uses LoadBalancer, which requires running 'minikube tunnel' in the background. For more information see <a href="https://minikube.sigs.k8s.io/docs/commands/tunnel/">minikube tunnel</a>.</p>
         </div>
         <h3>Option 2: Fetch the GigaSpaces Helm Charts from the GigaSpaces Repository</h3>
-        <p>Another option is to fetch the GigaSpaces Helm charts that you need and unpack them locally, so you don’t have to repeat the repo name and package version in each command (which has the added benefit of making the commands shorter). For example, you can <MadCap:conditionalText MadCap:conditions="Version.15-5-born"><code class="language-bash">fetch </code>(Helm 2) or <code class="language-bash">pull </code>(Helm 3)</MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.15-5-died">fetch </MadCap:conditionalText>and unpack the Helm chart using the following command:</p>
+        <p>Another option is to fetch the GigaSpaces Helm charts that you need and unpack them locally, so you don’t have to repeat the repo name and package version in each command (which has the added benefit of making the commands shorter). For example, you can <MadCap:conditionalText MadCap:conditions="Version.15-5-born,Version.16-1-born"> <code class="language-bash">pull </code>(Helm 3)</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-born,Version.16-1-died"><code class="language-bash">fetch </code>(Helm 2) or <code class="language-bash">pull </code>(Helm 3)</MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.15-5-died">fetch </MadCap:conditionalText>and unpack the Helm chart using the following command:</p>
         <p>
             <p>
                 <div class="easyui-tabs" plain="true">
@@ -76,7 +76,7 @@ Moreover, since Helm is open source, there are many community charts available w
                         <p><code class="language-bash">helm pull gigaspaces/insightedge-manager --version=[%=Versions.helm-version-MX%] --untar</code>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><code class="language-bash">helm fetch gigaspaces/insightedge-manager --version=[%=Versions.helm-version-MX%] --untar</code>
                         </p>
                     </div>
@@ -100,7 +100,7 @@ Moreover, since Helm is open source, there are many community charts available w
                             <p><pre><code class="language-bash">helm install testmanager insightedge-manager </code></pre>
                             </p>
                         </div>
-                        <div title="Helm 2">
+                        <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                             <p><pre><code class="language-bash">helm install insightedge-manager --name testmanager</code></pre>
                             </p>
                         </div>

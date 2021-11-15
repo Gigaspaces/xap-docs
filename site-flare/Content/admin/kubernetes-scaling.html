@@ -18,7 +18,7 @@
                         <p><pre><code>helm upgrade demo xap --set pu.resources.limits.memory=600Mi,pu.readinessProbe.enabled=true --reuse-values </code></pre>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><pre><code>helm upgrade xap --name demo --set pu.resources.limits.memory=600Mi,pu.readinessProbe.enabled=true --reuse-values</code></pre>
                         </p>
                     </div>
@@ -40,7 +40,7 @@
                         <p><pre><code>helm install mySpace insightedge-pu --set manager.name=hello,partitions=2,readinessProbe.enabled=true </code></pre>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><pre><code>helm install insightedge-pu --name mySpace --set manager.name=hello,partitions=2,readinessProbe.enabled=true</code></pre>
                         </p>
                     </div>
@@ -75,7 +75,7 @@
                         <p><pre><code>helm install hello insightedge-manager --set PatchSupport.enable=false</code></pre>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><pre><code>helm install insightedge-manager --name hello --set PatchSupport.enable=false</code></pre>
                         </p>
                     </div>

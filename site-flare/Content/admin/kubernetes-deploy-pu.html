@@ -128,7 +128,7 @@
                                 <p><pre><code class="language-bash">helm install testmanager insightedge-manager</code></pre>
                                 </p>
                             </div>
-                            <div title="Helm 2">
+                            <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                                 <p><pre><code class="language-bash">helm install insightedge-manager --name testmanager</code></pre>
                                 </p>
                             </div>
@@ -145,7 +145,7 @@
                                 <p><pre><code class="language-bash">helm install processor insightedge-pu --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar </code></pre>
                                 </p>
                             </div>
-                            <div title="Helm 2">
+                            <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                                 <p><pre><code class="language-bash">helm install insightedge-pu --name processor --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar</code></pre>
                                 </p>
                             </div>
@@ -162,7 +162,7 @@
                                 <p><pre><code class="language-bash">helm install feeder insightedge-pu --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/feeder/target/data-feeder.jar </code></pre>
                                 </p>
                             </div>
-                            <div title="Helm 2">
+                            <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                                 <p><pre><code class="language-bash">helm install insightedge-pu --name feeder --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/feeder/target/data-feeder.jar</code></pre>
                                 </p>
                             </div>
@@ -191,7 +191,7 @@
                         <p><pre><code class="language-bash">helm install test insightedge --set pu.resources.limits.memory=512Mi,pu.java.heap=256m </code></pre>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><pre><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=256m</code></pre>
                         </p>
                     </div>
@@ -206,7 +206,7 @@
                         <p><pre><code class="language-bash">helm install test insightedge --set pu.resources.limits.memory=512Mi,pu.java.heap=limit-150m </code></pre>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><pre><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=limit-150m</code></pre>
                         </p>
                     </div>
@@ -222,7 +222,7 @@
                         <p><pre><code class="language-bash">helm install test insightedge --set pu.resources.limits.memory=256Mi,pu.java.heap=75% </code></pre>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><pre><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=256Mi,pu.java.heap=75%</code></pre>
                         </p>
                     </div>
@@ -239,7 +239,7 @@
                             <p><pre><code class="language-bash">helm install test insightedge --set pu.java.options="-XX:+PrintGCDetails" </code></pre>
                             </p>
                         </div>
-                        <div title="Helm 2">
+                        <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                             <p><pre><code class="language-bash">helm install insightedge --name test --set pu.java.options="-XX:+PrintGCDetails"</code></pre>
                             </p>
                         </div>
@@ -271,7 +271,7 @@
                         <p><pre><code class="language-bash">helm install demo insightedge --set manager.nodeSelector.enabled=true,manager.nodeSelector.selector="disktype: ssd" </code></pre>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><pre><code class="language-bash">helm install insightedge --name demo --set manager.nodeSelector.enabled=true,manager.nodeSelector.selector="disktype: ssd"</code></pre>
                         </p>
                     </div>
@@ -286,7 +286,7 @@
                         <p><pre><code class="language-bash">helm install demo insightedge --set pu.nodeSelector.enabled=true,pu.nodeSelector.selector="disktype: ssd"</code></pre>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><pre><code class="language-bash">helm install insightedge --name demo --set pu.nodeSelector.enabled=true,pu.nodeSelector.selector="disktype: ssd"</code></pre>
                         </p>
                     </div>

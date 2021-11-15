@@ -75,7 +75,7 @@ Moreover, since Helm is open source, there are many community charts available w
                         <p><code class="language-bash">helm install demo gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack-MX" /></code>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><code class="language-bash">helm install gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-svc-pack-MX" /> --name demo</code>
                         </p>
                     </div>
@@ -87,7 +87,7 @@ Moreover, since Helm is open source, there are many community charts available w
             </div>
         </p>
         <h3><a name="fetching-the-gigaspaces-helm-charts-from-the-gigaspaces-repository"></a>Option 2: Fetch the GigaSpaces Helm Charts from the GigaSpaces Repository</h3>
-        <p>Another option is to fetch the GigaSpaces Helm charts that you need and unpack them locally, so you don’t have to repeat the repo name and package version in each command (which has the added benefit of making the commands shorter). For example, if you <MadCap:conditionalText MadCap:conditions="Version.15-5-born">fetch (Helm 2) or pull (Helm 3)</MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.15-5-died">fetch </MadCap:conditionalText>and unpack the Helm chart using the following command:</p>
+        <p>Another option is to fetch the GigaSpaces Helm charts that you need and unpack them locally, so you don’t have to repeat the repo name and package version in each command (which has the added benefit of making the commands shorter). For example, if you <MadCap:conditionalText MadCap:conditions="Version.15-5-born,Version.16-1-born">pull (Helm 3)</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-born,Version.16-1-died">fetch (Helm 2) or pull (Helm 3)</MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.15-5-died">fetch </MadCap:conditionalText>and unpack the Helm chart using the following command:</p>
         <p>
             <p MadCap:conditions="Version.15-5-born">
                 <div class="easyui-tabs" plain="true">
@@ -95,7 +95,7 @@ Moreover, since Helm is open source, there are many community charts available w
                         <p><code class="language-bash">helm pull gigaspaces/insightedge --version=[%=Versions.helm-version-MX%] --untar</code>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><code class="language-bash">helm fetch gigaspaces/insightedge --version=[%=Versions.helm-version-MX%] --untar</code>
                         </p>
                     </div>
@@ -123,7 +123,7 @@ Moreover, since Helm is open source, there are many community charts available w
                         <p><code class="language-bash">helm install demo insightedge</code>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><code class="language-bash">helm install insightedge --name demo</code>
                         </p>
                     </div>
@@ -155,7 +155,7 @@ Moreover, since Helm is open source, there are many community charts available w
                         <p><code class="language-bash">helm del demo</code>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><code class="language-bash">helm del demo --purge</code>
                         </p>
                     </div>
@@ -173,7 +173,7 @@ Moreover, since Helm is open source, there are many community charts available w
                     <p><code class="language-bash">helm del demo --keep-history</code>
                     </p>
                 </div>
-                <div title="Helm 2">
+                <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                     <p><code class="language-bash">helm del demo</code>
                     </p>
                 </div>
@@ -202,7 +202,7 @@ Moreover, since Helm is open source, there are many community charts available w
                             <p><pre><code class="language-bash">helm install testmanager insightedge-manager </code></pre>
                             </p>
                         </div>
-                        <div title="Helm 2">
+                        <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                             <p><pre><code class="language-bash">helm install insightedge-manager --name testmanager</code></pre>
                             </p>
                         </div>
@@ -244,7 +244,7 @@ Moreover, since Helm is open source, there are many community charts available w
                                 <p><pre><code class="language-bash">helm install testspace insightedge-pu --set manager.name=testmanager</code></pre>
                                 </p>
                             </div>
-                            <div title="Helm 2">
+                            <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                                 <p><pre><code class="language-bash">helm install insightedge-pu --name testspace --set manager.name=testmanager</code></pre>
                                 </p>
                             </div>
@@ -263,7 +263,7 @@ Moreover, since Helm is open source, there are many community charts available w
                     <div title="Helm 3">
                         <p> <code class="language-bash">helm install demo insightedge --set pu.license="&lt;your license key&gt;" </code></p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><code class="language-bash">helm install insightedge --name demo --set pu.license="&lt;your license key&gt;" </code>
                         </p>
                     </div>

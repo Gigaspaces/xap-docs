@@ -54,7 +54,7 @@
                         <p><pre><code>helm pull gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-short" /> --untar </code></pre>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><pre><code>helm fetch gigaspaces/insightedge --version=<MadCap:variable name="Versions.product-version-short" /> --untar</code></pre>
                         </p>
                     </div>
@@ -87,7 +87,7 @@ service:
                                 <p><pre><code>helm install demo insightedge --set pu.partitions=2,pu.ha=true </code></pre>
                                 </p>
                             </div>
-                            <div title="Helm 2">
+                            <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                                 <p><pre><code>helm install insightedge --name demo --set pu.partitions=2,pu.ha=true</code></pre>
                                 </p>
                             </div>

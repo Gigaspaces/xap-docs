@@ -33,7 +33,7 @@
             <p>Helm must be installed before you download the <MadCap:variable name="General.ProductNameXAP" /> Helm chart.</p>
         </div>
         <p class="tc-todo" MadCap:conditions="Version.15-5-died">To deploy the Helm Tiller service, type the following command:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm init --service-account tiller</code></pre>
-        <div MadCap:conditions="Version.15-5-born">
+        <div MadCap:conditions="Version.15-5-born,Version.16-1-died">
             <p class="tc-todo">For Helm 2, to deploy the Helm Tiller service, type the following command:</p><pre><code class="language-bash">helm init --service-account tiller</code></pre>
         </div>
         <h2>Installing the <MadCap:variable name="General.ProductNameXAP" /> Manager per Geographical Site</h2>
@@ -50,7 +50,7 @@
 --set image.repository=sample/xap-enterprise-wan-logging,image.tag=<MadCap:variable name="Versions.product-version-short" /></code></pre>
                                 </p>
                             </div>
-                            <div title="Helm 2">
+                            <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                                 <p><pre><code>helm install gigaspaces/xap-manager --name mymanager --version=<MadCap:variable name="Versions.product-version-long" />--namespace <b>gigaspaces-central-ns</b> 
 --set image.repository=sample/xap-enterprise-wan-logging,image.tag=<MadCap:variable name="Versions.product-version-short" /></code></pre>
                                 </p>
@@ -114,7 +114,7 @@ remote-gateway-name=<b>central</b></code></pre>
                         <p><pre><code>helm install gigaspaces/xap-pu myspace-ca --version=<MadCap:variable name="Versions.product-version-long" /> --set manager.name=mymanager,partitions=1,resourceUrl=https://github.com/sample/mirrorexample2/blob/master/iks/wan-space-central.jar?raw=true --set service.lrmi.enabled=true --set image.repository=sample/xap-enterprise-wan-logging,image.tag=<MadCap:variable name="Versions.product-version-short" /> --namespace gigaspaces-central-ns</code></pre>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><pre><code>helm install gigaspaces/xap-pu --name myspace-ca --version=<MadCap:variable name="Versions.product-version-long" /> --set manager.name=mymanager,partitions=1,resourceUrl=https://github.com/sample/mirrorexample2/blob/master/iks/wan-space-central.jar?raw=true --set service.lrmi.enabled=true --set image.repository=sample/xap-enterprise-wan-logging,image.tag=<MadCap:variable name="Versions.product-version-short" /> --namespace gigaspaces-central-ns</code></pre>
                         </p>
                     </div>
@@ -134,7 +134,7 @@ remote-gateway-name=<b>central</b></code></pre>
                             <p><pre><code>helm install gigaspaces/xap-pu myspace-gb --version=<MadCap:variable name="Versions.product-version-long" /> --set manager.name=mymanager,partitions=1,resourceUrl=https://github.com/sample/mirrorexample2/blob/master/iks/wan-space-west.jar?raw=true --set service.lrmi.enabled=true --set image.repository=sample/xap-enterprise-wan-logging,image.tag=<MadCap:variable name="Versions.product-version-short" /> --namespace gigaspaces-west-ns</code></pre>
                             </p>
                         </div>
-                        <div title="Helm 2">
+                        <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                             <p><pre><code>helm install gigaspaces/xap-pu --name myspace-gb --version=<MadCap:variable name="Versions.product-version-long" /> --set manager.name=mymanager,partitions=1,resourceUrl=https://github.com/sample/mirrorexample2/blob/master/iks/wan-space-west.jar?raw=true --set service.lrmi.enabled=true --set image.repository=sample/xap-enterprise-wan-logging,image.tag=<MadCap:variable name="Versions.product-version-short" /> --namespace gigaspaces-west-ns</code></pre>
                             </p>
                         </div>
@@ -189,7 +189,7 @@ remote-gateway-name=<b>central</b></code></pre>
                         <p><pre><code>helm install gateway-gb gigaspaces/xap-pu gateway-ca --version=<MadCap:variable name="Versions.product-version-long" /> --set manager.name=mymanager,resourceUrl=https://github.com/sample/mirrorexample2/blob/master/iks/wan-gateway-central.jar?raw=true --set service.lrmi.enabled=true --set java.options="-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174\,-Dcom.gs.transport_protocol.lrmi.bind-port=8200" --set image.repository=sample/xap-enterprise-wan-logging,image.tag=<MadCap:variable name="Versions.product-version-short" /> --namespace gigaspaces-central-ns</code></pre>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><pre><code>helm install gigaspaces/xap-pu --name gateway-ca --version=<MadCap:variable name="Versions.product-version-long" /> --set manager.name=mymanager,resourceUrl=https://github.com/sample/mirrorexample2/blob/master/iks/wan-gateway-central.jar?raw=true --set service.lrmi.enabled=true --set java.options="-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174\,-Dcom.gs.transport_protocol.lrmi.bind-port=8200" --set image.repository=sample/xap-enterprise-wan-logging,image.tag=<MadCap:variable name="Versions.product-version-short" /> --namespace gigaspaces-central-ns</code></pre>
                         </p>
                     </div>
@@ -208,7 +208,7 @@ remote-gateway-name=<b>central</b></code></pre>
                         <p><pre><code>helm install gigaspaces/xap-pu gateway-gb --version=<MadCap:variable name="Versions.product-version-long" /> --set manager.name=mymanager,resourceUrl=https://github.com/sample/mirrorexample2/blob/master/iks/wan-gateway-west.jar?raw=true --set service.lrmi.enabled=true --set java.options="-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174\,-Dcom.gs.transport_protocol.lrmi.bind-port=8200" --set image.repository=sample/xap-enterprise-wan-logging,image.tag=<MadCap:variable name="Versions.product-version-short" /> --namespace gigaspaces-west-ns</code></pre>
                         </p>
                     </div>
-                    <div title="Helm 2">
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
                         <p><pre><code>helm install gigaspaces/xap-pu --name gateway-gb --version=<MadCap:variable name="Versions.product-version-long" /> --set manager.name=mymanager,resourceUrl=https://github.com/sample/mirrorexample2/blob/master/iks/wan-gateway-west.jar?raw=true --set service.lrmi.enabled=true --set java.options="-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174\,-Dcom.gs.transport_protocol.lrmi.bind-port=8200" --set image.repository=sample/xap-enterprise-wan-logging,image.tag=<MadCap:variable name="Versions.product-version-short" /> --namespace gigaspaces-west-ns</code></pre>
                         </p>
                     </div>
@@ -219,7 +219,6 @@ remote-gateway-name=<b>central</b></code></pre>
                 </p>
             </div>
         </p>
-        <p>&#160;</p>
         <p>&#160;</p>
         <p><code>kubectl exec -it gateway-gb-xap-pu-0 -n gigaspaces-west-ns --bash</code>
         </p>
