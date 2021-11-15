@@ -39,25 +39,25 @@ inside the configuration file.</p>
             </p>
             <ul>
                 <li>
-                    <p><b>Name</b> — </p>
+                    <p><b>Name</b> — the pipeline name</p>
                 </li>
                 <li>
-                    <p><b>Origin</b>   —</p>
+                    <p><b>Origin</b>   — the System of Record</p>
                 </li>
                 <li>
-                    <p><b>Space name</b> — </p>
+                    <p><b>Space name</b> — the destination Space name</p>
                 </li>
                 <li>
-                    <p><b>Pipeline status</b>  — </p>
+                    <p><b>Pipeline status</b>  — pipeline information</p>
                 </li>
                 <li>
-                    <p><b>Connector status</b>  — </p>
+                    <p><b>Connector status</b>  — status of the connector pulling data from the data source to the staging area (kafka)</p>
                 </li>
                 <li>
-                    <p><b>Consumer status</b> —</p>
+                    <p><b>Consumer status</b> — status of the connector pulling data from the staging area (kafka) to the destination Space</p>
                 </li>
                 <li>
-                    <p><b>Total operations</b> —</p>
+                    <p><b>Total operations</b> — total number of operations</p>
                 </li>
             </ul>
         </div>
@@ -105,15 +105,18 @@ inside the configuration file.</p>
             </ul>
         </div>
         <div MadCap:conditions="SnippetConditions.SnippetCondition04">
-            <p><b>Download consumer project</b> — </p>
-            <p><b>Deploy consumer</b> — </p>
-            <p><b>Start consumer</b> — </p>
-            <p><b>Start full sync</b> — </p>
-            <p><b>Start connector</b> — </p>
-            <p><b>Stop connector</b> — </p>
-            <p><b>Stop consumer</b> — </p>
-            <p><b>Delete data pipeline</b> — </p>
-            <p><b>View configuration</b> — </p>
+            <p><b>Download consumer project</b> — download source code if customization is required</p>
+            <div class="tc-admon-note">
+                <p>For the following operations, note that the <i>connector </i> service pulls data from the data source (System of Record) and pushes the data to the kafka staging area. The <i>consumer </i> process pulls data from the kafka staging area and pushes it to the destination Space.</p>
+            </div>
+            <p><b>Deploy consumer</b> — deploy the consumer dervice</p>
+            <p><b>Start consumer</b> — activate the consumer process</p>
+            <p><b>Start full sync</b> — initiate initial data load from data source</p>
+            <p><b>Start connector</b> — start the connector service</p>
+            <p><b>Stop connector</b> — stop the connector service. This will also stop data from loading into the staging area (kafka).</p>
+            <p><b>Stop consumer</b> — stop the consumer service. This will stop loading to the Space, but the staging area (kafka) will connect to gather data.</p>
+            <p><b>Delete data pipeline</b> — end the pipeline process and remove all related data from the destination Space</p>
+            <p><b>View configuration</b> — display the data pipeline definition</p>
         </div>
     </body>
 </html>
