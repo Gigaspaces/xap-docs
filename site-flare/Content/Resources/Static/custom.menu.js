@@ -9,7 +9,7 @@
 	'latestZZZ': { 'url': '/latest/landing.html', 'label': '16.1zzz' },	
 	
 	'16.0AAA': { 'url': '/16.0/landing.html', 'label': '16.0aaa',  'topicBanner': 'old' },
-	'15.8BBB': { 'url': '/15.8/landing.html', 'label': '15.8bbb',  'topicBanner': 'old' },
+	'15.8': { 'url': '/15.8/landing.html', 'label': '15.8bbb',  'topicBanner': 'old' },
 	'15.5': { 'url': '/15.5/landing.html', 'label': '15.5',  'topicBanner': 'old' },
 	'15.2': { 'url': '/15.2/index.html', 'label': '15.2',  'topicBanner': 'old' },
 	
