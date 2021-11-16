@@ -57,7 +57,7 @@ inside the configuration file.</p>
                     <p><b>Consumer status</b> — status of the connector pulling data from the staging area (kafka) to the destination Space</p>
                 </li>
                 <li>
-                    <p><b>Total operations</b> — total number of operations</p>
+                    <p><b>Total operations</b> — total number of insert, update and delete operations from the connector</p>
                 </li>
             </ul>
         </div>
@@ -112,7 +112,7 @@ inside the configuration file.</p>
             <p><b>Deploy consumer</b> — deploy the consumer dervice</p>
             <p><b>Start consumer</b> — activate the consumer process</p>
             <p><b>Start full sync</b> — initiate initial data load from data source</p>
-            <p><b>Start connector</b> — start the connector service</p>
+            <p><b>Start connector</b> — start the connector service (CDC)</p>
             <p><b>Stop connector</b> — stop the connector service. This will also stop data from loading into the staging area (kafka).</p>
             <p><b>Stop consumer</b> — stop the consumer service. This will stop loading to the Space, but the staging area (kafka) will connect to gather data.</p>
             <p><b>Delete data pipeline</b> — end the pipeline process and remove all related data from the destination Space</p>
