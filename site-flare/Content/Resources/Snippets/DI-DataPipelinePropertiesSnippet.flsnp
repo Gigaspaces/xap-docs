@@ -10,8 +10,8 @@
                 <li> <b>Data Pipeline name</b> —  the name of the new Data Pipeline that will be introduced to the grid</li>
                 <li><b>Space Name</b> — the Space that will be connected to the Data Pipeline</li>
                 <li><b>Connector Type</b> — Available option: CR8</li>
-                <li><b>Connector host</b>  — the host IP address for the Data Pipeline</li>
-                <li><b>Connector port</b>  — the host port for the Data Pipeline</li>
+                <li><b>Connector host</b>  — host of the CDC implementation component for the Data Pipeline</li>
+                <li><b>Connector port</b>  — port of the CDC implementation component for the Data Pipeline</li>
             </ul>
         </div>
         <div MadCap:conditions="SnippetConditions.SnippetCondition01">
@@ -39,22 +39,39 @@ inside the configuration file.</p>
             </p>
             <ul>
                 <li>
-                    <p><b>Name</b> — the pipeline name</p>
+                    <p><b>Name</b> — pipeline name</p>
                 </li>
                 <li>
-                    <p><b>Origin</b>   — the System of Record</p>
+                    <p><b>Origin</b>   — System of Record</p>
                 </li>
                 <li>
                     <p><b>Space name</b> — the destination Space name</p>
                 </li>
                 <li>
-                    <p><b>Pipeline status</b>  — pipeline information</p>
+                    <p><b>Pipeline status</b>  — reflects the consumer and connector statuses. Possible statuses are: PENDING, ACTIVE, BROKEN, UNHEALTHY, FULL_SYNC_IN_PROGRESS, FULL_SYNC_FAILED, FULL_SYNC_COMPLETED FULL_SYNC_COMPLETING, NOT_AVAILABLE, CONNECTOR_STOPPED, CONSUMER_STOPPED, PIPELINE_STOPPED</p>
                 </li>
                 <li>
-                    <p><b>Connector status</b>  — status of the connector pulling data from the data source to the staging area (kafka)</p>
+                    <p><b>Connector status</b>  — status of the connector pulling data from the data source to the staging area</p>
                 </li>
                 <li>
-                    <p><b>Consumer status</b> — status of the connector pulling data from the staging area (kafka) to the destination Space</p>
+                    <p><b>Consumer status</b> — status of the consumer (PU) in the grid that is reading from the staging area, and doing operations against the Space. The possible statuses are: </p>
+                    <ul>
+                        <li>
+                            <p>pending</p>
+                        </li>
+                        <li>
+                            <p>active</p>
+                        </li>
+                        <li>
+                            <p>stopped</p>
+                        </li>
+                        <li>
+                            <p>unhealthy - can be recovered from this state</p>
+                        </li>
+                        <li>
+                            <p>broken - cannot recover from this state</p>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <p><b>Total operations</b> — total number of insert, update and delete operations from the connector</p>
@@ -105,16 +122,16 @@ inside the configuration file.</p>
             </ul>
         </div>
         <div MadCap:conditions="SnippetConditions.SnippetCondition04">
-            <p><b>Download consumer project</b> — download source code if customization is required</p>
+            <p><b>Download java project</b> — download source code if customization is required</p>
             <div class="tc-admon-note">
                 <p>For the following operations, note that the <i>connector </i> service pulls data from the data source (System of Record) and pushes the data to the kafka staging area. The <i>consumer </i> process pulls data from the kafka staging area and pushes it to the destination Space.</p>
             </div>
-            <p><b>Deploy consumer</b> — deploy the consumer dervice</p>
-            <p><b>Start consumer</b> — activate the consumer process</p>
-            <p><b>Start full sync</b> — initiate initial data load from data source</p>
-            <p><b>Start connector</b> — start the connector service (CDC)</p>
-            <p><b>Stop connector</b> — stop the connector service. This will also stop data from loading into the staging area (kafka).</p>
-            <p><b>Stop consumer</b> — stop the consumer service. This will stop loading to the Space, but the staging area (kafka) will connect to gather data.</p>
+            <p><b>Set Data Pipeline</b> — deploy the consumer dervice</p>
+            <p><b>Start CDC loading</b> — activate the consumer process</p>
+            <p><b>Start initial load</b> — initiate initial data load from data source</p>
+            <p><b>Activate connector</b> — start the connector service (CDC)</p>
+            <p><b>Deactivate connector</b> — stop the connector service. This will also stop data from loading into the staging area (kafka).</p>
+            <p><b>Pause CDC loading</b> — stop the consumer service. This will stop loading to the Space, but the staging area (kafka) will connect to gather data.</p>
             <p><b>Delete data pipeline</b> — end the pipeline process and remove all related data from the destination Space</p>
             <p><b>View configuration</b> — display the data pipeline definition</p>
         </div>
