@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1>Availability Biased</h1>
+        <h1 class="tc-pagetitle">Availability Biased</h1>
         <p>In this leader election implementation, Space instances register themselves with the Lookup Service (LUS). The Space instances then undergo an active-election process, to discover current Space instances and elect a primary instance.</p>
         <p>The active-election process is a 3-phase procedure:</p>
         <ol>
@@ -107,5 +107,8 @@ pu.unquiesce(new QuiesceRequest("split-brain resolved"));
             <li>A more complex form of "islands" is if GSCs are available on both islands, leading both GSMs to behave as primaries and deploy the failed PUs. Reconciling at this point needs to take data integrity into account.</li>
         </ul>
         <p>The solution for these scenarios is to manually reconcile the cluster. Terminate one GSM, and with only one remaining managing GSM restart the GSCs hosting the backup space instances. As a last step, start the second GSM (which will serve as the backup GSM).</p>
+        <h1>Troubleshooting</h1>
+        <p>For troubleshooting information for Availability Biased leader election, see the discussion in <MadCap:xref href="troubleshooting-failure-detection.html">Failure Detection</MadCap:xref>.</p>
+        <p>&#160;</p>
     </body>
 </html>
