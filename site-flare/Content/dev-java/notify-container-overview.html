@@ -124,7 +124,7 @@ public class SimpleListener {
 
     @EventTemplate
     SQLQuery&lt;Data&gt; unprocessedData() {
-        SQLQuery&lt;Data&gt; template = new SQLQuery&lt;Data&gt;(Data.class, "processed = true");
+        SQLQuery&lt;Data&gt; template = new SQLQuery&lt;Data&gt;(Data.class, "processed = false");
         return template;
     }
 
