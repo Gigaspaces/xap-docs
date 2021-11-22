@@ -266,7 +266,7 @@ public class SimpleListener {
     SQLQuery&lt;Data&gt; unprocessedExpiredData() {
         long expired = System.currentTimeMillis() - 60000;
         SQLQuery&lt;Data&gt; dynamicTemplate =
-          new SQLQuery&lt;Data&gt;(Data.class, "processed = true AND timestamp &lt; " + expired);
+          new SQLQuery&lt;Data&gt;(Data.class, "processed = false AND timestamp &lt; " + expired);
         return dynamicTemplate;
     }
 
