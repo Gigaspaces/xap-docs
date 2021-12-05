@@ -5,11 +5,11 @@
   <TocEntry
     Title="[%=System.LinkedTitle%]"
     Link="../../../Content/started/new-started-index.html"
-    conditions="NewSet.XperimentalOnlyINCLUDE"></TocEntry>
+    conditions="NewSet.XperimentalOnlyINCLUDE,Default.DoNotShow"></TocEntry>
   <TocEntry
     Title="[%=System.LinkedTitle%]"
     Link="../../../Content/smart-overview.html"
-    conditions="Version.16-1-born">
+    conditions="Version.16-1-born,Default.DoNotShow">
     <TocEntry
       Title="[%=System.LinkedTitle%]"
       Link="../../../Content/SmartCache.html">
@@ -95,7 +95,8 @@
   </TocEntry>
   <TocEntry
     Title="[%=System.LinkedTitle%]"
-    Link="../../../Content/started/index.html">
+    Link="../../../Content/started/index.html"
+    conditions="Default.DoNotShow">
     <TocEntry
       Title="[%=System.LinkedTitle%]"
       Link="../../../Content/started/installation.html" />
@@ -220,4 +221,7 @@
       Link="../../../Content/started/faq.html"
       conditions="Default.DoNotShow,Version.14-0-died" />
   </TocEntry>
+  <TocEntry
+    Title="Getting Started with GigaSpaces SmartCache"
+    Link="/Content/started/getting-started-with-gigaspaces-smartcache.html" />
 </CatapultToc>
