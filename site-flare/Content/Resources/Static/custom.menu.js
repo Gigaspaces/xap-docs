@@ -1,7 +1,7 @@
 ﻿var versionData = {
 	
 
-	'16.1': { 'url': '/16.1/landing.html', 'label': '16.1 Early Access', 'topicBanner': 'preview' },
+	'16.2': { 'url': '/16.2/landing.html', 'label': '16.2 Early Access', 'topicBanner': 'preview' },
 	//	'16.0': { 'url': '/16.0/landing.html', 'label': '16.0', 'topicBanner': 'preview' },
 	//	'16.0': { 'url': '/16.0/landing.html', 'label': '16.0', 'topicBanner': 'preview' },
 		
