@@ -68,17 +68,23 @@
         <h2>Install Postgres </h2>
         <p><a href="https://www.postgresql.org/download/">Install Postgres on your PC</a>. Be sure to include the pgAdmin component of Postgres.</p>
         <h2>Create a Postgres Database with Some Sample Data</h2>
-        <p>Using the pgAdmin tool, under the default database of postgres, create the Persons table and add a few records, as follows:</p><pre><code class="language-sql">
-        CREATE TABLE persons
-            (person_id int  PRIMARY KEY,
-             person_name  char(30),
-             person_country char(30));
-        INSERT INTO
-            (person_id , person_name, person_country)
-        VALUES 
-            (1, 'John Jones', 'USA'),
-            (2, 'Jane Smith', 'UK'),
-            (3, 'Betty Brown', 'Australia')
+        <p>Using the pgAdmin tool, under the default database of postgres, create the Persons table and run the following commands to create 100,000 similar records. We will use these records later to test the speed of a SQL query.</p><pre><code class="language-sql">
+drop table persons;
+CREATE TABLE persons
+   (person_id int  PRIMARY KEY,
+    person_id_non_indexed int,
+    person_name  char(30),
+    person_country char(30));
+delete from Persons;
+do $$
+    begin
+        for r in 1..100000 loop
+            insert into Persons (person_id , person_id_non_indexed, person_name, person_country) 
+            VALUES (r,r,concat('Person ', r), concat('Country ',r));
+        end loop;
+    end;
+$$;
+select * from Persons limit(10);
  </code></pre>
         <p>The table schema looks like this:</p>
         <p>
@@ -86,7 +92,7 @@
         </p>
         <p>The table data appears as follows:</p>
         <p>
-            <img src="../Resources/Images/gs-with-smartcache-persons-table-2.png" style="width: 390px;height: 166px;" />
+            <img src="../Resources/Images/gs-with-smartcache-persons-table-2.png" />
         </p>
         <h2>Obtain the Connection String</h2>
         <p>The connection string of the database is used by GigaSpaces and Java JDBC programs to access the database. The connection string can be accessed as follows:</p>
@@ -115,11 +121,15 @@
         <p>
             <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-select-data-source.png" />
         </p>
-        <p>Enter the connection string for the Postgres database, and the Postgres user/password, and press <b>Next</b>:</p>
+        <p>Enter the connection string for the Postgres database, and the Postgres user/password. , and press</p>
         <p>
             <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-connection-string.png" />
         </p>
-        <p>The Persons table will display:</p>
+        <p>In the Advanced section, remove the limit of the number of records in the Space:</p>
+        <p>
+            <img src="../Resources/Images/gs-with-smartcache-remove-row-limit.png" style="width: 357px;height: 197px;" />
+        </p>
+        <p>Press <b>Next</b> and the Persons table will display:</p>
         <p>
             <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-persons-table.png" />
         </p>
