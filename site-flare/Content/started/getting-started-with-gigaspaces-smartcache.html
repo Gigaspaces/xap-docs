@@ -165,6 +165,7 @@ select * from Persons limit(10);
         <p>Click on the demo Space to see details of the Space object:</p>
         <p>
             <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-1.png" />
+            <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-1.png" />
         </p>
         <p>Scroll down the page to see the list of Object types in the space. In this example, there is one Object, the Persons Object. This Object corresponds to the Persons table that we created in Postgres, and appears as follows:</p>
         <p>
@@ -182,10 +183,14 @@ select * from Persons limit(10);
             <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-of-persons-object-2.png" />
         </p>
         <h2>Perform SQL Operations on the Object Data</h2>
-        <p>Click on the SQL Editor tab to open the SQL command prompt:</p>
+        <p>Click on the SQL Editor tab to see the default the SQL command:</p>
         <p>
             <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-of-persons-sql-editor.png" />
         </p>
+        <p>To make it more interesting, modify the command as follows:</p><pre><code class="language-sql">
+SELECT * FROM "com.mycompany.app.model.Persons" order by personId LIMIT 5000<![CDATA[
+ ]]></code></pre>
+        <p>&#160;</p>
         <p>Click on <b>Run Query</b> to see the query results:</p>
         <p>
             <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-of-persons-query-results.png" />
