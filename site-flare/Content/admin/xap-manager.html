@@ -247,6 +247,15 @@ so if you’re upgrading for bug fixes/other features and don’t want the manag
             <p>To change between selector strategies, use the following system property (org.jini.rio.monitor.serviceResourceSelector). For example, to set the strategy to the on prior to 12.1, assign the following when loading the manager (in <code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_OPTIONS</code> environment variable):</p><pre><code class="language-bash">-Dorg.jini.rio.monitor.serviceResourceSelector=org.jini.rio.monitor.WeightedSelector
 </code></pre>
         </div>
+        <div class="tc-admon-attention" MadCap:conditions="Version.16-0-born">
+            <p><b>Regarding the Spring Profile: </b>
+                <br />Two profiles have been added to the Ops Manager UI: <code>gs-ops-manager-secured</code> and <code>gs-ops-manager</code> (default). These profiles are defined in the <code>war </code>file <code>$GS_HOME$/lib/platform/manager/webapps/V2.war</code>. Inside the war file, the profiles are located in WEB-INF/spring/spring-security.xml, as follows:<br /></p>
+            <p>
+                <img src="../Resources/Images/ops-manager-spring-profiles.png" style="width: 1522px;height: 56px;" />
+            </p>
+            <p><b>If you are using a system property to set the active Spring profile, please take these profiles into consideration.</b>
+            </p>
+        </div>
         <h1><a name="faq"></a>FAQ</h1>
         <h3><a name="q-why-do-i-need-3-managers-in-previous-versions-2-lus-2-gsm-was-enough-for-high-availability"></a>Q. Why do I need 3 Managers? In previous versions 2 LUS + 2 GSM was enough for high availability.</h3>
         <p>With an even number of managers, consistency cannot be assured in case of a network partition, hence the need for 3 Managers.</p>
