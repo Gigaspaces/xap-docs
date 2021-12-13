@@ -4,6 +4,36 @@
     </head>
     <body>
         <h1>format-an accordion</h1>
+        <p onclick="alert('xxxzzzzzzzzzz');">xxxxx</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p MadCap:targetName="11111">ccccccccccccccccc</p>
+        <p>cccccccccccc</p>
+        <p MadCap:targetName="22222">ddddddddddddddddd</p>
+        <p>&#160;</p>
+        <p>
+            <MadCap:expanding>
+                <MadCap:expandingHead>Click Me:</MadCap:expandingHead>
+                <MadCap:expandingBody>&#160;xxxxxx<br>ccccc</br>
+					Click on Connect to data source, to see the Data Connectivity window:
+<img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity.png" />
+In order to connect to the Postgres database, proceed as follows.
+Select the data source as Postgres:
+<img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-select-data-source.png" />
+Enter the connection string for the Postgres database, and the Postgres user/password. , and press
+<img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-connection-string.png" />
+In the Advanced section, remove the limit of the number of records in the Space:
+<img src="../Resources/Images/gs-with-smartcache-remove-row-limit.png" style="width: 357px;height: 197px;" />
+Press <b>Next</b> and the Persons table will display:
+<img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-persons-table.png" />cccc
+					
+					cccc
+					
+				<p>yyyy</p></MadCap:expandingBody>
+            </MadCap:expanding>
+        </p>
+        <p>&#160;</p>
+        <p>&#160;</p>
         <div class="easyui-accordion">
             <div title="Click on each item below to move the database to the grid."> </div>
             <div title="1. Connect to the Database">
@@ -129,7 +159,14 @@ SELECT * FROM "com.mycompany.app.model.Persons" order by personId LIMIT 5000
         <p>&#160;</p>
         <h1>Pull the Database Data into the Grid</h1>
         <h2>Connect to the Database and Deploy the GigaSpaces Service and Space</h2>
-        <div MadCap:conditions="NewSet.JustAColorForDivs">
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>
+            <MadCap:toggler targets="connect-to-db">here</MadCap:toggler><![CDATA[
+			]]><MadCap:toggler targets="deploy">here</MadCap:toggler><![CDATA[
+		]]></p>
+        <p>&#160;</p>
+        <div MadCap:conditions="NewSet.JustAColorForDivs" MadCap:targetName="connect-to-db">
             <p>Click on Connect to data source, to see the Data Connectivity window:</p>
             <p>
                 <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity.png" />
@@ -152,7 +189,7 @@ SELECT * FROM "com.mycompany.app.model.Persons" order by personId LIMIT 5000
                 <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-persons-table.png" />
             </p>
         </div>
-        <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+        <div MadCap:conditions="NewSet.JustAnotherColorForDivs" MadCap:targetName="deploy">
             <p>Click on <b>Deploy</b>, then choose the Automatic deployment method:</p>
             <p>
                 <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-deploy-automatic.png" />
