@@ -3,9 +3,39 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Getting Started with GigaSpaces SmartCache</h1>
-        <p>This topic is a hands/on introduction to GigaSpaces SmartCache.</p>
-        <h1>Run GigaSpaces and Pull the Database Data into the Grid</h1>
+        <h1 class="tc-pagetitle">Getting Started with GigaSpaces SmartCache — Part 2, Import a Database</h1>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <p>This topic is a hands/on introduction to GigaSpaces SmartCache. It is designed to give you a quick, easy introduction to the GigaSpaces system.</p>
+            <p>Thgis introduction consists of three parts:</p>
+            <ul>
+                <li>
+                    <p>
+                        <MadCap:xref href="getting-started-with-gigaspaces-smartcache-set-environment.html" class="part-1">Part 1 — Setting the Environment</MadCap:xref> — Prepare a database that will be imported into GigaSpaces. In these examples, we will use the Postgres database.</p>
+                </li>
+                <li>
+                    <p><span style="font-family: 'Webdings'">4</span><b>Part 2 — Import a Database</b> (this topic) — Bring the Postgres database into SmartCache, the GigaSpaces in-memory grid, and run some SQL operations.</p>
+                </li>
+                <li>
+                    <p>Part 3 — Convert a Program —Port a standard Java program that uses Postgres to GigaSpaces SmartCache.</p>
+                </li>
+                <li>
+                    <p>Part 4 — <i>Hyperspeed!</i> — Use the GigaSpaces API to maximize the performance of our sample SmartCache application.</p>
+                </li>
+            </ul>
+            <div class="tc-admon-note">
+                <p>Need assistance or further information? Don't hesitate to <a href="https://www.gigaspaces.com/contact-us">contact us</a> — we're here to help!</p>
+            </div>
+        </div>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h1>Obtain the Connection String</h1>
+            <p>The connection string of the database is used by GigaSpaces and Java JDBC programs to access the database. The connection string can be accessed as follows:</p>
+            <p>Right-click on the Postgres server and click on <b>Properties...</b>. In the Properties dialog box, click on <b>Connection.</b></p>
+            <p>
+                <img src="../Resources/Images/gs-with-smartcache-connection-string.png" />
+            </p>
+            <p>Based on this information, the JDBC connection string is defined as follows:</p><code class="language-bash" style="font-weight: bold;">jdbc:postgresql://localhost:5432/postgres</code>
+        </div>
+        <h1>Run GigaSpaces SmartCache</h1>
         <h2>Launch the GigaSpaces Manager</h2>
         <p>Open a command line in the <code>bin </code>directory of your GigaSpaces installation, and run this command:</p><code class="language-bash">gs host run-agent --auto</code>
         <p>After a few moments, this will open a browser window:</p>
@@ -16,6 +46,7 @@
         <p>
             <img src="../Resources/Images/gs-with-smartcache-initial-ops-manager-window.png" style="width: 1548px;height: 753px;" />
         </p>
+        <h1> Pull the Database Data into the Grid</h1>
         <h2>Connect to the Database and Deploy the GigaSpaces Service and Space</h2>
         <p>Click on Connect to data source, to see the Data Connectivity window:</p>
         <p>

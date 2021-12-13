@@ -3,22 +3,36 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Getting Started with GigaSpaces SmartCache</h1>
-        <p>This topic is a hands/on introduction to GigaSpaces SmartCache.</p>
-        <h1>What is GigaSpaces SmartCache?</h1>
-        <p>SmartCache is a high-performance, highly configurable caching mechanism that speeds up your application processing. Data is brought into the GigaSpaces in-memory grid, where it can be accessed at extreme speed. </p>
-        <h1>What Will we do in These Examples?</h1>
-        <div MadCap:conditions="Default.DoNotShow">
-            <p>We will present three examples using SmartCache and Postgres tables. These examples are organized into three sections:</p>
-            <h2>Load a Database into the GigaSpaces Grid:</h2>
+        <h1 class="tc-pagetitle">Getting Started with GigaSpaces SmartCache — Part 1, Setting the Environment</h1>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <p>This is the first part of a three-part hands/on introduction to GigaSpaces SmartCache. It is designed to give you a quick, easy understanding of the GigaSpaces system.</p>
+            <h1>What is GigaSpaces SmartCache?</h1>
+            <p>SmartCache is a high-performance, highly configurable caching mechanism that speeds up your application processing. Data is brought into the GigaSpaces in-memory grid, where it can be accessed at extreme speed. </p>
+            <p>This introduction consists of three parts:</p>
             <ul>
-                <li>Prepare the hands/on environment with GigaSpaces and prepare a Postgres database table.</li>
-                <li>Load the Postgres table into the GigaSpaces grid and perform SQL operations.</li>
+                <li>
+                    <p><b><span style="font-family: 'Webdings'">4</span> Part 1 — Setting the Environment</b> (this topic) — Prepare a database that will be imported into GigaSpaces. In these examples, we will use the Postgres database.</p>
+                </li>
+                <li>
+                    <p>
+                        <MadCap:xref href="getting-started-with-gigaspaces-smartcache-port-to-space.html" class="part-2-import-a-database">Part 2 — Import a Database</MadCap:xref> — Bring the Postgres database into SmartCache, the GigaSpaces in-memory grid, and run some SQL operations.</p>
+                </li>
+                <li>
+                    <p>Part 3 — Convert a Program — Port a standard Java program that uses Postgres to GigaSpaces SmartCache.</p>
+                </li>
+                <li>
+                    <p>Part 4 — <i>Hyperspeed!</i> — Use the GigaSpaces API to maximize the performance of our sample SmartCache application.</p>
+                </li>
             </ul>
         </div>
-        <h2>Port a standard Java  application using a database, to the GigaSpaces grid.</h2>
-        <h2>Use the index feature of GigaSpaces to optimize the performance of an application.</h2>
-        <h1>Prepare the Hands/On Environment</h1>
+        <div class="tc-admon-note">
+            <p>Need assistance or further information? Don't hesitate to <a href="https://www.gigaspaces.com/contact-us">contact us</a> — we're here to help!</p>
+        </div>
+        <h1>What Will we do in This Topic?</h1>
+        <div>
+            <p>We will download and install GigaSpaces and Postgres, the database we are using in these examples. We will then create a sample Postgres database.</p>
+            <p>Later, in <MadCap:xref href="getting-started-with-gigaspaces-smartcache-port-to-space.html" class="part-2">Part 2</MadCap:xref> of this introduction, we will import the database into GigaSpace SmartCache and perform some SQL on it.</p>
+        </div>
         <h1>Prerequisites</h1>
         <p>These examples run on a Unix or Windows machine with the following capabilities:</p>
         <ul>
@@ -47,7 +61,7 @@
                 <p>Extract the zip file into a location on your PC.</p>
             </li>
             <li>
-                <p>In the home directory, enter a license key of <b>tryme</b>:</p>
+                <p>In the home directory, enter a license key of <b>tryme</b> in the <code>gs-license.txt</code> file:</p>
             </li>
             <li>
                 <p>
@@ -58,13 +72,15 @@
                 </div>
             </li>
             <li>
-                <p><a href="https://www.postgresql.org/download/">Install Postgres on your PC</a>. Be sure to include the pgAdmin component of Postgres.</p>
+                <p><a href="https://www.postgresql.org/download/">Download and install Postgres on your PC</a>. Be sure to include the <code>pgAdmin</code> component of Postgres.</p>
             </li>
         </ul>
-        <h1>Load a Database Table into the Grid</h1>
-        <p>In this example, we will create a Postgres database, populate it with some data, and pull the data into the GigaSpaces grid. We will then perform some SQL operations on the grid data.</p>
-        <h2>Create a Postgres Database with Some Sample Data</h2>
-        <p>Using the pgAdmin tool, under the default database of postgres, create the Persons table and run the following commands to create 100,000 similar records. We will use these records later to test the speed of a SQL query.</p><pre><code class="language-sql">
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Load a Database Table into the Grid</h1>
+            <p>In this example, we will create a Postgres database, populate it with some data, and pull the data into the GigaSpaces grid. We will then perform some SQL operations on the grid data.</p>
+        </div>
+        <h1>Create a Postgres Database with Some Sample Data</h1>
+        <p>Using the pgAdmin tool, under the default database of <code>postgres</code>, create the <code>Persons </code>table and run the following commands to create 100,000 similar records. We will use these records later in SQL queries.</p><pre><code class="language-sql">
 drop table Persons;
 CREATE TABLE Persons
    (personId int  PRIMARY KEY,
@@ -90,108 +106,8 @@ select * from Persons limit(10);
         <p>
             <img src="../Resources/Images/gs-with-smartcache-persons-table-2.png" />
         </p>
-        <h2>Obtain the Connection String</h2>
-        <p>The connection string of the database is used by GigaSpaces and Java JDBC programs to access the database. The connection string can be accessed as follows:</p>
-        <p>Right-click on the Postgres server and click on <b>Properties...</b>. In the Properties dialog box, click on <b>Connection.</b></p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-connection-string.png" />
-        </p>
-        <p>Based on this information, the JDBC connection string is defined as follows:</p><code class="language-bash" style="font-weight: bold;">jdbc:postgresql://localhost:5432/postgres</code>
-        <h2>Launch the GigaSpaces Manager</h2>
-        <p>Open a command line in the <code>bin </code>directory of your GigaSpaces installation, and run this command:</p><code class="language-bash">gs host run-agent --auto</code>
-        <p>After a few moments, this will open a browser window:</p>
-        <p> <img src="../Resources/Images/gs-with-smartcache-initial-browser-window.png" style="width: 719px;height: 313px;" /></p>
-        <p>Change the URL to the following:</p><code class="language-bash" style="font-weight: bold;">http://localhost:8090</code>
-        <p>&#160;</p>
-        <p>The Ops Manager window will open:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-initial-ops-manager-window.png" style="width: 1548px;height: 753px;" />
-        </p>
-        <h2>Connect to the Database and Deploy the GigaSpaces Service and Space</h2>
-        <p>Click on Connect to data source, to see the Data Connectivity window:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity.png" />
-        </p>
-        <p>In order to connect to the Postgres database, proceed as follows.</p>
-        <p>Select the data source as Postgres:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-select-data-source.png" />
-        </p>
-        <p>Enter the connection string for the Postgres database, and the Postgres user/password. , and press</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-connection-string.png" />
-        </p>
-        <p>In the Advanced section, remove the limit of the number of records in the Space:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-remove-row-limit.png" style="width: 357px;height: 197px;" />
-        </p>
-        <p>Press <b>Next</b> and the Persons table will display:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-persons-table.png" />
-        </p>
-        <p>Click on <b>Deploy</b>, then choose the Automatic deployment method:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-deploy-automatic.png" />
-        </p>
-        <p>A screen will display indicating that the deployment process is underway:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-deploying.png" />
-        </p>
-        <p>When the deployment is successful, the following message will appear:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-deployment-ok.png" />
-        </p>
-        <h2>View the Resulting GigaSpaces Objects</h2>
-        <p>On the side menu, click on the <b>Services</b> tab:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-services-tab.png" />
-        </p>
-        <p>This will display the services that were created as a result of the deployment:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-services-view.png" />
-        </p>
-        <p>Click on the Spaces tab:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-spaces-tab.png" />
-        </p>
-        <p>to see the Spaces created by the deployment:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-spaces-view.png" />
-        </p>
-        <p>Click on the demo Space to see details of the Space object:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-1.png" />
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-1.png" />
-        </p>
-        <p>Scroll down the page to see the list of Object types in the space. In this example, there is one Object, the Persons Object. This Object corresponds to the Persons table that we created in Postgres, and appears as follows:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-2.png" />
-        </p>
-        <p>Click on the Persons object:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-click-on-persons-object.png" />
-        </p>
-        <p>and detailed information about the Persons object will display:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-of-persons-object.png" />
-        </p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-of-persons-object-2.png" />
-        </p>
-        <h2>Perform SQL Operations on the Object Data</h2>
-        <p>Click on the SQL Editor tab to see the default the SQL command:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-of-persons-sql-editor.png" />
-        </p>
-        <p>To make it more interesting, modify the command as follows:</p><pre><code class="language-sql">
-SELECT * FROM "com.mycompany.app.model.Persons" order by personId LIMIT 5000<![CDATA[
- ]]></code></pre>
-        <p>&#160;</p>
-        <p>Click on <b>Run Query</b> to see the query results:</p>
-        <p>
-            <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-of-persons-query-results.png" />
-        </p>
-        <p>&#160;</p>
+        <h1>What's Next?</h1>
+        <p>In <MadCap:xref href="getting-started-with-gigaspaces-smartcache-port-to-space.html" class="part-2-import-a-database">Part 2 — Import a Database</MadCap:xref>, we will connect the Postgres database to the GigaSpaces SmartCache, and run a SQL Select statement to view some data.</p>
         <p>&#160;</p>
     </body>
 </html>
