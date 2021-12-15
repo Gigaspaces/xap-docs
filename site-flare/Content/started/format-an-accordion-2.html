@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>format-an accordion</h1>
+        <table style="margin-left: 0;margin-right: auto;width: 30%;">
+            <col style="width: 20%;" />
+            <tbody>
+                <tr>
+                    <td onClick="document.getElementById('step-1').style.display = 'block';document.getElementById('step-2').style.display = 'none';"><![CDATA[
+						             ]]><a href="#">1. Connect to the Database</a><![CDATA[
+                    ]]></td>
+                </tr>
+                <tr>
+                    <td onClick="document.getElementById('step-1').style.display = 'none';document.getElementById('step-2').style.display = 'block';">
+                        <MadCap:toggler>2. Deploy the GigaSpaces Service and Space</MadCap:toggler>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top !important;">
+                        <MadCap:toggler targets="connect-to-the-database">3. View the Services</MadCap:toggler>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top !important;">
+                        <MadCap:toggler targets="connect-to-the-database">4. View the Spaces</MadCap:toggler>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top !important;">
+                        <MadCap:toggler targets="connect-to-the-database">5. View the Object Types</MadCap:toggler>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top !important;">
+                        <MadCap:toggler targets="connect-to-the-database">6. Perform SQL Operations on the Object Data</MadCap:toggler>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div MadCap:conditions="NewSet.JustAColorForDivs" id="step-1">
+            <p>Click on Connect to data source, to see the Data Connectivity window:</p>
+            <p>
+                <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity.png" />
+            </p>
+            <p>In order to connect to the Postgres database, proceed as follows.</p>
+            <p>Select the data source as Postgres:</p>
+            <p>
+                <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-select-data-source.png" />
+            </p>
+            <p>Enter the connection string for the Postgres database, and the Postgres user/password. , and press</p>
+            <p>
+                <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-connection-string.png" />
+            </p>
+            <p>In the Advanced section, remove the limit of the number of records in the Space:</p>
+            <p>
+                <img src="../Resources/Images/gs-with-smartcache-remove-row-limit.png" style="width: 357px;height: 197px;" />
+            </p>
+            <p>Press <b>Next</b> and the Persons table will display:</p>
+            <p>
+                <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-persons-table.png" />
+            </p>
+        </div>
+        <div MadCap:conditions="NewSet.JustAnotherColorForDivs" id="step-2">
+            <p>Click on <b>Deploy</b>, then choose the Automatic deployment method:</p>
+            <p>
+                <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-deploy-automatic.png" />
+            </p>
+            <p>A screen will display indicating that the deployment process is underway:</p>
+            <p>
+                <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-deploying.png" />
+            </p>
+            <p>When the deployment is successful, the following message will appear:</p>
+            <p>
+                <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-deployment-ok.png" />
+            </p>
+        </div>
+        <p>&#160;</p>
+    </body>
+</html>
