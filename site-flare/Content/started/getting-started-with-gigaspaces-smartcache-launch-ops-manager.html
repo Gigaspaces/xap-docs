@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Getting Started with GigaSpaces SmartCache — Part 2, Launch Ops Manager</h1>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <p>This topic is a hands/on introduction to GigaSpaces SmartCache. It is designed to give you a quick, easy introduction to the GigaSpaces system.</p>
+            <p>Thgis introduction consists of three parts:</p>
+            <ul>
+                <li>
+                    <p>
+                        <MadCap:xref href="getting-started-with-gigaspaces-smartcache-set-environment.html" class="part-1">Part 1 — Setting the Environment</MadCap:xref> — Prepare a database that will be imported into GigaSpaces. In these examples, we will use the Postgres database.</p>
+                </li>
+                <li>
+                    <p><span style="font-family: 'Webdings'">4</span><b>Part 2 — Import a Database</b> (this topic) — Bring the Postgres database into SmartCache, the GigaSpaces in-memory grid, and run some SQL operations.</p>
+                </li>
+                <li>
+                    <p>Part 3 — Convert a Program —Port a standard Java program that uses Postgres to GigaSpaces SmartCache.</p>
+                </li>
+                <li>
+                    <p>Part 4 — <i>Hyperspeed!</i> — Use the GigaSpaces API to maximize the performance of our sample SmartCache application.</p>
+                </li>
+            </ul>
+            <div class="tc-admon-note">
+                <p>Need assistance or further information? Don't hesitate to <a href="https://www.gigaspaces.com/contact-us">contact us</a> — we're here to help!</p>
+            </div>
+        </div>
+        <div class="easyui-tabs" plain="true">
+            <div title="1. Connect to the Database">
+                <h1>What is Ops Manager?</h1>
+                <p>Ops Manager is the graphical interface to the GigaSpaces environment. Wit it, we can import data, deploy services and Spaces, view the status of the system, modify the deployment, and run SQL commands against the in-memory data.</p>
+            </div>
+        </div>
+        <h1>Launch the GigaSpaces Manager</h1>
+        <p>The GigaSpaces Manager controls the GigaSpaces environment and enables the Ops Manager GUI.</p>
+        <p><b>1.</b> Open a command line in the <code>bin </code>directory of your GigaSpaces installation, and run this command:</p><code class="language-bash">gs host run-agent --auto</code>
+        <p>After a few moments, this will open a browser window:</p>
+        <p> <img src="../Resources/Images/gs-with-smartcache-initial-browser-window.png" style="width: 719px;height: 313px;" /></p>
+        <p><b>2.</b> Change the URL to the following: <code class="language-bash" style="font-weight: bold;">http://localhost:8090</code></p>
+        <p>The Ops Manager window will open:</p>
+        <p>
+            <img src="../Resources/Images/gs-with-smartcache-initial-ops-manager-window.png" style="width: 1548px;height: 753px;" />
+        </p>
+        <h2>Ops Manager has three primary windows:</h2>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <MadCap:dropDown>
+                <MadCap:dropDownHead>
+                    <MadCap:dropDownHotspot><b>Connect to Data Source</b> [click to view]</MadCap:dropDownHotspot>
+                </MadCap:dropDownHead>
+                <MadCap:dropDownBody>
+                    <p>
+                        <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity.png" />
+                    </p>
+                    <p>We will use this window to pull the Postgres database into <MadCap:variable name="General.ProductNameXAP" />.</p>
+                </MadCap:dropDownBody>
+            </MadCap:dropDown>
+        </div>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <MadCap:dropDown>
+                <MadCap:dropDownHead>
+                    <MadCap:dropDownHotspot><b>Services Overview</b> [click to view]</MadCap:dropDownHotspot>
+                </MadCap:dropDownHead>
+                <p>
+                    <img src="../Resources/Images/gs-with-smartcache-ops-manager-initial-services-overview.png" />
+                </p>
+                <MadCap:dropDownBody>
+                    <p>Initially no services are running. We will revisit this screen after we deploy a service.</p>
+                </MadCap:dropDownBody>
+            </MadCap:dropDown>
+        </div>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <MadCap:dropDown>
+                <MadCap:dropDownHead>
+                    <MadCap:dropDownHotspot><b>Spaces Overview</b> [click to view]</MadCap:dropDownHotspot>
+                </MadCap:dropDownHead>
+                <p>
+                    <img src="../Resources/Images/gs-with-smartcache-ops-manager-initial-spaces-overview.png" />
+                </p>
+                <MadCap:dropDownBody>
+                    <p>We will see some Space information after we deploy the Postgres database.</p>
+                </MadCap:dropDownBody>
+            </MadCap:dropDown>
+        </div>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

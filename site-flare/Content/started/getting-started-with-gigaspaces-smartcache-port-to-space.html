@@ -31,7 +31,7 @@
                 <p>&#160;</p>
                 <h1>1. Connect to the Database</h1>
                 <div MadCap:conditions="NewSet.JustAColorForDivs" id="step-1">
-                    <p>Click on Connect to data source, to see the Data Connectivity window:</p>
+                    <p>Click on <b>Connect to data source</b>, to see the Data Connectivity window:</p>
                     <p>
                         <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity.png" />
                     </p>
@@ -40,7 +40,23 @@
                     <p>
                         <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-select-data-source.png" />
                     </p>
-                    <p>Enter the connection string for the Postgres database, and the Postgres user/password. , and press</p>
+                    <p>Enter the connection string for the Postgres database, and the Postgres user/password.</p>
+                    <MadCap:dropDown>
+                        <MadCap:dropDownHead>
+                            <MadCap:dropDownHotspot>Click here for details on how to find the connection string.</MadCap:dropDownHotspot>
+                        </MadCap:dropDownHead>
+                        <MadCap:dropDownBody>
+                            <div MadCap:conditions="NewSet.JustAColorForDivs" style="border:1px solid blue;">
+                                <h1>Obtain the Connection String</h1>
+                                <p>The connection string of the database is used by GigaSpaces and Java JDBC programs to access the database. The connection string can be accessed as follows:</p>
+                                <p>Right-click on the Postgres server and click on <b>Properties...</b>. In the Properties dialog box, click on <b>Connection.</b></p>
+                                <p>
+                                    <img src="../Resources/Images/gs-with-smartcache-connection-string.png" />
+                                </p>
+                                <p>Based on this information, the JDBC connection string is defined as follows:</p><code class="language-bash" style="font-weight: bold;">jdbc:postgresql://localhost:5432/postgres</code>
+                            </div>
+                        </MadCap:dropDownBody>
+                    </MadCap:dropDown>
                     <p>
                         <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-connection-string.png" />
                     </p>
@@ -144,15 +160,6 @@ SELECT * FROM "com.mycompany.app.model.Persons" order by personId LIMIT 5000
                     </p>
                 </div>
             </div>
-        </div>
-        <div MadCap:conditions="NewSet.JustAColorForDivs">
-            <h1>Obtain the Connection String</h1>
-            <p>The connection string of the database is used by GigaSpaces and Java JDBC programs to access the database. The connection string can be accessed as follows:</p>
-            <p>Right-click on the Postgres server and click on <b>Properties...</b>. In the Properties dialog box, click on <b>Connection.</b></p>
-            <p>
-                <img src="../Resources/Images/gs-with-smartcache-connection-string.png" />
-            </p>
-            <p>Based on this information, the JDBC connection string is defined as follows:</p><code class="language-bash" style="font-weight: bold;">jdbc:postgresql://localhost:5432/postgres</code>
         </div>
         <h1>Run GigaSpaces SmartCache</h1>
         <h2>Launch the GigaSpaces Manager</h2>
