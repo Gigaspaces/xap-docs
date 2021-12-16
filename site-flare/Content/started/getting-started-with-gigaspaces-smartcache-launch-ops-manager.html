@@ -25,7 +25,17 @@
         <p>Ops Manager is the graphical interface to the GigaSpaces environment. Wit it, we can import data, deploy services and Spaces, view the status of the system, modify the deployment, and run SQL commands against the in-memory data.</p>
         <h1>Launch the GigaSpaces Manager</h1>
         <p>The GigaSpaces Manager controls the GigaSpaces environment and enables the Ops Manager GUI.</p>
-        <p><b>1.</b> Open a command line in the <code>bin </code>directory of your GigaSpaces installation, and run this command:</p><code class="language-bash">gs host run-agent --auto</code>
+        <p><b>1.</b> Open a command line in the <code>bin </code>directory of your GigaSpaces installation, and run this command:</p>
+        <div class="easyui-tabs" plain="true">
+            <div title="Unix">
+                <p><code class="language-bash">gs.sh host run-agent --auto</code>
+                </p>
+            </div>
+            <div title="Windows">
+                <p><code class="language-bash">gs host run-agent --auto</code>
+                </p>
+            </div>
+        </div>
         <p>After a few moments,  a browser window will open:</p>
         <p> <img src="../Resources/Images/gs-with-smartcache-initial-browser-window.png" style="width: 719px;height: 313px;" /></p>
         <p><b>2.</b> Change the URL to the following: <code class="language-bash" style="font-weight: bold;">http://localhost:8090</code></p>
