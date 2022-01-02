@@ -21,26 +21,36 @@
         <h1>How Do I Perform an Object Analysis?</h1>
         <div title="GigaSpaces Ops Manager" style="padding:10px">
             <p>Trigger an Object Analysis by pressing the <b>Run Objects Analysis</b> icon on the Ops Manager <b>Analysis</b> screen: </p>
-            <p style="text-align: center;">
-                <img src="../Resources/Static/images/ODAA -- select icon.jpg" class="tc-picture80" />
+            <p style="text-align: center;" MadCap:conditions="Version.16-1-died">
+                <img src="../Resources/Static/images/ODAA -- select icon.jpg" class="tc-picture80" style="width: 1451px;height: 656px;" />
+            </p>
+            <p MadCap:conditions="Version.16-1-born">
+                <img src="../Resources/Static/images/ODAA -- select icon-16.1.png" style="width: 1372px;height: 272px;" />
             </p>
             <p>A dialog box will display, asking for a confirmation of the analysis request:</p>
-            <p style="text-align: center;">
+            <p style="text-align: center;" MadCap:conditions="Version.16-1-died">
                 <img src="../Resources/Static/images/R-ODAA-You-are-about.jpg" class="tc-picture60" />
             </p>
-            <p>A default partition is indicated for the analysis, which you may change if desired. Press<b> Run Now</b> to begin the analysis.</p>
+            <p style="text-align: center;" MadCap:conditions="Version.16-1-born">
+                <img src="../Resources/Static/images/R-ODAA-You-are-about-16.1.png" />
+            </p>
+            <p>A default partition is indicated for the analysis, which you may change if desired. <MadCap:conditionalText MadCap:conditions="Version.16-1-died">Press<b> Run Now</b> to begin the analysis.</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-1-born"> Press<b> Run Object Analysis</b> to begin the analysis.</MadCap:conditionalText></p>
             <p>&#160;</p>
             <p>Because the Object Analysis process can take some time, a confirmation screen asks if you want to continue:</p>
-            <p style="text-align: center;">
+            <p style="text-align: center;" MadCap:conditions="Version.16-1-died">
                 <img src="../Resources/Static/images/R-ODAA-Confirm-that-you-want-to-do-it.jpg" class="tc-picture40" />
             </p>
-            <p>Press <b>Run object analysis</b> to confirm that you wish to begin the analysis.</p>
+            <p style="text-align: center;" MadCap:conditions="Version.16-1-born">
+                <img src="../Resources/Static/images/R-ODAA-Confirm-that-you-want-to-do-it-16.1.png" />
+            </p>
+            <p MadCap:conditions="Version.16-1-born">Press <b>Run now</b> to confirm that you wish to begin the analysis.</p>
+            <p MadCap:conditions="Version.16-1-died">Press <b>Run object analysis</b> to confirm that you wish to begin the analysis.</p>
             <div class="tc-admon-attention">
                 <p>Because the Object analysis process may consume considerable system resources, it is recommended to run the analysis at an off-peak time, when the system is experiencing relatively low usage.</p>
             </div>
             <p>During the analysis process, the screen appears as follows:</p>
             <p style="text-align: center;">
-                <img src="../Resources/Static/images/R-ODOA-Banner-OA-in-progress.jpg" />
+                <img src="../Resources/Static/images/R-ODOA-Banner-OA-in-progress.png" />
             </p>
             <h1>Results of Object Analysis</h1>
             <p>The result of the Object Analysis is two-fold: </p>
@@ -55,65 +65,84 @@
             </p>
             <p>Press <b>Show object analysis report</b> to view the memory usage report. </p>
             <p>Alternatively, you can click the icon next to the Report icon to see the report:</p>
-            <p style="text-align: center;">
+            <p style="text-align: center;" MadCap:conditions="Version.16-1-died">
                 <img src="../Resources/Static/images/R-ODOA-can-click-icon-instead-to-see-report.jpg" />
+            </p>
+            <p MadCap:conditions="Version.16-1-born">
+                <img src="../Resources/Static/images/R-ODOA-can-click-icon-instead-to-see-report-16.1.png" />
             </p>
             <div class="tc-admon-note">
                 <p>If the Object analysis is not successful, press Review Logs to determine the cause of the failure.</p>
             </div>
             <h1>Contents of the Object Analysis Report</h1>
             <p>The report appears as follows:</p>
-            <p style="text-align: center;">
-                <img src="../Resources/Static/images/R-ODOA-list-of-objects.jpg" class="tc-picture80" />
-            </p>
-            <p>Click on an Object Type to view the  Properties and Indexes submenus:</p>
-            <p style="text-align: center;">
-                <img src="../Resources/Static/images/R-ODOA-list-of-properties-and-indexes.jpg" class="tc-picture80" />
-            </p>
-            <h2>Details of Object Analysis</h2>
-            <p>Click on <b>Properties </b>or <b>Indexes </b>to see the average storage requirements. </p>
-            <p>Note that if a previous Object Analysis had been performed, as in the following example, the report will show a comparison between this analysis and the previous analysis: </p>
-            <p style="text-align: center;">
-                <img src="../Resources/Static/images/R-ODOA-details-of-object-analysis.jpg" class="tc-picture80" />
+            <div MadCap:conditions="Version.16-1-died">
+                <p style="text-align: center;">
+                    <img src="../Resources/Static/images/R-ODOA-list-of-objects.jpg" class="tc-picture80" />
+                </p>
+                <p>Click on an Object Type to view the  Properties and Indexes submenus:</p>
+                <p style="text-align: center;">
+                    <img src="../Resources/Static/images/R-ODOA-list-of-properties-and-indexes.jpg" class="tc-picture80" />
+                </p>
+                <h2>Details of Object Analysis</h2>
+                <p>Click on <b>Properties </b>or <b>Indexes </b>to see the average storage requirements. </p>
+                <p>Note that if a previous Object Analysis had been performed, as in the following example, the report will show a comparison between this analysis and the previous analysis: </p>
+                <p style="text-align: center;">
+                    <img src="../Resources/Static/images/R-ODOA-details-of-object-analysis.jpg" class="tc-picture80" />
+                </p>
+            </div>
+            <p MadCap:conditions="Version.16-1-born" style="text-align: center;">
+                <img src="../Resources/Static/images/R-ODOA-list-of-objects-and-details-16.1.png" />
             </p>
             <h2>Notes on Indexes Analysis</h2>
             <p>Indexes are stored within the Space and used for fast access to data stored either in memory or on disk. This means that indexes compete with object type data for partition memory resources.</p>
             <p>This is why it is important to analyze index sizes and take them into consideration as part of system monitoring and future planning.</p>
             <p>Index sizes are calculated as part of the object analysis, and the calculated sizes can be seen within the object types reports. Each object type contains its indexes and their calculated sizes, including the ability to compare with the previous object analysis.</p>
-            <h2>Additional Information on Space Screen</h2>
-            <p>The Space screen, which originally showed <b>Reads by Instance</b> and <b>Cache hit</b>, now also shows <b>RAM Utilization</b>:</p>
-            <p style="text-align: center;">
-                <img src="../Resources/Static/images/ODAA-Now-shows-RAM-Utilization.jpg" class="tc-picture80" />
-            </p>
+            <div MadCap:conditions="Version.16-1-died">
+                <h2>Additional Information on Space Screen</h2>
+                <p>The Space screen, which originally showed <b>Reads by Instance</b> and <b>Cache hit</b>, now also shows <b>RAM Utilization</b>:</p>
+                <p style="text-align: center;">
+                    <img src="../Resources/Static/images/ODAA-Now-shows-RAM-Utilization.jpg" class="tc-picture80" />
+                </p>
+            </div>
             <h2>List of Object Types</h2>
-            <p>If you scroll down the Object Analysis Report, you will see a list of Object Types:</p>
-            <p style="text-align: center;">
+            <p>If you scroll down the Space screen, you will see a list of Object Types:</p>
+            <p style="text-align: center;" MadCap:conditions="Version.16-1-died">
                 <img src="../Resources/Static/images/R-ODOA-list-of-object-types-with-RAM-size.jpg" class="tc-picture80" />
             </p>
+            <p style="text-align: center;" MadCap:conditions="Version.16-1-born">
+                <img src="../Resources/Static/images/R-ODOA-list-of-object-types-with-RAM-size-16.1.png" />
+            </p>
             <p>Note that the average RAM size is shown for each object.</p>
-            <p>Click on a Object (e.g. <b>Customers</b>) to see details for each property in the object:</p>
-            <p style="text-align: center;">
-                <img src="../Resources/Static/images/R-ODOA-RAM-size-per-property.jpg" class="tc-picture80" />
-            </p>
-            <p>The Space screen also shows <b>Data distribution per partition:</b></p>
-            <p style="text-align: center;">
-                <img src="../Resources/Static/images/R-ODOA-RAM-by-partition.jpg" class="tc-picture80" />
-            </p>
-            <div MadCap:conditions="Default.DoNotShow">
-                <h1>Graphical Display of Object Analysis</h1>
-                <p>In the Object screen ,a graphical representation of entries, memory usage and cache are shown.</p>
+            <div MadCap:conditions="Version.16-1-died">
+                <p>Click on a Object (e.g. <b>Customers</b>) to see details for each property in the object:</p>
                 <p style="text-align: center;">
-                    <img src="../Resources/Static/images/R-Object-Analysis-110 -- better -- ODOA-Graphical_View.jpg" class="tc-picture80" />
+                    <img src="../Resources/Static/images/R-ODOA-RAM-size-per-property.jpg" class="tc-picture80" />
+                </p>
+                <p>The Space screen also shows <b>Data distribution per partition:</b></p>
+                <p style="text-align: center;">
+                    <img src="../Resources/Static/images/R-ODOA-RAM-by-partition.jpg" class="tc-picture80" />
                 </p>
                 <div MadCap:conditions="Default.DoNotShow">
-                    <h1>Viewing Previous Reports</h1>
-                    <p>Press on <b>Reports</b> to see a list of earlier Object Analysis reports:</p>
+                    <h1>Graphical Display of Object Analysis</h1>
+                    <p>In the Object screen ,a graphical representation of entries, memory usage and cache are shown.</p>
                     <p style="text-align: center;">
-                        <img src="../Resources/Static/images/Object-Analysis-120.jpg" class="tc-picture80" />
+                        <img src="../Resources/Static/images/R-Object-Analysis-110 -- better -- ODOA-Graphical_View.jpg" class="tc-picture80" />
                     </p>
-                    <p>You can click on a report to review its Object Analysis data.</p>
+                    <div MadCap:conditions="Default.DoNotShow">
+                        <h1>Viewing Previous Reports</h1>
+                        <p>Press on <b>Reports</b> to see a list of earlier Object Analysis reports:</p>
+                        <p style="text-align: center;">
+                            <img src="../Resources/Static/images/Object-Analysis-120.jpg" class="tc-picture80" />
+                        </p>
+                        <p>You can click on a report to review its Object Analysis data.</p>
+                    </div>
                 </div>
             </div>
+            <p MadCap:conditions="Version.16-1-born">
+                <p>Click on the Object name (<b>Persons</b> in this example) to see its Object Analysis data.</p>
+                <img src="../Resources/Static/images/R-ODOA-RAM-size-per-property-16.1.png" />
+            </p>
             <p>&#160;</p>
             <p>&#160;</p>
             <p>&#160;</p>
