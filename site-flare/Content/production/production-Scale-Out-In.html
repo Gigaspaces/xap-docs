@@ -52,16 +52,22 @@
         <h1>On Demand Scale Out/In Using the Ops Manager</h1>
         <div title="GigaSpaces Ops Manager" style="padding:10px">
             <p>Click on the service card of the desired service in Ops Manager. The Service Details screen will display:</p>
-            <p>
+            <p MadCap:conditions="Version.16-1-died">
                 <img src="../Resources/Static/images/SOSI--click-on-ellipsis-menu.jpg" />
+            </p>
+            <p MadCap:conditions="Version.16-1-born">
+                <img src="../Resources/Static/images/SOSI--click-on-ellipsis-menu-16.1.png" />
             </p>
             <p>Note the ellipsis menu (three vertical dots). Click on the option On Demand Scale Out/In. Depending on the method of orchestration you are using, the next screen will appear as follows:</p>
             <p><b>ServiceGrid:</b>
             </p>
-            <p style="text-align: center;">
-                <img src="../Resources/Static/images/SOSI-service-grid.jpg" class="tc-picture40" />
+            <p style="text-align: center;" MadCap:conditions="Default.DoNotShow">
+                <img src="../Resources/Static/images/SOSI-service-grid.jpg" class="tc-picture40" style="width: 599px;height: 439px;" />
             </p>
-            <p>In the example above, there are currently 16 partitions alocated for the service. You can choose one of the suggested numbers of partitions, or press Custom to choose any number of partitions. Note that the new partitions will all have the same allocation of RAM and CPU as the existing partitions.</p>
+            <p>
+                <img src="../Resources/Static/images/SOSI-service-grid.png" />
+            </p>
+            <p>In the example above, there is currently one partition alocated for the service. You can choose one of the suggested numbers of partitions, or press Custom to choose any number of partitions. Note that the new partitions will all have the same allocation of RAM and CPU as the existing partitions.</p>
             <p><b>Kubernetes</b>
                 <MadCap:conditionalText MadCap:conditions="Version.16-0-died"><b> and ElasticGrid</b>
                 </MadCap:conditionalText><b>:</b>
@@ -71,19 +77,26 @@
             </p>
             <p>In the example above, there are currently 16 partitions using the service. You can choose one of the suggested numbers of partitions, or press Custom to choose any number of partitions.</p>
             <p>Note that by default the suggested RAM (8M) and CPU (200Mib) for the new partitions is based on the most frequent allocation for the existing partitions. Click on <b>&gt; CPU </b>or<b> &gt; RAM </b>to override these suggested values for the new partitions.</p>
+            <p>In our example, we will scale to two partitions:</p>
+            <p>
+                <img src="../Resources/Static/images/SOSI-service-grid-choose-two-partitions.png" />
+            </p>
             <p>After entering the desired values and pressing <b>Apply</b>, the system will display a confirmation screen:</p>
             <p>
-                <img src="../Resources/Static/images/SOSI-Confirmation-Screen.jpg" class="tc-picture30" />
+                <img src="../Resources/Static/images/SOSI-Confirmation-Screen.png" />
             </p>
             <p>Press <b>Scale Now</b> to begin the scaling process.</p>
             <p>As the scaling is underway, a progress message will display in the screen banner:</p>
             <p>
-                <img src="../Resources/Static/images/SOSI-In-Progress.jpg" class="tc-picture50" />
+                <img src="../Resources/Static/images/SOSI-In-Progress.png" />
             </p>
             <p>&#160;</p>
             <p>Note that while the scaling is in progress, the status of the individual affected services will display in the Service Details screen:</p>
-            <p>
+            <p MadCap:conditions="Version.16-1-died">
                 <img src="../Resources/Static/images/SOSI-Suspended.jpg" />
+            </p>
+            <p MadCap:conditions="Version.16-1-born">
+                <img src="../Resources/Static/images/SOSI-Suspended-16.1.png" />
             </p>
         </div>
         <div title="Command Line Interface" style="padding:10px">

@@ -5,7 +5,7 @@
     <body>
         <h1>Storage Optimization</h1>
         <p>Storage Optimization is a feature of <MadCap:variable name="General.ProductNameIE" /> that reduces the memory footprint (RAM) of the the properties of a Space Object, with minimal impact on system performance.</p>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
             <p>Storage Optimization is at <a href="../rn/lifecycle.html#feature-levels">Preview feature level</a>.<br /></p>
         </div>
         <h1>How Does Storage Optimization Work?</h1>
@@ -17,8 +17,8 @@
         <p>Storage Optimization can be configured when the data is modeled using the Ops Manager user interface, or by specifying annotations in the Java code.</p>
         <h2>Configure Storage Optimization via Ops Manager</h2>
         <p>In Ops Manager one-click connect, a toggle on the top of the screen lets you specify Storage Optimization for the Space Object:</p>
-        <p style="text-align: left;">
-            <img src="../Resources/Static/images/storage-optimization-object-toggle-high-res.jpg" style="width: 829px;height: 441px;" />
+        <p>
+            <img src="../Resources/Static/images/storage-optimization-object-toggle-high-res.png" />
         </p>
         <p>Clicking on the toggle will select Storage Optimization for every non-indexed property in the object. This covers the vast majority of the cases. After loading and measuring the data capacity, toggling of individual properties to be BINARY or COMPRESSED is available via the API.</p>
         <h2>Configure Storage Optimization via the API </h2>
@@ -132,9 +132,9 @@ public class TestObject {
             </div>
         </div>
         <h1>Viewing Storage Optimization Settings in the Object Screen</h1>
-        <p>Using the <MadCap:xref href="../admin/gs-ops-manager-overview.html">[%=General.ProductNameXAP%] Ops Manager</MadCap:xref>, you can view the status of a Space Object. The Storage Optimized icon is display next to fields that are using Storage Optimization.</p>
+        <p>Using the <MadCap:xref href="../admin/gs-ops-manager-overview.html">[%=General.ProductNameXAP%] Ops Manager</MadCap:xref>, you can view the status of a Space Object. The Storage Optimized icon <img src="../Resources/Static/images/storage-optimization-icon.png" /> is displayed next to fields that are using Storage Optimization.</p>
         <p>
-            <img src="../Resources/Static/images/storage-optimization-view-space-in-ops-manager.png" style="width: 398px;height: 389px;" />
+            <img src="../Resources/Static/images/storage-optimization-view-space-in-ops-manager.png" style="width: 464px;height: 447px;" />
         </p>
         <h1>Limitations</h1>
         <ul>
