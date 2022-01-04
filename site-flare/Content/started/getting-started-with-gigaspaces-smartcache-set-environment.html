@@ -17,10 +17,10 @@
                     <p>Part 2 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-launch-ops-manager.html" class="Part-2-Launch-Ops-Manager">Launch Ops Manager</MadCap:xref> — Run and view the GigaSpaces GUI.</p>
                 </li>
                 <li>
-                    <p>Part 3 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-port-to-space.html" class="part-3-import-a-database">Import a Database</MadCap:xref> — Bring the Postgres database into SmartCache, the GigaSpaces in-memory grid, and run some SQL operations.</p>
+                    <p>Part 3 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-import-a-database.html" class="part-3-import-a-database">Import a Database</MadCap:xref> — Bring the Postgres database into SmartCache, the GigaSpaces in-memory grid, and run some SQL operations.</p>
                 </li>
                 <li>
-                    <p>Part 4 — <MadCap:xref href="getting-started-with-gigaspaces-convert-a-program.html" class="convert-a-program" style="font-style: italic;">Convert a Program</MadCap:xref> — Use the GigaSpaces API to maximize the performance of a sample SmartCache application.</p>
+                    <p>Part 4 — <MadCap:xref href="getting-started-with-gigaspaces-convert-a-program.html" class="convert-a-program" style="font-style: normal;">Convert a Program</MadCap:xref> — Use the GigaSpaces API to maximize the performance of a sample SmartCache application.</p>
                 </li>
             </ul>
         </div>
@@ -64,7 +64,7 @@
             </li>
             <li>
                 <p>
-                    <img src="../Resources/Images/tryme-license.png" />
+                    <img src="../Resources/Images/tryme-license.png" style="width: 957px;height: 68px;" />
                 </p>
                 <div class="tc-admon-note">
                     <p>The trial license is valid for 24 hours.</p>
@@ -79,19 +79,18 @@
             <p>In this example, we will create a Postgres database, populate it with some data, and pull the data into the GigaSpaces grid. We will then perform some SQL operations on the grid data.</p>
         </div>
         <h1>Create a Postgres Database with Some Sample Data</h1>
-        <p>Using the pgAdmin tool, under the default database of <code>postgres</code>, create the <code>Persons </code>table and run the following commands to create 1,000,000 similar records. We will use these records later in SQL queries.</p><pre><code class="language-sql">
+        <p>Using the pgAdmin tool, under the default database of <code>postgres</code>, create the <code>Persons </code>table and run the following commands to create 1,000 similar records. We will use these records later in SQL queries.</p><pre><code class="language-sql">
 drop table Persons;
 CREATE TABLE Persons
    (personId int  PRIMARY KEY,
-    personIdNonIndexed int,
     personName  char(30),
     personCountry char(30));
 delete from Persons;
 do $$
     begin
-        for r in 1..1000000 loop
-            insert into Persons (personId , personIdNonIndexed, personName, personCountry) 
-            VALUES (r,r,concat('Person ', r), concat('Country ',r));
+        for r in 1..1000 loop
+            insert into Persons (personId , personName, personCountry) 
+            VALUES (r ,concat('Person ', r), concat('Country ',r));
         end loop;
     end;
 $$;
@@ -99,7 +98,7 @@ select * from Persons limit(10);
  </code></pre>
         <p>The table schema looks like this:</p>
         <p>
-            <img src="../Resources/Images/gs-with-smartcache-persons-table-1.png" style="width: 331px;height: 215px;" />
+            <img src="../Resources/Images/gs-with-smartcache-persons-table-1.png" style="width: 255px;height: 165px;" />
         </p>
         <p>The table data appears as follows:</p>
         <p>

@@ -15,7 +15,7 @@
                     <p>Part 2 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-launch-ops-manager.html" class="Part-2-Launch-Ops-Manager">Launch Ops Manager</MadCap:xref> — Run and view the GigaSpaces GUI.</p>
                 </li>
                 <li>
-                    <p>Part 3 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-port-to-space.html" class="part-3-import-a-database">Import a Database</MadCap:xref> — Bring the Postgres database into SmartCache, the GigaSpaces in-memory grid, and run some SQL operations.</p>
+                    <p>Part 3 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-import-a-database.html" class="part-3-import-a-database">Import a Database</MadCap:xref> — Bring the Postgres database into SmartCache, the GigaSpaces in-memory grid, and run some SQL operations.</p>
                 </li>
                 <li>
                     <p> <b style="font-style: italic;">Part 4 — Convert a Program</b> (this topic) —  Use the GigaSpaces API to maximize the performance of a sample SmartCache application.</p>
@@ -27,14 +27,13 @@
         </div>
         <p>The following steps will show you how to convert a Java program using native Postgres commands, to a program using GigaSpaces JDBC API. This will result in a significant boost to the program's performance, and will make the code accessible to data in the GigaSpaces in-memory data grid.</p>
         <h1>Converting Code</h1>
-        <p>This example takes a Java program using standard Postgres statements, and converts it to a faster version that runs on the GigaSpaces grid. </p>
         <p>We are doing this for two reasons:</p>
         <ul>
             <li>
                 <p>To demonstrate the relative simplicity of converting an existing Java program to run on the GigaSpaces grid</p>
             </li>
             <li>
-                <p>To enable horizontal/vertical scaling, storage optimization, co-located data and code in a wide area network, and other features of the GigaSpaces environment.</p>
+                <p>To enable <MadCap:xref href="../production/production-Rescaling-your-application-in-GigaSpaces.html" class="horizontal-vertical-scaling">horizontal/vertical scaling</MadCap:xref>, <MadCap:xref href="../dev-java/storage-optimization.htm" class="storage-optimization">storage optimization</MadCap:xref>, <MadCap:xref href="../admin/clustered-vs-non-clustered-proxies.html#writing-new-objects-from-co-located-business-logic" class="co-located-data-and-code">co-located data and code</MadCap:xref>, <MadCap:xref href="../dev-java/multi-site-replication-overview.html" class="multi-region-replication-in-a-wide-area-network">multi-region replication in a wide area network</MadCap:xref>, and other features of the GigaSpaces environment.</p>
             </li>
         </ul>
         <p>The essential code is shown below.</p>
@@ -52,16 +51,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>&#160;</td>
-                        <td>&#160;</td>
-                    </tr>
                     <tr style="vertical-align:top">
                         <td><pre xml:space="preserve">
  Connection conn = DriverManager.getConnection(CONNECTION_STRING,USER,PASSWORD);
  Statement stmt = conn.createStatement();
  ResultSet rs=stmt.executeQuery("SELECT * FROM Persons where personid = 1");
- String PersonName = rs.next().getString("personname");</pre>
+ rs.next();
+ String PersonName = rs.getString("personname");</pre>
                         </td>
                         <td><pre xml:space="preserve">
 GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("demo")
@@ -79,11 +75,11 @@ String PersonName = gigaSpace.readById(Persons.class, 1).getPersonname();
         <p><code class="language-java">lookupLocators("localhost")</code> — URL of the GigaSpaces grid. Here we are running a local instance.</p>
         <p><code class="language-java">lookupGroups("xap-16.1.0")).gigaSpace()</code> — <span style="background-color: #ff00ff;">xxxxxxxxxxxxxxxxxxx</span></p>
         <p><code class="language-java">readById</code> — readById is one of the GigaSpaces methods available to access the grid data. It returns a single record property instance (record). </p>
-        <div class="tc-admon-note">
-            <p>You can see a complete list of GigaSpace read methods <span style="background-color: #ff00ff;">here</span>.</p>
-        </div>
         <p><code class="language-java">(Persons.class, 1)</code> — specifies the first property (field) in the Persons object (table)</p>
-        <p><code class="language-java">getPersonname() </code>— run the "getter" method to obtain the personname property</p>
+        <p><code class="language-java">getPersonname() </code>— run the "getter" method to obtain the Personname property</p>
+        <div class="tc-admon-note">
+            <p>See <MadCap:xref href="../dev-java/the-space-operations.html">Operations</MadCap:xref> for more information about the GigaSpaces API.</p>
+        </div>
         <h1>What's Next? </h1>
         <p>More information is available in the <a href="https://docs.gigaspaces.com/latest/landing.html">GigaSpaces documentation</a>, or feel free to <a href="https://www.gigaspaces.com/contact-us">contact us</a> — we're here to help! </p>
     </body>
