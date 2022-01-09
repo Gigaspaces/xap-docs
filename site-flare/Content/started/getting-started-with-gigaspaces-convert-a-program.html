@@ -37,9 +37,6 @@
             </li>
         </ul>
         <p>The essential code is shown below.</p>
-        <div class="tc-admon-note">
-            <p>The complete code for these examples, and instructions for testing can be found <b style="background-color: #ff00ff;">here</b>.</p>
-        </div>
         <div style="overflow-x: auto;">
             <table style="border-top-left-radius: 3px;border-top-right-radius: 3px;border-bottom-right-radius: 3px;border-bottom-left-radius: 3px;border-left-style: solid;border-left-width: 1px;border-left-color: #a4aab3;border-right-style: solid;border-right-width: 1px;border-right-color: #a4aab3;border-top-style: solid;border-top-width: 1px;border-top-color: #a4aab3;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #a4aab3;margin-left: auto;margin-right: 0;">
                 <col style="width: 50%;" />
@@ -73,8 +70,8 @@ String PersonName = gigaSpace.readById(Persons.class, 1).getPersonname();
         <p>Following is a detailed breakdown of the GigaSpaces example.</p>
         <p> <code class="language-java">SpaceProxyConfigurer("demo")</code> — connect to a Space named "demo". The demo space must already be deployed in the GigaSpaces grid.</p>
         <p><code class="language-java">lookupLocators("localhost")</code> — URL of the GigaSpaces grid. Here we are running a local instance.</p>
-        <p><code class="language-java">lookupGroups("xap-16.1.0")).gigaSpace()</code> — <span style="background-color: #ff00ff;">xxxxxxxxxxxxxxxxxxx</span></p>
-        <p><code class="language-java">readById</code> — readById is one of the GigaSpaces methods available to access the grid data. It returns a single record property instance (record). </p>
+        <p><code class="language-java">lookupGroups("xap-16.1.0")).gigaSpace()</code> — service identifier</p>
+        <p><code class="language-java">readById</code> — <MadCap:xref href="../dev-java/the-space-operations.html#the-read-operation" class="readbyid">readById</MadCap:xref> is one of the GigaSpaces methods available to access the grid data. It returns a single record property instance (record). </p>
         <p><code class="language-java">(Persons.class, 1)</code> — specifies the first property (field) in the Persons object (table)</p>
         <p><code class="language-java">getPersonname() </code>— run the "getter" method to obtain the Personname property</p>
         <div class="tc-admon-note">

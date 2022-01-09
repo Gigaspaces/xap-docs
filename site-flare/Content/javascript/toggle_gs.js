@@ -18,6 +18,7 @@ function toggleGS(divNum)
 	document.getElementById('4').style.display = 'none';
 	document.getElementById('5').style.display = 'none';
 	document.getElementById('6').style.display = 'none';
+	document.getElementById("scrollhere").scrollIntoView();
 		break;
 		case '2':
 	document.getElementById('1').style.display = 'none';
@@ -26,6 +27,7 @@ function toggleGS(divNum)
 	document.getElementById('4').style.display = 'none';
 	document.getElementById('5').style.display = 'none';
 	document.getElementById('6').style.display = 'none';
+	document.getElementById("scrollhere").scrollIntoView();
 		break;
 		case '3':
 	document.getElementById('1').style.display = 'none';
@@ -34,6 +36,7 @@ function toggleGS(divNum)
 	document.getElementById('4').style.display = 'none';
 	document.getElementById('5').style.display = 'none';
 	document.getElementById('6').style.display = 'none';
+	document.getElementById("scrollhere").scrollIntoView();
 		break;
 		case '4':
 	document.getElementById('1').style.display = 'none';
@@ -42,6 +45,7 @@ function toggleGS(divNum)
 	document.getElementById('4').style.display = 'block';
 	document.getElementById('5').style.display = 'none';
 	document.getElementById('6').style.display = 'none';
+	document.getElementById("scrollhere").scrollIntoView();
 		break;
 		case '5':
 	document.getElementById('1').style.display = 'none';
@@ -50,6 +54,7 @@ function toggleGS(divNum)
 	document.getElementById('4').style.display = 'none';
 	document.getElementById('5').style.display = 'block';
 	document.getElementById('6').style.display = 'none';
+	document.getElementById("scrollhere").scrollIntoView();
 		break;
 		case '6':
 	document.getElementById('1').style.display = 'none';
@@ -58,6 +63,7 @@ function toggleGS(divNum)
 	document.getElementById('4').style.display = 'none';
 	document.getElementById('5').style.display = 'none';
 	document.getElementById('6').style.display = 'block';
+	document.getElementById("scrollhere").scrollIntoView();
 		break;
 		
 	}

@@ -4,7 +4,7 @@
         <script type="text/javascript" src="../javascript/toggle_gs.js">
         </script>
     </head>
-    <body onload="alert('xxxxxxxxx');toggleGS('3');">
+    <body>
         <h1 class="tc-pagetitle">Getting Started with GigaSpaces SmartCache — Part 3, Import a Database</h1>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
             <p>This topic is a hands/on introduction to GigaSpaces SmartCache. It is designed to give you a quick, easy introduction to the GigaSpaces system.</p>
@@ -28,25 +28,36 @@
             </div>
         </div>
         <p>The following steps will show you how to copy the Postgres database into the GigaSpaces in-memory grid. You will also see the resulting GigaSpace service and Space, and will be able to perform SQL operations on the data.</p>
-        <table style="width: 100%;">
-            <col />
-            <col />
-            <col />
-            <tbody>
-                <tr>
-                    <td onClick="toggleGS('1');">1.xxx</td>
-                    <td onClick="toggleGS('2');">2.xxx</td>
-                    <td onClick="toggleGS('3');">3.xxx</td>
-                </tr>
-                <tr>
-                    <td onClick="toggleGS('4');">4.xxx</td>
-                    <td onClick="toggleGS('5');">5.xxx</td>
-                    <td onClick="toggleGS('6');">6.xxx</td>
-                </tr>
-            </tbody>
-        </table>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <p><big style="font-weight: bold;">Click on each item below to see the relevant instructions.</big>
+            </p>
+            <table id="scrollhere" style="width: 100%; border:none !important;">
+                <col />
+                <col />
+                <col />
+                <tbody>
+                    <tr style="border:none !important;">
+                        <td style="border: none !important;font-weight: bold;" onClick="toggleGS('1');"><span class="tc-textblue" style="font-style: italic; font-weight: normal;">1. Connect to the Database</span>
+                        </td>
+                        <td style="border:none !important;" onClick="toggleGS('2');"><span class="tc-textblue" style="font-style: italic;">2. Deploy GigaSpaces</span>
+                        </td>
+                        <td style="border:none !important;" onClick="toggleGS('3');"><span class="tc-textblue" style="font-style: italic;">3. View the Services</span>
+                        </td>
+                    </tr>
+                    <tr style="border:none !important;">
+                        <td style="border:none !important;" onClick="toggleGS('4');"><span class="tc-textblue" style="font-style: italic;">4. View the Spaces</span>
+                        </td>
+                        <td style="border:none !important;" onClick="toggleGS('5');"><span class="tc-textblue" style="font-style: italic;">5. View the Object Types</span>
+                        </td>
+                        <td style="border:none !important;" onClick="toggleGS('6');"><span class="tc-textblue" style="font-style: italic;">6. Perform SQL Operations on the Object Data</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>&#160;</p>
         <div style="overflow-x: auto;" MadCap:conditions="NewSet.JustAColorForDivs">
-            <div id="1" title="1. Connect to the Database">
+            <div id="1" style="display:none;" title="1. Connect to the Database">
                 <h1>1. Connect to the Database</h1>
                 <div MadCap:conditions="NewSet.JustAColorForDivs" id="step-1">
                     <p>Click on <b>Connect to data source</b>, to see the Data Connectivity window:</p>
@@ -87,10 +98,35 @@
                         <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-persons-table.png" />
                     </p>
                 </div>
+                <div MadCap:conditions="NewSet.JustAColorForDivs">
+                    <p>Click on each item to see the relevant instructions.</p>
+                    <table style="width: 100%; border:none !important;">
+                        <col />
+                        <col />
+                        <col />
+                        <tbody>
+                            <tr style="border:none !important;">
+                                <td style="border:none !important;" onClick="toggleGS('1');"><span class="tc-textblue" style="font-style: italic;">1. Connect to the Database</span>
+                                </td>
+                                <td style="border: none !important;font-weight: bold;" onClick="toggleGS('2');"><span class="tc-textblue" style="font-style: italic;">Next : 2. Deploy GigaSpaces</span>
+                                </td>
+                                <td style="border:none !important;" onClick="toggleGS('3');"><span class="tc-textblue" style="font-style: italic;">3. View the Services</span>
+                                </td>
+                            </tr>
+                            <tr style="border:none !important;">
+                                <td style="border:none !important;" onClick="toggleGS('4');"><span class="tc-textblue" style="font-style: italic;">4. View the Spaces</span>
+                                </td>
+                                <td style="border:none !important;" onClick="toggleGS('5');"><span class="tc-textblue" style="font-style: italic;">5. View the Object Types</span>
+                                </td>
+                                <td style="border:none !important;" onClick="toggleGS('6');"><span class="tc-textblue" style="font-style: italic;">6. Perform SQL Operations on the Object Data</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div id="2" title="2. Deploy the GigaSpaces Service and Space">
-                <p>&#160;</p>
-                <h1>2. Deploy the GigaSpaces </h1>
+            <div id="2" style="display:none;" title="2. Deploy the GigaSpaces Service and Space">
+                <h1>2. Deploy GigaSpaces </h1>
                 <div MadCap:conditions="NewSet.JustAnotherColorForDivs" id="step-2">
                     <p>Click on <b>Deploy</b>, then choose the Automatic deployment method:</p>
                     <p>
@@ -104,10 +140,35 @@
                     <p>
                         <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-deployment-ok.png" />
                     </p>
+                    <div MadCap:conditions="NewSet.JustAColorForDivs">
+                        <p>Click on each item to see the relevant instructions.</p>
+                        <table style="width: 100%; border:none !important;">
+                            <col />
+                            <col />
+                            <col />
+                            <tbody>
+                                <tr style="border:none !important;">
+                                    <td style="border:none !important;" onClick="toggleGS('1');"><span class="tc-textblue" style="font-style: italic;">1. Connect to the Database</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('2');"><span class="tc-textblue" style="font-style: italic;">2. Deploy GigaSpaces</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('3');"><span class="tc-textblue" style="font-style: italic; font-weight: bold;">Next: 3. View the Services</span>
+                                    </td>
+                                </tr>
+                                <tr style="border:none !important;">
+                                    <td style="border:none !important;" onClick="toggleGS('4');"><span class="tc-textblue" style="font-style: italic;">4. View the Spaces</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('5');"><span class="tc-textblue" style="font-style: italic;">5. View the Object Types</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('6');"><span class="tc-textblue" style="font-style: italic;">6. Perform SQL Operations on the Object Data</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div id="3" title="3. View the Services">
-                <p>&#160;</p>
+            <div id="3" style="display:none;" title="3. View the Services">
                 <h1>3. View the Services </h1>
                 <div MadCap:conditions="NewSet.JustAColorForDivs">
                     <p>On the side menu, click on the <b>Services</b> tab:</p>
@@ -118,10 +179,35 @@
                     <p>
                         <img src="../Resources/Images/gs-with-smartcache-ops-manager-services-view.png" />
                     </p>
+                    <div MadCap:conditions="NewSet.JustAColorForDivs">
+                        <p>Click on each item to see the relevant instructions.</p>
+                        <table style="width: 100%; border:none !important;">
+                            <col />
+                            <col />
+                            <col />
+                            <tbody>
+                                <tr style="border:none !important;">
+                                    <td style="border:none !important;" onClick="toggleGS('1');"><span class="tc-textblue" style="font-style: italic;">1. Connect to the Database</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('2');"><span class="tc-textblue" style="font-style: italic;">2. Deploy GigaSpaces</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('3');"><span class="tc-textblue" style="font-style: italic;">3. View the Services</span>
+                                    </td>
+                                </tr>
+                                <tr style="border:none !important;">
+                                    <td style="border:none !important;" onClick="toggleGS('4');"><span class="tc-textblue" style="font-style: italic; font-weight: bold;">Next: 4. View the Spaces</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('5');"><span class="tc-textblue" style="font-style: italic;">5. View the Object Types</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('6');"><span class="tc-textblue" style="font-style: italic;">6. Perform SQL Operations on the Object Data</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div id="4" title="4. View the Spaces">
-                <p>&#160;</p>
+            <div id="4" style="display:none;" title="4. View the Spaces">
                 <h1>4. View the Spaces</h1>
                 <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
                     <p>Click on the Spaces tab:</p>
@@ -137,10 +223,35 @@
                         <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-1.png" />
                         <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-1.png" />
                     </p>
+                    <div MadCap:conditions="NewSet.JustAColorForDivs">
+                        <p>Click on each item to see the relevant instructions.</p>
+                        <table style="width: 100%; border:none !important;">
+                            <col />
+                            <col />
+                            <col />
+                            <tbody>
+                                <tr style="border:none !important;">
+                                    <td style="border:none !important;" onClick="toggleGS('1');"><span class="tc-textblue" style="font-style: italic;">1. Connect to the Database</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('2');"><span class="tc-textblue" style="font-style: italic;">2. Deploy GigaSpaces</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('3');"><span class="tc-textblue" style="font-style: italic;">3. View the Services</span>
+                                    </td>
+                                </tr>
+                                <tr style="border:none !important;">
+                                    <td style="border:none !important;" onClick="toggleGS('4');"><span class="tc-textblue" style="font-style: italic;">4. View the Spaces</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('5');"><span class="tc-textblue" style="font-style: italic; font-weight: bold;">Next: 5. View the Object Types</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('6');"><span class="tc-textblue" style="font-style: italic;">6. Perform SQL Operations on the Object Data</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div id="5" title="5. View the Object Types">
-                <p>&#160;</p>
+            <div id="5" style="display:none;" title="5. View the Object Types">
                 <div MadCap:conditions="NewSet.JustAColorForDivs">
                     <h1>5. View the Object Types</h1>
                     <p>Scroll down the page to see the list of Object types in the space. In this example, there is one Object, the Persons Object. This Object corresponds to the Persons table that we created in Postgres, and appears as follows:</p>
@@ -158,10 +269,35 @@
                     <p>
                         <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-of-persons-object-2.png" />
                     </p>
+                    <div MadCap:conditions="NewSet.JustAColorForDivs">
+                        <p>Click on each item to see the relevant instructions.</p>
+                        <table style="width: 100%; border:none !important;">
+                            <col />
+                            <col />
+                            <col />
+                            <tbody>
+                                <tr style="border:none !important;">
+                                    <td style="border:none !important;" onClick="toggleGS('1');"><span class="tc-textblue" style="font-style: italic;">1. Connect to the Database</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('2');"><span class="tc-textblue" style="font-style: italic;">2. Deploy GigaSpaces</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('3');"><span class="tc-textblue" style="font-style: italic;">3. View the Services</span>
+                                    </td>
+                                </tr>
+                                <tr style="border:none !important;">
+                                    <td style="border:none !important;" onClick="toggleGS('4');"><span class="tc-textblue" style="font-style: italic;">4. View the Spaces</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('5');"><span class="tc-textblue" style="font-style: italic;">5. View the Object Types</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('6');"><span class="tc-textblue" style="font-style: italic; font-weight: bold;">Next: 6. Perform SQL Operations on the Object Data</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div id="6" title="6. Perform SQL Operations on the Object Data">
-                <p>&#160;</p>
+            <div id="6" style="display:none;" title="6. Perform SQL Operations on the Object Data">
                 <h1>6. Perform SQL Operations on the Object Data</h1>
                 <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
                     <p>Click on the SQL Editor tab to see the default the SQL command:</p>
@@ -176,10 +312,39 @@ SELECT * FROM "com.mycompany.app.model.Persons" order by personId LIMIT 5000
                     <p>
                         <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-of-persons-query-results.png" />
                     </p>
+                    <div MadCap:conditions="NewSet.JustAColorForDivs">
+                        <p>Click on each item to see the relevant instructions.</p>
+                        <table style="width: 100%; border:none !important;">
+                            <col />
+                            <col />
+                            <col />
+                            <tbody>
+                                <tr style="border:none !important;">
+                                    <td style="border:none !important;" onClick="toggleGS('1');"><span class="tc-textblue" style="font-style: italic;">1. Connect to the Database</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('2');"><span class="tc-textblue" style="font-style: italic;">2. Deploy GigaSpaces</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('3');"><span class="tc-textblue" style="font-style: italic;">3. View the Services</span>
+                                    </td>
+                                </tr>
+                                <tr style="border:none !important;">
+                                    <td style="border:none !important;" onClick="toggleGS('4');"><span class="tc-textblue" style="font-style: italic;">4. View the Spaces</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('5');"><span class="tc-textblue" style="font-style: italic;">5. View the Object Types</span>
+                                    </td>
+                                    <td style="border:none !important;" onClick="toggleGS('6');"><span class="tc-textblue" style="font-style: italic;">6. Perform SQL Operations on the Object Data</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
         <h1>What's Next? </h1>
-        <p>More information is available in the <a href="https://docs.gigaspaces.com/latest/landing.html">GigaSpaces documentation</a>, or feel free to <a href="https://www.gigaspaces.com/contact-us">contact us</a> — we're here to help! </p>
+        <p>In Part 4 — <MadCap:xref href="getting-started-with-gigaspaces-convert-a-program.html" class="convert-a-program" style="font-style: normal; font-weight: normal;">Convert a Program</MadCap:xref>, we explain how to convert a Java program from JDBC access to GigaSpaces.</p>
+        <div class="tc-admon-note">
+            <p>Need assistance or further information? Don't hesitate to <a href="https://www.gigaspaces.com/contact-us">contact us</a> — we're here to help!</p>
+        </div>
     </body>
 </html>
