@@ -5,29 +5,29 @@
         </script>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Getting Started with GigaSpaces SmartCache — Part 3, Import a Database</h1>
+        <h1 class="tc-pagetitle">Getting Started with GigaSpaces Smart Cache — Part 3, Import a Database</h1>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
-            <p>This topic is a hands/on introduction to GigaSpaces SmartCache. It is designed to give you a quick, easy introduction to the GigaSpaces system.</p>
+            <p>This topic is a hands/on introduction to GigaSpaces Smart Cache. It is designed to give you a quick, easy introduction to the GigaSpaces system.</p>
             <p>This introduction consists of four parts:</p>
             <ul>
                 <li>
-                    <p>Part 1 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-set-environment.html" class="part-1" style="font-weight: normal;">Setting the Environment</MadCap:xref> —  Prepare a database that will be imported into GigaSpaces. In these examples, we will use the Postgres database.</p>
+                    <p>Part 1 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-set-environment.html" class="part-1" style="font-weight: normal;">Setting the Environment</MadCap:xref> —  Prepare a database that will be imported into GigaSpaces. In these examples, we will use data from the PostgreSQL database.</p>
                 </li>
                 <li>
-                    <p>Part 2 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-launch-ops-manager.html" class="Part-2-Launch-Ops-Manager">Launch Ops Manager</MadCap:xref> — Run and view the GigaSpaces GUI.</p>
+                    <p>Part 2 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-launch-ops-manager.html" class="Part-2-Launch-Ops-Manager">Launch Ops Manager</MadCap:xref> — Run and view the GigaSpaces user interface.</p>
                 </li>
                 <li>
-                    <p><b><span style="font-family: 'Webdings'">4</span> <i>Part 3 — Import a Database</i></b> (this topic) — Bring the Postgres database into SmartCache, the GigaSpaces in-memory grid, and run some SQL operations.</p>
+                    <p><b><span style="font-family: 'Webdings'">4</span> <i>Part 3 — Import a Database</i></b> (this topic) — Bring data from the PostgreSQL database into  the GigaSpaces in-memory data grid, and run some SQL operations.</p>
                 </li>
                 <li>
-                    <p>Part 4 — <MadCap:xref href="getting-started-with-gigaspaces-convert-a-program.html" class="convert-a-program" style="font-style: normal; font-weight: normal;">Convert a Program</MadCap:xref> — Explore the tools to convert a Java program from JDBC access to GigaSpaces.</p>
+                    <p>Part 4 — <MadCap:xref href="getting-started-with-gigaspaces-convert-a-program.html" class="convert-a-program" style="font-style: normal; font-weight: normal;">Convert a Program</MadCap:xref> — Explore the tools to convert a Java program from JDBC access to the GigaSpaces Java API.</p>
                 </li>
             </ul>
             <div class="tc-admon-note">
                 <p>Need assistance or further information? Don't hesitate to <a href="https://www.gigaspaces.com/contact-us">contact us</a> — we're here to help!</p>
             </div>
         </div>
-        <p>The following steps will show you how to copy the Postgres database into the GigaSpaces in-memory grid. You will also see the resulting GigaSpace service and Space, and will be able to perform SQL operations on the data.</p>
+        <p>The following steps will show you how to copy data from the PostgreSQL database into the GigaSpaces in-memory data grid. You will also see the resulting GigaSpace service and Space, and will be able to perform SQL operations on the data.</p>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
             <p><big style="font-weight: bold;">Click on each item below to see the relevant instructions.</big>
             </p>
@@ -64,12 +64,12 @@
                     <p>
                         <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity.png" />
                     </p>
-                    <p>In order to connect to the Postgres database, proceed as follows.</p>
+                    <p>In order to connect to data from the PostgreSQL database, proceed as follows.</p>
                     <p>Select the data source as Postgres:</p>
                     <p>
                         <img src="../Resources/Images/gs-with-smartcache-ops-manager-data-connectivity-select-data-source.png" />
                     </p>
-                    <p>Enter the connection string for the Postgres database, and the Postgres user/password.</p>
+                    <p>Enter the connection string for the PostgreSQL database, and the PostgreSQL user/password.</p>
                     <MadCap:dropDown>
                         <MadCap:dropDownHead>
                             <MadCap:dropDownHotspot>Click here for details on how to find the connection string.</MadCap:dropDownHotspot>
@@ -254,7 +254,7 @@
             <div id="5" style="display:none;" title="5. View the Object Types">
                 <div MadCap:conditions="NewSet.JustAColorForDivs">
                     <h1>5. View the Object Types</h1>
-                    <p>Scroll down the page to see the list of Object types in the space. In this example, there is one Object, the Persons Object. This Object corresponds to the Persons table that we created in Postgres, and appears as follows:</p>
+                    <p>Scroll down the page to see the list of Object types in the space. In this example, there is one Object, the Persons Object. This Object corresponds to the Persons table that we created in PostgreSQL, and appears as follows:</p>
                     <p>
                         <img src="../Resources/Images/gs-with-smartcache-ops-manager-demo-space-details-2.png" />
                     </p>

@@ -3,29 +3,29 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Getting Started with GigaSpaces SmartCache — Part 4, Convert a Program</h1>
+        <h1 class="tc-pagetitle">Getting Started with GigaSpaces Smart Cache — Part 4, Convert a Program</h1>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
-            <p>This topic is a hands/on introduction to GigaSpaces SmartCache. It is designed to give you a quick, easy introduction to the GigaSpaces system.</p>
+            <p>This topic is a hands/on introduction to GigaSpaces Smart Cache. It is designed to give you a quick, easy introduction to the GigaSpaces system.</p>
             <p>This introduction consists of four parts:</p>
             <ul>
                 <li>
-                    <p>Part 1 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-set-environment.html" class="part-1" style="font-weight: normal;">Setting the Environment</MadCap:xref> — Prepare a database that will be imported into GigaSpaces. In these examples, we will use the Postgres database.</p>
+                    <p>Part 1 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-set-environment.html" class="part-1" style="font-weight: normal;">Setting the Environment</MadCap:xref> — Prepare a database that will be imported into GigaSpaces. In these examples, we will use data from the PostgreSQL database.</p>
                 </li>
                 <li>
-                    <p>Part 2 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-launch-ops-manager.html" class="Part-2-Launch-Ops-Manager">Launch Ops Manager</MadCap:xref> — Run and view the GigaSpaces GUI.</p>
+                    <p>Part 2 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-launch-ops-manager.html" class="Part-2-Launch-Ops-Manager">Launch Ops Manager</MadCap:xref> — Run and view the GigaSpaces user interface.</p>
                 </li>
                 <li>
-                    <p>Part 3 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-import-a-database.html" class="part-3-import-a-database">Import a Database</MadCap:xref> — Bring the Postgres database into SmartCache, the GigaSpaces in-memory grid, and run some SQL operations.</p>
+                    <p>Part 3 — <MadCap:xref href="getting-started-with-gigaspaces-smartcache-import-a-database.html" class="part-3-import-a-database">Import a Database</MadCap:xref> — Bring data from the PostgreSQL database into Smart Cache, the GigaSpaces in-memory grid, and run some SQL operations.</p>
                 </li>
                 <li>
-                    <p> <b style="font-style: italic;">Part 4 — Convert a Program</b> (this topic) —  Explore the tools to convert a Java program from JDBC access to GigaSpaces.</p>
+                    <p> <b style="font-style: italic;">Part 4 — Convert a Program</b> (this topic) —  Explore the tools to convert a Java program from JDBC access to the GigaSpaces Java API.</p>
                 </li>
             </ul>
             <div class="tc-admon-note">
                 <p>Need assistance or further information? Don't hesitate to <a href="https://www.gigaspaces.com/contact-us">contact us</a> — we're here to help!</p>
             </div>
         </div>
-        <p>The following steps will show you how to convert a Java program using native Postgres commands, to a program using GigaSpaces JDBC API. This will result in a significant boost to the program's performance, and will make the code accessible to data in the GigaSpaces in-memory data grid.</p>
+        <p>The following steps will show you how to convert a Java program that uses PostgreSQL commands, to a program using the GigaSpaces Java API. This will result in a significant boost to the program's performance, and will make the code accessible to data in the GigaSpaces in-memory data grid.</p>
         <h1>Converting Code</h1>
         <p>We are doing this for two reasons:</p>
         <ul>
@@ -43,7 +43,7 @@
                 <col style="width: 50%;" />
                 <thead>
                     <tr>
-                        <th style="text-align: center;font-weight: bold;">Postgres Program</th>
+                        <th style="text-align: center;font-weight: bold;">PostgreSQL Program</th>
                         <th style="text-align: center;font-weight: bold;">GigaSpaces Program</th>
                     </tr>
                 </thead>
@@ -75,7 +75,7 @@ String PersonName = gigaSpace.readById(Persons.class, 1).getPersonname();
         <p><code class="language-java">(Persons.class, 1)</code> — specifies the first property (field) in the Persons object (table)</p>
         <p><code class="language-java">getPersonname() </code>— run the "getter" method to obtain the Personname property</p>
         <div class="tc-admon-note">
-            <p>See <MadCap:xref href="../dev-java/the-space-operations.html">Operations</MadCap:xref> for more information about the GigaSpaces API.</p>
+            <p>See <MadCap:xref href="../dev-java/the-space-operations.html">Operations</MadCap:xref> for more information about the GigaSpaces Java API.</p>
         </div>
         <h1>What's Next? </h1>
         <p>More information is available in the <a href="https://docs.gigaspaces.com/latest/landing.html">GigaSpaces documentation</a>, or feel free to <a href="https://www.gigaspaces.com/contact-us">contact us</a> — we're here to help! </p>
