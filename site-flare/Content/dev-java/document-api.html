@@ -140,8 +140,12 @@
             <ul>
                 <li>
                     <p><span class="tc-bold">Space type descriptor</span> (default) - When defining the type descriptor you can define fixed properties,  each of which will be included in the schema. However, each time you modify the schema you must restart the entire cluster because JDBC clients load the schema only once during initialization, so they have to be restarted to discover schema changes.</p>
-                    <div class="tc-admon-note">
+                    <div class="tc-admon-note" MadCap:conditions="Version.16-2-died">
                         <p>In order to query <code>idProperty</code> and <code>routingProperty</code> using JDBC you must also define them as fixed properties, as <code>idProperty</code> is defined in the following example.</p>
+                    </div>
+                    <div class="tc-admon-note" MadCap:conditions="Version.16-2-born">
+                        <p>In order to query <code>idProperty</code> and <code>routingProperty</code> using JDBC or when Tiered Storage is enabled you must also define them as fixed properties, as <code>idProperty </code>is defined in the following example.</p>
+                        <p>You can use <code>addIdPropertyType()</code> or <code>addRoutingPropertyType()</code> respectively for specifying the property type. When id and routing are the same property, only set <code>addIdPropertyType()</code>.</p>
                     </div><pre><code> SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder("Product")        
 .idProperty("id")
 .addFixedProperty("name", String.class)
