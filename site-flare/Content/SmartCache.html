@@ -9,21 +9,20 @@
         <p style="text-align: left;">Smart Cache provides fast, scalable cache from any data store. It is fully SQL-99 compliant, and can connect in one click to any operational data store. Additionally it provides out-of-the-box advanced persistency options.</p>
         <h1>Smart Cache Overview</h1>
         <p style="text-align: center;">
-            <img src="Resources/Static/images/smart-cache-diagram-with-numbers.png" class="tc-picture80" />
+            <img src="Resources/Static/images/smart-cache-diagram-with-numbers-2.png" class="tc-picture80" />
         </p>
         <div>
             <p style="text-align: center;">Architecture of Smart Cache</p>
             <h2>1. Connect to Data Source</h2>
             <MadCap:snippetBlock src="Resources/Snippets/Content/one-click-or-data-pipeline.flsnp" MadCap:conditionTagExpression="exclude[SnippetConditions.SnippetCondition01]" />
         </div>
-        <h2>2. Automated Data Tiering</h2>
-        <p>Data is stored in multiple data storage tiers — hot (in-memory), warm (SSD), and cold
-(disk/external data store)					</p>
+        <h2>2. Data Tiering</h2>
+        <p>Data is stored in multiple data storage tiers — hot (in-memory), and warm (SSD)					</p>
         <div>
-            <p>User-defined business rules allows you to place the most <i>important </i>data in hot storage, while other data can be in warm or cold storage. </p>
+            <p>User-defined business rules allows you to place the most <i>important </i>data in hot storage, while other data can be in warm storage. </p>
             <p> <MadCap:variable name="General.ProductNameIE" /> manages the full data lifecycle by automatically storing the relevant data in the relevant tiers, federating the queries under the hood to gather all the data in optimal latency and evicting the data according to various policies, from least-recently-used (LRU) to user custom policies. Click <a href="https://docs.gigaspaces.com/latest/admin/memoryxtend-overview.html">here</a> for more information about tiered storage.</p>
             <p style="text-align: center;">
-                <img src="Resources/Static/images/smartcache-data-tiering-diagram-new.png" style="width: 726px;height: 361px;" class="tc-picture50" />
+                <img src="Resources/Static/images/smartcache-data-tiering-diagram-new-2.png" style="width: 726px;height: 361px;" class="tc-picture50" />
             </p>
             <div class="tc-admon-note">
                 <p>"Important" does not necessarily mean "most frequently accessed" — for example, your business rules may place premium customers in hot storage, even if their data is less frequently required. </p>
