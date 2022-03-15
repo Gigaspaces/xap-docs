@@ -1,149 +1,208 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-    <head>
-    </head>
-    <body>
-        <h1 class="tc-pagetitle"><MadCap:variable name="General.XAPNet" /> in 5 Minutes</h1>
-        <p>This tutorial explains how to deploy and use a XAP <a href="../overview/the-in-memory-data-grid.html">Data Grid</a> from a .NET client application.</p>
-        <h1>Downloading and Installing XAP</h1>
-        <p><MadCap:variable name="General.ProductNameXAP" />'s <MadCap:variable name="General.XAPNet" /> is packaged as a standard Windows Installer package (.msi file). After you have downloaded the latest version of XAP from the <a href="https://www.gigaspaces.com/download-center" target="_blank">Download Center</a>, start the installation by double-clicking the .msi file, and the installation wizard will pop up and guide you through the installation process.</p>
-        <p>Once you accept the license agreement, you will be asked to choose a setup type. Select "Complete' to install all the features in the default path (C:\GigaSpaces\XAP.NET X.x.x). Selecting "Custom' will allow you to customize the installation path, which features will be installed, and more.</p>
-        <h1><a name="starting-a-service-grid"></a>Starting a Service Grid</h1>
-        <p>A Data Grid requires a <a href="../overview/the-in-memory-data-grid.html">Service Grid</a> to host it. A service grid is composed of one or more machines (service grid nodes) running a <a href="../overview/the-runtime-environment.html#gsa">Service Grid Agent</a> (or <code>GSA</code>), and provides a framework to deploy and monitor applications on those machines, in our case the Data Grid.</p>
-        <p>In this tutorial you'll launch a single node service grid on your machine. To start the service grid, simply run the <code>Gs-agent.exe</code> from the product's <code>bin</code> folder.</p>
-        <div class="tc-admon-tip">
-            <p>XAP provides a web-based tool called the Web Management Console for monitoring and management. From the <code>bin</code> folder start <code>Gs-webui.exe</code>, then browse to <code>http://localhost:8099</code>. Click the "Login' button and take a look at the <span class="tc-italic">Dashboard</span> and <span class="tc-italic">Hosts</span> tabs - you'll see the service grid components created on your machine.</p>
-        </div>
-        <h1><a name="deploying-the-data-grid"></a>Deploying the Data Grid</h1>
-        <p>The data grid can be deployed from command line, from the web management tool or via an Administration API. In this tutorial we'll use the command line.</p>
-        <p>Start a command line, navigate to the product's <code>bin</code> folder and run the following command:</p><pre><code class="language-bash">gs-cli deploy-space -cluster total_members=2,1 myDataGrid
-</code></pre>
-        <p>This command deploys a Data Grid (aka space) called <span class="tc-bold">myDataGrid</span> with 2 partitions and 1 backup per partition (hence the <code>2,1</code> syntax).</p>
-        <p>If you're using the web console mentioned above to see what's going on, you'll see the data grid has been deployed.</p>
-        <h1><a name="interacting-with-the-data-grid"></a>Interacting with the Data Grid</h1>
-        <h3><a name="setting-up-your-ide"></a>Setting up your IDE</h3>
-        <p>Launch Visual Studio, create a new C# <span class="tc-italic">Console Application</span> and add a reference to <span class="tc-bold">GigaSpaces.Core.dll</span> from <code>C:\GigaSpaces\[%=Versions.gshome-net-directory%]\NET v4.0\Bin</code>. If you're new to Visual Studio and .NET, follow these instructions:</p>
-        <div class="row">
-            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
-                <div title="How to create a XAP.NET Project in Visual Studio" style="padding:10px;">
-                    <ol>
-                        <li>Open Microsoft Visual Studio. From the <span class="tc-bold">File</span> menu select <span class="tc-bold">New &gt; Project</span>. The <span class="tc-bold">New Project</span> dialog appears.</li>
-                        <li>In the <span class="tc-bold">Project types</span> tree, select <span class="tc-bold">Visual C#</span>, then select <span class="tc-bold">Console Application</span> in the <span class="tc-bold">Templates</span> list.</li>
-                        <li>In the <span class="tc-bold">Name</span> test box, type <span class="tc-bold">XapDemo</span>. If you wish, change the default location to a path you prefer.</li>
-                        <li>Select <span class="tc-bold">OK</span> to continue. Visual Studio creates the project and opens the automatically generated <code>program.cs</code> file.</li>
-                        <li>From the <span class="tc-bold">Project</span> menu, select <span class="tc-bold">Add Reference</span>. The <span class="tc-bold">Add Reference</span> dialog appears.</li>
-                        <li>Select the <span class="tc-bold">Browse</span> tab, navigate to the <MadCap:variable name="General.XAPNet" /> installation folder (e.g. <span class="tc-bold">C:\GigaSpaces[%=Versions.gshome-net-directory%]\NET v4.0</span>). Go into the <span class="tc-bold">Bin</span> folder, select <span class="tc-bold">GigaSpaces.Core.dll</span>, and click <span class="tc-bold">OK</span>.</li>
-                        <li>In the <span class="tc-bold">Solution Explorer</span>, make sure you see <span class="tc-bold">GigaSpaces.Core</span> in the project references. There's no need to reference any other assembly.</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-        <div class="tc-admon-important">
-            <p>If you're using <MadCap:variable name="General.XAPNet" /> x64, note that the <a href="http://connect.microsoft.com/VisualStudio/feedback/details/455103/new-c-console-application-targets-x86-by-default" target="_blank">default platform for Console Applications is x86</a>, and you must <a href="http://msdn.microsoft.com/en-us/library/ms185328.aspx" target="_blank">change it to x64</a>.</p>
-        </div>
-        <h3><a name="implementing-a-pono"></a>Implementing a PONO</h3>
-        <p>Any PONO can be stored in the space, so long as it has a default constructor and an ID property. For this tutorial let's define a <code>Person</code> class with the following properties:</p><pre><code class="language-csharp">using GigaSpaces.Core.Metadata;
+	<head>
+	</head>
+	<body>
+		<h1 class="tc-pagetitle"><MadCap:variable name="General.XAPNet" /> in Five Minutes</h1>
+		<p>This tutorial explains how to deploy and use a XAP <a href="../overview/the-in-memory-data-grid.html">Data Grid</a> from a .NET client application.</p>
+		<h1>Prerequisites</h1>
+		<ul>
+			<li>
+				<p>.NET 6.0 SDK</p>
+			</li>
+			<li>
+				<p>Visual Studio 2022 or later</p>
+			</li>
+			<li>
+				<p>Java 8</p>
+			</li>
+		</ul>
+		<h1>Downloading and Installing XAP</h1>
+		<p><MadCap:variable name="General.ProductNameXAP" />'s <MadCap:variable name="General.XAPNet" /> is packaged as a standard Windows Installer package (<code>.msi</code> file). </p>
+		<p>Download the latest version of XAP from the <a href="https://www.gigaspaces.com/download-center" target="_blank">Download Center</a>, choosing Smart Cache/16.1 Enterprise Edition for .NET (x64). </p>
+		<p>Start the installation by double-clicking the <code>.msi</code> file. The installation wizard will guide you through the installation process.</p>
+		<div class="tc-admon-note">
+			<p>Be sure to edit the license file, located at <code>C:\GigaSpaces\smart-cache.net-16.1.0-x64\Runtime\gs-license.txt</code>. To use the trial license, change the file to contain only the following line:</p>
+			<p><code>tryme</code>
+			</p>
+		</div>
+		<h1><a name="starting-a-service-grid"></a>Starting a Service Grid</h1>
+		<p>A Data Grid requires a <a href="../overview/the-in-memory-data-grid.html">Service Grid</a> to host it. A service grid is composed of one or more machines (service grid nodes) running a <a href="../overview/the-runtime-environment.html#gsa">Service Grid Agent</a> (or <code>GSA</code>), and provides a framework to deploy and monitor applications on those machines, in our case the Data Grid.</p>
+		<p>In this tutorial you'll launch a single node service grid on your machine. To start the service grid, proceed as follows:</p>
+		<ul>
+			<li>
+				<p>Open a command line prompt in the directory <code>C:\GigaSpaces\smart-cache.net-16.1.0-x64\Runtime\bin</code></p>
+			</li>
+			<li>
+				<p>Type the following command: </p>
+			</li>
+			<li>
+				<p><code>gs host run-agent --auto</code>
+				</p>
+			</li>
+		</ul>
+		<h1><a name="deploying-the-data-grid"></a>Deploying the Data Grid</h1>
+		<p>The data grid can be deployed from command line, from the web management tool or via an Administration API. In this tutorial we'll use the command line.</p>
+		<p>Start a command line, navigate to the product's <code>bin</code> folder and run the following command:</p>
+		<ul>
+			<li>
+				<p>Open a command line prompt in the directory <code>C:\GigaSpaces\smart-cache.net-16.1.0-x64\Runtime\bin</code></p>
+			</li>
+			<li>
+				<p>Type the following commands: </p>
+			</li>
+			<li>
+				<p><code>gs container create --count=2 localhost</code>
+				</p>
+			</li>
+			<li>
+				<p><code>gs space deploy --partitions=2 myDataGrid</code>
+				</p>
+			</li>
+		</ul>
+		<p>This command deploys a Data Grid (also called a Space) called <span class="tc-bold">myDataGrid</span> with 2 partitions.</p>
+		<p>To see the resulting Space in the GigaSpaces Ops Manager, type the following URL in a browser:</p>
+		<p><code>http://localhost:8090/spaces</code>
+		</p>
+		<h1><a name="interacting-with-the-data-grid"></a>Interacting with the Data Grid</h1>
+		<h2><a name="setting-up-your-ide"></a>Setting up your IDE</h2>
+		<p>Launch Visual Studio, create a new C# <span class="tc-italic">Console Application</span> and add a reference to <span class="tc-bold">GigaSpaces.Core.dll</span> from <code>C:\GigaSpaces\smart-cache.net-16.1.0-x64\NET v6.0\Bin</code>. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">If you're new to Visual Studio and .NET, follow these instructions:</MadCap:conditionalText></p>
+		<div class="row" MadCap:conditions="Default.DoNotShow">
+			<div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+				<div title="How to create a XAP.NET Project in Visual Studio" style="padding:10px;">
+					<ol>
+						<li>Open Microsoft Visual Studio. From the <span class="tc-bold">File</span> menu select <span class="tc-bold">New &gt; Project</span>. The <span class="tc-bold">New Project</span> dialog appears.</li>
+						<li>In the <span class="tc-bold">Project types</span> tree, select <span class="tc-bold">Visual C#</span>, then select <span class="tc-bold">Console Application</span> in the <span class="tc-bold">Templates</span> list.</li>
+						<li>In the <span class="tc-bold">Name</span> test box, type <span class="tc-bold">XapDemo</span>. If you wish, change the default location to a path you prefer.</li>
+						<li>Select <span class="tc-bold">OK</span> to continue. Visual Studio creates the project and opens the automatically generated <code>program.cs</code> file.</li>
+						<li>From the <span class="tc-bold">Project</span> menu, select <span class="tc-bold">Add Reference</span>. The <span class="tc-bold">Add Reference</span> dialog appears.</li>
+						<li>Select the <span class="tc-bold">Browse</span> tab, navigate to the <MadCap:variable name="General.XAPNet" /> installation folder (e.g. <span class="tc-bold">C:\GigaSpaces[%=Versions.gshome-net-directory%]\NET v4.0</span>). Go into the <span class="tc-bold">Bin</span> folder, select <span class="tc-bold">GigaSpaces.Core.dll</span>, and click <span class="tc-bold">OK</span>.</li>
+						<li>In the <span class="tc-bold">Solution Explorer</span>, make sure you see <span class="tc-bold">GigaSpaces.Core</span> in the project references. There's no need to reference any other assembly.</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<h2><a name="implementing-a-pono"></a>Implementing a PONO</h2>
+		<p>Any PONO can be stored in the space, so long as it has a default constructor and an ID property. </p>
+		<div class="tc-admon-note">
+			<p>The following code snippets are included here to explain the PONO functionality. The complete source code is provided <MadCap:xref href="#Full" class="full-source-code">below</MadCap:xref>.</p>
+		</div>
+		<p>We define a <code>Person</code> class with the following properties:</p><pre><code class="language-csharp">using GigaSpaces.Core.Metadata;
 
-public class Person
-{
-    [SpaceID]
-    public int? Ssn {get; set;}
-    public String FirstName {get; set;}
-    public String LastName  {get; set;}
-}
-</code></pre>
-        <p>Note that we've annotated the <code>Ssn</code> property with a custom <MadCap:variable name="General.XAPNet" /> attribute (<code>[SpaceID]</code>) to mark it as the entries ID.</p>
-        <h3><a name="interacting-with-the-grid"></a>Interacting with the Data Grid</h3>
-        <p>First, let's establish a connection to the data grid we've deployed:</p><pre><code class="language-csharp">ISpaceProxy spaceProxy = new SpaceProxyFactory("myDataGrid").Create();
-</code></pre>
-        <p>Now that we have a proxy connected to the data grid, we can store entries in the grid using the <code>Write()</code> method and read them using various <code>Read()</code> methods:</p><pre><code class="language-csharp">Console.WriteLine("Write (store) a couple of entries in the data grid:");
-spaceProxy.Write(new Person {Ssn=1, FirstName="Vincent", LastName="Chase"});
-spaceProxy.Write(new Person {Ssn=2, FirstName="Johnny", LastName="Drama"});
+				public class Person
+				{
+				[SpaceID]
+				public int? Ssn {get; set;}
+				public String? FirstName {get; set;}
+				public String? LastName  {get; set;}
+				}
+		</code></pre>
+		<p>Note that we've annotated the <code>Ssn</code> property with a custom <MadCap:variable name="General.XAPNet" /> attribute (<code>[SpaceID]</code>) to mark it as the entries ID.</p>
+		<h3><a name="interacting-with-the-grid"></a>Interacting with the Data Grid</h3>
+		<p>First, let's establish a connection to the data grid we've deployed:</p><pre><code class="language-csharp">ISpaceProxy spaceProxy = new SpaceProxyFactory("myDataGrid").Create();
+		</code></pre>
+		<p>Now that we have a proxy connected to the data grid, we can store entries in the grid using the <code>Write()</code> method and read them using various <code>Read()</code> methods:</p><pre><code class="language-csharp">Console.WriteLine("Write (store) a couple of entries in the data grid:");
+				spaceProxy.Write(new Person {Ssn=1, FirstName="Vincent", LastName="Chase"});
+				spaceProxy.Write(new Person {Ssn=2, FirstName="Johnny", LastName="Drama"});
 
-Console.WriteLine("Read (retrieve) an entry from the grid by its id:");
-Person result1 = spaceProxy.ReadById&lt;Person&gt;(1);
+				Console.WriteLine("Read (retrieve) an entry from the grid by its id:");
+				Person result1 = spaceProxy.ReadById&lt;Person&gt;(1);
 
-Console.WriteLine("Read an entry from the grid using LINQ:");
-var query = from p in spaceProxy.Query&lt;Person&gt;()
-            where p.FirstName == "Johnny"
-            select p;
-Person result2 = spaceProxy.Read&lt;Person&gt;(query.ToSpaceQuery());
+				Console.WriteLine("Read an entry from the grid using LINQ:");
+				var query = from p in spaceProxy.Query&lt;Person&gt;()
+				where p.FirstName == "Johnny"
+				select p;
+				Person result2 = spaceProxy.Read&lt;Person&gt;(query.ToSpaceQuery());
 
-Console.WriteLine("Read all entries of type Person from the grid:");
-Person[] results = spaceProxy.ReadMultiple(new Person());
-</code></pre>
-        <p>If you're using the web console mentioned above to see what's going on, you'll see two entries stored in the data grid, one in each partition.</p>
-        <h3><a name="hahahugoshortcode-6hbhb-full-source-code"></a> <a name="source"></a> Full Source Code</h3>
-        <div class="row">
-            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
-                <div title="Program.cs" style="padding:10px;"><pre><code class="language-csharp">using System;
-using System.Linq;
-using GigaSpaces.Core;
-using GigaSpaces.Core.Linq;
+				Console.WriteLine("Read all entries of type Person from the grid:");
+				Person[] results = spaceProxy.ReadMultiple(new Person());
+		</code></pre>
+		<p>In the Ops Manager user interface, you will see two entries stored in the data grid, one in each partition.</p>
+		<h2> Running the Application</h2>
+		<p>Build and Run the sample <b>.Net</b> application,using the complete source code provided <MadCap:xref href="#Full" class="full-source-code">below</MadCap:xref>. </p>
+		<p>The following is an example of the application output:</p><pre><code class="language-csharp">Connecting to data grid...
+				Write (store) a couple of entries in the data grid:
+				Read (retrieve) an entry from the grid by its id:
+				Result: Person #1: Vincent Chase
+				Read an entry from the grid using LINQ:
+				Result: Person #2: Johnny Drama
+				Read all entries of type Person from the grid:
+				Result: Person #1: Vincent Chase,Person #2: Johnny Drama
+				Demo completed - press ENTER to exit<![CDATA[
+		]]></code></pre>
+		<p>&#160;</p>
+		<h2><a name="Full"></a> Complete Source Code</h2>
+		<div class="row">
+			<div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+				<div title="Program.cs" style="padding:10px;"><pre><code class="language-csharp">using System;
+							using System.Linq;
+							using GigaSpaces.Core;
+							using GigaSpaces.Core.Linq;
 
-namespace XapDemo
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Connecting to data grid...");
-            ISpaceProxy spaceProxy = new SpaceProxyFactory("myDataGrid").Create();
+							namespace XapDemo
+							{
+							class Program
+							{
+							static void Main(string[] args)
+							{
+							Console.WriteLine("Connecting to data grid...");
+							ISpaceProxy spaceProxy = new SpaceProxyFactory("myDataGrid").Create();
 
-            Console.WriteLine("Write (store) a couple of entries in the data grid:");
-            spaceProxy.Write(new Person { Ssn = 1, FirstName = "Vincent", LastName = "Chase" });
-            spaceProxy.Write(new Person { Ssn = 2, FirstName = "Johnny", LastName = "Drama" });
+							Console.WriteLine("Write (store) a couple of entries in the data grid:");
+							spaceProxy.Write(new Person { Ssn = 1, FirstName = "Vincent", LastName = "Chase" });
+							spaceProxy.Write(new Person { Ssn = 2, FirstName = "Johnny", LastName = "Drama" });
 
-            Console.WriteLine("Read (retrieve) an entry from the grid by its id:");
-            Person result1 = spaceProxy.ReadById&lt;Person&gt;(1);
-            Console.WriteLine("Result: " + result1);
+							Console.WriteLine("Read (retrieve) an entry from the grid by its id:");
+							Person result1 = spaceProxy.ReadById&lt;Person&gt;(1);
+							Console.WriteLine("Result: " + result1);
 
-            Console.WriteLine("Read an entry from the grid using LINQ:");
-            var query = from p in spaceProxy.Query&lt;Person&gt;()
-                        where p.FirstName == "Johnny"
-                        select p;
-            Person result2 = spaceProxy.Read&lt;Person&gt;(query.ToSpaceQuery());
-            Console.WriteLine("Result: " + result2);
+							Console.WriteLine("Read an entry from the grid using LINQ:");
+							var query = from p in spaceProxy.Query&lt;Person&gt;()
+							where p.FirstName == "Johnny"
+							select p;
+							Person result2 = spaceProxy.Read&lt;Person&gt;(query.ToSpaceQuery());
+							Console.WriteLine("Result: " + result2);
 
-            Console.WriteLine("Read all entries of type Person from the grid:");
-            Person[] results = spaceProxy.ReadMultiple(new Person());
-            Console.WriteLine("Result: " + String.Join&lt;Person&gt;(",", results));
+							Console.WriteLine("Read all entries of type Person from the grid:");
+							Person[] results = spaceProxy.ReadMultiple(new Person());
+							Console.WriteLine("Result: " + String.Join&lt;Person&gt;(",", results));
 
-            Console.WriteLine("Demo completed - press ENTER to exit");
-            Console.ReadLine();
-        }
-    }
-}
-</code></pre>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
-                <div title="Person.cs" style="padding:10px;"><pre><code class="language-csharp">using System;
-using GigaSpaces.Core.Metadata;
+							Console.WriteLine("Demo completed - press ENTER to exit");
+							Console.ReadLine();
+							}
+							}
+							}
+					</code></pre>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+				<div title="Person.cs" style="padding:10px;"><pre><code class="language-csharp">using System;
+							using GigaSpaces.Core.Metadata;
 
-namespace XapDemo
-{
-    public class Person
-    {
-        [SpaceID(AutoGenerate=false)]
-        public int? Ssn { get; set; }
+							namespace XapDemo
+							{
+							public class Person
+							{
+							[SpaceID(AutoGenerate=false)]
+							public int? Ssn { get; set; }
 
-        [SpaceIndex(Type=SpaceIndexType.Basic)]
-        public String FirstName { get; set; }
+							[SpaceIndex(Type=SpaceIndexType.Basic)]
+							public String? FirstName { get; set; }
 
-        public String LastName { get; set; }
+							public String? LastName { get; set; }
 
-        public override string ToString()
-        {
-            return "Person #" + Ssn + ": " + FirstName + " " + LastName;
-        }
-    }
-}
-</code></pre>
-                </div>
-            </div>
-        </div>
-    </body>
+							public override string ToString()
+							{
+							return "Person #" + Ssn + ": " + FirstName + " " + LastName;
+							}
+							}
+							}
+					</code></pre>
+				</div>
+			</div>
+		</div>
+		<p>&#160;</p>
+	</body>
 </html>
