@@ -87,8 +87,8 @@
         <div class="tc-admon-note">
             <p>The following code snippets are included here to explain the PONO functionality. The complete source code is provided <MadCap:xref href="#Full" class="full-source-code">below</MadCap:xref>.</p>
         </div>
-        <p>We define a <code>Person</code> class with the following properties:</p><pre><code class="language-csharp">using GigaSpaces.Core.Metadata;
-
+        <p>We define a <code>Person</code> class with the following properties:</p><pre><code class="language-csharp">
+				using GigaSpaces.Core.Metadata;
 				public class Person
 				{
 				[SpaceID]
@@ -101,7 +101,8 @@
         <h3><a name="interacting-with-the-grid"></a>Interacting with the Data Grid</h3>
         <p>First, let's establish a connection to the data grid we've deployed:</p><pre><code class="language-csharp">ISpaceProxy spaceProxy = new SpaceProxyFactory("myDataGrid").Create();
 		</code></pre>
-        <p>Now that we have a proxy connected to the data grid, we can store entries in the grid using the <code>Write()</code> method and read them using various <code>Read()</code> methods:</p><pre><code class="language-csharp">Console.WriteLine("Write (store) a couple of entries in the data grid:");
+        <p>Now that we have a proxy connected to the data grid, we can store entries in the grid using the <code>Write()</code> method and read them using various <code>Read()</code> methods:</p><pre><code class="language-csharp">
+				Console.WriteLine("Write (store) a couple of entries in the data grid:");
 				spaceProxy.Write(new Person {Ssn=1, FirstName="Vincent", LastName="Chase"});
 				spaceProxy.Write(new Person {Ssn=2, FirstName="Johnny", LastName="Drama"});
 
@@ -120,7 +121,8 @@
         <p>In the Ops Manager user interface, you will see two entries stored in the data grid, one in each partition.</p>
         <h2> Running the Application</h2>
         <p>Build and Run the sample <b>.Net</b> application,using the complete source code provided <MadCap:xref href="#Full" class="full-source-code">below</MadCap:xref>. </p>
-        <p>The following is an example of the application output:</p><pre><code class="language-csharp">Connecting to data grid...
+        <p>The following is an example of the application output:</p><pre><code class="language-csharp">
+				Connecting to data grid...
 				Write (store) a couple of entries in the data grid:
 				Read (retrieve) an entry from the grid by its id:
 				Result: Person #1: Vincent Chase
