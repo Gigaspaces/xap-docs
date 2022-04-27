@@ -133,6 +133,61 @@
             </div>
         </div>
         <p>This code doesn't reflect the complete model, and most of the properties don't need to be introduced to the schema. Only properties with special roles (for example, <code>idProperty</code> and <code>routingProperty</code>) are part of the schema definition. These meta model settings <span class="tc-bold">can't be changed</span> without restarting the Space or dropping the type, clearing all its instances, and reintroducing it.</p>
+        <div MadCap:conditions="Version.16-1-1-born">
+            <h1>Compound SpaceId</h1>
+            <p>Use the following techniques when defining a SpaceId from more than one property.</p>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">List&lt;String&gt; idProperties = new ArrayList&lt;&gt;();
+idProperties.add("firstName");
+idProperties.add("lastName");
+SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder("PersonDoc")
+       .addFixedProperty("firstName", String.class)
+       .addFixedProperty("lastName", String.class)
+       .idProperty(idProperties)
+       .create();
+
+gigaSpace.getTypeManager().registerTypeDescriptor(typeDescriptor);
+
+gigSpace.write(new SpaceDocument(typeName)
+       .setProperty("firstName", "John")
+       .setProperty("lastName", "Smith"));
+</code></pre>
+                <div title="  Code " style="padding:10px">
+                    <h2>Space Routing</h2>
+                    <p>The routing can be defined using only a single property, for example:</p><pre><code class="language-java">SpaceTypeDescriptorBuilder("PersonDoc")
+	.routingProperty("firstName")
+	...
+</code></pre>
+                    <h2>IdQuery Matching</h2>
+                </div><pre><code class="language-java">Object id = CompoundSpaceId.from("John", "Smith");
+gigaSpace.read(new IdQuery&lt;&gt;("PersonDoc", id))
+gigaSpace.readById(new IdQuery&lt;&gt;("PersonDoc", id))
+gigaSpace.readByIds(new IdQuery&lt;&gt;("PersonDoc", new Object[]{id1, id2}
+));
+</code></pre>
+                <h2>Template Matching</h2><pre><code class="language-java">//exact match
+SpaceDocument template = new SpaceDocument("PersonDoc")
+       .setProperty("firstName", "John")
+       .setProperty("lastName", "Smith");
+
+gigaSpace.read(template)
+
+//partial match
+SpaceDocument template = new SpaceDocument("PersonDoc")
+       .setProperty("firstName", "John");
+gigaSpace.read(template)
+</code></pre>
+                <h2>SQLQuery Matching</h2><pre>//exact matching
+SQLQuery&lt;SpaceDocument&gt; query = new SQLQuery&lt;&gt;("PersonDoc", "firstName=? AND lastName=?");
+       .setParameter(1, "John"))
+       .setParameter(2, "Smith"));
+gigaSpace.read(query);
+
+//partial matching
+SQLQuery&lt;SpaceDocument&gt; query = new SQLQuery&lt;&gt;("PersonDoc", "firstName=?", "John");
+gigaSpace.read(query);
+</pre>
+            </div>
+        </div>
         <h1 MadCap:conditions="Version.15-0-born">Querying with JDBC</h1>
         <p>SpaceDocuments don't have fixed schema, so each document can have a different set of properties. If you want to query documents via JDBC (either directly from the code or using tools such as Tableau or Apache Zeppelin), you must supply a schema so that the JDBC connection can infer metadata and execute queries. For example, executing a query like <code class="language-bash">SELECT * FROM Person</code> requires a schema that contains the set of columns.</p>
         <p>

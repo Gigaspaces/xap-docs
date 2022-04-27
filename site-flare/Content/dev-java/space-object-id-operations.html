@@ -19,12 +19,8 @@
             <li>When a space Class has a property which is declared as <code>SpaceId</code> and <code>auto-generate=true</code> and its value is not null, the <code>SpaceId</code> field will store the original value stored within the <code>SpaceId</code> field.</li>
             <li>When a space Class has a property which is declared as <code>SpaceId</code> and <code>auto-generate=false</code>, the <code>SpaceId</code> field will store the original value stored within the <code>SpaceId</code> field used to generate the UID.</li>
         </ul>
-        <h1><a name="compound-spaceid"></a>Compound SpaceId</h1>
         <div MadCap:conditions="Version.16-1-1-born">
-            <div class="tc-admon-note">
-                <p>The technique for creating a compound SpaceId via Java annotations is shown here. A previous technique, requiring custom code, is also shown below.</p>
-            </div>
-            <h2>Compound SpaceId via Java Annotations (Preferred Technique)</h2>
+            <h1><a name="compound-spaceid"></a>Compound SpaceId</h1>
             <p>A compound SpaceId (consisting of more than one field) can be implemented using Java annotations. </p><pre><code class="language-java">
 @SpaceId(properties = {"firstName", "lastName"})
 public class Person {
@@ -32,13 +28,39 @@ public class Person {
 	private String lastName;
 
 // Operations are the same, for example
-    gigaSpace.write( new Person("John", "Smith"))
+    gigaSpace.write( new Person("John", "Smith"))					
 </code></pre>
-            <h2>Compound SpaceId via Custom Code (Deprecated Technique)</h2>
-            <div class="tc-admon-note">
-                <p>This older approach to creating a compound SpaceId is still supported, but is not recommended for new implementations.</p>
-            </div>
+            <h2>Space Routing</h2>
+            <p>When <code>@SpaceRouting</code> is not specified, the routing will be resolved from the value of the first property in the <code>@SpaceId</code> properties list. In the above example, the value of the field is "firstName". <code>@SpaceRouting</code> specified on a different field’s <code>get </code>method, will return its value as the routing.</p>
+            <h2>IdQuery Matching
+
+</h2><pre><code class="language-java">Object id = CompoundSpaceId.from("John", "Smith");
+gigaSpace.read(new IdQuery&lt;&gt;(Person.class, id))
+gigaSpace.readById(Person.class, id);
+gigaSpace.readByIds(Person.class, new Object[]{id1, id2});
+</code></pre>
+            <h2>Template Matching</h2><pre><code class="language-java">
+//exact match
+Person template = new Person("John", "Smith");
+gigaSpace.read(template)
+
+//partial match
+Person template = new Person("John", null);
+gigaSpace.read(template)
+</code></pre>
+            <h2>
+SQLQuery Matching</h2><pre><code class="language-java">
+
+//exact matching
+SQLQuery&lt;Person&gt; query = new SQLQuery&lt;&gt;(Person.class, "firstName=? AND lastName=?", "John", "Smith");
+gigaSpace.read(query);
+
+//partial matching
+SQLQuery&lt;Person&gt; query = new SQLQuery&lt;&gt;(Person.class, "firstName=?", "John");
+gigaSpace.read(query);
+</code></pre>
         </div>
+        <h2>Custom SpaceId </h2>
         <p>You might need to construct an ID that will be comprised from a user defined Object rather than using a Numeric or String type field. In such a case your user defined class used as the <code>SpaceId</code> data type must implement the <code>toString</code> , <code>hashCode</code> and <code>equals</code> methods.</p>
         <div class="tc-admon-note">
             <p>The compound ID class must implement a <code>toString</code> method that return a unique String for each ID.</p>
