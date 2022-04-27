@@ -115,6 +115,10 @@ User[] evictedUsers = gigaSpace.takeMultiple(template, Integer.MAX_VALUE, TakeMo
         <h1><a name="memory-manager-parameters"></a>Memory Manager Parameters</h1>
         <p>The following properties are used to control the memory manager.</p>
         <table>
+            <col style="width: 627px;" />
+            <col style="width: 1122px;" />
+            <col />
+            <col />
             <thead>
                 <tr>
                     <th align="left">Property</th>
@@ -124,17 +128,47 @@ User[] evictedUsers = gigaSpace.takeMultiple(template, Integer.MAX_VALUE, TakeMo
                 </tr>
             </thead>
             <tbody>
+                <tr MadCap:conditions="Version.16-1-1-born">
+                    <td align="left" style="background-color: #afeeee;">space-config.engine.query.result.size.limit</td>
+                    <td align="left" style="background-color: #afeeee;">?????</td>
+                    <td align="left" style="background-color: #afeeee;">??</td>
+                    <td align="left" style="background-color: #afeeee;">?????</td>
+                </tr>
+                <tr MadCap:conditions="Version.16-1-1-born">
+                    <td align="left" style="background-color: #afeeee;">space-config.engine.query.result.size.limit.memory.check.batch.size</td>
+                    <td align="left" style="background-color: #afeeee;">?????</td>
+                    <td align="left" style="background-color: #afeeee;">??</td>
+                    <td align="left" style="background-color: #afeeee;">?????</td>
+                </tr>
                 <tr>
-                    <td align="left">space-config.engine.cache_size</td>
-                    <td align="left">Defines the maximum size of the Space cache. This is the total number of Space objects across all Space class instances, within a single Space. This parameter is ignored when running an <code>ALL_IN_CACHE</code> eviction policy.</td>
-                    <td align="left">100,000</td>
-                    <td align="left">LRU</td>
+                    <td align="left">space-config.engine.memory_usage.<br />write_only_check_percentage</td>
+                    <td align="left">Specifies an upper threshold for checking only <code>write-type</code> operations. Above this level, all operations are checked.</td>
+                    <td align="left">76</td>
+                    <td align="left">ALL_IN_CACHE</td>
                 </tr>
                 <tr>
                     <td align="left">space-config.engine.memory_usage.<br />high_watermark_percentage</td>
                     <td align="left">Specifies a maximum threshold for memory use. If the Space container's memory usage exceeds this threshold, a <code>com.j_spaces.core.MemoryShortageException</code> is thrown.</td>
                     <td align="left">95</td>
                     <td align="left">ALL_IN_CACHE, LRU</td>
+                </tr>
+                <tr>
+                    <td align="left">space-config.engine.memory_usage.<br />write_only_block_percentage</td>
+                    <td align="left">Specifies a lower threshold for blocking <code>write-type</code> operations. Above this level, only read/take operations are allowed.</td>
+                    <td align="left">85</td>
+                    <td align="left">ALL_IN_CACHE,LRU</td>
+                </tr>
+                <tr>
+                    <td align="left">space-config.engine.memory_usage.<br />gc-before-shortage</td>
+                    <td align="left">If <code>true</code>, GC will be called before throwing <code>MemoryShortageException</code> .<br /><span class="tc-iconexcl">&#160;</span>  This settings should be set to <span class="tc-bold">false</span> when running a large heap size (above 4GB) as it may cause a long pause with the JVM response time due to long garbage collection.</td>
+                    <td align="left">true</td>
+                    <td align="left">LRU , ALL_IN_CACHE</td>
+                </tr>
+                <tr>
+                    <td align="left">space-config.engine.cache_size</td>
+                    <td align="left">Defines the maximum size of the Space cache. This is the total number of Space objects across all Space class instances, within a single Space. This parameter is ignored when running an <code>ALL_IN_CACHE</code> eviction policy.</td>
+                    <td align="left">100,000</td>
+                    <td align="left">LRU</td>
                 </tr>
                 <tr>
                     <td align="left">space-config.engine.memory_usage.<br />low_watermark_percentage</td>
@@ -155,18 +189,6 @@ User[] evictedUsers = gigaSpace.takeMultiple(template, Integer.MAX_VALUE, TakeMo
                     <td align="left">LRU</td>
                 </tr>
                 <tr>
-                    <td align="left">space-config.engine.memory_usage.<br />write_only_block_percentage</td>
-                    <td align="left">Specifies a lower threshold for blocking <code>write-type</code> operations. Above this level, only read/take operations are allowed.</td>
-                    <td align="left">85</td>
-                    <td align="left">ALL_IN_CACHE,LRU</td>
-                </tr>
-                <tr>
-                    <td align="left">space-config.engine.memory_usage.<br />write_only_check_percentage</td>
-                    <td align="left">Specifies an upper threshold for checking only <code>write-type</code> operations. Above this level, all operations are checked.</td>
-                    <td align="left">76</td>
-                    <td align="left">ALL_IN_CACHE</td>
-                </tr>
-                <tr>
                     <td align="left">space-config.engine.memory_usage.<br />retry_count</td>
                     <td align="left">Number of retries to lower the memory level below the <code>Low_watermark_percentage</code> value. If after all retries, the memory level is still above the <code>space-config.engine.memory_usage.write_only_block_percentage</code> value, a <code>com.j_spaces.core.MemoryShortageException</code> is thrown for that write request.</td>
                     <td align="left">5</td>
@@ -177,12 +199,6 @@ User[] evictedUsers = gigaSpace.takeMultiple(template, Integer.MAX_VALUE, TakeMo
                     <td align="left">If <code>true</code>, the garbage collector is called explicitly before trying to evict.<br /><span class="tc-iconexcl">&#160;</span> When using the LRU cache policy, <code>space-config.engine.memory_usage.explicit-gc=false</code> means that the garbage collector might evict fewer objects than the defined minimum (low watermark percentage). This tag is <code>false</code> by default, because setting the garbage collector explicitly consumes a large amount of CPU, which affects performance. Therefore, we recommend that you set this to <code>true</code> <span class="tc-italic">only</span> if you want to ensure that the minimum amount of objects are evicted from the Space (and not less than the minimum).</td>
                     <td align="left">false</td>
                     <td align="left">LRU</td>
-                </tr>
-                <tr>
-                    <td align="left">space-config.engine.memory_usage.<br />gc-before-shortage</td>
-                    <td align="left">If <code>true</code>, GC will be called before throwing <code>MemoryShortageException</code> .<br /> <span class="tc-iconexcl">&#160;</span>  This settings should be set to <span class="tc-bold">false</span> when running a large heap size (above 4GB) as it may cause a long pause with the JVM response time due to long garbage collection.</td>
-                    <td align="left">true</td>
-                    <td align="left">LRU , ALL_IN_CACHE</td>
                 </tr>
                 <tr>
                     <td align="left">space-config.engine.memory_usage.<br />retry_yield_time</td>
