@@ -130,13 +130,13 @@ User[] evictedUsers = gigaSpace.takeMultiple(template, Integer.MAX_VALUE, TakeMo
             <tbody>
                 <tr MadCap:conditions="Version.16-1-1-born">
                     <td align="left" style="background-color: #afeeee;">space-config.engine.query.result.size.limit</td>
-                    <td align="left" style="background-color: #afeeee;">This parameter is used if its value is greater than zero, and a  <code>ReadMultiple</code>/<code>ChangeMultiple</code>/<code>TakeMultiple </code>operation is performed.<br />If the number of results that would be returned by the operation is greater than this parameter, ReadMultipleException is thrown. </td>
+                    <td align="left" style="background-color: #afeeee;">This parameter is used if its value is greater than zero, and a  <code>ReadMultiple</code>/<code>ChangeMultiple</code>/<code>TakeMultiple </code>operation is performed.<br />If the number of results that would be returned by the operation is greater than this parameter, ReadMultipleException/ChangeMultipleException /TakeMultipleException  is thrown. </td>
                     <td align="left" style="background-color: #afeeee;">0</td>
                     <td align="left" style="background-color: #afeeee;">ALL_IN_CACHE, LRU</td>
                 </tr>
                 <tr MadCap:conditions="Version.16-1-1-born">
                     <td align="left" style="background-color: #afeeee;">space-config.engine.query.result.size.limit.memory.check.batch.size</td>
-                    <td align="left" style="background-color: #afeeee;">If this parameter is greater than zero, the memory required for each batch will be monitored. If the memory required is greater than this parameter, MemoryShortageException is thrown.</td>
+                    <td align="left" style="background-color: #afeeee;">If this parameter is greater than zero, an <i>internal</i> memory check is performed during <code>ReadMultiple</code>/<code>ChangeMultiple</code>/<code>TakeMultiple </code>operations. This memory check is performed whenever the operation determines that number of returned results exceeds the parameter value. <br />If the internal memory check fails, MemoryShortageException is thrown.</td>
                     <td align="left" style="background-color: #afeeee;">0</td>
                     <td align="left" style="background-color: #afeeee;">ALL_IN_CACHE, LRU</td>
                 </tr>

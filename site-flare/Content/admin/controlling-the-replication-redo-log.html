@@ -11,6 +11,13 @@
             </p>
         </div>
         <p>A replication packet is either a single non-transactional "destructive" (write/take/update) operation, or a group of these operations that are done under the same transaction. The redo log contains a single list that is kept for all the targets, and for each target a different state is maintained, which represents its position in the redo log. When the cluster is in a normal state, this redo log should remain at some low constant size. However, in certain common scenarios, such as a momentary network disconnection or a burst of high load, the redo log keeps all the pending events that need to be replicated until the source member manages to re-establish connection with the target, or until the replication target manages to catch up with the temporary load. As a result, the redo log size increases and can become quite large, depending on the different cluster usage, which affects the rate of creating replicated events.</p>
+        <h1><a name="configuring-the-redo-log-capacity"></a>Format of the Redo Log</h1>
+        <p>Two options are available for the format of the redo log: <code>byte-buffer</code> and <code>sqlite</code>.</p>
+        <p><code>byte-buffer</code> is the default format and consists of data in a binary format. </p>
+        <p><code>sqlite</code> format writes the redo log data into a SQLite database located in the work directory. This format allows the user to browse through the redo log data using a <a href="https://sqlitebrowser.org/">SQLite jdbc viewer.</a></p>
+        <p>
+            <img src="../Resources/Static/images/redo-log-sqlite.png" style="width: 1043px;height: 535px;" />
+        </p>
         <h1><a name="configuring-the-redo-log-capacity"></a>Configuring the Redo Log Capacity</h1>
         <div class="tc-admon-note">
             <p>The configuration parameters described in this topic have a significant effect on the behavior of the replication mechanism and the overall and performance of the Space cluster. You should carefully evaluate every change you make to their default values, and consult the GigaSpaces support team if needed.</p>
