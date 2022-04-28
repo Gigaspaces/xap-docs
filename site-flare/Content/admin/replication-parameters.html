@@ -14,6 +14,16 @@
                 </tr>
             </thead>
             <tbody>
+                <tr MadCap:conditions="Version.16-1-1-born">
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.storage-type</td>
+                    <td align="left">Optional values: <code>byte-buffer</code>, <code>sqlite</code>.<br />-  <span class="tc-bold">byte-buffer</span> (default) writes the log in a binary format.<br />- <span class="tc-bold">sqlite</span> writes the log to a database. The database can be accessed using standard tools to view the details of the log. See xxx for details. </td>
+                    <td align="left">byte-buffer</td>
+                </tr>
+                <tr MadCap:conditions="Version.16-1-1-born">
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.sqlite-flush-buffer-packet-count</td>
+                    <td align="left">Relevant only if <code>storage-type</code> is <code>sqlite</code>.<br />This is the value used for for sqlite swap redo log mechanism.</td>
+                    <td align="left">1500</td>
+                </tr>
                 <tr>
                     <td align="left">cluster-config.groups.group.repl-policy.replication-mode</td>
                     <td align="left">Optional values: <code>sync</code>, <code>async</code>.<br />- The <span class="tc-bold">async</span> mode replicates Space operations to the target Space after the client receives an acknowledgment from the source Space for the operation.<br />- The <span class="tc-bold">sync</span> mode replicates Space operations to the target Space before the client receives the acknowledgment from the source Space for the operation. The client gets the acknowledgment for the operation only after all target Spaces have confirmed the arrival of the replicated data.</td>
