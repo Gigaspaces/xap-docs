@@ -12,6 +12,20 @@
         <div class="tc-admon-tip">
             <p>Logging options can be defined during <MadCap:xref href="#configuration">Configuration</MadCap:xref>, and changed dynamically at <MadCap:xref href="#logging-management-at-runtime" class="rt">Runtime</MadCap:xref>.</p>
         </div>
+        <div MadCap:conditions="Version.16-1-1-born">
+            <h1>Logging File Format</h1>
+            <p>Two formats are available for the logging files:</p>
+            <ul>
+                <li>
+                    <p><b>Standard GigaSpaces Format</b>
+                        <br />This is a proprietary internal format. It is the default choice for logging files.</p>
+                </li>
+                <li>
+                    <p><b>CEF – Common Event Format</b>
+                        <br />CEF is a logging format that is provided by <a href="https://community.microfocus.com/cyberres/productdocs/w/connector-documentation/38809/arcsight-common-event-format-cef-implementation-standard">ArcSight</a>. Using the techniques described below for overriding system properties, you can set the logging format to CEF as follows:<br /><span style="background-color: #ff00ff;">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span></p>
+                </li>
+            </ul>
+        </div>
         <h1><a name="configuration"></a>Configuration</h1>
         <p>The logging configuration is initialized using a configuration file that is read at startup. This configuration file is in the standard <code>java.util.Properties</code> format. It configures custom versions of both <code>java.util.logging.Handler</code> and <code>java.util.logging.Formatter</code>, and default levels for frequently used loggers (categories).</p>
         <h2><a name="default-configuration"></a>Default Configuration</h2>
