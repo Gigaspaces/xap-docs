@@ -155,14 +155,14 @@ gigSpace.write(new SpaceDocument(typeName)
                 <div title="  Code " style="padding:10px">
                     <h2>Space Routing</h2>
                     <p>The routing can be defined using only a single property, for example:</p><pre><code class="language-java">SpaceTypeDescriptorBuilder("PersonDoc")
-	.routingProperty("firstName")
+	.routingProperty("firstName");
 	...
 </code></pre>
                     <h2>IdQuery Matching</h2>
                 </div><pre><code class="language-java">Object id = CompoundSpaceId.from("John", "Smith");
-gigaSpace.read(new IdQuery&lt;&gt;("PersonDoc", id))
-gigaSpace.readById(new IdQuery&lt;&gt;("PersonDoc", id))
-gigaSpace.readByIds(new IdQuery&lt;&gt;("PersonDoc", new Object[]{id1, id2}
+gigaSpace.read(new IdQuery&lt;&gt;("PersonDoc", id));
+gigaSpace.readById(new IdQuery&lt;&gt;("PersonDoc", id));
+gigaSpace.readByIds(new IdQuery&lt;&gt;("PersonDoc", new Object[]{id1, id2};
 ));
 </code></pre>
                 <h2>Template Matching</h2><pre><code class="language-java">//exact match
@@ -170,13 +170,12 @@ SpaceDocument template = new SpaceDocument("PersonDoc")
        .setProperty("firstName", "John")
        .setProperty("lastName", "Smith");
 
-gigaSpace.read(template)
+gigaSpace.read(template);
 
 //partial match
 SpaceDocument template = new SpaceDocument("PersonDoc")
        .setProperty("firstName", "John");
-gigaSpace.read(template)
-</code></pre>
+gigaSpace.read(template);</code></pre>
                 <h2>SQLQuery Matching</h2><pre>//exact matching
 SQLQuery&lt;SpaceDocument&gt; query = new SQLQuery&lt;&gt;("PersonDoc", "firstName=? AND lastName=?");
        .setParameter(1, "John"))
