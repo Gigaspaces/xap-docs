@@ -22,7 +22,18 @@
                 </li>
                 <li>
                     <p><b>CEF – Common Event Format</b>
-                        <br />CEF is a logging format that is provided by <a href="https://community.microfocus.com/cyberres/productdocs/w/connector-documentation/38809/arcsight-common-event-format-cef-implementation-standard">ArcSight</a>. Using the techniques described below for overriding system properties, you can set the logging format to CEF as follows:<br /><span style="background-color: #ff00ff;">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span></p>
+                        <br />CEF is a logging format that is provided by <a href="https://community.microfocus.com/cyberres/productdocs/w/connector-documentation/38809/arcsight-common-event-format-cef-implementation-standard">ArcSight</a>. In order to configure the system to use CEF format for logs, edit the the <code>xap_logging.properties</code> file in the <code>...config/log</code> folder as follows:</p>
+                    <ol>
+                        <li>
+                            <p>Locate the line containing <code style="font-weight: bold;">com.gigaspaces.logger.GSSimpleFormatter.format =</code> (located near line 70 of the properties file).</p>
+                        </li>
+                        <li>
+                            <p>Change the line as follows:<br /><code>com.gigaspaces.logger.GSSimpleFormatter.format = <b>{0,date,yyyy-MM-dd HH:mm:ss,SSS} {6} {3} [{4}] - {5}</b></code></p>
+                        </li>
+                    </ol>
+                    <div class="tc-admon-note">
+                        <p>You may customize the log message as desired. The numbers in braces indicate the placeholders defined in the properties file. For example <code>{3} </code>is the placeholder for the log level.</p>
+                    </div>
                 </li>
             </ul>
         </div>
