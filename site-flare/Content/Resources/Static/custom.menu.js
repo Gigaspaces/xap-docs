@@ -8,17 +8,17 @@
 
 
 
-/*	this block of code is fine for 16.1.1:	
+// 	this block of code, until "//y", is fine for 16.1.1:	
 	'16.1.1': { 'url': '/16.1.1/landing.html', 'label': '16.1.1', 'hide': true },
 	'latest': { 'url': '/latest/landing.html', 'label': '16.1.1' },	
 	
 	'16.1': { 'url': '/16.1/landing.html', 'label': '16.1',  'topicBanner': 'old' },
-*/
+//y 
 
 
 // 	this block of code, until '//x' is for 16.1: 
-	'16.1': { 'url': '/16.1/landing.html', 'label': '16.1', 'hide': true },
-	'latest': { 'url': '/latest/landing.html', 'label': '16.1' },		
+//	'16.1': { 'url': '/16.1/landing.html', 'label': '16.1', 'hide': true },
+//	'latest': { 'url': '/latest/landing.html', 'label': '16.1' },		
 //x
 
 
@@ -63,5 +63,5 @@ var buttonsData = [
 
 var topicBanner = {
   old: '<div class="tc-topic-banner old"><p>This page describes an older version of the product. The latest stable version is <a href="/latest">16.1.1</a>.</p></div>',
-  preview: '<div class="tc-topic-banner preview"><p>This page describes the beta version of the product. The latest stable version is <a href="/latest">16.1</a>.</p></div>'
+  preview: '<div class="tc-topic-banner preview"><p>This page describes the beta version of the product. The latest stable version is <a href="/latest">16.1.1</a>.</p></div>'
 };
