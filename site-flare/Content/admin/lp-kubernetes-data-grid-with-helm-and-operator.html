@@ -85,15 +85,12 @@ Moreover, since Helm is open source, there are many community charts available w
             <li>Kubectl: run the following command to print the name, description, and status of the Pods in the command window. A list of events is also printed, which can be used for troubleshooting purposes. For example, if you detected a problem in one of the Pods, you can see the Pod termination reason and exit code.</li>
         </ul><pre><code class="language-bash">kubectl describe pod</code></pre>
         <div>
-            <h1>Additional Helm Charts Available in the GigaSpaces Repo</h1>
-            <p style="font-weight: bold;">Helm PU/Space deploy:</p>
-            <p>
+            <h2>Additional Helm Charts Available in the GigaSpaces Repo</h2>
+            <p style="font-weight: bold;">Helm PU/Space deploy:</p><pre><code class="language-bash">
 
-helm install demo xap-pu --version 16.1.1 –-set manager.name=manager,ha=true,partitions=1,antiAffinity.enabled=true,properties="pu.dynamic-partitioning=true"
-
- </p>
-            <p style="font-weight: bold;">Helm PU/Scale out/in:</p>
-            <p style="color: #dc143c;">&lt;&lt;&lt; ask Yaki for CLI example of scalein/outm &gt;&gt;&gt;&gt;</p>
+helm install demo xap-pu --version 16.1.1 –-set manager.name=manager,ha=true,partitions=1,antiAffinity.enabled=true,properties="pu.dynamic-partitioning=true"</code></pre>
+            <p style="font-weight: bold;">Helm PU/Scale out/in:</p><pre><code class="language-bash">
+kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</code></pre>
             <h2>Method 2 (Alternative Installation) – Step-By-Step</h2>
             <p>Before using these charts for the first time, you must fetch the chart, as described in <MadCap:xref href="#Accessin">Accessing the GigaSpaces Helm Charts</MadCap:xref> above.</p>
             <ul>
@@ -120,12 +117,12 @@ helm install demo xap-pu --version 16.1.1 –-set manager.name=manager,ha=true,p
                                         <p><b>Cannot delete pus</b> (kubectl delete pus &lt;pu name&gt;), delete command gets hung</p>
                                     </li>
                                 </ul>
-                                <p style="color: #dc143c;">Error: INSTALLATION FAILED: rendered manifests contain a resource that already exists. Unable to continue with install: CustomResourceDefinition "pus.gigaspaces.com" in namespace "" exists and cannot be imported into the current release: invalid ownership metadata; label validation error: missing key "app.kubernetes.io/managed-by": must be set to "Helm"; annotation validation error: missing key "meta.helm.sh/release-name": must be set to "manager"; annotation validation error: missing key "meta.helm.sh/release-namespace": must be set to "default"</p>
+                                <p style="color: #dc143c;font-weight: bold;">Error: INSTALLATION FAILED: rendered manifests contain a resource that already exists. Unable to continue with install: CustomResourceDefinition "pus.gigaspaces.com" in namespace "" exists and cannot be imported into the current release: invalid ownership metadata; label validation error: missing key "app.kubernetes.io/managed-by": must be set to "Helm"; annotation validation error: missing key "meta.helm.sh/release-name": must be set to "manager"; annotation validation error: missing key "meta.helm.sh/release-namespace": must be set to "default"</p>
                                 <p>kubectl get pus</p>
                                 <p>kubectl get CustomResourceDefintion</p>
                                 <ul>
                                     <li>
-                                        <p><b>Attempt to deleteprocessing units and CRD causes a system hang</b>
+                                        <p><b>Attempt to delete processing units and CRD causes a system hang</b>
                                         </p>
                                     </li>
                                 </ul>
