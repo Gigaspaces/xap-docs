@@ -111,29 +111,52 @@ kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</
                                 <h3>Install PU</h3><pre><code class="language-bash">helm install pu xap-pu --version 16..1.1 --set manager.name=manager --set metrics.enabled=false </code></pre>
                                 <h3>Ensure That All Pods are Running</h3>
                                 <p>Run <code>kubectl get pus</code> and ensure that the deployed processing unit is in the Deployed state</p>
+                                <h1>Customizing the Helm Chart</h1>
+                                <p>The following parameters can be used to provide custom capabilities in the YAML file.</p>
+                                <h2>Access a value in a ConfigMap:</h2><pre><code class="language-bash">spec:
+  containers:
+   - name: my-pu-container
+     volumeMounts:
+           - name: myConfig
+        mountPath: "/config-path"
+  volumes:
+   - name: myConfig
+     configMap:
+     name: <b>myConfigMap</b> 
+     items:
+      - key: "data-key"
+        path: "data-path"</code></pre>
+                                <h2>Define a Statefulset:</h2><pre><code class="language-bash">spec:
+  containers:
+   - name: my-pu-container
+     volumeMounts:
+           - name: myConfig
+        mountPath: "/config-path"
+  volumes:
+   - name: myConfig
+     configMap:
+     name: <b>myConfigMap</b> 
+     items:
+      - key: "data-key"
+        path: "data-path"</code></pre>
                                 <h3>Debugging Tips</h3>
+                                <p style="font-weight: bold;">Problem:</p>
                                 <ul>
                                     <li>
-                                        <p><b>Cannot delete pus</b> (kubectl delete pus &lt;pu name&gt;), delete command gets hung</p>
+                                        <p><b>Cannot delete pus</b> (<code>kubectl delete pus &lt;pu name&gt;</code>), the delete command gets hung. This may occur when attempting to delete a processing unit and the CRD causes a system hang.</p>
                                     </li>
                                 </ul>
-                                <p style="color: #dc143c;font-weight: bold;">Error: INSTALLATION FAILED: rendered manifests contain a resource that already exists. Unable to continue with install: CustomResourceDefinition "pus.gigaspaces.com" in namespace "" exists and cannot be imported into the current release: invalid ownership metadata; label validation error: missing key "app.kubernetes.io/managed-by": must be set to "Helm"; annotation validation error: missing key "meta.helm.sh/release-name": must be set to "manager"; annotation validation error: missing key "meta.helm.sh/release-namespace": must be set to "default"</p>
-                                <p>kubectl get pus</p>
-                                <p>kubectl get CustomResourceDefintion</p>
+                                <p style="font-weight: bold;">Resolution:</p><pre><code class="language-bash">kubectl patch pus/pu -p '{"metadata":{"finalizers":[]}}' --type=merge </code></pre>
+                                <p><a href="https://github.com/kubernetes/kubernetes/issues/60538#issuecomment-369099998"><b>See here</b></a> for more information.
+                                </p>
+                                <p style="font-weight: bold;">Problem:</p>
                                 <ul>
                                     <li>
-                                        <p><b>Attempt to delete processing units and CRD causes a system hang</b>
-                                        </p>
+                                        <p><b>Pod is not initializing</b> but <code>kubectl get pus</code> shows it is in deployed state.</p>
                                     </li>
                                 </ul>
-                                <p>See <a href="https://github.com/kubernetes/kubernetes/issues/60538#issuecomment-369099998">this issue.</a></p>
-                                <p>kubectl patch pus/pu -p '{"metadata":{"finalizers":[]}}' --type=merge</p>
-                                <ul>
-                                    <li>
-                                        <p><b>Pod is not initializing</b> but <code>kubectl get pus</code> shows it is in deployed state</p>
-                                    </li>
-                                </ul>
-                                <p>Execute <code>kubectl logs &lt;operator pod&gt;</code>. The logs will show custom and merged values.</p>
+                                <p style="font-weight: bold;">Resolution:</p>
+                                <p>Execute <code>kubectl logs &lt;operator pod&gt;</code>. The logs will show custom and merged values. Check for problems with the merged values.</p>
                             </p>
                         </div>
                     </div>
