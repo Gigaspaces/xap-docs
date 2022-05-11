@@ -9,6 +9,45 @@
             <p>&#160;</p>
             <div MadCap:conditions="NewSet.JustAColorForDivs">
                 <h1><a name="_Toc84959195"></a>SQL Statements and Operations</h1>
+                <div MadCap:conditions="Version.16-1-1-born">
+                    <h2>Data Definition Operations</h2>
+                    <p class="p_1"><span class="span_5">Create Table</span><span class="span_6">: </span>
+                    </p>
+                    <p class="p_6"> CREATE TABLE table_name {( [</p>
+                    <p>{ column_name data_type [ column_constraint [ ... ] ]</p>
+                    <p>| table_constraint }</p>
+                    <p>[PRIMARY KEY (column)]</p>
+                    <p>[INDEX (column)]</p>
+                    <p>[PARTITION BY]</p>
+                    <p>[BROADCAST]</p>
+                    <p>] )</p>
+                    <p>|</p>
+                    <p>AS SELECT column [, column]*</p>
+                    <p>FROM table_name</p>
+                    <p>[WHERE booleanExpression]</p>
+                    <p>}</p>
+                    <p>&#160;</p>
+                    <p class="p_1"><span class="span_5">DropTable</span><span class="span_6">: </span>
+                    </p>
+                    <p class="p_6"> DROP TABLE [ IF EXISTS ] name</p>
+                    <p>&#160;</p>
+                </div>
+                <div MadCap:conditions="Version.16-1-1-born">
+                    <h2>Data Change Operations</h2>
+                    <p class="p_1"><span class="span_5">Insert</span><span class="span_6">: </span>
+                    </p>
+                    <p>{ INSERT } INTO tablePrimary</p>
+                    <p>[ '(' column [, column ]* ')' ]</p>
+                    <p>[ VALUES '(' column [, column ]* ')' ]</p>
+                    <p>&#160;</p>
+                    <p class="p_1"><span class="span_5">Update</span><span class="span_6">: </span>
+                    </p>
+                    <p>UPDATE tablePrimary</p>
+                    <p>SET assign [, assign ]*</p>
+                    <p>[ WHERE booleanExpression ]</p>
+                    <p>&#160;</p>
+                </div>
+                <h2>Data Read Operations</h2>
                 <p class="p_1"><span class="span_5">statement</span><span class="span_6">:</span>
                 </p>
                 <p class="p_6">&#160; |&#160;&#160; explain</p>
