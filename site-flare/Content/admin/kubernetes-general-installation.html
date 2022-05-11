@@ -39,7 +39,7 @@
         </ul>
         <h1>Running Helm</h1>
         <div class="tc-admon-note">
-            <p>This page provides general information on how to deploy KubeGrid in a Kubernetes cluster. For detailed installation and configuration instructions, see <MadCap:xref href="kubernetes-data-grid-helm-only.html" MadCap:conditions="Version.15-8-died">Getting Started with GigaSpaces in Kubernetes Using Helm Charts</MadCap:xref><MadCap:xref href="kubernetes-data-grid-with-helm-and-operator.html" MadCap:conditions="Version.15-8-born">Getting Started with GigaSpaces in Kubernetes Using Helm Charts and Operator</MadCap:xref>.</p>
+            <p>This page provides general information on how to deploy KubeGrid in a Kubernetes cluster. For detailed installation and configuration instructions, see <MadCap:xref href="kubernetes-data-grid-helm-only.html" MadCap:conditions="Version.15-8-died">Getting Started with GigaSpaces in Kubernetes Using Helm Charts</MadCap:xref><MadCap:xref href="kubernetes-deploying-and-managing-gigaspaces.html" MadCap:conditions="Version.15-8-born">Getting Started with GigaSpaces in Kubernetes Using Helm Charts and Operator</MadCap:xref>.</p>
         </div>
         <p>Use the following commands to fetch the GigaSpaces Helm charts and unpack them locally:</p><pre><code>helm repo add EA https://resources.gigaspaces.com/helm-charts-ea</code></pre><pre><code>helm install umbrella EA/xap --version 16.2.0-m11 --set metrics.enabled=true,manager.ha=true,manager.antiAffinity.enabled=true</code></pre>
         <h1>Running kubectl</h1>
