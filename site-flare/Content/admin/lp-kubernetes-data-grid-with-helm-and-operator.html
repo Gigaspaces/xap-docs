@@ -5,10 +5,10 @@
     <body>
         <h1 class="tc-pagetitle">Deploying and Managing GigaSpaces in Kubernetes</h1>
         <p>This topic describes how to deploy GigaSpaces products in a Kubernetes environment. The integration is packaged as a <a href="https://docs.helm.sh/developing_charts/#charts">Helm chart</a>. You can deploy the full GigaSpaces platform, using the Helm chart available in the GigaSpaces Helm repository.</p>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
             <p> Kubernetes can be installed in two ways –</p>
             <ul>
-                <li MadCap:conditions="Default.DoNotShow">
+                <li>
                     <p>Use a basic Helm chart to start Manager, and then use GigaSpaces Tools (Ops Manager/<a href="https://docs-staging.gigaspaces.com/15.8/admin/tools-cli.html">CLI</a>/API) for Processing Units management. This method uses Kubernetes Operator and provide all GigaSpaces functionality. It is the default and is described below.</p>
                 </li>
                 <li>
@@ -34,7 +34,7 @@
         <h1>Deploying and Managing a Space</h1>
         <h2><a name="Accessin"></a>Accessing the GigaSpaces Helm Charts</h2>
         <p>The Helm package manager is used for installing the GigaSpaces platform in the Kubernetes environment. </p>
-        <p>A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository.  The <code>xap</code>, <code>insightedge</code>, <code>smart-cache</code>, <code>smart-ods</code> and <code>smart-augmented-transactions</code> Helm charts are published in the GigaSpaces Helm charts repository at <code>https://resources.gigaspaces.com/helm-charts</code>.</p>
+        <p>A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository.  The <code>xap</code>,<code> xap-manager</code>, <code>xap-operator</code>, <code>xap-pu</code>, <code>insightedge</code>,<code> insightedge-manager</code>,<code> insightedge-operator</code>, and <code>insightedge-pu</code> Helm charts are published in the GigaSpaces Helm charts repository at <code>https://resources.gigaspaces.com/helm-charts</code>.</p>
         <h3>Add a Helm Repo to the Repo List</h3>
         <p>You can point to the GigaSpaces Helm repo, so that Helm can locate the <code class="language-bash">xap</code> and <code class="language-bash">insightedge</code> charts for installation:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts</code></pre>
         <div class="tc-admon-note">
@@ -45,7 +45,7 @@
             <p>
                 <div class="easyui-tabs" plain="true">
                     <div title="Helm 3">
-                        <p><code class="language-bash">helm pull gigaspaces/insightedge-manager --version=[%=Versions.helm-version-MX%] --untar</code>
+                        <p><code class="language-bash">helm pull gigaspaces/xap-pu --version=[%=Versions.helm-version-MX%] --untar</code>
                         </p>
                     </div>
                 </div>
@@ -112,10 +112,10 @@ kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</
                                 <p>Run <code>kubectl get pus</code> and ensure that the deployed processing unit is in the Deployed state.</p>
                                 <p>&#160;</p>
                                 <h1>Customizing the Helm Chart</h1>
-                                <p>The following parameters can be used to provide custom capabilities in the YAML file.</p>
+                                <p>The following are examples of providing custom capabilities in the YAML file.</p>
                                 <h2>Access a value in a ConfigMap:</h2><pre><code class="language-bash">spec:
   containers:
-   - name: my-pu-container
+   - name: pu-container
      volumeMounts:
            - name: myConfig
         mountPath: "/config-path"
@@ -127,22 +127,41 @@ kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</
       - key: "data-key"
         path: "data-path"</code></pre>
                                 <h2>Define a Statefulset:</h2><pre><code class="language-bash">spec:
-  containers:
-   - name: my-pu-container
-     volumeMounts:
-           - name: myConfig
-        mountPath: "/config-path"
-  volumes:
-   - name: myConfig
-     configMap:
-     name: <b>myConfigMap</b> 
-     items:
-      - key: "data-key"
-        path: "data-path"</code></pre>
+   statefulSet:
+    metadata:
+      namespace: default
+      labels:
+        app.kubernetes.io/managed-by: gigaspaces-operator
+    spec:
+      template:
+        spec:
+          volumes:
+            - name: config-vol
+              configMap:
+                name: log-config
+                items:
+                  - key: log_level
+                    path: log_level
+          containers:
+            - name: pu-container
+              volumeMounts:
+                - mountPath: /config-vol
+                  name: log-config
+                  readOnly: false</code></pre>
                                 <h1>Configuration Options</h1>
-                                <p style="background-color: #ffff00;font-weight: bold;">ha</p>
-                                <p style="background-color: #ffff00;font-weight: bold;">metrics</p>
-                                <p style="background-color: #ffff00;font-weight: bold;">list from Gadi</p>
+                                <p>The following configuration options can be specified when using a chart:</p>
+                                <ul>
+                                    <li>
+                                        <p><b>ha=true/false</b> — each primary Data Pod has one backup Data Pod. Default is <code>false</code>.</p>
+                                    </li>
+                                    <li>
+                                        <p><b>metrics-enabled=true/false</b> — enable or disable Grafana metrics. Default is <code>true</code>.</p>
+                                    </li>
+                                    <li>
+                                        <p><b>antiAffinity.enabled=true/false</b> — spread the partitions across nodes. Default is <code>false</code>.</p>
+                                    </li>
+                                </ul>
+                                <p>&#160;</p>
                                 <h1>Troubleshooting</h1>
                                 <p style="font-weight: bold;">Problem:</p>
                                 <ul>
@@ -151,7 +170,7 @@ kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</
                                     </li>
                                 </ul>
                                 <p style="font-weight: bold;">Resolution:</p><pre><code class="language-bash">kubectl patch pus/pu -p '{"metadata":{"finalizers":[]}}' --type=merge </code></pre>
-                                <p><a href="https://github.com/kubernetes/kubernetes/issues/60538#issuecomment-369099998"><b>See here</b></a> for more information.
+                                <p><a href="https://github.com/kubernetes/kubernetes/issues/60538#issuecomment-369099998">See here</a> for more information.
                                 </p>
                                 <p style="font-weight: bold;">Problem:</p>
                                 <ul>
