@@ -113,7 +113,7 @@ kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</
                                 <p>&#160;</p>
                                 <h1>Customizing the Helm Chart</h1>
                                 <p>The following are examples of providing custom capabilities in the YAML file.</p>
-                                <h2>Access a value in a ConfigMap:</h2><pre><code class="language-bash">spec:
+                                <h2><a name="Access"></a>Access a value in a ConfigMap:</h2><pre><code class="language-bash">spec:
   containers:
    - name: pu-container
      volumeMounts:
@@ -126,7 +126,7 @@ kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</
      items:
       - key: "data-key"
         path: "data-path"</code></pre>
-                                <h2>Define a Statefulset:</h2><pre><code class="language-bash">spec:
+                                <h2><a name="Define"></a>Define a Statefulset:</h2><pre><code class="language-bash">spec:
    statefulSet:
     metadata:
       namespace: default
