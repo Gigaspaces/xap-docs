@@ -3,17 +3,13 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Getting Started with GigaSpaces in Kubernetes</h1>
-        <p style="text-align: center;" MadCap:conditions="Version.16-0-died">
-            <object src="https://youtu.be/-YfHtg3r6tM" style="width: 560px;height: 315px;">
-            </object>
-        </p>
-        <p>This topic describes how to deploy GigaSpaces products in a Kubernetes environment. The integration is packaged as a <a href="https://docs.helm.sh/developing_charts/#charts">Helm chart</a>. You can deploy the full <MadCap:variable name="General.ProductNameIEP" />, which includes the data grid, using the Helm chart available in the GigaSpaces Helm repository.</p>
-        <div class="tc-admon-note">
-            <p> Kubernetes can be installed in two ways:</p>
+        <h1 class="tc-pagetitle">Deploying and Managing GigaSpaces in Kubernetes</h1>
+        <p>This topic describes how to deploy GigaSpaces products in a Kubernetes environment. The integration is packaged as a <a href="https://docs.helm.sh/developing_charts/#charts">Helm chart</a>. You can deploy the full GigaSpaces platform, using the Helm chart available in the GigaSpaces Helm repository.</p>
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
+            <p> Kubernetes can be installed in two ways –</p>
             <ul>
                 <li>
-                    <p>Use a basic Helm chart to start Manager, and then use GigaSpaces Tools (Ops Manager/<a href="https://docs-staging.gigaspaces.com/15.8/admin/tools-cli.html">CLI</a>/API) for Processing Units management. This method uses Kubernetes Operator and provide all <MadCap:variable name="General.ProductNameXAP" /> functionality. It is the default and is described below.</p>
+                    <p>Use a basic Helm chart to start Manager, and then use GigaSpaces Tools (Ops Manager/<a href="https://docs-staging.gigaspaces.com/15.8/admin/tools-cli.html">CLI</a>/API) for Processing Units management. This method uses Kubernetes Operator and provide all GigaSpaces functionality. It is the default and is described below.</p>
                 </li>
                 <li>
                     <p>Use Helm charts only. If you use Helm Charts only, Scale Out/In and deploying/undeploying a service are not available using the Ops Manager or the Command Line Interface.<br />See <MadCap:xref href="kubernetes-data-grid-helm-only.html">Getting Started with GigaSpaces in Kubernetes Using Helm Charts</MadCap:xref> for details on how to install Kubernetes via Helm charts only.</p>
@@ -22,14 +18,10 @@
         </div>
         <h2>Prerequisites</h2>
         <div class="tc-admon-note">
-            <p>The topics in this section assume basic knowledge of <MadCap:variable name="General.ProductNameIE" /> and the data grid. If you aren't familiar with the data grid (at minimum), review the contents of the general <a href="../started/index.html">Getting Started</a> section before performing the tasks described here.</p>
+            <p>The topics in this section assume basic knowledge of the GigaSpaces platform. If you aren't familiar with GigaSpaces, review the contents of the general <a href="../started/index.html">Getting Started</a> section before performing the tasks described here.</p>
         </div>
-        <p>Before beginning to work with the Space and <MadCap:variable name="General.ProductNameIE" />, ensure that you have the following installed on your local machine or a VM:</p>
+        <p>Before beginning to work with the Space and the GigaSpaces platform, ensure that you have the following installed on your local machine or a VM:</p>
         <ul>
-            <li>
-                <p><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">kubectl</a>
-                </p>
-            </li>
             <li>
                 <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Helm</a>
                 </p>
@@ -38,78 +30,47 @@
                 <p>Kubernetes cluster (cloud, on-premise, or local via <a href="https://kubernetes.io/docs/setup/minikube/">minikube</a>)</p>
             </li>
         </ul>
-        <p>This topic describes how to do basic and intermediate-level deployment tasks for the Space and <MadCap:variable name="General.ProductNameIE" /> using simple Helm commands. You can perform these tasks using a Kubernetes minikube, because you only need a single node.</p>
-        <div class="tc-admon-tip">
-            <p>The deployment and maintenance tasks described below use <code class="language-bash"><MadCap:variable name="General.ProductNameIE" /></code> Helm charts commands. However, you can also perform these tasks using the <code class="language-bash">xap</code> Helm charts commands.</p>
-        </div>
+        <p>This topic describes how to do basic and intermediate-level deployment tasks for the Space and the GigaSpaces platform, using simple Helm commands. You can perform these tasks using a Kubernetes minikube, because you only need a single node.</p>
         <h1>Deploying and Managing a Space</h1>
-        <p>In this topic, you will learn how to do the following:</p>
-        <ul>
-            <li>Get the required initial GigaSpaces Helm Chart</li>
-            <li>Deploy Platform manager</li>
-            <li>Start a Space in Kubernetes</li>
-            <li>Monitor your Space using Kubernetes tools</li>
-            <li>Delete your Space</li>
-        </ul>
         <h2><a name="Accessin"></a>Accessing the GigaSpaces Helm Charts</h2>
-        <p>The Helm package manager is used for installing <MadCap:variable name="General.ProductNameIE" /> and <MadCap:variable name="General.ProductNameXAP" /> in the Kubernetes environment. Helm makes deploying complex applications more portable, supports automatic rollbacks, and is a familiar pattern for developers that is easy to understand.
-Moreover, since Helm is open source, there are many community charts available with standard configurations for common application services.</p>
-        <p>A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository.  The <code>xap</code>, <code>insightedge</code>, <code>smart-cache</code>, <code>smart-ods</code> and <code>smart-augmented-transactions</code> Helm charts are published in the GigaSpaces Helm charts repository at <code>https://resources.gigaspaces.com/helm-charts</code>.</p>
-        <p>Two ways to access and install these charts, in order to install a GigaSpaces product in Kubernetes, are discussed below:</p>
-        <ul>
-            <li><b>Option 1:</b> Install a chart directly from the repo and add the GigaSpaces Helm chart repo to the Helm repo list.</li>
-            <li><b>Option 2:</b> Unpack the required Helm chart(s) in a local folder.</li>
-        </ul>
-        <h3>Option 1: Add a Helm Repo to the Repo List</h3>
+        <p>The Helm package manager is used for installing the GigaSpaces platform in the Kubernetes environment. </p>
+        <p>A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository.  The <code>xap</code>,<code> xap-manager</code>, <code>xap-operator</code>, <code>xap-pu</code>, <code>insightedge</code>,<code> insightedge-manager</code>,<code> insightedge-operator</code>, and <code>insightedge-pu</code> Helm charts are published in the GigaSpaces Helm charts repository at <code>https://resources.gigaspaces.com/helm-charts</code>.</p>
+        <h3>Add a Helm Repo to the Repo List</h3>
         <p>You can point to the GigaSpaces Helm repo, so that Helm can locate the <code class="language-bash">xap</code> and <code class="language-bash">insightedge</code> charts for installation:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts</code></pre>
-        <p>After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. </p>
-        <p>The example command format is shown below.</p><pre><code class="language-bash">helm &lt;&lt;command&gt;&gt; gigaspaces/&lt;&lt;name-of-helm-chart&gt;&gt; --version=<MadCap:variable name="Versions.product-version-svc-pack-MX" /> &lt;&lt;parameters&gt;&gt;</code></pre>
         <div class="tc-admon-note">
             <p>If you're using minikube,  note that the default kubernetes services created by GigaSpaces uses LoadBalancer, which requires running 'minikube tunnel' in the background. For more information see <a href="https://minikube.sigs.k8s.io/docs/commands/tunnel/">minikube tunnel</a>.</p>
         </div>
-        <h3>Option 2: Fetch the GigaSpaces Helm Charts from the GigaSpaces Repository</h3>
         <p>Another option is to fetch the GigaSpaces Helm charts that you need and unpack them locally, so you don’t have to repeat the repo name and package version in each command (which has the added benefit of making the commands shorter). For example, you can <MadCap:conditionalText MadCap:conditions="Version.15-5-born,Version.16-1-born"> <code class="language-bash">pull </code>(Helm 3)</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-born,Version.16-1-died"><code class="language-bash">fetch </code>(Helm 2) or <code class="language-bash">pull </code>(Helm 3)</MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.15-5-died">fetch </MadCap:conditionalText>and unpack the Helm chart using the following command:</p>
         <p>
             <p>
                 <div class="easyui-tabs" plain="true">
                     <div title="Helm 3">
-                        <p><code class="language-bash">helm pull gigaspaces/insightedge-manager --version=[%=Versions.helm-version-MX%] --untar</code>
-                        </p>
-                    </div>
-                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
-                        <p><code class="language-bash">helm fetch gigaspaces/insightedge-manager --version=[%=Versions.helm-version-MX%] --untar</code>
+                        <p><code class="language-bash">helm pull gigaspaces/xap-pu --version=[%=Versions.helm-version-MX%] --untar</code>
                         </p>
                     </div>
                 </div>
             </p>
         </p>
         <p>The chart is unpacked in a local folder called <code>insightedge</code>, which is referenced in the Helm commands.</p>
-        <p>The example command format is shown below.</p><pre><code class="language-bash">helm &lt;&lt;command&gt;&gt; &lt;&lt;name-of-helm-chart&gt;&gt; &lt;&lt;parameters&gt;&gt;</code></pre>
+        <p>For general information of how to use Helm commands, refer to the <a href="https://helm.sh/docs/intro/using_helm/">Helm documentation</a>.</p><pre><code class="language-bash">helm &lt;&lt;command&gt;&gt; &lt;&lt;name-of-helm-chart&gt;&gt; &lt;&lt;parameters&gt;&gt;</code></pre>
         <div class="tc-admon-note">
             <p>You must fetch every chart that you will be using (for example xap, xap-pu and xap-manager) in your GigaSpaces application environment.</p>
         </div>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
-            <h2>Deploying the Platform Manager</h2>
+            <h1>Deploying the GigaSpaces Platform</h1>
             <p>In order to prepare the environment for use, first the Platform Manager must be deployed. This deploys two pods: the Manager pod, and the Operator pod.</p>
             <p>Note that Platform Manager is deployed by using a Helm chart, but further operations are performed using the UI, CLI or REST-API tools.</p>
             <p>Type the following Helm command to create a Management Pod called <code class="language-bash">testmanager</code> that deploys Manager and Operator pods:</p>
+            <h2>Method 1 (Preferred) – Umbrella Installation</h2>
             <div>
-                <p>
-                    <div class="easyui-tabs" plain="true">
-                        <div title="Helm 3">
-                            <p><pre><code class="language-bash">helm install testmanager insightedge-manager </code></pre>
-                            </p>
-                        </div>
-                        <div title="Helm 2" MadCap:conditions="Version.16-1-died">
-                            <p><pre><code class="language-bash">helm install insightedge-manager --name testmanager</code></pre>
-                            </p>
-                        </div>
-                    </div>
-                </p>
+                <p>After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. </p>
+                <p>The example command format is shown below.</p><pre><code class="language-bash">helm install umbrella xap --version 16.1.1 --set metrics.enabled=false,manager.metrics.enabled=false,pu.metrics.enabled=false</code></pre>
             </div>
-            <h3>Deploy a Space using GigaSpaces Tools</h3>
-            <p>After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager.</p>
-            <p>See <MadCap:xref href="gs-ops-manager-overview.html">[%=General.ProductNameXAP%] Ops Manager</MadCap:xref> or <MadCap:xref href="tools-cli.html">Command Line Interface (CLI)</MadCap:xref> for information on creating a Space object.</p>
+            <div MadCap:conditions="Default.DoNotShow">
+                <h3>Deploy a Space using GigaSpaces Tools</h3>
+                <p>After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager.</p>
+                <p>See <MadCap:xref href="gs-ops-manager-overview.html">[%=General.ProductNameXAP%] Ops Manager</MadCap:xref> or <MadCap:xref href="tools-cli.html">Command Line Interface (CLI)</MadCap:xref> for information on creating a Space object.</p>
+            </div>
         </div>
         <h2>Monitoring the Cluster in Kubernetes</h2>
         <p>You can monitor the cluster you deployed using any of the following administration tools.</p>
@@ -122,42 +83,107 @@ Moreover, since Helm is open source, there are many community charts available w
         <ul>
             <li>Kubectl: run the following command to print the name, description, and status of the Pods in the command window. A list of events is also printed, which can be used for troubleshooting purposes. For example, if you detected a problem in one of the Pods, you can see the Pod termination reason and exit code.</li>
         </ul><pre><code class="language-bash">kubectl describe pod</code></pre>
-        <h2>Deleting a Space from the Kubernetes Environment</h2>
-        <p>A Space can be deleted by using the <MadCap:xref href="../opm/opm-deploy-undeploy-service.html" class="Undeploy-feature-of-the-Ops-Manager-UI">Undeploy feature of the Ops Manager UI</MadCap:xref>.</p>
-        <p>&#160;</p>
         <div>
-            <h1>Additional Helm Charts Available in the GigaSpaces Repo</h1>
-            <p MadCap:conditions="Default.DoNotShow">If you want to deploy multiple Spaces in the same Kubernetes environment, to better utilize resources it is best to deploy one Platform Manager cluster and then configure the Spaces to use this cluster, instead of deploying each Space with its own Platform Manager.</p>
-            <p>To enable users to customize the installation, we provide several additional Helm charts that can be used to define specific constellations in more advanced scenarios:</p>
-            <ul>
-                <li>Manager (<code class="language-bash">insightedge-manager</code> or <code class="language-bash">xap-manager</code>, <code class="language-bash">smart-cache-manager</code>, <code class="language-bash">smart-ods-manager</code>, <code class="language-bash">smart-augmented-transactions-manager</code>)</li>
-                <li>Processing Unit (<code class="language-bash">insightedge-pu</code> or <code class="language-bash">xap-pu</code>), <code class="language-bash">smart-cache-pu</code>, <code class="language-bash">smart-ods-pu</code>, <code class="language-bash">smart-augmented-transactions-pu</code>)<br /></li>
-                <li>Apache Zeppelin (<code class="language-bash">insightedge-zeppelin</code>)</li>
-            </ul>
+            <h2>Additional Helm Charts Available in the GigaSpaces Repo</h2>
+            <p style="font-weight: bold;">Helm PU/Space deploy:</p><pre><code class="language-bash">
+
+helm install demo xap-pu --version 16.1.1 –-set manager.name=manager,ha=true,partitions=1,antiAffinity.enabled=true,properties="pu.dynamic-partitioning=true"</code></pre>
+            <p style="font-weight: bold;">Helm PU/Scale out/in:</p><pre><code class="language-bash">
+kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</code></pre>
+            <h2>Method 2 (Alternative Installation) – Step-By-Step</h2>
             <p>Before using these charts for the first time, you must fetch the chart, as described in <MadCap:xref href="#Accessin">Accessing the GigaSpaces Helm Charts</MadCap:xref> above.</p>
-        </div>
-        <div MadCap:conditions="Default.DoNotShow">
-            <h1>Applying a Product License</h1>
-            <p>The Kubernetes installation comes with a 24-hour trial <code>tryme</code> license, to enable users to perform one-click installation and explore the <MadCap:variable name="General.ProductNameIEP" /> and <MadCap:variable name="General.ProductNameXAP" /> functionality. However, if you want a longer trial license, you can apply the evaluation license key that you received in the email that was sent to you after you downloaded your <MadCap:variable name="General.ProductNameIE" /> or <MadCap:variable name="General.ProductNameXAP" /> commercial edition from the Download Center. These instructions are also applicable for applying a your official product license after you purchase a GigaSpaces product.</p>
-            <p>When the Space starts, it checks for a valid license. You can apply the license by setting the <code>pu.license</code> property. For example, to apply the license for <MadCap:variable name="General.ProductNameIE" />, use the following Helm command:</p>
-            <p>
+            <ul>
+                <li>
+                    <p>Use a basic Helm chart to start Manager, and then use GigaSpaces Tools (Ops Manager/<a href="https://docs-staging.gigaspaces.com/15.8/admin/tools-cli.html">CLI</a>/API) for Processing Units management. This method uses Kubernetes Operator and provides all GigaSpaces functionality. It is the default and is described below.</p>
+                </li>
+            </ul>
+            <div>
                 <p>
                     <div class="easyui-tabs" plain="true">
                         <div title="Helm 3">
-                            <p> <code class="language-bash">helm install demo insightedge --set pu.license="&lt;your license key&gt;" </code></p>
-                        </div>
-                        <div title="Helm 2">
-                            <p><code class="language-bash">helm install insightedge --name demo --set pu.license="&lt;your license key&gt;" </code>
+                            <p>
+                                <div class="tc-admon-note">
+                                    <p>Ensure that no CRDs are installed. Test this with <code>kubectl get pus</code>. <br />If there are PUs installed, and they are not in the Deployed state, Operator will continue trying to complete the installation until the processing unit is installed.</p>
+                                </div>
+                                <h3>Install Manager</h3><pre><code class="language-bash">helm install manager xap-manager --version 16.1.1 --set metrics.enabled=false </code></pre>
+                                <h3>Install Operator, Webhook and CRD Definition</h3><pre><code class="language-bash">helm install operator xap-operator --version 16.1.1 --set manager.name=manager </code></pre>
+                                <h3>Install PU</h3><pre><code class="language-bash">helm install pu xap-pu --version 16..1.1 --set manager.name=manager --set metrics.enabled=false </code></pre>
+                                <h3>Ensure That All Pods are Running</h3>
+                                <p>Run <code>kubectl get pus</code> and ensure that the deployed processing unit is in the Deployed state.</p>
+                                <p>&#160;</p>
+                                <h1>Customizing the Helm Chart</h1>
+                                <p>The following are examples of providing custom capabilities in the YAML file.</p>
+                                <h2>Access a value in a ConfigMap:</h2><pre><code class="language-bash">spec:
+  containers:
+   - name: pu-container
+     volumeMounts:
+           - name: myConfig
+        mountPath: "/config-path"
+  volumes:
+   - name: myConfig
+     configMap:
+     name: <b>myConfigMap</b> 
+     items:
+      - key: "data-key"
+        path: "data-path"</code></pre>
+                                <h2>Define a Statefulset:</h2><pre><code class="language-bash">spec:
+   statefulSet:
+    metadata:
+      namespace: default
+      labels:
+        app.kubernetes.io/managed-by: gigaspaces-operator
+    spec:
+      template:
+        spec:
+          volumes:
+            - name: config-vol
+              configMap:
+                name: log-config
+                items:
+                  - key: log_level
+                    path: log_level
+          containers:
+            - name: pu-container
+              volumeMounts:
+                - mountPath: /config-vol
+                  name: log-config
+                  readOnly: false</code></pre>
+                                <h1>Configuration Options</h1>
+                                <p>The following configuration options can be specified when using a chart:</p>
+                                <ul>
+                                    <li>
+                                        <p><b>ha=true/false</b> — each primary Data Pod has one backup Data Pod. Default is <code>false</code>.</p>
+                                    </li>
+                                    <li>
+                                        <p><b>metrics-enabled=true/false</b> — enable or disable Grafana metrics. Default is <code>true</code>.</p>
+                                    </li>
+                                    <li>
+                                        <p><b>antiAffinity.enabled=true/false</b> — spread the partitions across nodes. Default is <code>false</code>.</p>
+                                    </li>
+                                </ul>
+                                <p>&#160;</p>
+                                <h1>Troubleshooting</h1>
+                                <p style="font-weight: bold;">Problem:</p>
+                                <ul>
+                                    <li>
+                                        <p><b>Cannot delete pus</b> (<code>kubectl delete pus &lt;pu name&gt;</code>), the delete command gets hung. This may occur when attempting to delete a processing unit and the CRD causes a system hang.</p>
+                                    </li>
+                                </ul>
+                                <p style="font-weight: bold;">Resolution:</p><pre><code class="language-bash">kubectl patch pus/pu -p '{"metadata":{"finalizers":[]}}' --type=merge </code></pre>
+                                <p><a href="https://github.com/kubernetes/kubernetes/issues/60538#issuecomment-369099998">See here</a> for more information.
+                                </p>
+                                <p style="font-weight: bold;">Problem:</p>
+                                <ul>
+                                    <li>
+                                        <p><b>Pod is not initializing</b> but <code>kubectl get pus</code> shows it is in deployed state.</p>
+                                    </li>
+                                </ul>
+                                <p style="font-weight: bold;">Resolution:</p>
+                                <p>Execute <code>kubectl logs &lt;operator pod&gt;</code>. The logs will show custom and merged values. Check for problems with the merged values.</p>
                             </p>
                         </div>
                     </div>
                 </p>
-            </p>
-            <div class="tc-admon-note">
-                <ul>
-                    <li>You must enclose the license key in quotation marks ("...").</li>
-                    <li>If you install a Processing Unit using the <code>insightedge-pu</code> chart or <code class="language-bash">xap-pu </code>chart, use the syntax <code>--set license="&lt;your license key&gt;"</code>.</li>
-                </ul>
             </div>
         </div>
     </body>
