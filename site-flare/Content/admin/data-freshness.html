@@ -26,7 +26,7 @@
                     <p>Include the Heartbeat table in the <MadCap:xref href="../D-H-I/data-integration.html#Procedur" class="definition-of-the-data-pipeline">definition of the Data Pipeline</MadCap:xref>.</p>
                 </li>
                 <li>
-                    <p>Using the Grafana interface to the GigaSpaces-supplied InfluxDB database, define an alert that triggers when the update frequency of the Heartbeat object is greater than (<i>sor-update-frequency</i> + <i>acceptable-data-lag</i>), where <i>acceptable-data-lag</i> is the number of seconds of delay that is allowed between IMDG updates from the SoR.</p>
+                    <p>Using the <MadCap:xref href="web-management-monitoring.html" class="Grafana-interface">Grafana interface</MadCap:xref> to the GigaSpaces-supplied InfluxDB database, define an alert that triggers when the update frequency of the Heartbeat object is greater than (<i>sor-update-frequency</i> + <i>acceptable-data-lag</i>), where <i>acceptable-data-lag</i> is the number of seconds of delay that is allowed between IMDG updates from the SoR.</p>
                 </li>
             </ol>
             <p>As an example, we may learn from the SoR devops that <i>sor-update-frequency</i> is 5 seconds. If we have an <i>acceptable-data-lag</i> of 2 seconds, then we would trigger an alert when the Heartbeat object has not been updated for 7 seconds.</p>

@@ -109,6 +109,15 @@
             </thead>
             <tbody>
                 <tr>
+                    <td align="left" style="vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 0;border-left-color: #e0e0e0;">cluster-config.groups.group.repl-policy.swap-redo-log.storage-type</td>
+                    <td align="left">
+                        <p align="left">Specifies the format of the redo log. Optional values: <code>byte-buffer</code>, <code>sqlite</code>.</p>
+                        <p>-  byte-buffer (default) writes the log in a binary format.</p>
+                        <p>- sqlite writes the log to a database. The database can be accessed using standard tools to view the details of the log. For more information, see <MadCap:xref href="#">Controlling the Replication Redo Log</MadCap:xref>.<br /></p>
+                    </td>
+                    <td align="left">byte-buffer</td>
+                </tr>
+                <tr>
                     <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.flush-buffer-packet-count</td>
                     <td align="left">Specifies the number of the packets/buffer size that the swap redo log uses when flushing packets to the disk.</td>
                     <td align="left">500</td>

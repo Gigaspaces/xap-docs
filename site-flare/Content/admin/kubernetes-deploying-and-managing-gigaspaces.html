@@ -64,7 +64,7 @@
             <h2>Method 1 (Preferred) – Umbrella Installation</h2>
             <div>
                 <p>After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. </p>
-                <p>The example command format is shown below.</p><pre><code class="language-bash">helm install umbrella xap --version 16.1.1 --set metrics.enabled=false,manager.metrics.enabled=false,pu.metrics.enabled=false</code></pre>
+                <p>The example command format is shown below.</p><pre><code class="language-bash">helm install umbrella gigaspaces/xap --version 16.1.1 --set metrics.enabled=false,manager.metrics.enabled=false,pu.metrics.enabled=false</code></pre>
             </div>
             <div MadCap:conditions="Default.DoNotShow">
                 <h3>Deploy a Space using GigaSpaces Tools</h3>
@@ -87,7 +87,7 @@
             <h2>Additional Helm Charts Available in the GigaSpaces Repo</h2>
             <p style="font-weight: bold;">Helm PU/Space deploy:</p><pre><code class="language-bash">
 
-helm install demo xap-pu --version 16.1.1 –-set manager.name=manager,ha=true,partitions=1,antiAffinity.enabled=true,properties="pu.dynamic-partitioning=true"</code></pre>
+helm install demo xap-pu --version 16.1.1 –-set manager.name=umbrella,ha=true,partitions=1,antiAffinity.enabled=true,properties="pu.dynamic-partitioning=true"</code></pre>
             <p style="font-weight: bold;">Helm PU/Scale out/in:</p><pre><code class="language-bash">
 kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</code></pre>
             <h2>Method 2 (Alternative Installation) – Step-By-Step</h2>
@@ -107,7 +107,7 @@ kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</
                                 </div>
                                 <h3>Install Manager</h3><pre><code class="language-bash">helm install manager xap-manager --version 16.1.1 --set metrics.enabled=false </code></pre>
                                 <h3>Install Operator, Webhook and CRD Definition</h3><pre><code class="language-bash">helm install operator xap-operator --version 16.1.1 --set manager.name=manager </code></pre>
-                                <h3>Install PU</h3><pre><code class="language-bash">helm install pu xap-pu --version 16..1.1 --set manager.name=manager --set metrics.enabled=false </code></pre>
+                                <h3>Install PU</h3><pre><code class="language-bash">helm install pu xap-pu --version 16.1.1 --set manager.name=manager --set metrics.enabled=false </code></pre>
                                 <h3>Ensure That All Pods are Running</h3>
                                 <p>Run <code>kubectl get pus</code> and ensure that the deployed processing unit is in the Deployed state.</p>
                                 <p>&#160;</p>

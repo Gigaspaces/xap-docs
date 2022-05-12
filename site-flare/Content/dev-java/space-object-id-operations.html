@@ -27,31 +27,29 @@
 public class Person {
 	private String firstName;
 	private String lastName;
-
+ ...
 // Operations are the same, for example
-    gigaSpace.write( new Person("John", "Smith"))					
+    gigaSpace.write( new Person("John", "Smith"));					
 </code></pre>
             <h2>Space Routing</h2>
             <p>When <code>@SpaceRouting</code> is not specified, the routing will be resolved from the value of the first property in the <code>@SpaceId</code> properties list. In the above example, the value of the field is "firstName". <code>@SpaceRouting</code> specified on a different field’s <code>get </code>method, will return its value as the routing.</p>
             <h2>IdQuery Matching
 
 </h2><pre><code class="language-java">Object id = CompoundSpaceId.from("John", "Smith");
-gigaSpace.read(new IdQuery&lt;&gt;(Person.class, id))
+gigaSpace.read(new IdQuery&lt;&gt;(Person.class, id));
 gigaSpace.readById(Person.class, id);
 gigaSpace.readByIds(Person.class, new Object[]{id1, id2});
 </code></pre>
             <h2>Template Matching</h2><pre><code class="language-java">
 //exact match
 Person template = new Person("John", "Smith");
-gigaSpace.read(template)
+gigaSpace.read(template);
 
 //partial match
 Person template = new Person("John", null);
-gigaSpace.read(template)
-</code></pre>
+gigaSpace.read(template);</code></pre>
             <h2>
 SQLQuery Matching</h2><pre><code class="language-java">
-
 //exact matching
 SQLQuery&lt;Person&gt; query = new SQLQuery&lt;&gt;(Person.class, "firstName=? AND lastName=?", "John", "Smith");
 gigaSpace.read(query);
