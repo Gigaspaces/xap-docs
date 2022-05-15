@@ -76,7 +76,7 @@
         <p>You can monitor the cluster you deployed using any of the following administration tools.</p>
         <ul>
             <li>Helm: Run the following command to print the status of the "demo' release in the command window.</li>
-        </ul><pre><code class="language-bash">helm status testmanager</code></pre>
+        </ul><pre><code class="language-bash">helm status umbrella</code></pre>
         <ul>
             <li>Kubernetes dashboard: run the following command to open a dashboard in your browser, where you can see all the Pods and services by clicking the various tabs. For example, if you're using minikube:</li>
         </ul><pre><code class="language-bash">minikube dashboard</code></pre>
@@ -105,9 +105,9 @@ kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</
                                 <div class="tc-admon-note">
                                     <p>Ensure that no CRDs are installed. Test this with <code>kubectl get pus</code>. <br />If there are PUs installed, and they are not in the Deployed state, Operator will continue trying to complete the installation until the processing unit is installed.</p>
                                 </div>
-                                <h3>Install Manager</h3><pre><code class="language-bash">helm install manager xap-manager --version 16.1.1 --set metrics.enabled=false </code></pre>
-                                <h3>Install Operator, Webhook and CRD Definition</h3><pre><code class="language-bash">helm install operator xap-operator --version 16.1.1 --set manager.name=manager </code></pre>
-                                <h3>Install PU</h3><pre><code class="language-bash">helm install pu xap-pu --version 16.1.1 --set manager.name=manager --set metrics.enabled=false </code></pre>
+                                <h3>Install Manager</h3><pre><code class="language-bash">helm install manager gigaspaces/xap-manager --version 16.1.1 --set metrics.enabled=false </code></pre>
+                                <h3>Install Operator, Webhook and CRD Definition</h3><pre><code class="language-bash">helm install operator gigaspaces/xap-operator --version 16.1.1 --set manager.name=manager </code></pre>
+                                <h3>Install PU</h3><pre><code class="language-bash">helm install pu gigaspaces/xap-pu --version 16.1.1 --set manager.name=manager --set metrics.enabled=false </code></pre>
                                 <h3>Ensure That All Pods are Running</h3>
                                 <p>Run <code>kubectl get pus</code> and ensure that the deployed processing unit is in the Deployed state.</p>
                                 <p>&#160;</p>
