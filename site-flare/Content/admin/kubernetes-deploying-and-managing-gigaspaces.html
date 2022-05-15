@@ -87,7 +87,7 @@
             <h2>Additional Helm Charts Available in the GigaSpaces Repo</h2>
             <p style="font-weight: bold;">Helm PU/Space deploy:</p><pre><code class="language-bash">
 
-helm install demo xap-pu --version 16.1.1 –-set manager.name=umbrella,ha=true,partitions=1,antiAffinity.enabled=true,properties="pu.dynamic-partitioning=true"</code></pre>
+helm install demo gigaspaces/xap-pu --version 16.1.1 –-set manager.name=umbrella,ha=true,partitions=1,antiAffinity.enabled=true,properties="pu.dynamic-partitioning=true"</code></pre>
             <p style="font-weight: bold;">Helm PU/Scale out/in:</p><pre><code class="language-bash">
 kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</code></pre>
             <h2>Method 2 (Alternative Installation) – Step-By-Step</h2>
