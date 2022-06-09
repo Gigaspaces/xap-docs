@@ -412,5 +412,12 @@ int count = gigaSpace.count(template);
             <p>http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/util/logging/Level.html</p>
             <p>&#160;</p>
         </p>
+        <p>Replace all leading spaces with hard-coded html space. This is good to get the correct indentation for code.</p>
+        <p>In Notepad++</p>
+        <p>Make sure to specify a regular expression find/replace. Do "replace all" until it doesn't find anything to replace.</p>
+        <p>Find: </p>
+        <p>^( *)[ ]</p>
+        <p>Replace with: </p>
+        <p>&amp;#160;</p>
     </body>
 </html>
