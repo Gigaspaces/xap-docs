@@ -4,6 +4,36 @@
     </head>
     <body>
         <h1>Test Multiple Conditions </h1>
+        <p>Nested tabs:</p>
+        <div class="easyui-tabs" plain="true">
+            <div title="Tab 1">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Tab 1a">
+                        <p>para 1</p>
+                        <p>para 2</p>
+                    </div>
+                    <div title="Tab 1b">
+                        <p>para 3</p>
+                        <p>para 4</p>
+                    </div>
+                </div>
+            </div>
+            <div title="Tab 2">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Tab 2a">
+                        <p>para 1</p>
+                        <p>para 2</p>
+                    </div>
+                    <div title="Tab 2b">
+                        <p>para 3</p>
+                        <p>para 4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>this is an inner tab 1</p>
+        <p>this is an inner tab 2</p>
+        <p>&#160;</p>
         <p MadCap:conditions="Version.15-5-born,Version.16-0-died">this has a range, 15.5 born to 16.0 died.</p>
         <div MadCap:conditions="Version.16-0-only,Default.DoNotShow">
             <p>test.... There are currently no deprecated or end-of-life features and functionality.</p>
