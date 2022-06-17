@@ -85,35 +85,7 @@
             </p>
         </div>
         <h1><a name="configuring-a-space-with-gateway-targets"></a>Configuring a Space With Gateway Targets</h1>
-        <p>A replication from one Space to another is basically a replication from a Space to a target gateway. The source Space is decoupled from the target Space. Instead, it is configured to replicate to the target Space's local gateway; the local gateway is in charge of dispatching the incoming replication packets to the relevant target Space. Each Space needs to be made aware of the target gateways to which it replicates the data, by specifying the target gateways in the source Space configuration.</p>
-        <p>From the Space's perspective, a replication from one Space to a target gateway is like any other replication channel (such as mirror or backup), and the backlog and confirmation state of the replication channel to the target gateway is kept in the source Space. As a result, the gateway is stateless as far as holding the replication state is concerned, and only the source Space is in charge of the replication progress and state. Each gateway has a unique logical name that usually corresponds to the physical site name (for example, "London" or "New York"). This name is used by remote Spaces that replicate to this Space via its local gateway.</p>
         <p>The following snippet shows how to configure a Space that resides in New York to replicate to two other Spaces, one in London and one in Hong Kong:</p>
-        <div class="easyui-tabs" plain="true" MadCap:conditions="NewSet.JustAColorForDivs">
-            <div title="Java">
-                <div class="easyui-tabs" plain="true">
-                    <div title="Tab 1a">
-                        <p>para 1</p>
-                        <p>para 2</p>
-                    </div>
-                    <div title="Tab 1b">
-                        <p>para 3</p>
-                        <p>para 4</p>
-                    </div>
-                </div>
-            </div>
-            <div title="Dot Net">
-                <div class="easyui-tabs" plain="true">
-                    <div title="Tab 2a">
-                        <p>para 1</p>
-                        <p>para 2</p>
-                    </div>
-                    <div title="Tab 2b">
-                        <p>para 3</p>
-                        <p>para 4</p>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="easyui-tabs" plain="true" MadCap:conditions="NewSet.StagingOnly">
             <div title="Java"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
 
@@ -123,13 +95,29 @@
 &lt;/os-gateway:targets&gt;
 </code></pre>
             </div>
-            <div title=".NET"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
-
-&lt;os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK"&gt;
-  &lt;os-gateway:target name="LONDON"/&gt;
-  &lt;os-gateway:target name="HONGKONG"/&gt;
-&lt;/os-gateway:targets&gt;
-</code></pre>
+            <div title="Dot Net"><pre><code class="language-xml">&lt;?xml&#160;version="1.0"&#160;encoding="utf-8"&#160;?&gt;
+&lt;configuration&gt;
+&#160;&#160;&lt;configSections&gt;
+&#160;&#160;&#160;&#160;&lt;section&#160;name="GigaSpaces.XAP"&#160;type="GigaSpaces.XAP.Configuration.GigaSpacesXAPConfiguration,&#160;GigaSpaces.Core"/&gt;
+&#160;&#160;&lt;/configSections&gt;
+&#160;&#160;&lt;GigaSpaces.XAP&gt;
+&#160;&#160;&#160;&#160;&lt;ProcessingUnitContainer&#160;Type=
+&#160;&#160;&#160;&#160;"GigaSpaces.XAP.ProcessingUnit.Containers.BasicContainer.BasicProcessingUnitContainer,&#160;GigaSpaces.Core"&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;BasicContainer&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;SpaceProxies&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="Space"&#160;Url="/./myNYSpace"&#160;&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Gateway LocalGatewayName="NEWYORK"&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Targets&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="LONDON"/&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="HONGKONG"/&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Targets&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Gateway&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/add&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/SpaceProxies&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;/BasicContainer&gt;
+&#160;&#160;&#160;&#160;&lt;/ProcessingUnitContainer&gt;
+&#160;&#160;&lt;/GigaSpaces.XAP&gt;
+&lt;/configuration&gt;</code></pre>
             </div>
         </div><pre MadCap:conditions="NewSet.ProductionOnly"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
 
@@ -138,7 +126,7 @@
   &lt;os-gateway:target name="HONGKONG"/&gt;
 &lt;/os-gateway:targets&gt;
 </code></pre>
-        <p>Each replication channel to the gateways can be configured with more parameters, and these parameters can applied to all gateways or specifically per gateway, for example:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
+        <p>Each replication channel to the gateways can be configured with more parameters, and these parameters can applied to all gateways or specifically per gateway, for example:</p><pre MadCap:conditions="NewSet.ProductionOnly"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
 
 &lt;os-gateway:targets id="gatewayTargets"
   local-gateway-name="NEWYORK" bulk-size="1000"
@@ -147,6 +135,45 @@
   &lt;os-gateway:target name="HONGKONG" bulk-size="100"/&gt;
 &lt;/os-gateway:targets&gt;
 </code></pre>
+        <div class="easyui-tabs" plain="true" MadCap:conditions="NewSet.StagingOnly">
+            <div title="Java"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
+
+&lt;os-gateway:targets id="gatewayTargets"
+ local-gateway-name="NEWYORK" bulk-size="1000"
+ max-redo-log-capacity="1000000"&gt;
+ &lt;os-gateway:target name="LONDON" /&gt;
+ &lt;os-gateway:target name="HONGKONG" bulk-size="100"/&gt;
+&lt;/os-gateway:targets&gt;
+</code></pre>
+            </div>
+            <div title="Dot Net"><pre><code class="language-xml">&lt;?xml&#160;version="1.0"&#160;encoding="utf-8"&#160;?&gt;
+&lt;configuration&gt;
+&#160;&#160;&lt;configSections&gt;
+&#160;&#160;&#160;&#160;&lt;section&#160;name="GigaSpaces.XAP"&#160;type="GigaSpaces.XAP.Configuration.GigaSpacesXAPConfiguration,&#160;GigaSpaces.Core"/&gt;
+&#160;&#160;&lt;/configSections&gt;
+&#160;&#160;&lt;GigaSpaces.XAP&gt;
+&#160;&#160;&#160;&#160;&lt;ProcessingUnitContainer&#160;Type=
+&#160;&#160;&#160;&#160;"GigaSpaces.XAP.ProcessingUnit.Containers.BasicContainer.BasicProcessingUnitContainer,&#160;GigaSpaces.Core"&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;BasicContainer&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;SpaceProxies&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="Space"&#160;Url="/./myNYSpace"&#160;&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Gateway LocalGatewayName="NEWYORK"
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;bulk-size="1000"
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;max-redo-log-capacity="1000000"&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Targets&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="LONDON"/&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="HONGKONG"
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;bulk-size="100"&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Targets&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Gateway&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/add&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/SpaceProxies&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;/BasicContainer&gt;
+&#160;&#160;&#160;&#160;&lt;/ProcessingUnitContainer&gt;
+&#160;&#160;&lt;/GigaSpaces.XAP&gt;
+&lt;/configuration&gt;</code></pre>
+            </div>
+        </div>
         <p>Here, we specified a global bulk size of 1000 but have specifically overridden it in the replication channel to Hong Kong with 100, and have a global maximum redo log capacity for both targets of 1000000.</p>
         <div class="tc-admon-note">
             <p>For more details about all the available configuration elements of the space gateway targets,  refer to <a href="configuring-space-gateway-targets.html">Configuring Targets</a>.</p>
@@ -167,6 +194,9 @@
         <h2><a name="gateway-lookup"></a>Gateway Lookup</h2>
         <p>The different gateway components need to locate each other across the different sites. For example, a delegator needs to locate the sink of the target gateway to which it delegates the replication. This lookup is accomplished via dedicated lookup services that the gateways use to register and locate each other. This lookup process is usually done across the WAN, so the most reasonable way of locating the lookup services is using unicast (multicast is also supported). The following example demonstrates a unicast lookup discovery.</p>
         <h2><a name="gateway-basic-configuration"></a>Gateway Basic Configuration</h2>
+        <div class="tc-admon-note">
+            <p>The following is an excerpt from the pu-xml.jar file. For Dot Net developers, note that this deployment is performed using the standard Java deployment process.</p>
+        </div>
         <p>Following the above example, here we demonstrate how to configure the local gateway processing unit in New York, which needs to send replication to London and Hong Kong and also receive replication from these two sites.</p><pre><code class="language-xml">&lt;os-gateway:delegator id="delegator"
   local-gateway-name="NEWYORK" gateway-lookups="gatewayLookups"&gt;
   &lt;os-gateway:delegations&gt;
@@ -207,7 +237,7 @@ have no meaning, all sites could designate the same ports as well--&gt;
         <h2><a name="gateway-and-the-mirror-service"></a>Gateway and the Mirror Service</h2>
         <p>A gateway and a <a href="asynchronous-persistency-with-the-mirror.html">Mirror Service</a> are two different components, which can co-exist together without affecting each other. A gateway is just another reliable asynchronous target. As such, there is no need to demonstrate the mirror service alongside a gateway because they don't conflict with each other or require any special configuration when used in the same Space cluster.</p>
         <h2><a name="gateway-and-distributed-transactions"></a>Gateway and Distributed Transactions</h2>
-        <p>By default, the gateway preserves the atomicity of distributed transactions (distributed transaction consolidation). This can be disabled by adding the following property to the Space configuration:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="localSpace" gateway-targets="gatewayTargets"&gt;
+        <p>By default, the gateway preserves the atomicity of distributed transactions (distributed transaction consolidation). This can be disabled by adding the following property to the Space configuration:</p><pre MadCap:conditions="NewSet.ProductionOnly"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="localSpace" gateway-targets="gatewayTargets"&gt;
   &lt;os-core:properties&gt;
     &lt;props&gt;
       &lt;prop key="cluster-config.groups.group.repl-policy.processing-type"&gt;
@@ -217,6 +247,31 @@ have no meaning, all sites could designate the same ports as well--&gt;
   &lt;/os-core:properties&gt;
 &lt;/os-core:embedded-space&gt;
 </code></pre>
+        <div class="easyui-tabs" plain="true" MadCap:conditions="NewSet.StagingOnly">
+            <div title="Java"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="localSpace" gateway-targets="gatewayTargets"&gt;
+&#160;&lt;os-core:properties&gt;
+&#160;&#160;&lt;props&gt;
+&#160;&#160;&#160;&lt;prop key="cluster-config.groups.group.repl-policy.processing-type"&gt;
+&#160;&#160;&#160;&#160;global-order
+&#160;&#160;&#160;&lt;/prop&gt;
+&#160;&#160;&lt;/props&gt;
+&#160;&lt;/os-core:properties&gt;
+&lt;/os-core:embedded-space&gt;
+</code></pre>
+            </div>
+            <div title="Dot Net"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="localSpace" gateway-targets="gatewayTargets"&gt;
+&#160;&lt;os-core:properties&gt;
+&#160;&#160;&lt;props&gt;
+&#160;&#160;&#160;&lt;prop key="cluster-config.groups.group.repl-policy.processing-type"&gt;
+&#160;&#160;&#160;&#160;global-order
+&#160;&#160;&#160;&lt;/prop&gt;
+&#160;&#160;&lt;/props&gt;
+&#160;&lt;/os-core:properties&gt;
+&lt;/os-core:embedded-space&gt;
+</code></pre>
+            </div>
+        </div>
+        <p>&#160;</p>
         <p>Distributed transaction consolidation is done by waiting for data from all the transaction participants before processing is done by the sink component. In some cases, the data from certain distributed transaction participants may be delayed due to network delay or disconnection, and this can cause delays in replication.
 In order to prevent this potential delay, you can set a timeout parameter that indicates how much time to wait for distributed transaction participant data before processing the data individually for each participant.</p>
         <p>You can specify the behavior when processing is split into individual participants upon consolidation failure (timeout or other reasons); the unconsolidated transaction can be either aborted or committed.</p>
