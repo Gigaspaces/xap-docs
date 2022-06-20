@@ -104,7 +104,7 @@
 &#160;&#160;&#160;&#160;&lt;ProcessingUnitContainer&#160;Type=
 &#160;&#160;&#160;&#160;"GigaSpaces.XAP.ProcessingUnit.Containers.BasicContainer.BasicProcessingUnitContainer,&#160;GigaSpaces.Core"&gt;
 &#160;&#160;&#160;&#160;&#160;&#160;&lt;BasicContainer&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;SpaceProxies&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;EmbeddedSpaces&gt;
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="Space"&#160;Url="/./myNYSpace"&#160;&gt;
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Gateway LocalGatewayName="NEWYORK"&gt;
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Targets&gt;
@@ -113,7 +113,7 @@
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Targets&gt;
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Gateway&gt;
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/add&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/SpaceProxies&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/EmbeddedSpaces&gt;
 &#160;&#160;&#160;&#160;&#160;&#160;&lt;/BasicContainer&gt;
 &#160;&#160;&#160;&#160;&lt;/ProcessingUnitContainer&gt;
 &#160;&#160;&lt;/GigaSpaces.XAP&gt;
@@ -155,7 +155,7 @@
 &#160;&#160;&#160;&#160;&lt;ProcessingUnitContainer&#160;Type=
 &#160;&#160;&#160;&#160;"GigaSpaces.XAP.ProcessingUnit.Containers.BasicContainer.BasicProcessingUnitContainer,&#160;GigaSpaces.Core"&gt;
 &#160;&#160;&#160;&#160;&#160;&#160;&lt;BasicContainer&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;SpaceProxies&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;EmbeddedSpaces&gt;
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="Space"&#160;Url="/./myNYSpace"&#160;&gt;
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Gateway LocalGatewayName="NEWYORK"
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;bulk-size="1000"
@@ -167,7 +167,7 @@
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Targets&gt;
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Gateway&gt;
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/add&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/SpaceProxies&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/EmbeddedSpaces&gt;
 &#160;&#160;&#160;&#160;&#160;&#160;&lt;/BasicContainer&gt;
 &#160;&#160;&#160;&#160;&lt;/ProcessingUnitContainer&gt;
 &#160;&#160;&lt;/GigaSpaces.XAP&gt;
@@ -259,15 +259,22 @@ have no meaning, all sites could designate the same ports as well--&gt;
 &lt;/os-core:embedded-space&gt;
 </code></pre>
             </div>
-            <div title="Dot Net"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="localSpace" gateway-targets="gatewayTargets"&gt;
-&#160;&lt;os-core:properties&gt;
-&#160;&#160;&lt;props&gt;
-&#160;&#160;&#160;&lt;prop key="cluster-config.groups.group.repl-policy.processing-type"&gt;
-&#160;&#160;&#160;&#160;global-order
-&#160;&#160;&#160;&lt;/prop&gt;
-&#160;&#160;&lt;/props&gt;
-&#160;&lt;/os-core:properties&gt;
-&lt;/os-core:embedded-space&gt;
+            <div title="Dot Net"><pre><code class="language-xml">
+&lt;ProcessingUnit&gt;
+&#160;&#160;&lt;EmbeddedSpaces&gt;
+&#160;&#160;&#160;&#160;&lt;add&#160;Name="MySpace"&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;Gateway&#160;LocalGatewayName="NEWYORK"
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Targets&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="LONDON"/&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="HONGKONG"
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Targets&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Gateway&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;Properties&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="cluster-config.groups.group.repl-policy.processing-type"&#160;Value="global-order"/&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Properties&gt;
+&#160;&#160;&#160;&#160;&lt;/add&gt;
+&#160;&#160;&lt;/EmbeddedSpaces&gt;
+&lt;/ProcessingUnit&gt;
 </code></pre>
             </div>
         </div>
