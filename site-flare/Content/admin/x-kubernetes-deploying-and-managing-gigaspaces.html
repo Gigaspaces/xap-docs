@@ -34,7 +34,7 @@
                 <p>The <code style="font-weight: bold;">xap</code> chart used in the following example is an "umbrella" chart that references more than one Helm chart.</p>
             </div>
             <p>Update the GigaSpaces repo locally:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
-helm repo updatei</code></pre>
+helm repo update</code></pre>
             <p>Unpack the GigaSpaces charts:</p><pre><code class="language-bash">helm pull gigaspaces/xap --version=<MadCap:variable name="Versions.product-version-short" /> --untar</code></pre>
             <p>Deploy the GigaSpaces Manager and Operator pods:</p><pre><code class="language-bash">helm install xap ./xap/ --version=<MadCap:variable name="Versions.product-version-short" /> --set manager.resources.limits.memory=700Mi</code></pre>
             <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command.</h2>
@@ -88,7 +88,11 @@ xap-xap-pu-hs             ClusterIP      None             &lt;none&gt;        &l
 					</tt><![CDATA[		
 				]]></code></pre>
             <p>The externally accessible URL is type <b>LoadBalancer</b>. In this example, it is <code>localhost</code>.</p>
-            <h2>View the result in Ops Manager via the LoadBalancer URL shown above, port 8090. In this example, the URL is <code style="font-weight: bold;">localhost:8090/services</code></h2>
+            <h2>View the result via the Ops Manager URL<br /></h2>
+            <div class="tc-admon-note">
+                <p>The general format for the URL is <code>&lt;<b>LoadBalancer External-IP</b>&gt;:8090/</code>services.</p>
+            </div>
+            <p>In this example, the URL is <code style="font-weight: bold;">localhost:8090/services</code></p>
             <p>
                 <img src="../Resources/Static/images/kubernetes-landing-page-ss-1.png" />
             </p>
@@ -122,16 +126,22 @@ xap-operator-57d9d445ff-zhlp2   1/1     Running   0          17m
 xap-xap-manager-0               1/1     Running   0          17m
 				</tt><![CDATA[		
 				]]></code></pre>
-        <h2>View the result in Ops Manager via the<code style="font-weight: bold;">localhost:8090/services</code> URL:</h2>
+        <h2>View the result via the Ops Manager URL<br /></h2>
+        <div class="tc-admon-note">
+            <p>The general format for the URL is <code>&lt;<b>LoadBalancer External-IP</b>&gt;:8090/</code>services.</p>
+        </div>
+        <p>In this example, the URL is <code style="font-weight: bold;">localhost:8090/services</code></p>
         <p>
             <img src="../Resources/Static/images/kubernetes-landing-page-ss-2.png" />
         </p>
-        <h1>Additional Helm Charts Available in the GigaSpaces Repo</h1>
-        <p style="font-weight: bold;">Helm PU/Space deploy:</p><pre><code class="language-bash">
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Additional Helm Charts Available in the GigaSpaces Repo</h1>
+            <p style="font-weight: bold;">Helm PU/Space deploy:</p><pre><code class="language-bash">
 
 helm install demo gigaspaces/xap-pu --version 16.1.1 –-set manager.name=umbrella,ha=true,partitions=1,antiAffinity.enabled=true,properties="pu.dynamic-partitioning=true"</code></pre>
-        <p style="font-weight: bold;">Helm PU/Scale out/in:</p><pre><code class="language-bash">
+            <p style="font-weight: bold;">Helm PU/Scale out/in:</p><pre><code class="language-bash">
 kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</code></pre>
+        </div>
         <div MadCap:conditions="Default.DoNotShow">
             <h2>Method 2 (Alternative Installation) – Step-By-Step</h2>
             <p>Before using these charts for the first time, you must fetch the chart, as described in <MadCap:xref href="#Accessin">Accessing the GigaSpaces Helm Charts</MadCap:xref> above.</p>
@@ -150,9 +160,10 @@ kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</
             <p>Run <code>kubectl get pus</code> and ensure that the deployed processing unit is in the Deployed state.</p>
             <p>&#160;</p>
         </div>
-        <h1>Customizing the Helm Chart</h1>
-        <p>The following are examples of providing custom capabilities in the YAML file.</p>
-        <h2><a name="Define"></a>Define a Statefulset:</h2><pre><code class="language-bash">
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Customizing the Helm Chart</h1>
+            <p>The following are examples of providing custom capabilities in the YAML file.</p>
+            <h2><a name="Define"></a>Define a Statefulset:</h2><pre><code class="language-bash">
 statefulSet:
 &#160;&#160;&#160;&#160;metadata:
 &#160;&#160;&#160;&#160;&#160;&#160;name: {{ .Release.Name }}
@@ -217,6 +228,7 @@ statefulSet:
 &#160;&#160;{{- end }}
  
 </code></pre>
+        </div>
         <h1>Configuration Options</h1>
         <p>The following configuration options can be specified when using a chart:</p>
         <ul>
@@ -229,24 +241,29 @@ statefulSet:
             <li>
                 <p><b>antiAffinity.enabled=true/false</b> — spread the partitions across nodes. Default is <code>false</code>.</p>
             </li>
-        </ul>
-        <h1>Troubleshooting</h1>
-        <p style="font-weight: bold;">Problem:</p>
-        <ul>
             <li>
-                <p><b>Cannot delete pus</b> (<code>kubectl delete pus &lt;pu name&gt;</code>), the delete command gets hung. This may occur when attempting to delete a processing unit and the CRD causes a system hang.</p>
+                <p><b>partitions=2</b> — scale out/in to change the number of partitions.</p>
             </li>
         </ul>
-        <p style="font-weight: bold;">Resolution:</p><pre><code class="language-bash">kubectl patch pus/pu -p '{"metadata":{"finalizers":[]}}' --type=merge </code></pre>
-        <p><a href="https://github.com/kubernetes/kubernetes/issues/60538#issuecomment-369099998">See here</a> for more information.
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Troubleshooting</h1>
+            <p style="font-weight: bold;">Problem:</p>
+            <ul>
+                <li>
+                    <p><b>Cannot delete pus</b> (<code>kubectl delete pus &lt;pu name&gt;</code>), the delete command gets hung. This may occur when attempting to delete a processing unit and the CRD causes a system hang.</p>
+                </li>
+            </ul>
+            <p style="font-weight: bold;">Resolution:</p><pre><code class="language-bash">kubectl patch pus/pu -p '{"metadata":{"finalizers":[]}}' --type=merge </code></pre>
+            <p><a href="https://github.com/kubernetes/kubernetes/issues/60538#issuecomment-369099998">See here</a> for more information.
                                 </p>
-        <p style="font-weight: bold;">Problem:</p>
-        <ul>
-            <li>
-                <p><b>Pod is not initializing</b> but <code>kubectl get pus</code> shows it is in deployed state.</p>
-            </li>
-        </ul>
-        <p style="font-weight: bold;">Resolution:</p>
-        <p>Execute <code>kubectl logs &lt;operator pod&gt;</code>. The logs will show custom and merged values. Check for problems with the merged values.</p>
+            <p style="font-weight: bold;">Problem:</p>
+            <ul>
+                <li>
+                    <p><b>Pod is not initializing</b> but <code>kubectl get pus</code> shows it is in deployed state.</p>
+                </li>
+            </ul>
+            <p style="font-weight: bold;">Resolution:</p>
+            <p>Execute <code>kubectl logs &lt;operator pod&gt;</code>. The logs will show custom and merged values. Check for problems with the merged values.</p>
+        </div>
     </body>
 </html>
