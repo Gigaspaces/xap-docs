@@ -18,7 +18,8 @@
             <li><span class="tc-bold">gsctl</span> - a standalone CLI tool that you can use to create, provision, and install <MadCap:variable name="General.ProductNameXAP" /> clusters in the cloud, on premise, or in hybrid environments.</li>
             <li><span class="tc-bold">Ops Manager</span> - the <MadCap:variable name="General.ProductNameXAP" /> native administration tool, which is web based and runs automatically when <MadCap:variable name="General.ProductNameXAP" /> services are deployed. Use Ops Manager for monitoring, alerts, scaling, interactive queries, and deploying and upgrading your applications.</li>
             <li><span class="tc-bold">Monitoring stack</span> - based on InfluxDB, Grafana, and Telegraf for monitoring <MadCap:variable name="General.ProductNameXAP" /> cluster activity and metrics using pre-defined dashboards and built-in alerts, plus Zipkin for distributed tracing.</li>
-            <li><span class="tc-bold">ElasticGrid</span> or <span class="tc-bold">Kubernetes</span> enterprise-grade orchestration that automates deploying, scaling, and managing applications and services.</li>
+            <li>
+                <MadCap:conditionalText MadCap:conditions="Version.16-1-1-died"><span class="tc-bold">ElasticGrid</span> or </MadCap:conditionalText><span class="tc-bold">Kubernetes</span> enterprise-grade orchestration that automates deploying, scaling, and managing applications and services.</li>
         </ul>
         <p>The GigaOps Stack utilizes the DataOps approach, which takes DevOps best practices and applies them to managing data as a global asset in your organization. Using the GigaOps Stack provides auto-installation and provisioning of servers, networking, and security using gsctl, along with full orchestration and installing the <MadCap:variable name="General.ProductNameXAP" /> platform.</p>
         <h4>Auto-Provisioning</h4>
@@ -43,19 +44,21 @@
         <p>You can implement <MadCap:variable name="General.ProductNameXAP" /> product upgrades or your own applications across your cluster with zero downtime.</p>
         <h4>Self-Healing</h4>
         <p>Benefit from high availability and robustness with the GigaOps Stack's ability to self-repair if a cluster node becomes unavailable or starts to fail.</p>
-        <h4>Proactive Monitoring</h4>
-        <p>ElasticGrid comes with pre-defined Grafana dashboards for monitoring your <MadCap:variable name="General.ProductNameXAP" /> cluster. You can use these dashboards in conjunction with canary deployment to monitor performance and other metrics for each version that is deployed, or to assess the impact of a configuration change by comparing the metrics before and after it is implemented.</p>
-        <div class="tc-align-center">
-            <p>
-                <img src="../Resources/Static/attachment_files/gigaops-stack/grafana-dashbboard.png" class="tc-picture80" />
-            </p>
-        </div>
-        <h4>Distributed Tracing</h4>
-        <p>ElasticGrid includes Zipkin, a distributed tracing system that gathers timing data to enable troubleshooting latency issues in the system. This enables more effective performance tuning.</p>
-        <div class="tc-align-center">
-            <p>
-                <img src="../Resources/Static/attachment_files/gigaops-stack/zipkin-tracing.png" class="tc-picture80" />
-            </p>
+        <div MadCap:conditions="Version.16-1-1-died">
+            <h4>Proactive Monitoring</h4>
+            <p>ElasticGrid comes with pre-defined Grafana dashboards for monitoring your <MadCap:variable name="General.ProductNameXAP" /> cluster. You can use these dashboards in conjunction with canary deployment to monitor performance and other metrics for each version that is deployed, or to assess the impact of a configuration change by comparing the metrics before and after it is implemented.</p>
+            <div class="tc-align-center">
+                <p>
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/grafana-dashbboard.png" class="tc-picture80" />
+                </p>
+            </div>
+            <h4>Distributed Tracing</h4>
+            <p>ElasticGrid includes Zipkin, a distributed tracing system that gathers timing data to enable troubleshooting latency issues in the system. This enables more effective performance tuning.</p>
+            <div class="tc-align-center">
+                <p>
+                    <img src="../Resources/Static/attachment_files/gigaops-stack/zipkin-tracing.png" class="tc-picture80" />
+                </p>
+            </div>
         </div>
         <!--
 ## Using Apache Zeppelin with <MadCap:variable name="General.ProductNameIE" />
