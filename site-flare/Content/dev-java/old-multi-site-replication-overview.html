@@ -86,7 +86,7 @@
         </div>
         <h1><a name="configuring-a-space-with-gateway-targets"></a>Configuring a Space With Gateway Targets</h1>
         <p>The following snippet shows how to configure a Space that resides in New York to replicate to two other Spaces, one in London and one in Hong Kong:</p>
-        <div class="easyui-tabs" plain="true">
+        <div class="easyui-tabs" plain="true" MadCap:conditions="NewSet.StagingOnly">
             <div title="Java"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
 
 &lt;os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK"&gt;
@@ -119,9 +119,23 @@
 &#160;&#160;&lt;/GigaSpaces.XAP&gt;
 &lt;/configuration&gt;</code></pre>
             </div>
-        </div>
-        <p>Each replication channel to the gateways can be configured with more parameters, and these parameters can applied to all gateways or specifically per gateway, for example:</p>
-        <div class="easyui-tabs" plain="true">
+        </div><pre MadCap:conditions="NewSet.ProductionOnly"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
+
+&lt;os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK"&gt;
+  &lt;os-gateway:target name="LONDON"/&gt;
+  &lt;os-gateway:target name="HONGKONG"/&gt;
+&lt;/os-gateway:targets&gt;
+</code></pre>
+        <p>Each replication channel to the gateways can be configured with more parameters, and these parameters can applied to all gateways or specifically per gateway, for example:</p><pre MadCap:conditions="NewSet.ProductionOnly"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
+
+&lt;os-gateway:targets id="gatewayTargets"
+  local-gateway-name="NEWYORK" bulk-size="1000"
+  max-redo-log-capacity="1000000"&gt;
+  &lt;os-gateway:target name="LONDON" /&gt;
+  &lt;os-gateway:target name="HONGKONG" bulk-size="100"/&gt;
+&lt;/os-gateway:targets&gt;
+</code></pre>
+        <div class="easyui-tabs" plain="true" MadCap:conditions="NewSet.StagingOnly">
             <div title="Java"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
 
 &lt;os-gateway:targets id="gatewayTargets"
@@ -223,8 +237,17 @@ have no meaning, all sites could designate the same ports as well--&gt;
         <h2><a name="gateway-and-the-mirror-service"></a>Gateway and the Mirror Service</h2>
         <p>A gateway and a <a href="asynchronous-persistency-with-the-mirror.html">Mirror Service</a> are two different components, which can co-exist together without affecting each other. A gateway is just another reliable asynchronous target. As such, there is no need to demonstrate the mirror service alongside a gateway because they don't conflict with each other or require any special configuration when used in the same Space cluster.</p>
         <h2><a name="gateway-and-distributed-transactions"></a>Gateway and Distributed Transactions</h2>
-        <p>By default, the gateway preserves the atomicity of distributed transactions (distributed transaction consolidation). This can be disabled by adding the following property to the Space configuration:</p>
-        <div class="easyui-tabs" plain="true">
+        <p>By default, the gateway preserves the atomicity of distributed transactions (distributed transaction consolidation). This can be disabled by adding the following property to the Space configuration:</p><pre MadCap:conditions="NewSet.ProductionOnly"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="localSpace" gateway-targets="gatewayTargets"&gt;
+  &lt;os-core:properties&gt;
+    &lt;props&gt;
+      &lt;prop key="cluster-config.groups.group.repl-policy.processing-type"&gt;
+        global-order
+      &lt;/prop&gt;
+    &lt;/props&gt;
+  &lt;/os-core:properties&gt;
+&lt;/os-core:embedded-space&gt;
+</code></pre>
+        <div class="easyui-tabs" plain="true" MadCap:conditions="NewSet.StagingOnly">
             <div title="Java"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="localSpace" gateway-targets="gatewayTargets"&gt;
 &#160;&lt;os-core:properties&gt;
 &#160;&#160;&lt;props&gt;
