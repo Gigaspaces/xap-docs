@@ -5,91 +5,144 @@
     <body>
         <h1 class="tc-pagetitle">Deploying and Managing GigaSpaces in Kubernetes</h1>
         <p>This topic describes how to deploy GigaSpaces products in a Kubernetes environment. The integration is packaged as a <a href="https://docs.helm.sh/developing_charts/#charts">Helm chart</a>. You can deploy the full GigaSpaces platform, using the Helm chart available in the GigaSpaces Helm repository.</p>
-        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
-            <p> Kubernetes can be installed in two ways –</p>
-            <ul>
-                <li>
-                    <p>Use a basic Helm chart to start Manager, and then use GigaSpaces Tools (Ops Manager/<a href="https://docs-staging.gigaspaces.com/15.8/admin/tools-cli.html">CLI</a>/API) for Processing Units management. This method uses Kubernetes Operator and provide all GigaSpaces functionality. It is the default and is described below.</p>
-                </li>
-                <li>
-                    <p>Use Helm charts only. If you use Helm Charts only, Scale Out/In and deploying/undeploying a service are not available using the Ops Manager or the Command Line Interface.<br />See <MadCap:xref href="kubernetes-data-grid-helm-only.html">Getting Started with GigaSpaces in Kubernetes Using Helm Charts</MadCap:xref> for details on how to install Kubernetes via Helm charts only.</p>
-                </li>
-            </ul>
-        </div>
-        <h2>Prerequisites</h2>
         <div class="tc-admon-note">
             <p>The topics in this section assume basic knowledge of the GigaSpaces platform. If you aren't familiar with GigaSpaces, review the contents of the general <a href="../started/index.html">Getting Started</a> section before performing the tasks described here.</p>
         </div>
-        <p>Before beginning to work with the Space and the GigaSpaces platform, ensure that you have the following installed on your local machine or a VM:</p>
+        <h2>Prerequisites</h2>
         <ul>
+            <li>
+                <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Working kubernetes deployment (locally or remote)</a>
+                </p>
+            </li>
             <li>
                 <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Helm</a>
                 </p>
             </li>
             <li>
-                <p>Kubernetes cluster (cloud, on-premise, or local via <a href="https://kubernetes.io/docs/setup/minikube/">minikube</a>)</p>
+                <p>kubectl</p>
             </li>
         </ul>
-        <p>This topic describes how to do basic and intermediate-level deployment tasks for the Space and the GigaSpaces platform, using simple Helm commands. You can perform these tasks using a Kubernetes minikube, because you only need a single node.</p>
-        <h1>Deploying and Managing a Space</h1>
-        <h2><a name="Accessin"></a>Accessing the GigaSpaces Helm Charts</h2>
-        <p>The Helm package manager is used for installing the GigaSpaces platform in the Kubernetes environment. </p>
-        <p>A Helm chart can be used in a variety of formats and locations; packaged, unpackaged, accessed via a remote URL or even in a chart repository.  The <code>xap</code>,<code> xap-manager</code>, <code>xap-operator</code>, <code>xap-pu</code>, <code>insightedge</code>,<code> insightedge-manager</code>,<code> insightedge-operator</code>, and <code>insightedge-pu</code> Helm charts are published in the GigaSpaces Helm charts repository at <code>https://resources.gigaspaces.com/helm-charts</code>.</p>
-        <h3>Add a Helm Repo to the Repo List</h3>
-        <p>You can point to the GigaSpaces Helm repo, so that Helm can locate the <code class="language-bash">xap</code> and <code class="language-bash">insightedge</code> charts for installation:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts</code></pre>
-        <div class="tc-admon-note">
-            <p>If you're using minikube,  note that the default kubernetes services created by GigaSpaces uses LoadBalancer, which requires running 'minikube tunnel' in the background. For more information see <a href="https://minikube.sigs.k8s.io/docs/commands/tunnel/">minikube tunnel</a>.</p>
-        </div>
-        <p>Another option is to fetch the GigaSpaces Helm charts that you need and unpack them locally, so you don’t have to repeat the repo name and package version in each command (which has the added benefit of making the commands shorter). For example, you can <MadCap:conditionalText MadCap:conditions="Version.15-5-born,Version.16-1-born"> <code class="language-bash">pull </code>(Helm 3)</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-born,Version.16-1-died"><code class="language-bash">fetch </code>(Helm 2) or <code class="language-bash">pull </code>(Helm 3)</MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.15-5-died">fetch </MadCap:conditionalText>and unpack the Helm chart using the following command:</p>
-        <p>
-            <p>
-                <div class="easyui-tabs" plain="true">
-                    <div title="Helm 3">
-                        <p><code class="language-bash">helm pull gigaspaces/xap-pu --version=[%=Versions.helm-version-MX%] --untar</code>
-                        </p>
-                    </div>
-                </div>
-            </p>
-        </p>
-        <p>The chart is unpacked in a local folder called <code>insightedge</code>, which is referenced in the Helm commands.</p>
-        <p>For general information of how to use Helm commands, refer to the <a href="https://helm.sh/docs/intro/using_helm/">Helm documentation</a>.</p><pre><code class="language-bash">helm &lt;&lt;command&gt;&gt; &lt;&lt;name-of-helm-chart&gt;&gt; &lt;&lt;parameters&gt;&gt;</code></pre>
-        <div class="tc-admon-note">
-            <p>You must fetch every chart that you will be using (for example xap, xap-pu and xap-manager) in your GigaSpaces application environment.</p>
-        </div>
+        <p>This topic describes how to do basic and intermediate-level deployment tasks for the Space and the GigaSpaces platform, using simple Helm commands. </p>
+        <p>&#160;</p>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
             <h1>Deploying the GigaSpaces Platform</h1>
             <p>In order to prepare the environment for use, first the Platform Manager must be deployed. This deploys two pods: the Manager pod, and the Operator pod.</p>
-            <p>Note that Platform Manager is deployed by using a Helm chart, but further operations are performed using the UI, CLI or REST-API tools.</p>
-            <p>Type the following Helm command to create a Management Pod called <code class="language-bash">testmanager</code> that deploys Manager and Operator pods:</p>
-            <h2>Method 1 (Preferred) – Umbrella Installation</h2>
-            <div>
-                <p>After adding the GigaSpaces Helm repo, you can install the required chart(s) by referencing the chart name and product package version. </p>
-                <p>The example command format is shown below.</p><pre><code class="language-bash">helm install umbrella gigaspaces/xap --version 16.1.1 --set metrics.enabled=false,manager.metrics.enabled=false,pu.metrics.enabled=false</code></pre>
+            <p>Note that Platform Manager is deployed by using a Helm chart, and further operations can also be performed using the UI, CLI or REST-API tools.</p>
+            <p MadCap:conditions="Default.DoNotShow">Type the following Helm command to create a Management Pod called <code class="language-bash">testmanager</code> that deploys Manager and Operator pods:</p>
+            <h1>Create a local repository from the Helm server and install GigaSpaces</h1>
+            <div class="tc-admon-note">
+                <p>The <code style="font-weight: bold;">xap</code> chart used in the following example is an "umbrella" chart that references more than one Helm chart.</p>
             </div>
-            <div MadCap:conditions="Default.DoNotShow">
-                <h3>Deploy a Space using GigaSpaces Tools</h3>
-                <p>After the Management Pod has been deployed and the Platform Manager is available, you can deploy the Space instances and connect them to the Platform Manager.</p>
-                <p>See <MadCap:xref href="gs-ops-manager-overview.html">[%=General.ProductNameXAP%] Ops Manager</MadCap:xref> or <MadCap:xref href="tools-cli.html">Command Line Interface (CLI)</MadCap:xref> for information on creating a Space object.</p>
+            <p>Update the GigaSpaces repo locally:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
+helm repo update</code></pre>
+            <p>Unpack the GigaSpaces charts:</p><pre><code class="language-bash">helm pull gigaspaces/xap --version=<MadCap:variable name="Versions.product-version-short" /> --untar</code></pre>
+            <p>Deploy the GigaSpaces Manager and Operator pods:</p><pre><code class="language-bash">helm install xap ./xap/ --version=<MadCap:variable name="Versions.product-version-short" /> --set manager.resources.limits.memory=700Mi</code></pre>
+            <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command.</h2>
+            <div class="tc-admon-note">
+                <p><b>Monitoring the Cluster in Kubernetes</b>
+                </p>
+                <div MadCap:conditions="NewSet.JustAColorForDivs">
+                    <p>After running the commands show below, you can monitor the cluster you deployed using the following administration tools.</p>
+                    <ul>
+                        <li><b>Helm</b>: Run the following command to print the status of the xap deployment in the command window.</li>
+                    </ul><pre><code class="language-bash">helm status xap</code></pre>
+                    <div MadCap:conditions="Default.DoNotShow">
+                        <ul>
+                            <li>Kubernetes dashboard: run the following command to open a dashboard in your browser, where you can see all the Pods and services by clicking the various tabs. For example, if you're using minikube:</li>
+                        </ul><pre><code class="language-bash">minikube dashboard</code></pre>
+                    </div>
+                    <ul>
+                        <li><b>Kubectl</b>: run the following command to print the name, description, and status of the Pods in the command window. A list of events is also printed, which can be used for troubleshooting purposes. For example, if you detected a problem in one of the Pods, you can see the Pod termination reason and exit code.</li>
+                    </ul><pre><code class="language-bash">kubectl get pods</code></pre>
+                </div>
             </div>
+            <div class="tc-admon-note">
+                <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
+            </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
+]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b>
+xap-grafana-5574c8bcd5-v2xsr    1/1     Running   0          5m14s
+xap-influxdb-0                  1/1     Running   0          5m14s
+xap-operator-57d9d445ff-slsrr   1/1     Running   0          5m14s
+xap-xap-manager-0               1/1     Running   0          5m14s		</tt><![CDATA[		
+				]]></code></pre>
+            <ul>
+                <li>
+                    <p><code style="font-weight: bold;">grafana</code> and <code style="font-weight: bold;">influxdb</code>, installed by default, provide the metrics and database engine to create <code>grafana</code> dashboards for the system.</p>
+                </li>
+                <li>
+                    <p><code style="font-weight: bold;">operator</code> allows Kubernetes to create custom GigaSpaces resources, such as processing units (pus).</p>
+                </li>
+                <li>
+                    <p><code style="font-weight: bold;">xap-manager</code> is the central processing and management module of the GigaSpaces environment.</p>
+                </li>
+            </ul>
+            <h2>Find the external Kubernetes URL in the CLI via the<code style="font-weight: bold;"> kubectl get services</code> command:</h2><pre><code class="language-bash">kubectl get services</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
+]]><b>NAME                      TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                                        AGE</b>
+kubernetes                ClusterIP      10.96.0.1        &lt;none&gt;        443/TCP                                        3h50m
+webhook-server            ClusterIP      10.98.86.137     &lt;none&gt;        443/TCP                                        2m36s
+xap-grafana               ClusterIP      10.98.32.89      &lt;none&gt;        3000/TCP                                       2m36s
+xap-influxdb              ClusterIP      10.109.178.226   &lt;none&gt;        8086/TCP,8088/TCP                              2m36s
+xap-xap-manager-hs        ClusterIP      None             &lt;none&gt;        2181/TCP,2888/TCP,3888/TCP,4174/TCP            2m36s
+xap-xap-manager-service   <b>LoadBalancer</b> 10.101.178.201   <b>localhost</b>     8090:31817/TCP,4174:31029/TCP,8200:31231/TCP   2m36s
+xap-xap-pu-hs             ClusterIP      None             &lt;none&gt;        &lt;none&gt;                                         2m36s
+					</tt><![CDATA[		
+				]]></code></pre>
+            <p>The externally accessible URL is type <b>LoadBalancer</b>. In this example, it is <code>localhost</code>.</p>
+            <h2>View the result via the Ops Manager URL<br /></h2>
+            <div class="tc-admon-note">
+                <p>The general format for the URL is <code>&lt;<b>LoadBalancer External-IP</b>&gt;:8090/</code>services.</p>
+            </div>
+            <p>In this example, the URL is <code style="font-weight: bold;">localhost:8090/services</code></p>
+            <p>
+                <img src="../Resources/Static/images/kubernetes-landing-page-ss-1.png" />
+            </p>
         </div>
-        <h2>Monitoring the Cluster in Kubernetes</h2>
-        <p>You can monitor the cluster you deployed using any of the following administration tools.</p>
-        <ul>
-            <li>Helm: Run the following command to print the status of the "demo' release in the command window.</li>
-        </ul><pre><code class="language-bash">helm status umbrella</code></pre>
-        <ul>
-            <li>Kubernetes dashboard: run the following command to open a dashboard in your browser, where you can see all the Pods and services by clicking the various tabs. For example, if you're using minikube:</li>
-        </ul><pre><code class="language-bash">minikube dashboard</code></pre>
-        <ul>
-            <li>Kubectl: run the following command to print the name, description, and status of the Pods in the command window. A list of events is also printed, which can be used for troubleshooting purposes. For example, if you detected a problem in one of the Pods, you can see the Pod termination reason and exit code.</li>
-        </ul><pre><code class="language-bash">kubectl describe pod</code></pre>
-        <div>
-            <h2>Additional Helm Charts Available in the GigaSpaces Repo</h2>
+        <h1>Install a Space called "demo"</h1><pre><code class="language-bash">helm pull gigaspaces/xap-pu --version=<MadCap:variable name="Versions.product-version-short" /> --untar
+helm install demo ./xap-pu/ --set manager.name=xap,partitions=1</code></pre>
+        <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command:</h2>
+        <div class="tc-admon-note">
+            <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
+        </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
+]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b>
+demo-xap-pu-0                   0/1     Running   0          10s
+xap-grafana-5574c8bcd5-v2xsr    1/1     Running   0          7m34s
+xap-influxdb-0                  1/1     Running   0          7m34s
+xap-operator-57d9d445ff-slsrr   1/1     Running   0          7m34s
+xap-xap-manager-0               1/1     Running   0          7m34s
+demo-xap-pu-0                   1/1     Running   0          15s
+				</tt><![CDATA[		
+				]]></code></pre>
+        <h1>Install a Microservice</h1><pre><code class="language-bash">helm install pu ./xap-pu/ --set manager.name=xap</code></pre>
+        <h2>View the result in the CLI via the<code style="font-weight: bold;">kubectl get pods</code> command:</h2>
+        <div class="tc-admon-note">
+            <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
+        </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
+]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b>
+demo-xap-pu-0                   1/1     Running   0          4m52s
+pu-xap-pu-0                     1/1     Running   0          3m5s
+xap-grafana-5574c8bcd5-6z6mc    1/1     Running   0          17m
+xap-influxdb-0                  1/1     Running   0          17m
+xap-operator-57d9d445ff-zhlp2   1/1     Running   0          17m
+xap-xap-manager-0               1/1     Running   0          17m
+				</tt><![CDATA[		
+				]]></code></pre>
+        <h2>View the result via the Ops Manager URL<br /></h2>
+        <div class="tc-admon-note">
+            <p>The general format for the URL is <code>&lt;<b>LoadBalancer External-IP</b>&gt;:8090/</code>services.</p>
+        </div>
+        <p>In this example, the URL is <code style="font-weight: bold;">localhost:8090/services</code></p>
+        <p>
+            <img src="../Resources/Static/images/kubernetes-landing-page-ss-2.png" />
+        </p>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Additional Helm Charts Available in the GigaSpaces Repo</h1>
             <p style="font-weight: bold;">Helm PU/Space deploy:</p><pre><code class="language-bash">
 
 helm install demo gigaspaces/xap-pu --version 16.1.1 –-set manager.name=umbrella,ha=true,partitions=1,antiAffinity.enabled=true,properties="pu.dynamic-partitioning=true"</code></pre>
             <p style="font-weight: bold;">Helm PU/Scale out/in:</p><pre><code class="language-bash">
 kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</code></pre>
+        </div>
+        <div MadCap:conditions="Default.DoNotShow">
             <h2>Method 2 (Alternative Installation) – Step-By-Step</h2>
             <p>Before using these charts for the first time, you must fetch the chart, as described in <MadCap:xref href="#Accessin">Accessing the GigaSpaces Helm Charts</MadCap:xref> above.</p>
             <ul>
@@ -97,36 +150,20 @@ kubectl patch pu demo -p ‘{“spec”:{“partitions”: 2}}’ --type=merge</
                     <p>Use a basic Helm chart to start Manager, and then use GigaSpaces Tools (Ops Manager/<a href="https://docs-staging.gigaspaces.com/15.8/admin/tools-cli.html">CLI</a>/API) for Processing Units management. This method uses Kubernetes Operator and provides all GigaSpaces functionality. It is the default and is described below.</p>
                 </li>
             </ul>
-            <div>
-                <p>
-                    <div class="easyui-tabs" plain="true">
-                        <div title="Helm 3">
-                            <p>
-                                <div class="tc-admon-note">
-                                    <p>Ensure that no CRDs are installed. Test this with <code>kubectl get pus</code>. <br />If there are PUs installed, and they are not in the Deployed state, Operator will continue trying to complete the installation until the processing unit is installed.</p>
-                                </div>
-                                <h3>Install Manager</h3><pre><code class="language-bash">helm install manager gigaspaces/xap-manager --version 16.1.1 --set metrics.enabled=false </code></pre>
-                                <h3>Install Operator, Webhook and CRD Definition</h3><pre><code class="language-bash">helm install operator gigaspaces/xap-operator --version 16.1.1 --set manager.name=manager </code></pre>
-                                <h3>Install PU</h3><pre><code class="language-bash">helm install pu gigaspaces/xap-pu --version 16.1.1 --set manager.name=manager --set metrics.enabled=false </code></pre>
-                                <h3>Ensure That All Pods are Running</h3>
-                                <p>Run <code>kubectl get pus</code> and ensure that the deployed processing unit is in the Deployed state.</p>
-                                <p>&#160;</p>
-                                <h1>Customizing the Helm Chart</h1>
-                                <p>The following are examples of providing custom capabilities in the YAML file.</p>
-                                <h2 MadCap:conditions="Default.DoNotShow"><a name="Access"></a>Access a value in a ConfigMap:</h2><pre MadCap:conditions="Default.DoNotShow"><code class="language-bash">spec:
-  containers:
-   - name: pu-container
-     volumeMounts:
-           - name: myConfig
-        mountPath: "/config-path"
-  volumes:
-   - name: myConfig
-     configMap:
-     name: <b>myConfigMap</b> 
-     items:
-      - key: "data-key"
-        path: "data-path"</code></pre>
-                                <h2><a name="Define"></a>Define a Statefulset:</h2><pre><code class="language-bash">
+            <div class="tc-admon-note">
+                <p>Ensure that no CRDs are installed. Test this with <code>kubectl get pus</code>. <br />If there are PUs installed, and they are not in the Deployed state, Operator will continue trying to complete the installation until the processing unit is installed.</p>
+            </div>
+            <h3>Install Manager</h3><pre><code class="language-bash">helm install manager gigaspaces/xap-manager --version 16.1.1 --set metrics.enabled=false </code></pre>
+            <h3>Install Operator, Webhook and CRD Definition</h3><pre><code class="language-bash">helm install operator gigaspaces/xap-operator --version 16.1.1 --set manager.name=manager </code></pre>
+            <h3>Install PU</h3><pre><code class="language-bash">helm install pu gigaspaces/xap-pu --version 16.1.1 --set manager.name=manager --set metrics.enabled=false </code></pre>
+            <h3>Ensure That All Pods are Running</h3>
+            <p>Run <code>kubectl get pus</code> and ensure that the deployed processing unit is in the Deployed state.</p>
+            <p>&#160;</p>
+        </div>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Customizing the Helm Chart</h1>
+            <p>The following are examples of providing custom capabilities in the YAML file.</p>
+            <h2><a name="Define"></a>Define a Statefulset:</h2><pre><code class="language-bash">
 statefulSet:
 &#160;&#160;&#160;&#160;metadata:
 &#160;&#160;&#160;&#160;&#160;&#160;name: {{ .Release.Name }}
@@ -190,64 +227,43 @@ statefulSet:
 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;{{- end }}
 &#160;&#160;{{- end }}
  
-</code></pre><pre MadCap:conditions="Default.DoNotShow"><code class="language-bash">spec:
-   statefulSet:
-    metadata:
-      namespace: default
-      labels:
-        app.kubernetes.io/managed-by: gigaspaces-operator
-    spec:
-      template:
-        spec:
-          volumes:
-            - name: config-vol
-              configMap:
-                name: log-config
-                items:
-                  - key: log_level
-                    path: log_level
-          containers:
-            - name: pu-container
-              volumeMounts:
-                - mountPath: /config-vol
-                  name: log-config
-                  readOnly: false</code></pre>
-                                <h1>Configuration Options</h1>
-                                <p>The following configuration options can be specified when using a chart:</p>
-                                <ul>
-                                    <li>
-                                        <p><b>ha=true/false</b> — each primary Data Pod has one backup Data Pod. Default is <code>false</code>.</p>
-                                    </li>
-                                    <li>
-                                        <p><b>metrics-enabled=true/false</b> — enable or disable Grafana metrics. Default is <code>true</code>.</p>
-                                    </li>
-                                    <li>
-                                        <p><b>antiAffinity.enabled=true/false</b> — spread the partitions across nodes. Default is <code>false</code>.</p>
-                                    </li>
-                                </ul>
-                                <h1>Troubleshooting</h1>
-                                <p style="font-weight: bold;">Problem:</p>
-                                <ul>
-                                    <li>
-                                        <p><b>Cannot delete pus</b> (<code>kubectl delete pus &lt;pu name&gt;</code>), the delete command gets hung. This may occur when attempting to delete a processing unit and the CRD causes a system hang.</p>
-                                    </li>
-                                </ul>
-                                <p style="font-weight: bold;">Resolution:</p><pre><code class="language-bash">kubectl patch pus/pu -p '{"metadata":{"finalizers":[]}}' --type=merge </code></pre>
-                                <p><a href="https://github.com/kubernetes/kubernetes/issues/60538#issuecomment-369099998">See here</a> for more information.
+</code></pre>
+        </div>
+        <h1>Configuration Options</h1>
+        <p>The following configuration options can be specified when using a chart:</p>
+        <ul>
+            <li>
+                <p><b>ha=true/false</b> — each primary Data Pod has one backup Data Pod. Default is <code>false</code>.</p>
+            </li>
+            <li>
+                <p><b>metrics-enabled=true/false</b> — enable or disable Grafana metrics. Default is <code>true</code>.</p>
+            </li>
+            <li>
+                <p><b>antiAffinity.enabled=true/false</b> — spread the partitions across nodes. Default is <code>false</code>.</p>
+            </li>
+            <li>
+                <p><b>partitions=2</b> — scale out/in to change the number of partitions.</p>
+            </li>
+        </ul>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Troubleshooting</h1>
+            <p style="font-weight: bold;">Problem:</p>
+            <ul>
+                <li>
+                    <p><b>Cannot delete pus</b> (<code>kubectl delete pus &lt;pu name&gt;</code>), the delete command gets hung. This may occur when attempting to delete a processing unit and the CRD causes a system hang.</p>
+                </li>
+            </ul>
+            <p style="font-weight: bold;">Resolution:</p><pre><code class="language-bash">kubectl patch pus/pu -p '{"metadata":{"finalizers":[]}}' --type=merge </code></pre>
+            <p><a href="https://github.com/kubernetes/kubernetes/issues/60538#issuecomment-369099998">See here</a> for more information.
                                 </p>
-                                <p style="font-weight: bold;">Problem:</p>
-                                <ul>
-                                    <li>
-                                        <p><b>Pod is not initializing</b> but <code>kubectl get pus</code> shows it is in deployed state.</p>
-                                    </li>
-                                </ul>
-                                <p style="font-weight: bold;">Resolution:</p>
-                                <p>Execute <code>kubectl logs &lt;operator pod&gt;</code>. The logs will show custom and merged values. Check for problems with the merged values.</p>
-                            </p>
-                        </div>
-                    </div>
-                </p>
-            </div>
+            <p style="font-weight: bold;">Problem:</p>
+            <ul>
+                <li>
+                    <p><b>Pod is not initializing</b> but <code>kubectl get pus</code> shows it is in deployed state.</p>
+                </li>
+            </ul>
+            <p style="font-weight: bold;">Resolution:</p>
+            <p>Execute <code>kubectl logs &lt;operator pod&gt;</code>. The logs will show custom and merged values. Check for problems with the merged values.</p>
         </div>
     </body>
 </html>
