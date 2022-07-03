@@ -8,7 +8,8 @@
             <MadCap:snippetText src="Resources/Snippets/SmartODS.flsnp" />
             <MadCap:snippetText src="Resources/Snippets/SmartAT.flsnp" />
         </h1>
-        <p>dummy</p>
-        <p>Delete this text and replace it with your own content.</p>
+        <p MadCap:conditions="SnippetConditions.SnippetCondition01">dummy</p>
+        <p>Delete this text and <MadCap:conditionalText MadCap:conditions="SnippetConditions.SnippetCondition01">replace</MadCap:conditionalText> it with your own content.</p>
+        <MadCap:snippetBlock src="Resources/Snippets/Content/test-snippet.flsnp" MadCap:conditions="SnippetConditions.SnippetCondition01" />
     </body>
 </html>

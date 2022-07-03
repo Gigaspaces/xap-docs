@@ -3,6 +3,40 @@
     <head>
     </head>
     <body>
+        <script type="text/javascript">
+		
+		
+			$(document).ready(function() {
+			//anything in here will only be called/work when the document is ready.
+			
+			
+			//	$('#dfb-tabs-10').html('<span style="color:blue">Java</span>'); 
+			
+			
+			
+			$("span.tabs-title").each(function(){
+			var originalSpanTest = $(this).text();
+			
+			if (originalSpanTest == "Java")
+			{
+			$(this).html('<span style="color:blue">Java</span>');
+			}
+			
+			if (originalSpanTest == "Dot Net")
+			{
+			$(this).html('<span style="color:blue">Dot Net</span>');
+			}
+			
+			});
+			
+			
+			
+			
+			//call your function in here, instead of bodyonload
+			});
+		
+		
+		</script>
         <h1>Multi-Site LAN Replication</h1>
         <p>Multiple Space replication is the ability to replicate state between different deployed Spaces (different cluster of Space instances), where each of the Space instances of each of the Spaces are reachable via network to the other. In some cases, this may even be across WAN using VPN or other mechanism to establish a VLAN. However, you must have a direct network connection between all the Space instances of all of the clusters (or at least a connection between all Space instances to the targeted Space gateway machine). Replicating between Spaces in the same network is done using exactly the same mechanisms and gateway described in <a href="multi-site-replication-overview.html">Multi-Site Replication over the WAN</a>. However, the method is simplified because much of the configuration and some of the components are not needed, as the Spaces reside in the same network.</p>
         <div class="tc-align-center">
@@ -61,7 +95,6 @@ understand how to establish replication between different networks.</p>
         <p>A replication from one space to the another is basically a replication from a space to a target gateway. The source space is decoupled from the target space. Instead, it is configured to replicate to target space's gateway, the gateway is in charge of dispatching the incoming replication packets to the relevant target space. Each space needs to be made aware of the target gateways to which it replicates the data, by specifying the target gateways in the source space configuration.</p>
         <p>From the space's perspective, a replication from one space to a target gateway is like any other replication channel (e.g mirror, backup...) and the backlog and confirmation state of the replication channel to the target gateway is kept in the source space. As a result, the gateway is stateless as far as holding the replication state is concerned, and only the source space is in charge of the replication progress and state. Each gateway has a unique logical name, in our cases will demonstrate with city names assuming there is a VPN or LAN between the spaces (e.g. "London" or "New York"). This name is used by remote spaces that are replicating to this space via its gateway.</p>
         <p>The following snippet shows how to configure a space that resides in New York to replicate to two other spaces, one in London and one in Hong Kong:</p>
-        <p style="color: #ff00ff;">NEEDS&#160;DOT&#160;NET</p>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-1.flsnp" /><pre MadCap:conditions="Default.DoNotShow"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
 
 &lt;os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK"&gt;
@@ -70,7 +103,6 @@ understand how to establish replication between different networks.</p>
 &lt;/os-gateway:targets&gt;
 </code></pre>
         <p>Each of replication channel to the gateways can be configured with more parameters, such parameters can applied to all gateways or specifically per gateway, for example:</p>
-        <p style="color: #ff00ff;">NEEDS&#160;DOT&#160;NET</p>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-2.flsnp" /><pre MadCap:conditions="Default.DoNotShow"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
 
 &lt;os-gateway:targets id="gatewayTargets"
@@ -109,7 +141,6 @@ If you are not interested in having backups running but have the replication to 
         <p>A gateway and a <a href="asynchronous-persistency-with-the-mirror.html">Mirror Service</a> are two different components which can co-exist together without any effect on each other. A gateway is just another reliable asynchronous target. Due to this fact, we will not discuss or demonstrate mirror service along side with a gateway because they do not contradict each other or require any special configuration when used in the same space cluster.</p>
         <h2><a name="gateway-and-distributed-transactions"></a>Gateway and Distributed Transactions</h2>
         <p>By default the gateway will preserve distributed transactions atomicity (distributed transactions consolidation), this can be disabled by adding the following property to the space configuration:</p>
-        <p style="color: #ff00ff;">NEEDS&#160;DOT&#160;NET</p>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-3.flsnp" /><pre MadCap:conditions="Default.DoNotShow"><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="localSpace" gateway-targets="gatewayTargets"&gt;
   &lt;os-core:properties&gt;
     &lt;props&gt;
@@ -177,7 +208,12 @@ packet which is unconsolidated and waits for consolidation which may never occur
         </div>
         <p>In this case, New York's space will be the active space while London and Hong Kong will be the passive spaces. As explained before, being passive does not necessarily means no work is done in these spaces. However, in terms of replication, these spaces should not replicate to the other spaces and usually should not alter data replicated from other spaces because it may cause conflicts.</p>
         <p>Like all GigaSpaces Processing Units, the configuration details of each of the above components is placed in a <code>pu.xml</code> file. Here are the contents of the files for each of the components:</p>
-        <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-4.flsnp" />
+        <div class="easyui-tabs" id="et1">
+            <div title="Java" id="et2">
+                <MadCap:snippetBlock src="../Resources/Snippets/Content/complex_wan_GW-components-java-block-1-NO-NY-GATEWAY.flsnp" />
+            </div>
+            <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-4-NO-NY-GATEWAY.flsnp" />
+        </div>
         <h1><a name="multi-master-topology"></a>Multi-Master Topology</h1>
         <p>With this architecture, we will have a multi-master topology where data is being generated and manipulated in all spaces.</p>
         <div class="tc-align-center">
@@ -191,7 +227,12 @@ packet which is unconsolidated and waits for consolidation which may never occur
         </div>
         <p>With the example below we will have only New York and London as the two active spaces.</p>
         <p>Here are the contents of the files for each of the components:</p>
-        <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-5.flsnp" />
+        <div class="easyui-tabs" plain="true" MadCap:conditions="NewSet.JustAColorForDivs">
+            <div title="Java">
+                <MadCap:snippetBlock src="../Resources/Snippets/Content/complex_wan_GW-components-java-block-2.flsnp" />
+            </div>
+            <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-5.flsnp" />
+        </div>
         <h1><a name="filtering-replication-between-gateways"></a>Filtering Replication Between Gateways</h1>
         <p>In some cases, there can be data that should not be replicated between the spaces but should still be replicated locally to the backup or a mirror service. Hence, specifying the object is not replicated does not fit. Since a replication channel to a gateway is like any other replication channel, a custom <a href="../admin/cluster-replication-filters.html">Replication Filter</a> at the source space can be used to filter the relevant data from being sent to the target gateway. This filtering should be based on the replication target name in order to identify that the replication filter is called for the correct outgoing replication to the gateway.</p>
         <div class="tc-admon-note">
