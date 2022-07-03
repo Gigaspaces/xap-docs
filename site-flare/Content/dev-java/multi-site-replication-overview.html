@@ -86,80 +86,9 @@
         </div>
         <h1><a name="configuring-a-space-with-gateway-targets"></a>Configuring a Space With Gateway Targets</h1>
         <p>The following snippet shows how to configure a Space that resides in New York to replicate to two other Spaces, one in London and one in Hong Kong:</p>
-        <div class="easyui-tabs" plain="true">
-            <div title="Java"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
-
-&lt;os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK"&gt;
-  &lt;os-gateway:target name="LONDON"/&gt;
-  &lt;os-gateway:target name="HONGKONG"/&gt;
-&lt;/os-gateway:targets&gt;
-</code></pre>
-            </div>
-            <div title="Dot Net"><pre><code class="language-xml">&lt;?xml&#160;version="1.0"&#160;encoding="utf-8"&#160;?&gt;
-&lt;configuration&gt;
-&#160;&#160;&lt;configSections&gt;
-&#160;&#160;&#160;&#160;&lt;section&#160;name="GigaSpaces.XAP"&#160;type="GigaSpaces.XAP.Configuration.GigaSpacesXAPConfiguration,&#160;GigaSpaces.Core"/&gt;
-&#160;&#160;&lt;/configSections&gt;
-&#160;&#160;&lt;GigaSpaces.XAP&gt;
-&#160;&#160;&#160;&#160;&lt;ProcessingUnitContainer&#160;Type=
-&#160;&#160;&#160;&#160;"GigaSpaces.XAP.ProcessingUnit.Containers.BasicContainer.BasicProcessingUnitContainer,&#160;GigaSpaces.Core"&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&lt;BasicContainer&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;EmbeddedSpaces&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="Space"&#160;Url="/./myNYSpace"&#160;&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Gateway LocalGatewayName="NEWYORK"&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Targets&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="LONDON"/&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="HONGKONG"/&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Targets&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Gateway&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/add&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/EmbeddedSpaces&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&lt;/BasicContainer&gt;
-&#160;&#160;&#160;&#160;&lt;/ProcessingUnitContainer&gt;
-&#160;&#160;&lt;/GigaSpaces.XAP&gt;
-&lt;/configuration&gt;</code></pre>
-            </div>
-        </div>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-1.flsnp" />
         <p>Each replication channel to the gateways can be configured with more parameters, and these parameters can applied to all gateways or specifically per gateway, for example:</p>
-        <div class="easyui-tabs" plain="true">
-            <div title="Java"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
-
-&lt;os-gateway:targets id="gatewayTargets"
- local-gateway-name="NEWYORK" bulk-size="1000"
- max-redo-log-capacity="1000000"&gt;
- &lt;os-gateway:target name="LONDON" /&gt;
- &lt;os-gateway:target name="HONGKONG" bulk-size="100"/&gt;
-&lt;/os-gateway:targets&gt;
-</code></pre>
-            </div>
-            <div title="Dot Net"><pre><code class="language-xml">&lt;?xml&#160;version="1.0"&#160;encoding="utf-8"&#160;?&gt;
-&lt;configuration&gt;
-&#160;&#160;&lt;configSections&gt;
-&#160;&#160;&#160;&#160;&lt;section&#160;name="GigaSpaces.XAP"&#160;type="GigaSpaces.XAP.Configuration.GigaSpacesXAPConfiguration,&#160;GigaSpaces.Core"/&gt;
-&#160;&#160;&lt;/configSections&gt;
-&#160;&#160;&lt;GigaSpaces.XAP&gt;
-&#160;&#160;&#160;&#160;&lt;ProcessingUnitContainer&#160;Type=
-&#160;&#160;&#160;&#160;"GigaSpaces.XAP.ProcessingUnit.Containers.BasicContainer.BasicProcessingUnitContainer,&#160;GigaSpaces.Core"&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&lt;BasicContainer&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;EmbeddedSpaces&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="Space"&#160;Url="/./myNYSpace"&#160;&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Gateway LocalGatewayName="NEWYORK"
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;bulk-size="1000"
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;max-redo-log-capacity="1000000"&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Targets&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="LONDON"/&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="HONGKONG"
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;bulk-size="100"&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Targets&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Gateway&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/add&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/EmbeddedSpaces&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&lt;/BasicContainer&gt;
-&#160;&#160;&#160;&#160;&lt;/ProcessingUnitContainer&gt;
-&#160;&#160;&lt;/GigaSpaces.XAP&gt;
-&lt;/configuration&gt;</code></pre>
-            </div>
-        </div>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-2.flsnp" />
         <p>Here, we specified a global bulk size of 1000 but have specifically overridden it in the replication channel to Hong Kong with 100, and have a global maximum redo log capacity for both targets of 1000000.</p>
         <div class="tc-admon-note">
             <p>For more details about all the available configuration elements of the space gateway targets,  refer to <a href="configuring-space-gateway-targets.html">Configuring Targets</a>.</p>
@@ -224,37 +153,7 @@ have no meaning, all sites could designate the same ports as well--&gt;
         <p>A gateway and a <a href="asynchronous-persistency-with-the-mirror.html">Mirror Service</a> are two different components, which can co-exist together without affecting each other. A gateway is just another reliable asynchronous target. As such, there is no need to demonstrate the mirror service alongside a gateway because they don't conflict with each other or require any special configuration when used in the same Space cluster.</p>
         <h2><a name="gateway-and-distributed-transactions"></a>Gateway and Distributed Transactions</h2>
         <p>By default, the gateway preserves the atomicity of distributed transactions (distributed transaction consolidation). This can be disabled by adding the following property to the Space configuration:</p>
-        <div class="easyui-tabs" plain="true">
-            <div title="Java"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="localSpace" gateway-targets="gatewayTargets"&gt;
-&#160;&lt;os-core:properties&gt;
-&#160;&#160;&lt;props&gt;
-&#160;&#160;&#160;&lt;prop key="cluster-config.groups.group.repl-policy.processing-type"&gt;
-&#160;&#160;&#160;&#160;global-order
-&#160;&#160;&#160;&lt;/prop&gt;
-&#160;&#160;&lt;/props&gt;
-&#160;&lt;/os-core:properties&gt;
-&lt;/os-core:embedded-space&gt;
-</code></pre>
-            </div>
-            <div title="Dot Net"><pre><code class="language-xml">
-&lt;ProcessingUnit&gt;
-&#160;&#160;&lt;EmbeddedSpaces&gt;
-&#160;&#160;&#160;&#160;&lt;add&#160;Name="MySpace"&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&lt;Gateway&#160;LocalGatewayName="NEWYORK"
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Targets&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="LONDON"/&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="HONGKONG"
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Targets&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Gateway&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&lt;Properties&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="cluster-config.groups.group.repl-policy.processing-type"&#160;Value="global-order"/&gt;
-&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Properties&gt;
-&#160;&#160;&#160;&#160;&lt;/add&gt;
-&#160;&#160;&lt;/EmbeddedSpaces&gt;
-&lt;/ProcessingUnit&gt;
-</code></pre>
-            </div>
-        </div>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-3.flsnp" />
         <p>&#160;</p>
         <p>Distributed transaction consolidation is done by waiting for data from all the transaction participants before processing is done by the sink component. In some cases, the data from certain distributed transaction participants may be delayed due to network delay or disconnection, and this can cause delays in replication.
 In order to prevent this potential delay, you can set a timeout parameter that indicates how much time to wait for distributed transaction participant data before processing the data individually for each participant.</p>
@@ -317,9 +216,7 @@ In order to prevent this potential delay, you can set a timeout parameter that i
             <div title="Java" id="et2" onLoad="alert('xxxxxxxx');/*document.getElementById('et2').style.color = '#FF0000';*/">
                 <MadCap:snippetBlock src="../Resources/Snippets/Content/complex_wan_GW-components-java-block-1.flsnp" />
             </div>
-            <div title="Dot Net" id="et3">
-                <MadCap:snippetBlock src="../Resources/Snippets/Content/complex_wan_GW-components-dot-net-block-1.flsnp" />
-            </div>
+            <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-4.flsnp" />
         </div>
         <!--   -->
         <h1><a name="multi-master-topology"></a>Multi-Master Topology</h1>
@@ -336,9 +233,7 @@ In order to prevent this potential delay, you can set a timeout parameter that i
             <div title="Java">
                 <MadCap:snippetBlock src="../Resources/Snippets/Content/complex_wan_GW-components-java-block-2.flsnp" />
             </div>
-            <div title="Dot Net">
-                <MadCap:snippetBlock src="../Resources/Snippets/Content/complex_wan_GW-components-dot-net-block-2.flsnp" />
-            </div>
+            <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-5.flsnp" />
         </div>
         <div class="tc-admon-note">
             <p>The <a href="/sbp/wan-replication-gateway.html">Multi-Master running example</a> page in the Service &amp; Best Practices section includes a three-way setup that replicates data between three sites.</p>

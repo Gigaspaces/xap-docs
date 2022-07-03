@@ -16,6 +16,9 @@
         <p><span class="tc-bold">Default Behavior</span>
             <br />The default behavior states that an operation which failed due-to a transaction lock will be retried 5 times with a time interval of 100ms in-between each retry. If no conflict resolver was specified, the default action for all conflicting operations is "abort' so all conflicting operations will automatically be aborted (if an operation which is a part of a transaction fails, the entire transaction scope will be aborted).</p>
         <h1><a name="configuration"></a>Configuration</h1>
+        <div class="tc-admon-note">
+            <p>For Dot Net (.NET) users, please note that the coding examples shown below must be coded in Java.</p>
+        </div>
         <p>Configuration is made in the Sink component's element using the "error-handling' sub element. In the following example we'll see how to configure the number of retries to 20 with a time interval of 5 seconds between each retry and set a conflict resolver for the Sink gateway component.</p>
         <p>The conflict resolver implementation should be an extension of "com.gigaspaces.cluster.replication.gateway.conflict.ConflictResolver".</p><pre><code class="language-xml">&lt;!-- gateway Sink component --&gt;
 &lt;os-gateway:sink id="sink" local-gateway-name="NEW-YORK" gateway-lookups="gatewayLookups"
