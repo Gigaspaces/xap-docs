@@ -8,9 +8,9 @@
         <p><span class="tc-bold">Data Conflicts</span>
             <br />- Entry is already in space conflict - occurs when the sink attempts to write an entry which already exists in the local cluster.<br />- Entry is not in space conflict - occurs when the sink attempts to update an entry which doesn't exist in the local cluster.<br />- Entry version conflict - occurs when the sink attempts to update an entry with a newer/older version than the one which is in the local cluster.<br />- Entry is locked under transaction conflict - occurs when the sink attempts to update an entry in the local cluster which is locked under transaction.</p>
         <p><span class="tc-bold">Register Type Descriptor Conflict</span>
-            <br />Occurs when an attempt to register a type descriptor over gateway replication in the local cluster configured in the sink component fails.</p>
+            <br />Occurs when an attempt to register a type descriptor over WAN gateway replication in the local cluster configured in the sink component fails.</p>
         <p><span class="tc-bold">Add Indexes Conflict</span>
-            <br />Occurs when an attempt to add indexes over gateway replication to the local cluster configured in the sink component fails.</p>
+            <br />Occurs when an attempt to add indexes over WAN gateway replication to the local cluster configured in the sink component fails.</p>
         <p><span class="tc-bold">How Conflict Resolution Works</span>
             <br />By default, operations that failed due-to transaction locks (EntryLockedUnderTransactionConflict) will be automatically retried a configurable amount of times. You may configure the time interval in-between retries. For other conflicts or when the number of retries exceeds, the conflict resolver is invoked. The conflict resolver gives the user the ability to abort or override conflicting operations.</p>
         <p><span class="tc-bold">Default Behavior</span>
@@ -19,7 +19,7 @@
         <div class="tc-admon-note">
             <p>For Dot Net (.NET) users, please note that the coding examples shown below must be coded in Java.</p>
         </div>
-        <p>Configuration is made in the Sink component's element using the "error-handling' sub element. In the following example we'll see how to configure the number of retries to 20 with a time interval of 5 seconds between each retry and set a conflict resolver for the Sink gateway component.</p>
+        <p>Configuration is made in the Sink component's element using the "error-handling' sub element. In the following example we'll see how to configure the number of retries to 20 with a time interval of 5 seconds between each retry and set a conflict resolver for the Sink WAN gateway component.</p>
         <p>The conflict resolver implementation should be an extension of "com.gigaspaces.cluster.replication.gateway.conflict.ConflictResolver".</p><pre><code class="language-xml">&lt;!-- gateway Sink component --&gt;
 &lt;os-gateway:sink id="sink" local-gateway-name="NEW-YORK" gateway-lookups="gatewayLookups"
           local-space-url="jini://*/*/localSpace"&gt;
@@ -174,7 +174,7 @@ The table below describes override behavior for each case:</p>
             </tbody>
         </table>
         <h3><a name="changing-entry-data-on-conflict"></a>Changing Entry Data On Conflict</h3>
-        <p>It is possible to change the entry data before overriding the conflicting operation. In the following example, we have gateway replication from NEW-YORK to LONDON. We'll attempt to write a Person object to NEW-YORK which already exists in LONDON and we'll change the conflicting Person
+        <p>It is possible to change the entry data before overriding the conflicting operation. In the following example, we have WAN gateway replication from NEW-YORK to LONDON. We'll attempt to write a Person object to NEW-YORK which already exists in LONDON and we'll change the conflicting Person
 object properties before overriding the operation:</p><pre><code class="language-java">// Write a Person object to NEW-YORK
 Person person = new Person();
 person.setId(1000);
