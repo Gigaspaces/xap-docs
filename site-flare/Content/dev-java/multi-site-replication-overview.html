@@ -64,7 +64,7 @@
             <li>Changing WAN replication topology during runtime - adding or removing remote sites without system shutdown.</li>
         </ul>
         <div class="tc-admon-note">
-            <p>This page describes how to establish replication between multiple Spaces in a typical WAN environment. Each Space is a separate network and there is a need for a designated outbound and inbound gateway machine or machines on each network, in order to interact with the other network(s).</p>
+            <p>This page describes how to establish replication between multiple Spaces in a typical WAN environment. Each Space is a separate network and there is a need for a designated outbound and inbound WAN Gateway machine or machines on each network, in order to interact with the other network(s).</p>
         </div>
         <h1><a name="supported-toplogies"></a>Supported Topologies</h1>
         <p>This page describes two sample multi-site replication topologies. These are not the only supported topologies. In fact, the permutations of topologies are quite extensive, and discuss two of the more common topologies, which can also serve as a basis for other topologies as required by the user:</p>
@@ -72,7 +72,7 @@
             <li>Multi-master with two sites, where each site is active and updates its subset of the data.</li>
             <li>Master-slave, where only one site actually updates the data while the rest either serve as a backup or use it in read only mode.</li>
         </ul>
-        <p>For both of the above topologies, replication is done in in a similar way. Each Space replicates the relevant data to its target Space(s) via a local gateway, which routes the data to the gateway of the target Space(s) and from there to the target Space. The data is replicated asynchronously in a reliable mode, which means that even if a primary Space instance fails on the source site, the backup Space instance that replaces it will immediately take control and replicate the missing data along with new data that has been generated on the newly elected primary Space instance. This is very similar to the <a href="asynchronous-persistency-with-the-mirror.html">Mirror Service</a> replication scheme. The gateway is discussed in full below.</p>
+        <p>For both of the above topologies, replication is done in in a similar way. Each Space replicates the relevant data to its target Space(s) via a local WAN Gateway, which routes the data to the WAN Gateway of the target Space(s) and from there to the target Space. The data is replicated asynchronously in a reliable mode, which means that even if a primary Space instance fails on the source site, the backup Space instance that replaces it will immediately take control and replicate the missing data along with new data that has been generated on the newly elected primary Space instance. This is very similar to the <a href="asynchronous-persistency-with-the-mirror.html">Mirror Service</a> replication scheme. The WAN Gateway is discussed in full below.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/wan_how_it_works.jpg" alt="wan_how_it_works.jpg" class="tc-picture100" />
@@ -84,35 +84,35 @@
                 <img src="../Resources/Static/attachment_files/wan_topologies.jpg" alt="wan_topologies.jpg" class="tc-picture80" />
             </p>
         </div>
-        <h1><a name="configuring-a-space-with-gateway-targets"></a>Configuring a Space With Gateway Targets</h1>
+        <h1><a name="configuring-a-space-with-gateway-targets"></a>Configuring a Space With WAN Gateway Targets</h1>
         <p>The following snippet shows how to configure a Space that resides in New York to replicate to two other Spaces, one in London and one in Hong Kong:</p>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-1.flsnp" />
-        <p>Each replication channel to the gateways can be configured with more parameters, and these parameters can applied to all gateways or specifically per gateway, for example:</p>
+        <p>Each replication channel to the WAN Gateways can be configured with more parameters, and these parameters can applied to all WAN Gateways or specifically per WAN Gateway, for example:</p>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-2.flsnp" />
         <p>Here, we specified a global bulk size of 1000 but have specifically overridden it in the replication channel to Hong Kong with 100, and have a global maximum redo log capacity for both targets of 1000000.</p>
         <div class="tc-admon-note">
-            <p>For more details about all the available configuration elements of the space gateway targets,  refer to <a href="configuring-space-gateway-targets.html">Configuring Targets</a>.</p>
+            <p>For more details about all the available configuration elements of the space WAN Gateway targets,  refer to <a href="configuring-space-gateway-targets.html">Configuring Targets</a>.</p>
         </div>
         <p><span class="tc-bold">Use the <code>partitioned</code> cluster schema</span>
         </p>
-        <p>You should have the <code>partitioned</code> cluster schema used with the Space to enable replication to the gateway. If you are not interested in having backups running but have the replication to the gateway running, you should have ZERO as the number of backups. See the following example of an sla.xml configuration you can use in such a case:</p><pre><code class="language-java">&lt;os-sla:sla cluster-schema="partitioned" number-of-instances="1" number-of-backups="0"&gt;
+        <p>You should have the <code>partitioned</code> cluster schema used with the Space to enable replication to the WAN Gateway. If you are not interested in having backups running but have the replication to the WAN Gateway running, you should have ZERO as the number of backups. See the following example of an sla.xml configuration you can use in such a case:</p><pre><code class="language-java">&lt;os-sla:sla cluster-schema="partitioned" number-of-instances="1" number-of-backups="0"&gt;
 &lt;/os-sla:sla&gt;
 </code></pre>
         <p>When there are no backups, running any failure of the primary might cause a loss of data.</p>
-        <h1><a name="configuring-and-deploying-the-gateway"></a>Configuring and Deploying the Gateway</h1>
-        <p>A gateway needs to be deployed locally as a Processing Unit in each site, and is composed of two different components; the delegator and the sink. The delegator is in charge of delegating outgoing replication from the local site to a remote gateway, and the sink is in charge of dispatching incoming replication from remote sites into the local Space.</p>
+        <h1><a name="configuring-and-deploying-the-gateway"></a>Configuring and Deploying the WAN Gateway</h1>
+        <p>A WAN Gateway needs to be deployed locally as a Processing Unit in each site, and is composed of two different components; the delegator and the sink. The delegator is in charge of delegating outgoing replication from the local site to a remote WAN Gateway, and the sink is in charge of dispatching incoming replication from remote sites into the local Space.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/wan_gatway_archi.jpg" alt="wan_gatway_archi.jpg" class="tc-picture50" />
             </p>
         </div>
-        <h2><a name="gateway-lookup"></a>Gateway Lookup</h2>
-        <p>The different gateway components need to locate each other across the different sites. For example, a delegator needs to locate the sink of the target gateway to which it delegates the replication. This lookup is accomplished via dedicated lookup services that the gateways use to register and locate each other. This lookup process is usually done across the WAN, so the most reasonable way of locating the lookup services is using unicast (multicast is also supported). The following example demonstrates a unicast lookup discovery.</p>
-        <h2><a name="gateway-basic-configuration"></a>Gateway Basic Configuration</h2>
+        <h2><a name="gateway-lookup"></a>WAN Gateway Lookup</h2>
+        <p>The different WAN Gateway components need to locate each other across the different sites. For example, a delegator needs to locate the sink of the target WAN Gateway to which it delegates the replication. This lookup is accomplished via dedicated lookup services that the WAN Gateways use to register and locate each other. This lookup process is usually done across the WAN, so the most reasonable way of locating the lookup services is using unicast (multicast is also supported). The following example demonstrates a unicast lookup discovery.</p>
+        <h2><a name="gateway-basic-configuration"></a>WAN Gateway Basic Configuration</h2>
         <div class="tc-admon-note">
             <p>The following is an excerpt from the pu-xml.jar file. For Dot Net developers, note that this deployment is performed using the standard Java deployment process.</p>
         </div>
-        <p>Following the above example, here we demonstrate how to configure the local gateway processing unit in New York, which needs to send replication to London and Hong Kong and also receive replication from these two sites.</p><pre><code class="language-xml">&lt;os-gateway:delegator id="delegator"
+        <p>Following the above example, here we demonstrate how to configure the local WAN Gateway processing unit in New York, which needs to send replication to London and Hong Kong and also receive replication from these two sites.</p><pre><code class="language-xml">&lt;os-gateway:delegator id="delegator"
   local-gateway-name="NEWYORK" gateway-lookups="gatewayLookups"&gt;
   &lt;os-gateway:delegations&gt;
     &lt;os-gateway:delegation target="LONDON"/&gt;
@@ -144,15 +144,15 @@
 &lt;!--The above ports and host names are randomly selected and
 have no meaning, all sites could designate the same ports as well--&gt;
 </code></pre>
-        <p>In the above example, we see that both the sink and the delegator need a reference to the gateway lookup configuration, because both components are using this configuration to locate the relevant component or to register themselves. They use their local gateway name to identify themselves to the lookup configuration, where they should be registered and where they should look for their targets.</p>
+        <p>In the above example, we see that both the sink and the delegator need a reference to the WAN Gateway lookup configuration, because both components are using this configuration to locate the relevant component or to register themselves. They use their local WAN Gateway name to identify themselves to the lookup configuration, where they should be registered and where they should look for their targets.</p>
         <p>The delegator and sink components are actually isolated and can even be deployed in separate Processing Units, but the most simple deployment is to bundle them two together. However, in some cases you may want to separate them across two or more machines due to system load or other reasons.</p>
         <div class="tc-admon-note">
-            <p>For full details and available configurations,  refer to <a href="replication-gateway-components.html">Gateway Components</a>.</p>
+            <p>For full details and available configurations,  refer to <a href="replication-gateway-components.html">WAN Gateway Components</a>.</p>
         </div>
-        <h2><a name="gateway-and-the-mirror-service"></a>Gateway and the Mirror Service</h2>
-        <p>A gateway and a <a href="asynchronous-persistency-with-the-mirror.html">Mirror Service</a> are two different components, which can co-exist together without affecting each other. A gateway is just another reliable asynchronous target. As such, there is no need to demonstrate the mirror service alongside a gateway because they don't conflict with each other or require any special configuration when used in the same Space cluster.</p>
-        <h2><a name="gateway-and-distributed-transactions"></a>Gateway and Distributed Transactions</h2>
-        <p>By default, the gateway preserves the atomicity of distributed transactions (distributed transaction consolidation). This can be disabled by adding the following property to the Space configuration:</p>
+        <h2><a name="gateway-and-the-mirror-service"></a>WAN Gateway and the Mirror Service</h2>
+        <p>A WAN Gateway and a <a href="asynchronous-persistency-with-the-mirror.html">Mirror Service</a> are two different components, which can co-exist together without affecting each other. A WAN Gateway is just another reliable asynchronous target. As such, there is no need to demonstrate the mirror service alongside a WAN Gateway because they don't conflict with each other or require any special configuration when used in the same Space cluster.</p>
+        <h2><a name="gateway-and-distributed-transactions"></a>WAN Gateway and Distributed Transactions</h2>
+        <p>By default, the WAN Gateway preserves the atomicity of distributed transactions (distributed transaction consolidation). This can be disabled by adding the following property to the Space configuration:</p>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/dot-net-and-java-3.flsnp" />
         <p>&#160;</p>
         <p>Distributed transaction consolidation is done by waiting for data from all the transaction participants before processing is done by the sink component. In some cases, the data from certain distributed transaction participants may be delayed due to network delay or disconnection, and this can cause delays in replication.
@@ -198,12 +198,12 @@ In order to prevent this potential delay, you can set a timeout parameter that i
         <div class="tc-admon-note">
             <p>If you set the <code>cluster-config.groups.group.repl-policy.processing-type</code> property to <code>global-source</code>, all reliable asynchronous replication targets for that Space will work in non-distributed transaction consolidation mode. For example, a Mirror will also work in non-distributed transaction consolidation mode.</p>
         </div>
-        <p>Consolidation failure can occur under normal circumstances, if the target gateway is restarted or crashes during the consolidation process. For example, you may have a scenario where the transaction was successfully consolidated and executed on the target cluster, but the gateway was stopped while sending confirmation to the transaction participants in the source site and some of them received the confirmation while others did not. In this case, the transaction is actually successfully executed in the target site, and by default when the consolidation failure event occurs, the unconfirmed part reaches the conflict resolution handler will abort it (by default), and the state will remain consistent.</p>
+        <p>Consolidation failure can occur under normal circumstances, if the target WAN Gateway is restarted or crashes during the consolidation process. For example, you may have a scenario where the transaction was successfully consolidated and executed on the target cluster, but the WAN Gateway was stopped while sending confirmation to the transaction participants in the source site and some of them received the confirmation while others did not. In this case, the transaction is actually successfully executed in the target site, and by default when the consolidation failure event occurs, the unconfirmed part reaches the conflict resolution handler will abort it (by default), and the state will remain consistent.</p>
         <div class="tc-admon-attention">
             <p>Setting both <code>dist-tx-wait-timeout-millis</code> and <code>dist-tx-wait-for-opers</code> to unlimited (or to very high value) is risky. The replication backlog may accumulate due to a packet that is unconsolidated, causing the replication process to wait for consolidation that may never occur.</p>
         </div>
         <h1><a name="master-slave-topology"></a>Master-Slave Topology</h1>
-        <p>With this architecture, we have a master-slave topology where all data is manipulated in one site, and two other sites read the data but don't update it. In other words, the "other sites" - the slaves - should not replicate data to the other gateways.</p>
+        <p>With this architecture, we have a master-slave topology where all data is manipulated in one site, and two other sites read the data but don't update it. In other words, the "other sites" - the slaves - should not replicate data to the other WAN Gateways.</p>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/wan_master_slave.jpg" alt="wan_master_slave.jpg" class="tc-picture80" />
@@ -238,8 +238,8 @@ In order to prevent this potential delay, you can set a timeout parameter that i
         <div class="tc-admon-note">
             <p>The <a href="/sbp/wan-replication-gateway.html">Multi-Master running example</a> page in the Service &amp; Best Practices section includes a three-way setup that replicates data between three sites.</p>
         </div>
-        <h1><a name="filtering-replication-between-gateways"></a>Filtering Replication Between Gateways</h1>
-        <p>On occasion, there may be data that should not be replicated between sites but should still be replicated locally to the backup or a mirror service. If this is the case, it isn't suitable to specify that the object should not be replicated. A replication channel to a gateway is like any other replication channel, so a custom <a href="../admin/cluster-replication-filters.html">Replication Filter</a> at the source Space can be used to filter the relevant data from being sent to the target gateway. This filtering should be based on the replication target name, in order to identify that the replication filter is called for the correct outgoing replication to the gateway.</p>
+        <h1><a name="filtering-replication-between-gateways"></a>Filtering Replication Between WAN Gateways</h1>
+        <p>On occasion, there may be data that should not be replicated between sites but should still be replicated locally to the backup or a mirror service. If this is the case, it isn't suitable to specify that the object should not be replicated. A replication channel to a WAN Gateway is like any other replication channel, so a custom <a href="../admin/cluster-replication-filters.html">Replication Filter</a> at the source Space can be used to filter the relevant data from being sent to the target WAN Gateway. This filtering should be based on the replication target name, in order to identify that the replication filter is called for the correct outgoing replication to the WAN Gateway.</p>
         <div class="tc-admon-note">
             <p>For full details and an example, refer to <a href="replication-gateway-filtering.html">Filtering Data</a>.</p>
         </div>
@@ -249,7 +249,7 @@ In order to prevent this potential delay, you can set a timeout parameter that i
             <p>For more informaion on how to enable the bootstrap mechanism, refer to <a href="replication-gateway-bootstrapping-process.html">Bootstrapping Process</a>.</p>
         </div>
         <h1><a name="changing-the-site-topology-during-runtime"></a>Changing the Site Topology During Runtime</h1>
-        <p>You may have to modify your site topology during runtime. For example, a new site may be added and the existing sites may have to start replicating to it and receive replication from it. Alternatively, a site may be removed and the existing sites should stop holding replication backlogs for the removed site, and delete it from their list of gateway targets.</p>
+        <p>You may have to modify your site topology during runtime. For example, a new site may be added and the existing sites may have to start replicating to it and receive replication from it. Alternatively, a site may be removed and the existing sites should stop holding replication backlogs for the removed site, and delete it from their list of WAN Gateway targets.</p>
         <div class="tc-admon-note">
             <p>For more information on how to add and remove sites during runtime, refer to <a href="changing-multi-site-deployment-during-runtime.html">Changing Deployment during Runtime</a>.</p>
         </div>
