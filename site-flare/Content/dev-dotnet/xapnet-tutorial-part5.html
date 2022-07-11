@@ -61,7 +61,10 @@ A Processing Unit Container which runs within a Grid Service Container. It enabl
             max-instances-per-vm="1"&gt;
        &lt;/os-sla:sla&gt;
 &lt;/beans&gt;
-</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+</code></pre>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+            <p>The number of backups per partition is zero or one.</p>
+        </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:os-sla="http://www.openspaces.org/schema/sla"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -74,6 +77,9 @@ A Processing Unit Container which runs within a Grid Service Container. It enabl
        &lt;/os-sla:sla&gt;
 &lt;/beans&gt;
 </code></pre>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../admin/the-sla-overview.html">SLA Overview</a> page.</p>
         </div>

@@ -298,6 +298,9 @@ In order to close LRMI threads when closing application, use:LRMIManager.shutdow
         <h1><a name="distributing-the-primary-spaces"></a>Distributing the Primary Spaces</h1>
         <p>By default, when running GSCs on multiple machines and deploying a Space with backups, <MadCap:variable name="General.CompanyName" /> tries to provision primary Spaces to all available GSCs across all the machines.
 The <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</code> deploy parameters should be set when deploying your data grid, to determine how the deployed Processing Unit (e.g. Space) is provisioned into the different running GSCs.</p>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <p>Without setting the <code>max-instances-per-vm</code> and the <code>max-instances-per-machine</code>, <MadCap:variable name="General.CompanyName" /> might provision a primary and a backup instance of the same partition into GSCs running on the same physical machine. To avoid this behavior, set <code>max-instances-per-vm=1</code> and <code>max-instances-per-machine=1</code>. This ensures that the primary and backup instances of the same partition are provisioned into different GSCs running on different machines. If there is one machine running GSCs and <code>max-instances-per-machine=1</code>, <span class="tc-bold">backup instances are not provisioned</span>.</p>
         <p>Here is an example of how to deploy a data grid with 4 partitions, with a backup per partition (total of 8 Spaces), with 2 Spaces per GSC, and the primary and backup running on different machines (even when you have other GSCs running):</p><pre><code class="language-bash">gs deploy-space -cluster schema=partitioned-sync2backup total_members=4,1
    -max-instances-per-vm 2  -max-instances-per-machine 1 MySpace

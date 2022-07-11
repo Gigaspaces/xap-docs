@@ -75,6 +75,9 @@ numberOfPartitions
    = 2
 </code></pre>
         <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
+        <div class="tc-admon-note">
             <p>The number of Processing Unit partitions cannot be changed without re-deployment of the PU.</p>
         </div>
         <h1><a name="maximum-number-of-cpu-cores"></a>Maximum Number of CPU Cores</h1>
@@ -111,6 +114,9 @@ numberOfPartitions
    = max(4, 4/(1+1) )
    = 4
 </code></pre>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <p>In order to evaluate the <code>minNumberOfCpuCoresPerMachine</code>, the deployment communicates with each discovered GigaSpaces agent and collects the number of CPU cores the operating system reports. In case a machine provisioning plugin (cloud) is used, the plugin provides that estimate instead. The <code>minNumberOfCpuCoresPerMachine</code> deployment property can also be explicitly defined.</p>
         <h1><a name="explicit-number-of-partitions"></a>Explicit Number of Partitions</h1>
         <p>The <code>numberOfPartitions</code> property allows explicit definition of the number of space partitions. When the <code>numberOfPartitions</code> property is defined then <code>maxMemoryCapacity</code> and <code>maxNumberOfCpuCores</code> should not be defined.</p>

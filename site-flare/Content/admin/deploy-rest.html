@@ -47,6 +47,9 @@ Before deploying the processing unit you will need to jar it and then specify th
                 </tr>
             </tbody>
         </table>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <p>Examples:</p>
         <p>The following deploys a processing unit jar file named <code>data-processor.jar</code> using the <code>sync_replicated</code> cluster schema with 2 instances.</p><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{
    "name": "data-processor", 

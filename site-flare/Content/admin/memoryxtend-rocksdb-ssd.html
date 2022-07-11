@@ -148,6 +148,9 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
                     <td align="left">
                         <p align="left">A comma-separated array of mount paths used for each Space partition's blobstore. The number of paths in the array should correspond to the number of partition instances in the Space (primaries and backups). For instance, for a two-partition Space with no backups, <code>/mnt/db1</code> corresponds to the first partition, and <code>/mnt/db2</code> to the second one.</p>
                         <p MadCap:conditions="Version.15-0-born">Should not be used with main-path.</p>
+                        <div class="tc-admon-note">
+                            <p>The number of backups per partition is zero or one.</p>
+                        </div>
                     </td>
                     <td align="left"> </td>
                     <td align="left">

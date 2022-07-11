@@ -64,7 +64,10 @@ Include the following in your <code>pom.xml</code></p><pre><code class="language
         &lt;os-core:mirror id="mirror" url="/./mirror-service"
             space-sync-endpoint="spaceSynchronizationEndpoint" operation-grouping="group-by-replication-bulk"&gt;
             &lt;os-core:source-space name="dataSourceSpace" partitions="2"
-                backups="1" /&gt;
+                backups="1" /&gt;</code></pre>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
         &lt;/os-core:mirror&gt;
         
         &lt;bean id="mongoClient"
@@ -103,7 +106,10 @@ Include the following in your <code>pom.xml</code></p><pre><code class="language
         &lt;os-core:mirror id="mirror" url="/./mirror-service"
             space-sync-endpoint="spaceSynchronizationEndpoint" operation-grouping="group-by-replication-bulk"&gt;
             &lt;os-core:source-space name="dataSourceSpace" partitions="2"
-                backups="1" /&gt;
+                backups="1" /&gt;</code></pre>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
         &lt;/os-core:mirror&gt;
         
         &lt;bean id="mongoClient"
@@ -144,6 +150,9 @@ Include the following in your <code>pom.xml</code></p><pre><code class="language
         .create();
 </code></pre>
             </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
         </div>
         <p>For more details about different configurations see <a href="persistency-for-a-database.html">Space Persistency</a>.</p>
         <h1><a name="before-you-begin"></a>Before you begin</h1>

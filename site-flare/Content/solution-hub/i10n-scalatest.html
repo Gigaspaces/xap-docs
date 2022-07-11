@@ -46,6 +46,9 @@
   )
 
 </code></pre>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <p>In this example, the test code truly <span class="tc-bold">is</span> an integration test - designed to run against a running <MadCap:variable name="General.DataGrid" />. (Note the reference to <a href="https://github.com/GigaSpaces/solution-hub/tree/master/gs-i10n-testing/src/main/resources/META-INF/Spring/pu.xml">pu.xml file</a>, which is available on the test classpath.)</p>
         <p>We could as easily have run in-process by using <code>SpaceMode.Embedded</code>. This makes IDE-driven debugging easier, as it does not incur the workflow overhead of setting up a remote agent or debugger. Here's the code from another <a href="https://github.com/GigaSpaces/gs-executor-remoting/tree/ide">working example</a>:</p><pre><code class="language-scala"> 
    defaults = Map[String, Any](
@@ -60,6 +63,9 @@
    )
    
 </code></pre>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <p>All <code>SpaceModes</code> supported by <MadCap:variable name="General.DataGrid" />are enumerated in the abstract FunSuite class (gisted above). For each mode, corresponding configuration can be provided through the <code>defaults</code> property.</p><pre><code class="language-scala">
   object SpaceMode extends Enumeration {
     type SpaceMode = Value

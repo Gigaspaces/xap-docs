@@ -56,6 +56,9 @@ ISpaceProxy spaceProxy = new EmbeddedSpaceFactory("mySpace").Create();
         <p>A simple way to use the embedded Space in a clustered architecture is by deploying a clustered Space, or packaging your application as a Processing Unit and deploying it using the relevant SLA.</p>
         <h1><a name="remote-space"></a>Remote Space</h1>
         <p>A client communicating with a remote Space performs all its operations via a remote connection. The remote Space can be partitioned (with or without backups) or replicated (based on synchronous or asynchronous replication).</p>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <div class="tc-align-center">
             <p>
                 <img src="../Resources/Static/attachment_files/devguide/space-remote.png" width="783" height="160" />

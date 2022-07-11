@@ -13,7 +13,11 @@
             <li>Active-Active (fully replicated)</li>
         </ul>
         <h2><a name="primary-backup"></a>Primary-Backup</h2>
-        <p>This topology consists of a group of Space instances that are part of the same replication group. One of the Space instances is elected and serves as the primary Space instance of the group. The application interacts with the primary instance, while the other instances serve as the backups of the primary. The backup Space instances are exact replicas of the primary Space instance. If the primary instance fails, they are ready to immediately replace it. This happens without any data loss, and is transparent to the Space proxy connected to the Space instances.</p>
+        <p>This topology consists of a group of Space instances that are part of the same replication group. One of the Space instances is elected and serves as the primary Space instance of the group. The application interacts with the primary instance, while the other instances serve as the backups of the primary. </p>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
+        <p>The backup Space instances are exact replicas of the primary Space instance. If the primary instance fails, they are ready to immediately replace it. This happens without any data loss, and is transparent to the Space proxy connected to the Space instances.</p>
         <h2><a name="primary-backup-with-mirror"></a>Primary-Backup with Mirror</h2>
         <p>This topology extends the simple Primary-Backup topology with a mirror service that is part of the primary backup replication group. The mirror service receives the replication data from the primary Space instance asynchronously. However, the replication data is kept in a backlog both in the primary and the backup Space instances until the mirror acknowledges that it has received the replication data. This way, in case of a primary failure, the replacement backup Space instance can ensure that the mirror does not lose any replication data (hence the terminology - reliable asynchronous replication).</p>
         <h2><a name="active-active"></a>Active-Active</h2>

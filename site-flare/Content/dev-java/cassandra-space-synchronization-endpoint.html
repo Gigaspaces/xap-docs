@@ -67,6 +67,9 @@ Include the following in your <code>pom.xml</code></p>
         </div>
         <h1><a name="setup"></a>Setup</h1>
         <p>An example of how the Cassandra Space Synchronization Endpoint can be configured within a mirror.</p>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Spring " style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"

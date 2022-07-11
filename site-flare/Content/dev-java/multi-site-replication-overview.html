@@ -99,6 +99,9 @@
 &lt;/os-sla:sla&gt;
 </code></pre>
         <p>When there are no backups, running any failure of the primary might cause a loss of data.</p>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <h1><a name="configuring-and-deploying-the-gateway"></a>Configuring and Deploying the WAN Gateway</h1>
         <p>A WAN Gateway needs to be deployed locally as a Processing Unit in each site, and is composed of two different components; the delegator and the sink. The delegator is in charge of delegating outgoing replication from the local site to a remote WAN Gateway, and the sink is in charge of dispatching incoming replication from remote sites into the local Space.</p>
         <div class="tc-align-center">

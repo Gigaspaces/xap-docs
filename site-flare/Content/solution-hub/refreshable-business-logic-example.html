@@ -108,7 +108,10 @@
 
     &lt;os-sla:sla cluster-schema="partitioned-sync2backup"
                 number-of-instances="2"
-                number-of-backups="1"
+                number-of-backups="1"</code></pre>
+                <div class="tc-admon-note">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre><code class="language-xml">
                 max-instances-per-vm="1"&gt;
     &lt;/os-sla:sla&gt;
 &lt;/beans&gt;

@@ -189,7 +189,10 @@ A sample SLA definition is shown below:</p><pre MadCap:conditions="Version.14-5-
        http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd"&gt;
 
       &lt;os-sla:sla cluster-schema="partitioned"
-            number-of-instances="2" number-of-backups="1"
+            number-of-instances="2" number-of-backups="1"</code></pre>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
             max-instances-per-vm="1"&gt;
        &lt;/os-sla:sla&gt;
 &lt;/beans&gt;
@@ -201,7 +204,10 @@ A sample SLA definition is shown below:</p><pre MadCap:conditions="Version.14-5-
        http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd"&gt;
 
       &lt;os-sla:sla cluster-schema="partitioned"
-            number-of-instances="2" number-of-backups="1"
+            number-of-instances="2" number-of-backups="1"</code></pre>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p>The number of backups per partition is zero or one.</p>
+        </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
             max-instances-per-vm="1"&gt;
        &lt;/os-sla:sla&gt;
 &lt;/beans&gt;

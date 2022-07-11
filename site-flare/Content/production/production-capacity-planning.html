@@ -239,6 +239,9 @@
         </ul>
         <h2><a name="example-1-basic-capacity-planning"></a>Example 1 - Basic Capacity Planning</h2>
         <p>In this example, there are initially 2 machines used to run the data grid application. 10 machines may be allocated for the project within the next 12 months. Each machine has 32GB of RAM with 4 quad-core CPUs. This provides a total of 64GB of RAM. Later, when all 10 machines are available, there will be a potential 320GB of total memory. The memory is used both by the primary data grid and the backup data grid instances (exact replica of the primary machines).</p>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <p>The machines are running a Linux 64-bit operating system. Allocating 6GB per JVM as the maximum heap size for the GSC results in 5 GSCs per machine; 10 GSCs initially across 2 machines. When all of the 10 machines are in use, there will be 50 GSCs.</p>
         <div class="tc-align-center" MadCap:conditions="Version.15-0-died">
             <p>

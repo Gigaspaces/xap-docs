@@ -99,6 +99,9 @@ gs-agent.sh --global.lus=1 --global.gsm=1 --global.esm=1
             <li>The maximum amount of memory that can be used by the primary and backup instances is:</li>
         </ul><pre><code class="language-java">numberOfPartitions X ( 1 + numberOfBackupsPerPartition ) X memoryCapacityPerContainer
 </code></pre>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <ul>
             <li>During relocation of a specific instance, primary election takes place. For a few seconds, operations on that partition and operations on the whole cluster is denied. Internally, the client proxy retries the operation until the primary election takes place and masks the failure, but the delay exists.
 This delay can be reduced by modifying configuration settings as explained in <a href="../admin/troubleshooting-failure-detection.html">Failure Detection</a>. Overriding the default value of these context properties is achieved with the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/topology/ElasticDeploymentTopology.html">addContextProperty</a> deployment property. For example:</li>

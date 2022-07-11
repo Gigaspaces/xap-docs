@@ -425,7 +425,7 @@ public void onTransactionConsolidationFailure(ConsolidationParticipantData parti
                 </tr>
                 <tr>
                     <td align="left">* <span class="tc-textred">Primary</span><br />- <span class="tc-textred">Backup</span><br />- <span class="tc-textgreen">Mirror</span><br />- <span class="tc-textgreen">Database</span><br /></td>
-                    <td align="left">* All data that was successfully replicated to the mirror (and hence persisted to the database) is safe.<br />- Data queued in the mirror replication queue in the primary and backup spaces is lost. <br />- If you encounter this scenario, a configuration with two backups per partition should be considered.</td>
+                    <td align="left">* All data that was successfully replicated to the mirror (and hence persisted to the database) is safe.<br />- Data queued in the mirror replication queue in the primary and backup spaces is lost. <br /><MadCap:conditionalText MadCap:conditions="Default.DoNotShow">- If you encounter this scenario, a configuration with two backups per partition should be considered.</MadCap:conditionalText></td>
                 </tr>
             </tbody>
         </table>

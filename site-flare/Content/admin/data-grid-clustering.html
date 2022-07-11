@@ -20,6 +20,12 @@
         </p>
         <ul>
             <li>Data has high availability using <a href="synchronous-replication.html">synchronous replication</a> to remote in-memory backups.</li>
+            <div class="tc-admon-note">
+                <p>The number of backups per partition is zero or one.</p>
+            </div>
+            <li>
+                <br />
+            </li>
             <li>Backup instances are always running on physical machines other than the machines running primary instances.</li>
             <li>Persistency to database/disk is done in a reliable <a href="../dev-java/asynchronous-persistency-with-the-mirror.html">asynchronous manner</a>.</li>
             <li>When an instance of the system <a href="failover.html">fails</a>, a new one is recreated on the fly on an available machine. If the failed instance is a primary, the existing backup becomes the new primary and a another backup is created.</li>

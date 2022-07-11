@@ -148,7 +148,7 @@
                 </tr>
                 <tr>
                     <td align="left">source-space backups</td>
-                    <td align="left">The number of backups per partition in source space (cluster) this mirror serves</td>
+                    <td align="left">The number of backups per partition in source space (cluster) this mirror serves. Can be zero or one.</td>
                     <td align="left">NONE, must be supplied</td>
                 </tr>
             </tbody>
@@ -163,6 +163,9 @@
     &lt;os-core:source-space name="mySpace" partitions="2" backups="1"/&gt;
 &lt;/os-core:mirror&gt;
 </code></pre>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <p>The OpenSpaces mirror name space is a syntactic sugar and it is equivalent to the following configuration using regular space properties:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mirror-service" schema="mirror" space-sync-endpoint="hibernateSpaceSynchronizationEndpoint"&gt;
     &lt;os-core:properties&gt;
     &lt;props&gt;
@@ -174,6 +177,9 @@
     &lt;/os-core:properties&gt;
 &lt;/os-core:embedded-space&gt;
 </code></pre>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <ul>
             <li>The above configuration constructs a Mirror Service using GigaSpaces built-in <a href="hibernate-space-persistency.html">Hibernate Space Persistency</a>. The <code>hibernateSpaceSynchronizationEndpoint</code> should have its <code>sessionFactory</code> injected.</li>
             <li>The name of the Mirror Space is important. The <code>mirror-service</code> is the default name for a mirror Space, which is then used by the IMDG to connect to its mirror.</li>

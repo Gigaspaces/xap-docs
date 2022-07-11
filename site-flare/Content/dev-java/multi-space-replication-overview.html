@@ -122,6 +122,9 @@ If you are not interested in having backups running but have the replication to 
 &lt;/os-sla:sla&gt;
 </code></pre>
         <p>Note that when there are no backups running any failure of the primary might cause a loss of data.</p>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
         <h1><a name="configuring-and-deploying-the-gateway"></a>Configuring and Deploying the WAN Gateway</h1>
         <p>A WAN Gateway needs to be deployed as a processing unit per space (though, one WAN Gateway processing unit can be used to replicate into more than one space), and it is composed by the sink component which is in charge of dispatching incoming replication from remote spaces into the targeted space.</p>
         <h2><a name="gateway-basic-configuration"></a>WAN Gateway Basic Configuration</h2>
