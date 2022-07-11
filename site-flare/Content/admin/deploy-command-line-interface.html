@@ -78,7 +78,10 @@ processor.jar
 
         &lt;os-admin:pu processing-unit="processor.jar"
             cluster-schema="partitioned"
-            number-of-instances="2" number-of-backups="1"
+            number-of-instances="2" number-of-backups="1"</code></pre>
+                    <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+                        <p>The number of backups per partition is zero or one.</p>
+                    </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
             max-instances-per-vm="1" max-instances-per-machine="0" /&gt;
 
         &lt;os-admin:pu processing-unit="feeder.jar"&gt;
@@ -101,7 +104,10 @@ processor.jar
 
         &lt;os-admin:pu processing-unit="processor.jar"
             cluster-schema="partitioned"
-            number-of-instances="2" number-of-backups="1"
+            number-of-instances="2" number-of-backups="1"</code></pre>
+                    <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+                        <p>The number of backups per partition is zero or one.</p>
+                    </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
             max-instances-per-vm="1" max-instances-per-machine="0" /&gt;
 
         &lt;os-admin:pu processing-unit="feeder.jar"&gt;
@@ -251,6 +257,9 @@ processor.jar
                         </ul>
                         <p align="left">(number of backups is required
           only if the <code>partitioned</code> schema is used).</p>
+                        <div class="tc-admon-note">
+                            <p>The number of backups per partition is zero or one.</p>
+                        </div>
                     </td>
                     <td align="left"><code>-cluster schema=[schema name]</code>
                         <br /><code>total_members=</code>
@@ -476,6 +485,9 @@ processor.jar
                         </ul>
                         <p align="left">(number of backups is required
           only if the <code>partitioned</code> schema is used).</p>
+                        <div class="tc-admon-note">
+                            <p>The number of backups per partition is zero or one.</p>
+                        </div>
                     </td>
                     <td align="left"><code>-cluster schema=[schema name]</code>
                         <br /> <code>total_members=numberOfInstances[,numberOfBackups]</code></td>
@@ -605,6 +617,9 @@ processor.jar
                         </ul>
                         <p align="left">(number of backups is required only if the
           <code>partitioned</code> schema is used).</p>
+                        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+                            <p>The number of backups per partition is zero or one.</p>
+                        </div>
                     </td>
                     <td align="left"><code>-cluster schema=[schema name]</code>
                         <br /><code>total_members=numberOfInstances[,numberOfBackups]</code>

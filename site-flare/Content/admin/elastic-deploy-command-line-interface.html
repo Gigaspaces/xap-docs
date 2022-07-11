@@ -48,7 +48,10 @@ processor.jar
             &lt;os-admin:depends-on name="nonElasticSpace"/&gt;
                 &lt;/os-admin:elastic-space&gt;
 
-        &lt;os-admin:space name="nonElasticSpace" cluster-schema="partitioned" number-of-instances="1" number-of-backups="0" zones="nonElasticSpaceZone"&gt;
+        &lt;os-admin:space name="nonElasticSpace" cluster-schema="partitioned" number-of-instances="1" number-of-backups="0" zones="nonElasticSpaceZone"&gt;</code></pre>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p>The number of backups per partition is zero or one.</p>
+        </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
         &lt;/os-admin:space&gt;
 
         &lt;os-admin:pu processing-unit="feeder.jar" zones="nonElasticPUZone"&gt;
@@ -82,7 +85,10 @@ processor.jar
             &lt;os-admin:depends-on name="nonElasticSpace"/&gt;
                 &lt;/os-admin:elastic-space&gt;
 
-        &lt;os-admin:space name="nonElasticSpace" cluster-schema="partitioned" number-of-instances="1" number-of-backups="0" zones="nonElasticSpaceZone"&gt;
+        &lt;os-admin:space name="nonElasticSpace" cluster-schema="partitioned" number-of-instances="1" number-of-backups="0" zones="nonElasticSpaceZone"&gt;</code></pre>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+            <p>The number of backups per partition is zero or one.</p>
+        </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
         &lt;/os-admin:space&gt;
 
         &lt;os-admin:pu processing-unit="feeder.jar" zones="nonElasticPUZone"&gt;
@@ -248,7 +254,7 @@ processor.jar
                 </tr>
                 <tr>
                     <td align="left">-nobpp, -number-of-backups-per-partition</td>
-                    <td align="left">Specifies the number of backup processing unit instances per partition.<br />This is an advanced property.</td>
+                    <td align="left">Specifies the number of backup processing unit instances per partition.<br />This is an advanced property.<div class="tc-admon-note"><p>The number of backups per partition is zero or one.</p></div></td>
                     <td align="left">`-nobpp [number]</td>
                 </tr>
                 <tr>
@@ -435,7 +441,7 @@ processor.jar
                 </tr>
                 <tr>
                     <td align="left">-nobpp, -number-of-backups-per-partition</td>
-                    <td align="left">Specifies the number of backup processing unit instances per partition.<br />This is an advanced property, default to 1</td>
+                    <td align="left">Specifies the number of backup processing unit instances per partition.<br />This is an advanced property, default to 1<div class="tc-admon-note" MadCap:conditions="Version.14-5-died"><p>The number of backups per partition is zero or one.</p></div></td>
                     <td align="left">-nobpp [number]</td>
                 </tr>
                 <tr>

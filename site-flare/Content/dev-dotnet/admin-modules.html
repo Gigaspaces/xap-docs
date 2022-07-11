@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Administration API</h1>
-  
-
-<p>The Service Grid Admin API provides a way to administer and monitor all of the <MadCap:variable name="General.ProductNameXAP" /> services and components, using a simple API. The Admin API provides information and the ability to operate on the currently running Service Grid Agents, Service Grid Managers, Service Grid Containers, Lookup Services, Processing Units, and Spaces.</p>
-
-<p>The following code examples show how the Admin API can be used to display information on the currently deployed services/components:</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  GSA " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
+    <head>
+    </head>
+    <body>
+        <h1>Administration API</h1>
+        <p>The Service Grid Admin API provides a way to administer and monitor all of the <MadCap:variable name="General.ProductNameXAP" /> services and components, using a simple API. The Admin API provides information and the ability to operate on the currently running Service Grid Agents, Service Grid Managers, Service Grid Containers, Lookup Services, Processing Units, and Spaces.</p>
+        <p>The following code examples show how the Admin API can be used to display information on the currently deployed services/components:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  GSA " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
 adminBuilder.Groups.Add("myGroup");
 IServiceGridAdmin admin = adminBuilder.CreateAdmin();
 ...
@@ -24,9 +22,8 @@ foreach (IGridServiceAgent gsa in admin.GridServiceAgents)
     }
 }
 </code></pre>
-</div>
-
-<div title="  GSM " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
+            </div>
+            <div title="  GSM " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
 adminBuilder.Groups.Add("myGroup");
 IServiceGridAdmin admin = adminBuilder.CreateAdmin();
 ...
@@ -36,9 +33,8 @@ foreach (IGridServiceManager gsm in admin.GridServiceManagers)
     Console.WriteLine("GSM [" + gsm.Uid + "] running on Machine " + gsm.Machine.HostAddress);
 }
 </code></pre>
-</div>
-
-<div title="  GSC " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
+            </div>
+            <div title="  GSC " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
 adminBuilder.Groups.Add("myGroup");
 IServiceGridAdmin admin = adminBuilder.CreateAdmin();
 ...
@@ -54,9 +50,8 @@ foreach (IGridServiceContainer gsc in admin.GridServiceContainers)
     }
 }
 </code></pre>
-</div>
-
-<div title="  Processing Unit " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
+            </div>
+            <div title="  Processing Unit " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
 adminBuilder.Groups.Add("myGroup");
 IServiceGridAdmin admin = adminBuilder.CreateAdmin();
 ...
@@ -92,9 +87,8 @@ foreach (IProcessingUnit processingUnit in admin.getProcessingUnits())
     }
 }
 </code></pre>
-</div>
-
-<div title="  Space " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
+            </div>
+            <div title="  Space " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
 adminBuilder.Groups.Add("myGroup");
 IServiceGridAdmin admin = adminBuilder.CreateAdmin();
 ...
@@ -107,7 +101,10 @@ foreach (ISpace space in admin.Spaces)
      space.getNumberOfBackups() + "]");
     Console.WriteLine("  Stats: Write [" + space.Statistics.WriteCount + "/" +
     space.Statistics.WritePerSecond + "]");
-    foreach (ISpaceInstance spaceInstance in space)
+    foreach (ISpaceInstance spaceInstance in space)</code></pre>
+                <div class="tc-admon-note">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre><code class="language-csharp">
     {
         Console.WriteLine("   -&gt; INSTANCE [" + spaceInstance.Uid + "] instanceId [" + spaceInstance.InstanceId +
         "] backupId [" + spaceInstance.BackupId + "] Mode [" + spaceInstance.Mode + "]");
@@ -125,9 +122,8 @@ foreach (ISpace space in admin.Spaces)
     }
 }
 </code></pre>
-</div>
-
-<div title="  Virtual Machine " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
+            </div>
+            <div title="  Virtual Machine " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
 adminBuilder.Groups.Add("myGroup");
 IServiceGridAdmin admin = adminBuilder.CreateAdmin();
 ...
@@ -155,9 +151,8 @@ foreach (IVirtualMachine virtualMachine in admin.VirtualMachines)
     }
 }
 </code></pre>
-</div>
-
-<div title="  Machine " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
+            </div>
+            <div title="  Machine " style="padding:10px"><pre><code class="language-csharp">ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
 adminBuilder.Groups.Add("myGroup");
 IServiceGridAdmin admin = adminBuilder.CreateAdmin();
 ...
@@ -178,186 +173,147 @@ foreach (IMachine machine in admin.Machines)
     }
 }
 </code></pre>
-</div>
-</div>
-
-<div class="tc-admon-refer">
-  
-  <p>Refer to <a href="scaling-agent-example.html">Scaling Agent Example</a> for a fully running example that comes with the product.</p>
-</div>
-
-<h1><a name="admin-construction"></a>Admin Construction</h1>
-
-<p>Use <code>ServiceGridAdminBuilder</code> to create <code>IServiceGridAdmin</code> instances. After working with the <code>IServiceGridAdmin</code> is done, its <code>IServiceGridAdmin.Dispose()</code> method should be called.</p>
-
-<p>The Admin API discovers all the advertised services from the Lookup Services. In order to define which lookup groups are used, the <code>ServiceGridAdminBuilder.Groups.Add</code> can be used. The lookup locators can also be used for a non-multicast-enabled environment, using <code>ServiceGridAdminBuilder.Locators.Add</code>. If the services started are secured, the username and password can also be set in the Admin API.</p>
-
-<h1><a name="discovery-process"></a>Discovery Process</h1>
-
-<p>When the <code>IServiceGridAdmin</code> is created, it starts to receive discovery events of all the advertised services/components within its lookup groups/lookup locators. The events occur asynchronously, and the data model within the Admin API gets initialized in the background with services coming and going.</p>
-
-<p>This means that just creating the <code>IServiceGridAdmin</code>, and calling a specific get property for a data structure, might not return what is currently deployed, and you should wait until the structures are filled. Some components have a <code>WaitFor</code> method that allows them to wait for a specific number of services to be up. When navigating the data model, the Admin API provides the most up-to-date state of the system that it is monitoring.</p>
-
-<h1><a name="domain-model"></a>Domain Model</h1>
-
-<p>The Service Grid Admin Domain Model has representation to the main actors at different <MadCap:variable name="General.ProductNameXAP" /> levels. They include:</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Description</th>
-<th align="left">Main Operations</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">GridServiceAgent</td>
-<td align="left">Process manager that manages Service Grid processes such as GSM, GSC and LUS. More info <a href="../overview/the-runtime-environment.html#gsa">here</a>.</td>
-<td align="left">- Allows you to list all the currently managed processes.<br/>- Start processes (GSM, GSC, LUS).</td>
-</tr>
-
-<tr>
-<td align="left">GridServiceAgents</td>
-<td align="left">Holds all the currently discovered Grid Service Agents.</td>
-<td align="left">- Get all the currently discovered Grid Service Agents.<br/>- Wait for X number of Grid Service Agents to be up.<br/>- Register for Grid Service Agent addition (discovery) and removal events.</td>
-</tr>
-
-<tr>
-<td align="left">GridServiceManager</td>
-<td align="left">Manages Processing Unit deployments and Grid Service Containers. More info <a href="../overview/the-runtime-environment.html#gsm">here</a>.</td>
-<td align="left">- Deploy Processing Units.<br/>- Deploy pure Space Processing Units.<br/>- Get the Grid Service Agent managing it.<br/>- Restart itself (if managed by a Grid Service Agent).<br/>- Kill itself (if managed by a Grid Service Agent).</td>
-</tr>
-
-<tr>
-<td align="left">GridServiceManagers</td>
-<td align="left">Holds all the currently discovered Grid Service Managers.</td>
-<td align="left">- Deploy Processing Units on a random Grid Service Manager.<br/>- Deploy pure Space Processing Units on a random Grid Service Manager.<br/>- Get all the currently discovered Grid Service Managers.<br/>- Wait for X number of Grid Service Managers to be up.<br/>- Register for Grid Service Manager addition (discovery) and removal events.</td>
-</tr>
-
-<tr>
-<td align="left">GridServiceContainer</td>
-<td align="left">Container hosting Processing Unit Instances deployed from the GSM. More info <a href="../overview/the-runtime-environment.html#gsc">here</a>.</td>
-<td align="left">- List currently running Processing Unit instances.<br/>- Register for Processing Unit Instance additions and removals events.</td>
-</tr>
-
-<tr>
-<td align="left">GridServiceContainers</td>
-<td align="left">Holds all the currently discovered Grid Service Containers.</td>
-<td align="left">* Get all the currently discovered Grid Service Containers.<br/>- Wait for X number of Grid Service Containers to be up.<br/>- Register for Grid Service Container addition (discovery) and removal events.</td>
-</tr>
-
-<tr>
-<td align="left">LookupService</td>
-<td align="left">Registry of services (GSM, GSC, Space instances, Processing Unit instances) that can be looked up using it. More info <a href="../overview/the-runtime-environment.html#lus">here</a>.</td>
-<td align="left">Get the Lookup Groups and Locator it was started with.</td>
-</tr>
-
-<tr>
-<td align="left">LookupServices</td>
-<td align="left">Holds all the currently discovered Lookup Services.</td>
-<td align="left">- Get all the currently discovered Lookup Services.<br/>- Wait for X number of Lookup Services to be up.<br/>- Register for Lookup Service addition (discovery) and removal events.</td>
-</tr>
-
-<tr>
-<td align="left">ProcessingUnit</td>
-<td align="left">Deployable Processing Unit running one or more Processing Unit instances. Managed by the Grid Service Manager.</td>
-<td align="left">- Undeploy the Processing Unit.<br/>- Increase the number of Processing Unit instances (if allowed).<br/>- Decrease the number of Processing Unit instances (if allowed).<br/>- Get the deployment status of the Processing Unit.<br/>- Register for deployment status change events.<br/>- Get the managing Grid Service Manager.<br/>- Register for managing Grid Service Manager change events.<br/>- Get the list of backup Grid Service Managers.<br/>- Register for backup Grid Service Manager change events.<br/>- List all the currently running Processing Unit instances.<br/>- Register for Processing Unit instance addition and removal events.<br/>- Wait for X number of Processing Unit instances to be up.<br/>- Get an embedded Space that the Processing Unit has.<br/>- Wait for an embedded Space to be correlated (discovered) with the Processing Unit.<br/>- Register for Space correlation events.</td>
-</tr>
-
-<tr>
-<td align="left">ProcessingUnitInstance</td>
-<td align="left">Actual instance of a Processing Unit running within a Grid Service Container.</td>
-<td align="left">- Destroy itself (if SLA is breached, it is instantiated again).<br/>- Decrease itself (and destroy itself in the process). It does not attempt to create itself again.<br/>- Relocate itself to a different Grid Service Container.<br/>- List all its inner services (such as event containers).<br/>- Get the embedded Space instance running within it (if there is one).<br/>- Get the JEE container details if it is a web Processing Unit.</td>
-</tr>
-
-<tr>
-<td align="left">ProcessingUnits</td>
-<td align="left">Holds all the currently deployed Processing Units.</td>
-<td align="left">- Get all the currently deployed Processing Units.<br/>- Wait for (and return) a Processing Unit by a specific name.<br/>- Register for Processing Unit deployments and undeployment events.<br/>- Register for all Processing Unit instance addition and removal events (across all Processing Units).<br/>- Register for managing Grid Service Manager change events on all Processing Units.<br/>- Register for backup Grid Service Manager change events on all Processing Units.</td>
-</tr>
-
-<tr>
-<td align="left">Space</td>
-<td align="left">Composed of one or more Space instances, to form a Space topology (cluster).</td>
-<td align="left">- Get all the currently running Space instances that are part of the Space.<br/>- Wait for X number of Space instances to be up.<br/>- Register for Space instance addition and removal events.<br/>- Register for Space instance change mode events (for all Space instances that are part of the Space).<br/>- Register for Space instance replication status change events (for all Space instances that are part of the Space).<br/>- Get aggregated Space statistics.<br/>- Register for aggregated Space statistics events (if monitoring).<br/>- Get a clustered <a href="the-gigaspace-interface-overview.html">Space</a> to perform Space operations.</td>
-</tr>
-
-<tr>
-<td align="left">SpaceInstance</td>
-<td align="left">Actual instance of a Space that is part of a topology (cluster), usually running within a Processing Unit instance.</td>
-<td align="left">- Get its Space mode (primary or backup).<br/>- Register for Space mode change events.<br/>- Get its replication targets.<br/>- Register for replication status change events.<br/>- Get a direct <a href="the-gigaspace-interface-overview.html">Space</a> to perform Space operations.<br/>- Get Space instance statistics.<br/>- Register for Space instance statistics (if monitoring).</td>
-</tr>
-
-<tr>
-<td align="left">Spaces</td>
-<td align="left">Holds all the currently running Spaces.</td>
-<td align="left">- Get all the currently running Spaces.<br/>- Wait for (and return) a specific Space by name.<br/>- Register for Space addition and removal events.<br/>- Register for Space instance addition and removal events (across all Spaces).<br/>- Register for Space instance mode change events (across all Space instances).<br/>- Register for Space instance replication change events (across all Space instances).<br/>- Register for aggregated Space level statistics change events (across all Spaces, if monitoring).<br/>- Register for Space instance statistics change events (across all Space instances, if monitoring).</td>
-</tr>
-
-<tr>
-<td align="left">VirtualMachine</td>
-<td align="left">Virtual Machine (JVM) that is currently running at least one <MadCap:variable name="General.ProductNameXAP" /> component/service.</td>
-<td align="left">- Get the Grid Service Agent (if it exists).<br/>- Get the Grid Service Manager (if it exists).<br/>- Get the Grid Service Container (if it exists).<br/>- Get all the Processing Unit instances that are running within the Virtual Machine.<br/>- Register for Processing Unit instance addition and removal events.<br/>- Get all the Space instances that are running within the Virtual Machine.<br/>- Register for Space instance addition and removal events.<br/>- Get the details of the Virtual Machine (min/max memory, and so on).<br/>- Get the statistics of the Virtual Machine (heap used, and so on).<br/>- Register for statistics change events (if monitoring).</td>
-</tr>
-
-<tr>
-<td align="left">VirtualMachines</td>
-<td align="left">Holds all the currently discovered Virtual Machines.</td>
-<td align="left">- Get all the currently discovered Virtual Machines.<br/>- Register for Virtual Machines addition and removal events.<br/>- Get aggregated Virtual Machine details.<br/>- Get aggregated Virtual Machine statistics.<br/>- Register for aggregated Virtual Machine statistics events (if monitoring).<br/>- Register for Virtual Machine level statistics change events (across all Virtual Machines, if monitoring).</td>
-</tr>
-
-<tr>
-<td align="left">Machine</td>
-<td align="left">Actual Machine (identified by its host address) running one or more <MadCap:variable name="General.ProductNameXAP" /> components/services in one or more Virtual Machines. Associated with one operating system.</td>
-<td align="left">- Get all the Grid Service Agents running on the machine.<br/>- Get all the Grid Service Containers running on the machine.<br/>- Get all the Grid Service Managers running on the machine.<br/>- Get all the Virtual Machines running on the machine.<br/>- Get all the Processing Unit instances running on the machine.<br/>- Register for Processing Unit instance addition and removal events from the machine.<br/>- Get all the Space instances running on themMachine.<br/>- Register for Space instances addition and removal events from the machine.<br/>- Get the operating system the machine is running on.</td>
-</tr>
-
-<tr>
-<td align="left">Machines</td>
-<td align="left">Holds all the currently discovered machines.</td>
-<td align="left">- Get all the currently running machines.<br/>- Wait for X number of machines to be up.<br/>- Register for machine addition and removal events.</td>
-</tr>
-
-<tr>
-<td align="left">OperatingSystem</td>
-<td align="left">The operating system that the <MadCap:variable name="General.ProductNameXAP" /> components/services are running on. Associated with one machine.</td>
-<td align="left">- Get the details of the operating system.<br/>- Get the operating system statistics.<br/>- Register for statistics change events (if monitoring).</td>
-</tr>
-
-<tr>
-<td align="left">OperatingSystems</td>
-<td align="left">Holds all the currently discovered operating systems.</td>
-<td align="left">- Get all the current operating systems.<br/>- Get the aggregated operating system details.<br/>- Get the aggregated operating system statistics.<br/>- Register for aggregated operating system statistics change events (if monitoring).<br/>- Register for operating system level statistics change events (across all operating systems, if monitoring).</td>
-</tr>
-
-<tr>
-<td align="left">Transport</td>
-<td align="left">Communication layer each <MadCap:variable name="General.ProductNameXAP" /> component/service uses.</td>
-<td align="left">- Get the transport details (host, port).<br/>- Get the transport statistics.<br/>- Register for transport statistics change events (if monitoring).</td>
-</tr>
-
-<tr>
-<td align="left">Transports</td>
-<td align="left">Holds all the currently discovered transports.</td>
-<td align="left">- Get all the current transports.<br/>- Get the aggregated transport details.<br/>- Get the aggregated transport statistics.<br/>- Register for aggregated transport statistics change events (if monitoring).<br/>- Register for transport level statistics change events (across all transports, if monitoring).</td>
-</tr>
-</tbody>
-</table>
-
-<h1><a name="accessing-the-domain-model"></a>Accessing the Domain Model</h1>
-
-<p>There are two ways the Service Grid Admin API can be used to access information the Admin API can provide:</p>
-
-<ul>
-<li>Call specific properties for the data, and enumerate over them (as shown in the example at the top of the page).</li>
-<li>Register for specific events using the Service Grid Admin API. Events are handled by different components of the Admin API in similar manner. We will take one of them and use it as a reference example.</li>
-</ul>
-
-<p>If we want to register, for example, for Grid Service Container additions, we can use the following code (removing the event listener is not shown here for clarity):</p>
-
-<pre><code class="language-csharp">admin.GridServiceContainers.GridServiceContainerAdded += HandleGridServiceContainerAdded;
+            </div>
+        </div>
+        <div class="tc-admon-refer">
+            <p>Refer to <a href="scaling-agent-example.html">Scaling Agent Example</a> for a fully running example that comes with the product.</p>
+        </div>
+        <h1><a name="admin-construction"></a>Admin Construction</h1>
+        <p>Use <code>ServiceGridAdminBuilder</code> to create <code>IServiceGridAdmin</code> instances. After working with the <code>IServiceGridAdmin</code> is done, its <code>IServiceGridAdmin.Dispose()</code> method should be called.</p>
+        <p>The Admin API discovers all the advertised services from the Lookup Services. In order to define which lookup groups are used, the <code>ServiceGridAdminBuilder.Groups.Add</code> can be used. The lookup locators can also be used for a non-multicast-enabled environment, using <code>ServiceGridAdminBuilder.Locators.Add</code>. If the services started are secured, the username and password can also be set in the Admin API.</p>
+        <h1><a name="discovery-process"></a>Discovery Process</h1>
+        <p>When the <code>IServiceGridAdmin</code> is created, it starts to receive discovery events of all the advertised services/components within its lookup groups/lookup locators. The events occur asynchronously, and the data model within the Admin API gets initialized in the background with services coming and going.</p>
+        <p>This means that just creating the <code>IServiceGridAdmin</code>, and calling a specific get property for a data structure, might not return what is currently deployed, and you should wait until the structures are filled. Some components have a <code>WaitFor</code> method that allows them to wait for a specific number of services to be up. When navigating the data model, the Admin API provides the most up-to-date state of the system that it is monitoring.</p>
+        <h1><a name="domain-model"></a>Domain Model</h1>
+        <p>The Service Grid Admin Domain Model has representation to the main actors at different <MadCap:variable name="General.ProductNameXAP" /> levels. They include:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Name</th>
+                    <th align="left">Description</th>
+                    <th align="left">Main Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">GridServiceAgent</td>
+                    <td align="left">Process manager that manages Service Grid processes such as GSM, GSC and LUS. More info <a href="../overview/the-runtime-environment.html#gsa">here</a>.</td>
+                    <td align="left">- Allows you to list all the currently managed processes.<br />- Start processes (GSM, GSC, LUS).</td>
+                </tr>
+                <tr>
+                    <td align="left">GridServiceAgents</td>
+                    <td align="left">Holds all the currently discovered Grid Service Agents.</td>
+                    <td align="left">- Get all the currently discovered Grid Service Agents.<br />- Wait for X number of Grid Service Agents to be up.<br />- Register for Grid Service Agent addition (discovery) and removal events.</td>
+                </tr>
+                <tr>
+                    <td align="left">GridServiceManager</td>
+                    <td align="left">Manages Processing Unit deployments and Grid Service Containers. More info <a href="../overview/the-runtime-environment.html#gsm">here</a>.</td>
+                    <td align="left">- Deploy Processing Units.<br />- Deploy pure Space Processing Units.<br />- Get the Grid Service Agent managing it.<br />- Restart itself (if managed by a Grid Service Agent).<br />- Kill itself (if managed by a Grid Service Agent).</td>
+                </tr>
+                <tr>
+                    <td align="left">GridServiceManagers</td>
+                    <td align="left">Holds all the currently discovered Grid Service Managers.</td>
+                    <td align="left">- Deploy Processing Units on a random Grid Service Manager.<br />- Deploy pure Space Processing Units on a random Grid Service Manager.<br />- Get all the currently discovered Grid Service Managers.<br />- Wait for X number of Grid Service Managers to be up.<br />- Register for Grid Service Manager addition (discovery) and removal events.</td>
+                </tr>
+                <tr>
+                    <td align="left">GridServiceContainer</td>
+                    <td align="left">Container hosting Processing Unit Instances deployed from the GSM. More info <a href="../overview/the-runtime-environment.html#gsc">here</a>.</td>
+                    <td align="left">- List currently running Processing Unit instances.<br />- Register for Processing Unit Instance additions and removals events.</td>
+                </tr>
+                <tr>
+                    <td align="left">GridServiceContainers</td>
+                    <td align="left">Holds all the currently discovered Grid Service Containers.</td>
+                    <td align="left">* Get all the currently discovered Grid Service Containers.<br />- Wait for X number of Grid Service Containers to be up.<br />- Register for Grid Service Container addition (discovery) and removal events.</td>
+                </tr>
+                <tr>
+                    <td align="left">LookupService</td>
+                    <td align="left">Registry of services (GSM, GSC, Space instances, Processing Unit instances) that can be looked up using it. More info <a href="../overview/the-runtime-environment.html#lus">here</a>.</td>
+                    <td align="left">Get the Lookup Groups and Locator it was started with.</td>
+                </tr>
+                <tr>
+                    <td align="left">LookupServices</td>
+                    <td align="left">Holds all the currently discovered Lookup Services.</td>
+                    <td align="left">- Get all the currently discovered Lookup Services.<br />- Wait for X number of Lookup Services to be up.<br />- Register for Lookup Service addition (discovery) and removal events.</td>
+                </tr>
+                <tr>
+                    <td align="left">ProcessingUnit</td>
+                    <td align="left">Deployable Processing Unit running one or more Processing Unit instances. Managed by the Grid Service Manager.</td>
+                    <td align="left">- Undeploy the Processing Unit.<br />- Increase the number of Processing Unit instances (if allowed).<br />- Decrease the number of Processing Unit instances (if allowed).<br />- Get the deployment status of the Processing Unit.<br />- Register for deployment status change events.<br />- Get the managing Grid Service Manager.<br />- Register for managing Grid Service Manager change events.<br />- Get the list of backup Grid Service Managers.<br />- Register for backup Grid Service Manager change events.<br />- List all the currently running Processing Unit instances.<br />- Register for Processing Unit instance addition and removal events.<br />- Wait for X number of Processing Unit instances to be up.<br />- Get an embedded Space that the Processing Unit has.<br />- Wait for an embedded Space to be correlated (discovered) with the Processing Unit.<br />- Register for Space correlation events.</td>
+                </tr>
+                <tr>
+                    <td align="left">ProcessingUnitInstance</td>
+                    <td align="left">Actual instance of a Processing Unit running within a Grid Service Container.</td>
+                    <td align="left">- Destroy itself (if SLA is breached, it is instantiated again).<br />- Decrease itself (and destroy itself in the process). It does not attempt to create itself again.<br />- Relocate itself to a different Grid Service Container.<br />- List all its inner services (such as event containers).<br />- Get the embedded Space instance running within it (if there is one).<br />- Get the JEE container details if it is a web Processing Unit.</td>
+                </tr>
+                <tr>
+                    <td align="left">ProcessingUnits</td>
+                    <td align="left">Holds all the currently deployed Processing Units.</td>
+                    <td align="left">- Get all the currently deployed Processing Units.<br />- Wait for (and return) a Processing Unit by a specific name.<br />- Register for Processing Unit deployments and undeployment events.<br />- Register for all Processing Unit instance addition and removal events (across all Processing Units).<br />- Register for managing Grid Service Manager change events on all Processing Units.<br />- Register for backup Grid Service Manager change events on all Processing Units.</td>
+                </tr>
+                <tr>
+                    <td align="left">Space</td>
+                    <td align="left">Composed of one or more Space instances, to form a Space topology (cluster).</td>
+                    <td align="left">- Get all the currently running Space instances that are part of the Space.<br />- Wait for X number of Space instances to be up.<br />- Register for Space instance addition and removal events.<br />- Register for Space instance change mode events (for all Space instances that are part of the Space).<br />- Register for Space instance replication status change events (for all Space instances that are part of the Space).<br />- Get aggregated Space statistics.<br />- Register for aggregated Space statistics events (if monitoring).<br />- Get a clustered <a href="the-gigaspace-interface-overview.html">Space</a> to perform Space operations.</td>
+                </tr>
+                <tr>
+                    <td align="left">SpaceInstance</td>
+                    <td align="left">Actual instance of a Space that is part of a topology (cluster), usually running within a Processing Unit instance.</td>
+                    <td align="left">- Get its Space mode (primary or backup).<br />- Register for Space mode change events.<br />- Get its replication targets.<br />- Register for replication status change events.<br />- Get a direct <a href="the-gigaspace-interface-overview.html">Space</a> to perform Space operations.<br />- Get Space instance statistics.<br />- Register for Space instance statistics (if monitoring).</td>
+                </tr>
+                <tr>
+                    <td align="left">Spaces</td>
+                    <td align="left">Holds all the currently running Spaces.</td>
+                    <td align="left">- Get all the currently running Spaces.<br />- Wait for (and return) a specific Space by name.<br />- Register for Space addition and removal events.<br />- Register for Space instance addition and removal events (across all Spaces).<br />- Register for Space instance mode change events (across all Space instances).<br />- Register for Space instance replication change events (across all Space instances).<br />- Register for aggregated Space level statistics change events (across all Spaces, if monitoring).<br />- Register for Space instance statistics change events (across all Space instances, if monitoring).</td>
+                </tr>
+                <tr>
+                    <td align="left">VirtualMachine</td>
+                    <td align="left">Virtual Machine (JVM) that is currently running at least one <MadCap:variable name="General.ProductNameXAP" /> component/service.</td>
+                    <td align="left">- Get the Grid Service Agent (if it exists).<br />- Get the Grid Service Manager (if it exists).<br />- Get the Grid Service Container (if it exists).<br />- Get all the Processing Unit instances that are running within the Virtual Machine.<br />- Register for Processing Unit instance addition and removal events.<br />- Get all the Space instances that are running within the Virtual Machine.<br />- Register for Space instance addition and removal events.<br />- Get the details of the Virtual Machine (min/max memory, and so on).<br />- Get the statistics of the Virtual Machine (heap used, and so on).<br />- Register for statistics change events (if monitoring).</td>
+                </tr>
+                <tr>
+                    <td align="left">VirtualMachines</td>
+                    <td align="left">Holds all the currently discovered Virtual Machines.</td>
+                    <td align="left">- Get all the currently discovered Virtual Machines.<br />- Register for Virtual Machines addition and removal events.<br />- Get aggregated Virtual Machine details.<br />- Get aggregated Virtual Machine statistics.<br />- Register for aggregated Virtual Machine statistics events (if monitoring).<br />- Register for Virtual Machine level statistics change events (across all Virtual Machines, if monitoring).</td>
+                </tr>
+                <tr>
+                    <td align="left">Machine</td>
+                    <td align="left">Actual Machine (identified by its host address) running one or more <MadCap:variable name="General.ProductNameXAP" /> components/services in one or more Virtual Machines. Associated with one operating system.</td>
+                    <td align="left">- Get all the Grid Service Agents running on the machine.<br />- Get all the Grid Service Containers running on the machine.<br />- Get all the Grid Service Managers running on the machine.<br />- Get all the Virtual Machines running on the machine.<br />- Get all the Processing Unit instances running on the machine.<br />- Register for Processing Unit instance addition and removal events from the machine.<br />- Get all the Space instances running on themMachine.<br />- Register for Space instances addition and removal events from the machine.<br />- Get the operating system the machine is running on.</td>
+                </tr>
+                <tr>
+                    <td align="left">Machines</td>
+                    <td align="left">Holds all the currently discovered machines.</td>
+                    <td align="left">- Get all the currently running machines.<br />- Wait for X number of machines to be up.<br />- Register for machine addition and removal events.</td>
+                </tr>
+                <tr>
+                    <td align="left">OperatingSystem</td>
+                    <td align="left">The operating system that the <MadCap:variable name="General.ProductNameXAP" /> components/services are running on. Associated with one machine.</td>
+                    <td align="left">- Get the details of the operating system.<br />- Get the operating system statistics.<br />- Register for statistics change events (if monitoring).</td>
+                </tr>
+                <tr>
+                    <td align="left">OperatingSystems</td>
+                    <td align="left">Holds all the currently discovered operating systems.</td>
+                    <td align="left">- Get all the current operating systems.<br />- Get the aggregated operating system details.<br />- Get the aggregated operating system statistics.<br />- Register for aggregated operating system statistics change events (if monitoring).<br />- Register for operating system level statistics change events (across all operating systems, if monitoring).</td>
+                </tr>
+                <tr>
+                    <td align="left">Transport</td>
+                    <td align="left">Communication layer each <MadCap:variable name="General.ProductNameXAP" /> component/service uses.</td>
+                    <td align="left">- Get the transport details (host, port).<br />- Get the transport statistics.<br />- Register for transport statistics change events (if monitoring).</td>
+                </tr>
+                <tr>
+                    <td align="left">Transports</td>
+                    <td align="left">Holds all the currently discovered transports.</td>
+                    <td align="left">- Get all the current transports.<br />- Get the aggregated transport details.<br />- Get the aggregated transport statistics.<br />- Register for aggregated transport statistics change events (if monitoring).<br />- Register for transport level statistics change events (across all transports, if monitoring).</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="accessing-the-domain-model"></a>Accessing the Domain Model</h1>
+        <p>There are two ways the Service Grid Admin API can be used to access information the Admin API can provide:</p>
+        <ul>
+            <li>Call specific properties for the data, and enumerate over them (as shown in the example at the top of the page).</li>
+            <li>Register for specific events using the Service Grid Admin API. Events are handled by different components of the Admin API in similar manner. We will take one of them and use it as a reference example.</li>
+        </ul>
+        <p>If we want to register, for example, for Grid Service Container additions, we can use the following code (removing the event listener is not shown here for clarity):</p><pre><code class="language-csharp">admin.GridServiceContainers.GridServiceContainerAdded += HandleGridServiceContainerAdded;
 
 private void HandleGridServiceContainerAdded(object sender, GridServiceContainerEventArgs e)
 {
@@ -365,10 +321,7 @@ private void HandleGridServiceContainerAdded(object sender, GridServiceContainer
     // do something here
 }
 </code></pre>
-
-<p>Removals are done in a similar manner:</p>
-
-<pre><code class="language-csharp">admin.GridServiceContainers.GridServiceContainerRemoved += HandleGridServiceContainerRemoved;
+        <p>Removals are done in a similar manner:</p><pre><code class="language-csharp">admin.GridServiceContainers.GridServiceContainerRemoved += HandleGridServiceContainerRemoved;
 
 void HandleGridServiceContainerRemoved(object sender, GridServiceContainerEventArgs e)
 {
@@ -376,10 +329,7 @@ void HandleGridServiceContainerRemoved(object sender, GridServiceContainerEventA
     // do something here
 }
 </code></pre>
-
-<p>All other data structures use a similar API to register for events. Some might have specific events that go beyond just additions and removals, but they still use the same model. For example, the following example shows how to register for Space mode change events across all currently running Space topologies and Space instances:</p>
-
-<pre><code class="language-csharp">admin.Spaces.SpaceModeChanged += HandleSpaceModeChanged;
+        <p>All other data structures use a similar API to register for events. Some might have specific events that go beyond just additions and removals, but they still use the same model. For example, the following example shows how to register for Space mode change events across all currently running Space topologies and Space instances:</p><pre><code class="language-csharp">admin.Spaces.SpaceModeChanged += HandleSpaceModeChanged;
 
 void Spaces_SpaceModeChanged(object sender, SpaceModeChangedEventArgs e)
 {
@@ -389,23 +339,19 @@ void Spaces_SpaceModeChanged(object sender, SpaceModeChangedEventArgs e)
 
 }
 </code></pre>
-
-<p>Of course, we can register the same event listener on a specific <code>ISpace</code> topology, or event on a specific <code>ISpaceInstance</code>.</p>
-
-<h1><a name="details-and-statistics"></a>Details and Statistics</h1>
-
-<ul>
-<li>Some components in the Admin API can provide statistics. For example, an <code>ISpaceInstance</code> can provide statistics on how many times the read API was called on it. Statistics change over time, and in order to get them, either the property for the statistics can be used, or a statistics listener can be registered for statistics change events.</li>
-<li>Details of a specific component provide information that does not change over time, but can be used to provide more information regarding the component, or to compute statistics. For example, the <code>IVirtualMachine</code> provides in its details, the minimum and maximum heap memory size, from which the <code>IVirtualMachine</code> statistics provide the currently used heap memory size. The detailed information is used to provide the percentage used in the Virtual Machine statistics.</li>
-<li>The Admin API also provides aggregated details and statistics. For example, <code>ISpace</code> provides <code>ISpaceStatistics</code>, allowing you to get the aggregated statistics of all the different Space instances that belong to it.</li>
-<li>Each component in the Admin API that can provide statistics (either direct or aggregated statistics) implements the <code>IStatisticsMonitor</code> interface. The statistics monitor allows you to start or stop monitoring statistics. Monitoring for statistics is required to register for statistics change events. The interval at which statistics are polled is controlled using the statistics interval.</li>
-<li>The statistics interval is an important event when the Admin API is not actively polling for statistics. Each call to a property of statistics only performs a remote call to the component, if the last statistics fetch happened <span class="tc-bold">before</span> the statistics interval. This behavior means that users of the Admin API do not have to worry about "hammering" different components for statistics, because the Admin API makes sure that statistics calls are cached internally for the statistics interval period.</li>
-<li>An <code>ISpaceInstance</code> implements the <code>IStatisticsMonitor</code> interface. Calling <code>StartMonitor</code> and <code>StopMonitor</code> on it causes monitoring of statistics to be enabled or disabled on it.</li>
-<li><code>ISpace</code> also implements the <code>IStatisticsMonitor</code> interface. Calling <code>StartMonitor</code> on it causes it to start monitoring all its <code>ISpaceInstance</code>s. If an <code>ISpaceInstance</code> is discovered after the the call to <code>startMonitor</code> occurs, it starts monitoring itself automatically. This means that if the <code>SpaceInstanceStatistics</code> event was registered on the <code>ISpace</code>, it automatically starts to get Space instance statistics change events for the newly discovered <code>ISpaceInstance</code>.</li>
-<li><code>ISpaces</code> also implements the <code>IStatisticsMonitor</code> interface. Calling <code>StartMonitor</code> on it causes it to start monitoring all the <code>ISpace</code>s it has (and as a result, also <code>ISpaceInstance</code>s, - see the paragraph above). A <code>SpaceInstanceStatistics</code> can also be registered on the <code>ISpaces</code> level.</li>
-<li>The above Space level statistics behavior works in much the same way with other components. For example, <code>IVirutalMachine</code> and <code>IVirtualMachines</code>, <code>ITransport</code> and <code>ITransports</code>, <code>IOperatingSystem</code> and <code>OperatingSystems</code>.</li>
-<li>The <code>IServiceGridAdmin</code> interface also implements the <code>IStatisticsMonitor</code> interface. Calling <code>StartMonitor</code> on it causes all holders to start monitoring. These include <code>ISpaces</code>, <code>IVirtualMachines</code>, <code>ITransports</code>, and <code>IOperatingSystems</code>.</li>
-</ul>
-
-</body>
+        <p>Of course, we can register the same event listener on a specific <code>ISpace</code> topology, or event on a specific <code>ISpaceInstance</code>.</p>
+        <h1><a name="details-and-statistics"></a>Details and Statistics</h1>
+        <ul>
+            <li>Some components in the Admin API can provide statistics. For example, an <code>ISpaceInstance</code> can provide statistics on how many times the read API was called on it. Statistics change over time, and in order to get them, either the property for the statistics can be used, or a statistics listener can be registered for statistics change events.</li>
+            <li>Details of a specific component provide information that does not change over time, but can be used to provide more information regarding the component, or to compute statistics. For example, the <code>IVirtualMachine</code> provides in its details, the minimum and maximum heap memory size, from which the <code>IVirtualMachine</code> statistics provide the currently used heap memory size. The detailed information is used to provide the percentage used in the Virtual Machine statistics.</li>
+            <li>The Admin API also provides aggregated details and statistics. For example, <code>ISpace</code> provides <code>ISpaceStatistics</code>, allowing you to get the aggregated statistics of all the different Space instances that belong to it.</li>
+            <li>Each component in the Admin API that can provide statistics (either direct or aggregated statistics) implements the <code>IStatisticsMonitor</code> interface. The statistics monitor allows you to start or stop monitoring statistics. Monitoring for statistics is required to register for statistics change events. The interval at which statistics are polled is controlled using the statistics interval.</li>
+            <li>The statistics interval is an important event when the Admin API is not actively polling for statistics. Each call to a property of statistics only performs a remote call to the component, if the last statistics fetch happened <span class="tc-bold">before</span> the statistics interval. This behavior means that users of the Admin API do not have to worry about "hammering" different components for statistics, because the Admin API makes sure that statistics calls are cached internally for the statistics interval period.</li>
+            <li>An <code>ISpaceInstance</code> implements the <code>IStatisticsMonitor</code> interface. Calling <code>StartMonitor</code> and <code>StopMonitor</code> on it causes monitoring of statistics to be enabled or disabled on it.</li>
+            <li><code>ISpace</code> also implements the <code>IStatisticsMonitor</code> interface. Calling <code>StartMonitor</code> on it causes it to start monitoring all its <code>ISpaceInstance</code>s. If an <code>ISpaceInstance</code> is discovered after the the call to <code>startMonitor</code> occurs, it starts monitoring itself automatically. This means that if the <code>SpaceInstanceStatistics</code> event was registered on the <code>ISpace</code>, it automatically starts to get Space instance statistics change events for the newly discovered <code>ISpaceInstance</code>.</li>
+            <li><code>ISpaces</code> also implements the <code>IStatisticsMonitor</code> interface. Calling <code>StartMonitor</code> on it causes it to start monitoring all the <code>ISpace</code>s it has (and as a result, also <code>ISpaceInstance</code>s, - see the paragraph above). A <code>SpaceInstanceStatistics</code> can also be registered on the <code>ISpaces</code> level.</li>
+            <li>The above Space level statistics behavior works in much the same way with other components. For example, <code>IVirutalMachine</code> and <code>IVirtualMachines</code>, <code>ITransport</code> and <code>ITransports</code>, <code>IOperatingSystem</code> and <code>OperatingSystems</code>.</li>
+            <li>The <code>IServiceGridAdmin</code> interface also implements the <code>IStatisticsMonitor</code> interface. Calling <code>StartMonitor</code> on it causes all holders to start monitoring. These include <code>ISpaces</code>, <code>IVirtualMachines</code>, <code>ITransports</code>, and <code>IOperatingSystems</code>.</li>
+        </ul>
+    </body>
 </html>

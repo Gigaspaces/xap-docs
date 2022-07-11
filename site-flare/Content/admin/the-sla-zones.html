@@ -149,7 +149,10 @@ for (GridServiceAgent gridServiceAgent : agents) {
     &lt;/os-sla:requirements&gt;
 &lt;/os-sla:sla&gt;
 </code></pre>
-        <p>When a processing unit does start an embedded space with a backup topology, the semantics of the SLA applies on a per partition level. This means that the setting allows to control if the primary and backup will run on the same zone or not. For example, if we want to deploy a primary with backup topology with 10 partitions each with one backup, and have the primary and backup not run on the same zone we can do the following:</p><pre><code class="language-xml">&lt;os-sla:sla number-of-instances="10" number-of=backups="1" max-instances-per-zone="zone1/1,zone2/1"&gt;
+        <p>When a processing unit does start an embedded space with a backup topology, the semantics of the SLA applies on a per partition level. This means that the setting allows to control if the primary and backup will run on the same zone or not. For example, if we want to deploy a primary with backup topology with 10 partitions each with one backup, and have the primary and backup not run on the same zone we can do the following:</p><pre><code class="language-xml">&lt;os-sla:sla number-of-instances="10" number-of=backups="1" max-instances-per-zone="zone1/1,zone2/1"&gt;</code></pre>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div><pre><code class="language-xml">
     &lt;os-sla:requirements&gt;
         &lt;os-sla:zone name="zone1" /&gt;
         &lt;os-sla:zone name="zone2" /&gt;
@@ -168,11 +171,17 @@ for (GridServiceAgent gridServiceAgent : agents) {
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="${dataGridName}"/&gt;
 
-&lt;os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="0" requires-isolation="true"&gt;
+&lt;os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="0" requires-isolation="true"&gt;</code></pre>
+                <div class="tc-admon-note">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre><code class="language-xml">
 &lt;/os-sla:sla&gt;
 </code></pre>
             </div>
-            <div title="  AdminApi " style="padding:10px"><pre><code class="language-java">gsm.deploy(new SpaceDeployment("mySpace").numberOfInstances(2).numberOfBackups(0).requiresIsolation(true));
+            <div title="  AdminApi " style="padding:10px"><pre><code class="language-java">gsm.deploy(new SpaceDeployment("mySpace").numberOfInstances(2).numberOfBackups(0).requiresIsolation(true));</code></pre>
+                <div class="tc-admon-note">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre><code class="language-java">
 gsm.deploy((new ProcessingUnitDeployment("myPU").numberOfInstances(2).numberOfBackups(0).requiresIsolation(true)));
 </code></pre>
             </div>

@@ -24,6 +24,11 @@
             <li>
                 <p>Use the deployment tools themselves to provide/override the Processing Unit's SLA (see below). For example, the GUI deployment dialog enables you to type in various SLA definitions, such as the number of instances, number of backups, and Space topology.</p>
             </li>
+            <li>
+                <div class="tc-admon-note">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div>
+            </li>
         </ul>
         <p>The SLA definition, whether it comes in a separate file or embedded inside the <code>pu.xml</code> file, is composed of a single <code>&lt;os-sla:sla&gt;</code> XML element. A sample SLA definition is shown below (you can use plain Spring definitions, or GigaSpaces-specific namespace bindings):</p>
         <div class="easyui-tabs" plain="true" data-options="">
@@ -33,7 +38,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
        http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd"&gt;
 
-    &lt;os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="1" max-instances-per-vm="1"&gt;
+    &lt;os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="1" max-instances-per-vm="1"&gt;</code></pre>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
     ...
     &lt;/os-sla:sla&gt;
 &lt;/beans&gt;
@@ -43,7 +51,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd"&gt;
 
-    &lt;os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="1" max-instances-per-vm="1"&gt;
+    &lt;os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="1" max-instances-per-vm="1"&gt;</code></pre>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
     ...
     &lt;/os-sla:sla&gt;
 &lt;/beans&gt;
@@ -56,7 +67,10 @@
     &lt;bean id="SLA" class="org.openspaces.pu.sla.SLA"&gt;
         &lt;property name="clusterSchema" value="partitioned" /&gt;
         &lt;property name="numberOfInstances" value="2" /&gt;
-        &lt;property name="numberOfBackups" value="1" /&gt;
+        &lt;property name="numberOfBackups" value="1" /&gt;</code></pre>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
         &lt;property name="maxInstancesPerVM" value="1" /&gt;
     &lt;/bean&gt;
     ...
@@ -68,7 +82,10 @@
     &lt;bean id="SLA" class="org.openspaces.pu.sla.SLA"&gt;
         &lt;property name="clusterSchema" value="partitioned" /&gt;
         &lt;property name="numberOfInstances" value="2" /&gt;
-        &lt;property name="numberOfBackups" value="1" /&gt;
+        &lt;property name="numberOfBackups" value="1" /&gt;</code></pre>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
         &lt;property name="maxInstancesPerVM" value="1" /&gt;
     &lt;/bean&gt;
     ...
@@ -79,6 +96,9 @@
         <p>The SLA definition shown above creates four instances of a Processing Unit using the <span class="tc-italic">partitioned</span> space topology. It defines two partitions (<code>number-of-instances="2"</code>), each with one backup (<code>number-of-backups="1"</code>). In addition, it requires that a primary and a backup instance of the same partition not be provisioned to the same GSC (<code>max-instances-per-vm="1"</code>).</p>
         <div class="tc-admon-note">
             <p>It is up to the developer to configure the SLA correctly. Trying to deploy a Processing Unit with a cluster schema that requires backups without specifying <code>numberOfBackups</code> will cause the deployment to fail.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
         </div>
         <div class="tc-admon-attention">
             <p>In older releases, the SLA definition also included dynamic runtime policies, such as creating additional Processing Unit instances based on CPU load, relocating a certain instance when the memory becomes saturated, etc. These capabilities are still supported, but have been deprecated in favor of the <a href="../dev-java/administration-and-monitoring-overview.html">Administration and Monitoring API</a> which supports the above and much more.</p>
@@ -112,6 +132,9 @@
         <p>From the client application's perspective (the one that connects to the Space from another process), the clustering topology is transparent in most cases.</p>
         <div class="tc-admon-note">
             <p>The <code>number-of-backups</code> parameter should be used with the partitioned cluster schema. It is not supported with the sync-replicated or async-replicated cluster schema.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
         </div>
         <h1><a name="sla-based-distribution-and-provisioning"></a>SLA-Based Distribution and Provisioning</h1>
         <p>When deployed to the service grid, the Processing Unit instances are distributed based on the SLA definitions. These definitions form a set of constraints and requirements that should be met when a Processing Unit instance is provisioned to a specific container (GSC). The SLA definitions are considered during the initial deployment, relocation, and re-provisioning of an instance after failure.</p>

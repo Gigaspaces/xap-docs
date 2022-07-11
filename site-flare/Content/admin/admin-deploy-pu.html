@@ -40,7 +40,7 @@
                         <tr>
                             <td align="left">Option</td>
                             <td align="left">backups=&lt;backups&gt;</td>
-                            <td align="left">Specify the number of backups per partition.</td>
+                            <td align="left">Specify the number of backups per partition. Can be zero or one.</td>
                         </tr>
                         <tr>
                             <td align="left">Option</td>
@@ -175,7 +175,7 @@
                         </tr>
                         <tr>
                             <td align="left">backupsPerPartition</td>
-                            <td align="left">Number of backups per partition.</td>
+                            <td align="left">Number of backups per partition. Can be zero or one.</td>
                             <td align="left">No</td>
                         </tr>
                         <tr>
@@ -225,7 +225,7 @@
                             <li>In the <span class="tc-bold">Cluster schema</span> box, specify the SLA definitions (cluster topology):
     <ul><li><span class="tc-bold">None</span> - A standalone Processing Unit with an embedded Space.</li><li><span class="tc-bold">Partitioned</span> - A cluster that is partitioned across the instances that are specified.</li><li><span class="tc-bold">Sync_replicated</span> - A cluster with synchronous replication across the instances that are specified.</li><li><span class="tc-bold">Async_replicated</span> - A cluster with asynchronous replication across the instances that are specified.</li></ul></li>
                             <li>In the <span class="tc-bold">Number of Instances</span> box,  specify the number of primary Processing Unit instances to deploy in the cluster.</li>
-                            <li>(For partitioned clusters) In the <span class="tc-bold">Number of Backups</span> box, define the number of backup Processing Units for each primary Processing Unit.</li>
+                            <li>(For partitioned clusters) In the <span class="tc-bold">Number of Backups</span> box, define the number of backup Processing Units for each primary Processing Unit.<div class="tc-admon-note"><p>The number of backups can be zero or one.</p></div></li>
                             <li>In the <span class="tc-bold">Max Inst. per VM</span> box, define the maximum number of Processing Unit instances each virtual host may contain (the default is 1).</li>
                             <li>In the <span class="tc-bold">Max Inst. per VM</span> box, define the maximum number of Processing Unit instances each physical host may contain.</li>
                             <li>If you have more than one host, you can specify on which host to deploy the primary Processing Unit instances.</li>

@@ -32,7 +32,10 @@
         <p>After modifying the pu.xml, update the sla.xml as follows.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="sla.xml" style="padding:10px"><pre><code class="language-xml">&lt;os-sla:sla cluster-schema="partitioned"
-            number-of-instances="2" number-of-backups="1" max-instances-per-zone="A/1,B/1"
+            number-of-instances="2" number-of-backups="1" max-instances-per-zone="A/1,B/1"</code></pre>
+                <div class="tc-admon-note">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre><code class="language-xml">
             primary-zone="A"&gt;
             
     &lt;os-sla:requirements &gt;

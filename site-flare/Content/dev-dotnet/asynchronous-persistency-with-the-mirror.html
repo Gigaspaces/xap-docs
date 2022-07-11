@@ -152,7 +152,7 @@
                 </tr>
                 <tr>
                     <td align="left">SourceSpace Backups</td>
-                    <td align="left">The number of backups per partition in source space (cluster) this mirror serves</td>
+                    <td align="left">The number of backups per partition in source space (cluster) this mirror serves<div class="tc-admon-note"><p>The number of backups per partition is zero or one.</p></div></td>
                     <td align="left">NONE, must be supplied</td>
                 </tr>
             </tbody>
@@ -160,7 +160,10 @@
         <p>The following shows how to configure a processing unit to act as the mirror service:</p><pre><code class="language-xml">&lt;ProcessingUnit&gt;
   &lt;mirrors&gt;
     &lt;add Name="mirror-service" OperationGrouping="group-by-replication-bulk"&gt;
-      &lt;SourceSpace Name="mySpace" Partitions="2" Backups="1"/&gt;
+      &lt;SourceSpace Name="mySpace" Partitions="2" Backups="1"/&gt;</code></pre>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div><pre><code class="language-xml">
       &lt;ExternalDataSource Type="GigaSpaces.Practices.ExternalDataSource.NHibernate.NHibernateExternalDataSource"&gt;
         &lt;!-- NHibernate-specific config goes here --&gt;
       &lt;/ExternalDataSource&gt;

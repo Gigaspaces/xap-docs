@@ -102,7 +102,10 @@ public void pu() {
 }
 </code></pre>
             </div>
-            <div title="  Space " style="padding:10px"><pre><code class="language-java">
+            <div title="  Space " style="padding:10px">
+                <div class="tc-admon-note">
+                    <p>The number of backups — <code>space.getNumberOfBackups() </code>— will be zero or one.</p>
+                </div><pre><code class="language-java">
 public void space() {
     Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
 
