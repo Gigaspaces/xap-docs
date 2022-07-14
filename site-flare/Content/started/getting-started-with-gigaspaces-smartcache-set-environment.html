@@ -32,48 +32,52 @@
             <p>We will download and install GigaSpaces and PostgreSQL, the database we are using in these examples. We will then create a sample PostgreSQL database.</p>
             <p>Later, in <MadCap:xref href="getting-started-with-gigaspaces-smartcache-launch-ops-manager.html" class="part-2">Part 2</MadCap:xref> of this introduction, we will launch Ops Manager, the GigaSpaces user interface.</p>
         </div>
-        <h1>Prerequisites</h1>
-        <p>These examples run on a Unix or Windows machine with the following capabilities:</p>
-        <ul>
-            <li>
-                <p>3 GB RAM</p>
-            </li>
-            <li>
-                <p>4 GB disk</p>
-            </li>
-            <li>
-                <p>Java 8 or 11</p>
-            </li>
-            <li>
-                <p>Scala 2.11</p>
-            </li>
-            <li>
-                <p>Maven 3.1+</p>
-            </li>
-        </ul>
-        <h1>Downloads</h1>
-        <ul>
-            <li>
-                <p><a href="https://www.gigaspaces.com/downloads/">Download GigaSpaces Smart Cache</a>. Use the default version, which is the latest version of the product.</p>
-            </li>
-            <li>
-                <p>Extract the zip file into a location on your PC.</p>
-            </li>
-            <li>
-                <p>In the home directory, enter a license key of <b>tryme</b> in the <code>gs-license.txt</code> file:</p>
-            </li>
-            <li>
-                <p>
-                    <img src="../Resources/Images/tryme-license.png" style="width: 957px;height: 68px;" />
-                </p>
-                <div class="tc-admon-note">
-                    <p>The trial license is valid for 24 hours.</p>
-                </div>
-            </li>
-            <li>
-                <p><a href="https://www.postgresql.org/download/">Download and install PostgreSQL on your PC</a>. Be sure to include the <code>pgAdmin</code> component of PostgreSQL.</p>
-            </li>
-        </ul>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h1>Prerequisites</h1>
+            <p>These examples run on a Unix or Windows machine with the following capabilities:</p>
+            <ul>
+                <li>
+                    <p>3 GB RAM</p>
+                </li>
+                <li>
+                    <p>4 GB disk</p>
+                </li>
+                <li>
+                    <p>Java 8 or 11</p>
+                </li>
+                <li>
+                    <p>Scala 2.11</p>
+                </li>
+                <li>
+                    <p>Maven 3.1+</p>
+                </li>
+            </ul>
+        </div>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h1>Downloads</h1>
+            <ul>
+                <li>
+                    <p><a href="https://www.gigaspaces.com/downloads/">Download GigaSpaces Smart Cache</a>. Use the default version, which is the latest version of the product.</p>
+                </li>
+                <li>
+                    <p>Extract the zip file into a location on your PC.</p>
+                </li>
+                <li>
+                    <p>In the home directory, enter a license key of <b>tryme</b> in the <code>gs-license.txt</code> file:</p>
+                </li>
+                <li>
+                    <p>
+                        <img src="../Resources/Images/tryme-license.png" style="width: 957px;height: 68px;" />
+                    </p>
+                    <div class="tc-admon-note">
+                        <p>The trial license is valid for 24 hours.</p>
+                    </div>
+                </li>
+                <li>
+                    <p><a href="https://www.postgresql.org/download/">Download and install PostgreSQL on your PC</a>. Be sure to include the <code>pgAdmin</code> component of PostgreSQL.</p>
+                </li>
+            </ul>
+        </div>
         <div MadCap:conditions="Default.DoNotShow">
             <h1>Load a Database Table into the Grid</h1>
             <p>In this example, we will create a PostgreSQL database, populate it with some data, and pull the data into the GigaSpaces grid. We will then perform some SQL operations on the grid data.</p>
