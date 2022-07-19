@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Deploying a Custom Processing Unit</h1>
+        <p>This topic describes how to deploy a custom GigaSpaces processing unit (PU) in a Kubernetes environment. </p>
+        <div class="tc-admon-note">
+            <p>The topics in this section assume basic knowledge of the GigaSpaces platform. If you aren't familiar with GigaSpaces, review the contents of the general <a href="../started/index.html">Getting Started</a> section before performing the tasks described here.</p>
+        </div>
+        <h2>Prerequisite</h2>
+        <ul>
+            <li>
+                <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Perform the steps in <MadCap:xref href="kubernetes-s10-deploying-and-managing-gigaspaces.html">Deploying and Managing GigaSpaces in Kubernetes</MadCap:xref></a>
+                </p>
+            </li>
+        </ul>
+        <p>This topic describes how to do basic and intermediate-level deployment tasks for the Space and the GigaSpaces platform, using simple Helm commands. </p>
+        <p>&#160;</p>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h1>Building a Java Application</h1>
+            <p>In order to prepare the environment for use, first the Platform Manager must be deployed. This deploys two pods: the Manager pod, and the Operator pod.</p>
+            <p>Note that Platform Manager is deployed by using a Helm chart, and further operations can also be performed using the UI, CLI or REST-API tools.</p>
+            <p MadCap:conditions="Default.DoNotShow">Type the following Helm command to create a Management Pod called <code class="language-bash">testmanager</code> that deploys Manager and Operator pods:</p>
+            <h1>Create a local repository from the Helm server and install GigaSpaces</h1>
+            <div class="tc-admon-note">
+                <p>The <code style="font-weight: bold;">xap</code> chart used in the following example is an "umbrella" chart that references more than one Helm chart.</p>
+            </div>
+            <p>Update the GigaSpaces repo locally:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
+helm repo update</code></pre>
+            <p>Unpack the GigaSpaces charts:</p><pre><code class="language-bash">helm pull gigaspaces/xap --version=<MadCap:variable name="Versions.product-version-short" /> --untar</code></pre>
+            <p>Deploy the GigaSpaces Manager and Operator pods:</p><pre><code class="language-bash">helm install xap ./xap/ --version=<MadCap:variable name="Versions.product-version-short" /> --set manager.resources.limits.memory=700Mi</code></pre>
+            <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command.</h2>
+            <div class="tc-admon-note">
+                <p><b>Monitoring the Cluster in Kubernetes</b>
+                </p>
+                <div MadCap:conditions="NewSet.JustAColorForDivs">
+                    <p>After running the commands show below, you can monitor the cluster you deployed using the following administration tools.</p>
+                    <ul>
+                        <li><b>Helm</b>: Run the following command to print the status of the xap deployment in the command window.</li>
+                    </ul><pre><code class="language-bash">helm status xap</code></pre>
+                    <div MadCap:conditions="Default.DoNotShow">
+                        <ul>
+                            <li>Kubernetes dashboard: run the following command to open a dashboard in your browser, where you can see all the Pods and services by clicking the various tabs. For example, if you're using minikube:</li>
+                        </ul><pre><code class="language-bash">minikube dashboard</code></pre>
+                    </div>
+                    <ul>
+                        <li><b>Kubectl</b>: run the following command to print the name, description, and status of the Pods in the command window. A list of events is also printed, which can be used for troubleshooting purposes. For example, if you detected a problem in one of the Pods, you can see the Pod termination reason and exit code.</li>
+                    </ul><pre><code class="language-bash">kubectl get pods</code></pre>
+                </div>
+            </div>
+            <div class="tc-admon-note">
+                <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
+            </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
+]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b>
+xap-grafana-5574c8bcd5-v2xsr    1/1     Running   0          5m14s
+xap-influxdb-0                  1/1     Running   0          5m14s
+xap-operator-57d9d445ff-slsrr   1/1     Running   0          5m14s
+xap-xap-manager-0               1/1     Running   0          5m14s		</tt><![CDATA[		
+				]]></code></pre>
+            <ul>
+                <li>
+                    <p><code style="font-weight: bold;">grafana</code> and <code style="font-weight: bold;">influxdb</code>, installed by default, provide the metrics and database engine to create <code>grafana</code> dashboards for the system.</p>
+                </li>
+                <li>
+                    <p><code style="font-weight: bold;">operator</code> allows Kubernetes to create custom GigaSpaces resources, such as processing units (pus).</p>
+                </li>
+                <li>
+                    <p><code style="font-weight: bold;">xap-manager</code> is the central processing and management module of the GigaSpaces environment.</p>
+                </li>
+            </ul>
+            <h2>Find the external Kubernetes URL in the CLI via the<code style="font-weight: bold;"> kubectl get services</code> command:</h2><pre><code class="language-bash">kubectl get services</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
+]]><b>NAME                      TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                                        AGE</b>
+kubernetes                ClusterIP      10.96.0.1        &lt;none&gt;        443/TCP                                        3h50m
+webhook-server            ClusterIP      10.98.86.137     &lt;none&gt;        443/TCP                                        2m36s
+xap-grafana               ClusterIP      10.98.32.89      &lt;none&gt;        3000/TCP                                       2m36s
+xap-influxdb              ClusterIP      10.109.178.226   &lt;none&gt;        8086/TCP,8088/TCP                              2m36s
+xap-xap-manager-hs        ClusterIP      None             &lt;none&gt;        2181/TCP,2888/TCP,3888/TCP,4174/TCP            2m36s
+xap-xap-manager-service   <b>LoadBalancer</b> 10.101.178.201   <b>localhost</b>     8090:31817/TCP,4174:31029/TCP,8200:31231/TCP   2m36s
+xap-xap-pu-hs             ClusterIP      None             &lt;none&gt;        &lt;none&gt;                                         2m36s
+					</tt><![CDATA[		
+				]]></code></pre>
+            <p>The externally accessible URL is type <b>LoadBalancer</b>. In this example, it is <code>localhost</code>.</p>
+            <h2>View the result via the Ops Manager URL<br /></h2>
+            <div class="tc-admon-note">
+                <p>The general format for the URL is <code>&lt;<b>LoadBalancer External-IP</b>&gt;:8090/</code>services.</p>
+            </div>
+            <p>In this example, the URL is <code style="font-weight: bold;">localhost:8090/services</code></p>
+            <p>
+                <img src="../Resources/Static/images/kubernetes-landing-page-ss-1.png" />
+            </p>
+        </div>
+        <h1>Install a Space called "demo"</h1><pre><code class="language-bash">helm pull gigaspaces/xap-pu --version=<MadCap:variable name="Versions.product-version-short" /> --untar
+helm install demo ./xap-pu/ --set manager.name=xap,partitions=1</code></pre>
+        <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command:</h2>
+        <div class="tc-admon-note">
+            <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
+        </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
+]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b>
+demo-xap-pu-0                   0/1     Running   0          10s
+xap-grafana-5574c8bcd5-v2xsr    1/1     Running   0          7m34s
+xap-influxdb-0                  1/1     Running   0          7m34s
+xap-operator-57d9d445ff-slsrr   1/1     Running   0          7m34s
+xap-xap-manager-0               1/1     Running   0          7m34s
+demo-xap-pu-0                   1/1     Running   0          15s
+				</tt><![CDATA[		
+				]]></code></pre>
+        <h1>Install a Microservice</h1><pre><code class="language-bash">helm install pu ./xap-pu/ --set manager.name=xap</code></pre>
+        <h2>View the result in the CLI via the<code style="font-weight: bold;">kubectl get pods</code> command:</h2>
+        <div class="tc-admon-note">
+            <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
+        </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
+]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b>
+demo-xap-pu-0                   1/1     Running   0          4m52s
+pu-xap-pu-0                     1/1     Running   0          3m5s
+xap-grafana-5574c8bcd5-6z6mc    1/1     Running   0          17m
+xap-influxdb-0                  1/1     Running   0          17m
+xap-operator-57d9d445ff-zhlp2   1/1     Running   0          17m
+xap-xap-manager-0               1/1     Running   0          17m
+				</tt><![CDATA[		
+				]]></code></pre>
+        <h2>View the result via the Ops Manager URL<br /></h2>
+        <div class="tc-admon-note">
+            <p>The general format for the URL is <code>&lt;<b>LoadBalancer External-IP</b>&gt;:8090/</code>services.</p>
+        </div>
+        <p>In this example, the URL is <code style="font-weight: bold;">localhost:8090/services</code></p>
+        <p>
+            <img src="../Resources/Static/images/kubernetes-landing-page-ss-2.png" />
+        </p>
+        <h1>Configuration Options</h1>
+        <p>The following configuration options can be specified when using a chart:</p>
+        <ul>
+            <li>
+                <p><b>ha=true/false</b> — each primary Data Pod has one backup Data Pod. Default is <code>false</code>.</p>
+            </li>
+            <li>
+                <p><b>metrics-enabled=true/false</b> — enable or disable Grafana metrics. Default is <code>true</code>.</p>
+            </li>
+            <li>
+                <p><b>antiAffinity.enabled=true/false</b> — spread the partitions across nodes. Default is <code>false</code>.</p>
+            </li>
+            <li>
+                <p><b>partitions=2</b> — scale out/in to change the number of partitions.</p>
+            </li>
+        </ul>
+        <div MadCap:conditions="NewSet.StagingOnly">
+            <h1>Customizing a Processing Unit</h1>
+            <h1>Customizing a Space</h1>
+            <h1>WAN Gateway</h1>
+            <h1>Configuring Tiered Storage Using Kubernetes Volumes</h1>
+        </div>
+    </body>
+</html>
