@@ -51,7 +51,7 @@ mvn clean install -DskipTests
             <h1>Create a Docker Image</h1>
             <p>Copy the created jar file from the <code>target </code>folder to the local folder.</p>
             <p>Create a docker file named <code>Dockerfile</code>, with the following content:</p><pre><code class="language-bash">
-FROM gigaspaces/xap-enterprise:16.2.0-m22-wed-19
+FROM gigaspaces/xap-enterprise:<MadCap:variable name="Versions.product-version-long" />
 ADD my-pu-stateless-0.1.jar /opt/gigaspaces/bin/pu.jar
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
