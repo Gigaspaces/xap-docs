@@ -41,16 +41,18 @@
                 <p>
                     <img src="../Resources/Static/images/kubernetes-s20-take-blueprint-4-see-project-tree.png" />
                 </p>
-            </ol>
-            <p MadCap:conditions="Default.DoNotShow">Type quit to exec the gs procedure.</p>
-            <p MadCap:conditions="Default.DoNotShow">Switch to the bin/my-pu-stateless directory, and enter the maven command to build the project:</p><pre><code class="language-bash">cd $GS_HOME/bin/my-pu-stateless
+                <p>Type quit to exec the gs procedure.</p>
+                <li>
+                    <p>Build the jar file – switch to the bin/my-pu-stateless directory, and enter the maven command to build the project:</p>
+                </li>
+            </ol><pre><code class="language-bash">cd &lt;installation directory&gt;/bin/my-pu-stateless
 mvn clean install -DskipTests
 </code></pre>
             <h1>Create a Docker Image</h1>
             <p>Copy the created jar file from the <code>target </code>folder to the local folder.</p>
             <p>Create a docker file named <code>Dockerfile</code>, with the following content:</p><pre><code class="language-bash">
 FROM gigaspaces/xap-enterprise:16.2.0-m22-wed-19
-ADD my-pu-stateless-0.1.jar /opt/gigaspaces/tools/custom-pu/my-pu-stateless-0.1.jar
+ADD my-pu-stateless-0.1.jar /opt/gigaspaces/bin/pu.jar
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
 CMD ["host", "run-agent", "--auto"]
@@ -71,7 +73,7 @@ fi
             <p>Perform a Docker build operation, in the directory that has <code>Dockerfile </code>and the <code>jar </code>file. This will create a Docker image.</p><pre><code class="language-bash"> docker build -t my-pu-stateless .</code></pre>
             <p>Deploy the Docker image in GigaSpaces.</p><pre><code class="language-bash">
 helm install custom-pu ./xap-pu/ --set manager.name=xap,\
-resourceUrl=../tools/custom-pu/my-pu-stateless-0.1.jar,\
+resourceUrl=pu.jar,\
 livenessProbe.enabled=false,readinessProbe.enabled=false,metrics.enabled=false,\
 image.repository=my-pu-stateless,image.tag=latest					
 </code></pre>
