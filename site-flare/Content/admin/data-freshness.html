@@ -23,7 +23,7 @@
                     <p>Create a cron job or other daemon to periodically update the Heartbeat table every <i>sor-update-frequency</i> number of seconds. Take note of the time period <i>sor-update-frequency</i> between cron updates to the Heartbeat table.</p>
                 </li>
                 <li>
-                    <p>Include the Heartbeat table in the <MadCap:xref href="../D-H-I/data-integration.html#Procedur" class="definition-of-the-data-pipeline">definition of the Data Pipeline</MadCap:xref>.</p>
+                    <p>Include the Heartbeat table in the <MadCap:xref href="../DIH/data-integration.html#Procedur" class="definition-of-the-data-pipeline">definition of the Data Pipeline</MadCap:xref>.</p>
                 </li>
                 <li>
                     <p>Using the <MadCap:xref href="web-management-monitoring.html" class="Grafana-interface">Grafana interface</MadCap:xref> to the GigaSpaces-supplied InfluxDB database, define an alert that triggers when the update frequency of the Heartbeat object is greater than (<i>sor-update-frequency</i> + <i>acceptable-data-lag</i>), where <i>acceptable-data-lag</i> is the number of seconds of delay that is allowed between IMDG updates from the SoR.</p>
