@@ -4,11 +4,13 @@
         <!--
         <meta http-equiv="REFRESH" content="0;url=https://docs.gigaspaces.com/latest/started/getting-started-with-gigaspaces-smartcache-set-environment.html" />
 -->
-        <script type="text/javascript" src="../Resources/Custom/page-toc.js">
+        <!--
+		<script type="text/javascript" src="../Resources/Custom/page-toc.js">
         </script>
+		-->
     </head>
     <body>
-        <div id="page-toc">
+        <div id="page-toc" MadCap:conditions="Default.DoNotShow">
             <p class="boxHeading">On this page</p>
             <!-- page table of contents generated here -->
         </div>
@@ -43,7 +45,7 @@
         <h2>Flink installation</h2>
         <p>In order to install standalone Flink please do the following:</p>
         <p>Flink should be installed on the same server with Kafka.</p>
-        <p>Download <code>flink</code>  version 1.15.0 from <a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html#https://giga-di.s3.eu-west-1.amazonaws.com/Flink/flink-1.15.0-bin-scala_2.12.tgz">here.</a></p>
+        <p>Download <code>flink</code>  version 1.15.0 from <a href="https://giga-di.s3.eu-west-1.amazonaws.com/Flink/flink-1.15.0-bin-scala_2.12.tgz">here</a>.</p>
         <p>As <code>gsods </code>OS user, copy the downloaded <code>tar.gz</code> file to the following directory: <code>/home/gsods/di-flink</code></p>
         <div class="tc-admon-note">
             <p>If DI software should be installed under the different file system or directory , then create a symbolic link from <code>/home/gsods/di-flink</code> to the new installation directory <code>&lt;alternative directory&gt;/di-flink</code></p>
@@ -133,7 +135,7 @@
         <p>
             <img src="../Resources/Static/images/DIH-Installation-guide-via-postman-run.png" />
         </p>
-        <p>Via postman start a pipeline</p>
+        <p>Via postman start a pipeline:</p>
         <h1>Working with Postman</h1>
         <h2>Create environment variables</h2>
         <h2>Import collection of APIs</h2>
@@ -162,19 +164,19 @@
                     <td>
                         <p>DI-Manager  0.0.12.4</p>
                     </td>
-                    <td><a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html#https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-manager-0.0.12.4.tar.gz">Download link</a>
+                    <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-manager-0.0.12.4.tar.gz">Download link</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <p>DI-MDM       0.0.12.4</p>
                     </td>
-                    <td><a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html#https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-mdm-0.0.12.4.tar.gz">Download link</a>
+                    <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-mdm-0.0.12.4.tar.gz">Download link</a>
                     </td>
                 </tr>
                 <tr>
                     <td>Postman collection 0.0.12.</td>
-                    <td><a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html#https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/DI-v2.0-postman-0.0.12.4.json">Download link</a>
+                    <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/DI-v2.0-postman-0.0.12.4.json">Download link</a>
                     </td>
                 </tr>
                 <tr>
@@ -221,21 +223,21 @@
                     <td>
                         <p>DI-Manager 0.0.9.1</p>
                     </td>
-                    <td><a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html#https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-manager-0.0.9.1.tar.gz">Download link</a>
+                    <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-manager-0.0.9.1.tar.gz">Download link</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <p>DI-MDM      0.0.9.1</p>
                     </td>
-                    <td><a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html#https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-mdm-0.0.9.1.tar.gz">Download link</a>
+                    <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-mdm-0.0.9.1.tar.gz">Download link</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <p>Postman collection</p>
                     </td>
-                    <td><a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html#https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/DI+v2.0+stage+-+0.0.9.1.postman_collection.json">Download link</a>
+                    <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/DI+v2.0+stage+-+0.0.9.1.postman_collection.json">Download link</a>
                     </td>
                 </tr>
             </tbody>
@@ -452,7 +454,7 @@
             </tbody>
         </table>
         <h1>Resources</h1>
-        <p><a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html#https://docs.google.com/document/d/1uA0iddbAUgOtQs9PR0R8bXXlmD6Q_87HhlbkVel9rG0/edit?usp=sharing">DI v2.0 new design proposal</a>
+        <p><a href="https://docs.google.com/document/d/1uA0iddbAUgOtQs9PR0R8bXXlmD6Q_87HhlbkVel9rG0/edit">DI v2.0 new design proposal</a>
         </p>
         <p>&#160;</p>
         <div class="tc-admon-note">
