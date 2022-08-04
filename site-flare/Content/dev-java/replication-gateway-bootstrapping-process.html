@@ -79,6 +79,6 @@ GatewaySink sink = newyorkGateway.waitForSink("LONDON");
 sink.enableIncomingReplication();
 </code></pre>
         <p>Once a gateway sink has executed a bootstrap process or the <code>enableIncomingReplication</code> was called, it cannot execute a bootstrap process again because it is already open for incoming replication.</p>
-        <p>The bootstrap process requires the sink to be at a disabled state to prevent from ongoing replication interfering with the bootstrap first copy stage. Therefor a sink must be restarted for bootstrap if the above occurred.</p>
+        <p>The bootstrap process requires the sink to be at a disabled state to prevent from ongoing replication interfering with the bootstrap first copy stage. Therefore a sink must be restarted for bootstrap if the above occurred.</p>
     </body>
 </html>
