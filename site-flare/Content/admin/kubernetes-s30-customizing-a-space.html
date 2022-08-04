@@ -48,13 +48,13 @@ xap-operator-55c7997cd5-rt6bt   1/1     Running   0          2m27s
 xap-xap-manager-0               1/1     Running   0          2m26s</tt><![CDATA[	
 				]]></code></pre><li><p>You can also see the result in Ops Manager:<br /><img src="../Resources/Static/images/kubernetes-s30-ops-manager-two-partitions.png" /><br /></p></li></ol>
             <h1>Deploy with High Availability</h1>
-            <p><i>High availabilty</i> deploys a backup partition that is in sync with the data in the primary partition. This reduces downtime and prevents data loss if the primary node holding data becomes unavailable. This example adds high availability to a Space called <code>demo</code>. </p>
+            <p><i>High availabilty</i> deploys a backup partition that is in sync with the data in the primary partition. This eliminates downtime if the primary partition goes down, by seamlessly serving the same data from the backup. This example adds high availability to a Space called <code>demo</code>. </p>
             <ol>
                 <li>
                     <p>Undeploy the Space<br /></p><pre><code class="language-bash">helm delete demo</code></pre>
                 </li>
                 <li>
-                    <p>Install helm charts<br /></p><pre><code class="language-bash">helm install xap ./xap/ --version=16.1.1 --set manager.resources.limits.memory=1000Mi</code></pre>
+                    <p>Install helm charts<br /></p><pre><code class="language-bash">helm install xap ./xap/ --version=16.1.1 --set manager.resources.limits.memory=700Mi</code></pre>
                 </li>
                 <li>
                     <p style="text-align: left;">Wait for all pods to be ready.</p>
