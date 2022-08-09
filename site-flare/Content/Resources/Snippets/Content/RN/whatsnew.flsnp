@@ -4,29 +4,43 @@
         <div MadCap:conditions="Version.16-2-only">
             <div>
                 <h1>Introducing SpaceDeck</h1>
-                <p>The new introductory version of the SpaceDeck User Interface is now available for Smart DIH users. This implementation of SpaceDeck includes the following features:</p>
+                <p>The new introductory version of the <i>SpaceDeck</i> User Interface is now available for Smart DIH users. </p>
+                <p style="font-weight: bold;color: #ff00ff;">&lt;&lt; Here I need something that says how great the new UI is, why it's better, without disparaging the old UIs. &gt;&gt;</p>
+                <p>The introductory version does not cover all functionality and is intended as an introduction to the new UI and a supplement to our existing <MadCap:xref href="../../../../admin/gs-ops-manager-overview.html"> Ops Manager</MadCap:xref>, <MadCap:xref href="../../../../admin/tools-desktop-ui.html">GigaSpaces Management Center</MadCap:xref> and <MadCap:xref href="../../../../admin/tools-web-ui.html">Web Management Console</MadCap:xref> UIs. </p>
+                <p>SpaceDeck will be extended in future releases and will eventually replace the older UIs. </p>
+                <p>This introductory implementation of SpaceDeck includes the following features:</p>
                 <ul>
                     <li>
-                        <p>Space management and monitoring</p>
+                        <p>Space management and monitoring <b style="color: #ff00ff;">&lt;&lt;working on more details for these three bullets&gt;&gt;</b></p>
                     </li>
                     <li>
                         <p>Data pipeline management and monitoring </p>
                     </li>
                     <li>
-                        <p>SQL queries</p>
+                        <p>Querying the data using SQL commands</p>
                     </li>
                 </ul>
                 <p>&#160;</p>
             </div>
             <div>
                 <div>
-                    <h1>Data Pipeline Enhancements</h1>
+                    <h1>Data Pipeline/Data Integration Enhancements</h1>
+                    <p>Out of the box integration logic and generic data pipelines dramatically shortens time-to-market for new digital services and minimizes service downtime.</p>
                     <ul>
                         <li>
                             <p> IBM Infosphere Data Replication (IIDR) is available as an out-of-the-box connector engine for data pipelines. </p>
                         </li>
                         <li>
                             <p>Data pipeline support is enhanced to include DB2 on IBM z/OS mainframe, Oracle, MS&#160;SQL Server, and MySQL.</p>
+                        </li>
+                        <li>
+                            <p>Generic declarative data loader can load any data based on configuration per data source.</p>
+                        </li>
+                        <li>
+                            <p>Ensure business continuity while changing the data schema (adding tables) and reloading data.</p>
+                        </li>
+                        <li>
+                            <p><span style="color: #ff00ff; font-weight: bold;">&gt;&gt;&gt; I can include Data Freshness here,</span> as Ari suggests, although <a href="https://docs.gigaspaces.com/latest/index.html#:~:text=no new features.-,Data Pipeline Improvement – Data Freshness,-Data freshness is">it was mentioned in release 16.1</a>&gt;&gt; --  &lt;&lt;it does have a <a href="https://docs.gigaspaces.com/latest/admin/data-freshness.html#top:~:text=measurement in GigaSpaces.-,The Heartbeat Table,-Central to the">nice diagram</a>&gt;&gt;</p>
                         </li>
                     </ul>
                     <p>&#160;</p>
@@ -37,7 +51,12 @@
                     <h1>Enhanced Support for Kubernetes </h1>
                     <ul>
                         <li>
-                            <p>Zoned Anti-Affinity ensures that the primary and backup partitions will not run in the same zone.</p>
+                            <p><i>Zoned Anti-Affinity</i> ensures that the primary and backup partitions will not run in the same zone.</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <p>In Kubernetes, <i>namespaces</i> provides a mechanism for isolating groups of resources within a single cluster. Names of resources need to be unique within a namespace, but not across namespaces. We now support deploying to a namespace, as opposed to deploying to the default namespace.</p>
                         </li>
                     </ul>
                     <p>&#160;</p>
@@ -52,7 +71,7 @@
                 <h1>Tiered Storage Enhancements</h1>
                 <ul>
                     <li>
-                        <p>Support for local transactions provides atomic operations using Tiered Storage.</p>
+                        <p>Multiple Tiered Storage local transactions can now be performed as a logical unit of work (LUW) that can be committed or rolled back as a single atomic action.</p>
                     </li>
                     <li>
                         <p>Multiple Criteria Support: Tiered Storage criteria now supports multiple AND/OR expressions.</p>
@@ -63,7 +82,7 @@
             <div>
                 <h1>JDBC Driver Support for Tableau </h1>
                 <ul>
-                    <li>Ability to use the Tableau-supplied JDBC driver to unlock features of Tableau.</li>
+                    <li>Ability to use the Tableau-supplied JDBC driver to provide full functionality for Tableau data visualizations.</li>
                 </ul>
                 <p>&#160;</p>
             </div>
