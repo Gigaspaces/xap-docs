@@ -97,7 +97,8 @@ xap-xap-pu-hs             ClusterIP      None             &lt;none&gt;        &l
                 <img src="../Resources/Static/images/kubernetes-landing-page-ss-1.png" />
             </p>
         </div>
-        <h1>Install a Space called "demo"</h1><pre><code class="language-bash">helm pull gigaspaces/xap-pu --version=<MadCap:variable name="Versions.product-version-short" /> --untar
+        <h1>Install a Space called "demo"</h1>
+        <p>In this example, we install a processing unit with one partition. Data can be stored in the partition.</p><pre><code class="language-bash">helm pull gigaspaces/xap-pu --version=<MadCap:variable name="Versions.product-version-short" /> --untar
 helm install demo ./xap-pu/ --set manager.name=xap,partitions=1</code></pre>
         <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command:</h2>
         <div class="tc-admon-note">
@@ -112,7 +113,8 @@ xap-xap-manager-0               1/1     Running   0          7m34s
 demo-xap-pu-0                   1/1     Running   0          15s
 				</tt><![CDATA[		
 				]]></code></pre>
-        <h1>Install a Microservice</h1><pre><code class="language-bash">helm install pu ./xap-pu/ --set manager.name=xap</code></pre>
+        <h1>Install a Microservice</h1>
+        <p>In this example, we install an additional processing unit with no partitions, only code. See <MadCap:xref href="kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</MadCap:xref> for details on how to run the microservice Docker image.</p><pre><code class="language-bash">helm install pu ./xap-pu/ --set manager.name=xap</code></pre>
         <h2>View the result in the CLI via the<code style="font-weight: bold;">kubectl get pods</code> command:</h2>
         <div class="tc-admon-note">
             <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
