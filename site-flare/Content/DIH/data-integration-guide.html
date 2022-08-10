@@ -10,10 +10,6 @@
 		-->
     </head>
     <body>
-        <div id="page-toc" MadCap:conditions="Default.DoNotShow">
-            <p class="boxHeading">On this page</p>
-            <!-- page table of contents generated here -->
-        </div>
         <h1 class="tc-pagetitle">Installation Procedure for DIH Data Integration Component</h1>
         <p>This document describes basic operational procedures for the DI (Data Integration) v2.0 layer. </p>
         <h1>What is the DIH Data Integration Component?</h1>
@@ -40,74 +36,71 @@
             <br />
         </p>
         <h1>DI components installation procedure</h1>
-        <h2>IIDR installation</h2>
-        <p>&#160;</p>
+        <h2 MadCap:conditions="Default.DoNotShow">IIDR installation</h2>
         <h2>Flink installation</h2>
-        <p>In order to install standalone Flink please do the following:</p>
-        <p>Flink should be installed on the same server with Kafka.</p>
-        <p>Download <code>flink</code>  version 1.15.0 from <a href="https://giga-di.s3.eu-west-1.amazonaws.com/Flink/flink-1.15.0-bin-scala_2.12.tgz">here</a>.</p>
-        <p>As <code>gsods </code>OS user, copy the downloaded <code>tar.gz</code> file to the following directory: <code>/home/gsods/di-flink</code></p>
+        <p>In order to install standalone Flink please do the following.</p>
+        <p>1. Flink should be installed on the same server with Kafka. Download <code>flink</code>  version 1.15.0 from <a href="https://giga-di.s3.eu-west-1.amazonaws.com/Flink/flink-1.15.0-bin-scala_2.12.tgz">here</a>.</p>
+        <p>2. As <code>gsods </code>OS user, copy the downloaded <code>tar.gz</code> file to the following directory: <code>/home/gsods/di-flink</code></p>
         <div class="tc-admon-note">
             <p>If DI software should be installed under the different file system or directory , then create a symbolic link from <code>/home/gsods/di-flink</code> to the new installation directory <code>&lt;alternative directory&gt;/di-flink</code></p>
         </div>
-        <p>Unzip and open the downloaded flink archive file:</p><pre><code class="language-bash">tar -xzf flink-1.15.0-bin-scala_2.12.tgz</code></pre>
-        <p>Create a symbolic link latest-flink to the new flink directory:</p><pre><code class="language-bash">ln -s flink-1.15.0 latest-flink</code></pre>
-        <p>Start Flink as <code>gsods </code>OS user:</p><pre xml:space="preserve"><code class="language-bash">cd  /home/gsods/di-flink/latest-flink/bin<br />./start-cluster.sh</code>
+        <p>3. Unzip and open the downloaded flink archive file:</p><pre><code class="language-bash">tar -xzf flink-1.15.0-bin-scala_2.12.tgz</code></pre>
+        <p>4. Create a symbolic link latest-flink to the new flink directory:</p><pre><code class="language-bash">ln -s flink-1.15.0 latest-flink</code></pre>
+        <p>5. Start Flink as <code>gsods </code>OS user:</p><pre xml:space="preserve"><code class="language-bash">cd  /home/gsods/di-flink/latest-flink/bin<br />./start-cluster.sh</code>
 </pre>
-        <p>Flink UI is started on the port 8081. Connect to Flink UI:</p><pre><code class="language-bash">http://&lt;flink server&gt;:8081</code></pre>
+        <p>6. Flink UI is started on the port 8081. Connect to Flink UI:</p><pre><code class="language-bash">http://&lt;flink server&gt;:8081</code></pre>
         <div class="tc-admon-note">
             <p>This is a basic Apache Flink installation. More advanced instructions of a Flink configuration in a cluster mode and flink services configuration will be provided later.</p>
         </div>
         <h2>DI Metadata Manager Installation</h2>
-        <p>In order to install DI MDM first time do the following:</p>
-        <p>Download the latest DI MDM <code>tar.gz</code> file</p>
-        <p>Create a directory for DI MDM software as <code>gsods</code> OS user:</p><pre><code class="language-bash">mkdir /home/gsods/di-mdm</code></pre>
-        <p>Copy the downloaded tar.gz to the <code>/home/gsods/di-mdm</code>  directory.</p>
-        <p>Change to the  /home/gsods/di-mdm</p><pre><code class="language-bash">cd  /home/gsods/di-mdm</code></pre>
-        <p>Unzip and open the downloaded di-mdm archive file</p><pre><code class="language-bash">tar -xzf di-mdm-&lt;version&gt;.tar.gz</code></pre>
-        <p>Create a symbolic link <code>latest-di-mdm</code> to the newly created directory:</p><pre><code class="language-bash">ln -s di-mdm-&lt;version&gt; latest-di-mdm</code></pre>
-        <p>As root OS user, change to the config directory of the di-mdm</p><pre xml:space="preserve"><code class="language-bash">su - root<br />cd /home/gsods/di-mdm/latest-di-mdm/config</code>
+        <p>In order to install DI Metadata Manager first time do the following.</p>
+        <p>1. Download the latest DI Metadata Manager <code>tar.gz</code> file</p>
+        <p>2. Create a directory for DI Metadata Manager software as <code>gsods</code> OS user:</p><pre><code class="language-bash">mkdir /home/gsods/di-Metadata Manager</code></pre>
+        <p>3. Copy the downloaded tar.gz to the <code>/home/gsods/di-Metadata Manager</code>  directory.</p>
+        <p>4. Change to the  /home/gsods/di-Metadata Manager</p><pre><code class="language-bash">cd  /home/gsods/di-Metadata Manager</code></pre>
+        <p>5. Unzip and open the downloaded di-Metadata Manager archive file</p><pre><code class="language-bash">tar -xzf di-Metadata Manager-&lt;version&gt;.tar.gz</code></pre>
+        <p>6. Create a symbolic link <code>latest-di-Metadata Manager</code> to the newly created directory:</p><pre><code class="language-bash">ln -s di-Metadata Manager-&lt;version&gt; latest-di-Metadata Manager</code></pre>
+        <p>7. As root OS user, change to the config directory of the di-Metadata Manager</p><pre xml:space="preserve"><code class="language-bash">su - root<br />cd /home/gsods/di-Metadata Manager/latest-di-Metadata Manager/config</code>
 </pre>
-        <p>Copy di-mdm service file to the systemd services directory (as <code>root </code>OS user)</p><pre><code class="language-bash">cp di-mdm.service /etc/systemd/system</code></pre>
-        <p>Reload systemd configuration (as <code>root </code>OS user)</p><pre><code class="language-bash">systemctl daemon-reload</code></pre>
-        <p>Start di-mdm service (as <code>root </code>OS user)</p><pre><code class="language-bash">systemctl start di-mdm</code></pre>
-        <p>Monitor the log of the di-mdm (as <code>gsods </code>OS user)</p><pre><code class="language-bash">/home/gsods/di-mdm/latest-di-mdm/logs/di-mdm.log</code></pre>
-        <p>DI MDM service is started on a port 6081, check the DI MDM rest service</p><pre><code class="language-bash">http://&lt;di mdm&gt;:6081/swagger-ui</code></pre>
+        <p>8. Copy di-Metadata Manager service file to the systemd services directory (as <code>root </code>OS user)</p><pre><code class="language-bash">cp di-Metadata Manager.service /etc/systemd/system</code></pre>
+        <p>9. Reload systemd configuration (as <code>root </code>OS user)</p><pre><code class="language-bash">systemctl daemon-reload</code></pre>
+        <p>10. Start di-Metadata Manager service (as <code>root </code>OS user)</p><pre><code class="language-bash">systemctl start di-Metadata Manager</code></pre>
+        <p>11. Monitor the log of the di-Metadata Manager (as <code>gsods </code>OS user)</p><pre><code class="language-bash">/home/gsods/di-Metadata Manager/latest-di-Metadata Manager/logs/di-Metadata Manager.log</code></pre>
+        <p>12. DI Metadata Manager service is started on a port 6081, check the DI Metadata Manager rest service</p><pre><code class="language-bash">http://&lt;di Metadata Manager&gt;:6081/swagger-ui</code></pre>
         <h2>DI Manager installation</h2>
-        <p>In order to install DI Manager first time do the following:</p>
-        <p>Download the latest DI Manager <code>tar.gz</code> file</p>
-        <p>Create a directory for DI Manager software as <code>gsods </code>OS user</p><pre><code class="language-bash">mkdir /home/gsods/di-manager</code></pre>
-        <p>Copy the downloaded <code>tar.gz</code> to the <code>/home/gsods/di-manager</code>  directory</p>
-        <p>Change to the<code>  /home/gsods/di-manager</code> directory</p><pre><code class="language-bash">cd  /home/gsods/di-manager</code></pre>
-        <p>Unzip and open the downloaded <code>di-manager</code> archive file</p><pre><code class="language-bash">tar -xzf di-manager-&lt;version&gt;.tar.gz</code></pre>
-        <p>Create a symbolic link <code>latest-di-manager</code> to the newly created directory</p><pre><code class="language-bash">ln -s di-manager-&lt;version&gt; latest-di-manager</code></pre>
-        <p>Change the <code>di-manager</code> parameter to point to the correct <code>di-mdm</code> server (as <code> gsods</code> OS user)</p><pre><code class="language-bash">cd  /home/gsods/di-manager/latest-di-manager/config<br />vi di-manager-application.properties</code></pre>
-        <p>Change <code>mdm.server.url</code> to point to the <code>mdm</code> server</p>
+        <p>In order to install DI Manager first time do the following.</p>
+        <p>1. Download the latest DI Manager <code>tar.gz</code> file</p>
+        <p>2. Create a directory for DI Manager software as <code>gsods </code>OS user</p><pre><code class="language-bash">mkdir /home/gsods/di-manager</code></pre>
+        <p>3. Copy the downloaded <code>tar.gz</code> to the <code>/home/gsods/di-manager</code>  directory</p>
+        <p>4. Change to the<code>  /home/gsods/di-manager</code> directory</p><pre><code class="language-bash">cd  /home/gsods/di-manager</code></pre>
+        <p>5. Unzip and open the downloaded <code>di-manager</code> archive file</p><pre><code class="language-bash">tar -xzf di-manager-&lt;version&gt;.tar.gz</code></pre>
+        <p>6. Create a symbolic link <code>latest-di-manager</code> to the newly created directory</p><pre><code class="language-bash">ln -s di-manager-&lt;version&gt; latest-di-manager</code></pre>
+        <p>7. Change the <code>di-manager</code> parameter to point to the correct <code>di-Metadata Manager</code> server (as <code> gsods</code> OS user)</p><pre><code class="language-bash">cd  /home/gsods/di-manager/latest-di-manager/config<br />vi di-manager-application.properties</code></pre>
+        <p>8. Change <code>Metadata Manager.server.url</code> to point to the <code>Metadata Manager</code> server</p>
         <div class="tc-admon-note">
-            <p>Avoid using localhost but the actual hostname where mdm is running. Usually DI-MDM and DI-Manager will be running on the same host.</p>
+            <p>Avoid using localhost but the actual hostname where Metadata Manager is running. Usually DI-Metadata Manager and DI-Manager will be running on the same host.</p>
         </div>
-        <p>As <code>root </code>OS user change to the <code>config</code>directory of the <code>di-manager</code></p>
-        <p>&#160;</p><pre><code class="language-bash">su - root<br />cd /home/gsods/di-manager/latest-di-manager/config</code></pre>
-        <p>Copy the <code>di-manager</code> service file to the <code>systemd </code>services directory (as <code>root </code>OS user)</p><pre><code class="language-bash">cp di-manager.service /etc/systemd/system</code></pre>
-        <p>Reload <code>systemd</code> configuration (as <code>root</code> OS user)</p><pre><code class="language-bash">systemctl daemon-reload</code></pre>
-        <p>Start the <code>di-manager</code> service (as <code>root</code> OS user)</p><pre><code class="language-bash">systemctl start di-manager</code></pre>
-        <p>Monitor the log of the <code>di-manager</code> (as <code>gsods</code> OS user)</p><pre><code class="language-bash">/home/gsods/di-manager/latest-di-manager/logs/di-manager.log</code></pre>
-        <p>DI Manager service is started on port 6080, check the DI Manager rest service</p><pre><code class="language-bash">http://&lt;di manager host&gt;:6080/swagger-ui</code></pre>
+        <p>9. As <code>root </code>OS user change to the <code>config</code>directory of the <code>di-manager</code></p><pre><code class="language-bash">su - root<br />cd /home/gsods/di-manager/latest-di-manager/config</code></pre>
+        <p>10. Copy the <code>di-manager</code> service file to the <code>systemd </code>services directory (as <code>root </code>OS user)</p><pre><code class="language-bash">cp di-manager.service /etc/systemd/system</code></pre>
+        <p>11. Reload <code>systemd</code> configuration (as <code>root</code> OS user)</p><pre><code class="language-bash">systemctl daemon-reload</code></pre>
+        <p>12. Start the <code>di-manager</code> service (as <code>root</code> OS user)</p><pre><code class="language-bash">systemctl start di-manager</code></pre>
+        <p>13. Monitor the log of the <code>di-manager</code> (as <code>gsods</code> OS user)</p><pre><code class="language-bash">/home/gsods/di-manager/latest-di-manager/logs/di-manager.log</code></pre>
+        <p>14. DI Manager service is started on port 6080, check the DI Manager rest service</p><pre><code class="language-bash">http://&lt;di manager host&gt;:6080/swagger-ui</code></pre>
         <h2>DI packages - upgrade procedure</h2>
-        <p>In order to install new DI package please do the following:</p>
-        <p>Via <code>postman</code> stop active pipelines</p>
-        <p>As<code> gsods</code> OS user, download the new DI package (<code>di-mdm</code> or <code>di-manager</code>) to the<code> /home/gsods/&lt;DI component&gt;</code>:</p>
-        <p>For <code>di-mdm</code>, download the new <code>tar.gz</code> package to the <code>/home/gsods/di-mdm</code> directory</p>
-        <p>For the <code>di-manager</code>, download the new <code>tar.gz</code> package to the <code>/home/gsods/di-manager</code> directory</p>
-        <p>As <code>gsods</code> OS user, unzip / untar the newly downloaded package</p><pre><code class="language-bash">tar -xzf &lt;new tar file&gt;</code></pre>
-        <p>For <code> di-mdm</code> do the following manual steps as <code>gsods</code>OS user:</p><pre><code class="language-bash">cd /home/gsods/di-mdm/&lt;new package&gt;/lib<br />cp  /home/gsods/di-mdm/latest-di-mdm/lib/sqlitesample.db .</code></pre>
-        <p>For <code>di-manager</code> do the following manual step as <code>gsods</code> OS user:</p><pre><code class="language-bash">tar -xzf di-manager-&lt;version&gt;.tar.gz</code></pre><pre><code class="language-bash">cd /home/gsods/di-manager/&lt;new package&gt;/config<br />cp /home/gsods/di-manager/latest-di-manager/config/di-manager-application.properties .</code></pre>
+        <p>In order to install new DI package please do the following.</p>
+        <p>1. Via <code>postman</code> stop active pipelines</p>
+        <p>2. As<code> gsods</code> OS user, download the new DI package (<code>di-mdm</code> or <code>di-manager</code>) to the<code> /home/gsods/&lt;DI component&gt;</code></p>
+        <p>3. For <code>di-mdm</code>, download the new <code>tar.gz</code> package to the <code>/home/gsods/di-mdm</code> directory</p>
+        <p>4. For the <code>di-manager</code>, download the new <code>tar.gz</code> package to the <code>/home/gsods/di-manager</code> directory</p>
+        <p>5. As <code>gsods</code> OS user, unzip / untar the newly downloaded package</p><pre><code class="language-bash">tar -xzf &lt;new tar file&gt;</code></pre>
+        <p>6. For <code> di-mdm</code> do the following manual steps as <code>gsods</code>OS user:</p><pre><code class="language-bash">cd /home/gsods/di-mdm/&lt;new package&gt;/lib<br />cp  /home/gsods/di-mdm/latest-di-mdm/lib/sqlitesample.db .</code></pre>
+        <p>7. For <code>di-manager</code> do the following manual step as <code>gsods</code> OS user:</p><pre><code class="language-bash">tar -xzf di-manager-&lt;version&gt;.tar.gz</code></pre><pre><code class="language-bash">cd /home/gsods/di-manager/&lt;new package&gt;/config<br />cp /home/gsods/di-manager/latest-di-manager/config/di-manager-application.properties .</code></pre>
         <div class="tc-admon-note">
             <p>The two manual steps shown above will be automated in a future release.</p>
         </div>
-        <p>As <code>root</code> OS user do the following:</p>
-        <p>Go to the utils directory of the newly installed package</p><pre><code class="language-bash">cd /home/gsods/di-mdm/&lt;new package&gt;/utils</code></pre>
-        <p>Run the installation script</p><pre><code class="language-bash">./install_new_version.sh</code></pre>
+        <p>8. As <code>root</code> OS user do the following:</p>
+        <p>9. Go to the utils directory of the newly installed package</p><pre><code class="language-bash">cd /home/gsods/di-mdm/&lt;new package&gt;/utils</code></pre>
+        <p>10. Run the installation script</p><pre><code class="language-bash">./install_new_version.sh</code></pre>
         <div class="tc-admon-note">
             <p>The installation script does the following:</p>
             <ul>
@@ -122,20 +115,20 @@
                 </li>
             </ul>
         </div>
-        <p>As <code>gsods</code> OS user , upload the updated <code>di-processor</code> jar file to the flink</p>
-        <p>Remove the already uploaded <code>di-processor</code> jar file from the flink UI<br /></p>
+        <p>11. As <code>gsods</code> OS user , upload the updated <code>di-processor</code> jar file to the flink</p>
+        <p>12. Remove the already uploaded <code>di-processor</code> jar file from the flink UI<br /></p>
         <p>
             <img src="../Resources/Static/images/DIH-Installation-guide-apache-flink-dashboard.png" />
         </p>
-        <p>Verify in Postman that environment variable points to the latest mdm processor jar:</p>
+        <p>13. Verify in Postman that environment variable points to the latest Metadata Manager processor jar:</p>
         <p>
             <img src="../Resources/Static/images/DIH-Installation-guide-verify-in-postman.png" />
         </p>
-        <p>Via postman run Configure Flink API:</p>
+        <p>14. Via postman run Configure Flink API:</p>
         <p>
             <img src="../Resources/Static/images/DIH-Installation-guide-via-postman-run.png" />
         </p>
-        <p>Via postman start a pipeline:</p>
+        <p>15. Via postman start a pipeline:</p>
         <h1>Working with Postman</h1>
         <h2>Create environment variables</h2>
         <h2>Import collection of APIs</h2>
@@ -169,7 +162,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <p>DI-MDM       0.0.12.4</p>
+                        <p>DI-Metadata Manager       0.0.12.4</p>
                     </td>
                     <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-mdm-0.0.12.4.tar.gz">Download link</a>
                     </td>
@@ -228,7 +221,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <p>DI-MDM      0.0.9.1</p>
+                        <p>DI-Metadata Manager      0.0.9.1</p>
                     </td>
                     <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-mdm-0.0.9.1.tar.gz">Download link</a>
                     </td>
@@ -243,12 +236,12 @@
             </tbody>
         </table>
         <h2>New features</h2>
-        <p>PIC-776  Data dictionary fetch from SoR (DB2 ZOS) directly into MDM</p>
-        <p>PIC-713  Added ZK as a repository to the MDM</p>
+        <p>PIC-776  Data dictionary fetch from SoR (DB2 ZOS) directly into Metadata Manager</p>
+        <p>PIC-713  Added ZK as a repository to the Metadata Manager</p>
         <p>PIC-765  DI Manager unified REST API to create pipeline and tables mappings</p>
         <p>PIC-862  DI Manager start pipeline API - added option to start from a specific Kafka offset</p>
         <p>PIC-807 DI Manager - added pipeline control APIs</p>
-        <p>PIC7-12  DI Manager / DI MDM - added OpenAPIv3.0 (Swagger)</p>
+        <p>PIC7-12  DI Manager / DI Metadata Manager - added OpenAPIv3.0 (Swagger)</p>
         <p>PIC-872 DI Manager - create Kafka topic if does not exist</p>
         <p>PIC-709 DI Processor - implemented pluggable architecture concept to the message parsing structure</p>
         <p>PIC-845 DI Manager - automatic conversion from a sourceType to a spaceType</p>
@@ -373,7 +366,7 @@
                         <p>TCP:2181</p>
                     </td>
                     <td>
-                        <p>MDM</p>
+                        <p>Metadata Manager</p>
                     </td>
                     <td>
                         <p>&#160;</p>
@@ -391,7 +384,7 @@
                     </td>
                     <td>
    IIDR DB2ZOS Agent
-   MDM
+   Metadata Manager
    DI Manager
   </td>
                     <td>
@@ -437,7 +430,7 @@
                         <p>10</p>
                     </td>
                     <td>
-                        <p>MDM</p>
+                        <p>Metadata Manager</p>
                     </td>
                     <td>
                         <p>HTTP:6081</p>
@@ -448,7 +441,7 @@
    Flink Server (DI Processor)
   </td>
                     <td>
-                        <p>MDM and DI Manager are running on the same server</p>
+                        <p>Metadata Manager and DI Manager are running on the same server</p>
                     </td>
                 </tr>
             </tbody>
