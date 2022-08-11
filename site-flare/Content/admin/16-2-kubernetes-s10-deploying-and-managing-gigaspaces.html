@@ -114,7 +114,7 @@ demo-xap-pu-0                   1/1     Running   0          15s
 				</tt><![CDATA[		
 				]]></code></pre>
         <h1>Install a Microservice</h1>
-        <p>In this example, we install an additional processing unit with no partitions, only code. See <MadCap:xref href="kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</MadCap:xref> for details on how to run the microservice Docker image.</p><pre><code class="language-bash">helm install pu ./xap-pu/ --set manager.name=xap</code></pre>
+        <p>In this example, we install an additional processing unit with no partitions, only code. See <MadCap:xref href="16-2-kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</MadCap:xref> for details on how to run the microservice Docker image.</p><pre><code class="language-bash">helm install pu ./xap-pu/ --set manager.name=xap</code></pre>
         <h2>View the result in the CLI via the<code style="font-weight: bold;">kubectl get pods</code> command:</h2>
         <div class="tc-admon-note">
             <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
@@ -157,12 +157,12 @@ xap-xap-manager-0               1/1     Running   0          17m
         <ul>
             <li>
                 <p>
-                    <MadCap:xref href="kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</MadCap:xref>
+                    <MadCap:xref href="16-2-kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</MadCap:xref>
                 </p>
             </li>
             <li>
                 <p>
-                    <MadCap:xref href="kubernetes-s30-customizing-a-space.html">Customizing a Space</MadCap:xref>
+                    <MadCap:xref href="16-2-kubernetes-s30-customizing-a-space.html">Customizing a Space</MadCap:xref>
                 </p>
             </li>
         </ul>
