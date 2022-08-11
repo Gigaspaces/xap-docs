@@ -48,10 +48,22 @@
             <p>For ServiceGrid, each instance is bound to a specific machine for the entire duration of the deployment. Redeployment is only possible with the <b>same </b>schema, unless delete was called.</p>
         </div>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
-            <h1>How to Configure Tiered Storage in XML</h1>
+            <h1><a name="How"></a>How to Configure Tiered Storage in XML</h1>
+            <div class="tc-admon-note" MadCap:conditions="Version.16-2-born">
+                <p>Multiple criteria may be specified, separated by AND or OR.</p>
+            </div>
             <p>Tiered Storage is implemented by parameters coded in the XML file for the Space. The relevant sections of the XML file are shown below.</p>
             <h3>Sample XML Code</h3>
-            <p><a name="The"></a>The following XML specifies that for the table named <b>Order</b>, the <b>orderTime</b> field will be compared to the current time. For records where the orderTime field is within 24 hours of the current time, the record will be in Hot storage and Warm storage. After that time, it will be in Warm storage only.</p><pre><code class="language-xml">        
+            <p MadCap:conditions="Version.16-2-born"><a name="The"></a>The following XML specifies that for the table named <b>Order</b>, the <b>orderTime</b> field will be compared to the current time, and the <b>age</b> will be compared to the value 50. For records where the orderTime field is within 24 hours of the current time, and which have an age greater than 50, the record will be in Hot storage and Warm storage. If either of these conditions is not met, it will be in Warm storage only.</p>
+            <p MadCap:conditions="Version.16-2-died"><a name="The"></a>The following XML specifies that for the table named <b>Order</b>, the <b>orderTime</b> field will be compared to the current time. For records where the orderTime field is within 24 hours of the current time, the record will be in Hot storage and Warm storage. After that time, it will be in Warm storage only.</p><pre MadCap:conditions="Version.16-2-born"><code class="language-xml">        
+&lt;os-core:tiered-storage&gt;
+ &lt;os-core:tables&gt;
+ &lt;os-core:table name="com.mycompany.app.model.<b>Order</b>" time-column="<b>orderTime</b>"&gt;
+ &lt;os-core:cache-rule period="<b>PT24H</b>" AND age &gt; 50/&gt;
+ &lt;/os-core:table&gt;
+ &lt;/os-core:tables&gt;
+&lt;/os-core:tiered-storage&gt;
+</code></pre><pre MadCap:conditions="Version.16-2-died"><code class="language-xml">        
 &lt;os-core:tiered-storage&gt;
  &lt;os-core:tables&gt;
  &lt;os-core:table name="com.mycompany.app.model.<b>Order</b>" time-column="<b>orderTime</b>"&gt;
