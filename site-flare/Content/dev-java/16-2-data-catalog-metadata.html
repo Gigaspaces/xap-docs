@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Metadata From Data Catalog Schema</h1>
+        <p>Third-party tools accessing the GigaSpaces data grid can now automatically access the detailed metadata schema for the Spaces and Objects in the grid.</p>
+        <h1>Tables</h1>
+        <p>The <code>information_schema_catalog_name</code> table has the following information:</p>
+        <table style="width: 100%; margin-left: auto; margin-right: 0;">
+            <col style="width: 479px;" />
+            <col style="width: 363px;" />
+            <col style="width: 363px;" />
+            <col />
+            <thead>
+                <tr>
+                    <th>Column</th>
+                    <th>Format</th>
+                    <th>Contents</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>catalog_name</td>
+                    <td>varchar</td>
+                    <td>Space name</td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The <code>Tables</code> table has the following information:</p>
+        <table style="width: 100%; margin-left: auto; margin-right: 0;">
+            <col style="width: 479px;" />
+            <col style="width: 363px;" />
+            <col style="width: 363px;" />
+            <col />
+            <thead>
+                <tr>
+                    <th>Column</th>
+                    <th>Format</th>
+                    <th>Contents</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>table_catalog</td>
+                    <td>varchar</td>
+                    <td>Space name</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>table_schema </td>
+                    <td>varchar</td>
+                    <td>Package where the table is defined.<br />Value is "public" if the table was defined manually, through DDL commands</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>table_name</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>table_type </td>
+                    <td>varchar</td>
+                    <td>"TABLE" or "VIEW"</td>
+                    <td>"TABLE" in 16.2</td>
+                </tr>
+                <tr>
+                    <td>last_update</td>
+                    <td>&#160;</td>
+                    <td>Date that the table schema was last changed</td>
+                    <td>null in 16.2</td>
+                </tr>
+                <tr>
+                    <td>created</td>
+                    <td>&#160;</td>
+                    <td>Date that the table was created</td>
+                    <td>null in 16.2</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The <code>Columns</code> table has the following information:</p>
+        <table style="width: 100%; margin-left: auto; margin-right: 0;">
+            <col style="width: 479px;" />
+            <col style="width: 363px;" />
+            <col style="width: 363px;" />
+            <col />
+            <thead>
+                <tr>
+                    <th>Column</th>
+                    <th>Format</th>
+                    <th>Contents</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>table_catalog</td>
+                    <td>varchar</td>
+                    <td>Space name</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>table_schema </td>
+                    <td>varchar</td>
+                    <td>Package where the table is defined, or "public" if the table was defined manually, through DDL commands</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>table_name</td>
+                    <td>varchar</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>column_name</td>
+                    <td>varchar</td>
+                    <td>"TABLE" or "VIEW"</td>
+                    <td>"TABLE" in 16.2</td>
+                </tr>
+                <tr>
+                    <td>ordinal_position</td>
+                    <td>&#160;</td>
+                    <td>Column number</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>column_default</td>
+                    <td>&#160;</td>
+                    <td>Default value for column</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>is_nullable</td>
+                    <td>boolean</td>
+                    <td><code>true</code> or <code>false</code></td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>data_type</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
