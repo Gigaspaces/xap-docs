@@ -20,8 +20,8 @@
         <ol>
             <li>Manager for each geographical zone</li>
             <li>Space for each geographical zone</li>
-            <li>WAN gateway for each geographical zone, allowing remote lrmi</li>
-            <li>Create Gateway Load Balancer</li>
+            <li>Deploy Gateway Load Balancers</li>
+            <li>Deploy WAN gateway for each geographical zone, allowing remote lrmi</li>
         </ol>
         <p>The procedure described in this topic creates a WAN&#160;gateway environment for two clusters, one located geographically in Germany ("central"), and the other in the USA ("west"). You will need the <MadCap:variable name="General.ProductNameXAP" /> Helm charts, pu.xml files for the delegator, sink, and WAN gateway components.</p>
         <div class="tc-align-center">
@@ -94,6 +94,55 @@
                 <img src="../Resources/Images/sme pic.png" />
             </p>
         </div>
+        <h2>Deploying the Gateway Load Balancers</h2>
+        <p>This procedure uses the following two files:</p>
+        <h3>Gateway Central Load Balancer YAML File – <code>gateway-ce-loadbalancer.yaml</code>:</h3>
+        <div title="Helm 3" MadCap:conditions="Version.16-2-born">
+            <p><pre><code>
+apiVersion: v1
+kind: Service
+metadata:
+ name: <b>gateway-ce-loadbalancer</b>
+spec:
+ type: LoadBalancer
+ selector:
+ &#160;selectorId: <b>gateway-ce-xap-pu</b>
+ ports:
+ &#160; - protocol: TCP
+  &#160;&#160;port: 8200
+  &#160;&#160;targetPort: 8200
+  &#160;&#160;name: communication
+				</code></pre>
+            </p>
+        </div>
+        <h3>Gateway West Load Balancer YAML File – <code>gateway-we-loadbalancer.yaml</code>:</h3>
+        <div title="Helm 3" MadCap:conditions="Version.16-2-born">
+            <p><pre><code>
+apiVersion: v1
+kind: Service
+metadata:
+ name: <b>gateway-we-loadbalancer</b>
+spec:
+ type: LoadBalancer
+ selector:
+ &#160;selectorId: <b>gateway-we-xap-pu</b>
+ ports:
+ &#160; - protocol: TCP
+  &#160;&#160;port: 8200
+  &#160;&#160;targetPort: 8200
+  &#160;&#160;name: communication
+				</code></pre>
+            </p>
+        </div>
+        <p>Execute the following commands:</p>
+        <div title="Helm 3" MadCap:conditions="Version.16-2-born">
+            <p><pre><code> kubectl apply -f gateway-<b>ce-loadbalancer</b>.yaml -n <b>gigaspaces-central-ns</b></code></pre>
+            </p>
+        </div>
+        <div title="Helm 3" MadCap:conditions="Version.16-2-born">
+            <p><pre><code> kubectl apply -f gateway-<b>we-loadbalancer</b>.yaml -n <b>gigaspaces-west-ns</b></code></pre>
+            </p>
+        </div>
         <h2>Installing the <MadCap:variable name="General.ProductNameXAP" /> Space Service</h2>
         <h2>YAML Files</h2>
         <p>The following YAML files are referenced in the installation procedures given below.</p>
@@ -141,10 +190,10 @@ resourceUrl: "(URL to jar file for <b>West Space</b>, created using <a href="htt
         <div title="Helm 3" MadCap:conditions="Version.16-2-born">
             <p><pre><code>
 image:
- repository: “210661820370.dkr.ecr.eu-west-1.amazonaws.com/wangw/xap”
+ repository:  # Will be provided by R&amp;D
  tag: “WanGWMapper”
 java:
- options: “-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174 <br />-Dcom.gs.transport_protocol.lrmi.bind-port=8200 <br />-Dcom.gs.transport_protocol.lrmi.network-mapper=com.gs.WanGWMapper <br />-Dcom.gs.lus_lb=(IP of Manager Load Balancer for <b>West Manager</b>)  <br />-Dcom.gs.wangw_lb=(IP of Manager Load Balancer for <b>West Gateway</b>) <br />-Dcom.gs.remote_subnet_prefix=10.0.” #IP prefix for <b>West Gateway</b>
+ options: “-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174 <br />-Dcom.gs.transport_protocol.lrmi.bind-port=8200 <br />-Dcom.gs.transport_protocol.lrmi.network-mapper=com.gs.WanGWMapper <br />-Dcom.gs.lus_lb=(IP of Manager Load Balancer for <b>West Manager</b>)  <br />-Dcom.gs.wangw_lb=(IP of Manager Load Balancer for <b>West Gateway</b>) <br />-Dcom.gs.remote_subnet_prefix=10.0.” #IP prefix for <b>West pod subnet</b>
 manager:
  name: gigaspaces
 resourceUrl: “(URL to jar file for <b>Central Gateway</b>, created using <a href="https://github.com/Gigaspaces/solution-hub/tree/master/wan-gateway-kubernetes">Solution Hub directions</a>)””
@@ -161,13 +210,13 @@ metrics:
         <div title="Helm 3" MadCap:conditions="Version.16-2-born">
             <p><pre><code>
 image:
- repository: “210661820370.dkr.ecr.eu-west-1.amazonaws.com/wangw/xap”
+ repository: # Will be provided by R&amp;D
  tag: “WanGWMapper”
 java:
- options: “-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174 <br />-Dcom.gs.transport_protocol.lrmi.bind-port=8200 <br />-Dcom.gs.transport_protocol.lrmi.network-mapper=com.gs.WanGWMapper <br />-Dcom.gs.lus_lb=(IP of Manager Load Balancer for <b>Central Manager</b>)  <br />-Dcom.gs.wangw_lb=(IP of Manager Load Balancer for <b>Central Gateway</b>) <br />-Dcom.gs.remote_subnet_prefix=10.0.” #IP prefix for <b>Central Gateway</b>
+ options: “-Dcom.sun.jini.reggie.initialUnicastDiscoveryPort=4174 <br />-Dcom.gs.transport_protocol.lrmi.bind-port=8200 <br />-Dcom.gs.transport_protocol.lrmi.network-mapper=com.gs.WanGWMapper <br />-Dcom.gs.lus_lb=(IP of Manager Load Balancer for <b>Central Manager</b>)  <br />-Dcom.gs.wangw_lb=(IP of Manager Load Balancer for <b>Central Gateway</b>) <br />-Dcom.gs.remote_subnet_prefix=10.0.” #IP prefix for <b>Central pod subnet</b>
 manager:
  name: gigaspaces
-resourceUrl: "(URL to jar file for <b>West Gateway</b>, created using <a href="https://github.com/Gigaspaces/solution-hub/tree/master/wan-gateway-kubernetes">Solution Hub directions</a>)””
+resourceUrl: "(URL to jar file for <b>West Gateway</b>, created using <a href="https://github.com/Gigaspaces/solution-hub/tree/master/wan-gateway-kubernetes">Solution Hub directions</a>)”
 livenessProbe:
  enabled: false
 readinessProbe:
@@ -284,7 +333,7 @@ remote-gateway-name=<b>central</b></code></pre>
         <h2>Install the gateway</h2>
         <p>&#160;</p>
         <div title="Helm 3" MadCap:conditions="Version.16-2-born">
-            <p><pre><code>helm install gateway-gb gigaspaces/xap-pu gateway-ca --version=<MadCap:variable name="Versions.product-version-long" /> -f &lt;<b>Central Gateway yaml file</b>&gt;</code><code> --namespace gigaspaces-central-ns</code></pre>
+            <p><pre><code>helm install gateway-ce gigaspaces/xap-pu  --version=<MadCap:variable name="Versions.product-version-long" /> -f &lt;<b>Central Gateway yaml file</b>&gt;</code><code> --namespace gigaspaces-central-ns</code></pre>
             </p>
         </div>
         <p>
@@ -307,7 +356,7 @@ remote-gateway-name=<b>central</b></code></pre>
         </p>
         <p>&#160;</p>
         <div title="Helm 3" MadCap:conditions="Version.16-2-born">
-            <p><pre><code>helm install gateway-gb gigaspaces/xap-pu gateway-gb --version=<MadCap:variable name="Versions.product-version-long" /> -f &lt;<b>West Gateway yaml file</b>&gt;</code><code> --namespace gigaspaces-central-ns</code></pre>
+            <p><pre><code>helm install gateway-we gigaspaces/xap-pu  --version=<MadCap:variable name="Versions.product-version-long" /> -f &lt;<b>West Gateway yaml file</b>&gt;</code><code> --namespace gigaspaces-central-ns</code></pre>
             </p>
         </div>
         <p>
