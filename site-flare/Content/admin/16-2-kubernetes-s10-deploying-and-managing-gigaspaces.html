@@ -148,7 +148,21 @@ xap-xap-manager-0               1/1     Running   0          17m
             <li><a name="ha-means-zones"></a>
             </li>
             <li>
-                <p><b>antiAffinity.enabled=true/false</b> — spread the partitions across <MadCap:conditionalText MadCap:conditions="Version.16-2-died">nodes</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-2-born">zones</MadCap:conditionalText>. Default is <code>false</code>.</p>
+                <p><b>antiAffinity.enabled=true/false</b> — spread the partitions across <MadCap:conditionalText MadCap:conditions="Version.16-2-died">nodes</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-2-born">zones or nodes</MadCap:conditionalText>. Default is <code>false</code>.</p>
+            </li>
+            <li MadCap:conditions="Version.16-2-born">
+                <div class="tc-admon-note">
+                    <p>Anti affinity can operate in two ways: </p>
+                    <ul>
+                        <li>
+                            <p>Deploy primary and backup partitions on separate <b>Kubernetes zones</b> (default).</p>
+                        </li>
+                        <li>
+                            <p>Deploy these two partitions on separate <b>servers</b>, but not necessarily on different zones.<br />For this second option, you must also specify the following parameter when deploying the operator: <br /><code>--set antiAffinity.topology=kubernetes.io/hostname</code></p>
+                        </li>
+                    </ul>
+                    <p>&#160;</p>
+                </div>
             </li>
             <li>
                 <p><b>partitions=2</b> — scale out/in to change the number of partitions.</p>
