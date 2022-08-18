@@ -130,124 +130,308 @@
         </p>
         <p>15. Via postman start a pipeline:</p>
         <h1>Working with Postman</h1>
+        <p>The Postman standalone application can be found very useful in organizing  the various DI layer Rest APIs in a correct logical order.</p>
         <h2>Create environment variables</h2>
-        <h2>Import collection of APIs</h2>
-        <h1>Release notes 0.0.12.4</h1>
-        <table style="width: 100%;">
-            <col />
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>Release date</p>
-                    </td>
-                    <td>
-                        <p>31/07/2022</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Previous version</p>
-                    </td>
-                    <td>
-                        <p>0.0.9.1</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>DI-Manager  0.0.12.4</p>
-                    </td>
-                    <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-manager-0.0.12.4.tar.gz">Download link</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>DI-Metadata Manager       0.0.12.4</p>
-                    </td>
-                    <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-mdm-0.0.12.4.tar.gz">Download link</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Postman collection 0.0.12.</td>
-                    <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/DI-v2.0-postman-0.0.12.4.json">Download link</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>DI Processor jar (part of the DI Manager release)</p>
-                    </td>
-                    <td>
-                        <p>/home/gsods/di-manager/latest-di-manager/lib/job-0.0.3.jar</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <h2>New Features</h2>
-        <p>PIC-844 DI Processor Added basic performance metrics report to the InfluxDB</p>
-        <p>PIC-843 DI Processor performance enhancement to write via distributed task</p>
-        <h2>Bug fixes</h2>
-        <p>PIC-909 FlinkConfig has been stored incorrectly and prevented pipeline from starting</p>
-        <p>PIC-839 DI Processor NULL in a field value causes a parsing error</p>
-        <p>PIC-903 DI Processor generates unnecessary logging of processed records</p>
-        <p>PIC-881 DI Manager Fails to start several jobs in parallel for different pipelines because the same job name is used</p>
-        <p>PIC-858 DI Manager re-deploy DI Processor jar if start job fails with invalid jar id</p>
-        <h1>Release notes 0.0.9.1</h1>
-        <table style="width: 100%;">
-            <col />
-            <col />
-            <tbody>
-                <tr>
-                    <td>
-                        <p>Release date</p>
-                    </td>
-                    <td>
-                        <p>20/07/2022</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Previous version</p>
-                    </td>
-                    <td>
-                        <p>0.0.8.1</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>DI-Manager 0.0.9.1</p>
-                    </td>
-                    <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-manager-0.0.9.1.tar.gz">Download link</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>DI-Metadata Manager      0.0.9.1</p>
-                    </td>
-                    <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-mdm-0.0.9.1.tar.gz">Download link</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Postman collection</p>
-                    </td>
-                    <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/DI+v2.0+stage+-+0.0.9.1.postman_collection.json">Download link</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <h2>New features</h2>
-        <p>PIC-776  Data dictionary fetch from SoR (DB2 ZOS) directly into Metadata Manager</p>
-        <p>PIC-713  Added ZK as a repository to the Metadata Manager</p>
-        <p>PIC-765  DI Manager unified REST API to create pipeline and tables mappings</p>
-        <p>PIC-862  DI Manager start pipeline API - added option to start from a specific Kafka offset</p>
-        <p>PIC-807 DI Manager - added pipeline control APIs</p>
-        <p>PIC7-12  DI Manager / DI Metadata Manager - added OpenAPIv3.0 (Swagger)</p>
-        <p>PIC-872 DI Manager - create Kafka topic if does not exist</p>
-        <p>PIC-709 DI Processor - implemented pluggable architecture concept to the message parsing structure</p>
-        <p>PIC-845 DI Manager - automatic conversion from a sourceType to a spaceType</p>
-        <p>PIC-846 DI Manager - automatic conversion from a spaceType into tableExtraction type</p>
-        <h2>Bug fixes</h2>
-        <p>PIC-838 Start pipeline returns always error code 500</p>
+        <p>As a first step let's define environment with all required environment variables.</p>
+        <ol>
+            <li>
+                <p>Open Postman.</p>
+            </li>
+            <li>
+                <p>Go to the Environments  tab:<br /><img src="../Resources/Static/images/dih-di-installation-guide-environments-tab.png" /></p>
+            </li>
+            <li>
+                <p>Create a new variables environment:<br /><img src="../Resources/Static/images/dih-di-installation-guide-new-environment.png" /></p>
+            </li>
+            <li>
+                <p>Provide a name for this new environment , for example “Development”:<br /><img src="../Resources/Static/images/dih-di-installation-guide-new-environment-provide-name.png" /><br /></p>
+            </li>
+            <li>
+                Define the environment variables listed in the table below.<br /></li>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>Variable name</p>
+                        </td>
+                        <td>
+                            <p>Example</p>
+                        </td>
+                        <td>
+                            <p>Description&#160;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>managerUrl</p>
+                        </td>
+                        <td>
+                            <p>http://di-stage-s1:6080</p>
+                        </td>
+                        <td>
+                            <p>The http URL endpoint of the DI Manager including the port</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>mdmUrl</p>
+                        </td>
+                        <td>
+                            <p>http://di-stage-s1:6081</p>
+                        </td>
+                        <td>
+                            <p>The http URL endpoint of the MDM including the port</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>flinkUrl</p>
+                        </td>
+                        <td>
+                            <p>http://di-stage-kafka1:8081</p>
+                        </td>
+                        <td>
+                            <p>The http URL endpoint of the Flink including port</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>bootstrapServers</p>
+                        </td>
+                        <td>
+                            <p>di-stage-kafka1:9092,</p>
+                            <p>di-stage-kafka2:9092,</p>
+                            <p>di-stage-kafka3:9092</p>
+                        </td>
+                        <td>
+                            <p>Kafka bootstrap servers including ports. Multiple Kafka servers can be included in a comma separated format&#160;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>spaceLookupLocators</p>
+                        </td>
+                        <td>
+                            <p>di-stage-gs1</p>
+                        </td>
+                        <td>
+                            <p>Space server</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>spaceLookupGroups</p>
+                        </td>
+                        <td>
+                            <p>xap-16.2.0</p>
+                        </td>
+                        <td>&#160;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>spaceName</p>
+                        </td>
+                        <td>
+                            <p>DEV</p>
+                        </td>
+                        <td>
+                            <p>Space name</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>kafkaGroupId</p>
+                        </td>
+                        <td>
+                            <p>diprocessor</p>
+                        </td>
+                        <td>
+                            <p>Kafka DI Consumer group name</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>kafkaTopic_CDC</p>
+                        </td>
+                        <td>
+                            <p>pipeline_cdc</p>
+                        </td>
+                        <td>
+                            <p>The name of the Kafka topic for CDC changes</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>kafkaTopic_IL</p>
+                        </td>
+                        <td>
+                            <p>pipeline_il</p>
+                        </td>
+                        <td>
+                            <p>The name of the Kafka topic for initial load changes</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>diProcessorJar</p>
+                        </td>
+                        <td>
+                            <p>/home/gsods/di-manager/latest-di-manager/lib/job-0.0.7.jar</p>
+                        </td>
+                        <td>
+                            <p>The full path of the DI Processor jar</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>pipelineId</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>The ID of the pipeline. This is generated upon pipeline creation and can be retrieved later on via list pipelines REST API</p>
+                            <p>GET {{managerUrl}}/api/v1/pipeline/</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>dbUrl</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>JDBC URL to connect to the source database Db2 zos example:</p>
+                            <p>jdbc:db2://&lt;IP&gt;:&lt;db port&gt;/&lt;DB location&gt;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>dbUsername</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>DI database user name to connect to the source database&#160;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>dbName</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>The name of the source database inside DI internal repository&#160; (this can be any name that logically represents the System of Records)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>dbSchemaName</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>The source database schema that owns tables that DI captures changes from&#160;</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <li>
+                Save the newly created environment variables.<br /><img src="../Resources/Static/images/dih-di-installation-guide-save-environmental-variables.png" /><br /></li>
+        </ol>
+        <h2>Import Collection of APIs</h2>
+        <p>Postman API collection is a group of APIs organized in a logical order that represents certain product functionality , such as create pipeline, define generic environment, or administer pipeline.</p>
+        <p>DI Postman collection is released with every DI release and can be imported into the local postman environment.</p>
+        <p>In order to import released DI collection, proceed as follows.:</p>
+        <ol>
+            <li>
+                <p>Open Postman</p>
+            </li>
+            <li>
+                <p>Go to the Collections tab and click Import:<br /><img src="../Resources/Static/images/dih-di-installation-guide-collections-import.png" /></p>
+            </li>
+            <li>
+                <p>In a file tab click on “Upload files” and choose the newly downloaded DI Postman collection file to import from:</p>
+                <p>
+                    <img src="../Resources/Static/images/dih-di-installation-guide-collections-upload.png" />
+                </p>
+            </li>
+            <li>
+                <p>
+                    At the end of the import you should see a new collection present under the “Collections” tab.<br /></p>
+                <p>
+                    <img src="../Resources/Static/images/dih-di-installation-guide-new-collection.png" style="width: 696px;height: 377px;" />
+                </p>
+            </li>
+        </ol>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Release notes 0.0.12.4</h1>
+            <h2>New Features</h2>
+            <p>PIC-844 DI Processor Added basic performance metrics report to the InfluxDB</p>
+            <p>PIC-843 DI Processor performance enhancement to write via distributed task</p>
+        </div>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h2>Bug fixes</h2>
+            <p>PIC-909 FlinkConfig has been stored incorrectly and prevented pipeline from starting</p>
+            <p>PIC-839 DI Processor NULL in a field value causes a parsing error</p>
+            <p>PIC-903 DI Processor generates unnecessary logging of processed records</p>
+            <p>PIC-881 DI Manager Fails to start several jobs in parallel for different pipelines because the same job name is used</p>
+            <p>PIC-858 DI Manager re-deploy DI Processor jar if start job fails with invalid jar id</p>
+        </div>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Release notes 0.0.9.1</h1>
+            <table style="width: 100%;">
+                <col />
+                <col />
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>Release date</p>
+                        </td>
+                        <td>
+                            <p>20/07/2022</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Previous version</p>
+                        </td>
+                        <td>
+                            <p>0.0.8.1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>DI-Manager 0.0.9.1</p>
+                        </td>
+                        <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-manager-0.0.9.1.tar.gz">Download link</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>DI-Metadata Manager      0.0.9.1</p>
+                        </td>
+                        <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-mdm-0.0.9.1.tar.gz">Download link</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Postman collection</p>
+                        </td>
+                        <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/DI+v2.0+stage+-+0.0.9.1.postman_collection.json">Download link</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>New features</h2>
+            <p>PIC-776  Data dictionary fetch from SoR (DB2 ZOS) directly into Metadata Manager</p>
+            <p>PIC-713  Added ZK as a repository to the Metadata Manager</p>
+            <p>PIC-765  DI Manager unified REST API to create pipeline and tables mappings</p>
+            <p>PIC-862  DI Manager start pipeline API - added option to start from a specific Kafka offset</p>
+            <p>PIC-807 DI Manager - added pipeline control APIs</p>
+            <p>PIC7-12  DI Manager / DI Metadata Manager - added OpenAPIv3.0 (Swagger)</p>
+            <p>PIC-872 DI Manager - create Kafka topic if does not exist</p>
+            <p>PIC-709 DI Processor - implemented pluggable architecture concept to the message parsing structure</p>
+            <p>PIC-845 DI Manager - automatic conversion from a sourceType to a spaceType</p>
+            <p>PIC-846 DI Manager - automatic conversion from a spaceType into tableExtraction type</p>
+            <h2>Bug fixes</h2>
+            <p>PIC-838 Start pipeline returns always error code 500</p>
+        </div>
         <h1>APPENDIX 1 - DI v2.0 Layer - Ports</h1>
         <table>
             <tbody>
