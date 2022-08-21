@@ -2,6 +2,13 @@
 /* https://css-tricks.com/automatic-table-of-contents */
 
  $(document).ready(function() {
+	 
+	 
+	 console.log("Hello world!");
+	 
+	 
+	 
+	 
    /* check if h2 or h3 exists on page. Only count visible headings */
    if ($("h2:visible,h3:visible").length > 0) {
          
