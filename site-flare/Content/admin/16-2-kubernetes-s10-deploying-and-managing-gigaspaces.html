@@ -3,14 +3,9 @@
     <head>
     </head>
     <body>
-		
-		
-		<!-- -->
-		<script type="text/javascript" src="../Resources/Custom/page-toc.js">
-		</script>
-		
-		
-		
+        <!-- -->
+        <script type="text/javascript" src="../Resources/Custom/page-toc.js">
+        </script>
         <h1 class="tc-pagetitle">Deploying and Managing GigaSpaces in Kubernetes</h1>
         <p>This topic describes how to deploy GigaSpaces products in a Kubernetes environment. The integration is packaged as a <a href="https://docs.helm.sh/developing_charts/#charts">Helm chart</a>. You can deploy the full GigaSpaces platform, using the Helm chart available in the GigaSpaces Helm repository.</p>
         <div class="tc-admon-note">
@@ -48,7 +43,7 @@
             <p>Update the GigaSpaces repo locally:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
 helm repo update</code></pre>
             <p>Unpack the GigaSpaces charts:</p><pre><code class="language-bash">helm pull gigaspaces/xap --version=<MadCap:variable name="Versions.product-version-short" /> --untar</code></pre>
-            <p>Deploy the GigaSpaces Manager and Operator pods:</p><pre><code class="language-bash">helm install xap ./xap/ --version=<MadCap:variable name="Versions.product-version-short" /> </code><MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><code class="language-bash">--set manager.resources.limits.memory=700Mi</code></MadCap:conditionalText></pre>
+            <p>Deploy the GigaSpaces Manager and Operator pods:</p><pre><code class="language-bash">helm install xap ./xap </code><MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><code class="language-bash">--set manager.resources.limits.memory=700Mi</code></MadCap:conditionalText></pre>
             <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command.</h2>
             <div class="tc-admon-note">
                 <p><b>Monitoring the Cluster in Kubernetes</b>
@@ -116,8 +111,8 @@ helm install demo ./xap-pu/ --set manager.name=xap,partitions=1</code></pre>
         <div class="tc-admon-note">
             <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
         </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
-]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b>
-demo-xap-pu-0                   0/1     Running   0          10s
+]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b><![CDATA[
+]]>
 xap-grafana-5574c8bcd5-v2xsr    1/1     Running   0          7m34s
 xap-influxdb-0                  1/1     Running   0          7m34s
 xap-operator-57d9d445ff-slsrr   1/1     Running   0          7m34s
@@ -176,7 +171,7 @@ xap-xap-manager-0               1/1     Running   0          17m
                 </div>
             </li>
             <li>
-                <p>For the <code>xap-umbrella</code> chart:</p>
+                <p>For the <code>xap</code> umbrella chart:</p>
             </li>
             <li>
                 <p><b>metrics.enabled=true/false</b> — enable or disable Grafana metrics. Default is <code>true</code>.</p>
