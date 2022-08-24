@@ -3,61 +3,72 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">ODBC Connection to Tableau and PowerBI Using Data Gateway</h1>
-        <h1>ODBC Connection to Tableau Using Data Gateway</h1>
+        <!--   -->
+        <h1 class="tc-pagetitle">ODBC<MadCap:conditionalText MadCap:conditions="Version.16-2-born">/JDBC</MadCap:conditionalText> Connection to Tableau and PowerBI Using Data Gateway</h1>
+        <p>The GigaSpaces data grid can be connected to Tableau via an ODBC<MadCap:conditionalText MadCap:conditions="Version.16-2-born"> or a JDBC</MadCap:conditionalText> connection.</p>
+        <div id="page-toc">
+            <p class="boxHeading">On this page:</p>
+            <!-- page table of contents generated here -->
+        </div>
         <div>
-            <p>In order to create an ODBC connect to Tableau, proceed as follows.</p>
-            <ul>
-                <li>
-                    <p>Install ODBC Driver for PostgreSQL (tested on v10.03) to be used by Tableau.</p>
-                </li>
-                <li>
-                    <p>Open Tableau (tested on v2020.4).</p>
-                </li>
-                <li>
-                    <p>In the left panel where the title is "To a Server", choose "More..." and select "Other Databases (ODBC)".</p>
-                </li>
-                <li>
-                    <p>In the dialog, choose "Driver" and then choose “PostgreSQL Unicode(x64)”.</p>
-                </li>
-                <li>
-                    <p>Click <b>Connect</b>.</p>
-                </li>
-                <li>
-                    <p>The PostgreSQL Connection dialog box will appear as follows:</p>
-                    <p>
-                        <img src="../Resources/Static/images/odbc-connection-to-tableau-1-new.png" style="width: 963px;height: 533px;" />
-                    </p>
-                    <p>In the Connection dialog, type the following:</p>
-                    <ul>
-                        <li>
-                            <p>Database: &lt;space-name&gt; for example: mySpace</p>
-                        </li>
-                        <li>
-                            <p>Server: &lt;gateway-endpoint-address&gt; for example: localhost. In Kubernetes, it will be the load balancer endpoint.</p>
-                        </li>
-                        <li>
-                            <p>Port: &lt;data-gateway-bind-port&gt; default: 5432</p>
-                        </li>
-                        <li>
-                            <p>Choose SSL Mode: disable</p>
-                        </li>
-                        <li>
-                            <p>Click <b>OK</b></p>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <p>Click Sign In</p>
-                </li>
-                <li>
-                    <p>To see your schema then on the left panel where the title is "Table" look for the "search" icon and click on it (next to “Enter table name”), then click twice on the schema you wish to load from the Space.<br /></p>
-                    <p>
-                        <img src="../Resources/Static/images/odbc-connection-to-tableau-2.png" style="width: 534px;height: 272px;" />
-                    </p>
-                </li>
-            </ul>
-            <h1>ODBC Connection to PowerBI Using Data Gateway</h1>
+            <div MadCap:conditions="Version.16-2-born">
+                <h2>JDBC Connection to Tableau Using Data Gateway</h2>
+                <!--   -->
+                <!--   -->
+                <!--   -->
+                <p>In order to create an ODBC connect to Tableau, proceed as follows.</p>
+                <ul>
+                    <li>
+                        <p>Install ODBC Driver for PostgreSQL (tested on v10.03) to be used by Tableau.</p>
+                    </li>
+                    <li>
+                        <p>Open Tableau (tested on v2020.4).</p>
+                    </li>
+                    <li>
+                        <p>In the left panel where the title is "To a Server", choose "More..." and select "Other Databases (ODBC)".</p>
+                    </li>
+                    <li>
+                        <p>In the dialog, choose "Driver" and then choose “PostgreSQL Unicode(x64)”.</p>
+                    </li>
+                    <li>
+                        <p>Click <b>Connect</b>.</p>
+                    </li>
+                    <li>
+                        <p>The PostgreSQL Connection dialog box will appear as follows:</p>
+                        <p>
+                            <img src="../Resources/Static/images/odbc-connection-to-tableau-1-new.png" style="width: 963px;height: 533px;" />
+                        </p>
+                        <p>In the Connection dialog, type the following:</p>
+                        <ul>
+                            <li>
+                                <p>Database: &lt;space-name&gt; for example: mySpace</p>
+                            </li>
+                            <li>
+                                <p>Server: &lt;gateway-endpoint-address&gt; for example: localhost. In Kubernetes, it will be the load balancer endpoint.</p>
+                            </li>
+                            <li>
+                                <p>Port: &lt;data-gateway-bind-port&gt; default: 5432</p>
+                            </li>
+                            <li>
+                                <p>Choose SSL Mode: disable</p>
+                            </li>
+                            <li>
+                                <p>Click <b>OK</b></p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>Click Sign In</p>
+                    </li>
+                    <li>
+                        <p>To see your schema then on the left panel where the title is "Table" look for the "search" icon and click on it (next to “Enter table name”), then click twice on the schema you wish to load from the Space.<br /></p>
+                        <p>
+                            <img src="../Resources/Static/images/odbc-connection-to-tableau-2.png" style="width: 534px;height: 272px;" />
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <h2>ODBC Connection to PowerBI Using Data Gateway</h2>
             <p>In order to create an ODBC connect to PowerBI, proceed as follows.</p>
             <ul>
                 <li>
