@@ -19,13 +19,12 @@
         <h1>Object Type SQL Editor</h1>
         <p>If we open the <b>SQL Editor</b> tab, a SQL SELECT statement is displayed that selects the selected Object Type, in this case the Person Object.<br /><img src="../Resources/Static/attachment_files/OPM Drilldown 4 SQL statement.png" /></p>
         <p>Press <b>Run Query</b>. The results will appear in the Query Results table on the bottom of the page.</p>
-        <div class="tc-admon-note">
-            <p>The user can edit the query, for example:</p><code class="language-sql"><code class="language-sql">SELECT uid,* FROM com.mycompany.app.model.Person WHERE rowNum &lt;= 10 AND lastname = 'Smith'</code></code>
-            <p MadCap:conditions="Default.DoNotShow">
-                <br />
-                <img src="../Resources/Static/attachment_files/OPM Object Type -- 2 adv sql.png" />
-                <br />
-            </p>
+        <div class="tc-admon-note" MadCap:conditions="Version.16-2-born">
+            <p>The user can edit the SQL query, for example:</p><code class="language-sql"><code class="language-sql">SELECT uid,* FROM com.mycompany.app.model.Person WHERE rowNum &lt;= 10 AND lastname = 'Smith'</code></code>
+            <br />
+            <br />For a Document object with nested properties, you can code:<p MadCap:conditions="Version.16-2-born"><code class="language-sql">SELECT Address:city_name as city_name FROM com.mycompany.app.model.Person </code><br />where the field <code>city_name</code> is a property of the Address object.</p></div>
+        <div class="tc-admon-note" MadCap:conditions="Version.16-2-died">
+            <p>The user can edit the SQL query, for example:</p><code class="language-sql"><code class="language-sql">SELECT uid,* FROM com.mycompany.app.model.Person WHERE rowNum &lt;= 10 AND lastname = 'Smith'</code></code>
         </div>
         <p>. </p>
     </body>

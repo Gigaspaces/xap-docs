@@ -10,6 +10,12 @@
         <p>The <MadCap:conditionalText MadCap:conditions="Version.15-2-born">GigaSpaces Ops Manager and the </MadCap:conditionalText>Web Management Console <MadCap:conditionalText MadCap:conditions="Version.15-2-died">and GigaSpaces Management Center </MadCap:conditionalText> support SQL queries, enabling users to perform actions on the data objects in the Space.</p>
         <p>For example, to query a specific class:</p><pre><code>SELECT * FROM my.company.com.MyPojo WHERE rownum &lt; 1000
 </code></pre>
+        <div MadCap:conditions="Version.16-2-born">
+            <p>For a Document object with nested properties, you can code:</p><pre xml:space="preserve"><code>SELECT <b>Address:city_name as city_name</b>  FROM my.company.com.MyPojo WHERE rownum &lt; 1000
+</code>
+</pre>
+            <p MadCap:conditions="Version.16-2-born">where the field <code>city_name</code> is a property of the Address object.</p>
+        </div>
         <h1><span class="tc-bold">Query a Space</span>
         </h1>
         <div class="easyui-tabs" plain="true" data-options="">
