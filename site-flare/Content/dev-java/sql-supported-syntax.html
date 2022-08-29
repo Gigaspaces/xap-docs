@@ -9,6 +9,217 @@
             <p>&#160;</p>
             <div MadCap:conditions="NewSet.JustAColorForDivs">
                 <h1><a name="_Toc84959195"></a>SQL Statements and Operations</h1>
+                <div MadCap:conditions="Version.16-2-born">
+                    <h2>Transactions</h2>
+                    <p>BEGIN/START and END/COMMIT are available to define the beginning and end of a Logical Unit of Work as a transaction. ROLLBACK can also be used to undo a transaction.</p>
+                    <p>Example 1:</p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>BEGIN (or START); </p>
+                                </td>
+                                <td>
+                                    <p>Begin transaction</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  INSERT
+  …xxx…;</p>
+                                </td>
+                                <td>
+                                    <p>&#160;</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  INSERT
+  …yyy…;</p>
+                                </td>
+                                <td>
+                                    <p>&#160;</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  SELECT
+  …xxx…;  </p>
+                                </td>
+                                <td>
+                                    <p>OK</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  SELECT
+  …yyy…;  </p>
+                                </td>
+                                <td>
+                                    <p>OK</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>END (or COMMIT);</p>
+                                </td>
+                                <td>
+                                    <p>End transaction</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  SELECT
+  …xxx…;  </p>
+                                </td>
+                                <td>
+                                    <p>OK unless an error occurred anywhere in the
+ transaction</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  SELECT
+  …yyy…;  </p>
+                                </td>
+                                <td>
+                                    <p>OK unless an error occurred anywhere in the
+ transaction</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Example 2:</p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>BEGIN (or START); </p>
+                                </td>
+                                <td>
+                                    <p>Begin transaction</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  INSERT
+  …xxx…;</p>
+                                </td>
+                                <td>
+                                    <p>&#160;</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  SELECT
+  …xxx…;  </p>
+                                </td>
+                                <td>
+                                    <p>OK</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  ROLLBACK;   </p>
+                                </td>
+                                <td>
+                                    <p>&#160;</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  SELECT
+  …xxx…;  </p>
+                                </td>
+                                <td>
+                                    <p>Not found</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  INSERT
+  …yyy…;</p>
+                                </td>
+                                <td>
+                                    <p>&#160;</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  SELECT
+  …yyy…;  </p>
+                                </td>
+                                <td>
+                                    <p>OK</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  COMMIT;
+    </p>
+                                </td>
+                                <td>
+                                    <p>&#160;</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  SELECT
+  …yyy…;  </p>
+                                </td>
+                                <td>
+                                    <p>OK</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>END (or COMMIT);</p>
+                                </td>
+                                <td>
+                                    <p>&#160;</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  SELECT
+  …xxx…;  </p>
+                                </td>
+                                <td>
+                                    <p>Not found</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>  SELECT
+  …yyy…;  </p>
+                                </td>
+                                <td>
+                                    <p>OK unless an error occurred anywhere in the
+ transaction</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="p_1"><span class="span_5">Create Table</span><span class="span_6">: </span>
+                    </p>
+                    <p class="p_6"> CREATE TABLE table_name {( [</p>
+                    <p>{ column_name data_type [ column_constraint [ ... ] ]</p>
+                    <p>| table_constraint }</p>
+                    <p>[PRIMARY KEY (column)]</p>
+                    <p>[INDEX (column)]</p>
+                    <p>[PARTITION BY]</p>
+                    <p>[BROADCAST]</p>
+                    <p>] )</p>
+                    <p>|</p>
+                    <p>AS SELECT column [, column]*</p>
+                    <p>FROM table_name</p>
+                    <p>[WHERE booleanExpression]</p>
+                    <p>}</p>
+                    <p>&#160;</p>
+                    <p class="p_1"><span class="span_5">DropTable</span><span class="span_6">: </span>
+                    </p>
+                    <p class="p_6"> DROP TABLE [ IF EXISTS ] name</p>
+                </div>
                 <div MadCap:conditions="Version.16-1-1-born">
                     <h2><a name="Data2"></a>Data Definition Operations</h2>
                     <p class="p_1"><span class="span_5">Create Table</span><span class="span_6">: </span>
