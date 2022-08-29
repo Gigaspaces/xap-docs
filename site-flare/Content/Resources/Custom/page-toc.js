@@ -22,8 +22,8 @@
       /* set linkCount to zero */
       var linkCount = 0;
          
-      /* find all h2 and h3 on page. Only count visible headings */
-      $("h2:visible,h3:visible").each(function() {
+      /* find all h2 and h3 --- and h4 ---on page. Only count visible headings */
+      $("h2:visible,h3:visible,h4:visible").each(function() {
          
          /* get the heading */
          el = $(this);
@@ -40,14 +40,47 @@
          $(this).prepend('<a name="' + link + '"></a>');
 
          /* Build the line in the list, setting the li class as the tag name, and using the heading text */
-         newLine =
-            "<li class=" +
-            tag +
-            ">" +
-            "<a href='#" + link + "'>" +
-            title +
-            "</a>" +
-            "</li>";
+					
+					if (tag == 'H2')
+					{						
+					
+						newLine =
+							"<li class=" +
+							tag +
+							">" +
+							"<a href='#" + link + "'>" +
+							title +
+							"</a>" +
+							"</li>";
+					}
+					
+					if (tag == 'H3')
+					{						
+					
+						newLine =
+							"<ul  style='list-style-type:square;'   ><li class=" +
+							tag +
+							">" +
+							"<a href='#" + link + "'>" +
+							title +
+							"</a>" +
+							"</li></ul>";
+					}
+					
+					if (tag == 'H4')
+					{						
+					
+						newLine =
+							"<ul> <ul><li class=" +
+							tag +
+							">" +
+							"<a href='#" + link + "'>" +
+							title +
+							"</a>" +
+							"</li></ul></ul>";
+					}
+
+
          
          /* add the list item to the list */
          ToC += newLine;
