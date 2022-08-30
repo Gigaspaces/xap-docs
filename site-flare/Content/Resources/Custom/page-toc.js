@@ -7,7 +7,9 @@ $(document).ready(function() {
 		console.log("Hello world!..aaa.");
 	 
 	 
-	 
+/*
+		 style='list-style-type:square  !important;'
+		
 	 
 		/* check if h2 or h3 exists on page. Only count visible headings */
 		if ($("h2:visible,h3:visible").length > 0) {
@@ -15,7 +17,7 @@ $(document).ready(function() {
 			/* build the opening tags of the structure */
 			var ToC =
 				"<nav  style='list-style-type:none !important;'>" +
-				"<ul  style='list-style-type:none !important;' >";
+				"<ul  >";
 /*			var ToC =
 				"<nav role='navigation' class='table-of-contents'>" +
 				"<ul  style='list-style-type:none;' >";
@@ -69,7 +71,7 @@ $(document).ready(function() {
 					{						
 						console.log("h2 has " + title);
 						newLine =
-							"<ul style='list-style-type:square;'  ><li class=" +
+							"<ul   ><li class=" +
 							tag +
 							">" +
 							"<a href='#" + link + "'>" +
