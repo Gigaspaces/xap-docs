@@ -11,22 +11,23 @@
         <!--       <script type="text/javascript" src="../Resources/Custom/page-toc.js"></script>   -->
         <!-- -->
         <!-- -->
-        <h1 class="tc-pagetitle">Installation Procedure for GigaSpaces Smart DIH </h1>
+        <h1 class="tc-pagetitle">Installation Procedure for GigaSpaces Smart DIH</h1>
         <p>This document describes basic operational procedures for installing GigaSpaces Smart DIH, and within DIH, installing the Data Integration Module to enable data pipelines.</p>
         <div id="page-toc">
             <p class="boxHeading" style="font-weight: bold;">Contents:</p>
             <!-- page table of contents generated here -->
         </div>
-        <h2>What is Smart DIH?</h2>
+        <h1>What is Smart DIH?</h1>
         <p>Digital Integration Hub (DIH) is an application architecture that decouples digital applications from the systems of record, and aggregates operational data into a low-latency data fabric. A digital integration hub supports modernization initiatives by offloading from legacy architecture and providing a decoupled API layer that effectively supports modern on-line applications.</p>
         <p>For more information on the architecture of DIH, see <MadCap:xref href="../SmartDIH.html"> Smart DIH </MadCap:xref></p>
-        <h2>Architecture</h2>
+        <h1>Architecture</h1>
         <p>The example DIH architecture referenced in this topic consists of a Pivot server, used for common access to scripts and resouirces, and several DIH servers. The architecture is shown below.</p>
         <p>
             <img src="../Resources/Static/images/dih-main-installation-guide-architecture.png" />
         </p>
-        <h2>Installing DIH</h2>
-        <h3>Install the ODSX Installation Script</h3>
+        <h1>Installing DIH via ODSX – Basic System</h1>
+        <p>This example installs the basic DIH system, including Tiered Storage. For an example using ODSX for the Data Integration module, see <MadCap:xref href="#Installi" class="odsx-di-module">Installing DIH via ODSX – Data Integration Module</MadCap:xref> .</p>
+        <h2>Install the ODSX Installation Script</h2>
         <p>Smart DIH can be installed using an automated script called ODSX. In order to use ODSX, please note the following prerequisites:</p>
         <ol>
             <li>ODSX is supported on RHEL/Centos 7.7.</li>
@@ -38,27 +39,141 @@
             <li>Extract the tar file to <code>/dbagiga</code> and create soft links.<br />For example,<br /><![CDATA[  ]]><b>gs-odsx →</b> gs-odsx-3.46-sox-release<br /><b>gigaspaces-smart-ods →</b> gigaspaces-smart-dih-enterprise-16.2.0-m26-thu-30<br /></li>
             <li>Create a mount point in all the dih machines (except pivot) and configure auto mount<br />For example,<br /> /dbagigashare to: Pivot:/dbagigashare</li>
         </ol>
-        <h3>The ODSX Installation Script Menu</h3>
-        <p>The ODSX script presents a structured menu of options and operations, as shown below.</p>
-        <h4>Prerequisites: Server setup</h4>
+        <h2>Run the ODSX Installation Script</h2>
+        <h3>Prerequisites: Server setup</h3>
         <p>For this example, we will install using the following servers and IP addresses:</p>
-        <p>
-            <img src="../Resources/Static/images/dih-server-list.png" />
-        </p>
+        <table>
+            <col />
+            <col />
+            <col />
+            <col />
+            <tbody>
+                <tr>
+                    <td>Number</td>
+                    <td>
+                        <p>Instance Type</p>
+                    </td>
+                    <td>
+                        <p>  Instance Name</p>
+                    </td>
+                    <td>
+                        <p>  Private IP</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <p>  ODSX — PIVOT</p>
+                    </td>
+                    <td>
+                        <p>odsx_demo_pivot</p>
+                    </td>
+                    <td>
+                        <p>  10.0.0.165</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>
+                        <p>  Manager1</p>
+                    </td>
+                    <td>
+                        <p>odsx_demo_manager1</p>
+                    </td>
+                    <td>
+                        <p>  10.0.0.198</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>
+                        <p>Manager2</p>
+                    </td>
+                    <td>
+                        <p>odsx_demo_manager2</p>
+                    </td>
+                    <td>
+                        <p>  10.0.0.161</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>
+                        <p>Manager3 </p>
+                    </td>
+                    <td>
+                        <p>ocisx_demo_manager3</p>
+                    </td>
+                    <td>
+                        <p>  10.0.0.36</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>
+                        <p>Space1</p>
+                    </td>
+                    <td>
+                        <p>odsx_demo_space1</p>
+                    </td>
+                    <td>
+                        <p>10.0.0.247 </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>
+                        <p>Space2</p>
+                    </td>
+                    <td>
+                        <p>odsx_demo_space2</p>
+                    </td>
+                    <td>
+                        <p>  10.0.0.56</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>
+                        <p>Space3</p>
+                    </td>
+                    <td>
+                        <p>odsx_demo_space3</p>
+                    </td>
+                    <td>
+                        <p>10.0.0.72 </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>
+                        <p>Grafana/Influx</p>
+                    </td>
+                    <td>
+                        <p>  odsx_demo_influx_grafana </p>
+                    </td>
+                    <td>
+                        <p>10.0.0.82</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <p>Server 1 – Pivot server, containing shared files and the ODSX script</p>
         <p>Servers 2, 3, 4 – Managers</p>
         <p>Servers 5, 6, 7  – Space objects (stateful Processing Units)</p>
         <p>Server 8  – Grafana and InfluxDB, for metrics</p>
-        <p>Servers 9, 10  – "Northbound" management software (load balancer and security protocol)</p>
-        <p>Servers 11, 12, 13 – Data Integration pipelines, including Kafka and Zookeeper. <br /></p>
-        <div class="tc-admon-note">
+        <p MadCap:conditions="Default.DoNotShow">Servers 9, 10  – "Northbound" management software (load balancer and security protocol)</p>
+        <p MadCap:conditions="Default.DoNotShow">Servers 11, 12, 13 – Data Integration pipelines, including Kafka and Zookeeper. <br /></p>
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
             <p>In this example, Zookeeper and Kafka have already been installed on servers 11, 12 and 13.</p>
         </div>
-        <h4 style="color: #ff00ff;">Prerequisites: Other installed software</h4>
         <p>&#160;</p>
-        <h4>Navigate to the Pivot server and run the ODSX script</h4>
+        <h3>Navigate to the Pivot server, install and run the ODSX script</h3>
+        <p>To install the ODSX script, navigate to the <code>scripts</code> folder and run the script:</p><pre><code class="language-bash">cd gs-odsx/scripts<br />./setup.sh</code></pre>
+        <p>Then exit from the terminal and re-login to the Pivot (ODSX) machine.</p>
         <p>After connecting to the Pivot server, go to the<code> gs-odsx</code> directory and run the ODSX script:</p><pre><code class="language-bash">cd gs-odsx<br />./odsx.py</code></pre>
-        <h4>The ODSX Menu</h4>
+        <h3>The ODSX Menu</h3>
+        <p>The ODSX script presents a structured menu of options and operations, as shown below.</p>
         <p>
             <img src="../Resources/Static/images/dih-odsx-menu.png" />
         </p>
@@ -79,8 +194,8 @@
         <p MadCap:conditions="Default.DoNotShow">[14] Utilities </p>
         <p MadCap:conditions="Default.DoNotShow">[99] EXIT</p>
         <p>&#160;</p>
-        <h4><b>View Server Information </b>
-        </h4>
+        <h3><b>View Server Information </b>
+        </h3>
         <p>The <b>[2] Servers</b> option displays the Servers menu, which allows you to install and manage the servers in the system.</p>
         <p>
             <img src="../Resources/Static/images/dih-odsx-servers-menu.png" />
@@ -184,7 +299,7 @@
                 <img src="../Resources/Static/images/dih-odsx-servers-menu-manager-start-result.png" />
             </p>
         </div>
-        <div MadCap:conditions="NewSet.JustAColorForDivs">
+        <div MadCap:conditions="NewSet.JustAColorForDivs,Default.DoNotShow">
             <h4><b>Install Northbound Servers</b>
             </h4>
             <p>Choose options <code>[2] Servers</code> – <code>4] NorthBound</code> – <code>1] Install</code> to install the Northbound servers.</p>
@@ -554,6 +669,7 @@
                 </p>
             </li>
         </ol>
+        <h2><a name="Installi"></a>Installing DIH via ODSX – Data Integration Module</h2>
         <div MadCap:conditions="Default.DoNotShow">
             <h1>Release notes 0.0.12.4</h1>
             <h2>New Features</h2>
