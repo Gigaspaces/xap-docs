@@ -4,7 +4,7 @@
 $(document).ready(function() {
 	 
 	 
-		console.log("Hello world!..aaa.");
+	//	console.log("Hello world!..aaa.");
 	 
 	 
 /*
@@ -25,6 +25,8 @@ $(document).ready(function() {
       
 			/* set up variables used */
 			var newLine, el, title, link, tag;
+			var element_class;
+			var skip_title;
 			/* set linkCount to zero */
 			var linkCount = 0;
 			var H1Count = 0;
@@ -34,9 +36,15 @@ $(document).ready(function() {
          
 					/* get the heading */
 					el = $(this);
-					console.log("el is " + el);
+			//		console.log("el is " + el);
 					/* get the heading title */
 					title = el.text();
+					element_class = el.attr("class");
+					if ((element_class == "tc-pagetitle") || (element_class == "tc-pagetitle2"))
+						{skip_title = true}
+					else
+			        	{skip_title = false}
+					/*  console.log("class >>>>" + element_class + "<<<<<");  */
 					/* get the heading tag, this is capitalised, i.e. 'H2' or 'H3' or 'H1'*/
 					tag = el.prop("tagName");
       
@@ -52,9 +60,10 @@ $(document).ready(function() {
 					/* Build the line in the list, setting the li class as the tag name, and using the heading text */
 
 					
-					if ((tag == 'H1') && (H1Count != 1))
+					/*					if ((tag == 'H1') && (H1Count != 1))  */
+//					if ((tag == 'H1') && (element_class != "tc-pagetitle") && (element_class != "tc-pagetitle2"))
+					if ((tag == 'H1') && (!skip_title))
 					{						
-						console.log("h1 has " + title);
 
 						newLine =
 							"<li class=" +
@@ -69,7 +78,7 @@ $(document).ready(function() {
 					
 					if (tag == 'H2')
 					{						
-						console.log("h2 has " + title);
+					//	console.log("h2 has " + title);
 						newLine =
 							"<ul   ><li class=" +
 							tag +
@@ -83,7 +92,7 @@ $(document).ready(function() {
 					if (tag == 'H3')
 					{						
 					
-						console.log(title);
+					//	console.log(title);
 						newLine =
 							"<ul  style='list-style-type:square;'   ><ul><li class=" +
 							tag +
@@ -96,7 +105,7 @@ $(document).ready(function() {
 					
 					if (tag == 'H4')
 					{						
-						console.log("h4 has " + title);
+					//	console.log("h4 has " + title);
 					
 						newLine =
 							"<ul> <ul><ul><li class=" +
@@ -111,12 +120,12 @@ $(document).ready(function() {
 
          
 					/* add the list item to the list */
-					if ((tag == 'H1') && (H1Count == 1))
-					{}
-					else
+					/*			if ((tag == 'H1') && (H1Count == 1))  */
+//					if ((element_class != "tc-pagetitle") && (element_class != "tc-pagetitle2"))
+					if (!skip_title)
 					{ToC += newLine;}
 
-				});   
+					});   
          
 			/* Add closing tags to list */   
 			ToC +=
