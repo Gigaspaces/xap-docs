@@ -4,7 +4,7 @@
 $(document).ready(function() {
 	 
 	 
-	//	console.log("Hello world!..aaa.");
+		console.log("Hello world!..bbb.");
 	 
 	 
 /*
@@ -12,7 +12,14 @@ $(document).ready(function() {
 		
 	 
 		/* check if h2 or h3 exists on page. Only count visible headings */
-		if ($("h2:visible,h3:visible").length > 0) {
+		
+		console.log("11111");
+
+		
+		if ($("h1:visible,h2:visible,h3:visible,h4:visible").length > 0) {
+			
+			console.log("22222");
+
          
 			/* build the opening tags of the structure */
 			var ToC =
@@ -30,13 +37,19 @@ $(document).ready(function() {
 			/* set linkCount to zero */
 			var linkCount = 0;
 			var H1Count = 0;
+			
+			console.log("33333");
+
+			
          
 			/* find all h2 and h3 --- and h4 --- and h1 ---- on page. Only count visible headings */
 			$("h1:visible,h2:visible,h3:visible,h4:visible").each(function() {
          
+					console.log("44444");
 					/* get the heading */
 					el = $(this);
-			//		console.log("el is " + el);
+					console.log("el is " + el);
+					console.log("55555");
 					/* get the heading title */
 					title = el.text();
 					element_class = el.attr("class");
@@ -44,7 +57,7 @@ $(document).ready(function() {
 						{skip_title = true}
 					else
 			        	{skip_title = false}
-					/*  console.log("class >>>>" + element_class + "<<<<<");  */
+					 console.log("class >>>>" + element_class + "<<<<<"); 
 					/* get the heading tag, this is capitalised, i.e. 'H2' or 'H3' or 'H1'*/
 					tag = el.prop("tagName");
       
