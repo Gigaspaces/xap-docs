@@ -43,7 +43,7 @@
             <p>Update the GigaSpaces repo locally:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
 helm repo update</code></pre>
             <p>Unpack the GigaSpaces charts:</p><pre><code class="language-bash">helm pull gigaspaces/xap --version=<MadCap:variable name="Versions.product-version-short" /> --untar</code></pre>
-            <p>Deploy the GigaSpaces Manager and Operator pods:</p><pre><code class="language-bash">helm install xap ./xap </code><MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><code class="language-bash">--set manager.resources.limits.memory=700Mi</code></MadCap:conditionalText></pre>
+            <p>Deploy the GigaSpaces Manager and Operator pods:</p><pre MadCap:conditions="Default.DoNotShow"><code class="language-bash">helm install xap ./xap </code><MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><code class="language-bash">--set manager.resources.limits.memory=700Mi</code></MadCap:conditionalText></pre><pre><code class="language-bash">helm install xap ./xap --set operator.manager.name=xap</code></pre>
             <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command.</h2>
             <div class="tc-admon-note">
                 <p><b>Monitoring the Cluster in Kubernetes</b>
@@ -164,7 +164,7 @@ xap-xap-manager-0               1/1     Running   0          17m
                             <p>Deploy primary and backup partitions on separate <b>Kubernetes zones</b> (default).</p>
                         </li>
                         <li>
-                            <p>Deploy these two partitions on separate <b>servers</b>, but not necessarily on different zones.<br />For this second option, you must also specify the following parameter when deploying the operator: <br /><code>--set antiAffinity.topology=kubernetes.io/hostname</code></p>
+                            <p>Deploy these two partitions on separate <b>servers</b>, but not necessarily on different zones.<br />For this second option, you must also specify the following parameter when deploying the operator: <br /><code>--set antiAffinity.topology=kubernetes.io/<i>hostname</i></code></p>
                         </li>
                     </ul>
                     <p>&#160;</p>
