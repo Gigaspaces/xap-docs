@@ -4,7 +4,7 @@
 $(document).ready(function() {
 	 
 	 
-		console.log("Hello world!..bbb.");
+//		console.log("Hello world!..bbb.");
 	 
 	 
 /*
@@ -13,12 +13,19 @@ $(document).ready(function() {
 	 
 		/* check if h2 or h3 exists on page. Only count visible headings */
 		
-		console.log("11111");
+//		console.log("11111");
 
 		
-		if ($("h1:visible,h2:visible,h3:visible,h4:visible").length > 0) {
+//		if (f($("#" + name).length == 0)  {
+		if ($("#dfb_toc_here").length != 0) {
+//		var element_toc_marker = document.getElementById("dfb_toc");
+//
+//		if(typeof(element_toc_marker) != 'undefined' && element != null){
 			
-			console.log("22222");
+//			$("#dfb_toc_block_none").insertAfter("#dfb_toc_here");
+			$("#page_toc").insertAfter("#dfb_toc_here");
+			
+	//		console.log("22222");
 
          
 			/* build the opening tags of the structure */
@@ -38,18 +45,18 @@ $(document).ready(function() {
 			var linkCount = 0;
 			var H1Count = 0;
 			
-			console.log("33333");
+	//		console.log("33333");
 
 			
          
 			/* find all h2 and h3 --- and h4 --- and h1 ---- on page. Only count visible headings */
 			$("h1:visible,h2:visible,h3:visible,h4:visible").each(function() {
          
-					console.log("44444");
+			//		console.log("44444");
 					/* get the heading */
 					el = $(this);
-					console.log("el is " + el);
-					console.log("55555");
+			//		console.log("el is " + el);
+		//			console.log("55555");
 					/* get the heading title */
 					title = el.text();
 					element_class = el.attr("class");
@@ -57,7 +64,7 @@ $(document).ready(function() {
 						{skip_title = true}
 					else
 			        	{skip_title = false}
-					 console.log("class >>>>" + element_class + "<<<<<"); 
+			//		 console.log("class >>>>" + element_class + "<<<<<"); 
 					/* get the heading tag, this is capitalised, i.e. 'H2' or 'H3' or 'H1'*/
 					tag = el.prop("tagName");
       
@@ -144,8 +151,12 @@ $(document).ready(function() {
 			ToC +=
 				"</ul>" +
 				"</nav>";
+			
+			
+			
 			/* Insert list in topic, and make visible */
-			$("#page-toc").append(ToC).css("display", "block");
+//			$("#page-toc").append(ToC).css("display", "block");
+			$("#page_toc").append(ToC).css("display", "block");
          
 		}
    

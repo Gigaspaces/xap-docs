@@ -29,11 +29,9 @@
             </li>
         </ul>
         <p>Finally, we Run the ODSX script again, this time  to <b>display the status of the Data Integration servers</b>. </p>
-        <p>&#160;</p>
-        <div id="page-toc">
-            <h1 class="tc-pagetitle2">Contents</h1>
-            <!-- page table of contents generated here -->
-        </div>
+        <!--	<div id="page-toc" style="border: 1px solid blue; width:50%; margin: 15x; padding: 10px; display: none;">   -->
+        <!-- -->
+        <input id="dfb_toc_here" type="hidden"> </input>
         <h1>What is Smart DIH?</h1>
         <p>Digital Integration Hub (DIH) is an application architecture that decouples digital applications from the systems of record, and aggregates operational data into a low-latency data fabric. A digital integration hub supports modernization initiatives by offloading from legacy architecture and providing a decoupled API layer that effectively supports modern on-line applications.</p>
         <p>For more information on the architecture of DIH, see <MadCap:xref href="../SmartDIH.html"> Smart DIH </MadCap:xref></p>
@@ -186,7 +184,7 @@
         </div>
         <p>&#160;</p>
         <h3>Navigate to the Pivot server, install and run the ODSX script</h3>
-        <p>To install the ODSX script, navigate to the <code>scripts</code> folder and run the script:</p><pre><code class="language-bash">cd gs-odsx/scripts<br />./setup.sh</code></pre>
+        <p>To install the ODSX script, navigate to the <code>scripts</code> folder and run the setup script, logged in as <code>root</code>:</p><pre><code class="language-bash">cd gs-odsx/scripts<br />./setup.sh</code></pre>
         <p>Then exit from the terminal and re-login to the Pivot (ODSX) machine.</p>
         <p>After connecting to the Pivot server, go to the<code> gs-odsx</code> directory and run the ODSX script:</p><pre><code class="language-bash">cd gs-odsx<br />./odsx.py</code></pre>
         <h3>The ODSX Menu</h3>
@@ -680,7 +678,7 @@
             </li>
         </ol>
         <h1><a name="Installi"></a>Display the Status of the Data Integration Servers</h1>
-        <p>After connecting to the Pivot server, go to the<code> gs-odsx</code> directory and run the ODSX script:</p><pre><code class="language-bash">cd gs-odsx<br />./odsx.py</code></pre>
+        <p>After connecting to the Pivot server, go to the<code> gs-odsx</code> directory and run the ODSX script, logged in as <code>root</code>:</p><pre><code class="language-bash">cd gs-odsx<br />./odsx.py</code></pre>
         <h3>The ODSX Menu</h3>
         <p>The ODSX script presents a structured menu of options and operations, as shown below.</p>
         <p>
