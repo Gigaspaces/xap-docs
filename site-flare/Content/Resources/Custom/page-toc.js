@@ -156,7 +156,7 @@ $(document).ready(function() {
 			
 			/* Insert list in topic, and make visible */
 //			$("#page-toc").append(ToC).css("display", "block");
-			$("#page_toc").append(ToC).css("display", "block");
+			$("#page-toc-body").append(ToC).css("display", "block");
          
 		}
    
