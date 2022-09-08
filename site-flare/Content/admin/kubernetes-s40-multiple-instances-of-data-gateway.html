@@ -6,12 +6,18 @@
         <!-- -->
         <script type="text/javascript" src="../Resources/Custom/page-toc.js">
         </script>
-        <h1 class="tc-pagetitle">Deploying and Managing GigaSpaces in Kubernetes</h1>
-        <p>This topic describes how to deploy GigaSpaces products in a Kubernetes environment. The integration is packaged as a <a href="https://docs.helm.sh/developing_charts/#charts">Helm chart</a>. You can deploy the full GigaSpaces platform, using the Helm chart available in the GigaSpaces Helm repository.</p>
+        <h1 class="tc-pagetitle">Deploying and Managing Multiple Instances of Data Gateway in Kubernetes</h1>
+        <p>This topic describes how to create multiple Data Gateway instances in Kubernetes, for use in BI tools. This allows parallel processing of SQL queries.</p>
         <div class="tc-admon-note">
             <p>The topics in this section assume basic knowledge of the GigaSpaces platform. If you aren't familiar with GigaSpaces, review the contents of the general <a href="../started/index.html">Getting Started</a> section before performing the tasks described here.</p>
         </div>
-        <input id="dfb_toc_here" type="hidden"> </input>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>
+            <input id="dfb_toc_here" type="hidden"> </input>
+        </p>
+        <h1 style="color: #ff00ff;font-size: 96pt;">TBD</h1>
         <h1>Prerequisites</h1>
         <ul>
             <li>
@@ -118,7 +124,7 @@ demo-xap-pu-0                   1/1     Running   0          15s
 				</tt><![CDATA[		
 				]]></code></pre>
         <h1>Install a Microservice</h1>
-        <p>In this example, we install an additional processing unit with no partitions, only code. See <MadCap:xref href="16-2-kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</MadCap:xref> for details on how to run the microservice Docker image.</p><pre><code class="language-bash">helm install pu ./xap-pu/ --set manager.name=xap</code></pre>
+        <p>In this example, we install an additional processing unit with no partitions, only code. See <MadCap:xref href="kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</MadCap:xref> for details on how to run the microservice Docker image.</p><pre><code class="language-bash">helm install pu ./xap-pu/ --set manager.name=xap</code></pre>
         <h2>View the result in the CLI via the<code style="font-weight: bold;">kubectl get pods</code> command:</h2>
         <div class="tc-admon-note">
             <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
@@ -179,17 +185,17 @@ xap-xap-manager-0               1/1     Running   0          17m
         <ul>
             <li>
                 <p>
-                    <MadCap:xref href="16-2-kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</MadCap:xref>
+                    <MadCap:xref href="kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</MadCap:xref>
                 </p>
             </li>
             <li>
                 <p>
-                    <MadCap:xref href="16-2-kubernetes-s30-customizing-a-space.html">Customizing a Space</MadCap:xref>
+                    <MadCap:xref href="kubernetes-s30-customizing-a-space.html">Customizing a Space</MadCap:xref>
                 </p>
             </li>
             <li>
                 <p>
-                    <MadCap:xref href="16-2-kubernetes-wan-gateway.html" class="wan-gw">Multi-Region Replication Using WAN Gateway</MadCap:xref>
+                    <MadCap:xref href="kubernetes-wan-gateway.html" class="wan-gw">Multi-Region Replication Using WAN Gateway</MadCap:xref>
                 </p>
             </li>
         </ul>
