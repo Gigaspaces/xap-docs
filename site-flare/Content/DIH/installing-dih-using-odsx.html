@@ -34,7 +34,7 @@
         <input id="dfb_toc_here" type="hidden"> </input>
         <h1>What is Smart DIH?</h1>
         <p>Digital Integration Hub (DIH) is an application architecture that decouples digital applications from the systems of record, and aggregates operational data into a low-latency data fabric. A digital integration hub supports modernization initiatives by offloading from legacy architecture and providing a decoupled API layer that effectively supports modern on-line applications.</p>
-        <p>For more information on the architecture of DIH, see <MadCap:xref href="../SmartDIH.html"> Smart DIH </MadCap:xref></p>
+        <p>For more information on the architecture of DIH, see <MadCap:xref href="../SmartDIH.html"> Smart DIH</MadCap:xref> .</p>
         <h1>Architecture</h1>
         <p>The example DIH architecture referenced in this topic consists of a Pivot server, used for common access to scripts and resouirces, and several DIH servers. The architecture is shown below.</p>
         <p>
@@ -49,9 +49,8 @@
             <li>ODSX must run as root.</li>
             <li>ODSX should be able to connect to the other machines via ssh <b>passwordless</b> (using a ssh key) <b>as root</b>.</li>
             <li>The Pivot machine should have the following folders:
-			<ul><li><code style="font-weight: bold;">/dbagigashare</code> -  a local folder which contains the sources (installation and configuration files) and is shared (i.e. NFS) with the other dih machines.</li><li><code style="font-weight: bold;">/dbagiga </code>- a local folder (work directory that contains ODSX and DIH)</li></ul><li value="5">Download the latest version of ODSX and DIH sources (<span style="color: #ff00ff; font-weight: bold; background-color: #7fffd4;">TBD - where from?</span>)</li></li>
-            <li value="6">Download all the installation files from <span style="color: #ff00ff; background-color: #7fffd4; font-weight: bold;">TBD </span>to <code>/<b>dbagigashare</b></code> on the Pivot server - consider creating an archive file with all the <code style="font-weight: bold;">dbagigashare </code>structure and content.</li>
-            <li>Extract the tar file to <code>/dbagiga</code> and create soft links.<br />For example,<br /><![CDATA[  ]]><b>gs-odsx →</b> gs-odsx-3.46-sox-release<br /><b>gigaspaces-smart-ods →</b> gigaspaces-smart-dih-enterprise-16.2.0-m26-thu-30<br /></li>
+			<ul><li><code style="font-weight: bold;">/dbagigashare</code> -  a local folder which contains the sources (installation and configuration files) and is shared (i.e. NFS) with the other dih machines.</li><li><code style="font-weight: bold;">/dbagiga </code>- a local folder (work directory that contains ODSX and DIH)</li></ul><li value="5">Download the latest version of ODSX and DIH sources  to <code>/<b>dbagigashare</b></code> on the Pivot server.<br /></li><div class="tc-admon-note"><p>In order to download ODSX and DIH sources, please contact Customer Success.</p></div></li>
+            <li value="6">Extract the tar file to <code>/dbagiga</code> and create soft links.<br />For example,<br /><![CDATA[  ]]><b>gs-odsx →</b> gs-odsx-3.46-sox-release<br /><b>gigaspaces-smart-ods →</b> gigaspaces-smart-dih-enterprise-16.2.0-m26-thu-30<br /></li>
             <li>Create a mount point in all the dih machines (except pivot) and configure auto mount<br />For example,<br /> /dbagigashare to: Pivot:/dbagigashare</li>
         </ol>
         <h2>Run the ODSX Installation Script</h2>
