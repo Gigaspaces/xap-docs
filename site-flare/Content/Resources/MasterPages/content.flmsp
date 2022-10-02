@@ -48,9 +48,10 @@
         <!--  toc added  begin  -->
         <div id="page_toc">
             <div id="was-page-toc-body" style="border: 1px solid blue; width:80%; margin: 15x; padding: 10px; display: block;">
-                <h1 class="tc-pagetitle2">Table of Contents				
-						<img src="../Static/images/toc-minus.png" style="height: 4%; width:4%; float: right;" onclick="         if (document.getElementById('toc-test-toggle').style.display == 'none')        {            document.getElementById('toc-test-toggle').style.display = 'block';          document.getElementById('page-toc-body').style.display = 'block'; }        else              {document.getElementById('toc-test-toggle').style.display = 'none';            document.getElementById('page-toc-body').style.display = 'none';  }                                   " /></h1>
-                <!--     <br style="height:100%;"></br>  --><span id="toc-test-toggle" style="display:none;"></span><span id="page-toc-body" style="display:block;"><!-- page table of contents generated here --></span>
+                <h3 class="skip-toc">Table of Contents	
+					
+<!-- begin formatted text      .........................................   --><img id="toc-plus-image" src="../Static/images/toc-plus.png" style="float: right;width: 33px;height: 33px;" onclick="document.getElementById('page-toc-body').style.display = 'block';        document.getElementById('toc-plus-image').style.display = 'none';       document.getElementById('toc-minus-image').style.display = 'block';      " /><img id="toc-minus-image" src="../Static/images/toc-minus.png" style="float: right;width: 33px;height: 33px; display:none;" onclick="document.getElementById('page-toc-body').style.display = 'none';        document.getElementById('toc-minus-image').style.display = 'none';       document.getElementById('toc-plus-image').style.display = 'block';      " /><!-- end formatted text .................................................  --></h3>
+                <!--     <br style="height:100%;"></br>  --><span id="page-toc-body" style="display:block;"><!-- page table of contents generated here --></span>
             </div>
         </div>
         <!-- existing before add toc code -->

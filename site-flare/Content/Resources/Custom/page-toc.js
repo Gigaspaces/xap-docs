@@ -3,8 +3,12 @@
 
 $(document).ready(function() {
 	 
-//		if ($("#dfb_toc_here").length != 0) {
-		if (true) {
+		if ($("#NO-TOC").length != 0) 
+		// if there is an id (span) of  "NO-TOC" then hide  TOC, else proceed to customize TOC
+		{document.getElementById('page_toc').style.display = 'none';}
+		else
+		{
+//		if (true) {
 				// 1			$("#page_toc").insertAfter("#dfb_toc_here");
 			
 			/* build the opening tags of the structure */
@@ -17,6 +21,8 @@ $(document).ready(function() {
 			/* set linkCount to zero */
 			var linkCount = 0;
 			var H1Count = 0;
+			var first_h1;
+			var is_there_a_tc_pagetitle = false;
 			
 //			alert($(this).text());
 //			alert($(this).attr("class"));
@@ -29,7 +35,7 @@ $(document).ready(function() {
 					title = el.text();
 					element_class = el.attr("class");
 				//	alert(element_class);
-					if (element_class == "tc-pagetitle") {
+					if (element_class == "tc-pagetitle") {is_there_a_tc_pagetitle = true;
 				//		alert(title);
                         $("#page_toc").insertAfter($(this));
 					}
@@ -41,12 +47,15 @@ $(document).ready(function() {
 						{skip_title = true}
 					else
 			        	{skip_title = false}
+					
+					
 					/* get the heading tag, this is capitalised, i.e. 'H2' or 'H3' or 'H1'*/
 					tag = el.prop("tagName");
       
 					/* updated linkCount, this will be id for link */
 					linkCount += 1;
 					if (tag == 'H1') {H1Count += 1;}
+					if (H1Count == 1) {first_h1 = el;}
 					linkCount += 1;
 
 					link = "link" + linkCount;
@@ -126,6 +135,10 @@ $(document).ready(function() {
 			if ($("#dfb_force-toc_here").length != 0) {
 				$("#page_toc").insertAfter("#dfb_force-toc_here");
 			}	
+			// alert('first-h1 is ' + first_h1);
+			
+			if (is_there_a_tc_pagetitle == false) {$("#page_toc").insertAfter(first_h1);}
+			
 
 			
          
