@@ -2,30 +2,47 @@
 /* https://css-tricks.com/automatic-table-of-contents */
 
 $(document).ready(function() {
+		
+		
+/* build the opening tags of the structure */
+var ToC = "<nav  style='list-style-type:none !important;'>" + 	"<ul  >";
+var newLine, el, title, link, tag;
+var element_class;
+var skip_title;
+var linkCount = 0;
+var PlainH1Count = 0;
+var PlainH2Count = 0;
+var first_h1;
+var is_there_a_tc_pagetitle = false;
+		
 	 
-		if ($("#NO-TOC").length != 0) 
-		// if there is an id (span) of  "NO-TOC" then hide  TOC, else proceed to customize TOC
-		{document.getElementById('page_toc').style.display = 'none';}
-		else
-		{
-//		if (true) {
-				// 1			$("#page_toc").insertAfter("#dfb_toc_here");
-			
-			/* build the opening tags of the structure */
-			var ToC =
-				"<nav  style='list-style-type:none !important;'>" +
-				"<ul  >";
-			var newLine, el, title, link, tag;
-			var element_class;
-			var skip_title;
-			/* set linkCount to zero */
-			var linkCount = 0;
-			var H1Count = 0;
-			var first_h1;
-			var is_there_a_tc_pagetitle = false;
-			
-//			alert($(this).text());
-//			alert($(this).attr("class"));
+if ($("#NO-TOC").length != 0) 
+// if there is an id (span) of  "NO-TOC" then hide  TOC, else proceed to customize TOC
+	{
+		document.getElementById('page_toc').style.display = 'none';
+		return;
+	}
+		
+// we are doing two passes. I know this is less efficient, but it won't be appreciable, and it sure simplifies the logic!
+		
+// first scan to see how many different kinds of headers we have.
+		
+
+$("h1.tc-pagetitle:visible,h1:visible,h2:visible").each(function() {
+		
+    el = $(this);
+    element_class = el.attr("class");
+    tag = el.prop("tagName");
+	
+				
+	
+		
+		
+		
+		
+		
+		
+		
 			
 			
 			/* find all h2 and h3 --- and h4 --- and h1 ---- on page. Only count visible headings */
@@ -34,9 +51,9 @@ $(document).ready(function() {
 					el = $(this);
 					title = el.text();
 					element_class = el.attr("class");
-				//	alert(element_class);
-					if (element_class == "tc-pagetitle") {is_there_a_tc_pagetitle = true;
-				//		alert(title);
+					if (element_class == "tc-pagetitle") 
+				    {
+					    is_there_a_tc_pagetitle = true;
                         $("#page_toc").insertAfter($(this));
 					}
 					
@@ -54,8 +71,10 @@ $(document).ready(function() {
       
 					/* updated linkCount, this will be id for link */
 					linkCount += 1;
-					if (tag == 'H1') {H1Count += 1;}
-					if (H1Count == 1) {first_h1 = el;}
+					if ((tag == 'H1') && (element_class != "tc-pagetitle") && (element_class != "tc-pagetitle2")) {PlainH1Count += 1;}
+			    	if  (tag == 'H2') {PlainH2Count += 1;}
+					if (PlainH1Count == 1) {first_h1 = el;}
+				
 					linkCount += 1;
 
 					link = "link" + linkCount;
@@ -135,9 +154,13 @@ $(document).ready(function() {
 			if ($("#dfb_force-toc_here").length != 0) {
 				$("#page_toc").insertAfter("#dfb_force-toc_here");
 			}	
-			// alert('first-h1 is ' + first_h1);
-			
+ 
+// If there is no tc_pagetitle header, insert the toc after the first regular h1 header:			
 			if (is_there_a_tc_pagetitle == false) {$("#page_toc").insertAfter(first_h1);}
+			
+// If a page has little content, e.g. no, or just one, simple H1 or H2, then don't show a TOC: 
+			if ( ( (PlainH1Count == 0) && (PlainH2Count < 3) ) || ( (PlainH1Count < 3) && (PlainH2Count == 0) ) )
+		        {document.getElementById('page_toc').style.display = 'none';}
 			
 
 			
