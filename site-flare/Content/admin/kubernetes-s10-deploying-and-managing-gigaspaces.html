@@ -38,7 +38,7 @@
             </div>
             <p>Update the GigaSpaces repo locally:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
 helm repo update</code></pre>
-            <p>Unpack the GigaSpaces charts:</p><pre><code class="language-bash">helm pull gigaspaces/xap --version=<MadCap:variable name="Versions.product-version-short" /> --untar</code></pre>
+            <p>Unpack the GigaSpaces charts:</p><pre><code class="language-bash">helm pull gigaspaces/xap --version=<MadCap:variable name="Versions.product-version-long" /> --untar</code></pre>
             <p>Deploy the GigaSpaces Manager and Operator pods:</p><pre MadCap:conditions="Default.DoNotShow"><code class="language-bash">helm install xap ./xap </code><MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><code class="language-bash">--set manager.resources.limits.memory=700Mi</code></MadCap:conditionalText></pre><pre><code class="language-bash">helm install xap ./xap --set operator.manager.name=xap</code></pre>
             <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command.</h2>
             <div class="tc-admon-note">
@@ -101,7 +101,7 @@ xap-xap-pu-hs             ClusterIP      None             &lt;none&gt;        &l
             </p>
         </div>
         <h1>Install a Space called "demo"</h1>
-        <p>In this example, we install a processing unit with one partition. Data can be stored in the partition.</p><pre><code class="language-bash">helm pull gigaspaces/xap-pu --version=<MadCap:variable name="Versions.product-version-short" /> --untar
+        <p>In this example, we install a processing unit with one partition. Data can be stored in the partition.</p><pre><code class="language-bash">helm pull gigaspaces/xap-pu --version=<MadCap:variable name="Versions.product-version-long     " /> --untar
 helm install demo ./xap-pu/ --set manager.name=xap,partitions=1</code></pre>
         <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command:</h2>
         <div class="tc-admon-note">

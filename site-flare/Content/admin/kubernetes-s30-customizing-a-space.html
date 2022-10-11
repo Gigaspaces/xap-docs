@@ -85,7 +85,7 @@ ip-10-41-1-154.ec2.internal     Ready    ...   …,topology.kubernetes.io/zone=u
 ip-10-41-2-63.ec2.internal      Ready    ...   …,topology.kubernetes.io/zone=us-east-1b
 ip-10-41-3-77.ec2.internal      Ready    ...   …,topology.kubernetes.io/zone=us-east-1c</tt><![CDATA[
 				]]></code></pre>
-            <h2>Install <code>xap</code> umbrella chart</h2><pre><code class="language-bash">helm install xap TEST_REPO/xap/ --version=<MadCap:variable name="Versions.product-version-long" /><br /> --set operator.manager.name=xap<br /> --set manager.metrics.enabled=false,metrics.enabled=false<br /> --set manager.service.lrmi.enabled=false<br /></code></pre>
+            <h2>Install <code>xap</code> umbrella chart</h2><pre><code class="language-bash">helm install xap TEST_REPO/xap/ --version=<MadCap:variable name="Versions.product-version-long" /> \<br /> --set operator.manager.name=xap \<br /> --set manager.metrics.enabled=false,metrics.enabled=false \<br /> --set manager.service.lrmi.enabled=false<br /></code></pre>
             <h2>Run the <code>get pods</code> command</h2><pre><code class="language-bash"> <code>kubectl get pods</code><br /></code></pre>
             <p>Result:</p><pre><code class="language-bash"><tt><b>
 NAME                            READY   STATUS   RESTARTS    AGE</b>
@@ -93,7 +93,7 @@ xap-operator-7b54b977f6-9znfd   1/1     Running   0          67s
 ip-10-41-2-63.ec2.internal      1/1     Running   0          67s
 </tt><![CDATA[
 				]]></code></pre>
-            <h2>Install a space with high availability and anti-affinity (by zone)</h2><pre><code class="language-bash">helm install demo TEST_REPO/xap/ --version=<MadCap:variable name="Versions.product-version-long" /><br /> --set manager.name=xap<br /> --set partitions=2,ha=true,antiAffinity.enabled=true<br /></code></pre>
+            <h2>Install a space with high availability and anti-affinity (by zone)</h2><pre><code class="language-bash">helm install demo TEST_REPO/xap/ --version=<MadCap:variable name="Versions.product-version-long" /> \<br /> --set manager.name=xap \<br /> --set partitions=2,ha=true,antiAffinity.enabled=true<br /></code></pre>
             <h2>Get pods and node allocation</h2><pre><code class="language-bash"><code>kubectl get pods -o wide</code><br /></code></pre>
             <p>Result:</p><pre><code class="language-bash"><tt><b>
 NAME           ...      IP              NODE    </b>
