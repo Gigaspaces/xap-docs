@@ -37,7 +37,7 @@
             <p>The steps to allocate multiple partitions for a Space are shown below. This example allocates two partitions for the <code>demo</code> Space.</p>
             <ol>
                 <li>
-                    <p>Install <code>xap </code>charts.<br /></p><pre><code class="language-bash">helm install xap ./xap/ --version=<MadCap:variable name="Versions.product-version-long" /> --set manager.resources.limits.memory=1000Mi</code></pre>
+                    <p>Install <code>xap </code>charts.<br /></p><pre><code class="language-bash">helm install xap ./xap/ --version=<MadCap:variable name="Versions.product-version-long" /> </code><MadCap:conditionalText MadCap:conditions="Version.16-2-died"><code class="language-bash">--set manager.resources.limits.memory=1000Mi</code></MadCap:conditionalText></pre>
                 </li>
                 <li>
                     <p style="text-align: left;">Wait for all pods to be ready.</p>

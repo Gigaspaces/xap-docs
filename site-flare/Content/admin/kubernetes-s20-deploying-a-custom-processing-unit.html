@@ -78,8 +78,8 @@ fi
             <p>Perform a Docker build operation, in the directory that has <code>Dockerfile </code>and the <code>jar </code>file. This will create a Docker image.</p><pre><code class="language-bash"> docker build -t my-pu-stateless .</code></pre>
             <p>Deploy the Docker image in GigaSpaces.</p><pre><code class="language-bash">
 helm install custom-pu ./xap-pu/ --set manager.name=xap,\
-resourceUrl=pu.jar,\
-livenessProbe.enabled=false,readinessProbe.enabled=false,metrics.enabled=false,\
+resourceUrl=pu.jar,\</code><MadCap:conditionalText MadCap:conditions="Version.16-2-died"><code class="language-bash">
+livenessProbe.enabled=false,readinessProbe.enabled=false,</code></MadCap:conditionalText><code class="language-bash">metrics.enabled=false,\
 image.repository=my-pu-stateless,image.tag=latest					
 </code></pre>
         </div>
