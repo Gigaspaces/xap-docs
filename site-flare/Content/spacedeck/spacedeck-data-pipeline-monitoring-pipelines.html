@@ -8,73 +8,145 @@
             <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
             <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
         </map>
-        <h1 class="tc-pagetitle">SpaceDeck – Data Pipeline</h1>
-        <p>Data Pipelines define the data sources that will be used to gather data from the System of Record. </p>
+        <h1 class="tc-pagetitle">SpaceDeck – Data Pipeline – Monitoring Pipelines</h1>
         <h1>Data Pipeline Status Screen</h1>
-        <p>The Data Pipelines screen shows the status of the existing data pipelines, and allows you to define a new pipeline.</p>
+        <p>The Data Pipeline Status screen shows the status of the existing data pipelines. You can see details of a pipeline by clicking on its name in the list. </p>
+        <div class="tc-admon-note">
+            <p>The <b>New +</b> button allows you to create a new pipeline. See <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref> for instructions to define a new pipeline.</p>
+        </div>
         <p>
             <img src="../Resources/Static/images/spacedeck-data-pipeline-new.png" />
         </p>
-        <h2>View Pipeline Details</h2>
-        <p>Click on the pipeline name to view details of the pipeline. </p>
-        <h3>View Pipeline Details – Monitoring</h3>
-        <p>The Monitoring tab shows a variety of real-time pipeline metrics.</p>
+        <h2>Data Pipeline Status Fields</h2>
+        <ul>
+            <li>
+                <p><b>Error</b> – fill in all of the pipeline configuration items (shown below) from a <MadCap:xref href="spacedeck-data-pipeline-format-of-configuration-file.html" class="JSON-format-configuration-file">JSON-format configuration file</MadCap:xref>. </p>
+            </li>
+            <li>
+                <p><b>Loading</b> – xxxxxxxx 010</p>
+            </li>
+            <li>
+                <p><b>Idle</b> –  xxxxxxxx 020</p>
+            </li>
+            <li>
+                <p><b>Group by Status</b> –  xxxxxxxx 030</p>
+            </li>
+            <li>
+                <p><b>Name</b> –  xxxxxxxx 030</p>
+            </li>
+            <li>
+                <p><b>Status</b> –  xxxxxxxx 030</p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p><b>Type</b> –  xxxxxxxx 030</p>
+            </li>
+            <li>
+                <p><b>Origin</b> –  xxxxxxxx 030</p>
+            </li>
+            <li>
+                <p><b>Total Operations</b> –  xxxxxxxx 030</p>
+            </li>
+            <li>
+                <p><b>Total Errors</b> –  xxxxxxxx 030</p>
+            </li>
+            <li>
+                <p><b>Name</b> –  xxxxxxxx 030</p>
+            </li>
+        </ul>
+        <h1>Data Pipeline Details</h1>
+        <p>Click on the pipeline name to view details of the pipeline. Three tabs are available: Monitoring, Tables pipeline, and Configuration:<br /><img src="../Resources/Static/images/spacedeck-data-pipeline-details-tabs.png" /></p>
+        <h2>View Pipeline Details – Monitoring Tab</h2>
+        <p>The <b>Monitoring</b> tab shows a variety of real-time pipeline metrics.</p>
         <p>
             <img src="../Resources/Static/images/spacedeck-data-pipeline-pipeline-monitoring-pipeline-running.png" />
         </p>
-        <h3>View Pipeline Details – Tables pipeline</h3>
-        <p>The <b>Tables pipeline</b> tab displays a list of object types. As shown below, you can click on an object type to view its properties and indexes.</p>
+        <h3>Monitoring Tab Fields</h3>
+        <ul>
+            <li>
+                <p><b>Last 24 hours</b> – xxxxxxxx. </p>
+            </li>
+            <li>
+                <p><b>Ops/Sec over time</b> – xxxxxxxx 010<br /><img src="../Resources/Static/images/spacedeck-data-pipeline-monitoring-ops-sec-over-time.png" /><br /></p>
+            </li>
+            <li>
+                <p><b>Errors over time</b> –  xxxxxxxx 020<br /><img src="../Resources/Static/images/spacedeck-data-pipeline-monitoring-errors-over-time.png" /><br /></p>
+            </li>
+            <li>
+                <p><b>Group by Status</b> –  xxxxxxxx 030</p>
+            </li>
+            <li>
+                <p><b>Name</b> –  xxxxxxxx 030</p>
+            </li>
+            <li>
+                <p><b>Status</b> –  xxxxxxxx 030</p>
+            </li>
+        </ul>
+        <h2>View Pipeline Details – Tables pipeline Tab</h2>
+        <p>The <b>Tables pipeline</b> tab shows details of the object types in the pipeline.<br /><img src="../Resources/Static/images/spacedeck-data-pipeline-tables-pipeline-tab.png" /></p>
+        <h3>Fields in the Tables pipeline Tab</h3>
+        <ul>
+            <li>
+                <p><b>Object Type</b> –  xxxxxxxx 030</p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p><b>Origin Name</b> –  xxxxxxxx 030</p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p><b>Daily Operations</b> –  xxxxxxxx 030</p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p><b>Daily Errors</b> –  xxxxxxxx 030</p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p><b>Last Updated</b> –  xxxxxxxx 030</p>
+            </li>
+        </ul>
+        <h3>Viewing Object Type Details</h3>
+        <p>Click on the object type name to see details of the object type.</p>
+        <h4>Properties Details</h4>
+        <p>The <b>Property</b> tab appears as follows:</p>
         <p>
-            <img src="../Resources/Static/images/spacedeck-data-pipeline-pipeline-detauls.png" />
+            <img src="../Resources/Static/images/spacedeck-data-pipeline-tables-pipeline-tab-object-type-properties.png" />
         </p>
+        <ul>
+            <li>
+                <p><b>Name</b> –  xxxxxxxx 030</p>
+            </li>
+            <li>
+                <p><b>Type</b> –  xxxxxxxx 030</p>
+            </li>
+        </ul>
+        <h4>Indexes Details</h4>
+        <p>The <b>Indexes</b> tab appears as follows:</p>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-data-pipeline-tables-pipeline-tab-object-type-indexes.png" />
+        </p>
+        <ul>
+            <li>
+                <p><b>Name</b> –  xxxxxxxx 030</p>
+            </li>
+            <li>
+                <p><b>Type</b> –  xxxxxxxx 030</p>
+            </li>
+            <li>
+                <p><b>Properties</b> –  xxxxxxxx 030</p>
+            </li>
+            <li>
+                <p><b>Unique</b> –  xxxxxxxx 030</p>
+            </li>
+        </ul>
         <h3>View Pipeline Details – Configuration</h3>
         <p> The <b>Configuration</b> tab shows pipeline configuration information. The data is read-only when the pipeline is running.</p>
-        <p>
-            <img src="../Resources/Static/images/spacedeck-data-pipeline-pipeline-configuration-pipeline-running.png" />
-        </p>
-        <p>Note that you can click on Connector Setting and Advanced Setting to see detailed pipeline information.</p>
-        <p>
-            <img src="../Resources/Static/images/spacedeck-data-pipeline-pipeline-configuration-show-details.png" />
-        </p>
-        <p>The <b>Monitoring</b> tab shows a variety of real-time pipeline data.</p>
-        <h2>Create a New Data Pipeline</h2>
-        <p>On the Data Pipeline Status screen, Press <b>New +</b> to add a new data pipeline.</p>
-        <p>
-            <img src="../Resources/Static/images/spacedeck-data-pipeline-configuration.png" />
-        </p>
-        <p>You may load the pipeline details by pressing <b>Load Configuration</b> and navigating to a configuration file, or you can fill in pipeline details manually. In either case, press Create Pipeline to create the new data pipeline.</p>
-        <p>You may then press <b>Select Tables</b> to choose which tables to include in the pipeline. Press <b>Add</b> to add the tables to the pipeline.</p>
-        <p>
-            <img src="../Resources/Static/images/spacedeck-data-pipeline-select-tables.png" />
-        </p>
-        <p>
-            <img src="../Resources/Static/images/spacedeck-data-pipeline-start-pipeline.png" />
-        </p>
-        <p>You can click <b>Edit</b> to make changes to the pipeline.</p>
-        <p>
-            <img src="../Resources/Static/images/spacedeck-data-pipeline-pipeline-edit.png" />
-        </p>
-        <p>Scroll down to see the list of columns (fields) in the pipeline. Note that you can change the data type and validation rules of each field.</p>
-        <p>
-            <img src="../Resources/Static/images/spacedeck-data-pipeline-pipeline-change-column-properties.png" />
-        </p>
-        <p>After you have added the tables and saved the pipeline, save the changes and press <b>Start</b> to start the pipeline.</p>
-        <p>The pipeline will show as <b>Started</b> in the Data Pipeline Status screen:</p>
-        <p>
-            <img src="../Resources/Static/images/spacedeck-data-pipeline-pipeline-started.png" />
-        </p>
-        <p>Click on the pipeline name to view details of the pipeline. </p>
-        <p>The <b>Tables pipeline</b> tab displays a list of object types, and you can click on an object type to view its properties and indexes.</p>
-        <p>
-            <img src="../Resources/Static/images/spacedeck-data-pipeline-pipeline-detauls.png" />
-        </p>
-        <p> The Configuration tab shows read-only configuration information. The data is read-only when the pipeline is running.</p>
-        <p>
-            <img src="../Resources/Static/images/spacedeck-data-pipeline-pipeline-configuration-pipeline-running.png" />
-        </p>
-        <p>The Monitoring tab shows a variety of real-time pipeline data.</p>
-        <p>
-            <img src="../Resources/Static/images/spacedeck-data-pipeline-pipeline-monitoring-pipeline-running.png" />
-        </p>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/pipeline-configuration.flsnp" />
     </body>
 </html>
