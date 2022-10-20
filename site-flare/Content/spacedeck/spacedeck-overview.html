@@ -9,20 +9,8 @@
             <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
         </map>
         <h1 class="tc-pagetitle">GigaSpaces SpaceDeck Overview</h1>
-        <h1>Why Do I Need SpaceDeck?</h1>
-        <ul>
-            <li>
-                <p>If you are running applications that require access to heterogeneous data that is spread across various Systems of Record – you need  to gather that data into a unified data model that is not dependent on any particular database or operating system. </p>
-            </li>
-            <li>
-                <p>If you want to make that data instantly accessible – including querying and updating – in a proven in-memory data grid that is scalable, automatically backed up, designed for the Kubernetes environment, and has easy access to microservices, then you need GigaSpaces DIH.</p>
-            </li>
-            <li>
-                <p>If you want to design and manage that data using a no-code, elegant, beyond state-of-the-art user interface, then you need SpaceDeck.</p>
-            </li>
-        </ul>
         <h1>What is SpaceDeck?</h1>
-        <p>SpaceDeck is a user-friendly web interface that  will provide full functionality and control of the GigaSpaces environment. </p>
+        <p>SpaceDeck is an intuitive, convenient web interface that allows you to define the tools to bring legacy System of Record (SoR) databases into the in-memory data grid that is the core of the GigaSpaces DIH system.</p>
         <p>SpaceDeck has the following features:</p>
         <ul>
             <li>
@@ -32,28 +20,43 @@
                 <p>Crystal-clear, step-by-step instructions for defining and running the online environment</p>
             </li>
             <li>
-                <p>A full complement of data and system monitoring tools, built in to the environment</p>
+                <p>A full complement of data and system monitoring tools, built into the environment</p>
             </li>
         </ul>
         <div class="tc-admon-note">
-            <p>This introductory version does not cover all functionality and is intended as an introduction to the new UI and a supplement to our existing <MadCap:xref href="../admin/gs-ops-manager-overview.html"> Ops Manager</MadCap:xref>, <MadCap:xref href="../admin/tools-desktop-ui.html">GigaSpaces Management Center</MadCap:xref> and <MadCap:xref href="../admin/tools-web-ui.html">Web Management Console</MadCap:xref> UIs. SpaceDeck is initially available for SmartDIH installations, and will be extended in future releases to eventually replace the older UIs.</p>
+            <p>This introductory version of SpaceDeck does not cover all functionality and is intended as an introduction to the new UI and a supplement to our existing <MadCap:xref href="../admin/gs-ops-manager-overview.html"> Ops Manager</MadCap:xref>, <MadCap:xref href="../admin/tools-desktop-ui.html">GigaSpaces Management Center</MadCap:xref> and <MadCap:xref href="../admin/tools-web-ui.html">Web Management Console</MadCap:xref> UIs. SpaceDeck is initially available for SmartDIH installations, and will be extended in future releases to eventually replace the older UIs.</p>
         </div>
-        <p>Using SpaceDeck, the user can define the following items:</p>
+        <div>
+            <h1>Why Do I Need SpaceDeck?</h1>
+            <ul>
+                <li>
+                    <p>If you are running applications that require access to heterogeneous data that is spread across various Systems of Record – you need  to gather that data into a <b>unified data model</b> that is not dependent on any particular database or operating system,</p>
+                </li>
+                <li>
+                    <p>And if you want to make that data instantly accessible – including querying and updating – in a proven in-memory data grid that is scalable, automatically backed up, designed for the Kubernetes environment, and has easy access to microservices, then you need <MadCap:xref href="../SmartDIH.html">GigaSpaces Smart DIH </MadCap:xref></p>
+                </li>
+                <li>
+                    <p>And if you want to design and manage that data using a no-code, elegant, beyond state-of-the-art user interface, <b>then you need SpaceDeck</b>.</p>
+                </li>
+            </ul>
+        </div>
+        <h1>What Actions Do I Take with SpaceDeck?</h1>
+        <p>Using SpaceDeck, you can define the following items:</p>
         <ul>
             <li>
-                <p>Data Source – the database in the System of Record that will be used as a source and target of data for the data pipeline</p>
+                <p><b>Data Source</b> – the database in the System of Record that will be used as a source and target of data for the Data Pipeline</p>
             </li>
             <li>
-                <p>Data Pipeline – the mechanism to transfer data to and from selected tables in the data source to selected Space objects in the GigaSpace in-memory data grid</p>
+                <p><b>Data Pipeline</b> – the mechanism to transfer data to and from selected tables in the Data Source to selected Space objects in the GigaSpace in-memory data grid</p>
             </li>
         </ul>
-        <p>SpaceDeck also provide a monitoring screens to view the system status:</p>
+        <p>SpaceDeck also provide monitoring and query screens to view the system status:</p>
         <ul>
             <li>
                 <p>Spaces Status screen – show status and real-time monitoring of the Spaces in the data grid</p>
             </li>
             <li>
-                <p>Data pipeline monitoring screen – view data pipeline statuses, and stop/start pipelines</p>
+                <p>Data Pipeline monitoring screen – view Data Pipeline statuses, and stop/start pipelines</p>
             </li>
             <li>
                 <p>Data Query screen – perform SQL queries against the data in a Space</p>
@@ -61,13 +64,12 @@
         </ul>
         <h1>What are the Steps to Using SpaceDeck?</h1>
         <p>After you have installed the <MadCap:xref href="../solution-hub/installing-dih-using-odsx.html" class="basic-gigaSpaces-dih-environment">basic GigaSpaces DIH environment</MadCap:xref>, you can use SpaceDeck to perform the following steps.</p>
-        <p>Define the data sources from the System of Record</p>
+        <p>Define the Data Sources from the System of Record</p>
         <table style="width: 100%; margin-left: auto; margin-right: 0;">
-            <col style="width: 1235px;" />
-            <col style="width: 3262px;" />
-            <col style="width: 1122px;" />
-            <col />
-            <col />
+            <col style="width: 25%;" />
+            <col style="width: 25%;" />
+            <col style="width: 25%;" />
+            <col style="width: 25%;" />
             <thead>
                 <tr>
                     <th style="text-align: center; vertical-align: top;">1. Define the Data Sources from the System or Record</th>
@@ -84,17 +86,17 @@
                     <td style="text-align: center; width: 25%;">Use supported SQL-99 commands – <MadCap:xref href="spacedeck-data-query.html">SpaceDeck – Data Query</MadCap:xref></td>
                 </tr>
                 <tr>
-                    <td>
-                        <img src="../Resources/Static/images/spacedeck-overview-thumbnail-data-sources-2.png" />
+                    <td style="text-align: center; width: 25%;">
+                        <img class="tc-thumbnail" src="../Resources/Static/images/spacedeck-overview-thumbnail-data-sources-2.png" />
                     </td>
-                    <td>
-                        <img src="../Resources/Static/images/spacedeck-overview-thumbnail-data-pipeline-new-1.png" />
+                    <td style="text-align: center; width: 25%;">
+                        <img class="tc-thumbnail" src="../Resources/Static/images/spacedeck-overview-thumbnail-data-pipeline-new-1.png" />
                     </td>
-                    <td>
-                        <img src="../Resources/Static/images/spacedeck-overview-thumbnail-data-pipeline-monitor-2.png" />
+                    <td style="text-align: center; width: 25%;">
+                        <img class="tc-thumbnail" src="../Resources/Static/images/spacedeck-overview-thumbnail-data-pipeline-monitor-2.png" />
                     </td>
-                    <td>
-                        <img src="../Resources/Static/images/spacedeck-overview-thumbnail-data-query.png" />
+                    <td style="text-align: center; width: 25%;">
+                        <img class="tc-thumbnail" src="../Resources/Static/images/spacedeck-overview-thumbnail-data-query.png" />
                     </td>
                 </tr>
             </tbody>
