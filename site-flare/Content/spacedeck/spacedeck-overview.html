@@ -2,7 +2,7 @@
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
-    <body>
+    <body style="text-align: left;">
         <map id="map1">
             <area shape="rectangle" coords="31,228,438,655" dragDirection="0" />
             <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
@@ -10,7 +10,7 @@
         </map>
         <h1 class="tc-pagetitle">GigaSpaces SpaceDeck Overview</h1>
         <h1>What is SpaceDeck?</h1>
-        <p>SpaceDeck is an intuitive, convenient web interface that allows you to define the tools to bring legacy System of Record (SoR) databases into the in-memory data grid that is the core of the GigaSpaces DIH system.</p>
+        <p>SpaceDeck is an intuitive, streamlined user interface to define the tools to bring legacy System of Record (SoR) databases into the in-memory data grid that is the core of the GigaSpaces DIH system.</p>
         <p>SpaceDeck has the following features:</p>
         <ul>
             <li>
@@ -33,7 +33,7 @@
                     <p>If you are running applications that require access to heterogeneous data that is spread across various Systems of Record – you need  to gather that data into a <b>unified data model</b> that is not dependent on any particular database or operating system,</p>
                 </li>
                 <li>
-                    <p>And if you want to make that data instantly accessible – including querying and updating – in a proven in-memory data grid that is scalable, automatically backed up, designed for the Kubernetes environment, and has easy access to microservices, then you need <MadCap:xref href="../SmartDIH.html">GigaSpaces Smart DIH </MadCap:xref></p>
+                    <p>And if you want to make that data instantly accessible – including querying and updating – in a proven in-memory data grid that is scalable, automatically backed up, designed for the Kubernetes environment, and has easy access to microservices, then you need <MadCap:xref href="../SmartDIH.html">GigaSpaces Smart DIH.</MadCap:xref></p>
                 </li>
                 <li>
                     <p>And if you want to design and manage that data using a no-code, elegant, beyond state-of-the-art user interface, <b>then you need SpaceDeck</b>.</p>
@@ -53,19 +53,22 @@
         <p>SpaceDeck also provide monitoring and query screens to view the system status:</p>
         <ul>
             <li>
-                <p>Spaces Status screen – show status and real-time monitoring of the Spaces in the data grid</p>
+                <p>
+                    <MadCap:xref href="16-2-spacedeck-spaces.html" class="spaces-status">Spaces Status</MadCap:xref> screen – show status and real-time monitoring of the Spaces in the data grid</p>
             </li>
             <li>
-                <p>Data Pipeline monitoring screen – view Data Pipeline statuses, and stop/start pipelines</p>
+                <p>
+                    <MadCap:xref href="spacedeck-data-pipeline-monitoring-pipelines.html" class="Data-Pipeline-Monitoring">Data Pipeline Monitoring</MadCap:xref> screen – view Data Pipeline statuses, and stop/start pipelines</p>
             </li>
             <li>
-                <p>Data Query screen – perform SQL queries against the data in a Space</p>
+                <p>
+                    <MadCap:xref href="spacedeck-data-query.html" class="Data-Query">Data Query</MadCap:xref> screen – perform SQL queries against the data in a Space</p>
             </li>
         </ul>
         <h1>What are the Steps to Using SpaceDeck?</h1>
         <p>After you have installed the <MadCap:xref href="../solution-hub/installing-dih-using-odsx.html" class="basic-gigaSpaces-dih-environment">basic GigaSpaces DIH environment</MadCap:xref>, you can use SpaceDeck to perform the following steps.</p>
         <p>Define the Data Sources from the System of Record</p>
-        <table style="width: 100%; margin-left: auto; margin-right: 0;">
+        <table style="width: 100%;border-top-left-radius: 3px;border-top-right-radius: 3px;border-bottom-right-radius: 3px;border-bottom-left-radius: 3px;border-left-style: solid;border-left-width: 1px;border-left-color: #a4aab3;border-right-style: solid;border-right-width: 1px;border-right-color: #a4aab3;border-top-style: solid;border-top-width: 1px;border-top-color: #a4aab3;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #a4aab3;margin-left: 0;margin-right: auto;">
             <col style="width: 25%;" />
             <col style="width: 25%;" />
             <col style="width: 25%;" />
@@ -80,10 +83,10 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="text-align: center; width: 25%;">Specify URLs for the SoR databases in SpaceDeck – <MadCap:xref href="spacedeck-data-sources.html">SpaceDeck – Data Sources</MadCap:xref></td>
-                    <td style="text-align: center;">Specify which Data Source feeds the Data Pipeline, and which in-memory Space will contain the data – <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref></td>
-                    <td style="text-align: center;">View dynamic metrics and start/stop the pipeline – <MadCap:xref href="spacedeck-data-pipeline-monitoring-pipelines.html">SpaceDeck – Data Pipeline – Monitoring Pipelines</MadCap:xref></td>
-                    <td style="text-align: center; width: 25%;">Use supported SQL-99 commands – <MadCap:xref href="spacedeck-data-query.html">SpaceDeck – Data Query</MadCap:xref></td>
+                    <td style="width: 25%;text-align: left; vertical-align: top;">Specify URLs for the SoR databases in SpaceDeck – <MadCap:xref href="spacedeck-data-sources.html">SpaceDeck – Data Sources</MadCap:xref></td>
+                    <td style="text-align: left; vertical-align: top;">Specify which Data Source feeds the Data Pipeline, and which in-memory Space will contain the data – <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref></td>
+                    <td style="text-align: left; vertical-align: top;">View dynamic metrics and start/stop the pipeline – <MadCap:xref href="spacedeck-data-pipeline-monitoring-pipelines.html">SpaceDeck – Data Pipeline – Monitoring Pipelines</MadCap:xref></td>
+                    <td style="width: 25%;text-align: left; vertical-align: top;">Use supported SQL-99 commands – <MadCap:xref href="spacedeck-data-query.html">SpaceDeck – Data Query</MadCap:xref></td>
                 </tr>
                 <tr>
                     <td style="text-align: center; width: 25%;">
