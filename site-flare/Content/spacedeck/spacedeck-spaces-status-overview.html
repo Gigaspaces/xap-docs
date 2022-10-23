@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <map id="map1">
+            <area shape="rectangle" coords="31,228,438,655" dragDirection="0" />
+            <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
+            <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
+        </map>
+        <h1  id="NO-TOC" class="tc-pagetitle">SpaceDeck – Spaces Status Overview</h1>
+        <h1>Spaces Status Screen</h1>
+        <p>The Spaces Status screen shows the GigaSpaces Space objects that are defined in the in-memory data grid. Summary statistics are shown for each Space, and you can click on a Space name to see its detailed metrics.</p>
+        <p>
+            <img class="tc-thumbnail" src="../Resources/Static/images/spacedeck-spaces-spaces-status.png" />
+        </p>
+        <h2>Spaces Status Fields</h2>
+        <ul>
+            <li>
+                <p><b>Error</b> – fill in all of the pipeline <span style="color: #4169e1; background-color: #ff00ff;">configuration </span>items (shown below) from a <MadCap:xref href="spacedeck-data-pipeline-format-of-configuration-file.html" class="JSON-format-configuration-file">JSON-format configuration file</MadCap:xref>. SOMETHING WRONG WITH THE SPACE</p>
+            </li>
+            <li>
+                <p><b>Warning</b> – <span style="color: #ff00ff;">spaces-status-010</span>memory over 75%</p>
+            </li>
+            <li>
+                <p><b>Healthy</b> –   <span style="color: #ff00ff;">spaces-status-020</span>partitions and backup HAVE ENOUGH MEMORY</p>
+            </li>
+            <li>
+                <p><b>Group by Status</b> –  toggle to show the Spaces grouped by status</p>
+            </li>
+            <li>
+                <p><b>Space Name</b> –  the name of the GigaSpaces Space object</p>
+            </li>
+            <li>
+                <p><b>Status</b> –  possible statuses are <span style="color: #ff00ff;">   spaces-status-030 W/H/E </span>W/H/E</p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p><b>Actual/Planned</b> –  <span style="color: #ff00ff;">   spaces-status-030</span> PLANNED TOPOLOGY AND ACTUAL INSTANCES. ACTULA LESS THAN PLANNED IF NOT ENOUGH HOSTS # OF PRIMARY AND BACKUP PAERTITIONS <span style="background-color: #ff00ff;">ASK GADI </span></p>
+            </li>
+            <li>
+                <p><b>Memory</b> –  percentage of memory used by the Space</p>
+            </li>
+            <li>
+                <p><b>Total Entries</b> – number of rows of data in the Space</p>
+            </li>
+        </ul>
+        <h1>View Space Details</h1>
+        <p>You can click on a Space name to see detailed information on the Space. See <MadCap:xref href="spacedeck-spaces-status-details.html">SpaceDeck – Spaces Status Details</MadCap:xref> for more information.</p>
+    </body>
+</html>

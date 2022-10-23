@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <map id="map1">
+            <area shape="rectangle" coords="31,228,438,655" dragDirection="0" />
+            <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
+            <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
+        </map>
+        <h1 id="YES-TOC" class="tc-pagetitle">SpaceDeck – Spaces Status Details</h1>
+        <h1>Spaces Status Details</h1>
+        <p>When viewing the Spaces Status screen, you can click on a Space name to see details about the Space:</p>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-space-status-details-click-on-spece-name.png" />
+        </p>
+        <p>The resulting screen has three tabs: Monitoring, Objects-Types and Partitions.</p>
+        <h2>View Space Details – Monitoring</h2>
+        <p>The <b>Monitoring</b> tab displays graphs showing various Space-related statistics. </p>
+        <p>Note that a dropdown list on the right side of the screen allows you to change the reported time interval:</p>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-monitoring-time-period.png" />
+        </p>
+        <p>The following graphs are available:</p>
+        <h3>Ops/Sec Over Time</h3>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-monitoring-graph-ops-sec-over-time.png" />
+        </p>
+        <h3>Memory Utilization</h3>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-monitoring-graph-memory-utilization.png" />
+        </p>
+        <h3>CPU Utilization</h3>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-monitoring-graph-cpu-utilization.png" />
+        </p>
+        <h3>Partition Balance by Objects</h3>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-monitoring-graph-partition-balance-by-objects.png" />
+        </p>
+        <h3>Partition Balance by Memory Utilization</h3>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-monitoring-graph-partition-balance-by-memory-utilization.png" />
+        </p>
+        <p>Tiered Storage:</p>
+        <h3>Tiered Storage – Hits Per Tier</h3>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-monitoring-graph-tiered-storage-hits-per-tier.png" />
+        </p>
+        <h3>Tiered Storage – Five Objects with Biggest Distance From Expected</h3>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-monitoring-graph-tiered-storage-5-objects.png" />
+        </p>
+        <h3>Redo Log – Redo Log Size</h3>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-monitoring-graph-redo-log-size-packets.png" />
+        </p>
+        <h3>Redo Log – Redo Log Utilization</h3>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-monitoring-graph-redo-log-utilization.png" />
+        </p>
+        <h3>Redo Log – CPU Utilization</h3>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-monitoring-graph-redo-log-ram-vs-disk.png" />
+        </p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <h2>View Space Details – Objects-Types</h2>
+        <p>The Objects-Types tab displays a list of the objects (tables) associated with the Space.</p>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-spaces-object-types.png" />
+        </p>
+        <h3>View Space Details – Objects-Types Summary Information</h3>
+        <p>Each row represents one object-type (table) in the Space. The object-type fields are as follows:</p>
+        <div>&#160;<ul><li><b>Name</b> — Name of the object-type</li><li><b>Count</b> — number of rows in the object-type</li><li><b>Number of Indexes</b> — number of indexes defined for the object-type</li><li><b>Space ID</b> — the GigaSpaces Space object that contains the object-type data</li><li><b>Routing Key</b> — The identifier that will be used by GigaSpaces to distribute the data among multiple partitions</li></ul></div>
+        <p>Click on one of the tables to see detailed information for the table's properties and indexes. The Object-Types information is divided into three categories: General information, Properties, and Indexes.</p>
+        <div>
+            <h3>View Space Details – Objects-Types – General Information</h3>
+            <p>
+                <img src="../Resources/Static/images/spacedeck-space-object-types-general.png" />
+            </p>
+        </div>
+        <div><b>General Information options:</b>
+            <ul>
+                <li><b>Notify Template Applied</b> —Subscribe to Space events and provide a listener mechanism – see <MadCap:xref href="../dev-java/the-space-notifications.html">Notifications</MadCap:xref></li>
+                <li><b>Support Fifo</b> — Support FIFO (First In, First Out) behavior – see <MadCap:xref href="../dev-java/fifo-support.html">FIFO Support</MadCap:xref></li>
+            </ul>
+        </div>
+        <div>
+            <p><b>Tiered Storage option:</b>
+            </p>
+            <ul>
+                <li><b>Transient</b> – Data will be stored in Hot storage only – see <MadCap:xref href="../admin/data-persistency-in-tiered-storage.html">Data Persistency in Tiered Storage</MadCap:xref></li>
+            </ul>
+        </div>
+        <h3>View Space Details – Objects-Types – Properties</h3>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-space-object-types-properties.png" />
+        </p>
+        <ul>
+            <li><b>Name</b> — Name of the property (field)</li>
+            <li><b>Type</b> — xxxxxxxxxxxxxx</li>
+            <li><b>Storage Type</b> — xxxxxxxxxxxxxxxxx</li>
+        </ul>
+        <h3>View Space Details – Objects-Types – Indexes</h3>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-space-object-types-indexes.png" />
+        </p>
+        <ul>
+            <li><b>Name</b> — Name of the index</li>
+            <li><b>Type</b> — xxxxxxxxxxxxxx</li>
+            <li><b>Method</b> — xxxxxxxxxxxxxxxxx</li>
+            <li><b>Hits in %</b> — the GigaSpaces Space object that contains the object-type data</li>
+        </ul>
+        <h2>View Space Details – Partitions</h2>
+        <p>The Partitions tab displays details about the partitions where the Space data is stored.</p>
+        <p>
+            <img src="../Resources/Static/images/spacedeck-spaces-partitions.png" />
+        </p>
+        <ul>
+            <li><b>Name</b> — Object Type</li>
+            <li><b>Count</b> — xxxxxxxxxxxxxx</li>
+            <li><b>Number of Indexes</b> — xxxxxxxxxxxxxxxxx</li>
+            <li><b>Space ID</b> — xxxxxxxx</li>
+            <li><b>Routing Key</b> – xxxxxx</li>
+            <li><b>Broadcast</b> – xxxxxx</li>
+        </ul>
+        <p>You can also click on the name of the Object Type (e.g. <b>Car</b> in this example) to view and modify the Object Type properties, as discussed above.</p>
+    </body>
+</html>
