@@ -7,10 +7,10 @@
                 <img src="../../Static/images/spacedeck-data-pipeline-configuration.png" />
             </p>
             <h3>Basic Pipeline Information</h3>
+            <div class="tc-admon-note">
+                <p>You can fill in some or all of the pipeline configuration items (shown below) from a <MadCap:xref href="../../../spacedeck/spacedeck-data-pipeline-format-of-configuration-file.html" class="JSON-format-configuration-file">JSON-format configuration file</MadCap:xref> by clicking on the <b>Load Configuration</b> button.</p>
+            </div>
             <ul>
-                <li>
-                    <p><b>Load Configuration</b> – fill in all of the pipeline configuration items (shown below) from a <MadCap:xref href="../../../spacedeck/spacedeck-data-pipeline-format-of-configuration-file.html" class="JSON-format-configuration-file">JSON-format configuration file</MadCap:xref>. </p>
-                </li>
                 <li>
                     <p><b>Pipeline Name</b> – name assigned to the pipeline</p>
                 </li>
@@ -18,7 +18,7 @@
                     <p><b>Space Name</b> –  the name of the GigaSpaces Space object that will receive the pipeline data</p>
                 </li>
                 <li>
-                    <p><b>Connector Type</b> –  the data connector type. Connector types include CDC and IIDR.</p>
+                    <p><b>Connector Type</b> –  the data connector type, for example, IIDR.</p>
                 </li>
                 <li>
                     <p><b>Connector Setting:</b>
@@ -28,10 +28,10 @@
                             <p><b>Data Source Connection</b> –  the data source from the System of Record. This is a URL and points to a database such as Oracle or Microsoft SQL Server.</p>
                         </li>
                         <li>
-                            <p><b>CDC Kafka Topic</b> –  data-pipeline-common-050<span style="color: #ff00ff; font-weight: bold;"> &lt;michael&gt;</span></p>
+                            <p><b>CDC Kafka Topic</b> – The name of the Kafka topic for CDC changes</p>
                         </li>
                         <li>
-                            <p><b>SYNC Kafka Topic</b> –  data-pipeline-common-060<span style="color: #ff00ff; font-weight: bold;"> &lt;michael&gt;</span></p>
+                            <p><b>SYNC Kafka Topic</b> –  The name of the Kafka topic for initial load changes</p>
                         </li>
                     </ul>
                 </li>
@@ -40,10 +40,10 @@
                     </p>
                     <ul>
                         <li>
-                            <p><b>Batch Write</b> –  data-pipeline-common-070<span style="color: #ff00ff; font-weight: bold;"> &lt;michael&gt;</span></p>
+                            <p><b>Batch Write</b> –  size of the single batch write from a DI layer to the space. The value specified here is the number of commands.</p>
                         </li>
                         <li>
-                            <p><b>Checkpoint Interval</b> –  data-pipeline-common-080<span style="color: #ff00ff; font-weight: bold;"> &lt;michael&gt;</span></p>
+                            <p><b>Checkpoint Interval</b> –  interval, in milliseconds, that the data integration layer performs a commit to Kafka and flush to Space</p>
                         </li>
                     </ul>
                 </li>
@@ -55,125 +55,136 @@
                 <img src="../../Static/images/spacedeck-data-pipeline-select-tables.png" />
             </p>
             <h1>Edit the Pipeline</h1>
-            <p>You can click <b>Edit</b> to make changes to the pipeline.</p>
+            <p MadCap:conditions="Default.DoNotShow">You can click <b>Edit</b> to make changes to the pipeline.</p>
             <h3>Edit Pipeline – Parameters Tab</h3>
-            <p>Initially, the Parameters tab will display.</p>
-            <p>
-                <img src="../../Static/images/spacedeck-data-pipeline-edit.png" />
-            </p>
-            <p>The Parameters tab contains the following fields and options:</p>
-            <ul>
-                <li>
-                    <p><b>Table Pipeline Name</b> –  <b style="color: #ff00ff;">the original name of the table, as defined in the data source</b></p>
-                </li>
-                <li>
-                    <p><b>Structural Mismatch:</b>
-                    </p>
+            <div class="tc-admon-note">
+                <p>This tab will be supported in a future release.</p>
+            </div>
+            <div>
+                <p MadCap:conditions="Default.DoNotShow">Initially, the Parameters tab will display.</p>
+                <p>
+                    <img src="../../Static/images/spacedeck-data-pipeline-edit.png" />
+                </p>
+                <div MadCap:conditions="Default.DoNotShow">
+                    <p>The Parameters tab contains the following fields and options:</p>
                     <ul>
                         <li>
-                            <p><b>Extra Columns</b> –  data-pipeline-common-100<b style="color: #ff00ff;">future</b></p>
+                            <p><b>Table Pipeline Name</b> –<span>  the original name of the table, as defined in the data source</span></p>
                         </li>
                         <li>
-                            <p><b>Missing Columns</b> – data-pipeline-common-110<b style="color: #ff00ff;">future</b></p>
+                            <p><b>Structural Mismatch:</b>
+                            </p>
+                            <ul>
+                                <li>
+                                    <p><b>Extra Columns</b> –  data-pipeline-common-100<b style="color: #ff00ff;">future</b></p>
+                                </li>
+                                <li>
+                                    <p><b>Missing Columns</b> – data-pipeline-common-110<b style="color: #ff00ff;">future</b></p>
+                                </li>
+                                <li>
+                                    <p><b>Type Mismatch</b> – data-pipeline-common-120<b style="color: #ff00ff;">future</b></p>
+                                </li>
+                                <li>
+                                    <p><b>Add ID and Routing ID</b> – data-pipeline-common-130<b style="color: #ff00ff;">future</b></p>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <p><b>Type Mismatch</b> – data-pipeline-common-120<b style="color: #ff00ff;">future</b></p>
+                            <p><b>Error tolerance:</b>
+                            </p>
+                            <ul>
+                                <li>
+                                    <p><b>Maximum rejected records per minute</b> – data-pipeline-common-140<b style="color: #ff00ff;">future</b></p>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <p><b>Add ID and Routing ID</b> – data-pipeline-common-130<b style="color: #ff00ff;">future</b></p>
+                            <p><b>Preliminary Loading:</b><b style="color: #ff00ff;">future</b>
+                            </p>
+                            <ul>
+                                <li>
+                                    <p><b>CDC load</b> – data-pipeline-common-150<b style="color: #ff00ff;">future</b></p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <p><b>Error Columns</b> – data-pipeline-common-160<b style="color: #ff00ff;">future</b></p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <p><b>Missing Columns</b> – data-pipeline-common-170<b style="color: #ff00ff;">future</b></p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p><b>Indexes</b>: </p>
+                            <ul>
+                                <li>
+                                    <p><b>Extra Column</b> – data-pipeline-common-180<b style="color: #ff00ff;">future</b></p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <p><b>Type Mismatch</b> – data-pipeline-common-190<b style="color: #ff00ff;">future</b></p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p><b>Tiered Storage</b>: </p>
+                            <ul>
+                                <li>
+                                    <p><b>Data age</b> – data-pipeline-common-200<b style="color: #ff00ff;">future</b></p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <p><b>Logical Condition</b> – data-pipeline-common-210<b style="color: #ff00ff;">future</b></p>
+                                </li>
+                                <li>
+                                    <p><b>Initiate space re-deployment</b> – data-pipeline-common-220<b style="color: #ff00ff;">future</b></p>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
-                </li>
-                <li>
-                    <p><b>Error tolerance:</b>
-                    </p>
-                    <ul>
-                        <li>
-                            <p><b>Maximum rejected records per minute</b> – data-pipeline-common-140<b style="color: #ff00ff;">future</b></p>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <p><b>Preliminary Loading:</b><b style="color: #ff00ff;">future</b>
-                    </p>
-                    <ul>
-                        <li>
-                            <p><b>CDC load</b> – data-pipeline-common-150<b style="color: #ff00ff;">future</b></p>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            <p><b>Error Columns</b> – data-pipeline-common-160<b style="color: #ff00ff;">future</b></p>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            <p><b>Missing Columns</b> – data-pipeline-common-170<b style="color: #ff00ff;">future</b></p>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <p><b>Indexes</b>: </p>
-                    <ul>
-                        <li>
-                            <p><b>Extra Column</b> – data-pipeline-common-180<b style="color: #ff00ff;">future</b></p>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            <p><b>Type Mismatch</b> – data-pipeline-common-190<b style="color: #ff00ff;">future</b></p>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <p><b>Tiered Storage</b>: </p>
-                    <ul>
-                        <li>
-                            <p><b>Data age</b> – data-pipeline-common-200<b style="color: #ff00ff;">future</b></p>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            <p><b>Logical Condition</b> – data-pipeline-common-210<b style="color: #ff00ff;">future</b></p>
-                        </li>
-                        <li>
-                            <p><b>Initiate space re-deployment</b> – data-pipeline-common-220<b style="color: #ff00ff;">future</b></p>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                </div>
+            </div>
             <p>&#160;</p>
             <h3>Edit Pipeline – FieldsTab</h3>
-            <p>The Fields tab appears as follows.</p>
-            <p>.</p>
+            <p MadCap:conditions="Default.DoNotShow">The Fields tab appears as follows.</p>
+            <div class="tc-admon-note">
+                <p>This tab will be supported in a future release.</p>
+            </div>
             <p>
                 <img src="../../Static/images/spacedeck-data-pipeline-pipeline-change-column-properties.png" />
             </p>
-            <p>The <b>Fields</b> tab contains the following fields and options:</p>
-            <ul>
-                <li>
-                    <p><b>Field ID</b> – search for a field by field id</p>
-                    <p><b>Field (column) names</b> – initially, the names of the fields from the database table, that are included in the data pipeline. These can be edited to provide different property names (column names) in the GigaSpaces object type (table).<br />In this example, the fields are named COL3, COL 4, COL 1, etc:</p>
-                    <p>
-                        <img src="../../Static/images/spacedeck-data-pipeline-edit-show-field-names.png" />
-                        <br />If you click on one of the field names, the <b>Pipeline Fields</b> section appears, which allows you to to edit the field characteristics:<br /></p>
-                </li>
-                <li>
-                    <p><b>Name</b> – name of the field</p>
-                </li>
-                <li>
-                    <p><b>Type</b> – data type. The original data type is shown. You can choose another data type from the dropdown list.</p>
-                </li>
-                <li>
-                    <p><b>Validation</b> – data-pipeline-common-270<b style="color: #ff00ff;">future</b></p>
-                </li>
-                <li>
-                    <p><b>Can be empty?</b> – data-pipeline-common-280<b style="color: #ff00ff;">future</b></p>
-                </li>
-                <li>
-                    <p><b>On invalid value</b> – data-pipeline-common-290<b style="color: #ff00ff;">future</b></p>
-                </li>
-            </ul>
+            <div MadCap:conditions="Default.DoNotShow">
+                <p>The <b>Fields</b> tab contains the following fields and options:</p>
+                <ul>
+                    <li>
+                        <p><b>Field ID</b> – search for a field by field id</p>
+                        <p><b>Field (column) names</b> – initially, the names of the fields from the database table, that are included in the data pipeline. These can be edited to provide different property names (column names) in the GigaSpaces object type (table).<br />In this example, the fields are named COL3, COL 4, COL 1, etc:</p>
+                        <p>
+                            <img src="../../Static/images/spacedeck-data-pipeline-edit-show-field-names.png" />
+                            <br />If you click on one of the field names, the <b>Pipeline Fields</b> section appears, which allows you to to edit the field characteristics:<br /></p>
+                    </li>
+                    <li>
+                        <p><b>Name</b> – name of the field</p>
+                    </li>
+                    <li>
+                        <p><b>Type</b> – data type. The original data type is shown. You can choose another data type from the dropdown list.</p>
+                    </li>
+                    <li>
+                        <p><b>Validation</b> – data-pipeline-common-270<b style="color: #ff00ff;">future</b></p>
+                    </li>
+                    <li>
+                        <p><b>Can be empty?</b> – data-pipeline-common-280<b style="color: #ff00ff;">future</b></p>
+                    </li>
+                    <li>
+                        <p><b>On invalid value</b> – data-pipeline-common-290<b style="color: #ff00ff;">future</b></p>
+                    </li>
+                </ul>
+            </div>
         </div>
     </body>
 </html>
