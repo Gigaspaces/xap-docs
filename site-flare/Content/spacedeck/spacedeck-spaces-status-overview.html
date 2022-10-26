@@ -17,13 +17,18 @@
         <h2>Spaces Status Fields</h2>
         <ul>
             <li>
-                <p><b>Error</b> – fill in all of the pipeline configuration items (shown below) from a <MadCap:xref href="spacedeck-data-pipeline-format-of-configuration-file.html" class="JSON-format-configuration-file">JSON-format configuration file</MadCap:xref>. </p>
-            </li>
-            <li>
-                <p><b>Warning</b> – <span style="color: #ff00ff;">spaces-status-010</span>memory over 75%</p>
-            </li>
-            <li>
-                <p><b>Healthy</b> –   <span style="color: #ff00ff;">spaces-status-020</span>partitions and backup HAVE ENOUGH MEMORY</p>
+                <p><b>(Status Indicator – Error/Warning/Healthy in the screenshot example above)</b> – possible values are – </p>
+                <ul>
+                    <li>
+                        <p>Healthy - green - actual is equal to planned, no connectivity issues and memory utilization is less than 75%</p>
+                    </li>
+                    <li>
+                        <p>Resource alerted - orange - utilization is more than 75%, actual is equal to planned, no connectivity issues</p>
+                    </li>
+                    <li>
+                        <p>Unhealthy - connectivity issues/actual is not equal to planned/instance is down/ memory utilization is more than 90%</p>
+                    </li>
+                </ul>
             </li>
             <li>
                 <p><b>Group by Status</b> –  toggle to show the Spaces grouped by status</p>
@@ -32,12 +37,12 @@
                 <p><b>Space Name</b> –  the name of the GigaSpaces Space object</p>
             </li>
             <li>
-                <p><b>Status</b> –  possible statuses are <span style="color: #ff00ff;">   spaces-status-030 W/H/E </span>W/H/E</p>
+                <p><b>Status</b> –  possible statuses given above</p>
             </li>
         </ul>
         <ul>
             <li>
-                <p><b>Actual/Planned</b> –  <span style="color: #ff00ff;">   spaces-status-030</span> PLANNED TOPOLOGY AND ACTUAL INSTANCES. ACTULA LESS THAN PLANNED IF NOT ENOUGH HOSTS # OF PRIMARY AND BACKUP PAERTITIONS <span style="background-color: #ff00ff;">ASK GADI </span></p>
+                <p><b>Actual/Planned</b> – actual topology relative to planned instances. Note that actual is less than planned if not enough hosts are available for planned primary and backup partitions.</p>
             </li>
             <li>
                 <p><b>Memory</b> –  percentage of memory used by the Space</p>
