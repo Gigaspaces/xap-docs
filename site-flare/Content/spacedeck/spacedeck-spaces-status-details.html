@@ -23,11 +23,12 @@
         </p>
         <p>The following graphs are available:</p>
         <h3>Ops/Sec Over Time</h3>
+        <p>This graph shows the I/O operations over time. You can click on the operation type (<b>Execute</b>, <b>Update</b>, etc.) or view the <b>Total</b> for all operation types (default),</p>
         <p>
             <img src="../Resources/Static/images/spacedeck-monitoring-graph-ops-sec-over-time.png" />
         </p>
         <h3>Memory Utilization</h3>
-        <p>This graph displays the memory utilization over time, as the percent memory used in the Space.</p>
+        <p>This graph displays the memory utilization over time, as the percent of memory used in the Space.</p>
         <p>
             <img src="../Resources/Static/images/spacedeck-monitoring-graph-memory-utilization.png" />
         </p>
@@ -48,7 +49,6 @@
         <p>
             <img src="../Resources/Static/images/spacedeck-monitoring-graph-partition-balance-by-memory-utilization.png" />
         </p>
-        <p>Tiered Storage:</p>
         <h3>Tiered Storage – Hits Per Tier</h3>
         <p>This graphs shows the Tiered Storage hit to hot storage (RAM memory; left side of graph) and to warm storage (SSD memory; right side of graph). </p>
         <p>Note that if Tiered Storage is not defined, this graph will display as empty.</p>
@@ -87,8 +87,10 @@
         <h3>View Space Details – Objects-Types Summary Information</h3>
         <p>Each row represents one object-type (table) in the Space. The object-type fields are as follows:</p>
         <div>&#160;<ul><li><b>Name</b> — Name of the object-type</li><li><b>Count</b> — number of rows in the object-type</li><li><b>Number of Indexes</b> — number of indexes defined for the object-type</li><li><b>Space ID</b> — the GigaSpaces Space object that contains the object-type data</li><li><b>Routing Key</b> — The identifier that will be used by GigaSpaces to distribute the data among multiple partitions</li></ul></div>
-        <p>Click on one of the object types to see detailed information for the object type's properties and indexes. The Object-Types information is divided into three categories: General information, Properties, and Indexes.</p>
+        <p>Click on one of the object types to see detailed information for the object type's properties and indexes. The Object-Types information is divided into three categories: <MadCap:xref href="#View_Space_Details_–_Objects-Types_–_General_Information" class="General-information">General information</MadCap:xref>, <MadCap:xref href="#View_Space_Details_–_Objects-Types_–_Properties" class="properties">Properties</MadCap:xref>, and <MadCap:xref href="#View_Space_Details_–_Objects-Types_–_Indexes" class="Indexes">Indexes</MadCap:xref>.</p>
         <div>
+            <p><a name="View_Space_Details_–_Objects-Types_–_General_Information"></a>
+            </p>
             <h3>View Space Details – Objects-Types – General Information</h3>
             <p>
                 <img src="../Resources/Static/images/spacedeck-space-object-types-general.png" />
@@ -107,6 +109,8 @@
                 <li><b>Transient</b> – Data will be stored in Hot storage only – see <MadCap:xref href="../admin/data-persistency-in-tiered-storage.html">Data Persistency in Tiered Storage</MadCap:xref></li>
             </ul>
         </div>
+        <p><a name="View_Space_Details_–_Objects-Types_–_Properties"></a>
+        </p>
         <h3>View Space Details – Objects-Types – Properties</h3>
         <p>
             <img src="../Resources/Static/images/spacedeck-space-object-types-properties.png" />
@@ -116,6 +120,8 @@
             <li><b>Type</b> — property type</li>
             <li><b>Storage Type</b> — no storage compression (default) or storage compression</li>
         </ul>
+        <p><a name="View_Space_Details_–_Objects-Types_–_Indexes"></a>
+        </p>
         <h3>View Space Details – Objects-Types – Indexes</h3>
         <p>
             <img src="../Resources/Static/images/spacedeck-space-object-types-indexes.png" />
