@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <body>
-        <div MadCap:conditions="Version.16-2-only">
-            <div MadCap:conditions="Default.DoNotShow">
+        <div>
+            <div MadCap:conditions="Version.16-2-1-only">
                 <h1>Introducing SpaceDeck</h1>
                 <p>The new introductory version of the <i><MadCap:xref href="../../../../spacedeck/spacedeck-overview.html">GigaSpaces SpaceDeck</MadCap:xref></i> User Interface is now available for Smart DIH users. </p>
                 <p>SpaceDeck is the ultimate command and control center for the Digital Integration Hub. Secure and fast data ops solution democratizes your data!</p>
@@ -17,9 +17,9 @@
                     </li>
                     <li>
                         <p>
-                            <MadCap:xref href="../../../../spacedeck/spacedeck-data-pipeline-overview.html">SpaceDeck – Data Pipeline</MadCap:xref>: display data pipeline details such as source table in the System of Record, resulting Object in GigaSpaces, and parameters of the data connection. Also allows quick one-click creation of new data pipelines.</p>
-                        <p>
                             <MadCap:xref href="../../../../spacedeck/spacedeck-data-sources.html">SpaceDeck – Data Sources</MadCap:xref>: display data pipeline details such as source table in the System of Record, resulting Object in GigaSpaces, and parameters of the data connection. Also allows quick one-click creation of new data pipelines.</p>
+                        <p>
+                            <MadCap:xref href="../../../../spacedeck/spacedeck-data-pipeline-overview.html" class="spacedeck-data-pipeline">SpaceDeck – Data Pipeline</MadCap:xref>: display data pipeline details such as source table in the System of Record, resulting Object in GigaSpaces, and parameters of the data connection. Also allows quick one-click creation of new data pipelines.</p>
                     </li>
                     <li>
                         <p>
@@ -28,113 +28,115 @@
                 </ul>
                 <p>&#160;</p>
             </div>
-            <div>
+            <div MadCap:conditions="Version.16-2-only">
                 <div>
-                    <div MadCap:conditions="Default.DoNotShow">
-                        <h1>Smart DIH Installation Automation</h1>
-                        <ul>
-                            <li>
-                                <p>The new <MadCap:xref href="../../../../solution-hub/installing-dih-using-odsx.html" class="odsx-installation-script">ODSX installation script</MadCap:xref> allows automated installation of the Smart DIH platform.</p>
-                            </li>
-                        </ul>
-                        <p>&#160;</p>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <h1>Data Pipeline/Data Integration Enhancements</h1>
-                    <ul>
-                        <li>
-                            <p>
-                                <MadCap:xref href="../../../../DIH/data-integration.html" class="Out-of-the-box-integration-logic-and-generic-data-pipelines">Out of the box integration logic and generic data pipelines</MadCap:xref> dramatically shortens time-to-market for new digital services and minimizes service downtime.</p>
+                    <div>
+                        <div MadCap:conditions="Default.DoNotShow">
+                            <h1>Smart DIH Installation Automation</h1>
                             <ul>
                                 <li>
-                                    <p> IBM Infosphere Data Replication (IIDR) is available as an out-of-the-box connector engine for data pipelines. </p>
-                                </li>
-                                <li>
-                                    <p>Data pipeline support is enhanced to include DB2 on IBM z/OS mainframe<MadCap:conditionalText MadCap:conditions="Default.DoNotShow">, Oracle and MS&#160;SQL Server</MadCap:conditionalText>.</p>
-                                </li>
-                                <li>
-                                    <p>Generic declarative data loader can load any data based on configuration per data source.</p>
-                                </li>
-                                <li>
-                                    <p>Ensure business continuity while changing the data schema (adding tables) and reloading data.</p>
-                                </li>
-                                <li MadCap:conditions="Default.DoNotShow">
-                                    <p><span style="color: #ff00ff; font-weight: bold;">&gt;&gt;&gt; I can include Data Freshness here,</span> as Ari suggests, although <a href="https://docs.gigaspaces.com/latest/index.html#:~:text=no new features.-,Data Pipeline Improvement – Data Freshness,-Data freshness is">it was mentioned in release 16.1</a>&gt;&gt; --  &lt;&lt;it does have a <a href="https://docs.gigaspaces.com/latest/admin/data-freshness.html#top:~:text=measurement in GigaSpaces.-,The Heartbeat Table,-Central to the">nice diagram</a>&gt;&gt;</p>
+                                    <p>The new <MadCap:xref href="../../../../solution-hub/installing-dih-using-odsx.html" class="odsx-installation-script">ODSX installation script</MadCap:xref> allows automated installation of the Smart DIH platform.</p>
                                 </li>
                             </ul>
-                        </li>
-                    </ul>
-                    <p>&#160;</p>
+                            <p>&#160;</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
                     <div>
-                        <h1>SQL Enhancements</h1>
+                        <h1>Data Pipeline/Data Integration Enhancements</h1>
                         <ul>
                             <li>
                                 <p>
-                                    <MadCap:xref href="../../../../dev-java/data-catalog-metadata.html">Metadata From Data Catalog Schema</MadCap:xref> – Third-party tools can now automatically access the schema configurations for GigaSpaces objects.</p>
+                                    <MadCap:xref href="../../../../DIH/data-integration.html" class="Out-of-the-box-integration-logic-and-generic-data-pipelines">Out of the box integration logic and generic data pipelines</MadCap:xref> dramatically shortens time-to-market for new digital services and minimizes service downtime.</p>
+                                <ul>
+                                    <li>
+                                        <p> IBM Infosphere Data Replication (IIDR) is available as an out-of-the-box connector engine for data pipelines. </p>
+                                    </li>
+                                    <li>
+                                        <p>Data pipeline support is enhanced to include DB2 on IBM z/OS mainframe<MadCap:conditionalText MadCap:conditions="Default.DoNotShow">, Oracle and MS&#160;SQL Server</MadCap:conditionalText>.</p>
+                                    </li>
+                                    <li>
+                                        <p>Generic declarative data loader can load any data based on configuration per data source.</p>
+                                    </li>
+                                    <li>
+                                        <p>Ensure business continuity while changing the data schema (adding tables) and reloading data.</p>
+                                    </li>
+                                    <li MadCap:conditions="Default.DoNotShow">
+                                        <p><span style="color: #ff00ff; font-weight: bold;">&gt;&gt;&gt; I can include Data Freshness here,</span> as Ari suggests, although <a href="https://docs.gigaspaces.com/latest/index.html#:~:text=no new features.-,Data Pipeline Improvement – Data Freshness,-Data freshness is">it was mentioned in release 16.1</a>&gt;&gt; --  &lt;&lt;it does have a <a href="https://docs.gigaspaces.com/latest/admin/data-freshness.html#top:~:text=measurement in GigaSpaces.-,The Heartbeat Table,-Central to the">nice diagram</a>&gt;&gt;</p>
+                                    </li>
+                                </ul>
                             </li>
+                        </ul>
+                        <p>&#160;</p>
+                        <div>
+                            <h1>SQL Enhancements</h1>
+                            <ul>
+                                <li>
+                                    <p>
+                                        <MadCap:xref href="../../../../dev-java/data-catalog-metadata.html">Metadata From Data Catalog Schema</MadCap:xref> – Third-party tools can now automatically access the schema configurations for GigaSpaces objects.</p>
+                                </li>
+                                <li>
+                                    <p>Document Support in SQL – queries for <MadCap:xref href="../../../../dev-java/query-nested-properties.html" class="nested-objects">nested objects</MadCap:xref> can now be accessed <MadCap:xref href="../../../../admin/admin-query-space.html#For_example,_to_query_a_specific_class" class="sql-select-where">via the SQL SELECT statement and the WHERE clause</MadCap:xref>.</p>
+                                </li>
+                                <li>
+                                    <p>
+                                        <MadCap:xref href="../../../../dev-java/sql-supported-syntax.html#Transact" class="transactions">Transactions</MadCap:xref> available for SQL statements: <code>BEGIN/START</code>, <code>END/COMMIT</code>, and<code> ROLLBACK</code>.</p>
+                                </li>
+                            </ul>
+                            <p>&#160;</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <h1>Enhanced Support for Kubernetes </h1>
+                        <ul MadCap:conditions="Default.DoNotShow">
                             <li>
-                                <p>Document Support in SQL – queries for <MadCap:xref href="../../../../dev-java/query-nested-properties.html" class="nested-objects">nested objects</MadCap:xref> can now be accessed <MadCap:xref href="../../../../admin/admin-query-space.html#For_example,_to_query_a_specific_class" class="sql-select-where">via the SQL SELECT statement and the WHERE clause</MadCap:xref>.</p>
+                                <p><![CDATA[ 
+                                ]]><MadCap:xref href="../../../../admin/kubernetes-wan-gateway.html" class="wan-gateway">WAN Gateway</MadCap:xref>, our implementation of Multi-Region Replication, is now supported in Kubernetes.</p>
                             </li>
+                        </ul>
+                        <ul>
                             <li>
-                                <p>
-                                    <MadCap:xref href="../../../../dev-java/sql-supported-syntax.html#Transact" class="transactions">Transactions</MadCap:xref> available for SQL statements: <code>BEGIN/START</code>, <code>END/COMMIT</code>, and<code> ROLLBACK</code>.</p>
+                                <p><i><MadCap:xref href="../../../../admin/kubernetes-s30-customizing-a-space.html#How" class="zoned-a-a">Zoned Anti-Affinity</MadCap:xref></i> ensures that the primary and backup partitions will not run in the same zone.</p>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <p>In Kubernetes, <i>namespaces</i> provides a mechanism for isolating groups of resources within a single cluster. Names of resources need to be unique within a namespace, but not across namespaces. We now support deploying to a namespace, as opposed to deploying to the default namespace.</p>
+                            </li>
+                            <li MadCap:conditions="Default.DoNotShow">
+                                <p>Parallel processing of Tableau queries is now facilitated in Kubernetes by providing <MadCap:xref href="../../../../admin/kubernetes-s40-multiple-instances-of-data-gateway.html" class="multiple-instances-of-data-gateway">multiple instances of Data Gateway</MadCap:xref>, orchestrated by Kubernetes Load Balancer.</p>
                             </li>
                         </ul>
                         <p>&#160;</p>
                     </div>
                 </div>
-            </div>
-            <div>
+                <div MadCap:conditions="Default.DoNotShow">
+                    <h1>Fast Recovery for High Availability</h1>
+                    <p>The recovery time for partitions that have experienced controlled shutdown has been substantially reduced.</p>
+                    <p>&#160;</p>
+                </div>
                 <div>
-                    <h1>Enhanced Support for Kubernetes </h1>
-                    <ul MadCap:conditions="Default.DoNotShow">
-                        <li>
-                            <p><![CDATA[ 
-                                ]]><MadCap:xref href="../../../../admin/kubernetes-wan-gateway.html" class="wan-gateway">WAN Gateway</MadCap:xref>, our implementation of Multi-Region Replication, is now supported in Kubernetes.</p>
-                        </li>
-                    </ul>
+                    <h1>Tiered Storage Enhancements</h1>
                     <ul>
                         <li>
-                            <p><i><MadCap:xref href="../../../../admin/kubernetes-s30-customizing-a-space.html#How" class="zoned-a-a">Zoned Anti-Affinity</MadCap:xref></i> ensures that the primary and backup partitions will not run in the same zone.</p>
+                            <p>Local transactions are now supported in Tiered Storage.<MadCap:conditionalText MadCap:conditions="Default.DoNotShow"> local transactions can now be performed as a logical unit of work (LUW) that can be committed or rolled back as a single atomic action.</MadCap:conditionalText></p>
                         </li>
-                    </ul>
-                    <ul>
                         <li>
-                            <p>In Kubernetes, <i>namespaces</i> provides a mechanism for isolating groups of resources within a single cluster. Names of resources need to be unique within a namespace, but not across namespaces. We now support deploying to a namespace, as opposed to deploying to the default namespace.</p>
-                        </li>
-                        <li MadCap:conditions="Default.DoNotShow">
-                            <p>Parallel processing of Tableau queries is now facilitated in Kubernetes by providing <MadCap:xref href="../../../../admin/kubernetes-s40-multiple-instances-of-data-gateway.html" class="multiple-instances-of-data-gateway">multiple instances of Data Gateway</MadCap:xref>, orchestrated by Kubernetes Load Balancer.</p>
+                            <p>Multiple Criteria Support: Tiered Storage criteria now supports <MadCap:xref href="../../../../admin/intelligent-tiering-details.html#How" class="multiple-and-or-expressions">multiple AND/OR expressions</MadCap:xref>.</p>
                         </li>
                     </ul>
                     <p>&#160;</p>
                 </div>
-            </div>
-            <div MadCap:conditions="Default.DoNotShow">
-                <h1>Fast Recovery for High Availability</h1>
-                <p>The recovery time for partitions that have experienced controlled shutdown has been substantially reduced.</p>
-                <p>&#160;</p>
-            </div>
-            <div>
-                <h1>Tiered Storage Enhancements</h1>
-                <ul>
-                    <li>
-                        <p>Local transactions are now supported in Tiered Storage.<MadCap:conditionalText MadCap:conditions="Default.DoNotShow"> local transactions can now be performed as a logical unit of work (LUW) that can be committed or rolled back as a single atomic action.</MadCap:conditionalText></p>
-                    </li>
-                    <li>
-                        <p>Multiple Criteria Support: Tiered Storage criteria now supports <MadCap:xref href="../../../../admin/intelligent-tiering-details.html#How" class="multiple-and-or-expressions">multiple AND/OR expressions</MadCap:xref>.</p>
-                    </li>
-                </ul>
-                <p>&#160;</p>
-            </div>
-            <div>
-                <h1>JDBC Driver Support for Tableau </h1>
-                <ul>
-                    <li>Ability to use the <MadCap:xref href="../../../../dev-java/odbc-jdbc-connection-to-tableau-and-power-bi-using-data-gateway.html" class="Tableau-supplied-JDBC-driver">Tableau-supplied JDBC driver</MadCap:xref> to provide full functionality for Tableau data visualizations.</li>
-                </ul>
-                <p>&#160;</p>
+                <div>
+                    <h1>JDBC Driver Support for Tableau </h1>
+                    <ul>
+                        <li>Ability to use the <MadCap:xref href="../../../../dev-java/odbc-jdbc-connection-to-tableau-and-power-bi-using-data-gateway.html" class="Tableau-supplied-JDBC-driver">Tableau-supplied JDBC driver</MadCap:xref> to provide full functionality for Tableau data visualizations.</li>
+                    </ul>
+                    <p>&#160;</p>
+                </div>
             </div>
         </div>
         <div MadCap:conditions="Version.16-1-1-only">
