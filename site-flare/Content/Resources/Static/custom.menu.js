@@ -1,7 +1,7 @@
 ﻿var versionData = {
 	
 
-	'16.2.1': { 'url': '/16.2.1/landing.html', 'label': '16.2.1 Early Access', 'topicBanner': 'preview' },
+	'16.3': { 'url': '/16.3/landing.html', 'label': '16.3 Early Access', 'topicBanner': 'preview' }, // early access
 //	'16.2': { 'url': '/16.2/landing.html', 'label': '16.2 Early Access', 'topicBanner': 'preview' },
 	//	'16.0': { 'url': '/16.0/landing.html', 'label': '16.0', 'topicBanner': 'preview' },
 	//	'16.0': { 'url': '/16.0/landing.html', 'label': '16.0', 'topicBanner': 'preview' },
@@ -9,10 +9,10 @@
 
 
 
-	// 	this block of code, until "//z", is fine for 16.2:	
-	'16.2': { 'url': '/16.2/landing.html', 'label': '16.2', 'hide': true },
-	'latest': { 'url': '/latest/landing.html', 'label': '16.2' },	
+	'16.2.1': { 'url': '/16.2.1/landing.html', 'label': '16.2.1', 'hide': true }, // current
+	'latest': { 'url': '/latest/landing.html', 'label': '16.2.1' },	// also current
 	
+	'16.2': { 'url': '/16.2/landing.html', 'label': '16.2',  'topicBanner': 'old' },
 	'16.1.1': { 'url': '/16.1/landing.html', 'label': '16.1.1',  'topicBanner': 'old' },
 	//z 
 
@@ -71,6 +71,6 @@ var buttonsData = [
 ];
 
 var topicBanner = {
-  old: '<div class="tc-topic-banner old"><p>This page describes an older version of the product. The latest stable version is <a href="/latest">16.2</a>.</p></div>',
-  preview: '<div class="tc-topic-banner preview"><p>This page describes the beta version of the product. The latest stable version is <a href="/latest">16.2</a>.</p></div>'
+  old: '<div class="tc-topic-banner old"><p>This page describes an older version of the product. The latest stable version is <a href="/latest">16.2.1</a>.</p></div>',
+  preview: '<div class="tc-topic-banner preview"><p>This page describes the beta version of the product. The latest stable version is <a href="/latest">16.2.1</a>.</p></div>'
 };
