@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <map id="map1">
+            <area shape="rectangle" coords="31,228,438,655" dragDirection="0" />
+            <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
+            <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
+        </map>
+        <h1 class="tc-pagetitle">SpaceDeck Installation</h1>
+        <h1>Download SpaceDeck</h1>
+        <p>Contact your GigaSpaces representative for instructions how to download the Docker image for SpaceDeck.</p>
+        <h1>Sample for docker-compose File</h1><pre><code>
+version: ‘2’
+services
+  space-deck:
+    image: latest (e.g. gigaspaces/spacedeck:1.0.2)
+    ports:
+     - 4200:3000
+    container_name: space-deck
+    environment:
+     - API_URL=http://di:8090/v2
+     - DI_API_URL=http://di:6080
+     - DI_MDN_API_URL=http://di:6081
+     - AUTH= on
+-IDLE_SESSION_TIMEOUT = 60
+    extra_hosts:
+     - “di:172.31.47.51”
+</code></pre>
+        <h1>Environmental Variables</h1>
+        <p> <b>AUTH</b> - set to <code>on </code>to enable authentication.</p>
+        <p> <b>API_URL</b> - set to the url of the api (ie. <code>http://localhost:8090/v2</code>).</p>
+        <p> <b>DI_API_URL</b> - set to the url of the di api (ie. <code>http://localhost:8090/v2</code>).</p>
+        <p> <b>DI_MDN_API_URL</b> - set to the url of the mdn api (ie. <code>http://localhost:8090/v2</code>).</p>
+        <p> <b>IDLE_SESSION_TIMEOUT</b> - how long idle time in minutes before logging out, default <code>30</code>.</p>
+    </body>
+</html>
