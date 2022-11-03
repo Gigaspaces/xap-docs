@@ -159,7 +159,17 @@
             <h3>Sample Java Code</h3>
             <p>The following Java code specifies that for the table named <b>Customer</b>, the <b>club</b> field will be compared to the string "<b>PLATINUM</b>". Matching records will be stored in Hot storage and Warm storage. Other records will be in Warm storage only.</p>
             <p>It also specifies that for the <b>TransientCustomer</b> table, all data will be stored in Hot storage only.</p>
-            <p>In addition, records in the <b>Purchase</b> table will be stored in Hot and Warm storage for 30 seconds. After that time, they will be stored in Warm storage only.</p><pre><code class="language-java"> @Override 
+            <p>In addition, records in the <b>Purchase</b> table will be stored in Hot and Warm storage for 30 seconds. After that time, they will be stored in Warm storage only.</p><pre MadCap:conditions="Version.16-2-born"><code class="language-java"> 
+@Override 
+protected void configure(EmbeddedSpaceFactoryBean factoryBean) {
+super.configure(factoryBean); 
+TieredStorageConfig tieredStorageConfig = new TieredStorageConfig();
+tieredStorageConfig.addTable(new TieredStorageTableConfig().setName("Customer").setCriteria("club =  'PLATINUM'"));
+tieredStorageConfig.addTable(new TieredStorageTableConfig().setName("TransientCustomer").setTransient(true));
+tieredStorageConfig.addTable(new TieredStorageTableConfig().setName("Doc3").setCriteria("all"));
+tieredStorageConfig.addTable(new TieredStorageTableConfig().setName("Purchase").setTimeColumn("expire").setPeriod( Duration.ofHours(1)));
+factoryBean.setCachePolicy(new TieredStorageCachePolicy(tieredStorageConfig));
+</code></pre><pre MadCap:conditions="Version.16-2-died"><code class="language-java"> @Override 
 protected void configure(EmbeddedSpaceFactoryBean factoryBean) {
  super.configure(factoryBean); 
  TieredStorageConfig tieredStorageConfig = new TieredStorageConfig(); 
