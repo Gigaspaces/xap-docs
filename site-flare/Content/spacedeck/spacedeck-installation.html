@@ -9,9 +9,11 @@
             <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
         </map>
         <h1 class="tc-pagetitle">SpaceDeck Installation</h1>
-        <h1>Download SpaceDeck</h1>
-        <p>Contact your GigaSpaces representative for instructions how to download the Docker image for SpaceDeck.</p>
-        <h1>Sample for docker-compose File</h1><pre><code>
+        <p>SpaceDeck is automatically installed as part of the <MadCap:xref href="../solution-hub/installing-dih-using-odsx.html">Installation Procedure for GigaSpaces Smart DIH</MadCap:xref>. </p>
+        <div class="tc-admon-note">
+            <p>These instructions are for the Kubernetes environment. If you are using the <MadCap:xref href="../admin/runtime-configuration.html">Service Grid</MadCap:xref> component of GigaSpaces, please contact your GigaSpaces representative for instructions how to install SpaceDeck.</p>
+        </div>
+        <h1 MadCap:conditions="Default.DoNotShow">Sample for docker-compose File</h1><pre MadCap:conditions="Default.DoNotShow"><code>
 version: ‘2’
 services
   space-deck:
@@ -28,11 +30,15 @@ services
     extra_hosts:
      - “di:172.31.47.51”
 </code></pre>
-        <h1>Environmental Variables</h1>
+        <h2>Environmental Variables</h2>
+        <p>Ensure that the following environmental variables are set before running SpaceDeck.</p>
         <p> <b>AUTH</b> - set to <code>on </code>to enable authentication.</p>
         <p> <b>API_URL</b> - set to the url of the api (ie. <code>http://localhost:8090/v2</code>).</p>
         <p> <b>DI_API_URL</b> - set to the url of the di api (ie. <code>http://localhost:8090/v2</code>).</p>
         <p> <b>DI_MDN_API_URL</b> - set to the url of the mdn api (ie. <code>http://localhost:8090/v2</code>).</p>
         <p> <b>IDLE_SESSION_TIMEOUT</b> - how long idle time in minutes before logging out, default <code>30</code>.</p>
+        <h2>URL</h2>
+        <p>Use the following URL to start SpaceDeck.</p>
+        <p style="background-color: #ff00ff;font-weight: bold;">&lt;&lt;URL here xxxxxx:port something like that&gt;&gt;</p>
     </body>
 </html>
