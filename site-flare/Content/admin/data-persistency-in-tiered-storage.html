@@ -11,6 +11,9 @@
         <p style="text-align: center;">
             <img src="../Resources/Images/x16.0-tiered-storage-no-border.png" style="width: 595px;height: 382px;" />
         </p>
+        <div class="tc-admon-note">
+            <p>For an explanation of Tiered Storage and instructions for configuration, see <MadCap:xref href="intelligent-tiering-details.html">What is Tiered Storage?</MadCap:xref></p>
+        </div>
         <p>Using data persistency, data in both tiers is stored in a system repository. When the data is undeployed, the user has an option to persist the data. Subsequent redeployment of the data is performed at optimum speed. </p>
         <div class="tc-admon-note">
             <p>The undeployed services can be viewed using the <code>GET /pus/undeployed</code> REST API. <br />An example of sample output is shown below.</p><code class="language-bash">[
@@ -27,8 +30,9 @@
         <div class="tc-admon-note">
             <p>The data of undeployed services can be deleted using the <code>DELETE /pus/undeployed/{id}</code> REST API.</p>
         </div>
-        <h2>How to Configure Tiered Storage in XML</h2>
-        <div MadCap:conditions="NewSet.JustAColorForDivs"><![CDATA[            ]]><p>Tiered Storage is implemented by parameters coded in the XML file for the Space. The relevant sections of the XML file are shown below.</p><h3>Sample XML Code</h3><p>The following XML specifies that for the table named <b>Order</b>, the <b>orderTime</b> field will be compared to the current time. For records where the orderTime field is within 24 hours of the current time, the record will be in Hot storage and Warm storage. After that time, it will be in Warm storage only.</p><pre><code class="language-xml">        
+        <div MadCap:conditions="Default.DoNotShow">
+            <h2>How to Configure Tiered Storage in XML</h2>
+            <div MadCap:conditions="NewSet.JustAColorForDivs"><![CDATA[            ]]><p>Tiered Storage is implemented by parameters coded in the XML file for the Space. The relevant sections of the XML file are shown below.</p><h3>Sample XML Code</h3><p>The following XML specifies that for the table named <b>Order</b>, the <b>orderTime</b> field will be compared to the current time. For records where the orderTime field is within 24 hours of the current time, the record will be in Hot storage and Warm storage. After that time, it will be in Warm storage only.</p><pre><code class="language-xml">        
 &lt;os-core:tiered-storage&gt;
  &lt;os-core:tables&gt;
  &lt;os-core:table name="com.mycompany.app.model.<b>Order</b>" time-column="<b>orderTime</b>"&gt;
@@ -47,13 +51,13 @@
 &lt;/os-core:tiered-storage&gt;
 </code></pre><p>&#160;</p><p>Following is a summary of XML parameters.</p><table style="width: 100%;"><col /><col /><tbody><tr><td>XML Parameter</td><td>Meaning</td></tr><tr><td><code>tiered-storage</code></td><td>Beginning of Tiered Storage definitions for a Space</td></tr><tr><td><code>tables</code></td><td>Beginning of list of tables</td></tr><tr><td><code>table name=<i>name-of-table</i></code></td><td>Tiered rule for a table (object type)</td></tr><tr><td><code>time-column=<i>name-of-field</i></code></td><td>Name of the field (property) in the table that will be evaluated for eviction from RAM. Must be of Java type <code class="language-java">TimeStamp</code>, <code class="language-java">Long </code>or <code class="language-java">Instant</code>.<br /></td></tr><tr><td><code>period=<i>period</i></code></td><td>After the <code style="font-style: italic;">period</code> amount of time has passed, it will be removed from Hot storage (RAM). <br /><code style="font-style: italic;">period</code> must be a format supported by the Java <a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html#i49:~:text=occurs-,parse,public static Duration parse(CharSequence text)">Duration</a> class.<br />Examples: <br /><code>PT15M</code> (15 minutes)<br /><code>PT20S</code> (20 seconds)<br /></td></tr><tr><td><code>cache-rule criteria="<i>fieldname operator value</i>"</code></td><td><p>Rule to determine which data to place in Hot storage. <br /><code style="font-style: italic;">fieldname</code> can be any Java primitive field type. <br /><code style="font-style: italic;">operator</code> can be 
 							<b>= &#160;!= &#160;&#160;&gt;= &#160;&#160;&lt;=  </b><br /><code style="font-style: italic;">value</code> is a compatible value for comparision to the field.</p><p>Examples: </p><p><code>cache-rule criteria="club! = 'BASIC'"</code></p><p><code>cache-rule criteria="active = true"</code></p><p><code>cache-rule criteria="age &gt;=30'"</code></p></td></tr><tr><td id="transient-param"><code>transient=<i>true</i>|<i>false</i></code></td><td>Specify if the data is in the Hot tier only. Default is <code>transient=false</code>.</td></tr><tr MadCap:conditions="Default.DoNotShow"><td><code>period=<i>timevalue</i></code></td><td>The Hot tier eviction rule. Data failing this rule will be removed from the Hot tier (but will still be in the Warm tier). <code style="font-style: italic;">timevalue </code>can be any value that is a valid for the <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/Duration.html#parse(java.lang.CharSequence):~:text=public static Duration parse​(CharSequence text)">parse method of a Java Duration object</a>. </td></tr></tbody></table></div>
-        <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
-            <h1>How to Configure Tiered Storage in Java Code</h1>
-            <p>Tiered Storage is implemented by setting parameter values in the Java code definition for the Space. Relevant parts of the Java code are shown below.</p>
-            <h3>Sample Java Code</h3>
-            <p>The following Java code specifies that for the table named <b>Customer</b>, the <b>club</b> field will be compared to the string "<b>PLATINUM</b>". Matching records will be stored in Hot storage and Warm storage. Other records will be in Warm storage only.</p>
-            <p>It also specifies that for the <b>TransientCustomer</b> table, all data will be stored in Hot storage only.</p>
-            <p>In addition, records in the <b>Purchase</b> table will be stored in Hot and Warm storage for 30 seconds. After that time, they will be stored in Warm storage only.</p><pre><code class="language-java"> @Override 
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <h1>How to Configure Tiered Storage in Java Code</h1>
+                <p>Tiered Storage is implemented by setting parameter values in the Java code definition for the Space. Relevant parts of the Java code are shown below.</p>
+                <h3>Sample Java Code</h3>
+                <p>The following Java code specifies that for the table named <b>Customer</b>, the <b>club</b> field will be compared to the string "<b>PLATINUM</b>". Matching records will be stored in Hot storage and Warm storage. Other records will be in Warm storage only.</p>
+                <p>It also specifies that for the <b>TransientCustomer</b> table, all data will be stored in Hot storage only.</p>
+                <p>In addition, records in the <b>Purchase</b> table will be stored in Hot and Warm storage for 30 seconds. After that time, they will be stored in Warm storage only.</p><pre><code class="language-java"> @Override 
 protected void configure(EmbeddedSpaceFactoryBean factoryBean) {
  super.configure(factoryBean); 
  TieredStorageConfig tieredStorageConfig = new TieredStorageConfig(); 
@@ -64,39 +68,38 @@ protected void configure(EmbeddedSpaceFactoryBean factoryBean) {
  tieredStorageConfig.setTables(tables); 
  factoryBean.setTieredStorageConfig(tieredStorageConfig); 
 </code></pre>
-            <p>&#160;</p>
-            <div MadCap:conditions="NewSet.JustAColorForDivs">
-                <p>Following is a summary of the relevant Java code.</p>
-                <table style="width: 100%;">
-                    <col>
-                    </col>
-                    <col>
-                    </col>
-                    <tbody>
-                        <tr>
-                            <td>Code</td>
-                            <td>Meaning</td>
-                        </tr>
-                        <tr>
-                            <td>Customer.class.getName()).<b>setCriteria("club =  'PLATINUM'")</b></td>
-                            <td>
-                                <p>Rule to determine which data to place in Hot storage. <br />In this example, rows of data in the <i>Customer</i> table are placed in Hot storage is the <i>club</i> field is equal to "PLATINUM".</p>
-                                <p>Note that the <code style="font-style: italic;">operator</code> can be 
+                <p>&#160;</p>
+                <div MadCap:conditions="NewSet.JustAColorForDivs">
+                    <p>Following is a summary of the relevant Java code.</p>
+                    <table style="width: 100%;">
+                        <col />
+                        <col />
+                        <tbody>
+                            <tr>
+                                <td>Code</td>
+                                <td>Meaning</td>
+                            </tr>
+                            <tr>
+                                <td>Customer.class.getName()).<b>setCriteria("club =  'PLATINUM'")</b></td>
+                                <td>
+                                    <p>Rule to determine which data to place in Hot storage. <br />In this example, rows of data in the <i>Customer</i> table are placed in Hot storage is the <i>club</i> field is equal to "PLATINUM".</p>
+                                    <p>Note that the <code style="font-style: italic;">operator</code> can be 
 							<b>= &#160;&#160;!= &#160;&#160;&gt;= &#160;&#160;&lt;=  </b></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>TransientCustomer.class.getName()).<b>setTransient(true)</b></td>
-                            <td>Rule to determine which data is in Hot storage only. <br />In this example, all data in the TransientCustomer table is stored in Hot storage, but not in Warm storage.</td>
-                        </tr>
-                        <tr>
-                            <td>Purchase.class.getName().setTimeColumn("orderTime")<br />.<b>setPeriod(Duration.ofSeconds(30)</b>)</td>
-                            <td>Rule to specify the amount of time that certain data will be in Hot storage. <br />In this example, for the <i>Purchase</i> table, the <i>orderTime</i> fields will be kept in Hot storage for 30 seconds.</td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>TransientCustomer.class.getName()).<b>setTransient(true)</b></td>
+                                <td>Rule to determine which data is in Hot storage only. <br />In this example, all data in the TransientCustomer table is stored in Hot storage, but not in Warm storage.</td>
+                            </tr>
+                            <tr>
+                                <td>Purchase.class.getName().setTimeColumn("orderTime")<br />.<b>setPeriod(Duration.ofSeconds(30)</b>)</td>
+                                <td>Rule to specify the amount of time that certain data will be in Hot storage. <br />In this example, for the <i>Purchase</i> table, the <i>orderTime</i> fields will be kept in Hot storage for 30 seconds.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            <p>&#160;</p>
         </div>
-        <p>&#160;</p>
     </body>
 </html>
