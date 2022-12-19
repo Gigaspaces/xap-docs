@@ -6,7 +6,44 @@
         <h1 class="tc-pagetitle">Changelog</h1>
         <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.x.<MadCap:conditionalText MadCap:conditions="Version.16-1-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
         <p MadCap:conditions="Version.16-0-only,Default.DoNotShow">There are no features and enhancements at this time. </p>
-        <p>&#160;</p>
+        <div MadCap:conditions="Version.16-3-only">
+            <p>&#160;</p>
+            <h1>16.3</h1>
+            <div MadCap:conditions="Version.16-3-only">
+                <h2>Features and Enhancements</h2>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14836," />: Add support to add dynamic index in tiered storage, and allow to remove before writing to tier.</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14919," />: Tiered storage configuration missing data</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14873," />: Zookeeper Upgrade to (at least) 3.6.0 (vulnerability + integration)</li>
+                </ul>
+                <p MadCap:conditions="Default.DoNotShow">There are no features and enhancements at this time.</p>
+            </div>
+            <h2>Resolved Issues</h2>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14733," />: Increased memory usage of MarshalOutputStream in CPeer/Writer</li>
+            </ul>
+            <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time. </p>
+            <h2>Known Issues</h2>
+            <p>There are no known issues at this time.</p>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs,Default.DoNotShow">
+                <ul>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14868," />: Problems deploying WAN Gateway after upgrade to 16.x<br /></li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14742," />: smart-externalizable classcastexception when PUs share a GSC </li>
+                    <li>
+                        <p>As explained in the Jiras, these issues can be addressed by specifying the parameter<code> -Dcom.gs.smart-externalizable.enabled=false</code></p>
+                    </li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14893," />: Hibernate integration - fail to fetch eagerly collection with 5.6.7 hibernate version </li>
+                </ul>
+            </div>
+            <p>&#160;</p>
+        </div>
         <div MadCap:conditions="Version.16-2-1-only">
             <h1>16.2.1</h1>
             <div MadCap:conditions="Default.DoNotShow">
