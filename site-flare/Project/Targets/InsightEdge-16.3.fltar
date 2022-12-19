@@ -15,7 +15,7 @@
   DefaultUrl="/Content/landing.html"
   MasterPage="/Content/Resources/MasterPages/content.flmsp"
   MobileBreakpoint="820"
-  ConditionTagExpression="include[Version.16-3-born], exclude[Default.DoNotShow or NewSet.StagingOnly or NewSet.XperimentalOnlyINCLUDE or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-2-only or Version.14-5-died or Version.14-5-only or Version.15-0-died or Version.15-0-only or Version.15-2-died or Version.15-2-only or Version.15-5-died or Version.15-5-only or Version.15-8-died or Version.15-8-only or Version.16-0-died or Version.16-0-only or Version.16-1-1-died or Version.16-1-1-only or Version.16-1-died or Version.16-1-only or Version.16-2-1-died or Version.16-2-1-only or Version.16-2-died or Version.16-2-only or Version.16-3-died]">
+  ConditionTagExpression="include[Version.16-3-born], exclude[Default.DoNotShow or NewSet.StagingOnly or NewSet.XperimentalOnlyINCLUDE or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-2-only or Version.14-5-died or Version.14-5-only or Version.15-0-died or Version.15-0-only or Version.15-2-died or Version.15-2-only or Version.15-5-died or Version.15-5-only or Version.15-8-died or Version.15-8-only or Version.16-0-died or Version.16-0-only or Version.16-1-1-died or Version.16-1-1-only or Version.16-1-died or Version.16-1-only or Version.16-2-1-died or Version.16-2-1-only or Version.16-2-died or Version.16-2-only or Version.16-3-died or Version.16-4-born or Version.16-4-only]">
   <PrintedOutput
     CollapseMargins="true"
     GenerateTOCProxy="true"
@@ -24,7 +24,7 @@
     OutputFormat="doc" />
   <Variables>
     <Variable
-      Name="Versions/maven-version-MX">16.3.0</Variable>
+      Name="Versions/maven-version-MX">16.3.0-m3</Variable>
     <Variable
       Name="Versions/product-version-long">16.3.0</Variable>
     <Variable
@@ -36,7 +36,7 @@
     <Variable
       Name="Versions/product-version-short">16.3</Variable>
     <Variable
-      Name="Versions/helm-version-MX">16.3.0</Variable>
+      Name="Versions/helm-version-MX">16.3.0-m3</Variable>
     <Variable
       Name="Versions/gshome-directory">gigaspaces-xap-enterprise-16.3.0</Variable>
     <Variable
@@ -80,7 +80,7 @@
     <Variable
       Name="Versions/scala">2.11.6</Variable>
     <Variable
-      Name="Versions/product-version-svc-pack-MX">16.3.0</Variable>
+      Name="Versions/product-version-svc-pack-MX">16.3.0-m3</Variable>
     <Variable
       Name="Versions/spring-long">5.1.7</Variable>
     <Variable
@@ -91,6 +91,8 @@
       Name="General/EnvVariablePrefix">GS</Variable>
     <Variable
       Name="Versions/dash-ea">-ea</Variable>
+    <Variable
+      Name="Versions/dash-milestone">-m3</Variable>
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
 </CatapultTarget>
