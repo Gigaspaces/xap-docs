@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1>Test Multiple Conditions </h1>
+        <h1>Test Multiple Conditions xxxxx</h1>
         <p>Nested tabs:</p>
         <div class="easyui-tabs" plain="true">
             <div title="Tab 1">
@@ -33,8 +33,9 @@
         </div>
         <p>this is an inner tab 1</p>
         <p>this is an inner tab 2</p>
-        <p>&#160;</p>
+        <p>&lt;&lt;This is just before "15.5.born to 16.0.died"&gt;&gt;</p>
         <p MadCap:conditions="Version.15-5-born,Version.16-0-died">this has a range, 15.5 born to 16.0 died.</p>
+        <p>&lt;&lt;This is just after "15.5.born to 16.0.died"&gt;&gt;</p>
         <div MadCap:conditions="Version.16-0-only,Default.DoNotShow">
             <p>test.... There are currently no deprecated or end-of-life features and functionality.</p>
         </div>
@@ -71,8 +72,18 @@
         <p MadCap:conditions="Version.14-2-only">this text has 14.2 only</p>
         <p MadCap:conditions="Version.14-5-only">this text has 14.5 only</p>
         <p MadCap:conditions="Version.15-0-only">this text has 15.0 only</p>
+        <p MadCap:conditions="Version.15-0-only">&#160;</p>
+        <p>&lt;&lt;This is just before "15.2 only"&gt;&gt;</p>
         <p MadCap:conditions="Version.15-2-only">this text has 15.2 only</p>
+        <p>&lt;&lt;This is just after "15.2 only"&gt;&gt;</p>
+        <p>&lt;&lt;This is just before "15.5 only"&gt;&gt;</p>
         <p MadCap:conditions="Version.15-5-only">this text has 15.5 only</p>
+        <p>&lt;&lt;This is just after "15.2 only"&gt;&gt;</p>
+        <p>&#160;</p>
+        <p>&lt;&lt;This is just before "15.2.only AND 15.5 only"&gt;&gt;</p>
+        <p MadCap:conditions="Version.15-5-only,Version.15-2-only">this text has 15.2 only AND 15.5.only</p>
+        <p>&lt;&lt;This is just after "15.2.only AND 15.5 only"&gt;&gt;</p>
+        <p>&#160;</p>
         <p MadCap:conditions="Version.15-8-only">this text has 15.8 only</p>
         <p MadCap:conditions="Version.15-5-only">&#160;</p>
         <p MadCap:conditions="Version.15-5-only,NewSet.StagingOnly">this text has 15.5 only AND StagingOnly</p>
