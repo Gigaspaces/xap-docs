@@ -66,13 +66,16 @@ function processStaticResources(srcPath, dstPath) {
 
   for (fc = new Enumerator(srcPath.files); !fc.atEnd(); fc.moveNext()) {
     var dstFile = dstPath + "\\"+ fc.item().name;
-	if (fso.FileExists(dstFile)) {
-		log("  Deleting "+ fc.item().Path);
-		fc.item().Delete();
-	} else {
-		log("  Moving " + fc.item().Path + " to " + dstFile);
-		fc.item().Move(dstFile);
-	}
+    if (fso.FileExists(dstFile)) {
+      log("  Deleting "+ fc.item().Path);
+      fc.item().Delete();
+    } else {
+      if (!fso.FolderExists(dstPath)) {
+        fso.CreateFolder(dstPath)
+      }
+      log("  Moving " + fc.item().Path + " to " + dstFile);
+      fc.item().Move(dstFile);
+    }
   }
   
   log("  Deleting " + srcPath.Path);
