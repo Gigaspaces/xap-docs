@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Using JConsole to Monitor the Client-Side Cache Activity</h1>
+        <p>The Local View/Cache JMX Monitor monitors the number of objects stored within the client side cache and the activities performed with it. You can use <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/technotes/guides/management/jconsole.html" target="_blank">JConsole</a> to graph the number of objects within the local view/cache and other exposed statistics while the application is running. The Local View/Cache JMX Monitor exposing the following statistics:</p>
+        <ul>
+            <li>
+                <p>Object Count</p>
+            </li>
+            <li>
+                <p>Read Count, Take Count, Write Count, Update Count</p>
+            </li>
+            <li>
+                <p>Read TP, Take TP, Write TP, Update TP</p>
+            </li>
+        </ul>
+        <h1><a name="using-the-local-view-cache-jmx-monitor"></a>Using the Local View/Cache JMX Monitor</h1>
+        <p><span class="tc-bold">To use the Local View/Cache JMX Monitor:</span>
+        </p>
+        <ol>
+            <li>
+                <p>Download the <a href="/download_files/GSClientCacheJMXMonitorXAP9.jar">monitor JAR</a> and add it into your application classpath.</p>
+            </li>
+            <li>
+                <p>Add into your local view/cache configuration the <code>space-config.filters.Statistics.enabled</code> parameter as demonstrated below.</p>
+            </li>
+            <li>
+                <p>Add into your application Spring file the <code>gsClientCacheMonitor</code> bean. The following example assumes you have an application using two master spaces, each has its own client local cache proxy. See how the <code>GigaSpacesClientCacheJMXMonitor</code> is configured to specify the different proxies used by the application:</p><pre><code class="language-xml">&lt;os-core:space-proxy id="space" space-name="mySpace" /&gt;
+
+&lt;os-core:local-cache id="localCacheSpace" space="space"&gt;
+    &lt;os-core:properties&gt;
+        &lt;props&gt;
+            &lt;prop key="space-config.filters.Statistics.enabled"&gt;true&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/os-core:properties&gt;
+&lt;/os-core:local-cache&gt;
+
+&lt;os-core:giga-space id="gigaSpace1" space="localCacheSpace"/&gt;
+
+&lt;os-core:space-proxy id="space" space-name="mySpace2" /&gt;
+
+&lt;os-core:local-cache id="localCacheSpace2" space="space2"&gt;
+    &lt;os-core:properties&gt;
+        &lt;props&gt;
+            &lt;prop key="space-config.filters.Statistics.enabled"&gt;true&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/os-core:properties&gt;
+&lt;/os-core:local-cache&gt;
+&lt;os-core:giga-space id="gigaSpace2" space="localCacheSpace2"/&gt;
+
+&lt;bean id="gsClientCacheMonitor"
+    class="com.gigaspaces.clientcachemonitor.GigaSpacesClientCacheJMXMonitor"&gt;
+    &lt;property name="gigaSpaceList" &gt;
+        &lt;list&gt;
+            &lt;ref bean="gigaSpace1"/&gt;
+            &lt;ref bean="gigaSpace2"/&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+                <p>You can specify up to 5 local View/Cache <code>GigaSpace</code> beans as part of the <code>gigaSpaceList</code>.</p>
+            </li>
+            <li>
+                <p>Start JConsole for your application JVM, move into the MBean Tab and select the <code>GigaSpacesClientCacheJMXMonitor</code> under the <code>com.gigaspaces.clientcachemonitor</code>.</p>
+            </li>
+            <li>
+                <p>Click the relevant statistics you would like to monitor, and Double click the cell on the right side panel. you may monitor the entire statistics by clicking on the Attributes tree icon and double clicking on each value at the left side panel.</p>
+            </li>
+            <li>
+                <p>A graph (or multiple graphs) should be presented illustrating the value of the monitored statistic(s). The graph(s) will be updated periodically.</p>
+            </li>
+        </ol>
+        <p>The following example shows how you can monitor multiple local cache instances running within the same application:</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/clientCacheJMXMonitor.jpg" alt="image" class="tc-picture100" />
+        </p>
+        <p>
+            <br />
+        </p>
+        <div class="tc-admon-note">
+            <p>This version of the local view/cache monitor does not reflect statistics for operations using the <code>readByID</code> operation from the local view/cache.</p>
+        </div>
+    </body>
+</html>

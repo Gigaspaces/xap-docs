@@ -1,0 +1,786 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Deploy with Command Line</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> provides an interactive command line tool as part of the product. This can be started using gs.sh/bat command (referred to as <span class="tc-bold">GigaSpaces CLI</span>).</p>
+        <p>This tool provides many commands that can be used to manage and gather information about the various GigaSpaces runtime components. This section describes the commands supported by GigaSpaces CLI.</p>
+        <div class="tc-admon-note">
+            <p>In order to interact with a secured grid you need to log in first. See <a href="command-line-interface-cli-security.html">Using the CLI in a Secured Environment</a>.</p>
+        </div>
+        <h1><a name="application"></a>application</h1>
+        <h2><a name="syntax"></a>Syntax</h2><pre><code class="language-bash">gs&gt; deploy-application [-user xxx -password yyy] [-secured true/false] application_directory_or_zipfile
+</code></pre>
+        <h2><a name="description"></a>Description</h2>
+        <p>Deploys an <a href="../dev-java/deploying-onto-the-service-grid.html#app-deployment-pu-dependencies">application</a>, which deploys one or more processing units in dependency order onto the service grid.</p>
+        <h2><a name="options"></a>Options</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Option</th>
+                    <th align="left">Description</th>
+                    <th align="left">Value Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">-timeout</td>
+                    <td align="left">Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.<br />Defaults
+          to <span class="tc-bold">5000</span> milliseconds (5 seconds).</td>
+                    <td align="left">-timeout [timeoutValue]</td>
+                </tr>
+                <tr>
+                    <td align="left">-deploy-timeout</td>
+                    <td align="left">Timeout for deploy operation (in milliseconds),<br />otherwise blocks until all successful/failed deployment events arrive (default)"</td>
+                    <td align="left">-deploy-timeout [timeoutValue]</td>
+                </tr>
+                <tr>
+                    <td align="left">-h / -help</td>
+                    <td align="left">Prints help</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-secured</td>
+                    <td align="left">Deploys a secured processing unit (implicit when using -user/-password) - <a href="command-line-interface-cli-security.html">Using
+            the CLI in a Secured Environment</a></td>
+                    <td align="left">-secured [true/false]</td>
+                </tr>
+                <tr>
+                    <td align="left">-user -password</td>
+                    <td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.html">Using
+            the CLI in a Secured Environment</a></td>
+                    <td align="left">-user xxx -password yyyy</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Example" style="padding:10px;">
+                    <p>The following deploys the data-app example application (which includes a feeder and a processor).</p><pre><code>gs&gt; deploy-application examples/data/dist.zip
+</code></pre>
+                    <p>The dist.zip file includes:</p><pre><code>application.xml
+feeder.jar
+processor.jar
+</code></pre>
+                    <p>application.xml file describes the application dependencies:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:pu processing-unit="processor.jar"
+            cluster-schema="partitioned"
+            number-of-instances="2" number-of-backups="1"</code></pre>
+                    <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+                        <p>The number of backups per partition is zero or one.</p>
+                    </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
+            max-instances-per-vm="1" max-instances-per-machine="0" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="processor" min-instances-per-partition="1"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:pu processing-unit="processor.jar"
+            cluster-schema="partitioned"
+            number-of-instances="2" number-of-backups="1"</code></pre>
+                    <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+                        <p>The number of backups per partition is zero or one.</p>
+                    </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
+            max-instances-per-vm="1" max-instances-per-machine="0" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="processor" min-instances-per-partition="1"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
+</code></pre>
+                </div>
+            </div>
+        </div>
+        <h1><a name="undeploy-application"></a>Undeploy Application</h1>
+        <h2><a name="syntax-1"></a>Syntax</h2><pre><code class="language-bash">gs&gt; undeploy-application application_name
+</code></pre>
+        <h2><a name="description-1"></a>Description</h2>
+        <p>Undeploys an <a href="../dev-java/deploying-onto-the-service-grid.html#app-deployment-pu-dependencies">application</a>
+    from the service grid, while respecting pu dependency order.</p>
+        <h2><a name="options-1"></a>Options</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Option</th>
+                    <th align="left">Description</th>
+                    <th align="left">Value Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">-timeout</td>
+                    <td align="left">Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.<br />Defaults
+          to **5000 milliseconds (5 seconds).</td>
+                    <td align="left"><code>-timeout [timeoutValue]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-undeploy-timeout</td>
+                    <td align="left">Timeout for deploy operation (in milliseconds), otherwise blocks until all successful/failed
+          deployment events arrive (default)"</td>
+                    <td align="left"><code>-undeploy-timeout [timeoutValue]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-h / -help</td>
+                    <td align="left">Prints help</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-secured</td>
+                    <td align="left">Deploys a secured processing unit (implicit when using -user/-password) - <a href="command-line-interface-cli-security.html">Using
+            the CLI in a Secured Environment</a></td>
+                    <td align="left"><code>-secured [true/false]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-user -password</td>
+                    <td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.html">Using
+            the CLI in a Secured Environment</a></td>
+                    <td align="left"><code>-user xxx -password yyyy</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Example" style="padding:10px;">
+                    <p>The following undeploys the data-app example application (which includes a feeder and a processor).</p><pre><code>gs&gt; undeploy-application data-app
+</code></pre>
+                </div>
+            </div>
+        </div>
+        <h1><a name="deploy-pu"></a>Deploy PU</h1>
+        <h2><a name="syntax-2"></a>Syntax</h2><pre><code class="language-bash">gs&gt; deploy [processing unit jar file / directory location / name]
+</code></pre>
+        <div class="tc-admon-note">
+            <p>The <code>deploy</code> command replaces the <code>pudeploy</code> command and is identical to it in terms of
+      supported arguments and options.
+      <code>pudeploy</code> is still supported but is considered a deprecated command and will be removed in future
+      versions.</p>
+        </div>
+        <h2><a name="description-2"></a>Description</h2>
+        <p>A Processing Unit can be easily deployed onto the Service Grid. In order to deploy a Processing Unit, the
+    Processing Unit must follow the <a href="../dev-java/the-processing-unit-structure-and-configuration.html">processing
+      unit directory structure</a>.
+    Before deploying the processing unit you will need to jar it and then specify that jar file as the parameter to the
+    <code>deploy</code> command. The deployment process will upload the jar file to all the GSMs it finds and unpack it
+    under the <code>deploy</code> directory. It will then issue the deploy command.</p>
+        <div class="tc-admon-tip">
+            <p>You may use the <a href="/sbp/universal-deployer.html">GigaSpaces Universal Deployer</a> to deploy complex multi
+      processing unit applications.</p>
+        </div>
+        <h2><a name="third-party-jars-location-and-property-files"></a>Third Party jars Location and Property Files</h2>
+        <p>Third party jars should be placed within one of the following locations:</p>
+        <ul>
+            <li>
+                <p>Within the deployed jar under the lib folder - Good if you have relatively small amount of jars and few PU
+      instances within the same GSC. These will be copied automatically by GigaSpaces during the deploy process to the
+      <code><MadCap:variable name="General.HomePath" />\work</code> folder on all the machines running GSCs hosting the PU instances. You
+      may control this folder location using the <code>com.gs.work</code> system property.</p>
+            </li>
+            <li>
+                <p>Within the <code><MadCap:variable name="General.HomePath" />\lib\optional\pu-common</code> folder for each machine running GSCs -
+      Each PU instance will have its own instance of the loaded class. Speed up the deployed time. You may control this
+      folder location using the <code>com.gs.pu-common</code> system property.</p>
+            </li>
+            <li>
+                <p>Within the <code><MadCap:variable name="General.HomePath" />\lib\platform\ext</code> folder for each machine running GSCs - All PUs
+      class loaders will share the same loaded class. Speed up the deployed time. Optimize the JVM perm gem space usage
+      since all 3rd party jars are loaded only once. You may control this folder location using the <code>com.gigaspaces.lib.platform.ext</code>
+      system property.</p>
+            </li>
+        </ul>
+        <p>Property files and other resources should be jared and placed within any of the above locations.</p>
+        <h2><a name="deploy-command-options"></a>Deploy Command Options</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Option</th>
+                    <th align="left">Description</th>
+                    <th align="left">Value Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Processing Unit Location/Name – <span class="tc-bold">mandatory</span></td>
+                    <td align="left">The location of the processing unit directory or jar file on your file system (see <a href="../dev-java/deploying-onto-the-service-grid.html">this
+            page</a>).<br />If you are using a few options in the <code>deploy</code> command, pass this option as the
+          <span class="tc-bold">last parameter</span>.<br />For example: <code>gs&gt; deploy hello-world.jar</code><br />(<code>hello-world.jar</code>
+          is the processing jar file).</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-cluster</td>
+                    <td align="left">
+                        <p align="left">Allows you to control the clustering characteristics of the processing unit.</p>
+                        <p align="left">The cluster
+          option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such
+          exists).</p>
+                        <p align="left">The following options are available (used automatically by any embedded space included in the
+          Processing Unit):</p>
+                        <ul>
+                            <li align="left"><code>schema</code> – the cluster schema used by the Processing Unit.</li>
+                            <li align="left"><code>total_members</code>
+          – the number of instances, optionally followed by the number of backups</li>
+                        </ul>
+                        <p align="left">(number of backups is required
+          only if the <code>partitioned</code> schema is used).</p>
+                        <div class="tc-admon-note">
+                            <p>The number of backups per partition is zero or one.</p>
+                        </div>
+                    </td>
+                    <td align="left"><code>-cluster schema=[schema name]</code>
+                        <br /><code>total_members=</code>
+                        <br /><code>numberOfInstances[,numberOfBackups]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-properties</td>
+                    <td align="left">Allows you to control <a href="../dev-java/deployment-properties.html">deployment properties</a>.</td>
+                    <td align="left"><code>-properties [bean name] location</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-properties embed</td>
+                    <td align="left">Direct property injection</td>
+                    <td align="left">-properties embed://user=admin</td>
+                </tr>
+                <tr>
+                    <td align="left">-sla</td>
+                    <td align="left">Allows you to specify a link (default to file-system) to a Spring XML configuration, holding
+          the SLA definition.</td>
+                    <td align="left"><code>-sla [slaLocation]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-zones</td>
+                    <td align="left">Allows you to specify a list of deployment zones that are to restrict that the deployment to
+          specific GSCs.</td>
+                    <td align="left"><code>-zones [zoneName1 zoneName2 ... ]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-timeout</td>
+                    <td align="left">Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy
+          to.Defaults to <code>5000</code> milliseconds (5 seconds).</td>
+                    <td align="left"><code>-timeout [timeoutValue]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-override-name</td>
+                    <td align="left">Allows you to specify an override name for the deployed Processing Unit<br />(a different name
+          than the directory name under <code>deploy</code>).<br />Mainly used when using a Processing Unit as a
+          template.</td>
+                    <td align="left"><code>-override-name [processing unit name]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-max-instances-per-vm</td>
+                    <td align="left">Allows you to set the SLA number of instances per VM</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-max-instances-per-machine</td>
+                    <td align="left">Allows you to set the SLA number of instances per machine</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-max-instances-per-zone</td>
+                    <td align="left">Allows you to set the SLA number of instances per zone in the format of <code>zoneX/number,zoneY/number</code></td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-requires-isolation</td>
+                    <td align="left">Allows to set the SLA requires isolation, if set to true only a single processing unit
+          instance will deployed on a given GSC</td>
+                    <td align="left"><code>-requires-isolation [true/false]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">h / help</td>
+                    <td align="left">Prints help</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-secured</td>
+                    <td align="left">Deploys a secured processing unit (implicit when using -user/-password) - <a href="command-line-interface-cli-security.html">Using
+            the CLI in a Secured Environment</a></td>
+                    <td align="left"><code>-secured [true/false]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-user -password</td>
+                    <td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.html">Using
+            the CLI in a Secured Environment</a></td>
+                    <td align="left"><code>-user xxx -password yyyy</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Example" style="padding:10px;">
+                    <p>The following deploys a processing unit jar file named <code>data-processor.jar</code> using the <code>sync_replicated</code>
+          cluster schema with 2 instances (<code>total_members</code>).</p><pre><code class="language-bash">gs&gt; deploy -cluster schema=sync_replicated total_members=2 data-processor.jar
+</code></pre>
+                    <p>The following deploys a processing unit archive called <code>data-processor.jar</code> using deployment
+          properties file called <code>pu.properties</code>.</p><pre><code class="language-bash">gs&gt; deploy -properties file://config/pu.properties data-processor.jar
+
+</code></pre>
+                    <p>The following deploys a processing unit archive called <code>data-processor.jar</code> direct injecting the
+          properties.</p><pre><code class="language-bash">gs&gt; deploy -properties embed://DB_username=postgres;DB_password=pass mirror
+</code></pre>
+                    <p>Using the following pu configuration:</p><pre><code class="language-xml">&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"&gt;
+    &lt;property name="driverClassName" value="org.postgresql.Driver"/&gt;
+    &lt;property name="url" value="jdbc:postgresql:presence"/&gt;
+    &lt;property name="username" value="${DB_username}"/&gt;
+    &lt;property name="password" value="${DB_password}"/&gt;
+&lt;/bean&gt;
+
+</code></pre>
+                    <p>The following deploys a processing unit archive called <code>data-processor.jar</code> using an SLA element
+          read from an external <code>sla.xml</code> file.</p><pre><code class="language-bash">gs&gt; deploy -sla file://config/sla.xml data-processor.jar
+</code></pre>
+                    <p>The following example deploys a <code>partitioned</code> space cluster with the name <code>mySpace</code>
+          for both the processing unit and the Space it contains.</p><pre><code class="language-bash">deploy -cluster schema=partitioned total_members=2,1 -override-name mySpace -properties embed://dataGridName=mySpace myPUFolder
+</code></pre>
+                    <div class="tc-admon-tip">
+                        <p>Multiple deployment properties can be injected by having ; between each property - see below example:</p><pre><code class="language-bash">&gt;gs deploy -cluster schema=partitioned total_members=10,1
+-properties "embed://dataGridName=myIMDG;space-config.proxy.router.active-server-lookup-timeout=5000;space-config.engine.max_threads=256;mypropA=aaa;mypropB=bbb" -override-name myPU /tmp/myPu.jar
+</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1><a name="undeploy-app"></a>Undeploy App</h1>
+        <h2><a name="syntax-3"></a>Syntax</h2><pre><code class="language-bash">gs&gt; undeploy-application application_name
+</code></pre>
+        <h2><a name="description-3"></a>Description</h2>
+        <p>Undeploys an <a href="../dev-java/deploying-onto-the-service-grid.html#app-deployment-pu-dependencies">application</a>
+    from the service grid, while respecting pu dependency order.</p>
+        <h2><a name="options-2"></a>Options</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Option</th>
+                    <th align="left">Description</th>
+                    <th align="left">Value Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">-timeout</td>
+                    <td align="left">Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy
+          to.Defaults to <code>5000</code> milliseconds (5 seconds).</td>
+                    <td align="left"><code>-timeout [timeoutValue]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-undeploy-timeout</td>
+                    <td align="left">Timeout for deploy operation (in milliseconds), otherwise blocks until all successful/failed
+          deployment events arrive (default)"</td>
+                    <td align="left"><code>-undeploy-timeout [timeoutValue]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-h / -help</td>
+                    <td align="left">Prints help</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-secured</td>
+                    <td align="left">Deploys a secured processing unit (implicit when using -user/-password) - <a href="command-line-interface-cli-security.html">Using
+            the CLI in a Secured Environment</a></td>
+                    <td align="left"><code>-secured [true/false]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-user -password</td>
+                    <td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.html">Using
+            the CLI in a Secured Environment</a></td>
+                    <td align="left"><code>-user xxx -password yyyy</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Example" style="padding:10px;">
+                    <p>The following undeploys the data-app example application (which includes a feeder and a processor).</p><pre><code>gs&gt; undeploy-application data-app
+</code></pre>
+                </div>
+            </div>
+        </div>
+        <h1><a name="deploy-memcached"></a>Deploy Memcached</h1>
+        <h2><a name="syntax-4"></a>Syntax</h2><pre><code class="language-bash">gs&gt; deploy-memcached [-sla ...] [-cluster ...] [-properties ...] [-user xxx -password yyy] [-secured true/false] space_url
+</code></pre>
+        <h2><a name="description-4"></a>Description</h2>
+        <h2><a name="options-3"></a>Options</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Option</th>
+                    <th align="left">Description</th>
+                    <th align="left">Value Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">space_url</td>
+                    <td align="left">The url of the space, can be embedded, eg: <code>/./myMemcachedSpace</code>, or remote eg:
+          <code>jini://*/*/myMemcachedSpace</code></td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-cluster</td>
+                    <td align="left">
+                        <p align="left">Allows you to control the clustering characteristics of the processing unit. </p>
+                        <p align="left">The cluster
+          option is a simplified option that overrides the cluster part of the processing unit's built in SLA (if such
+          exists). </p>
+                        <p align="left">The following options are available (used automatically by any embedded space included in the
+          Processing Unit):</p>
+                        <ul>
+                            <li align="left"><code>schema</code> – the cluster schema used by the Processing Unit.</li>
+                            <li align="left"><code>total_members</code>
+          – the number of instances, optionally followed by the number of backups </li>
+                        </ul>
+                        <p align="left">(number of backups is required
+          only if the <code>partitioned</code> schema is used).</p>
+                        <div class="tc-admon-note">
+                            <p>The number of backups per partition is zero or one.</p>
+                        </div>
+                    </td>
+                    <td align="left"><code>-cluster schema=[schema name]</code>
+                        <br /> <code>total_members=numberOfInstances[,numberOfBackups]</code></td>
+                </tr>
+                <tr>
+                    <td align="left">-properties</td>
+                    <td align="left">Allows you to control <a href="../dev-java/deployment-properties.html">deployment properties</a>.</td>
+                    <td align="left"><code>-properties [bean name] location</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-sla</td>
+                    <td align="left">Allows you to specify a link (defaults to file-system) to a Spring XML configuration, holding
+          the SLA definition.</td>
+                    <td align="left"><code>-sla [slaLocation]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-zones</td>
+                    <td align="left">Allows you to specify a list of deployment zones that are to restrict that the deployment to
+          specific GSCs.</td>
+                    <td align="left"><code>-zones [zoneName1, zoneName2 ... ]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-timeout</td>
+                    <td align="left">Allows you to specify a timeout value (in milliseconds) when looking up the GSM to deploy to.<br />Defaults
+          to <code>5000</code> milliseconds (5 seconds).</td>
+                    <td align="left"><code>-timeout [timeoutValue]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-max-instances-per-vm</td>
+                    <td align="left">Allows you to set the SLA number of instances per VM</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-max-instances-per-machine</td>
+                    <td align="left">Allows you to set the SLA number of instances per machine</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-max-instances-per-zone</td>
+                    <td align="left">Allows you to set the SLA number of instances per zone in the format of <code>zoneX/number,zoneY/number</code></td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-requires-isolation</td>
+                    <td align="left">Allows to set the SLA requires isolation, if set to true only a single processing unit
+          instance will deployed on a given GSC</td>
+                    <td align="left"><code>-requires-isolation [true/false]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">h / help</td>
+                    <td align="left">Prints help</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-secured</td>
+                    <td align="left">Deploys a secured processing unit (implicit when using -user/-password) - <a href="command-line-interface-cli-security.html">Using
+            the CLI in a Secured Environment</a></td>
+                    <td align="left"><code>-secured [true/false]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-user -password</td>
+                    <td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.html">Using
+            the CLI in a Secured Environment</a></td>
+                    <td align="left"><code>-user xxx -password yyyy</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-tip">
+            <p>You can use the <a href="/sbp/universal-deployer.html">GigaSpaces Universal Deployer</a> to deploy complex multi
+      processing unit applications.</p>
+        </div>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Example" style="padding:10px;">
+                    <p>The following deploys a memcached-enabled space named <code>mySpace</code> using the <code>partitioned</code>
+          cluster schema with 2 primaries and 1 primary per backup.</p><pre><code>gs&gt; deploy-memcached -cluster schema=partitioned total_members=2,1 mySpace
+</code></pre>
+                    <p>The following deploys a memcached-enabled space called <code>mySpace</code> using an SLA element read from
+          an external <code>sla.xml</code> file.</p><pre><code>gs&gt; deploy-space -sla file://config/sla.xml mySpace
+</code></pre>
+                </div>
+            </div>
+        </div>
+        <h1><a name="deploy-space"></a>Deploy Space</h1>
+        <h2><a name="syntax-5"></a>Syntax</h2><pre><code class="language-bash">gs&gt; deploy-space [space name]
+</code></pre>
+        <h2><a name="description-5"></a>Description</h2>
+        <p>A Space only Processing Unit can be easily deployed onto the Service Grid.</p>
+        <h2><a name="options-4"></a>Options</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Option</th>
+                    <th align="left">Description</th>
+                    <th align="left">Value Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Space Name – <span class="tc-bold">mandatory</span></td>
+                    <td align="left">The name of the space to be deployed.</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-cluster</td>
+                    <td align="left">
+                        <p align="left">Allows you to control the clustering characteristics of the space.</p>
+                        <p align="left">The following options
+          are available (used automatically by any embedded space included in the Processing Unit):</p>
+                        <ul>
+                            <li align="left"><code>schema</code>
+          – the cluster schema used by the Processing Unit.</li>
+                            <li align="left"><code>total_members</code> – the number of
+          instances, optionally followed by the number of backups </li>
+                        </ul>
+                        <p align="left">(number of backups is required only if the
+          <code>partitioned</code> schema is used).</p>
+                        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+                            <p>The number of backups per partition is zero or one.</p>
+                        </div>
+                    </td>
+                    <td align="left"><code>-cluster schema=[schema name]</code>
+                        <br /><code>total_members=numberOfInstances[,numberOfBackups]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-properties</td>
+                    <td align="left">Allows you to control <a href="../dev-java/deployment-properties.html">deployment properties</a>.</td>
+                    <td align="left"><code>-properties [bean name] location</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-sla</td>
+                    <td align="left">Allows you to specify a link (default to file-system) to a Spring XML configuration, holding
+          the SLA definition.</td>
+                    <td align="left"><code>-sla [slaLocation]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-zones</td>
+                    <td align="left">Allows you to specify a list of deployment zones that are to restrict that the deployment to
+          specific GSCs.</td>
+                    <td align="left"><code>-zones [zoneName1, zoneName2 ... ]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-max-instances-per-vm</td>
+                    <td align="left">Allows you to set the SLA number of instances per VM</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-max-instances-per-machine</td>
+                    <td align="left">Allows you to set the SLA number of instances per machine</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-max-instances-per-zone</td>
+                    <td align="left">Allows you to set the SLA number of instances per zone in the format of <code>zoneX/number,zoneY/number</code></td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-requires-isolation</td>
+                    <td align="left">Allows to set the SLA requires isolation, if set to true only a single processing unit
+          instance will deployed on a given GSC</td>
+                    <td align="left"><code>-requires-isolation [true/false]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">h / help</td>
+                    <td align="left">Prints help</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-secured</td>
+                    <td align="left">Deploys a secured processing unit (implicit when using -user/-password) - <a href="command-line-interface-cli-security.html">Using
+            the CLI in a Secured Environment</a></td>
+                    <td align="left"><code>-secured [true/false]</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">-user -password</td>
+                    <td align="left">Deploys a secured processing unit propagated with the supplied user and password - <a href="command-line-interface-cli-security.html">Using
+            the CLI in a Secured Environment</a></td>
+                    <td align="left"><code>-user xxx -password yyyy</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-tip">
+            <p>You may use the <a href="/sbp/universal-deployer.html">GigaSpaces Universal Deployer</a> to deploy complex multi
+      processing unit applications.</p>
+        </div>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Example" style="padding:10px;">
+                    <p>The following deploys a space named <code>mySpace</code> using the <code>sync_replicated</code> cluster
+          schema with 2 instances (<code>total_members</code>).</p><pre><code>gs&gt; deploy-space -cluster schema=sync_replicated total_members=2 mySpace
+</code></pre>
+                    <p>The following deploys a space named <code>mySpace</code> using deployment properties file called <code>pu.properties</code>.</p><pre><code>gs&gt; deploy-space -properties file://config/pu.properties mySpace
+</code></pre>
+                    <p>The following deploys a space called <code>mySpace</code> using an SLA element read from an external <code>sla.xml</code>
+          file.</p><pre><code>gs&gt; deploy-space -sla file://config/sla.xml mySpace
+</code></pre>
+                </div>
+            </div>
+        </div>
+        <h1><a name="task"></a>Task</h1>
+        <h2><a name="syntax-6"></a>Syntax</h2><pre><code class="language-bash">usage: task ant-file [target=target-name]
+</code></pre>
+        <h2><a name="description-6"></a>Description</h2>
+        <p>The <code>task</code> command submits a task in the form of an Ant configuration file..</p>
+        <h2><a name="options-5"></a>Options</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Option</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">ant-file</td>
+                    <td align="left">The name of the Ant configuration file, an XML file representing the task. The file must
+          reside in the current directory.</td>
+                </tr>
+                <tr>
+                    <td align="left">list-of-machines</td>
+                    <td align="left">A comma-separated list of hostnames or of IP addresses, or the name of a file containing such
+          a list, saying where to submit the Ant configuration file. By default, if machines are available, you receive
+          a list to choose from. If no machines are currently available, are prompted to start an HTTP server.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="deployment-states"></a>Deployment States</h1>
+        <p>This is a list of possible deployment states and their meaning.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">State</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">BROKEN</td>
+                    <td align="left">Indicates the deployment is deployed and is broken, where all required services are not
+          available.</td>
+                </tr>
+                <tr>
+                    <td align="left">COMPROMISED</td>
+                    <td align="left">Indicates the deployment is deployed and is compromised, where some specified services are not
+          available.</td>
+                </tr>
+                <tr>
+                    <td align="left">DEPLOYED</td>
+                    <td align="left">Indicates the deployment is deployed.</td>
+                </tr>
+                <tr>
+                    <td align="left">INTACT</td>
+                    <td align="left">Indicates the deployment is deployed and is intact, where all specified services are
+          available.</td>
+                </tr>
+                <tr>
+                    <td align="left">SCHEDULED</td>
+                    <td align="left">Indicates the deployment is scheduled for deployment.</td>
+                </tr>
+                <tr>
+                    <td align="left">UNDEPLOYED</td>
+                    <td align="left">Indicates the deployment is not deployed.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="hot-deploy"></a>Hot Deploy</h1>
+        <div class="tc-admon-note">
+            <p>The <a href="../solution-hub/xap-hot-deploy.html">Hot Deploy</a> tool allows business logic running as a PU to be
+      refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach ,
+      placing new PU code on the GSM PU deploy folder and later restart each PU instance.</p>
+        </div>
+    </body>
+</html>

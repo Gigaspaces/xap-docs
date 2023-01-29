@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle"><a name="top"></a>MemoryXtend for Off-Heap RAM</h1>
+        <h1><a name="overview"></a>Overview</h1>
+        <p>The MemoryXtend off-heap storage driver stores Space objects in RAM, outside the Java heap. This has two benefits:</p>
+        <ul>
+            <li>Better RAM utilization - Objects are stored off-heap in serialized form, which consumes less memory than the same object would use in a Java heap.</li>
+            <li>Reduced garbage collection activity - Less data is stored on the Java heap, so the garbage collector has less work. This yields more deterministic behavior with a lower chance of experiencing stop-the-world pauses.</li>
+        </ul>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/blobstore/ohr3.png" alt="image" class="tc-picture80" />
+            </p>
+        </div>
+        <h1><a name="basic-configuration"></a>Basic Configuration</h1>
+        <p>You can create a Space with the MemoryXtend off-heap storage driver via the <code>pu.xml</code> configuration file, or in the code. For example, to create a Space called "mySpace' that can use up to 20GB of off-heap RAM:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="pu.xml" style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/off-heap-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/off-heap-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/off-heap-blob-store/openspaces-off-heap-blob-store.xsd"&gt;
+
+    &lt;blob-store:off-heap-blob-store id="offheapBlobstore" memory-threshold="20g"/&gt;
+
+    &lt;os-core:embedded-space id="space" name="mySpace"&gt;
+       &lt;os-core:blob-store-data-policy persistent="false" blob-store-handler="offheapBlobstore"/&gt;
+    &lt;/os-core:embedded-space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-only"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/off-heap-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/off-heap-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/off-heap-blob-store/openspaces-off-heap-blob-store.xsd"&gt;
+
+    &lt;blob-store:off-heap-blob-store id="offheapBlobstore" memory-threshold="20g"/&gt;
+
+    &lt;os-core:embedded-space id="space" name="mySpace"&gt;
+       &lt;os-core:blob-store-data-policy persistent="false" blob-store-handler="offheapBlobstore"/&gt;
+    &lt;/os-core:embedded-space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+				</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/off-heap-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/off-heap-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/off-heap-blob-store/openspaces-off-heap-blob-store.xsd"&gt;
+
+    &lt;blob-store:off-heap-blob-store id="offheapBlobstore" memory-threshold="20g"/&gt;
+
+    &lt;os-core:embedded-space id="space" name="mySpace"&gt;
+       &lt;os-core:blob-store-data-policy blob-store-handler="offheapBlobstore"/&gt;
+    &lt;/os-core:embedded-space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+				</code></pre>
+            </div>
+            <div title="Java Code" style="padding:10px"><pre MadCap:conditions="Version.15-0-died"><code class="language-java">// Create off-heap storage driver:
+String memoryThreshold = "5g";
+BlobStoreStorageHandler blobStore = new OffHeapBlobStoreConfigurer()
+        .setMemoryThreshold(memoryThreshold)
+        .create();
+// Create space with that storage driver:
+String spaceName = "mySpace";
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer(spaceName)
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore)
+                .setPersistent(false));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-java">// Create off-heap storage driver:
+BlobStoreStorageHandler blobStore = new OffHeapBlobStoreConfigurer()
+        .setMemoryThreshold("5g")
+        .create();
+// Create space "mySpace" with that storage driver:
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+</code></pre>
+            </div>
+        </div>
+        <p>The  general MemoryXtend configuration options also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.</p>
+        <div class="tc-admon-note">
+            <p>For an example of how to configure the on-heap cache properties, see the <a href="memoryxtend-overview.html#on-heap-cache">MemoryXtend overview</a> topic.</p>
+        </div>
+        <h2><a name="defining-the-memory-threshold"></a>Defining the Memory Threshold</h2>
+        <p>In order to use off-heap storage, you must define the amount of memory to allocate, for example. <code>20g</code>. Use the following sizing units:</p>
+        <ul>
+            <li><code>b</code> - Bytes</li>
+            <li><code>k</code>, <code>kb</code> - Kilobytes</li>
+            <li><code>m</code>, <code>mb</code> - Megabytes</li>
+            <li><code>g</code>, <code>gb</code> - Gigabytes</li>
+        </ul>
+        <p>Before any operation that requires memory allocation (write, update, and initial load), the memory manager checks how much of the allocated memory has been used. If the threshold has been breached, an <code>OffHeapMemoryShortageException</code> is thrown. Read, take, and clear operations are always allowed.</p>
+        <p>If you are configuring the MemoryXtend off-heap driver for GigaSpaces-based applications in Kubernetes, it is recommended to define the memory threshold properties in the pu.xml as placeholders, so you can override them in the Helm chart. For more information about configuring memory allocation in Kubernetes, see <MadCap:xref href="kubernetes-s10-deploying-and-managing-gigaspaces.html">Deploying and Managing GigaSpaces in Kubernetes</MadCap:xref>.</p>
+        <div class="tc-admon-important">
+            <p>If the used memory is below the configured threshold, then a large write operation may exceed the threshold without being blocked or throwing an exception. Users should take this into account when setting the maximum memory size. This behavior is similar to that of the regular <a href="../dev-java/memory-management-overview.html">memory manager</a>.</p>
+        </div>
+        <h1><a name="advanced-configuration"></a>Advanced Configuration</h1>
+        <p>As part of fine-tuning the MemoryXtend functionality, you can control the balance between memory utilization and system performance. This is useful because there are two ways to update the value of an object in the off-heap memory:</p>
+        <ul>
+            <li>Free up the old memory allocation, and reallocate new memory.</li>
+            <li>Overwrite the old value using the same allocated memory.</li>
+        </ul>
+        <p>Deleting and reallocating memory takes longer then overwriting the same memory area, but if the size of the new value is smaller then the old value, then the overwrite option leaves part of the original allocated memory underutilized. You can use the <code>BLOBSTORE_OFF_HEAP_MIN_DIFF_TO_ALLOCATE_PROP</code> Space property to control when to trade off system performance for maximizing the memory usage.</p>
+        <p>This Space property works as follows: if the oldValueSize - newValueSize &gt; blobstore.off-heap.update_threshold, then delete and reallocate memory for the object. Otherwise overwrite the old object value with the new object value.</p>
+        <p>The default threshold is 50B.</p>
+        <h2><a name="example"></a>Example</h2>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="pu.xml" style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/off-heap-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/off-heap-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/off-heap-blob-store/openspaces-off-heap-blob-store.xsd"&gt;
+
+    &lt;blob-store:off-heap-blob-store id="offheapBlobstore" memory-threshold="20g"/&gt;
+
+    &lt;os-core:embedded-space id="space" name="mySpace"&gt;
+       &lt;os-core:blob-store-data-policy persistent="false" blob-store-handler="offheapBlobstore"/&gt;
+       &lt;os-core:properties&gt;
+          &lt;props&gt;
+             &lt;prop key="blobstore.off-heap.update_threshold"&gt;1M&lt;/prop&gt;
+          &lt;/props&gt;
+    &lt;/os-core:embedded-space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-only"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/off-heap-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/off-heap-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/off-heap-blob-store/openspaces-off-heap-blob-store.xsd"&gt;
+
+    &lt;blob-store:off-heap-blob-store id="offheapBlobstore" memory-threshold="20g"/&gt;
+
+    &lt;os-core:embedded-space id="space" name="mySpace"&gt;
+       &lt;os-core:blob-store-data-policy persistent="false" blob-store-handler="offheapBlobstore"/&gt;
+       &lt;os-core:properties&gt;
+          &lt;props&gt;
+             &lt;prop key="blobstore.off-heap.update_threshold"&gt;1M&lt;/prop&gt;
+          &lt;/props&gt;
+    &lt;/os-core:embedded-space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+				</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/off-heap-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/off-heap-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/off-heap-blob-store/openspaces-off-heap-blob-store.xsd"&gt;
+
+    &lt;blob-store:off-heap-blob-store id="offheapBlobstore" memory-threshold="20g"/&gt;
+
+    &lt;os-core:embedded-space id="space" name="mySpace"&gt;
+       &lt;os-core:blob-store-data-policy blob-store-handler="offheapBlobstore"/&gt;
+       &lt;os-core:properties&gt;
+          &lt;props&gt;
+             &lt;prop key="blobstore.off-heap.update_threshold"&gt;1M&lt;/prop&gt;
+          &lt;/props&gt;
+    &lt;/os-core:embedded-space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+				</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/off-heap-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/off-heap-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/off-heap-blob-store/openspaces-off-heap-blob-store.xsd"&gt;
+
+    &lt;blob-store:off-heap-blob-store id="offheapBlobstore" memory-threshold="20g"/&gt;
+
+    &lt;os-core:embedded-space id="space" name="mySpace"&gt;
+       &lt;os-core:blob-store-data-policy blob-store-handler="offheapBlobstore"/&gt;
+       &lt;os-core:properties&gt;
+          &lt;props&gt;
+             &lt;prop key="blobstore.off-heap.update_threshold"&gt;1M&lt;/prop&gt;
+          &lt;/props&gt;
+    &lt;/os-core:embedded-space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+				</code></pre>
+            </div>
+            <div title="Java Code" style="padding:10px"><pre MadCap:conditions="Version.15-0-died"><code class="language-java">// Create off-heap storage driver:
+String memoryThreshold = "5g";
+BlobStoreStorageHandler blobStore = new OffHeapBlobStoreConfigurer()
+        .setMemoryThreshold(memoryThreshold)
+        .create();
+// Create space with that storage driver:
+String spaceName = "mySpace";
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer(spaceName)
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore)
+                .setPersistent(false));
+spaceConfigurer.addProperty("blobstore.off-heap.update_threshold", "1M");
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-java">// Create off-heap storage driver:
+BlobStoreStorageHandler blobStore = new OffHeapBlobStoreConfigurer()
+        .setMemoryThreshold("5g")
+        .create();
+// Create space "mySpace" with that storage driver:
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore));
+spaceConfigurer.addProperty("blobstore.off-heap.update_threshold", "1M");
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="monitoring"></a>Monitoring</h1>
+        <p>The amount of used off-heap memory can be tracked using the following:</p>
+        <ul>
+            <li>Metrics - The <code>space_blobstore_off-heap_used-bytes_total</code> metric, as described on the <a href="metrics-bundled.html#blobstore-operations">Metrics</a> page.</li>
+            <li>Admin API - Thru <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/admin/space/SpaceInstanceStatistics.html#getBlobStoreStatistics">SpaceInstanceStatistics.getBlobStoreStatistics()</a></li>
+            <li>Web Management Console - In the Space instances view, right-click any of the columns in the table and add the <span class="tc-bold">Used Off-Heap</span> column.</li>
+        </ul>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/DevGuide/ops-manager-view-mx-config.flsnp" MadCap:conditions="Version.15-0-born" />
+    </body>
+</html>

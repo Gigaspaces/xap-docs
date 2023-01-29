@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Data Event Listener</h1>
+        <p>
+            <br />
+            <br />
+<MadCap:variable name="General.ProductNameXAP" /> provides a single interface for Space Data event listeners used by different event containers (Space data event generators) such as Polling Event and Notify Event containers. The benefit of doing so is the loose coupling between how the events are received (the different containers) and what to do with a received event (the listener).</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/data_event.jpg" alt="" title="" class="tc-picture50" />
+        </div>
+        <h1><a name="space-data-event-listener"></a>Space Data Event Listener</h1>
+        <p>At their core, all different event containers should support raising event to an implementation of <code>SpaceDataEventContainer</code>. It is a simple interface described below:</p><pre><code class="language-java">public interface SpaceDataEventListener {
+    /**
+     * An event callback with the actual data object of the event.
+     *
+     * @param data
+     *            The actual data object of the event
+     * @param gigaSpace
+     *            A GigaSpace instance that can be used to perofrm additional operations against the
+     *            space
+     * @param txStatus
+     *            An optional transaction status allowing to rollback a transaction programatically
+     * @param source
+     *            Optional additional data or the actual source event data object (where relevant)
+     */
+    void onEvent(Object data, GigaSpace gigaSpace, TransactionStatus txStatus, Object source);
+}
+</code></pre>
+        <p>If we take the following simple implementation of the event listener interface:</p><pre><code class="language-java">public class SimpleListener implements SpaceDataEventListener {
+
+    public void onEvent(Object data, GigaSpace gigaSpace, TransactionStatus txStatus, Object source) {
+        // process event
+    }
+}
+</code></pre>
+        <p>Here is how it can be configured:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;os-events:x-container ...&gt;
+    &lt;!-- ... --&gt;
+
+    &lt;os-events:listener ref="simpleListener" /&gt;
+&lt;/os-events&gt;
+</code></pre>
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;bean id="eventContainer" class="..."&gt;
+    &lt;!-- ... --&gt;
+
+    &lt;property name="eventListener" ref="simpleListener" /&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="pojo-event-listener-adapters"></a>POJO Event Listener Adapters</h1>
+        <p>OpenSpaces comes with two built in event adapters, the first supporting annotations and the second supporting method listing. Here is a simple example of an event listener implementation using annotations:</p><pre><code class="language-java">public class SimpleListener {
+
+    @SpaceDataEvent
+    public void myEventHandler(Object data) {
+        // process event
+    }
+}
+</code></pre>
+        <p>The <code>myEventHandler</code> is marked using the <code>SpaceDataEvent</code> annotation as a callback that needs to be called in case of an event. Here is the XML configuration of the mentioned event listener:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;os-events:x-container ...&gt;
+    &lt;!-- ... --&gt;
+
+    &lt;os-events:listener&gt;
+        &lt;os-events:annotation-adapter&gt;
+            &lt;os-events:delegate ref="simpleListener"/&gt;
+        &lt;/os-events:annotation-adapter&gt;
+    &lt;/os-events:listener&gt;
+&lt;/os-events&gt;
+</code></pre>
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;bean id="eventContainer" class="..."&gt;
+    &lt;!-- ... --&gt;
+
+    &lt;property name="eventListener"&gt;
+        &lt;bean class="org.openspaces.events.adapter.AnnotationEventListenerAdapter"&gt;
+            &lt;property name="delegate" ref="simpleListener" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <p>If we do not wish to use annotations, we can use the method adapter where method listing is used to define which methods are to be invoked. We can reuse the same SimpleListener (simply without the annotation) and configure it in the following manner:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;os-events:x-container ...&gt;
+    &lt;!-- ... --&gt;
+
+    &lt;os-events:listener&gt;
+        &lt;os-events:method-adapter method-name="myEventHandler"&gt;
+            &lt;os-events:delegate ref="simpleListener"/&gt;
+        &lt;/os-events:method-adapter&gt;
+    &lt;/os-events:listener&gt;
+&lt;/os-events&gt;
+</code></pre>
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;bean id="eventContainer" class="..."&gt;
+    &lt;!-- ... --&gt;
+
+    &lt;property name="eventListener"&gt;
+        &lt;bean class="org.openspaces.events.adapter.MethodEventListenerAdapter"&gt;
+            &lt;property name="methodName" value="myEventHandler" /&gt;
+            &lt;property name="delegate" ref="simpleListener" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="adapter-method-parameter-s"></a>Adapter Method Parameters</h2>
+        <p>The adapter method callback can accept zero or more parameters following the same order and types of the <code>SpaceDataEventListener</code>. Since the different adapters use reflection to invoke the event method, specific types can be used as the data event (based on the template provided to the event container). For example, if we define a template that matches <code>Trade</code> objects, our listener can use it directly:</p><pre><code class="language-java">public class SimpleListener {
+
+    @SpaceDataEvent
+    public void myEventHandler(Trade trade, GigaSpace gigaSpace) {
+        // process event
+    }
+}
+</code></pre>
+        <h2><a name="adapter-method-return-value"></a>Adapter Method Return Value</h2>
+        <p>The adapter method callback can have a return value which will automatically be written back to the Space. The return value can either be a single object (which will cause write to be called) or an array of objects (which will cause writeMultiple to be called).</p>
+        <p>By default, an update-or-write operation will be performed. This flag can be set to <code>false</code> which will force a write operation to be performed. Update timeout and write lease can also be configured.</p>
+        <p>Here is an example of an event listener that returns an array of <code>Order</code> as a result of a <code>Trade</code>:</p><pre><code class="language-java">public class SimpleListener {
+
+    @SpaceDataEvent
+    public Order[] processTrade(Trade trade, GigaSpace gigaSpace) {
+        // process event
+    }
+}
+</code></pre>
+        <p>and the following is the configuration of such a listener using the annotation adapter:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;os-events:x-container ...&gt;
+    &lt;!-- ... --&gt;
+
+    &lt;os-events:listener&gt;
+        &lt;os-events:annotation-adapter update-or-write="false" update-timeout="1000" write-lease="1000"&gt;
+            &lt;os-events:delegate ref="simpleListener"/&gt;
+        &lt;/os-events:annotation-adapter&gt;
+    &lt;/os-events:listener&gt;
+&lt;/os-events&gt;
+</code></pre>
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;bean id="eventContainer" class="..."&gt;
+    &lt;!-- ... --&gt;
+
+    &lt;property name="eventListener"&gt;
+        &lt;bean class="org.openspaces.events.adapter.AnnotationEventListenerAdapter"&gt;
+            &lt;property name="delegate" ref="simpleListener" /&gt;
+            &lt;property name="writeLease" value="1000" /&gt;
+            &lt;property name="updateTimeout" value="1000" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="multiple-event-methods"></a>Multiple Event Methods</h2>
+        <p>A single class can have several method event listeners all with the same name. This allows for automatic matching based on the data event type. Here is an example using annotations:</p><pre><code class="language-java">public class SimpleListener {
+
+    @SpaceDataEvent
+    public void processTrade(Trade trade, GigaSpace gigaSpace) {
+        // process event
+    }
+
+    @SpaceDataEvent
+    public void processTrade(SpecialTrade trade, GigaSpace gigaSpace) {
+        // process event
+    }
+}
+</code></pre>
+        <div class="tc-admon-tip">
+            <p>When using a single event method, the event adapter will cache the reflection information in order to invoke the method. In case multiple methods are used, no caching of the reflection information can be done, so a slight performance impact can be experienced.</p>
+        </div>
+        <h1><a name="task-executor-event-listener-adapter"></a>Task Executor Event Listener Adapter</h1>
+        <p>OpenSpaces comes with an event adapter that allows you to delegate the execution of an event listener to a different task executor (a thread pool). It is handy when using the notify container and wanting to release the notification thread. Here is how it can be configured:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;os-events:x-container ...&gt;
+    &lt;!-- ... --&gt;
+
+    &lt;os-events:listener&gt;
+        &lt;bean class="org.openspaces.events.adapter.TaskExecutorEventListenerAdapter"&gt;
+            &lt;property name="delegate"&gt;
+                &lt;os-events:annotation-adapter update-or-write="false" update-timeout="1000" write-lease="1000"&gt;
+                    &lt;os-events:delegate ref="simpleListener"/&gt;
+                &lt;/os-events:annotation-adapter&gt;
+            &lt;/property&gt;
+        &lt;/bean&gt;
+    &lt;/os-events:listener&gt;
+&lt;/os-events&gt;
+</code></pre>
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;bean id="eventContainer" class="..."&gt;
+    &lt;!-- ... --&gt;
+
+    &lt;property name="eventListener"&gt;
+        &lt;bean class="org.openspaces.events.adapter.TaskExecutorEventListenerAdapter"&gt;
+            &lt;property name="delegate"&gt;
+                &lt;bean class="org.openspaces.events.adapter.AnnotationEventListenerAdapter"&gt;
+                    &lt;property name="delegate" ref="simpleListener" /&gt;
+                    &lt;property name="writeLease" value="1000" /&gt;
+                    &lt;property name="updateTimeout" value="1000" /&gt;
+                &lt;/bean&gt;
+            &lt;/property&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <p>The default task executor uses Spring's <code>SimpleAsyncTaskExecutor</code> which creates a thread for each execution. Other <a href="http://docs.spring.io/spring/docs/2.0.x/reference/scheduling.html" target="_blank">Task Executors</a> can be used by setting it on the <code>taskExecutor</code> property.</p>
+    </body>
+</html>

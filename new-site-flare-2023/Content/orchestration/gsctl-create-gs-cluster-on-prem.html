@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster On Premise</h1>
+        <p>&#160;</p>
+        <p>gsctl is a simple CLI tool for creating <MadCap:variable name="General.ProductNameXAP" /> clusters. You can create a cluster in minutes with a single command – run <code>java -jar gsctl.jar create</code>.</p>
+        <p>In this topic, you will learn how to create, provision and install a <MadCap:variable name="General.ProductNameXAP" /> cluster on the on-premise machines, and then remove it by doing the following:</p>
+        <ul>
+            <li>Create a <MadCap:variable name="General.ProductNameXAP" /> cluster.</li>
+            <li>Deploy <MadCap:variable name="General.ProductNameXAP" /> services in the cluster.</li>
+            <li>Tear down the <MadCap:variable name="General.ProductNameXAP" /> cluster.</li>
+        </ul>
+        <h2>Prerequisites</h2>
+        <p>Before beginning to work with the gsctl tool, you must do the following:</p>
+        <ul>
+            <li>
+                <p>Verify that Java 8 or higher is installed on your local workstation.</p>
+            </li>
+            <li>Disable the password prompt when using <code class="language-bash">sudo</code> in your on-premise machines.</li>
+            <li>Install <a href="https://linuxize.com/post/how-to-unzip-files-in-linux/#installing-unzip" target="_blank">Unzip</a> on all the cluster machines</li>
+            <li>Ensure that you have a single pem file for all your on-premise machines</li>
+            <li>Verify connectivity to all the machines from your workstation</li>
+            <li>Centos machines only - disable the firewall (firewalld service) and make sure it is set to stay disabled on start (for example, when the machine reboots)</li>
+        </ul>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/download-run-gsctl.flsnp" />
+        <h1>Creating a <MadCap:variable name="General.ProductNameXAP" /> Cluster </h1>
+        <p>Follow the steps in the procedure to create a <MadCap:variable name="General.ProductNameXAP" /> cluster and deploy the <MadCap:variable name="General.ProductNameXAP" /> services. All of the procedures on this page describe the short notation as used from inside the interactive shell.</p>
+        <p class="tc-todo">To create a cluster:</p>
+        <ol>
+            <li>
+                <p>Create an empty directory on your machine. In this example, the directory name is <span class="tc-bold">gsDemo</span>.</p>
+            </li>
+            <li>Download the most current version of the gsctl.jar file from the dedicated repository to the directory you created (gsDemo) and extract the contents.</li>
+            <li>Add the pem file to this directory.</li>
+            <li>
+                <p>Open a command window and type the following to define a cluster called <code>gs_demo_cluster</code>:</p><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">init  --mode=on-prem --cluster-name=gs_demo_cluster</code></pre><pre MadCap:conditions="Version.15-5-born"><code class="language-bash">init --on-prem=1 --cluster-name=gs_demo_cluster</code></pre>
+                <p>This command creates also a cluster.yaml file. Modify the yaml file as follows:</p>
+                <ul>
+                    <li>
+                        <p><code>keyName</code> - name of your pem file (without the .pem extension)</p>
+                    </li>
+                    <li>
+                        <p><code>userName</code> - name of the on-premise machine being used to create the cluster</p>
+                    </li>
+                    <li>
+                        <p><code>profiles</code> - the on-premise worker (client) name, along with the IP&#160;addresses of the host machines</p>
+                        <div class="tc-admon-attention">
+                            <p>You must have 3 masters (gsManagers) and at least 1 worker.</p>
+                        </div>
+                    </li>
+                </ul><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">gsManagers: 3
+aws: null
+onPremise:
+  keyName: "pem file"
+  userName: "user name"
+  masters:
+    label: "GS Cluster [gs_demo_cluster] Master Group"
+    profiles:
+    - name: "default on premise master name"
+      hosts:
+      - "127.0.1.93"
+      - "127.0.1.95"
+      - "127.0.1.96"
+  workers:
+    label: "GS Cluster [gs_demo_cluster] Worker Group"
+    profiles:
+    - name: "default on premise worker name"
+      hosts:
+      - "127.0.1.97"
+      - "127.0.1.98"
+      - "127.0.1.99"
+name: "gs_demo_cluster"</code></pre><pre MadCap:conditions="Version.15-5-born"><code class="language-bash">name: "gs_demo_cluster"
+gsManagers: 3
+clusterComponents:
+- type: "OnPremise"
+ name: "OnPremise_1"
+ userName: "root"
+ keyName: "sshkey"
+ masters:
+ label: "GS Cluster [gs_demo_cluster] Master Group"
+profiles:
+ - name: "default on premise master name"
+tags: []
+hosts:
+ - "172.17.0.2"
+ - "172.17.0.3"
+ - "172.17.0.4"
+workers:
+label: "GS Cluster [gs_demo_cluster] Worker Group"
+profiles:
+- name: "default on premise worker name"
+tags: []
+hosts:
+- "172.17.0.5"
+- "172.17.0.6"
+- "172.17.0.7"</code></pre>
+            </li>
+            <li>
+                <p>To create the cluster, run the following command:</p><pre><code class="language-bash">create</code></pre>
+                <div MadCap:conditions="Version.15-5-born">
+                    <p>Here is sample output from the <code class="language-bash">create </code>command:</p>
+                    <p>
+                        <img src="../Resources/Static/images/ElasticGrid_YK_IMAGE_3.png" />
+                    </p>
+                </div>
+            </li>
+        </ol>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-deploy-gs-service.flsnp" />
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-monitor-gs-service.flsnp" />
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/gigaops/gsctl-remove-gs-cluster.flsnp" />
+        <p>
+            <img src="../Resources/Static/images/ElasticGrid_YK_IMAGE_5_125_125.png" class="tc-picture100" />
+        </p>
+    </body>
+</html>

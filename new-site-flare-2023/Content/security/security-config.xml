@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+       http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+    <!-- This password encoder is provided for getting started and testing purposes only and is not considered secure. -->
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>
+
+    <!-- Predefined role to privileges mapping (ROLE_VIEWER, ROLE_MNGR, ROLE_ADMIN). -->
+    <util:map id="roles">
+        <entry key="ROLE_ADMIN"  value="MONITOR_JVM, MONITOR_PU, SPACE_READ, PROVISION_PU, MANAGE_GRID, MANAGE_PU"/>
+        <entry key="ROLE_MNGR"   value="MONITOR_JVM, MONITOR_PU, SPACE_READ, PROVISION_PU,"/>
+        <entry key="ROLE_VIEWER" value="MONITOR_JVM, MONITOR_PU, SPACE_READ"/>
+    </util:map>
+
+    <!-- Populates user details with authorities declared by associated role -->
+    <bean id="roleBasedUserService" class="com.gigaspaces.security.spring.RoleBasedUserService">
+        <constructor-arg ref="userService"/>
+        <constructor-arg ref="roles"/>
+    </bean>
+
+
+    <sec:authentication-manager>
+        <sec:authentication-provider user-service-ref="roleBasedUserService"/>
+        <sec:authentication-provider>
+            <sec:password-encoder ref="passwordEncoder"/> <!-- prefer BCrypt -->
+            <sec:user-service id="userService">
+                <sec:user name="gs-admin"   password="gs-admin" authorities="ROLE_ADMIN"/>
+                <sec:user name="gs-mngr"    password="gs-mngr"  authorities="ROLE_MNGR"/>
+                <sec:user name="gs-viewer"  password="gs-viewer"  authorities="ROLE_VIEWER"/>
+            </sec:user-service>
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+</beans>

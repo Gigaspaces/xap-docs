@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">JMS Messaging Support</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> provide a JMS implementation, built on top of the core JavaSpaces layer. JMS messages are implemented as POJO, indexed, and routed to the relevant space partition according to the destination name. The <MadCap:variable name="General.ProductNameXAP" /> JMS implementation supports the unified messaging model, introduced in version 1.1 of the JMS specification.</p>
+        <p><span class="tc-bold">Dependencies</span>
+            <br />In order to use this feature, include the <code><MadCap:variable name="General.HomePath" />/lib/optional/jms/xap-jms.jar</code> file on your classpath or use maven dependencies:</p><pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;
+    &lt;artifactId&gt;xap-jms&lt;/artifactId&gt;
+    &lt;version&gt;[%=Versions.maven-version-MX%]&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+        <div class="tc-admon-refer">
+            <p>For more information on dependencies,  refer to <a href="../started/installation-maven-overview.html">Maven Artifacts</a>.</p>
+        </div>
+        <h4><a name="additional-resources"></a>Additional Resources</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Best Practice</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><a href="/sbp/master-worker-pattern.html">Master-Worker Pattern</a>
+                    </td>
+                    <td align="left">Grid computing pattern. Implementing distributed processing across multiple workers deployed into the Grid.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="/sbp/priority-based-queue.html">Priority Based Queue</a>
+                    </td>
+                    <td align="left">Messaging based pattern. Can be used when moving from <span class="tc-bold">J2EE JMS</span> Quality of Service into <MadCap:variable name="General.ProductNameXAP" />.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="/sbp/parallel-queue-pattern.html">Parallel Queue Pattern</a>
+                    </td>
+                    <td align="left">Messaging based pattern. Can be used when moving from <span class="tc-bold">J2EE JMS Service Activator Aggregator Strategy/MDB</span> into <MadCap:variable name="General.ProductNameXAP" />.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="/sbp/unit-of-work.html">Unit Of Work</a>
+                    </td>
+                    <td align="left">Messaging based pattern. Can be used when moving from <span class="tc-bold">J2EE JMS</span> Unit of Order into <MadCap:variable name="General.ProductNameXAP" />.</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

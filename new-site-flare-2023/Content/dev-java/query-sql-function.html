@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>SQL Functions</h1>
+        <p>You can query the Space using <span class="tc-bold">built-in</span> functions and <span class="tc-bold">user-defined</span> functions.</p>
+        <h1><a name="built-in-functions"></a>Built-In Functions</h1>
+        <p>For example, lets assume we have a class called <code>Person</code> with an <code>Address</code> property:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Person" style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Person  {
+    private UUID id;
+    private String firstName;
+    private String lastName;
+    private Address address;
+    
+    @SpaceId
+    public UUID getId() {
+        return id;
+    }
+    ....
+}        
+</code></pre>
+            </div>
+            <div title="Address" style="padding:10px"><pre><code class="language-java">public class Address {
+    private String street;
+    private String city;
+    private String state;
+    ......
+}
+</code></pre>
+            </div>
+        </div>
+        <p>We can query the Space with the built-in SQL functions:</p><pre><code class="language-java">// Find all persons with a firstName longer then tree characters
+SQLQuery&lt;Person&gt; query = new SQLQuery&lt;Person&gt;(Person.class, "CHAR_LENGTH(firstName) &gt; 3");
+Person[] persons = space.readMultiple(query);
+
+// Find all persons with a lastName length equal 22 or  25
+SQLQuery&lt;Person&gt; query = new SQLQuery&lt;Person&gt;(Person.class, "CHAR_LENGTH(lastName) IN (22, 25");
+Person[] persons = space.readMultiple(query); 
+</code></pre>
+        <p>It is also possible to query for embedded properties:</p><pre><code class="language-java">// Find all persons with a city name greater then 6
+query = new SQLQuery&lt;Person&gt;(Person.class, "CHAR_LENGTH(address.city) &gt; 6");
+Person[] persons = space.readMultiple(query);
+
+// Find all persons with city name lenght 0 or 13
+query = new SQLQuery&lt;Person&gt;(Person.class, "CHAR_LENGTH(address.city) IN (0,13)");
+Person[] persons = space.readMultiple(query);
+ 
+</code></pre>
+        <h2><a name="supported-sql-functions"></a>Supported SQL Functions</h2>
+        <p>SQLQuery supports the following functions:</p>
+        <ul>
+            <li>ABS</li>
+            <li>MOD</li>
+            <li>ROUND</li>
+            <li>CEIL, FLOOR</li>
+            <li>CHAR_LENGTH</li>
+            <li>LOWER, UPPER</li>
+            <li>CONCAT, APPEND</li>
+            <li>INSTR</li>
+            <li>TO_NUMBER</li>
+            <li>TO_CHAR (datetime), TO_CHAR (number)</li>
+            <li MadCap:conditions="Version.15-8-born">REPLACE</li>
+        </ul>
+        <p>For example, lets assume we have a class called <code>Product</code> with a <code>Double</code> property called <code>price</code> and a <code>String</code> property called name:</p><pre><code class="language-java">// An SQL query with ABS function,
+// which will return all the entries that after ABS function are equal to 1 or 4
+SQLQuery&lt;Product&gt; query = new SQLQuery&lt;Product&gt;(Product.class, "ABS(price) in (1, 4)");
+Product[] products = gigaSpace.readMultiple(query);
+
+// An SQL query with MOD function,
+// which will return all the entries that after modulo 10 are equal to 6 or 7
+SQLQuery&lt;Product&gt; query = new SQLQuery&lt;Product&gt;(Product.class, "MOD(price, 10) IN (6, 7)");
+Product[] products = gigaSpace.readMultiple(query);
+</code></pre>
+        <div class="tc-admon-note">
+            <p>For a full description of the class's methods and constructors, see the <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">API documentation</a>.</p>
+        </div>
+        <h1><a name="user-defined-functions"></a>User-Defined Functions</h1>
+        <p>User-defined functions (UDFs) , should be implemented in Java and can be called from any data access API that supports SQL Queries. This means, you can call them from a client using the Space API , JDBC API , .NET API , Rest API , JPA API , Scala API , UI , CLI, etc.</p>
+        <p>UDF allows you to access the relevant Space objects without serializing or materializing them. This means, the overall overhead of calling these functions is minimal. The <code>SqlFunctionExecutionContext</code> provides you direct access to the Space class properties. You can override existing functions such as <code>ABS</code> to perform customized functionality. Simply implement them as described below and register them using the <code>ABS</code> name.</p>
+        <h2><a name="example"></a>Example</h2>
+        <p>Here is an example of a user defined function:</p><pre><code class="language-java">import com.gigaspaces.query.sql.functions.SqlFunctionExecutionContext;
+
+public class MyCustomSqlFunction extends SqlFunction {
+    @Override
+    public Object apply(SqlFunctionExecutionContext context) {
+        // Increment by two before we return the value
+        return (Double) context.getArgument(0) + 2;
+    }
+}
+</code></pre>
+        <h2><a name="space-registration"></a>Space Registration</h2>
+        <p><code>PLUSTWO</code> is the new function that needs to be registered with the Space:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd"&gt;
+
+    &lt;bean id="myCustomSqlFunction" class="sandbox.sqlcustomfunction.MyCustomSqlFunction" /&gt;
+ 
+    &lt;os-core:embedded-space id="space" space-name="mySpace"&gt;
+        &lt;os-core:space-sql-function name="PLUSTWO"&gt;
+            &lt;os-core:sql-function ref="myCustomSqlFunction" /&gt;
+        &lt;/os-core:space-sql-function&gt;
+    &lt;/os-core:embedded-space&gt;
+    
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+</code></pre>
+        <p>And here is the usage of the newly registered SQL function:</p><pre><code class="language-java">// An SQL query with PLUSTWO function,
+// which will return all the entries that after PLUSTWO function are 20.0
+SQLQuery&lt;Product&gt; query = new SQLQuery&lt;Product&gt;(Product.class, "PLUSTWO(price) = 20.0");
+Product[] products = gigaSpace.readMultiple(query);
+</code></pre>
+        <div class="tc-admon-note">
+            <p>UDF supports root level and nested properties (e.g. foo(person.address.street). With nested properties as part of a user-defined class , the UDF will handle the user-defined type (e.g. Address) as an argument.</p>
+        </div>
+        <h1><a name="limitations"></a>Limitations</h1>
+        <ul>
+            <li MadCap:conditions="Version.14-2-born">
+                <MadCap:snippetBlock src="../Resources/Snippets/Content/DevGuide/sql-function-limitation.flsnp" />
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Content/DevGuide/sql-function-collection-index-limitation.flsnp" />
+            </li>
+            <li><code>parameter</code> - The SQL function must get exactly one parameter that is a property of a POJO that is written to the Space and a number of unbound parameters that are not properties of a POJO.</li>
+            <li><code>LRU</code> - SQL functions are not supported with the <code>LRU</code> space caching policy.</li>
+        </ul>
+    </body>
+</html>

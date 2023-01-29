@@ -1,0 +1,709 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Advanced Maintenance Activities</h1>
+        <h1><a name="interacting-with-space-data"></a>Interacting with Space Data</h1>
+        <div class="tc-admon-note">
+            <p>This functionality is not currently available in the Command Line Interface, REST Manager API, or Administration API.</p>
+        </div>
+        <h2><a name="deleting-data-from-a-space"></a>Deleting Data from a Space</h2>
+        <p>You can clear data from a Space using SQL queries, or via the user interface.</p>
+        <p><span class="tc-bold">To delete (clear) data from a Space:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Web Management Console" style="padding:10px">
+                <ol>
+                    <li>
+                        <p>In the Spaces view, highlight the Space where you want to delete the data.</p>
+                    </li>
+                    <li>
+                        <p>Display the Types pane in the lower area of the view.</p>
+                    </li>
+                    <li>
+                        <p>Click the <span class="tc-bold">Actions</span> icon and select <span class="tc-bold">Clear</span> from the menu.</p>
+                    </li>
+                </ol>
+                <p>After you delete the data, you can verify it was removed by looking at the value of the Instances Count column for that data type.</p>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+        </div>
+        <h1><a name="quiescing-a-processing-unit"></a>Quiescing a Processing Unit</h1>
+        <p><span class="tc-bold">To quiesce a Processing Unit:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu quiesce &lt;name&gt;</code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu quiesce &lt;name&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command disables a running Processing Unit for maintenance.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu quiesce  myPu --description="start friday maintenance"
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu  quiesce  myPu --description="start friday maintenance"<![CDATA[
+]]></code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu quiesce  myPu --description="start friday maintenance"<![CDATA[
+]]></code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">name</td>
+                            <td align="left">The name of the Processing Unit to disable.</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Option</td>
+                            <td align="left">description</td>
+                            <td align="left">Reason for disabling the Processing Unit (for auditing purposes).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>POST /pus/{id}/quiesce</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option disables a running Processing Unit for maintenance.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPu/quiesce'
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>pu name</td>
+                            <td>Provide the name of the Processing Unit you want to quiesce.</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>pdescription</td>
+                            <td>Provide descriptive text about quiescing the Processing Unit, which will appear in the event log.</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <ol>
+                    <li>
+                        <p>In the Processing Units view, highlight the Processing Unit you want to quiesce.</p>
+                    </li>
+                    <li>
+                        <p>Click the <span class="tc-bold">Actions</span> icon, and select <span class="tc-bold">Quiesce</span> from the menu.</p>
+                    </li>
+                    <li>
+                        <p>(Optional) If you want helpful information to appear in the log, type some descriptive text in the <span class="tc-bold">Description</span> box (for example: "offline for maintenance").</p>
+                    </li>
+                    <li>
+                        <p>Click <span class="tc-bold">OK</span>.</p>
+                    </li>
+                </ol>
+                <p>The Quiesce Progress window displays the result of the Quiesce process (for example, "Quiesce completed successfully"), and a token that the administrator can use to perform actions on the Processing Unit while it is in quiesced state. It is recommended to copy this token from the window before clicking <span class="tc-bold">OK</span>.</p>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+        <h1><a name="unquiescing-a-processing-unit"></a>Unquiescing a Processing Unit</h1>
+        <p><span class="tc-bold">To unquiesce a Processing Unit:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu unquiesce &lt;pu name&gt;</code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu unquiesce &lt;pu name&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command enables a quiesced Processing Unit.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu unquiesce  myPu
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu  unquiesce  myPu <![CDATA[
+]]></code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu unquiesce  myPu <![CDATA[
+]]></code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">name</td>
+                            <td align="left">The name of the quiesced Processing Unit to enable.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>POST /pus/{id}/unquiesce</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option unquiesces a Processing Unit.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPu/unquiesce'
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>pu name</td>
+                            <td>Provide the name of the Processing Unit you want to unquiesce.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <ol>
+                    <li>
+                        <p>In the Processing Units view, highlight the Processing Unit you want to unquiesce.</p>
+                    </li>
+                    <li>
+                        <p>Click the <span class="tc-bold">Actions</span> icon, and select <span class="tc-bold">Unquiesce</span> from the menu.</p>
+                    </li>
+                    <li>
+                        <p>Click <span class="tc-bold">Yes</span> in the confirmation message.</p>
+                    </li>
+                </ol>
+                <p>When the Processing Unit is available again, the status in the Processing Unit view changes to Intact.</p>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+        <h1><a name="demoting-a-primary-space-instance"></a>Demoting a Primary Space Instance</h1>
+        <p><span class="tc-bold">To demote a Space instance from a primary to a backup:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap space demote-instance &lt;instance ID&gt;</code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> space demote-instance &lt;instance ID&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command demotes a Space instance from a primary to a backup, with no downtime required.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap space demote-instance mySpace~1_1 --max-suspend-time=15s
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space demote-instance mySpace~1_1 --max-suspend-time=15s<![CDATA[ 
+]]></code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> space demote-instance mySpace~1_1 --max-suspend-time=15s<![CDATA[
+]]></code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">instance ID</td>
+                            <td align="left">Provide the ID of the Space instance you want to demote.</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Option</td>
+                            <td align="left">max-suspend-time</td>
+                            <td align="left">Define the maximum amount of time that the Space instance can be suspended, in seconds, during the demote process. The default value is 15.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>POST /spaces/{id}/instances/{instanceId}/demote</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command demotes a Space instance from a primary to a backup, with no downtime required.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/spaces/mySpace/instances/mySpace~1_1/demote?maxSuspendTime=15s'
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>The name of the Space.</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>instanceId</td>
+                            <td>The ID of the Space instance you want to demote.</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>maxSuspendTime</td>
+                            <td>Define the maximum amount of time that the Space instance can be suspended, in seconds, during the demote process. The default value is 15.</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <ol>
+                    <li>
+                        <p>In any view, highlight the Space instance you want to demote.</p>
+                    </li>
+                    <li>
+                        <p>Click the <span class="tc-bold">Actions</span> icon, and select <span class="tc-bold">Demote</span> from the menu.</p>
+                    </li>
+                    <li>
+                        <p>(Optional) If you want helpful information to appear in the log, type some descriptive text in the <span class="tc-bold">Description</span> box (for example: "rebalance after failover").</p>
+                    </li>
+                    <li>
+                        <p>Click <span class="tc-bold">OK</span>.</p>
+                    </li>
+                </ol>
+                <p>The Demote Progress window displays the result of the process (for example, "Demote completed successfully").</p>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px">
+                <p>You can view the status of the Space instances in the Space Browser tab. However, you must use one of the other administration tools to hot swap the instances.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>You can use the <a href="../dev-java/administration-and-monitoring-overview.html">Administration API</a> to demote a primary Space instance to a backup.</p>
+                <p>You can call demote for a Space instance, with a parameter of maximum suspend time for that Space instance during the demote process, as follows:</p><pre><code class="language-java">Admin admin = ... // Get or init an Admin instance
+Space mySpace = admin.getSpaces().waitFor("mySpace");
+SpaceInstance primarySpaceInstance = mySpace.getPartition(0).getPrimary();
+// call demote with maximum suspend time of 15 seconds
+Future&lt;?&gt; future = primarySpaceInstance.demote(15, TimeUnit.SECONDS);
+future.get(); // or future.get(timeout, unit);
+</code></pre>
+                <p>In addition, the Administration API allows registering for SuspendTypeChangedEvent:</p><pre><code class="language-java">SpaceSuspendTypeChangedEventListener myListener = new SpaceSuspendTypeChangedEventListener() {
+    @Override
+    public void spaceSuspendTypeChanged(SpaceSuspendTypeChangedEvent event) {
+        System.out.println("Got event for space instance [" + event.getSpaceInstance().getId() + "], " +
+                "previous value is " + event.getPreviousSuspendType() + ", " +
+                "new value is " + event.getNewSuspendType());
+    }
+};
+
+mySpace.getSpaceSuspendTypeChanged().add(myListener);
+...
+mySpace.getSpaceSuspendTypeChanged().remove(myListener);
+</code></pre>
+                <p>
+                    <br />
+                </p>
+                <p>The SuspendType options are:</p>
+                <ul>
+                    <li>
+                        <p>NONE - The Space is not suspended.</p>
+                    </li>
+                    <li>
+                        <p>QUIESCED - The Space is quiesced.</p>
+                    </li>
+                    <li>
+                        <p>DEMOTING - The Space is being demoted to backup.</p>
+                    </li>
+                    <li>
+                        <p>DISCONNECTED - The Space is disconnected from Apache ZooKeeper.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <h1><a name="restarting-a-processing-unit"></a>Restarting a Processing Unit</h1>
+        <div class="tc-admon-note">
+            <p>This functionality is not yet available in the Command Line Interface or REST Manager API administration tools.</p>
+        </div>
+        <p><span class="tc-bold">To restart a Processing Unit:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <!--
+<div title="Command Line Interface" style="padding:10px"><p>N/A</p>
+</div>
+
+<div title="REST Manager API" style="padding:10px"><p>N/A</p>
+</div>
+-->
+            <div title="Web Management Console" style="padding:10px">
+                <ol>
+                    <li>
+                        <p>In the Processing Units view, highlight the Processing Unit instance you want to restart.</p>
+                    </li>
+                    <li>
+                        <p>Click the <span class="tc-bold">Actions</span> icon, and select <span class="tc-bold">Restart</span> from the menu.</p>
+                    </li>
+                    <li>
+                        <p>Click <span class="tc-bold">Yes</span> in the confirmation message.</p>
+                    </li>
+                </ol>
+                <p>The Processing Unit instance is not visible in the Processing Unit view until it has finished restarting. This can take several seconds.</p>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+        <h1><a name="relocating-a-processing-unit"></a>Relocating a Processing Unit</h1>
+        <p><span class="tc-bold">To relocate a Processing Unit:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu relocate &lt;instance ID&gt; [&lt;container ID&gt;]</code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu relocate &lt;instance ID&gt; [&lt;container ID&gt;]</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command moves a Processing Unit instance to another container. If container ID is not specified, the Processing Unit instance will be moved to any available container.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu relocate  myPu~1 container~1
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu relocate  myPu~1 container~1<![CDATA[
+]]></code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu relocate  myPu~1 container~1<![CDATA[
+]]></code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">instance ID</td>
+                            <td align="left">ID of the Processing Unit instance to relocate.</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">[container ID]</td>
+                            <td align="left">The ID of the target container that will host the Processing Unit instance.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>POST /pus/{id}/instances/{instanceId}/relocate</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option moves a Processing Unit instance to another container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/alertSpace/instances/instance1/relocate?containerId=container2' 
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>pu name</td>
+                            <td>Provide the name of the Processing Unit you want to relocate.</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>pu instanceId</td>
+                            <td>Provide the instanceId of the Processing Unit you want to relocate.</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>targetContainerId</td>
+                            <td>Id of  Target container to relocate to</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <ol>
+                    <li>
+                        <p>In the Processing Units view, highlight the Processing Unit instance you want to relocate.</p>
+                    </li>
+                    <li>
+                        <p>Click the <span class="tc-bold">Actions</span> icon, and select <span class="tc-bold">Relocate</span> from the menu.</p>
+                    </li>
+                    <li>
+                        <p>Highlight the host where you want to move the instance, and click <span class="tc-bold">Select</span>.</p>
+                    </li>
+                    <li>
+                        <p>Click <span class="tc-bold">Yes</span> in the confirmation message.</p>
+                    </li>
+                </ol>
+                <p>The Processing Unit state is Scheduled in the Processing Unit view until the instance is relocated and initiated. This can take several seconds.</p>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+        <h1><a name="incrementing-a-processing-unit-instance"></a>Incrementing a Processing Unit Instance</h1>
+        <p><span class="tc-bold">To increment a Processing Unit:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu increment &lt;name&gt;</code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><code>xap pu increment &lt;name&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command adds one instance to the specified Processing Unit (which must be stateless).</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu increment  myPu
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu increment  myPu<![CDATA[
+]]></code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu increment  myPu<![CDATA[
+]]></code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">name</td>
+                            <td align="left">Provide the name of the stateless Processing unit to increment.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>POST /pus/{id}/instances</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option adds one instance to the specified Processing Unit (which must be stateless).</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPu/instances' 
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>pu name</td>
+                            <td>Provide the name of the stateless Processing Unit to increment.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <div class="tc-admon-note">
+                    <p>This functionality is not available in the Web Management Console.</p>
+                </div>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+        <h1><a name="decrementing-a-processing-unit-instance"></a>Decrementing a Processing Unit Instance</h1>
+        <p><span class="tc-bold">To decrement a Processing Unit:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu decrement &lt;instance ID&gt;</code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu decrement &lt;instance ID&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command removes one instance from the specified Processing Unit (which must be stateless).</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu decrement myPu~3
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu decrement myPu~3<![CDATA[
+]]></code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu decrement myPu~3<![CDATA[
+]]></code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">instance ID</td>
+                            <td align="left">Provide the ID of the Processing Unit instance to be removed.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>DELETE /pus/{id}/instances/{instanceId}</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option removes one Processing Unit instance from the specified Processing Unit (must be stateless).</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/pus/myPu/instances/myPu~1'
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>instanceId</td>
+                            <td>Provide the instance ID of the Processing Unit instance to be removed.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <div class="tc-admon-note">
+                    <p>This functionality is not available in the Web Management Console.</p>
+                </div>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+    </body>
+</html>

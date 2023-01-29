@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Space Containers</h1>
+        <p>To edit a container's configuration, select a container node in the <span class="tc-bold">Container Tree</span> panel on the left, then select the <span class="tc-bold">Container Configuration</span> tab at the bottom of the Configuration panel.</p>
+        <h1><a name="lookup-service-options"></a>Lookup service options</h1>
+        <p>You may view the following container attributes in the <span class="tc-bold">Directory Services</span> tab:
+<span class="tc-bold">Directory Services / Jini Lookup Services</span> - these attributes determine where space instances are registered. They may have one of three values:</p>
+        <ul>
+            <li>JNDI service</li>
+            <li>Jini Lookup Service</li>
+            <li>Both of them</li>
+        </ul>
+        <img src="../Resources/Static/attachment_files/Container Configuration Directory Services Tab.jpg" alt="Container Configuration Directory Services Tab.jpg" class="tc-picture100" />
+        <h1><a name="configuration"></a>Configuration</h1>
+        <p><span class="tc-bold">You may view the following container attributes in the General tab:</span>
+        </p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Home Directory</span> – Read only field. Displays the installation directory of the GigaSpaces Server.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">License</span> – Use this field to change the GigaSpaces Server license key.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Container Socket Port</span> -This is the port used by the container to export its stub. The default value is <code>0</code>.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Security Mode</span> – The space container provides basic security capabilities that control whether users have full control or read-only access. <span class="tc-bold">Read Only</span> specifies that all users should be blocked from creating and destroying spaces, shutting down containers, setting container configuration and restarting a container. <span class="tc-bold">Full Control</span> specifies that all users are allowed to perform all operations on the container. If the configuration is set to <span class="tc-bold">Read Only</span>, the only way to change it to <span class="tc-bold">Full Control</span> is through the configuration file. This prevents users from changing the restrictions on a space browser.</p>
+            </li>
+        </ul>
+        <p>
+            <img src="../Resources/Static/attachment_files/Container Configuration General Tab - GigaSpaces Browse.jpg" alt="Container Configuration General Tab - GigaSpaces Browse.jpg" class="tc-picture100" />
+        </p>
+        <h1>JMS</h1>
+        <p><span class="tc-bold">The JMS tab in the container configuration window enables viewing or modifying of the following container attributes:</span>
+        </p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">JMS Enabled</span> – Must be checked in order to configure the server-side of the GigaSpaces JMS interface.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Internal JNDI Enabled</span> – Must be checked if you want to use the GigaSpaces Server's lookup service for the JMS Destinations and connection factories lookup.</p>
+            </li>
+            <li><span class="tc-bold">External JNDI Enabled</span> – Must be checked if you want to use an external lookup service, such as the Jboss JNP naming protocol implementation.
+
+<p>If you enabled an external JNDI registry, update your JNDI provider's configuration properties inside the <code>jndi.properties</code> file and add the directory that contains the file to your classpath.</p></li>
+        </ul>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/Container Configuration JMS Tab - GigaSpaces Browser.jpg" alt="Container Configuration JMS Tab - GigaSpaces Browser.jpg" class="tc-picture50" />
+        </div>
+    </body>
+</html>

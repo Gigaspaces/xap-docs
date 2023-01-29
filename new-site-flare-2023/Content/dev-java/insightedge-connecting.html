@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Connecting Your Analytics Application to the Data Grid</h1>
+        <p>This section describes how to connect your Spark application to the Data Grid.</p>
+        <h1><a name="creating-the-insightedgeconfig"></a>Creating the InsightEdgeConfig</h1>
+        <p>To connect the Spark application to the Data Grid, use <code>import org.insightedge.spark.implicits.all._</code> to enable the Spark-to-DataGrid specific API and configure <code>SparkConf</code> with the <code>InsightEdgeConfig</code> object:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Scala" style="padding:10px"><pre><code class="language-scala">import org.insightedge.spark.context.InsightEdgeConfig
+import org.insightedge.spark.implicits.all._
+
+val gsConfig = InsightEdgeConfig("demo", Some("insightedge"), Some("127.0.0.1:4174"))
+val sparkConf = new SparkConf().setAppName("sample-app").setMaster("spark://127.0.0.1:7077").setInsightEdgeConfig(gsConfig)
+</code></pre>
+            </div>
+        </div>
+        <p>In this example we connect to a Space <code>demo</code> with a lookup group <code>insightedge</code> and a lookup locator <code>127.0.0.1:4174</code>.</p>
+        <p>Supported <code>InsightEdgeConfig</code> parameters are listed in the table below:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property Name</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><code>spaceName</code>
+                    </td>
+                    <td align="left">Defines the logical namespace for Data Grid objects. When starting <MadCap:variable name="General.ProductNameIE" /> in a demo mode the name of space is <code>demo</code></td>
+                </tr>
+                <tr>
+                    <td align="left"><code>lookupGroups</code>
+                    </td>
+                    <td align="left">Used to locate the space with multicast discovery. In a demo mode the group is <code>insightedge</code></td>
+                </tr>
+                <tr>
+                    <td align="left"><code>lookupLocators</code>
+                    </td>
+                    <td align="left">Used to locate the space with unicast discovery. In a demo mode the locator is <code>127.0.0.1:4174</code></td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="creating-the-sparkcontext"></a>Creating the SparkContext</h1>
+        <p>Create <code>SparkContext</code> as you usually do with a pure Spark application:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Scala" style="padding:10px"><pre><code class="language-scala">val sc = new SparkContext(sparkConf)
+</code></pre>
+            </div>
+        </div>
+        <p>Now you are all set and can start using the <code>SparkContext</code> with the extended functionality.</p>
+        <h1><a name="closing-the-sparkcontext"></a>Closing the SparkContext</h1>
+        <p>When you are done interacting with the <code>SparkContext</code>, close it and all connections to Data Grid with:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Scala" style="padding:10px"><pre><code class="language-scala">sc.stopInsightEdgeContext()
+</code></pre>
+            </div>
+        </div>
+        <p>Under the hood it will call regular Spark's <code>sc.stop()</code>, so there is no need to call it manually.</p>
+        <div class="tc-admon-refer">
+            <p>For details on creating <code>SparkContext</code> please refer to <a href="http://spark.apache.org/docs/latest/programming-guide.html#initializing-spark" target="_blank">Initializing Spark</a>.</p>
+        </div>
+    </body>
+</html>

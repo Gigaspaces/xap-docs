@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>JUnit Testing</h1>
+        <p>When creating unit tests with <MadCap:variable name="General.DataGrid" /> you will use an <code>Embedded Space</code> that is internally represented by the <code>IntegratedProcessingUnitContainer</code> class and a reference to this Space will be available through a class implementing the <code>GigaSpace</code> interface. This allows you to read / write objects to that Space just as you normally would in any <MadCap:variable name="General.DataGrid" /> application.</p>
+        <h1><a name="simple-test"></a>Simple test</h1>
+        <p>Here is an example of a simple JUnit test:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Space class" style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class SpaceData {
+    private UUID id;
+    private Long category;
+    private String name;
+
+    @SpaceId
+    public UUID getId() {
+        return id;
+    }
+    public void setId(UUID id) {
+        this.id = id;
+    }
+    @SpaceRouting
+    public Long getCategory() {
+        return category;
+    }
+    public void setCategory(Long category) {
+        this.category = category;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+</code></pre>
+            </div>
+            <div title="Spring configuration" style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-core="http://www.openspaces.org/schema/core" xmlns:os-jms="http://www.openspaces.org/schema/jms"
+    xmlns:os-events="http://www.openspaces.org/schema/events"
+    xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+    xmlns:os-sla="http://www.openspaces.org/schema/sla" xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
+    http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+    http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-[%=Versions.spring-short%].xsd
+    http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd"&gt;
+
+    &lt;os-core:embedded-space id="aSpace" space-name="processingSpace" /&gt;
+
+    &lt;os-core:giga-space id="processingSpace" space="aSpace" /&gt;
+
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-core="http://www.openspaces.org/schema/core" xmlns:os-jms="http://www.openspaces.org/schema/jms"
+    xmlns:os-events="http://www.openspaces.org/schema/events"
+    xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+    xmlns:os-sla="http://www.openspaces.org/schema/sla" xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+    http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd"&gt;
+
+    &lt;os-core:embedded-space id="aSpace" space-name="processingSpace" /&gt;
+
+    &lt;os-core:giga-space id="processingSpace" space="aSpace" /&gt;
+
+&lt;/beans&gt;
+</code></pre>
+            </div>
+        </div>
+        <p>And here is the JUnit test case</p><pre><code class="language-java">@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:META-INF/application-context.xml" })
+public class TestXAP {
+
+    @Autowired
+    private GigaSpace processingSpace;
+
+    @Test
+    public void simpleUnitTest() {
+
+        SpaceData data = new SpaceData();
+        data.setId(UUID.randomUUID());
+        data.setCategory(1L);
+        data.setName("Test data");
+
+        processingSpace.write(data);
+
+        SQLQuery&lt;SpaceData&gt; query = new SQLQuery&lt;SpaceData&gt;(SpaceData.class, "");
+        SpaceData[] result = processingSpace.readMultiple(query);
+
+        Assert.assertEquals(result.length, 1);
+    }
+
+    @Before
+    public void init() {
+        processingSpace.clear(null);
+    }
+}
+</code></pre>
+        <p>
+            <br />
+        </p>
+        <h1><a name="partition-routing-test"></a>Partition/Routing test</h1>
+        <p>Testing partitioning and routing can be accomplished by using the <code>IntegratedProcessingUnitContainerProvider</code>. You can start multiple partitions by defining with the <code>ClusterInfo</code> the number of members of a cluster.</p>
+        <p>In the example below 4 partitions are started.</p><pre><code class="language-java">public class ClusterTest {
+
+    private GigaSpace space;
+
+    @Test
+    public void testCluster() {
+
+        for (int i = 0; i &lt; 4; i++) {
+            SpaceData data = new SpaceData();
+            data.setId(UUID.randomUUID());
+            data.setName("Space Data " + i);
+            data.setCategory(new Long(i));
+
+            space.write(data);
+        }
+
+        SQLQuery&lt;SpaceData&gt; query = new SQLQuery&lt;SpaceData&gt;(SpaceData.class, "");
+        SpaceData[] result = space.readMultiple(query);
+
+        Assert.assertEquals(result.length, 4);
+    }
+
+    @Before
+    public void init() {
+            IntegratedProcessingUnitContainerProvider provider = new IntegratedProcessingUnitContainerProvider();
+            provider.addConfigLocation("classpath:META-INF/application-context.xml");
+            ClusterInfo clusterInfo = new ClusterInfo();
+            clusterInfo.setSchema("partitioned");
+            clusterInfo.setNumberOfInstances(4);
+            provider.setClusterInfo(clusterInfo);
+
+            ProcessingUnitContainer c = provider.createContainer();
+
+            space = new GigaSpaceConfigurer(new SpaceProxyConfigurer("processingSpace")).gigaSpace();
+    }
+}
+</code></pre>
+        <p>
+            <br />
+        </p>
+        <p>You can verify that the 4 partitions exists by starting the <a href="../admin/gigaspaces-management-center.html">Management Center</a></p>
+        <h1><a name="lookup-service"></a>Lookup Service</h1>
+        <p>The StandaloneProcessingUnitContainer automatically starts an embedded Lookup service. If you intend to use a separate Lookup service you can disable the embedded Lookup service by passing the setting the <code>com.j_spaces.core.container.directory_services.jini_lus.enabled</code> system property to false. This property can also be set within the Space definition:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"&gt;
+    &lt;os-core:properties&gt;
+      &lt;props&gt;
+        &lt;prop key="com.j_spaces.core.container.directory_services.jini_lus.start-embedded-lus"&gt;false&lt;/prop&gt;
+      &lt;/props&gt;
+    &lt;/os-core:properties&gt;
+&lt;/os-core:embedded-space&gt;
+</code></pre>
+    </body>
+</html>

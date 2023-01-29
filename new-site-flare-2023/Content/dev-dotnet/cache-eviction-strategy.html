@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Cache Eviction Strategy</h1>
+        <p>The local cache storage is managed by an eviction strategy. The strategy determines when and if Entries needs to be evicted from the space, and is also in charge of deciding which specific Entries to evict.</p>
+        <h1><a name="choosing-and-configuring-an-eviction-strategy"></a>Choosing and Configuring an Eviction Strategy</h1>
+        <p>XAP.NET comes with a number of eviction strategies. To choose an eviction strategy, you'll need to configure a <code>IdBasedLocalCacheConfig</code> object with the desired eviction strategy builder. A <code>IdBasedLocalCache</code> instance can be created with this config object.</p>
+        <p>Here's a simple example of configuring a cache to use the FIFO eviction strategy, where the size limit of the cache is 50,000 entries and each time an eviction is required, 1,000 Entries are evicted:</p><pre><code class="language-java">ISpaceProxy spaceProxy = // create or obtain a reference to a space proxy
+
+IdBasedLocalCacheConfig cacheConfig = new IdBasedLocalCacheConfig ();
+cacheConfig.EvictionStrategyBuilder = new FifoSegmentEvictionStrategyBuilder(50000, 1000);
+
+ILocalCache localCache = new GigaSpacesFactory.CreateIdBasedLocalCache(spaceProxy, cacheConfig);
+</code></pre>
+        <h2><a name="eviction-strategies"></a>Eviction Strategies</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Strategy Builder Name</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">LruSegmentEvictionStrategyBuilder</td>
+                    <td align="left">Least recently used, used by default.</td>
+                </tr>
+                <tr>
+                    <td align="left">FifoSegmentEvictionStrategyBuilder</td>
+                    <td align="left">First in first out, more concurrent because it doesn't need to update anything when Entries are touched inside the cache.</td>
+                </tr>
+                <tr>
+                    <td align="left">LfuSegmentEvictionStrategyBuilder</td>
+                    <td align="left">Least frequently used.</td>
+                </tr>
+                <tr>
+                    <td align="left">TimeBasedEvictionStrategyBuilder</td>
+                    <td align="left">Entries that weren't touched for a certain period of time are cleared.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Each of these strategies also contains a logic for periodic clearing; by default every 30 seconds the local cache is cleared. This behavior can be changed or turned off when constructing and configuring the specific eviction strategy builder, however it is not recommended to turn it off.</p>
+        <h1><a name="custom-eviction-strategy"></a>Custom Eviction Strategy</h1>
+        <p>A custom eviction strategy can be implemented. To do this, you first need to implement an eviction strategy by implementing the <code>IEvictionStrategy</code> interface. Then, implement a builder for it by implementing the <code>ISegmentEvictionStrategyBuilder</code> interface.</p>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Replication Group</h1>
+        <p>A group can define a replication policy. If it does, then no other group that contains at least one space belonging to this group can define a replication policy. If a group defines a replication policy, we call it a "replication group".(A replication group can also be a failover group, etc.).
+When a replication policy is defined for a group, the members of the group are synchronized according to that policy. The policy is independent of operations and transparent to the clustered proxy. The space members themselves cooperate to achieve synchronization.</p>
+        <p>See the <a href="replication.html">Replication</a> section for details.</p>
+        <h1><a name="common-settings"></a>Common Settings</h1>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/Replication Group1GigaSpaces Browser.jpg" alt="Replication Group1GigaSpaces Browser.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h1><a name="synchronous-replication"></a>Synchronous Replication</h1>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/Replication Group2GigaSpaces Browser.jpg" alt="Replication Group2GigaSpaces Browser.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h1><a name="asynchronous-replication"></a>Asynchronous Replication</h1>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/Replication Group3GigaSpaces Browser.jpg" alt="Replication Group3GigaSpaces Browser.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h1><a name="transmission-policies"></a>Transmission policies</h1>
+        <p>Click the Edit button to display the <span class="tc-bold">Replication Matrix</span> window</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/Replication Group4GigaSpaces Browser.jpg" alt="Replication Group4GigaSpaces Browser.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>The Transmission Policies tab of the Group Members Attribute window allows you to define the transmission policies for the cluster group.
+The Transmission Replication Policy Matrix allows you to define the replication relationships between group cluster space members. By clicking the relevant checkbox in the table you can define which space will be the replication target for the space.
+You can define transmission policy for this replication by checking take, write and notify. To activate the <span class="tc-bold">Sync on Commit</span> operation, check the Sync on Commit box.</p>
+        <h1><a name="filters-recovery-options"></a>Filters/recovery options</h1>
+        <p>The Filters/Recovery tab of the Group Members Attribute window allows a filter class name to be defined that will be activated at the time of replication. This filter class will contain your business logic to enable/disable the replication process.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/Replication Group5GigaSpaces Browser.jpg" alt="Replication Group5GigaSpaces Browser.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>Define an Input/Output filter class name for each group cluster space member by clicking its name on the list on the left-hand side and entering the appropriate class name.</p>
+        <p>You can define recovery policy by checking the Enabled box and using the Source Member drop-down box to select First Available Member or any other space in the group.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/Replication Group6GigaSpaces Browser.jpg" alt="Replication Group6GigaSpaces Browser.jpg" class="tc-picture50" />
+            </p>
+        </div>
+    </body>
+</html>

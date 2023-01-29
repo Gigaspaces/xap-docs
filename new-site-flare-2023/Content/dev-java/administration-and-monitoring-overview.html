@@ -1,0 +1,1288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Admin API</h1>
+        <p>The Admin API provides a way to administer and monitor all of <MadCap:variable name="General.ProductNameXAP" /> services and components using a simple API. The API provides information and the ability to operate on the currently running <a href="../overview/the-runtime-environment.html#gsa">Agent</a>, <a href="../overview/the-runtime-environment.html#gsm">Manager</a>, <a href="../overview/the-runtime-environment.html#gsc">Container</a>, <a href="../overview/the-runtime-environment.html#lus">Lookup Service</a>, <a href="the-processing-unit-overview.html">Processing Unit</a> and Spaces.</p>
+        <p><span class="tc-bold">Dependencies</span>
+        </p>
+        <p>In order to use this feature, include the <code><MadCap:variable name="General.HomePath" />/lib/platform/service-grid/xap-admin.jar</code> file on your classpath or use maven dependencies:</p><pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.gigaspaces&lt;/groupId&gt;
+    &lt;artifactId&gt;xap-admin&lt;/artifactId&gt;
+    &lt;version&gt;[%=Versions.maven-version-MX%]&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+        <div class="tc-admon-note">
+            <p>For more information on dependencies, see <a href="../started/installation-maven-overview.html">Maven Artifacts</a>.</p>
+        </div>
+        <h1><a name="examples"></a>Examples</h1>
+        <p>The following code examples show how the Admin API can be used to display information on the currently deployed services/components:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  GSA " style="padding:10px"><pre><code class="language-java">public void gsa() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+    // wait till things get discovered (you can also use specific waitFor)
+    for (GridServiceAgent gsa : admin.getGridServiceAgents()) {
+        System.out.println("GSA [" + gsa.getUid()
+                + "] running on Machine ["
+                + gsa.getMachine().getHostAddress());
+        for (AgentProcessDetails processDetails : gsa.getProcessesDetails()) {
+            System.out.println("   -&gt; Process ["
+                    + Arrays.toString(processDetails.getCommand()) + "]");
+        }
+    }
+}
+</code></pre>
+            </div>
+            <div title="  GSM " style="padding:10px"><pre><code class="language-java">public void gsm() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+    // wait till things get discovered (you can also use specific waitFor)
+    for (GridServiceManager gsm : admin.getGridServiceManagers()) {
+        System.out.println("GSM [" + gsm.getUid() + "] running on Machine "
+                + gsm.getMachine().getHostAddress());
+    }
+}
+</code></pre>
+            </div>
+            <div title="  GSC " style="padding:10px"><pre><code class="language-java">public void gsc() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+    // wait till things get discovered (you can also use specific waitFor)
+    for (GridServiceContainer gsc : admin.getGridServiceContainers()) {
+        System.out.println("GSC [" + gsc.getUid() + "] running on Machine "
+                + gsc.getMachine().getHostAddress());
+        for (ProcessingUnitInstance puInstance : gsc
+                .getProcessingUnitInstances()) {
+            System.out.println("   -&gt; PU [" + puInstance.getName() + "]["
+                    + puInstance.getInstanceId() + "]["
+                    + puInstance.getBackupId() + "]");
+        }
+    }
+}
+</code></pre>
+            </div>
+            <div title="  Processing Unit " style="padding:10px"><pre><code class="language-java">
+public void pu() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+    // wait till things get discovered (you can also use specific waitFor)
+    for (ProcessingUnit processingUnit : admin.getProcessingUnits()) {
+        System.out.println("Processing Unit: " + processingUnit.getName()
+                    + " status: " + processingUnit.getStatus());
+        if (processingUnit.isManaged()) {
+                System.out.println("   -&gt; Managing GSM: "
+                        + processingUnit.getManagingGridServiceManager()
+                                .getUid());
+        } else {
+                System.out.println("   -&gt; Managing GSM: NA");
+        }
+
+        for (GridServiceManager backupGSM : processingUnit
+                    .getBackupGridServiceManagers()) {
+                System.out.println("   -&gt; Backup GSM: " + backupGSM.getUid());
+        }
+
+        for (ProcessingUnitInstance processingUnitInstance : processingUnit) {
+                System.out.println("   ["
+                        + processingUnitInstance.getClusterInfo()
+                        + "] on GSC ["
+                        + processingUnitInstance.getGridServiceContainer()
+                                .getUid() + "]");
+                if (processingUnitInstance.isEmbeddedSpaces()) {
+                    System.out.println("      -&gt; Embedded Space ["
+                            + processingUnitInstance.getSpaceInstance()
+                                    .getUid() + "]");
+                }
+
+                Map&lt;String, ServiceDetails&gt; services = processingUnitInstance.getServiceDetailsByServiceId();
+
+                for (ServiceDetails details : services.values()) {
+                    System.out.println("      -&gt; Service " + details);
+                }
+        }
+    }
+}
+</code></pre>
+            </div>
+            <div title="  Space " style="padding:10px"><pre><code class="language-java">
+public void space() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+
+    for (Space space : admin.getSpaces()) {
+        System.out.println("Space [" + space.getUid()
+                    + "] numberOfInstances [" + space.getNumberOfInstances()
+                    + "] numberOfbackups [" + space.getNumberOfBackups() + "]");
+        System.out.println("  Stats: Write ["
+                    + space.getStatistics().getWriteCount() + "/"
+                    + space.getStatistics().getWritePerSecond() + "]");
+        for (SpaceInstance spaceInstance : space) {
+                System.out.println("   -&gt; INSTANCE [" + spaceInstance.getUid()
+                        + "] instanceId [" + spaceInstance.getInstanceId()
+                        + "] backupId [" + spaceInstance.getBackupId()
+                        + "] Mode [" + spaceInstance.getMode() + "]");
+                System.out.println("         -&gt; Host: "
+                        + spaceInstance.getMachine().getHostAddress());
+                System.out.println("         -&gt; Stats: Write ["
+                        + spaceInstance.getStatistics().getWriteCount() + "/"
+                        + spaceInstance.getStatistics().getWritePerSecond()
+                        + "]");
+            }
+        for (SpacePartition spacePartition : space.getPartitions()) {
+                System.out.println("   -&gt; Partition ["
+                        + spacePartition.getPartitionId() + "]");
+                for (SpaceInstance spaceInstance : spacePartition) {
+                    System.out.println("      -&gt; INSTANCE ["
+                            + spaceInstance.getUid() + "]");
+                }
+        }
+    }
+}
+</code></pre>
+            </div>
+            <div title="  Virtual Machine " style="padding:10px"><pre><code class="language-java">public void virtualMachine() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+        // wait till things get discovered (you can also use specific waitFor)
+    System.out.println("VM TOTAL STATS: Heap Committed ["
+                + admin.getVirtualMachines().getStatistics()
+                        .getMemoryHeapCommittedInGB() + "GB]");
+    System.out.println("VM TOTAL STATS: GC PERC ["
+                + admin.getVirtualMachines().getStatistics()
+                        .getGcCollectionPerc()
+                + "], Heap Used ["
+                + admin.getVirtualMachines().getStatistics()
+                        .getMemoryHeapUsedPerc() + "%]");
+
+    for (VirtualMachine virtualMachine : admin.getVirtualMachines()) {
+            System.out.println("VM [" + virtualMachine.getUid() + "] "
+                    + "Host [" + virtualMachine.getMachine().getHostAddress()
+                    + "] " + "GC Perc ["
+                    + virtualMachine.getStatistics().getGcCollectionPerc()
+                    + "], " + "Heap Usage ["
+                    + virtualMachine.getStatistics().getMemoryHeapUsedPerc()
+                    + "%]");
+
+            for (ProcessingUnitInstance processingUnitInstance : virtualMachine
+                    .getProcessingUnitInstances()) {
+                System.out.println("   -&gt; PU ["
+                        + processingUnitInstance.getUid() + "]");
+            }
+            for (SpaceInstance spaceInstance : virtualMachine
+                    .getSpaceInstances()) {
+                System.out.println("   -&gt; Space [" + spaceInstance.getUid()
+                        + "]");
+            }
+    }
+}
+</code></pre>
+            </div>
+            <div title="  Machine " style="padding:10px"><pre><code class="language-java">public void machine() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+        // wait till things get discovered (you can also use specific waitFor)
+    for (Machine machine : admin.getMachines()) {
+            System.out.println("Machine ["
+                    + machine.getUid()
+                    + "], "
+                    + "TotalPhysicalMem ["
+                    + machine.getOperatingSystem().getDetails()
+                            .getTotalPhysicalMemorySizeInGB()
+                    + "GB], "
+                    + "FreePhysicalMem ["
+                    + machine.getOperatingSystem().getStatistics()
+                            .getFreePhysicalMemorySizeInGB() + "GB]]");
+
+            for (SpaceInstance spaceInstance : machine.getSpaceInstances()) {
+                System.out.println("   -&gt; Space [" + spaceInstance.getUid()
+                        + "]");
+            }
+            for (ProcessingUnitInstance processingUnitInstance : machine
+                    .getProcessingUnitInstances()) {
+                System.out.println("   -&gt; PU ["
+                        + processingUnitInstance.getUid() + "]");
+            }
+    }
+}
+</code></pre>
+            </div>
+        </div>
+        <p>Obtaining information about the currently deployed services/components via the started <code>GridServiceAgents</code>:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" GSC " style="padding:10px"><pre><code class="language-java">    public void findStartedGridServiceContainers() {
+        Admin admin = new AdminFactory().createAdmin();
+
+        // wait at least for one agent
+        admin.getGridServiceAgents().waitForAtLeastOne();
+
+        for (GridServiceAgent gsa : admin.getGridServiceAgents()) {
+            for (GridServiceContainer gsc : gsa.getGridServiceContainers()) {
+                // ....
+            }
+        }
+    }
+</code></pre>
+            </div>
+            <div title=" GSM " style="padding:10px"><pre><code class="language-java">    public void findStartedGridServiceManagers() {
+        Admin admin = new AdminFactory().createAdmin();
+
+        // wait at least for one agent
+        admin.getGridServiceAgents().waitForAtLeastOne();
+
+        for (GridServiceAgent gsa : admin.getGridServiceAgents()) {
+            for (GridServiceManager gsm : gsa.getGridServiceManagers()) {
+                // ....
+            }
+        }
+    }
+</code></pre>
+            </div>
+            <div title=" LUS " style="padding:10px"><pre><code class="language-java">    public void findStartedLookupServices() {
+        Admin admin = new AdminFactory().createAdmin();
+
+        // wait at least for one agent
+        admin.getGridServiceAgents().waitForAtLeastOne();
+
+        for (GridServiceAgent gsa : admin.getGridServiceAgents()) {
+            for (LookupService ls : gsa.getLookupServices()) {
+                // ....
+            }
+        }
+    }
+</code></pre>
+            </div>
+            <div title=" ESM " style="padding:10px"><pre MadCap:conditions="Version.15-2-died"><code class="language-java">    public void findStartedElasticServiceManagers() {
+        Admin admin = new AdminFactory().createAdmin();
+
+        // wait at least for one agent
+        admin.getGridServiceAgents().waitForAtLeastOne();
+
+        for (GridServiceAgent gsa : admin.getGridServiceAgents()) {
+            for (ElasticServiceManager esm : gsa.getElasticServiceManagers()) {
+                // ....
+            }
+        }
+    }
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>A fully running example of a <a href="/sbp/scaling-agent.html">Scaling Agent</a> is available in the Solutions &amp; Patterns section.</p>
+        </div>
+        <h1><a name="admin-construction"></a>Admin Construction</h1>
+        <p>The Admin API uses the <code>AdminFactory</code> in order to create <code>Admin</code> instances. After you finish working with the <code>Admin</code>, its <code>Admin#close()</code> method should be called.</p>
+        <p>The Admin API discovers all the advertised services from the <a href="../overview/the-runtime-environment.html#lus">Lookup Service</a>. Use the <code>AdminFactory#addGroup</code> to define which lookup groups. The lookup locators can also be used for non-multicast enabled environments using <code>AdminFactory#addLocator</code>. If the services started are secured, the username and password can be set on the Admin API as well.</p>
+        <h1><a name="discovery-process"></a>Discovery Process</h1>
+        <p>When the <code>Admin</code> is created, it starts to receive discovery events from all the advertised services/components within its lookup groups and lookup locators. The events occur asynchronously and the data model within the Admin API gets initialized in the background with services coming and going.</p>
+        <p>This means that just creating the <code>Admin</code> and calling a specific "getter" for a data structure might not return what is currently deployed, and you should wait until the structures are filled. Some components have a <code>waitFor</code> method that allows waiting for a specific number of services to be up. When navigating the data model, the Admin API provides its most up-to-date state of the system it is monitoring.</p>
+        <h1><a name="domain-model"></a>Domain Model</h1>
+        <p>The Admin Domain Model has representation to all the <MadCap:variable name="General.ProductNameXAP" />-level main actors. They include:</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/admin/admin_domain_model.png" width="569" height="388" />
+        </p>
+        <table class="tc-borderless">
+            <tr>
+                <td style="width:45%;">
+                    <ul>
+                        <li><a href="#GridServiceAgentLink">GridServiceAgent</a>
+                        </li>
+                        <li><a href="#GridServiceAgentsLink">GridServiceAgents</a>
+                        </li>
+                        <li><a href="#GridServiceManagerLink">GridServiceManager</a>
+                        </li>
+                        <li><a href="#GridServiceManagersLink">GridServiceManagers</a>
+                        </li>
+                        <li><a href="#GridServiceContainerLink">GridServiceContainer</a>
+                        </li>
+                        <li><a href="#GridServiceContainersLink">GridServiceContainers</a>
+                        </li>
+                        <li><a href="#LookupServiceLink">LookupService</a>
+                        </li>
+                        <li><a href="#LookupServicesLink">LookupServices</a>
+                        </li>
+                        <li><a href="#ProcessingUnitLink">ProcessingUnit</a>
+                        </li>
+                        <li><a href="#ProcessingUnitInstanceLink">ProcessingUnitInstance</a>
+                        </li>
+                        <li><a href="#ProcessingUnitsLink">ProcessingUnits</a>
+                        </li>
+                        <li><a href="#servicemonitors">ServiceMonitors</a>
+                        </li>
+                    </ul>
+                </td>
+                <td style="width:45%;">
+                    <ul>
+                        <li><a href="#SpaceLink">Space</a>
+                        </li>
+                        <li><a href="#SpaceInstanceLink">SpaceInstance</a>
+                        </li>
+                        <li><a href="#SpacesLink">Spaces</a>
+                        </li>
+                        <li><a href="#VirtualMachineLink">VirtualMachine</a>
+                        </li>
+                        <li><a href="#VirtualMachinesLink">VirtualMachines</a>
+                        </li>
+                        <li><a href="#MachineLink">Machine</a>
+                        </li>
+                        <li><a href="#MachinesLink">Machines</a>
+                        </li>
+                        <li><a href="#OperatingSystemLink">OperatingSystem</a>
+                        </li>
+                        <li><a href="#OperatingSystemsLink">OperatingSystems</a>
+                        </li>
+                        <li><a href="#TransportLink">Transport</a>
+                        </li>
+                        <li><a href="#TransportsLink">Transports</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table><a name="GridServiceAgentLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsa/GridServiceAgent.html" target="_blank">GridServiceAgent</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>A process manager that manages Service Grid processes such as GSM, GSC and LUS. More information is available <a href="../overview/the-runtime-environment.html#gsa">here</a>.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>Allows listing all the currently managed processes. Start processes (GSM, GSC, LUS).</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table><a name="GridServiceAgentsLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsa/GridServiceAgents.html" target="_blank">GridServiceAgents</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Holds all the currently discovered Grid Service Agents.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>Gets all the currently discovered Grid Service Agents. Wait for X number of Grid Service Agents to be up.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>Register for Grid Service Agent addition (discovery) and removal events.</td>
+                </tr>
+            </tbody>
+        </table><a name="GridServiceManagerLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsm/GridServiceManager.html" target="_blank">GridServiceManager</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Manages Processing Unit deployments and Grid Service Containers. More information is available <a href="../overview/the-runtime-environment.html#gsm">here</a>.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>Deploy Processing Units. Deploy pure Space Processing Units. Get the Grid Service Agent Managing it. Restart itself (if managed by a Grid Service Agent). Kill itself (if managed by a Grid Service Agent).</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table><a name="GridServiceManagersLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsm/GridServiceManagers.html" target="_blank">GridServiceManagers</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Holds all the currently discovered Grid Service Managers.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>Deploy Processing Units on a random Grid Service Manager. Deploy pure Space Processing Units on a random Grid Service Manager. Get all the currently discovered Grid Service Managers. Wait for X number of Grid Service Managers to be up.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>Register for Grid Service Manager addition (discovery) and removal events.</td>
+                </tr>
+            </tbody>
+        </table><a name="GridServiceContainerLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsc/GridServiceContainer.html" target="_blank">GridServiceContainer</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Container that hosts Processing Unit instances deployed from the GSM. More information is available <a href="../overview/the-runtime-environment.html#gsc">here</a>.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>List currently running Processing Unit instances.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>Register for Processing Unit instance additions and removal events.</td>
+                </tr>
+            </tbody>
+        </table><a name="GridServiceContainersLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsc/GridServiceContainers.html" target="_blank">GridServiceContainers</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Holds all the currently discovered Grid Service Containers.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>Get all the currently discovered Grid Service Containers. Wait for X number of Grid Service Containers to be up.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>Register for Grid Service Container addition (discovery) and removal events.</td>
+                </tr>
+            </tbody>
+        </table><a name="LookupServiceLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/lus/LookupService.html" target="_blank">LookupService</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>A registry of services (GSM, GSC, Space instances, Processing Unit instances) that can be looked up using it. More information is available <a href="../overview/the-runtime-environment.html#lus">here</a>.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>Get the Lookup Groups and Locator it was started with.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table><a name="LookupServicesLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/lus/LookupServices.html" target="_blank">LookupServices</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Holds all the currently discovered Lookup Services.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>Get all the currently discovered Lookup Services. Wait for X number of Lookup Services to be up.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>Register for Lookup Service addition (discovery) and removal events.</td>
+                </tr>
+            </tbody>
+        </table><a name="ProcessingUnitLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/ProcessingUnit.html" target="_self">ProcessingUnit</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Deployable Processing unit running one or more Processing Unit Instances. Managed by the Grid Service Manager.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>- Undeploy the Processing Unit<br />- Increase the number of Processing Unit instances (if allowed).<br />- Decrease the number of Processing Unit instances (if allowed).<br />- Get the deployment status of the Processing Unit.<br />- Get the managing Grid Service Manager.<br />- Get the list of backup Grid Service Managers.<br />- List all the currently running Processing Unit instances.<br />- Wait for X number of Processing Unit instances to be up.<br />- Get an embedded Space that the Processing Unit has.<br />- Wait for an embedded Space to be correlated (discovered) with the Processing Unit.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>- Register for Processing Unit instance additions and removal events.<br />- Register for Processing Unit instance provision attempts, failures, successes and pending events.<br />- Register for Managing Grid Service Manager change events.<br />- Register for Space correlation events.<br />- Register for deployment status change events.<br />- Register for backup Grid Service Manager change events.</td>
+                </tr>
+            </tbody>
+        </table><a name="ProcessingUnitInstanceLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/ProcessingUnitInstance.html" target="_blank">ProcessingUnitInstance</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Actual instance of a Processing Unit running within a Grid Service Container.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>- Destroy itself (if SLA is breached, will be instantiated again).<br />- Decrease itself (destroying itself in the process). Will not attempt to create it again.<br />- Relocate itself to a different Grid Service Container.<br />- List all its inner services (such as event containers).<br />- Get the embedded Space instance running within it (if there is one).<br />- Get the JEE container details if it is a web Processing Unit.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td><a href="#servicemonitors">Service Monitors</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table><a name="ProcessingUnitsLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/ProcessingUnits.html" target="_blank">ProcessingUnits</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Holds all the currently deployed Processing Units</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>Get all the currently deployed Processing Units.<br />- Wait for (and return) a Processing by a specific name.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>- Register for Processing Unit deployments and undeployment events.<br />- Register for all Processing Unit instance addition and removal events (across all Processing Units).<br />- Register for all Processing Unit instance provision attempts, failures, success and pending events (across all Processing Units).<br />- Register for Managing Grid Service Manager change events on all Processing Units.<br />- Register for backup Grid Service Manager change events on all Processing Units.</td>
+                </tr>
+            </tbody>
+        </table><a name="SpaceLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/space/Space.html" target="_blank">Space</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Composed of one or more Space Instances to form a Space topology (cluster).</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>- Get all the currently running Space Instances that are part of the Space.<br />- Wait for X number of Space instances to be up.<br />- Get aggregated Space statistics.<br />- Get a clustered <a href="the-gigaspace-interface-overview.html">Space</a> to perform Space operations.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>- Register for Space instance addition and removal events.<br />- Register for Space instance change mode events (for all Space instances that are part of the Space).<br />- Register for Space instance replication status change events (for all Space instances that are part of the Space).<br />- Register for aggregated Space statistics events (if monitoring).</td>
+                </tr>
+            </tbody>
+        </table><a name="SpaceInstanceLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/space/SpaceInstance.html" target="_blank">SpaceInstance</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Actual instance of a Space that is part of a topology (cluster), usually running within a Processing Unit Instance.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>- Get its Space mode (primary or backup).<br />- Get its replication targets.<br />- Get a direct <a href="the-gigaspace-interface-overview.html">Space</a> to perform Space operations.<br />- Get Space instance statistics.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>- Register for replication status change events.<br />- Register for Space mode change events<br />- Register for Space instance statistics (if monitoring).</td>
+                </tr>
+            </tbody>
+        </table><a name="SpacesLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/space/Spaces.html" target="_blank">Spaces</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Holds all the currently running Spaces.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>- Get all the currently running Spaces.<br />- Wait for (and return) a specific Space by name.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>- Register for Space addition and removal events.<br />- Register for Space instance addition and removal events (across all Spaces).<br />- Register for Space instance mode change events (across all Space instances).<br />- Register for Space instance replication change events (across all Space Instances).<br />- Register for aggregated Space level statistics change events (across all Spaces, if monitoring).<br />- Register for Space instance statistics change events (across all Space Instances, if monitoring).</td>
+                </tr>
+            </tbody>
+        </table><a name="VirtualMachineLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/vm/VirtualMachine.html" target="_blank">VirtualMachine</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>A Virtual Machine (JVM) that is currently running at least one <MadCap:variable name="General.ProductNameXAP" /> component/service.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>- Get the Grid Service Agent (if it exists).<br />- Get the Grid Service Manager (if it exists).<br />- Get the Grid Service Container (if it exists).<br />- Get all the Processing Unit instances that are running within the Virtual Machine.<br />- Get all the Space instances that are running within the Virtual Machine.<br />- Get the details of the Virtual Machine (min/max memory, etc.).<br />- Get the statistics of the Virtual Machine (heap used), and so on).</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>- Register for Processing Unit instance addition and removal events.<br />- Register for Space instance addition and removal events.<br />- Register for statistics change events (if monitoring).</td>
+                </tr>
+            </tbody>
+        </table><a name="VirtualMachinesLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/vm/VirtualMachines.html" target="_blank">VirtualMachines</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Holds all the currently discovered Virtual Machines.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>- Get all the currently discovered Virtual Machines.<br />- Get aggregated Virtual Machine details.<br />- Get aggregated Virtual Machine statistics.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>- Register for Virtual Machine addition and removal events.<br />- Register for aggregated Virtual Machine statistics events (if monitoring).<br />- Register for Virtual Machine level statistics change events (across all Virtual Machines, if monitoring).</td>
+                </tr>
+            </tbody>
+        </table><a name="MachineLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/machine/Machine.html" target="_blank">Machine</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Actual Machine (identified by its host address) running one or more <MadCap:variable name="General.ProductNameXAP" /> components/services in one or more Virtual Machines. Associated with one operating system.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>- Get all the Grid Service Agents running on the Machine.<br />- Get all the Grid Service Containers running on the Machine.<br />- Get all the Grid Service Managers running on the Machine.<br />- Get all the Virtual Machines running on the Machine.<br />- Get all the Processing Unit instances running on the Machine.<br />- Get all the Space instances running on the Machine.<br />- Get the operating system the Machine is running on.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>- Register for Space instance addition and removal events from the Machine.<br />- Register for Processing Unit instance additions and removals events from the Machine.</td>
+                </tr>
+            </tbody>
+        </table><a name="MachinesLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/machine/Machines.html" target="_blank">Machines</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Holds all the currently discovered Machines</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>- Get all the currently running Machines.<br />- Wait for X number of Machines or be up.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>- Register for Machine addition and removal events.</td>
+                </tr>
+            </tbody>
+        </table><a name="OperatingSystemLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/os/OperatingSystem.html" target="_blank">OperatingSystem</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>The operating system that <MadCap:variable name="General.ProductNameXAP" /> components/services are running on. Associated with one Machine.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>- Get the details of the operating system.<br />- Get the operating system statistics.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>Register for statistics change events (if monitoring).</td>
+                </tr>
+            </tbody>
+        </table><a name="OperatingSystemsLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/os/OperatingSystems.html" target="_blank">OperatingSystems</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Holds all the currently discovered operating systems.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>- Get all the current operating systems.<br />- Get the aggregated operating system details.<br />- Get the aggregated operating system statistics.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>- Register for aggregated operating system statistics change events (if monitoring).<br />- Register for operating system level statistics change events (across all operating systems, if monitoring).</td>
+                </tr>
+            </tbody>
+        </table><a name="TransportLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/transport/Transport.html" target="_blank">Transport</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Communication layer that each <MadCap:variable name="General.ProductNameXAP" /> component/service uses.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>- Get the transport details (host, port).<br />- Get the transport statistics.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>Register for transport statistics change events (if monitoring).</td>
+                </tr>
+            </tbody>
+        </table><a name="TransportsLink"></a>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/transport/Transports.html" target="_blank">Transports</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Holds all the currently discovered transports.</td>
+                </tr>
+                <tr>
+                    <td>Main Operations</td>
+                    <td>- Get all the current transports.<br />- Get the aggregated transport details.<br />- Get the aggregated transport statistics.</td>
+                </tr>
+                <tr>
+                    <td>Runtime Events</td>
+                    <td>- Register for aggregated transport statistics change events (if monitoring).<br />- Register for transport level statistics change events (across all transports, if monitoring).</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <p>The <code>Admin</code> functionality is designed to interact with a service grid deployment. For <code>StandaloneProcessingUnitContainer</code> and <code>IntegratedProcessingUnitContainer</code>, components such as <code>GridServiceAgent</code> and <code>GridServiceManager</code> are not started by default, therefore portions of the Admin functionality aren't available.</p>
+        </div>
+        <h1><a name="accessing-the-domain-model"></a>Accessing the Domain Model</h1>
+        <p>There are two ways to use the Admin API to access information:</p>
+        <ul>
+            <li>Call specific "getters" for the data and iterate over them (as shown in the example at the top of the page).</li>
+            <li>Register for specific events using the Admin API. Events are handled by different components of the Admin API in similar manner. We will take one of them and use it as a reference example.</li>
+        </ul>
+        <p>If we want to register, for example, for Grid Service Container additions, we can use the following code (removing the event listener is not shown here for clarity):</p><pre><code class="language-java">admin.getGridServiceContainers().getGridServiceContainerAdded().add(new GridServiceContainerAddedEventListener() {
+    public void gridServiceContainerAdded(GridServiceContainer gridServiceContainer) {
+        // do something here
+    }
+});
+</code></pre>
+        <p>Removals are done in similar manner:</p><pre><code class="language-java">admin.getGridServiceContainers().getGridServiceContainerRemoved().add(new GridServiceContainerRemovedEventListener() {
+    public void gridServiceContainerRemoved(GridServiceContainer gridServiceContainer) {
+        // do something here
+    }
+});
+</code></pre>
+        <p>Since both removals and additions are common events that we would like to register for at the same time, we can use:</p><pre><code class="language-java">admin.getGridServiceContainers().addLifecycleListener(new GridServiceContainerLifecycleEventListener() {
+    public void gridServiceContainerAdded(GridServiceContainer gridServiceContainer) {
+        // do something here
+    }
+
+    public void gridServiceContainerRemoved(GridServiceContainer gridServiceContainer) {
+        // do something here
+    }
+});
+</code></pre>
+        <p>All other data structures use similar APIs to register for events. Some might have specific events that go beyond additions and removals, but they still use the same model. For example, you can register for Space mode change events across all currently running Space topologies and Space instances:</p><pre><code class="language-java">admin.getSpaces().getSpaceModeChanged().add(new SpaceModeChangedEventListener() {
+    public void spaceModeChanged(SpaceModeChangedEvent event) {
+        System.out.println("Space [" + event.getSpaceInstance().getSpace().getName() + "] " +
+        "Instance [" + event.getSpaceInstance().getInstanceId() + "/" +
+                event.getSpaceInstance().getBackupId() + "] " +
+        "changed mode from [" + event.getPreviousMode() + "] to [" + event.getNewMode() + "]");
+    }
+});
+</code></pre>
+        <p>Of course, you can register the same listener on a specific <code>Space</code> topology, or event on a specific <code>SpaceInstance</code>.</p>
+        <p>Last, the <code>Admin</code> interface provides a one-stop method called <code>addEventListener</code> that accepts an <code>AdminListener</code>. Most event listeners implement this interface. You can create a class that implements several chosen listener interfaces, call the <code>addEventListener</code> method, and they will automatically be added to their respective components. For example, if our listener implements <code>GridServiceContainerAddedEventListener</code> and <code>GridServiceManagerAddedEventListener</code>, the listener will automatically be added to the <code>GridServiceManagers</code> and <code>GridServiceContainers</code>.</p>
+        <h1><a name="details-and-statistics"></a>Details and Statistics</h1>
+        <ul>
+            <li>
+                <p>Some components in the Admin API can provide statistics. For example, a <code>SpaceInstance</code> can provide statistics on how many times the read API was called on it. Statistics change over time, and in order to get them either the "getter" for the Statistics can be used, or a statistics listener can be registered for statistics change events.</p>
+            </li>
+            <li>
+                <p>Details of a specific component provide information that doesn't change over time, but can be used to provide more information regarding the component, or to compute statistics. For example, the VirtualMachine provides in its details the minimum and maximum heap memory size, while the VirtualMachine statistics provide the currently used heap memory size. The detailed information is used to provide the percentage used in the Virtual Machine statistics.</p>
+            </li>
+            <li>
+                <p>The Admin API also provide aggregated details and statistics. For example, the <code>Space</code> provides <code>SpaceStatistics</code> allowing to get the aggregated statistics of all the different Space Instances that belong to it.</p>
+            </li>
+            <li>
+                <p>Each component in the Admin API that can provide statistics (either direct or aggregated) implements the <code>StatisticsMonitor</code> interface. The statistics monitor allows starting to monitor statistics and stop to monitor statistics. Monitoring for statistics is required if you want to register for statistics change events. The interval at which statistics are polled is controlled using the statistics interval.</p>
+            </li>
+            <li>
+                <p>The statistics interval is an important event when the Admin API isn't actively polling for statistics. Each call to a statistics "getter" only performs a remote call to the component if the last statistics fetch happened <span class="tc-bold">before</span> the statistics interval. This behavior allows for users of the Admin API to not worry about "hammering" different components for statistics, because the Admin API ensures that statistics calls are cached internally for the statistics interval period.</p>
+            </li>
+            <li>
+                <p>A <code>SpaceInstance</code> implements the <code>StatisticsMonitor</code> interface. Calling <code>startMonitor</code> and <code>stopMonitor</code> on it causes monitoring of statistics to be enabled or disabled.</p>
+            </li>
+            <li>
+                <p><code>Space</code> also implements the <code>StatisticsMonitor</code> interface. Calling <code>startMonitor</code> on it will cause it to start monitoring all its <code>SpaceInstance</code> s. If a <code>SpaceInstance</code> is discovered after the the call to <code>startMonitor</code> occurred, it starts monitoring itself automatically. This means that if a <code>SpaceInstanceStatisticsChangedEventListener</code> was registered on the <code>Space</code>, it automatically starts getting Space instance statistics change events for the newly discovered <code>SpaceInstance</code>.</p>
+            </li>
+            <li>
+                <p><code>Spaces</code> also implements the <code>StatisticsMonitor</code> interface. Calling <code>startMonitor</code> on it will cause it to start monitoring all the <code>Space</code> s it has (and as a result, also <code>SpaceInstance</code> s, see the paragraph above). A <code>SpaceInstanceStatisticsChangedEventListener</code> can also be registered on the <code>Spaces</code> level.</p>
+            </li>
+            <li>
+                <p>The above Space level statistics behavior works in much the way with other components. For example, for <code>VirutalMachine</code> and <code>VirtualMachines</code>, <code>Transport</code> and <code>Transports</code>, <code>OperatingSystem</code> and <code>OperatingSystems</code>.</p>
+            </li>
+            <li>
+                <p>The <code>Admin</code> interface also implements the <code>StatisticsMonitor</code> interface. Calling <code>startMonitor</code> on it will cause all holders to start monitoring. These include <code>Spaces</code>, <code>VirtualMachines</code>, <code>Transports</code>, and <code>OperatingSystems</code>.</p>
+            </li>
+        </ul>
+        <h1><a name="space-runtime-statistics"></a>Space Runtime Statistics</h1>
+        <p>The Space maintains statistics information about all the data types (for example, Space class types) it stores, and the amount of Space objects stored in memory for each data type. The following example shows how to retrieve this data. This approach eliminates the need to use the <code>GigaSpace.Count()</code>, which is relatively expensive, with Spaces that store large number of objects.</p>
+        <p>If you are monitoring the Space class instance count with a monitoring tool, you should use the approach below rather calling the <code>GigaSpace.Count()</code>.</p><pre><code class="language-java">public static void printAllClassInstanceCountForAllPartitions (Admin admin , String spaceName) throws Exception
+{
+    Space space = admin.getSpaces().waitFor(spaceName, 10 , TimeUnit.SECONDS);
+    SpacePartition spacePartitions[] = space.getPartitions();
+    System.out.println(spaceName + " have " +spacePartitions.length + " Partitions , Total " + space.getTotalNumberOfInstances() + " Instances");
+    Arrays.sort(spacePartitions, new SpacePartitionsComperator ());
+
+    for (int i = 0; i &lt; spacePartitions.length; i++) {
+        SpacePartition partition = spacePartitions [i];
+        while (partition.getPrimary()==null){
+            Thread.sleep(1000);
+        }
+
+        SpaceInstance primaryInstance = partition.getPrimary();
+        System.out.println ("Partition " + partition.getPartitionId() + " Primary:");
+        Map&lt;String, Integer&gt; classInstanceCountsPrimary = primaryInstance.getRuntimeDetails().getCountPerClassName();
+        Iterator&lt;String&gt; keys = classInstanceCountsPrimary.keySet().iterator();
+        while (keys.hasNext()){
+            String className = keys.next();
+            System.out.println ("Class:" + className +" Instance count:" + classInstanceCountsPrimary.get(className));
+        }
+
+        SpaceInstance backupInstance = partition.getBackup();
+        System.out.println ("Partition " + partition.getPartitionId() + " Backup:");
+
+        Map&lt;String, Integer&gt; classInstanceCountsBackup = backupInstance .getRuntimeDetails().getCountPerClassName();
+        keys = classInstanceCountsPrimary.keySet().iterator();
+        while (keys.hasNext()){
+            String className = keys.next();
+            System.out.println ("Class:" + className +" Instance count:" + classInstanceCountsBackup.get(className));
+        }
+    }
+}
+
+static class SpacePartitionsComperator implements Comparator&lt;SpacePartition&gt;{
+    public int compare(SpacePartition o1,SpacePartition o2) {
+        if (o2.getPartitionId() &gt; o1.getPartitionId())
+            return 0;
+        else
+            return 1;
+    }
+}
+</code></pre>
+        <h1><a name="memoryxtend-statistics"></a>MemoryXtend Statistics</h1>
+        <p>If you have a system that utilizes MemoryXtend, you can monitor the performance of the off-heap storage and the external disk storage. For a list of available blobstore operation statistics, see the <a href="../admin/metrics-bundled.html#blobstore-operations">Predefined Metrics</a> page in the Administration guide.</p>
+        <p>The following example (relevant for the disk storage driver) demonstrates how to retrieve RocksDB statistics using the Admin API.</p><pre><code class="language-java">
+SpaceInstance spaceInstance =
+    admin.getSpaces().getSpaceByName( "MySpace" ).getInstances()[0];
+SpaceInstanceStatistics statistics = spaceInstance.getStatistics();
+if( statistics != null &amp;&amp; statistics.getBlobStoreStatistics() != null ) {
+    BlobStoreStatistics blobStoreStatistics = statistics.getBlobStoreStatistics();
+   Collection&lt;BlobStoreStorageStatistics&gt; storageStatistics =
+                            blobStoreStatistics.getStorageStatistics();
+    if( storageStatistics != null &amp;&amp; !storageStatistics.isEmpty() ) {
+        BlobStoreStorageStatistics blobStoreStorageStatistics =
+                                    storageStatistics.iterator().next();
+if (blobStoreStorageStatistics instanceof RocksDBBlobStoreStatistics) {
+    RocksDBBlobStoreStatistics rocksDBStatistics =
+    (RocksDBBlobStoreStatistics) blobStoreStorageStatistics;
+    long memtableHit = rocksDBStatistics.getMemtableHit();
+    long memtableMiss = rocksDBStatistics.getMemtableMiss();
+    long getHitL0 = rocksDBStatistics.getGetHitL0();
+    long getHitL1 = rocksDBStatistics.getGetHitL1();
+    long getHitL2AndUp = rocksDBStatistics.getHitL2AndUp();
+    long numberKeysWritten = rocksDBStatistics.getNumberKeysWritten();
+    long numberKeysRead = rocksDBStatistics.getNumberKeysRead();
+    long numberKeysUpdated = rocksDBStatistics.getNumberKeysUpdated();
+    long bytesWritten = rocksDBStatistics.getBytesWritten();
+    long bytesRead = rocksDBStatistics.getBytesRead();
+    long iterBytesRead = rocksDBStatistics.getIterBytesRead();
+    long numberMultigetCalls =      rocksDBStatistics.getNumberMultigetCalls();
+    long numberMultigetKeysRead =       rocksDBStatistics.getNumberMultigetKeysRead();
+    long numberMultigetBytesRead =  rocksDBStatistics.getNumberMultigetBytesRead();
+      }
+}
+</code></pre>
+        <h1><a name="monitoring-the-mirror-service"></a>Monitoring the Mirror Service</h1>
+        <p>You can monitor various aspects of the mirror service using the Admin API.</p>
+        <p>The mirror statistics are available using the <code>SpaceInstance</code> statistics. They can be used to monitor the state of the mirror Space and whether or not it is functioning properly. These statistics are relevant only for a mirror Space instance, and are not available for ordinary Space instances. The code below traverses all the Space instances and finds the mirror Space by retrieving the mirror statistics object (if it isn't null, this means it is a mirror Space). It then prints out some of the available statistics.</p><pre><code class="language-java">for (Space space : admin.getSpaces()) {
+    System.out.println("Space [" + space.getUid() + "] numberOfInstances [" +
+    space.getNumberOfInstances() + "] numberOfbackups [" +
+    space.getNumberOfBackups() + "]");
+
+    for (SpaceInstance spaceInstance : space) {
+        System.out.println("   -&gt; INSTANCE [" + spaceInstance.getUid() + "] instanceId [" + spaceInstance.getInstanceId() +
+        "] backupId [" + spaceInstance.getBackupId() + "] Mode [" + spaceInstance.getMode() + "]");
+        System.out.println("         -&gt; Host: " + spaceInstance.getMachine().getHostAddress());
+
+         MirrorStatistics mirrorStat = spaceInstance.getStatistics().getMirrorStatistics();
+         // check if this instance is mirror
+         if(mirrorStat != null){
+            System.out.println("Mirror Stats:");
+            System.out.println("total operation count:" + mirrorStat.getOperationCount());
+            System.out.println("successful operation count:" + mirrorStat.getSuccessfulOperationCount());
+            System.out.println("failed operation count:" + mirrorStat.getFailedOperationCount());
+         }
+    }
+}
+
+</code></pre>
+        <div class="tc-admon-note">
+            <p>For more information, refer to the API documentation on <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/cluster/replication/async/mirror/MirrorStatistics.html" target="_blank">MirrorStatistics</a>.</p>
+        </div>
+        <h1><a name="pu-status-changed-events"></a>PU Status Changed Events</h1>
+        <p>You can receive notifications about the deployment status of a Processing Unit. An event listener can be attached to the Admin API that delivers events describing the current and previous <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">DeploymentStatus</a> of a Processing Unit.
+Here is an example:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" ChangeStatus" style="padding:10px"><pre><code class="language-java">public class ProcessingUnitStatusChanged {
+
+    public void processingUnitStatusChanged() {
+        Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+        MyProcessingUnitStatusChangedEventListener listener = new MyProcessingUnitStatusChangedEventListener();
+        admin.addEventListener(listener);
+    }
+}
+</code></pre>
+            </div>
+            <div title=" Listener" style="padding:10px"><pre><code class="language-java">public class MyProcessingUnitStatusChangedEventListener implements
+        ProcessingUnitStatusChangedEventListener {
+
+    @Override
+    public void processingUnitStatusChanged(
+            ProcessingUnitStatusChangedEvent event) {
+
+        DeploymentStatus newStatus = event.getNewStatus();
+        if (newStatus.equals(DeploymentStatus.INTACT))
+        {
+            // All has settled down
+        }
+    }
+}
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="monitoring-processing-unit-health"></a>Monitoring Processing Unit Health</h1>
+        <p>For monitoring purposes, the Processing Unit can be queried to show its deployment status, number of actual instances vs. planned, and more details per Processing Unit instance. The planned vs. actual represents the current state, and querying this API returns an updated result each time a scheduled update is done by the underlying Admin. A plan changes on increments, decrements, restarts and relocation of instances.</p><pre><code class="language-java">    ProcessingUnit processingUnit = admin.getProcessingUnits().getProcessingUnit("myProceessingUnitName");
+    Properties properties = new Properties();
+    properties.put("Name", processingUnit.getName());
+    properties.put("Status", processingUnit.getStatus());
+    properties.put("Type", processingUnit.getType());
+    properties.put("Actual/Planned", processingUnit.getInstances().length + "/" + processingUnit.getPlannedNumberOfInstances());
+    properties.put("SLA", processingUnit.getNumberOfInstances() + (processingUnit.getNumberOfBackups()&gt;0 ? "," + processingUnit.getNumberOfBackups(): ""));
+</code></pre><a name="servicemonitors"></a>
+        <h1><a name="service-monitors"></a>Service Monitors</h1>
+        <p>The Admin API allows you to monitor <MadCap:variable name="General.ProductNameXAP" /> services. The information is available through the <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">ProcessingUnitInstanceStatistics</a>.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Service</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">WebRequestsServiceMonitors</a>
+                    </td>
+                    <td align="left">Statistics monitor information for JEE servlet requests.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">RemotingServiceMonitors</a>
+                    </td>
+                    <td align="left">Generic remoting service details.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">EventContainerServiceMonitors</a>
+                    </td>
+                    <td align="left">A generic event container service monitors.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">PollingEventContainerServiceMonitors</a>
+                    </td>
+                    <td align="left">Polling container service monitors.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">NotifyEventContainerServiceMonitors</a>
+                    </td>
+                    <td align="left">Notify container service monitors.</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">AsyncPollingEventContainerServiceMonitors</a>
+                    </td>
+                    <td align="left">Async Polling container service monitors.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Here is an example of how you can obtain this information:</p><pre><code class="language-java">public void serviceMonitors() {
+    Admin admin = new AdminFactory().createAdmin();
+
+    for (ProcessingUnit processingUnit : admin.getProcessingUnits()) {
+        for (ProcessingUnitInstance processingUnitInstance : processingUnit.getInstances()) {
+            ProcessingUnitInstanceStatistics processingUnitInstanceStatistics = processingUnitInstance.getStatistics();
+            if (processingUnitInstanceStatistics != null) {
+                WebRequestsServiceMonitors webRequestsServiceMonitors = processingUnitInstanceStatistics.getWebRequests();
+                RemotingServiceMonitors remoting = processingUnitInstanceStatistics.getRemoting();
+                Map&lt;String, EventContainerServiceMonitors&gt; eventContainers = processingUnitInstanceStatistics.getEventContainers();
+                Map&lt;String, PollingEventContainerServiceMonitors&gt; pollingEventContainers = processingUnitInstanceStatistics.getPollingEventContainers();
+                Map&lt;String, NotifyEventContainerServiceMonitors&gt; notifyEventContainers = processingUnitInstanceStatistics.getNotifyEventContainers();
+                Map&lt;String, AsyncPollingEventContainerServiceMonitors&gt; asyncPollingEventContainers = processingUnitInstanceStatistics.getAsyncPollingEventContainers();
+            }
+        }
+    }
+}
+</code></pre>
+        <p>You can also attach a <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">ProcessingUnitInstanceStatisticsChangedEventListener</a> to Processing Units that will fire by default every 5 seconds.</p><pre><code class="language-java">public void serviceMonitorsEventListeners() {
+    Admin admin = new AdminFactory().createAdmin();
+
+    admin.getProcessingUnits()
+        .getProcessingUnit("myProcessingUnit")
+        .getProcessingUnitInstanceStatisticsChanged()
+        .add(new ProcessingUnitInstanceStatisticsChangedEventListener() {
+
+        @Override
+        public void processingUnitInstanceStatisticsChanged(ProcessingUnitInstanceStatisticsChangedEvent event) {
+            ProcessingUnitInstanceStatistics statistics = event.getStatistics();
+            Map&lt;String, EventContainerServiceMonitors&gt; eventContainers = statistics.getEventContainers();
+            WebRequestsServiceMonitors webRequests = statistics.getWebRequests();
+            // .....
+        }
+    });
+}
+</code></pre>
+        <p>By default, the listener fires every 5 seconds. You can change all the intervals at once as follows. This will set the timer on the following objects: <code>Spaces</code>,<code>VirtualMachines</code>,<code>Transports</code>,<code>OperatingSystems</code>, and <code>ProcessingUnits</code>.</p><pre><code class="language-java">public void changeServiceMonitorsTimer() {
+    Admin admin = new AdminFactory().createAdmin();
+    admin. setStatisticsInterval(30l, TimeUnit.SECONDS);
+}
+</code></pre>
+        <p>You can also change the intervals individually:</p><pre><code class="language-java">Spaces.setStatisticsInterval(30l, TimeUnit.SECONDS);
+VirtualMachines.setStatisticsInterval(10l, TimeUnit.MINUTES);
+Transports.setStatisticsInterval(10l, TimeUnit.SECONDS);
+OperatingSystems.setStatisticsInterval(3l, TimeUnit.MINUTES);
+ProcessingUnits.setStatisticsInterval(30l, TimeUnit.SECONDS);
+</code></pre>
+    </body>
+</html>

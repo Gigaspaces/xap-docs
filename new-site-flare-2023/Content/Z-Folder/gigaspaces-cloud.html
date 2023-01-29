@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Getting Started with <MadCap:variable name="General.ProductNameXAP" /> Cloud</h1>
+        <h1>Overview</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" />' <MadCap:variable name="General.ProductNameIEP" /> runs services and machine learning models in production at scale, for real-time decision making on streaming, transactional and historical data. The in-memory software platform helps enterprises easily introduce new applications that need to ingest, process and analyze huge amounts of data enriched with historical context at extreme speeds, across any environment. </p>
+        <p><MadCap:variable name="General.ProductNameIE" /> is now available with the <MadCap:variable name="General.ProductNameXAP" /> Cloud service. Benefits include:</p>
+        <ul>
+            <li>One-click deployment </li>
+            <li>Zero management overhead</li>
+            <li>Fast analytics, BI and visualization</li>
+            <li>360° real-time view of all data, across any data source</li>
+            <li>Built-in sample applications such as flight delay prediction and data discovery</li>
+        </ul>
+        <p><MadCap:variable name="General.ProductNameXAP" /> Cloud enables fast access for those that want to try out <MadCap:variable name="General.ProductNameIE" /> and explore its features and capabilities. You can create an account that's free for 14 days and use it to deploy a project, including loading data from various data sources, implementing stateful and stateless services, and performing interactive queries and visualization.</p>
+        <p>In addition to project deployment, you can explore our demo applications, including reviewing the work flow, evaluating sample components and exploring the code.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> Cloud is available on a trial basis, and can be accessed via the GigaSpaces website. To sign up for your trial <MadCap:variable name="General.ProductNameXAP" /> Cloud account, go to the main <a href="http://www.gigaspaces.com/">GigaSpaces website</a> and  click <span class="tc-bold">Try free</span> at the top of the page, or select <span class="tc-bold"><MadCap:variable name="General.ProductNameXAP"></MadCap:variable> Cloud</span> from the Products menu to open the <MadCap:variable name="General.ProductNameXAP" /> Cloud account sign-in page.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/gigaspaces-cloud/gscloud-tryfree.png" class="tc-picture80" />
+            </p>
+        </div>
+        <p>At the end of your trial period, you can contact <MadCap:variable name="General.ProductNameXAP" /> for any followup questions you have about the technical capabilities of the product, or about exploring additional business scenarios.</p>
+        <h1>Creating an Account</h1>
+        <ol>
+            <li>To create your free account, fill in the following fields<ol style="list-style-type: lower-alpha;"><li><p><span class="tc-bold">Company</span> - Must have a minimum of 3 characters.</p></li><li><p><span class="tc-bold">Full Name</span>: This is the user name that will appear for anyone in your organization that also becomes a member. <span class="tc-highlight" MadCap:conditions="Default.DoNotShow">Are any characters invalid? Limit on number of characters? Is the screen user name different from the actual person’s name on the account? Will this be a future feature?</span></p></li><li><p><span class="tc-bold">Email</span> - Enter a valid business email address.</p></li><li><p><span class="tc-bold">Password</span> - Must be at least 6 characters in length.<MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><span class="tc-textred">(Are there recommendations or restrictions regarding password characters, length, etc.?)</span></MadCap:conditionalText></p><p><span class="tc-textblue" MadCap:conditions="Default.DoNotShow">I’m not sure. Please check directly with Arthur. It will be good to add this to the documentation</span></p></li></ol></li>
+            <li>Review the terms of use and privacy policy, then click the toggle to proceed.</li>
+            <li>Click <span class="tc-bold">Create Account</span>.</li>
+        </ol>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/gigaspaces-cloud/gscloud-create-account.png" class="tc-picture30" />
+            </p>
+        </div>
+        <p>The account takes about five minutes to set up. When it's ready, you'll receive a notification email to the address that you supplied. This email also provides several access links to your account and its associated tools, namely:</p>
+        <ul>
+            <li>Your  selected demo application.</li>
+            <li>GigaSpaces Ops Manager for monitoring your cloud environment, querying the data, and visualizing the queries in Apache Zeppelin.</li>
+            <li>Grafana for an additional monitoring option.</li>
+        </ul>
+        <div class="tc-admon-tip">
+            <p>You can bookmark these links for easy access.</p>
+        </div>
+        <h1><a name="Configur"></a>Configuring Your Account Settings</h1>
+        <p>After your account is created, you can configure the following settings in the Application Settings page:</p>
+        <ul>
+            <li><span class="tc-bold">Workload type</span> - Select one of the following options:<ul><li><span class="tc-bold">General purpose</span></li><li><span class="tc-bold">Compute optimized</span> for speed</li><li><span class="tc-bold">Memory optimized</span> for size</li></ul></li>
+            <li><span class="tc-bold">Memory allocation</span> - select the amount of RAM (in GB) you want  allocated to your trial account.</li>
+            <li><span class="tc-bold">High availability</span> - Turn on this feature for a primary/backup configuration.</li>
+            <li><span class="tc-bold">MemoryXtend</span> - Turn on this feature to enable tiered storage. You must configure the following additional parameters:<ul><li><span class="tc-bold">Storage performance</span> - select whether you want standard or SSD persistent memory performance for storing your cold data.</li><li><p><span class="tc-bold">Storage size</span> - use the slider to configure the capacity (in GB) of the external persistent memory.</p><div class="tc-admon-note"><p>For more information about MemoryXtend, see the <MadCap:xref href="../dev-java/intelligent-tiering-intro.html">Intelligent Data Tiering</MadCap:xref> section in the developer guide.</p></div></li></ul></li>
+            <li><span class="tc-bold">Demo applications</span> - select from the following options:<ul><li><span class="tc-bold">None</span> - No application is applied, but you can review and use several basic Zeppelin notebooks.</li><li><span class="tc-bold">Data discovery for trading</span> - a simple workflow that loads data from an  external .csv file, visualizes the data using an Apache Zeppelin Notebook (including diagrams and charts), and enables executing multiple SQL queries.</li><li><span class="tc-bold">Predict flight delays using ML</span> - a prediction model that uses sample flight and weather data to forecast flight delays at a specific airport, using Kafka as a producer and InsightEdge as the consumer.</li></ul></li>
+        </ul>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/gigaspaces-cloud/gscloud-configure-account.png" class="tc-picture50" />
+            </p>
+        </div>
+        <p>When you are finished configuring your account, click <span class="tc-bold">Launch the Application</span>.</p>
+        <div class="tc-admon-note">
+            <p>Information about your account, such as the amount of time left in your trial period, is displayed at the bottom of the application settings area.</p>
+        </div>
+        <h1>Logging In to an Existing Account</h1>
+        <p>If you already have a <MadCap:variable name="General.ProductNameXAP" /> Cloud account, click <span class="tc-bold">Sign in</span>, and log in to your account using your email and password. <span class="tc-highlight" MadCap:conditions="Default.DoNotShow">Also, it lets you log in if you created but didn't configure an account. This should be blocked -- you should be required to complete the configuration because there's nothing available in the dashboard. </span></p>
+        <div class="tc-admon-note">
+            <p>If you forgot your password, click <span class="tc-bold">Forgot password?</span> and follow the instructions on the Reset Password page. You'll get an email with instructions on how to reset your password.</p>
+        </div>
+        <h1>Using your GigaSpaces Cloud Environment</h1>
+        <p>GigaSpaces Cloud has a management interface where you can access your application, manage group members<MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><span class="tc-textred">(why does everyone have these rights? Are there going to be users with different levels of access?)</span> </MadCap:conditionalText>, and configure your application settings.</p>
+        <p MadCap:conditions="Default.DoNotShow"><span class="tc-textblue">Penina: order should be dashboard, application settings, users</span>
+        </p>
+        <p MadCap:conditions="Default.DoNotShow"><span class="tc-textred">Sharon, then they should be displayed that way in the tool.</span>
+        </p>
+        <h2>Dashboard</h2>
+        <p>You can see the following in the dashboard: <MadCap:conditionalText MadCap:conditions="Default.DoNotShow"> <span class="tc-textblue">We don’t need to focus on the admin/dashboard capabilities that we get from Arthur … 2 sentences</span></MadCap:conditionalText></p>
+        <ul>
+            <li>Your plan information, such as how much longer you have left before the account becomes inactive. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><span class="tc-textred">Is there any other kind of information that will appear? What about future functionality? Isn’t this account information, not plan information? What is the difference between an account and a plan? Can you renew a plan without renewing your account?</span></MadCap:conditionalText></li>
+            <li>Available links to access your application in Apache Zeppelin, or open BI tools linked to the application.<MadCap:conditionalText MadCap:conditions="Default.DoNotShow"> <span class="tc-textred"> (are these going to be the standard links? Can the user configure visualization tools besides Ops Manager and Grafana? If there are other applications, will they be opened with tools other than Apache Zeppelin? )</span></MadCap:conditionalText></li>
+        </ul>
+        <h2>Settings</h2>
+        <p>In the Settings page, you can make changes to the settings that you configured when you first set up your trial account. See <MadCap:xref href="#Configur">Configuring Your Account Settings</MadCap:xref> above.</p>
+        <p>Click <span class="tc-bold">Update settings</span> to save your changes. The update takes several minutes to complete.</p>
+        <div class="tc-admon-tip">
+            <p>For more information about <MadCap:variable name="General.ProductNameXAP" /> Cloud, see the <a href="https://www.gigaspaces.com/gs-cloud-faq/" target="_blank">FAQ&#160;page</a> on the <MadCap:variable name="General.ProductNameXAP" /> website.</p>
+        </div>
+        <p MadCap:conditions="Default.DoNotShow"><span class="tc-textred">How does the user know it’s done? Is there a progress bar? Notification email?</span>
+        </p>
+        <h2>Users</h2>
+        <p>On the Users page, you can add users to your account by sending an invitation, and delete users from your account.</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/gigaspaces-cloud/gs-cloud-add-user.png" class="tc-picture80" />
+        </p>
+    </body>
+</html>

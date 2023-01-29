@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>ALL IN CACHE Policy</h1>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+            <p>
+                <MadCap:snippetText src="../Resources/Snippets/Content/EvictionDeprecate.flsnp" />
+            </p>
+        </div>
+        <p>When running in <code>ALL_IN_CACHE</code> cache policy mode, the space uses only the available physical memory. When running in a persistent space mode and having <a href="persistency-for-a-database.html">Space Persistency</a> defined, the space data is backed with the underlying database, but the overall capacity of the space does not exceed the capacity of the available physical memory.</p>
+        <div class="tc-admon-note">
+            <p>When using All IN CACHE, the <span class="tc-bold">cache size</span> parameter is ignored.</p>
+        </div>
+        <h1><a name="spacememoryshortageexception"></a>SpaceMemoryShortageException</h1>
+        <p>The <code>org.openspaces.core.SpaceMemoryShortageException</code> (which wraps the <code>com.j_spaces.core.MemoryShortageException</code>) is thrown when:</p>
+        <ul>
+            <li>The utilized memory is above the <code>space-config.engine.memory_usage.high_watermark_percentage</code> threshold.</li>
+            <li>The utilized memory is above the <code>space-config.engine.memory_usage.write_only_block_percentage</code> threshold and a <span class="tc-bold">write-type</span> operation has been called.</li>
+        </ul>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/ALL_IN_CACHE_SpaceMemoryShortageException.jpg" alt="ALL_IN_CACHE_SpaceMemoryShortageException.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>The <code>org.openspaces.core.SpaceMemoryShortageException</code> or <code>com.j_spaces.core.MemoryShortageException</code> includes information about:</p>
+        <ul>
+            <li>The space host name</li>
+            <li>The space container name</li>
+            <li>The space name</li>
+            <li>The total available memory</li>
+            <li>The total used memory</li>
+        </ul>
+        <p>Here is an example of the <code>org.openspaces.core.SpaceMemoryShortageException</code> message:</p><pre><code class="language-bash">org.openspaces.core.SpaceMemoryShortageException at: host: MachineHostName, container: mySpace_container1_1, space mySpace,
+total memory: 1820 mb, used memory: 1283 mb
+</code></pre>
+        <p>Getting <code>SpaceMemoryShortageException</code> when running in <code>ALL-IN_CACHE</code> policy mode points that the heap size allocated for the JVM is too low, or the garbage collection settings are not tuned correctly. You should consider increasing the JVM heap size or move into more advanced garbage collector such as CMS or iCMS. Here is an example for CMS garbage collector settings you may use:</p><pre><code class="language-bash">-server -Xms8g -Xmx8g -Xmn300m -XX:+UseConcMarkSweepGC -XX:+UseParNewGC
+-XX:CMSInitiatingOccupancyFraction=60 -XX:+UseCMSInitiatingOccupancyOnly
+-XX:MaxPermSize=256m -XX:+ExplicitGCInvokesConcurrent -XX:+UseCompressedOops
+</code></pre>
+        <p>When running with large heap size you should tune the memory manager settings. This will avoid throwing <code>SpaceMemoryShortageException</code> too early. See the <a href="memory-management-overview.html#handling-large-jvm-heap-sizes">Handling Large JVM Heap Size</a> section for details.</p>
+    </body>
+</html>

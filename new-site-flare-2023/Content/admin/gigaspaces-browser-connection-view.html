@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Connections View</h1>
+        <p>The Connections view exposes information regarding all connected and disconnected space proxies.</p>
+        <div class="tc-admon-note">
+            <p>It is also possible to retrieve space connections using the <a href="space-gigaspaces-cli.html">space connections</a> command.</p>
+        </div>
+        <p>The following properties are exposed:</p>
+        <ul>
+            <li>Server IP address and port</li>
+            <li>Client IP address and port</li>
+            <li>Start connection time</li>
+            <li>Connection status</li>
+            <li>Disconnection time</li>
+        </ul>
+        <p>The Connections view is accessible for each space node. The red highlighted rows in the screenshot below are disconnected connections.</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/Connections View1.gif" alt="Connections View1.gif" class="tc-picture100" />
+        </p>
+        <p>You can clean the displayed disconnections and view only live connections by clicking the <span class="tc-bold">Clean disconnections</span> button on the top right.</p>
+        <h1><a name="refresh-options"></a>Refresh Options</h1>
+        <p>You can choose to refresh the Connection view periodically. Select the desired refresh rate from the drop-down menu. To stop automatically refreshing the Connections view, click the <span class="tc-bold">Stop* button. The refresh activity impacts server performance, so when running benchmarks you might want to stop auto-refresh activity (by clicking the *Stop</span> button). When auto-refresh is running, a green blinking dot is displayed on the right side of the screen.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/GMC_space_x_RefreshRate_area_TopRight_6.0.gif" alt="GMC_space_x_RefreshRate_area_TopRight_6.0.gif" class="tc-picture80" />
+            </p>
+        </div>
+        <h1><a name="considerations"></a>Considerations</h1>
+        <div class="tc-admon-note">
+            <p>Connections are created for a space <span class="tc-bold">only when a space operation (eg. ping, write, etc.) is invoked</span>.</p>
+        </div>
+        <ul>
+            <li>Information relates only to physical (live) connections. Logical connections will be shown in the future.</li>
+            <li>Disconnected connections are calculated and displayed only on the client side and are not supplied by MBean methods.</li>
+        </ul>
+    </body>
+</html>

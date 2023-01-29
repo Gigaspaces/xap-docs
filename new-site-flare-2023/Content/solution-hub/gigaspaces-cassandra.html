@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle"><MadCap:variable name="General.ProductNameXAP" />-Cassandra Integration</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th align="center">Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Meir Faraj</td>
+                    <td>15.0</td>
+                    <td>February 2020</td>
+                    <td> </td>
+                    <td align="center"><a href="https://github.com/Gigaspaces/solution-hub/tree/master/gigaspaces-cassandra">GigaSpaces-Cassandra integration</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Overview</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> can be integrated with Cassandra for data persistence and reload. This topic describes a project that enables connecting to a Cassandra data source, loading the data to a <MadCap:variable name="General.ProductNameXAP" /> cluster, and then writing back the data with changes to the Cassandra cluster.</p>
+        <div class="tc-admon-note">
+            <p>For more information about how to integrate with Cassandra, see the <a href="https://docs.datastax.com/en/developer/java-driver/4.4/" target="_blank">DataStax</a> documentation.</p>
+        </div>
+        <h2>Prerequisites</h2>
+        <h3>Environment</h3>
+        <p>In order to run this integration, you need to have a Cassandra server up and running. If you don't already have a Cassandra server, then you can use the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/gigaspaces-cassandra/gigaspaces-cassandra-docs/gigaspaces-cassandra-mapper-example1" target="_blank">example</a> provided with the integration package.</p>
+        <h3>Required Software and Versions</h3>
+        <p>The Gigaspaces-Cassandra datasource uses the Cassandra  4.4 Java driver, which is compatible with the following third-party software  needed for this integration:</p>
+        <ul>
+            <li>Apache Cassandra 2.1 and higher</li>
+            <li>DataStax Enterprise 4.7 and higher</li>
+            <li> DataStax Apollo</li>
+            <li>Java 8 or higher</li>
+        </ul>
+        <div class="tc-admon-attention">
+            <p>If you are using a Windows machine to run the <MadCap:variable name="General.ProductNameXAP" />-Cassandra integration, don't use an Apache Cassandra release higher than 3.11.5.</p>
+        </div>
+        <h1>Getting Started with the Cassandra Integration</h1>
+        <h2>Starting a Cassandra Server</h2>
+        <p>If you don't have a Cassandra server set up, begin with the following procedure. If you already have a Cassandra server, then you can skip to the next procedure.</p>
+        <p class="tc-todo">To install a sample Cassandra server:</p>
+        <ol>
+            <li>
+                <p>In the command line, navigate to the <code>gigaspaces-cassandra-mapper-example1a</code> file.</p>
+            </li>
+            <li>
+                <p>Type the following command to build the example:</p><pre><code class="language-bash">maven install</code></pre>
+            </li>
+            <li>Run the <code>Example1aMain.java</code> file. </li>
+        </ol>
+        <h2>Configuring Cassandra for <MadCap:variable name="General.ProductNameIE" /></h2>
+        <p>The next step in the integration process is to adapt the Cassandra project, converting the Cassandra mapper into a <MadCap:variable name="General.ProductNameXAP" /> mapper. Several things need to be changed. For example, you must add the <MadCap:variable name="General.ProductNameXAP" /> Space annotation, which creates mixed POJO entities that contain annotations for both Cassandra and <MadCap:variable name="General.ProductNameXAP" />. </p>
+        <div class="tc-admon-note">
+            <p>For more information about <MadCap:variable name="General.ProductNameXAP" /> POJOs, see the <MadCap:xref href="../dev-java/pojo-overview.html">POJO Support</MadCap:xref> topic in the developer guide.</p>
+        </div>
+        <p class="tc-todo">To port the Cassandra server to the <MadCap:variable name="General.ProductNameXAP" />-Cassandra data source:</p>
+        <p>In the command line, navigate to the <code>gigaspaces-cassandra-mapper-example1b</code> file.</p>
+        <p>First you need to add the gigaspaces cassandra datasource dependency :</p><pre><code class="language-java">&lt;dependency&gt;
+     &lt;groupId&gt;org.openspaces&lt;/groupId&gt;
+     &lt;artifactId&gt;gigaspaces-cassandra-datasource&lt;/artifactId&gt;
+     &lt;version&gt;${gigaspaces-cassandra.version}&lt;/version&gt;
+     &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code><![CDATA[
+]]></pre>
+        <p>Secondly you will need (if not already done) to add the java-driver-mapper-processor :</p><pre><code class="language-java">&lt;build&gt;
+       &lt;plugins&gt;
+           &lt;plugin&gt;
+               &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+               &lt;configuration&gt;
+                   &lt;annotationProcessorPaths&gt;
+                       &lt;path&gt;
+                           &lt;groupId&gt;com.datastax.oss&lt;/groupId&gt;
+                           &lt;artifactId&gt;java-driver-mapper-processor&lt;/artifactId&gt;
+                           &lt;version&gt;${cassandra.driver.version}&lt;/version&gt;
+                       &lt;/path&gt;
+                   &lt;/annotationProcessorPaths&gt;
+               &lt;/configuration&gt;
+           &lt;/plugin&gt;
+       &lt;/plugins&gt;
+   &lt;/build&gt;</code></pre>
+        <p>You will need to add Gigaspaces annotation to the entity to make it also compatible to Gigaspaces pojo format.</p>
+        <p>For the cassandra entity :</p><pre><code class="language-java">@Entity
+@NamingStrategy(convention = NamingConvention.SNAKE_CASE_INSENSITIVE)
+public class Product {
+   @PartitionKey
+   private UUID productId;
+   private String description;
+
+   public UUID getProductId() { return productId; }
+   public void setProductId(UUID productId) { this.productId = productId; }
+   public String getDescription() { return description; }
+   public void setDescription(String description) { this.description = description; }
+}</code></pre>
+        <p>You will have something like :</p><pre><code class="language-java">@SpaceClass
+@Entity
+@NamingStrategy(convention = NamingConvention.SNAKE_CASE_INSENSITIVE)
+public class Product {
+   @PartitionKey
+   private UUID productId;
+   private String description;
+
+   @SpaceId
+   @SpaceRouting
+   public UUID getProductId() { return productId; }
+   public void setProductId(UUID productId) { this.productId = productId; }
+   public String getDescription() { return description; }
+   public void setDescription(String description) { this.description = description; }
+}</code></pre>
+        <p>You will need to create a spring xml configuration like that :</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:os-core="http://www.openspaces.org/schema/core"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="
+	                    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	                    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	                    http://www.openspaces.org/schema/core http://www.openspaces.org/schema/15.0/core/openspaces-core.xsd"&gt;
+
+	&lt;context:annotation-config /&gt;
+	&lt;context:property-placeholder location="classpath:/application.properties"/&gt;
+
+	&lt;bean id="cassandraDataSource" class="org.openspaces.persistency.cassandra.pool.CassandraDataSourceFactoryBean"&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="cassandraResourcePool" class="org.openspaces.persistency.cassandra.pool.CassandraResourcePoolFactoryBean"&gt;
+		&lt;property name="cassandraDataSource" ref="cassandraDataSource" &gt;&lt;/property&gt;
+		&lt;property name="minimumNumberOfConnections" value="${cassandra.ds.minconnections}" &gt;&lt;/property&gt;
+		&lt;property name="maximumNumberOfConnections" value="${cassandra.ds.maxconnections}" &gt;&lt;/property&gt;
+	&lt;/bean&gt;
+	&lt;bean id="cassandraTypeRepository" class=" org.openspaces.persistency.cassandra.types.CassandraTypeRepositoryFactoryBean"&gt;
+		&lt;property name="connectionPool" ref="cassandraResourcePool" &gt;&lt;/property&gt;
+		&lt;property name="entitiesPackages"&gt;
+		&lt;util:list  list-class="java.util.ArrayList" value-type="java.lang.String"&gt;
+			&lt;value&gt;org.openspaces.persistency.cassandra.example1.entities&lt;/value&gt;
+		&lt;/util:list&gt;
+	    &lt;/property&gt;
+		&lt;property name="defaultKeyspace" value="inventory"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="cassandraSpaceDataSource" class="org.openspaces.persistency.cassandra.datasource.CassandraSpaceDataSourceFactoryBean"&gt;
+		&lt;property name="cassandraTypeRepository" ref="cassandraTypeRepository"&gt;&lt;/property&gt;
+		&lt;property name="batchLimit" value="${cassandra.ds.batchlimit}" &gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+	&lt;bean id="cassandraSpaceSyncEndpoint" class="org.openspaces.persistency.cassandra.CassandraSpaceSynchronizationEndpointFactoryBean"&gt;
+		&lt;property name="cassandraTypeRepository" ref="cassandraTypeRepository"&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+
+	&lt;os-core:embedded-space id="space" space-name="dataSourceSpace"
+							space-data-source="cassandraSpaceDataSource"
+	                        space-sync-endpoint="cassandraSpaceSyncEndpoint"/&gt;
+	&lt;os-core:giga-space id="gigaSpace" space="space" /&gt;
+&lt;/beans&gt;</code></pre>
+        <p>The datasource when no property provided will try to connect to a local endpoint check the cassandra data source documentation for more information :</p><pre><code class="language-java">&lt;bean id="cassandraDataSource" class="org.openspaces.persistency.cassandra.pool.CassandraDataSourceFactoryBean"&gt;
+	&lt;/bean&gt;</code></pre>
+        <p>The cassandra Resource Pool privides a connection resource pool for the datasource you need to provides a minimum and maximum connection for the pool :</p><pre><code class="language-java">&lt;bean id="cassandraResourcePool" class="org.openspaces.persistency.cassandra.pool.CassandraResourcePoolFactoryBean"&gt;
+     &lt;property name="cassandraDataSource" ref="cassandraDataSource" &gt;&lt;/property&gt;
+     &lt;property name="minimumNumberOfConnections" value="${cassandra.ds.minconnections}" &gt;&lt;/property&gt;
+     &lt;property name="maximumNumberOfConnections" value="${cassandra.ds.maxconnections}" &gt;&lt;/property&gt;
+&lt;/bean&gt;</code></pre>
+        <p>The cassandraTypeRepository hold the connection pool and load all entityHelper for entity of package listed on entitiesPackages. You can also define defaultKeyspace at this level to override the one from the source.</p><pre><code class="language-java">&lt;bean id="cassandraTypeRepository" class=" org.openspaces.persistency.cassandra.types.CassandraTypeRepositoryFactoryBean"&gt;
+     &lt;property name="connectionPool" ref="cassandraResourcePool" &gt;&lt;/property&gt;
+     &lt;property name="entitiesPackages"&gt;
+     &lt;util:list  list-class="java.util.ArrayList" value-type="java.lang.String"&gt;
+          &lt;value&gt;org.openspaces.persistency.cassandra.example1.entities&lt;/value&gt;
+     &lt;/util:list&gt;
+     &lt;/property&gt;
+     &lt;property name="defaultKeyspace" value="inventory"&gt;&lt;/property&gt;
+&lt;/bean&gt;</code></pre>
+        <p>The cassandraSpaceDataSource is the definition of our space data source that must point to the cassandra type repository defined earlier. You can add optionally here query filter to filter your data at the initial load:</p><pre><code class="language-java">&lt;bean id="cassandraSpaceDataSource" class="org.openspaces.persistency.cassandra.datasource.CassandraSpaceDataSourceFactoryBean"&gt;
+     &lt;property name="cassandraTypeRepository" ref="cassandraTypeRepository"&gt;&lt;/property&gt;
+     &lt;property name="batchLimit" value="${cassandra.ds.batchlimit}" &gt;&lt;/property&gt;
+&lt;/bean&gt;</code></pre>
+        <p>The cassandraSpaceSyncEndpoint is the mirroring service that enable to write back the change to the cassandra it should point to the cassandra type repository.</p><pre><code class="language-java">&lt;bean id="cassandraSpaceSyncEndpoint" class="org.openspaces.persistency.cassandra.CassandraSpaceSynchronizationEndpointFactoryBean"&gt;
+     &lt;property name="cassandraTypeRepository" ref="cassandraTypeRepository"&gt;&lt;/property&gt;
+&lt;/bean&gt;</code></pre>
+        <p>And finally the definition of your space that use both space-data-source to load the data and space-sync-endpoint to sync back the modifications.</p><pre><code class="language-java">&lt;os-core:embedded-space id="space" space-name="dataSourceSpace"
+     space-data-source="cassandraSpaceDataSource"
+     space-sync-endpoint="cassandraSpaceSyncEndpoint"/&gt;
+&lt;os-core:giga-space id="gigaSpace" space="space" /&gt;</code><![CDATA[
+]]></pre>
+    </body>
+</html>

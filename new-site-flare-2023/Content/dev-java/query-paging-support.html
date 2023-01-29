@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Paging Support with the Space Iterator API</h1>
+        <p>If a collection of entries must be returned from the Space, this is usually carried out using one of the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.html#readMultiple-T-" target="_blank">readMultiple</a> overloads in <code>GigaSpace</code>. However, if there are a lot of matching entries, you may encounter several problems:</p>
+        <ul>
+            <li>Memory usage - Both the server and client must allocate enough memory for the entire result set.</li>
+            <li>Latency - Because all the results are returned in a single batch, the client must wait until the final result arrives before it can process the first one.</li>
+        </ul>
+        <p>A better approach is to create an iterator that iterates over the matching entries one at a time. Under the hood, the server returns the results in batches, and when the client's buffer is exhausted the next batch is implicitly returned from the server.</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.15-2-died">
+            <p>This page describes the new Space iterator, which is intended to replace the old <code>GSIterator</code> starting from <MadCap:variable name="General.ProductNameXAP" /> version 10.1. Information about the old GSIterator is available <a href="query-paging-support-old.html">here</a>.</p>
+        </div>
+        <h1><a name="usage"></a>Using the Space&#160;Iterator API</h1>
+        <p>Use the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.html">GigaSpace</a><code>iterator(template)</code> method to create an iterator of all the objects in the Space that match the template (either <a href="query-sql.html">SQLQuery</a> or <a href="query-template-matching.html">template</a>). This results in a <code>SpaceIterator&lt;T&gt;</code>, which implements both <code>Iterator&lt;T&gt;</code> and <code>Iterable&lt;T&gt;</code>, <MadCap:conditionalText MadCap:conditions="Version.15-2-died">so a simple <a href="https://docs.oracle.com/javase/1.5.0/docs/guide/language/foreach.html">for-each loop</a></MadCap:conditionalText>and can be used to iterate the results. For example:</p><pre MadCap:conditions="Version.15-2-died"><code class="language-java">private void demoIterator(GigaSpace gigaSpace) {
+    SQLQuery&lt;MySpaceClass&gt; query = new SQLQuery(MySpaceClass.class,"lastName = 'Smith'");
+    int counter = 0;
+    for (MySpaceClass entry : gigaSpace.iterator(query)) {
+        System.out.println((counter++ ) + " " + entry.getLastName());
+    }
+}
+</code></pre>
+        <p MadCap:conditions="Version.15-2-died">If you're using Java 8 or later, you may use the new "forEach` extension with a lambda expression:</p><pre><code class="language-java">private void demoForEach(GigaSpace gigaSpace) {
+    SQLQuery&lt;MySpaceClass&gt; query = new SQLQuery(MySpaceClass.class,"lastName = 'Smith'");
+    AtomicInteger counter = new AtomicInteger();
+    SpaceIterator&lt;MySpaceClass&gt; spaceIterator = gigaSpace.iterator(query);			
+    spaceIterator.forEach((e) -&gt; System.out.println(counter.incrementAndGet() + " " + e.getLastName()));
+}
+</code></pre>
+        <h1 MadCap:conditions="Version.15-2-born">Iterator Types </h1>
+        <p MadCap:conditions="Version.15-2-born">The Space Iterator API&#160;has two implementations, CURSOR and PREFETCH_UIDS. In theory, each iterator <code>hasNext()/next()</code> invocation requires at least one remote call, which is extremely inefficient. In practice, the iterator implementation uses different techniques to improve performance. Each iterator type uses a different optimization approach, and the advantages and disadvantages of each implementation is provided below.</p>
+        <p MadCap:conditions="Version.15-2-born">The CURSOR implementation is the default for all the parameters, but you can manually define PREFETCH_UIDS values for one or more of the parameters as necessary. </p>
+        <h2 MadCap:conditions="Version.15-2-born">SpaceIteratorType.CURSOR </h2>
+        <p MadCap:conditions="Version.15-2-born">The CURSOR implementation has the following characteristics: </p>
+        <ul>
+            <li MadCap:conditions="Version.15-2-born">The server-side iterator returns a batch of entries instead of a single entry. That batch is used implicitly to optimize <code>hasNext()</code>/<code>next()</code>. Users can control the batch size using <code>SpaceIteratorConfiguration.setBatchSize()</code>.</li>
+            <li MadCap:conditions="Version.15-2-born">When the Space iterator is initialized, it asynchronously requests a batch from all partitions, so that:<ul><li MadCap:conditions="Version.15-2-born">As soon as any partition returns a result, the iterator can start serving entries. </li><li MadCap:conditions="Version.15-2-born">After that batch is consumed, the iterator can continue serving entries from other batches that arrived in the meantime.</li></ul></li>
+            <li MadCap:conditions="Version.15-2-born">When the Space iterator starts consuming entries from a partition batch, it implicitly sends an asynchronous request in the background to that partition for the next batch, which further reduces the time waiting for entries.</li>
+        </ul>
+        <p MadCap:conditions="Version.15-2-born">The CURSOR implementation has a short latency until the first entry is service, and requires only a small memory footprint on the client side. Both of these are indepentent of the number of matching entries. In addition, the CURSOR implementation involves only a small workload on the Space, because a single batch is fetched from each partition at any give time.</p>
+        <p MadCap:conditions="Version.15-2-born">If a primary Space fails, this implementation is not tolerant of failover, and entries will no longer be fetched from that partition. However, the Space iterator will continue to serve entries from other partitions.</p>
+        <h2 MadCap:conditions="Version.15-2-born">SpaceIteratorType.PREFETCH_UIDS</h2>
+        <p MadCap:conditions="Version.15-2-born">The PREFETCH_UIDS implementation iterates over entries by first fetching all matching entries UIDs, and then fetching the actual entries in batches according to UID.</p>
+        <p MadCap:conditions="Version.15-2-born">This implementation is tolerant of failover; if a primary Space fails, it can continue to fetch entries from that partition when the backup takes over.</p>
+        <h2 MadCap:conditions="Version.15-2-born">Summary of Implementation Characteristics</h2>
+        <p MadCap:conditions="Version.15-2-born">When deciding which implementation is preferable for your environment, you can reference the following table to determine which Space iterator type best suits your needs.</p>
+        <table style="width: 100%;" class="tc-standard" MadCap:conditions="Version.15-2-born">
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th MadCap:conditions="Version.15-2-born">&#160;</th>
+                    <th MadCap:conditions="Version.15-2-born">CURSOR</th>
+                    <th MadCap:conditions="Version.15-2-born">PREFETCH_UIDS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td MadCap:conditions="Version.15-2-born">Low latency before first entry is served</td>
+                    <td MadCap:conditions="Version.15-2-born">Yes</td>
+                    <td MadCap:conditions="Version.15-2-born">No</td>
+                </tr>
+                <tr>
+                    <td MadCap:conditions="Version.15-2-born">Small memory footprint on client side</td>
+                    <td MadCap:conditions="Version.15-2-born">Yes</td>
+                    <td MadCap:conditions="Version.15-2-born">No</td>
+                </tr>
+                <tr>
+                    <td MadCap:conditions="Version.15-2-born">Light workload on Space</td>
+                    <td MadCap:conditions="Version.15-2-born">Yes</td>
+                    <td MadCap:conditions="Version.15-2-born">No</td>
+                </tr>
+                <tr>
+                    <td MadCap:conditions="Version.15-2-born">Supports primary/backup failover</td>
+                    <td MadCap:conditions="Version.15-2-born">No</td>
+                    <td MadCap:conditions="Version.15-2-born">Yes</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 MadCap:conditions="Version.15-2-born">Configuring the Space Iterator</h1>
+        <p MadCap:conditions="Version.15-2-born">Use the <code>SpaceIteratorConfiguration</code> class to modify the Space Iterator parameters, as shown in this syntax.</p><pre MadCap:conditions="Version.15-2-born"><code class="language-java">SpaceIterator&lt;T&gt; spaceIterator = gigaSpace.iterator(T template, SpaceIteratorConfiguration spaceIteratorConfiguration);</code><![CDATA[	]]></pre>
+        <p MadCap:conditions="Version.15-2-born">The available API&#160;parameters are described below.</p>
+        <h2 MadCap:conditions="Version.15-2-born">Iterator Type</h2>
+        <p MadCap:conditions="Version.15-2-born">You can define the iterator implementation using the <code>com.gs.iterator.type</code> parameter. The default value is <code>CURSOR</code>.</p>
+        <h2 MadCap:conditions="Version.15-2-born">Batch Size</h2>
+        <p MadCap:conditions="Version.15-2-born">Under the hood, the Space iterator API&#160;uses batching to fetch entries from the server. The API then serves the entries from the batch to the client on demand. The parameter is <code>setBatchSize</code>, and the default value is 1000.</p>
+        <h2 MadCap:conditions="Version.15-2-born">Read Modifiers</h2>
+        <p MadCap:conditions="Version.15-2-born">Use the <code>setReadModifiers</code> parameter to configure the read isolation level for the Space iterator. The default value is <code>REPEATABLE_READ</code>.</p>
+        <div class="tc-admon-note">
+            <p MadCap:conditions="Version.15-2-born">For more information, see the <MadCap:xref href="transaction-read-modifiers.html">Read Modifiers</MadCap:xref> topic.</p>
+        </div>
+        <h2 MadCap:conditions="Version.15-2-born">Maximum Inactivity Duration</h2>
+        <p MadCap:conditions="Version.15-2-born">When the client initiates the Space iterator, an iterator is created on the server side. In order to know when to close the iterator that was opened on the server side, there is a timer that measures the activity of the client-side iterator. If the client-side iterator is inactive for a specific period of time, the server-side iterator closes automatically. This parameter, <code>setMaxInactiveDuration</code>, has a default value of 1 minute.</p>
+        <p MadCap:conditions="Version.15-2-born">The Space iterator implements the java Closeable interface. On <code>close()</code> invocations, the server-side iterators are also closed.</p>
+        <h3 MadCap:conditions="Version.15-2-born">Automatic Activity Renewal</h3>
+        <p MadCap:conditions="Version.15-2-born">The Space iterator on the server side is active throughout the lifetime of the iterator on the client side. When the Space iterator is initialized on the client side, a background thread starts that periodically renews the activity duration for the iterator on the server side. The period for this background task is half of the Maximum Inactivity Duration value; when using the default value for the <code>setMaxInactiveDuration</code> parameter, the task is triggered every 30 seconds.</p>
+        <h2 MadCap:conditions="Version.15-2-died"><a name="batch-size"></a>Batch Size</h2>
+        <p MadCap:conditions="Version.15-2-died">Under the hood, the iterator uses batching to fetch entries from the server, then serves the entries from the batch to the client whenever it asks for the next entry. The default batch size is <code>100</code>. You can use a different batch size by calling the <code>gigaSpace.iterator(template, batchSize)</code> overload.</p>
+        <h2><a name="transactions"></a>Transactions</h2>
+        <p>Iterating through the matched set does not lock the object. Objects that are under transaction and match the specified template aren't included as part of the matched set.</p>
+        <h1 MadCap:conditions="Version.15-2-born">Space Iterator Configuration Examples</h1>
+        <p MadCap:conditions="Version.15-2-born">See the following example of how to use the <code>SpaceIteratorConfiguration</code> class. In this example, each parameter is configured with a value other than the default.</p><pre MadCap:conditions="Version.15-2-born"><code class="language-java">gigaSpace.iterator(template, 
+new SpaceIteratorConfiguration()
+.setBatchSize(500)
+.setIteratorType(SpaceIteratorType.CURSOR)
+.setReadModifiers(ReadModifiers.DIRTY_READ)
+.setMaxInactiveDuration(Duration.ofMinutes(5)));</code></pre>
+        <p MadCap:conditions="Version.15-2-born">In addition, you can see how to start the Space iterator with the default configuration.</p><pre MadCap:conditions="Version.15-2-born"><code class="language-java">//Starting the iterator with default configuration:
+gigaSpace.iterator(template);
+
+//Only batch size
+gigaSpace.iterator(template, batchSize)
+
+//Batch size and read modifiers
+gigaSpace.iterator(template, batchSize, readModifier)</code><![CDATA[
+]]></pre>
+        <h1><a name="limitations"></a>Limitations</h1>
+        <p>The Space iterator only supports simple SQL queries. For more information about the differences between simple and complex queries, see the <MadCap:xref href="query-sql.html#simple-vs-complex-queries">Simple vs. Complex Queries</MadCap:xref> section of the <MadCap:xref href="query-sql.html">SQL Query</MadCap:xref> topic. </p>
+    </body>
+</html>

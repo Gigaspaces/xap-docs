@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Custom Reporter</h1>
+        <p>This page demonstrates how to implement and use a custom metric reporter. For demonstration purposes we'll show a reporter which writes metrics to a text file.</p>
+        <h1><a name="implementation"></a>Implementation</h1>
+        <p>A custom metric reporter implementation requires overriding two classes: <code>MetricReporter</code> and <code>MetricReporterFactory</code>. The custom <code>MetricReporter</code> accepts metric snapshots and reports them as it wishes. The <code>MetricReporterFactory</code> is used to encapsulate configuration and instantiate the <code>MetricReporter</code>.</p>
+        <h3><a name="filereporterfactory"></a>FileReporterFactory</h3>
+        <p>The <code>FileReporterFactory</code> extends <code>MetricReporterFactory</code> in order to create a reporter (in this case, a <code>FileReporter</code>) instance with the relevant settings. This being a <span class="tc-italic">file</span> reporter, we'll obviously want to let the user choose the target file. For example:</p><pre><code class="language-java">public class FileReporterFactory extends MetricReporterFactory&lt;FileReporter&gt; {
+    private String path;
+
+    @Override
+    public FileReporter create() throws Exception {
+        return new FileReporter(this);
+    }
+
+    @Override
+    public void load(Properties properties) {
+        super.load(properties);
+        path = properties.getProperty("path");
+        if (path == null)
+            throw new RuntimeException("Property `path` must be provided");
+    }
+
+    public String getPath() {
+        return path;
+    }
+}
+</code></pre>
+        <p>Note that we're overriding the <code>load(Properties properties)</code> method to load the <code>path</code> property from the configuration file.</p>
+        <h3><a name="filereporter"></a>FileReporter</h3>
+        <p>Implementing a reporter requires creating a constructor to configure the reporter using the reporter factory, and overriding the <code>report(List&lt;MetricRegistrySnapshot&gt; snapshots)</code> method to traverse the metrics data and actually report it (in this case, writing it to a file). For example:</p><pre><code class="language-java">public class FileReporter extends MetricReporter {
+    private final File file;
+
+    public FileReporter(FileReporterFactory factory) {
+        super(factory);
+        this.file = new File(factory.getPath()).getAbsoluteFile();
+    }
+
+    @Override
+    public void report(List&lt;MetricRegistrySnapshot&gt; snapshots) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Reported at " + formatDateTime(System.currentTimeMillis())).append(EOL);
+        for (MetricRegistrySnapshot snapshot : snapshots) {
+            sb.append("Sample taken at " + formatDateTime(snapshot.getTimestamp())).append(EOL);
+            for (Map.Entry&lt;MetricTagsSnapshot, MetricGroupSnapshot&gt; groupEntry : snapshot.getGroups().entrySet()) {
+                sb.append("\tTags: " + groupEntry.getKey()).append(EOL);
+                for (Map.Entry&lt;String, Object&gt; metricEntry : groupEntry.getValue().getMetricsValues().entrySet()) {
+                    sb.append("\t\t"+metricEntry.getKey() + " =&gt; " + metricEntry.getValue()).append(EOL);
+                }
+            }
+        }
+        writeToFile(sb.toString());
+    }
+}
+</code></pre>
+        <p>The <code>report</code> method receives a list of snapshots. By default each sample is immediately reported (i.e. the list will contain a single snapshot), but users may configure the sampler to batch multiple samples into each report. The <code>MetricRegistrySnapshot</code> contains mapping of metrics tags to metrics groups - since each metric is registered with tags, the samples are grouped by those tags to simplify the report. Finally, each <code>MetricGroupSnapshot</code> contains mappings from metrics names to metrics values.</p>
+        <p>Note that some methods and fields were omitted from this snippet for brevity. The full implementation is available here:</p>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="FileReporterFactory" style="padding:10px;"><pre><code class="language-java">package com.gigaspaces.demo;
+
+import com.gigaspaces.metrics.MetricReporterFactory;
+import java.util.Properties;
+
+public class FileReporterFactory extends MetricReporterFactory&lt;FileReporter&gt; {
+    private String path;
+
+    @Override
+    public FileReporter create() throws Exception {
+        return new FileReporter(this);
+    }
+
+    @Override
+    public void load(Properties properties) {
+        super.load(properties);
+        path = properties.getProperty("path");
+        if (path == null) {
+            throw new RuntimeException("Property [path] must be provided when using file reporter");
+        }
+    }
+
+    public String getPath() {
+        return path;
+    }
+}
+</code></pre>
+                </div>
+                <div title="FileReporter" style="padding:10px;"><pre><code class="language-java">package com.gigaspaces.demo;
+
+import com.gigaspaces.metrics.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
+
+public class FileReporter extends MetricReporter {
+    private static final Logger logger = Logger.getLogger(FileReporter.class.getName());
+    private static final String EOL = System.getProperty("line.separator");
+
+    private final Date date = new Date();
+    private final SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss,SSS");
+    private final File file;
+
+    protected FileReporter(FileReporterFactory factory) {
+        super(factory);
+        this.file = new File(factory.getPath()).getAbsoluteFile();
+    }
+
+    @Override
+    public void report(List&lt;MetricRegistrySnapshot&gt; snapshots) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Reported at " + formatDateTime(System.currentTimeMillis())).append(EOL);
+        for (MetricRegistrySnapshot snapshot : snapshots) {
+            sb.append("Sample taken at " + formatDateTime(snapshot.getTimestamp())).append(EOL);
+
+            for (Map.Entry&lt;MetricTagsSnapshot, MetricGroupSnapshot&gt; groupEntry : snapshot.getGroups().entrySet()) {
+                sb.append("\tTags: " + groupEntry.getKey()).append(EOL);
+                for (Map.Entry&lt;String, Object&gt; metricEntry : groupEntry.getValue().getMetricsValues().entrySet()) {
+                    sb.append("\t\t"+metricEntry.getKey() + " =&gt; " + metricEntry.getValue()).append(EOL);
+                }
+            }
+        }
+        writeToFile(sb.toString());
+    }
+
+    private String formatDateTime(long timestamp) {
+        date.setTime(timestamp);
+        return dateFormatter.format(date);
+    }
+
+    private void writeToFile(String text) {
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(file, true);
+            fw.write(text);
+        } catch (IOException e) {
+            logger.warning("Failed to write report to file");
+        }
+        if (fw != null) {
+            try {
+                fw.close();
+            } catch (IOException e) {
+                logger.warning("Failed to close FileWriter");
+            }
+        }
+    }
+}
+</code></pre>
+                </div>
+            </div>
+        </div>
+        <h1><a name="usage"></a>Usage</h1>
+        <p>Now that we have a custom reporter implementation we need to configure the system to use it. This is done via the <code>metrics.xml</code> configuration file (located under <code><MadCap:variable name="General.HomePath" />/config/metrics</code> by default), at the <code>reporters</code> element. For example, to create a file reporter named <code>myReporter</code> which writes results to <code>c:\gigaspaces\metrics-output.txt</code>:</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
+    &lt;reporters&gt;
+        &lt;reporter name="myReporter" factory-class="com.gigaspaces.metrics.reporters.FileReporterFactory"&gt;
+            &lt;property name="path" value="c:\gigaspaces\metrics-output.txt"/&gt;
+        &lt;/reporter&gt;
+    &lt;/reporters&gt;
+&lt;/metrics-configuration&gt;
+</code></pre>
+        <p>Basically we're telling the metrics manager which class should be used to instantiate the reporter and which parameters to provide along.</p>
+        <p>In addition, we'll need to include the compiled <code>FileReporter</code> and <code>FileReporterFactory</code> classes in the product's class path. The easiest way to accomplish this is under <code><MadCap:variable name="General.HomePath" />/lib/optional/metrics</code>, which is automatically included in the class path.</p>
+    </body>
+</html>

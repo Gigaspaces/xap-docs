@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Reducing the Space Object Footprint</h1>
+        <h1><a name="overview"></a>Overview</h1>
+        <p>By default, when using the GigaSpaces Java API, Space object fields are stored in the Space as is. No data compaction or compression is done while the object is transported across the network, or when stored within the Space.</p>
+        <p>With the compact serialization pattern, you can reduce the footprint of the data object in the Space memory when it is stored in the data grid, which allows storing more Space objects per memory unit. This pattern works very well when the Space object includes a large number of numerical values, because these objects are stored as a more optimal data type.</p>
+        <p>The compact serialization pattern enables complete control over the format of the data object while transported over the network and when stored within the Space. This technique:</p>
+        <ul>
+            <li>
+                <p>Compresses the object payload data when transported over the network and when stored in memory.</p>
+            </li>
+            <li>
+                <p>Avoids the need for de-serialization when a Space object is written to the Space from a remote client (for non-primitive fields such as user-defined classes or collection fields).</p>
+            </li>
+            <li>
+                <p>Avoids the need for de-serialization when data is replicated to the backup Space.</p>
+            </li>
+            <li>
+                <p>Avoids the need for serialization when reading an object back from the Space to the client process (on the Space side).</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <ul>
+                <li>
+                    <p>The Compressed storage type <MadCap:conditionalText MadCap:conditions="Version.15-2-born"> or Zip property storage adapter</MadCap:conditionalText> compresses non-primitive fields using the zip utilities, which is a different approach than the compact serialization pattern.</p>
+                </li>
+                <li>
+                    <p>The Binary storage type <MadCap:conditionalText MadCap:conditions="Version.15-2-born"> or Binary property storage adapter</MadCap:conditionalText> stores non-primitive fields within the Space in their byte array form. It does not compress or reduce the footprint of the data like the compact serialization pattern does. This approach makes it unnecessary to introduce the nested Space object data type to the Space JVM, or to de-serialize it on the Space side. The Binary storage type may improve performance when the Space object stores large collections.</p>
+                </li>
+                <li>
+                    <p>C++ and .Net API data objects may undergo some compaction when sent across the network.</p>
+                </li>
+            </ul>
+        </div>
+        <h1><a name="data-compaction-flow"></a>Data Compaction Flow</h1>
+        <p>With the compact serialization pattern, the following happens to the data object:</p>
+        <ul>
+            <li>
+                <p>Before writing the object, all non-indexed fields (payload data) are serialized (packed) into one byte array field using the GigaSpaces serialization API.</p>
+            </li>
+            <li>
+                <p>All indexed fields are serialized/de-serialized as usual (the <code>writeExternal</code>, <code>readExternal</code> implementation is available to write and read these fields into the stream).</p>
+            </li>
+            <li>
+                <p>After reading the object from the Space, the byte array data is de-serialized (unpacked).</p>
+            </li>
+        </ul>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/bin_ser.jpg" alt="bin_ser.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>When an object is written to the Space:</p>
+        <ul>
+            <li>
+                <p>The non-indexed fields are compacted and serialized into the same field (as a byte array).</p>
+            </li>
+            <li>
+                <p>All the indexed fields plus the byte array are serialized as usual via the <code>writeExternal</code> call.</p>
+            </li>
+            <li>
+                <p>The object arrives de-serialized in the Space, indexed fields stored as usual, and the byte array field is stored as is.</p>
+            </li>
+        </ul>
+        <p>When an object is read from the Space:</p>
+        <ul>
+            <li>
+                <p>The read template undergoes the same actions as when writing an object to the Space</p>
+            </li>
+            <li>
+                <p>The matching object is serialized and sent to the client.</p>
+            </li>
+            <li>
+                <p>When the matching object arrives at the client side is it de-serialized, and the byte array data is de-serialized and expanded (in a lazy manner).</p>
+            </li>
+        </ul>
+        <h1><a name="implementation"></a>Implementation</h1>
+        <p>Using the compact serialization pattern can drastically reduce the object footprint when it is stored in the Space. While more of the Space object fields are serialized using the GigaSpaces Serialization API, the memory footprint overhead is smaller compared to the default serialization mode.</p>
+        <p>The compact serialization pattern involves creating the following methods:</p>
+        <ul>
+            <li>
+                <p><code>pack</code> method - Packs the object data into a single field, and serializes the non-indexed fields into the byte array.</p>
+            </li>
+            <li>
+                <p><code>unpack</code> method - Unpacks the object data into a single field, and deserializes the non-indexed fields from the byte array.</p>
+            </li>
+            <li>
+                <p><code>writeExternal</code> method - Serializes the object data., the index fields and the byte array. Required for the <code>Externalizable</code> interface.</p>
+            </li>
+            <li>
+                <p><code>readExternal</code> method - Deserializes the object data, the indexed fields, and the byte array. Required for the <code>Externalizable</code> interface.</p>
+            </li>
+            <li>
+                <p><code>checkNulls</code> method - Handles null data for the indexed and byte array fields.</p>
+            </li>
+            <li>
+                <p><code>getnulls</code> method - Handles null data for non-indexed fields.</p>
+            </li>
+        </ul>
+        <h2><a name="binaryoutputstream-and-binaryinputstream"></a>BinaryOutputStream and BinaryInputStream</h2>
+        <p>The <code>BinaryOutputStream</code> contains various methods to serialize all of the Java primitive types, along with their object wrappers and arrays forms in compacted mode. <code>BinaryInputStream</code> is its counterpart for deserialization. Your <code>pack</code> and <code>unpack</code> methods will use an instance of those classes.</p>
+        <h2><a name="example"></a>Example</h2>
+        <p>The <a href="../Resources/Static/attachment_files/sbp/BinaryCompaction.zip">provided code example</a> includes a Space class with 37 fields:</p>
+        <ul>
+            <li>
+                <p>One Integer data type field (indexed for queries).</p>
+            </li>
+            <li>
+                <p>12 String fields</p>
+            </li>
+            <li>
+                <p>12 Long fields</p>
+            </li>
+            <li>
+                <p>12 Integer fields</p>
+            </li>
+        </ul>
+        <p>In this example, the footprint overhead of the default serialization is <span class="tc-bold">250%</span> larger than the footprint of the compact format. To run the example, copy the zip file to <code>\GigaSpaces Root\examples\</code>, extract the contents, and follow the instructions in the readme file.</p>
+        <h3><a name="original-space-class"></a>Original Space Class</h3>
+        <p>Our example involves a Space class that is modified to follow the compact serialization pattern.</p>
+        <p>The original class includes:</p>
+        <ul>
+            <li>
+                <p>One Integer indexed field.</p>
+            </li>
+            <li>
+                <p>12 String type non-indexed fields declared as Space class fields.</p>
+            </li>
+            <li>
+                <p>12 Long type non-indexed fields declared as Space class fields.</p>
+            </li>
+            <li>
+                <p>12 Integer type non-indexed fields declared as Space class fields.</p>
+            </li>
+            <li>
+                <p>Getter and Setter methods for the above fields.</p>
+            </li>
+        </ul>
+        <p>The original class looks like this:</p><pre><code class="language-java">@SpaceClass
+public class SimpleEntry {
+
+    public SimpleEntry() {
+    }
+    private Integer queryField;
+    private Long _longFieldA1;
+
+    ....
+
+    @SpaceRouting
+    @SpaceIndex(type=SpaceIndexType.BASIC)
+    public Integer getQueryField() {
+        return queryField;
+    }
+
+    // getter and setter methods
+    public void setQueryField(Integer field) {
+        queryField = field;
+    }
+
+    public Long get_longFieldA1() {
+        return _longFieldA1;
+    }
+
+    public void set_longFieldA1(Long fieldA1) {
+        _longFieldA1 = fieldA1;
+    }
+</code></pre>
+        <h3><a name="binaryformatentry-class"></a>BinaryFormatEntry Class</h3>
+        <p>The modified class that implements the compact serialization pattern uses the <code>@SpaceClass(includeProperties=IncludeProperties.EXPLICIT)</code> decoration, which allows you to control which fields will be Space class fields explicitly. This class also includes:</p>
+        <ul>
+            <li>
+                <p>One Integer indexed field.</p>
+            </li>
+            <li>
+                <p>One byte array field declared as a Space class field.</p>
+            </li>
+            <li>
+                <p>12 String type non-indexed fields that are not Space class fields.</p>
+            </li>
+            <li>
+                <p>12 Long type non-indexed fields that are not Space class fields.</p>
+            </li>
+            <li>
+                <p>12 Integer type non-indexed fields that are not Space class fields.</p>
+            </li>
+            <li>
+                <p>Getter and setter methods for the above fields.</p>
+            </li>
+            <li>
+                <p><code>pack</code> and <code>unpack</code> methods, and several helper methods.</p>
+            </li>
+            <li>
+                <p><code>Externalizable</code> implementation with <code>writeExternal</code> and <code>readExternal</code> methods</p>
+            </li>
+        </ul>
+        <p>The modified class looks like this:</p><pre><code class="language-java">@SpaceClass(includeProperties=IncludeProperties.EXPLICIT)
+public class BinaryFormatEntry implements Externalizable {
+
+    public BinaryFormatEntry(){}
+
+    private Integer    queryField;
+    private byte[]     _binary;
+
+    private Long       _longFieldA1;
+    ....
+
+    @SpaceRouting
+    @SpaceIndex(type=SpaceIndexType.BASIC)
+        public Long getQueryField()
+    {
+        return queryField;
+    }
+
+    public void setQueryField(Long _queryField)
+    {
+        queryField = _queryField;
+    }
+
+    @SpaceProperty
+    public byte[] getBinary() {
+        return _binary;
+    }
+
+    public void setBinary(byte[] _binary) {
+        this._binary = _binary;
+    }
+
+    public Long get_longFieldA1() {
+        return _longFieldA1;
+    }
+
+    public void set_longFieldA1(Long fieldA1) {
+        _longFieldA1 = fieldA1;
+    }
+    ...
+
+    public void pack(){...}
+    public void unpack(){...}
+    public void writeExternal(ObjectOutput out){...}
+    public void readExternal(ObjectInput in) {...}
+    private long getnulls(){...}
+    private short checkNulls() {...}
+}
+</code></pre>
+        <h3><a name="pack-method"></a>Pack Method</h3>
+        <p>The <code>pack</code> method serializes the object's non-indexed data. It is called explicitly before calling the Space write operation. The pack method serialize the object data by placing the data into the byte array field. Null value field indications are stored within a single field. The <code>BinaryOutputStream</code> utility class is used to write the compacted data to the byte array.</p><pre><code class="language-java">public void pack() throws Exception
+{
+    BinaryOutputStream output = new BinaryOutputStream();
+    long nulls = getNulls();
+    output.writeLong(nulls);
+    if (_longFieldA1 != null)
+        output.writeLong(_longFieldA1);
+
+    // ... etc. for all other compactable fields.
+
+    _binary = output.toByteArray();
+    output.close();
+}
+</code></pre>
+        <h3><a name="unpack-method"></a>Unpack Method</h3>
+        <p>The <code>unpack</code> method deserializes the object data by extracting the data from the byte array field and populating the fields with their corresponding values. <code>null</code> value fields are non-populated. This method is called after calling the Space read operation. The <code>BinaryOutputStream</code> utility class is used to read the compacted data and place it in the relevant field.</p><pre><code class="language-java">public void unpack() throws Exception
+{
+    BinaryInputStream input = new BinaryInputStream(_binary);
+    long nulls = input.readLong();
+    int i = 0;
+
+    if ((nulls &amp; 1L &lt;&lt; i) == 0)
+        _longFieldA1 = input.readLong();
+    i++;
+
+    // ... etc. for all other compactable fields.
+
+    input.close();
+    _binary = null;
+}
+</code></pre>
+        <h3><a name="writeexternal-method"></a>writeExternal Method</h3>
+        <p>The <code>writeExternal</code> method serializes the object data into the output stream.  The object data includes a field that indicates which fields have <code>null</code> values, the indexed fields, and a byte array field that includes all non-indexed field data (created by the <code>pack</code> method). The <code>writeExternal</code> method assumes that the <code>pack</code> method has been called explicitly prior to the Space write method call that initiated the <code>writeExternal</code> call.</p><pre><code class="language-java">public void writeExternal(ObjectOutput out) throws IOException {
+    short nulls = 0;
+    int i=0;
+
+    nulls = checkNulls();
+
+    out.writeShort(nulls);
+    if (queryField != null) {
+        out.writeLong(queryField);
+    }
+    if (_binary != null) {
+        out.write(_binary);
+    }
+}
+</code></pre>
+        <h3><a name="readexternal-method"></a>readExternal Method</h3>
+        <p>The <code>readExternal</code> method performs the opposite action to the <code>writeExternal</code> method, populating the indexed field data and the byte array field data. Later, the remaining fields are populated when the <code>unpack</code> method is called.</p><pre><code class="language-java">public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    short nulls;
+    int i=0;
+    nulls = in.readShort();
+
+    if( (nulls &amp; 1L &lt;&lt; i) == 0 )
+      queryField = in.readLong();
+    i++;
+    if( (nulls &amp; 1L &lt;&lt; i) == 0 )
+    {
+         byte[] data = new byte[500];
+         int len = in.read(data);
+         _binary = new byte[len];
+         System.arraycopy(data, 0, _binary, 0, len);
+    }
+}
+</code></pre>
+        <h3><a name="checknulls-method"></a>checkNulls Method</h3>
+        <p>The <code>checkNulls</code> method reads the indexed fields and the byte array field, and places an indication for the ones with null values in a <code>short</code> data type field, using a bitmap.</p><pre><code class="language-java">private short checkNulls() {
+    short nulls = 0;
+    int i = 0;
+
+    nulls = (short) ((queryField == null) ? nulls | 1 &lt;&lt; i : nulls);
+    i++;
+    nulls = (short) ((_binary == null) ? nulls | 1 &lt;&lt; i : nulls);
+    i++;
+    return nulls;
+}
+</code></pre>
+        <h3><a name="getnulls-method"></a>getNulls Method</h3>
+        <p>The <code>getNulls</code> method reads all class non-indexed fields (those whose data is stored within the byte array) and place an indication for the ones with null valued in a <code>long</code> data type field, using a bitmap.</p><pre><code class="language-java">private long getnulls()
+{
+    long nulls = 0;
+    int i=0;
+
+    nulls = ((_longFieldA1 == null)  ? nulls | 1L &lt;&lt; i : nulls ) ;
+    i++;
+    nulls = ((_longFieldB1 == null)  ? nulls | 1L &lt;&lt; i : nulls ) ;
+    i++;
+    ...
+    return nulls;
+}
+</code></pre>
+        <h3><a name="factory-method"></a>Factory Method</h3>
+        <p>The example uses a factory method called <code>generateBinaryFormatEntry</code> to create the Space object. After the Space has been populated, the <code>pack</code> method is called.</p><pre><code class="language-java">private BinaryFormatEntry generateBinaryFormatEntry(int id){
+    BinaryFormatEntry bfe = new BinaryFormatEntry(id, value1 , value2 ?)
+    bfe.pack();     //  the pack method is called implicitly as part of the factory method
+    return bfe;
+}
+</code></pre>
+        <h3><a name="writing-and-reading-the-object-from-the-sspace"></a>Writing and Reading the Object from the Sspace</h3>
+        <p>The following code snippet shows how the compact serialized object is written to the Space, and read from the Space:</p><pre><code class="language-java">GigaSpace _gigaspace;
+BinaryFormatEntry testBFE = generateBinaryFormatEntry(500);
+_gigaspace.write(testBFE, Lease.FOREVER);
+BinaryFormatEntry templateBFE = new BinaryFormatEntry();
+templateBFE.setQueryField (new Long(500));
+BinaryFormatEntry resBFE = (BinaryFormatEntry)_gigaspace.read(templateBFE, 0);
+resBFE.unpack(); // this deserialize the binary data into the object fields
+</code></pre>
+        <h1><a name="references"></a>References</h1>
+        <p>The <a href="http://www.openspaces.org/display/PRT/PackRat" target="_blank">PackRat</a> project allows you to use the compact serialization pattern via simple annotations.</p>
+    </body>
+</html>

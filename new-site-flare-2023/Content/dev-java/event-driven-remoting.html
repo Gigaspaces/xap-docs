@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Event-Driven Remoting</h1>
+  
+
+<p>Event Driven remoting is characterized by the nature of how the client communicates with the server. Under the wires, event driven remoting uses the space write and take capabilities. The client writes an internal invocation Entry, that holds the different invocation information (such as service name, method name, and arguments) and then waits for a response (by using blocking take on an expected response). The server, meanwhile, waits (by using OpenSpaces event containers) for internal invocation entries, and once one arrives, it executes the requested service and writes back a response.</p>
+
+<div class="tc-admon-refer">
+  
+  <p>You may find an Event Driven Remoting example in the <a href="/sbp/event-driven-remoting-example.html">Event Driven Remoting Example best practice</a> section.</p>
+</div>
+
+<h1><a name="defining-the-contract"></a>Defining the Contract</h1>
+
+<p>In order to support remoting, the first step is to define the contract between the client and the server. In our case, the contract is a simple Java interface. Here is an example:</p>
+
+<pre><code class="language-java">public interface IDataProcessor {
+
+    /**
+     * Process a given Data object, returning the processed Data object.
+     */
+    Data processData(Data data);
+}
+</code></pre>
+
+<div class="tc-admon-note">
+  
+  <p>The <code>Data</code> object should be <code>Serializable</code>, or better yet, <code>Externalizable</code> (for better performance).</p>
+</div>
+
+<h1><a name="implementing-the-contract"></a>Implementing the Contract</h1>
+
+<p>Next, an implementation of this contract needs to be provided. This implementation will "live" on the server side. Here is a sample implementation:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Annotation " style="padding:10px"><pre><code class="language-java">@RemotingService
+public class DataProcessor implements IDataProcessor {
+
+    public Data processData(Data data) {
+        data.setProcessor(true);
+        return data;
+    }
+}
+</code></pre>
+</div>
+<div title="  XML " style="padding:10px"><pre><code class="language-java">public class DataProcessor implements IDataProcessor {
+
+    public Data processData(Data data) {
+        data.setProcessor(true);
+        return data;
+    }
+}
+</code></pre>
+</div>
+</div>
+
+<p>The XML tab corresponds to exporting the service using xml configuration. The Annotation tab corresponds to exporting the service using annotations.</p>
+
+<h1><a name="exporting-the-service-over-the-space"></a>Exporting the Service Over the Space</h1>
+
+<p>The next step is exporting the service over the space. Exporting the service is done on the server side. As with other Spring remoting support, exporting the service and the method of exporting the service is a configuration time decision. Here is an example of a Spring XML configuration:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Annotation " style="padding:10px"><pre><code class="language-xml">
+&lt;!-- Support @RemotingService component scanning --&gt;
+&lt;context:component-scan base-package="com.mycompany"/&gt;
+
+&lt;!-- Support the @RemotingService annotation on a service--&gt;
+&lt;os-remoting:annotation-support /&gt;
+
+&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;os-remoting:service-exporter id="serviceExporter" /&gt;
+
+&lt;os-events:polling-container id="eventContainer" giga-space="gigaSpace"&gt;
+
+    &lt;os-events:listener ref="serviceExporter"/&gt;
+
+&lt;/os-events:polling-container&gt;
+</code></pre>
+</div>
+<div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;bean id="dataProcessor" class="DataProcessor" /&gt;
+
+&lt;os-remoting:service-exporter id="serviceExporter"&gt;
+     &lt;os-remoting:service ref="dataProcessor"/&gt;
+&lt;/os-remoting:service-exporter&gt;
+
+&lt;os-events:polling-container id="eventContainer" giga-space="gigaSpace"&gt;
+
+    &lt;os-events:listener ref="serviceExporter"/&gt;
+
+&lt;/os-events:polling-container&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="dataProcessor" class="DataProcessor" /&gt;
+
+&lt;bean id="serviceExporter" class="org.openspaces.remoting.SpaceRemotingServiceExporter"&gt;
+    &lt;property name="services"&gt;
+        &lt;list&gt;
+            &lt;ref bean="dataProcessor" /&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer"&gt;
+    &lt;property name="eventListener" ref="serviceExporter"&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+</div>
+
+<p>Exporting the service as a remote space service uses the <a href="polling-container-overview.html">event polling container</a>. The polling container automatically listens to internal <code>EventDrivenSpaceRemotingEntry</code> objects, and writes back an updated <code>EventDrivenSpaceRemotingEntry</code> to the space. All polling event container features, such as transactions and different receive handlers can be used with Space remoting.</p>
+
+<h2><a name="exporting-a-service-non-collocated-with-the-space"></a>Exporting a Service Non-Collocated with the Space</h2>
+
+<p>With the above example the Service is collocated with the space. There might be scenarios where the service might be running as part of a separate PU where the space and the service running in different PUs. In this case the Service configuration should use a polling container configured in non-blocking mode:</p>
+
+<pre><code class="language-xml">   &lt;os-core:space-proxy  id="space" space-name="mySpace"/&gt;
+
+   &lt;os-core:giga-space id="gigaspace" space="space" tx-manager="transactionManager"/&gt;
+
+   &lt;bean id="SimpleServiceImpl" class="example.eventremoting.service.SimpleServiceImpl"/&gt;
+
+   &lt;os-remoting:service-exporter id="ServiceExporter" &gt;
+    &lt;os-remoting:service ref="SimpleServiceImpl"/&gt;
+   &lt;/os-remoting:service-exporter&gt;
+
+    &lt;os-core:distributed-tx-manager id="transactionManager" /&gt;
+
+    &lt;os-events:polling-container id="simpleServiceAsyncContainer" giga-space="gigaspace"&gt;
+        &lt;os-events:listener ref="ServiceExporter" /&gt;
+        &lt;os-events:tx-support tx-manager="transactionManager" tx-timeout="30000" /&gt;
+
+    &lt;os-events:receive-operation-handler&gt;
+        &lt;bean class="org.openspaces.events.polling.receive.SingleTakeReceiveOperationHandler"&gt;
+            &lt;property name="nonBlocking" value="true" /&gt;
+            &lt;property name="nonBlockingFactor" value="10" /&gt;
+        &lt;/bean&gt;
+    &lt;/os-events:receive-operation-handler&gt;
+
+    &lt;/os-events:polling-container&gt;
+</code></pre>
+
+<div class="tc-admon-note">
+  
+  <p>Usually, exporting services is done on a Processing Unit (or Spring application context) that starts an embedded space.</p>
+</div>
+
+<h1><a name="using-the-service-on-the-client-side"></a>Using the Service on the Client-Side</h1>
+
+<p>In order to use the exported <code>IDataProcessor</code> on the client side, beans should use the <code>IDataProcessor</code> interface directly:</p>
+
+<pre><code class="language-java">public class DataRemoting {
+
+    private IDataProcessor dataProcessor;
+
+    public void setDataProcessor(IDataProcessor dataProcessor) {
+        this.dataProcessor = dataProcessor;
+    }
+}
+</code></pre>
+
+<p>Configuring the <code>IDataProcessor</code> proxy can be done in the following manner:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+&lt;os-core:space-proxy  id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;os-remoting:event-driven-proxy id="dataProcessor" giga-space="gigaSpace"
+                   interface="org.openspaces.example.data.common.IDataProcessor" timeout="15000"&gt;
+&lt;/os-remoting:event-driven-proxy&gt;
+
+&lt;bean id="dataRemoting" class="DataRemoting"&gt;
+    &lt;property name="dataProcessor" ref="dataProcessor" /&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="dataProcessor" class="org.openspaces.remoting.EventDrivenSpaceRemotingProxyFactoryBean"&gt;
+    &lt;property name="gigaSpace" ref="gigaSpace" /&gt;
+    &lt;property name="serviceInterface" value="org.openspaces.example.data.common.IDataProcessor" /&gt;
+    &lt;property name="timeout" value="15000" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="dataRemoting" class="DataRemoting"&gt;
+    &lt;property name="dataProcessor" ref="dataProcessor" /&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+<div title="  Code " style="padding:10px"><pre><code class="language-java">SpaceProxyConfigurer configurer = new SpaceProxyConfigurer("space");
+
+GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();
+
+IDataProcessor dataProcessor = new EventDrivenRemotingProxyConfigurer&lt;IDataProcessor&gt;(gigaSpace, IDataProcessor.class)
+                               .timeout(15000)
+                               .proxy();
+
+DataRemoting dataRemoting = new DataRemoting();
+
+dataRemoting.setDataProcessor(dataProcessor);
+</code></pre>
+</div>
+</div>
+
+<p>The above example uses the <code>event-driven-proxy</code> bean in order to create the remoting proxy, which can then be injected into the <code>DataRemoting</code> object. OpenSpaces remoting also allows you to inject the remoting proxy directly into the remoting service property using annotations. Here is an example using the <code>DataRemoting</code> class:</p>
+
+<pre><code class="language-java">public class DataRemoting {
+
+    @EventDrivenProxy(timeout=15000)
+    private IDataProcessor dataProcessor;
+
+    // ...
+}
+</code></pre>
+
+<p>If there are more than one <code>GigaSpace</code> beans defined within the application context, the ID of the <code>giga-space</code> bean needs to be defined on the annotations.</p>
+
+<p>In order to enable this feature, the following element needs to be added to the application context XML:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+&lt;os-remoting:annotation-support /&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+&lt;bean id="space" class="org.openspaces.remoting.RemotingAnnotationBeanPostProcessor" /&gt;
+</code></pre>
+</div>
+</div>
+
+<h2><a name="remote-routing-handler"></a>Remote Routing Handler</h2>
+
+<p>Many times, space remoting is done by exporting services in a space with a partitioned cluster topology. The service is exported when working directly with a cluster member (and not against the whole space cluster). When working with such a topology, the client side remoting automatically generates a random routing index value (using the newly created remote invocation object hashcode). In order to control the routing index, the following interface can be implemented:</p>
+
+<pre><code class="language-java">public interface RemoteRoutingHandler&lt;T&gt; {
+
+    /**
+     * Returns the routing field value based on the remoting invocation. If &lt;code&gt;null&lt;/code&gt;
+     * is returned, will use internal calcualtion of the routing index.
+     */
+    T computeRouting(SpaceRemotingInvocation remotingEntry);
+}
+</code></pre>
+
+<p>Here is a sample implementation which uses the first parameter <code>Data</code> object type as the routing index.</p>
+
+<pre><code class="language-java">public class DataRemoteRoutingHandler implements RemoteRoutingHandler&lt;Long&gt; {
+
+    public Long computeRouting(SpaceRemotingInvocation remotingEntry) {
+        if (remotingEntry.getMethodName().equals("processData")) {
+            Data data = (Data) remotingEntry.getArguments()[0];
+            return data.getType();
+        }
+        return null;
+    }
+}
+</code></pre>
+
+<p>Finally, the wiring is done in the following manner:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+&lt;os-core:space-proxy id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;os-remoting:event-driven-proxy id="dataProcessor" giga-space="gigaSpace"
+                   interface="org.openspaces.example.data.common.IDataProcessor" timeout="15000"&gt;
+    &lt;os-remoting:routing-handler&gt;
+        &lt;bean class="org.openspaces.example.data.feeder.support.DataRemoteRoutingHandler"/&gt;
+    &lt;/os-remoting:routing-handler&gt;
+&lt;/os-remoting:event-driven-proxy&gt;
+
+&lt;bean id="dataRemoting" class="DataRemoting"&gt;
+    &lt;property name="dataProcessor" ref="dataProcessor" /&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="dataProcessor" class="org.openspaces.remoting.EventDrivenSpaceRemotingProxyFactoryBean"&gt;
+    &lt;property name="gigaSpace" ref="gigaSpace" /&gt;
+    &lt;property name="serviceInterface" value="org.openspaces.example.data.common.IDataProcessor" /&gt;
+    &lt;property name="timeout" value="15000" /&gt;
+    &lt;property name="remoteRoutingHandler"&gt;
+        &lt;bean class="org.openspaces.example.data.feeder.support.DataRemoteRoutingHandler"/&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id="dataRemoting" class="DataRemoting"&gt;
+    &lt;property name="dataProcessor" ref="dataProcessor" /&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+<div title="  Code " style="padding:10px"><pre><code class="language-java">SpaceProxyConfigurer configurer = new SpaceProxyConfigurer("space");
+
+GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();
+
+IDataProcessor dataProcessor = new EventDrivenRemotingProxyConfigurer&lt;IDataProcessor&gt;(gigaSpace, IDataProcessor.class)
+                               .timeout(15000)
+                               .remoteRoutingHandler(new DataRemoteRoutingHandler())
+                               .proxy();
+
+DataRemoting dataRemoting = new DataRemoting();
+
+dataRemoting.setDataProcessor(dataProcessor);
+</code></pre>
+</div>
+</div>
+
+<h2><a name="routing-annotation"></a>Routing Annotation</h2>
+
+<p>The above option of using the remote routing handler is very handy when not using annotations. OpenSpaces remoting supports the <code>Routing</code> annotation in order to define which of the parameters controls the routing. Here is an example:</p>
+
+<pre><code class="language-java">public interface MyService {
+
+    void doSomething(@Routing int param1, int param2);
+}
+</code></pre>
+
+<p>In the above example, routing is done using the <code>param1</code> value. When using complex objects, a method name can be specified, which is invoked on the parameter in order to get the actual routing index. Here is an example:</p>
+
+<pre><code class="language-java">public interface MyService {
+
+    void doSomething(@Routing("getProperty") Value param1, int param2);
+}
+</code></pre>
+
+<p>In the above example, the <code>getProperty</code> method is called on the <code>Value</code> object and its return value is used to extract the routing index.</p>
+
+<div class="tc-admon-note">
+  
+  <p>Using a <a href="document-api.html">SpaceDocument</a> as the annotated routing argument will cause an exception since the <code>SpaceDocument</code> class does not define a getter method for each property, but rather a generic getter method to get a property value by its name. The solution is either to extend the <code>SpaceDocument</code> class as described in <a href="document-extending.html">Extending Space Documents</a>, and define the relevant <code>getProperty</code> method in the extension class, or use the <code>RemoteRoutingHandler</code> mentioned above.</p>
+</div>
+
+<h1><a name="server-side-services-injection"></a>Server Side Services Injection</h1>
+
+<p>Each parameter of a remote service can be dynamically injected as if it were a bean defined within the server side (where the service is actually executed) context. This allows you to utilize server side resources and state, within the actual invocation. In order to enable such injection the service interface should either be annotated with <code>AutowireArguments</code> annotation, or implement the marker interface <code>AutowireArgumentsMarker</code>. Let's see an example:</p>
+
+<pre><code class="language-java">@AutowireArguments
+public interface MyService {
+
+    void doSomething(Value param1);
+}
+</code></pre>
+
+<p>The above service exposes a service which accepts a <code>Value</code> as a parameter. The <code>Value</code> parameter, if needed, can be injected dynamically with server side resources and state. For example, if the server side execution needs to be aware of the <code>ClusterInfo</code>, the <code>Value</code> parameter can implement the <code>ClusterInfoAware</code> interface. Here is what it looks like:</p>
+
+<pre><code class="language-java">public class Value implements ClusterInfoAware {
+
+    private transient ClusterInfo clusterInfo;
+
+    public void setClusterInfo(ClusterInfo clusterInfo) {
+        this.clusterInfo = clusterInfo;
+    }
+}
+</code></pre>
+
+<div class="tc-admon-note">
+  
+  <p>Note the fact that <code>clusterInfo</code> is transient, so it won't be marshaled after injection back to the client.</p>
+</div>
+
+<p>Another example is injecting another service that is defined in the server side directly into the parameter, for example, using Spring <code>@Autowired</code> annotation.</p>
+
+<pre><code class="language-java">public class Value implements ClusterInfoAware {
+
+    @Autowired
+    private transient AnotherService anotherService;
+}
+</code></pre>
+
+<h1><a name="execution-aspects"></a>Execution Aspects</h1>
+
+<p>Space based remoting allows you to inject "aspects" that can wrap the invocation of a remote method on the client side, as well as wrapping the execution of an invocation on the server side.</p>
+
+<h2><a name="the-client-invocation-aspect"></a>The Client Invocation Aspect</h2>
+
+<p>The client invocation aspect interface is shown below. You should implement this interface and wire and instance of the implementing class to the client side remote proxy, as explained below:</p>
+
+<pre><code class="language-java">public interface RemoteInvocationAspect&lt;T&gt; {
+
+    /**
+     * The aspect is called instead of the actual remote invocation. The methodInvocation can
+     * be used to access any method related information. The remoting invoker passed can be used
+     * to actually invoke the remote invocaiton.
+     */
+    T invoke(MethodInvocation methodInvocation, RemotingInvoker remotingInvoker) throws Throwable;
+}
+</code></pre>
+
+<p>An implementation of such an aspect can be configured as follows:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+&lt;os-core:space-proxy  id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;os-remoting:event-driven-proxy id="dataProcessor" giga-space="gigaSpace"
+                   interface="org.openspaces.example.data.common.IDataProcessor"&gt;
+    &lt;os-remoting:aspect&gt;
+        &lt;bean class="eg.MyRemoteInvocationAspect" /&gt;
+    &lt;/os-remoting:aspect&gt;
+&lt;/os-remoting:event-driven-proxy&gt;
+
+&lt;bean id="dataRemoting" class="DataRemoting"&gt;
+    &lt;property name="dataProcessor" ref="dataProcessor" /&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="dataProcessor" class="org.openspaces.remoting.EventDrivenSpaceRemotingProxyFactoryBean"&gt;
+    &lt;property name="gigaSpace" ref="gigaSpace" /&gt;
+    &lt;property name="serviceInterface" value="org.openspaces.example.data.common.IDataProcessor" /&gt;
+    &lt;property name="remoteInvocationAspect"&gt;
+        &lt;bean class="eg.MyRemoteInvocationAspect" /&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id="dataRemoting" class="DataRemoting"&gt;
+    &lt;property name="dataProcessor" ref="dataProcessor" /&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+<div title="  Code " style="padding:10px"><pre><code class="language-java">SpaceProxyConfigurer configurer = new SpaceProxyConfigurer("space");
+
+GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();
+
+IDataProcessor dataProcessor = new EventDrivenRemotingProxyConfigurer&lt;IDataProcessor&gt;(gigaSpace, IDataProcessor.class)
+                               .timeout(15000)
+                               .remoteInvocationAspect(new MyRemoteInvocationAspect())
+                               .proxy();
+
+DataRemoting dataRemoting = new DataRemoting();
+
+dataRemoting.setDataProcessor(dataProcessor);
+</code></pre>
+</div>
+</div>
+
+<p>The instance of the class that implements the <code>RemoteInvocationAspect</code> interface will be called by the framework prior to the invocation on the client side. Note that it is up to the aspect implementation to decide whether or not the call should proceed.
+If the aspect implementation decides to proceed with the call it should call <code>method.invoke()</code> on the provided <code>method argument</code>. Otherwise the call to the server will not be performed.</p>
+
+ <a name="serverExecutionApect"></a>
+
+<h2><a name="the-server-invocation-aspect"></a>The Server Invocation Aspect</h2>
+
+<p>The server side invocation aspect interface is shown below. You should implement this interface and wire and instance of the implementing class to the server side service exporter (this is the component that is responsible for exposing your service bean to remote clients):</p>
+
+<pre><code class="language-java">public interface ServiceExecutionAspect {
+
+    /**
+     * A service execution callback allows you to wrap the execution of "server side" service. If
+     * actual execution of the service is needed, the &lt;code&gt;invoke&lt;/code&gt; method will need to
+     * be called on the passed &lt;code&gt;Method&lt;/code&gt;, using the service as the actual service to
+     * invoke it on, and {@link SpaceRemotingInvocation#getArguments()} as the method arguments.
+     *
+     * &lt;p&gt;As an example: &lt;code&gt;method.invoke(service, invocation.getArguments())&lt;/code&gt;.
+     */
+    Object invoke(SpaceRemotingInvocation invocation, Method method, Object service)
+                                  throws InvocationTargetException, IllegalAccessException;
+}
+</code></pre>
+
+<p>An implementation of such an aspect can be configured as follows:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;bean id="dataProcessor" class="DataProcessor" /&gt;
+
+&lt;os-remoting:service-exporter id="serviceExporter"&gt;
+     &lt;os-remoting:aspect&gt;
+         &lt;bean class="eg.MyServiceExecutionAspect" /&gt;
+     &lt;/os-remoting:aspect&gt;
+     &lt;os-remoting:service ref="dataProcessor"/&gt;
+&lt;/os-remoting:service-exporter&gt;
+
+&lt;os-events:polling-container id="eventContainer" giga-space="gigaSpace"&gt;
+
+    &lt;os-events:listener ref="serviceExporter"/&gt;
+
+&lt;/os-events:polling-container&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="dataProcessor" class="DataProcessor" /&gt;
+
+&lt;bean id="serviceExporter" class="org.openspaces.remoting.SpaceRemotingServiceExporter"&gt;
+    &lt;property name="serviceExecutionAspect"&gt;
+         &lt;bean class="eg.MyServiceExecutionAspect" /&gt;
+    &lt;/property&gt;
+    &lt;property name="services"&gt;
+        &lt;list&gt;
+            &lt;ref bean="dataProcessor" /&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer"&gt;
+    &lt;property name="eventListener" ref="serviceExporter"&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+</div>
+
+<p>The instance of the class that implements the <code>ServiceExecutionAspect</code> interface will be called by the framework prior to the invocation of the service bean on the server side. Note that it is up to the aspect implementation to decide whether or not the call should proceed.
+If the aspect implementation decides to proceed with the call it should call <code>method.invoke()</code> on the provided <code>method</code> argument. Otherwise the call to the service bean will not be performed.</p>
+
+<h1><a name="the-metadata-handler"></a>The Metadata Handler</h1>
+
+<p>When executing a service using Space based remoting, a set of one or more metadata arguments (in the form of a <code>java.lang.Object</code> array) can be passed to the server with the remote invocation. This feature is very handy when you want to pass certain metadata with every remote call that is not part of the arguments of the method you call. A prime example for using meta arguments is security – i.e. passing security credentials as meta arguments, and using a server side aspect to authorize the execution or to log who actually called the method.</p>
+
+<p>To create the meta arguments on the client side you should implement the following interface and inject an instance of the implementing class to the client side proxy:</p>
+
+<pre><code class="language-java">public interface MetaArgumentsHandler {
+
+    /**
+     * Meta argument handler can control the meta data objects that will be used
+     * for the remote invocation.
+     */
+    Object[] obtainMetaArguments(SpaceRemotingInvocation remotingEntry);
+}
+</code></pre>
+
+<p>The following snippets show how to plug a custom meta arguments handler to the client side remote proxy. The <code>Object</code> array returned by the implementation of the <code>MetaArgumentsHandler</code> interface will be sent along with the invocation to server side.</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+&lt;os-core:space-proxy  id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;os-remoting:event-driven-proxy id="dataProcessor" giga-space="gigaSpace"
+                   interface="org.openspaces.example.data.common.IDataProcessor"&gt;
+    &lt;os-remoting:meta-arguments-handler&gt;
+        &lt;bean class="eg.MyMetaArgumentsHandler" /&gt;
+    &lt;/os-remoting:meta-arguments-handler&gt;
+&lt;/os-remoting:event-driven-proxy&gt;
+
+&lt;bean id="dataRemoting" class="DataRemoting"&gt;
+    &lt;property name="dataProcessor" ref="dataProcessor" /&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="dataProcessor" class="org.openspaces.remoting.EventDrivenSpaceRemotingProxyFactoryBean"&gt;
+    &lt;property name="gigaSpace" ref="gigaSpace" /&gt;
+    &lt;property name="serviceInterface" value="org.openspaces.example.data.common.IDataProcessor" /&gt;
+    &lt;property name="metaArgumentsHandler"&gt;
+        &lt;bean class="eg.MyMetaArgumentsHandler" /&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id="dataRemoting" class="DataRemoting"&gt;
+    &lt;property name="dataProcessor" ref="dataProcessor" /&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+<div title="  Code " style="padding:10px"><pre><code class="language-java">SpaceProxyConfigurer configurer = new SpaceProxyConfigurer("space");
+
+GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();
+
+IDataProcessor dataProcessor = new EventDrivenRemotingProxyConfigurer&lt;IDataProcessor&gt;(gigaSpace, IDataProcessor.class)
+                               .timeout(15000)
+                               .metaArgumentsHandler(new MyMetaArgumentsHandler())
+                               .proxy();
+
+DataRemoting dataRemoting = new DataRemoting();
+
+dataRemoting.setDataProcessor(dataProcessor);
+</code></pre>
+</div>
+</div>
+
+<p>The way to access the meta arguments on the server side is to configure a server side execution aspect by implementing the <code>ServiceExecutionAspect</code> and wiring it on the server side as shown <a href="#the-server-invocation-aspect">above</a>. To access the meta arguments, you should call <code>SpaceRemotingInvocation.getMetaArguments()</code> on the <code>invocation</code> argument provided to the server side aspect.</p>
+
+<h1><a name="asynchronous-execution"></a>Asynchronous Execution</h1>
+
+<p>OpenSpaces event driven remoting supports asynchronous execution of remote services using the <code>java.util.concurrent</code> <code>Future</code> interface. Since the remoting implementation is asynchronous by nature, a <code>Future</code> can be used to execute remote services asynchronously.</p>
+
+<p>Since the definition of the interface acts as the contract between the client and the server, asynchronous invocation requires the interface to also support the same business method, returning a <code>Future</code> instead of its actual return value. The asynchronous nature is only relevant on the client side, provided by the asynchronous nature of OpenSpaces remoting. There are two options to implement such behavior:</p>
+
+<h2><a name="different-service-interfaces"></a>Different Service Interfaces</h2>
+
+<p>The client and the server can have a different service interface definition under the same package and under the same name. The server includes the actual implementation:</p>
+
+<pre><code class="language-java">public interface SimpleService {
+
+    String say(String message);
+
+    int calc(int value1, int value2);
+}
+</code></pre>
+
+<p>The client has the same method except it returns a future:</p>
+
+<pre><code class="language-java">public interface SimpleService {
+
+    Future&lt;String&gt; say(String message);
+
+    int calc(int value1, int value2);
+}
+</code></pre>
+
+<p>In the above example, the <code>say()</code> method uses a <code>Future</code> in order to receive the result, while the <code>calc</code> method remains synchronous.</p>
+
+<div class="tc-admon-note">
+  
+  <p>When using different services, it is important to include the interface definition in the processing unit <code>lib</code> directory (or the compiled classes root directory), so that both client and server use their own definitions and don't share a single one.</p>
+</div>
+
+<h2><a name="single-service-interface"></a>Single Service Interface</h2>
+
+<p>Both the client and server share the same interface, with the interface holding both synchronous and asynchronous services. Here is an example:</p>
+
+<pre><code class="language-java">public interface SimpleService {
+
+    String say(String message);
+
+    Future&lt;String&gt; asyncSay(String message);
+}
+</code></pre>
+
+<p>In the above case, the server implementation does not need to implement the <code>asyncSay</code> method (simply return <code>null</code> for the <code>asyncSay</code> method). The client side can choose which service to invoke.
+You should note the naming convention and the signature of the asynchronous method in this case.
+If the regular method looks as follows:
+<code>T doSomething(String arg)</code>, T being the return value type, then the asynchronous method should have the following signature:
+<code>Future&lt;T&gt; asyncDoSomething(String arg)</code>.
+In other words, the regular method should be prefixed with <code>async</code> and the return value should be a <code>Future</code> of the original return value.</p>
+
+<h1><a name="failover"></a>Failover</h1>
+
+<p>In case of a Primary Backup clusters and Partitioned Sync2Backup clusters, when there is failure of primary space partition, remoting request is transparently forwarded to the backup.</p>
+
+<p>Event Driven Remoting proxy is aware of each partition in the cluster and connection with the failed primary partition will get interrupted/disconnected in case of a failure. Proxy recognizes failure and redirects the request to the backup partition. When the backup becomes ready (any warmup code that needs to run and is ready to accept operations), it will accept this request and process the request. All of this failover behavior is done within the GigaSpaces proxy code and client does not need any extra logic. For more information refer to <a href="../admin/tuning-proxy-connectivity.html">Proxy Connectivity</a>.</p>
+
+<p>If the backup space does not become ready to accept requests within the configured number of retries, execute request will fail with an Exception.</p>
+
+<h1><a name="considerations"></a>Considerations</h1>
+
+<p>If the remote method is called frequently or large complex objects are used as return types, it is recommended to implement optimized serialization such as <code>Externalizable</code> for the returned value object or use libraries such as <a href="https://github.com/EsotericSoftware/kryo">kryo</a>.</p>
+
+<div class="tc-admon-refer">
+  
+  <p>For more information see <a href="custom-serialization.html">Custom Serialization</a>.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Deploy a Web App</h1>
+        <p>In this part of the tutorial we will show you how you can deploy a standard WAR file onto the Service Grid.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> allows you to deploy web applications (packaged as a WAR file) onto the Service Grid. The integration is built on top of the Service Grid Processing Unit Container. The web container used behind the scenes is Jetty.</p>
+        <p>The integration allows you to make use of the following Service Grid features:</p>
+        <ul>
+            <li>
+                <p>Dynamic allocation of several instances of a web application (probably fronted by a load balancer).</p>
+            </li>
+            <li>
+                <p>Management of the instances running (if a GSC fails, the web application instances running on it will be instantiated on a different GSC).</p>
+            </li>
+            <li>
+                <p>SLA monitor-based dynamic allocation and de-allocation of web application instances.</p>
+            </li>
+        </ul>
+        <h1><a name="deployment"></a>Deployment</h1>
+        <p>The web application itself is a pure, JEE-based application. The application can be the most generic web application, and automatically make use of the Service Grid features.</p>
+        <p>Here is an example how you can deploy a web application on top of the service grid.
+We can accomplish this in three ways; by command line, with the Web Management Console, or with the REST API:</p>
+        <h2><a name="command-line-deployment"></a>Command Line Deployment</h2>
+        <p>You deploy a WAR file just like you deploy a PU JAR.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Unix CLI" style="padding:10px"><pre><code class="language-bash">GS_HOME/bin/gs.sh deploy tutorial.war
+</code></pre>
+            </div>
+            <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash">GS_HOME\bin\gs.sh deploy tutorial.war
+</code></pre>
+            </div>
+            <div title="REST" style="padding:10px"><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ 
+   "name": "eventPU", 
+   "resource": "...path..to\eventPU.jar"  
+ }' 'http://localhost:8090/v1/deployments'
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="deploy-with-web-management-console"></a>Deploy with Web Management Console</h2>
+        <p>You can deploy a WAR file just like a PU with the Web Management Console:</p>
+        <table class="tc-borderless">
+            <tr>
+                <td style="width:20%;">
+                    <p>Host view</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/Deploy-web1.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td style="width:20%;">
+                    <p>Upload WAR file</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/Deploy-web2.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td style="width:20%;">
+                    <p>Application display</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/Deploy-web3.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td style="width:20%;">
+                    <p>Service display</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/Deploy-web4.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td style="width:20%;">
+                    <p>Web page display</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/Deploy-web5.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="using-a-space"></a>Using a Space</h3>
+        <p>The web application can define a space either embedded or remote using Spring or direct in java code. There are several ways that a space and other components can be used and configured within a web application. Here are some scenarios:</p>
+        <ul>
+            <li>
+                <p>Creating a space using java code:</p><pre><code class="language-java">EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("xapTutorialSpace");
+
+GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();
+</code></pre>
+            </li>
+        </ul>
+        <ul>
+            <li>Using PU.xml to create a space:
+A web application is still just a processing unit. This means that a META-INF/spring/pu.xml can be added, where we define the standard <MadCap:variable name="General.DataGrid" /> components.</li>
+        </ul>
+        <p>Here is the layout of the WAR file structure:</p><pre><code class="language-bash">|----META-INF
+|--------spring
+|------------pu.xml
+|------------pu.properties
+|------------sla.xml
+|--------MANIFEST.MF
+|----WEB-INF
+|--------lib
+|--------web.xml
+|----index.jsp
+|---- .jsp
+</code></pre>
+        <p>For example in the pu.xml file we can define our space that we want to be accessible from the web application.</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="xapTutorialSpace" /&gt;
+&lt;os-core:giga-space id="xapTutorialSpace" space="space"/&gt;
+</code></pre>
+        <p>Here is an example of a simple JSP that uses it:</p><pre><code class="language-java">GigaSpace gigaSpace = (GigaSpace) getServletContext().getAttribute("xapTutorialSpace");
+</code></pre>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../dev-java/web-application-overview.html">Web Application Support</a> section in the developer guide.</p>
+        </div>
+        <h1 class="tc-pagetitle"><a name="jetty-instance"></a>Jetty Instance</h1>
+        <p>Jetty itself is configured using Spring, and allows you to control all aspects of both the Jetty instance created, and the web application context. There are two flavors of how Jetty instances are created (by default). The first is the plain mode, where a Jetty instance is created for each web processing unit instance running within a GSC. The second is the shared mode, where a single Jetty instance is created, and shared between all the different web processing unit instances running on the same GSC. A custom Jetty instantiation and handling can also be configured.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/qsg/web_app_archi.jpg" class="tc-picture80" />
+        </div>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../dev-java/web-application-overview.html">Web Application Support</a> section in the developer guide.</p>
+        </div>
+        <h1><a name="http-session-management"></a>HTTP Session Management</h1>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> Jetty integration comes with a support for storing the javax.servlet.http.HttpSession in the Space allowing supporting session replication and failover between different web application instances deployed into GigaSpaces containers.</p>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> HTTP Session Management provides the following:</p>
+        <ul>
+            <li>
+                <p>Avoid using database as the persistent storage media - Better performance and simplify the deployment</p>
+            </li>
+            <li>
+                <p>Allow management and control of full lifecycle of web application - From the load-balancer to the data</p>
+            </li>
+            <li>
+                <p>Dynamic scalability - Allows the web application to scale up or down based on SLA</p>
+            </li>
+            <li>
+                <p>Continuous High-Availability - Allows the application to survive any system failures</p>
+            </li>
+            <li>
+                <p>Non intrusive session management or explicit Data Grid API access for fine grain control - Allows multiple web servers to share the same session in transparent manner</p>
+            </li>
+        </ul>
+        <h2><a name="enabling-http-session-management"></a>Enabling HTTP Session Management</h2>
+        <p>There are several ways to configure Space session based support, depending on the definition of which space and how the space was started.</p>
+        <p>For example, if the session will be stored on a remote clustered space with a local cache, the URL can be: jini://<span class="tc-italic">/</span>/sessionSpace?useLocalCache (assuming the name of the space is sessionSpace). If the session should be stored on a space that should be started within the web application.</p>
+        <ul>
+            <li>
+                <p>Using Deploy property
+Here is how you can deploy an existing WAR file without changing it (or use Spring) to use <MadCap:variable name="General.DataGrid" />'s HTTP Session Management:</p><pre><code class="language-bash">gs deploy -properties embed://jetty.sessions.spaceUrl=jini://*/*/sessionSpace?useLocalCache xapTutorialSpace.war
+</code></pre>
+                <p>In this example we connect to a remote space called sessionSpace and create a local cache for the session caching.</p>
+            </li>
+        </ul>
+        <ul>
+            <li>Using Spring
+When deploying, include within the META-INF/spring/pu.properties file the <code>jetty.sessions.spaceUrl </code>property value. This should be set with the space URL defining where the sessions will be stored.</li>
+        </ul>
+        <h2><a name="deploying-with-the-web-admin-ui"></a>Deploying with the Web Management Console</h2>
+        <table class="tc-borderless">
+            <tr>
+                <td style="width:25%;">
+                    <p>Deploy HTTP Space</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/Deploy-session1.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td style="width:25%;">
+                    <p>Define deployment</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/Deploy-session2.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td style="width:25%;">
+                    <p>Inspect data grid</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/Deploy-session3.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td style="width:25%;">
+                    <p>Deploy WAR file</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/Deploy-session4.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <table class="tc-borderless">
+            <tr>
+                <td style="width:25%;">
+                    <p>Select web URL</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/Deploy-session51.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td style="width:25%;">
+                    <p>Web page</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/Deploy-session6.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td style="width:25%;">
+                    <p>Inspect data grid</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/Deploy-session65.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td style="width:25%;">
+                    <p>Inspect session</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/Deploy-session7.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../dev-java/http-session-management.html">HTTP Session Management</a> page in the developer guide.</p>
+        </div>
+        <h1><a name="load-balancing"></a>Load Balancing</h1>
+        <p>When deploying a highly available web site, usually a load balancer is used to load balance requests between at least two instances of a web containers that run the web applications. When using <MadCap:variable name="General.ProductNameXAP" /> to deploy web applications, running more than one instance of a web application becomes very easy. <MadCap:variable name="General.ProductNameXAP" /> comes with a built-in utility allowing you to dynamically update an Apache httpd web server load-balancing configuration, based on deployed web applications.</p>
+        <p>The integration dynamically creates and updates the mod_proxy_balancer configuration, based on the state of the deployed web applications. Once changes occur (relocation / failover / changes to the number of web application instances), the utility identifies the change, updates the balancer configuration, and sends a soft restart to Apache to take the new configuration into account.</p>
+        <div class="tc-align-center">
+            <br />
+            <img src="../Resources/Static/attachment_files/qsg/httpd_lb_agent.jpg" class="tc-picture80" />
+        </div>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../dev-java/apache-load-balancer-agent.html">Apache Load Balancer Agent</a> page in the developer guide.</p>
+        </div>
+    </body>
+</html>

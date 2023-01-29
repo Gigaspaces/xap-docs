@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <body>
+        <h1 MadCap:conditions="Version.14-0-only">Kubernetes Integration</h1>
+        <p MadCap:conditions="Version.14-0-only">The InsightEdge Platform and the <MadCap:variable name="General.ProductNameXAP" /> data grid both support the Kubernetes environment. Benefits include:</p>
+        <ul>
+            <li MadCap:conditions="Version.14-0-only">The ability to deploy GigaSpaces-based applications in whatever environment best suits the business needs of the enterprise.</li>
+            <li MadCap:conditions="Version.14-0-only">Kubernetes synergizes with InsightEdge and <MadCap:variable name="General.ProductNameXAP" />, simplifying the operationalizing of machine learning and transactional processing at scale.</li>
+            <li MadCap:conditions="Version.14-0-only">InsightEdge and <MadCap:variable name="General.ProductNameXAP" /> utilize key features of Kubernetes, such as cloud-native orchestration automation with self-healing, cooperative multi-tenancy, and RBAC authorization.</li>
+            <li MadCap:conditions="Version.14-0-only">Auto-deployment of data services and deep learning and machine learning frameworks, such as Apache Spark, Stateful Sets (analogous to Processing Units), as well as the Apache Zeppelin web notebook.</li>
+        </ul>
+        <p MadCap:conditions="Version.14-0-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/admin/orchestration.html">Orchestration</a>.</p>
+        <h1 MadCap:conditions="Version.14-0-only">Tiered Storage (MemoryXtend)</h1>
+        <p MadCap:conditions="Version.14-0-only">This version of InsightEdge and <MadCap:variable name="General.ProductNameXAP" /> introduces our newest Persistent Memory (PMEM) driver for the MemoryXtend module. The combined strength of <a href="https://newsroom.intel.com/editorials/re-architecting-data-center-memory-storage-hierarchy/">Optane DC Persistent Memory</a> and the InsightEdge Platform provides customers with the required performance and TCO optimization for uncompromised business results:</p>
+        <ul>
+            <li MadCap:conditions="Version.14-0-only">In-memory extreme performance at at a significantly lower cost.</li>
+            <li MadCap:conditions="Version.14-0-only">Large reduction in the number of servers required, which reduces footprint, power, maintenance, network and other overhead costs.</li>
+        </ul>
+        <p MadCap:conditions="Version.14-0-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/admin/memoryxtend-pmem.html">MemoryXtend for PMEM</a>.</p>
+        <h1 MadCap:conditions="Version.14-0-only">Hot Swap - Rebalancing with Zero Downtime</h1>
+        <p MadCap:conditions="Version.14-0-only">Our new demote capability in the REST Manager API makes it easier, faster, and simpler to rebalance a system after significant environment change scenarios, such as  failover or scaling. In the past, the only way to demote a primary instance in order to rebalance a system was to force a restart. Now customers can write their own rebalancing policies that take advantage of the ability to perform a hot swap during runtime, without having to reload the data.</p>
+        <p MadCap:conditions="Version.14-0-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/admin/resource-load-balancing.html">Hot Primary Swap</a>.</p>
+        <h1 MadCap:conditions="Version.14-0-only">Enhanced Web Notebook Functionality</h1>
+        <p MadCap:conditions="Version.14-0-only">InsightEdge now offers a JDBC-based interpreter for Apache Zeppelin. Customers can use this new interpreter to access data directly from the data grid, instead of via a Spark interpreter. This provides incredible value for analysts and developers, who can now visualize the Space data within the Zeppelin notebook.</p>
+        <p MadCap:conditions="Version.14-0-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/started/insightedge-zeppelin.html">Using the InsightEdge Web Notebook</a>.</p>
+        <h1 MadCap:conditions="Version.14-2-only">AnalyticsXtreme to Accelerate Your Data Lake </h1>
+        <p MadCap:conditions="Version.14-2-only"><MadCap:variable name="General.CompanyName" />'s new AnalyticsXtreme feature for the <MadCap:variable name="General.ProductNameIE" /> Platform improves on the traditional Lambda architecture to enable much faster querying of both real-time and historical data, and simplifies business application development by providing a single API for accessing data. Functionality includes:</p>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li>Data life cycle management for moving data from the data grid to external data storage as it ages.</li>
+            <li><MadCap:variable name="General.ProductNameIE" /> JDBC interpreter and driver for querying data from both the speed layer (data grid) and the batch layer (external data storage).</li>
+            <li>Out-of-the-box support for data formats such as Apache Parquet and Avro.</li>
+            <li>Support for SQL, Spark, and JDBC&#160;queries.</li>
+        </ul>
+        <p MadCap:conditions="Version.14-2-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/dev-java/data-lake-acceleration.html">Data Lake Acceleration</a>.</p>
+        <h1 MadCap:conditions="Version.14-2-only">Support for Apache Spark Version 2.4.0</h1>
+        <p MadCap:conditions="Version.14-2-only">Release 14.2 includes an upgrade to Apache Spark 2.4.0, which provides the following benefits:</p>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li>Scala 2.12 experimental support - Now you can build Spark with Scala 2.12 and write Spark applications in Scala 2.12.</li>
+            <li>Apache Avro as a built-in data source - Inline Spark-Avro package with logical type support, better performance and usability.</li>
+            <li>Spark datasource for image format - added image reading support in the Spark source API.</li>
+        </ul>
+        <h1 MadCap:conditions="Version.14-2-only">Kubernetes Enhancements</h1>
+        <p MadCap:conditions="Version.14-2-only">The upgrade to Apache Spark 2.4.0 also provides the following Kubernetes-related enhancements:</p>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li>PySpark and R bindings - Docker images to include Python Support.</li>
+            <li>Client mode support within Spark when running in the Kubernetes cluster back end.</li>
+            <li>Support for mounting the volume in the Spark driver and executor pods in Kubernetes.</li>
+        </ul>
+        <h1 MadCap:conditions="Version.14-2-only"><MadCap:variable name="General.CompanyName" /> Products Now Available with Red Hat OpenShift </h1>
+        <p MadCap:conditions="Version.14-2-only">InsightEdge and XAP are now Red Hat-certified containers, available in the official Red Hat registry. Customers can easily download <a href="https://access.redhat.com/containers/?tab=overview#/registry.connect.redhat.com/gigaspaces/insightedge-enterprise-14-0" target="_blank">InsightEdge</a> and <a href="https://access.redhat.com/containers/?tab=overview#/registry.connect.redhat.com/gigaspaces/xap-enterprise-14-0" target="_blank">XAP</a> container images to create, test, and run applications. and deploy them to the target platform.</p>
+        <p MadCap:conditions="Version.14-2-only">Look for our GigaSpaces products in the <a href="https://access.redhat.com/containers/" target="_blank">Red Hat Container Catalog</a>.</p>
+        <h1 MadCap:conditions="Version.14-5-only">New Features and Functionality</h1>
+        <ul>
+            <li MadCap:conditions="Version.14-5-only">
+                <p><span class="tc-bold">AnalyticsXtreme Enhancements </span>- AnalyticsXtreme now supports smart SQL JOINs between the speed and batch layers. Additionally, this version includes performance improvements such as "OR" optimization<MadCap:conditionalText MadCap:conditions="Default.DoNotShow"> and partitioned Hive tables</MadCap:conditionalText>.</p>
+                <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/dev-java/data-lake-acceleration-ax-client-side.html">Data Lake Acceleration</a>.</p>
+            </li>
+            <li MadCap:conditions="Version.14-5-only">
+                <p><span class="tc-bold">Kubernetes Support for Persistent MemoryXtend </span>- MemoryXtend functionality in Kubernetes deployments has been enhanced with persistent volume (SSD) support, which leverages SSD and persistent memory technologies.</p>
+                <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/admin/memoryxtend-rocksdb-ssd.html">Persistent Volume Storage in Kubernetes</a>.</p>
+            </li>
+            <li MadCap:conditions="Version.14-5-only">
+                <p><span class="tc-bold">GigaSpaces-Tableau Connector </span>- The new <MadCap:variable name="General.CompanyName" />-Tableau connector enables out-of-the-box integration with Tableau, so that InsightEdge is available directly from the Tableau Desktop.</p>
+                <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/dev-java/tableau-integration.html">Tableau Integration</a>.</p>
+            </li>
+            <li MadCap:conditions="Version.14-5-only">
+                <p><span class="tc-bold">Jupyter Notebook Integration </span>- Python users can now incorporate the familiar Jupyter web notebook with <MadCap:variable name="General.ProductNameIE" />, enjoying out-of-the-box connectivity and PySpark support.</p>
+                <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/started/insightedge-jupyter.html">Using a Jupyter Notebook</a>.</p>
+            </li>
+        </ul>
+        <h1 MadCap:conditions="Version.14-5-only">Usability and Platform Enhancements</h1>
+        <h2 MadCap:conditions="Version.14-5-only">Usability Enhancements</h2>
+        <ul>
+            <li MadCap:conditions="Version.14-5-only">
+                <p><span class="tc-bold">Interactive Shell for CLI </span>- A CLI interactive shell is available for all platforms, and is activated automatically with the <code>gs</code> command. The interactive shell guides you in entering CLI commands by autocompleting commands and automatically displaying CLI help information.</p>
+                <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/admin/tools-cli.html">Command Line Interface (CLI)</a>.</p>
+            </li>
+            <li>
+                <p MadCap:conditions="Version.14-5-only"><span class="tc-bold">Project Blueprints </span>- A blueprint is a pre-configured template that functions as a starting point for your microservice. <MadCap:variable name="General.CompanyName" /> products now have blueprints that developers can use to create new projects directly from templates, instead of having to create blank projects and deal with manual configuration tasks. </p><span MadCap:conditions="Default.DoNotShow" class="tc-bold"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/dev-java/data-lake-acceleration.html">Data Lake Acceleration</a>.</span>
+            </li>
+            <li MadCap:conditions="Version.14-5-only"><span class="tc-bold">Improved Maven Integration </span>- The <MadCap:variable name="General.CompanyName" /> product integration with Maven has been streamlined and obsolete files have been removed. Additionally, the <MadCap:variable name="General.CompanyName" /> CLI has a new command for installing Maven artifacts.<p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/started/installation-maven-overview.html">Maven Artifacts</a>.</p></li>
+            <li>
+                <p MadCap:conditions="Version.14-5-only"><span class="tc-bold">CSV Reader Utility </span>- <MadCap:variable name="General.ProductNameIE" /> now includes a <code>CsvReader</code> utility, which simplifies loading data from a CSV file to the data grid. This utility is especially helpful for first-time and new users of GigaSpaces products, as it can be used to quickly load demo data to a Space for evaluation and testing purposes.</p>
+                <p MadCap:conditions="Default.DoNotShow"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/dev-java/data-lake-acceleration.html">Data Lake Acceleration</a>.</p>
+            </li>
+        </ul>
+        <h2 MadCap:conditions="Version.14-5-only">Environment and Command Changes</h2>
+        <h3 MadCap:conditions="Version.14-5-only">Environment Variables</h3>
+        <p MadCap:conditions="Version.14-5-only">There have been updates and modifications to the set environment variables that <MadCap:variable name="General.CompanyName" /> uses.</p>
+        <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../../../../../BU Flare, 11-May-2020/site-flare/Content/started/common-environment-variables.html">Configuring the Environment Variables</MadCap:xref>.</p>
+        <h3 MadCap:conditions="Version.14-5-only">Command Line Interface Update</h3>
+        <p MadCap:conditions="Version.14-5-only">The <MadCap:variable name="General.CompanyName" /> Command Line Interface (CLI) has been consolidated and now uses a single <code>gs</code> script as the entry point. Backwards compatibility is supported; users that upgrade from earlier versions of <MadCap:variable name="General.CompanyName" /> products can revert the CLI&#160;to the previous behavior to simplify the migration process. </p>
+        <p MadCap:conditions="Version.14-5-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../../../../../BU Flare, 11-May-2020/site-flare/Content/admin/upgrading-cli.html">Upgrading the CLI</MadCap:xref>.</p>
+        <h1 MadCap:conditions="Version.15-0-only"><MadCap:variable name="General.CompanyName" /> Ops Manager</h1>
+        <p MadCap:conditions="Version.15-0-only"><MadCap:variable name="General.CompanyName" /> is proud to introduce an enterprise-class management platform for your <MadCap:variable name="General.CompanyName" />-based clusters running on your own cloud, on-premise or hybrid infrastructure. Use the <MadCap:variable name="General.CompanyName" /> Ops Manager for monitoring, alerts, disaster recovery, scaling, deploying and upgrading your applications, and for managing other <MadCap:variable name="General.CompanyName" /> components such as the BI Connector.</p>
+        <p MadCap:conditions="Version.15-0-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../../../../../BU Flare, 11-May-2020/site-flare/Content/admin/gs-ops-manager-overview.html">[%=General.ProductNameXAP%] Ops Manager</MadCap:xref>.</p>
+        <h1 MadCap:conditions="Version.15-0-only">Intelligent Tiering of Your Data Lake </h1>
+        <p MadCap:conditions="Version.15-0-only">The <MadCap:variable name="General.CompanyName" /> Analyticsxtreme module allows you to leverage an intelligent data management policy, to automatically auto-tier cold and archive data in your Hadoop or cloud object store data lake. <MadCap:variable name="General.CompanyName" />'s intelligent tiering is designed to automatically optimize storage of historical data in terms of performance and costs as data access patterns change, moving data between frequent access and infrequent access tiers.</p>
+        <p MadCap:conditions="Version.15-0-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../../../../../BU Flare, 11-May-2020/site-flare/Content/dev-java/data-lake-ax-batch-index.html">AnalyticsXtreme Batch Indexing</MadCap:xref>.</p>
+        <h1 MadCap:conditions="Version.15-0-only">Improved Integration for Orchestration, Streaming and BI&#160;</h1>
+        <h2 MadCap:conditions="Version.15-0-only">Kubernetes Space-Based Remoting</h2>
+        <p MadCap:conditions="Version.15-0-only"><MadCap:variable name="General.ProductNameIE" /> now provides a native smart Space client in Kubernetes that supports remote CRUD operations, task execution, and event-driven analytics. The smart client is content aware to the distributed cluster topology, which provides high throughput and fast serialization, as well as automatic load balancing. This is accomplished by auto forwarding the remote operation to the relevant data pod, based on the data model and routing.</p>
+        <p MadCap:conditions="Version.15-0-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../../../../../BU Flare, 11-May-2020/site-flare/Content/admin/kubernetes-space-based-remoting.html">Space-Based Remoting in Kubernetes</MadCap:xref>.</p>
+        <h2 MadCap:conditions="Version.15-0-only">Confluent Streaming Connector (Kafka) </h2>
+        <p MadCap:conditions="Version.15-0-only">The official <MadCap:variable name="General.CompanyName" /> Connector for Apache Kafka has been released and verified by Confluent. The connector, which adheres to the guidelines set forth by Confluent’s Verified Integrations Program, enables <MadCap:variable name="General.ProductNameIE" /> to be configured as both a sink and a source for Apache Kafka.</p>
+        <p MadCap:conditions="Version.15-0-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../../../../../BU Flare, 11-May-2020/site-flare/Content/solution-hub/kafka-integration.html">Integrating Kafka with [%=General.CompanyName%] Products</MadCap:xref>.</p>
+        <h2 MadCap:conditions="Version.15-0-only">Tableau Server Support </h2>
+        <p MadCap:conditions="Version.15-0-only">The <MadCap:variable name="General.CompanyName" /> <MadCap:variable name="General.ProductNameIE" /> Connector for Tableau now supports Tableau Server, a centralized, web-based repository for users, data sources and visualizations. This support allows you to publish dashboards with Tableau Desktop and share them throughout the organization with Tableau Server. Tableau Server also provides direct, authorized access to live Space objects and documents , allowing users to build and run complex filtered queries against <MadCap:variable name="General.ProductNameIE" />.</p>
+        <p MadCap:conditions="Version.15-0-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../../../../../BU Flare, 11-May-2020/site-flare/Content/dev-java/tableau-server-integration.html">Integrating [%=General.ProductNameIE%] with Tableau Server</MadCap:xref>.</p>
+        <h2 MadCap:conditions="Version.15-0-only">Dynamic Schema Versioning </h2>
+        <p MadCap:conditions="Version.15-0-only">InsightEdge supports dynamic schema definition by allowing you to write and update data without a predefined schema.  You can easily make changes to the data model  while ensuring it will be compatible with JDBC and BI tools. The result is more reliable code integration, faster development, and lower administration overhead.</p>
+        <p MadCap:conditions="Version.15-0-only"><span class="tc-iconinfo">&#160;</span> For more information, see the new section on Querying with JDBC&#160;in the <MadCap:xref href="../../../../../BU Flare, 11-May-2020/site-flare/Content/dev-java/document-api.html">Document API</MadCap:xref> topic.</p>
+        <h1 MadCap:conditions="Version.15-2-only">Platform Enhancements</h1>
+        <h2 MadCap:conditions="Version.15-2-only">GigaOps Stack</h2>
+        <p MadCap:conditions="Version.15-2-only"> <MadCap:variable name="General.ProductNameXAP" /> introduces the GigaOps Stack, a modern DataOps stack for CI/CD, orchestration, and monitoring of data analytics and predictive modeling. The GigaOps Stack includes the following components:</p>
+        <ul>
+            <li MadCap:conditions="Version.15-2-only">Ops Manager - our web-based tool for monitoring and administering all aspects of your <MadCap:variable name="General.ProductNameXAP" />-based application.</li>
+            <li MadCap:conditions="Version.15-2-only">KubeGrid or ElasticGrid - orchestration for on-premise, cloud-native, or hybrid environments.</li>
+            <li MadCap:conditions="Version.15-2-only">gsctl - a standalone CLI tool for creating, provisioning and installing <MadCap:variable name="General.ProductNameXAP" /> clusters in the cloud or on-premise.</li>
+            <li MadCap:conditions="Version.15-2-only">Monitoring - <MadCap:variable name="General.ProductNameXAP" />' new monitoring  stack based on InfluxDB and Grafana.</li>
+        </ul>
+        <p MadCap:conditions="Version.15-2-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/orchestration/gigaops-stack-overview.html">GigaOps Stack</a>.</p>
+        <h2 MadCap:conditions="Version.15-2-only">ElasticGrid</h2>
+        <p MadCap:conditions="Version.15-2-only"><MadCap:variable name="General.ProductNameXAP" />' new orchestration option for open cloud, on-premise  or hybrid systems that fully automates deployment, scaling, and management of virtualized and containerized applications. ElastiGrid handles all these tasks so you don't have to:</p>
+        <ul>
+            <li MadCap:conditions="Version.15-2-only">Auto-installation</li>
+            <li MadCap:conditions="Version.15-2-only">auto-provisioning</li>
+            <li MadCap:conditions="Version.15-2-only">Elastic orchestration</li>
+            <li MadCap:conditions="Version.15-2-only">Rolling upgrades</li>
+            <li MadCap:conditions="Version.15-2-only">Self repair</li>
+            <li MadCap:conditions="Version.15-2-only">Distributed tracing</li>
+        </ul>
+        <p MadCap:conditions="Version.15-2-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/orchestration/elasticgrid-overview.html">ElasticGrid</a>.</p>
+        <h2 MadCap:conditions="Version.15-2-only">Auto Data Source Connect</h2>
+        <p MadCap:conditions="Version.15-2-only">Potential users can easily import selected data from any RDBMS&#160;directly to a Space by setting up a data source connection via Ops Manager. Regular users also load and deploy a stateful service on an ongoing basis; <MadCap:variable name="General.ProductNameXAP" /> will continuously mirror any changes and auto-scan the metadata. Before loading the data, users can review and select the specific data for import, and applying indexing. </p>
+        <p MadCap:conditions="Version.15-2-only">In addition to creating a Space and populating it with a custom set of data, users can download a project blueprint to set up a full GigaSpaces environment.</p>
+        <p MadCap:conditions="Version.15-2-only"><span class="tc-iconinfo">&#160;</span> For more information, see <MadCap:xref href="../../../../../BU Flare, 11-May-2020/site-flare/Content/opm/opm-connect-to-data-source.html">Connect to a Data Source</MadCap:xref>.</p>
+        <h2 MadCap:conditions="Version.15-2-only"><MadCap:variable name="General.ProductNameXAP" /> Ops Manager </h2>
+        <p MadCap:conditions="Version.15-2-only">The Ops Manager has the following new functionality:</p>
+        <ul>
+            <li MadCap:conditions="Version.15-2-only">Space View - users can see an overview of the Spaces in the clusters, and drill through to individual Spaces to see metadata, data distribution, index statistics, and more.</li>
+            <li MadCap:conditions="Version.15-2-only">Interactive queries - users can configure interactive SQL&#160;queries within Ops Manager to retrieve data from the Space.</li>
+        </ul>
+        <p MadCap:conditions="Version.15-2-died"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/admin/gs-ops-manager-overview.html">GigaSpaces Ops Manager</a>.</p>
+        <h2 MadCap:conditions="Version.15-2-only">Streaming Space Iterator</h2>
+        <p MadCap:conditions="Version.15-2-only"><MadCap:variable name="General.ProductNameXAP" />' paging support provides drastically improved performance, with lower latency, a smaller memory footprint, and a lighter workload on the Space. Throughput is improved by up to 100% using the new streaming Space iterator implementation.</p>
+        <p MadCap:conditions="Version.15-2-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/dev-java/query-paging-support.html" target="_blank">Paging Support with the Space Iterator API</a>.</p>
+        <h2 MadCap:conditions="Version.15-2-only">Memory-Level Encryption</h2>
+        <p MadCap:conditions="Version.15-2-only"><MadCap:variable name="General.ProductNameXAP" /> now provides a Property Storage Adapter API to apply encryption or compression  for a property. The Property Storage Adapter contains the following general-purpose, built-in adapter options:</p>
+        <ul MadCap:conditions="Version.15-2-only">
+            <li>Encryption adapters that encrypt/decrypt designated property values using the AES algorithm.</li>
+            <li>Binary adapter for storing values in binary serialized format.</li>
+            <li>ZIP&#160;adapter that applies compression/decompression using the Zip algorithm.</li>
+        </ul>
+        <p MadCap:conditions="Version.15-2-only"><span class="tc-iconinfo">&#160;</span> For more information, see <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/dev-java/property-storage-adaptor.html">Property Storage Adapters</a>.</p>
+        <h1 MadCap:conditions="Version.15-2-only">Kubernetes Improvements</h1>
+        <p MadCap:conditions="Version.15-2-only">This release provides the following improvements for Kubernetes-based <MadCap:variable name="General.ProductNameXAP" /> applications:</p>
+        <ul>
+            <li MadCap:conditions="Version.15-2-only">On-demand scaling - this new feature enables users to submit ad-hoc scaling requests so that the cluster scales gradually, with no downtime.</li>
+            <li MadCap:conditions="Version.15-2-only">Multi-region replication - users can set up WAN gateways in the Kubernetes  to implement an active-active topology across two remote clusters. This enables replication between regions or cloud-based clusters.</li>
+            <li MadCap:conditions="Version.15-2-only">Node pool selection - users can deploy pods to specific node pools to better support different size workloads.</li>
+        </ul>
+        <p MadCap:conditions="Version.15-2-only"><span class="tc-iconinfo">&#160;</span> For more information, see the <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/admin/kubernetes-overview.html">KubeGrid</a> documentation.</p>
+        <h1 MadCap:conditions="Version.15-2-only">Third-Party Integration Updates</h1>
+        <p MadCap:conditions="Version.15-2-only">The <MadCap:variable name="General.ProductNameXAP" />-InsightEdge driver now appears automatically in the Tableau list of connectors.</p>
+        <p MadCap:conditions="Version.15-2-only">The following third-party integrations have been updated for release 15.2:</p>
+        <ul>
+            <li MadCap:conditions="Version.15-2-only">Starting with Tableau 2020.1, we support a packaged <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/dev-java/tableau-integration.html">Tableau connector</a> (.taco file), which is automatically loaded by Tableau to its list of connectors.</li>
+            <li MadCap:conditions="Version.15-2-only"><MadCap:variable name="General.ProductNameXAP" />Enterprise Operator in <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/solution-hub/ie-operator-openshift.html">Openshift OperatorHub</a></li>
+            <li MadCap:conditions="Version.15-2-only">Building a <MadCap:variable name="General.ProductNameXAP" /> <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/solution-hub/spring-data-quick-start.html">Spring Data</a> application</li>
+        </ul>
+        <h1>Third-Party Product Changes</h1>
+        <p MadCap:conditions="Version.15-8-only">There are currently no third-party changes or updates.</p>
+        <ul MadCap:conditions="Version.15-2-only">
+            <li><a href="http://hibernate.org/" target="_blank">Hibernate</a> has been upgraded to 5.3.10</li>
+        </ul>
+        <ul>
+            <li MadCap:conditions="Version.15-0-only"><a href="http://www.eclipse.org/jetty/">Jetty</a> has been upgraded to 9.4.22.</li>
+            <li MadCap:conditions="Version.15-0-only"><a href="https://rocksdb.org/" target="_blank">RocksDB</a> has been upgraded to 6.0.1.</li>
+            <li MadCap:conditions="Version.15-0-only"><a href="http://www.hibernate.org/orm/" target="_blank">Hibernate</a> has been upgraded to 5.2.0.</li>
+            <li MadCap:conditions="Version.15-0-only"><a href="https://zookeeper.apache.org/">Apache Zookeeper</a> has been upgraded to 3.5.5.</li>
+            <li MadCap:conditions="Version.15-0-only"><a href="https://github.com/oshi/oshi" target="_blank">OSHI</a> has been upgraded to 4.0.0.</li>
+            <li MadCap:conditions="Version.15-0-only"><a href="https://github.com/java-native-access/jna" target="_blank">JNA</a> has been upgraded to 5.4.0.</li>
+        </ul>
+        <ul>
+            <li MadCap:conditions="Version.14-0-only">Java 11 is now supported (starting from service pack 14.0.1). For more information, see the <MadCap:xref href="../../../../../BU Flare, 11-May-2020/site-flare/Content/rn/java11-guidelines.html">Java 11 Guidelines</MadCap:xref> page of the release notes.</li>
+            <li MadCap:conditions="Version.14-0-only"><a href="https://spark.apache.org/" target="_blank">Apache Spark</a> has been upgraded to <code>2.3.2</code></li>
+            <li MadCap:conditions="Version.14-0-only"><a href="https://zeppelin.apache.org/" target="_blank">Apache Zeppelin</a> has been upgraded to <code>0.8</code></li>
+        </ul>
+        <p MadCap:conditions="Version.14-0-only">The following third-party dependency updates mitigate known security vulnerabilities:</p>
+        <ul>
+            <li MadCap:conditions="Version.14-0-only"><a href="http://www.eclipse.org/jetty/">Jetty</a> has been upgraded to <code>9.3.25</code></li>
+            <li MadCap:conditions="Version.14-0-only"><a href="https://projects.spring.io/spring-framework/">Spring Framework</a> integration has been upgraded to <code>4.3.19</code></li>
+            <li MadCap:conditions="Version.14-0-only"><a href="http://projects.spring.io/spring-security/">Spring Security</a> integration has been upgraded to <code>4.2.8</code></li>
+        </ul>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li><a href="https://spark.apache.org/" target="_blank">Apache Spark</a> has been upgraded to 2.4.0</li>
+            <li><a href="https://zeppelin.apache.org/" target="_blank">Apache Zeppelin</a> has been upgraded to 0.8.1</li>
+            <li><a href="https://zookeeper.apache.org/" target="_blank">Apache Zookeeper</a> has been upgraded to 3.4.13</li>
+            <li><a href="http://hibernate.org/" target="_blank">Hibernate</a> has been upgraded to 5.1.17</li>
+        </ul>
+        <p MadCap:conditions="Version.14-2-only">Additionally, XAP.NET&#160;no longer includes a bundled Java distribution.</p>
+        <ul>
+            <li MadCap:conditions="Version.14-5-only"><a href="https://projects.spring.io/spring-framework/">Spring Framework</a> integration has been upgraded to 5.1.7</li>
+            <li MadCap:conditions="Version.14-5-only"><a href="http://projects.spring.io/spring-security/">Spring Security</a> integration has been upgraded to 5.1.5.<div class="tc-admon-attention"><p MadCap:conditions="Version.14-5-only">As of Spring Security 5.x,   a password encoder must be defined.</p></div></li>
+        </ul>
+        <h1>Deprecated and End-Of-Life  Features and Functionality</h1>
+        <p MadCap:conditions="Version.15-8-only">There are currently no deprecated or end-of-life features and functionality.</p>
+        <p MadCap:conditions="Version.14-0-only,Version.15-0-only,Version.15-2-only">The following functionality is deprecated as of this release:</p>
+        <ul MadCap:conditions="Version.15-0-only">
+            <li><MadCap:variable name="General.CompanyName" /> Management Center</li>
+            <li>LRU and custom eviction policies</li>
+            <li>Direct persistency</li>
+            <li>Option for multiple Processing Units per GSC (stateful service limit &gt;1). See <a href="../../../../../BU Flare, 11-May-2020/site-flare/Content/admin/the-sla-overview.html">Service Level Agreement</a> for the <code>serviceLimit</code> setting, with a default value of 1.</li>
+            <li>"Requires isolation" feature</li>
+        </ul>
+        <ul MadCap:conditions="Version.14-0-only">
+            <li MadCap:conditions="Version.14-0-only">Legacy command line interface (use the new command line interface that was introduced in release 12.3 instead)</li>
+            <li MadCap:conditions="Version.14-0-only">The gs-agent script (use the <code>insightedge host run-agent</code> or <code>xap host run-agent</code> command instead)</li>
+        </ul>
+        <p MadCap:conditions="Version.14-0-only">The following functionality is end of life as of this release:</p>
+        <p MadCap:conditions="Version.15-2-only">The following functionality is end of life as of this release:</p>
+        <ul>
+            <li MadCap:conditions="Version.15-2-only">GSIterator</li>
+            <li MadCap:conditions="Version.14-0-only">XAP.NET for Microsoft .NET v3.5</li>
+        </ul>
+        <p MadCap:conditions="Version.14-0-only">In addition, we recommend that you review GigaSapaces' updated Java and Spring Framework policies on the <MadCap:xref href="../../../../../BU Flare, 11-May-2020/site-flare/Content/rn/lifecycle.html">Product Life Cycle and End-of-Life Policy</MadCap:xref> page.</p>
+        <p MadCap:conditions="Version.14-2-only">There are no end-of-life or deprecated features in this release.</p>
+        <h3 MadCap:conditions="Version.14-5-only">Deprecated Features and Functionality</h3>
+        <ul>
+            <li MadCap:conditions="Version.14-5-only">The advanced_scripts.zip file has been renamed to deprecated_scripts.zip.</li>
+            <li MadCap:conditions="Version.14-5-only">The xap and insightedge duplicate CLI scripts were deprecated and moved to the deprecated_scripts.zip file.</li>
+            <li MadCap:conditions="Version.14-5-only">The <code>EXT_JAVA_OPTIONS</code> environment variable is deprecated as of this version. Use <code>XAP_OPTIONS_EXT</code> instead.</li>
+        </ul>
+        <h3 MadCap:conditions="Version.14-5-only">End-Of-Life Functionality</h3>
+        <p MadCap:conditions="Version.14-5-only">The following obsolete scripts were removed from the product (formerly in the advanced_scripts.zip file):</p>
+        <ul>
+            <li MadCap:conditions="Version.14-5-only">esm</li>
+            <li MadCap:conditions="Version.14-5-only">gs-memcached</li>
+            <li MadCap:conditions="Version.14-5-only">lookupbrowser</li>
+            <li MadCap:conditions="Version.14-5-only">startjinix_mahalo</li>
+        </ul>
+    </body>
+</html>

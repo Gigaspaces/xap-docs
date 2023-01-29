@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Components</h1>
+  
+
+<h1><a name="overview"></a>Overview</h1>
+
+<p>Packaging user-defined code in a processing unit is done using components. A <span class="tc-bold">Component</span> is essentially a class decorated with a <code>BasicProcessingUnitComponent</code> attribute:</p>
+
+<pre><code class="language-java">[BasicProcessingUnitComponent]
+public class MyComponent
+{
+    public MyComponent()
+    {
+        Console.WriteLine("Hello World");
+    }
+}
+</code></pre>
+
+<p>When a processing unit is deployed, it scans all the assemblies in its working directory for classes decorated with <code>BasicProcessingUnitComponent</code> and instantiates them. In addition, the component instance is managed and tracked by the processing unit.</p>
+
+<h1><a name="life-cycle"></a>Life cycle</h1>
+
+<p>The supported life cycle events for the component are:</p>
+
+<ul>
+<li><span class="tc-italic">Initializing</span> - called during the container initialization process. To intercept this event, create a method decorated with <code>ContainerInitializing</code>.
+
+<ul>
+<li>Optional: The method can include an argument of type <code>BasicProcessingUnitContainer</code> to intercept the container, which provides additional services.</li>
+</ul></li>
+<li><span class="tc-italic">Initialized</span> - called after the container initialization process completed. To intercept this event, create a method decorated with <code>ContainerInitialized</code>.
+
+<ul>
+<li>Optional: The method can include an argument of type <code>BasicProcessingUnitContainer</code> to intercept the container, which provides additional services.</li>
+</ul></li>
+<li><span class="tc-italic">Undeploy</span> - Called when the processing unit instance is undeployed. To intercept this event, implement the standard <code>IDisposable</code> interface, and the <code>Dispose()</code> method will be called upon undeployment.</li>
+</ul>
+
+<p>The component name can be used by other components to obtain a reference to it. For example, an additional component <code>Foo</code> uses the <code>ContainerInitialized</code> method to obtain a reference to <code>MyComponent</code>:</p>
+
+<h1><a name="multiple-components"></a>Multiple Components</h1>
+
+<p>If more than one component is used, the component can be assigned with a name which can be used to obtain a reference to its runtime instance. For example:</p>
+
+<pre><code class="language-java">[BasicProcessingUnitComponent(Name="Foo")]
+public class Foo
+{
+    private Bar _bar;
+    
+    [ContainerInitialized]
+    public void Initialize(BasicProcessingUnitContainer container)
+    {
+        _bar = (Bar)container.GetProcessingUnitComponent("Bar");
+    }
+}
+
+[BasicProcessingUnitComponent(Name="Bar")]
+public class Bar
+{
+    // ...
+}
+
+</code></pre>
+
+<h1><a name="space-proxies"></a>Space Proxies</h1>
+
+<p>If the processing unit contains an embedded space or space proxy definition, you can use the container to obtain a reference to those proxies. For example:</p>
+
+<pre><code class="language-xml">&lt;ProcessingUnit&gt;
+  &lt;EmbeddedSpaces&gt;
+    &lt;add Name="MySpace"/&gt;
+  &lt;/EmbeddedSpaces&gt;
+&lt;/ProcessingUnit&gt;
+</code></pre>
+
+<pre><code class="language-java">[BasicProcessingUnitComponent]
+public class MyComponent
+{
+    private ISpaceProxy _mySpace;
+
+    [ContainerInitialized]
+    public void Initialize(BasicProcessingUnitContainer container)
+    {
+        _mySpace = container.GetSpaceProxy("MySpace");
+    }
+}
+</code></pre>
+
+<h1><a name="space-life-cycle-events"></a>Space Life Cycle Events</h1>
+
+<p>In a topology with backup spaces, it is quite common to have a business logic co-located with an embedded space instance, that should be activated only when the embedded space instance mode is primary. The built-in event listener container work that way; they only start to operate when the co-located embedded space becomes primary. It is quite common to have different custom logic that should be notified upon space mode change events and act accordingly (for instance, start some monitoring process of the co-located space instance). The container will detect automatically methods marked with a space mode changed attribute ([PostPrimary], [BeforePrimary], [PostBackup] and [BeforeBackup]) and it will invoke these methods once the space instance mode is changed.</p>
+
+<p>Here's an example of monitoring logic that will start to monitor the embedded space when it becomes primary:</p>
+
+<pre><code class="language-java">[BasicProcessingUnitComponent]
+public class MyComponent
+{
+    [PostPrimary]
+    public void StartMonitoring(ISpaceProxy proxy)
+    {
+        //Start monitoring the proxy state
+    }
+}
+</code></pre>
+
+<p>The event listening method can be one of the following formats:</p>
+
+<pre><code class="language-java">//No parameters method
+[PostPrimary]
+public void MyEventListener()
+
+//Single space proxy parameter
+[PostPrimary]
+public void MyEventListener(ISpaceProxy spaceProxy)
+
+//Two parameter, space proxy and space mode
+[PostPrimary]
+public void MyEventListener(ISpaceProxy spaceProxy, SpaceMode spaceMode)
+
+//If more than one space is defined, specify the name of the space to avoid ambiguity
+[PostPrimary(SpaceProxyName="MySpace")]
+public void MyEventListener(ISpaceProxy spaceProxy)
+</code></pre>
+
+<p>When registering for the [BeforePrimary] or [BeforeBackup], special care should be taken. The event handling of these listeners will <span class="tc-bold">delay the space instance life cycle completion</span> for a co-located space instance - i.e., a primary space instance will be blocked from fully becoming a primary space until it completes all the invocations of the [BeforePrimary] subscribers. There is no guarantee for receiving a corresponding Before event always prior to a Post event. When the processing unit starts, the event subscription is asynchronous to the space instance active election; in this case it is quite reasonable not to receive the Before events and only to receive the Post events.</p>
+
+</body>
+</html>

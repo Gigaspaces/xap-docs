@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <body>
+        <div class="tc-admon-note">
+            <p> In your Comparable class, make sure that the <code>compareTo()</code> and <code>equals()</code>&#160;methods always yield the same result, because the <MadCap:variable name="General.CompanyName" /> query optimization depends on that equivalence. This is not the case, for example, where the <code>BigDecimal.equals()</code> method  takes into account the number of trailing zeros, whereas the <code>BigDecimal.compareTo()</code> method  ignores the trailing zeros.</p>
+            <p>See the <a href="../../../dev-java/indexing-overview.html">Indexing</a> section for additional information about how to enable the <code>EXTENDED</code> index.</p>
+        </div>
+    </body>
+</html>

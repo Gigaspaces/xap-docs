@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Asynchronous Replication</h1>
+        <p>In asynchronous replication, operations are performed in the source space instance, and acknowledgement is immediately returned to the client. Operations are accumulated in the source space and sent asynchronously to the target space, after a defined period of time has elapsed, or after a defined number of operations have been performed (the first one of these that occurs). This replication type offers the highest performance at the cost of possible data lose of latest operations if the source space instance fails (sudden crash) while transferring the accumulated operations to the target space. Another problem is data coherency - the source and the target do not have identical data all the time.</p>
+        <h1><a name="how-to-turn-on-asynchronous-replication"></a>How to Turn on Asynchronous Replication?</h1>
+        <p>In general you should have the <code>cluster-config.groups.group.repl-policy.replication-mode</code> property set to <code>async</code>. See below example:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"&gt;
+    &lt;os-core:properties&gt;
+        &lt;props&gt;
+            &lt;prop key="cluster-config.groups.group.repl-policy.replication-mode"&gt;async&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/os-core:properties&gt;
+&lt;/os-core:embedded-space&gt;
+</code></pre>
+        <div class="tc-admon-note">
+            <p>In addition you should change <code>cluster-config.groups.group.repl-policy.processing-type</code> to <code>global-order</code> if async replication is used between primary and its backup.</p>
+        </div>
+        <h1><a name="when-to-use-asynchronous-replication"></a>When to Use Asynchronous Replication</h1>
+        <p>Asynchronous replication provides fastest performance because the replication is executed asynchronously to the operation. However, this comes with a cost
+of possible data loss of recent operations upon unexpected failures (sudden crash). Therefore, an application that is using asynchronous replication
+must be aware to this fact.</p>
+        <h1><a name="how-asynchronous-replication-works"></a>How Asynchronous Replication Works</h1>
+        <ol>
+            <li>A destructive space operation is called.</li>
+            <li>
+                <p>The source space:</p>
+                <ol>
+                    <li>Performs the operation.</li>
+                    <li>Insert the operations into a redo log.</li>
+                    <li>Sends acknowledgement to the client.</li>
+                </ol>
+            </li>
+            <li>
+                <p>Asynchronous worker wakes up on demand (interval passed or pending operations exceeded).</p>
+                <ol>
+                    <li>Constructs a batch of operations in the source space.</li>
+                    <li>Transmits the packet into the target space.</li>
+                </ol>
+            </li>
+            <li>
+                <p>Once they are received at the target space, the operations are processed according to their order.</p>
+            </li>
+            <li>
+                <p>The next batch is sent when the target space completes processing the replication packet.</p>
+            </li>
+        </ol>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/replication-matrix-IMG504.jpg" alt="replication-matrix-IMG504.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h1><a name="handling-disconnections-and-errors"></a>Handling Disconnections and Errors</h1>
+        <p>Due to the asynchronous nature of the replication channel, when a replication target space instance is unavailable (disconnection) or some error occurred during the processing of the replication data at the target the channel will keep operating in the same way, it will keep the operation in the redo log until it succeeds replicating the operations.</p>
+        <h1><a name="behavior-during-recovery"></a>Behavior During Recovery</h1>
+        <p>In the previous scenario, a target space instance might become unavailable because it has been restarted or relocated due to various reason (failure, manual/automatic relocation). In the default settings, when that target space instance will restart, it will perform a recovery from a source space instance. In primary backup topology it will be the primary space instance, in active active topology it can be any space instance. The target space instance will not be available until the source channel redo log size is almost empty, thus making sure that once the target space is available and visible, the number of operations that might be lost if a failure occurs will be minimal.</p>
+        <h1><a name="controlling-the-asynchronous-worker"></a>Controlling the Asynchronous Worker</h1>
+        <p>The asynchronous worker of the channel can wake up and start replicating for two reasons:</p>
+        <ol>
+            <li>The predefined interval has elapsed</li>
+            <li>The predefined number of pending operations is exceeded.</li>
+        </ol>
+        <p>The worker will wake up and replicate if either of these two occurs. The following parameters controls these behavior and a few more options:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.async-replication.repl-chunk-size</td>
+                    <td align="left">Number of packets transmitted together on the network when the replication event is triggered. The maximum value you can assign for this property is <code>repl-interval-opers</code>.</td>
+                    <td align="left">500</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.async-replication.repl-interval-millis</td>
+                    <td align="left">Time (in milliseconds) to wait between replication operations.</td>
+                    <td align="left">3000 [ms]</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.async-replication.repl-interval-opers</td>
+                    <td align="left">Number of destructive operations to wait before replicating.</td>
+                    <td align="left">500</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>To change the default replication settings you should modify the space properties when deployed. You may set these properties via the pu.xml or programmatically. Here is an example how you can set the replication parameters when using the pu.xml:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"&gt;
+    &lt;os-core:properties&gt;
+        &lt;props&gt;
+            &lt;prop key="cluster-config.groups.group.async-replication.repl-chunk-size"&gt;1000&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/os-core:properties&gt;
+&lt;/os-core:embedded-space&gt;
+</code></pre>
+        <h1><a name="flushing-of-pending-replication-during-shutdown"></a>Flushing of Pending Replication During Shutdown</h1>
+        <p>When a source space instance is closed, it may have pending replication packets in its redo log because there were still not replicated. During this process, the space instance will stop accepting new operations and try to gracefully shutdown the replication channel and wait for all pending replication packets to be sent before completely shutting down. This graceful shutdown timeout can be configured with the following property:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.async-replication.async-channel-shutdown-timeout</td>
+                    <td align="left">Determines how long (in milliseconds) the primary space will wait for pending replication to be replicated to its targets before shutting down.</td>
+                    <td align="left">300000 [ms]</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

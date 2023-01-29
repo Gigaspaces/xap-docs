@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Leader Election</h1>
+        <h1><a name="overview"></a>Overview</h1>
+        <p>This section describes the Space's leader election mechanism, which is based on the CAP theorem. It also explains how to configure and optimize it.</p>
+        <h1><a name="cap-theorem"></a>CAP Theorem</h1>
+        <p>The CAP theorem, also known as Brewer's theorem, states that it is impossible for a distributed computer system to simultaneously provide all three of the following guarantees:</p>
+        <ul>
+            <li>
+                <p>Consistency (all nodes see the same data at the same time)</p>
+            </li>
+            <li>
+                <p>Availability (node failures do not prevent survivors from continuing to operate)</p>
+            </li>
+            <li>
+                <p>Partition Tolerance (the system continues to operate despite arbitrary message loss)</p>
+            </li>
+        </ul>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/cap.png" alt="image" class="tc-picture50" />
+            </p>
+        </div>
+        <p>As a result, you can have partition tolernace plus consistency, or partition tolerance plus availability. Gigaspaces provides two available implementations to support the approach that is best suited to your environment and business needs:</p>
+        <ul>
+            <li>
+                <p><a href="leader-election-consistency-biased.html">Consistency biased</a> - this implementation is based on Apache Zookeeper.</p>
+            </li>
+            <li>
+                <p><a href="leader-election-availability-biased.html">Availability biased</a> - this implementation is based on the native Lookup Service.</p>
+            </li>
+        </ul>
+    </body>
+</html>

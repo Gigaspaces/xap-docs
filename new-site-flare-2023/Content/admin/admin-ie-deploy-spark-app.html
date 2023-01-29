@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Deploying a Spark-Based Application</h1>
+        <div class="tc-admon-note">
+            <p>This functionality is not yet available in the Command Line Interface, Web Management Console, GigaSpaces Management Center, or Administration API administration tools.</p>
+        </div>
+        <p><span class="tc-bold">To deploy a Spark-based application:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <!--
+<div title="Command Line Interface" style="padding:10px"><p>N/A</p>
+</div>
+-->
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Prerequisites</span>
+                </p>
+                <p>An application resource file must be uploaded. Refer to <a href="admin-ie-upload-spark-app-file.html">Uploading a Spark Application File</a>. You can use the following sample application file: <code>&lt;<MadCap:variable name="General.HomePath" />&gt;/insightedge/examples/jars/insightedge-examples.jar</code></p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>POST /spark/applications</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option deploys a Spark-based application in the <MadCap:variable name="General.ProductNameIE" /> environment.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ \
+   "mainClass": "org.insightedge.examples.basic.SaveRdd", \
+   "applicationJar": "insightedge-examples.jar", \
+   "name": "myApp" \
+ }' 'http://localhost:8090/v2/spark/applications'
+</code></pre>
+                <p><span class="tc-italic">Example Response:</span>
+                </p>
+                <p>The ID of the request to track with a status code: 202</p><pre><code class="language-bash">2
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>mainClass</td>
+                            <td>The main class of the application.</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>applicationJar</td>
+                            <td>The application JAR file name.</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>name</td>
+                            <td>The Spark application name.</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>applicationArguments</td>
+                            <td>The Spark application arguments.</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>sparkProperties</td>
+                            <td>The Spark context properties.</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

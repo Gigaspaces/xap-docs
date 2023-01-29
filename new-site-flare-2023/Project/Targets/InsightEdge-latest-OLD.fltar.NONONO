@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="MadCap HTML5 Target updated 6-dec-2020"
+  Type="WebHelp2"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  Skin="/Project/Skins/HTML5 - Side Navigation.flskn"
+  ExcludeUnreferencedContent="true"
+  MoveOutputContentToRoot="true"
+  InsertMOTW="true"
+  UseCustomTopicFileExtension="true"
+  CustomTopicFileExtension="html"
+  MasterToc="/Project/TOCs/Production/Master-TOC.fltoc"
+  DefaultUrl="/Content/index.html"
+  MasterPage="/Content/Resources/MasterPages/content.flmsp"
+  MobileBreakpoint="820"
+  ConditionTagExpression="exclude[Default.DoNotShow or NewSet.StagingOnly or Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-2-only or Version.14-5-died or Version.14-5-only or Version.15-0-died or Version.15-0-only or Version.15-2-died or Version.15-2-only or Version.15-5-died or Version.15-8-born or Version.15-8-only]"
+  ContentInclusionType="Referenced"
+  EquationsOutputType="PNG">
+  <PrintedOutput
+    CollapseMargins="true"
+    GenerateTOCProxy="true"
+    GenerateIndexProxy="true"
+    GenerateGlossaryProxy="true"
+    OutputFormat="doc" />
+  <Variables>
+    <Variable
+      Name="Versions/maven-version-MX">15.5.0-m6</Variable>
+    <Variable
+      Name="Versions/product-version-long">15.5.0</Variable>
+    <Variable
+      Name="Versions/rest-version">v2</Variable>
+    <Variable
+      Name="Versions/scala-version">2.11.8</Variable>
+    <Variable
+      Name="Versions/spark-version">2.4.4</Variable>
+    <Variable
+      Name="Versions/product-version-short">15.5</Variable>
+    <Variable
+      Name="Versions/helm-version-MX">15.5.0-m6</Variable>
+    <Variable
+      Name="Versions/gshome-directory">gigaspaces-xap-enterprise-15.5.0</Variable>
+    <Variable
+      Name="Versions/gshome-directory-oss">gigaspaces-xap-15.5.0</Variable>
+    <Variable
+      Name="Versions/default-lookup-group">xap-15.5.0</Variable>
+    <Variable
+      Name="Versions/xap-release">15.5</Variable>
+    <Variable
+      Name="Versions/xap-version">15.5</Variable>
+    <Variable
+      Name="Versions/msi-filename">gigaspaces-xap.net-15.5.0.msi</Variable>
+    <Variable
+      Name="Versions/gshome-net-directory">XAP.NET-15.5.0-x64</Variable>
+    <Variable
+      Name="Versions/spring-short">5.1</Variable>
+    <Variable
+      Name="Versions/mongo-java-driver">3.2.0</Variable>
+    <Variable
+      Name="Versions/antlr4-runtime">4.0</Variable>
+    <Variable
+      Name="Versions/mule">3.7.0</Variable>
+    <Variable
+      Name="Versions/openjpa">2.2.2</Variable>
+    <Variable
+      Name="Versions/cassandra-clientutil">1.1.6</Variable>
+    <Variable
+      Name="Versions/cassandra-thrift">1.1.6</Variable>
+    <Variable
+      Name="Versions/cassandra-jdbc">1.1.2</Variable>
+    <Variable
+      Name="Versions/hector-core">1.1-2</Variable>
+    <Variable
+      Name="Versions/slf4j-api">1.6.6</Variable>
+    <Variable
+      Name="Versions/slf4j-jdk14">1.6.6</Variable>
+    <Variable
+      Name="Versions/hsql">2.3.2</Variable>
+    <Variable
+      Name="Versions/topthreads">1.0.0</Variable>
+    <Variable
+      Name="Versions/scala">2.11.6</Variable>
+    <Variable
+      Name="Versions/product-version-svc-pack-MX">15.5.0-m6</Variable>
+    <Variable
+      Name="Versions/spring-long">5.1.7</Variable>
+    <Variable
+      Name="Versions/java-version">11</Variable>
+    <Variable
+      Name="Versions/hibernate-short">16.3.0-m5</Variable>
+    <Variable
+      Name="General/EnvVariablePrefix">GS</Variable>
+  </Variables>
+  <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
+</CatapultTarget>

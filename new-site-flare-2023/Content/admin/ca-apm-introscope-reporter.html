@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">CA APM Introscope Reporter</h1>
+        <p><a href="http://www.ca.com/us/products/application-performance-management.aspx" target="_blank">CA APM</a> helps to monitor applications and react quickly when certain performance issues may occur. <MadCap:variable name="General.ProductNameXAP" /> provides many metrics like: processing units, spaces and machines that compose the grid. The metrics can be reported to Instroscope, so that its advanced features might be used to further analyze metrics data. <MadCap:variable name="General.ProductNameXAP" /> CA APM Introscope Reporter provides a way to send <MadCap:variable name="General.ProductNameXAP" /> related metrics to Introscope.</p>
+        <div class="tc-admon-note">
+            <p>The <MadCap:variable name="General.ProductNameXAP" /> APM Introscope integration requires a separate license, in addition to the <MadCap:variable name="General.ProductNameXAP" /> commercial license. Contact <MadCap:variable name="General.ProductNameXAP" /> Customer Support for more details.</p>
+        </div>
+        <h1><a name="architecture"></a>Architecture</h1>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/ca_apm/xap_ca_apm1.png" alt="intro6a.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>The major components of CA Introscope are the Enterprise Manager, CA Introscope agents, Workstation, WebView, SmartStor, and APM database as shown in the graphic above. Many smaller components are explained in the CA Introscope product documentation.</p>
+        <h2><a name="enterprise-manager"></a>Enterprise Manager</h2>
+        <p>The Enterprise Manager acts as the repository of CA Introscope performance metrics. The Enterprise Manager receives performance metrics from one or more CA Introscope agents, allowing users to collect metrics centrally from many applications, application servers, and supporting systems. You can deploy the Enterprise Managers in different ways depending on the size and complexity of the enterprise system. The role of a specific Enterprise Manager depends on how it is deployed in a standalone or in a clustered CA APM environment.</p>
+        <h2><a name="agents"></a>Agents</h2>
+        <p>CA Introscope agents collect and report several types of application and environmental performance metrics. One agent is deployed per process (Java Virtual Machine [JVM] or .NET CLR instance). The total number of agents depends on the size of the CA Introscope deployment, for example:
+A small pilot network uses as few as half a dozen agents to monitor a few test applications.
+A large extended enterprise production environment uses hundreds or thousands of agents to monitor applications across the enterprise.</p>
+        <p>CA Introscope agents collect performance metrics from several sources:
+</p>
+        <ul>
+            <li>The various components inside the running application
+</li>
+            <li>The application server
+</li>
+            <li>Performance and availability data from the surrounding computing environment.
+</li>
+            <li>The agents then report these metrics to the Enterprise Manager.</li>
+        </ul>
+        <p>You can import real-time generic and non-Java data into CA Introscope through modified version of the agent named the Environment Performance Agent (EPA or EPAgent). EPA uses simple scripts that allow CA Introscope to monitor virtually any type of application subsystem impacting performance.
+For example, using EPA CA Introscope can monitor directory servers, operating systems and messaging middleware.&#160;</p>
+        <h1><a name="xap-integration"></a><MadCap:variable name="General.ProductNameXAP" /> Integration</h1>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/ca_apm/xap_ca_apm2.png" alt="intro6a.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <h1><a name="features"></a>Features</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" />-CA APM-introscope introduces the following features:</p>
+        <ul>
+            <li>Reporting metrics to Introscope (<a href="#integration-details">more details</a>)</li>
+            <li>Inserting hierarchy into metrics (<a href="#metrics-hierarchy">more details</a>)</li>
+            <li>Modifying reported metrics names and values to conform to Introscope requirements (<a href="#introscope-metrics-requirements">more details</a>).</li>
+        </ul>
+        <h2><a name="requirements"></a>Requirements</h2>
+        <ul>
+            <li>CA APM Introscope 9.6 environment. The integration was tested with CA APM Introscope 9.6 however, higher versions (at least 9.x) should also integrate properly.</li>
+            <li>Enable network input to Introscope, Introscope reporter in <MadCap:variable name="General.ProductNameXAP" /> metrics configured (<a href="#configuration">more details</a>).</li>
+        </ul>
+        <h1><a name="configuration"></a>Configuration</h1>
+        <p>We will show you how to configure a working environment with <MadCap:variable name="General.ProductNameXAP" /> sending metrics information to CA Introscope.</p>
+        <h2><a name="basic-configuration"></a>Basic configuration</h2>
+        <p>The steps below use only basic configuration without getting into details, more information is available <a href="#configuration">here</a>.</p>
+        <ol>
+            <li>Edit <code>IntroscopeEPAgent.properties</code> file: add line <code>introscope.epagent.config.networkDataPort=MY_PORT</code> (by default this line is commented), where <code>MY_PORT</code> should be replaced with a port number, on which EPAgent will wait for data.</li>
+            <li>Make sure that port <code>MY_PORT</code> is open on a machine where EPAgent will be deployed.</li>
+            <li>Edit <code>$<MadCap:variable name="General.Home-directory" />/config/metrics/metrics.xml</code> file: add the following piece of XML code to <code>reporters</code> node (<code>MY_PORT</code> should be replaced with a value from the previous point, <code>MY_HOST</code> with IP address or hostname of a machine where EPAgent will be deployed):</li>
+        </ol><pre><code class="language-xml">    &lt;reporter name="introscopeReporter" factory-class="com.gigaspaces.metrics.IntroscopeReporterFactory"&gt;
+        &lt;property name="host" value="MY_HOST"/&gt;
+        &lt;property name="port" value="MY_PORT"/&gt;
+    &lt;/reporter&gt;
+</code></pre>
+        <h2><a name="starting-introscope-and-xap"></a>Starting Introscope and <MadCap:variable name="General.ProductNameXAP" /></h2>
+        <ol>
+            <li>Start the Introscope environment (setup instructions cab be found <a href="#development-environment-installation-steps">here</a>).</li>
+            <li>Start the <MadCap:variable name="General.ProductNameXAP" /> data grid by running the following command: <code>$<MadCap:variable name="General.Home-directory" />/bin/gs-agent.sh</code>.</li>
+        </ol>
+        <h2><a name="observing-metrics"></a>Observing Metrics</h2>
+        <ol>
+            <li>Log in to webview.</li>
+            <li>Go to <code>Investigator</code> tab, then <code>Metric Browser</code> tab.</li>
+            <li>Node <code>*SuperDomain*/XAP host/EPAgentProcess/EPAgent(*SuperDomain*)</code> should contain a sub-node <code>xap</code> that is the root of all metrics reported by <MadCap:variable name="General.ProductNameXAP" />.</li>
+        </ol>
+        <h1><a name="configuration-1"></a>Configuration</h1>
+        <p>To properly work, the integration requires a some configuration on both the  Introscope  and <MadCap:variable name="General.ProductNameXAP" /> sides.</p>
+        <h2><a name="introscope-properties"></a>Introscope Properties</h2>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> Introscope integration communicates with <code>EPAgent</code> deployed in an Introscope environment. It requires <code>EPAgent</code> to listen on a certain port for metrics data. To enable receiving metrics from network, property <code>introscope.epagent.config.networkDataPort</code> should be uncommented in <code>IntroscopeEPAgent.properties</code> (by default this is <code>EPAgent</code> configuration file, in case another file is used, described steps should be performed on that file) and set to port on which <code>EPAgent</code> will listen for metrics data, e.g.</p><pre><code class="language-properties">introscope.epagent.config.networkDataPort=8003
+</code></pre>
+        <h2><MadCap:variable name="General.ProductNameXAP" />Metrics Configuration</h2>
+        <p>File <code>$<MadCap:variable name="General.Home-directory" />/config/metrics/metrics.xml</code> contains <MadCap:variable name="General.ProductNameXAP" /> metrics configuration. The important part for the integration is a list of reporters - <code>IntroscopeReporter</code> must be added to it. Moreover, it has two mandatory properties:</p>
+        <ul>
+            <li><code>host </code>- hostname or ip address of a machine with EPAgent. Mandatory.</li>
+            <li><code>port </code>- port on which EPAgent listens for metrics data. This value has to match <code>introscope.epagent.config.networkDataPort</code> property described in the previous paragraph. Mandatory.</li>
+            <li><code>hierarchy_pattern </code>- This is an optional property. Pattern used to build name of the highest level of hierarchy. It may contain a <code>{lookuplocator}</code> or <code>{lookupgroup}</code> substrings, which will be replaced by current lookuplocator or lookupgroup, respectively. If output of pattern conversion is empty or contains <code>{</code> or <code>}</code> signs, then it will be recognized as invalid and an <code>IllegalArgumentException</code> will be thrown. This property is optional, since it has default value <code>{lookupgroup}-{lookuplocator}</code>.</li>
+        </ul>
+        <p>Below config to be included within the <code>metrics.xml</code> file:</p><pre><code class="language-xml">    &lt;reporters&gt;
+        &lt;reporter name="introscopeReporter" factory-class="com.gigaspaces.metrics.IntroscopeReporterFactory"&gt;
+            &lt;property name="host" value="127.0.0.1"/&gt;
+            &lt;property name="port" value="8000"/&gt;
+            &lt;property name="hierarchy_pattern" value="grid-{lookupgroup}"/&gt;
+        &lt;/reporter&gt;
+    ...
+    &lt;/reporters&gt;
+</code></pre>
+        <h1><a name="integration-details"></a>Integration Details</h1>
+        <p>This paragraph describes the important aspects of the <MadCap:variable name="General.ProductNameXAP" />-CA APM Introscope integration.</p>
+        <h2><a name="integration-with-xap"></a>Integration with <MadCap:variable name="General.ProductNameXAP" /></h2>
+        <p><MadCap:variable name="General.ProductNameXAP" /> provides a well-defined point of integration - <a href="metrics-custom-reporter.html">custom reporter</a>. The integration is implemented based on <MadCap:variable name="General.ProductNameXAP" />' metrix framework:
+</p>
+        <ul>
+            <li><code>IntroscopeReporter</code> - the main class that handles sending metrics inherits from <code>MetricReporter</code><![CDATA[
+]]></li>
+            <li><code>IntroscopeReporterFactory</code> - a class that creates reporters derives from <code>MetricReporterFactory</code></li>
+        </ul>
+        <h2><a name="integration-with-ca-apm-introscope"></a>Integration with CA APM Introscope</h2>
+        <p>Introscope gathers metrics data from applications using agents. It provides several agents - one agent per one web framework. However, this functionality is not needed to integrate with <MadCap:variable name="General.ProductNameXAP" />, since all metrics are already being gathered by <MadCap:variable name="General.ProductNameXAP" />. The problem lies in reporting data to Introscope. This task can be solved by <code>EPAgent</code>.</p>
+        <h3><a name="epagent"></a>EPAgent</h3>
+        <p><code>EPAgent</code> (Environment Performance Agent) is a special type of agent that is used to monitor system wide or user defined statistics. It is a natural point of integration with <MadCap:variable name="General.ProductNameXAP" />. There are several ways of sending data to EPAgent: plugins, simple HTTP server, network communication.</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Plugins</span> - EPAgent allows users to define custom plugins that are either separate programs or Java classes run by <code>EPAgent</code>.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">HTTP Server</span> - <code>EPAgent</code> (in Introscope 9.6) can create a simple HTTP server. In that case metrics are reported by sending GET requests with metric data (metric name, type, value) in query to the server.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Network communication</span> - <code>EPAgent</code> may expose a port on which it will listen for requests containing metric data.</p>
+            </li>
+        </ul>
+        <p>Integration by plugins would require additional work, because plugin semantics is that it pulls data, while the desired behavior is to accept data sent by <MadCap:variable name="General.ProductNameXAP" />. The second method conforms to this requirement, however, it is not scalable, since one request carries only one metric value. Obviously, it would cause too much overhead. Moreover, this feature is deprecated and may be removed from Introscope. The last proposal solves all those issues: <code>EPAgent</code> listens for data and one requests contains multiple entries.</p>
+        <h4><a name="security-warning"></a>Security Warning</h4>
+        <p><code>EPAgent</code> accepts all data that it receives via network (i.e. without authentication). Therefore, access to it must be limited by firewall.</p>
+        <h3><a name="data-format"></a>Data Format</h3>
+        <p><code>EPAgent</code> accepts metric data that is sent in specific format. Otherwise, it may log erroneous values or does not log them at all. Each line should contain data for one measured value. There are two formats for a single line: simple format or XML format. The latter one was chosen, since it provides more control over reported data (less restrictions on metric name, possibility to specify type of value).</p>
+        <p>Format of each line is as follows:</p><pre><code class="language-xml">     &lt;metric type="TYPE" name="NAME" value="VALUE" /&gt;
+</code></pre>
+        <p>There are three fields that need to be populated: <code>type</code>, <code>name</code> and <code>value</code>. Only the first one requires a short comment. Introscope has few types of metrics defined. Some of them are connected with a little bit of logic - e.g. Introscope may compute average value of all reported values.
+However, the integration uses only the most basic ones - <code>LongCounter</code> for numerical data and <code>StringEvent</code> for others, because statistics are already processed by <MadCap:variable name="General.ProductNameXAP" /> and need only to be exported to Introscope.</p>
+        <p>Below is an example of metric data sent to Introscope:</p><pre><code class="language-xml">&lt;metric type="LongCounter" name="xap|groupA|myhost|lus|20237:lus_items" value="1" /&gt;
+&lt;metric type="LongCounter" name="xap|groupA|myhost|lus|20237:lus_pending-events" value="0" /&gt;
+&lt;metric type="LongCounter" name="xap|groupA|space|space_metricsSpace|0|primary:operations_lease-expired" value="100" /&gt;
+</code></pre>
+        <h3><a name="timestamps-warning"></a>Timestamps Warning</h3>
+        <p>There is no possibility to tie metric data with timestamp. Introscope connects a single metric report with the time it was received by Introscope, not sent by <MadCap:variable name="General.ProductNameXAP" />. This means that sending metrics in batch should be disabled, when integrating both systems.</p>
+        <h3><a name="hierarchy-insertion"></a>Hierarchy Insertion</h3>
+        <p><MadCap:variable name="General.ProductNameXAP" /> reports tens of different predefined metrics per machine that belongs to a grid, deployed processing units or Space (you can find more information <a href="metrics-bundled.html">here</a>). Additionally, there might be also custom metrics defined by users. Even for one machine, number of metrics becomes too high for human-being to track them easily in webview in flat format. Hierarchy is inserted by modifying metric name - it has the given format:</p><pre><code class="language-yaml">RESOURCE_SEGMENT_1|...|RESOURCE_SEGMENT_N:METRIC_NAME
+</code></pre>
+        <p>Resource segments are optional. They are separated from name by <code>:</code> and are separated from each other by <code>|</code>. Multiple resource segments create hierarchy, e.g. metrics <code>xap|groupA|myhost|lus|21950:lus_items</code> and <code>xap|groupA|myhost|lus|21950:lus_listeners</code> can be seen as:</p>
+        <table class="tc-borderless">
+            <tr>
+                <td style="width:50%;"><pre><code class="language-xml">xap
++– groupA
+  +– myhost
+    +– lus
+      +– 21950
+        — lus_items
+        — lus_listeners
+</code></pre>
+                </td>
+                <td style="width:40%;">
+                    <p>
+                        <img src="../Resources/Static/attachment_files/introscope.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p>As you see these have a tree like format. <code>IntroscopeReporter</code> takes care of inserting hierarchy into predefined metrics, while custom metrics are reported without any name modifications.</p>
+        <h1><a name="metrics-conversions"></a>Converting the Metrics Format</h1>
+        <p>Important task of <code>IntroscopeReporter</code> is to convert received metrics to Introscope format. The format was described in the previous paragraph, this paragraph lists all conversions done on metrics.</p>
+        <h2><a name="metrics-hierarchy"></a>Metrics Hierarchy</h2>
+        <p>Inserting hierarchy into metric name depends on an initial metric name and available additional data retrieved from <code>MetricTagsSnapshot</code>. <MadCap:variable name="General.ProductNameXAP" /> comes with predefined metrics and hierarchy related conversions are performed for such metrics, while custom metrics names are almost untouched.</p>
+        <h3><a name="operating-system-metrics"></a>Operating System Metrics</h3>
+        <p>OS metrics name starts with <code>os_</code>. <code>IntroscopeReporter</code> performs different conversion on network related and non-network related statistics.</p>
+        <h3><a name="os-metrics-network-metrics"></a>OS Metrics / Network Metrics</h3>
+        <p>Metric name starts with <code>os_network_</code>.</p>
+        <p>Format: <code>xap|$TOP_LEVEL|$HOST|os|network|$NIC:METRIC_NAME_WITHOUT_PREFIX</code></p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Before conversion</th>
+                    <th>After conversion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">os_network_rx-bytes</td>
+                    <td>``` xap</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="os-metrics-non-network-metrics"></a>OS Metrics / Non-Network Metrics</h3>
+        <p>Metric name starts with <code>os_</code> and not with <code>os_network_</code>.</p>
+        <p>Format: <code>xap|$TOP_LEVEL|$HOST|os|others:METRIC_NAME</code></p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Before conversion</th>
+                    <th>After conversion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">os_memory_free-bytes</td>
+                    <td>`xap</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="process-jvm-lrmi-metrics"></a>Process|JVM|LRMI Metrics</h3>
+        <p>Those metrics start with "process<span class="tc-italic">", "jvm</span>" or "lrmi_". There are 2 subtypes - metrics for specific pu or process-wide (e.g. for GSA, GSC, etc.).</p>
+        <h4><a name="process-jvm-lrmi-metrics-per-pu"></a>Process|JVM|LRMI Metrics / per PU</h4>
+        <p>Metric tags contain <code>pu_name</code> key.</p>
+        <p>Format: <code>xap|$TOP_LEVEL|pu|$PU_NAME|$PU_INSTANCE_ID:METRIC_NAME</code></p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Before conversion</th>
+                    <th>After conversion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">jvm_threads_count</td>
+                    <td>`xap</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="process-jvm-lrmi-metrics-process-wide"></a>Process|JVM|LRMI Metrics / Process-Wide</h3>
+        <p>Metric tags do not contain <code>pu_name</code> key.</p>
+        <p>Format: <code>xap|$TOP_LEVEL|$HOST|$PROCESS_NAME_$PID:METRIC_NAME</code></p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Before conversion</th>
+                    <th>After conversion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">jvm_threads_count</td>
+                    <td>`xap</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="lookup-service-metrics"></a>Lookup Service Metrics</h3>
+        <p>Metric name has a <code>lus_</code> prefix.</p>
+        <p>Format: <code>xap|$TOP_LEVEL|$HOST|lus|$PID:METRIC_NAME</code></p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Before conversion</th>
+                    <th>After conversion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">lus_items</td>
+                    <td>`xap</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="processing-unit-metrics"></a>Processing Unit Metrics</h3>
+        <p>Metric name has a <code>pu_</code> prefix.</p>
+        <p>Format:</p>
+        <p><code>xap|$TOP_LEVEL|pu|$PU_NAME|$PU_INSTANCE_ID:</code>
+        </p>
+        <p><code>METRIC_NAME_WITHOUT_PREFIX</code>
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Before conversion</th>
+                    <th>After conversion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">pu_data<br />ProcessorPollingEventContainer<br />_processed-events</td>
+                    <td>`xap</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="space-metrics"></a>Space Metrics</h3>
+        <p>Space metrics name starts with "space_". Metrics for primary and backup are converted a little bit different.</p>
+        <h4><a name="space-metrics-primary-partition"></a>Space Metrics / Primary Partition</h4>
+        <p>Metric tag <code>space_instance_id</code> contains only numbers.</p>
+        <p>Format:</p>
+        <p><code>xap|$TOP_LEVEL|space|$SPACE_NAME|primary$SPACE_INSTANCE_ID:</code>
+        </p>
+        <p><code>METRIC_NAME_WITHOUT_PREFIX</code>
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Before conversion</th>
+                    <th>After conversion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">space_operations_take</td>
+                    <td>`xap</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4><a name="space-metrics-backup-partition"></a>Space Metrics / Backup Partition</h4>
+        <p>Metric tag <code>space_instance_id</code> does not consist only of numbers.</p>
+        <p>Format:</p>
+        <p><code>xap|$TOP_LEVEL|space|space_$SPACE_NAME|backup$SPACE_INSTANCE_ID:</code>
+        </p>
+        <p><code>METRIC_NAME_WITHOUT_PREFIX</code>
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Before conversion</th>
+                    <th>After conversion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">space_operations_take</td>
+                    <td>`xap</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="other-metrics"></a>Other Metrics</h3>
+        <p>Metrics that do not meet conditions of any types presented above, are considered as others and almost no conversion is performed on them.</p>
+        <p>Format: <code>xap|$TOPLEVEL:METRIC_NAME</code></p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Before conversion</th>
+                    <th>After conversion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">custom_metric</td>
+                    <td>`xap</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="data-types"></a>Data Types</h2>
+        <p>The <MadCap:variable name="General.ProductNameXAP" />-apm-introscope uses two types of metrics: <code>LongCounter</code> and <code>StringEvent</code>. <code>LongCounter</code> is reserved for numerical values - if an object representing metric value inherits from <code>Numerical</code>, it is supposed to be logged as <code>LongCounter</code>. Otherwise, metric type would be <code>StringEvent</code>.</p>
+        <p>A String object with numerical value (e.g. "0") would be recognized as <code>StringEvent</code>.</p>
+        <h2><a name="introscope-metrics-requirements"></a>Introscope Metrics Requirements</h2>
+        <p>Introscope adds a few constraints on metrics and <code>IntroscopeReporter</code> conforms to all of them by modifying metric names or values.</p>
+        <p>Metric name and resource segments are cleaned from special signs, i.e. <code>:</code> and <code>|</code>. If a full name contains more than one resource-name separator (<code>:</code>), then this metric will not be logged at all. If any of resource segments contains resouce-resource separator (<code>|</code>), then a hierarchy level will be split.</p>
+        <p>Metric value of <code>LongCounter</code> type must carry integer value. Unfortunately, Introscope does not have any separate type for floats/doubles. Therefore, all numeric values are rounded. There are a few predefined metrics that suffer a little from this constraint (e.g. <code>process_cpu_used-percent</code>). However, those values are from 0 to 100 and in most cases reporting 65 instead of 64.7 is acceptable. It is worth to remember about this requirement if custom metrics with narrow range of values (e.g. from 0.0 to 1.0) may be defined - in this case it could make sense to report values multiplied by 10, 100, etc.</p>
+        <h1><a name="development-environment-installation-steps"></a>Development Environment Installation Steps</h1>
+        <p>Steps below describe how to set up development environment to start working on this plugin. Files required:</p>
+        <ul>
+            <li>
+EPAgent9.6.0.0unix.tar
+</li>
+            <li>introscope9.6.0.0otherUnix.jar
+</li>
+            <li>osgiPackages.v9.6.0.0.unix.tar</li>
+        </ul>
+        <p class="tc-todo">To set up the development environment:</p>
+        <ol>
+            <li>Install <code>docker</code> and <code>docker-compose</code>.</li>
+            <li>Clone repo <code>https://github.com/stefansiegl/docker-introscope.git</code>.</li>
+            <li>Copy <code>introscope9.6.0.0otherUnix.jar</code> and <code>osgiPackages.v9.6.0.0.unix.tar</code> to docker-introscope/enterprise-manager/9.6.0.0, docker-introscope/sample/9.6.0.0 and docker-introscope/webview/9.6.0.0.</li>
+            <li>Copy <code>EPAgent9.6.0.0unix.tar</code> to docker-introscope/sample/9.6.0.0.</li>
+            <li>Edit file docker-introscope/sample/9.6.0.0/IntroscopeEPAgent.properties, in section EPAgent Configuration uncomment line containing <code>introscope.epagent.config.networkDataPort</code> and change port if the default one is taken.</li>
+            <li>Edit file docker-introscope/sample/9.6.0.0/run-default-sample-container.sh and open port used in the previous point by adding <code>-p PORT:PORT</code> to the <code>docker run</code> command, where <code>PORT</code> should be substituted with a proper port number.</li>
+            <li>Run command: <code>docker-compose -f docker-compose-with-sample.yml up</code></li>
+            <li>Open your browser on a page <code>webview-ip</code>:8080 (<code>webview-ip</code> is an IP adress of docker container), type: user: <code>Admin</code> and password leave empty. In case you receive HTTP 404 error, wait a minute, because server used in webview needs a little time to start working.</li>
+        </ol>
+    </body>
+</html>

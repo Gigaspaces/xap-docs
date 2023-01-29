@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>LDAP Authentication</h1>
+        <p>LDAP is often used by organizations as a central repository for user information and as an authentication service. It can also be used to store the role information for application users.</p>
+        <p>You should be familiar with LDAP before trying to use it with Spring Security. There are some concepts involved in setting up an LDAP server. To get you started you can take a look at a free LDAP server <code>OpenLDAP</code>, or the Apache Directory Project <code>ApacheDS</code> which also comes with a convenient browser.</p>
+        <h1><a name="ldap-data-interchange-format-ldif"></a>LDAP Data Interchange Format (LDIF)</h1>
+        <p>The LDAP Data Interchange Format (LDIF) is a standard data interchange format for representing LDAP directory content. Here is a snippet of an <code>ldif</code> that demonstrates how users and groups are associated with GigaSpaces granted authorities.</p>
+        <p>Consider for example our "Box-Office Employee"s: Edward, Arthur, and Thomas. They have been granted privileges to list all movies and their available seats, and to reserve a seat. More specifically, granted <code>READ</code> privileges for class <code>eg.cinema.Movie</code> and for <code>class eg.cinema.Seat</code>, and <code>WRITE</code> privileges to update a <code>eg.cinema.Seat</code> as reserved.</p><pre><code class="language-bash">...
+dn: cn=Box-Office Employee,ou=groups,dc=example,dc=com
+objectclass: top
+objectclass: groupOfNames
+cn: Box-Office Employee
+member: uid=Edward,ou=people,dc=example,dc=com
+member: uid=Arthur,ou=people,dc=example,dc=com
+member: uid=Thomas,ou=people,dc=example,dc=com
+ou: SpacePrivilege READ ClassFilter eg.cinema.Movie
+ou: SpacePrivilege READ ClassFilter eg.cinema.Seat
+ou: SpacePrivilege WRITE ClassFilter eg.cinema.Seat
+
+...
+
+dn: uid=Edward,ou=people,dc=example,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Edward Jones
+sn: Jones
+uid: Edward
+userPassword: koala
+
+...
+</code></pre>
+        <p>Download the <a href="/download_files/sample.ldif">sample.ldif</a></p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/SpringSecurity-LDAP.png" alt="SpringSecurity-LDAP.png" class="tc-picture100" />
+            </p>
+        </div>
+        <h1><a name="configure-spring-to-use-an-ldap-server"></a>Configuring Spring to Use an LDAP Server</h1>
+        <p>Spring Security supports authentication against LDAP through <code>LdapAuthenticationProvider</code>, an authentication provider that knows how to check user credentials against and LDAP repository.</p><pre><code class="language-xml">&lt;bean id="ldapAuthenticationProvider"
+      class="org.springframework.security.ldap.authentication.LdapAuthenticationProvider"&gt;
+
+    &lt;!-- strategy for handling the actual authentication against the LDAP repository --&gt;
+    &lt;constructor-arg ref="authenticator" /&gt;
+
+    &lt;!-- strategy for retrieving a user's set of granted authorities --&gt;
+    &lt;constructor-arg ref="populator" /&gt;
+&lt;/bean&gt;
+</code></pre>
+        <div class="tc-admon-note">
+            <p>An LDAP Spring Security configuration file can be found under <MadCap:variable name="General.HomePath" />/config/security/ldap-security-config.xml.</p>
+        </div>
+        <h2><a name="authenticating-with-ldap-binding"></a>Authenticating with LDAP Binding</h2>
+        <p>Spring Security comes with an <code>LdapAuthenticator</code> implementation called <code>BindAuthenticator</code>. <code>Bindauthenticator</code> uses an LDAP bind operator to bind as a user to the LDAP server. This approach relies on the LDAP server to authenticate the user's credentials.</p><pre><code class="language-xml">&lt;bean id="authenticator"
+      class="org.springframework.security.ldap.authentication.BindAuthenticator"&gt;
+    &lt;constructor-arg ref="contextSource" /&gt;
+    &lt;!--  how to find a user in LDAP --&gt;
+    &lt;property name="userDnPatterns"&gt;
+        &lt;list&gt;
+        &lt;!-- {0} servers as a pattern argument placeholder for a username --&gt;
+        &lt;value&gt;uid={0},ou=people&lt;/value&gt;
+    &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id="contextSource"
+      class="org.springframework.security.ldap.DefaultSpringSecurityContextSource"&gt;
+    &lt;constructor-arg value="ldap://localhost:10389/dc=example,dc=com" /&gt;
+&lt;/bean&gt;
+</code></pre>
+        <p>The <code>userDnPatterns</code> property is used to tell the authenticator how to find a user in LDAP. In this case we are only using a single DN pattern. For example, if the username is Edward, the DN used to bind to LDAP will be <code>uid=Edward,ou=people</code> relative to the initial context <code>dc=example,dc=com</code>.</p>
+        <h2><a name="authenticating-by-comparing-passwords"></a>Authenticating by Comparing Passwords</h2>
+        <p>Spring Security also supports authentication by password comparison with <code>PasswordComparisonAuthenticator</code>. <code>PasswordComparisonAuthenticator</code> compares the supplied password with a password attribute (<code>userpassword</code>, by default) in the user record. The password is encoded using the password encoder, by default <code>LdapShaPasswordEncoder</code>.</p><pre><code class="language-xml">&lt;bean id="authenticator"
+      class="org.springframework.security.ldap.authentication.PasswordComparisonAuthenticator"&gt;
+    &lt;constructor-arg ref="contextSource" /&gt;
+...
+    &lt;property name="passwordAttributeName" value="userpassword" /&gt;
+    &lt;property name="passwordEncoder"&gt;
+        &lt;bean class="org.springframework.security.authentication.encoding.LdapShaPasswordEncoder" /&gt;
+    &lt;/property&gt;
+...
+</code></pre>
+        <p>Unlike <code>BindAuthenticator</code>, <code>PasswordComparisonAuthenticator</code> doesn't bind to LDAP using the user's DN. It is fine if your LDAP provider allows anonymous binding. Otherwise, you will need to provide a <code>userDN</code> and <code>password</code>.</p><pre><code class="language-xml">&lt;bean id="contextSource"
+    class="org.springframework.security.ldap.DefaultSpringSecurityContextSource"&gt;
+    &lt;constructor-arg value="ldap://localhost:10389/dc=example,dc=com" /&gt;
+
+    &lt;property name="userDn" value="cn=manager,dc=example,dc=com" /&gt;
+    &lt;property name="password" value="password" /&gt;
+&lt;/bean&gt;
+</code></pre>
+        <h2><a name="declaring-the-populator"></a>Declaring the Populator</h2>
+        <p>Once the user identity is confirmed, <code>LdapAuthenticationProvider</code> must retrieve a list of the user's granted authorities. Spring Security comes with <code>DefaultLdapAuthoritiesPopulator</code>. Here's how a populator is configured:</p><pre><code class="language-xml">&lt;bean id="populator"
+      class="org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator"&gt;
+    &lt;constructor-arg ref="contextSource" /&gt;
+    &lt;!--  group based DN - we will be searching for groups in "ou=groups,dc=example,dc=com" --&gt;
+    &lt;constructor-arg value="ou=groups" /&gt;
+
+    &lt;!-- the name of the attribute that will contain role information (which
+         effectively translates to a user's granted authorities. Default is "cn" --&gt;
+    &lt;property name="groupRoleAttribute" value="ou" /&gt;
+
+    &lt;!-- case normalization to upper case. Default is true --&gt;
+    &lt;property name="convertToUpperCase" value="false" /&gt;
+
+    &lt;!-- role prefix to append to the group name. Default is "ROLE_". --&gt;
+    &lt;property name="rolePrefix" value="" /&gt;
+&lt;/bean&gt;
+</code></pre>
+        <p>The <code>groupRoleAttribute</code> property specifies the name of the attribute that will contain role information which effectively translate into a user's granted authorities. It defaults to <code>cn</code>, but for our example, we've set it to <code>ou</code>.</p>
+        <div class="tc-admon-note">
+            <p>Notice that the <code>convertToUpperCase</code> and <code>rolePrefix</code> are different than the defaults. The granted authorities should be returned as-is, without any conversion. For example, the authority <code>SpacePrivilege READ ClassFilter eg.cinema.Movie</code> <span class="tc-bold">should not</span> be converted to upper case, nor should it be prefixed with a role prefix "ROLE_".</p>
+        </div>
+        <p>Configured this way, the <code>DefaultLdapAuthoritiesPopulator</code> will retrieve all groups (roles) that the user is a member of - that is, all groups that have a <code>member</code> attribute with the user's DN.</p>
+        <h3><a name="additional-roles"></a>Additional Roles</h3>
+        <p>The <code>DefaultLdapAuthoritiesPopulator</code> allows us to obtain any additional roles for the given user (on top of those obtained from the standard search implemented by this class). This is done by overriding <code>getAdditionalRoles</code> to return the extra roles which will be merged with those returned by the group search.</p>
+        <p>Take for example Emily, our "Box-Office Administrator" which needs extra authorities which are not part of the "Box-Office Administrator" role. We would like to be able to grant specific authorities on top of the user record, as illustrated below:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/SpringSecurity-LDAP-extra.png" alt="SpringSecurity-LDAP-extra.png" class="tc-picture100" />
+            </p>
+        </div>
+    </body>
+</html>

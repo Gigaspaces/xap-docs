@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Transient Entries</h1>
+        <p>When using a persistent space there are situations where not all the space objects need to be persistent (saved within the database). You can specify a space Object to be stored only in the space, without storing it also in the persistent store, by setting its <code>Persist</code> mode to have a <span class="tc-bold">false</span> value. You should set this value at the space class level or at the object level. When setting it at the object level you should have it set to false before writing it into the space. After the space object has been written to the space you cannot change its persist mode.</p>
+        <p>Transient Space objects are treated the same as persistent objects, but when you call the write operation, only persistent objects are saved to the persistent store. All space operations, including batch operations, are valid for transient space object.</p>
+        <div class="tc-admon-tip">
+            <p>When using the <a href="space-persistency-overview.html">Space Persistency</a> feature, you might not want all space objects to be persistent or to be delivered to some data source (non-mirrored entries). The Space Persistency feature makes sure transient space objects are not persisted or delivered to the data source.</p>
+        </div>
+        <p>The following example marks an entire class transient (i.e. non-persistent):</p><pre><code class="language-csharp">[SpaceClass(Persist = false)]
+public class MyData
+{
+    ...
+}
+</code></pre>
+        <p>The following example marks the property which determines whether a class instance is transient or persistent:</p><pre><code class="language-csharp">[SpaceClass]
+public class MyData 
+{
+    [SpacePersist]
+    public bool Persist {get; set;}
+}
+</code></pre>
+        <ul>
+            <li>
+                <p>Transient Space objects can be constructed using the <code>[SpacePersist]</code> on the relevant property. See <a href="modeling-your-data.html">Modeling Your Data</a> for details.</p>
+            </li>
+            <li>
+                <p>Transient objects will be evicted from the space only by explicit take/clear operation.</p>
+            </li>
+            <li>
+                <p>Having a space Class using the <code>persist=true</code> and memory (transient) based spaces, will not generate any errors or exceptions, but will not write these into any persistent store. The Entries will be transient.</p>
+            </li>
+        </ul>
+    </body>
+</html>

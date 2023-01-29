@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Directory Structure</h1>
+        <h1><a name="the-processing-unit-jar-file"></a>The Processing Unit JAR File</h1>
+        <p>Much like a JEE web application or an OSGi bundle, The Processing Unit is packaged as a .jar file and follows a certain directory structure which enables the GigaSpaces runtime environment to easily locate the deployment descriptor and load its classes and the libraries it depends on. A typical processing unit looks as follows:</p><pre><code class="language-bash">|----META-INF
+|--------spring
+|------------pu.xml
+|------------pu.properties
+|------------sla.xml
+|--------MANIFEST.MF
+|----com
+|--------mycompany
+|------------myproject
+|----------------MyClass1.class
+|----------------MyClass2.class
+|----lib
+|--------hibernate3.jar
+|--------....
+|--------commons-math.jar
+</code></pre>
+        <p>The Processing Unit JAR file is composed of several key elements:</p>
+        <ul>
+            <li>
+                <p><code>META-INF/spring/pu.xml</code> (mandatory): This is the Processing Unit's deployment descriptor, which is in fact a <a href="http://www.springframework.org">Spring</a> context XML configuration with a number of GigaSpaces-specific namespace bindings. These bindings include GigaSpaces specific components (such as the space for example). The <code>pu.xml</code> file typically contains definitions of GigaSpaces components (<a href="../overview/the-in-memory-data-grid.html">space</a>, <a href="event-processing.html">event containers</a>, <a href="space-based-remoting-overview.html">remote service exporters</a>) and user defined beans which would typically interact with those components (e.g. an event handler to which the event containers delegate the events, or a service beans which is exposed to remote clients by a remote service exporter).</p>
+            </li>
+            <li>
+                <p><code>META-INF/spring/sla.xml</code> (not mandatory): This file contains SLA definitions for the Processing Unit (i.e. number of instances, number of backup and deployment requirements). Note that this is optional, and can be replaced with an <code>&lt;os:sla&gt;</code> definition in the <code>pu.xml</code> file. If neither is present, the <a href="../admin/the-sla-overview.html">default SLA</a>  will be applied. Note, the <code>sla.xml</code> can also be placed at the root of the Processing Unit. SLA definitions can be also specified at the deploy time via the <a href="../admin/deploy-command-line-interface.html">deploy CLI</a> or <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/gsm/GridServiceManagers.html">deploy API</a>.</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>SLA definitions are only enforced when deploying the Processing Unit to the service grid, since this environment actively manages and controls the deployment using the <a href="../overview/the-runtime-environment.html#gsm">GSM</a>. When <a href="../started/xap-debug.html">running within your IDE</a> or in <a href="running-in-standalone-mode.html">standalone mode</a> these definitions are ignored.</p>
+        </div>
+        <ul>
+            <li>
+                <p><code>META-INF/spring/pu.properties</code> (not mandatory): Enables you to externalize properties included in the <code>pu.xml</code> file (e.g. database connection username and password), and also set system-level deployment properties and overrides, such as JEE related deployment properties (see <a href="web-application-overview.html">this page</a> for more details) or space properties (when defining a space inside your Processing Unit). Note, the <code>pu.properties</code> can also be placed at the root of the Processing Unit.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">User class files</span>: Your Processing Unit's classes (here under the com.mycompany.myproject package)</p>
+            </li>
+            <li>
+                <p><code>lib</code>: Other JARs on which your Processing Unit depends, e.g. commons-math.jar or JARs that contain common classes across many Processing Units.</p>
+            </li>
+            <li>
+                <p><code>META-INF/MANIFEST.MF</code> (not mandatory): This file could be used for adding additional JARs to the Processing Unit classpath, using the standard <code>MANIFEST.MF</code> <code>Class-Path</code> property. (see <a href="#manifest-based-classpath">Manifest Based Classpath</a> for more details)</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>You may add your own JARs into the runtime (GSC) classpath by using the <code>PRE_CLASSPATH</code> and <code>POST_CLASSPATH</code> variables. These should point to your application JARs.</p>
+        </div>
+        <h1><a name="sharing-libraries-between-multiple-processing-units"></a>Sharing Libraries Between Multiple Processing Units</h1>
+        <p>In some cases, multiple Processing Units use the same JAR files. In such cases it makes sense to place these JAR files in a central location accessible by all the Processing Units rather than packaging them individually with each of the Processing Units. Note that this is also useful for decreasing the deployment time in case your Processing Units contain a lot of 3rd party JARs files, since it saves a lot of the network overhead associated with downloading these JARs to each of the GSCs.</p>
+        <p>There are three options to achieve this:</p>
+        <h2><a name="lib-optional-pu-common-directory"></a>lib/optional/pu-common Directory</h2>
+        <p>JAR files placed in the <code><MadCap:variable name="General.HomePath" />/lib/optional/pu-common</code> directory will be loaded by each Processing Unit instance in its own separate classloader (called the Service Classloader, <a href="#classloaders">see the</a> section below).</p>
+        <p>This means they are not shared between Processing Units on the same JVM, which provides an isolation quality often required for JARs containing the application's proprietary business-logic. On the other hand this option consumes more PermGen memory (due to potentially multiple instances per JVM).</p>
+        <p>You can place these JARs in each <MadCap:variable name="General.ProductNameXAP" /> installation in your network, but it is more common to share this folder on your network and point the <code>pu-common</code> directory to the shared location by specifying this location in the <code>com.gs.pu-common</code> system property in each of the GSCs on your network.</p>
+        <p>When a new JAR needs to be loaded, just place the new JAR in <code>pu-common</code> directory and restart the Processing Unit.</p>
+        <div class="tc-admon-note">
+            <p>If different Processing Units use different versions of the same JAR (under same JAR file name) then <code>pu-common</code> should not be used.</p>
+        </div>
+        <h2><a name="meta-inf-manifest-mf-descriptor"></a>META-INF/MANIFEST.MF descriptor</h2>
+        <p>JAR files specified in the Processing Unit's <code>META-INF/MANIFEST.MF</code> descriptor file will be loaded by each Processing Unit instance in its own separate classloader (called the Service Classloader, see the <a href="#classloaders">Class Loaders</a> section below.</p>
+        <p>This option achieves similar behavior to the <code>lib/optional/pu-common</code> option above, but allows a more fine-grained control by enabling to specify specific JAR files (each in its own location) rather than an entire folder (and only a single folder).</p>
+        <p>For more information see <a href="#manifest-based-classpath">Manifest Based Classpath</a> section below.</p>
+        <h2><a name="lib-platform-ext-directory"></a>lib/platform/ext directory</h2>
+        <p>JAR files placed in the <code><MadCap:variable name="General.HomePath" />/lib/platform/ext</code> directory will be loaded once by the GSC-wide classloader and not separately by each Processing Unit instance (this classloader is called the Common Classloader, see the <a href="#classloaders">Class Loaders</a> section below).</p>
+        <p>This means they are shared between Processing Units on the same JVM and thereby offer no isolation. On the other hand this option consumes less PermGen memory (one instance per JVM).</p>
+        <p>This method is recommended for 3rd party libraries that have no requirement for isolation or different versions for different Processing Units, and are upgraded rather infrequently, such as JDBC driver.</p>
+        <p>You can place these JARs in each <MadCap:variable name="General.ProductNameXAP" /> installation in your network, but it is more common to share this folder on your network and point the <code>platform/lib/ext</code> directory to the shared location on your network by specifying this location in the <code>com.gigaspaces.lib.platform.ext</code> system property in each of the GSCs on your network.</p>
+        <p>When a new JAR needs to be loaded, place the new JAR in <code>lib/platform/ext</code> directory and restart the relevant GSCs (on which an instance of the Processing Unit was running).</p>
+        <h2><a name="considerations"></a>Considerations</h2>
+        <p>When it comes to choosing the right option for your system, the following should be considered: <br /></p>
+        <ul>
+            <li>Size of loaded classes in memory (PermGen)  <br /></li>
+            <li>Size of Processing Unit JAR file and Processing Unit deployment time <br /></li>
+            <li>Isolation (sharing classes between Processing Units) <br /></li>
+            <li>Frequency of updating the library JAR  <br /></li>
+            <li>In addition special attention is required to xml parsing related JARs that have parllels in jdk itself,If your Processing Unit requires use of one of those JARS, you should place ALL related JARs in lib/platform/ext
+starting with 10.1 version the product dosn't include xml parsing JARs under lib/platform/xml and use default jdk JARs.</li>
+        </ul>
+        <h1><a name="runtime-modes"></a>Runtime Modes</h1>
+        <p>The Processing Unit can <a href="deploying-and-running-overview.html">run</a> in multiple modes.</p>
+        <p>When deployed on to the <a href="../admin/the-runtime-environment.html">GigaSpaces runtime environment</a> or when running in <a href="running-in-standalone-mode.html">standalone mode</a>, all the JARs under the <code>lib</code> directory of your Processing Unit JAR, will be automatically added to the Processing Unit's classpath.</p>
+        <p>When <a href="../started/xap-debug.html">running within your IDE</a>, it is similar to any other Java application, i.e. you should make sure all the dependent JARs are part of your project classpath.</p>
+        <h1><a name="deploying-the-processing-unit-to-the-service-grid"></a>Deploying the Processing Unit to the Service Grid</h1>
+        <p>When deploying the Processing Unit to the <a href="../admin/the-runtime-environment.html">Service Grid</a>, the Processing Unit JAR file is uploaded to the <a href="../overview/the-runtime-environment.html#gsm"> Manager (GSM)</a> and extracted to the <code>deploy</code> directory of the local GigaSpaces installation (located by default under <code><MadCap:variable name="General.HomePath" />/deploy</code>).</p>
+        <p>Once extracted, the <a href="../overview/the-runtime-environment.html#gsm">GSM</a> processes the deployment descriptor and based on that provisions Processing Unit instances to the running <a href="../overview/the-runtime-environment.html#gsc">Containers</a>.</p>
+        <p>Each GSC to which a certain instance was provisioned, downloads the Processing Unit JAR file from the GSM, extracts it to its local work directory (located by default under <code><MadCap:variable name="General.HomePath" />/work/deployed-processing-units</code>) and starts the Processing Unit instance.</p><a name="dataOnlyPUs"></a>
+        <h1><a name="deploying-data-only-processing-units"></a>Deploying Data-Only Processing Units</h1>
+        <p>In some cases, your Processing Unit contains only a <a href="the-space-configuration.html#proxy">Space</a> and no custom code.</p>
+        <p>One way to package such Processing Unit is to use the standard Processing Unit packaging described above, and create a Processing Unit JAR file which only includes a <a href="configuring-processing-unit-elements.html">deployment descriptor</a> with the required space definitions and SLA.</p>
+        <p>GigaSpaces also provides a simpler option via its built-in data-only Processing Unit templates (located under <code><MadCap:variable name="General.HomePath" />/deploy/templates/datagrid</code>. Using these templates you can deploy and run data only Processing Unit without creating a dedicated JAR for them.</p>
+        <p>For more information please refer to <a href="deploying-and-running-overview.html">Deploying and running the Processing Unit</a></p><a name="classloaders"></a>
+        <h1><a name="class-loaders"></a>Class Loaders</h1>
+        <p>In general, classloaders are created dynamically when deploying a Processing Unit into a GSC. You <span class="tc-bold">should not add your classes</span> into the GSC CLASSPATH. Classes are loaded dynamically into the generated classloader in the following cases:</p>
+        <ul>
+            <li>When the GSM sending classes into the GSC when the application deployed and when GSC is restarted.</li>
+            <li>When the GSM sending classes into the GSC when the application scales.</li>
+            <li>When a Task class or Distributed Task class and its dependencies are executed (space execute operation).</li>
+            <li>When space domain classes and their dependencies (Data model) are used (space write/read operations)</li>
+        </ul>
+        <p>Here is the structure of the class loaders when several Processing Units are deployed on the Service Grid (GSC):</p><pre><code class="language-bash">Bootstrap (Java)
+                  |
+               System (Java)
+                  |
+               Common (Service Grid)
+             /        \
+    Service CL1     Service CL2
+</code></pre>
+        <p>The following table shows which user controlled locations end up in which class loader, and the important JAR files that exist within each one:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Class Loader</th>
+                    <th align="left">User Locations</th>
+                    <th align="left">Built in JAR Files</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Common</td>
+                    <td align="left">[GSRoot]/lib/platform/ext/*.jar</td>
+                    <td align="left">xap-datagrid.jar</td>
+                </tr>
+                <tr>
+                    <td align="left">Processing Unit Instance (Service Class Loader)</td>
+                    <td align="left">[PU], [PU]/lib/*.jar, [PU]/META-INF/MANIFEST.MF Class-Path Entry, [GSRoot]/lib/optional/pu-common/*.jar</td>
+                    <td align="left">xap-openspaces.jar, org.springframework*.jar</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>In terms of class loader delegation model, the service (Processing Unit instance) class loader uses a <span class="tc-bold">parent last delegation mode</span>. This means that the Processing Unit instance class loader will first try and load classes from its own class loader, and only if they are not found, will delegate up to the parent class loader.</p>
+        <h2><a name="native-library-usage"></a>Native Library Usage</h2>
+        <p>When deploying applications using native libraries you should place the Java libraries (JAR files) loading the native libraries under the <code>GSRoot/lib/platform/ext</code> folder. This will load the native libraries once into the common class loader.</p>
+        <h2><a name="permanent-generation-space"></a>Permanent Generation Space</h2>
+        <p>For applications that are using relatively large amount of third party libraries (Processing Unit using large amount of JARs) the default permanent generation space size may not be adequate. In such a case, you should increase the permanent generation space size. Here are suggested values:</p><pre><code class="language-bash">-XX:PermSize=512m -XX:MaxPermSize=512m
+</code></pre>
+        <h1><a name="manifest-based-classpath"></a>Manifest Based Classpath</h1>
+        <p>You may add additional JARs to the Processing Unit classpath by having a manifest file located at <code>META-INF/MANIFEST.MF</code> and defining the property <code>Class-Path</code> as shown in the following example (using a simple <code>MANIFEST.MF</code> file):</p><pre><code class="language-bash">Manifest-Version: 1.0
+Class-Path: /home/user1/java/libs/user-lib.jar
+ lib/platform/jdbc/hsqldb.jar
+ ${MY_LIBS_DIRECTORY}/user-lib2.jar
+ file:/home/user2/libs/lib.jar
+
+[REQUIRED EMPTY NEW LINE AT EOF]
+</code></pre>
+        <p>In the previous example, the <code>Class-Path</code> property contains 4 different entries:</p>
+        <ol>
+            <li><code>/home/user1/java/libs/user-lib.jar</code> - This entry uses an absolute path and will be resolved as such.</li>
+            <li><code>lib/optional/jdbc/hsqldb-[%=Versions.hsql%].jar</code> - This entry uses a relative path and as such its path is resolved in relative to the gigaspaces home directory.</li>
+            <li><code>${MY_LIBS_DIRECTORY}/user-lib2.jar</code> - In this entry the <code>${MY_LIBS_DIRECTORY}</code> will be resolved if an environment variable named <code>MY_LIBS_DIRECTORY</code> exists, and will be expanded appropriately.</li>
+            <li><code>file:/home/user2/libs/lib.jar</code> - This entry uses URL syntax</li>
+        </ol>
+        <h2><a name="the-pu-common-directory"></a>The <code>pu-common</code> Directory</h2>
+        <p>The <code>pu-common</code> directory may contain a JAR file with a manifest file as described above located at <code>META-INF/MANIFEST.MF</code>. The classpath defined in this manifest will be shared by all Processing Units as described in <a href="#sharing-libraries-between-multiple-processing-units">Sharing libraries</a>.</p>
+        <h2><a name="further-details"></a>Further details</h2>
+        <ol>
+            <li>If an entry points to a non existing location, it will be ignored.</li>
+            <li>If an entry included the <code>${SOME_ENV_VAL}</code> placeholder and there is no environment variable named <code>SOME_ENV_VAL</code>, it will be ignored.</li>
+            <li>Only file URLs are supported. (i.e http, etc... will be ignored)</li>
+        </ol>
+        <div class="tc-admon-refer">
+            <p>Further details about the manifest file can be found <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/technotes/guides/jar/jar.html#JAR%20Manifest">here</a>.</p>
+        </div>
+    </body>
+</html>

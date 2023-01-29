@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Replication</h1>
+        <p>Replication is the process of duplicating or copying application data and operations from a source Space to a target Space, or to multiple target spaces. Replication is used mainly for high availability, where a replica Space is running in backup mode or for sharing local site data with remote sites. The operations that are replicated are the modifying operations, i.e. those that actually affect the data that is stored in the Space instance, such as Write/Take/Update and Lease cancel/renewal.</p>
+        <h1><a name="replication-topologies"></a>Replication Topologies</h1>
+        <p>There are three types of replication topologies:</p>
+        <ul>
+            <li>Primary-Backup</li>
+            <li>Primary-Backup with mirror (reliable asynchronous replication)</li>
+            <li>Active-Active (fully replicated)</li>
+        </ul>
+        <h2><a name="primary-backup"></a>Primary-Backup</h2>
+        <p>This topology consists of a group of Space instances that are part of the same replication group. One of the Space instances is elected and serves as the primary Space instance of the group. The application interacts with the primary instance, while the other instances serve as the backups of the primary. </p>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
+        <p>The backup Space instances are exact replicas of the primary Space instance. If the primary instance fails, they are ready to immediately replace it. This happens without any data loss, and is transparent to the Space proxy connected to the Space instances.</p>
+        <h2><a name="primary-backup-with-mirror"></a>Primary-Backup with Mirror</h2>
+        <p>This topology extends the simple Primary-Backup topology with a mirror service that is part of the primary backup replication group. The mirror service receives the replication data from the primary Space instance asynchronously. However, the replication data is kept in a backlog both in the primary and the backup Space instances until the mirror acknowledges that it has received the replication data. This way, in case of a primary failure, the replacement backup Space instance can ensure that the mirror does not lose any replication data (hence the terminology - reliable asynchronous replication).</p>
+        <h2><a name="active-active"></a>Active-Active</h2>
+        <p>This topology consists of a group of Space instances that are part of the same replication group. Unlike the Primary-Backup topology, all of the Space instances are active, and the application interacts with all of them. This topology is generally used in multi-site deployments, where each site interacts with the local Space instance while all the operations are replicated and kept in the other sites as well. Each Space instance replicates its data to all the other members, so all the Space instances hold each other's data.</p>
+        <div class="tc-admon-note">
+            <p>For more information about replication topologies, refer to <a href="replication-topologies.html">Replication Topologies</a>.</p>
+        </div>
+        <h1><a name="replication-modes"></a>Replication Modes</h1>
+        <p>There are two replication modes:</p>
+        <ul>
+            <li>Synchronous replication - the data is replicated as part of the modifying Space operation.</li>
+            <li>Asynchronous replication - the data is replicated asynchronously to the Space operation</li>
+        </ul>
+        <p>Synchronous replication mode is generally used with the Primary-Backup topology, and asynchronous replication mode is generally used with the Active-Active topology.</p>
+        <h2><a name="synchronous-replication"></a>Synchronous Replication</h2>
+        <p>With synchronous replication, the client receives acknowledgement about replicated operations only after all the Space instances in the replication group have performed the operation.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/replication-matrix-IMG503.jpg" alt="replication-matrix-IMG503.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <div class="tc-admon-note">
+            <p>For more information about synchronous replication, refer to <a href="synchronous-replication.html">Synchronous Replication</a>.</p>
+        </div>
+        <h2><a name="asynchronous-replication"></a>Asynchronous Replication</h2>
+        <p>With asynchronous replication, operations are performed in the source Space instance, and an acknowledgement is immediately returned to the client.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/replication-matrix-IMG504.jpg" alt="replication-matrix-IMG504.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <p>Operations are accumulated in the source Space and sent asynchronously to the target Space after a predefined period of time has elapsed, or after a predefined number of operations have been performed (the first of the two to occur). The downside of this replication mode is the possibility of data loss if the Source space fails while transferring the accumulated operations to the target Space. Another problem is data consistency; the source and the target do not have identical data at all times.</p>
+        <div class="tc-admon-note">
+            <p>For more information about asynchronous replication, refer to <a href="asynchronous-replication.html">Asynchronous Replication</a>.</p>
+        </div>
+        <h2><a name="replication-during-disconnection-between-space-instances"></a>Replication During Disconnection Between Space Instances</h2>
+        <p>In both replication modes, when a target Space instance is not available, the client receives an acknowledgement from the source Space instance. The operation on the target Space instance is performed only when the source Space instance re-establishes the connection with the target Space instance. The source Space instance keeps a backlog of all replicated operations until it is able to re-establish a connection with the target Space instance.</p>
+        <p>The table below shows a conceptual comparison between synchronous and asynchronous replication.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Aspect</th>
+                    <th align="left">Synchronous Replication</th>
+                    <th align="left">Asynchronous Replication</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Data loss</td>
+                    <td align="left">Each Space operation waits both the source and the target Space instances confirm that the operation is complete.</td>
+                    <td align="left">May occasionally lose some data (latest operations) if there is a failure at the source Space instance.</td>
+                </tr>
+                <tr>
+                    <td align="left">Latency</td>
+                    <td align="left">Less tolerant of high network latency.</td>
+                    <td align="left">Highly tolerant of network latency, and can be used when the Space instances are located in different geographical sites (different cities).</td>
+                </tr>
+                <tr>
+                    <td align="left">Performance Impact</td>
+                    <td align="left">Client applications must wait until each operation from the source and target Space instances is confirmed.<br />Performance is mainly dependent on the source Space instance resources (CPU/memory), target Space instance resources (CPU/memory), and network bandwidth and latency between the source and target Space instances.</td>
+                    <td align="left">Client application receives acknowledgement immediately after the source Space instances have processed incoming operations.<br />Performance is dependent mainly on source Space resources (CPU/memory).</td>
+                </tr>
+                <tr>
+                    <td align="left">Data Integrity</td>
+                    <td align="left">Very accurate</td>
+                    <td align="left">Less accurate</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="configuration"></a>Configuration</h2>
+        <p>There are many parameters that affect the replication behavior. For a full list of the parameters, refer to <a href="replication-parameters.html">Replication Parameters</a>.</p>
+        <h2><a name="monitoring-and-statistics"></a>Monitoring and Statistics</h2>
+        <p>The replication module can be monitored, and exposes various statistics using the <a href="../dev-java/administration-and-monitoring-overview.html">Administration and Monitoring API</a> via <a href="[%=Links.ApiJavaDoc%]/com/j_spaces/core/filters/ReplicationStatistics.html">Replication Statistics</a>.</p>
+    </body>
+</html>

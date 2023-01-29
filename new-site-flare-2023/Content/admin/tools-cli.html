@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Command Line Interface (CLI)</h1>
+        <p><MadCap:variable name="General.CompanyName" /> provides a CLI tool for administration and maintenance tasks. The CLI is based on the REST Manager API, enabling users to administer local, remote, and cloud-based application environments. <MadCap:conditionalText MadCap:conditions="Version.14-5-died">In addition to the REST Manager API operations, the CLI supports certain administration tasks in the open source application editions.</MadCap:conditionalText></p>
+        <p MadCap:conditions="Version.14-5-died">Users that are administering a <MadCap:variable name="General.ProductNameXAP" /> environment should use the <code>xap</code> script. Users that are administering <MadCap:variable name="General.ProductNameIE" /> should use the <code>insightedge</code> CLI script, which contains all of the actions available with the <code>xap</code> script, plus additional options where relevant for administering <MadCap:variable name="General.ProductNameIE" /> components.</p>
+        <p MadCap:conditions="Version.14-5-died">The image below shows the screen that is displayed when you run the <code>xap</code> script.</p>
+        <p MadCap:conditions="Version.14-5-born">Use the <code>gs</code> script to invoke the CLI. If no arguments are specified, the usage instructions and available commands are displayed, as shown below:</p>
+        <p MadCap:conditions="Version.14-5-died">
+            <img src="../Resources/Static/attachment_files/admin/xap-cli.png" alt="image" class="tc-picture80" />
+        </p>
+        <p MadCap:conditions="Version.14-5-born,Version.15-2-died">
+            <img src="../Resources/Static/attachment_files/admin/cli-gs.png" class="tc-picture50" />
+        </p>
+        <p MadCap:conditions="Version.15-2-born">
+            <img src="../Resources/Static/attachment_files/admin/cli-gs-15-june-2021.png" />
+        </p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p>If you are upgrading from a version prior to release 14.5, this is a new version of the CLI tool and uses a different syntax and command set. For more information, see <a href="upgrading-cli.html">Upgrading the CLI</a>.</p>
+        </div>
+        <h1 MadCap:conditions="Version.14-5-died"><a name="cli-help"></a>CLI Help</h1>
+        <p MadCap:conditions="Version.14-5-died">Use the <code>--help</code> command (or <code>-h</code>) to see the syntax of a specified CLI command, or a list of all available commands. The list of commands may vary depending on whether you are running the <MadCap:variable name="General.ProductNameXAP" /> or the <MadCap:variable name="General.ProductNameIE" /> script. For example,
+the list of commands for <code>insightedge host run-agent --help</code> contains all the actions available under <code>xap host run-agent --help</code>, plus additional options for administering the Spark master and worker components.</p>
+        <h1><a name="cli-configuration"></a>CLI Configuration</h1>
+        <p>The CLI connects to the REST Manager API using the name or IP address of the Manager server. Configuration is applied from one of the following:</p>
+        <ul>
+            <li>The first server configured in the <code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS</code> environment variable.</li>
+            <li>The server configured using <code>--server</code> command line option.</li>
+            <li>The <code>localhost</code> as the server to connect to (if none of the above was applied).</li>
+        </ul>
+        <h1 MadCap:conditions="Version.14-5-born">Interactive Shell</h1>
+        <p MadCap:conditions="Version.14-5-born">A CLI interactive shell is available for all platforms. To activate interactive mode, navigate to <MadCap:variable name="General.HomePath" /><code>/bin</code> and type <code>gs</code> to display the CLI help with command usage and the available options and commands. For each command you enter, the interactive shell provides guidance by:</p>
+        <ul MadCap:conditions="Version.14-5-born">
+            <li>Displaying the same command help when a partial command is entered.</li>
+            <li>Auto-completing the command when you type the first letters of the command and press <span class="tc-bold">TAB</span>.</li>
+        </ul>
+        <p MadCap:conditions="Version.14-5-died">Press <span class="tc-bold">Ctrl-D</span> to exit the interactive shell.</p>
+        <h1><a name="autocomplete-functionality"></a>Bash Completion</h1>
+        <h2><a name="overview"></a>Overview</h2>
+        <p MadCap:conditions="Version.14-5-died">Bash completion in the CLI is available for Linux and MacOS X users. After generating and activating the autocomplete feature (as explained below), navigate to <code><MadCap:variable name="General.HomePath" />/bin</code> and type <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>. This will complete the command sequence, or list all the available completions if there are multiple options.</p>
+        <p MadCap:conditions="Version.14-5-born">In addition to the interactive shell, the CLI&#160;provides bash completion of all commands for Linux and MacOS X users. </p>
+        <h3 MadCap:conditions="Version.14-5-born">Linux Users</h3>
+        <p MadCap:conditions="Version.14-5-born">After generating and activating the auto-completion (as explained below), do the following:</p>
+        <ol>
+            <li MadCap:conditions="Version.14-5-born">Navigate to <code><MadCap:variable name="General.HomePath" />/bin</code>.</li>
+            <li MadCap:conditions="Version.14-5-born"> In the command window, type <span class="tc-bold">gs</span>. </li>
+            <li MadCap:conditions="Version.14-5-born">Press  <span class="tc-bold">TAB</span>+<span class="tc-bold">TAB</span>. This will complete the command sequence, or list all the available completions if there are multiple options.</li>
+        </ol>
+        <h3 MadCap:conditions="Version.14-5-died"><a name="macos-x-users-only"></a>MacOS X Users </h3>
+        <p MadCap:conditions="Version.14-5-died">If you are using the CLI in a MacOS X environment, the autocomplete script will only work if bash version 4 is installed on your machine. After installing the required bash version, add the shell to the allowed shells and make it the default shell.</p>
+        <p MadCap:conditions="Version.14-5-died">When using autocomplete, type <code>./xap [TAB][TAB]</code> or <code>./insightedge [TAB][TAB]</code>.</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+            <p>You can add xap as an alias to the <code>.bash_profile</code>, in order to simplify using autocomplete.</p>
+        </div>
+        <h2 MadCap:conditions="Version.14-5-died"><a name="activating-the-autocomplete-feature"></a>Activating the Autocomplete Feature</h2>
+        <p MadCap:conditions="Version.14-5-died">The autocomplete script is located in <code>&lt;XAP-HOME&gt;/tools/cli</code>. There are two ways to install autocomplete.</p>
+        <h3 MadCap:conditions="Version.14-5-died"><a name="method-1-install-only-for-the-current-bash-console"></a>Method 1 - Install Only for the Current Bash Console</h3>
+        <ol MadCap:conditions="Version.14-5-died">
+            <li>Go to <code>&lt;XAP-HOME&gt;/tools/cli</code> and source the completion script: <code>source xap-autocomplete</code> or <code>source insightedge-autocomplete</code>.</li>
+            <li>Go to <code>&lt;XAP-HOME&gt;/bin</code> and type: <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>.</li>
+        </ol>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+            <p>When you leave the bash session, autocomplete stops working.</p>
+        </div>
+        <h3 MadCap:conditions="Version.14-5-died"><a name="method-2-permanent-installation"></a>Method 2 - Permanent Installation</h3>
+        <ol MadCap:conditions="Version.14-5-died">
+            <li>Place the <code>xap-autocomplete</code> or <code>insightedge-autocomplete</code> file in a <code>bash_completion.d</code> folder. The folder may appear in the following locations: <code>/etc/bash_completion.d</code> <code>/usr/local/etc/bash_completion.d</code> <code>~/bash_completion.d</code> (create one if absent).</li>
+            <li>(MacOS X users only) Edit the <code>~/.bash_profile</code> and add the following code: <code>source /usr/local/etc/bash_completion.d/xap-autocomplete</code></li>
+            <li>(MacOS X users only) Reload the bash shell or open a new terminal <code>source ~/.bash_profile</code>.</li>
+            <li>After installing the script, open a new bash console.</li>
+            <li>Go to <code>&lt;XAP-HOME&gt;/bin</code> and type: <code>xap [TAB][TAB]</code> or <code>insightedge [TAB][TAB]</code>.</li>
+        </ol>
+        <div class="tc-admon-tip" MadCap:conditions="Version.14-5-died">
+            <ol>
+                <li>If you export the xap or insightedge classpath, autocomplete will work from any directory. If you don't export the classpath, autocomplete works only from the bin directory.</li>
+                <li>You can add a bash alias, for example: <code>alias xap = "cd &lt;XAP-HOME&gt;/bin &amp;&amp; xap"</code></li>
+            </ol>
+        </div>
+        <h2 MadCap:conditions="Version.14-5-died"><a name="customizing-the-autocomplete-feature"></a>Customizing the Autocomplete Feature</h2>
+        <p MadCap:conditions="Version.14-5-died">If you want to generate a new autocomplete script (for example, if you changed the name of the xap or insightedge script) do so as follows:</p>
+        <p MadCap:conditions="Version.14-5-died">Go to <code>&lt;XAP-HOME&gt;/tools/cli</code> and run the following command:</p>
+        <p MadCap:conditions="Version.14-5-died"><code>java -cp "../../lib/required/*:*" MAIN_COMMAND ALIAS</code>
+        </p>
+        <p MadCap:conditions="Version.14-5-died">The <code>MAIN_COMMAND</code> value is different for each product and edition. Use one of the following:</p>
+        <ul MadCap:conditions="Version.14-5-died">
+            <li><MadCap:variable name="General.ProductNameXAP" /> open source - <code>org.gigaspaces.cli.commands.Autocomplete</code></li>
+            <li>XAP Enterprise - <code>com.gigaspaces.cli.commands.Autocomplete</code></li>
+            <li>Insightedge open source - <code>org.insightedge.cli.commands.Autocomplete</code></li>
+            <li>Insightedge Enterprise - <code>com.insightedge.cli.commands.Autocomplete</code></li>
+        </ul>
+        <p MadCap:conditions="Version.14-5-died"><code>ALIAS</code> is optional; use it if you changed the name of the command.</p>
+        <p MadCap:conditions="Version.14-5-died">After running <code>java -cp "../../lib/required/*:*" MAIN_COMMAND ALIAS</code>, the autocomplete script will appear in <code>&lt;XAP-HOME&gt;/tools/cli</code>.</p>
+        <h3 MadCap:conditions="Version.14-5-born">Prerequisite for MacOS</h3>
+        <p MadCap:conditions="Version.14-5-born">The default 3.2 Bash shell of your Mac has basic Bash completion functionality. However, newer versions of Bash starting with 4.0 support a much more advanced type of completion, called programmable completion. Today, many completion scripts make use of new features that are not supported by Bash 3.2, and that also might depend on a third-party project called bash-completion.</p>
+        <p MadCap:conditions="Version.14-5-born" class="tc-todo">To apply Bash completion on MacOS:</p>
+        <ol>
+            <li MadCap:conditions="Version.14-5-born">Upgrade the Bash version on your machine to 4.0 or higher. For example, <code> brew install bash</code>.</li>
+            <li MadCap:conditions="Version.14-5-born">Install the <a href="https://github.com/scop/bash-completion" target="_blank">bash-completion</a> project on your system.</li>
+            <li MadCap:conditions="Version.14-5-born">When using autocomplete, type <span class="tc-bold">./gs.sh</span> and then press <span class="tc-bold">TAB+TAB</span>.</li>
+        </ol>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p>You can add <code>.gs</code>.as an alias of <code>.gs.sh</code>to the <code>.bash_profile</code>, in order to simplify using the auto-complete feature.</p>
+        </div>
+        <h3 MadCap:conditions="Version.14-5-born">Generating a Completion Script</h3>
+        <p MadCap:conditions="Version.14-5-born">Programmable completion allows defining command-specific completion logic. This enables users to auto-complete sub-commands, options, and other arguments of commands in a context-specific manner.</p>
+        <p MadCap:conditions="Version.14-5-born">A completion specification defines the applicable completions for the argument tokens of a command.</p>
+        <p MadCap:conditions="Version.14-5-born" class="tc-todo"> To define a completion specification:</p>
+        <ul>
+            <li MadCap:conditions="Version.14-5-born">
+                <p> Run <code>./gs.sh completion</code> with one of the following options:</p>
+                <table style="width: 100%;" MadCap:conditions="Version.14-5-born" class="tc-standard">
+                    <col style="width: 227px;" />
+                    <col style="width: 420px;" />
+                    <col />
+                    <tbody>
+                        <tr>
+                            <td class="tabs-title" style="font-weight: bold;">Options</td>
+                            <td class="tabs-title" style="font-weight: bold;">Description</td>
+                            <td class="tabs-title" style="font-weight: bold;">Example</td>
+                        </tr>
+                        <tr>
+                            <td><code>--stdout</code>
+                            </td>
+                            <td>Prints the completion code to standard output.</td>
+                            <td><code>./gs.sh completion --stdout</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>--target=&lt;file&gt;</code>
+                            </td>
+                            <td>Stores the completion code in the specified file.</td>
+                            <td><code>./gs.sh completion --target gs.completion</code>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+        </ul>
+        <h3 MadCap:conditions="Version.14-5-born">Activating Command Completion</h3>
+        <h4 MadCap:conditions="Version.14-5-born">Current Shell</h4>
+        <p MadCap:conditions="Version.14-5-born" class="tc-todo">To load the <code>gs</code> completion code for bash into the current shell:</p>
+        <ul>
+            <li MadCap:conditions="Version.14-5-born">
+                <p> Enter this command:</p><pre xml:space="preserve" MadCap:conditions="Version.14-5-born"><code class="language-bash">$ source &lt;(./gs.sh completion --stdout)</code></pre>
+                <p MadCap:conditions="Version.14-5-born">OR</p>
+            </li>
+            <li MadCap:conditions="Version.14-5-born">
+                <p>Use the <code>--target</code> option to create the completion code in a file, and then source it with a script containing these commands:</p><pre><code class="language-bash">$ ./gs.sh completion --target gs.completion
+$ source gs.completion</code></pre>
+            </li>
+        </ul>
+        <h4 MadCap:conditions="Version.14-5-born">Each New Shell</h4>
+        <p MadCap:conditions="Version.14-5-born" class="tc-todo">To load the <code>gs</code> completion for each new shell:</p>
+        <ul>
+            <li MadCap:conditions="Version.14-5-born">
+                <p>Source this script from the <code>.bash_profile</code> to be loaded on each session:</p><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">$ ./gs.sh completion --target /path/to/bash_completion.d/gs.completion</code></pre>
+                <div class="tc-admon-note">
+                    <p>You can also leverage bash completion behavior by placing the script in the <code>bash_completion.d</code> folder.</p>
+                </div>
+            </li>
+        </ul>
+        <h1>Running a Local Manager Server</h1>
+        <p>To run a local Manager server and a web browser client, type <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code>xap host run-agent --auto</code> or <code>insightedge host run-agent --auto</code></MadCap:conditionalText><code MadCap:conditions="Version.14-5-born">gs host run-agent --auto</code>.</p>
+        <p>To view a list of the running agents, type <MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code>gs host list</code> </MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-died"> <code>xap host list</code> or <code>insightedge host list</code></MadCap:conditionalText>.</p>
+    </body>
+</html>

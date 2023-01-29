@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Availability Biased</h1>
+        <div class="tc-admon-note">
+            <p>This page is for users who are starting the (Grid Service Manager) GSM and Lookup Service (LUS) separately and not using the <MadCap:xref href="xap-manager.html" class="GS-Manager">GS&#160;Manager</MadCap:xref></p>
+        </div>
+        <p>In this leader election implementation, Space instances register themselves with the LUS. The Space instances then undergo an active-election process, to discover current Space instances and elect a primary instance.</p>
+        <p>The active-election process is a 3-phase procedure:</p>
+        <ol>
+            <li>Pending</li>
+            <li>Prepare</li>
+            <li>Active</li>
+        </ol>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/lus4.jpg" alt="" title="" class="tc-picture80" />
+        </div>
+        <h1><a name="split-brain-and-primary-resolution"></a>Split Brain and Primary Resolution</h1>
+        <h2><a name="split-brain-scenario"></a>Split Brain Scenario</h2>
+        <p>Split brain occurs when there are two or more primary instances running for the same partition. In most cases the reason for such behavior would be a network disruption that does not allow each Space instance to communicate with all lookup services running. Usually, each Space instance will communicate with a different lookup service rather all of them (two in most cases).</p>
+        <p>During this split, clients may communicate with each primary as its master data copy updating the data within the Space. If the active GSM also loses connectivity with both lookup services, it may provision a new backup.</p>
+        <p>When the connection between all instances of a given partition and all lookup services is re-established and a split brain is identified (more than a single primary instance is defined for a given partition), the system determines which instance will remain the primary, and which will be demoted to a backup instance. The data within the instance that is demoted to backup is dropped.</p>
+        <p>The primary resolution may involve several steps, which are described in detail below. The purpose of each step is to try and calculate the most recent primary and its data consistency level. If the primary can't be determined in the first step (results are equivalent - a tie), then the second step is executed (tie break). If the primary can't be determined in the second step, the third step is executed (second tie break). After a primary is elected, the other instance is demoted to backup mode and it recovers all the data from the primary.</p>
+        <div class="tc-admon-note">
+            <p>Data resolution occurs between two different clusters using the WAN gateway as a replication channel. In this case, a <a href="../dev-java/multi-site-conflict-resolution.html">conflict resolution</a> is executed.</p>
+        </div>
+        <h2><a name="primary-resolution"></a>Primary Resolution</h2>
+        <p><MadCap:variable name="General.ProductNameXAP" /> provides built-in recovery policies after a split brain has been detected. The default "discard-least-consistent" policy determines which instance should remain as primary and which instance should be demoted. However, the "suspend-partition-primaries" policy suspends all interaction with both instances until the split brain is resolved manually.</p>
+        <p>The recovery policy can be configured using the Space <code>os-core:properties </code>element. The value is one of the policy names. If none is specified, the default "discard-least-consistent" policy is applied.</p><pre><code class="language-xml">&lt;os-core:space id="space" url="/./space"&gt;
+    &lt;os-core:properties&gt;
+          &lt;prop key="space-config.split-brain.recovery-policy.after-detection"&gt;
+                suspend-partition-primaries
+          &lt;/prop&gt;
+    &lt;/os-core:properties&gt;
+&lt;/os-core:space&gt;
+</code></pre>
+        <h3><a name="discard-least-consistent-policy"></a>Discard Least Consistent Policy</h3>
+        <p>The instance that is found to be "least consistent" is discarded and instantiated again in the data grid as a backup Space.
+The policy has three steps that are described below.</p>
+        <h4>Resolution - Step 1</h4>
+        <p>Each primary instance is inspected by checking for multiple properties, and an inconsistency ranking is calculated. The instance with the lowest ranking is elected as the primary. If both instances receive the same ranking (inconsistency level), step two is executed.</p>
+        <p>The inconsistency level is calculated using the mirror's active primary identity and various replication statistics. Since the mirror doesn't allow multiple primary instances for the same partition, it can be useful in the inconsistency level calculation.</p>
+        <h4>Resolution - Step 2</h4>
+        <p>Each instance is inspected for the exact time it was elected to be a primary (the election time is stored within the lookup service). All lookup services are inspected during this process. The instance that was elected to be a primary first remains the primary. If both instances were elected at the same time, or if the election time can't be determined due to discrepancies in the lookup service registration, step three is executed.</p>
+        <h4>Resolution - Step 3</h4>
+        <p>The system reviews the primary instance names, and the one whose name has the lowest lexical value remains the primary.</p>
+        <h3><a name="suspend-partition-primaries-policy"></a>Suspend Partition Primaries Policy</h3>
+        <p>With this policy, both primary instances are suspended (see <a href="quiescemode.html">Quiesce</a> for reference) awaiting manual resolution. The policy has three steps that are described below.</p>
+        <h4>Resolution - Step 1</h4>
+        <p>
+Upon discovery of a split brain, each primary instance enters a Self-Quiesce mode, suspending all interaction with the Space. Only interactions of a proxy that is applied with the Quiesce token are allowed. The Quiesce token is the name of the Space (as apposed to the default auto-generated token) to ease coding logic via the Admin API upon split-brain detection.</p>
+        <p>The logs will show a message similar to:</p><pre><code class="language-bash">... "Space instance [gigaSpace_container1:gigaSpace] is in Quiesce state until split-brain is resolved - Quiesce token [gigaSpace]"
+</code></pre>
+        <h4>Resolution - Step 2
+</h4>
+        <p>Now that both instances are suspended, manual intervention is needed in order to choose the correct primary, extract data from the cluster, etc. These actions can be done via the CLI, GigaSpaces Management Center, or the Admin API. With the Admin API, you can be alerted when a split brain is detected.</p><pre><code class="language-java">//configure the alert
+AlertManager alertManager = admin.getAlertManager();
+alertManager.configure(new SpacePartitionSplitBrainAlertConfigurer().enable(true).create());
+
+//be notified
+alertManager.getAlertTriggered().add(new AlertTriggeredEventListener() {
+public void alertTriggered(Alert alert) {
+   if (alert instanceof SpacePartitionSplitBrainAlert) { 
+   ... //do somthing 
+   Space space = ... //obtain reference
+   GigaSpace gigaSpace = space.getGigaSpace();
+   gigaSpace.setQuiesceToken(new DefaultQuiesceToken(space.getName()));
+    ... //do something with the gigaSpace  
+   }
+}
+</code></pre>
+        <h4>Resolution - Step 3</h4>
+        <p>
+The last part of the policy is to remove the unwanted primary instance. This is best achieved by restarting the instance either from the GigaSpaces Management Center or the Admin API.</p><pre><code class="language-java">//obtain the processing unit instance reference
+ProcessingUnitInstance instance = ...
+instance.restartAndWait();
+</code></pre>
+        <p>After the instance is removed, the remaining primary must be un-quiesced to resume incoming interactions. This can be done via CLI command or the Admin API on the Processing Unit.</p><pre><code class="language-java">//obtain the Processing Unit reference
+ProcessingUnit pu = ...
+pu.unquiesce(new QuiesceRequest("split-brain resolved"));
+</code></pre>
+        <h2><a name="common-causes-of-split-brain"></a>Common Causes of Split Brain</h2>
+        <p>Below are the most common causes for split brain scenarios and ways to detect them.</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">JVM Garbage Collection spikes</span> - when a full GC happens, it has a "stop-the-world" effect on both the GigaSpaces and application components (and holding internal clocks and timing), and external interactions.</p>
+                <ul>
+                    <li>Using JMX or other monitoring tools you can monitor the JVM Garbage Collection activity. A full GC of longer than 30 seconds should trigger an alert. You can use the Admin API to fetch the full GC events. If the GC takes more than 10 seconds, it will be logged as a warning in the GSM/GSC/GSA log file.</li>
+                </ul>
+            </li>
+            <li>
+                <p><span class="tc-bold">High (&gt;90%) CPU utilization</span> - this can cause various components (also external to GigaSpaces) to compete for CPU clock resources, such as keep-alive mechanisms (which can miss events, triggerering initialization of redundant services or false alarms), IO/network lack of available sockets, OS fails to release resources etc. Scenarios of constant (more than a minute) utilization of over 90% CPU should be avoided.</p>
+                <ul>
+                    <li>You can use the out-of-the-box CPU monitoring component (which uses <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><a href="http://www.hyperic.com/products/sigar" target="_blank">SIGAR</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><a href="https://github.com/oshi/oshi" target="_blank">OSHI</a></MadCap:conditionalText>) for measuring the OS and JVM resources. It is easily accessible through the Admin API.</li>
+                </ul>
+            </li>
+            <li>
+                <p><span class="tc-bold">Network outages/disconnections</span> - As discussed, disconnections between the GSMs or GSMs and GSCs can cause any of the GSMs to begin behaving like "islands". This term is described in detail below.</p>
+                <ul>
+                    <li>Use a network monitoring tool to monitor network outages/disconnections and reconnections on the machines that host the GSMs and GSCs. Whatever tool you use should report and alert on the exact date/time of the event.</li>
+                </ul>
+            </li>
+        </ul>
+        <h3><a name="islands"></a>Islands</h3>
+        <p>When network or failure events occur, the system can start to exhibit unexpected behavior, also called Islands, which are extreme scenarios that require special handling. You may encounter one of the following two islands scenarios:</p>
+        <ul>
+            <li>A server running one of the GSMs that is managing some of the PUs is disconnected from the network, and later reconnects with the network. The GSM (which is still a primary) tries to redeploy the failed PUs. The result depends on which of the two GSMs was the primary at the point of disconnection. If the primary GSM is on the island with the GSCs, its backup GSM will become a primary until the network disconnection is resolved. When the network is repaired, the GSM detects that the "former" primary is still managing the services, and returns to backup state. But if the reverse is true, and the primary GSM lost connection with its PUs due to network disconnection or any other failure, it will behave as the primary and try to redeploy as soon as a GSC is available. This can lead to inconsistent mapping of services and an inconsistent system.</li>
+            <li>A more complex form of "islands" is if GSCs are available on both islands, leading both GSMs to behave as primaries and deploy the failed PUs. Reconciling at this point needs to take data integrity into account.</li>
+        </ul>
+        <p>The solution for these scenarios is to manually reconcile the cluster. Terminate one GSM, and with only one remaining managing GSM restart the GSCs hosting the backup space instances. As a last step, start the second GSM (which will serve as the backup GSM).</p>
+        <h1>Troubleshooting</h1>
+        <p>For troubleshooting information for Availability Biased leader election, see the discussion in <MadCap:xref href="troubleshooting-failure-detection.html">Failure Detection</MadCap:xref>.</p>
+        <p>&#160;</p>
+    </body>
+</html>

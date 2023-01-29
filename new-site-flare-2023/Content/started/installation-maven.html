@@ -1,0 +1,687 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Maven Plugin</h1>
+        <p>Maven is a tool used to automate and simplify the development cycle of any Java-based project. The <MadCap:variable name="General.ProductNameXAP" /> plugin for Maven utilizes Maven to simplify the development cycle of <MadCap:variable name="General.ProductNameXAP" />-based applications. You can use this plugin to easily create, compile, package, run unit tests, execute and deploy Processing Units.</p>
+        <p>You don't need to be an experienced Maven user to start working with this plugin. This section provides you with everything you need to know in order to start developing Processing Units with the Maven plugin. Experienced Maven users can use the Maven plugin to embed Processing Unit development with their existing development environment.</p>
+        <div class="tc-admon-note">
+            <p>The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin has been tested with Maven 3.0. For further information about maven see: <a href="http://maven.apache.org/what-is-maven.html" target="_blank">apache.org; What is Maven?</a></p>
+        </div>
+        <h1><a name="prior-to-installation"></a>Prior to Installation</h1>
+        <p>In order to use the <MadCap:variable name="General.ProductNameXAP" /> Maven plugin, Maven needs to be installed on the machine. If a Maven installation already exists on the machine, it can be used. If not, <MadCap:variable name="General.ProductNameXAP" /> comes with a ready-to-use distribution of Maven 3.0, located under: <code>&lt;XAP HOME&gt;/tools/maven/apache-maven-3.2.5</code>.</p>
+        <p>All you need to do is add the Maven <code>bin</code> directory to the system <code>PATH</code> variable, and you are ready to go. To test whether the Maven command is accessible, open a command line window, type <code>mvn \-version</code>, and press Enter.
+The following message should be displayed:</p><pre><code class="language-bash">&gt;mvn -version
+
+Apache Maven 3.0.5 (r01de14724cdef164cd33c7c8c2fe155faf9602da; 2013-02-19 15:51:28+0200)
+Java version: 1.8.0_66, vendor: Oracle Corporation
+Java home: /usr/lib/jvm/java-8-oracle/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "3.13.0-76-generic", arch: "amd64", family: "unix"
+
+</code></pre>
+        <div class="tc-admon-note">
+            <p>The first use of Maven requires an internet connection in order for the local repository to be populated with required libraries. After all required libraries are in the local repository, the internet connection is not mandatory.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>Maven uses repositories: a local repository where all required dependencies (artifacts) are stored for Maven's use, and remote repositories from which Maven downloads required dependencies that are missing in the local repository. If a dependency is missing from the local repository during execution, Maven automatically downloads the missing dependencies from the remote repositories. The download might take a few minutes (progress messages are printed to the console). When the download is finished, Maven returns to its original tasks.</p>
+        </div>
+        <h1><a name="installation"></a>Installation</h1>
+        <p>To install the <MadCap:variable name="General.ProductNameXAP" /> Maven plugin:</p>
+        <p>Run the <code>installmavenrep</code> script from the <code><MadCap:variable name="General.HomePath" />/tools/maven</code> directory:</p><pre><code class="language-bash">D:&lt;XAP Home&gt;\tools\maven&gt;installmavenrep.bat
+</code></pre>
+        <p>This installs the <MadCap:variable name="General.ProductNameXAP" /> libraries and the <MadCap:variable name="General.ProductNameXAP" /> Maven plugin into the local Maven repository. Once the installation is finished, the Maven plugin is ready to be used.</p>
+        <div class="tc-admon-note">
+            <p>The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin is installed under: <code>&lt;maven-repository-dir&gt;\org\apache\maven\plugins\xap-maven-plugin</code></p>
+        </div>
+        <h1><a name="using-available-project-templates"></a>Using Available Project Templates</h1>
+        <p>You may view list of available project templates and their description using the following command:</p><pre><code class="language-bash">mvn xap:create
+</code></pre>
+        <p>The result is a list of available template names and descriptions:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Template Name</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">event-processing</td>
+                    <td align="left">Creates a basic SBA application with two processing units. The Feeder processing unit sends Data objects through the Space to a Processor. The Space and the Processor are collocated in the same processing unit.</td>
+                </tr>
+                <tr>
+                    <td align="left">persistent-event-processing</td>
+                    <td align="left">Creates a basic SBA application with three processing units. The Feeder processing unit sends Data objects through the Space to a Processor. The Space and the Processor are collocated in the same processing unit.The Processor is connected to a Mirror and provides a reliable async replication and persistency to the Database using Hibernate.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Use the <code>-Dtemplate=&lt;template&gt;</code> argument to specify a project template. Example:</p><pre><code class="language-bash">mvn xap:create -Dtemplate=persistent-event-processing
+</code></pre>
+        <h1><a name="creating-processing-unit-project"></a>Creating a Processing Unit Project</h1>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin can create Processing Unit projects. It generates the resources and the appropriate directory structure, making it easy to immediately start working on the Processing Units. Projects can be created in any directory. Before creating the project change to the directory where the project should be created. To create a Processing Unit project, use the following command-line:</p><pre><code class="language-bash">mvn xap:create
+    -DgroupId=&lt;group-id&gt;
+    -DartifactId=&lt;artifact-id&gt;
+    -Dtemplate=&lt;project-template&gt;
+</code></pre>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Argument</th>
+                    <th align="left">Description</th>
+                    <th align="left">Required</th>
+                    <th align="left">Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">groupId</td>
+                    <td align="left">The project package name</td>
+                    <td align="left">No</td>
+                    <td align="left"><code>com.mycompany.app</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">artifactId</td>
+                    <td align="left">The project name</td>
+                    <td align="left">No</td>
+                    <td align="left"><code>my-app</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">template</td>
+                    <td align="left">The project template</td>
+                    <td align="left">Yes</td>
+                    <td align="left">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The project is generated in the current directory (<code>my-app</code> directory).</p>
+        <div class="tc-admon-note">
+            <p>Executing <code>xap:create</code> without specifying a template shows a list of available templates and their description.</p>
+            <p>To start working with the project (compiling, packaging etc...) you should change directory to the directory of the project.</p>
+        </div>
+        <h1><a name="processing-unit-project-structure"></a>Processing Unit Project Structure</h1>
+        <p>Basically, a Processing Unit project structure is what Maven users call a multi-module project. It consists of a main (top-level) project that contains sub-projects called modules. A Processing Unit is implemented as a module of the main project, thus a main project might consist of many Processing Units.</p>
+        <p>The project, created by the <code>event-processing</code> template, consists of a main project and three modules (sub-projects):</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">feeder</span> – a Processing Unit that writes data into the space.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">processor</span> – a Processing Unit that takes data from the space, processes it and writes the results back to the space.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">common</span> – a module that contains resources shared by both the feeder and the processor.</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>The archives generated by the common module and its dependencies are added to the <code>lib</code> directory of the feeder's and processor's distributables.</p>
+        </div>
+        <p>The main project and each of the modules contain a project-descriptor file called <code>pom.xml</code>; which contains information about the project's properties, dependencies, build configuration, and so on. A module is considered a Processing Unit module if its <code>pom.xml</code> file contains the property <code>&lt;gsType&gt;PU&lt;/gsType&gt;</code>. In this case, only the feeder and the processor are considered Processing Unit modules.</p>
+        <h1><a name="compiling-the-processing-unit-project"></a>Compiling the Processing Unit Project</h1>
+        <p>In order to compile the Processing Unit project, use the following command line from the main project's directory.</p><pre><code class="language-bash">mvn compile
+</code></pre>
+        <p>This compiles each module and puts the output files under the modules' <span class="tc-italic">target</span> directory.</p>
+        <h1><a name="running-processing-unit-modules"></a>Running Processing Unit Modules</h1>
+        <p>Sometimes, during development, the developer might want to run the Processing Unit module to check its functionality. The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin allows you to run Processing Unit modules without the need to package them as Processing Unit distributables first. This feature saves time, while evading build phases that are not required for this task.</p>
+        <div class="tc-admon-note">
+            <p>To run modules, they need to be compiled first.</p>
+        </div>
+        <p>Make sure you are in the directory of the project.
+To run Processing Unit modules, use the following command-line (found in the <code>artifactId</code> folder):</p><pre><code class="language-bash">mvn xap:run
+    -Dcluster=&lt;"cluster-properties"&gt;
+    -Dgroups=&lt;groups&gt;
+    -Dlocators=&lt;locators&gt;
+    -Dproperties=&lt;"context-level-properties-location"&gt;
+    -Dmodule=&lt;module-name&gt;
+</code></pre>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Argument</th>
+                    <th align="left">Description</th>
+                    <th align="left">Required</th>
+                    <th align="left">Properties</th>
+                    <th align="left">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster</td>
+                    <td align="left">Cluster properties</td>
+                    <td align="left">No</td>
+                    <td align="left">* <code>schema</code> – the cluster schema name<br />- <code>total_members</code> – a list of the cluster members, separated by a comma<br />- <code>id</code> – the cluster ID<br />- <code>backup_id</code> – the backup ID</td>
+                    <td align="left">* <code>schema=partitioned</code><br />- <code>total_members=1,1</code><br />- <code>id=1</code><br />- <code>backup_id=1</code></td>
+                </tr>
+                <tr>
+                    <td align="left">groups</td>
+                    <td align="left">Comma-delimited list of lookup group names</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">group1,group2</td>
+                </tr>
+                <tr>
+                    <td align="left">locators</td>
+                    <td align="left">Comma-delimited list of Jini locators hosts</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">jini://&lt;hostname1&gt;, jini://&lt;hostname2&gt;</td>
+                </tr>
+                <tr>
+                    <td align="left">properties</td>
+                    <td align="left">Location of context-level properties</td>
+                    <td align="left">No</td>
+                    <td align="left">* <code>file</code> – the properties file<br />- <code>embed</code> – property definition</td>
+                    <td align="left">file://config/context.properties<br />    embed://prop1=value1</td>
+                </tr>
+                <tr>
+                    <td align="left">module</td>
+                    <td align="left">The name of the Processing Unit module to run</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                    <td align="left"><code>feeder</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><span class="tc-bold">Example:</span>
+        </p><pre><code class="language-bash">mvn compile xap:run -Dproperties="embed://prop1=value1" -Dmodule=mirror
+mvn compile xap:run -Dcluster="schema=partitioned total_members=1,1" -Dproperties="embed://prop1=value1" -Dmodule=processor
+mvn compile xap:run -Dproperties="embed://prop1=value1" -Dmodule=feeder
+
+</code></pre>
+        <h2><a name="determining-module-execution"></a>Determining Module Execution</h2>
+        <ul>
+            <li>
+                <p>If the current directory is a the base directory of a module, only this module is executed.</p>
+            </li>
+            <li>
+                <p>If the current directory is the main project directory and the <code>module</code> argument is not set, all modules are executed one by one.</p>
+            </li>
+            <li>
+                <p>If the current directory is the main project directory and the <code>module</code> argument is set, only the specified module is executed.</p>
+            </li>
+        </ul><a name="overriding"></a>
+        <h2><a name="overriding-space-cluster-configuration"></a>Overriding Space/Cluster Configuration</h2>
+        <p>If you need to override the configuration of the space or cluster when running the processing units through the <MadCap:variable name="General.ProductNameXAP" /> plugin and you want to do it by replacing the original configuration files, you can do it by placing the required file in the project's root directory.</p>
+        <p>Examples:
+To change the logging configuration place the new _xap<span class="tc-italic">logging.properties</span> file in the <span class="tc-italic">config/log</span> directory (you may need to create this directory) under the project's root directory.</p>
+        <p>To change the security permissions place the new <span class="tc-italic">policy.all</span> file in the <span class="tc-italic">policy</span> directory (you may need to create this directory) under the project's root directory.</p>
+        <div class="tc-admon-note">
+            <p>Those changes apply only when deploying the processing units.</p>
+        </div><a name="packaging"></a>
+        <h1><a name="packaging-processing-units"></a>Packaging Processing Units</h1>
+        <p>In order to deploy Processing Units, you need to package them in a distributable form. The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin allows you to package two types of distributable supported by <MadCap:variable name="General.ProductNameXAP" />: a single JAR archive and an open directory structure.</p>
+        <p>Make sure you are in the directory of the project.
+To package the Processing Units, use the following command-line from the main project directory:</p><pre><code class="language-bash">mvn package
+</code></pre>
+        <p>The Processing Units' distributable bundles are generated for each module, under the directory <code>target</code>. For example, the distributables of a module named <code>feeder</code> are generated under <code>&lt;proj-dir&gt;\feeder\target</code>.</p>
+        <p>The single JAR distributable is <code>feeder.jar</code>; the open directory structure distributable is created under the directory <code>feeder</code>.</p>
+        <h2><a name="suppressing-unit-test-execution-while-packaging"></a>Suppressing Unit Test Execution While Packaging</h2>
+        <p>If not specified explicitly, unit tests are executed when packaging the Processing Units.</p>
+        <p>To suppress the execution of unit tests, add one of the following arguments to the command line: <code>skipTests</code> or <code>maven.test.skip</code>:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Argument</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">skipTests</td>
+                    <td align="left">Skips the unit test execution, but still performs unit test compilation</td>
+                </tr>
+                <tr>
+                    <td align="left">maven.test.skip</td>
+                    <td align="left">Skips the unit testing phase entirely, including the test compilation</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>For example:</p><pre><code class="language-bash">&gt;mvn package -DskipTests
+
+ .. or ..
+
+&gt;mvn package -Dmaven.test.skip
+</code></pre>
+        <h1><a name="running-processing-units"></a>Running Processing Units</h1>
+        <p>After packaging the Processing Units, you might want to test the validity of the assemblies. The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin makes it possible to run the Processing Units as standalone modules. The Maven plugin includes all the assembly dependencies in the execution classpath, making sure that the Processing Unit finds all the required resources. Managing to run the Processing Unit as a module while failing to run it as a standalone module might imply that a problem exists with the assembly definitions.</p>
+        <p>Make sure you are in the directory of the project.
+To run Processing Units as standalone modules, use the following command-line:</p><pre><code class="language-bash">mvn xap:run-standalone
+    -Dcluster=&lt;"cluster-properties"&gt;
+    -Dgroups=&lt;groups&gt;
+    -Dlocators=&lt;locators&gt;
+    -Dproperties=&lt;"context-level-properties-location"&gt;
+    -Dmodule=&lt;module-name&gt;
+</code></pre>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Argument</th>
+                    <th align="left">Description</th>
+                    <th align="left">Required</th>
+                    <th align="left">Properties</th>
+                    <th align="left">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster</td>
+                    <td align="left">Cluster properties</td>
+                    <td align="left">No</td>
+                    <td align="left">* <code>schema</code> – the cluster schema name<br />- <code>total_members</code> – a list of the cluster members, separated by a comma<br />- <code>id</code> – the cluster ID<br />- <code>backup_id</code> – the backup ID</td>
+                    <td align="left">* <code>schema=partitioned</code><br />- <code>total_members=1,1</code><br />- <code>id=1</code><br />- <code>backup_id=1</code></td>
+                </tr>
+                <tr>
+                    <td align="left">groups</td>
+                    <td align="left">Comma-delimited list of lookup group names</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">group1,group2</td>
+                </tr>
+                <tr>
+                    <td align="left">locators</td>
+                    <td align="left">Comma-delimited list of Jini locators hosts</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">jini://&lt;hostname1&gt;, jini://&lt;hostname2&gt;</td>
+                </tr>
+                <tr>
+                    <td align="left">properties</td>
+                    <td align="left">Context-level properties location</td>
+                    <td align="left">No</td>
+                    <td align="left">* <code>file</code> – properties file<br />- <code>embed</code> – properties definition</td>
+                    <td align="left">
+                        <br />    file://config/context.properties<br />    embed://prop1=value1</td>
+                </tr>
+                <tr>
+                    <td align="left">module</td>
+                    <td align="left">The name of the Processing Unit module to run</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                    <td align="left"><code>feeder</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><span class="tc-bold">Example:</span>
+        </p><pre><code class="language-bash">mvn xap:run-standalone -Dproperties="embed://prop1=value1" -Dmodule=mirror
+mvn xap:run-standalone -Dcluster="schema=partitioned total_members=1,1" -Dproperties="embed://prop1=value1" -Dmodule=processor
+mvn xap:run-standalone -Dproperties="embed://prop1=value1" -Dmodule=feeder
+</code></pre>
+        <h2><a name="determining-processing-unit-execution"></a>Determining Processing Unit Execution</h2>
+        <ul>
+            <li>
+                <p>If the current directory is a Processing Unit module's base directory, only this Processing Unit is executed.</p>
+            </li>
+            <li>
+                <p>If the current directory is the main project directory and the <code>pu-name</code> argument is not set, all Processing Units are executed one by one.</p>
+            </li>
+            <li>
+                <p>If the current directory is the main project directory and the <code>pu-name</code> argument is set, only the specified Processing Unit is executed.</p>
+            </li>
+        </ul>
+        <h2><a name="overriding-space-cluster-configuration-1"></a>Overriding Space/Cluster Configuration</h2>
+        <p>Overriding the space and cluster configuration is explained in <a href="#overriding">Running Processing Unit Modules</a>.</p>
+        <h1><a name="deploying-processing-units"></a>Deploying Processing Units</h1>
+        <p>Processing Units usually run in the Service Grid. In order to deploy a Processing Unit, you first need to package it (see <a href="#packaging">Packaging Processing Units</a>).</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports two forms of Processing Unit distributable: A single JAR archive and an open directory structure. The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin allows you to deploy Processing Units simply – packaged as JAR archives – into the Service Grid.</p>
+        <div class="tc-admon-note">
+            <p>When deploying Processing Units, make sure that the Grid Service Manager (GSM) and the Grid Service Container (GSC) are running.</p>
+        </div>
+        <p>Make sure you are in the directory of the project.
+Once your Processing Units are packaged, use the following command-line to deploy them to the Service Grid:</p><pre><code class="language-bash">mvn xap:deploy
+    -Dsla=&lt;sla&gt;
+    -Dcluster=&lt;cluster&gt;
+    -Dgroups=&lt;groups&gt;
+    -Dlocators=&lt;locators&gt;
+    -Dtimeout=&lt;timeout&gt;
+    -Dproperties=&lt;"prop1=val1 prop2=val2..."&gt;
+    -Doverride-name=&lt;override-name&gt;
+    -Dmax-instances-per-vm=&lt;max-instances-per-vm&gt;
+    -Dmax-instances-per-machine=&lt;max-instances-per-machine&gt;
+    -Dmodule=&lt;module-name&gt;
+</code></pre>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Argument</th>
+                    <th align="left">Description</th>
+                    <th align="left">Required</th>
+                    <th align="left">Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">sla</td>
+                    <td align="left">The SLA policy</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">cluster</td>
+                    <td align="left">The name of the cluster</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">groups</td>
+                    <td align="left">Comma-delimited list of lookup group names</td>
+                    <td align="left">No</td>
+                    <td align="left">gigaspaces-&lt;VERSION&gt;</td>
+                </tr>
+                <tr>
+                    <td align="left">locators</td>
+                    <td align="left">Comma-delimited list of Jini locators hosts</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">timeout</td>
+                    <td align="left">Timeout</td>
+                    <td align="left">No</td>
+                    <td align="left">10000</td>
+                </tr>
+                <tr>
+                    <td align="left">properties</td>
+                    <td align="left">The properties file name or key-value pairs</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">override-name</td>
+                    <td align="left">Override name</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">max-instances-per-vm</td>
+                    <td align="left">The maximum instances per virtual machine</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">max-instances-per-machine</td>
+                    <td align="left">The maximum instances per machine (host)</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">module</td>
+                    <td align="left">The name of the Processing Unit module to deploy</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>If the current directory is a Processing Unit module's base directory, only this processing unit is deployed.</p>
+        <p>If the current directory is the main project directory and the <code>module</code> argument is not set, Maven deploys the Processing Unit in the order described <a href="#order">below</a>.</p>
+        <p>If the current directory is the main project directory and the <code>module</code> argument is set, only the specified Processing Unit is deployed.</p>
+        <h1><a name="undeploying-processing-units"></a>Undeploying Processing Units</h1>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> Maven plugin makes it simple to undeploy Processing Units from the Service Grid. Make sure you are in the directory of the project. To undeploy a Processing Unit from the Service Grid, use the following command-line:</p><pre><code class="language-bash">mvn xap:undeploy
+    -Dgroups=&lt;groups&gt;
+    -Dlocators=&lt;locators&gt;
+    -Dtimeout=&lt;timeout&gt;
+    -Dmodule=&lt;module-name&gt;
+</code></pre>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Argument</th>
+                    <th align="left">Description</th>
+                    <th align="left">Required</th>
+                    <th align="left">Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">groups</td>
+                    <td align="left">Comma-delimited list of lookup group names</td>
+                    <td align="left">No</td>
+                    <td align="left">gigaspaces-&lt;VERSION&gt;</td>
+                </tr>
+                <tr>
+                    <td align="left">locators</td>
+                    <td align="left">Comma-delimited list of Jini locators hosts</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">timeout</td>
+                    <td align="left">Timeout</td>
+                    <td align="left">No</td>
+                    <td align="left">10000</td>
+                </tr>
+                <tr>
+                    <td align="left">module</td>
+                    <td align="left">The name of the Processing Unit module to undeploy</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ul>
+            <li>
+                <p>If the current directory is a Processing Unit module's base directory, only this Processing Unit is undeployed.</p>
+            </li>
+            <li>
+                <p>If the current directory is the main project directory and the <code>module</code> argument is not set, Maven undeploys the Processing Unit the order described <a href="#order">below</a>.</p>
+            </li>
+            <li>
+                <p>If the current directory is the main project directory and the <code>module</code> argument is set, only the specified Processing Unit is undeployed.</p>
+            </li>
+        </ul><a name="order"></a>
+        <h1><a name="controlling-order-of-deployment-undeployment"></a>Controlling Order of Deployment/Undeployment</h1>
+        <h2><a name="deployment"></a>Deployment</h2>
+        <p>A Processing Unit might have a dependency on another Processing Unit (this dependency is defined in the Processing Unit <code>pom.xml</code> file). It is important to deploy these Processing Units in the right order to prevent errors.</p>
+        <ul>
+            <li>
+                <p>The independent Processing Unit should be deployed first, and the the dependent Processing Unit should be deployed second.</p>
+            </li>
+            <li>
+                <p>The Maven plugin identifies these dependencies and deploys the Processing Units in the right order.</p>
+            </li>
+            <li>
+                <p>If there is no dependency between the Processing Units, they are deployed in the same order in which the modules are declared in the main project <code>pom.xml</code> file.</p>
+            </li>
+        </ul>
+        <h2><a name="undeployment"></a>Undeployment</h2>
+        <p>Undeployment of Processing Units takes place in a reverse order: the dependent Processing Unit is undeployed first and the independent second.</p>
+        <h1><a name="adding-dependencies-to-modules"></a>Adding Dependencies to Modules</h1>
+        <p>A dependency is a library (usually a JAR archive containing class libraries) required by the Processing Unit for compilation, execution, etc.
+For example, if the Processing Unit's code uses a class from an external archive, this archive needs to be added as a dependency of the Processing Unit.
+Adding dependencies is done a Maven-typical way, which is editing the module's <code>pom.xml</code> file.
+For example, to add <code>commons-logging</code> version 1.1.1 as a dependency to the processor Processing Unit, add the following XML snippet to the <code>&lt;dependencies&gt;</code> section of the <code>pom.xml</code> file:</p><a name="xml"></a><pre><code class="language-xml">&lt;project&gt;
+    ...
+    &lt;dependencies&gt;
+        ...
+        &lt;!--The added snippet--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;commons-logging&lt;/groupId&gt;
+            &lt;artifactId&gt;commons-logging&lt;/artifactId&gt;
+            &lt;version&gt;1.1.1&lt;/version&gt;
+            &lt;scope&gt;compile&lt;/scope&gt;
+        &lt;/dependency&gt;
+        ...
+    &lt;/dependencies&gt;
+    ...
+&lt;/project&gt;
+</code></pre>
+        <h2><a name="private-dependencies"></a>Private Dependencies</h2>
+        <p>Private dependencies are Processing Unit dependencies that are not shared with other Processing Units. Processing Unit distributions hold private dependencies in the <code>lib</code> directory. To add private dependency, add it to the Processing Unit module <code>pom.xml</code> file. For example, to add the <code>commons-logging</code> version 1.1.1 as a private dependency of the processor Processing Unit, add the XML snippet <a href="#xml">above</a> to the <span class="tc-bold">processor</span> module's <code>pom.xml</code> file. When the Processing Unit is packaged, the <code>commons-logging</code> archive is located under the <code>lib</code> directory of the processor distributable.</p>
+        <h2><a name="shared-dependencies"></a>Shared Dependencies</h2>
+        <p>Shared dependencies are Processing Unit dependencies that are shared with other Processing Units. To add shared dependencies, add the dependencies to the common module <code>pom.xml</code> file. For example, to add the <code>commons-logging</code> version 1.1.1 as a shared dependency of the processor and the feeder Processing Units, add the XML snippet <a href="#xml">above</a> to the <span class="tc-bold">common</span> module's <code>pom.xml</code> file. When the Processing Units are packaged, the <code>commons-logging</code> archive is located under the <code>lib</code> directory of the processor and the feeder distributables.</p>
+        <h1><a name="importing-processing-unit-projects-to-eclipse-ide"></a>Importing Processing Unit Projects to Eclipse IDE</h1>
+        <p>It is possible to import a Processing Unit project into the Eclipse environment. Imported projects have built-in launch targets, allowing you to run the processor and the feeder using Eclipse run (or debug) targets.</p>
+        <h2><a name="1-generate-eclipse-project"></a>1. Generate Eclipse Project</h2>
+        <p>Execute the following command from the project root directory:</p><pre><code class="language-bash">mvn eclipse:eclipse
+</code></pre>
+        <p>This generates a <code>.project</code> file under each module's base directory.</p>
+        <h2><a name="2-import-generated-projects-to-eclipse-environment"></a>2. Import Generated Projects to Eclipse Environment</h2>
+        <ol>
+            <li>
+                <p>Select <span class="tc-bold">File</span> &gt; <span class="tc-bold">Import</span> &gt; <span class="tc-bold">General</span> &gt; <span class="tc-bold">Existing Projects into Workspace</span>.</p>
+            </li>
+            <li>
+                <p>In the <span class="tc-bold">Import</span> dialog, keep the <span class="tc-bold">Select root directory</span> option selected, and click <span class="tc-bold">Browse</span>.</p>
+            </li>
+            <li>
+                <p>Select the base directory of the project you want to import and click <span class="tc-bold">Finish</span>.</p>
+            </li>
+        </ol>
+        <p>This imports the three modules to Eclipse, each as a separate project.</p>
+        <h2><a name="3-define-m2-repo-variable"></a>3. Define M2_REPO Variable</h2>
+        <p>Imported projects use a variable called <code>M2_REPO</code> to point to the location of Maven's local repository. If this is a fresh Eclipse installation, the <code>M2_REPO</code> variable needs to be defined:</p>
+        <ol>
+            <li>
+                <p>Select <span class="tc-bold">Window</span> &gt; <span class="tc-bold">Preferences</span>.</p>
+            </li>
+            <li>
+                <p>In the <span class="tc-bold">Preferences</span> dialog, select <span class="tc-bold">Java</span> &gt; <span class="tc-bold">Build Path</span> &gt; <span class="tc-bold">Classpath Variables</span>, and click <span class="tc-bold">New</span>.</p>
+            </li>
+            <li>
+                <p>In the <span class="tc-bold">New Variable Entry</span> dialog, type <code>M2_REPO</code> in the <span class="tc-bold">Name</span> field.</p>
+            </li>
+            <li>
+                <p>Press <span class="tc-bold">Folder</span> and select the directory of Maven's local repository.</p>
+            </li>
+            <li>
+                <p>Click <span class="tc-bold">OK</span> to close all dialogs.</p>
+            </li>
+        </ol>
+        <h2><a name="4-convert-generated-projects-to-maven-projects"></a>4. Convert Generated Projects To Maven Projects</h2>
+        <p>Do the following for each project:</p>
+        <ol>
+            <li>
+                <p>Right click on the project.</p>
+            </li>
+            <li>
+                <p>Select <span class="tc-bold">Configure</span> &gt; <span class="tc-bold">Convert to Maven Project</span>.</p>
+            </li>
+        </ol>
+        <h1><a name="importing-processing-unit-projects-to-intellij-ide"></a>Importing Processing Unit Projects to IntelliJ IDE</h1>
+        <p>It is possible to import a Processing Unit project into the IntelliJ environment. Imported projects have built-in launch targets, allowing you to run the processor and the feeder using IntelliJ run (or debug) targets.</p>
+        <h2><a name="1-import-generated-projects-to-intellij-environment"></a>1. Import Generated Projects to IntelliJ Environment</h2>
+        <ol>
+            <li>
+                <p>Select <span class="tc-bold">File</span> &gt; <span class="tc-bold">New</span> &gt; <span class="tc-bold">Project from Existing Sources...</span>.</p>
+            </li>
+            <li>
+                <p>Browse to the folder where you created the project and from the root directory choose the file <code>pom.xml</code>.</p>
+            </li>
+            <li>
+                <p>Don't change the default settings of this page and click <span class="tc-bold">Next</span>.</p>
+            </li>
+            <li>
+                <p>Enable the IDE profile and disable the Default profile then click <span class="tc-bold">Next</span>.</p>
+            </li>
+            <li>
+                <p>Click <span class="tc-bold">Next</span>.</p>
+            </li>
+            <li>
+                <p>Select project SDK and click <span class="tc-bold">Next</span>.</p>
+            </li>
+            <li>
+                <p>Enter Project name and location then click <span class="tc-bold">Finish</span>.</p>
+            </li>
+        </ol>
+        <p>This imports the modules to IntelliJ.</p>
+        <h2><a name="2-running-the-example"></a>2. Running the example</h2>
+        <ol>
+            <li>
+                <p>Execute the following command from the project root directory:</p><pre><code class="language-bash">mvn xap:intellij
+</code></pre>
+            </li>
+            <li>
+                <p>If the example is using persistency, then first run Mirror processing unit from IntelliJ - select <span class="tc-bold">Run</span> &gt; <span class="tc-bold">Edit Configurations...</span>
+Under Application click on <span class="tc-bold">Mirror</span> and then press <span class="tc-bold">OK</span> then click on <span class="tc-bold">Run</span> &gt; <span class="tc-bold">Run Mirror</span>.</p>
+            </li>
+            <li>
+                <p>Run Processor and then Feeder processing units in either way you are running with persistency or not - select <span class="tc-bold">Run</span> &gt; <span class="tc-bold">Edit Configurations...</span>
+Under Application click on <span class="tc-bold">Processor</span> and then press <span class="tc-bold">OK</span> then click <span class="tc-bold">Run</span> &gt; <span class="tc-bold">Run Processor</span>.</p>
+            </li>
+            <li>
+                <p>Select <span class="tc-bold">Run</span> &gt; <span class="tc-bold">Edit Configurations...</span> Under Application click on <span class="tc-bold">Feeder</span> and then press <span class="tc-bold">OK</span> then click on <span class="tc-bold">Run</span> &gt; <span class="tc-bold">Run Feeder</span>.</p>
+            </li>
+        </ol>
+        <h1><a name="viewing-persistent-data"></a>Viewing Persistent Data</h1>
+        <p>When running a Processing Unit that uses persistency, e.g when using the <span class="tc-italic">persistent-event-processing</span> template, one would like to view the persisted data. <MadCap:variable name="General.ProductNameXAP" /> Maven Plugin makes it easy to start the HSQLDB viewer to immediately view persisted data.</p>
+        <div class="tc-admon-note">
+            <p>The HSQLDB viewer is for monitoring HSQLDB databases only.</p>
+        </div>
+        <p>To start the HSQLDB viewer use the following command line:</p><pre><code class="language-bash">mvn xap:hsql-ui
+    -Ddriver=&lt;driver-class&gt;
+    -Durl=&lt;url&gt;
+    -Duser=&lt;user&gt;
+    -Dpassword=&lt;password&gt;
+    -Dhelp
+</code></pre>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Argument</th>
+                    <th align="left">Description</th>
+                    <th align="left">Required</th>
+                    <th align="left">Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">driver</td>
+                    <td align="left">JDBC driver class</td>
+                    <td align="left">No</td>
+                    <td align="left">org.hsqldb.jdbcDriver</td>
+                </tr>
+                <tr>
+                    <td align="left">url</td>
+                    <td align="left">JDBC url</td>
+                    <td align="left">No</td>
+                    <td align="left">jdbc:hsqldb:hsql://localhost/testDB</td>
+                </tr>
+                <tr>
+                    <td align="left">user</td>
+                    <td align="left">User name used for the connection</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">password</td>
+                    <td align="left">Password used for this user</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">help</td>
+                    <td align="left">Prints the usage options</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <p>The default values are sufficient when using the data source values generated by the plugin.</p>
+        </div>
+    </body>
+</html>

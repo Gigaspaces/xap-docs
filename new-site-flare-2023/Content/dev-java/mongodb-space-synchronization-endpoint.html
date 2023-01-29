@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Synchronization Endpoint</h1>
+        <p>A MongoDB based implementation of the <a href="space-synchronization-endpoint-api.html">Space Synchronization Endpoint</a>.</p>
+        <h1><a name="library-dependencies"></a>Library dependencies</h1>
+        <p>The MongoDB Space Synchronization Endpoint uses the <a href="http://docs.mongodb.org/ecosystem/drivers/java/">MongoDB Driver</a> For communicating with the MongoDB cluster.
+Include the following in your <code>pom.xml</code></p><pre><code class="language-xml">    &lt;!-- currently the MongoDB library is not the central maven repository --&gt; 
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;org.openspaces&lt;/id&gt;
+            &lt;name&gt;OpenSpaces&lt;/name&gt;
+            &lt;url&gt;http://maven-repository.openspaces.org&lt;/url&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+
+
+    &lt;dependencies&gt;
+        ...
+        &lt;!-- mongodb java driver --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.mongodb&lt;/groupId&gt;
+            &lt;artifactId&gt;mongo-java-driver&lt;/artifactId&gt;
+            &lt;version&gt;[%=Versions.mongo-java-driver%]&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt; 
+            &lt;groupId&gt;org.antlr&lt;/groupId&gt; 
+            &lt;artifactId&gt;antlr4-runtime&lt;/artifactId&gt; 
+            &lt;version&gt;[%=Versions.antlr4-runtime%]&lt;/version&gt;
+        &lt;/dependency&gt; 
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;
+            &lt;artifactId&gt;xap-mongodb&lt;/artifactId&gt;
+            &lt;version&gt;[%=Versions.maven-version-MX%]&lt;/version&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+        ...
+    &lt;/dependencies&gt;
+</code></pre>
+        <h1><a name="setup"></a>Setup</h1>
+        <p>An example of how the MongoDB Space Synchronization Endpoint can be configured within a mirror.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Spring " style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">    &lt;?xml version="1.0" encoding="utf-8"?&gt; 
+    &lt;beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" 
+        xmlns:os-core="http://www.openspaces.org/schema/core" xmlns:os-jms="http://www.openspaces.org/schema/jms" 
+        xmlns:os-events="http://www.openspaces.org/schema/events" 
+        xmlns:os-remoting="http://www.openspaces.org/schema/remoting" 
+        xmlns:os-sla="http://www.openspaces.org/schema/sla" xmlns:tx="http://www.springframework.org/schema/tx"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
+        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+        http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-[%=Versions.spring-short%].xsd
+        http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd"&gt;
+        
+        &lt;bean id="propertiesConfigurer" 
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" /&gt; 
+        
+        &lt;os-core:mirror id="mirror" url="/./mirror-service"
+            space-sync-endpoint="spaceSynchronizationEndpoint" operation-grouping="group-by-replication-bulk"&gt;
+            &lt;os-core:source-space name="dataSourceSpace" partitions="2"
+                backups="1" /&gt;</code></pre>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
+        &lt;/os-core:mirror&gt;
+        
+        &lt;bean id="mongoClient"
+            class="com.gigaspaces.persistency.MongoClientConnectorBeanFactory"&gt;
+            &lt;property name="db" value="qadb" /&gt;
+            &lt;property name="config"&gt;
+                &lt;bean class="com.mongodb.MongoClient"&gt;
+                    &lt;constructor-arg value="localhost" type="java.lang.String" /&gt;
+                    &lt;constructor-arg value="27017" type="int" /&gt;
+                &lt;/bean&gt;
+            &lt;/property&gt;
+        &lt;/bean&gt;
+        
+        &lt;bean id="spaceSynchronizationEndpoint"
+            class="com.gigaspaces.persistency.MongoSpaceSynchronizationEndpointBeanFactory"&gt;
+            &lt;property name="mongoClientConnector" ref="mongoClient" /&gt;
+        &lt;/bean&gt; 
+    &lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">    &lt;?xml version="1.0" encoding="utf-8"?&gt; 
+    &lt;beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" 
+        xmlns:os-core="http://www.openspaces.org/schema/core" xmlns:os-jms="http://www.openspaces.org/schema/jms" 
+        xmlns:os-events="http://www.openspaces.org/schema/events" 
+        xmlns:os-remoting="http://www.openspaces.org/schema/remoting" 
+        xmlns:os-sla="http://www.openspaces.org/schema/sla" xmlns:tx="http://www.springframework.org/schema/tx"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+        http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd"&gt;
+        
+        &lt;bean id="propertiesConfigurer" 
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" /&gt; 
+        
+        &lt;os-core:mirror id="mirror" url="/./mirror-service"
+            space-sync-endpoint="spaceSynchronizationEndpoint" operation-grouping="group-by-replication-bulk"&gt;
+            &lt;os-core:source-space name="dataSourceSpace" partitions="2"
+                backups="1" /&gt;</code></pre>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
+        &lt;/os-core:mirror&gt;
+        
+        &lt;bean id="mongoClient"
+            class="com.gigaspaces.persistency.MongoClientConnectorBeanFactory"&gt;
+            &lt;property name="db" value="qadb" /&gt;
+            &lt;property name="config"&gt;
+                &lt;bean class="com.mongodb.MongoClient"&gt;
+                    &lt;constructor-arg value="localhost" type="java.lang.String" /&gt;
+                    &lt;constructor-arg value="27017" type="int" /&gt;
+                &lt;/bean&gt;
+            &lt;/property&gt;
+        &lt;/bean&gt;
+        
+        &lt;bean id="spaceSynchronizationEndpoint"
+            class="com.gigaspaces.persistency.MongoSpaceSynchronizationEndpointBeanFactory"&gt;
+            &lt;property name="mongoClientConnector" ref="mongoClient" /&gt;
+        &lt;/bean&gt; 
+    &lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">        MongoClient config = new MongoClient(host, port);
+        
+        MongoClientConnector client = new MongoClientConnectorConfigurer()
+                .client(config)
+                .db(dbName)
+                .create();  
+        
+        MongoSpaceSynchronizationEndpoint syncEndpoint = new MongoSpaceSynchronizationEndpointConfigurer() 
+                .mongoClientConnector(client) 
+                .create(); 
+        
+        IJSpace mirror = new EmbeddedSpaceConfigurer("mirror-service")
+        .schema("mirror") 
+        .spaceSynchronizationEndpoint(syncEndpoint) 
+        .addProperty("space-config.mirror-service.cluster.name", "space") 
+        .addProperty("space-config.mirror-service.cluster.partitions", String.valueOf(numOfPartitiones)) 
+        .addProperty("space-config.mirror-service.cluster.backups-per-partition", String.valueOf(numOfBackups)) 
+        .create();
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
+        <p>For more details about different configurations see <a href="persistency-for-a-database.html">Space Persistency</a>.</p>
+        <h1><a name="before-you-begin"></a>Before you begin</h1>
+        <p>Before deploying your Processing Unit, please do the following:</p>
+        <ol>
+            <li>Copy the <code>xap-mongodb.jar</code> from <code>lib\optional\mongodb</code> to <code>lib\optional\pu-common</code>.</li>
+            <li>download the following jars and copy them to <code>lib\optional\pu-common</code>:</li>
+        </ol>
+        <ul>
+            <li>
+                <p><code>antlr-runtime.jar</code> from <a href="http://www.antlr.org/download.html">antlr's website</a> .</p>
+            </li>
+            <li>
+                <p><code>mongo-java-driver-[%=Versions.mongo-java-driver%].jar</code> from <a href="http://docs.mongodb.org/ecosystem/drivers/java/">mongoDB's website</a> .</p>
+            </li>
+        </ul>
+        <h2><a name="mongospacesynchronizationendpoint-properties"></a>MongoSpaceSynchronizationEndpoint Properties</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">client</td>
+                    <td align="left">A configured com.gigaspaces.persistency.MongoClientConnector bean. Must be configured.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="considerations"></a>Considerations</h1>
+        <ul>
+            <li>Change API and Partial updates is supported</li>
+        </ul>
+    </body>
+</html>

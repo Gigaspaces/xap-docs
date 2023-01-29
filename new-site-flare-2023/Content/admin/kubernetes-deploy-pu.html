@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Deploying a <MadCap:variable name="General.ProductNameXAP" /> Service in Kubernetes</h1>
+        <p>A <MadCap:variable name="General.ProductNameXAP" /> service (Processing Unit) is a container that can hold any of the following:</p>
+        <ul>
+            <li>Data only (a Space)</li>
+            <li>Function only (business logic)</li>
+            <li>Both data and a function</li>
+        </ul>
+        <p>You can use the event-processing example available with the <MadCap:variable name="General.ProductNameXAP" /> software packages to see how data is fed to the function and processed in services. The example creates the following modules:</p>
+        <ul>
+            <li>Processor - a service with the main task of processing unprocessed data objects. The processing of data objects is accomplished  using both an event container and remoting.</li>
+            <li>Feeder - a service that contains two feeders, a standard Space feeder and a JMS feeder, to feed unprocessed data objects that are in turn processed by the processor module. The standard Space feeder feeds unprocessed data objects  by both directly writing them to the Space and using OpenSpaces Remoting. The JMS feeder uses the JMS API to feed unprocessed data objects using a MessageConverter, which converts JMS ObjectMessages into data objects.</li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>As a prerequisite for running this example, you must install Maven on the machine where you unpacked the <MadCap:variable name="General.ProductNameXAP" /> software package.</p>
+        </div>
+        <p>To build and deploy the event-processing example in Kubernetes, the following steps are required:</p>
+        <ol>
+            <li>Build the sample services from the <MadCap:variable name="General.ProductNameXAP" /> software package.</li>
+            <li>Uploading the pu.jar files for deployment.</li>
+            <li>Deploy a Manager (Management Pod).</li>
+            <li>Deploy the services that were created when you built the example to Data Pods in Kubernetes, connecting them to the Management Pod.</li>
+            <li>View the processor logs to see the data processing results.</li>
+        </ol>
+        <h2>Building the <MadCap:variable name="General.ProductNameXAP" /> Service Example</h2>
+        <p>The first step in deploying the sample services to Kubernetes is to build them from the examples directory. The example uses Maven as its build tool, and comes with a build script that runs Maven automatically.</p>
+        <p>Open a command window and navigate to the following folder in the <MadCap:variable name="General.ProductNameXAP" /> package:</p><pre><code class="language-bash">cd &lt;product home&gt;/examples/data-app/event-processing/
+</code></pre>
+        <p>Type the following command (for Unix environments) to build the processor and feeder services:</p><pre><code class="language-bash">./build.sh package
+</code></pre>
+        <p>This build script finalizes the service structure of both the processor and the feeder, and copies the processor JAR file to /examples/data-app/event-processing/processor/target/data-processor/lib, making the /examples/data-app/event-processing/processor/target/data-processor/ a ready-to-use service. The final result is two service JAR files, one under processor/target and another under feeder/target.</p>
+        <h2>Uploading the pu.jar Files</h2>
+        <p MadCap:conditions="Version.14-2-died">In order to deploy the services on Kubernetes, a URL must be provided. You can use an existing HTTP server, or you can create a local HTTP server using Helm. Ensure that your Kubernetes environment has access to the URL that you provide. If you opt for a local server, we recommend creating it from the examples directory so that it can easily access the service JARs that were created.</p>
+        <p MadCap:conditions="Version.14-2-died">Type the following Helm command in the command window to create a local HTTP server:</p><pre MadCap:conditions="Version.14-2-died"><code>helm serve --repo-path . --address &lt;your machine IP&gt;:&lt;port&gt;</code></pre>
+        <p MadCap:conditions="Version.14-2-born">In order to deploy the services on Kubernetes, a URL must be provided. You can use an existing HTTP server, (for example, a local HTTP server using Helm), or you can use the GigaSpaces CLI&#160;(or REST API) to upload the Processing Unit files to the Manager Pod.</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-2-born">
+            <p MadCap:conditions="Version.14-2-born">Ensure that your Kubernetes environment has access to the URL that you provide.</p>
+        </div>
+        <p MadCap:conditions="Version.14-2-born">Use one of the following options to upload the pu.jar files for deployment. </p>
+        <div class="tc-admon-attention" MadCap:conditions="Version.14-2-born">
+            <p>The upload stage does not provide high availability. The pu.jar files are uploaded only to the active Manager Pod, and are not replicated to other managers.  High availability only takes effect after the service has been deployed.</p>
+        </div>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-2-born">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+                    <MadCap:snippetBlock src="../Resources/Snippets/InsighedgeXap.flsnp" />
+                </div>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux/Mac" style="padding:10px"><pre><code>./<MadCap:variable name="General.CLI-script-Linux" />  pu upload </code></pre>
+                    </div>
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" />  pu upload </code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>Upload a pu.jar to the target.</p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">file</td>
+                            <td align="left">Path to the service file (.jar or .zip).</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Option</td>
+                            <td align="left">--url-only</td>
+                            <td align="left">Return only the service URL after uploading</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-italic">Input Example:</span>
+                </p>
+                <p>This example uploads a service named <span class="tc-bold">myPu</span> to the mypu.jar file.</p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" />  pu upload mypu.jar</code></pre>
+                    </div>
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" />  pu upload mypu.jar</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>PUT /pus/resources</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>Upload a service to the target.</p>
+                <p><span class="tc-italic">Example:</span>
+                </p><pre><code>curl -X PUT --header 'Content-Type: multipart/form-data'
+--header 'Accept: text/plain' {"type":"formData"} 'http://localhost:8090/v2/pus/resources'</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-attention" MadCap:conditions="Version.14-2-born">
+            <p>Leave this command window open so the server remains available and Kubernetes can connect to it.</p>
+        </div>
+        <h2>Deploying the <MadCap:variable name="General.ProductNameXAP" /> Components</h2>
+        <p>Similar to deploying a Space cluster, it is best practice to first deploy the Management Pod (with the Manager), and then deploy the Data Pods (first the processor, then the feeder).</p>
+        <p class="tc-todo">To deploy the <MadCap:variable name="General.ProductNameXAP" /> components:</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.16-1-born">
+            <p>The service may be deployed using Helm charts (shown below), or using the native <code>kubectl</code>command of Kubernetes, shown <MadCap:xref href="kubernetes-deploy-service-using-kubectl.html" class="see-here" style="font-weight: bold;">here</MadCap:xref>.</p>
+        </div>
+        <ol>
+            <li>
+                <p>Open a new command window and navigate to the Helm chart directory (where you fetched the charts from the <MadCap:variable name="General.ProductNameXAP" /> repo).</p>
+            </li>
+            <li>
+                <p>Type the following Helm command to deploy a Management Pod called <code>testmanager</code>:</p>
+                <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-manager --name testmanager</code></pre>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code class="language-bash">helm install testmanager insightedge-manager</code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                                <p><pre><code class="language-bash">helm install insightedge-manager --name testmanager</code></pre>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <p>Type the following Helm command to deploy a Data Pod with the processor service from the location where it was built in the examples directory:</p>
+                <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-pu --name processor --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar</code></pre>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code class="language-bash">helm install processor insightedge-pu --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar </code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                                <p><pre><code class="language-bash">helm install insightedge-pu --name processor --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/processor/target/data-processor.jar</code></pre>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <p>Lastly, type the following Helm command to deploy a Data Pod with the feeder service from the same directory:</p>
+                <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge-pu --name feeder --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/feeder/target/data-feeder.jar</code></pre>
+                    <p MadCap:conditions="Version.15-5-born">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code class="language-bash">helm install feeder insightedge-pu --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/feeder/target/data-feeder.jar </code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                                <p><pre><code class="language-bash">helm install insightedge-pu --name feeder --set manager.name=testmanager,resourceUrl=http://192.168.33.16:8877/examples/data-app/event-processing/feeder/target/data-feeder.jar</code></pre>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </li>
+        </ol>
+        <h2>Monitoring the <MadCap:variable name="General.ProductNameXAP" /> Services</h2>
+        <p>
+            <MadCap:conditionalText MadCap:conditions="Version.15-0-born">You can use the <MadCap:variable name="General.ProductNameXAP" /> Ops Manager to monitor the status and alerts of the <MadCap:variable name="General.ProductNameXAP" /> cluster and services. Alternatively, y</MadCap:conditionalText>
+            <MadCap:conditionalText MadCap:conditions="Version.15-0-died">Y</MadCap:conditionalText>ou can use one of the Kubernetes tools to view the logs for the processor Data Pod, where you can see that the sample data has been processed.</p>
+        <h1>Configuring the Container Memory Allocation</h1>
+        <p>The Docker container is always allocated an absolute amount of memory. If this is undefined in the Helm chart, the container will use as much as is necessary to accomodate the data and processes it contains. You can limit the memory allocation for the contents of the Docker container (Data Pod, Manager Pod, processes, etc.) and the heap memory.</p>
+        <p>The on-heap memory allocation can be defined as any of the following:</p>
+        <ul>
+            <li>A positive absolute value for the heap memory.</li>
+            <li>A negative absolute value for the heap memory, calculating the heap size as (<span class="tc-italic">[total allocated container resources] - [XMib]</span>).</li>
+            <li>A percentage of the Docker container.</li>
+        </ul>
+        <p>The following Helm command allocates the amount of memory for both the Docker container and for the on-heap memory as an absolute value:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=256m</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code class="language-bash">helm install test insightedge --set pu.resources.limits.memory=512Mi,pu.java.heap=256m </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                        <p><pre><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=256m</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <p>The following Helm commands allocates the amount of memory for the Docker container, and sets aside a specific amount of memory for the container to use. The rest of the memory is available to the Java heap.</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=limit-150m</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code class="language-bash">helm install test insightedge --set pu.resources.limits.memory=512Mi,pu.java.heap=limit-150m </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                        <p><pre><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=512Mi,pu.java.heap=limit-150m</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <p>You can define the maximum size of the Docker container as an absolute value, and the maximum on-heap memory allocation for the Java running inside the Docker container as a percentage. If you use this approach, make sure you leave enough memory for the Java.</p>
+        <p>The following Helm command sets an absolute value for the Docker container, and defines the maximum Java on-heap memory as a percentage of the container memory:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=256Mi,pu.java.heap=75%</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code class="language-bash">helm install test insightedge --set pu.resources.limits.memory=256Mi,pu.java.heap=75% </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                        <p><pre><code class="language-bash">helm install insightedge --name test --set pu.resources.limits.memory=256Mi,pu.java.heap=75%</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <div>
+            <h2>Configuring Additional Java Options</h2>
+            <p>You can configure additional Java options for each Platform Manager instance by using the <code class="language-java">java.options</code> parameter, as shown below.</p>
+            <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name test --set pu.java.options="-XX:+PrintGCDetails"</code></pre>
+                <p MadCap:conditions="Version.15-5-born">
+                    <div class="easyui-tabs" plain="true">
+                        <div title="Helm 3">
+                            <p><pre><code class="language-bash">helm install test insightedge --set pu.java.options="-XX:+PrintGCDetails" </code></pre>
+                            </p>
+                        </div>
+                        <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                            <p><pre><code class="language-bash">helm install insightedge --name test --set pu.java.options="-XX:+PrintGCDetails"</code></pre>
+                            </p>
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+        <h2>Overriding the <MadCap:variable name="General.ProductNameXAP" /> Service Properties</h2>
+        <p>It is recommended to define the service properties in the pu.xml as placeholders (as described in the Processing Unit <a href="../dev-java/deployment-properties.html#defining-property-place-holders-in-your-processing-unit">Deployment Properties</a> topic), so you can override these properties using the Helm chart.</p>
+        <p>After defining the properties as placeholders, use the <code>key1=value1;key2=value2</code> format to pass the override values to the Helm chart using either the <code>--set properties=&lt;your key-value pairs&gt;</code> command, or using a custom YAML file. </p>
+        <h2>Configuring the MemoryXtend Properties</h2>
+        <p>The Kubernetes environment supports using MemoryXtend for off-heap RAM<MadCap:conditionalText MadCap:conditions="Version.14-5-born"> and MemoryXtend for Disk (SSD)</MadCap:conditionalText>.</p>
+        <h3>MemoryXtend for Off-Heap RAM</h3>
+        <p>To configure your Kubernetes-based environment, you need to make sure that the container memory allocation is sufficient to accommodate the overall RAM&#160;requirements. Additionally, you should define the memory threshold properties as placeholders in the pu.xml file. For more information about the MemoryXtend Off-Heap RAM driver, see <MadCap:xref href="memoryxtend-ohr.html">MemoryXtend for Off-Heap RAM</MadCap:xref>.</p>
+        <h3 MadCap:conditions="Version.14-5-born">MemoryXtend for Disk (SSD)</h3>
+        <p MadCap:conditions="Version.14-5-born">To configure your Kubernetes-based environment to use external storage, you need to enable persistent volume storage in both the Processing unit pu.xml and the pu Helm chart. This is described in detail in <MadCap:xref href="memoryxtend-rocksdb-ssd.html">MemoryXtend for Disk (SSD/HDD)</MadCap:xref>.</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p MadCap:conditions="Version.14-5-born">For information about the Kubernetes persistent volume storage model, refer to the <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/" target="_blank">Kubernetes documentation</a>.</p>
+        </div>
+        <h1 MadCap:conditions="Version.15-2-born">Specifying a Node Pool</h1>
+        <p MadCap:conditions="Version.15-2-born">Depending on the workload in your system, you may want more control over which node a service (pod) resides on. This can help ensure that a service runs on a machine that is configured for tiered storage (attached to an SSD, for example), or that pods from different services that communicate frequently with the same availability zone are co-located. </p>
+        <p MadCap:conditions="Version.15-2-born">
+            <MadCap:conditionalText MadCap:conditions="Version.15-2-born">A node pool is a group of machines (nodes) in a cluster that all have the same configuration. When you define a service, you can deploy the associated pod to a specific node pool by setting the nodeSelector, which means that the service will only be deployed on a node from that node pool. </MadCap:conditionalText>You can specify which node pools to access using the following Helm commands.</p>
+        <p MadCap:conditions="Version.15-2-born">To configure a management pod with a specific node pool for MemoryXtend:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name demo --set manager.nodeSelector.enabled=true,manager.nodeSelector.selector="disktype: ssd"</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code class="language-bash">helm install demo insightedge --set manager.nodeSelector.enabled=true,manager.nodeSelector.selector="disktype: ssd" </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                        <p><pre><code class="language-bash">helm install insightedge --name demo --set manager.nodeSelector.enabled=true,manager.nodeSelector.selector="disktype: ssd"</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <p MadCap:conditions="Version.15-2-born">To configure a data pod with a specific node pool for MemoryXtend:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code class="language-bash">helm install insightedge --name demo --set pu.nodeSelector.enabled=true,pu.nodeSelector.selector="disktype: ssd"</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code class="language-bash">helm install demo insightedge --set pu.nodeSelector.enabled=true,pu.nodeSelector.selector="disktype: ssd"</code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                        <p><pre><code class="language-bash">helm install insightedge --name demo --set pu.nodeSelector.enabled=true,pu.nodeSelector.selector="disktype: ssd"</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,923 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Polling Container</h1>
+        <p>The polling event container is an implementation of the <a href="http://enterpriseintegrationpatterns.com/PollingConsumer.html">polling consumer pattern</a>  which uses the space to receive events. The container performs polling receive operations against the Space. If a receive operation succeeds (a value is returned from the receive operation), the <a href="data-event-listener.html">Data Event Listener</a> is invoked with the event. A polling event operation is mainly used when simulating Queue semantics, or when using the master-worker design pattern.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/polling_container_basic.jpg" alt="" title="" class="tc-picture50" />
+        </div>
+        <h1><a name="life-cycle-events"></a>Life Cycle Events</h1>
+        <p>The polling container life cycle events are described below. You can implement each one to perform the required activity.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/dynamic_polling_container_life_cycle.jpg" alt="dynamic_polling_container_life_cycle.jpg" class="tc-picture30" />
+            </p>
+        </div>
+        <h1><a name="configuration"></a>Configuration</h1>
+        <p>The following is a simple example of how to configure the polling event container:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Annotation" style="padding:10px"><pre><code class="language-xml">&lt;!-- Enable scan for OpenSpaces and Spring components --&gt;
+&lt;context:component-scan base-package="com.mycompany"/&gt;
+
+&lt;!-- Enable support for @Polling annotation --&gt;
+&lt;os-events:annotation-support /&gt;
+
+&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+</code></pre><pre><code class="language-java">@EventDriven @Polling
+public class SimpleListener {
+
+    @EventTemplate
+    Data unprocessedData() {
+        Data template = new Data();
+        template.setProcessed(false);
+        return template;
+    }
+
+    @SpaceDataEvent
+    public Data eventListener(Data event) {
+        //process Data here
+    }
+}
+</code></pre>
+            </div>
+            <div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+&lt;os-events:polling-container id="eventContainer" giga-space="gigaSpace"&gt;
+
+    &lt;os-core:template&gt;
+        &lt;bean class="org.openspaces.example.data.common.Data"&gt;
+            &lt;property name="processed" value="false"/&gt;
+        &lt;/bean&gt;
+    &lt;/os-core:template&gt;
+
+    &lt;os-events:listener&gt;
+        &lt;os-events:annotation-adapter&gt;
+            &lt;os-events:delegate ref="simpleListener"/&gt;
+        &lt;/os-events:annotation-adapter&gt;
+    &lt;/os-events:listener&gt;
+&lt;/os-events:polling-container&gt;
+</code></pre>
+            </div>
+            <div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer"&gt;
+
+    &lt;property name="gigaSpace" ref="gigaSpace" /&gt;
+
+    &lt;property name="template"&gt;
+        &lt;bean class="org.openspaces.example.data.common.Data"&gt;
+            &lt;property name="processed" value="false"/&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+
+    &lt;property name="eventListener"&gt;
+        &lt;bean class="org.openspaces.events.adapter.AnnotationEventListenerAdapter"&gt;
+            &lt;property name="delegate" ref="simpleListener" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+            <div title="Code" style="padding:10px"><pre><code class="language-java">GigaSpace gigaSpace = // either create the GigaSpace or get it by injection
+
+SimplePollingEventListenerContainer pollingEventListenerContainer = new SimplePollingContainerConfigurer(gigaSpace)
+                .template(new Data(false))
+                .eventListenerAnnotation(new Object() {
+                    @SpaceDataEvent
+                    public void eventHappened() {
+                        eventCalled.set(true);
+                    }
+                }).pollingContainer();
+
+// start the notification
+pollingEventListenerContainer.start();
+......
+// when needed dispose of the notification container
+pollingEventListenerContainer.destroy();
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-attention">
+            <p><code>EventDriven</code>, <code>@Polling</code>, and <code>@Notify</code> cannot be placed on interface classes. Place them on the implementation class instead.</p>
+            <p>The <code class="language-bash">perform-snapshot</code> property   is set to true by default because the snapshot improves performance. However, change the configuration to <code class="language-bash">perform-snapshot="false"</code> if you are working with a polling container that either performs an <code class="language-bash">order by</code> query, or contains a Trigger operation handler that returns a template.</p>
+        </div>
+        <p>The above example performs single take operations (see below) using the provided template (a <code>Data</code> object with its processed flag set to <code>false</code>). If the take operation succeeds (a value is returned), the <code>SimpleListener</code> is invoked. The operations are performed on the configured <a href="the-gigaspace-interface-overview.html">GigaSpace</a> bean (in this case, if working in a clustered topology, it is performed directly on the cluster member).</p>
+        <h1><a name="primary-backup"></a>Primary/Backup</h1>
+        <p>By default, the polling event container performs receive operations only when the relevant Space it is working against is in primary mode. When the Space is in backup mode, no receive operations are performed. If the Space changes from backup mode to primary mode, the receive operations are started.</p>
+        <div class="tc-admon-note">
+            <p>This behavior applies when working with an embedded Space directly with a cluster member. When working with a clustered Space (performing operations against the whole cluster), the mode of the Space is always primary.</p>
+        </div>
+        <h1><a name="fifo-grouping"></a>FIFO Grouping</h1>
+        <p>The FIFO grouping is designed to allow efficient processing of events with partial ordering constraints. Instead of maintaining a FIFO queue per class type, the grouping provides a more granularity by having the FIFO queue maintained according to a specific value of a specific property.</p>
+        <div class="tc-admon-note">
+            <p>For more details, refer to <a href="fifo-grouping.html">FIFO Grouping</a>.</p>
+        </div>
+        <h1><a name="static-template-definition"></a>Static Template Definition</h1>
+        <p>When performing receive operations, a template is defined. This creates a virtualized subset of data within the Space that matches it. <MadCap:variable name="General.ProductNameXAP" /> supports templates based on the actual domain model (with <code>null</code> values denoting wildcards), which are shown in the examples. <MadCap:variable name="General.ProductNameXAP" /> allows the use of <a href="query-sql.html">SQLQuery</a> in order to query the Space, which can be easily used with the event container as the template. The following is an example of how it can be defined:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Annotation" style="padding:10px"><pre><code class="language-java">@EventDriven @Polling
+public class SimpleListener {
+
+    @EventTemplate
+    SQLQuery&lt;Data&gt; unprocessedData() {
+        SQLQuery&lt;Data&gt; template = new SQLQuery&lt;Data&gt;(Data.class, "processed = true");
+        return template;
+    }
+
+    @SpaceDataEvent
+    public Data eventListener(Data event) {
+        //process Data here
+    }
+}
+</code></pre>
+            </div>
+            <div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-events:polling-container id="eventContainer" giga-space="gigaSpace"&gt;
+
+    &lt;os-core:sql-query where="processed = true" class="org.openspaces.example.data.common.Data"/&gt;
+
+    &lt;os-events:listener&gt;
+        &lt;os-events:annotation-adapter&gt;
+            &lt;os-events:delegate ref="simpleListener"/&gt;
+        &lt;/os-events:annotation-adapter&gt;
+    &lt;/os-events:listener&gt;
+
+&lt;/os-events:polling-container&gt;
+</code></pre>
+            </div>
+            <div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer"&gt;
+
+    &lt;property name="gigaSpace" ref="gigaSpace" /&gt;
+
+    &lt;property name="template"&gt;
+        &lt;bean class="com.j_spaces.core.client.SQLQuery"&gt;
+            &lt;constructor index="0" value="org.openspaces.example.data.common.Data" /&gt;
+            &lt;constructor index="0" value="processed = true" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+
+    &lt;property name="eventListener"&gt;
+        &lt;bean class="org.openspaces.events.adapter.AnnotationEventListenerAdapter"&gt;
+            &lt;property name="delegate" ref="simpleListener" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-attention">
+            <p>A polling or notify container can have only one template. If you need multiple event handlers, you must create another polling or notify container. If you use multiple polling containers, make sure the different templates don't overlap each other.</p>
+        </div>
+        <h1><a name="multiple-event-handlers"></a>Multiple Event Handlers</h1>
+        <p>You can define multiple event handlers for a polling container. If you have a superclass with subclasses and you want to define event handlers for each subclass, you can define the
+event template for the superclass and a <code>@SpaceDataEvent</code> for each subclass.</p>
+        <p>The following is an example where HostInfo, MachineInfo and LdapInfo are subclasses of the MonitorInfo class:</p><pre><code class="language-java">@EventDriven
+@Polling
+public class PollingExample {
+
+    @EventTemplate
+    public SQLQuery&lt;MonitorInfo&gt; dataTemplate() {
+        return new SQLQuery&lt;MonitorInfo&gt;(MonitorInfo.class, "");
+    }
+
+    @SpaceDataEvent
+    public MachineInfo eventListener(final MachineInfo event) {
+        // ..........
+        return null;
+    }
+
+    @SpaceDataEvent
+    public MachineInfo eventListener(final HostInfo event) {
+        // ..........
+        return null;
+    }
+
+    @SpaceDataEvent
+    public MachineInfo eventListener(final LdapInfo event) {
+        // ..........
+        return null;
+    }
+}
+</code></pre>
+        <h1><a name="multiple-values-template"></a>Multiple Values Template</h1>
+        <p>You can use a <code>SQLQuery</code> that contains an <code>IN</code> operator with multiple values to register a template with multiple values. This is a simple alternative to using multiple polling containers. See the following example:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Space Class" style="padding:10px"><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceId;
+import com.gigaspaces.annotation.pojo.SpaceIndex;
+
+public class MyData {
+    String id;
+    String key;
+
+    @SpaceId(autoGenerate=false)
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @SpaceIndex
+    public String getKey() {
+        return key;
+    }
+    public void setKey(String key) {
+        this.key = key;
+    }
+    @Override
+    public String toString() {
+        return "MyData [id=" + id + ", key=" + key + "]";
+    }
+}
+</code></pre>
+            </div>
+            <div title="Template registration:" style="padding:10px"><pre><code class="language-java">SimplePollingEventListenerContainer pollingEventListenerContainer =
+    new SimplePollingContainerConfigurer(space)
+        .template(query)
+        .eventListenerAnnotation(new Object() {
+    @SpaceDataEvent
+    public void eventHappened(MyData data) {
+        System.out.println("Polling Container Got matching event! - " +data);
+    }
+}).pollingContainer();
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="dynamic-template-definition"></a>Dynamic Template Definition</h1>
+        <p>When performing polling receive operations, a dynamic template can be used. A method providing a dynamic template is called before each receive operation, and can return a different object in each call.
+The event template object has the same syntax rules as with <code>@EventTemplate</code>.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Annotation" style="padding:10px"><pre><code class="language-java">@EventDriven @Polling
+public class SimpleListener {
+
+    @DynamicEventTemplate
+    SQLQuery&lt;Data&gt; unprocessedExpiredData() {
+        long expired = System.currentTimeMillis() - 60000;
+        SQLQuery&lt;Data&gt; dynamicTemplate =
+          new SQLQuery&lt;Data&gt;(Data.class, "processed = false AND timestamp &lt; " + expired);
+        return dynamicTemplate;
+    }
+
+    @SpaceDataEvent
+    public Data eventListener(Data event) {
+        //process Data here
+    }
+}
+</code></pre>
+            </div>
+            <div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-events:polling-container id="eventContainer" giga-space="gigaSpace"&gt;
+
+    &lt;os-events:dynamic-template ref="dynamicTemplate" /&gt;
+
+    &lt;os-events:listener&gt;
+        &lt;os-events:annotation-adapter&gt;
+            &lt;os-events:delegate ref="simpleListener"/&gt;
+        &lt;/os-events:annotation-adapter&gt;
+    &lt;/os-events:listener&gt;
+
+&lt;/os-events:polling-container&gt;
+&lt;bean id="dynamicTemplate" class="ExpiredDataTemplateProvider"/&gt;
+</code></pre><pre><code class="language-java">public class ExpiredDataTemplateProvider implements DynamicEventTemplateProvider {
+
+    @Override
+    public Object getDynamicTemplate() {
+        long expired = System.currentTimeMillis() - 60000;
+        SQLQuery&lt;Data&gt; dynamicTemplate =
+          new SQLQuery&lt;Data&gt;(Data.class, "processed = true AND timestamp &lt; " + expired);
+        return dynamicTemplate;
+    }
+}
+</code></pre>
+            </div>
+            <div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer"&gt;
+
+    &lt;property name="gigaSpace" ref="gigaSpace" /&gt;
+    &lt;property name="dynamicTemplate" ref="dynamicTemplate" /&gt;
+
+    &lt;property name="eventListener"&gt;
+        &lt;bean class="org.openspaces.events.adapter.AnnotationEventListenerAdapter"&gt;
+            &lt;property name="delegate" ref="simpleListener" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+&lt;bean id="dynamicTemplate" class="ExpiredDataTemplateProvider"/&gt;
+</code></pre><pre><code class="language-java">public class ExpiredDataTemplateProvider implements DynamicEventTemplateProvider {
+
+    @Override
+    public Object getDynamicTemplate() {
+        long expired = System.currentTimeMillis() - 60000;
+        SQLQuery&lt;Data&gt; dynamicTemplate =
+          new SQLQuery&lt;Data&gt;(Data.class, "processed = true AND timestamp &lt; " + expired);
+        return dynamicTemplate;
+    }
+}
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>Only polling containers support dynamic templates. Notify containers do not support dynamic templates.</p>
+        </div>
+        <h1><a name="receive-operation-handler"></a>Receive Operation Handler</h1>
+        <p>The polling receive container performs receive operations. The actual implementation of the receive operation is abstracted using the following interface:</p><pre><code class="language-java">public interface ReceiveOperationHandler {
+    /**
+     * Performs the actual receive operation. Return values allowed are single object or an array of
+     * objects.
+     *
+     * @param template
+     *            The template to use for the receive operation.
+     * @param gigaSpace
+     *            The GigaSpace interface to perform the receive operations with
+     * @param receiveTimeout
+     *            Receive timeout value
+     * @return The receive result. &lt;code&gt;null&lt;/code&gt; indicating no receive occured. Single object
+     *         or an array of objects indicating the receive operation result.
+     * @throws DataAccessException
+     */
+    Object receive(Object template, GigaSpace gigaSpace, long receiveTimeout) throws DataAccessException;
+}
+</code></pre>
+        <p><MadCap:variable name="General.ProductNameXAP" /> comes with several built-in receive operation-handler implementations:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Receive Operation Handler</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">SingleTakeReceiveOperationHandler</td>
+                    <td align="left">Performs a single blocking take operation with the receive timeout.</td>
+                </tr>
+                <tr>
+                    <td align="left">SingleReadReceiveOperationHandler</td>
+                    <td align="left">Performs a single blocking read operation with the receive timeout.</td>
+                </tr>
+                <tr>
+                    <td align="left">ExclusiveReadReceiveOperationHandler</td>
+                    <td align="left">Performs a single read operation under an exclusive read lock (similar to "select for update" in databases) with the receive timeout. Exclusive read lock mimics the take operation without actually taking the Entry from the Space.<br /><span class="tc-iconexcl">&#160;</span> This receive operation handler must be used within a transaction.</td>
+                </tr>
+                <tr>
+                    <td align="left">MultiTakeReceiveOperationHandler</td>
+                    <td align="left">First tries to perform <code>takeMultiple</code> (using a configured max Entries). If no values are returned, performs a blocking take operation with the receive timeout.</td>
+                </tr>
+                <tr>
+                    <td align="left">MultiReadReceiveOperationHandler</td>
+                    <td align="left">First tries to perform <code>readMultiple</code> (using a configured max Entries). If no values are returned, performs a blocking read operation with the receive timeout.</td>
+                </tr>
+                <tr>
+                    <td align="left">MultiExclusiveReadReceiveOperationHandler</td>
+                    <td align="left">First tries to perform <code>readMultiple</code> (using a configured max Entries). If no values are returned, performs a blocking read operation with the receive timeout. Both read operations are performed under an exclusive read lock (similar to "select for update" in databases), which mimics a take operation without actually taking the Entry from the Space.<br />This receive operation handler must be used within a transaction.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <p>When using the <code>ExclusiveReadReceiveOperationHandler</code> or even the <code>SingleReadReceiveOperationHandler</code>, the actual event remains in the Space. If the data event is not taken from the Space, or one of its properties changes in order <span class="tc-bold">not</span> to match the container template, the same data event is read again.</p>
+        </div>
+        <p>The following is an example of how to configure the receive operation handler with <code>MultiTakeReceiveOperationHandler</code>:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Annotation" style="padding:10px"><pre><code class="language-java">@EventDriven @Polling
+public class SimpleListener {
+
+    @ReceiveHandler
+    ReceiveOperationHandler receiveHandler() {
+        MultiTakeReceiveOperationHandler receiveHandler = new MultiTakeReceiveOperationHandler();
+        receiveHandler.setMaxEntries(100);
+        return receiveHandler;
+    }
+
+    @EventTemplate
+    Data unprocessedData() {
+        Data template = new Data();
+        template.setProcessed(false);
+        return template;
+    }
+
+    @SpaceDataEvent
+    public Data eventListener(Data event) {
+        //process Data here
+    }
+}
+</code></pre>
+            </div>
+            <div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;os-events:polling-container id="eventContainer" giga-space="gigaSpace"&gt;
+    &lt;os-events:receive-operation-handler&gt;
+        &lt;bean class="org.openspaces.events.polling.receive.MultiTakeReceiveOperationHandler" /&gt;
+    &lt;/os-events:receive-operation-handler&gt;
+
+    &lt;os-core:template&gt;
+        &lt;bean class="org.openspaces.example.data.common.Data"&gt;
+            &lt;property name="processed" value="false"/&gt;
+        &lt;/bean&gt;
+    &lt;/os-core:template&gt;
+
+    &lt;os-events:listener&gt;
+        &lt;os-events:annotation-adapter&gt;
+            &lt;os-events:delegate ref="simpleListener"/&gt;
+        &lt;/os-events:annotation-adapter&gt;
+    &lt;/os-events:listener&gt;
+&lt;/os-events:polling-container&gt;
+</code></pre>
+            </div>
+            <div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer"&gt;
+
+    &lt;property name="gigaSpace" ref="gigaSpace" /&gt;
+
+    &lt;property name="receiveOperationHandler"&gt;
+        &lt;bean class="org.openspaces.events.polling.receive.MultiTakeReceiveOperationHandler" /&gt;
+    &lt;/property&gt;
+
+    &lt;property name="template"&gt;
+        &lt;bean class="org.openspaces.example.data.common.Data"&gt;
+            &lt;property name="processed" value="false"/&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+
+    &lt;property name="eventListener"&gt;
+        &lt;bean class="org.openspaces.events.adapter.AnnotationEventListenerAdapter"&gt;
+            &lt;property name="delegate" ref="simpleListener" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="non-blocking-receive-handler"></a>Non-Blocking Receive Handler</h2>
+        <p>When working with a partitioned cluster and configuring the remote polling container to work against the whole cluster, blocking operations (take with a timeout&gt;0) are not allowed (when the routing field is not set on the template or SQLQuery). The default receive operation handlers support performing the receive operation in a non-blocking manner, by sleeping between non-blocking operations. For example, the <code>SingleTakeReceiveOperationHandler</code> performs a non-blocking take operation against the Space and then sleeps for a configurable amount of time. The <a href="/sbp/master-worker-pattern.html">Master-Worker Pattern</a> is a classic scenario where non-blocking mode is used.</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Step 1</span>: Master sends requests to be processed by the workers implemented using the polling container.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/master_worker_rr1.jpg" alt="master_worker_rr1.jpg" class="tc-picture50" />
+                </p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Step 2</span>: Workers generate results that are consumed by the Master.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/master_worker_rr2.jpg" alt="master_worker_rr2.jpg" class="tc-picture50" />
+                </p>
+            </li>
+        </ul>
+        <p>The following is an example of how to configure non-blocking mode:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Annotation" style="padding:10px"><pre><code class="language-java">@EventDriven @Polling (receiveTimeout=10000)
+public class SimpleListener {
+
+    @ReceiveHandler
+    ReceiveOperationHandler receiveHandler() {
+        SingleTakeReceiveOperationHandler receiveHandler = new SingleTakeReceiveOperationHandler();
+        receiveHandler.setNonBlocking(true);
+        receiveHandler.setNonBlockingFactor(10);
+        return receiveHandler;
+    }
+
+    @EventTemplate
+    Data unprocessedData() {
+        Data template = new Data();
+        template.setProcessed(false);
+        return template;
+    }
+
+    @SpaceDataEvent
+    public Data eventListener(Data event) {
+        //process Data here
+    }
+}
+</code></pre>
+            </div>
+            <div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;os-events:polling-container id="eventContainer" giga-space="gigaSpace" receive-timeout="10000"&gt;
+    &lt;os-events:receive-operation-handler&gt;
+        &lt;bean class="org.openspaces.events.polling.receive.SingleTakeReceiveOperationHandler"&gt;
+            &lt;property name="nonBlocking" value="true" /&gt;
+            &lt;property name="nonBlockingFactor" value="10" /&gt;
+        &lt;/bean&gt;
+    &lt;/os-events:receive-operation-handler&gt;
+
+    &lt;os-core:template&gt;
+        &lt;bean class="org.openspaces.example.data.common.Data"&gt;
+            &lt;property name="processed" value="false"/&gt;
+        &lt;/bean&gt;
+    &lt;/os-core:template&gt;
+
+    &lt;os-events:listener&gt;
+        &lt;os-events:annotation-adapter&gt;
+            &lt;os-events:delegate ref="simpleListener"/&gt;
+        &lt;/os-events:annotation-adapter&gt;
+    &lt;/os-events:listener&gt;
+&lt;/os-events:polling-container&gt;
+</code></pre>
+            </div>
+            <div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer"&gt;
+
+    &lt;property name="gigaSpace" ref="gigaSpace" /&gt;
+
+    &lt;property name="receiveTimeout" value="10000" /&gt;
+
+    &lt;property name="receiveOperationHandler"&gt;
+        &lt;bean class="org.openspaces.events.polling.receive.SingleTakeReceiveOperationHandler"&gt;
+            &lt;property name="nonBlocking" value="true" /&gt;
+            &lt;property name="nonBlockingFactor" value="10" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+
+    &lt;property name="template"&gt;
+        &lt;bean class="org.openspaces.example.data.common.Data"&gt;
+            &lt;property name="processed" value="false"/&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+
+    &lt;property name="eventListener"&gt;
+        &lt;bean class="org.openspaces.events.adapter.AnnotationEventListenerAdapter"&gt;
+            &lt;property name="delegate" ref="simpleListener" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <p>The above example uses a receive timeout of 10 seconds (10000 milliseconds). The <code>SingleTakeReceiveOperationHandler</code> is configured to be non-blocking with a non-blocking factor of 10. This means that the receive handler performs 10 non-blocking takes within 10 seconds and sleeps the rest of the time (~1 second each time).</p>
+        <h1><a name="batch-operations-and-passarrayasis"></a>Batch Operations and passArrayAsIs</h1>
+        <p>Processing data in batches may improve the processing throughput performance. Instead of consuming one object at a time from the Space and processing it, you can consume a batch with multiple objects and process them in a single transaction. This can improve the overall throughput rate, but may also affect the latency of the individual object processing time.</p>
+        <p>See the following simple benchmark results comparing the different options:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/poll_bench.jpg" alt="poll_bench.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>A full description of the benchmark is available in the <a href="https://blog.gigaspaces.com/how-to-implement-my-processor-the-polling-container-benchmark/" target="_blank">How to Implement my Processor? - The Polling Container Benchmark</a>  GigaSpaces blog post.</p>
+        <p>You can use batching via the <code>MultiTakeReceiveOperationHandler</code>. The <code>MultiTakeReceiveOperationHandler.setMaxEntries(integer)</code> allows you to set the maximum amount of objects to be consumed with each polling event. If the Space does not have a  sufficient number of matching objects during the polling point in time, the event listener method is called with the existing number of matching objects (which is smaller than the <code>MaxEntries</code> value). THis doesn't cause any delay,  and the polling container doesn't wait until there is an exact amount of matching objects to consume as specified via the <code>MaxEntries</code> value.</p>
+        <p>Certain receive operation handlers may return an array as a result of the receive operation. A prime example is the <code>MultiTakeReceiveOperationHandler</code>, which may return an array as a result of a <code>takeMultiple</code> operation called by the polling container. By default, the polling container serializes the execution of the array into an invocation of the event listener method for each element in the array. If you want the event to operate on the entire array (receive the array as a parameter into the event listener method), the <code>passArrayAsIs</code> annotation should be set to <span class="tc-bold">true</span>.</p>
+        <p>The following is an example of batch processing using the <code>passArrayAsIs</code>. In this example, the polling container consumes a batch of objects using <code>takeMultiple</code>, modifies them, and writes them back into the Space in a single operation using <code>writeMultiple</code>:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Annotation" style="padding:10px"><pre><code class="language-java">@EventDriven
+@Polling(passArrayAsIs = true)
+public class SimpleBatchListener {
+
+    @ReceiveHandler
+    ReceiveOperationHandler receiveHandler() {
+        MultiTakeReceiveOperationHandler receiveHandler = new MultiTakeReceiveOperationHandler();
+        receiveHandler.setMaxEntries(100);
+        return receiveHandler;
+    }
+
+    @EventTemplate
+    Data unprocessedData() {
+        Data template = new Data();
+        template.setProcessed(false);
+        return template;
+    }
+
+    @SpaceDataEvent
+    public Data[] eventListener(Data events[]) {
+        //process Data within a loop
+        for (int i = 0; i &lt; events.length; i++) {
+           events[i].setProcessed(true);
+        }
+        return events;
+    }
+}
+</code></pre>
+            </div>
+            <div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+&lt;bean id="simpleBatchListener" class="SimpleBatchListener" /&gt;
+
+&lt;bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer"&gt;
+
+    &lt;property name="gigaSpace" ref="gigaSpace" /&gt;
+
+    &lt;property name="passArrayAsIs" value="true" /&gt;
+
+    &lt;property name="receiveOperationHandler"&gt;
+        &lt;bean class="org.openspaces.events.polling.receive.MultiTakeReceiveOperationHandler"&gt;
+            &lt;property name="maxEntries" value="100" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+
+    &lt;property name="template"&gt;
+        &lt;bean class="org.openspaces.example.data.common.Data"&gt;
+            &lt;property name="processed" value="false"/&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+
+    &lt;property name="eventListener"&gt;
+        &lt;bean class="org.openspaces.events.adapter.AnnotationEventListenerAdapter"&gt;
+            &lt;property name="delegate" ref="simpleBatchListener" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="free-polling-container-resources"></a>Free Polling Container Resources</h1>
+        <p>To free the resources used by the polling container, make sure you close it properly. A good life cycle event to place the <code>destroy()</code> call is within the <code>@PreDestroy</code> or <code>DisposableBean.destroy()</code> method.</p>
+        <h1><a name="polling-container-life-cycle"></a>Polling Container Life Cycle</h1>
+        <p>The Polling Event Listener container supports several life cycle methods. These allow you to create, start, stop, and destroy the listener programmatically. There is also the <code>setActiveWhenPrimary</code> life cycle mode, which binds the container to the Space mode when set to <span class="tc-bold">TRUE</span>, starting it when the Space mode is PRIMARY and stopping it otherwise.</p>
+        <p>You can get the exact status of the Polling Event Listener container using the <code>isActive()</code>  and <code>isRunning()</code> methods. The following is a simple example that illustrates the different Polling Event Listener container life cycle methods:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="PollingContainerLifeCycle" style="padding:10px"><pre><code class="language-java">import java.util.Calendar;
+
+import org.openspaces.core.GigaSpace;
+import org.openspaces.core.GigaSpaceConfigurer;
+import org.openspaces.core.space.EmbeddedSpaceConfigurer;
+import org.openspaces.events.adapter.SpaceDataEvent;
+import org.openspaces.events.polling.SimplePollingContainerConfigurer;
+import org.openspaces.events.polling.SimplePollingEventListenerContainer;
+
+public class PollingContainerLifeCycleMain {
+    static SimplePollingEventListenerContainer pollingEventListenerContainer;
+    static GigaSpace gigaSpace;
+
+    public static void main(String[] args) throws Exception {
+
+        gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("mySpace")).gigaSpace();
+
+        // Write data to the space
+        gigaSpace.write(new Data());
+        say("wrote object to space");
+        say("pollingContainer about to be created");
+
+        // create a polling listener
+        pollingEventListenerContainer = new SimplePollingContainerConfigurer(gigaSpace).template(new Data())
+                .autoStart(false).eventListenerAnnotation(new Object() {
+                    @SpaceDataEvent
+                    public void eventHappened() {
+                        say("event consumed");
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).pollingContainer();
+
+        say("pollingContainer created");
+        Thread.sleep(1000);
+        say("pollingContainer about to be started");
+        pollingEventListenerContainer.start();
+        say("pollingContainer started");
+        Thread.sleep(1000);
+
+        say("pollingContainer about to be stopped");
+        pollingEventListenerContainer.stop();
+        say("pollingContainer stoped");
+        Thread.sleep(1000);
+
+        say("pollingContainer about to be restarted");
+        pollingEventListenerContainer.start();
+        say("pollingContainer started");
+        Thread.sleep(1000);
+
+        say("pollingContainer about to be destroyed");
+        pollingEventListenerContainer.destroy();
+        say("pollingContainer destroyed");
+        System.exit(0);
+    }
+
+    static public void say(String mes) {
+        Calendar d = Calendar.getInstance();
+
+        int ms = Calendar.getInstance().get(Calendar.MILLISECOND);
+        String t = d.getTime() + ":" + ms;
+
+        if (pollingEventListenerContainer == null)
+            System.out.println(t + " - " + " isActive:" + "false" + " isRunning:" + "false" + " " + mes);
+        else
+            System.out.println(t + " - " + " isActive:" + pollingEventListenerContainer.isActive() + " isRunning:"
+                    + pollingEventListenerContainer.isRunning() + " " + mes);
+    }
+}
+</code></pre>
+            </div>
+            <div title="Data" style="padding:10px"><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceId;
+
+public class Data {
+
+    private String id;
+
+    public Data() {
+    }
+
+    @SpaceId(autoGenerate = true)
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+}
+</code></pre>
+            </div>
+        </div>
+        <p>When running the above example,the following output is displayed:</p><pre><code class="language-bash">Sun Jul 31 13:24:24 CAT 2016:466 -  isActive:false isRunning:false wrote object to space
+Sun Jul 31 13:24:24 CAT 2016:466 -  isActive:false isRunning:false pollingContainer about to be created
+Sun Jul 31 13:24:24 CAT 2016:484 -  isActive:true isRunning:false pollingContainer created
+Sun Jul 31 13:24:25 CAT 2016:484 -  isActive:true isRunning:false pollingContainer about to be started
+Sun Jul 31 13:24:25 CAT 2016:484 -  isActive:true isRunning:true pollingContainer started
+Sun Jul 31 13:24:25 CAT 2016:511 -  isActive:true isRunning:true event consumed
+Sun Jul 31 13:24:26 CAT 2016:486 -  isActive:true isRunning:true pollingContainer about to be stopped
+Sun Jul 31 13:24:26 CAT 2016:486 -  isActive:true isRunning:false pollingContainer stopped
+Sun Jul 31 13:24:27 CAT 2016:486 -  isActive:true isRunning:false pollingContainer about to be restarted
+Sun Jul 31 13:24:27 CAT 2016:486 -  isActive:true isRunning:true pollingContainer started
+Sun Jul 31 13:24:28 CAT 2016:487 -  isActive:true isRunning:true pollingContainer about to be destroyed
+Sun Jul 31 13:24:28 CAT 2016:489 -  isActive:false isRunning:false pollingContainer destroyed
+</code></pre>
+        <h1><a name="trigger-receive-operation"></a>Trigger Receive Operation</h1>
+        <p>When configuring the polling event container to perform its receive operation and event actions under a transaction, a transaction is started and rolled back for each unsuccessful receive operation. This results in a higher load on the Space. The polling event container allows pluggable logic to be used in order to decide if the actual receive operation should be performed or not. This logic, called the trigger receive operation, is performed outside the receive transaction boundaries. The following interface is provided for custom implementation of this logic:</p><pre><code class="language-java">public interface TriggerOperationHandler {
+    /**
+     * Allows to perform a trigger receive operation which control if the active receive operation
+     * will be performed in a polling event container. This feature is mainly used when having
+     * polling event operations with transactions where the trigger receive operation is performed
+     * outside of a transaction thus reducing the creation of transactions did not perform the
+     * actual receive operation.
+     *
+     * &lt;p&gt;
+     * If this operation returns a non &lt;code&gt;null&lt;/code&gt; value, it means that the receive
+     * operation should take place. If it returns a &lt;code&gt;null&lt;/code&gt; value, no receive operation
+     * will be attempted.
+     *
+     * @param template
+     *            The template to use for the receive operation.
+     * @param gigaSpace
+     *            The GigaSpace interface to perform the receive operations with
+     * @param receiveTimeout
+     *            Receive timeout value
+     * @throws DataAccessException
+     *
+     */
+    Object triggerReceive(Object template, GigaSpace gigaSpace, long receiveTimeout) throws DataAccessException;
+
+    /**
+     * Controls if the object returned from
+     * {@link #triggerReceive(Object,org.openspaces.core.GigaSpace,long)} will be used as the
+     * template for the receive operation by returning &lt;code&gt;true&lt;/code&gt;. If &lt;code&gt;false&lt;/code&gt;
+     * is returned, the actual template configured in the polling event container will be used.
+     */
+    boolean isUseTriggerAsTemplate();
+}
+</code></pre>
+        <p>OpenSpaces comes with a built-in implementation of this interface, called <code>ReadTriggerOperationHandler</code>. It performs a single blocking read operation (using the provided receive timeout), "peeking" into the space for relevant event data. If the read operation returns a value, this means that there is higher probability that the receive operation will succeed, and the transaction won't be started without a purpose. You can configure it as follows:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Annotation" style="padding:10px"><pre><code class="language-java">@EventDriven @Polling @TransactionalEvent
+public class SimpleListener {
+
+    @TriggerHandler
+    TriggerOperationHandler receiveHandler() {
+        ReadTriggerOperationHandler triggerHandler = new ReadTriggerOperationHandler();
+        return triggerHandler;
+    }
+
+    @EventTemplate
+    Data unprocessedData() {
+        Data template = new Data();
+        template.setProcessed(false);
+        return template;
+    }
+
+    @SpaceDataEvent
+    public Data eventListener(Data event) {
+        //process Data here
+    }
+}
+</code></pre>
+            </div>
+            <div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;os-core:distributed-tx-manager id="transactionManager" /&gt;
+
+&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;os-events:polling-container id="eventContainer" giga-space="gigaSpace"&gt;
+    &lt;os-events:tx-support tx-manager="transactionManager"/&gt;
+
+    &lt;os-events:trigger-operation-handler&gt;
+        &lt;bean class="org.openspaces.events.polling.trigger.ReadTriggerOperationHandler" /&gt;
+    &lt;/os-events:trigger-operation-handler&gt;
+
+    &lt;os-core:template&gt;
+        &lt;bean class="org.openspaces.example.data.common.Data"&gt;
+            &lt;property name="processed" value="false"/&gt;
+        &lt;/bean&gt;
+    &lt;/os-core:template&gt;
+
+    &lt;os-events:listener&gt;
+        &lt;os-events:annotation-adapter&gt;
+            &lt;os-events:delegate ref="simpleListener"/&gt;
+        &lt;/os-events:annotation-adapter&gt;
+    &lt;/os-events:listener&gt;
+&lt;/os-events:polling-container&gt;
+</code></pre>
+            </div>
+            <div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="transactionManager" class="org.openspaces.core.transaction.manager.DistributedJiniTransactionManager" /&gt;
+
+&lt;bean id="simpleListener" class="SimpleListener" /&gt;
+
+&lt;bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer"&gt;
+    &lt;property name="transactionManager" ref="transactionManager" /&gt;
+
+    &lt;property name="gigaSpace" ref="gigaSpace" /&gt;
+
+    &lt;property name="triggerOperationHandler"&gt;
+        &lt;bean class="org.openspaces.events.polling.trigger.ReadTriggerOperationHandler" /&gt;
+    &lt;/property&gt;
+
+    &lt;property name="template"&gt;
+        &lt;bean class="org.openspaces.example.data.common.Data"&gt;
+            &lt;property name="processed" value="false"/&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+
+    &lt;property name="eventListener"&gt;
+        &lt;bean class="org.openspaces.events.adapter.AnnotationEventListenerAdapter"&gt;
+            &lt;property name="delegate" ref="simpleListener" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>Learn more using about <code>TriggerOperationsHandler</code> using a sample application by reading the <a href="/sbp/dynamic-polling-container-templates-using-triggeroperationhandler.html">Dynamic Polling Container Templates using TriggerOperationHandle</a> page in the Services&#160;&amp; Best Practices section.</p>
+        </div>
+        <h1><a name="default-values-of-polling-container-configuration-parameters"></a>Default Values of Polling Container Configuration Parameters</h1>
+        <p>The default values for all of the polling container configuration parameters such as <code>concurrent-consumers, active-when-primary, receive-timeout</code> and others can be found in the JavaDoc (and sources) of the class <a href="[%=Links.ApiJavaDoc%]/org/openspaces/events/polling/SimplePollingEventListenerContainer.html" target="_blank">SimplePollingEventListenerContainer</a> and its super class, namely <a href="[%=Links.ApiJavaDoc%]/org/openspaces/events/AbstractEventListenerContainer.html" target="_blank">AbstractEventListenerContainer</a>.</p>
+        <p>For example, <code>concurrent-consumers</code> default value is documented in the method <code>SimplePollingEventListenerContainer.setConcurrentConsumers(int)</code></p>
+        <h1><a name="notify-vs-polling-container"></a>Notify vs. Polling Container</h1>
+        <p>The <code>Polling container</code> behavior is different than the <code>Notify Container</code> behavior. Comparing the matching phase (which is somewhat similar) that both conduct, is not enough.</p>
+        <h2><a name="notify-container"></a>Notify Container</h2>
+        <p>The Notify Container is triggered without any feedback loop control; it may be called concurrently without any control by many threads. This can reduce latency. but can also cause a scenario where the Space and client get overloaded without any ability to throttle the activity, which increases the latency. It may also cause locking issues if the Notify Container logic has to update the same data, which also increases latency.</p>
+        <p>Durability can also be affected (may lose events on failure), which can be handled with guaranteed notifications that impose some overhead and additional latency. The Notify container supports remote Spaces without major issues.</p>
+        <h2><a name="polling-container"></a>Polling Container</h2>
+        <p>The Polling Container acts like a queue. If you have one concurrent consumer thread, this can affect the overall latency. However, you can control the concurrency; it is always guaranteed and won't generate locking when updating objects.</p>
+        <p>The Polling container behavior towards remote Spaces is different from that of the Notify container, because you can't broadcast a blocking take operation against multiple Spaces. In order to perform operations on remote Spaces, the Polling container must run in non-blocking mode, which can introduce additional latency.</p>
+        <p>Trying to reduce latency by adjusting the frequency of the sampling rate can affect CPU utilization and overall system overhead, because the client performs non-blocking take operations in a round-robin fashion against the different partitions.
+The number of partitions and the distribution of data affect latency; many partitions and uneven data distribution create additional latency with the Polling Container invocation.</p>
+        <p>As a workaround to using non-blocking take operations, you can construct an array of Polling Containers, each with a specific routing, which allows you to use a blocking take to reduce latency.</p>
+        <div class="tc-admon-note">
+            <p>An example is described <a href="/sbp/master-worker-pattern.html#example-2-designated-workers">here</a> in the Solutions and Patterns section.</p>
+        </div>
+        <h1><a name="additional-resources"></a>Additional Resources</h1>
+        <MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://www.youtube.com/watch?v=GwLfDYgl6f8," />
+    </body>
+</html>

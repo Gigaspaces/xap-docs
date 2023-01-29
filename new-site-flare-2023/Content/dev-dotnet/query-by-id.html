@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>ID Queries</h1>
+  
+
+<p>The space can be queried for entries using <a href="query-template-matching.html">Template Matching</a> or <a href="query-sql.html">SQLQuery</a>, but sometimes we know the exact id of the entry we need and prefer a faster solution. This is where id-based queries come handy.</p>
+
+<h1><a name="reading-an-entry-by-id"></a>Reading an Entry By ID</h1>
+
+<p>When you would like to access an object using its ID for read and take operations you should first specify the ID field. You can specify it via <code>[SpaceId (autogenerate=false)]</code> annotation:</p>
+
+<pre><code class="language-csharp">
+[SpaceId (autoGenerate=false)]
+public String getEmployeeID() {
+    return employeeID;
+}
+</code></pre>
+
+<p>To read the object back from the space using its ID and the <code>ReadById</code> operation:</p>
+
+<pre><code class="language-csharp">GigaSpace gigaSpace;
+Employee myEmployee = proxy.ReadById&lt;Employee&gt;(myEmployeeID , routingValue);
+</code></pre>
+
+<h1><a name="reading-multiple-entries-by-ids"></a>Reading Multiple Entries by IDs</h1>
+
+<p>The following shows how to read multiple objects using their IDs:</p>
+
+<pre><code class="language-csharp">GigaSpace gigaSpace;
+
+// Initialize an ids array
+long?[] ids = new long?[] { ... };
+
+// Set a routing key value (not mandatory but more efficient)
+Integer routingKey = ...;
+
+// Read objects from space
+ReadByIdsResult&lt;Employee&gt; result = proxy.ReadByIds&lt;Employee&gt;( ids, routingKey);
+
+// Loop through results
+for (Employee employee : result) {
+  // ...
+}
+
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p>See <a href="/sbp/parent-child-relationship.html">Parent Child Relationship</a> for a full usage example of the <code>readByIds</code> operation.
+ReadById is intended to objects with meaningful ids,if used with auto-generate="true" ids,the given object type will be ignored.</p>
+</div>
+
+</body>
+</html>

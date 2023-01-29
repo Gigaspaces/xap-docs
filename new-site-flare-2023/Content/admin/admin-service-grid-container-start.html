@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Managing Containers</h1>
+        <h1><a name="starting-a-container"></a>Starting a Container</h1>
+        <p><span class="tc-bold">To start a container:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap container start &lt;host&gt;</code> or <code>insightedge container start &lt;host&gt;</code></p>
+                <p><code><MadCap:variable name="General.CLI-script-all" /> container start &lt;host&gt; </code>
+                </p>
+                <p MadCap:conditions="Version.14-5-born"><span class="tc-italic">Description:</span>
+                </p>
+                <p>This commands starts a container.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap container start myHost
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> container start myHost
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> container start myHost
+</code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">host</td>
+                            <td align="left">Provide the name of the host where the container should be started.</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Option</td>
+                            <td align="left">—memory:&lt;memory&gt;</td>
+                            <td align="left">Define the maximum amount of JVM memory for the new container.</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Option</td>
+                            <td align="left">—zone=&lt;zone name&gt;</td>
+                            <td align="left">Define the zone where the new container should be started.</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Option</td>
+                            <td align="left">—property=&lt;String=String&gt;</td>
+                            <td align="left">Provide additional system properties.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>POST /containers</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option starts a container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '{ \ 
+   "host": "myHost", \ 
+   "memory": "12g", \ 
+   "zone": "green", \ 
+ }' 'http://localhost:8090/v2/containers'
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>memory</td>
+                            <td>Define the maximum amount of JVM memory for the new container.</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>zone</td>
+                            <td>Define the zone where the new container should be started.</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>vmArguments</td>
+                            <td>Provide additional system properties.</td>
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <ol>
+                    <li>In the Hosts view, click the <span class="tc-bold">Actions</span> icon for the Grid Service Agent where you want to start a container.</li>
+                    <li>
+                        <p>Select the relevant option:</p>
+                        <ul>
+                            <li><span class="tc-bold">StartGSM</span> - to start a Grid Service Manager</li>
+                            <li><span class="tc-bold">StartGSC</span> - to start a Grid Service Container</li>
+                            <li><span class="tc-bold">Start Lookup</span> - to start a Lookup Service (LUS)
+<br /></li>
+                        </ul>
+                        <p>The container is started.</p>
+                    </li>
+                </ol>
+                <div class="tc-admon-note">
+                    <p>If you try to start a global container that is already running under this Grid Service Agent, you get a notification message and the container isn't started.</p>
+                </div>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+        <h1><a name="terminating-a-container"></a>Terminating a Container</h1>
+        <p><span class="tc-bold">To terminate a container:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap container kill &lt;container ID&gt;</code> or <code>insightedge container kill &lt;container ID&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code>x<MadCap:variable name="General.CLI-script-all" /> container kill &lt;container ID&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command stops (terminates) the specified container.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap container kill admin~22200
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> container kill admin~22200
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> container kill admin~22200
+</code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">container ID</td>
+                            <td align="left">ID of the container to be terminated.</td>
+                        </tr>
+                        <tr MadCap:conditions="Version.15-2-born">
+                            <td align="left">Option</td>
+                            <td align="left">zones</td>
+                            <td align="left">Specify the zone(s) where the container should be terminated.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>DELETE /containers/{id}</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option stops (terminates) the specified container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X DELETE --header 'Accept: text/plain' 'http://localhost:8090/v2/containers/admin~13972'
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>containerId</td>
+                            <td>ID of the container to be terminated.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <ol>
+                    <li>In the Hosts view, expand the tree.</li>
+                    <li>In the row with the required container, click the <span class="tc-bold">Actions</span> icon and select <span class="tc-bold">Terminate</span> from the menu.</li>
+                    <li>Click <span class="tc-bold">Yes</span> in the confirmation message.</li>
+                    <li>Click <span class="tc-bold">OK</span>.</li>
+                </ol>
+                <p>The container is terminated. The Host view and the status bar at the bottom of the window are updated.</p>
+                <div class="tc-admon-note">
+                    <p>If you terminated a global container, it is started again with a new name.</p>
+                </div>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+        <h1><a name="restarting-a-container"></a>Restarting a Container</h1>
+        <p><span class="tc-bold">To restart a container:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap container restart &lt;container ID&gt;</code> or <code>insightedge container restart &lt;container ID&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all"></MadCap:variable> container restart &lt;container ID&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command restarts the specified container.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath"></MadCap:variable>/bin/xap container restart admin~11100
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows"></MadCap:variable> container restart admin~11100
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux"></MadCap:variable> container restart admin~11100
+</code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">container ID</td>
+                            <td align="left">ID of the container to be restarted.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>DELETE /containers/{id}/restart</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option restarts the specified container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8090/v2/containers/admin~13972/restart'
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>containerId</td>
+                            <td>ID of the container to be restarted.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <ol>
+                    <li>In the Hosts view, expand the tree.</li>
+                    <li>In the row with the required container, click the <span class="tc-bold">Actions</span> icon and select <span class="tc-bold">Restart</span> from the menu.</li>
+                    <li>Click <span class="tc-bold">Yes</span> in the confirmation message.</li>
+                    <li>Click <span class="tc-bold">OK</span>.</li>
+                </ol>
+                <p>The container is terminated and restarted with the same name. The Host view and the status bar at the bottom of the window are updated during the restart progress.</p>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+        <h1><a name="restarting-a-container"></a>Creating a Container</h1>
+        <div class="tc-admon-note">
+            <p>This functionality is only available with the Command Line Interface.</p>
+        </div>
+        <p><span class="tc-bold">To create a container:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap container create &lt;container ID&gt;</code> or <code>insightedge container create &lt;container ID&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> container create &lt;container ID&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command creates the specified container.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap container restart admin~11100
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> container create admin~11100
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> container create admin~11100
+</code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">container ID</td>
+                            <td align="left">ID of the container to be created.</td>
+                        </tr>
+                        <tr MadCap:conditions="Version.15-2-born">
+                            <td align="left">Option</td>
+                            <td align="left">count</td>
+                            <td align="left">Number of containers to be created.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

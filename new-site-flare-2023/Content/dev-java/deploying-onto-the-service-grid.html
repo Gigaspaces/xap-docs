@@ -1,0 +1,563 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Deploying onto the Grid</h1>
+        <p>Deploying your processing unit to the <a href="../admin/the-runtime-environment.html">service grid</a> is the preferred way to run in your production environment. The service grid provides the following main benefits to every processing unit deployed onto it:</p>
+        <ul>
+            <li>
+                <p>Automatic distribution and provisioning of the processing unit instances: When deploying to the <a href="../admin/the-runtime-environment.html">service grid</a> the <a href="../overview/the-runtime-environment.html#gsm">GigaSpaces Manager</a> identifies the relevant <a href="../overview/the-runtime-environment.html#gsc">GigaSpaces Containers</a> and takes care of distributing the processing unit binaries to them. You do not need to manually install the processing unit anywhere on the cluster - only into the service grid.</p>
+            </li>
+            <li>
+                <p>SLA enforcement: The <a href="../overview/the-runtime-environment.html#gsm">GigaSpaces Manager</a> is also responsible for enforcing your processing unit's <a href="../admin/the-sla-overview.html">Service Level Agreement</a>, or SLA. At deployment time, it will create a specified number of processing unit instances (based on the SLA) and provision them to the running containers while enforcing all the <a href="../admin/the-sla-overview.html">deployment requirements</a>, such as memory and CPU utilization, or specific deployment zones. At runtime, it will monitor the processing unit instances, and if any of them fail to fulfill the SLA or become unavailable it will re-instantiate the processing unit automatically on another container.</p>
+            </li>
+            <li MadCap:conditions="Version.15-2-died,Default.DoNotShow">
+                <p>Automatic machine provisioning and dynamic SLA enforcement: Elastic Processing Units are a new type of <a href="the-processing-unit-overview.html">Processing Unit</a>. Elastic PUs provision machines and start <a href="../overview/the-runtime-environment.html#gsc">GigaSpaces Containers</a> automatically based on the processing units' Memory and CPU requirements. When the available machines do not meet the requirements, the manager provisions new machines and balances the Processing Unit deployment across machines. This also occurs when a machine fails, or when the requirements changes while the application is running.</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>You can use the <a href="/sbp/universal-deployer.html">GigaSpaces Universal Deployer</a> to deploy complex multi processing unit applications.</p>
+        </div>
+        <h1><a name="the-deployment-process"></a>The Deployment Process</h1>
+        <p>Once built according to the processing unit <a href="the-processing-unit-structure-and-configuration.html">directory structure</a>, the processing unit can be deployed via the various deployment tools available in <MadCap:variable name="General.ProductNameXAP" /> (<a href="../admin/gigaspaces-management-center.html">UI</a>, <a href="../admin/deploy-command-line-interface.html">CLI</a>, Ant, <a href="../started/installation-maven-overview.html">Maven</a> or the <a href="administration-and-monitoring-overview.html">Admin API</a>).</p>
+        <p>After you <a href="the-processing-unit-overview.html">package</a> the processing unit and deploy it via one of the deployment tools, the deployment tool uploads it to all the running <a href="../overview/the-runtime-environment.html#gsm">GSMs</a>, where it is extracted and provisioned to the <a href="../overview/the-runtime-environment.html#gsc">GSCs</a>.</p>
+        <div class="tc-admon-note">
+            <p>The recommended way to deploy the processing unit is by packaging it into a .jar or a .zip archive and specifying the location of the packaged file to the deployment tool in use.</p>
+            <p>However,   <MadCap:variable name="General.ProductNameXAP" /> also supports the deployment of exploded processing units. (The deployment tool will package the processing unit directories into a jar file automatically). Another option to deploy a processing unit is by placing the exploded processing unit under the deploy directory of each of the GSMs and issuing  a deploy command with the processing unit name (the name of the directory under the deploy directory).</p>
+        </div>
+        <h1><a name="distribution-of-processing-unit-binaries-to-the-running-gscs"></a>Distribution of Processing Unit Binaries to the Running GSCs</h1>
+        <p>By default, when a processing unit instance is provisioned to run on a certain GSC, the GSC downloads the processing unit archive from the GSM into the <code><MadCap:variable name="General.HomePath" />/work/processing-units</code> directory (The location of this directory can be overridden via the <code>com.gs.work</code> system property).</p>
+        <p>Downloading the processing unit archive to the GSC is the recommended option, but it can be disabled. In order to disable it, the <code>pu.download</code> <a href="deployment-properties.html">deployment property</a>  should be set to <code>false</code>. This will not download the entire archive to the GSC, but will force the GSC to load the processing unit classes one at a time from the GSM via a URLClassLoader.</p><a name="deployDirections"></a>
+        <h1><a name="processing-unit-deployment-using-various-deployment-tools"></a>Processing Unit Deployment using various Deployment Tools</h1>
+        <p>GigaSpaces provides several options to deploy a processing unit onto the Service Grid. Below you can find a simple deployment example with the various deployment tools for deploying a processing unit archive called <code>myPU.jar</code> located in the <code>/opt/gigaspaces</code> directory:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Admin API " style="padding:10px">
+                <p>Deploying via code is done using the GigaSpaces <a href="administration-and-monitoring-overview.html">Admin API</a>. The following example shows how to deploy the <code>myPU.jar</code> processing unit using one of the available GSMs. For more details please consult the <a href="administration-and-monitoring-overview.html">Admin API</a></p><pre><code class="language-java">Admin admin = new AdminFactory().addGroup("myGroup").create();
+File puArchive = new File("/opt/gigaspaces/myPU.jar");
+ProcessingUnit pu = admin.getGridServiceManagers().waitForAtLeastOne().deploy(
+    new ProcessingUnitDeployment(puArchive));
+</code></pre>
+            </div>
+            <div title="  Ant " style="padding:10px">
+                <p>Deploying with Ant is based on the <code>org.openspaces.pu.container.servicegrid.deploy.Deploy</code> class (in fact, all of the deployment tools use this class although it is not exposed directly to the end user).</p>
+                <p>In the below example we create an Ant macro using this class and use it to deploy our processing unit. The deploy class is executable via its <code>main()</code> method, and can accept various parameters to control the deployment process. These parameters are identical to these of the <code>deploy</code> CLI command, for a complete list of the available parameters please consult the <a href="../admin/deploy-command-line-interface.html">deploy CLI reference documentation.</a>.</p><pre><code class="language-xml">&lt;deploy file="/opt/gigaspaces/myPU.jar" /&gt;
+
+&lt;macrodef name="deploy"&gt;
+    &lt;attribute name="file"/&gt;
+    &lt;sequential&gt;
+        &lt;java
+            classname="org.openspaces.pu.container.servicegrid.deploy.Deploy"
+            fork="false"&gt;
+            &lt;classpath refid="all-libs"/&gt;
+            &lt;arg value="-groups" /&gt;
+            &lt;arg value="mygroup" /&gt;
+            &lt;arg value="@{file}"/&gt;
+        &lt;/java&gt;
+    &lt;/sequential&gt;
+&lt;/macrodef&gt;
+</code></pre>
+            </div>
+            <div title="  GigaSpaces CLI " style="padding:10px">
+                <p>Deploying via the CLI is based on the <code>deploy</code> command. This command accepts various parameters to control the deployment process. These parameters are documented in full in the <a href="../admin/deploy-command-line-interface.html">deploy CLI reference documentation.</a>.</p><pre><code class="language-java">&gt; <MadCap:variable name="General.HomePath" />/bin/gs.sh(bat) deploy myPU.jar
+</code></pre>
+            </div>
+            <div title="  GigaSpaces UI " style="padding:10px">
+                <ul>
+                    <li>
+                        <p>Open the GigaSpaces UI by launching `<MadCap:variable name="General.HomePath" />/bin/gs-ui.sh(bat)</p>
+                        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
+                    </li>
+                    <li>
+                        <p>Click the "Deploy Application" button <img src="../Resources/Static/attachment_files/deploy_processing_unit_button.jpg" alt="deploy_processing_unit_button.jpg" /> at the top left of the window</p>
+                    </li>
+                    <li>
+                        <p>In the deployment wizard, click <span class="tc-bold">...</span> to select your processing unit archive, and then click <span class="tc-bold">Deploy</span></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div MadCap:conditions="Version.15-2-died">
+            <h1><a name="elastic-processing-unit-deployment-using-the-admin-api"></a>Elastic Processing Unit Deployment using the Admin API</h1>
+            <p>When deploying a partitioned Processing Unit or a partitioned Space it is recommended to use the new <a href="elastic-processing-unit-overview.html">Elastic Processing Unit</a>. This can be done via the <a href="administration-and-monitoring-overview.html">Admin API</a>. The following example shows how to deploy a processing unit as an Elastic PU.</p>
+            <h2><a name="step-1-start-a-gigaspaces-agent-on-each-machine"></a>Step 1 - Start a GigaSpaces agent on each machine:</h2>
+            <p>You should have <span class="tc-bold">one GigaSpaces agent</span> running the ESM. No GSCs should be started.</p>
+            <div class="easyui-tabs" plain="true" data-options="">
+                <div title="  Windows " style="padding:10px"><pre><code class="language-java">rem Agent deployment that potentially can start management processes
+set <MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS=myGroup
+set <MadCap:variable name="General.EnvVariablePrefix" />_HOME=d:\gigaspaces
+start cmd /c "%<MadCap:variable name="General.EnvVariablePrefix" />_HOME%\bin\gs-agent.bat --global.esm=1 --global.gsm=2 --global.lus=2"
+</code></pre>
+                </div>
+                <div title="  Linux " style="padding:10px"><pre><code class="language-java"># Agent deployment that potentially can start management processes
+
+export <MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS=myGroup
+export <MadCap:variable name="General.EnvVariablePrefix" />_HOME=~/gigaspaces
+nohup <MadCap:variable name="General.HomePath" />/bin/gs-agent.sh --global.esm=1 --global.gsm=2 --global.lus=2 &gt; /dev/null 2&gt;&amp;1 &amp;
+</code></pre>
+                </div>
+            </div>
+            <h2><a name="step-2-run-the-deployment-code"></a>Step 2 - Run the deployment code:</h2><pre><code class="language-java">// Wait for the discovery of the managers and at least one agent
+Admin admin = new AdminFactory().addGroup("myGroup").create();
+admin.getGridServiceAgents().waitForAtLeastOne();
+admin.getElasticServiceManagers().waitForAtLeastOne();
+GridServiceManager gsm = admin.getGridServiceManagers().waitForAtLeastOne();
+
+// Deploy the Elastic Processing Unit.
+// Set the maximum memory and CPU capacity and initial capacity
+File puArchive = new File("/opt/gigaspaces/myPU.jar");
+ProcessingUnit pu = gsm.deploy(
+        new ElasticStatefulProcessingUnitDeployment(puArchive)
+           .memoryCapacityPerContainer(16,MemoryUnit.GIGABYTES)
+           .maxMemoryCapacity(512,MemoryUnit.GIGABYTES)
+           .maxNumberOfCpuCores(32)
+           // uncomment when working with a single machine agent
+           //.singleMachineDeployment()
+           // set the initial memory and CPU capacity
+           .scale(new ManualCapacityScaleConfigurer()
+                  .memoryCapacity(128,MemoryUnit.GIGABYTES)
+                  .numberOfCpuCores(8)
+                  .create())
+);
+
+// Wait until the deployment is complete.
+pu.waitForSpace().waitFor(pu.getTotalNumberOfInstances());
+</code></pre>
+            <h2><a name="step-3-scale-the-pu-by-increasing-the-memory-and-cpu-capacity"></a>Step 3 - Scale the PU by increasing the memory and CPU capacity:</h2><pre><code class="language-java">// Scale in runtime to the desired memory and CPU capacity
+pu.scale(
+    new ManualCapacityScaleConfigurer()
+       .memoryCapacity(256,MemoryUnit.GIGABYTES)
+       .numberOfCpuCores(16)
+       .create()
+);
+</code></pre>
+            <h2><a name="step-4-to-undeploy-the-processing-unit-run-the-following"></a>Step 4 - To undeploy the Processing Unit run the following:</h2><pre><code class="language-java">// Wait up to 10 seconds for the processing unit to be discovered
+ProcessingUnit pu = admin.getProcessingUnits()
+   .waitFor("myPU",10,TimeUnit.SECONDS);
+if (pu != null) {
+   // Wait up to 3 minutes for the processing unit
+   // (including all instances) to be gracefully undeployed
+   // For versions prior to 8.0.5 (7.x - 8.0.4) use pu.undeploy()
+   pu.undeployAndWait(3, TimeUnit.MINUTES);
+}
+</code></pre>
+            <p>Since we are un deploying an Elastic Processing Unit, this will also terminate all the GSCs hosting the PU.</p>
+        </div>
+        <h1><a name="hot-deploy"></a>Hot Deploy</h1>
+        <p>To enable business continuity in a better manner, having system upgrade without any downtime, here is a simple procedure you should follow when you would like to perform a hot deploy, upgrading a PU that includes both a business logic and a collocated embedded space:</p>
+        <ol>
+            <li>Upload the PU new/modified classes (i.e. polling container <code>SpaceDataEvent</code> implementation or relevant listener class and any other dependency classes) to the PU deploy folder on all the GSM machines.</li>
+            <li>Restart the PU instance running the backup space. This will force the backup PU instance to reload a new version of the business logic classes from the GSM.</li>
+            <li>Wait for the backup PU to fully recover its data from the primary.</li>
+            <li>Restart the Primary PU instance. This will turn the existing backup instance to become a primary instance. The previous primary will turn into a backup, load the new business logic classes and recover its data from the existing primary.</li>
+            <li>Optional - You can restart the existing primary to force it to switch into a backup instance again. The new primary will also use the new version of the business logic classes.</li>
+        </ol>
+        <p>You can script the above procedure via the <a href="administration-and-monitoring-overview.html">Administration and Monitoring API</a>, allowing you to perform system upgrade without downtime.</p>
+        <h2><a name="restart-a-running-pu-via-the-gs-ui"></a>Restarting a Running PU via the GigaSpaces Management Center</h2>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
+        <p class="tc-todo">To restart a running PU (all instances) via the GigaSpaces Management Center:</p>
+        <ol>
+            <li>Start GigaSpaces Management Center.</li>
+            <li>Navigate to the Deployed Processing Unit tab.</li>
+            <li>Right-click the PU instance you want to restart</li>
+            <li>
+                <p>Select the restart menu option.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/pu_restart.jpg" alt="pu_restart.jpg" class="tc-picture50" />
+                </p>
+            </li>
+            <li>
+                <p>Confirm the operation.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/pu_restart2.jpg" alt="pu_restart2.jpg" class="tc-picture30" />
+                </p>
+            </li>
+            <li>
+                <p>Within few seconds the restart operation will be completed. If the amount of data to recover is large (few millions of objects), this might take few minutes.</p>
+            </li>
+            <li>
+                <p>Repeat steps 2-4 for all backup instances.</p>
+            </li>
+            <li>
+                <p>Repeat steps 2-4 for all primary instances. This will switch the relevant backup to be a primary mode where the existing primary will switch into a backup mode.</p>
+            </li>
+        </ol>
+        <div class="tc-admon-note">
+            <p>The Space class can't be changed with hot deploy, only business logic.</p>
+        </div>
+        <h2><a name="restart-a-running-pu-via-the-admin-api"></a>Restarting a Running PU via the Admin API</h2>
+        <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/ProcessingUnitInstance.html">ProcessingUnitInstance</a> includes few <code>restart</code> methods you may use to restart a PU instance:</p><pre><code class="language-java">restart()
+restartAndWait()
+restartAndWait(long timeout, TimeUnit timeUnit)
+</code></pre>
+        <p>Here is an example code that is using the <code>ProcessingUnitInstance.restart</code> to restart the entire PU instances in an automatic manner:</p><pre><code class="language-java">import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
+
+import org.openspaces.admin.Admin;
+import org.openspaces.admin.AdminFactory;
+import org.openspaces.admin.pu.ProcessingUnit;
+import org.openspaces.admin.pu.ProcessingUnitInstance;
+import com.gigaspaces.cluster.activeelection.SpaceMode;
+
+public class PUReatartMain {
+    static Logger logger = Logger.getLogger("PUReatart");
+
+    public static void main(String[] args) {
+        String puToRestart = "myPU";
+        Admin admin = new AdminFactory().createAdmin();
+
+        ProcessingUnit processingUnit = admin.getProcessingUnits().waitFor(
+                puToRestart, 10, TimeUnit.SECONDS);
+
+                if (processingUnit == null)
+                {
+           logger.info("can't get PU instances for "+puToRestart );
+           admin.close();
+           System.exit(0);
+                }
+
+                // Wait for all the members to be discovered
+                processingUnit.waitFor(processingUnit.getTotalNumberOfInstances());
+
+        ProcessingUnitInstance[] puInstances = processingUnit.getInstances();
+        // restart all backups
+        for (int i = 0; i &lt; puInstances.length; i++) {
+
+            if (puInstances[i].getSpaceInstance().getMode() == SpaceMode.BACKUP) {
+                restartPUInstance(puInstances[i]);
+            }
+        }
+
+        // restart all primaries
+        for (int i = 0; i &lt; puInstances.length; i++) {
+            if (puInstances[i].getSpaceInstance().getMode() == SpaceMode.PRIMARY) {
+                restartPUInstance(puInstances[i]);
+            }
+        }
+        admin.close();
+        System.exit(0);
+    }
+    private static void restartPUInstance(
+            ProcessingUnitInstance pi) {
+        final String instStr = pi.getSpaceInstance().getMode() != SpaceMode.PRIMARY?"backup" : "primary";
+        logger.info("restarting instance " + pi.getInstanceId()
+                + " on " + pi.getMachine().getHostName() + "["
+                + pi.getMachine().getHostAddress() + "] GSC PID:"
+                + pi.getVirtualMachine().getDetails().getPid() + " mode:"
+                + instStr + "...");
+
+        pi = pi.restartAndWait();
+        logger.info("done");
+    }
+}
+</code></pre>
+        <div class="tc-admon-note">
+            <p>The <a href="/sbp/xap-hot-deploy.html"><MadCap:variable name="General.ProductNameXAP" /> Hot Deploy</a> tool allows business logic running as a PU to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach , placing new PU code on the GSM PU deploy folder and later restart each PU instance.</p>
+        </div>
+        <h1><a name="application-deployment-and-processing-unit-dependencies-a-name-app-deployment-pu-dependencies-a"></a>Application Deployment and Processing Unit Dependencies <a name="app-deployment-pu-dependencies"></a></h1>
+        <p>An application is a logical abstraction that groups one or more Processing Units. Application allows:</p>
+        <ol>
+            <li>Parallel deployment of application processing units, while respecting dependency order.</li>
+            <li>Undeployment of application processing units in reverse dependency order</li>
+        </ol>
+        <h2><a name="deployment-dependencies"></a>Deployment Dependencies</h2>
+        <p>The sample code below deploys an application named "data-app" which consists of a space and a feeder processing unit. The feeder processing unit instances are deployed only after the space deployment is complete (each partition has both a primary and a backup space instance).</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Admin API " style="padding:10px"><pre><code class="language-java">Admin admin = new AdminFactory().addGroup("myGroup").create();
+File feederArchive = new File("/opt/gigaspaces/myfeeder.jar");
+
+Application dataApp = admin.getGridServiceManagers().deploy(
+  new ApplicationDeployment("data-app")
+
+  .addProcessingUnitDeployment(
+    new ProcessingUnitDeployment(feederArchive)
+    .name("feeder")
+    .addDependency("space"))
+
+  .addProcessingUnitDeployment(
+    new SpaceDeployment("space"))
+);
+
+for (ProcessingUnit pu : dataApp.getProcessingUnits()) {
+  pu.waitFor(pu.getTotalNumberOfInstances());
+}
+</code></pre>
+            </div>
+            <div title="  Admin API and XML " style="padding:10px">
+                <p>The processing unit dependencies can be described using an XML file.</p><pre><code class="language-java">Admin admin = new AdminFactory().addGroup("myGroup").create();
+//The dist zip file includes feeder.jar and application.xml file
+File application = new File("/opt/gigaspaces/examples/data/dist.zip");
+//Application folders are supported as well
+//File application = new File("/opt/gigaspaces/examples/data/dist");
+Application dataApp = admin.getGridServiceManagers().deploy(
+  new ApplicationFileDeployment(application)
+  .create()
+);
+
+for (ProcessingUnit pu : dataApp.getProcessingUnits()) {
+  pu.waitFor(pu.getTotalNumberOfInstances());
+}
+</code></pre>
+                <p>Here is the content of the application.xml file (that resides alongside feeder.jar in dist.zip):</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:space name="space" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="space"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:space name="space" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="space"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="  GigaSpaces CLI and XML " style="padding:10px">
+                <p>The processing unit dependencies can be described using an XML file.</p><pre><code class="language-java">&gt; <MadCap:variable name="General.HomePath" />/bin/gs.sh(bat) deploy-application examples/data/dist.zip
+</code></pre>
+                <p>Here is the content of the application.xml file (that resides alongside feeder.jar in dist.zip):</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:space name="space" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="space"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:space name="space" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="space"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+        </div>
+        <p>The reason for imposing this dependency is that the space proxy bean in the feeder processing unit would fail to initialize if the space is not available. However, this restriction could be too severe since the feeder is a singleton processing unit. For example, if a container with the feeder and a space instance fails, the space is still available (the backup is elected to primary). However the feeder is not re-deployed until the space has all instances running, which will not happen unless a container is (re)started.</p>
+        <h2><a name="adaptive-sla"></a>Adaptive SLA</h2>
+        <p>The feeder can relax this restriction, by specifying a dependency of at least one instance per partition. Now the feeder is redeployed as long as the space has a minimum of one instance per partition. The downside of this approach is that during initial deployment there is a small time gap in which the feeder writes data to the space while there is only one copy of the data (one instance per partition).</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Admin API " style="padding:10px"><pre><code class="language-java">Admin admin = new AdminFactory().addGroup("myGroup").create();
+File feederArchive = new File("/opt/gigaspaces/myfeeder.jar");
+
+// The ProcessingUnitDependenciesConfigurer supports dependencies on a minimum number of instances,
+// on a minimum number of instances per partition, or waiting for a deployment of another processing unit to complete.
+Application dataApp = admin.getGridServiceManagers().deploy(
+  new ApplicationDeployment("data-app")
+    .addProcessingUnitDeployment(
+      new ProcessingUnitDeployment(feederArchive)
+        .name("feeder")
+        .addDependencies(new ProcessingUnitDeploymentDependenciesConfigurer()
+                     .dependsOnMinimumNumberOfDeployedInstancesPerPartition("space",1)
+                     .create())
+    .addProcessingUnitDeployment(
+      new SpaceDeployment("space"))
+
+);
+
+for (ProcessingUnit pu : dataApp.getProcessingUnits()) {
+  pu.waitFor(pu.getTotalNumberOfInstances());
+}
+</code></pre>
+            </div>
+            <div title="  Admin API with XML " style="padding:10px">
+                <p>The processing unit dependencies can be described using an XML file.</p><pre><code class="language-java">Admin admin = new AdminFactory().addGroup("myGroup").create();
+//The dist zip file includes feeder.jar and application.xml file
+File application = new File("/opt/gigaspaces/examples/data/dist.zip");
+//Application folders are supported as well
+//File application = new File("/opt/gigaspaces/examples/data/dist");
+Application dataApp = admin.getGridServiceManagers().deploy(
+  new ApplicationFileDeployment(application)
+  .create()
+);
+
+for (ProcessingUnit pu : dataApp.getProcessingUnits()) {
+  pu.waitFor(pu.getTotalNumberOfInstances());
+}
+</code></pre>
+                <p>Here is the content of the application.xml file (that resides alongside feeder.jar in dist.zip):</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:space name="space" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="space" min-instances-per-partition="1"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:space name="space" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="space" min-instances-per-partition="1"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="  GigaSpaces CLI with XML " style="padding:10px">
+                <p>The processing unit dependencies can be described using an XML file.</p><pre><code class="language-java">gigaspaces/bin/gs.sh deploy-application gigaspaces/examples/data/dist.zip
+</code></pre>
+                <p>Here is the content of the application.xml file (that resides alongside feeder.jar in dist.zip):</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:space name="space" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="space" min-instances-per-partition="1"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born,Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-admin="http://www.openspaces.org/schema/admin"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/[%=Versions.product-version-short%]/admin/openspaces-admin.xsd"&gt;
+
+    &lt;context:annotation-config /&gt;
+
+    &lt;os-admin:application name="data-app"&gt;
+
+        &lt;os-admin:space name="space" /&gt;
+
+        &lt;os-admin:pu processing-unit="feeder.jar"&gt;
+            &lt;os-admin:depends-on name="space" min-instances-per-partition="1"/&gt;
+        &lt;/os-admin:pu&gt;
+
+    &lt;/os-admin:application&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="undeployment-order"></a>Undeployment Order</h2>
+        <p>When it is time to undeploy dataApp, we would like the feeder to undeploy first, and only then the space. This would reduce the number of false warnings in the feeder complaining that the space is not available. The command <code>dataApp.undeployAndWait(3, TimeUnit.MINUTES)</code> un deploys the application in reverse dependency order and waits for at most 3 minutes for all processing unit instances to gracefully shutdown.</p>
+        <p>In the example above, the feeder instance will complete the teardown of all the spring beans, and only then the space would undeploy.</p>
+        <h1><a name="monitoring-deployment-progress"></a>Monitoring Deployment Progress</h1>
+        <p>The deployment progress can be monitored using the events provided by the Admin API. There are 4 provision events on a processing unit instance:</p>
+        <ol>
+            <li><code>ProvisionStatus#ATTEMPT</code> - an attempt to provision an instance on an available <code>GridServiceContainer</code></li>
+            <li><code>ProvisionStatus#SUCCESS</code> - a successful provisioning attempt on a <code>GridServiceContainer</code></li>
+            <li><code>ProvisionStatus#FAILURE</code> - a failed attempt to provision an instance on an available <code>GridServiceContainer</code></li>
+            <li><code>ProvisionStatus#PENDING</code> - a pending to provision an instance until a matching <code>GridServiceContainer</code> is discovered</li>
+        </ol><pre><code class="language-java">Admin admin = new AdminFactory().create();
+admin.getProcessingUnits().getProcessingUnitInstanceProvisionStatusChanged().add( listener )
+//or
+admin.getProcessingUnits().getProcessingUnit("xyz").getProcessingUnitInstanceProvisionStatusChanged( listener )
+//or
+admin.addEventListener(new ProcessingUnitInstanceProvisionStatusChangedEventListener() {
+   @Override
+   public void processingUnitInstanceProvisionStatusChanged(
+        ProcessingUnitInstanceProvisionStatusChangedEvent event) {
+       ProvisionStatus newStatus = event.getNewStatus();
+       ...
+   }
+});
+</code></pre>
+        <p>A compound listener (implements several interfaces) can be registered using the <code>Admin.addEventListener(...)</code>.</p>
+        <h1><a name="monitoring-processing-unit-instance-fault-detection"></a>Monitoring Processing Unit Instance Fault Detection</h1>
+        <p>Using the member-alive-indicator (see <a href="../admin/the-sla-overview.html">Monitoring the Liveness of Processing Unit Instances</a>  ) the Grid Service Manager (GSM) actively monitors each processing unit instance. When an "is alive" check fails, it <span class="tc-bold">suspects</span> that the processing unit instance is no longer alive, and retries to contact it (using the configured retries and timeouts in pu.xml under <code>os-sla:member-alive-indicator</code>). When all retries fail, the GSM reports that it <span class="tc-bold">detected</span> a failure and tries to re-deploy it on an available Grid Service Container (GSC).</p>
+        <p>These member-alive-indicator transitions are reflected using the Admin API <code>MemberAliveIndicatorStatus</code>. Use the API to register for status changed events, and better visibility of GSM decisions based on the fault-detection mechanism. An alert is fired upon a fault- detection trigger, also visible in Web User Interface.</p>
+        <p>The <code>MemberAliveIndicatorStatus</code>  has three states: ALIVE, SUSPECTING and FAILURE. The transition from SUSPECTING to FAILURE is final. From this state the processing unit instance is considered not alive. The transition from SUSPECTING back to ALIVE can occur if one of the retries succeeded in contacting the processing unit instance.</p><pre><code class="language-java">Admin admin = new AdminFactory().create();
+admin.getProcessingUnits().getProcessingUnitInstanceMemberAliveIndicatorStatusChanged().add( listener )
+//or
+admin.getProcessingUnits().getProcessingUnit("xyz").getProcessingUnitInstanceMemberAliveIndicatorStatusChanged( listener )
+//or
+admin.addEventListener(new ProcessingUnitInstanceMemberAliveIndicatorStatusChangedEventListener() {
+   @Override
+   public void processingUnitInstanceMemberAliveIndicatorStatusChanged (
+    ProcessingUnitInstanceMemberAliveIndicatorStatusChangedEvent event) {
+       MemberAliveIndicatorStatus newStatus = event.getNewStatus();
+       ...
+   }
+});
+</code></pre>
+        <p>A compound listener (implements several interfaces) can be registered using the <code>Admin.addEventListener(...)</code>.</p>
+    </body>
+</html>

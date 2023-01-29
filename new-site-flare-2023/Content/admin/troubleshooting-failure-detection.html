@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Failure Detection</h1>
+        <p>Failure detection is the time it takes for the space and the client to detect that failure has occurred. Failure detection consists of two main phases:</p>
+        <ol>
+            <li>The backup space detects that the primary space is down, and takes over as primary.</li>
+            <li>The client detects that the machine running the primary space is down. In case it is running against a clustered space, it routs its requests to the new primary space (the backup space that has just taken over as primary).</li>
+        </ol>
+        <p>One of two main failure scenarios might occur:</p>
+        <ul>
+            <li>Process failure or machine crash</li>
+            <li>Network cable disconnection</li>
+        </ul>
+        <p>It takes <MadCap:variable name="General.ProductNameXAP" /> a few seconds to recover from process failure or a machine crash. In case of network cable disconnection, the client first has to detect that it has been disconnected from the machine running the space. Therefore, recovery time in this case is longer.</p>
+        <h1><a name="reducing-failure-detection-time"></a>Reducing Failure Detection Time</h1>
+        <p>Configuring failure detection time can help you handle extreme failure scenarios more effectively. For example, in extreme cases of network disconnection, you might want the failover process to take 2-3 seconds.</p>
+        <p>Here is a good combination for the space settings you may use to reduce the failover time - these should be used with a fast network:</p><pre><code class="language-bash">cluster-config.groups.group.fail-over-policy.active-election.yield-time=300
+cluster-config.groups.group.fail-over-policy.active-election.fault-detector.invocation-delay=300
+cluster-config.groups.group.fail-over-policy.active-election.fault-detector.retry-count=2
+</code></pre>
+        <p>The following should be specified as system properties:</p><pre><code class="language-bash">-Dcom.gs.transport_protocol.lrmi.connect_timeout=3
+-Dcom.gs.transport_protocol.lrmi.request_timeout=3
+-Dcom.gs.jini.config.maxLeaseDuration=2000
+</code></pre>
+        <p>Notice that low (1-2sec) TCP KeepAlive time settings should be specified to achieve failure detection times of less than 15 sec.</p>
+        <ul>
+            <li>Linux: <code>echo 2 &gt; /proc/sys/net/ipv4/tcp_keepalive_time</code> (2sec)</li>
+            <li>Windows: Registry setting <a href="https://technet.microsoft.com/en-us/library/cc957549.aspx">KeepAliveTime</a></li>
+        </ul>
+        <p>By default, the maximum time it takes for a backup space to switch into a primary mode takes ~6-8 seconds.
+If you would like to reduce the failover time , you should use the following formula:</p><pre><code class="language-bash">100 [ms] + (yield-time * 7) + invocation-delay + (retry-count * retry-timeout) = failover time
+</code></pre>
+        <ul>
+            <li>The 100 ms above refers a constant that is related to the network latency. You should reduce this number for a fast network.</li>
+        </ul>
+        <p>Change the default settings <span class="tc-bold">only if you have a special need</span> to reduce the failover duration. (~1 second). In this case:</p>
+        <ul>
+            <li>the <code>yield-time</code> minimum value should be 200 ms.</li>
+            <li>Reducing the <code>invocation-delay</code> and <code>retry-timeout</code> values, and increasing the <code>retry-count</code> values might increase the chatting overhead between the spaces and the lookup service.</li>
+        </ul>
+        <div class="tc-admon-tip">
+            <p>For additional tuning options please contact the <a href="http://www.gigaspaces.com/supportcenter">GigaSpaces Support Team</a>.</p>
+        </div>
+        <h1><a name="failure-detection-parameters"></a>Failure Detection Parameters</h1>
+        <h2><a name="space-side-parameters"></a>Space-Side Parameters</h2>
+        <h3><a name="active-election-parameters"></a>Active Election Parameters</h3>
+        <p>The following parameters in the cluster schema active election  block regard failure detection and recovery:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Parameter</th>
+                    <th align="left">Parameter Description</th>
+                    <th align="left">Default Value</th>
+                    <th align="left">Unit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.groups.group.fail-over-policy.active-election.yield-time</td>
+                    <td align="left">This parameter allows you to configure the time it takes to yield to other participants between every election phase.</td>
+                    <td align="left">1000</td>
+                    <td align="left">millisec</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.fail-over-policy.active-election.fault-detector.invocation-delay</td>
+                    <td align="left">This parameter limits the amount of time the backup space waits between each ping to the primary space.</td>
+                    <td align="left">1000</td>
+                    <td align="left">millisec</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.fail-over-policy.active-election.fault-detector.retry-count</td>
+                    <td align="left">Related to the <code>fault-detector.invocation-delay</code> parameter, defines the number of times the backup checks if the primary space has failed</td>
+                    <td align="left">3</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.fail-over-policy.active-election.fault-detector.retry-timeout</td>
+                    <td align="left">Related to the <code>retry-count</code> parameter, defines the time between retries the backup checks if the primary space has failed</td>
+                    <td align="left">100</td>
+                    <td align="left">millisec</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.fail-over-policy.active-election.connection-retries</td>
+                    <td align="left">Defines the number of times the space instance will try to establish connection with the lookup service. The wait time in between retries is defined by the <code>yield-time</code> parameter</td>
+                    <td align="left">60</td>
+                    <td align="left">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="client-side-parameters"></a>Client-Side Parameters</h2>
+        <h3><a name="proxy-connectivity"></a>Proxy Connectivity</h3>
+        <p>The <a href="tuning-proxy-connectivity.html">Proxy Connectivity</a> defines the settings in which the system checks the liveness of space members.</p>
+        <h3><a name="watchdog-parameters"></a>Watchdog Parameters</h3>
+        <h2><a name="service-grid-parameters"></a>Service Grid Parameters</h2>
+        <p>The Service Grid uses two complementary mechanisms for service detections – the Lookup Service and fault-detection handlers.</p>
+        <ul>
+            <li><code>GSMFaultDetectionHandler</code> – used by GSMs to monitor each other.</li>
+            <li><code>GSCFaultDetectionHandler</code> – used by the GigaSpaces Management Center to monitor GSCs.</li>
+            <li><code>PUFaultDetectionHandler</code> – Used by GSMs to monitor Processing Units deployed on GSCs.</li>
+        </ul>
+        <p>The fault-detection handlers check periodically if a service is alive, and in case of failure, how many times to retry and how often.</p>
+        <p>The GSM and GSC fault-detection handler settings are controlled via the relevant properties. The <code>PUFaultDetectionHandler</code> is configurable using the <a href="the-sla-overview.html#monitoring-the-liveness-of-processing-unit-instances">SLA - member alive indicator</a>.</p>
+        <p>For logging information, it is advised to monitor service failure by setting the logging level to <code>Level.FINE</code>.</p><pre><code class="language-bash"># ServiceGrid FaultDetectionHandler logging
+
+com.gigaspaces.grid.gsc.GSCFaultDetectionHandler.level = INFO
+com.gigaspaces.grid.gsm.GSMFaultDetectionHandler.level = INFO
+org.openspaces.pu.container.servicegrid.PUFaultDetectionHandler.level = INFO
+</code></pre>
+        <h2><a name="jini-lookup-service-parameters"></a>Jini Lookup Service Parameters</h2>
+        <p>The <code>LeaseRenewalManager</code> in the <code>advanced-space.config</code> file is also related to failure detection and recovery:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Parameter</th>
+                    <th align="left">Parameter Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">maxLeaseDuration</td>
+                    <td align="left">The time the system waits between every lease renewal, for example: if the parameter value is <code>8000</code>, the system renews the space lease every 8000 <code>[milliseconds]</code>.<br /><span class="tc-iconinfo">&#160;</span> As this value is reduced, renewal requests are performed more frequently while the service is up, and lease expiration occurs sooner when the service goes down.</td>
+                    <td align="left">8000</td>
+                </tr>
+                <tr>
+                    <td align="left">roundTripTime</td>
+                    <td align="left">This parameter instructs the renewal process to begin a certain amount of time (by default, 100 <code>[milliseconds]</code>) before the actual renewal time, thus making sure that the renewal process is successful.<br /><span class="tc-iconexcl">&#160;</span> Significantly low values might result in failure to renew a lease. Durations of managed leases should exceed the <code>roundTripTime</code>.</td>
+                    <td align="left">4000</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="lookup-service-unicast-discovery-parameters"></a>Lookup Service Unicast Discovery Parameters</h2>
+        <p>When a Jini Lookup Service fails and is brought back online, a client (such as a GSC, space or a client with a space proxy) needs to re-discover it. It uses Jini unicast discovery retrying to connect to the failed remote lookup service. The default unicast retry protocol provides a graduating approach, increasing the amount of time to wait before the next discovery attempts are made - upon each invocation, eventually reaching a maximum time interval over which discovery is re-tried. In this way, the network is not flooded with unicast discovery requests referencing a lookup service that may not be available for quite some time (if ever).</p>
+        <p>The downside is that it may delay the discovery of services if these are not brought up quickly. A discovery can be delayed us much as 15 minutes. If you have two GSMs and one fails, but it will be brought back up only in the next hour, then it's discovery will take ~15 minutes after it has loaded.</p>
+        <div class="tc-admon-refer">
+            <p>These settings can be configured. Refer to <a href="network-unicast-discovery.html">How to Configure Unicast Discovery</a>.</p>
+        </div>
+    </body>
+</html>

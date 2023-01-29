@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Custom Data Event Filters</h1>
+        <p>The session messaging API allows for space-side notify filtering. To control the events delivered to the client, implement the <code>INotifyDelegatorFilter</code> interface, pass the object implementing the <code>INotifyDelegatorFilter</code>, and return a <code>false</code> value from the <code>INotifyDelegatorFilter.process</code> for events you do not want to be sent to the registered client.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sessionbasedmessagingapi11.jpg" alt="SessionBasedMessagingAPI1.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h1><a name="inotifydelegatorfilter"></a>INotifyDelegatorFilter</h1>
+        <p>The <code>INotifyDelegatorFilter</code> allows you to execute business logic at the space side before the event is delivered to the client. The <code>INotifyDelegatorFilter</code> might prevent a specific event from being delivered to the client registered for the matching event, by returning <code>false</code> from the process method.</p>
+        <p>The <code>INotifyDelegatorFilter</code> interface includes the following methods:</p><pre><code class="language-java">public interface INotifyDelegatorFilter extends Serializable
+{
+// called when the filter created
+public void init( IJSpace space, Object notifyTemplate );
+
+// called before the event delivered to the client. Returning false will not
+// deliver the event to the client
+public boolean process( EntryArrivedRemoteEvent theEvent);
+
+// called when the registration cancelled
+public void close();
+}
+</code></pre>
+        <h1><a name="inotifydelegatorfilter-implementation-example"></a>INotifyDelegatorFilter Implementation Example</h1>
+        <p>Below is an example for the <code>INotifyDelegatorFilter</code> implementation, where the <code>process()</code> method allows only messages with the value <code>aaa</code> to be delivered to the client:</p><pre><code class="language-java">package com.j_spaces.examples.sessionevent;
+
+import net.jini.core.entry.Entry;
+import net.jini.core.entry.UnusableEntryException;
+import com.j_spaces.core.IJSpace;
+import com.j_spaces.core.client.EntryArrivedRemoteEvent;
+import com.j_spaces.core.client.INotifyDelegatorFilter;
+
+public class MyNotifyFilter implements INotifyDelegatorFilter
+{
+public void init(IJSpace space, Object entry)
+{
+System.out.println(" -&gt;&gt; Init called - Registration Template:"+entry);
+}
+
+// only messages with m_string = aaa will be delivered to the registered client
+public boolean process(EntryArrivedRemoteEvent theEvent)
+{
+EntryArrivedRemoteEvent arrivedRemoteEvent = (EntryArrivedRemoteEvent) theEvent;
+MyData msg;
+try {
+msg = (MyData) arrivedRemoteEvent.getObject();
+int notifyType = arrivedRemoteEvent.getNotifyType();
+String msgStr = " -&gt;&gt; process called - Type:" + DataSessionEventExample.getNotifyDesc(notifyType)+" - Data:" + msg ;
+System.out.println(msgStr);
+return (msg.m_string.equals("aaa"));
+} catch (UnusableEntryException e) {
+e.printStackTrace();
+}
+return false;
+}
+
+public void close()
+{
+System.out.println(" -&gt;&gt; closed called");
+}
+}
+</code></pre>
+        <p>The notify registration:</p><pre><code class="language-java">EventSessionConfig config = new EventSessionConfig();
+DataEventSession session = space.newDataEventSession(config);
+MyNotifyFilter filter = new MyNotifyFilter ();
+EventRegistration registration = session.addListener(new MyData(),this,Lease.FOREVER,null,filter);
+</code></pre>
+        <p>When writing the following objects, only <code>msg1</code> is delivered to the client who registered for notifications:</p><pre><code class="language-java">MyData msg1 = new MyData("aaa", new Long (100 ) , new Time(10,5,20) ,
+new Date (107, 10, 40),new Integer (60 ) ,new Double (500.2));
+MyData msg2 = new MyData("bbb", new Long (100 ) , new Time(10,5,20) ,
+new Date (107, 10, 40),new Integer (60 ) ,new Double (500.2));
+
+space.write(msg1, null, Lease.FOREVER);
+space.write(msg2, null, Lease.FOREVER);
+</code></pre>
+        <div class="tc-admon-note">
+            <p>The <code>INotifyDelegatorFilter</code> implementation class should be part of the space classpath.</p>
+        </div>
+    </body>
+</html>

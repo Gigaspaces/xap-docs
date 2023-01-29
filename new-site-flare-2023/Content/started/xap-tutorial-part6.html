@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Transactions and Concurrency</h1>
+        <p>In this part of the tutorial we will introduce you to the transaction processing capabilities of <MadCap:variable name="General.ProductNameXAP" />.</p>
+        <p>The Spring Framework provides a transaction manager abstraction using the PlatformTransactionManager interface with several different built-in implementations, such as JDBC Data Source and JTA. <MadCap:variable name="General.ProductNameXAP" /> provides several implementations for Spring's PlatformTransactionManager, allowing you to use the <MadCap:variable name="General.ProductNameXAP" /> Distributed Transaction Manager and the Jini Distributed Transaction Manager. <MadCap:variable name="General.ProductNameXAP" /> can also be used within an XA transaction manager using JTA.</p>
+        <h1><a name="transaction-management"></a>Transaction Management</h1>
+        <p><MadCap:variable name="General.DataGridInitCap" /> provides several transaction managers, and changing the implementation you work with is just a matter of changing the configuration. In this part of the tutorial will use <MadCap:variable name="General.DataGrid" />'s Distributed Transaction Manager to demonstrate some of the features and capabilities.</p>
+        <p>Here is an example how you define a distributed transaction manager via the Spring configuration:</p><pre><code class="language-xml">&lt;!-- A bean representing a space (an IJSpace implementation) --&gt;
+&lt;os-core:embedded-space id="space" space-name="xapTutorialSpace" /&gt;
+
+&lt;!-- Defines a distributed transaction manager. --&gt;
+&lt;os-core:distributed-tx-manager id="transactionManager" /&gt;
+
+&lt;!-- Define the GigaSpace instance that the application will use to access the space --&gt;
+&lt;os-core:giga-space id="xapTutorialSpace" space="space" tx-manager="transactionManager" /&gt;
+
+&lt;!-- enable the configuration of transactional behavior based on annotations --&gt;
+&lt;tx:annotation-driven transaction-manager="transactionManager" /&gt;
+</code></pre>
+        <div class="tc-admon-note">
+            <p>In order to make the <MadCap:variable name="General.DataGrid" /> Interface transactional, the transaction manager must be provided to it when constructing the GigaSpace bean. You also need to add &lt;tx:annotation-driven transaction-manager="transactionManager" /&gt;  to enable the configuration of transactional behavior based on annotations.</p>
+        </div>
+        <h3><a name="transaction-demarcation"></a>Transaction Demarcation</h3>
+        <p>In your Java code you can annotate your class or methods with the Spring <code>@Transactional</code> annotation and configure Spring to process the annotation such that every call to the annotated methods will be automatically performed under a transaction. The transaction starts before the method is called and commits when the method call returns. If an exception is thrown from the method the transaction is rolled back automatically. Note that you can control various aspects of the transaction like propagation by using the attributes of the <code>@Transactional</code> annotation.</p>
+        <p>Here is an example how to use the transactions in your code:</p><pre><code class="language-java">@Transactional
+public void createPayment() {
+    Payment payment = new Payment();
+    payment.setCreatedDate(new Date(System.currentTimeMillis()));
+    payment.setPayingAccountId(new Integer(1));
+    payment.setStatus(ETransactionStatus.PROCESSED);
+
+    space.write(payment);
+}
+</code></pre>
+        <p>If an exception is thrown in this example, the object that was written into the space will be rolled back.</p>
+        <h3><a name="transaction-propagation"></a>Transaction propagation</h3>
+        <p>Normally all code executed within a transaction runs in the same transaction scope. However, there are several options specifying behavior if a transactional method is executed when a transaction context already exists. For example, simply running in the existing transaction (the most common case); or suspending the existing transaction and creating a new transaction.</p>
+        <p>Here is the example how you can define a new transaction to be started for a method:</p><pre><code class="language-java">@Transactional(propagation = Propagation.REQUIRES_NEW)
+public void createNewPayment() {
+    Payment payment = new Payment();
+    payment.setCreatedDate(new Date(System.currentTimeMillis()));
+    payment.setPayingAccountId(new Integer(1));
+    payment.setStatus(ETransactionStatus.PROCESSED);
+
+    space.write(payment);
+}
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="../dev-java/transaction-overview.html">Transaction management</a>
+            </p>
+        </div>
+        <h1><a name="event-processing"></a>Event Processing</h1>
+        <p>All event containers support transactions.</p>
+        <h3><a name="polling-container"></a>Polling container</h3>
+        <p>Both the receive operation and the actual event action can be configured to be performed under a transaction. Transaction support is required when, for example, an exception occurs in the event listener, and the receive operation needs to be rolled back (and the actual data event is returned to the space). Adding transaction support is very simple in the polling container, and can be done by injecting a transaction manager into it. Let's take our payment polling container and make it transactional.</p>
+        <p>You make a polling container transactional by adding the <code>@TransactionalEvent</code> annotation:</p><pre><code class="language-java">@EventDriven
+@Notify
+@TransactionalEvent
+public class PaymentListener {
+    @EventTemplate
+    Payment unprocessedData() {
+        Payment template = new Payment();
+        template.setStatus(ETransactionStatus.CANCELLED);
+        return template;
+    }
+
+    @SpaceDataEvent
+    public Payment eventListener(Payment event) {
+        // process Payment
+        System.out.println("Notifier Received a payment");
+        return null;
+    }
+}
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="../dev-java/polling-container-overview.html">Polling Container</a>
+            </p>
+        </div>
+        <h3><a name="notify-container"></a>Notify Container</h3>
+        <p>Just like the Polling container, both the receive operation and the actual event action can be configured to be performed under a transaction. However, in case an error occurs (rollback), the notification is lost and not sent again.</p>
+        <div class="tc-admon-refer">
+            <p><a href="../dev-java/notify-container-overview.html">Notify Container</a>
+            </p>
+        </div>
+        <h1><a name="task-execution"></a>Task Execution</h1>
+        <p>Executors fully support transactions similar to other <MadCap:variable name="General.DataGrid" /> operations. Once an execute operation is executed within a declarative transaction, it will automatically join it. The transaction itself is then passed to the node the task executed on and added declaratively to it. This means that any <MadCap:variable name="General.DataGrid" /> operation performed within the task execute operation will automatically join the transaction started on the client side.</p>
+        <div class="tc-admon-refer">
+            <p><a href="../dev-java/task-execution-overview.html">Task Execution over the Space</a>
+            </p>
+        </div>
+        <h1><a name="remoting-service"></a>Remoting Service</h1>
+        <p>Executor remoting supports transactional execution of services. On the client side, if there is an ongoing declarative transaction during the service invocation (a Space based transaction), the service will be executed under the same transaction. The transaction itself is passed to the server and any Space related operations (performed using <MadCap:variable name="General.DataGrid" />) will be executed under the same transaction.</p>
+        <div class="tc-admon-refer">
+            <p><a href="../dev-java/space-based-remoting-overview.html">Space Based Remoting</a>
+            </p>
+        </div>
+        <h1><a name="concurrency"></a>Concurrency</h1>
+        <p>Locking of objects occurs in multi-user systems to preserve the integrity of changes, so that changes made by one process do not accidentally overwrite changes made by another process. <MadCap:variable name="General.DataGrid" /> provides two strategies for locking objects: Optimistic and pessimistic. The focus is on optimistic locking, the preferred strategy in the <MadCap:variable name="General.DataGrid" /> context.</p>
+        <h3><a name="optimistic-locking"></a>Optimistic Locking</h3>
+        <p>With optimistic locking, you write your business logic allowing multiple users to read the same object at the same time, but allow only one user to update the object successfully. The assumption is that there will be a relatively large number of users trying to read the same object, but a low probability of having a small number of users trying to update the same object at the same time. In the case of multiple users trying to update the same object at the same time, the one(s) that try to update a non-recent object version fail.</p>
+        <p><MadCap:variable name="General.DataGridInitCap" /> uses a version number for an object to accomplish optimistic locking. When a client makes updates to an object an additional where clause is added to the update operation where the client version number of the object is compared against the version number of the object in space. If the the version number is not the same, the operation is rejected, indicating that the object has been modified by some other client or process.</p>
+        <p>Here is an example of how optimistic locking is enabled in <MadCap:variable name="General.DataGrid" />. First we need to indicate to the space that it will hold versioned objects.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Java " style="padding:10px"><pre><code class="language-java">GigaSpace space = new GigaSpaceConfigurer( new SpaceProxyConfigurer("xapTutorialSpace").versioned(true)).gigaSpace();
+</code></pre>
+            </div>
+            <div title="  Spring " style="padding:10px"><pre><code class="language-xml">&lt;os-core:space-proxy id="space" space-name="xapTutorialSpace"  versioned="true" /&gt;
+</code></pre>
+            </div>
+        </div>
+        <p>You should enable the Space class to support the optimistic locking, by including the <code>@SpaceVersion</code> decoration on an int getter field. This field stores the current object version and is maintained by <MadCap:variable name="General.DataGrid" />. See below for an example:</p><pre><code class="language-java">@SpaceClass
+public class Account {
+    private Long id;
+    private String number;
+    private Double receipts;
+    private Double feeAmount;
+    private ECategoryType category;
+    private EAccountStatus status;
+    private int version;
+
+    @SpaceId
+    @SpaceRouting
+    public Long getId() {
+        return id;
+    }
+
+    @SpaceVersion
+    public int getVersion() {
+        return version;
+    }
+}
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="../dev-java/transaction-optimistic-locking.html">Transactions Optimistic Locking</a>
+            </p>
+        </div>
+        <h3><a name="pessimistic-locking"></a>Pessimistic Locking</h3>
+        <p>The pessimistic locking protocol provides data consistency in a multi user transactional environment. It should be used when there might be a large number of clients trying to read and update the same object(s) at the same time. This protocol utilize the system resources (CPU, network) in a very efficient manner both at the client and space server side.
+This scenario is different from the optimistic locking protocol since we assume with the pessimistic locking protocol, that every object that is read and retrieved from the space will eventually be updated where the transaction duration is relatively very short.</p>
+        <p>Here is an example of pessimistic locking that uses the exclusive read lock ReadModifier:</p><pre><code class="language-java">@Transactional(propagation = Propagation.REQUIRES_NEW)
+public void executePayment(Integer orderIDs[]) throws Exception {
+    // Read and lock the payment object
+    Payment payment = space.readById(Payment.class, 1L,
+        ReadModifiers.EXCLUSIVE_READ_LOCK);
+
+    payment.setStatus(ETransactionStatus.CANCELLED);
+    space.write(payment);
+}
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="../dev-java/transaction-pessimistic-locking.html">Transaction Pessimistic Locking</a>
+            </p>
+        </div>
+        <p><MadCap:variable name="General.DataGrid" /> provides additional read modifiers to denote the isolation level:</p>
+        <ul>
+            <li>REPEATABLE_READ - default modifier</li>
+            <li>DIRTY_READ</li>
+            <li>READ_COMMITTED</li>
+            <li>EXCLUSIVE_READ_LOCK</li>
+        </ul>
+        <div class="tc-admon-refer">
+            <p><a href="../dev-java/transaction-read-modifiers.html">Transactions Read Modifiers</a>
+            </p>
+        </div>
+    </body>
+</html>

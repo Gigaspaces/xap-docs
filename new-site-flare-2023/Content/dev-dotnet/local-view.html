@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Local View</h1>
+        <p>A <span class="tc-bold">Local View</span> is a Client Side Cache that maintains a subset of the master space's data. The Local View allows the client to read distributed data without performing any remote calls.</p>
+        <p>Data is streamed into the client's local view based on predefined criteria (a collection of <a href="query-sql.html">SQLQuery</a> objects). These criteria are specified by the client when the local view is created.</p>
+        <p>During the local view initialization, data is loaded into the client's memory based on the view criteria. Afterwards, the local view is continuously updated by the master space asynchronously; any operation executed on the master space that affects an entry which matches the view criteria is automatically propagated to the client.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/local_view.jpg" alt="local_view.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h1><a name="initializing-the-local-view-class"></a>Initializing the Local View Class</h1>
+        <p>Creating a local view is similar to creating an <code>ISpaceProxy</code> instance, except the space should be wrapped with a local view before exposing it as an <code>ISpaceProxy</code>. The local view is configured in code using <code>IReadOnlySpaceProxy</code>. For example:</p><pre><code class="language-csharp">//define names for the localView
+const String typeName1 = "com.gigaspaces.test.Alpha";
+const String typeName2 = "com.gigaspaces.test.Bravo";
+
+//Create an array of views and initialize them with
+View[] views = new View[] { new View(typeName1, "foo=1"), new View(typeName2, "") };
+
+//Create the local view using the GigaSpacesFactory class.
+IReadOnlySpaceProxy localView = GigaSpacesFactory.CreateLocalView(proxy, views);
+
+</code></pre>
+        <h1><a name="local-view-features"></a>Local View Features</h1>
+        <p>The Local View is a <span class="tc-bold">Read-Only</span> data structure. The following operations are not supported when using local view, and should be performed using a regular space proxy:</p>
+        <ul>
+            <li>Any operation that creates or changes data (<code>Write</code>, <code>WriteMultiple</code>, <code>Execute</code>).</li>
+            <li>Any operation that removes data: (<code>Clean</code>, <code>Clear</code>, <code>Take</code>, <code>TakeById</code>, <code>TakeMultiple</code>, <code>AsyncTake</code>, etc.).</li>
+            <li>Any operation under a transaction.</li>
+        </ul>
+        <h1><a name="memory-management"></a>Memory Management</h1>
+        <p>Data is <span class="tc-bold">never</span> evicted from the local view (the cache policy is hardwired to <code>ALL_IN_CACHE</code>). Therefore, specifying criteria that retrieves large amounts of data from the master space can cause the client to run out of memory.</p>
+        <h3><a name="preventing-memory-shortages"></a>Preventing Memory Shortages</h3>
+        <p>As data is stored in the client application's memory, care must be taken to ensure that the application's memory is sufficient to maintain the data. Certain scenarios can result in a memory shortage. If you create multiple local views in the same client or your local view query is too broad, the application could run out of memory and the <code>MemoryShortageException</code> will be thrown.</p>
+        <p>To overcome this either refine the local view queries to cache less data or increase the underlying JVM's memory, as explained in <a href="jvm-configuration.html">JVM Configuration</a>.</p>
+        <h1><a name="synchronization"></a>Synchronization</h1>
+        <p>In most cases, the local view uses replication to synchronize with the master space. Replication provides high reliability and stability.</p>
+        <p>The local view reverts to notification-based synchronization, which is less reliable, when:</p>
+        <ul>
+            <li>Using a view query on a type/class configured to be non-replicable.</li>
+            <li>Using a cluster with an Active-Active topology, or a non-clustered space.</li>
+        </ul>
+        <h1><a name="synchronization-batch"></a>Synchronization Batch</h1>
+        <p>Changes in the server are grouped and sent to the client in batches. The following configuration settings control synchronization batching:</p>
+        <ul>
+            <li>Batch Size: When the batch size reaches the configured value, the batch is sent to the client. The default is 1000 packets.</li>
+            <li>Batch timeout: When the oldest event in the batch reaches the configured value, the batch is sent to the client. The default is 100 milliseconds.</li>
+        </ul>
+        <p>Setting lower values for batch size and timeout reduces data staleness but increases network load, and vice versa.
+Batch settings can be configured when creating the Local View by defining a <code>LocalViewConfig</code> object and sending it as a variable in the <code>GigaSpacesFactory.CreateLocalView</code> function. For example:</p><pre><code class="language-csharp">//Create the configuration object
+LocalViewConfig myconfig = new LocalViewConfig();
+
+//set the batchSize property
+myconfig.BatchSize = 2000;
+
+//define the views for the local view
+View[] views = new View[] { new View(typeName1, "foo=1"), new View(typeName2, "") };
+
+//create the local view using the GigaSpacesFactory object and write it into an IReadOnlySpaceProxy object.
+IReadOnlySpaceProxy localView = GigaSpacesFactory.CreateLocalView(proxy, views, myConfig);
+
+</code></pre>
+        <h1><a name="recovering-from-disconnection"></a>Recovering from Disconnection</h1>
+        <p>When the connection between a local view and remote master space is disrupted, the local view starts trying to reconnect with the remote space.</p>
+        <p>If the disconnection duration exceeds the maximum disconnection duration, the local view enters a disconnected state, wherein each operation throws an exception stating the view is disconnected.</p>
+        <p>When the connection to the remote master space is restored, the local view reloads all its data from the master space (same as in the initialization process) before restoring the state to connected, ensuring the local view is consistent when it is accessed.</p>
+        <p>The maximum disconnection duration can be configured using <code>LocalViewConfig</code> object at runtime when creating the local view. (default is 1 minute). For example:</p><pre><code class="language-csharp">//Create the configuration object
+LocalViewConfig myconfig = new LocalViewConfig();
+
+//set the MaxDisconnectDuration property
+myconfig.MaxDisconnectionDuration = 150;
+
+//define the views for the local view
+View[] views = new View[] { new View(typeName1, "foo=1"), new View(typeName2, "") };
+
+//create the local view using the GigaSpacesFactory object and write it into an IReadOnlySpaceProxy object.
+IReadOnlySpaceProxy localView = GigaSpacesFactory.CreateLocalView(proxy, views, myConfig);
+</code></pre>
+        <h1><a name="server-side-local-view-properties"></a>Server-Side Local View Properties</h1>
+        <p>This properties can be configured on the space side and they will affect all the local views which are created on top of that space.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.redo-log-local-view-capacity</td>
+                    <td align="left">Specifies the total capacity of replication packets the redo log can hold for a local view replication target</td>
+                    <td align="left">150000</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.redo-log-local-view-recovery-capacity</td>
+                    <td align="left">Specifies the total capacity of replication packets the redo log can hold for a local view replication target while the local view is in recovery state (initial load process)</td>
+                    <td align="left">1000000</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.local-view-max-disconnection-time</td>
+                    <td align="left">Specifies the maximum amount of time (in milliseconds) the space will wait for the local view replication target before it is considered disconnected, after which the target will be dropped.</td>
+                    <td align="left">300000</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <p>When the synchronization is replication-based (default), the local view is resilient to failover, which means that if a primary space fails and a backup space replaces it within the maximum disconnection duration, the local view will remain intact during the failover process. When the synchronization is notification-based this is not guaranteed since notifications might be lost during the failover process.</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Formatting Log Messages</h1>
+        <p>The logged output of a logger can be customized to any format, such as an XML or a human readable format.</p>
+        <p>Typically each logging <code>Handler</code> will have a <code>Formatter</code> associated with it. The <code>Formatter</code> takes a <code>LogRecord</code> and converts it to a string. The default <code>Formatter</code> assigned to the <code>Handlers</code> declared in the logging configuration file is <code>com.gigaspaces.logger.</code><code>GSSimpleFormatter</code>. This formatter is based on the <code>java.util.logging.</code><code>SimpleFormatter</code> class, which prints a brief summary of the <code>LogRecord</code> in a human readable format.</p>
+        <h1><a name="the-format-property"></a>The <code>format</code> Property</h1>
+        <p>The <code>LogRecord</code> passed to the <code>Formatter</code> is converted to a string, as specified by the <code>format</code> property in the logging configuration file.</p>
+        <h2><a name="placeholders"></a>Placeholders</h2>
+        <p>The format is simply a string, which can contain any character including line-break characters. GigaSpaces provides several placeholders that can be added to the message.</p>
+        <p>0 - Date object<br />1 - Class name<br />2 - Method name<br />3 - Log Level<br />4 - Logger name<br />5 - Message<br />6 - Context (processing unit, GSC, etc)<br />7 - Thread name</p>
+        <div class="tc-admon-note">
+            <p>Additional placeholders are defined in the <code>xap_logging.properties</code> file in the <code>...config/log</code> folder.</p>
+        </div>
+        <h2><a name="default-format"></a>Default Format</h2>
+        <p>By default, the logging configuration file comes with the following as the default format:</p><pre><code class="language-bash">com.gigaspaces.logger.GSSimpleFormatter.format = {0,date,yyyy-MM-dd HH:mm:ss,SSS} {6} {3} [{4}] - {5}
+</code></pre>
+        <p>Which translates to: *<span class="tc-italic">Date and time</span> printed down to the millisecond, <span class="tc-bold">context</span> (if available), the <span class="tc-bold">log level</span> of the message, the <span class="tc-bold">logger name</span> and the <span class="tc-bold">message</span>.</p>
+        <h2><a name="customized-format"></a>Customized Format</h2>
+        <p>If you wish to customize the format, change the default setting the in the logging configuration file (<code>&lt;GigaSpaces&gt;/config/log/xap_logging.properties</code>).
+For example,</p><pre><code class="language-bash">com.gigaspaces.logger.GSSimpleFormatter.format={0,date} {1}.{2}(..) {3} - {5}
+</code></pre>
+        <p>Which translates to: <span class="tc-bold">Date</span> in it's simplest form, <span class="tc-bold">Class</span> name and <span class="tc-bold">method</span>, the <span class="tc-bold">log level</span> of the message and the <span class="tc-bold">message</span></p><pre><code class="language-bash">Jul 14, 2009  com.gigaspaces.Class.method(..) INFO - Sample message
+</code></pre>
+        <div class="tc-admon-refer">
+            <p>For more details on how to customize a message, refer to <a href="http://java.sun.com/javase/%7b%7b%25version%20" target="_blank">java.text.MessageFormat</a> and <a href="http://java.sun.com/javase/[%=Versions.java-version%]/docs/api/java/text/SimpleDateFormat.html">java.text.SimpleDateFormat</a>.</p>
+        </div>
+    </body>
+</html>

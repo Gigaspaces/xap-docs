@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Common User Issues</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Problem</th>
+                    <th align="left">Troubleshooting Information &amp; Possible causes</th>
+                    <th align="left">Logging information needed by GigaSpaces support</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Deployment failure</td>
+                    <td align="left">* Validate if the GSC's with appropriate SLA definitions are started.<br />    - Validate if GSC's are registered to the same lookup locators with same lookup group.<br />    - Validate if all the dependencies (classes and jars) for the processing units are included in the deployed jar/war.</td>
+                    <td align="left">* Server side logs (all GSC's, GSM's, LUS's logs and console logs for each)</td>
+                </tr>
+                <tr>
+                    <td align="left">Client cannot connect to space</td>
+                    <td align="left">* Validate if Space has been successfully deployed.<br />    - Validate if the client URL corresponds to the space that is has been deployed (host/ip, lookup group(s), space name).<br />    - Validate if Space process did not crash because of some error(s).</td>
+                    <td align="left">* Client side logs.<br />    Server side logs (all GSC's, GSM's, LUS's logs and console logs for each).</td>
+                </tr>
+                <tr>
+                    <td align="left">Memory shortage on space</td>
+                    <td align="left">* Validate if space has more data than expected.<br />    - If space is having lot of data, unwanted data should be evicted from space. More memory should be allocated to the cluster members to avoid getting into the situation (check <MadCap:variable name="General.ProductNameXAP" /> memory manager watermarks).<br />    - If not a lot of data, it could be a JVM garbage collection issue.<br />    - Validate if this is a replication issue, is the backup partition terminated? Are primary and backup disconnected which is causing replication redo log size to grow. Restore the backup space partition for redo log to clear and make room for new data.<br />    - Validate if this is a mirror replication issue - is the mirror terminated? Are primary space and mirror disconnected which is causing redo log size to grow. Restore the backup space partition for redo log to clear and make room for new data.</td>
+                    <td align="left">* Server side logs (all GSC's, GSM's, LUS's logs and console logs for each).<br />    - JVM GC logs for space partitions (GSC's that are hosting spaces). * Heap dump of the primary space partition (GSC hosting this space).</td>
+                </tr>
+                <tr>
+                    <td align="left">Space remote client queries (reads/writes) taking longer than usual</td>
+                    <td align="left">* Validate if the object has appropriate indexes, proper serialization.<br />    - Validate if query criterion is different from what is expected, causing larger result set than usual and slowing the queries.<br />    - Validate if object has a payload that is larger than normal.<br />    - Validate if it is a lrmi thread pool issue where lot of concurrent clients are accessing the space and no more threads are left on the space to accept new client connections.<br />    - Validate if the client broadcast thread pool is fully exhausted.<br />    - Validate if backup space or mirror are having any problems which could lead to slower query performance on space.<br />    - Validate if it is a temporary issue caused by JVM garbage collection.</td>
+                    <td align="left">* Client side logs.<br />    - JVM GC logs for space partitions (GSC's that are hosting spaces).<br />    - Run Thread dumps for the space partitions (GSC's that are hosting spaces) 2-3 times with 1 minute gap and include logs for space partitions.</td>
+                </tr>
+                <tr>
+                    <td align="left">Space remote client execute queries taking longer than usual</td>
+                    <td align="left">* Validate if query criterion is different from what is expected, causing larger result set than usual and slowing the execute requests.<br />    - Validate if object has a payload that is larger than normal.<br />    - Validate if it is a lrmi thread pool issue where lot of concurrent clients are accessing the space and thread pool is exhausted.<br />    - Validate if the client broadcast thread pool is fully exhausted.<br />    - Validate if backup space or mirror are having any problems which could lead to slower remoting performance on space.<br />    - Validate if it is a temporary issue caused by JVM garbage collection.</td>
+                    <td align="left">* Client side logs.<br />    - JVM GC logs for space partitions (GSC's that are hosting spaces).<br />    - Run Thread dumps for the space partitions (GSC's that are hosting spaces) 2-3 times with 1 minute gap and include logs for space partitions.</td>
+                </tr>
+                <tr>
+                    <td align="left">Notification delivery is slower than usual</td>
+                    <td align="left">* Validate if this is a slow consumer issue. Make sure the server and client are using appropriate <a href="slow-consumer.html">slow consumer</a> configuration settings<br />    - Validate if notification batch size is large and more data than expected matches the notification template that was defined.<br />    - Validate if it s a temporary issue caused by JVM garbage collection.<br />    - Validate if it is a lrmi thread pool issue where lot of clients are registered for notifications for the same data and thread pool is exhausted.</td>
+                    <td align="left">* Client side logs.<br />    - JVM GC logs for space partitions (GSC's that are hosting spaces).<br />    - Run Thread dumps for the space partitions (GSC's that are hosting spaces) 2-3 times with 1 minute gap and include logs for space partitions.<br />    - GigaSpaces Management Center statistics screen shots for the space partitions. You will see the difference between Notifications sent and Notifications ack counts.</td>
+                </tr>
+                <tr>
+                    <td align="left">Wrong clustered space usage SEVERE error on the server side</td>
+                    <td align="left">* This error message indicates that there was a problem replicating a certain object to the target space. The problem could be caused by several reasons:<br />    - The replicated object no longer exists in the target space(in case it was updated, taken or deleted).<br />    - The object already exists in the target space(in case it was written for the first time and an object with the same id already exists in the target space).<br />    - The object version in the target space is different than the one in the source space (in case it was updated).</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">Replication Redo log capacity exceeded errors</td>
+                    <td align="left">* Validate if the backup partition is terminated? Restore the backup space partition for redo log to clear and make room for new data.<br />    - Validate if primary and backup members are disconnected because of a networking issue? Causing redo log size to grow. Restore the network and restart the backup member in order to recover the current data from primary partition.<br />    - Backup member going thru a JVM garbage collection causing pause for seconds while the primary space has lot of updates (not very common scenario).</td>
+                    <td align="left">* Client side logs.<br />    - Server side logs (all GSC's, GSM's, LUS's logs and console logs for each).<br />    - JVM GC logs for space partitions (GSC's that are hosting spaces).</td>
+                </tr>
+                <tr>
+                    <td align="left">Replication Redo log overflows to disk</td>
+                    <td align="left">This happens when redo log memory capacity is exceeded and GigaSpaces starts writing redo logs to disk. * Validate if the backup partition is terminated? Restore the backup space partition for redo log to clear and make room for new data.<br />    - Validate if primary and backup members are disconnected because of a networking issue? Causing redo log size to grow. Restore the network and restart the backup member in order to recover the current data from primary partition.<br />    - Backup member going thru a JVM garbage collection causing pause for seconds while the primary space has lot of updates (not very common scenario).</td>
+                    <td align="left">* Client side logs.<br />    - Server side logs (all GSC's, GSM's, LUS's logs and console logs for each).<br />    - JVM GC logs for space partitions (GSC's that are hosting spaces).</td>
+                </tr>
+                <tr>
+                    <td align="left">Missing partitions or instances of GigaSpaces application</td>
+                    <td align="left">* Validate if any machine that hosts the GigaSpaces cluster crashed. Identify the root cause for this and restore the machine.<br />    - Validate if any of the GSC JVM's failed with a JVM hotspot error.</td>
+                    <td align="left">* JVM typically creates a file beginning with hs_err. This file has the cause of error.<br />    - Server side logs (all GSC's, GSM's, LUS's logs and console logs for each).<br />    - JVM GC logs for space partition/instance (GSC) that had the error.</td>
+                </tr>
+                <tr>
+                    <td align="left">Provision failure (planned &gt; actual) - The processing unit has less actual instances than planned instances</td>
+                    <td align="left">* Validate if any machine that hosts the GigaSpaces cluster crashed. Identify the root cause for this and restore the machine.<br />    - Validate if any of the GSC JVM's failed with a JVM hotspot error.</td>
+                    <td align="left">* JVM typically creates a file beginning with hs_err. This file has the cause of error.<br />    - Server side logs (all GSC's, GSM's, LUS's logs and console logs for each).<br />    - JVM GC logs for space partition/instance (GSC) that had the error.</td>
+                </tr>
+                <tr>
+                    <td align="left">Troubleshooting transaction timeouts</td>
+                    <td align="left">Based on the stack trace messages, one simple assumption may be to increase the timeout for the transaction. Here are some other things to consider: <br /> * A more typical scenario is an object is locked under transaction. Another transaction attempts to write to the same object. Since the object is already locked, the second transaction will wait and eventually timeout. <br /> * Consider if the write is being done in a non-blocking manner. If this is the case, when the second transaction attempts to write to the object, it will only make one attempt; if it fails it will generate an error. One way to handle this is to set a timeout to the write operation so it can wait for the other transaction to finish. <br /> * If the transaction needs to get an EXCLUSIVE_READ_LOCK on an object, it may be possible that the object never existed. Or if reading in a non-blocking manner, it makes one attempt to read and fails. You may wish to add a timeout limit to the read operation. <br />  * One way to troubleshoot is to check if an object is already under transaction, using a dirty read, and log the appropriate message.</td>
+                    <td align="left">* Understanding of the application and its flow. <br /> * Logs that show what the application is doing, the object id, object type and transaction id.</td>
+                </tr>
+                <tr>
+                    <td align="left">Troubleshooting .NET issues</td>
+                    <td align="left">If your application is running .NET and is accessing <MadCap:variable name="General.ProductNameXAP" />, there may be a need to generate thread or heap dump for troubleshooting.</td>
+                    <td align="left">For example, you have a .NET application running in IIS that uses a <MadCap:variable name="General.ProductNameXAP" /> remote proxy to access a space. This application is started as a service using the System account.<br />  * Using JVisualVM or JConsole<br /> You can enable an unsecure JMX connection to the underlying JVM, then connect using JVisualVM or JConsole (setting a secure JMX connection is not described here).<br /> See: <a href="../dev-dotnet/debugging-a-xapnet-application.html">Debugging .NET applications</a> <br /> * Using jstack/jmap with psexec <br /> You can use psexec to help generate the thread or heap dump. Using an administrator account: <br /> psexec -s "C:\GigaSpaces\<MadCap:variable name="General.XAPNet" />-[%=Versions.xap-release%]-x64\Runtime\Java\jstack" -F -l &lt;pid&gt; <br /> psexec -s "C:\GigaSpaces\<MadCap:variable name="General.XAPNet" />-[%=Versions.xap-release%]-x64\Runtime\Java\jmap" -F -dump:format=b &lt;pid&gt; <br /> <br /> psexec is a tool that is part of Sysinternals now owned by Microsoft. The pid is the process id of .NET process, such as w3wp. The -s parameter is passed to psexec to access the program that was started as a service. The jstack and jmap can take the -F parameter to force the command to run when it does not respond.</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

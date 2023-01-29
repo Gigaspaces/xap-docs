@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Transaction Support</h1>
+  <p>Both the receive operation, and the actual event action can be configured to be performed under a transaction. Transaction support is required for example, when an exception occurs in the event listener, and the receive operation needs to be to rolled back (and the actual data event is returned to the space). Adding transaction support to the polling container is very simple. It is done by setting the <code>TransactionType</code> property. There are two transaction types: Distributed and Manual.</p>
+
+<ul>
+<li>Distributed transaction - an embedded distributed transaction manager will be created and it will be used for creating transaction (Only one transaction manager will be created per AppDomain).</li>
+<li>Manual transaction - transactions will be created by the transaction manager that is stored in the <code>TransactionManager</code> property. By default no transaction manager is stored and therefore, no transaction will be used. For example:</li>
+</ul>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Using EventListenerContainerFactory " style="padding:10px"><pre><code class="language-csharp">[PollingEventDriven]
+[TransactionalEvent(TransactionType = TransactionType.Distributed)]
+public class SimpleListener
+{
+ ...
+}
+</code></pre>
+</div>
+
+<div title="  PollingEventListenerContainer Code Construction " style="padding:10px"><pre><code class="language-csharp">ISpaceProxy spaceProxy = // either create the SpaceProxy or obtain a reference to it
+
+PollingEventListenerContainer&lt;Data&gt; pollingEventListenerContainer = new PollingEventListenerContainer&lt;Data&gt;(spaceProxy);
+pollingEventListenerContainer.TransactionType = TransactionType.Distributed;
+</code></pre>
+</div>
+</div>
+
+<p>When using transactions with the polling container, special care should be taken with timeout values. Transactions started by the polling container can have a timeout value associated with them (if this is not set, it defaults to the default timeout value of the transaction manager). If setting a specific timeout value, make sure the timeout value is higher than the timeout value for blocking operations, and includes the expected execution time of the associated listener.</p>
+
+<p>Here is an example how timeout value can be set with the polling container:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Using EventListenerContainerFactory " style="padding:10px"><pre><code class="language-csharp">[PollingEventDriven]
+[TransactionalEvent(TransactionType = TransactionType.Distributed, TransactionTimeout = 1000)]
+public class SimpleListener
+{
+ ...
+}
+</code></pre>
+</div>
+
+<div title="  PollingEventListenerContainer Code Construction " style="padding:10px"><pre><code class="language-csharp">PollingEventListenerContainer&lt;Data&gt; pollingEventListenerContainer = // create or obtain a reference to a polling container
+
+pollingEventListenerContainer.TransactionTimeout = 1000;
+</code></pre>
+</div>
+</div>
+
+<p>It is possible to receive a reference to the on going transaction as part of the event handling method, if for instance, the event handling is doing some extra space operations which should be executed under the same transaction context and rolled back upon failure. This is done be adding a transaction parameter to the event handler method. For example:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Using EventListenerContainerFactory " style="padding:10px"><pre><code class="language-csharp">[PollingEventDriven]
+[TransactionalEvent(TransactionType = TransactionType.Distributed)]
+public class SimpleListener
+{
+ ...
+
+    [DataEventHandler]
+    public Data ProcessData(Data ev, ISpaceProxy spaceProxy, ITransaction transaction)
+    {
+        //process Data here and return processed data
+    }
+}
+</code></pre>
+</div>
+
+<div title="  PollingEventListenerContainer Code Construction " style="padding:10px"><pre><code class="language-csharp">ISpaceProxy spaceProxy = // either create the SpaceProxy or obtain a reference to it
+
+PollingEventListenerContainer&lt;Data&gt; pollingEventListenerContainer = new PollingEventListenerContainer&lt;Data&gt;(spaceProxy);
+pollingEventListenerContainer.TransactionType = TransactionType.Distributed;
+pollingEventListenerContainer.DataEventArrived += new DelegateDataEventArrivedAdapter&lt;Data,Data&gt;(ProcessData).WriteBackDataEventHandler;
+</code></pre>
+</div>
+</div>
+
+<div class="tc-admon-refer">
+  
+  <p>The order of parameters of the event handling method is strict, please refer to <a href="event-listener-container.html#data-event-handler-adapters">Data Event Handler Adapters</a> for more information about it.</p>
+</div>
+
+</body>
+</html>

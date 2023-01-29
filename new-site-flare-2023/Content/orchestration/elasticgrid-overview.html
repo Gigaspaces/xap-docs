@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">ElasticGrid</h1>
+        <p>ElasticGrid is a highly available, distributed cluster and application scheduler. It supports data centers along with long-running services, batch jobs, and other critical functions, and can manage virtual machines (VMs) and containers across <a href="gsctl-create-gs-cluster-cloud.html">cloud</a>, <a href="gsctl-create-gs-cluster-on-prem.html">on premise</a>, and <a href="gsctl-create-gs-hybrid.html" MadCap:conditions="Version.15-5-born">hybrid</a> <MadCap:conditionalText MadCap:conditions="Version.15-5-died">hybrid </MadCap:conditionalText>environments. </p>
+        <p>ElasticGrid performs service discovery and service mesh, ensuring secure communication between services.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/gigaops-stack/service-networking.png" class="tc-picture50" />
+            </p>
+        </div>
+        <p>&#160;</p>
+        <p>Overall, ElasticGrid has the following advantages when compared to Kubernetes:</p>
+        <ul>
+            <li>Better performance for <MadCap:variable name="General.ProductNameXAP"></MadCap:variable> products - up to 20% faster</li>
+            <li>Broader installation options - supports VMs in addition to Docker containers</li>
+            <li>Supports more environments - can be used in hybrid environments that include both cloud and on premise </li>
+            <li>Simplified networking and security configuration</li>
+            <li>Lower cost for worker nodes (GKE/EKS/AKS)</li>
+        </ul>
+        <h2>ElasticGrid Functionality</h2>
+        <p>In addition to the above advantages, ElasticGrid has the following functionality:</p>
+        <ul>
+            <li>Provides <span class="tc-bold">auto-provisioning and installation with built-in monitoring</span>. You benefit from declarative software installation and orchestration, so you can focus on defining the type of software you want to install and its requirements in terms of memory and CPU, and ElasticGrid installs and manages your software on the cluster according to the constraints that you defined. As the cluster changes, ElasticGrid makes adjustments, so your infrastructure is always suited to your workload demands.</li>
+            <li>Collects metrics on the host machines and all the software defined on the nodes, and displays them using <span class="tc-bold">built-in Grafana dashboards</span>. ElasticGrid uses standard metrics tools, so you can easily design your own dashboards in addition to those that <MadCap:variable name="General.ProductNameXAP" /> provides.</li>
+            <li> Supports <span class="tc-bold">rolling upgrades</span>, so there is zero downtime of the system. You can use the Grafana dashboards to monitor performance before and after upgrade, or during canary deployment of your software.</li>
+            <li>Offers <span class="tc-bold">distributed tracing </span>using Zipkin, so you can troubleshoot latency issues.</li>
+        </ul>
+        <h1>Architecture</h1>
+        <p>ElasticGrid has a master-worker architecture. The master is the brain of the cluster and manages all the jobs and workers, along with scheduling and tasks. There can be multiple masters in a cluster. </p>
+        <p>Workers communicate with the masters using Remote Procedure Calls (RPC). When a worker registers with a master, it provides information about itself; available resources, attributes, and installed drivers. The master can then use this information to decide how to schedule and allocate tasks among the workers.</p>
+        <h2>Single Region Topology</h2>
+        <p>This is how the master-worker relationship may look in a single-region topology.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/gigaops-stack/single-region.png" class="tc-picture50" />
+            </p>
+        </div>
+        <p>In this topology, one master is the leader, and any other masters are followers. The master nodes accept jobs, manage the worker nodes, and allocate tasks among them. The leader replicates data to the followers, and the followers forward updates to the leader. The worker nodes are data centers, and there may be more than one data center registered with a master node.</p>
+        <h2 MadCap:conditions="Default.DoNotShow">Multi-Region Topology</h2>
+        <p MadCap:conditions="Default.DoNotShow">ElasticGrid supports multi-region connectivity so you can federate multiple regions together into a single cluster. This is how the master nodes connect to each other in a multi-region topology.</p>
+        <div class="tc-align-center" MadCap:conditions="Default.DoNotShow">
+            <p>
+                <img src="../Resources/Static/attachment_files/gigaops-stack/multi-region.png" class="tc-picture50" />
+            </p>
+        </div>
+        <p MadCap:conditions="Default.DoNotShow">In this topology, the regions function independently from each other, and have a loose coupling that enables submitting jobs or queries between the regions. The master node serving as the leader processes all the queries and transactions. While all the master nodes in a region make their scheduling decisions in parallel (ElasticGrid is optimistically concurrent), the leader coordinates all the activity to ensure the correct load balancing across the worker nodes.</p>
+        <h1>Deploying <MadCap:variable name="General.ProductNameXAP" /> on ElasticGrid</h1>
+        <p>The gsctl utility is used to create the ElasticGrid cluster and deploy <MadCap:variable name="General.ProductNameXAP" />, much like using Helm to install <MadCap:variable name="General.ProductNameXAP" />, and deploy services and Spark jobs, on Kubernetes. For information on how to deploy <MadCap:variable name="General.ProductNameXAP" /> on ElasticGrid, see <MadCap:xref href="gsctl-create-gs-cluster-cloud.html">Creating a [%=General.ProductNameXAP%] Cluster in the Cloud</MadCap:xref>.</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <!--
+## Using Apache Zeppelin with <MadCap:variable name="General.ProductNameIE" />
+
+Apache Zeppelin is a multi-purpose web notebook that supports data ingestion and discovery, as well as data analytics, visualization, and collaboration.
+
+Apache Zeppelin contains a built-in Apache Spark integration. This provides the following:
+
+- Automatic SparkContext and SQLContext injection
+- Runtime JAR dependency loading from the local file system or Maven repository
+- Ability to view job progress and cancel jobs 
+
+The Zeppelin notebook packaged with <MadCap:variable name="General.ProductNameIE" /> includes several <MadCap:variable name="General.ProductNameIE" /> demo applications, along with <MadCap:variable name="General.ProductNameIE" />-specific settings that can be configured in the Spark interpreter in order to establish the connection between Spark and the data grid. 
+
+KubeGrid runs Apache Zeppelin in a dedicated Pod, to enable ???
+-->
+    </body>
+</html>

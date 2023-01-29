@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>GigaSpaces Management Center</h1>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
+        <h1><a name="overview"></a>Overview</h1>
+        <p>The GigaSpaces Management Center is a user interface that allows you to do the following:</p>
+        <ul>
+            <li>View, configure, and maintain Spaces, containers, and clusters in the Space Browser tab.</li>
+            <li>Deploy and manage services in the Deployments tab.</li>
+            <li>Manage users and roles, and perform security administration</li>
+            <li>Generate a dump file that holds information about the <MadCap:variable name="General.ProductNameXAP" /> runtime environment, for a specific container or across the full environment.</li>
+        </ul>
+        <h1><a name="using-the-gigaspaces-management-center-in-production-and-large-scale-environments"></a>Using the GigaSpaces Management Center in Production and Large-Scale Environments</h1>
+        <p>Follow these network guidelines:</p>
+        <ul>
+            <li>We recommend running the GigaSpaces Management Center on the <span class="tc-bold">same network subnet</span> where the  data grid and other GigaSpaces runtime components are running.</li>
+            <li>The GigaSpaces Management Center communicates with the data grid, GSCs, GSM, GSA, and LUS continuously, so it should have fast connectivity with these components. High-latency connectivity will affect the responsiveness of the  interface and its initial bootstrap time.</li>
+            <li>In production environments, use a remote desktop product such as <a href="http://www.realvnc.com/products/free/4.1/index.html">VNC</a> or <a href="http://www.nomachine.com">No Machine</a>.</li>
+            <li>Run the GigaSpaces Management Center on the <span class="tc-bold">same</span> network subnet as the data grid and the other <MadCap:variable name="General.ProductNameXAP" /> runtime components, and run the remote access application on the client side to access the remote machines desktop from the administrator machine desktop.</li>
+            <li MadCap:conditions="Version.14-2-died">Make sure that the host machine where the GigaSpaces Management Center is running has Internet access.</li>
+        </ul>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-2-died">
+            <p>If the host machine doesn't have Internet access, the GigaSpaces Management Center won't start. To prevent this from happening, set the system property <code>com.gs.get-build</code> to <code>false</code> in the <MadCap:conditionalText MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.14-5-born"><MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT</MadCap:conditionalText>environment variable in the <code>setenv-overrides</code> file.</p>
+        </div>
+        <p>With relatively large amount of GSCs, Services or data grid partitions (over 20 units), we also recommend increasing the heap size of the GigaSpaces Management Center to 1G (-Xmx1g).</p>
+        <h1><a name="starting-the-gigaspaces-management-center"></a>Starting The GigaSpaces Management Center</h1>
+        <p>To start the GigaSpaces Management Center, run the following:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\bin\gs-ui.bat
+</code></pre>
+            </div>
+            <div title=" Unix" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs-ui.sh
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="main-view"></a>Main View</h1>
+        <p>
+            <img src="../Resources/Static/attachment_files/GigaSpaces_Management_Center_6.5_M7.jpg" alt="GigaSpaces_Management_Center_6.5_M7.jpg" class="tc-picture100" />
+        </p>
+        <p>The GigaSpaces Management Center contains 3 tabs:</p>
+        <ul>
+            <li>Hosts tab - view information about the host machines.</li>
+            <li>Deployed Processing Units - view information about the Processing Units that have been deployed (including events and exceptions) and perform deployment-related tasks.</li>
+            <li>Space Browser - view information about the Spaces and clusters in the data grid and perform configuration and maintenance tasks.</li>
+        </ul>
+        <p>The Space Browser tab has the following components.</p>
+        <h2><a name="spaces-node"></a>Spaces Node</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Icon</th>
+                    <th style="text-align: left;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/space_network_view_icon.gif" alt="space_network_view_icon.gif" />
+                    </td>
+                    <td>The main <span class="tc-bold">Spaces</span> node displays the Space Network view – a table listing all spaces in the network, and different details regarding those spaces.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/container.gif" alt="container.gif" />
+                    </td>
+                    <td>Container nodes allow you to manage space containers – shutting down the container, creating a space under it, and more.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/spaceTreeIcon.gif" alt="spaceTreeIcon.gif" />
+                    </td>
+                    <td>Container nodes allow you to manage space containers – shutting down the container, creating a space under it, and more.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <img src="../Resources/Static/attachment_files/GMC_space_6.0.jpg" alt="GMC_space_6.0.jpg" class="tc-picture100" />
+        </p>
+        <h2><a name="clusters-node"></a>Clusters Node</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Icon</th>
+                    <th style="text-align: left;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/cluster_node.gif" alt="cluster_node.gif" />
+                    </td>
+                    <td>The main <span class="tc-bold">Clusters</span>.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/specific_cluster_icon.jpg" alt="specific_cluster_icon.jpg" />
+                    </td>
+                    <td>The main <span class="tc-bold">Clusters</span> node that allow you to manage the cluster – stop, start, restart, clean the cluster, and more.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/cluster_topology_icon.jpg" alt="cluster_topology_icon.jpg" />
+                    </td>
+                    <td>Cluster group nodes.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/spaceTreeIcon.gif" alt="spaceTreeIcon.gif" />
+                    </td>
+                    <td>cluster members  Clicking a cluster member displays a graphic representation of the cluster, and tables showing details regarding replication, failover, load-balancing, and classes.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <img src="../Resources/Static/attachment_files/GMC_space_clusterNodeSelected_6.0.jpg" alt="GMC_space_clusterNodeSelected_6.0.jpg" class="tc-picture100" />
+        </p>
+    </body>
+</html>

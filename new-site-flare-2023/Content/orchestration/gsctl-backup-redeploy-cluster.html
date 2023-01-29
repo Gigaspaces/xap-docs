@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Backing Up and Redeploying a Cluster</h1>
+        <p>gsctl supports exporting the cluster to a backup image, and then redeploying to a clean directory from the backup file. The backup image includes the machines, product versions, cluster configuration, and services. Data is NOT&#160;backed up; this includes anything that may have been saved to disk such as custom Apache Zeppelin web notebooks.</p>
+        <p>The backup image contains the following:</p>
+        <ul>
+            <li>cluster.yaml file</li>
+            <li>gsctl.yaml file</li>
+            <li>Dashboards</li>
+            <li>Services (JSONs)</li>
+        </ul>
+        <p class="tc-todo">To back up a cluster image:</p>
+        <p>Type the following command to create a backup file with the tmp directory as the target. If you don't specify a target, the backup file is saved in the default directory where the gsctl.jar file is located.</p><pre><code class="language-bash">export --target /tmp</code></pre>
+        <p>This creates a backup file with the name of the cluster (&lt;<span class="tc-italic">cluster-name</span>&gt;.backup).</p>
+        <p class="tc-todo">To re-deploy a cluster image from a backup file:</p>
+        <p>Starting from an empty folder, type the following command. Replace the <span class="tc-italic">cluster-name</span> placeholder text with the name of your actual backup file.</p><pre><code class="language-bash">import &lt;cluster-name&gt;.backup</code></pre>
+        <p>This deploys the backed-up cluster image, which is ready to be populated.</p>
+        <p>&#160;</p>
+    </body>
+</html>

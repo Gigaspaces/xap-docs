@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+            <h1 class="tc-pagetitle">Configuring SQL Clients</h1>
+            <p>The InsightEdge JDBC driver can be used with existing visualization tools, to gain insight into the data grid by using the specific tool-provided features such as drag and drop.</p>
+            <p>Examples:</p>
+            <ul>
+                <li>
+                    <p><a href="https://www.tableau.com/" target="_blank">Tableau</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="https://www.microstrategy.com/us" target="_blank">MicroStrategy</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="https://www.visualintelligence.co.nz/qlikview/" target="_blank">QlikView</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="http://squirrel-sql.sourceforge.net/" target="_blank">SquirreL</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="http://sqlline.sourceforge.net/" target="_blank">SQLLine</a>
+                    </p>
+                </li>
+            </ul>
+            <h1><a name="squirrel"></a>SquirreL</h1>
+            <p><span class="tc-bold">To install SquirreL for use with the <MadCap:variable name="General.ProductNameIEP" />:</span>
+            </p>
+            <ol>
+                <li>
+                    <p>Download and install <a href="http://squirrel-sql.sourceforge.net/#installation" target="_blank">SquirreL</a>.</p>
+                </li>
+                <li>
+                    <p>Copy all of the <MadCap:variable name="General.ProductNameXAP" /> JAR files (located in <MadCap:variable name="General.HomePath" /><code>\lib\required</code>) to the squirreL <code>lib</code> folder.</p>
+                </li>
+                <li>
+                    <p>Copy all of the <MadCap:variable name="General.ProductNameIE" /> JAR files (<code><MadCap:variable name="General.HomePath" />\insightedge\lib\jdbc</code>) to the squirreL <code>lib</code> folder.</p>
+                </li>
+                <li>
+                    <p>Start SquirreL.</p>
+                </li>
+                <li>
+                    <p>Click the <span class="tc-bold">Drivers</span> vertical tab on the left, and then click <span class="tc-bold">+</span> to add a new driver.
+</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/xap-sql/squirrel-driver.png" alt="image" class="tc-picture100" />
+                    </p>
+                </li>
+                <li>
+                    <p>Click the <span class="tc-bold">Aliases</span> vertical tab on the left, and then click <span class="tc-bold">+</span> to add a new connection. Sample URL: <code>jdbc:insightedge:url=jini://*/*/mySpace?locators=127.0.0.1&amp;groups=xap-<MadCap:variable name="Versions.product-version-svc-pack-MX" /></code></p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/xap-sql/squirrel-alias.png" alt="image" class="tc-picture50" />
+                    </p>
+                </li>
+                <li>
+                    <p>Create a connection to the <MadCap:variable name="General.ProductNameXAP" /> data grid.
+</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/xap-sql/squirrel-connect.png" alt="image" class="tc-picture100" />
+                    </p>
+                </li>
+                <li>
+                    <p>Run a test query, for example <code>SELECT * FROM Product;</code> (the data grid was filled with <code>Product</code> objects in advance).
+</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/xap-sql/squirrel-query.png" alt="image" class="tc-picture100" />
+                    </p>
+                </li>
+            </ol>
+        </div>
+    </body>
+</html>

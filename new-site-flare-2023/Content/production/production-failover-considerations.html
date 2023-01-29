@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Failover Considerations</h1>
+        <div class="tc-admon-note">
+            <p>If you are using Kubernetes, all service failures are handled by Kubernetes operations<MadCap:conditionalText MadCap:conditions="Default.DoNotShow"> -- see <MadCap:xref href="../admin/kubernetes-deploy-cluster.html">Deploying a Space Cluster in Kubernetes</MadCap:xref></MadCap:conditionalText>.</p>
+        </div>
+        <p>GigaSpaces applications provide continuous high-availability even when the infrastructure processes or entire (physical/virtual) machines fail. This capability is provided <span class="tc-bold">out of the box</span> but does require some attention to configuration to meet the needs of your specific application.</p>
+        <h1><a name="n-1-and-n-2-configurations"></a>N+1 and N+2 Configurations</h1>
+        <p>When determining the optimal high-availability configuration for your particular application, you have to balance the cost of additional hardware (or virtual machines) against the risk of downtime. In most cases, it pays to have additional resources available to avoid downtime, which can compromise system health and result in instability, poor reliability, no durability, and incompleteness.</p>
+        <p>The two most common <MadCap:variable name="General.ProductNameXAP" /> deployment configurations are referred to as <span class="tc-bold">N+1</span> and <span class="tc-bold">N+2</span>.  This refers to the number of machines running <MadCap:variable name="General.ProductNameXAP" /> that can fail without compromising the data grid and its applications, in order to continue delivering reasonable performance and to remain in good health.  In an <span class="tc-bold">N+1</span> configuration, the core N machines have sufficient RAM and CPU power to run the application if one of the <span class="tc-bold">N+1</span> machines fail.  In an <span class="tc-bold">N+2</span> configuration, the same is true if two of the machines fail or become unavailable.</p>
+        <p>In either configuration, the data grid (or any deployed business logic) is distributed across all available machines.  Each machine hosts a set of services and there are at least two GSMs and two LUSs running.  When deploying a regular (static) PU, you may have spare services available on each machine to accommodate a failure. If a machine becomes unavailable, the backup PU instance corresponding to the primary nodes on that machine becomes the primary, and the GSM provisions a new backup instance in one of the spare services.  In this case, you may have to call the rebalance utility to redistribute the primary and backups evenly across all services. This failover is transparent to clients of the application, and to the business logic running within it -- see <MadCap:xref href="../admin/the-sla-zones.html#using-zones">Using Zones</MadCap:xref>.</p>
+        <p MadCap:conditions="Default.DoNotShow">When deploying an elastic PU, services are created on the fly and missing PU instances will be provisioned into these newly started services. In this case, the primary and backup instances are automatically distributed evenly across all machines.</p>
+        <h1><a name="grid-failure-handling-strategy"></a>Grid Failure Handling Strategy</h1>
+        <p>When deploying your <MadCap:variable name="General.ProductNameXAP" />-based system in production, you should consider the following failure handling strategies to determine which is the worst case scenario that should be taken into account for your specific environment. Your final failover plan should address, GSC, Machine/VM, and complete Data Center failure.</p>
+        <h2><a name="single-gsc-failure"></a>Single Service Failure</h2>
+        <p>This is the simplest scenario to plan for, and is generally sufficent for small deployments that are not mission critical, and do not require continuous high-availability to survive multiple failures. The GSA will manage the service life-cycle locally or globally and accomadate service failure. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">This assumes you are using static PU deployment.</MadCap:conditionalText></p>
+        <h2><a name="multiple-gsc-failures"></a>Multiple Service Failures</h2>
+        <div class="tc-admon-note">
+            <p>Consider using Kubernetes services to perform the orchestration, and to deploy new services when needed. See <MadCap:xref href="production-Rescaling-your-application-in-GigaSpaces.html">Rescaling Your Application in [%=General.CompanyName%]</MadCap:xref>.</p>
+        </div>
+        <p>To accommodate a failure scenario that involves continuous operation if more than one service fails at a time, the gs agents will restart the failing services. </p>
+        <p>If you require horizontal scaling, you can repartition by starting a new service (see <MadCap:xref href="production-Scale-Out-In.html">On Demand Scale Out/In</MadCap:xref>). </p>
+        <p>If you require up/down vertical scaling, proceed as follows:</p>
+        <ul>
+            <li>
+                <p>Restart the desktop service after changing the configuration. </p>
+            </li>
+            <li>
+                <p>Let the service recover from the primary partition.</p>
+            </li>
+            <li>
+                <p>Demote the primary.</p>
+            </li>
+            <li>
+                <p>Restart the instance that previously was the primary (which will now be the backup).</p>
+            </li>
+        </ul>
+        <h2><a name="complete-vm-machine-failure"></a>Complete VM/Machine Failure</h2>
+        <p>In a scenario where the failure of an entire machine could be damaging to your system, you must allocate enough room in another machine that will allow it to host the services that are not available. This can be done in advance, or by monitoring or using the admin api to detect this situation, and starting the services only when required. Note that the service will be empty until it requires some system resources.</p>
+        <div class="tc-admon-note">
+            <p>The Cloudify platform can be used to automate <MadCap:variable name="General.ProductNameXAP" /> installation and configuration of the machine upon recovery.</p>
+        </div>
+        <h2><a name="complete-data-center-failure"></a>Complete Data Center Failure</h2>
+        <p>See <MadCap:xref href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication for Disaster Recovery</MadCap:xref></p>
+        <div class="tc-admon-note">
+            <p>The Cloudify platform can be used to automate <MadCap:variable name="General.ProductNameXAP" /> installation and configuration of the data center upon recovery.</p>
+        </div>
+        <h1><a name="guaranteed-notifications"></a>Guaranteed Notifications</h1>
+        <p>When using notifications (notify container, session messaging API), should enable Guaranteed Notifications to address a primary Space failure while sending notifications. This allows the backup (when promoted to a primary), to continue notification delivery. Guaranteed Notifications are managed on the client side.</p>
+        <p>When considering a notify container that is embedded with the Space, note that guaranteed notifications are not supported in this scenario. This means that upon failure, notifications that have been send might not be fully processed. In this case, blocking read/asychronous read should be considered as an alternative to notifications.</p>
+        <h1><a name="balanced-primary-backup-provisioning"></a>Balanced Primary-Backup Provisioning</h1>
+        <p>To plan for failure of the data grid nodes or a machine running <MadCap:variable name="General.ProductNameXAP" />, you should consider having even distribution of the primary and backup instances across all existing machines running <MadCap:variable name="General.ProductNameXAP" />. This will ensure balanced CPU utilization across all <MadCap:variable name="General.ProductNameXAP" /> machines. </p>
+        <p>For this purpose, swap the primary and backup partitions, or see <MadCap:xref href="../admin/the-sla-deterministic.html">Deterministic Deployment</MadCap:xref>.</p>
+        <h1><a name="cpu-utilization"></a>CPU Utilization</h1>
+        <p>CPU utilization should not exceed 40% on average, to support complete machine/VM failure. This buffer will enable the machines running <MadCap:variable name="General.ProductNameXAP" /> to cope with the additional capacity required when one or more machines running the grid fail or go through maintenance.</p>
+        <h1><a name="local-xap-component-failure"></a>Local <MadCap:variable name="General.ProductNameXAP" /> Component Failure</h1>
+        <h2><a name="lus"></a>LUS</h2>
+        <p>To enable failover on LUS (Lookup Service) failure, at least two LUSs should be started for redundancy. You can use global or local <a href="../admin/lus-configuration.html">LUS configuration</a> to ensure that two LUS will be running.</p>
+        <p>When using a multicast discovery configuration, it is recommended to use the global LUS configuration to ensure that two LUS will run on two different machines, even if a machine running a LUS fails. When using a unicast lookup discovery configuration and a LUS fails, the clients and service grid components may throw exceptions because internally they are frequently trying to perform lookup discovery for the missing lookup.</p>
+        <p>You can configure the lookup discovery intervals using the <code>com.gigaspaces.unicast.interval</code> property.</p>
+        <h2><a name="gsa"></a>GSA</h2>
+        <p>The GSA acts as a process manager, watching the GSC, LUS<MadCap:conditionalText MadCap:conditions="Version.15-2-died">, ESM,</MadCap:conditionalText> <span>and GSM processes</span>.  GSA failure is a very rare scenario. If it happens, you should look for unusual hardware, operating system, or JDK failure that may have caused it. To address GSA failure you should run it as a service so that the operating system will restart it automatically if it fails (see how you can run it as a Windows Service or a Linux Service).</p>
+        <h2><a name="gsm"></a>GSM</h2>
+        <p>The GSM is responsible for deployment and provisioning of deployed PUs(stateless, statefull). The GSM is utilized during deploymnt, PU failure, and PU migration from one service to another. To support high availability, you should have two GSMs started per grid. You can use either global or local <a href="../admin/gsm-configuration.html">GSM configuration</a> to ensure that two GSM will be running. In most cases, global GSM configuration is recommended unless you require hot deploy functionality.</p>
+        <div MadCap:conditions="Version.15-2-died">
+            <h2><a name="esm"></a>ESM</h2>
+            <p>The ESM is responsible for Elastic PU provisioning when deployed, and rebalances Space instances if a PU scales up/down/in/out or when a GSA fails or starts. When the ESM fails, it is restarted automatically using one of the existing agents.</p>
+        </div>
+        <h1><a name="xap-distributed-transactions"></a><MadCap:variable name="General.ProductNameXAP" /> Distributed Transactions</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> Distributed Transactions involve a  remote or local <MadCap:variable name="General.ProductNameXAP" /> Distributed Transaction Manager and one or more data grid. With a remote Distributed Transaction Manager, you should consider running at least two remote transaction managers. It is recommended to use a local Distributed Transaction Manager as it makes the overall architecture simpler.</p>
+        <h1><a name="xa-transactions"></a>XA Transactions</h1>
+        <p>XA Transactions involves the XA transaction manager, <MadCap:variable name="General.ProductNameXAP" /> data grid node(s) and some additional participant(s). The transaction manager is usually deployed independently. The transaction manager can fail, so it should be deployed in a high availability configuration. Client code should support transaction manager failure by caching relevant transaction exceptions, and retrying the activity by aborting the old transaction, starting a new transaction, executing relevant operations and committing. Atomikos and JBoss transaction managers are <MadCap:variable name="General.ProductNameXAP" /> certified and recommended.</p>
+        <h1><a name="wan-gateway-failure"></a>WAN Gateway Failure</h1>
+        <p>The WAN gateway acts as a broker, and is responsible for replicating activities conducted in the local data grid in another (remote) data grid. The WAN Gateway does not hold state, so its failure does not result any data loss. However if it fails, data is not replicated between the source and destination data grid. The WAN Gateway does not have to be deployed in a cluster configuration (aka primary-backup). By default, <MadCap:variable name="General.ProductNameXAP" /> will try to start the WAN Gateway if it fails. The WAN Gateway is usually configured to use a specific port on specific machine(s), therefore you should configure the WAN Gateway PU to be provisioned on specific machine(s).</p>
+        <h1><a name="mirror-service-failure"></a>Mirror Service Failure</h1>
+        <p>The Mirror Service is like the WAN Gateway, acting as a broker. It is responsible for persisting activities conducted in the data grid into external data sources, such as a database.</p>
+        <p>The Mirror Service does not hold state, so its failure does not result in data loss. However, Mirror Service failure means data will not get stored in the external data source. The mirror does not have to be deployed in a cluster configuration (aka primary-backup). By default, <MadCap:variable name="General.ProductNameXAP" /> will try to start the Mirror Service if it fails. In many cases the Mirror Service accesses a database, which may be set to accept connections only from specific machines with specific ports. To address this, configure the database to allow connections from all machines that may run the Mirror Service, which is all <MadCap:variable name="General.ProductNameXAP" /> machines by default.</p>
+        <div class="tc-admon-note">
+            <p>Zookeeper deployment will be performed only if the majority of the Zookeeper partitions are functioning — see <MadCap:xref href="../admin/leader-election-consistency-biased.html">Consistency Biased</MadCap:xref>. </p>
+        </div>
+        <p>&#160;</p>
+    </body>
+</html>

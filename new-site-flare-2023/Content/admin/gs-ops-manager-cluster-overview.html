@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Cluster Overview</h1>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/ops-manager/cluster-overview.png" class="tc-picture80" />
+            </p>
+        </div>
+        <h2>Services</h2>
+        <p>A service in the Ops Manager may represent a <MadCap:variable name="General.ProductNameXAP" /> Processing Unit, or external services and applications such as Spark or remote/web applications. The following services are supported.</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col style="width: 112px;" />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Icon</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-stateless.png" class="tc-picture30" />
+                    </td>
+                    <td>Stateless </td>
+                    <td>Contains one or more microservices. This kind of service may act like a client that interacts with other services.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-stateful.png" class="tc-picture30" />
+                    </td>
+                    <td>Stateful </td>
+                    <td>Contains data in a Space instance. A set of stateful services comprise a <MadCap:variable name="General.ProductNameXAP" /> data grid.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-mirror.png" class="tc-picture30" />
+                    </td>
+                    <td>Mirror </td>
+                    <td>A mirror service is stateless and provides asynchronous persistence to ensure that data isn't lost. The mirror acts as a dispatcher, pushing all primary Space partition changes to the database (or any other data storage solution).</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-web.png" class="tc-picture30" />
+                    </td>
+                    <td>Web </td>
+                    <td>Allows deploying web applications using packaged or exploded WAR files.</td>
+                </tr>
+                <tr MadCap:conditions="Default.DoNotShow">
+                    <td>
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-spark.png" class="tc-picture30" />
+                    </td>
+                    <td>Spark </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../Resources/Static/attachment_files/ops-manager/icon-wan.png" class="tc-picture30" />
+                    </td>
+                    <td>WAN gateway </td>
+                    <td>Replicates services between different clusters for disaster recovery planning and data locality.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>In addition to the main services, you can also deploy the following service sub-type.</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        MemoryXtend
+                    </td>
+                    <td>Service that has been configured for MemoryXtend, and can separate the data in the Space between hot storage (RAM) and warm/cold storage (off-heap RAM&#160;or SSD).</td>
+                </tr>
+                <tr MadCap:conditions="Default.DoNotShow">
+                    <td>
+                        <li>AnalyticsXtreme</li>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr MadCap:conditions="Default.DoNotShow">
+                    <td>
+                        <li>Notify</li>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr MadCap:conditions="Default.DoNotShow">
+                    <td>Polling</td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Cluster Metrics</h2>
+        <p>Ops Manager includes graphs that display the following information:</p>
+        <ul>
+            <li>CPU&#160;usage - view the average CPU utilization as a percentage. This metric is available at the cluster level, and at the service level.</li>
+            <li MadCap:conditions="Default.DoNotShow">Memory usage - view the actual RAM usage, along with secondary storage tier (off-heap ) usage.</li>
+            <li>IOPS - View the implemented IOPS types (such as reads, writes, takes, executes, etc. per second at the cluster level, and at the service level.</li>
+        </ul>
+        <p>Ops Manager metrics can be ported to InfluxDB or other time series databases, so that you can use external monitoring and visualization tools (such as Grafana) to perform additional analysis.</p>
+        <h2>Service Overview</h2>
+        <p>The service overview shows a summary of all services vs. unhealthy services. You can also view the services sorted by health and severity. Additionally, you can apply filters by service type and RAM&#160;utilization, or search for specific services by name. Click a service to drill through to see the individual performance metrics and alerts for that service. For deeper analysis, you can create a dump file of the service logs via the download button in the upper right-hand corner.</p>
+        <p>In addition to reviewing the performance of individual services, you can drill down to the partition and instance level to review metrics such as CPU&#160;usage and memory consumption per specific instance.</p>
+        <h2>Alerts</h2>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/Admin/ops-manager-alerts.flsnp" />
+    </body>
+</html>

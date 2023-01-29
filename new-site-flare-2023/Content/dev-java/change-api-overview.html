@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Change API</h1>
+        <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.html" target="_blank">GigaSpace.change</a> and the <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">ChangeSet</a> allows updating existing objects in Space, by specifying only the required change instead of passing the entire updated object.</p>
+        <h3>Additional Resources</h3>
+        <MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://www.youtube.com/watch?v=k2zGdUi_ntU," />
+        <p>The <code>GigaSpace.change</code> and the <code>ChangeSet</code>  allow updating existing objects in the Space, by specifying only the required change instead of passing the entire updated object.
+This reduces the required network traffic between the client and the Space, and the network traffic generated from replicating changes between Space instances (for example, between the primary Space instance and its backup).</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/change-api.jpg" alt="" title="" class="tc-picture80" />
+        </div>
+        <p>Moreover, using this API also can prevent having to read the existing object prior to the change operation, because the change operation can specify how to change the existing property without knowing its current value. For instance, implementing atomic <a href="the-space-counters.html">Counters</a> can be done by increasing a counter property of an integer property by some delta. Another example is adding a value to a collection.
+The change API supports <a href="transaction-overview.html">transactions</a> in the same way the other Space operation supports it, using a transactional <code>GigaSpace</code> instance.</p>
+        <h1><a name="example"></a>Example</h1>
+        <p>The following example demonstrates how to increment by one the <code>count</code> property of an object of type <code>WordCount</code>, with ID <code>myID</code>.</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
+String id = "myID";
+IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;(WordCount.class, id, routing);
+space.change(idQuery, new ChangeSet().increment("count", 1));
+</code></pre>
+        <h1><a name="query-template"></a>Query Template</h1>
+        <p>The change operation can receive any <a href="querying-the-space.html">query template</a> for matching a single object or multiple objects that need to be changed by the operation.</p>
+        <h1><a name="change-set"></a>Change Set</h1>
+        <p>The change operation requires a <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">ChangeSet</a> that describes the changes that have to be made after locating the object specified by the query template.
+The ChangeSet contains a predefined set of operations that can be invoked to alter the object. The set can contain one or more changes that will be applied sequentially to the object.
+Each specified change can operate on any level of properties of the specified object. This is defined by specifying the path to the property that needs to be changed, where ".' in the path specifies
+that this change is done on a nested property. For instance:</p><pre><code class="language-java">@SpaceClass
+public class Account
+{
+  ...
+  @SpaceId
+  Uuid getId();
+  Balance getBalance();
+  void setBalance(Balance balance){...}
+}
+
+public class Balance
+{
+  private double euro;
+  private double usDollar;
+  ...
+  public double getEuro();
+  public void setEuro(double euro) { this.euro = euro; }
+  public double getUsDollar();
+  public void setUsDollar(double usDollar) { this.usDollar = usDollar; }
+}
+</code></pre><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
+Uuid id = ...;
+IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(Account.class, id, routing);
+space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D));
+</code></pre>
+        <div class="tc-admon-note">
+            <p>When using <code>changeSet</code> with <code>idQuery</code>, use a specific class type. The query must use a unique ID and return only one object in order for the API to perform the change correctly.</p>
+        </div>
+        <h2><a name="specifying-the-path"></a>Specifying the Path</h2>
+        <p>Each operation in the change set acts on a specified string path. This path points to the property that needs to be changed, and has the following semantic:</p>
+        <ol>
+            <li><span class="tc-bold">First level property</span> - A path with no "." character in it points to a first-level property. If the property specified by this path is not part of the object, it is treated as a dynamic property (see <a href="dynamic-properties.html">Dynamic Properties</a>). If the object doesn't support dynamic properties, an exception is generated.</li>
+            <li><span class="tc-bold">Nested property</span> - A path that contains a "." character is considered a path to a nested property. The location process of the final property that needs to be changed is done recursively by activating the properties, specified by the split of the path using the "." character, one at a time until reaching the targeted end property.</li>
+            <li><span class="tc-bold">Nested Map property</span> - A path that contains a "." character may also point to keys inside a map, meaning the following path - "attributes.color" looks for a key named "color" if the property named "attribute" in the object is actually a map. This affects nested properties as well.</li>
+        </ol>
+        <p>The following demonstrates how the path works with a map property instead of concrete properties:</p><pre><code class="language-java">@SpaceClass
+public class Account
+{
+  ...
+  @SpaceId
+  Uuid getId();
+  Map&lt;String, double&gt; getBalance();
+  void setBalance(Map&lt;String, double&gt;  balance){...}
+}
+</code></pre><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
+Uuid id = ...;
+IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(Account.class, id, routing);
+space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D));
+</code></pre>
+        <p>In this case, the key <code>euro</code> inside the map behind the balance will be increased by 5.2.</p>
+        <h2><a name="available-operations"></a>Available Operations</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Operation Name</th>
+                    <th align="left">Description</th>
+                    <th align="left">Semantics</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><span class="tc-bold">Set</span>
+                    </td>
+                    <td align="left">Sets a property value.</td>
+                    <td align="left">Sets the value of the given property.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">Unset</span>
+                    </td>
+                    <td align="left">Unsets a property value.</td>
+                    <td align="left">If the property is fixed, it is set to null (null value for primitives). If the property is dynamic, it is removed from the dynamic properties. For dynamic properties, this operation is <span class="tc-bold">not</span> equivalent to the set operation with a <code>null</code> value.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">Increment</span>
+                    </td>
+                    <td align="left">Increases a numeric property by the given delta.</td>
+                    <td align="left">This operation can only be performed on a numeric property (<code>byte</code>, <code>short</code>, <code>int</code>, <code>long</code>, <code>float</code>, <code>double</code> or the corresponding Boxed variation). If the property does not exist, the +delta is set as the initial state.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">Decrement</span>
+                    </td>
+                    <td align="left">Decreases a numeric property by the given delta.</td>
+                    <td align="left">This operation can only be performed on a numeric property (<code>byte</code>, <code>short</code>, <code>int</code>, <code>long</code>, <code>float</code>, <code>double</code> or the corresponding Boxed variation). If the property does not exist, the -delta is set as the initial state.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">AddToCollection</span>
+                    </td>
+                    <td align="left">Adds an item to a collection property.</td>
+                    <td align="left">The item is added to the collection by applying the <code>Collection.add</code> operation with the given item on the collection behind the property. if the property do not exist, an exception is thrown.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">AddAllToCollection</span>
+                    </td>
+                    <td align="left">Adds a list of items to a collection property.</td>
+                    <td align="left">The items are added to the collection by applying the <code>Collection.addAll</code> operation with the given items on the collection behind the property. If the property does not exist, an exception is thrown.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">RemoveFromCollection</span>
+                    </td>
+                    <td align="left">Removes an item from a collection property.</td>
+                    <td align="left">The item is removed from the collection by applying the <code>Collection.remove</code> operation with the given item on the collection behind the property. If the property does not exist, an exception is thrown.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">PutInMap</span>
+                    </td>
+                    <td align="left">Puts a key value pair in a map property.</td>
+                    <td align="left">The key and value are put into a map by applying the <code>Map.put</code> operation with the given key and value on the map behind the property. If the property does not exist, an exception is thrown.</td>
+                </tr>
+                <tr>
+                    <td align="left"><span class="tc-bold">RemoveFromMap</span>
+                    </td>
+                    <td align="left">Removes a key and its associated value from a map property.</td>
+                    <td align="left">The key is removed from a map by applying the <code>Map.remove</code> operation with the given key on the map behind the property. If the property does not exist, an exception is thrown.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="change-api-with-the-embedded-model"></a>Change API with the Embedded Model</h1>
+        <p>With the <a href="/sbp/modeling-your-data.html#embedded-vs-non-embedded-relationships">embedded model</a>, updating (as well adding or removing) a nested collection with large number of elements <span class="tc-bold">must use the Change API</span> because the default behavior is to replicate the entire Space object and its nested collection elements from the primary to the backup (or other replica primary copies when using the sync-replicate or the async-replicated cluster schema). The Change API reduces the CPU utilization on the primary side, the serialization overhead, and the garbage collection activity on both the primary and backup instances. This significantly improves the overall system stability.</p>
+        <h1><a name="change-result"></a>Change Result</h1>
+        <p>The change operations returns a <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">ChangeResult</a> object that provides information regarding the effect of the change operation.</p><pre><code class="language-java">public interface ChangeResult&lt;T&gt;
+        extends Serializable
+{
+    /**
+     * Returns a collection of {@link ChangedEntryDetails} of the changed
+     * entries. &lt;note&gt;This is only supported if the
+     * {@link ChangeModifiers#RETURN_DETAILED_RESULTS} modifier was used,
+     * otherwise this method will throw unsupported operation exception.
+     *
+     * @throws UnsupportedOperationException if the corresponding change
+     *             operation was not used with the
+     *             {@link ChangeModifiers#RETURN_DETAILED_RESULTS} modifier.
+     */
+    Collection&lt;ChangedEntryDetails&lt;T&gt;&gt; getResults();
+
+    /**
+     * Returns the number of changed entries
+     */
+    int getNumberOfChangedEntries();
+}
+</code></pre><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
+Uuid id = ...;
+IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(Account.class, id, routing);
+ChangeResult&lt;Account&gt; changeResult = space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D));
+if (changeResult.getNumberOfChangedEntries() == 0)
+{
+  // ... handle no entry found for change
+}
+</code></pre>
+        <p>The <code>ChangeResult</code> contains the <code>getNumberOfChangedEntries</code>, which specifies how many objects were changed by this operation (where 0 means none were changed). The <code>getResults</code> property gives further details about the objects that were actually changed by providing a collection that gives details for each of the objects that were changed, such as their ID and version after the change took effect. By default, in order to reduce network overhead, calling  <code>getResults</code> will throw <code>UnsupportedOperationException</code>. In order to get the more detailed result, the <code>ChangeModifiers.RETURN_DETAILED_RESULTS</code> should be passed to the <code>change</code> operation.</p>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="change-api-advanced.html">Advanced Implementations</a> page.</p>
+        </div>
+        <h1><a name="changeexception"></a>ChangeException</h1>
+        <p>Upon any error, a <code>ChangeException</code> is thrown containing the following details:</p><pre><code class="language-java">public class ChangeException extends InvalidDataAccessResourceUsageException
+{
+
+    /**
+     * Returns the number of successfully changes.
+     */
+    public int getNumSuccesfullChanges()
+
+    /**
+     * Returns the successfully done changes.
+     */
+    public Collection&lt;ChangedEntryDetails&lt;?&gt;&gt; getSuccesfullChanges()
+
+    /**
+     * Returns the entries that failed to change result.
+     */
+    public Collection&lt;FailedChangedEntryDetails&gt; getFailedChanges()
+
+    /**
+     * Returns the failed changes.
+     */
+    public Collection&lt;Throwable&gt; getErrors()
+
+}
+</code></pre>
+        <p>The <code>getNumSuccesfullChanges</code> property contains the number of entries that were successfully changed.</p>
+        <p>The <code>getSuccesfullChanges</code> property contains details about objects that were successfully changed, just like the <code>ChangeResult.getResults</code> property. This property can only be used if the change operation was executed using the <code>ChangeModifiers.RETURN_DETAILED_RESULTS</code> modifier.</p>
+        <p>The <code>getFailedChanges</code> property contains details about objects for whom the change operation failed. These details include information about ID, version, and the actual cause for failure.</p>
+        <p>The <code>getErrors</code> property contains the general reasons for failed change operations that do not apply to a specific object, such as not being able to access the Space.</p>
+        <h2 MadCap:conditions="Version.14-2-born">Disabling the Path Caching</h2>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/DevGuide/path-cache-disable.flsnp" MadCap:conditions="Version.14-2-born" />
+        <p MadCap:conditions="Version.14-2-born">The following code example shows how to define exactly which paths shouldn't be cached for the entire <code>ChangeSet</code>, which then affects the mutators that are provided.</p><pre MadCap:conditions="Version.14-2-born"><code>String path1 = "myMapField.myTestKey1"; 
+String path2 = "myMapField.myTestKey2"; 
+ChangeSet changeSet = new ChangeSet().increment(path1, 0.1 ) 
+        .decrement(path2, 0.45 ).disablePathCaching(path1,path2); 
+gigaSpace.change(spaceQuery, changeSet);</code></pre>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-2-born">
+            <p MadCap:conditions="Version.14-2-born">If you are using the custom change operation, use the disable caching method described in the <a href="change-api-custom-operation.html#Disabling-the-path-caching">Custom Change</a> topic.</p>
+        </div>
+        <h1><a name="multiple-changes-in-a-single-operation"></a>Multiple Changes in a Single Operation</h1>
+        <p>Multiple changes can be applied in one <code>change</code> operation by setting up multiple operations in the change set. Do this by chaining the changes as follows:</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
+IdQuery&lt;MyPojo&gt; idQuery = new IdQuery&lt;MyPojo&gt;(MyPojo.class, id, routing);
+space.change(idQuery, new ChangeSet().increment("someIntProperty", 1)
+                                     .set("someStringProperty", "newStringValue)
+                                     .putInMap("someNestedProperty.someMapProperty", "myKey", 2));
+</code></pre>
+        <p>The changes are applied to the object sequentially (and atomically), keeping the order applied in the <code>ChangeSet</code>.</p>
+        <h1><a name="changing-the-object-s-lease"></a>Changing the Object's Lease</h1>
+        <p>By default, the change operation doesn't modify the existing remaining lease of the changed entries. In order to change the lease, a new lease should be specified in the <code>ChangeSet</code> using the <code>lease</code> operation.</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
+space.change(idQuery, new ChangeSet().lease(1000)...);
+</code></pre>
+        <p>The lease can be changed as part of other changes applied to the object, or the <code>ChangeSet</code> can include only the lease modification without any property changes.</p>
+        <p>The lease time specified will override the existing lease with the new value, relative to the current time, while ignoring the current lease.</p>
+        <p>The above example sets the lease of the changed object to one second from the time the change operation takes effect.</p>
+        <h1><a name="change-with-timeout"></a>Change with Timeout</h1>
+        <p>A timeout can be passed to the <code>change</code> operation. This timeout will only be used if any of the objects to be changed is locked under a transaction that is not from the current thread context. In this case, all objects that are not locked are  changed, and the operation is blocked until one of the following two events happens:</p>
+        <ul>
+            <li>The transaction lock is released - in this case, the change operation is applied on the objects that were previously locked but are now available.</li>
+            <li>A timeout occurs - in this case, the change operation returns with an exception. Like all other failures, the exception is a <code>ChangeException</code> that contains the successful changes. All the objects that were still locked when the timeout period elapsed are part of the <code>getFailedChanges</code> property of the exception, each with a failure reason of <code>UpdateOperationTimeoutException</code>.</li>
+        </ul>
+        <p>If there are no matching objects for the specified template/query, the operation returns immediately without waiting for the timeout to elapse. This is similar to the <code>(read/take)IfExists</code> operation semantic.</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
+Uuid id = ...;
+IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(Account.class, id, routing);
+long timeout = 1000; //1 seconds
+try
+{
+  space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D), timeout);
+}
+catch(ChangeException e)
+{
+  if (!e.getFailedChanges().isEmpty())
+  {
+    for(FailedChangedEntryDetails failedChangedEntry : e.getFailedChanges())
+    {
+      if (id.equals(failedChangedEntry.getId()) &amp;&amp; failedChangedEntry.getCause() instanceof UpdateOperationTimeoutException)
+      {
+       //.. Indicate the object is still locked under a transaction, maybe retry the operation?
+      }
+    }
+  }
+}
+</code></pre>
+        <h1><a name="optimistic-locking"></a>Optimistic Locking</h1>
+        <p>The <code>change</code> operation has the same semantics as a regular Space <code>update</code> operation regarding <a href="transaction-optimistic-locking.html">Optimistic Locking</a>. It increases the version of the changed object, and the expected version can be specified in the ID query when optimistic locking is needed.</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
+Uuid id = ...;
+Object routing = id; // In our case the space routing property is the space id property.
+int version = 2; // We only want to change the object if the object's version in the space is 2.
+IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(Account.class, id, routing, version);
+try
+{
+  space.change(idQuery, new ChangeSet().increment("balance.euro", 5.2D), timeout);
+}
+catch(ChangeException e)
+{
+  if (!e.getFailedChanges().isEmpty())
+  {
+    for(FailedChangedEntryDetails failedChangedEntry : e.getFailedChanges())
+    {
+      if (id.equals(failedChangedEntry .getId()) failedChangedEntry .getCause() instanceof SpaceOptimisticLockingFailureException)
+      {
+        //.. Indicate optimistic locking failure, get the updated version for instance and maybe read updated object and retry?
+        int updatedVersion = failedChangedEntry.getVersion();
+      }
+    }
+  }
+}
+</code></pre>
+        <div class="tc-admon-note">
+            <p>In order to prevent constructor overload ambiguity, when using an ID query with version, the Space routing property must also be specified. If the object has no Space routing, then its Space ID property is the routing property and it should be used, as shown in the previous example.</p>
+        </div>
+        <h1><a name="notifications"></a>Notifications</h1>
+        <p>Change is delivered as a regular update notification, with the state of the object after the change was applied.</p>
+        <h1><a name="modifiers"></a>Modifiers</h1>
+        <p>The following modifiers can be used with the change operation:</p>
+        <ul>
+            <li><code>ChangeModifiers.RETURN_DETAILED_RESULTS</code> - Provides details of the change result, containing more information about the objects that were changed. Requires more network traffic.</li>
+            <li><code>ChangeModifiers.ONE_WAY</code> - Change is executed in one-way mode, which means the operation doesn't wait for the change operation to reach the server. The result is always  null and
+there is no guarantee that the change operation is successful, as this mode doesn't guarantee any exceptions upon failure. The only guarantee is that the operation is successfully written to the local network buffer.</li>
+            <li><code>ChangeModifiers.MEMORY_ONLY_SEARCH</code> - Searches for matching entries in cache memory only (doesn't use the underlying external data source). However, any changes done on the matching entries
+are propagated to the underlying external data source.</li>
+        </ul>
+        <h1><a name="asynchronous-change"></a>Asynchronous Change</h1>
+        <p>The <code>change</code> operation has also an asynchronous API, in which the operation is dispatched to the server and the result is returned asynchronously via a listener or a future.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/changeAsync-api.jpg" alt="changeAsync-api.jpg" class="tc-picture50" />
+        </div>
+        <p>This operation behaves exactly like the synchronous <code>change</code> except for the asynchronous result, and it follows Java standard asynchronous semantics.</p><pre><code class="language-java">//Using future to get the result
+GigaSpace space = // ... obtain a space reference
+Uuid id = ...;
+IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(Account.class, id, routing);
+Future&lt;ChangeResult&lt;Account&gt;&gt; future = space.asyncChange(idQuery, new ChangeSet().increment("balance.euro", 5.2D));
+// ... do some other stuff
+ChangeResult&lt;Account&gt; changeResult = future.get();
+</code></pre><pre><code class="language-java">//Using a listener to handle the result
+GigaSpace space = // ... obtain a space reference
+Uuid id = ...;
+IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(Account.class, id, routing);
+AsyncFutureListener&lt;ChangeResult&lt;Account&gt;&gt; myListener = new AsyncFutureListener&lt;ChangeResult&lt;Account&gt;&gt;()
+  {
+    void onResult(AsyncResult&lt;Account&gt; result)
+    {
+      if (result.getException() != null)
+      {
+        // ... Handle exception
+      }
+      else
+      {
+        ChangeResult&lt;Account&gt; changeResult = result.getResult();
+        // ... handle result
+      }
+    }
+  }
+space.asyncChange(idQuery, new ChangeSet().increment("balance.euro", 5.2D), myListener);
+</code></pre>
+        <h1><a name="spacesynchronizationendpoint"></a>SpaceSynchronizationEndpoint</h1>
+        <p>A SpaceSynchronizationEndpoint implementation can support change operations, and make use of lighter replication between the Space and the mirror.
+For more information on how to implement this, refer to the <a href="change-api-advanced.html">Advanced Implementations</a> topic.</p>
+        <h1><a name="replication-filter"></a>Replication Filter</h1>
+        <p>Change passes through the <a href="../admin/cluster-replication-filters.html">Replication Filter</a> like other operations, and can be discarded on the replication level, for example.</p>
+        <div class="tc-admon-note">
+            <p>For more information on how to handle change in replication filters, refer to the <a href="change-api-advanced.html">Advanced Implementations</a> topic.</p>
+        </div>
+        <h1><a name="add-and-get-operations"></a>Add and Get Operations</h1>
+        <p>A common usage pattern is to increment a numeric property of a specific entry, and then to need the updated value after the increment was applied.
+Using the <code>addAndGet</code> operation, you can meet this need using a single method call to get atomic add and get operation semantics.</p>
+        <p>The following is an example of incrementing a property called <code>counter</code> inside an entry of type <code>WordCount</code>:</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
+Uuid id = ...;
+IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;(WordCount.class, id, routing);
+Integer newCounter = ChangeExtension.addAndGet(space, idQuery, "counter", 1);
+</code></pre>
+        <p>You should use the primitive wrapper types, as the operation semantic is to return null if there is no object matching the provided ID query.</p>
+        <div class="tc-admon-note">
+            <p>You can use <code>import static org.openspaces.extensions.ChangeExtension.</code> so that you don't have to prefix the call with `ChangeExtension'.</p>
+        </div>
+        <h1><a name="considerations"></a>Considerations</h1>
+        <ul>
+            <li>If replicated to a gateway and a conflict occurs, the change operation only supports the built-in <code>abort</code> resolution as <code>override</code> in change case may result with an inconsistent state of the object.</li>
+            <li>The change operation is converted to a regular update when delegated to a synchronous data source.</li>
+        </ul>
+        <h1><a name="limitations"></a>Limitations</h1>
+        <p><code>rownum</code>   is not supported with the Changeset SQLQuery operation.</p>
+    </body>
+</html>

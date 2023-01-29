@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Advanced</h1>
+  
+
+<h1><a name="obtaining-change-detailed-results"></a>Obtaining Change detailed results</h1>
+
+<p>By default, the change result will only contain the number of entries which were changed during the operation. In order to get more details (requires more network traffic) the ChangeModifiers.ReturnDetailedResults should be used. When using this modifier the result will contain the list of entries which were changed including the change affect that took place on each entry.
+You can use this in order to know what was the affect, for instance what is the value of a numeric property after the increment operation was applied on it.</p>
+
+<pre><code class="language-csharp">ISpaceProxy space = // ... obtain a space reference
+Guid id = ...;
+IdQuery&lt;Account&gt; idQuery = new IdQuery&lt;Account&gt;(id, routing);
+IChangeResult&lt;Account&gt; changeResult = space.Change(idQuery, new ChangeSet().Increment("balance.euro", 5.2D), ChangeModifiers.ReturnDetailedResults);
+
+foreach(IChangedEntryDetails&lt;Account&gt; changedEntryDetails in changeResult.Results) {
+  //Will get the first change which was applied to an entry, in our case we did only single increment so we will have only one change operation.
+  //The order is corresponding to the order of operation applied on the `ChangeSet`.
+  IChangeOperationResult operationResult = changedEntryDetails.ChangeOperationsResults[0];
+  double newValue = IncrementOperation.GetNewValue(operationResult);
+  ...
+}
+</code></pre>
+
+<p>Here is the full list of change operations:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">ChangeSet operation</th>
+<th align="left">ChangeOperation class</th>
+<th align="left">Comment</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><span class="tc-bold">ChangeSet.Set</span></td>
+<td align="left">SetOperation</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><span class="tc-bold">ChangeSet.Unset</span></td>
+<td align="left">UnsetOperation</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><span class="tc-bold">ChangeSet.Increment</span></td>
+<td align="left">IncrementOperation</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><span class="tc-bold">ChangeSet.Decrement</span></td>
+<td align="left">IncrementOperation</td>
+<td align="left">will be increment with negative value</td>
+</tr>
+
+<tr>
+<td align="left"><span class="tc-bold">ChangeSet.AddToCollection</span></td>
+<td align="left">AddToCollectionOperation</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><span class="tc-bold">ChangeSet.AddRangeToCollection</span></td>
+<td align="left">AddRangeToCollectionOperation</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><span class="tc-bold">ChangeSet.RemoveFromCollection</span></td>
+<td align="left">RemoveFromCollectionOperation</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><span class="tc-bold">ChangeSet.SetInDictionary</span></td>
+<td align="left">SetInDictionaryOperation</td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><span class="tc-bold">ChangeSet.RemoveFromDictionary</span></td>
+<td align="left">RemoveFromDictionaryOperation</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<h1><a name="add-and-get-operation"></a>Add and Get operation</h1>
+
+<p>A common usage pattern is to increment a numeric property of a specific entry and needing the updated value after the increment was applied.
+Using the <code>AddAndGet</code> operation you can do that using one method call and get an atomic add and get operation semantics.
+Following is an example of incrementing a property named <code>Counter</code> inside an entry of type <code>WordCount</code>:</p>
+
+<pre><code class="language-csharp">ISpaceProxy space = // ... obtain a space reference
+Guid id = ...;
+
+IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;(id, routing);
+int? newCounter = ISpaceProxy.AddAndGet(idQuery, "Counter", 1);
+</code></pre>
+
+<div class="tc-admon-note">
+  
+  <p>You should use the primitive wrapper types as the operation semantic is to return null if there is no object matching the provided id query</p>
+</div>
+
+<div class="tc-admon-note">
+  
+  <p>Add <code>using ISpaceProxy.Core.Change.Extensions;</code> in order to have the extension methods available.</p>
+</div>
+
+</body>
+</html>

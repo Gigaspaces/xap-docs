@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Viewing Client-Side Cache Details</h1>
+        <div class="tc-admon-note">
+            <p>This functionality is not yet available in the Command Line Interface or REST Manager API administration tools.</p>
+        </div>
+        <p><span class="tc-bold">To view the client-side cache details:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <!--
+<div title="Command Line Interface" style="padding:10px"><p>N/A</p>
+</div>
+
+<div title="REST Manager API" style="padding:10px"><p>N/A</p>
+</div>
+-->
+            <div title="Web Management Console" style="padding:10px">
+                <ol>
+                    <li>
+                        <p>In the Spaces view, highlight the Space or Space instance for which you want to see the client-side cache details.</p>
+                    </li>
+                    <li>
+                        <p>Display the Client-Side Caches pane in the lower area of the view.</p>
+                    </li>
+                    <li>
+                        <p>You can view the following information:</p>
+                        <ul>
+                            <li>
+                                <p>If you have one or more local cache(s) configured:</p>
+                                <table>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>ID of the local cache.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PID</td>
+                                        <td>Process ID of the master Space using the local cache instance.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Host</td>
+                                        <td>Machine hosting the local cache instance.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Version</td>
+                                        <td>Version of the data object that is stored the local cache.</td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <p>If you have one or more local views configured:</p>
+                                <table>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>Identifier of the local view.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Host</td>
+                                        <td>Machine hosting the local view.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PID</td>
+                                        <td>Process ID of the master Space using the local view.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Version</td>
+                                        <td>Version of the data object that is stored in the local view.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Channel State</td>
+                                        <td>
+                                            <p>onnection state of the network channel between the local view and the master Space:
+</p>
+                                            <ul>
+                                                <li><span class="tc-bold">Active</span> - The local view is connected to the master Space and the data is in sync.</li>
+                                                <li><span class="tc-bold">Disconnected</span> - The connection to the master Space was briefly disrupted.</li>
+                                                <li><span class="tc-bold">Inactive</span> - The connection to the master Space was disrupted long enough for the local view to become inactive and start throwing exceptions.</li>
+                                                <li><span class="tc-bold">Closed</span> - The local view is permanently closed.</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Redo Log Retain. Size</td>
+                                        <td>Size of the redo log (number of packets).</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Send Bytes TP</td>
+                                        <td>Throughput of the sent bytes, in KB per second.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Send Packets/Sec</td>
+                                        <td>Rate of packet throughput per second.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Templates</td>
+                                        <td>How many templates are associated with this local view.</td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+    </body>
+</html>

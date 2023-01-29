@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Version.15-2-died">
+    <head>
+    </head>
+    <body>
+        <h1>Elastic Processing Unit</h1>
+        <div class="tc-admon-note">
+            <p>The Elastic Processing Unit is deprecated as of version 12.1, as noted in the <a href="/release_notes/121upgrading.html">Release Notes</a>.</p>
+        </div>
+        <p>An Elastic Processing Unit (EPU) is a Processing Unit with additional capabilities that simplify its deployment across multiple machines. Containers and machine resources such as Memory and CPU are automatically provisioned based on Memory and CPU requirements. When a machine failure occurs, or when scale requirements change, new machines are provisioned and the Processing Unit deployment distribution is balanced automatically. The PU scale is triggered by modifying the requirements through an API call. From that point in time, the EPU continuously maintains the specified capacity (indefinitely, or until the next scale trigger).</p>
+        <p>The EPU has following features:</p>
+        <ul>
+            <li>SLA-based deployment where required memory and cores can be specified.</li>
+            <li>Automatic container lifecycle management.</li>
+            <li>Automatic re-balancing (repartitioning).</li>
+            <li>Automatic partition count calculation.</li>
+            <li>Scale up/down or in/out without system downtime.</li>
+            <li>Eager and manual scale strategies.</li>
+            <li>Automatic machine provisioning plug-in.</li>
+        </ul>
+        <p>Basic steps when using the EPU:</p>
+        <ol>
+            <li>Start <MadCap:variable name="General.ProductNameXAP" /> agents</li>
+            <li>
+                <p>Deploy PU</p>
+                <ul>
+                    <li>Specify maximum PU capacity</li>
+                    <li>Specify container memory capacity</li>
+                    <li>Specify initial PU capacity</li>
+                </ul>
+            </li>
+            <li>
+                <p>Scale up/down or in/out</p>
+            </li>
+            <li>
+                <p>Undeploy</p>
+            </li>
+        </ol>
+        <p>The following is a simple example scaling a running EPU. In the diagraj, the system is initially using 2 machines, 20 partitions, 20 instances per machine (40 instances total), 4 instances per GSC, and the GSC capacity is <span class="tc-bold">8GB</span>. Total memory capacity <span class="tc-bold">80</span> GB.:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/epu1.jpg" alt="epu1.jpg" />
+            </p>
+        </div>
+        <p>After scaling it to leverage 10 machines, we have 4 instances per machine, and 1 instance per GSC. Total memory capacity is <span class="tc-bold">400</span> GB.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/epu2.jpg" alt="epu2.jpg" />
+            </p>
+        </div>
+        <div class="tc-admon-note">
+            <p>For a quick start, follow the <a href="deploying-onto-the-service-grid.html#elastic-processing-unit-deployment-using-the-admin-api">Elastic Processing Unit deployment example</a>.
+When using the EPU, <MadCap:variable name="General.ProductNameXAP" /> manages the <span class="tc-bold">entire</span> life cycle of the container. When the EPU is deployed, containers are started and the EPU instances are provisioned into these containers. When the EPU scales up, additional containers are started and instances are relocated into these containers. When the EPU is un-deployed, all the containers associated with the EPU are automatically terminated.</p>
+        </div>
+        <p>This section discusses the following topics:</p>
+        <ul>
+            <li><a href="elastic-processing-unit-deploy.html">Deployment</a> - describes the required deployment parameters and capacity planning considerations.</li>
+            <li><a href="elastic-processing-unit-trigger.html">Scale Triggers</a> - describes how to scale a PU after it has been deployed.</li>
+            <li><a href="elastic-processing-unit-provisioning.html">Machine Provisioning</a> - describes how to start the <MadCap:variable name="General.ProductNameXAP" /> agent on each machine, plug-in development for different cloud providers, and the algorithm that re-balances the PU across the machines.</li>
+        </ul>
+        <h1><a name="considerations"></a>Considerations</h1>
+        <ul>
+            <li>When deploying an existing EPU (redeploy), the system does not ignore the scale parameters. A <code>ProcessingUnitAlreadyDeployedException</code> is thrown, but the scale call is executed.</li>
+            <li>To speed up the deployment process, increase the <code>maxConcurrentRelocationsPerMachine</code> parameter to a value larger than 1 (the default value). Assigning a value of 2 or 3 can reduce the deploy time when there are multiple machines.</li>
+            <li>Scaling EPUs should be done using multipliers that match the amount of the initial capacity. This will allow the system to allocate the exact memory/cores requested.</li>
+            <li>When deploying on a Single Machine (using <code>singleMachineDeployment</code> mode) ensure that the machine has enough memory/cores resources for the all the EPU instances. The <code>reservedMemoryCapacityPerMachine</code> should be used to ensure relevant resources. Without having these set, the deploy process will fail.</li>
+            <li>If the deploy process fails due to insufficient resources or other reasons, the ESM will try to redeploy the EPU. To stop this activity, you should explicitly undeploy the EPU using the GigaSpaces Management Center, CLI, or API.</li>
+            <li>To verify a successful deployment, check the PU status (see the <code>org.openspaces.admin.pu.ProcessingUnit.getStatus()</code> and the <code>org.openspaces.admin.pu.ProcessingUnit.getProcessingUnitStatusChanged()</code>). You can also check the total amount of memory/cores utilized by the EPU by iterating the PU instances.</li>
+            <li>To monitor the EPU deployment you should monitor the ESM. A simple way to do this is reviewing its log file. You can use the GigaSpaces Management Center to gain direct access to the ESM log files.</li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Security Concepts</h1>
+        <p>This section provides the concepts used throught this security guide, and present the basic interfaces.</p>
+        <h1><a name="authentication"></a>Authentication</h1>
+        <p>Authentication is the process of establishing and confirming the authenticity of a <span class="tc-italic">principal</span>. A <span class="tc-italic">principal</span> in <MadCap:variable name="General.ProductNameXAP" /> terms, means a user (human or software) performing an action in your application. <MadCap:variable name="General.ProductNameXAP" />'s authentication layer is equipped with standard encryption algorithms (such as AES and MD5), and can be customized to integrate with other security standards (i.e. Spring Security).</p>
+        <p>Authenticating a user is achieved by supplying credentials (usually username and password) to be confirmed as authentic against a secured service. Authentication fails either due to an unknown user or an invalid password, resulting in an <code>AuthenticationException</code>. A successful authentication results in an authenticated session used for further correspondence.</p><pre><code class="language-java">interface SecurityManager {
+    /** 
+     * Attempts to authenticate the passed user represented by 
+     * UserDetails, returning a fully populated UserDetails 
+     * object (including granted authorities) if successful.
+     */
+    Authentication authenticate(UserDetails userDetails) 
+      throws AuthenticationException
+    ...
+}
+</code></pre>
+        <p>The service (e.g. Space Instance) receives a request for authentication. Usually this is done by supplying a <code>UserDetails</code> object which holds the credentials of a user. This is passed along to the <code>SecurityManager</code> which is responsible for authenticating the request.</p>
+        <p>An attempt to authenticate the passed <code>UserDetails</code> object, returns a fully populated <code>Authentication</code> object (including granted authorities) if successful. On failure, an <code>AuthenticationException</code> is thrown.</p>
+        <p>Further correspondence are done via this authenticated session context. The service has security interceptors which intercept each method call to verify the granted privileges. An <code>AccessDeniedException</code> is thrown if the user lacks sufficient privileges to perform an operation.</p>
+        <h1><a name="authorization"></a>Authorization</h1>
+        <p>Authorization refers to the process of deciding whether a principal is allowed to perform an action/operation. A principal is first established by the authentication process, and then authorized by the authorization decision process, when performing actions. The authorization layer is used to intercept unauthorized access to data and restrict operations. It also maps users to specific authorities and allows grouping of authorities into roles.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> Security architecture has been designed to meet the needs of enterprise application security. <MadCap:variable name="General.ProductNameXAP" /> provides a complete experience throughout all the components, for a useful, configurable and extend-able security system.</p>
+        <h1><a name="encryption"></a>Encryption</h1>
+        <p>A two-way encryption is used to protect the credentials passed as part of the authentication process. The <code>UserDetails</code> object is encrypted before it is sent along the stream, and decrypted at the service. Of course, it is best to use <span class="tc-bold">SSL</span> for transport layer security, but nevertheless we ensure these details are encrypted. The two-way encryption is done using a private key available to both client and server. A generated AES compliant key can be kept in a <code>gs-keystore.key</code> file located in the classpath. See <code>ContentEncoder</code> interface for more details.</p><pre><code class="language-java">interface ContentEncoder {
+
+    /** Decode the byte array returning a decrypted object. */
+    Object decode(byte[] bytes) 
+
+    /** Encode the object returning an encrypted byte array. */
+    byte[] encode(Object obj) 
+}
+</code></pre>
+        <p>The <code>UserDetails</code> password field can also be encrypted separately using a one-way hash function, e.g. an <code>MD5</code> algorithm. This one-way encryption allows to store a non-plain text password, and is an implementation detail of the <code>SecurityManager</code>. This should not be confused with the two-way encryption done at the transport layer of an authentication call. See <code>PasswordEncoder</code> interface for more details.</p><pre><code class="language-java">interface PasswordEncoder {
+ 
+    /* Encodes the specified raw password with an implementation 
+     * specific algorithm. */
+    String encodePassword(String rawPass) 
+      
+    /* Validates a specified "raw" password against an 
+     * encoded password. */
+    boolean isPasswordValid(String encPass, String rawPass)     
+}
+</code></pre>
+        <p>As noted, the <code>SecurityManager</code> implementation is responsible for handling an authentication request. The <code>UserDetails</code> supplied are used to extract the user by-name, and validate that the supplied password matches the stored password. Usually passwords are stored after they have been hashed with a one-way function (such as <code>MD5</code>). When validating, the supplied password is encrypted using this algorithm and compared to the stored password.</p>
+    </body>
+</html>

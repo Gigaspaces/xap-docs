@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Service Level Agreement (SLA)</h1>
+        <p>The GigaSpaces runtime environment (also referred to as the Service Grid) provides SLA-driven capabilities via the <a href="../overview/the-runtime-environment.html#gsm">Grid Service Manager (GSM)</a> and the <a href="../overview/the-runtime-environment.html#gsc">Grid Service Container (GSC)</a> runtime components. The GSC is responsible for running one or more Processing Units. The GSM is responsible for analyzing the deployment and provisioning the processing unit instances to the available GSCs.</p>
+        <div class="tc-admon-note">
+            <p>The SLA definitions are only enforced when deploying the Processing Unit to the Service Grid, because this environment actively manages and controls the deployment using the GSM(s). When running within your IDE or in standalone mode, these definitions are ignored.</p>
+        </div>
+        <p>The SLA definitions can be provided as part of the Processing Unit package, or during the Processing Unit's deployment process. These definitions determine the number of Processing Unit instances that should run, and deploy-time requirements such as the amount of free memory or CPU, or the clustering topology for Processing Units that contain a Space. The GSM reads the SLA definitions, and deploys the Processing Unit to the available GSCs accordingly.</p>
+        <h1><a name="defining-the-sla-for-your-processing-unit"></a>Defining the SLA for Your Processing Unit</h1>
+        <p>The SLA contains the deployment criteria in terms of clustering topology (if it contains a Space) and deployment-time requirements. It can be defined in multiple ways:</p>
+        <ul>
+            <li>
+                <p>Include an <code>sla.xml</code> file that contains the definitions within the Processing Unit's JAR file. This file can be located at the root of the Processing Unit JAR or under the <code>META-INF/spring</code> directory, alongside the Processing Unit's XML file. This is the recommended method.</p>
+            </li>
+            <li>
+                <p>Embed the SLA definitions within the Processing Unit's <code>pu.xml</code> file.</p>
+            </li>
+            <li>
+                <p>Provide a separate XML file with the SLA definitions to the GSM at deployment time via one of the <a href="../dev-java/deploying-onto-the-service-grid.html">deployment tools</a>.</p>
+            </li>
+            <li>
+                <p>Use the deployment tools themselves to provide/override the Processing Unit's SLA (see below). For example, the GUI deployment dialog enables you to type in various SLA definitions, such as the number of instances, number of backups, and Space topology.</p>
+            </li>
+            <li>
+                <div class="tc-admon-note">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div>
+            </li>
+        </ul>
+        <p>The SLA definition, whether it comes in a separate file or embedded inside the <code>pu.xml</code> file, is composed of a single <code>&lt;os-sla:sla&gt;</code> XML element. A sample SLA definition is shown below (you can use plain Spring definitions, or GigaSpaces-specific namespace bindings):</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-sla="http://www.openspaces.org/schema/sla"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+       http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd"&gt;
+
+    &lt;os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="1" max-instances-per-vm="1"&gt;</code></pre>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
+    ...
+    &lt;/os-sla:sla&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-sla="http://www.openspaces.org/schema/sla"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd"&gt;
+
+    &lt;os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="1" max-instances-per-vm="1"&gt;</code></pre>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
+    ...
+    &lt;/os-sla:sla&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="  Plain " style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd"&gt;
+
+    &lt;bean id="SLA" class="org.openspaces.pu.sla.SLA"&gt;
+        &lt;property name="clusterSchema" value="partitioned" /&gt;
+        &lt;property name="numberOfInstances" value="2" /&gt;
+        &lt;property name="numberOfBackups" value="1" /&gt;</code></pre>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
+        &lt;property name="maxInstancesPerVM" value="1" /&gt;
+    &lt;/bean&gt;
+    ...
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+    &lt;bean id="SLA" class="org.openspaces.pu.sla.SLA"&gt;
+        &lt;property name="clusterSchema" value="partitioned" /&gt;
+        &lt;property name="numberOfInstances" value="2" /&gt;
+        &lt;property name="numberOfBackups" value="1" /&gt;</code></pre>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
+        &lt;property name="maxInstancesPerVM" value="1" /&gt;
+    &lt;/bean&gt;
+    ...
+&lt;/beans&gt;
+</code></pre>
+            </div>
+        </div>
+        <p>The SLA definition shown above creates four instances of a Processing Unit using the <span class="tc-italic">partitioned</span> space topology. It defines two partitions (<code>number-of-instances="2"</code>), each with one backup (<code>number-of-backups="1"</code>). In addition, it requires that a primary and a backup instance of the same partition not be provisioned to the same GSC (<code>max-instances-per-vm="1"</code>).</p>
+        <div class="tc-admon-note">
+            <p>It is up to the developer to configure the SLA correctly. Trying to deploy a Processing Unit with a cluster schema that requires backups without specifying <code>numberOfBackups</code> will cause the deployment to fail.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
+        <div class="tc-admon-attention">
+            <p>In older releases, the SLA definition also included dynamic runtime policies, such as creating additional Processing Unit instances based on CPU load, relocating a certain instance when the memory becomes saturated, etc. These capabilities are still supported, but have been deprecated in favor of the <a href="../dev-java/administration-and-monitoring-overview.html">Administration and Monitoring API</a> which supports the above and much more.</p>
+        </div>
+        <h1><a name="defining-the-space-cluster-topology"></a>Defining the Space Cluster Topology</h1>
+        <p>When a Processing Unit contains a Space, the SLA definition specifies the clustering topology for that Space. The <code>cluster-schema</code> XML element defines this, and is an attribute of the <code>os-sla:sla</code> XML element, as shown above.</p>
+        <p>The Space's clustering topology is defined within the SLA definition rather than the Space definition with the <code>pu.xml</code> file for the following reasons:</p>
+        <ul>
+            <li>
+                <p>The clustering topology directly affects the number of instances of the Processing Unit, and is therefore considered part of its SLA. For example, a partitioned Space can have two primaries and two backups, and a replicated Space can have five instances. This means that the Processing Unit containing them will have the same number of instances.</p>
+            </li>
+            <li>
+                <p>Separating the clustering topology from the actual Space definition enables truly implementing the "write once, scale anywhere" principal. You can run the same Processing Unit within your IDE for unit tests using the default single-Space-instance clustering topology, and then deploy it to the runtime environment and run the same Processing Uunit with the real clustering topology (for example, with 4 partitions).</p>
+            </li>
+        </ul>
+        <p>You can choose from numerous clustering topologies:</p>
+        <ul>
+            <li>
+                <p><code>default</code>: Single Space instance, no replication or partitioning</p>
+            </li>
+            <li>
+                <p><code>sync-replicated</code>: Multiple Space instances. When written to one of the Space instances, objects are <span class="tc-bold">synchronously</span> replicated to all Space instances. The maximum capacity of this topology is that of the smallest JVM in the cluster.</p>
+            </li>
+            <li>
+                <p><code>async-replicated</code> Multiple space instances. When written to one of the Space instances, objects are <span class="tc-bold">asynchronously</span> replicated to all Space instances. The maximum capacity of this topology is that of the smallest JVM in the cluster.</p>
+            </li>
+            <li>
+                <p><code>partitioned</code> Multiple Space instances. Objects are distributed across all of the Space instances, so that each instance contains a separate subset of the data and forms a separate partition. The partitioning (distribution) of objects is based on their routing property. Optionally, when using this topology, you can designate one or more backup instances to each of the partitions, so that when an object is written to a certain partition, it is synchronously replicated to the backup copy(ies) of that partition. The maximum capacity of this topology is the overall capacity of all of the JVMs in the cluster, divided by the number of backups+1.</p>
+            </li>
+        </ul>
+        <p>From the client application's perspective (the one that connects to the Space from another process), the clustering topology is transparent in most cases.</p>
+        <div class="tc-admon-note">
+            <p>The <code>number-of-backups</code> parameter should be used with the partitioned cluster schema. It is not supported with the sync-replicated or async-replicated cluster schema.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
+        <h1><a name="sla-based-distribution-and-provisioning"></a>SLA-Based Distribution and Provisioning</h1>
+        <p>When deployed to the service grid, the Processing Unit instances are distributed based on the SLA definitions. These definitions form a set of constraints and requirements that should be met when a Processing Unit instance is provisioned to a specific container (GSC). The SLA definitions are considered during the initial deployment, relocation, and re-provisioning of an instance after failure.</p>
+        <h1><a name="default-sla-definitions"></a>Default SLA Definitions</h1>
+        <p>If no SLA definition is provided either within the Processing Unit XML configuration or during deploy time, the following default SLA is used:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-sla:sla number-of-instances="1" /&gt;
+</code></pre>
+            </div>
+            <div title="  Plain " style="padding:10px"><pre><code class="language-xml">&lt;bean id="SLA" class="org.openspaces.pu.sla.SLA"&gt;
+    &lt;property name="numberOfInstances" value="1" /&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="maximum-instances-per-vm-machine"></a>Maximum Instances per VM/Machine</h1>
+        <p>The SLA definition allows you to define the maximum number of instances for a certain Processing Unit, either per JVM (GSC) or physical machine (regardless of the number of JVMs/GSCs that are running on it).</p>
+        <p>The max-instances parameter has different semantics when applied to Processing Units that contain a Space with primary-backup semantics (that uses the  partitioned cluster schema and defines at least one backup), and when applied to a Processing Unit that doesn"t contain an embedded Space, or that contains a Space with no primary-backup semantics.</p>
+        <div class="tc-admon-note">
+            <p>When applied to a Processing Unit that doesn't contain an embedded Space, or that contains a Space with no primary-backup semantics, the <code>max-instances</code> parameter defines the <span class="tc-bold">total</span> number of instances that can be deployed on a single JVM or on a single machine.</p>
+        </div>
+        <p>When applied to a Processing Unit that contains a Space with primary-backup semantics, the <code>max-instances</code> parameter defines the total number of instances (which belong to the same primary-backup group or partition) that can be provisioned to a single JVM or a single machine.</p>
+        <p>The most common use of the <code>max-instances</code> parameter is for a Processing Unit that contains a Space with primary-backup semantics. Setting the value to <code>1</code> ensures that a primary and its backup(s) cannot be provisioned to the same JVM (GSC)/physical machine.</p>
+        <p><span class="tc-bold">max-instances-per-vm</span>
+            <br />The <code>max-instances-per-vm</code> defines the maximum number of instances per partition for a Processing Unit with an embedded Space. A partition may have a primary or backup instance. <code>max-instances-per-vm=1</code> means you won't have a primary and a backup of the same partition provisioned to the same GSC. (It is allowed to have multiple partitions with primary or backup instances provisioned to the same GSC.) You cannot limit the amount of instances from different partitions that a GSC may host.</p>
+        <p>If you have enough GSCs (the number of partitions x2), you will have a single instance per GSC. If you don't have enough GSCs, the primary and backup instances of the different partitions will be distributed across all the existing GSCs, and the system tries to distribute the primary instances in an even manner across all the GSCs on all the machines. If you increase the amount of GSCs after the initial deployment, you must "rebalance" the system, meaning distribute all the primaries across all the GSCs.</p>
+        <p>You can perform this activity via API<MadCap:conditionalText MadCap:conditions="Version.15-2-died">, or automatically by using the ESM</MadCap:conditionalText>. Rebalancing the instances will increase the capacity of the data grid (because it will result in more GSCs hosting the data grid).
+The rebalance concept is based on the assumption that there are initially more partitions than GSCs. The ratio between partitions to GSCs is called the scaling factor; meaning how much your data grid can expand itself without shutdown, and without increasing the amount of partitions.</p>
+        <p>Example: Start with 4 GSCs and 20 partitions with backups (40 instances). Each GSC will initially host 10 instances, and can end up with 40 GSCs (after one or more rebalancing operations) where each GSC hosts a single instance. In this example,  the capacity of the data grid is increased to 10 times larger without downtime, while the amount of partitions remains the same.
+See the <a href="/sbp/capacity-planning.html">capacity planning</a> section for more details.</p>
+        <p>The following is an example of setting the <code>max-instances-per-vm</code> parameter:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-sla:sla max-instances-per-vm="1" /&gt;
+</code></pre>
+            </div>
+            <div title="  Plain " style="padding:10px"><pre><code class="language-xml">&lt;bean id="SLA" class="org.openspaces.pu.sla.SLA"&gt;
+    &lt;property name="maxInstancesOfVM" value="1" /&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <p>The following is an example of setting the maximum instances per machine parameter:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-sla:sla max-instances-per-machine="1" /&gt;
+</code></pre>
+            </div>
+            <div title="  Plain " style="padding:10px"><pre><code class="language-xml">&lt;bean id="SLA" class="org.openspaces.pu.sla.SLA"&gt;
+    &lt;property name="maxInstancesOfMachine" value="1" /&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="total-maximum-instances-per-vm"></a>Total Maximum Instances per VM</h1>
+        <p>This refers to the total amount of Processing Unit instances that can be instantiated within a GSC. It should not be confused with the <code>max-instances-per-vm</code> parameter, which controls how many instances a partition may have within a GSC. The total maximum instances per VM does not control the total amount of instances from different Processing Units, or other partitions, that can be provisioned into a GSC. To control the total maximum instances per VM, use the  <code>com.gigaspaces.grid.gsc.serviceLimit</code> system property and set its value before running the GSC:</p><pre><code class="language-bash">set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gigaspaces.grid.gsc.serviceLimit=2
+</code></pre>
+        <p MadCap:conditions="Version.15-0-died">The default value of the <code>com.gigaspaces.grid.gsc.serviceLimit</code> is <span class="tc-bold">500</span>.</p>
+        <p MadCap:conditions="Version.15-0-born">The default value of the <code>com.gigaspaces.grid.gsc.serviceLimit</code> is <span class="tc-bold">1</span>.</p>
+        <h1><a name="monitoring-the-liveness-of-processing-unit-instances"></a>Monitoring the Liveness of Processing Unit Instances</h1>
+        <p>The <a href="../overview/the-runtime-environment.html#gsm">GSM</a> monitors the liveness of all the Processing Unit instances it provisioned to the GSCs. The GSM pings each instance in the cluster to see whether it is available.</p>
+        <p>You can control how often a Processing Unit instance is monitored by the GSM, and in case of failure, how many times the GSM will try again to ping the instance and how long it will wait between retry attempts.</p>
+        <p>This is done using the <code>&lt;os-sla:member-alive-indicator&gt;</code> element, which contains the following attributes:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Attribute</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">invocation-delay</td>
+                    <td align="left">How often (in milliseconds) an instance is monitored and verified to be alive by the GSM</td>
+                    <td align="left">5000 (5 seconds)</td>
+                </tr>
+                <tr>
+                    <td align="left">retry-count</td>
+                    <td align="left">After an instance has been determined to not be alive, how many times to check it before giving up on it</td>
+                    <td align="left">3</td>
+                </tr>
+                <tr>
+                    <td align="left">retry-timeout</td>
+                    <td align="left">After an instance has been determined to not be alive, the timeout interval between retries (in milliseconds)</td>
+                    <td align="left">500 (0.5 seconds)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>When a Pprocessing Unit instance is determined to be unavailable, the GSM that manages its deployment tries to re-provision the instance on another GSC (according to the SLA definitions).</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  NameSpace " style="padding:10px"><pre><code class="language-xml">&lt;os-sla:sla&gt;
+    &lt;os-sla:member-alive-indicator invocation-delay="5000" retry-count="3" retry-timeout="500" /&gt;
+&lt;/os-sla:sla&gt;
+</code></pre>
+            </div>
+            <div title="  Plain " style="padding:10px"><pre><code class="language-xml">&lt;bean id="SLA" class="org.openspaces.pu.sla.SLA"&gt;
+    &lt;property name="member-alive-indicator"&gt;
+        &lt;bean class="org.openspaces.pu.sla.MemberAliveIndicator"&gt;
+            &lt;property name="invocationDelay" value="5000" /&gt;
+            &lt;property name="retryCount" value="3" /&gt;
+            &lt;property name="retryTimeout" value="500" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="troubleshooting-the-liveness-detection-mechanism"></a>Troubleshooting the Liveness Detection Mechanism</h2>
+        <p>For troubleshooting purposes, you can lower the logging threshold of the relevant log category by modifying the log configuration file located under <code><MadCap:variable name="General.HomePath" />/config/log/xap_logging.properties</code> on the GSM. The default definition is as follows:</p>
+        <p><code>org.openspaces.pu.container.servicegrid.PUFaultDetectionHandler.level</code> = INFO
+You can change it to one of the below thresholds for more information:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Level</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">CONFIG</td>
+                    <td align="left">Logs the configurations applied</td>
+                </tr>
+                <tr>
+                    <td align="left">FINE</td>
+                    <td align="left">Logs when a member is determined to be not alive</td>
+                </tr>
+                <tr>
+                    <td align="left">FINER</td>
+                    <td align="left">Logs when a member is indicated to be not alive (on each retry)</td>
+                </tr>
+                <tr>
+                    <td align="left">FINEST</td>
+                    <td align="left">every fault detection attempt</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <p>Level FINE is generally sufficient for service-failure troubleshooting.</p>
+        </div>
+    </body>
+</html>

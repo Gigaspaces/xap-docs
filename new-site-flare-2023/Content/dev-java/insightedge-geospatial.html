@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Geospatial API</h1>
+        <p>This section gives a brief overview of Geospatial API and describes how to use it with Spark RDD and DataFrames.</p>
+        <div class="tc-admon-refer">
+            <p>For a detailed description of the Geospatial queries refer to <a href="query-geospatial.html">Geospatial Queries</a> for more info.</p>
+        </div>
+        <h1><a name="shapes"></a>Shapes</h1>
+        <p>Data Grid supports next shapes, all of them are located at <code>org.openspaces.spatial.shapes</code> package:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Shape</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Point</td>
+                    <td align="left">A point, denoted by <code>X</code> and <code>Y</code> coordinates.</td>
+                </tr>
+                <tr>
+                    <td align="left">LineString</td>
+                    <td align="left">A finite sequence of one or more consecutive line segments.</td>
+                </tr>
+                <tr>
+                    <td align="left">Circle</td>
+                    <td align="left">A circle, denoted by a point and a radius.</td>
+                </tr>
+                <tr>
+                    <td align="left">Rectangle</td>
+                    <td align="left">A rectangle aligned with the axis (for non-aligned rectangles use Polygon).</td>
+                </tr>
+                <tr>
+                    <td align="left">Polygon</td>
+                    <td align="left">A finite sequence of consecutive line segments which denotes a bounded area.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>To create a shape, use the <code>ShapeFactory</code> class, for example:</p><pre><code class="language-scala">import org.openspaces.spatial.ShapeFactory
+
+val userLocation = ShapeFactory.point(10, 10)
+</code></pre>
+        <h1><a name="queries"></a>Queries</h1>
+        <p>Geospatial API currently supports three operations: <code>intersect</code>, <code>within</code> and <code>contains</code>.</p>
+        <p><code>Intersect</code> returns <code>true</code> when the intersection between <code>shape1</code> and <code>shape2</code> is not empty - some or all of <code>shape1</code> overlaps some or all of <code>shape2</code>.</p><pre><code class="language-scala">import org.insightedge.spark.implicits.all._
+import org.openspaces.spatial.ShapeFactory._
+
+// RDD
+val rdd = sc.gridSql[SpatialData]("area spatial:intersects ?", Seq(circle(point(10,10), 10)))
+
+// DataFrames
+val df = sqlContext.read.grid[SpatialData]
+val data = df.filter(df("area") geoIntersects circle(point(10,10), 10))
+</code></pre>
+        <p><code>Within</code> returns <code>true</code> when <code>shape1</code> is within (contained in) <code>shape2</code>, boundaries inclusive.</p><pre><code class="language-scala">import org.insightedge.spark.implicits.all._
+import org.openspaces.spatial.ShapeFactory._
+
+// RDD
+val rdd = sc.gridSql[SpatialData]("location spatial:within ?", Seq(circle(point(10,10), 10)))
+
+// DataFrames
+val df = sqlContext.read.grid[SpatialData]
+val data = df.filter(df("location") geoWithin circle(point(10,10), 10))
+</code></pre>
+        <p><code>Contains</code> returns <code>true</code> when <code>shape1</code> contains <code>shape2</code>, boundaries inclusive.</p><pre><code class="language-scala">import org.insightedge.spark.implicits.all._
+import org.openspaces.spatial.ShapeFactory._
+
+// RDD
+val rdd = sc.gridSql[SpatialData]("area spatial:contains ?", Seq(point(10,10)))
+
+// DataFrames
+val df = sqlContext.read.grid[SpatialData]
+val data = df.filter(df("area") geoContains point(10,10))
+</code></pre>
+        <h1><a name="indexing"></a>Indexing</h1>
+        <p>You can define Geospatial index using the <code>@SpaceSpatialIndex</code> and <code>@SpaceSpatialIndexes</code> annotations:</p><pre><code class="language-scala">import org.insightedge.scala.annotation._
+import org.openspaces.spatial.shapes.Point
+
+import scala.beans.BeanProperty
+
+case class GasStation(
+    @BeanProperty @SpaceId var id: Long,
+    @BeanProperty @SpaceSpatialIndex var location: Point) {
+    
+    def this() = this(-1, null)
+}
+</code></pre>
+        <div class="tc-admon-refer">
+            <p>To read more about indexing fields in Data Grid, refer to <a href="indexing-geospatial.html">Geospatial Index</a>.</p>
+        </div>
+        <h1><a name="zeppelin-notebook"></a>Zeppelin Notebook</h1>
+        <p>A great place to start experimenting with the Geospatial API is the <a href="../started/insightedge-zeppelin.html">Zeppelin notebook</a> - check out the "<MadCap:variable name="General.ProductNameIE" /> GeoSpatial' notebook.</p>
+        <div class="tc-admon-note">
+            <p>If you're using Windows, you'll need to manually copy the jars from <code>INSIGHTEDGE_HOME\datagrid\lib\optional\spatial</code> to the Spark jars folder (<code>INSIGHTEDGE_HOME\jars</code>) to use this notebook. We're working of fixing that for the next release.</p>
+        </div>
+    </body>
+</html>

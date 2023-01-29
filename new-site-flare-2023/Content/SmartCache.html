@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <h1 class="tc-pagetitle" style="text-align: left;"><MadCap:variable name="General.ProductNameXAP" /> Smart Cache </h1>
+        <p style="text-align: left;" MadCap:conditions="Version.16-0-died">GigaSpaces Smart Cache is part of the <a href="smart-overview.html">GigaSpaces Portfolio</a> — Smart Cache, Smart ODS and Smart Augmented Transactions. </p>
+        <p style="text-align: left;" MadCap:conditions="Version.16-0-born">GigaSpaces Smart Cache is part of the <a href="smart-overview.html">GigaSpaces  Portfolio</a> — Smart Cache and Smart DIH. </p>
+        <p style="text-align: left;">Smart Cache provides fast, scalable cache from any data store. It is fully SQL-99 compliant, and can connect in one click to any operational data store. Additionally it provides out-of-the-box advanced persistency options.</p>
+        <h1>Smart Cache Overview</h1>
+        <p style="text-align: center;">
+            <img src="Resources/Static/images/smart-cache-diagram-with-numbers-2.png" class="tc-picture80" />
+        </p>
+        <div>
+            <p style="text-align: center;">Architecture of Smart Cache</p>
+            <h2>1. Connect to Data Source</h2>
+            <MadCap:snippetBlock src="Resources/Snippets/Content/one-click-or-data-pipeline.flsnp" MadCap:conditionTagExpression="exclude[SnippetConditions.SnippetCondition01]" />
+        </div>
+        <h2>2. Data Tiering</h2>
+        <p>Data is stored in multiple data storage tiers — hot (in-memory), and warm (SSD)					</p>
+        <div>
+            <p>User-defined business rules allows you to place the most <i>important </i>data in hot storage, while other data can be in warm storage. </p>
+            <p> GigaSpaces manages the full data lifecycle by automatically storing the relevant data in the relevant tiers, federating the queries under the hood to gather all the data in optimal latency and evicting the data according to various policies, from least-recently-used (LRU) to user custom policies. Click <a href="admin/intelligent-tiering-details.html">here</a> for more information about tiered storage.</p>
+            <p style="text-align: center;">
+                <img src="Resources/Static/images/smartcache-data-tiering-diagram-new-3.png" style="width: 557px;height: 276px;" class="tc-picture50" />
+            </p>
+            <div class="tc-admon-note">
+                <p>"Important" does not necessarily mean "most frequently accessed" — for example, your business rules may place premium customers in hot storage, even if their data is less frequently required. </p>
+            </div>
+        </div>
+        <h2>3. Optimized Performance</h2>
+        <h3>Advanced Indexing</h3>
+        <p>Smart Cache provides unlimited amount of secondary <a href="https://docs.gigaspaces.com/latest/dev-java/indexing-overview.html">indexes</a> for the stored data, such as Exact, Range, Collections, Compound, Text, and Geo Spatial for optimal performance.</p>
+        <p>Unlike key-value stores that need to duplicate the entire data store for each defined index,  GigaSpaces  only creates additional indexing data structures on one instance of data. </p>
+        <p style="text-align: center;">
+            <img src="Resources/Static/images/smart-index-vs-key-value.png" class="tc-picture40" />
+        </p>
+        <p style="text-align: center;">Smart Cache advanced indexing</p>
+        <h3>Server-Side Aggregations</h3>
+        <div>
+            <p>Perform an <a href="https://docs.gigaspaces.com/latest/dev-java/aggregators.html?Highlight=aggregations">aggregation</a> activity across data stored within space
+Aggregators are executed by iterating the internal data grid structure that maintains the space objects
+Out of the box aggregators such as SUM, AVG, MIN, GROUP BY, etc. as well as CUSTOM AGGREGATION LOGIC
+Fast scan - No materialization of the original user data grid object when performing this iteration
+</p>
+            <p style="text-align: center;">
+                <img src="Resources/Static/images/Smart-aggregation-diagram.jpg" class="tc-picture40" />
+            </p>
+        </div>
+        <p>Distributed server-side data <a href="https://docs.gigaspaces.com/latest/dev-java/aggregators.html?Highlight=aggregations">aggregation</a> and code co-location provides high concurrency, full data integrity and reduces networking and serialization overhead.</p>
+        <p style="text-align: center;">
+            <img src="Resources/Static/images/smartcache-aggregation-diagram.jpg" style="width: 480px;height: 353px;" class="tc-picture40" />
+        </p>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <div>
+                <h3>Customized Routing</h3>
+                <p>When the objects are written to the Data Grid, they are <a href="https://docs.gigaspaces.com/latest/dev-java/routing-in-partitioned-spaces.html?Highlight=routing">routed</a> to the proper partition, according to a predefined attribute in the object that acts as the routing index.
+</p>
+                <p style="text-align: center;">
+                    <img src="Resources/Static/images/Smart-routing-diagram.jpg" style="width: 604px;height: 161px;" />
+                </p>
+            </div>
+        </div>
+        <h2>4. AIOps</h2>
+        <h3 MadCap:conditions="Default.DoNotShow">Artificial Intelligence Ops (AIOps) for Multi-Directional Scaling</h3>
+        <p>User-defined rules can automatically <a href="https://docs.gigaspaces.com/latest/production/production-Rescaling-your-application-in-GigaSpaces.html">scale up/down or scale out/in</a> when system demands change.</p>
+        <p> For example a rule could state:</p>
+        <blockquote>
+            <p><span class="tc-italic">When the RAM in use exceeds 80% of the total currently allocated RAM for more than 2 minutes, scale up the RAM by a factor of 4.</span>
+            </p>
+        </blockquote>
+        <p>Rules can also be time-dependent, for example automatically changing storage allocations before planned peak system workload.</p>
+        <h2>5. APIs</h2>
+        <div>
+            <p style="text-align: center;">
+                <img src="Resources/Static/images/Smart-data-internal-diagram.jpg" style="width: 765px;height: 428px;" />
+            </p>
+            <p style="text-align: center;">Smart Cache APIs</p>
+        </div>
+        <p>Smart Cache supports the full SQL-99 standard, allowing complex queries to be performed with optimal speed and minimal memory footprint. <a href="https://docs.gigaspaces.com/latest/dev-java/jdbc-driver.html">Standard SQL requests</a> used for relational data manipulation can be used without requiring source code changes. </p>
+        <p>Using Java and .NET APIs, advanced capabilities are available — such as object store, and <a href="https://docs.gigaspaces.com/solution-hub/modeling-your-data.html">various data modeling options</a>.
+</p>
+        <p><a href="https://docs.gigaspaces.com/latest/admin/admin-rest-manager-api.html?Highlight=rest">REST-API</a> and <a href="https://docs.gigaspaces.com/latest/admin/tools-cli.html">command line</a> interfaces are also available.</p>
+        <p>Smart Cache can easily integrate with BI tools such as <a href="https://docs.gigaspaces.com/latest/dev-java/tableau-integration.html">Tableau</a>, Looker, and PowerBI.</p>
+        <h1>Deploy Anywhere</h1>
+        <div>
+            <p>Deployment options include:</p>
+            <ul>
+                <li>
+                    <p> One-click deployment across any scale and environment, <a href="https://docs.gigaspaces.com/latest/orchestration/gsctl-create-gs-cluster-on-prem.html">on-prem</a>, <a href="https://docs.gigaspaces.com/latest/orchestration/gsctl-create-gs-cluster-cloud.html">cloud</a> or <a href="https://docs.gigaspaces.com/latest/orchestration/gsctl-create-gs-hybrid.html">hybrid</a></p>
+                </li>
+                <li>
+                    <p>Hot rolling deployment, upgrade, monitoring, scaling and recovery, all with no downtime</p>
+                </li>
+                <li MadCap:conditions="Version.16-0-died">
+                    <p>Support of Kubernetes, OpenShift, or built-in ElasticGrid orchestration systems</p>
+                </li>
+                <li MadCap:conditions="Version.16-0-born">
+                    <p>Support of Kubernetes and OpenShift orchestration systems</p>
+                </li>
+            </ul>
+            <p style="text-align: center;">
+                <img src="Resources/Static/images/smart-cache-deploy-anwhere.png" class="tc-picture100" style="width: 786px;height: 360px;" />
+            </p>
+            <p style="text-align: center;">Multiple deployment options of Smart Cache</p>
+            <h2><a href="https://docs.gigaspaces.com/latest/started/first-data-grid.html">Click here</a> to get started with Smart Cache.</h2>
+        </div>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Smart Cache Overview — Internal Data Stores</h1>
+            <p style="text-align: center;">
+                <img src="Resources/Static/images/Smart-data-internal-diagram.jpg" class="tc-picture60" />
+            </p>
+        </div>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h2 style="text-align: left;">Components of Smart Cache</h2>
+            <h3>One-Click Connect to Existing Data Source</h3>
+            <p style="text-align: left;">Smart Cache's Ops Manager GUI provides built-in connectors to the most popular databases: </p>
+        </div>
+        <p style="text-align: center;" MadCap:conditions="Default.DoNotShow">
+            <img src="Resources/Static/images/smart-one-click-connect.jpg" class="tc-picture60" />
+        </p>
+        <div MadCap:conditions="Default.DoNotShow">
+            <p>Database tables can be imported as-is, or can be limited to selected columns and other properties using the Ops Manager GUI, and without writing custom code.</p>
+            <p>Data sources can be on-prem, in the cloud, or a hybrid combination of cloud and on-prem.</p>
+        </div>
+        <table style="width: 100%;margin-left: auto;margin-right: auto;" MadCap:conditions="Default.DoNotShow">
+            <col style="width: 502px;" />
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <div>
+                            <h3>Event Processing</h3><code class="language-java"><p>@EventDriven @Polling</p><p>public class SimpleListener {</p><p>@EventTemplate</p><p>public SQLQuery&lt;Payment&gt; eventTemplate() {</p><p>return new SQLQuery&lt;Payment&gt;(Payment.class,</p><p>"status = PENDING");</p><p>}</p><p>@SpaceDataEvent</p><p>public Payment eventProcessor(Payment payment) {</p><p>payment.status = isValid(payment) ?</p><p>ACCEPTED : REJECTED;</p><p>return order;</p><p>}</p><p>}</p></code>
+                        </div>
+                    </td>
+                    <td>
+                        <img src="Resources/Static/images/Smart-bigger--event-processing.jpg" style="width: 818px; height: 427px;" class="tc-picture50" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h3>Hybrid Mix of On-Prem and Cloud Storage</h3>
+            <p>Using <MadCap:variable name="General.ProductNameXAP" />'s built-in ElasticGrid, or using Kubernetes, SmartCaching allows a configurable, dynamically changeable combination of on-prem and cloud storage. Data can be stored locally and replicated globally, allowing wide-area access with excellent concurrency and data integrity.</p>
+            <h3><a href="https://docs.gigaspaces.com/latest/started/first-data-grid.html">Click here</a> to get started with Smart Cache.</h3>
+        </div>
+        <h3 MadCap:conditions="Default.DoNotShow">Connect and Trigger SQL and Custom SDK queries</h3>
+    </body>
+</html>

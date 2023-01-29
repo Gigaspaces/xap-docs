@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Statistics View</h1>
+        <p>The Statistics view provides information on operation statistics in the Space, such as read, write, take, etc. If you have a system with MemoryXtend, you can also see statistics for the off-heap driver and the disk storage (RocksDB) driver.</p>
+        <h1><a name="operations-statistics"></a>Operations Statistics</h1>
+        <p>The Operations tab provides a graphical representation of Space operations performed and average throughput.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/GMC_space_statistics_7.1.jpg" alt="GMC_space_statistics_7.1.jpg" class="tc-picture100" />
+            </p>
+        </div>
+        <h2><a name="operations-statistics-status-area"></a>Operations Statistics Status Area</h2>
+        <p>The graph in the upper area of the tab displays the total number of operations performed in the Space. The legend on the right side shows the color that represents each operation in the graph. You can select and clear the check boxes as necessary to show or hide data for the different operations in the graph.</p>
+        <h2><a name="throughput-statistics-history-area"></a>Throughput Statistics History Area</h2>
+        <p>The graph in the lower area of the tab display the following information, depending on the selected option:</p>
+        <ul>
+            <li><span class="tc-bold">Display TP (Operations/Sec) History</span> - displays the current throughput performance (operations per second).</li>
+            <li><span class="tc-bold">Display Total Operations Count History</span> - displays the history of the Space operations, namely the number of operations performed since you began working with the Space.</li>
+        </ul>
+        <p>Use the following options to modify the view behavior:</p>
+        <ul>
+            <li><span class="tc-bold">History Measurement Duration</span> - configure how much history to display in the view and click <span class="tc-bold">Apply</span>.</li>
+            <li><span class="tc-bold">Enable History Graphs</span> - clear this check box to stop displaying current statistics in the view.</li>
+            <li><span class="tc-bold">Export</span> - click to export the operation statistics in a Microsoft Excel file.</li>
+            <li><span class="tc-bold">Clear Graph</span>  – click to clear the graph.</li>
+        </ul>
+        <h1><a name="memoryxtend-statistics"></a>MemoryXtend Statistics</h1>
+        <p>The MemoryXtend tab is only visible if you have <a href="memoryxtend-overview.html">MemoryXtend</a> in your system. The tab displays cache statistics for the off-heap storage.</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/admin/off-heap driver stats.png" alt="off-heap driver stats.png" class="tc-picture80" />
+        </p>
+        <p>If you have the disk storage driver configured, you can also view the blobstore (RocksDB) statistics.</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/admin/disk driver stats.png" alt="disk driver stats.png" class="tc-picture80" />
+        </p>
+        <h1><a name="refresh-options"></a>Refresh Options</h1>
+        <p>You can choose to refresh the statistics display periodically. When auto refresh is running, a green blinking dot is displayed on the right side of the screen. Select the desired refresh rate from the drop-down menu. To stop the statistics automatic refresh, click  <span class="tc-bold">Stop</span>.</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/GMC_space_statistics_RefreshRate_area_TopRight_7.1.jpg" alt="GMC_space_statistics_RefreshRate_area_TopRight_7.1.jpg" class="tc-picture80" />
+        </p>
+        <div class="tc-admon-note">
+            <p>Auto-refresh activity impacts server performance, so you might want to stop it when running benchmarks.</p>
+        </div>
+    </body>
+</html>

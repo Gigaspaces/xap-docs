@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Hibernate Integration</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> comes with a built in implementation of <a href="persistency-for-a-database.html">Space Persistency</a> APIs for Hibernate. This implementation is an extension of the <code>SpaceDataSource</code> and <code>SpaceSynchronizationEndpoint</code> classes. The implementation allows a custom objects persistency using Hibernate mappings.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/HibernateSpacedataSource.jpg" alt="HibernateSpacedataSource.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>There are two available implementations.</p>
+        <h2><a name="default-hibernate-space-persistency-implementation"></a>Default Hibernate Space Persistency Implementation</h2>
+        <p><code>DefaultHibernateSpaceDataSource</code> and <code>Default</code> based on <a href="https://docs.jboss.org/hibernate/orm/[%=Versions.hibernate-medium%]/javadocs/org/hibernate/Session.html" target="_blank">Hibernate Session</a>.</p>
+        <h2><a name="stateless-hibernate-space-persistency-implementation"></a>Stateless Hibernate Space Persistency Implementation</h2>
+        <p><code>StatelessHibernateSpaceDataSource</code> and <code>Stateless</code> based on Hibernate <a href="https://docs.jboss.org/hibernate/orm/[%=Versions.hibernate-medium%]/javadocs/org/hibernate/StatelessSession.html" target="_blank">StatelessSession</a>. This implementation is faster than the <code>Default Hibernate Space Persistency Implementation</code>, but it does not have first level cache, as well as does not perform any cascading operations (both in read operations as well as dirty operations).</p>
+        <p>The <code>Hibernate Space Persistency Implementation</code> is used both with the <a href="direct-persistency.html">Synchronous</a> and the <a href="asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency</a> modes.</p>
+        <h1><a name="configuration"></a>Configuration</h1>
+        <p>See below example for <code>Hibernate Space Persistency</code> that is configured having a Space connected to a central data source using Hibernate configuration files decorating the Space Classes:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"&gt;
+    &lt;property name="driverClassName" value="org.hsqldb.jdbcDriver"/&gt;
+    &lt;property name="url" value="jdbc:hsqldb:hsql://localhost:9001"/&gt;
+    &lt;property name="username" value="sa"/&gt;
+    &lt;property name="password" value=""/&gt;
+&lt;/bean&gt;
+
+&lt;bean id="sessionFactory" class="org.springframework.orm.hibernate<MadCap:variable name="Versions.hibernate-short" />.LocalSessionFactoryBean"&gt;
+    &lt;property name="dataSource" ref="dataSource"/&gt;
+    &lt;property name="mappingResources"&gt;
+        &lt;list&gt;
+            &lt;value&gt;Person.hbm.xml&lt;/value&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name="hibernateProperties"&gt;
+        &lt;props&gt;
+            &lt;prop key="hibernate.dialect"&gt;org.hibernate.dialect.HSQLDialect&lt;/prop&gt;
+            &lt;prop key="hibernate.cache.provider_class"&gt;org.hibernate.cache.NoCacheProvider&lt;/prop&gt;
+            &lt;prop key="hibernate.cache.use_second_level_cache"&gt;false&lt;/prop&gt;
+            &lt;prop key="hibernate.cache.use_query_cache"&gt;false&lt;/prop&gt;
+            &lt;prop key="hibernate.hbm2ddl.auto"&gt;update&lt;/prop&gt;
+            &lt;prop key="hibernate.jdbc.batch_size"&gt;50&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id="hibernateSpaceDataSource" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceDataSourceFactoryBean"&gt;
+    &lt;property name="sessionFactory" ref="sessionFactory"/&gt;
+    &lt;property name="initialLoadChunkSize" value="2000"/&gt;
+&lt;/bean&gt;
+
+
+&lt;bean id="hibernateSpaceSynchronizationEndpoint" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceSynchronizationEndpointFactoryBean"&gt;
+    &lt;property name="sessionFactory" ref="sessionFactory"/&gt;
+&lt;/bean&gt;
+
+&lt;os-core:embedded-space id="space" space-name="space" schema="persistent" space-data-source="hibernateSpaceDataSource"
+              space-sync-endpoint="hibernateSpaceSynchronizationEndpoint" /&gt;
+    &lt;os-core:properties&gt;
+        &lt;props&gt;
+            &lt;prop key="cluster-config.cache-loader.external-data-source"&gt;true&lt;/prop&gt;
+            &lt;prop key="cluster-config.cache-loader.central-data-source"&gt;true&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/os-core:properties&gt;
+&lt;/os-core:embedded-space&gt;
+</code></pre>
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"&gt;
+    &lt;property name="driverClassName" value="org.hsqldb.jdbcDriver"/&gt;
+    &lt;property name="url" value="jdbc:hsqldb:hsql://localhost:9001"/&gt;
+    &lt;property name="username" value="sa"/&gt;
+    &lt;property name="password" value=""/&gt;
+&lt;/bean&gt;
+
+&lt;bean id="sessionFactory" class="org.springframework.orm.hibernate<MadCap:variable name="Versions.hibernate-short" />.LocalSessionFactoryBean"&gt;
+    &lt;property name="dataSource" ref="dataSource"/&gt;
+    &lt;property name="mappingResources"&gt;
+        &lt;list&gt;
+            &lt;value&gt;Person.hbm.xml&lt;/value&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name="hibernateProperties"&gt;
+        &lt;props&gt;
+            &lt;prop key="hibernate.dialect"&gt;org.hibernate.dialect.HSQLDialect&lt;/prop&gt;
+            &lt;prop key="hibernate.cache.provider_class"&gt;org.hibernate.cache.NoCacheProvider&lt;/prop&gt;
+            &lt;prop key="hibernate.cache.use_second_level_cache"&gt;false&lt;/prop&gt;
+            &lt;prop key="hibernate.cache.use_query_cache"&gt;false&lt;/prop&gt;
+            &lt;prop key="hibernate.hbm2ddl.auto"&gt;update&lt;/prop&gt;
+            &lt;prop key="hibernate.jdbc.batch_size"&gt;50&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id="hibernateSpaceDataSource" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceDataSourceFactoryBean"&gt;
+    &lt;property name="sessionFactory" ref="sessionFactory"/&gt;
+    &lt;property name="initialLoadChunkSize" value="2000"/&gt;
+&lt;/bean&gt;
+
+&lt;bean id="hibernateSpaceSynchronizationEndpoint" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceSynchronizationEndpointFactoryBean"&gt;
+    &lt;property name="sessionFactory" ref="sessionFactory"/&gt;
+&lt;/bean&gt;
+
+&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+    &lt;property name="schema" value="persistent" /&gt;
+    &lt;property name="spaceDataSource" ref="hibernateSpaceDataSource" /&gt;
+    &lt;property name="spaceSynchronizationEndpoint" ref="hibernateSpaceSynchronizationEndpoint" /&gt;
+    &lt;property name="properties"&gt;
+        &lt;props&gt;
+            &lt;prop key="cluster-config.cache-loader.external-data-source"&gt;true&lt;/prop&gt;
+            &lt;prop key="cluster-config.cache-loader.central-data-source"&gt;true&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <p>When using annotations to decorate the Space Classes the <code>sessionFactory</code> would have the following:</p><pre><code class="language-xml">&lt;bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"&gt;
+    &lt;property name="dataSource" ref="dataSource"/&gt;
+    &lt;property name="annotatedClasses"&gt;
+        &lt;list&gt;
+            &lt;value&gt;com.mycompany.app.common.Data&lt;/value&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name="hibernateProperties"&gt;
+        &lt;props&gt;
+            ....
+        &lt;/props&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+        <div class="tc-admon-note">
+            <p>The <code>external-data-source</code> element within the persistent schema allows for further configuration of the external data source. The values can be injected using the properties tag within the Space tag using the "xpath" notation.</p>
+        </div>
+        <p>Here is an example for a Space Domain class with its Hibernate decorations. See the <code>@SpaceId</code> and the <code>@SpaceRouting</code> used to include the Space Class meta Data.</p>
+        <div class="tc-admon-note">
+            <p>Make sure your <code>POJO @SpaceId</code> is defined on the same property as the <code>Hibernate @Id</code>. This is necessary for proper object mapping.</p>
+        </div>
+        <p>See the <a href="modeling-your-data.html">POJO Metadata</a> for details about these decorations.</p><pre><code class="language-java">package com.mycompany.app.common;
+
+import com.gigaspaces.annotation.pojo.SpaceClass;
+import com.gigaspaces.annotation.pojo.SpaceId;
+import com.gigaspaces.annotation.pojo.SpaceRouting;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+
+@Entity
+@Table(name="DATA")
+@SpaceClass
+public class Data {
+    @Id
+    private String id;
+    private Long type;
+
+    // need no arg constr
+    public Data() {}
+
+    @SpaceId(autoGenerate=false)
+    public String getId() {return id;}
+    public void setId(String id) {this.id = id;}
+
+    @SpaceRouting
+    public Long getType() {return type;}
+    public void setType(Long type) {this.type = type;}
+    ...
+    }
+}
+</code></pre>
+        <div class="tc-admon-tip" MadCap:conditions="Version.14-5-died">
+            <ul>
+                <li>
+                    <p>When mapping a Collection Data types or any other variable size field make sure the relevant database table column has a sufficient size that can accommodate the largest collection/variable size field you may have within your space object.</p>
+                </li>
+                <li>
+                    <p>When fetching collections, you must use the <code>@Fetch(FetchMode.SELECT)</code> annotation for the collection field. This is a result of <a href="https://hibernate.atlassian.net/browse/HHH-1751" target="_blank">hibernate bug HHH-1751</a>. The default <code>@Fetch(FetchMode.JOIN)</code> mode will not fetch all members. This will handle also duplicate entry creation when initial-load is being called. Irrelevant since <MadCap:variable name="General.ProductNameXAP" /> upgraded to Hibernate 4.1.9.</p>
+                </li>
+            </ul>
+        </div>
+        <div class="tc-admon-tip" MadCap:conditions="Version.14-5-born">
+            <p>When mapping a Collection Data types or any other variable size field make sure the relevant database table column has a sufficient size that can accommodate the largest collection/variable size field you may have within your space object.</p>
+        </div>
+        <h1><a name="properties"></a>Properties</h1>
+        <p>The Hibernate Space Persistency implementation includes the following properties:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">fetchSize</td>
+                    <td align="left">Sets the fetch size that will be used when working with scrollable results.</td>
+                    <td align="left">100</td>
+                </tr>
+                <tr>
+                    <td align="left">initialLoadChunkSize</td>
+                    <td align="left">By default, the initial load process will chunk large tables and will iterate over the table (entity) per chunk (concurrently). This setting allows to control the chunk size to split the table by. Batching can be disabled by setting -1<br />The <code>initialLoadChunkSize</code> property allows you to have multiple threads loading data from the same table into the space - each thread loading different rows from the same table. Having the <code>initialLoadChunkSize</code> as 100,000 will break a 1 million rows table into ten chunks. All the chunks, from all the tables, are processes by the amount of <code>initialLoadThreadPoolSize</code> configured.</td>
+                    <td align="left">100,000</td>
+                </tr>
+                <tr>
+                    <td align="left">initialLoadEntries</td>
+                    <td align="left">Sets a list of entries that will be used to perform the <code>ManagedDataSource.initialLoad()</code> operation.</td>
+                    <td align="left">By default, will try and build a sensible list based on Hibernate meta data.</td>
+                </tr>
+                <tr>
+                    <td align="left">managedEntries</td>
+                    <td align="left">Sets all the entries this Hibernate data source will work with. By default, will use Hibernate meta data API in order to get the list of all the given entities it handles.  This list is used to filter out entities when performing all data source operations except for the <code>ManagedDataSource.initialLoad()</code> operation. Usually, there is no need to explicitly set this.</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">sessionFactory</td>
+                    <td align="left">Injects the Hibernate SessionFactory to be used with this data source.</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">initialLoadThreadPoolSize</td>
+                    <td align="left">The initial load operation uses the <code>ConcurrentMultiDataIterator</code>. This property allows to control the thread pool size of the concurrent multi data iterator.Note, this usually will map one to one to the number of open connections / cursors against the database.</td>
+                    <td align="left">10</td>
+                </tr>
+                <tr>
+                    <td align="left">performOrderById</td>
+                    <td align="left">When performing initial load, this flag indicates if the generated query will order to results by the id.</td>
+                    <td align="left">true (as it most times results in better initial load performance).</td>
+                </tr>
+                <tr>
+                    <td align="left">useScrollableResultSet</td>
+                    <td align="left">Controls if scrollable resultsets will be used with inital load operation.</td>
+                    <td align="left">true</td>
+                </tr>
+                <tr>
+                    <td align="left">useMerge</td>
+                    <td align="left">If set to true, will use Hibernate merge to perform the create/update, and will merge before calling delete.<br />This might be required for complex mappings (depends on Hibernate) at the expense of slower performance. Available only for the <code>Default Hibernate Space Persistency Implementation</code></td>
+                    <td align="left">false</td>
+                </tr>
+                <tr>
+                    <td align="left">deleteById</td>
+                    <td align="left">Since 7.1. If set to true, will delete objects by their id, otherwise the object itself will be used in delete. This is necessary for objects with not-nullable fields. Available only for the <code>Default Hibernate Space Persistency Implementation</code></td>
+                    <td align="left">true</td>
+                </tr>
+                <tr>
+                    <td align="left">augmentInitialLoadEntries</td>
+                    <td align="left">Since 10.0. Feature flag for intelligent partition-specific initial load of entries. Read <a href="space-persistency-initial-load.html#controlling-the-initial-load">here</a> for more details.</td>
+                    <td align="left">true</td>
+                </tr>
+                <tr>
+                    <td align="left">initialLoadQueryScanningBasePackages</td>
+                    <td align="left">Since 10.0. A list of base packages to be scanned for special initial load query methods. Read <a href="space-persistency-initial-load.html#controlling-the-initial-load">here</a> for more details.</td>
+                    <td align="left">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-tip">
+            <p>Tuning the <code>fetchSize</code>, <code>initialLoadChunkSize</code>, <code>initialLoadThreadPoolSize</code> and <code>performOrderById</code> will allow you to control the initial load time. In addition, the <code>StatelessHibernateSpaceDataSource</code> should give you better performance on startup.</p>
+        </div>
+        <p>See example below:</p><pre><code class="language-xml">&lt;bean id="hibernateSpaceDataSource" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceDataSourceFactoryBean"&gt;
+    &lt;property name="sessionFactory" ref="sessionFactory"/&gt;
+    &lt;property name="fetchSize" value="100"/&gt;
+    &lt;property name="initialLoadChunkSize" value="2000"/&gt;
+    &lt;property name="initialLoadEntries" value="MyClass1,MyClass2"/&gt;
+    &lt;property name="managedEntries" value="MyClass1,MyClass2"/&gt;
+    &lt;property name="initialLoadThreadPoolSize" value="10"/&gt;
+    &lt;property name="performOrderById" value="true"/&gt;
+    &lt;property name="useScrollableResultSet" value="true"/&gt;
+    &lt;property name="useMerge" value="true"/&gt;
+    &lt;property name="augmentInitialLoadEntries" value="true"/&gt;
+    &lt;property name="initialLoadQueryScanningBasePackages"&gt;
+            &lt;list&gt;
+                &lt;value&gt;com.example.domain&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+    </body>
+</html>

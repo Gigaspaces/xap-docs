@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Advanced Configuration</h1>
+  
+
+<p>This page contains information beyond the basics. It was created for those who want to know a little bit more about how <MadCap:variable name="General.ProductNameXAP" /> and Maven integrate. Basically, the information given in <a href="installation-maven.html"><MadCap:variable name="General.ProductNameXAP" /> Maven Plugin</a> should be sufficient for the common user.</p>
+
+<h1><a name="processing-unit-assembly-definition"></a>Processing Unit Assembly Definition</h1>
+
+<p>The <MadCap:variable name="General.ProductNameXAP" /> maven plugin uses the maven assembly plugin to generate the processing unit directory structure. Each PU module has the file &lt;module-name&gt;/src/main/assembly/assembly.xml that defines the assembly structure. One of its tasks is to determine which of the dependency JARS go into the lib directory and which go into the shared-lib directory.</p>
+
+<p><span class="tc-bold">assembly.xml</span></p>
+
+<pre><code class="language-xml">&lt;assembly&gt;
+  &lt;id&gt;assemble-pu&lt;/id&gt;
+  &lt;formats&gt;
+    &lt;format&gt;jar&lt;/format&gt;
+    &lt;format&gt;dir&lt;/format&gt;
+  &lt;/formats&gt;
+  &lt;includeBaseDirectory&gt;false&lt;/includeBaseDirectory&gt;
+  &lt;fileSets&gt;
+    &lt;fileSet&gt;
+      &lt;directory&gt;target/classes&lt;/directory&gt;
+      &lt;lineEnding&gt;keep&lt;/lineEnding&gt;
+      &lt;outputDirectory&gt;/&lt;/outputDirectory&gt;
+      &lt;includes&gt;
+        &lt;include&gt;**/**&lt;/include&gt;
+      &lt;/includes&gt;
+    &lt;/fileSet&gt;
+  &lt;/fileSets&gt;
+  &lt;dependencySets&gt;
+    &lt;dependencySet&gt;
+      &lt;useProjectArtifact&gt;false&lt;/useProjectArtifact&gt;
+      &lt;useTransitiveDependencies&gt;false&lt;/useTransitiveDependencies&gt;
+      &lt;outputDirectory&gt;lib&lt;/outputDirectory&gt;
+      &lt;excludes&gt;
+        &lt;exclude&gt;com.mycompany.app:common&lt;/exclude&gt;
+      &lt;/excludes&gt;
+    &lt;/dependencySet&gt;
+    &lt;dependencySet&gt;
+      &lt;useProjectArtifact&gt;false&lt;/useProjectArtifact&gt;
+      &lt;useTransitiveDependencies&gt;true&lt;/useTransitiveDependencies&gt;
+      &lt;useTransitiveFiltering&gt;true&lt;/useTransitiveFiltering&gt;
+      &lt;outputDirectory&gt;shared-lib&lt;/outputDirectory&gt;
+      &lt;includes&gt;
+        &lt;include&gt;com.mycompany.app:common&lt;/include&gt;
+      &lt;/includes&gt;
+    &lt;/dependencySet&gt;
+  &lt;/dependencySets&gt;
+&lt;/assembly&gt;
+</code></pre>
+
+<h2><a name="dependencies-target-locations"></a>Dependencies Target Locations</h2>
+
+<p>Inside assembly.xml we have a dependencySets element that contains two dependencySet elements.
+The first dependencySet (where its outputDirectory=lib) defines which JARS go into the lib directory in the PU structure. It excludes the dependency in the common module and its transitive dependencies. In other words, all dependencies that are not related to the commons module go into the lib directory.</p>
+
+<p>The second dependencySet (where its outputDirectory=shared-lib) defines which JARS go into the shared-lib directory in the PU structure. It includes the dependency in common module and its transitive dependencies, leaving other dependencies out. In other words, all dependencies that are related to the commons module go into the shared-lib directory.</p>
+
+<h2><a name="dependency-scopes"></a>Dependency Scopes</h2>
+
+<p>When defining a dependency for an artifact (module), you can specify the dependency's scope. Scope determines which dependencies participate in the build lifecycle.</p>
+
+<p>Maven defines the following scopes:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Scope</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><span class="tc-bold">compile</span></td>
+<td align="left">Indicates that the dependency is available for the classpaths of all phases. <span class="tc-bold">This is the default scope</span>.</td>
+</tr>
+
+<tr>
+<td align="left"><span class="tc-bold">provided</span></td>
+<td align="left">Indicates that the dependency is available on the compile classpath, but in the production environment you expect the JDK or a container to provide it. It is not transitive.</td>
+</tr>
+
+<tr>
+<td align="left"><span class="tc-bold">test</span></td>
+<td align="left">Indicates that the dependency is only available for the test compilation and execution phases.</td>
+</tr>
+
+<tr>
+<td align="left"><span class="tc-bold">runtime</span></td>
+<td align="left">Indicates that the dependency is available for the runtime and test classpaths, but not for the compile classpath.</td>
+</tr>
+
+<tr>
+<td align="left"><span class="tc-bold">system</span></td>
+<td align="left">This scope is similar to provided, except that you have to provide the JAR location explicitly. The artifact is not looked up in a repository. Using this scope is not advised due to portability issues.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="tc-admon-note">
+  
+  <p>During processing unit packaging only dependencies declared with the scopes <span class="tc-bold">compile* and *runtime</span> are added to the PU distributable.</p>
+</div>
+
+<div class="tc-admon-refer">
+  
+  <p>For more information go to <a href="http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html">Introduction to the Dependency Mechanism</a></p>
+</div>
+
+<h2><a name="configuring-maven-to-use-the-assembly-descriptor"></a>Configuring Maven to use the Assembly Descriptor</h2>
+
+<p>To instruct Maven to use this assembly descriptor to generate the processing units, we configure the assembly plugin by adding the following xml snippet to the module's pom.xml file.</p>
+
+<p><span class="tc-bold">pom.xml</span></p>
+
+<pre><code class="language-xml">&lt;build&gt;
+  ...
+  &lt;finalName&gt;testing-feeder&lt;/finalName&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;
+      &lt;configuration&gt;
+        &lt;appendAssemblyId&gt;false&lt;/appendAssemblyId&gt;
+        &lt;attach&gt;false&lt;/attach&gt;
+        &lt;ignoreDirFormatExtensions&gt;true&lt;/ignoreDirFormatExtensions&gt;
+        &lt;descriptors&gt;
+          &lt;descriptor&gt;src/main/assembly/assembly.xml&lt;/descriptor&gt;
+        &lt;/descriptors&gt;
+      &lt;/configuration&gt;
+      &lt;executions&gt;
+        &lt;execution&gt;
+          &lt;id&gt;assembly&lt;/id&gt;
+          &lt;phase&gt;package&lt;/phase&gt;
+          &lt;goals&gt;
+            &lt;goal&gt;single&lt;/goal&gt;
+          &lt;/goals&gt;
+        &lt;/execution&gt;
+      &lt;/executions&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+  ...
+&lt;/build&gt;
+</code></pre>
+
+<h2><a name="further-information"></a>Further Information</h2>
+
+<div class="tc-admon-refer">
+  
+  <p>For further information about the assembly plugin options, go to:</p>
+
+<ul>
+<li><a href="http://maven.apache.org/plugins/maven-assembly-plugin/">Assembly plugin documentation</a></li>
+<li><a href="http://maven.apache.org/plugins/maven-assembly-plugin/assembly.html">Assembly descriptor reference</a></li>
+<li><a href="http://maven.apache.org/plugins/maven-assembly-plugin/single-mojo.html">Assembly plugin "single' mojo documentation</a></li>
+</ul>
+</div>
+
+</body>
+</html>

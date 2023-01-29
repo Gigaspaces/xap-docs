@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Paging Support</h1>
+        <p>In some scenarios there's a need to return a collection of entries from the space. This is usually carried out using one of the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.html#readMultiple-T-">readMultiple</a> overloads in <code>GigaSpace</code>. However, if there are lots of matching entries, you may encounter several problems:</p>
+        <ul>
+            <li>Memory usage - Both the server and client need to allocate enough memory for the entire result set.</li>
+            <li>Latency - Since all the results are returned in one bulk, the client must wait until the final result arrives before it can process the first one.</li>
+        </ul>
+        <p>A better approach is to create an iterator that iterates over the matching entries one at a time. Under the hood, the server returns results in batches, and when the client's buffer is exhausted the next batch is implicitly returned from the server.</p>
+        <div class="tc-admon-note">
+            <p>This page describes the new space iterator, which replaced the <code>GSIterator</code> starting in XAP version 10.2. Information about the GSIterator is available <a href="query-paging-support-old.html">here</a>.</p>
+        </div>
+        <h1><a name="usage"></a>Usage</h1>
+        <p>Use the <code>GetSpaceIterator(template)</code> to create the iterator. Example:</p><pre><code class="language-java">    // Find and print all persons who are older than 21:
+    foreach (var person in spaceProxy.GetSpaceIterator&lt;Person&gt;(new SqlQuery&lt;Person&gt;("Age &gt; 21")))
+    {
+      Console.WriteLine("Id: " + person.Id + ", Age: " + person.Age);
+    }
+</code></pre>
+        <h2><a name="transactions"></a>Transactions</h2>
+        <p>Iterating through the matched set does not lock the object. Objects that are under transaction and match the specified template will not be included as part of the matched set.</p>
+        <h1><a name="limitations"></a>Limitations</h1>
+        <p><a name="complex-queries"></a><b>Complex Queries</b>
+        </p>
+        <p>The space iterator only supports simple SQL queries.</p>
+        <div class="tc-admon-note">
+            <p> For more information about the differences between simple and complex queries, see the <a href="query-sql.html#SimpleQueries">Simple vs. Complex Queries</a> explanation on the SQL&#160;Query page.</p>
+        </div>
+    </body>
+</html>

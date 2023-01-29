@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Class Annotations</h1>
+        <p>The <a href="the-gigaspace-interface-overview.html">GigaSpaces API</a> supports class level decorations with POJOs. These can be specified via annotations on the space class source itself  for all class instances.</p>
+        <div class="tc-admon-refer">
+            <p><MadCap:variable name="General.ProductNameXAP" /> provides the ability to obtain and modify class metadata of objects stored in the Space <a href="the-space-meta-data.html">during runtime</a>.</p>
+        </div>
+        <p>
+            <br />
+        </p>
+        <h1><a name="persistence"></a>Persistence</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>persist</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td>boolean</td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>false</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>When a space is defined as persistent, a "true' value for this annotation persists objects of this type.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-java">@SpaceClass(persist=true)
+public class Person {
+//
+}
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="persistency-for-a-database.html">Space Persistency</a>
+            </p>
+        </div>
+        <h1><a name="include-properties"></a>Include Properties</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>includeProperties</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/annotation/pojo/SpaceClass.IncludeProperties.html">IncludeProperties</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>IncludeProperties.IMPLICIT</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td><code>IncludeProperties.IMPLICIT</code> takes into account all POJO fields – even if a <code>get</code> method is not declared with a <code>@SpaceProperty</code> annotation, it is taken into account as a space field.<code>IncludeProperties.EXPLICIT</code> takes into account only the <code>get</code> methods which are declared with a <code>@SpaceProperty</code> annotation.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-java">@SpaceClass(includeProperties=IncludeProperties.EXPLICIT)
+public class Person {
+  //
+}
+</code></pre>
+        <h1><a name="fifo-support"></a>FIFO Support</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>fifoSupport</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/annotation/pojo/FifoSupport.html">FifoSupport</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>FifoSupport.NOT_SET</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>To enable FIFO operations, set this attribute to <code>FifoSupport.OPERATION</code></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-java">@SpaceClass(fifoSupport=FifoSupport.OPERATION)
+public class Person {
+  //
+}
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="fifo-support.html">Fifo Support</a>
+            </p>
+        </div>
+        <h1><a name="inherit-index"></a>Inherit Index</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>inheritIndexes</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td>boolean</td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>true</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Whether to use the class indexes list only, or to also include the superclass' indexes. <br />If the class does not define indexes, superclass indexes are used. <br />Options:<br />- <code>false</code> – class indexes only.<br />- <code>true</code> – class indexes and superclass indexes.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-java">@SpaceClass(inheritIndexes=false)
+public class Person {
+  //
+}
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="indexing.html">Indexing</a>
+            </p>
+        </div>
+        <h1><a name="storage-type"></a>Storage Type</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>storageType</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/metadata/StorageType.html">StorageType</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>StorageType.OBJECT</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>To determine a default storage type for each non primitive property for which a (field level) storage type was not defined.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-java">@SpaceClass(storageType=StorageType.BINARY)
+public class Person {
+  //
+}
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="storage-types-controlling-serialization.html">Storage types</a>
+            </p>
+        </div>
+        <h1><a name="replication"></a>Replication</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>replicate</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td>boolean</td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>true</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>When running in a partial replication mode, a <code>false</code> value for this property will not replicates all objects from this class type to the replica space or backup space.}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-java">@SpaceClass(replicate=false)
+public class Person {
+  //
+}
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="../admin/replication.html">Replication</a>
+            </p>
+        </div>
+        <h1><a name="compound-index"></a>Compound Index</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>CompoundSpaceIndexes CompoundSpaceIndex paths</td>
+                </tr>
+                <tr>
+                    <td>Argument(s)</td>
+                    <td>string</td>
+                </tr>
+                <tr>
+                    <td>Values</td>
+                    <td>attribute name(s)</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Indexes can be defined for multiple attributes of a class</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-java">@CompoundSpaceIndexes({ @CompoundSpaceIndex(paths = { "firstName", "lastName" }) })
+@SpaceClass
+public class User {
+     private Long id;
+     private String firstName;
+     private String lastName;
+     private Double balance;
+     private Double creditLimit;
+     private EAccountStatus status;
+     private Address address;
+     private String[] comment;
+}
+
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="indexing-compound.html">Compond Indexing</a>
+            </p>
+        </div>
+        <h1><a name="blobstore"></a>Blobstore</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>blobstoreEnabled</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td>boolean</td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>true</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>By default any Space Data Type is blobStore enabled. When decorating the space class with its meta data you may turn off the blobStore behavior using the @SpaceClass blobStore annotation or gs.xml blobStore tag.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-java">@SpaceClass(blobstoreEnabled = false)
+public class Person {
+    .......
+}
+
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="../admin/memoryxtend-overview.html">Memoryxtend</a>
+            </p>
+        </div>
+        <h1><a name="change-code-without-restarts"></a>Change Code without Restarts</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Syntax</td>
+                    <td>SupportCodeChange id=</td>
+                </tr>
+                <tr>
+                    <td>Argument</td>
+                    <td>string</td>
+                </tr>
+                <tr>
+                    <td>Default</td>
+                    <td>""</td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>Changing execution code without restarting the data grid</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Example:</p><pre><code class="language-java">@SupportCodeChange(id="1")
+public class DynamicTask implements Task&lt;Integer&gt; {
+
+    @Override
+    public Integer execute() throws Exception {
+        return new Integer(1);
+    }
+}
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="the-space-no-restart.html">Change code without restarts</a>
+            </p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">WAN Multi-Master Replication Gateway</h1>
+        <table>
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shay Hassidim</td>
+                    <td>8.0.3</td>
+                    <td> </td>
+                    <td><a href="https://github.com/Gigaspaces/solution-hub/tree/master/wan-gateway-examples-all/WAN_Replication_MultiMaster" target="_blank">WAN&#160;gateway multi-master example</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Overview</h1>
+        <p>This <a href="https://docs.gigaspaces.com/latest/dev-java/multi-site-replication-over-the-wan.html">WAN Gateway</a> example includes PU folders with configuration files for a <a href="https://docs.gigaspaces.com/latest/dev-java/multi-site-replication-over-the-wan.html#Multi-Master Topology">Multi-Master</a> topology that includes 3 sites: DE, RU, and US. Each site has an independent cluster and a gateway.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/wan_example1.jpg" alt="wan_example1.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <p>You will find folders for the following PUs:</p>
+        <ul>
+            <li>wan-gateway-DE - Deployed to the <span class="tc-bold">DE</span> zone, using the <span class="tc-bold">DE</span> lookup group and a lookup service listening on port 4366.</li>
+            <li>wan-gateway-RU - Deployed to the <span class="tc-bold">RU</span> zone, using the <span class="tc-bold">RU</span> lookup group and a lookup service listening on port 4166.</li>
+            <li>wan-gateway-US - Deployed to the <span class="tc-bold">US</span> zone, using the <span class="tc-bold">US</span> lookup group and a lookup service listening on port 4266.</li>
+            <li>wan-space-DE - Deployed to the <span class="tc-bold">DE</span> zone, using the <span class="tc-bold">DE</span> lookup group and a lookup service listening on port 4366.</li>
+            <li>wan-space-RU - Deployed to the <span class="tc-bold">RU</span> zone, using the <span class="tc-bold">RU</span> lookup group and a lookup service listening on port 4166.</li>
+            <li>wan-space-US - Deployed to the <span class="tc-bold">US</span> zone, using the <span class="tc-bold">US</span> lookup group and a lookup service listening on port 4266.</li>
+        </ul>
+        <p>The internal architecture of the setup includes a clustered space and a gateway, where each gateway includes a delegator and a sink:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/wan_example2.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <h1>Installing the Example</h1>
+        <ol>
+            <li>
+                <p>Download the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/wan-gateway-examples-all/WAN_Replication_MultiMaster" target="_blank">example</a>. It includes two folders: <span class="tc-bold">deploy</span> and <span class="tc-bold">scripts</span>. </p>
+            </li>
+            <li>
+                <p>Copy the contents of the <span class="tc-bold">deploy folder</span> to the <code><MadCap:variable name="General.HomePath" /> \deploy</code> folder. It should looks like this:</p><pre><code class="language-java">Directory of D:<MadCap:variable name="General.HomePath" />\deploy
+
+09/11/2011  04:41 AM    &lt;DIR&gt;          .
+09/11/2011  04:41 AM    &lt;DIR&gt;          ..
+07/05/2011  03:08 PM    &lt;DIR&gt;          templates
+09/11/2011  04:44 AM    &lt;DIR&gt;          wan-gateway-DE
+09/11/2011  04:44 AM    &lt;DIR&gt;          wan-gateway-RU
+09/11/2011  04:43 AM    &lt;DIR&gt;          wan-gateway-US
+09/11/2011  04:43 AM    &lt;DIR&gt;          wan-space-DE
+09/11/2011  05:15 AM    &lt;DIR&gt;          wan-space-RU
+09/11/2011  04:42 AM    &lt;DIR&gt;          wan-space-US
+</code></pre>
+            </li>
+            <li>Open the <code>scripts</code> folder and edit the <code>setExampleEnv.bat/sh</code> to include the machine IP address for the <code>NIC_ADDR</code>,  and the GigaSpaces root folder location for <code><MadCap:variable name="General.HomePath" /></code>.</li>
+        </ol>
+        <h1>Running the Example</h1>
+        <p>The <code>scripts</code> folder contains scripts that are used to start the <a href="/product_overview/service-grid.html#gsa">Grid Service Agent</a> for each site, along with a deploy script for all sites. This allows you to run the entire setup on one machine to test. Here are the steps to run the example:</p>
+        <ol>
+            <li>Run <code>startAgent-DE.bat/sh</code> to start the DE site.</li>
+            <li>Run <code>startAgent-RU.bat/sh</code> to start the RU site.</li>
+            <li>Run <code>startAgent-US.bat/sh</code> to start the US site.</li>
+            <li>Run <code>deployAll.bat/sh</code> file to deploy all the PUs listed above.</li>
+        </ol>
+        <h1>Viewing the Clusters</h1>
+        <ol>
+            <li>Run <code><MadCap:variable name="General.HomePath" />\bin\GS-UI.bat/sh</code>.</li>
+            <li>
+                <p>After deployment, make sure you enable the relevant groups via the GigaSpaces Management Center:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/sbp/wan_example3.jpg" alt="wan_example3.jpg" class="tc-picture30" />
+                </p>
+            </li>
+            <li>
+                <p>Check all the groups:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/sbp/wan_example4.jpg" alt="wan_example4.jpg" class="tc-picture30" />
+                </p>
+                <p>They should look like this:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/sbp/wan_example5.jpg" class="tc-picture80" />
+                </p>
+            </li>
+            <li>
+                <p>After being deployed successfully, you should see this:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/sbp/wan_example6.jpg" class="tc-picture50" />
+                </p>
+            </li>
+        </ol>
+        <h1>Testing the WAN Gateway Replication</h1>
+        <p>You can test the setup using the <a href="https://docs.gigaspaces.com/latest/admin/benchmark-browser.html">benchmark utility</a> that comes with the GigaSpaces Management Center. Move one of the Clusters Benchmark icons and click the Start button:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/wan_example7.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>To view all of the Spaces' <span class="tc-bold">Object Count</span> across all clusters, click the <span class="tc-bold">Spaces</span> icon in the Space Browser tab. You should see the identical number of objects (5000) for all members:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/wan_example8.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>You can remove objects from each Space cluster by selecting <span class="tc-bold">Take operation</span> and clicking Start:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/wan_example9.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>You will see the object count change to zero for each Space:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/wan_example10.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <h1>Replication Throughput Capacity</h1>
+        <p>The total throughput a gateway can push to remote sites depends on the following criteria:</p>
+        <ul>
+            <li>Network speed</li>
+            <li>Partition count</li>
+            <li>Partition activity distribution</li>
+            <li>Partition throughput</li>
+            <li>Replication frequency</li>
+            <li>Replication packet size</li>
+            <li>Network bandwidth</li>
+            <li>Replication metadata size</li>
+        </ul>
+        <p>The total throughput is calculated as follows:</p><pre><code class="language-java">Total TP = (Partition TP X Partitions count X Distribution X Network Speed)+ Replication Meta data size / Replication Frequency
+</code></pre>
+        <p>If there are 10 data grid partitions, each sending 5000 objects/sec of size 1K to the gateway, with a replication frequency of 10 replication cycles/sec (100 ms delay between each replication cycle, i.e. 1000 operations per batch), with even distribution (1) and a network speed between sites of 10 requests/sec (i.e. 100 ms latency), the&#160;total is (10 X 5000 X 1 X 10) / 10 = 50,000 objects per second = 50 M per second.
+&#160;
+The above assumes the network bandwidth is larger than 50M.</p>
+        <h1>WAN Gateway Replication Benchmark</h1>
+        <p>The following benchmark inlcludes 2 sites; one located on the US East coast (EC2 region) and another one located in the EC2 EU Ireland region. The latency between the sites is 95 ms and the maximum bandwidth measured is 12 MByte/sec.</p>
+        <p>A client application located on the US East coast (EC2 region), running multiple threads, performs continuous write operations to a clustered Space in the same region. The Space cluster in the US East coast EC2 region has a WAN Gateway configured, replicating data to a clustered sSpace running in the EC2 EU Ireland region via a gateway running in the same region.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/wan_bench1.jpg" alt="wan_bench1.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <p><span class="tc-textblue">Blue line</span> - The amount of data generated at the source site (EC2 EU East coast region) by the client application.</p>
+        <p><span class="tc-textgreen">Green line</span>- The amount of consumed bandwidth is measured  at the target site (EC2 EU Ireland region).</p>
+        <p><span class="tc-textred">Red line</span> - The network bandwidth.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/wan_bench2.jpg" alt="wan_bench2.jpg" class="tc-picture100" />
+            </p>
+        </div>
+        <p>Up to 16 client threads in the client application, the utilized bandwidth at the target site is increasing. After the maximum bandwidth has been consumed, no matter how many client threads write data to the source Space, the target site bandwidth consumption will stay the same.</p>
+        <p>We see some difference between the amount of data generated and replicated at the source site, and the amount of bandwidth consumed at the target site. This difference is due to the overhead associated with the replicated data over the WAN and the network latency. For each replicated packet, some metadata is added that includes information about the order of the packet, its source location, etc.</p>
+    </body>
+</html>

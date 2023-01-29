@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Virtualized OS</h1>
+  
+
+<p>For information on the platforms supported by <MadCap:variable name="General.ProductNameIE" /> and <MadCap:variable name="General.ProductNameXAP" />, refer to <a href="../rn/supported-platforms.html">Supported Platforms</a> in the version release notes.</p>
+
+<h1><a name="configuration"></a>Configuration</h1>
+
+<p>When setting up a virtualized operating system, ensure that the following is configured:</p>
+
+<ul>
+<li>Only Type 1 Hypervisor is recommended for production use.</li>
+<li>The vCPU may be over-subscribed, if it is under-utilized (less than 50%). In environments with high CPU utilization, vCPU must be reserved (pinned).</li>
+<li>Hyper-threading should be enabled.</li>
+<li>vMEM must be reserved (pinned).</li>
+</ul>
+
+<h1><a name="other-considerations"></a>Other Considerations</h1>
+
+<p>The following additional planning issues should be taken into account:</p>
+
+<ul>
+<li>Do not over-commit virtual memory.</li>
+<li>Reserve memory at the virtual machine level.</li>
+<li>When using replication, implement <a href="https://pubs.vmware.com/vsphere-51/index.jsp#com.vmware.vsphere.resmgmt.doc/GUID-94FCC204-115A-4918-9533-BFC588338ECB.html?resultof=%2522%2541%256e%2574%2569%252d%2541%2566%2566%2569%256e%2569%2574%2579%2522%2520%2522%2552%2575%256c%2565%2573%2522%2520%2522%2572%2575%256c%2565%2522%2520">anti-affinity</a> rules to ensure that the primary and backup nodes do not share the same virtual and machine physical host.</li>
+<li>Reserve sufficient memory for the operating system (~2GB per VM).</li>
+</ul>
+
+</body>
+</html>

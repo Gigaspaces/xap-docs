@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Using the <MadCap:variable name="General.ProductNameIE" /> Web Notebook</h1>
+        <p>This section describes how to use the interactive Apache Zeppelin Web Notebook with <MadCap:variable name="General.ProductNameIE" />.</p>
+        <h1><a name="starting-the-web-notebook"></a>Starting the Web Notebook</h1>
+        <p>The <MadCap:variable name="General.ProductNameIE" /> Apache Zeppelin web notebook can be started in any of the following ways:</p>
+        <ul>
+            <li>
+                <p>Run the <code>insightedge demo</code> command; the web notebook is started automatically at <a href="http://localhost:9090" target="_blank">localhost:9090</a>.</p>
+            </li>
+            <li>
+                <p>Start the web notebook manually at any time by running <code>zeppelin.sh/cmd</code> from the <code><MadCap:variable name="General.HomePath" />/insightedge/zeppelin/bin</code> directory.</p>
+            </li>
+        </ul>
+        <p>When Apache Zeppelin is running, you can browse to <a href="http://localhost:9090" target="_blank">localhost:9090</a> and start exploring the pre-built notebooks:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/Zeppelin_examples_100.png" alt="image" class="tc-picture100" />
+            </p>
+        </div>
+        <h1><a name="connecting-a-new-apache-zeppelin-notebook-to-insightedge"></a>Connecting a New Apache Zeppelin Notebook to <MadCap:variable name="General.ProductNameIE" /></h1>
+        <p>If you want to create a new Apache Zeppelin web notebook instead of using the example notebooks that come packaged with <MadCap:variable name="General.ProductNameIE" />, there are two ways to run a Zeppelin notebook against <MadCap:variable name="General.ProductNameIE" />:</p>
+        <ul>
+            <li>
+                <p>Write a Spark application that reads and writes data to the data grid using the Spark context.</p>
+            </li>
+            <li>
+                <p>Write an SQL query that is interpreted by the <MadCap:variable name="General.ProductNameIE" /> JDBC interpreter (which is run directly against the data grid).</p>
+            </li>
+        </ul>
+        <h2><a name="initializing-the-spark-context"></a>Initializing the Spark Context</h2>
+        <p>In order to establish the connection between Apache Zeppelin through Apache Spark and then to the data grid, each notebook should start with a paragraph that injects the <MadCap:variable name="General.ProductNameIE" /> settings to the Spark context. Important settings include the following properties:</p>
+        <ul>
+            <li>
+                <p><code>spaceName</code>
+                </p>
+            </li>
+            <li>
+                <p><code>lookupGroups</code>
+                </p>
+            </li>
+            <li>
+                <p><code>lookupLocators</code>
+                </p>
+            </li>
+        </ul>
+        <p>These properties are injected through the following in the notebook:</p>
+        <ul>
+            <li>
+                <p><code>InsightEdge</code> class:</p><pre><code class="language-scala">    case class InsightEdgeConfig(
+                                 spaceName: String,
+                                 lookupGroups: Option[String] = None,
+                                 lookupLocators: Option[String] = None)
+</code></pre>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p>Apache Zeppelin mandatory initialization paragraph:</p><pre><code class="language-scala">    %spark
+    import org.insightedge.spark.implicits.all._
+    import org.insightedge.spark.context.InsightEdgeConfig
+    
+    //spaceName is required, other two parameters are optional
+    val ieConfig = new InsightEdgeConfig(spaceName = "mySpace", lookupGroups = None, lookupLocators = None)
+    
+    //sc is the spark context initalized by zeppelin
+    sc.initializeInsightEdgeContext(ieConfig)
+</code></pre>
+            </li>
+        </ul>
+        <h2><a name="insightedge-jdbc-interpreter"></a><MadCap:variable name="General.ProductNameIE" /> JDBC Interpreter</h2>
+        <p>Apache Zeppelin uses interpreters to compile and run paragraphs. The Apache Zeppelin instance that is packaged with <MadCap:variable name="General.ProductNameIE" /> comes with a custom JDBC interpreter that enables running SQL queries directly on the data grid using the web notebook.  The queries are executed by the <a href="../dev-java/insight-edge-legacy-jdbc-driver.html">InsightEdge SQL Driver</a>.</p>
+        <h3><a name="configuring-the-jdbc-interpreter"></a>Configuring the JDBC Interpreter</h3>
+        <p>The JDBC interpreter connects to the data grid via a JDBC URL. To configure the URL value to point to the data grid, do the following:</p>
+        <ol>
+            <li>
+                <p>In the Apache Zeppelin web interface, navigate to the Interpreters section.</p>
+            </li>
+            <li>
+                <p>Select the insightedge_jdbc interpreter, and click <span class="tc-bold">Edit</span>.</p>
+            </li>
+            <li>
+                <p>Edit the <code>default.url</code> parameter as follows: <code>jdbc:insightedge:spaceName=&lt;space-name&gt;</code></p>
+            </li>
+            <li>
+                <p>Save the changes you made to the interpreter.</p>
+            </li>
+        </ol>
+        <h3><a name="querying-the-data-grid-in-notebooks"></a>Querying the Data Grid in Notebooks</h3>
+        <p>When the JDBC interpreter is properly configured, Zeppelin paragraphs that are bound to the <code>%insightedge_jdbc</code> interpreter can run SQL queries directly on the data grid.</p>
+        <h3><a name="querying-multiple-jdbc-data-sources"></a>Querying Multiple JDBC Data Sources</h3>
+        <p>You can configure the JDBC interpreter to query multiple JDBC data sources (in addition to the default data source). You define the additional data sources in the notebook by adding the following properties to the interpreter for each data source:</p>
+        <ul>
+            <li>
+                <p><code>&lt;data-source-name&gt;.driver</code> - The class of JDBC driver applicable to the data source</p>
+            </li>
+            <li>
+                <p><code>&lt;data-source-name&gt;.url</code> - The JDBC connection string to the data source</p>
+            </li>
+        </ul>
+        <p>After saving your changes, Zeppelin paragraphs starting with <code>%insightedge_jdbc(&lt;data-source-name&gt;)</code> can run queries on the data sources that you added.</p>
+        <p>For example, let's say we want to query 3 data grid sources:</p>
+        <ul>
+            <li>
+                <p>"grid_A" (this is the default data source)</p>
+            </li>
+            <li>
+                <p>"grid_B"</p>
+            </li>
+            <li>
+                <p>"grid_C"</p>
+            </li>
+        </ul>
+        <p>Configure Apache Zeppelin in the interpreter section to enable querying one or more of these data sources with the <MadCap:variable name="General.ProductNameIE" /> JDBC interpreter. The following key/value pairs enable querying the specified data sources:</p>
+        <p><span class="tc-bold">grid_A</span> configuration:</p>
+        <ul>
+            <li>
+                <p>Key = <code>default.driver</code>, Value = <code>com.gigaspaces.jdbc.Driver</code></p>
+            </li>
+            <li>
+                <p>Key = <code>default.url</code>, Value = <code>insightedge:jdbc:url:spaceName=grid_A</code></p>
+            </li>
+        </ul>
+        <p>Paragraphs starting with <code>%insightedge_jdbc</code> will query Grid A.</p>
+        <p><span class="tc-bold">grid_B</span> configuration:</p>
+        <ul>
+            <li>
+                <p>Key = <code>B.driver</code>, Value = <code>com.gigaspaces.jdbc.Driver</code></p>
+            </li>
+            <li>
+                <p>Key = <code>B.url</code>, Value = <code>insightedge:jdbc:url:spaceName=grid_B</code></p>
+            </li>
+        </ul>
+        <p>Paragraphs starting with <code>%insightedge_jdbc</code> will query Grid B.</p>
+        <p><span class="tc-bold">grid_C</span> configuration:</p>
+        <ul>
+            <li>
+                <p>Key = <code>C.driver</code>, Value = <code>com.gigaspaces.jdbc.Driver</code></p>
+            </li>
+            <li>
+                <p>Key = <code>C.url</code>, Value = <code>insightedge:jdbc:url:spaceName=grid_C</code></p>
+            </li>
+        </ul>
+        <p>Paragraphs starting with <code>%insightedge_jdbc</code> will query Grid C.</p>
+        <h1><a name="using-the-web-notebook"></a>Using the Web Notebook</h1>
+        <p>The Apache Zeppelin web notebook comes with sample notes. We recommend that you review them, and then use them as a template for your own notes. There are several things you should take into account.</p>
+        <ul>
+            <li>
+                <p>The data grid model can be declared in a notebook using the <code>%define</code> interpreter:</p><pre><code class="language-scala">%define
+package model.v1
+
+import org.insightedge.scala.annotation._
+import scala.beans.{BeanProperty, BooleanBeanProperty}
+
+case class Product(
+    @BeanProperty @SpaceId var id: Long,
+    @BeanProperty var description: String,
+    @BeanProperty var quantity: Int,
+    @BooleanBeanProperty var featuredProduct: Boolean
+    ) {
+    def this() = this(-1, null, -1, false)
+}
+</code></pre><pre><code class="language-scala">%spark
+import model.v1._
+</code></pre>
+            </li>
+            <li>
+                <p>You can load external .JARs from the Spark interpreter settings, or with the <code>z.load("/path/to.jar")</code> command:</p><pre><code class="language-scala">%dep
+z.load("insightedge/examples/jars/insightedge-examples.jar")
+</code></pre>
+                <div class="tc-admon-note">
+                    <p>For more details, refer to <a href="https://zeppelin.apache.org/docs/latest/interpreter/spark.html#dependency-management" target="_blank">Zeppelin Dependency Management</a>.</p>
+                </div>
+            </li>
+        </ul>
+        <ul>
+            <li>You must load your dependencies before you start using the <code>SparkContext</code> (<code>sc</code>) command. If you want to redefine the model or load another .JAR after <code>SparkContext</code> has already started, you must reload the Spark interpreter.</li>
+        </ul>
+    </body>
+</html>

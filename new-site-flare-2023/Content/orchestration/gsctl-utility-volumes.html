@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">The GSCTL Utility for Persistent Data Using Amazon Volumes</h1>
+        <p>Persisting services is useful in production environments because it allows us to reschedule a node without worrying about data loss.</p>
+        <p>In this topic you will learn how to deploy a cluster with volumes attached to services, supporting their life cycle.</p>
+        <h1>Prerequisites:</h1>
+        <ul>
+            <li>
+                <p>ElasticGrid Cloud prerequisites (see <MadCap:xref href="gsctl-create-gs-cluster-cloud.html">Creating a [%=General.ProductNameXAP%] Cluster in the Cloud</MadCap:xref>).</p>
+            </li>
+            <li>
+                <p>Configuring <b>cluster</b> yaml file</p>
+            </li>
+            <li>
+                <p>Configuring  <b>services</b> yaml file</p>
+            </li>
+            <li>
+                <p>
+                    <MadCap:xref href="gsctl-basic-Amazon-policy.html">GSCTL Basic Amazon Policy</MadCap:xref>
+                </p>
+            </li>
+            <li>
+                <p>The following additional policies, to support two services, grafana and influxdb.</p><pre><code>{
+						"Version":&#160;"2012-10-17",
+						"Statement":&#160;[
+						{
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Sid":&#160;"VisualEditor0",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Effect":&#160;"Allow",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Action":&#160;[
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"ec2:DetachVolume",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"ec2:AttachVolume",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:PassRole"
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;],
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Resource":&#160;[
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"arn:aws:ec2:*:*:instance/*",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"arn:aws:ec2:*:*:volume/*",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"arn:aws:iam::*:role/*"
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;]
+						&#160;&#160;&#160;&#160;},
+						&#160;&#160;&#160;&#160;{
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Sid":&#160;"VisualEditor1",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Effect":&#160;"Allow",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Action":&#160;[
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:ListPolicies",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"ec2:DescribeVolumes"
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;],
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Resource":&#160;"*"
+						&#160;&#160;&#160;&#160;},
+						&#160;&#160;&#160;&#160;{
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Sid":&#160;"VisualEditor2",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Effect":&#160;"Allow",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Action":&#160;[
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:CreateInstanceProfile",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:DeleteInstanceProfile",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:GetRole",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:GetPolicy",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:RemoveRoleFromInstanceProfile",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:DeletePolicy",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:CreateRole",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:DeleteRole",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:AttachRolePolicy",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:ListInstanceProfiles",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:AddRoleToInstanceProfile",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:CreatePolicy",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"iam:DetachRolePolicy"
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;],
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Resource":&#160;[
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"arn:aws:iam::*:policy/*",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"arn:aws:iam::*:instance-profile/*",
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"arn:aws:iam::*:role/*"
+						&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;]
+						&#160;&#160;&#160;&#160;}
+						]
+						}
+</code></pre>
+            </li>
+        </ul>
+        <h1>Configuring cluster yaml file:</h1>
+        <h3><b>1.</b> To use the persistency feature, provide <b>iamInstanceProfileArn</b> with the following policy: set "&lt;auto-generate&gt;" or create a policy with the following rules:</h3>
+        <p style="font-weight: bold;">Policy (policyDocument):</p><pre><code><![CDATA[
+]]>{
+				&#160;"Version":&#160;"2012-10-17",
+				&#160;"Statement":&#160;[
+				&#160;&#160;&#160;{
+				&#160;&#160;&#160;&#160;&#160;"Effect":&#160;"Allow",
+				&#160;&#160;&#160;&#160;&#160;"Principal":&#160;{
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;"Service":&#160;[
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"ec2.amazonaws.com"
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;]
+				&#160;&#160;&#160;&#160;&#160;},
+				&#160;&#160;&#160;&#160;&#160;"Action":&#160;[
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;"sts:AssumeRole"
+				&#160;&#160;&#160;&#160;&#160;]
+				&#160;&#160;&#160;}
+				&#160;]
+}
+</code></pre>
+        <p style="font-weight: bold;">Role (assumeRolePolicyDocument):</p><pre><code>
+{
+				&#160;"Version":&#160;"2012-10-17",
+				&#160;"Statement":&#160;[
+				&#160;&#160;&#160;{
+				&#160;&#160;&#160;&#160;&#160;"Sid":&#160;"VisualEditor0",
+				&#160;&#160;&#160;&#160;&#160;"Effect":&#160;"Allow",
+				&#160;&#160;&#160;&#160;&#160;"Action":&#160;[
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;"ec2:DetachVolume",
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;"ec2:AttachVolume"
+				&#160;&#160;&#160;&#160;&#160;],
+				&#160;&#160;&#160;&#160;&#160;"Resource":&#160;[
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;"arn:aws:ec2:*:*:instance/*",
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;"arn:aws:ec2:*:*:volume/*"
+				&#160;&#160;&#160;&#160;&#160;]
+				&#160;&#160;&#160;},
+				&#160;&#160;&#160;{
+				&#160;&#160;&#160;&#160;&#160;"Sid":&#160;"VisualEditor1",
+				&#160;&#160;&#160;&#160;&#160;"Effect":&#160;"Allow",
+				&#160;&#160;&#160;&#160;&#160;"Action":&#160;[
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;"ec2:DescribeVolumeStatus",
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;"ec2:DescribeInstances",
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;"ec2:DescribeVolumes",
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;"ec2:DescribeVolumesModifications",
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;"ec2:DescribeVolumeAttribute",
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;"ec2:DescribeInstanceStatus"
+				&#160;&#160;&#160;&#160;&#160;],
+				&#160;&#160;&#160;&#160;&#160;"Resource":&#160;"*"
+				&#160;&#160;&#160;}
+				&#160;]
+}
+</code></pre>
+        <h3><b>2.</b> In the volumes section, provide a list of IDs of an EBS volume created earlier. For each volume, provide a name for the gsctl environment.</h3>
+        <div class="tc-admon-note">
+            <p>The volume name must be unique. We will use the name later to reference the volume.</p>
+        </div><pre><code>
+				name:&#160;mishel
+				gsManagers:&#160;3
+				clusterComponents:
+				-&#160;type:&#160;"AWS"
+				&#160;&#160;name:&#160;"AWS_1"
+				&#160;&#160;.
+				&#160;&#160;.
+				&#160;&#160;.
+				&#160;&#160;iamInstanceProfileArn:&#160;"&lt;auto-generate&gt;"&#160;&#160;&#160;
+					&#160;&#160;volumes:
+					&#160;&#160;&#160;&#160;ebs:
+					&#160;&#160;&#160;&#160;-&#160;name:&#160;"my-grafana"
+					&#160;&#160;&#160;&#160;&#160;&#160;id:&#160;"vol-062ace5b7ac63a939"
+					&#160;&#160;&#160;&#160;-&#160;name:&#160;"influxdb"
+					&#160;&#160;&#160;&#160;&#160;&#160;id:&#160;"vol-073d1c863cd698702"
+
+</code></pre>
+        <h1>Configuring services.yaml file</h1>
+        <p>Now we must choose the service. We want to attach it a volume <b>OR</b> choose the sticky option to persist the data to the machine it runs on.</p>
+        <p>When using the sticky option, the system will make a <b>best-effort attempt</b> to keep the allocation on the same machine and to ensure that the data will be preserved through the entire life cycle.</p>
+        <h3>Attaching the volume to the service</h3>
+        <ul>
+            <li>
+                <p>Enable persistency in the constraints section</p>
+            </li>
+            <li>
+                <p>Provide the volume name</p>
+            </li>
+        </ul>
+        <h3>Services yaml configuration of persistency with volume example</h3><pre><code>
+				builtInServices:
+				&#160;&#160;grafana:
+				&#160;&#160;&#160;&#160;enabled:&#160;true
+				&#160;&#160;&#160;&#160;constraints:
+				&#160;&#160;&#160;&#160;&#160;&#160;targetComponents:
+				&#160;&#160;&#160;&#160;&#160;&#160;-&#160;"*"
+				&#160;&#160;&#160;&#160;&#160;&#160;targetProfiles:
+				&#160;&#160;&#160;&#160;&#160;&#160;-&#160;"*"
+				&#160;&#160;&#160;&#160;&#160;&#160;persistency:
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;enabled:&#160;true
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;sticky:&#160;false
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;volumes:
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;-&#160;"my-grafana"
+				&#160;&#160;&#160;&#160;properties:&#160;{}
+		</code></pre>
+        <h3>Choosing sticky mode instead</h3>
+        <ul>
+            <li>
+                <p>Enable persistency in the constraints section</p>
+            </li>
+            <li>
+                <p>Enable sticky mode</p>
+            </li>
+        </ul>
+        <h3>Services yaml configuration of persistency with sticky example</h3><pre><code>
+
+				builtInServices:
+				&#160;&#160;grafana:
+				&#160;&#160;&#160;&#160;enabled:&#160;true
+				&#160;&#160;&#160;&#160;constraints:
+				&#160;&#160;&#160;&#160;&#160;&#160;targetComponents:
+				&#160;&#160;&#160;&#160;&#160;&#160;-&#160;"*"
+				&#160;&#160;&#160;&#160;&#160;&#160;targetProfiles:
+				&#160;&#160;&#160;&#160;&#160;&#160;-&#160;"*"
+				&#160;&#160;&#160;&#160;&#160;&#160;persistency:
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;enabled:&#160;true
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;sticky:&#160;true
+				&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;volumes:&#160;[]
+				&#160;&#160;&#160;&#160;properties:&#160;{}
+		</code></pre>
+        <p>We can also target a profile or component that the service will run on: Choose “*” to allow placement on any profile/component (default).</p>
+        <p><a name="Sample_yaml_files_for_persistent_data"></a>
+        </p>
+        <h1 id="example-persistent-data">Sample yaml files for persistent data</h1>
+        <h2>An example of the cluster.yaml file for persistent data:</h2><pre><code>; Cluster yaml file, the definition of a profile name:
+        <p>name: mishel</p><p>gsManagers: 3</p><p>clusterComponents:</p><p>- type: "AWS"</p><p>name: "AWS_1"</p><p>.</p><p>.</p><p>.</p><p>masters:</p><p>label: "GS Cluster [gs-demo] Master Group"</p><p>profiles:</p><p>- name: "my-profile-name"</p><p>type: "m4.xlarge"</p><p>tags: []</p><p>count: 2</p></code></pre>
+        <h2>An example of the services.yaml file for persistent data:</h2><pre><code><![CDATA[        ]]><p>builtInServices:</p><p>grafana:</p><p>enabled: true</p><p>constraints:</p><p>targetComponents:</p><p>- "*"</p><p>targetProfiles:</p><p>- "my-profile-name”</p><p>persistency:</p><p>enabled: true</p><p>sticky: true</p><p>volumes: []</p><p>properties: {}</p></code></pre>
+        <h1>Considerations</h1>
+        <ul>
+            <li>
+                <p> Persistency is supported for InfluxDB and Grafana. </p>
+            </li>
+            <li>
+                <p>Constraints are available for all services except MongoDB.</p>
+            </li>
+            <li>
+                <p>The manager service runs only on master nodes. In the example above, there are three manager nodes. </p>
+            </li>
+        </ul>
+        <p>&#160;</p>
+    </body>
+</html>

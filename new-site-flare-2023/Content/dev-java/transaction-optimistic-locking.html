@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Optimistic Locking</h1>
+        <p>With optimistic locking, you write your business logic allowing multiple users to read the same object at the same time, but allow only one user to update the object successfully. The assumption is that there will be a relatively large number of users trying to read the same object, but a low probability of having a small number of users trying to update the same object at the same time.</p>
+        <p>In the case of multiple users trying to update the same object at the same time, the one(s) that try to update a non-recent object version fail.</p>
+        <p>Optimistic locking relies on the idea that data remains unmodified while it is away from the server. As a simple example, consider how you update a customer details object. The customer details are stored within an object, and if a client application needs to update them, it first needs to get the object from the space. The data is not locked, and other client applications can have access to it simultaneously, thus ensuring a scalable system.</p>
+        <p>The problem is that while the customer details object is away from the space server, it may become stale. For example, a second client application can request the same customer details, update them, and commit them back to the space. The first client, unaware that it is dealing with a stale copy of the data, modifies and commits the data. Obviously, with no version checking mechanism to detect this conflict, the first client's application changes, which commit last, are made permanent, thus overwriting the changes made by the second client application.</p>
+        <p>For optimistic locking to work effectively, you must be able to detect these update-update conflicts, and to make the client aware of them, so they can be dealt with appropriately.</p>
+        <div class="tc-admon-note">
+            <p>The optimistic locking protocol:</p>
+            <ul>
+                <li>
+                    <p>Is best suited for environments with many read-only transactions, few read-update transactions, and a relatively low volume of objects that are changed.</p>
+                </li>
+                <li>
+                    <p>Is more suitable for real-time systems than pessimistic locking, because the space runs best with short term transactions.</p>
+                </li>
+                <li>
+                    <p>Has a big advantage when you want to read a large number of objects, but update only a few of them - or when it is unlikely that objects you want to work with are updated by other users.</p>
+                </li>
+                <li>
+                    <p>Ensures that updated objects are the most recent ones, while improving the coherency of system behavior.</p>
+                </li>
+            </ul>
+        </div>
+        <h1><a name="using-the-optimistic-locking-protocol"></a>Using the Optimistic Locking Protocol</h1>
+        <p>Here are the steps you should execute to update data, using the optimistic locking protocol:</p>
+        <h2><a name="step-1-get-a-space-proxy-in-versioned-mode"></a>Step 1 – Get a Space Proxy in Versioned Mode</h2>
+        <p>Get a space proxy in <code>versioned</code> mode. This can be done using one of the options listed below. You may get remote or embedded space proxies. Make sure the proxy is in optimistic locking mode using the (<code>versioned</code>) option. This can be done using one of the options listed below:</p><pre><code class="language-java">GigaSpace space = new GigaSpaceConfigurer( new SpaceProxyConfigurer("space").versioned(true)).gigaSpace();
+</code></pre>
+        <p>or</p><pre><code class="language-java">&lt;os-core:space-proxy  id="space" space-name="mySpace"  versioned="true" /&gt;
+</code></pre>
+        <h2><a name="step-2-enable-the-space-class-to-support-optimistic-locking"></a>Step 2 – Enable the Space Class to Support Optimistic Locking</h2>
+        <p>You should enable the Space class to support the optimistic locking protocol, by including the <code>@SpaceVersion</code> decoration on an <code>int</code> getter field. This field stores the current object version and is maintained by GigaSpaces. See below for an example:</p><pre><code class="language-java">@SpaceClass
+public class Employee
+{
+    private int versionID;
+    @SpaceVersion
+    public int getVersionID(){return versionID; }
+    public void setVersionID(int versionID) {this.versionID=versionID;}
+</code></pre>
+        <h2><a name="step-3-read-objects-without-using-a-transaction"></a>Step 3 – Read Objects Without Using a Transaction</h2>
+        <p>Read objects from the space without using a transaction. You may use the <code>readMultiple</code> method to get several objects in one call. Reading objects without using a transaction, allows multiple users to get the same objects at the same time, and allows them to be updated using the optimistic locking protocol. If objects are read using a transaction, no other user can update the objects until the object is committed or rolled back.</p>
+        <h2><a name="step-4-modify-and-update-the-objects"></a>Step 4 – Modify and Update the Objects</h2>
+        <p>Modify the objects you read from the space and call a <code>write</code> space operation to update the object within the space.
+Use a transactional with your write operation. You <span class="tc-bold">must</span> use a transaction when you update multiple space objects in the same context. When the write operation is called to update the object, the space does the following:</p>
+        <ul>
+            <li>
+                <p>For each updated object, the Version ID in the updated object is compared with the Version ID of the corresponding object within the space. This is done at the space side.</p>
+            </li>
+            <li>
+                <p>If the Version ID of the updated object is the same as the Version ID of the corresponding object within the space, it is incremented by 1, and the object is updated within the space successfully.</p>
+            </li>
+            <li>
+                <p>If the Version ID of the updated object is different than the Version ID of the corresponding object within the space, the object is not updated within the space - i.e. the operation fails. In this case, a <code>SpaceOptimisticLockingFailureException</code> is thrown.</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>It is recommended that you call the update operation just before the commit operation. This minimizes the time the object is locked under a transaction.</p>
+        </div>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/optimistick_lock2.jpg" alt="optimistick_lock2.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h2><a name="step-5-update-failure"></a>Step 5 – Update Failure</h2>
+        <p>If you use optimistic locking and your update operation fails, an <code>org.openspaces.core.SpaceOptimisticLockingFailureException</code> is thrown. This exception is thrown when you try to write an object whose version ID value does not match the version of the existing object within the space - i.e. you are not using the latest version of the object. You can either roll back or refresh the failed object and try updating it again. This means you should repeat steps 3 and 4 - read the latest committed object from the space, back to the client side and perform the update again. For a fast refresh, you may re-read the object using <code>readByID</code> method. Make sure you also provide the <code>SpaceRouting</code> value.</p>
+        <h2><a name="step-6-commit-or-rollback-changes"></a>Step 6 – Commit or Roll Back Changes</h2>
+        <p>At any time, you can commit or rollback the transaction. If you are using Spring automatic transaction demarcation, the commit is called implicitly once the method that started the transaction is completed.</p>
+        <p>By following the above procedure, you get a shorter locking duration, that improves performance and concurrency of access among multiple users to the space object. The object version ID validation that is performed on <code>update</code>, <code>take</code>, and <code>updateMultiple</code> requests, keeps the data within the space consistent.</p>
+        <h1><a name="examples"></a>Examples</h1>
+        <p>We use the following Space Class with our examples:</p><pre><code class="language-java">import com.gigaspaces.annotation.pojo.*;
+
+@SpaceClass
+public class Employee
+{
+    private Integer employeeID;
+    private String  lastName;
+    private String  firstName;
+    private int versionID;
+
+    public Employee(){}
+    public Employee(Integer employeeID){this.employeeID = employeeID;}
+    public Employee(String lastName, Integer employeeID)
+    {
+        this.employeeID = employeeID;
+        setLastName(lastName);
+    }
+
+    public Employee(String lastName,String firstName ,Integer employeeID)
+    {
+        this.employeeID = employeeID;
+        setFirstName(firstName);
+        setLastName(lastName);
+    }
+
+    @SpaceId
+    @SpaceRouting
+    public Integer getEmployeeID(){ return employeeID;}
+    public  void setEmployeeID(Integer employeeID){ this.employeeID = employeeID;}
+
+    @SpaceIndex (type=SpaceIndexType.EQUAL)
+    private String getFirstName(){return firstName;}
+    public void setFirstName(String firstName)  {this.firstName = firstName;    }
+
+    private String getLastName(){return lastName;}
+    public void setLastName(String name){   this.lastName = name;}
+
+    @SpaceVersion
+    public int getVersionID(){return versionID; }
+    public void setVersionID(int versionID) {this.versionID= versionID;}
+
+}
+</code></pre>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Non-Transactional Update " style="padding:10px">
+                <p>This example illustrates optimistic locking usage without using a transactional update:</p><pre><code class="language-java">@GigaSpaceContext (name="gigaspace")
+GigaSpace gigaspace;
+
+@Transactional(propagation=Propagation.NEVER)
+public void simpleOL() throws Exception{
+    Employee employ= new Employee("Last Name1" , "First name1" , new Integer(1));
+    gigaspace.write(employ);
+
+    try
+    {
+        //Read should not use a transaction!
+        Employee v1Employee = gigaspace.readById(Employee.class,new Integer(1),new Integer(1));
+        Employee v2Employee= gigaspace.readById(Employee.class,new Integer(1),new Integer(1));
+        System.out.println("About to Write Version:"  + v1Employee.getVersionID());
+        gigaspace .write(v1Employee);
+        System.out.println("Employee ID "  + v1Employee.getEmployeeID() + " - Object version in Space:"  +
+            v2Employee.getVersionID());
+        System.out.println("About to Write Version:"  + v2Employee.getVersionID());
+        gigaspace .write(v2Employee);
+    }
+    catch (SpaceOptimisticLockingFailureException solfe)
+    {
+        System.out.println("Got  " + solfe);
+        System.out.println("re-read Employee Object again");
+        Employee v3Employee= gigaspace .readById(Employee.class,new Integer(1),new Integer(1));
+        System.out.println("Perform update again. Client Object version:" + v3Employee.getVersionID());
+        LeaseContext&lt;Employee&gt; leaseContext= gigaspace .write(v3Employee);
+        if (leaseContext.getObject()!= null)
+            System.out.println("Update Successful! Object version in Space:"
+                + v3Employee.getVersionID());
+    }
+}
+</code></pre>
+                <p>Here is the expected output:</p><pre><code class="language-java">About to Write Version:1
+Employee ID 1 - Object version in Space:1
+About to Write Version:1
+Got org.openspaces.core.SpaceOptimisticLockingFailureException: Entry Version ID conflict, Operation rejected.
+Operation=Update UID=2012775165^17^1^0^0 space entry version=2 client version=1;
+nested exception is com.j_spaces.core.client.EntryVersionConflictException:
+Entry Version ID conflict, Operation rejected.
+Operation=Update UID=2012775165^17^1^0^0 space entry version=2 client version=1
+re-read Object again
+perform Update again.. Client Object version:2
+Update Successful! Object version in Space:3
+</code></pre>
+            </div>
+            <div title="  Transactional Update " style="padding:10px">
+                <p>The read and the transactional update methods:</p><pre><code class="language-java">public class MyApp {
+    @GigaSpaceContext (name="gigaspace")
+    GigaSpace gigaspace;
+
+    @Transactional(propagation=Propagation.NEVER)
+    public void init() throws Exception{
+        gigaspace.clear(null);
+        Employee employ= new Employee("Last Name1" , "First name1" , new Integer(1));
+        gigaspace.write(employ);
+    }
+
+    @Transactional(propagation=Propagation.NEVER)
+    public Employee readEmployee(Object id , Object routing)
+    {
+        return gigaspace.readById(Employee.class,id ,routing);
+    }
+
+    @Transactional(propagation=Propagation.REQUIRES_NEW)
+    public LeaseContext&lt;Employee&gt; writeEmployee (Employee employee)
+    {
+        return gigaspace.write(employee);
+    }
+}
+</code></pre>
+                <p>The calling method:</p><pre><code class="language-java">public void myBizzLogic() throws Exception {
+    myapp.init();
+    Employee v1Employee = myapp.readEmployee(new Integer(1),new Integer(1));
+    Employee v2Employee = myapp.readEmployee(new Integer(1),new Integer(1));
+    System.out.println("About to Write Version:"  + v1Employee.getVersionID());
+    myapp.writeEmployee (v1Employee);
+    System.out.println("Write Employee version " + v1Employee.getVersionID()+" OK!");
+    System.out.println("About to Write Version:"  + v2Employee.getVersionID());
+    try
+    {
+        myapp.writeEmployee (v2Employee );
+    }
+    catch (SpaceOptimisticLockingFailureException solfe)
+    {
+        System.out.println("Got  " + solfe);
+        System.out.println("re-read Employee Object again!");
+        Employee v3Employee = myapp.readEmployee(new Integer(1),new Integer(1));
+        System.out.println("Perform update again. Client Object version:" + v3Employee.getVersionID());
+        LeaseContext&lt;Employee&gt; leaseContext=myapp.writeEmployee(v3Employee);
+        if (leaseContext.getObject()!= null)
+            System.out.println("Update Successful! Object version in Space:"  + v3Employee.getVersionID());
+    }
+    System.out.println("Done!");
+}
+</code></pre>
+                <p>Here is the expected output:</p><pre><code class="language-java">About to Write Version:1
+Employee ID 1 - Object version in Space:1
+About to Write Version:1
+Got org.openspaces.core.SpaceOptimisticLockingFailureException: Entry Version ID conflict, Operation rejected.
+Operation=Update UID=2012775165^17^1^0^0 space entry version=2 client version=1;
+nested exception is com.j_spaces.core.client.EntryVersionConflictException:
+Entry Version ID conflict, Operation rejected. Operation=Update UID=2012775165^17^1^0^0 space entry version=2 client version=1
+re-read Object again
+perform Update again.. Client Object version:2
+Update Successful! Object version in Space:3
+</code></pre>
+            </div>
+            <div title="  Multiple Objects Update " style="padding:10px">
+                <p>In general, when calling the <code>updateMultiple()</code> you should check every returned object from the returned array.</p>
+                <p>If one of the returned objects is a <code>SpaceOptimisticLockingFailureException</code>, this indicates that the update failed. In this case you should re-read the relevant object, and call the update operation again.</p>
+                <p>The read and update methods:</p><pre><code class="language-java">@Transactional(propagation=Propagation.NEVER)
+public Employee[] readEmployees(Employee template)
+{
+    return gigaspace.readMultiple(template, Integer.MAX_VALUE);
+}
+
+@Transactional(propagation=Propagation.REQUIRES_NEW)
+public Object[] writeEmployees (Employee employee[])
+{
+    return gigaspace.updateMultiple(employee,new long [employee.length]);
+}
+</code></pre>
+                <p>This method checks if the returned result includes a <code>SpaceOptimisticLockingFailureException</code>:</p><pre><code class="language-java">static boolean checkResult(Object results[])
+{
+    for (Object result : results) {
+        if (result  instanceof SpaceOptimisticLockingFailureException) {
+            return false;
+        }
+    }
+    return true;
+}
+</code></pre>
+                <p>The application read and update logic:</p><pre><code class="language-java">Employee employees1 [] = app.readEmployees(new Employee());
+Employee employees2 [] = app.readEmployees(new Employee());
+Object res1[] = app.writeEmployees(employees1);
+if (!checkResult(res1))
+{
+    System.out.println("Error Updating objects");
+}
+while (true)
+{
+    Object res2[] = app.writeEmployees(employees2);
+    if (!checkResult(res2))
+    {
+        System.out.println("Error Updating objects");
+        employees2 = app.readEmployees(new Employee());
+    }
+    else
+    {
+        break;
+    }
+}
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>When there are more than 2 clients (or 2 threads within the same client) that might update space objects at the same time, before re-reading the space objects, you should have a short sleep with a random duration. This allows one of the threads to complete the update successfully. Without such a sleep, you might have a contention with the update activity.</p>
+        </div>
+        <h1><a name="scenario-example"></a>Scenario Example</h1>
+        <p>Suppose that you have two applications, Application_1 and Application_2, which are both working with the same Object A. The following sequence of events describes a simple optimistic locking scenario.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Time</th>
+                    <th align="left">Action</th>
+                    <th align="left">Application_1</th>
+                    <th align="left">Application_2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">T=1</td>
+                    <td align="left">Initial conditions: both applications read the object from the space.</td>
+                    <td align="left">Object A <code>VersionID=1</code><br /><code>Value1=X</code><br /> <code>Value2=Y</code></td>
+                    <td align="left">Object A<br /><code>VersionID=1</code><br /><code>Value1=X</code><br /><code>Value2=Y</code></td>
+                </tr>
+                <tr>
+                    <td align="left">T=2</td>
+                    <td align="left">Both modify the same objects.</td>
+                    <td align="left">Object A <code>VersionID=1</code><br /><code>value1=X</code><br /><code>Value2=Y_1</code></td>
+                    <td align="left">Object A<br /><code>VersionID=1</code><br /><code>value1=X_2</code><br /><code>Value2=Y</code></td>
+                </tr>
+                <tr>
+                    <td align="left">T=3</td>
+                    <td align="left">Application_2 updates object A and commits - commit is successful.</td>
+                    <td align="left">Object A <code>VersionID=1</code><br /><code>Value1=X</code><br /><code>Value2=Y_1</code></td>
+                    <td align="left">Object A<br /><code>VersionID=2</code><br /><code>Value1=X_2</code><br /><code>Value2=Y</code></td>
+                </tr>
+                <tr>
+                    <td align="left">T=4</td>
+                    <td align="left">Application_1 tries to update object A, but fails due to invalid Version ID.</td>
+                    <td align="left">Object A <code>VersionID=1</code><br /><code>Value1=X</code><br /><code>Value2=Y_1</code></td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">T=5</td>
+                    <td align="left">Application_1 refreshes object A (re-reads it).</td>
+                    <td align="left">Object A <code>VersionID=2</code><br /><code>Value1=X_2</code><br /><code>Value2=Y</code></td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">T=6</td>
+                    <td align="left">Application_1 updates object A again and commits - commit is successful.</td>
+                    <td align="left">Object A <code>VersionID=3</code><br /><code>value1=X_2</code><br /><code>Value2=Y_1</code></td>
+                    <td align="left">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

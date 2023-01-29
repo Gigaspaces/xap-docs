@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Read Modifiers</h1>
+  
+
+<p><MadCap:variable name="General.ProductNameXAP" /> <code>ReadModifiers</code> class see <a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_ReadModifiers.htm">DotNetDoc</a> provides static methods and constants to decode read-type modifiers. The sets of modifiers are represented as integers with distinct bit positions representing different modifiers.</p>
+
+<p>Four main types of modifiers can be used:</p>
+
+<ul>
+<li><code>RepeatableRead</code> - default modifier</li>
+<li><code>DirtyRead</code></li>
+<li><code>ReadCommitted</code></li>
+<li><code>ExclusiveReadLock</code></li>
+</ul>
+
+<p>You can use <span class="tc-bold">bitwise</span> or the <code>|</code> operator to unite different modifiers.</p>
+
+<div class="tc-admon-note">
+  
+  <p><code>RepeatableRead</code>, <code>DirtyRead</code>, and <code>ReadCommitted</code> are mutually exclusive (i.e. can't be used together). <code>ExclusiveReadLock</code> can be joined with any of them.</p>
+</div>
+
+<p>These modifiers can be set either at the proxy level - <code>proxy.ReadModifiers= int</code>, or at the operation level (e.g. using one of  read/<code>ReadIfExists</code>/<code>ReadMultiple</code>/count methods with a modifiers parameter).</p>
+
+<h1><a name="repeatable-read"></a>Repeatable Read</h1>
+
+<p><code>RepeatableRead</code> is the default modifier, defined by the JavaSpaces specification.</p>
+
+<p>The <code>RepeatableRead</code> isolation level allows a transaction to acquire read locks on an object it returns to an application, and write locks an object it write, updates, or deletes. By using the <code>RepeatableRead</code> isolation level, space operations issued multiple times within the same transaction always yield the same result. A transaction using the <code>RepeatableRead</code> isolation level can retrieve and manipulate the same object as many times as needed until it completes its task. However, no other transaction can write, update, or delete an object that can affect the result being accessed, until the isolating transaction releases its locks. That is, when the isolating transaction is either committed or rolled back.</p>
+
+<p>Transactions using the <code>RepeatableRead</code> isolation level wait until the object that is write-locked by other transactions are unlocked before they acquire their own locks. This prevents them from reading "dirty" data. In addition, because other transactions cannot update or delete an object that is locked by a transaction using the <code>RepeatableRead</code> isolation level, non-repeatable read situations are avoided.</p>
+
+<h1><a name="dirty-read"></a>Dirty Read</h1>
+
+<p>The JavaSpaces specification defines the visibility of object for read operations as follows:
+A read operation performed under a <code>null</code> transaction can only access space objects that are not write-locked by non-null transactions. In other words, space objects that were written or taken by active transactions (transactions that have not been committed or rolled back) are not visible to the user performing a read operation.</p>
+
+<p>Sometimes it is desirable for non-transactional read operations to have full visibility of the objects in the space. The <code>DirtyRead</code> modifier, once set, enables read/<code>readIfExists</code>/<code>readMultiple</code>/count operations under a <code>null</code> transaction to have this complete visibility.</p>
+
+<h2><a name="code-example"></a>Code Example</h2>
+
+<pre><code class="language-csharp">// write something under txn X and commit, making it publicly visible
+proxy.Write( something, txnX, long.MaxValue);
+txnX.commit();
+
+// update this something with a new one under a different txn Y
+proxy.Write( newSomething, txnY, long.MaxValue, 0);
+
+// all read operations (Read, ReadIfExists, ReadMultiple, Count) return the
+// version of the object before txnY was committed (newSomething).
+// operations can be performed with a new txn Z or a null txn
+proxy.Read( tmpl, null, ReadModifiers.DirtyRead);
+
+// Note: using the same txn (txn Y) will return matches that are visible under the transaction
+</code></pre>
+
+<h1><a name="read-committed"></a>Read Committed</h1>
+
+<p>The <code>ReadCommitted</code> modifier enables a read-committed isolation level in read operations.</p>
+
+<p>Read-committed is the isolation-level in which a read operation (under a transaction or a <code>null</code> transaction) can not see changes made by other transactions, until those transactions are committed. At this level of isolation, dirty-reads are not possible, but unrepeatable-reads and phantoms might occur.</p>
+
+<p>Read-committed is the default isolation level in database systems. This isolation level means that the read operations return the space objects that are currently committed, regardless of the fact that these space objects might be updated (with a newer version) or taken under an uncommitted transaction. This is opposed to the default space isolation-level (derived from the JavaSpaces specification), which is repeatable-read.</p>
+
+<p>The read-committed isolation level is useful for the local cache, local view, and <code>ISpaceIterator</code>, which performs ReadMultiple and keep their current status by registering notify templates.</p>
+
+<p>The <code>ReadCommitted</code> modifier is provided at the proxy level and the read API level. It is relevant for read, <code>ReadIfExists</code>, <code>ReadMultiple</code>, and count.</p>
+
+<p><code>ReadCommitted</code> and <code>DirtyRead</code> are mutually-exclusive. A space object under an (uncommitted) updating transaction or under a taking (unrolled) transaction returns the original (committed) value unless the operation is under the same transaction as the locking one.</p>
+
+<p>If the read operation is under a transaction, there is no need to "enlist" the space object in the transaction (unless its already enlisted).</p>
+
+<p><code>ReadIfExists</code> has less space objects to wait for, unless these are new objects under an uncommitted transaction.</p>
+
+<h2><a name="locking-and-blocking-rules"></a>Locking and Blocking Rules</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">Operation A/Operation B</th>
+<th align="left">Update <br/>under<br/> transaction<br/> Y</th>
+<th align="left">Take<br/> under<br/> transaction <br/>Y</th>
+<th align="left">Read<br/> under<br/> transaction<br/> Y</th>
+<th align="left">Update<br/> null<br/> transaction</th>
+<th align="left">Take,<br/> null<br/> transaction</th>
+<th align="left">Read,<br/> null<br/> transaction</th>
+<th align="left">Exclusive<br/> Read<br/> Lock</th>
+<th align="left">Dirty<br/> Read<br/> Transaction<br/> Y<br/> or null</th>
+<th align="left">Read <br/>Committed <br/>Transaction <br/>Y <br/>or null</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Update under transaction X</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+</tr>
+
+<tr>
+<td align="left">Take under transaction X</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+</tr>
+
+<tr>
+<td align="left">Read under transaction X</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Allowed</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Allowed</td>
+<td align="left">Blocked</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+</tr>
+
+<tr>
+<td align="left">Update, null transaction</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+</tr>
+
+<tr>
+<td align="left">Take, null transaction</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+</tr>
+
+<tr>
+<td align="left">Read, null transaction</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+</tr>
+
+<tr>
+<td align="left">Exclusive Read Lock</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Blocked</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+</tr>
+
+<tr>
+<td align="left">Read Committed transaction X or null</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+</tr>
+
+<tr>
+<td align="left">Dirty Read Transaction X or null</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+<td align="left">Allowed</td>
+</tr>
+</tbody>
+</table>
+
+<div class="tc-admon-refer">
+  
+  <p>Refer to the <a href="transaction-locking-and-blocking.html">Space Locking and Blocking</a> section for <MadCap:variable name="General.ProductNameXAP" /> general locking and blocking rules.</p>
+</div>
+
+<div class="tc-admon-note">
+  
+  <ul>
+<li>To read the original state of a space object that is locked under a transaction (take or update) you should use ReadCommitted mode.</li>
+<li>To read the current state of a space object that is locked under transaction (take or update) should use Dirty Read mode.</li>
+<li>Dirty read (without transaction) does not blocks transactional take operation.</li>
+</ul>
+</div>
+
+<h2><a name="code-example-1"></a>Code Example</h2>
+
+<p>The examples below assumes you are using <code>ISpaceProxy</code> interface.</p>
+
+<pre><code class="language-csharp">ISpaceProxy proxy;
+// write an object under txn X and commit, making it publicly visible
+proxy.Write( user, txnX, long.MaxValue);
+txnX.commit();
+
+// update this object with a new one under a different txn Y
+proxy.Write( user, txnY, 0, long.MaxValue);
+
+// all read operations (read, ReadIfExists, ReadMultiple, Count) return the last publicly visible match.
+// operations can be performed with a new txn Z or a null txn
+proxy.Read( user, txnZ, ReadModifiers.ReadCommitted);
+
+// Note: using the same txn (txn Y) will return matches that are visible under the transaction
+</code></pre>
+
+<h1><a name="exclusive-read-lock"></a>Exclusive Read Lock</h1>
+
+<p>The Exclusive Read Lock is similar to select for update SQL for RDBMS, or update lock with ODBMS.</p>
+
+<p>In the JavaSpaces specification, a read under a transaction does not allow other users to modify the Entry, but it does allow two readers or more to read the same Entry under different transactions. To allow a user to block other users from reading an object, a read using exclusive read lock mode with a transaction should be performed.</p>
+
+<p>The following methods support exclusive read lock when used with a transaction:</p>
+
+<ul>
+<li><code>Read()</code></li>
+<li><code>ReadIfExists()</code></li>
+<li><code>ReadByID()</code></li>
+<li><code>ReadMultiple()</code></li>
+</ul>
+
+<p>The exclusive read lock is supported in a clustered environment when using the Jini Transaction Manager.</p>
+
+<h2><a name="code-example-2"></a>Code Example</h2>
+
+<pre><code class="language-csharp">public void exclusiveReadLock()
+{
+    // this will allow all read operations with this proxy to use Exclusive Read Lock mode
+    proxy.ReadModifiers = ReadModifiers.ExclusiveReadLock;
+
+    Lock lok = new Lock();
+    lok.key = 1;
+    lok.data = "my data";
+    proxy.Write(lok, null, long.MaxValue);
+
+    ITransactionManager mgr = GigaSpacesFactory.CreateDistributedTransactionManager ();
+    ITransaction txn1 = mgr.Create();
+
+    Lock lock_template1 = new Lock();
+    lock_template1.key = 1;
+
+     Lock lock1 = proxy.Read&lt;Lock&gt;(lock_template1, txn1, 10000);
+
+     if (lock1 != null)
+     {
+         Console.WriteLine("Transaction " + txn1 + " Got exclusive Read Lock on Entry:"
+                    + lock1.key);
+     }
+}
+</code></pre>
+
+</body>
+</html>

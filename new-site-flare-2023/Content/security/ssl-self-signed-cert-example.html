@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Using SSL and Self-Signed Certificates</h1>
+        <h1>Overview</h1>
+        <p>This topic describes a scenario where a <MadCap:variable name="General.CompanyName" /> product is running locally, with a client on a remote server that needs to connect to the <MadCap:variable name="General.CompanyName" /> host machine and write an object to the Space. In order to protect the communication with SSL, we enable the <code>SSLFilterFactory</code> and supply the <code>keystore</code>. We then deploy a Space and run a client. </p>
+        <p><MadCap:variable name="General.CompanyName" /> (local) host machine details:</p>
+        <ul>
+            <li><span class="tc-bold">Operating system</span>: Windows</li>
+            <li><span class="tc-bold">Machine name</span>: my-pc.gspaces.com</li>
+            <li><span class="tc-bold">IP&#160;address</span>:&#160;10.10.10.131</li>
+        </ul>
+        <p>Client (remote) machine details:</p>
+        <ul>
+            <li><span class="tc-bold">Operating system</span>: Linux</li>
+            <li><span class="tc-bold">Machine name</span>: blob.gspaces.com</li>
+            <li><span class="tc-bold">IP&#160;address</span>: 10.10.10.21</li>
+        </ul>
+        <h1>Securing the Connection</h1>
+        <p>In order to secure the transport layer between the local and remote servers, you must generate a private key and certificate for each server.</p>
+        <p class="tc-todo">To secure the connection (transport layer):</p>
+        <ol>
+            <li>
+                <p>On the local server (my-pc), open a command window from the <MadCap:variable name="General.CompanyName" /> bin directory and generate the private key and certificates, as shown using the following code.</p><pre><code class="language-bash">cd <MadCap:variable name="General.HomePath" />\bin
+
+# generate the private key
+keytool -genkeypair -alias server -keyalg RSA -keypass changeit -storepass changeit -keystore keystore.jks 
+
+# export the certificate
+keytool -exportcert -alias server -storepass changeit -file server.cer -keystore keystore.jks 
+</code></pre>
+            </li>
+            <li>
+                <p>On the remote server (blob), open a command window from the <MadCap:variable name="General.CompanyName" /> bin directory and generate the private key and certificates, as shown using the following code.</p><pre><code class="language-bash">cd <MadCap:variable name="General.HomePath" />/bin
+
+# generate the private key
+keytool -genkeypair -alias client -keyalg RSA -keypass changeit -storepass changeit -keystore client_keystore.jks 
+
+# export the certificate
+keytool -exportcert -alias client -storepass changeit -file client.cer -keystore client_keystore.jks 
+</code></pre>
+            </li>
+            <li>
+                <p>To upload and exchange the certificates, do the following:</p>
+                <ul>
+                    <li>Place the server.cer file in <code>blob:<MadCap:variable name="General.HomePath" />/bin</code></li>
+                    <li>Place the client.cer file in <code>my-pc:<MadCap:variable name="General.HomePath" />/bin</code></li>
+                </ul>
+            </li>
+            <li>
+                <p>To import the certificates to the key store, do the following:</p>
+                <ul>
+                    <li>
+                        <p>From <code>my-pc:<MadCap:variable name="General.HomePath" />/bin</code>, run the following command:</p><pre><code class="language-bash">keytool -importcert -v -trustcacerts -alias client -file client.cer -keystore keystore.jks -keypass changeit -storepass changeit 
+</code></pre>
+                        <div class="tc-admon-note">
+                            <p>For many websites, the recommendation is to put the certificate in the trust store. However, in this scenario we import the certificate directly to the key store.</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <p>From <code>blob:<MadCap:variable name="General.HomePath" />/bin</code>, run the following command:</p><pre><code class="language-bash">keytool -importcert -v -trustcacerts -alias server -file server.cer -keystore client_keystore.jks -keypass changeit -storepass changeit 
+</code></pre>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <h1>Local Server Setup</h1>
+        <p>The local server should have the <code><MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_LOCATORS</code>, <code><MadCap:variable name="General.EnvVariablePrefix" />P-NIC_ADDRESS</code>, and <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code>EXT_JAVA_OPTIONS</code></MadCap:conditionalText><code MadCap:conditions="Version.14-5-born"><MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT</code> environment variables set as demonstrated in the following  <code>setenv-overrides.bat</code> example. This provides the necessary configuration for the scenario.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">set XAP_LOOKUP_LOCATORS=my-pc.gspaces.com:4174
+set XAP_NIC_ADDRESS=10.10.10.131
+
+set </code><code class="language-bash">EXT_JAVA_OPTIONS</code><code class="language-bash">=-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory -Dcom.gs.lrmi.filter.security.keystore=C:/Users/xap/gigaspaces-xap-premium-<MadCap:variable name="Versions.product-version-svc-pack-MX" />/bin/keystore.jks -Dcom.gs.lrmi.filter.security.password=changeit -Djava.net.preferIPv4Stack=true -Djavax.net.debug=ssl
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">set <MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_LOCATORS=my-pc.gspaces.com:4174
+set <MadCap:variable name="General.EnvVariablePrefix" />_NIC_ADDRESS=10.10.10.131
+
+set </code><code class="language-bash"><MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT</code><code class="language-bash">=-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory -Dcom.gs.lrmi.filter.security.keystore=C:/Users/xap/gigaspaces-xap-premium-<MadCap:variable name="Versions.product-version-svc-pack-MX" />/bin/keystore.jks -Dcom.gs.lrmi.filter.security.password=changeit -Djavax.net.debug=ssl
+</code></pre>
+        <p>After you configure the environment variables, you can deploy your data grid by running the following CLI command from  <code>my-pc:<MadCap:variable name="General.HomePath" />/bin</code>:</p><pre><code><MadCap:variable name="General.HomePath" />\bin\gs space deploy --partitions=2 --ha SSLSpace</code></pre>
+        <h1>Client Server Setup</h1>
+        <p>To create a client server that will send an object to the local data grid, compile the sample SSLClient.java program provided in the <MadCap:xref href="securing-the-transport-layer-using-ssl.html#Default">Default SSLFilterFactory</MadCap:xref> section of the <MadCap:xref href="securing-the-transport-layer-using-ssl.html">Securing the Transport Layer</MadCap:xref> page. If necessary, change the Groups and Locators values as needed.</p>
+        <p>Use the following bash script to run the client:</p><pre><code class="language-bash">#!/bin/bash
+
+export JAVA_HOME=/opt/jdk/jdk8u66
+
+export <MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_LOCATORS=my-pc.gspaces.com:4174
+export <MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS=user_1
+export <MadCap:variable name="General.EnvVariablePrefix" />_NIC_ADDRESS=10.10.10.21
+
+CLASSPATH=/home/user/sslclient
+CLASSPATH=/opt/gspaces/gigaspaces-xap-premium-<MadCap:variable name="Versions.product-version-svc-pack-MX" />/bin:${CLASSPATH}
+CLASSPATH=/opt/gspaces/gigaspaces-xap-premium-<MadCap:variable name="Versions.product-version-svc-pack-MX" />/lib/required/*:${CLASSPATH}
+
+
+echo $CLASSPATH
+${JAVA_HOME}/bin/java -cp ${CLASSPATH} \
+-Dcom.gs.jini_lus.locators=${<MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_LOCATORS} \
+-Dcom.gs.jini_lus.groups=${<MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS} \
+-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory \
+-Dcom.gs.lrmi.filter.security.keystore=/opt/gspaces/gigaspaces-xap-premium-<MadCap:variable name="Versions.product-version-svc-pack-MX" />/bin/client_keystore.jks \
+-Dcom.gs.lrmi.filter.security.password=changeit \
+-Djavax.net.debug=ssl \
+SSLClient
+</code></pre>
+        <h1>Verifying the Security Configuration</h1>
+        <p>The local SSLSpace data grid will contain one object. Set <code>-Djavax.net.debug=ssl</code> to see the SSL&#160;handshake methods. If this is not enabled, you may get the following error, although it will be missing details: <span class="tc-bold">General SSLEngine problem</span></p>
+        <p>After enabling the debug option, you should see the following output in the logs:</p><pre><code class="language-bash">2016-12-15 14:19:35,661  INFO [com.gigaspaces.lrmi.filters] - Created LRMI filter factory: com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
+adding as trusted cert:
+adding as trusted cert:
+ Subject: CN=blob.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Subject: CN=blob.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Issuer:  CN=blob.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Issuer:  CN=blob.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Algorithm: RSA; Serial number: 0x6aebeb13
+ Algorithm: RSA; Serial number: 0x6aebeb13
+ Valid from Thu Dec 15 10:35:01 EST 2016 until Wed Mar 15 11:35:01 EDT 2017
+ Valid from Thu Dec 15 10:35:01 EST 2016 until Wed Mar 15 11:35:01 EDT 2017
+
+adding as trusted cert:
+
+adding as trusted cert:
+ Subject: CN=my-pc.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Subject: CN=my-pc.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Issuer:  CN=my-pc.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Issuer:  CN=my-pc.gspaces.com, OU=Unknown, O=Gigaspaces, L=New York, ST=New York, C=US
+ Algorithm: RSA; Serial number: 0x2f54a1d6
+ Algorithm: RSA; Serial number: 0x2f54a1d6
+ Valid from Wed Dec 14 16:57:53 EST 2016 until Tue Mar 14 17:57:53 EDT 2017
+
+ Valid from Wed Dec 14 16:57:53 EST 2016 until Tue Mar 14 17:57:53 EDT 2017
+</code></pre>
+        <p>If the certificate of the other server is not listed, you will get the following error:</p><pre><code class="language-bash">***
+main, fatal error: 46: General SSLEngine problem
+sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+</code></pre>
+    </body>
+</html>

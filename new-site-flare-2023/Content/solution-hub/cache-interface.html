@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Cache Interface</h1>
+        <table>
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shay Hassidim</td>
+                    <td>9.6</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Overview</h1>
+        <p>GigaSpaces provides a powerful data grid with advanced data access options. Many times a simple key/value interface required to access the data grid. The <a href="https://docs.gigaspaces.com/latest/dev-java/map-api.html">Map API</a> or the <a href="https://docs.gigaspaces.com/latest/dev-java/the-gigaspace-interface-overview.html">GigaSpace API</a> can be used in such a case. A simple wrapper around the GigaSpace API described here exposing a <code>HashMap</code> interface.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/cache-service.jpg" alt="cache-service.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h1>Cache Interface Implementation</h1>
+        <p>The implementation includes two classes. The <code>Data</code> class that model the data within the space and the <code>CacheService</code> class that wraps the <code>GigaSpace</code> API using standard <code>Map</code> API (<code>put</code>,<code>get</code> , <code>remove</code>..).</p>
+        <p>The <code>CacheService</code> support inserting data using a key/value and also via region/key/value. A region allows you to mark entries with a "tag" that groups these for better management. When constructing a <code>CacheService</code> you may indicate if you would like to have the data cached also at the client side. In such a case , the client will have a copy of the data maintained for fast data access avoiding any remote calls or serialization activity. Once the client application constructs the <code>CacheService</code> all cached data will be pre-loaded into the client side. Make sure the client will have sufficient heap size configured (<code>Xmx</code>) to accommodate all entries.</p>
+        <h2>The Data Space Class</h2>
+        <p>The Data Space Class holds the key , value and region data within a simple POJO properties. The <code>@SpaceId</code> annotation indicates the key field specified as the Space class ID field.</p><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceId;
+import com.gigaspaces.annotation.pojo.SpaceIndex;
+
+public class Data {
+    public Data(){}
+
+    String key;
+    Object value;
+    String region;
+
+    @SpaceIndex
+    public String getRegion() {
+        return region;
+    }
+    public void setRegion(String region) {
+        this.region= region;
+    }
+    @SpaceId(autoGenerate=false)
+    public String getKey() {
+        return key;
+    }
+    public void setKey(String key) {
+        this.key = key;
+    }
+    public Object getValue() {
+        return value;
+    }
+    public void setValue(Object value) {
+        this.value = value;
+    }
+}
+
+</code></pre>
+        <h3>Optimzing Value Object Serialization and Storage</h3>
+        <p>The <code>Data</code> class can be modified to support better serialization for the value object. You may store the value object in binary format or compressed format.</p>
+        <p>To store the value object in a binary format the <code>getValue</code> should have the following:</p><pre><code class="language-java">@SpaceStorageType(storageType=StorageType.BINARY)
+public Object getValue() {
+    return value;
+}
+</code></pre>
+        <p>To store the value object in a compressed format the <code>getValue</code> should have the following:</p><pre><code class="language-java">@SpaceStorageType(storageType=StorageType.COMPRESSED)
+public Object getValue() {
+    return value;
+}
+</code></pre>
+        <h2>The CacheService</h2>
+        <p>The <code>CacheService</code> leveraging the <code>GigaSpace</code> interface implementing the standard <code>put</code>,<code>get</code>,<code>putAll</code>,<code>getAll</code>,<code>remove</code>,etc. methods:</p><pre><code class="language-java">import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.openspaces.core.GigaSpace;
+import org.openspaces.core.GigaSpaceConfigurer;
+import org.openspaces.core.space.UrlSpaceConfigurer;
+import org.openspaces.core.space.cache.LocalViewSpaceConfigurer;
+
+import com.gigaspaces.client.ReadByIdsResult;
+import com.gigaspaces.query.IdQuery;
+import com.gigaspaces.query.IdsQuery;
+import com.j_spaces.core.client.SQLQuery;
+
+public class CacheService {
+    private GigaSpace spaceView;
+    private GigaSpace space;
+    boolean localView;
+
+    public CacheService(String url) throws Exception {
+        init(url, false);
+    }
+
+    public CacheService(String url, boolean clientCache) throws Exception {
+        init(url, clientCache);
+    }
+
+    public void init(String url, boolean clientCache) throws Exception {
+        this.localView = clientCache;
+        UrlSpaceConfigurer urlConfigurer = new UrlSpaceConfigurer(url);
+        space = new GigaSpaceConfigurer(urlConfigurer).gigaSpace();
+        if (localView) {
+            LocalViewSpaceConfigurer localViewConfigurer = new LocalViewSpaceConfigurer(
+                    urlConfigurer).addViewQuery(new SQLQuery&lt;Data&gt;(Data.class,
+                    ""));
+            // Create local view:
+            spaceView = new GigaSpaceConfigurer(localViewConfigurer)
+                    .gigaSpace();
+        } else {
+            spaceView = space;
+        }
+
+    }
+
+    public void put(String key, Object value) throws Exception {
+        put(null, key, value);
+    }
+    
+    public void put(String region, String key, Object value) throws Exception {
+        Data d = new Data();
+        d.setKey(key);
+        d.setValue(value);
+        d.setRegion(region);
+        space.write(d);
+    }
+
+    public Object get(String region, String key) throws Exception {
+        Data templ = new Data();
+        templ.setKey(key);
+        templ.setRegion(region);
+        Data d = spaceView.read(templ);
+        if (d != null)
+            return d.getValue();
+        else
+            return null;
+    }
+
+    public void clear() {
+        space.clear(new Data());
+    }
+
+    public Object get(String key) throws Exception {
+        Data d = spaceView.readById(Data.class, key);
+        if (d != null)
+            return d.getValue();
+        else
+            return null;
+    }
+
+    public void remove(String region, String key) throws Exception {
+        Data templ = new Data();
+        templ.setKey(key);
+        templ.setRegion(region);
+        space.clear(templ);
+    }
+
+    public void remove(String key) throws Exception {
+        IdQuery&lt;Data&gt; idquery = new IdQuery&lt;Data&gt;(Data.class, key);
+        space.clear(idquery);
+    }
+
+    public boolean containsKey(String key) {
+        IdQuery&lt;Data&gt; idquery = new IdQuery&lt;Data&gt;(Data.class, key);
+        int count = spaceView.count(idquery);
+        return (count &gt; 0);
+    }
+
+    public int size() throws Exception {
+        return spaceView.count(new Data());
+    }
+
+    public int size(String region) throws Exception {
+        Data templ = new Data();
+        templ.setRegion(region);
+        return spaceView.count(templ);
+    }
+
+    public Map&lt;String, Object&gt; getAll(List&lt;String&gt; keys) {
+        Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();
+        String keysArray[] = new String[keys.size()];
+        keys.toArray(keysArray);
+        IdsQuery&lt;Data&gt; idsquery = new IdsQuery&lt;Data&gt;(Data.class, keysArray);
+        ReadByIdsResult&lt;Data&gt; result= spaceView.readByIds(idsquery);
+        Iterator&lt;Data&gt; iter = result.iterator();
+        while (iter.hasNext())
+        {
+            Data data = iter.next();
+            map.put(data.getKey(), data.getValue());
+        }
+        return map;
+    }
+    
+    public void putAll(String region, Map&lt;String, Object&gt; map) {
+        Data d[] = new Data[map.size()];
+        int count = 0;
+        Iterator&lt;String&gt; keys = map.keySet().iterator();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            Object val = map.get(key);
+            d[count] = new Data();
+            d[count].setKey(key);
+            d[count].setValue(val);
+            d[count].setRegion(region);
+            count++;
+        }
+        space.writeMultiple(d);
+    }
+
+    public void putAll(Map&lt;String, Object&gt; map) {
+        putAll(null, map);
+    }
+
+     public Collection&lt;Object&gt; values() {
+            SQLQuery&lt;Data&gt; query = null;
+            Set&lt;Object&gt; values = new HashSet&lt;Object&gt;();
+            if (localView)
+                query = new SQLQuery&lt;Data&gt;(Data.class, "");
+            else
+                query = new SQLQuery&lt;Data&gt;(Data.class, "").setProjections("value");
+
+            Data d[] = spaceView.readMultiple(query);
+
+            for (int i = 0; i &lt; d.length; i++) {
+                values.add(d[i].getValue());
+            }
+            return values;
+
+     }
+
+    public Set&lt;String&gt; keySet() throws Exception {
+        SQLQuery&lt;Data&gt; query = null;
+        if (localView)
+            query = new SQLQuery&lt;Data&gt;(Data.class, "");
+        else
+            query = new SQLQuery&lt;Data&gt;(Data.class, "").setProjections("key");
+
+        Data d[] = spaceView.readMultiple(query);
+
+        Set&lt;String&gt; keys = new HashSet&lt;String&gt;();
+
+        for (int i = 0; i &lt; d.length; i++) {
+            keys.add(d[i].getKey());
+        }
+        return keys;
+    }
+}
+
+</code></pre>
+        <p>See example how the <code>CacheService</code> can be used accessing IMDG called "mySpace':</p><pre><code class="language-java">CacheService cacheService = new CacheService("jini//*/*/mySpace");
+
+cacheService.put("key1", "value1");
+cacheService.put("region1" , "key2", "value2");
+        
+cacheService.remove("key1");
+
+cacheService.clear();
+
+Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();
+map.put("key1", "value");
+map.put("key2", "value");
+map.put("key3", "value");
+cacheService.putAll(map);
+
+</code></pre>
+        <div class="tc-admon-note">
+            <p>For more information, see <a href="https://docs.gigaspaces.com/latest/dev-java/modeling-your-data.html">Modeling and Accessing Your Data</a>.</p>
+        </div>
+    </body>
+</html>

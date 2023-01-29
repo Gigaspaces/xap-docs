@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1><MadCap:variable name="General.ProductNameXAP" /> JNDI</h1>
+  
+
+<p><MadCap:variable name="General.ProductNameXAP" /> runs a JNDI service where JMS objects can be bound by name. The administrator configures JMS destinations in the space configuration file. When the space is started, it creates and binds the configured destinations to JNDI, making them available for use.</p>
+
+<p>The application uses a JNDI context to obtain these objects, and to start working with JMS. The context is initialized with the values specified in the <code>jndi.properties</code> file in the GigaSpaces classpath. After obtaining the context, the client calls the <code>context.lookup()</code> method, passing the name of the required resource. If the resource is found in JNDI, it is returned to the client.</p>
+
+<h1><a name="obtaining-connectionfactory-instances-from-jndi"></a>Obtaining ConnectionFactory Instances from JNDI</h1>
+
+<p>It is not possible to configure connection factories.</p>
+
+<p>When JMS services in JNDI are enabled, the space creates and binds the following connection factories:</p>
+
+<pre><code class="language-java">Connectionfactory           GigaSpaces;ContainerName;SpaceName;GSConnectionFactoryImpl
+TopicConnectionfactory      GigaSpaces;ContainerName;SpaceName;GSTopicConnectionFactoryImpl
+QueueConnectionfactory      GigaSpaces;ContainerName;SpaceName;GSQueueConnectionFactoryImpl
+</code></pre>
+
+<p>To obtain a connection factory, the application uses JNDI lookup:</p>
+
+<pre><code class="language-java">// get a connection factory (unified model)
+InitialContext context = new InitialContext();
+ConnectionFactory factory = (ConnectionFactory)context.lookup("GigaSpaces;ContainerName;SpaceName;GSConnectionFactoryImpl");
+</code></pre>
+
+<p>or:</p>
+
+<pre><code class="language-java">// get a topic connection factory (publish/subscribe)
+InitialContext context = new InitialContext();
+TopicConnectionFactory factory = (TopicConnectionFactory)context.lookup("GigaSpaces;ContainerName;SpaceName;GSTopicConnectionFactoryImpl");
+</code></pre>
+
+<p>or:</p>
+
+<pre><code class="language-java">// get a queue connection factory (point to point)
+InitialContext context = new InitialContext();
+QueueConnectionFactory factory = (QueueConnectionFactory)context.lookup("GigaSpaces;ContainerName;SpaceName;GSQueueConnectionFactoryImpl");
+</code></pre>
+
+<h1><a name="configuring-jms-destinations"></a>Configuring JMS Destinations</h1>
+
+<p>To enable JMS services in GigaSpaces JNDI, change the space schema file as follows:</p>
+
+<ol>
+<li>Set the <code>com.j_spaces.core.container.directory_services.jms_services.enabled</code> property to <code>true</code>.</li>
+<li>Add a comma-separated list of topic names to the <code>space-config.jms.administrated-destinations.topics.topic-names</code> property.</li>
+<li>Add a comma-separated list of queue names to the <code>space-config.jms.administrated-destinations.queues.queue-names</code> property.</li>
+</ol>
+
+<p>For example:</p>
+
+<pre><code class="language-java">com.j_spaces.core.container.directory_services.jms_services.enabled=true
+
+space-config.jms.administrated-destinations.topics.topic-names=MyTopic,TempTopic
+space-config.jms.administrated-destinations.queues.queue-names=MyQueue,TempQueue
+</code></pre>
+
+<p>The example above:</p>
+
+<ul>
+<li>Enables JMS services in JNDI</li>
+<li>Configures <code>MyTopic</code> and <code>TempTopic</code>.</li>
+<li>Configures <code>MyQueue</code> and <code>TempQueue</code></li>
+</ul>
+
+<div class="tc-admon-note">
+  
+  <p>When configuring destination as described above, the space binds the destinations to the following names:</p>
+</div>
+
+<pre><code class="language-java">GigaSpaces;ContainerName;spaceName;jms;destinations;MyTopic
+GigaSpaces;ContainerName;spaceName;jms;destinations;TempTopic
+GigaSpaces;ContainerName;spaceName;jms;destinations;MyQueue
+GigaSpaces;ContainerName;spaceName;jms;destinations;TempQueue
+</code></pre>
+
+<h1><a name="obtaining-jms-destinations-from-jndi"></a>Obtaining JMS Destinations from JNDI</h1>
+
+<p>The application uses a JNDI context to get the destinations from JNDI.</p>
+
+<p>For example, to get the <code>MyTopic</code> Topic:</p>
+
+<pre><code class="language-java">InitialContext context = new InitialContext();
+Topic myTopic = (Topic)context.lookup("GigaSpaces;containername;spaceName;jms;destinations;MyTopic");
+</code></pre>
+
+<div class="tc-admon-note">
+  
+  <p>To get the resource, use the full binding name. If you configure <code>MyTopic</code> in the space configuration, the space binds it to the name:</p>
+</div>
+
+<pre><code class="language-java">GigaSpaces;ContainerName;spaceName;jms;destinations;MyTopic.
+</code></pre>
+
+</body>
+</html>

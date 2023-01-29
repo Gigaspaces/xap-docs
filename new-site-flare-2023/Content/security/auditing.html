@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Auditing</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> provides the ability to audit the authentication requests and operations performed on a secured service. It facilitates the logging mechanism to declare the audit log file, and the level of auditing. The level can be dynamically modified using the <code>java.util.logging JMX Extensions</code>. This allows an easy extension for custom auditing.</p>
+        <div class="tc-admon-note">
+            <p>Currently auditing of operations is limited to Space operations.</p>
+        </div>
+        <h1><a name="configuration"></a>Configuration</h1>
+        <p>The configurations should be placed in the logging configuration file <code><MadCap:variable name="General.HomePath" />/config/log/xap_logging.properties</code>.</p><pre><code class="language-bash"># xap_logging.properties
+
+com.gigaspaces.security.audit.enabled = true
+com.gigaspaces.security.audit.level = SEVERE
+com.gigaspaces.security.audit.handler = com.gigaspaces.security.audit.AuditHandler
+</code></pre>
+        <p>This configuration can also be supplied using system properties.</p><pre><code class="language-bash">-Dcom.gigaspaces.security.audit.enabled=true -Dcom.gigaspaces.security.audit.level=SEVERE ...
+</code></pre>
+        <p>The defaults of these configurations are:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>com.gigaspaces.security.audit.enabled</td>
+                    <td>Enable/Disable security auditing; default is disabled (false)</td>
+                </tr>
+                <tr>
+                    <td>com.gigaspaces.security.audit.level</td>
+                    <td>Audit level of interest; default is OFF</td>
+                </tr>
+                <tr>
+                    <td>com.gigaspaces.security.audit.handler</td>
+                    <td>The Audit <code>java.util.logging.Handler</code> implementation accepting an <code>AuditLogRecord</code>; default is <code>AuditHandler</code></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The <code>AuditHandler</code> is a declarable extension to the default GigaSpaces logging <code>Handler</code> (see <a href="../admin/logging-overview.html">GigaSpaces Logging</a>). As such, it accepts properties that configure the handler - amongst others are the logging message <span class="tc-bold">formatter</span> and the <span class="tc-bold">filename-pattern</span>.</p><pre><code class="language-bash"># xap_logging.properties
+
+...
+com.gigaspaces.security.audit.handler = com.gigaspaces.security.audit.AuditHandler
+
+# Properties configuring the audit-handler:
+
+com.gigaspaces.security.audit.AuditHandler.formatter = com.gigaspaces.logger.GSSimpleFormatter
+com.gigaspaces.security.audit.AuditHandler.filename-pattern = {homedir}/logs/gigaspaces-security-audit-{service}-{host}-{pid}.log
+</code></pre>
+        <h1><a name="audit-levels"></a>Audit Levels</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>OFF</td>
+                    <td>Nothing is audited</td>
+                </tr>
+                <tr>
+                    <td>SEVERE</td>
+                    <td>Authentication failure or invalid session</td>
+                </tr>
+                <tr>
+                    <td>WARNING</td>
+                    <td>Access denied due to insufficient privileges</td>
+                </tr>
+                <tr>
+                    <td>INFO</td>
+                    <td>Authentication successful</td>
+                </tr>
+                <tr>
+                    <td>FINE</td>
+                    <td>Access granted</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="example"></a>Example</h1>
+        <p>In the example below, there are two users "writer" (only privileges to write), and "reader" (only privileges to read).</p><pre><code class="language-bash">
+FINE: Access granted; user [writer] at host [some-pc.gspaces.com/192.168.10.172] has [Write] privileges for class [com.gigaspaces.data.car.CarPojo]; session-id [827282038]
+18/12/2014 12:23:50 com.gigaspaces.security.audit.SecurityAudit accessGranted
+
+If the writer tries to read, you get a denied message:
+WARNING: Access denied; user [writer] at host [some-pc.gspaces.com/192.168.10.172] lacks [Read] privileges for class [com.gigaspaces.data.car.CarPojo]; session-id [827282038]
+18/12/2014 12:23:51 com.gigaspaces.security.audit.SecurityAudit accessDenied
+
+Same goes to the reader
+WARNING: Access denied; user [reader] at host [some-pc.gspaces.com/192.168.10.172] lacks [Write] privileges for class [com.gigaspaces.data.car.CarPojo]; session-id [1003653583]
+18/12/2014 12:23:51 com.gigaspaces.security.audit.SecurityAudit accessDenied
+
+And
+FINE: Access granted; user [reader] at host [some-pc.gspaces.com/192.168.10.172] has [Read] privileges for class [com.gigaspaces.data.car.CarPojo]; session-id [1003653583]
+18/12/2014 12:23:51 com.gigaspaces.security.audit.SecurityAudit accessGranted
+
+</code></pre>
+        <div class="tc-admon-refer">
+            <p>You can see that for each write operation an audit <code>FINE</code> log message is created with the classname. There is no data in the audit details.
+If you need the data to be audited, you can apply a <a href="../security/securing-your-data.html#space-filters">filter</a>  to achieve this.</p>
+        </div>
+        <h1><a name="custom-auditing"></a>Custom Auditing</h1>
+        <p>The <code>java.util.logging.Handler</code> accepts a <code>java.util.logging.LogRecord</code> for logging. An <code>AuditLogRecord</code> is supplied by the security layer containing the <code>AuditDetails</code>. Instead of logging into a file, a custom <code>Handler</code> can capture all the log activity for auditing. By default the <code>java.util.logging.LogRecord.getMessage()</code> of <code>AuditLogRecord</code> contains the audit message (as shown in the sample output above).</p>
+    </body>
+</html>

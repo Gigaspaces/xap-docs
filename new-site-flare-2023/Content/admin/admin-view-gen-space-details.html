@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Viewing Space Runtime Information</h1>
+        <p><span class="tc-bold">To view the Space runtime information:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="GigaSpaces Ops Manager" style="padding:10px" MadCap:conditions="Version.15-2-born">
+                <p>The Space Overview page has two tabs, one that shows all Spaces in the cluster, and one that shows only unhealthy Spaces. You can see your Spaces as cards that contain the following information:</p>
+                <ul>
+                    <li>Name of the associated service </li>
+                    <li>Name of the Space</li>
+                    <li>Number of partitions</li>
+                    <li>Type of Space schema, indicated by an icon (for example, persistent or high availability)</li>
+                    <li>Current RAM&#160;utilization of the Space</li>
+                    <li>Maximum allocated RAM&#160;for the Space</li>
+                    <li>Number of object types in the Space</li>
+                    <li>Number of data entries to the Space</li>
+                </ul>
+                <p>You can filter the view by cache ratio and RAM&#160;utilization, and you can sort by alert severity. You can also do a free text search by Space name.</p>
+                <p>Click a Space to drill through and see the following additional information for that Space in the Overview tab:</p>
+                <ul>
+                    <li>Entries per object type</li>
+                    <li>Data distribution per partition (for the past 5 minutes)</li>
+                    <li>Reads by partition (for the past 5 minutes)</li>
+                </ul>
+                <MadCap:snippetBlock src="../Resources/Snippets/Content/Admin/data-object-details.flsnp" />
+                <h2>Navigate to Object Type page</h2>
+                <p>It is possible to drill down from the Space overview page to the Object Type level in two ways:</p>
+                <ul>
+                    <li>Click on the Object Type line within the Object Types data table. In this scenario, the user drills down to the overview page of an Object Type.</li>
+                    <li>Click on the icon to the left of the Object Type name. It is possible to drill down to the Object Type SQL editor page with the Object Type context already selected within the sample query.</li>
+                </ul>
+                <h2>Viewing Data Types</h2>
+                <p>Press <MadCap:xref href="admin-view-types.html">Viewing Data Types</MadCap:xref> for information about data type details in the Space.</p>
+            </div>
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-bold">Space</span>
+                </p>
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap space list</code> or <code>insightedge space list</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> space list</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command lists all the Spaces in a table with their Space name, Processing Unit name, cluster topology, number of actual/planned Space instances, and Instance ID.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap space list
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space list
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> space list
+</code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Output Example:</span>
+                </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/admin/cli-xap-space-list.png" />
+                </p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <p>None.</p>
+                <p><span class="tc-bold">Space Instance</span>
+                </p>
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap space list-instances &lt;name&gt;</code> or <code>insightedge space list-instances &lt;name&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> space list-instances &lt;name&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>The Space instances for the given Space are listed with their Instance ID, Mode, Host ID, and Container ID.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap space list-instances mySpace
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space list-instances mySpace
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> space list-instances mySpace
+</code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Output Example:</span>
+                </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/admin/cli-xap-space-instances-list.png" />
+                </p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Parameter</td>
+                        <td>name</td>
+                        <td>Provide the name of the Space for which to list the instances.</td>
+                    </tr>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-bold">All Spaces</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /spaces</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>The Spaces are listed with the Space name, Processing Unit name, cluster topology, number of Space instances, and Instance IDs.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces'
+</code></pre>
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">[
+  {
+    "name": "monitorSpace",
+    "processingUnitName": "monitorSpace",
+    "topology": {
+      "instances": 1
+    },
+    "instancesIds": [
+      "monitorSpace~1"
+    ]
+  },
+  {
+    "name": "alertSpace",
+    "processingUnitName": "alertSpace",
+    "topology": {
+      "instances": 1
+    },
+    "instancesIds": [
+      "alertSpace~1"
+    ]
+  },
+  {
+    "name": "mySpace",
+    "processingUnitName": "mySpace",
+    "topology": {
+      "instances": 1
+    },
+    "instancesIds": [
+      "mySpace~1"
+    ]
+  }
+]
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <p>None</p>
+                <p><span class="tc-bold">Specific Space</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /spaces/{id}/instances</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>The given Space is listed with the Space name, Processing Unit name, cluster topology, number of Space instances, and Instance ID.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces/alertSpace/instances'
+</code></pre>
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">[
+  {
+    "id": "alertSpace~1",
+    "mode": "PRIMARY",
+    "partitionId": 0,
+    "backupId": 0,
+    "hostId": "admin",
+    "containerId": "admin~13972"
+  }
+] 
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>space name</td>
+                            <td>Provide the name of the Space for which you want to see the runtime details.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">Specific Space Instance</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /spaces/{id}/instances{instanceId}</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>The given Space instance is listed with the Instance ID, Mode, Partition ID, Backup ID, Host ID, and Container ID.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/spaces/alertSpace/instances/alertSpace~1'
+</code></pre>
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
+  "id": "alertSpace~1",
+  "mode": "PRIMARY",
+  "partitionId": 0,
+  "backupId": 0,
+  "hostId": "admin",
+  "containerId": "admin~13972"
+}
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>space name</td>
+                            <td>Provide the name of the Space for which you want to see the runtime details.</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>space Id</td>
+                            <td>Provide the ID of the Space for which you want to see the runtime details.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <p>You can see the following high-level Space details in the main Spaces view:</p>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Space</td>
+                        <td>Name of the Space.</td>
+                    </tr>
+                    <tr>
+                        <td>Processing Unit</td>
+                        <td>Name of the associated Processing Unit.</td>
+                    </tr>
+                    <tr>
+                        <td>Application</td>
+                        <td>Name of the client application using the Space.</td>
+                    </tr>
+                    <tr>
+                        <td>Actual Instances</td>
+                        <td>Number of Space instances in the cluster.</td>
+                    </tr>
+                    <tr>
+                        <td>SLA</td>
+                        <td>
+                            <p>Space cluster topology (number of instances, number of backups).</p>
+                            <div class="tc-admon-note">
+                                <p>The number of backups per partition is zero or one.</p>
+                            </div>
+                            <p>&#160;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Used Heap (MB)</td>
+                        <td>Amount of memory currently being used, in MB and as a percentage of the total memory allocated to this Space.</td>
+                    </tr>
+                    <tr>
+                        <td>Used Off-Heap Cache (MB)</td>
+                        <td>(RocksDB storage driver only) Amount of off-heap memory currently being used for caching, in MB and as a percentage of the total off-heap memory allocated.</td>
+                    </tr>
+                    <tr>
+                        <td>Used Off-Heap (MB)</td>
+                        <td>(Off-heap storage driver only) Amount of off-heap memory currently being used, in MB and as a percentage of the total memory allocated for the blobstore.</td>
+                    </tr>
+                    <tr>
+                        <td>Entries</td>
+                        <td>Number of data entries to the Space.</td>
+                    </tr>
+                    <tr>
+                        <td>Notify Templates</td>
+                        <td>Number of Notify templates for this Space.</td>
+                    </tr>
+                    <tr>
+                        <td>Connections</td>
+                        <td>Number of currently connected clients.</td>
+                    </tr>
+                    <tr>
+                        <td>Active Transactions</td>
+                        <td>Number of transactions that are now active.</td>
+                    </tr>
+                </table>
+                <p>Click the arrow in the right-hand column of the Space entry to drill through to the following additional details:</p>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Space Instance Name</td>
+                        <td>Name of the Space instance in the cluster.</td>
+                    </tr>
+                    <tr>
+                        <td>PU Instance Name</td>
+                        <td>Name of the Processing Unit instance where the Space instance is located.</td>
+                    </tr>
+                    <tr>
+                        <td>PID</td>
+                        <td>Process ID of the Space instance.</td>
+                    </tr>
+                    <tr>
+                        <td>Host IP</td>
+                        <td>IP address of the host machine.</td>
+                    </tr>
+                    <tr>
+                        <td>Total Memory (MB)</td>
+                        <td>Amount of memory currently being used, in MB and as a percentage of the total memory allocated to this Space instance.</td>
+                    </tr>
+                    <tr>
+                        <td>Entries</td>
+                        <td>Number of data entries to the Space instance.</td>
+                    </tr>
+                    <tr>
+                        <td>Notify Templates</td>
+                        <td>Number of Notify templates for this Space instance.</td>
+                    </tr>
+                    <tr>
+                        <td>Connections</td>
+                        <td>Number of currently connected clients.</td>
+                    </tr>
+                    <tr>
+                        <td>Active Transactions</td>
+                        <td>Number of transactions that are now active.</td>
+                    </tr>
+                </table><![CDATA[
+				            ]]></div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+    </body>
+</html>

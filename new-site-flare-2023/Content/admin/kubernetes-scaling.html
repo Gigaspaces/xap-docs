@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Scaling the <MadCap:variable name="General.ProductNameXAP" /> Environment</h1>
+        <h1>Scaling with the <MadCap:variable name="General.ProductNameXAP" /> Helm Chart </h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports rolling updates of the Helm chart so that you can scale your system up or down as necessary. Configure the following to ensure that you keep your data and system configuration intact:</p>
+        <ul>
+            <li><span class="tc-bold">Readiness probe</span> - To update the chart while maintaining data consistency, you must enable the readiness probe in either the current or the new Helm chart. This ensures that the update process, which first terminates the backup pods, won't begin to update the primary pods before the backup pods have fully recovered and reloaded the data, and can therefore take leadership when the primary pods are terminated.</li>
+            <li><span class="tc-bold">Reuse- values flag</span> - You must mark the reuse-values flag to ensure that all your custom chart configurations (including the license and partition definitions) are not overwritten by the update process. If you don't mark this flag, your system will revert to the default configurations.</li>
+        </ul>
+        <p>For example, run the following command to change the amount of memory for each service (pu) pod from 400 MB to 600 MB.</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm upgrade xap --name demo --set pu.resources.limits.memory=600Mi,pu.readinessProbe.enabled=true --reuse-values</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm upgrade demo xap --set pu.resources.limits.memory=600Mi,pu.readinessProbe.enabled=true --reuse-values </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                        <p><pre><code>helm upgrade xap --name demo --set pu.resources.limits.memory=600Mi,pu.readinessProbe.enabled=true --reuse-values</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <h1 MadCap:conditions="Version.15-2-born">Vertically Scaling a Kubernetes Pod</h1>
+        <p MadCap:conditions="Version.15-2-born"><MadCap:variable name="General.ProductNameXAP" /> supports on-demand updates of a StatefulSet during runtime. This capability can be used to scale a pod’s resources up or down. For stateful services (such as a Space), each StatefulSet represents a specific partition, so you target the required partition for updating. In a high availability environment, this will affect both the primary and the backup pods.</p>
+        <div class="tc-admon-note">
+            <p MadCap:conditions="Version.15-2-born">The pods of the StatefulSet are updated in reverse ordinal order. </p>
+        </div>
+        <h2 MadCap:conditions="Version.15-2-born">Readiness Probe</h2>
+        <p MadCap:conditions="Version.15-2-born">For stateful services, you must enable the readiness probe in order to maintain data consistency (as mentioned above). The upgrade process restarts the first pod, leaving the second one alive. The Space inside the second pod is a primary Space (it may have originally been a primary Space, or a backup that became the primary). This pod isn't restarted until the first pod is up again and the Space it contains (the backup) has fully recovered and reloaded the data. When the second pod is upgraded, the Space in the first pod becomes the primary. The upgrade process is complete after both pods are up and fully recovered.</p>
+        <p MadCap:conditions="Version.15-2-born">To enable the readiness probe, set the <code>readinessProbe.enabled</code> option to true:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-pu --name mySpace --set manager.name=hello,partitions=2,readinessProbe.enabled=true</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm install mySpace insightedge-pu --set manager.name=hello,partitions=2,readinessProbe.enabled=true </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                        <p><pre><code>helm install insightedge-pu --name mySpace --set manager.name=hello,partitions=2,readinessProbe.enabled=true</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <h2 MadCap:conditions="Version.15-2-born">Scaling the Pod</h2>
+        <p MadCap:conditions="Version.15-2-born">You can update a pod using either the REST&#160;Manager API, or using the <MadCap:variable name="General.ProductNameXAP" /> CLI.</p>
+        <h3 MadCap:conditions="Version.15-2-born">Using the REST Manager API</h3>
+        <p MadCap:conditions="Version.15-2-born">The following code sample shows how to scale the memory capacity of the <code>mySpace-insightedge-pu-2</code> Statefulset using the REST&#160;Manager API.</p><pre MadCap:conditions="Version.15-2-born"><code class="language-bash">curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: text/plain' -d '[ \ 
+   { \ 
+     "op": "replace", \ 
+     "path": "/spec/template/spec/containers/0/resources/limits/memory", \ 
+     "value": "600Mi" \ 
+   } \ 
+ ] \ 
+ ' 'http://192.168.99.171:30890/v2/kubernetes/statefulsets/mySpace-insightedge-pu-2'</code></pre>
+        <h3 MadCap:conditions="Version.15-2-born">Using the <MadCap:variable name="General.ProductNameXAP" /> CLI</h3>
+        <p MadCap:conditions="Version.15-2-born">The following command shows how to scale resources using the <MadCap:variable name="General.ProductNameXAP" /> CLI command. You must specify the name of the service (Processing Unit) and the partition number.</p><pre MadCap:conditions="Version.15-2-born"><code class="language-bash">./gs.sh --server=192.168.99.171:30890  pu scale mySpace 2 --memory=600Mi --cpu=500m</code></pre>
+        <h2 MadCap:conditions="Version.15-2-born">Monitoring the Update Process</h2>
+        <p MadCap:conditions="Version.15-2-born">When the pod is scaled using the REST&#160;Manager API&#160;or the CLI, you receive the request ID as a response. You can use this request ID to check the status of the request and verify that the update process was accomplished successfully and the pods are up, updated and fully recovered. </p>
+        <h3 MadCap:conditions="Version.15-2-born">Checking the Status via the REST Manager API </h3>
+        <p MadCap:conditions="Version.15-2-born">You can send a request to check the status of the update process using code like the example here:</p><pre MadCap:conditions="Version.15-2-born"><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://192.168.99.171:30890/v2/requests/1'</code></pre>
+        <h3 MadCap:conditions="Version.15-2-born">Checking the Status via the <MadCap:variable name="General.ProductNameXAP" /> CLI</h3>
+        <p MadCap:conditions="Version.15-2-born">You can use a CLI command to check the status of the update process as follows:</p><pre MadCap:conditions="Version.15-2-born"><code class="language-bash">./gs.sh --server=192.168.99.171:30890  request status 1</code> </pre>
+        <h2 MadCap:conditions="Version.15-2-born">Manually Disabling the Patch Role </h2>
+        <p MadCap:conditions="Version.15-2-born">By default, the <MadCap:variable name="General.ProductNameXAP" /> manager Helm chart creates a role-binding with a patch role that is enabled. This is required to perform the update request against the Kubernetes cluster. To disable patch role and therefore disable the update operation, set the value of the <code>PatchSupport.enable</code> option to false:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-manager --name hello --set PatchSupport.enable=false</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm install hello insightedge-manager --set PatchSupport.enable=false</code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                        <p><pre><code>helm install insightedge-manager --name hello --set PatchSupport.enable=false</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <h2 MadCap:conditions="Version.15-2-born">Troubleshooting</h2>
+        <p MadCap:conditions="Version.15-2-born">The update process may fail if the update request has an error. For example, if you try to scale to a memory size that is larger than the available memory of the system. If this happens, the pod may enter broken state; the StatefulSet stops the update process but still waits for the pod to become Ready and Running, even though it’s in broken state. </p>
+        <p MadCap:conditions="Version.15-2-born">To find the unhealthy pod, use the following kubectl command and view the status of all the pods:</p><pre MadCap:conditions="Version.15-2-born"><code>kubectl get pods</code></pre>
+        <p MadCap:conditions="Version.15-2-born"> To fix the problem, you need to send a new update request with a valid configuration (for example, scale to a valid memory size), and then delete the unhealthy pod.</p>
+        <p MadCap:conditions="Version.15-2-born">To delete the unhealthy pod, use the following Kubernetes command.</p><pre MadCap:conditions="Version.15-2-born"><code>kubectl delete pod mySpace-insightedge-pu-1-0</code></pre>
+        <p MadCap:conditions="Version.15-2-born">Kubernetes will recreate the pod with the latest and correct configuration.</p>
+    </body>
+</html>

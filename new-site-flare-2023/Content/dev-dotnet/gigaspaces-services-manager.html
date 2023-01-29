@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Services Manager</h1>
+        <p>When installing the Service Grid on a Microsoft Windows environment, many administrators prefer to setup the Service Grid as A <span class="tc-italic">Windows Service</span>, which have several advantages over standard console applications:</p>
+        <ul>
+            <li>A service can be configured to start automatically when the machine boots, without any user logging in.</li>
+            <li>A service can be configured to run under predefined credentials, e.g. SYSTEM.</li>
+            <li>A service has no console/GUI which clutters up the desktop (and might be closed accidentally...).</li>
+            <li>Windows provides standard management console, command line and API to manage services, which makes managing services a common task for system administrators.</li>
+        </ul>
+        <p>This page explains how to install a Service Grid as a Windows Service and manage it.</p>
+        <h1><a name="usage"></a>Usage</h1>
+        <p>The Windows Services management console lets users start/stop installed services and modify their properties, but does not support installing new services. This task is can be done via a command line, or during installation of an application.</p>
+        <p>Instead, GigaSpaces <MadCap:variable name="General.XAPNet" /> provides a supplementary tool called <span class="tc-bold">GigaSpaces Services Manager</span> (located at the <code>bin</code> folder) which simplifies common administration tasks:</p>
+        <ul>
+            <li>Install/uninstall Service instances of <code>Grid Service Agent</code> as you please.</li>
+            <li>Perform common operations directly from the tool, no need to switch to the Windows Console (e.g. Start, Stop, change startup type).</li>
+            <li>Side-by-side support for GigaSpaces Installations of different versions on the same machine.</li>
+            <li>Automatically creates a folder for new service instances, with an XML configuration and log files.</li>
+            <li>Create custom templates of different service grid configurations.</li>
+        </ul>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/dotnet/ServicesManager.jpg" alt="ServicesManager.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <div class="tc-admon-note">
+            <p>Some operations require elevated permissions - make sure you run with appropriate permissions. If you're using Windows Vista or later and UAC is turned on, it is recommended to use "Run As Administrator' (for more info see: <a href="http://support.microsoft.com/kb/922708">http://support.microsoft.com/kb/922708</a>).</p>
+        </div>
+        <h1><a name="advanced"></a>Advanced</h1>
+        <h2><a name="service-properties"></a>Service Properties</h2>
+        <p>To view a service properties, right-click it and select <span class="tc-bold">Properties</span>, or simply double-click it. A dialog window with the service properties will appear.</p>
+        <h2><a name="configuration"></a>Configuration</h2>
+        <p>The Service Properties window shows the name of the service configuration file. Either Click the configuration label to open the configuration file using your default XML viewer, or click the location label to open the service folder, then edit the configuration file using your favorite XML editor.</p>
+        <div class="tc-admon-note">
+            <p> In order for configuration changes to take effect, the service needs to be stopped and restarted.</p>
+        </div>
+    </body>
+</html>

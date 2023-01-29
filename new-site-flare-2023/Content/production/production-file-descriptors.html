@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>File Descriptors</h1>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> LRMI communication layer opens network connections dynamically. With large-scale applications, or with clients that are running a large number of threads accessing the data grid, you might end up having a large number of file descriptors used both on the client and server side. You may also have multiple JVMs running on the machine. If so, you may have to increase the default max user processes value.</p>
+        <p>For Linux environments, if you don't have the correct file descriptor settings, there will be <span class="tc-bold">Too many open files</span> error messages in the <MadCap:variable name="General.ProductNameXAP" /> processes log files or on the client side. Low file descriptor values will affect application stability, along with the ability of clients to connect to the <MadCap:variable name="General.ProductNameXAP" /> in-memory data grid.  Set both the <span class="tc-bold">System</span> level File Descriptor Limit and the <span class="tc-bold">Process</span> level File Descriptor Limit to high values to avoid these problems (see below for instructions).</p>
+        <h1><a name="system-file-descriptor-limit"></a>System File Descriptor Limit</h1>
+        <p>To change the number of file descriptors in Linux, as the <code>root</code> user edit the following line in the <code>/etc/sysctl.conf</code> file:</p><pre><code class="language-bash">fs.file-max = 300000
+</code></pre>
+        <p>300000 will be the new file descriptor limit that you want to set.</p>
+        <p>Apply the change by running the following command:</p><pre><code class="language-bash">/sbin/sysctl -p
+</code></pre>
+        <p>Verify your settings using:</p><pre><code class="language-bash">cat /proc/sys/fs/file-max 
+</code></pre>
+        <p>OR</p><pre><code class="language-bash">sysctl fs.file-max
+</code></pre>
+        <h1><a name="process-file-descriptor-limit"></a>Process File Descriptor Limit</h1>
+        <p>The Linux OS by default has a relatively small number of file descriptors available and max user processes (1024). You should make sure that your standalone clients, or GSA/GSM/GSC/LUS using a user account which have its <span class="tc-bold">maximum open file descriptors (open files) and max user processes</span> configured to a high value. A good value is 32768.</p>
+        <p>Setting the <span class="tc-bold">max open file descriptors</span> and <span class="tc-bold">max user processes</span> is done via the following call:</p><pre><code class="language-bash">ulimit -n 32768 -u 32768
+</code></pre>
+        <p>Alternatively, you should have the following files updated:</p><pre><code class="language-bash">/etc/security/limits.conf
+
+- soft    nofile          32768
+- hard    nofile          32768
+
+/etc/security/limits.d/90-nproc.conf
+
+- soft nproc 32768
+</code></pre>
+        <div class="tc-admon-note">
+            <p>See <a href="https://rtcamp.com/tutorials/linux/increase-open-files-limit/" target="_blank">increase-open-files-limit</a> for more details.</p>
+        </div>
+        <h1><a name="monitoring-utilized-file-descriptors"></a>Monitoring Utilized File Descriptors</h1>
+        <p>You can monitor the <code>MaxFileDescriptorCount</code> and <code>OpenFileDescriptorCount</code> using the JConsole:</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/jmx-file-descriptors.png" alt="jmx-file-descriptors.png" class="tc-picture100" />
+        </div>
+    </body>
+</html>

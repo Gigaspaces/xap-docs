@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Global vs. Local GSM</h1>
+        <div class="tc-admon-note">
+            <p>This page is irrelevant for <MadCap:variable name="General.ProductNameXAP" /> Manager, and explains how to setup multiple GSMs manually to achieve high availability. This technique is still supported, but outdated, and will be phased out in the future. It's highly recommended to use <a href="xap-manager.html"> Manager</a> instead, which is both easier to use and provides superior <a href="xap-manager.html#high-availability">high availability</a>.</p>
+        </div><a name="local-gsm"></a>
+        <h1><a name="local-gsm"></a>Local GSM</h1>
+        <p>Similar to the lookup service you may run a global GSM or a local GSM. In this case a local GSM will allow you to control the host machine where the GSM and its deploy folder will be located (configured via the <code>com.gs.deploy</code> system property). The GSM deploy folder used at the deployment time when provisioning a deployed PU into exiting GSCs or once a new GSC is started<MadCap:conditionalText MadCap:conditions="Version.15-2-died">  (manually or dynamically via the ESM)</MadCap:conditionalText>, where it is downloading from the GSM its PU configuration (pu.xml) and relevant PU files.</p>
+        <p>When performing hot deployment to support rolling upgrade or other maintenance activities the location of the GSMs is important since you must place the updated PU files in the machines running the GSM. A GSM may be running in an active or slave mode - it is recommended to place updated PU files on both GSM's deploy folder.
+If you have a large grid (over 100 GSCs) or a large PU (over 10MB) with many files you may want to choose specific machines with special network or CPU capacity to run the GSM - This is another scenario where the local GSM setup should be considered.</p>
+        <h1><a name="local-setup-example"></a>Local Setup Example</h1>
+        <p>With the following example we have <code>Machine A</code>, <code>Machine B</code>, <code>Machine C</code> and <code>Machine D</code> running the service grid.  We would like to start two GSMs. We have decided that <code>Machine A</code> and <code>Machine D</code> will be running a GSM.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/global-localGSM1.jpg" alt="global-localGSM1.jpg" class="tc-picture80" />
+        </div>
+        <p>The agent on these machines will be started using the following:</p><pre><code class="language-bash">gs-agent --gsm=1
+</code></pre>
+        <p><code>Machine B</code> and <code>Machine C</code> will not run a GSM. The agent on these machines will be started using the following:</p><pre><code class="language-bash">gs-agent 
+</code></pre>
+        <p>Upon startup the only <code>Machine A</code> and <code>Machine D</code> agent's that are configured to start a local GSM will have it running.  In case of <code>Machine A</code> or <code>Machine D</code> failure the system will have a single GSM. Service Grid components (LUS , GSC) will be notified for this missing GSM. Once the missing GSM will be restarted on the relevant machine Service Grid components will be notified. With a network running a DNS - you may start a new machine with the same Host name to support total machine failure while keeping number of running GSMs intact.</p><a name="global-gsm"></a>
+        <h1><a name="global-gsm"></a>Global GSM</h1>
+        <p>With the global GSM setup - Once a running GSM failed (as a result machine termination, or GSM process failure) , a different agent that is not running a GSM will be starting a GSM to enforce the SLA specified at the agent startup. In this case all machines are equal and may run a GSM. Two GSMs is the recommended number per service grid.</p>
+        <h1><a name="global-setup-example"></a>Global Setup Example</h1>
+        <p>With the following example we have <code>Machine A</code>, <code>Machine B</code>, <code>Machine C</code> and <code>Machine D</code> running the service grid.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/global-localGSM2.jpg" alt="global-localGSM2.jpg" class="tc-picture80" />
+        </div>
+        <p>All agents are started with the same command instructing them to maintain two global GSMs across the entire service grid:</p><pre><code class="language-bash">gs-agent --global.gsm=2 
+</code></pre>
+        <p>Upon startup the agents will decide which ones will run a GSM and which won't.</p>
+    </body>
+</html>

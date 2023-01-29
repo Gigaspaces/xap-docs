@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <map id="map1">
+            <area shape="rectangle" coords="31,228,438,655" dragDirection="0" />
+            <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
+            <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
+        </map>
+        <h1 class="tc-pagetitle">SpaceDeck – Configuration File for Data Pipeline</h1>
+        <p>In the screen to define a new data pipeline, the configuration parameters can be entered manually, or can be defined in a configuration file. The configuration can contain all or part of the configuration information. It is in JSON format.</p>
+        <p>A sample configuration file, and explanation of the parameters, are shown below.</p>
+        <h1>Sample Data Pipeline Configuration File</h1><pre><code class="language-bash">
+{
+  "name": "pipeline",
+  "spaceName": "ditest1-ts",
+  "sorName": "DB2",
+  "cdcProvider": "IIDR",
+  "jobConfigs":{
+    "CDC": {
+      "kafkaTopic": "noi_cdc"
+    },
+    "INITIAL_LOAD": {
+      "kafkaTopic":"noi_il"
+    }
+  },
+  "batchWrite": 1000,
+  "checkpointInterval": 1000
+}<![CDATA[
+]]></code></pre>
+        <h2>Configuration File Parameters</h2>
+        <ul>
+            <li>
+                <p><b>name</b> – name you are assigning to the pipeline </p>
+            </li>
+            <li>
+                <p><b>spaceName</b> – Space name that will receive the pipeline data</p>
+            </li>
+            <li>
+                <p><b>sorName</b> –  name of the database in the System of Record</p>
+            </li>
+            <li>
+                <p><b>cdcProvider</b> –  connector type, e.g. IIDR</p>
+            </li>
+            <li>
+                <p><b>CDC:kafkaTopic</b> –  name of the Kafka topic for CDC changes</p>
+            </li>
+            <li>
+                <p><b>INITIAL_LOAD:kafkaTopic</b> – name of the Kafka topic for initial load changes</p>
+            </li>
+            <li>
+                <p><b>batchWrite</b> – size of the single batch write from a DI layer to the space. The value specified here is the number of commands.</p>
+            </li>
+            <li>
+                <p><b>checkpointInterval</b> –  interval, in milliseconds, that the data integration layer performs a commit to Kafka and flush to Space</p>
+            </li>
+        </ul>
+    </body>
+</html>
