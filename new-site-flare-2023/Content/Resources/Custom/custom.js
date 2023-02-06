@@ -233,20 +233,20 @@
         vMenu += menuEnd;
         $(vMenu).appendTo(navBar);
 
-        for (var r in resourcesData) {
-          mTarget = resourcesData[r].target || '_self';
-          if (!rMenu)
-            rMenu = menuStart.replace('MENU_ID', 'resources-menu').replace('MENU_LABEL', r);
-          else
-            rMenu += '<li><a href="' + resourcesData[r].url + '" target="' + mTarget + '">' + r + '</a></li>';
-        }
-        rMenu += menuEnd;
-        $(rMenu).appendTo(navBar);
+        // for (var r in resourcesData) {
+        //   mTarget = resourcesData[r].target || '_self';
+        //   if (!rMenu)
+        //     rMenu = menuStart.replace('MENU_ID', 'resources-menu').replace('MENU_LABEL', r);
+        //   else
+        //     rMenu += '<li><a href="' + resourcesData[r].url + '" target="' + mTarget + '">' + r + '</a></li>';
+        // }
+        // rMenu += menuEnd;
+        // $(rMenu).appendTo(navBar);
 
 
-        for (var i = 0; i < buttonsData.length; i++) {
-          $(buttonsData[i]).appendTo(navBar);
-        }
+        // for (var i = 0; i < buttonsData.length; i++) {
+        //   $(buttonsData[i]).appendTo(navBar);
+        // }
 
         navBar.appendTo('.title-bar-layout');
         var searchIcon = "<div id='search-icon'></div>";
