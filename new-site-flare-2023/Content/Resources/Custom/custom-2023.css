@@ -12,6 +12,112 @@ nav.title-bar.tab-bar.sticky {
   background-size: cover;
   height: 200px;
 }
+/* New header */
+
+.header-left
+{
+	order: 2;
+}
+
+.header-right
+{
+	order: 3;
+}
+
+.header ul ul
+{
+	display: none;
+	position: absolute;
+	left: 0;
+	padding: 0;
+}
+
+.header > ul > li:hover > ul
+{
+	display: flex;
+	flex-wrap: wrap;
+	width: 600px;
+	height: 167px;
+	padding: 24px 24px;
+	border-radius: 18px;
+	flex-direction: column;
+	background: white;
+	margin-top: 0px;
+}
+
+.header ul
+{
+	display: flex;
+	justify-content: space-between;
+	margin: 0;
+}
+
+.header
+{
+	z-index: 1001;
+}
+
+.header > ul > li
+{
+	margin: 0;
+	position: relative;
+}
+
+.header > ul > li > p > a
+{
+	color: white !important;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 18px;
+	text-align: center;
+	font-weight: 200;
+	text-decoration: none !important;
+}
+
+.header-left > ul > li > p > a:after
+{
+	display: inline-block;
+	content: ' ';
+	background-image: url('images/header-arrow.svg');
+	background-repeat: no-repeat;
+	width: 9px;
+	background-size: 9px;
+	height: 7px;
+	margin-left: 8px;
+}
+
+.header > ul > li > p
+{
+	margin: 0;
+	padding: 9px 15px 8px 15px;
+}
+
+.header ul ul li, .header ul ul li p {
+    margin: 0;
+}
+
+.header > ul > li > p.contact-us a
+{
+	color: #bed631 !important;
+	cursor: pointer;
+}
+
+p.free-trial {
+    border-radius: 25px;
+    background-color: #BED631;
+    width: 116px;
+    position: relative;
+    height: 42px;
+    padding: 0!important;
+}
+
+.header > ul > li > p.free-trial a {
+    color: #0C0D44!important;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    border-radius: 25px;
+}
 
 .landing p {
   font-family: Poppins, Arial, sans-serif;
