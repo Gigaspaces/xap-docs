@@ -1,147 +1,152 @@
 $(document).ready(function(){	
-    $('.header-left').insertAfter('.logo-wrapper');
-    $('.header-right').insertAfter('.header-left');
-    $('html').addClass('show');
+  $('.header-left').insertAfter('.logo-wrapper');
+  $('.header-right').insertAfter('.header-left');
+  $('html').addClass('show');
 });
 
 (function (w) {
-    var _self = {
-      props: {
-        version: '2.0.0',
-        prefix: 'TOPNAV:::',
-        debug: location.protocol == 'file:' || location.hostname == 'localhost',
-        domain: "\.gigaspaces\.com",
-        isIframe: window.self !== window.top,
-        prodVer: (new RegExp(/\/(\d+?[\.\d]*?|latest)\//).test(location.href)) ? location.href.match(/\/(\d+?[\.\d]*?|latest)\//)[1] : null,
+  var _self = {
+    props: {
+      version: '2.0.0',
+      prefix: 'TOPNAV:::',
+      debug: location.protocol == 'file:' || location.hostname == 'localhost',
+      domain: "\.gigaspaces\.com",
+      isIframe: window.self !== window.top,
+      prodVer: (new RegExp(/\/(\d+?[\.\d]*?|latest)\//).test(location.href)) ? location.href.match(/\/(\d+?[\.\d]*?|latest)\//)[1] : null,
+    },
+    log: function () {
+      if (!_self.props.debug) return;
+      var args = Array.prototype.slice.call(arguments);
+      args.unshift(_self.props.prefix);
+      console.log.apply(console, args);
+    },
+    version: function () {
+      _self.log('version::', _self.props.version);
+    },
+    init: function () {
+      var re = new RegExp(_self.props.domain + '$');
+      if (re.test(location.hostname)) _self.props.debug = false;
+      _self.ready();
+    },
+    ready: function () {
+      $(function () {
+        debug('Calling methods');
+        _self.methods.breadcrumb();
+        _self.methods.generateNavItems();
+        _self.methods.addClipboardButtons();
+        $('.sidenav').on('loaded', function () {
+        $('#footer').addClass('show');
+        });
+      });
+    },
+    methods: {
+      breadcrumb: function () {
+          var homelink = $('a.logo').attr('href');
+          console.log(homelink);
+          if($('.breadcrumbs').length) {
+            $('.breadcrumbs').prepend('<span id="breadcrumb-home"><a class="MCBreadcrumbsLink" href="'+ homelink +'">Docs Home</a></span><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>')
+          }
+          $('a.logo').attr('href', 'https://www.gigaspaces.com/').attr('target','_blank');
       },
-      log: function () {
-        if (!_self.props.debug) return;
-        var args = Array.prototype.slice.call(arguments);
-        args.unshift(_self.props.prefix);
-        console.log.apply(console, args);
-      },
-      version: function () {
-        _self.log('version::', _self.props.version);
-      },
-      init: function () {
-        var re = new RegExp(_self.props.domain + '$');
-        if (re.test(location.hostname)) _self.props.debug = false;
-        _self.ready();
-      },
-      ready: function () {
-        $(function () {
-          debug('Calling methods');
-          _self.methods.generateNavItems();
-          _self.methods.addClipboardButtons();
-
+      addClipboardButtons: function() {
+        var clipboardButton = '<div class="clipboard"><button title="Copy to clipboard"></button></div>';
+        $('pre').prepend(clipboardButton);
+        $('.clipboard').click( function() {
+          var clipboardText = $(this).next('code');
+          var clipboardRange = document.createRange();
+          clipboardRange.selectNodeContents(clipboardText[0]);
+          var selectedText = window.getSelection();
+          selectedText.removeAllRanges();
+          selectedText.addRange(clipboardRange);
+          document.execCommand('copy');
+          selectedText.removeRange(clipboardRange);
+          var selectedButton = $(this).children('button');
+          selectedButton.addClass('success');
+          setTimeout(function(){
+            $(selectedButton).removeClass('success');
+          }, 2000);
+          return false;
         });
       },
-      methods: {
-        breadcrumb: function () {
-            var homelink = $(a.logo).attr('href');
-          $('.breadcrumbs').prepend('<span id="breadcrumb-home"><a class="MCBreadcrumbsLink" href="'+ homelink +'">Docs Home</a></span><span class="MCBreadcrumbsDivider"> &gt; </span>')
-        },
-        addClipboardButtons: function() {
-          var clipboardButton = '<div class="clipboard"><button title="Copy to clipboard"></button></div>';
-          $('pre').prepend(clipboardButton);
-          $('.clipboard').click( function() {
-            var clipboardText = $(this).next('code');
-            var clipboardRange = document.createRange();
-            clipboardRange.selectNodeContents(clipboardText[0]);
-            var selectedText = window.getSelection();
-            selectedText.removeAllRanges();
-            selectedText.addRange(clipboardRange);
-            document.execCommand('copy');
-            selectedText.removeRange(clipboardRange);
-            var selectedButton = $(this).children('button');
-            selectedButton.addClass('success');
-            setTimeout(function(){
-              $(selectedButton).removeClass('success');
-            }, 2000);
-            return false;
-          });
-        },
-        generateNavItems: function () {
-          _self.utils.getFile({
-            callback: _self.methods.buildNavItems,
-            filename: '/custom.menu.js'
-          });
-        },
-        buildNavItems: function () {
-          _self.methods.breadcrumb();
-          var vMenu = null;
-          var mLabel, mTarget;
-          var navBar = $('<div class="nav-extn-wrapper"></div>');
-          var menuStart = '<ul id="MENU_ID" class="nav-menu"><li><a class="caret" href="#">MENU_LABEL</a><ul>';
-          var menuEnd = '</ul></li></ul>';
-  
-          $(document)
-            .mouseup(function (e) {
-              if (!$('.nav-menu>li>a').is(e.target))
-                $('.nav-menu>li.open').removeClass('open');
-            });
-  
-          if (_self.props.debug) _self.props.prodVer = 'latest';
-          vMenu = menuStart.replace('MENU_ID', 'version-menu');
-          for (var v in versionData) {
-            mLabel = versionData[v].label || v;
-            mTarget = versionData[v].target || '_self';
-            if (v == _self.props.prodVer) {
-              vMenu = vMenu.replace('MENU_LABEL', mLabel);
-  
-              /* Add topic banner */
-              var bannerType = versionData[v].topicBanner;
-              if (bannerType) {
-                $('.bodyContent').prepend($(topicBanner[bannerType]));
-                $('.topic-content').prepend($(topicBanner[bannerType]));
-              }
-            } /*  else { */
-            if (versionData[v].hide) continue;
-            vMenu += '<li><a' + ((v == _self.props.prodVer) ? ' class="selected"' : '') + ' href="' + versionData[v].url + '" target="' + mTarget + '">' + mLabel + '</a></li>';
-            /* } */
-          }
-          // If MENU_LABEL was not replaced (no version), set place holder
-          vMenu = vMenu.replace('MENU_LABEL', 'Select a Version');
-          vMenu += menuEnd;
-          $(vMenu).appendTo(navBar);
-  
-          navBar.appendTo('.title-bar-layout');
-          
-          $('#version-menu>li>a')
-            .on('click', function (e) {
-              e.preventDefault();
-              $('#version-menu>li').toggleClass('open');
-            });
-            $('#version-menu ul a').on('touchstart', function (e) {
-              document.location.href = $(this).attr('href');
-            });
-        }
+      generateNavItems: function () {
+        _self.utils.getFile({
+          callback: _self.methods.buildNavItems,
+          filename: '/custom.menu.js'
+        });
       },
-      utils: {
-        getVar: function (vname) {
-          return $(vname).text();
-        },
-        getFile: function (options) {
-          debug('getFile::protocol:', location.protocol);
-          if (location.protocol == 'file:') {
-            debug('getFile::protocol:Aborting get file on local files system');
-            return false;
-          }
-  
-          options.filename = options.filename || '';
-          options.callback = options.callback || function () {};
-          debug('getFile::options:', options);
-  
-          debug('getFile::filename:', options.filename);
-          $.getScript(options.filename)
-            .done(function () {
-              options.callback(options);
-            });
+      buildNavItems: function () {
+        var vMenu = null;
+        var mLabel, mTarget;
+        var navBar = $('<div class="nav-extn-wrapper"></div>');
+        var menuStart = '<ul id="MENU_ID" class="nav-menu"><li><a class="caret" href="#">MENU_LABEL</a><ul>';
+        var menuEnd = '</ul></li></ul>';
+
+        $(document)
+          .mouseup(function (e) {
+            if (!$('.nav-menu>li>a').is(e.target))
+              $('.nav-menu>li.open').removeClass('open');
+          });
+
+        if (_self.props.debug) _self.props.prodVer = 'latest';
+        vMenu = menuStart.replace('MENU_ID', 'version-menu');
+        for (var v in versionData) {
+          mLabel = versionData[v].label || v;
+          mTarget = versionData[v].target || '_self';
+          if (v == _self.props.prodVer) {
+            vMenu = vMenu.replace('MENU_LABEL', mLabel);
+
+            /* Add topic banner */
+            var bannerType = versionData[v].topicBanner;
+            if (bannerType) {
+              $('.bodyContent').prepend($(topicBanner[bannerType]));
+              $('.topic-content').prepend($(topicBanner[bannerType]));
+            }
+          } /*  else { */
+          if (versionData[v].hide) continue;
+          vMenu += '<li><a' + ((v == _self.props.prodVer) ? ' class="selected"' : '') + ' href="' + versionData[v].url + '" target="' + mTarget + '">' + mLabel + '</a></li>';
+          /* } */
         }
+        // If MENU_LABEL was not replaced (no version), set place holder
+        vMenu = vMenu.replace('MENU_LABEL', 'Select a Version');
+        vMenu += menuEnd;
+        $(vMenu).appendTo(navBar);
+
+        navBar.appendTo('.title-bar-layout');
+        
+        $('#version-menu>li>a')
+          .on('click', function (e) {
+            e.preventDefault();
+            $('#version-menu>li').toggleClass('open');
+          });
+          $('#version-menu ul a').on('touchstart', function (e) {
+            document.location.href = $(this).attr('href');
+          });
       }
-    };
-    var debug = _self.log;
-    w.TopNav = _self;
-    _self.init();
-  })(window || {});
-  
+    },
+    utils: {
+      getVar: function (vname) {
+        return $(vname).text();
+      },
+      getFile: function (options) {
+        debug('getFile::protocol:', location.protocol);
+        if (location.protocol == 'file:') {
+          debug('getFile::protocol:Aborting get file on local files system');
+          return false;
+        }
+
+        options.filename = options.filename || '';
+        options.callback = options.callback || function () {};
+        debug('getFile::options:', options);
+
+        debug('getFile::filename:', options.filename);
+        $.getScript(options.filename)
+          .done(function () {
+            options.callback(options);
+          });
+      }
+    }
+  };
+  var debug = _self.log;
+  w.TopNav = _self;
+  _self.init();
+})(window || {});
