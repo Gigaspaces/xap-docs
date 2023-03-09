@@ -166,6 +166,10 @@ p.free-trial {
   padding-bottom: 0 !important;
 }
 
+.landing a:after {
+  display: none;
+}
+
 .landing p {
   font-family: Poppins, Arial, sans-serif;
 }
@@ -558,10 +562,10 @@ MadCap|breadcrumbsProxy {
   border-bottom: none;
   mc-breadcrumbs-divider: ">>";
   mc-breadcrumbs-prefix: "";
-  margin: 20px;
-  max-width: 90%;
+  margin: 20px 0;
   padding-bottom: 20px;
   padding-top: 0px;
+  line-height: 26px;
 }
 
 .breadcrumbs {
@@ -571,7 +575,7 @@ MadCap|breadcrumbsProxy {
 span#breadcrumb-home {
   background: #e6e5e5;
   border-radius: 18px;
-  padding: 5px 10px;
+  padding: 2px 10px;
 }
 
 .topic-content {
@@ -663,6 +667,7 @@ ul.sidenav > li {
 
 .content .topic-container {
   display: flex;
+  padding-right: 60px;
 }
 
 .content .topic-container .topic-content {
@@ -772,7 +777,7 @@ div#ipn-toggle-open:before {
   z-index: 999;
   width: 18px !important;
   top: 287px;
-  right: 299px;
+  right: 342px;
   min-height: 20px !important;
   border-radius: 2px;
   border: solid 1px #dddddd;
@@ -786,7 +791,7 @@ div#ipn-toggle-open:before {
 }
 
 #ipn-toggle-closed {
-  right: 39px;
+  right: 82px;
   display: none;
   background-color: #f8f8f8;
   background-position: center center;
@@ -1064,8 +1069,13 @@ div#ipn-toggle-open:before {
   margin: 20px 0;
 }
 
-.searchTopic #last-updated, .searchTopic .ipn-content {
+.searchTopic #last-updated, 
+.searchTopic .ipn-content {
   display: none;
+}
+
+.searchTopic .content .topic-container {
+  padding-right: 0;
 }
 
 /* Product label bar */
@@ -1237,10 +1247,6 @@ h1 {
     margin-left: 22px;
   }
 
-  .off-canvas-wrapper-inner .main-section {
-    overflow: hidden;
-  }
-
   ul#version-menu {
     top: 0;
     right: 30px;
@@ -1258,10 +1264,13 @@ h1 {
     flex-basis: 40%;
   }
 
+  .content .topic-container {
+    padding-right: 0;
+  }  
+
   .foundation-wrap,
   .off-canvas-wrapper {
     overflow-y: hidden;
-    overflow: auto;
   }
 
   .landing .region-top {
@@ -1336,6 +1345,7 @@ h1 {
 
   .content .topic-container {
     padding: 0 10px;
+    padding-bottom: 60px;
   }
 
   .content .topic-container .ipn-content {
@@ -1350,9 +1360,12 @@ h1 {
     height: auto !important;
   }
 
-  .body-container {
-    /* min-height: calc(100vh - 86px - 3rem); */
-  }
+	.body-container
+	{
+		overflow: auto;
+		max-height: calc(100vh - 200px);
+		margin-bottom: 20px;
+	}
 
   .landing div#mc-main-content {
     padding-bottom: 70px;
@@ -1365,6 +1378,10 @@ h1 {
   .landing .footer-top,
   .landing .footer-bottom {
     display: none;
+  }
+
+  .footer-copyright {
+    padding-bottom: 0;
   }
 }
 
