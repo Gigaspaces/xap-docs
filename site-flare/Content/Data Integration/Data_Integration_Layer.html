@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <div>
+            <h1 class="tc-pagetitle" style="text-align: left;">Data Integration (DI) Layer</h1>
+            <p style="text-align: left;">Data Integration (DI) is the gateway for incoming data into the Data Integration Hub (DIH) system. The DI components are delivered as part of the <MadCap:variable name="General.CompanyName" /> DIH&#160;Package.</p>
+            <p style="text-align: left;">DI contains four components which are responsible for reading and analyzing Kafka messages and for pushing them into the Space.</p>
+            <h2 style="text-align: left;">DI&#160;Layer Overview</h2>
+            <p style="text-align: left;">The DI&#160;Module is illustrated as follows:</p>
+            <p style="text-align: left;">
+                <img src="../Resources/Images/DILayer.png" style="width: 668px;height: 285px;" />
+            </p>
+            <h1>1. Apache Flink
+</h1>
+            <p><MadCap:variable name="General.CompanyName" /> uses Apache Flink as it is an open source framework an distributed processing engine for stateful computations over unbounded and bounded data streams. &#160;Flink is designed to run in all common cluster environments, performing computations at in-memory speed and at any scale. It is also a powerful and fast framework for stream processing. It also allows deployment of different types of applications at run-time. In addition, Flink supports streaming and batch mode, which is useful for periodic batch updates. One of the most common types of applications that are powered by Flink are Data Pipeline Applications, which is why we chose to use it in our Smart DIH solution.</p>
+            <p>Extract transform load (ETL) is a common approach used to convert and move data between storage systems. &#160;Often, ETL&#160;jobs are periodically triggered to copy data from transactional database systems to an analytical database or data warehouse. Data pipelines serve a similar purpose as ETL jobs in that they transform and enrich data and can move it from one storage system to another, However, they operate in a continuous streaming mode instead of being periodically triggered.</p>
+            <p>Additional Information: <a href="https://flink.apache.org/">Apache Flink.</a></p>
+            <p>&#160;</p>
+            <MadCap:snippetBlock src="../Resources/Snippets/Content/one-click-or-data-pipeline.flsnp" MadCap:conditionTagExpression="include[SnippetConditions.SnippetCondition01]" />
+            <h1>2. Metadata Manager (MDM)</h1>
+            <p>The Metadata Manager (MDM) is a stateful data service which communicates with external components via REST&#160;APIs. It can be deployed as a standalone application. It uses Zookeeper (ZK) as a persistent data store.</p>
+            <p>&#160;</p>
+            <p><b>Functionality </b>
+            </p>
+            <p>The MDM stores, edits and retrieves information for the following:</p>
+            <ul>
+                <li>
+                    <p>The source table structure</p>
+                </li>
+                <li>
+                    <p>The structure mapping to the space type</p>
+                </li>
+                <li>
+                    <p>The data types conversion maps</p>
+                </li>
+                <li>
+                    <p>The configurations of the DI&#160;Manager and Pipeline, which are DI&#160;layer components</p>
+                </li>
+                <li>
+                    <p>The pluggable CDC templates</p>
+                </li>
+                <li>
+                    <p>The created and dropped types in the Space</p>
+                </li>
+            </ul>
+            <p>The MDM refreshes its metadata on-demand from sources into the MDM data store (ZK). The MDM compares and repairs stored metadata against created objects and in Space. The MDM also provides information about stored metadata over REST to the UI and DI&#160;Manager.</p>
+            <p>&#160;</p>
+            <p><b>Diagram</b>
+            </p>
+            <p>
+                <img src="../Resources/Images/DIMDM.png" style="width: 603px;height: 367px;" />
+            </p>
+            <p><b>MDM Swagger</b>
+            </p>
+            <p>The MDM&#160;Swagger URL is: &lt;di-host&gt;:6081/swagger-ui.</p>
+            <p>From this URL run the REST&#160;command for stroring and retrieving information to and from the MDM. </p>
+            <p>
+                <img src="../Resources/Images/DIMDMSwagger.png" style="width: 750px;height: 466px;" />
+            </p>
+            <h1>3. DI Processor</h1>
+            <p>The DI&#160;Processor is a Java library deployed to the Flink cluster. It is operated by the Flink Task Manager and is part of the Flink job. &#160;It is used to process Kafka messages and automatically identifies the consumed message format based on a pluggable CDC template. &#160;It converts messages into a Space document and writes the Space document to the Space.</p>
+            <p>&#160;</p>
+            <p><b>Flow</b>
+            </p>
+            <p>
+                <img src="../Resources/Images/DIProcessorFlow1.png" style="width: 691px;height: 354px;" />
+            </p>
+        </div>
+        <ul>
+            <li>
+                <p>Parsing Kafka messages</p>
+            </li>
+            <li>
+                <p>Determining source table information</p>
+            </li>
+            <li>
+                <p>Determining CDC operation type (INSERT, UPDATE or DELETE)</p>
+            </li>
+            <li>
+                <p>Extracting all column data from the parsed message.</p>
+            </li>
+        </ul>
+        <p style="text-indent: 0.5in;">Extraction information is provided by MDM&#160;service</p>
+        <p style="text-indent: 0.5in;">Extraction information includes names of attributes, their types and json path used to extract the values</p>
+        <ul>
+            <li>
+                <p>Storing extracted data as table row (e,g, Flink Row for interoperability) </p>
+            </li>
+        </ul>
+        <p>&#160;</p>
+        <p>
+            <img src="../Resources/Images/DIProcessorFlow2.png" style="width: 676px;height: 316px;" />
+        </p>
+        <p>The <b>SpaceDocumentMapper</b> is responsible for converting the table row into corresponding SpaceDocuments which is stored in the <b>OpDoc</b> entity together with the operation type.</p>
+        <p>The conversion is performed according to the source table name. Multiple types of SpaceDocuments can be generated from a single table row. &#160;</p>
+        <p>Conversion may include:</p>
+        <ul>
+            <li>
+                <p>Mapping of row column name to the space document attribute name</p>
+            </li>
+            <li>
+                <p>Conversion of types</p>
+            </li>
+            <li>
+                <p>Non-trivial transformations</p>
+            </li>
+            <li>
+                <p>Calculated expressions</p>
+            </li>
+        </ul>
+        <p><b>OpDoc</b>
+        </p>
+        <p>The OpDoc entity contains the following information:</p>
+        <ul>
+            <li>
+                <p>Operation (insert, delete or update)</p>
+            </li>
+            <li>
+                <p>Space Document</p>
+            </li>
+            <li>
+                <p>Partition ID</p>
+            </li>
+            <li>
+                <p>Routing property name</p>
+            </li>
+            <li>
+                <p>Transaction ID</p>
+            </li>
+        </ul>
+        <p>Example:</p>
+        <p>
+            <img src="../Resources/Images/DI_OpDoc.png" />
+        </p>
+        <p><b>Keyed by partition id</b>
+        </p>
+        <p>This is the process that attached a space partition ID to each OpDoc according to the SpaceType routing definition.</p>
+        <p>&#160;</p>
+        <p><b>Time window aggregation</b>
+        </p>
+        <p>The process aggregates all OpDocs received during a certain time period for efficient space write operation.</p>
+        <p>&#160;</p>
+        <p><b>Write to Space</b>
+        </p>
+        <p>At this phase, all aggregated OpDocs are written to the appropriate partition in space asynchronously using the space task execute mechanism. </p>
+        <p>&#160;</p>
+        <div>
+            <h1>4. DI Manager</h1>
+            <p>The DI&#160;manager is an interface for communicating with Flink. It also communicates with external components such as UI&#160;and MDM via REST&#160;API. In addition, the DI&#160;Manager retrieves a correct schema and tables structure from a Source of Record (SOR) and stores it in the MDM.</p>
+            <p>The DI&#160;Manager-Flink operations are:</p>
+            <ul>
+                <li>
+                    <p>Creating, editing and dropping Flink jobs</p>
+                </li>
+                <li>
+                    <p>Starting and stopping Flink jobs</p>
+                </li>
+                <li>
+                    <p>Getting Flink's job status</p>
+                </li>
+            </ul>
+            <p>&#160;</p>
+            <p><b>Manager Swagger</b>
+            </p>
+            <p>The DI&#160;Manager Swagger URL is: &lt;di-host&gt;:6080/swagger-ui.</p>
+            <p>From this URL run the REST&#160;command for retrieving information from the SOR, storing it in the MDM and to create, stop and start Pipelines.</p>
+            <p>&#160;</p>
+            <p>
+                <img src="../Resources/Images/DI_Swagger_Manager.png" style="width: 582px;height: 368px;" />
+            </p>
+            <h1>5. DI Activation
+</h1>
+            <p>DI&#160;can be activated by the SpaceDeck UI or via Postman. Using SpaceDeck, the tools can be defined to bring legacy System of&#160;Record (SoR)&#160;databases into the in-memory data grid that is the core of the GigaSpaces systems.</p>
+            <p>&#160;</p>
+            <p>Create and control pipelines via Postman:</p>
+            <p>
+                <img src="../Resources/Images/DIPostman1.png" style="width: 266px;height: 235px;" />  <a href="../Resources/Images/DIPostman4.png"><img src="../Resources/Images/DIPostman2.png" style="width: 252px;height: 227px;" /> <img src="../Resources/Images/DIPostman3.png" style="width: 288px;height: 157px;" /></a></p>
+            <p>&#160;</p>
+            <p><a href="../Resources/Images/DIPostman4.png"> <img src="../Resources/Images/DIPostman4.png" style="width: 304px;height: 119px;" /> <img src="../Resources/Images/DIPostman5.png" style="width: 308px;height: 202px;" /></a>
+            </p>
+            <p style="text-align: center;">&#160;</p>
+        </div>
+    </body>
+</html>
