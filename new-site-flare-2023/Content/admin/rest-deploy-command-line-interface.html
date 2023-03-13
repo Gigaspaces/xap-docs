@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Deploying REST Service with Command Line</h1>
+        <div class="tc-admon-note">
+            <p>In order to interact with a secured grid you need to log in first. See <a href="command-line-interface-cli-security.html">Using the CLI in a Secured Environment</a>.</p>
+        </div>
+        <p><MadCap:variable name="General.ProductNameXAP" /> provides an interactive command line tool as part of the product. This can be started using gs.sh/bat command (referred to as <span class="tc-bold">GigaSpaces CLI</span>).</p>
+        <p>This tool provides many commands that can be used to manage and gather information about the various GigaSpaces runtime components. This section describes the commands supported by GigaSpaces CLI.</p>
+        <h1><a name="deploy-rest-service"></a>Deploy Rest Service</h1>
+        <h2><a name="syntax"></a>Syntax</h2><pre><code class="language-bash">gs&gt; deploy-rest -spacename [space name] -port [port number]
+</code></pre>
+        <h2><a name="description"></a>Description</h2>
+        <p>Deploys a <a href="../dev-java/rest-service-overview.html">Rest Processing Unit</a>, which starts an embedded jetty and enables interactions with the provided <code>spacename</code>.</p>
+        <p>The processing unit's name will be <code>spacename</code>-rest unless the -puname [name] option is provided.</p>
+        <p>The following deploys rest processing unit and starts a rest service on port 8888 that connects to mySpace.</p>
+        <h3>Example</h3><pre><code class="language-bash">gs&gt; deploy-rest -spacename mySpace -port 8888
+</code></pre>
+        <h3>Options</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Syntax</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">-spacename [space name]</td>
+                    <td align="left"><span class="tc-bold">Required</span> - Name of the Space that the rest should connect to.</td>
+                </tr>
+                <tr>
+                    <td align="left">-port [number]</td>
+                    <td align="left"><span class="tc-bold">Required</span> - The port which the rest service will be available on.</td>
+                </tr>
+                <tr>
+                    <td align="left">-puname [processing unit name]</td>
+                    <td align="left">Specify the processing unit's name. Defaults to [spacename]-rest</td>
+                </tr>
+                <tr>
+                    <td align="left">-lookup-groups [comma separated list]</td>
+                    <td align="left">The lookup groups to be used when locating the specified space.</td>
+                </tr>
+                <tr>
+                    <td align="left">-lookup-locators [comma separated list of host:port]</td>
+                    <td align="left">The lookup locators to be used when locating the specified space.</td>
+                </tr>
+                <tr>
+                    <td align="left">-instances [number]</td>
+                    <td align="left">Specify the amount of instances to be deployed. Default to 1</td>
+                </tr>
+                <tr>
+                    <td align="left">-max-instances-per-vm [number]</td>
+                    <td align="left">Specify the number of instances per VM.</td>
+                </tr>
+                <tr>
+                    <td align="left">-max-instance-per-machine [number]</td>
+                    <td align="left">Specify the number of instances per machine.</td>
+                </tr>
+                <tr>
+                    <td align="left">-zones [comma separated list]</td>
+                    <td align="left">Specify the zones that the rest pu can be deployed on</td>
+                </tr>
+                <tr>
+                    <td align="left">-primary-zone [zone name]</td>
+                    <td align="left">Set the primary zone where the processing unit is allowed to be deployed on.</td>
+                </tr>
+                <tr>
+                    <td align="left">-timeout [time in seconds]</td>
+                    <td align="left">Set the timeout for deploying the rest processing unit. Default to 30</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

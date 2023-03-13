@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Authentication</h1>
+        <p>There are three actors in the authentication life cycle:</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">UserDetails</span> - Encapsulates the information required to authenticate a user, and post authentication – the privileges granted to that user.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">CredentialsProvider</span> - A client-side component used to generate a <span class="tc-bold">UserDetails</span> instance and send it to the server when needed.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">SecurityManager</span> - A server-side component used to authenticate a <span class="tc-bold">UserDetails</span> instance which was received from a client.</p>
+            </li>
+        </ul>
+        <p>When a client needs to contact a server for the first time, it uses a <span class="tc-bold">CredentialsProvider</span> to create a <span class="tc-bold">UserDetails</span> which encapsulates the credentials required for authentication, and send it to the server. The server then uses its <span class="tc-italic">SecurityManager</span> to authenticate the <span class="tc-bold">UserDetails</span> and to obtain its privileges. The server then generates a unique authentication token which is used to cache the user's credentials and privileges, and return it to the client. From this point whenever the client sends a request to that server it binds the authentication token to the request, so the server doesn't need to re-authenticate it.</p>
+        <h1><a name="custom-credentials"></a>Custom Credentials</h1>
+        <p>The credentials which a client passes to the server for authentication are encapsulated in an interface called <code>UserDetails</code>. <MadCap:variable name="General.ProductNameXAP" /> provides a built-in <code>UserDetails</code> implementation called <code>User</code> which supports username-password authentication patterns. It is recommended to extend the <code>User</code> class instead of directly implementing the <code>UserDetails</code> interface, and override the super class if needed.</p>
+        <p>For example, in our demo we only need to add a <code>String</code> payload, hence the following class will suffice:</p><pre><code class="language-java">public class CustomUserDetails extends com.gigaspaces.security.directory.User {
+
+    private String customPayload;
+
+    public CustomUserDetails(String username, String password, String customPayload) {
+        super(username, password);
+        this.customPayload = customPayload;
+    }
+
+    public String getCustomPayload() {
+        return customPayload;
+    }
+}
+</code></pre>
+        <p><code>User</code> is <code>Serializable</code>, therefore the <code>customPayload</code> field is automatically serialized along with the default credentials.</p>
+        <div class="tc-admon-note">
+            <p>When a proxy sends a <code>UserDetails</code> instance to the server over the wire, it is implicitly encrypted before serialization and decrypted post de-serialization. This encryption is internal to GigaSpaces and is intended only to secure the transport layer.</p>
+            <p>In addition, a custom security implementation may choose to encrypt some/all of the data in the <span class="tc-bold">UserDetails</span> instance (For example, the default file-based security implementation hashes the user password and encrypts the file contents when persisting data to the disk).</p>
+        </div>
+        <h1><a name="the-client-side"></a>The Client Side</h1>
+        <p>A secured proxy is usually configured with a username-password pair, which are implicitly translated to a default <code>UserDetails</code> implementation as discussed above. When custom credentials are required, the proxy can be configured with a <code>CredentialsProvider</code> implementation, which is used to obtain a <code>UserDetails</code> instance whenever the client connects to a new server.</p>
+        <p>The custom credentials provider usually stores the required credentials internally and uses them to create a new <code>UserDetails</code> when needed. For example:</p><pre><code class="language-java">public class CustomCredentialsProvider extends CredentialsProvider {
+
+    private String username;
+    private String password;
+    private String serverAddress;
+
+    public CustomCredentialsProvider() {}
+
+    public CustomCredentialsProvider(String username, String password, String serverAddress) {
+        initialize(username, password, serverAddress);
+    }
+
+    @Override
+    public void initialize(Properties properties) {
+        super.initialize(properties);
+        initialize(properties.getProperty(USERNAME_PROPERTY),
+                properties.getProperty(PASSWORD_PROPERTY),
+                properties.getProperty("custom-security.server-address"));
+    }
+
+    private void initialize(String username, String password, String serverAddress) {
+        this.username = username;
+        this.password = password;
+        this.serverAddress = serverAddress;
+    }
+
+    @Override
+    public UserDetails getUserDetails() {
+        // A real-life implementation would use some external service to generate the custom payload.
+        // Since this is a demo we mock this by generating the payload locally:
+        String payload = serverAddress + "#" + username;
+        return new CustomUserDetails(username, password, payload);
+    }
+}
+</code></pre>
+        <div class="tc-admon-note">
+            <p>When using the custom credentials provider from the UI or CLI, it is instantiated via the default constructor and initialized via the <code>initialize(properties)</code> method.</p>
+        </div>
+        <h2><a name="usage"></a>Usage</h2>
+        <p>Custom <code>CredentialsProvider</code> can be provided in several ways, as follows:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="   Namespace " style="padding:10px"><pre><code class="language-xml">&lt;!-- Creating the custom credentials provider --&gt;
+&lt;bean id="myCredentialsProvider" class="com.demo.CustomCredentialsProvider"&gt;
+    &lt;constructor-arg&gt;&lt;value&gt;user1&lt;/value&gt;&lt;/constructor-arg&gt;
+    &lt;constructor-arg&gt;&lt;value&gt;123456&lt;/value&gt;&lt;/constructor-arg&gt;
+    &lt;constructor-arg&gt;&lt;value&gt;myServer&lt;/value&gt;&lt;/constructor-arg&gt;
+&lt;/bean&gt;
+&lt;!-- Creating an embedded secured Space --&gt;
+&lt;os-core:embedded-space id="embeddedSpace" space-name="mySpace"&gt;
+    &lt;os-core:security credentials-provider="myCredentialsProvider" /&gt;
+&lt;/os-core:embedded-space&gt;
+
+&lt;!-- Looking up a secured Space --&gt;
+&lt;os-core:space-proxy id="space" space-name="mySpace"&gt;
+    &lt;os-core:security credentials-provider="myCredentialsProvider" /&gt;
+&lt;/os-core:space-proxy&gt;
+</code></pre>
+            </div>
+            <div title="   Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;!-- Creating the custom credentials provider --&gt;
+&lt;bean id="myCredentialsProvider" class="com.demo.CustomCredentialsProvider"&gt;
+    &lt;constructor-arg&gt;&lt;value&gt;user1&lt;/value&gt;&lt;/constructor-arg&gt;
+    &lt;constructor-arg&gt;&lt;value&gt;123456&lt;/value&gt;&lt;/constructor-arg&gt;
+    &lt;constructor-arg&gt;&lt;value&gt;myServer&lt;/value&gt;&lt;/constructor-arg&gt;
+&lt;/bean&gt;
+&lt;!-- Creating an embedded secured Space --&gt;
+&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name"&gt;&lt;value&gt;"mySpace"&lt;/value&gt;&lt;/property&gt;
+    &lt;property name="credentialsProvider"&gt;&lt;ref local="myCredentialsProvider"/&gt;&lt;/property&gt;
+&lt;/bean&gt;
+&lt;!-- Looking up a secured Space --&gt;
+&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
+    &lt;property name="name"&gt;&lt;value&gt;"mySpace"&lt;/value&gt;&lt;/property&gt;
+    &lt;property name="credentialsProvider"&gt;&lt;ref local="myCredentialsProvider"/&gt;&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+            <div title="   Code " style="padding:10px"><pre><code class="language-xml">CredentialsProvider myCredentialsProvider = new CustomCredentialsProvider("user1", "123456", "myServer");
+// Looking up a remote space
+SpaceProxyConfigurer urlSpaceConfigurer = new SpaceProxyConfigurer("mySpace").credentialsProvider(myCredentialsProvider);
+GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).gigaSpace();
+// Constructing an Admin instance
+Admin admin = new AdminFactory().credentialsProvider(myCredentialsProvider).createAdmin();
+// Space Deployment
+admin.getGridServiceManagers().deploy(new SpaceDeployment("mySpace").userDetails(myCredentialsProvider.getUserDetails()));
+// Processing Unit Deployment
+admin.getGridServiceManagers().deploy(new ProcessingUnitDeployment("myPu").userDetails(myCredentialsProvider.getUserDetails()));
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="the-server-side"></a>The Server Side</h1>
+        <p>When a secured server receives a request from the client for the first time, it needs to authenticate the <code>UserDetails</code> instance bundled with the request. This is done by invoking the <code>authenticate(UserDetails)</code> method of the <code>SecurityManager</code> component in the server, which is in charge of both authenticating the user and obtaining its privileges set. The default <code>SecurityManager</code> provided in <MadCap:variable name="General.ProductNameXAP" /> is called <code>FileSecurityManager</code>, which (as its name implies) authenticates the <code>UserDetails</code> against a file which stores all the users credentials and privileges.
+Implementing a custom authentication obviously requires replacing this security manager with a custom implementation. In our example:</p><pre><code class="language-java">public class CustomSecurityManager implements com.gigaspaces.security.SecurityManager {
+
+    private String serverAddress;
+
+    public CustomSecurityManager() {}
+
+    public CustomSecurityManager(String serverAddress) {
+        initialize(serverAddress);
+    }
+
+    @Override
+    public void init(Properties properties) throws com.gigaspaces.security.SecurityException {
+        initialize(properties.getProperty("custom-security.server-address"));
+    }
+
+    private void initialize(String serverAddress) {
+        this.serverAddress = serverAddress;
+    }
+
+    @Override
+    public void close() {
+    }
+
+    @Override
+    public Authentication authenticate(UserDetails userDetails) throws AuthenticationException {
+        if (!(userDetails instanceof CustomUserDetails))
+            throw new AuthenticationException("Invalid credentials class: " + userDetails.getClass());
+        if (!isValid((CustomUserDetails) userDetails))
+            throw new AuthenticationException("Invalid credentials for user '" + userDetails.getUsername() + "'");
+        Authority[] authorities = getUserAuthorities(userDetails.getUsername());
+        return new Authentication(new User(userDetails.getUsername(), userDetails.getPassword(), authorities));
+    }
+
+    private boolean isValid(CustomUserDetails credentials) {
+        // A real-life implementation would use some external service to authenticate the credentials.
+        // Since this is a demo we mock it by generating the payload locally and comparing it to the client's payload:
+        String expectedPayload = serverAddress + "#" + credentials.getUsername();
+        return expectedPayload.equals(credentials.getCustomPayload());
+    }
+
+    private Authority[] getUserAuthorities(String username) {
+        // A real implementation would receive the client's privileges from a security repository.
+        // Since this is a demo we mock it by returning a fixed set of privileges:
+        return new Authority[] {
+                new GridAuthority(GridAuthority.GridPrivilege.MANAGE_GRID),
+                new GridAuthority(GridAuthority.GridPrivilege.MANAGE_PU),
+                new GridAuthority(GridAuthority.GridPrivilege.PROVISION_PU),
+                new MonitorAuthority(MonitorAuthority.MonitorPrivilege.MONITOR_JVM),
+                new MonitorAuthority(MonitorAuthority.MonitorPrivilege.MONITOR_PU),
+                new SystemAuthority(SystemPrivilege.MANAGE_ROLES),
+                new SystemAuthority(SystemPrivilege.MANAGE_USERS),
+                new SpaceAuthority(SpaceAuthority.SpacePrivilege.WRITE),
+                new SpaceAuthority(SpaceAuthority.SpacePrivilege.READ),
+                new SpaceAuthority(SpaceAuthority.SpacePrivilege.TAKE)};
+    }
+
+    @Override
+    public DirectoryManager createDirectoryManager(UserDetails userDetails)
+            throws AuthenticationException, AccessDeniedException {
+        throw new DirectoryAccessDeniedException("Creating a directory manager is not supported in this example.");
+    }
+}
+</code></pre>
+        <h2><a name="authentication-result"></a>Authentication Result</h2>
+        <p>The <code>authenticate</code> method not only validates the credentials are authentic - it also returns the <code>Authority</code> (<MadCap:variable name="General.ProductNameXAP" /> name for privilege) set granted to the user. The <code>authenticate</code> method returns an <code>Authentication</code> instance, which is created using a <code>UserDetails</code> instance which stores the user's authorities. You can choose between using the built-in <code>User</code> class to encapsulate the original credentials with the granted authorities (as shown in the demo implementation), or adjusting your custom user details implementation to store the authorities.</p>
+        <div class="tc-admon-note">
+            <p>Third-party security repositories usually store privileges as strings,so you may find it convenient to use the <code>AuthorityFactory.create(String)</code> method to load the authorities (if it's being stored in its formal string representation).</p>
+        </div>
+        <p>Security repositories and administrators often prefer not to map users directly to privileges, but rather to create <span class="tc-bold">roles</span> (e.g. Admins, Managers, Employees), map a role to a set of privileges (e.g. Write, Read) and then map users to roles (this simplifies management of large sets of users). However, <MadCap:variable name="General.ProductNameXAP" /> expects a flat array of <code>Authority</code>. To bridge this gap you can either traverse the roles hierarchy and flatten it, or use the <code>PopulatedRoleAuthority</code> class, which  implicitly flattens the hierarchy for authorization but maintains it for administration.</p>
+        <h2><a name="custom-directorymanager"></a>Custom DirectoryManager</h2>
+        <p>The <code>createDirectoryManager</code> method can be used to implement a custom users-roles directory management component. However, this is not part of the authentication process, but rather an administrative task, hence our demo throws an exception. If you want to learn more, see <a href="custom-user-role-management.html">Custom User-Role Management</a>.</p>
+        <h2><a name="usage-1"></a>Usage</h2>
+        <p>Custom <code>SecurityManager</code> can be provided in several ways, as follows:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="   Namespace " style="padding:10px"><pre><code class="language-xml">&lt;!-- Configuring a secured space using custom properties --&gt;
+&lt;os-core:embedded-space id="space" space-name="space"&gt;
+    &lt;os-core:security secured="true"/&gt;
+    &lt;os-core:properties&gt;
+        &lt;props&gt;
+            &lt;prop key="com.gs.security.security-manager.class"&gt;com.demo.CustomSecurityManager&lt;/prop&gt;
+            &lt;prop key="custom-security.server-address"&gt;myServer&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/os-core:properties&gt;
+&lt;/os-core:embedded-space&gt;
+</code></pre>
+            </div>
+            <div title="   Code " style="padding:10px"><pre><code class="language-java">// Creating a secured space using custom properties:
+EmbeddedSpaceConfigurer urlSpaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
+    .secured(true)
+    .addProperty("com.gs.security.security-manager.class", CustomSecurityManager.class.getName())
+    .addProperty("custom-security.server-address", "myServer");
+GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).create();
+
+// Creating a secured space using an injected security manager instance:
+CustomSecurityManager securityManager = new CustomSecurityManager();
+Properties securityProperties = new Properties();
+securityProperties.put(CustomSecurityManager.SECURITY_MANAGER_CLASS_PROPERTY_KEY, securityManager);
+EmbeddedSpaceConfigurer urlSpaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
+    .secured(true)
+    .addProperties(securityProperties);
+GigaSpace gigaSpace = new GigaSpaceConfigurer(urlSpaceConfigurer).create();
+</code></pre>
+            </div>
+            <div title="   Properties " style="padding:10px">
+                <p>The <code>SecurityManager</code> can be configured using custom properties supplied as part of the security properties file (see <a href="security-configurations.html">Security Configurations</a> for information about configuring security properties).
+The property <code>com.gs.security.security-manager.class</code> defines the <code>SecurityManager</code> class to instantiate (requires a default constructor).
+Additional custom properties can be added to facilitate custom configuration for the security manager.
+For example:</p><pre><code class="language-bash">com.gs.security.security-manager.class = com.demo.CustomSecurityManager
+custom-security.server-address = myServer
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="cli-and-custom-credentials"></a>CLI and Custom Credentials</h1>
+        <p>Use the <code>-user-details-provider</code> and <code>-user-details-properties</code> arguments to use a custom credentials provider with the CLI.</p>
+        <div class="tc-admon-note">
+            <p>For a full list of command usage, refer to <a href="../admin/command-line-interface-cli-security.html">Using the CLI in a Secured Environment</a>.</p>
+        </div>
+        <p>Run the <code>gs</code> script, and then use the <code>login</code> command:</p><pre><code class="language-bash">gs(.sh/bat)
+gs&gt; login -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties  username=user1;password=123456;custom-security.server-address=myServer
+gs&gt; ...
+</code></pre>
+        <h1><a name="web-management-console-and-custom-credentials"></a>Web Management Console and Custom Credentials</h1>
+        <p>Use the <code>-user-details-provider</code> and <code>-user-details-properties</code> arguments to use a custom credentials provider with the Web Management Console. <code>-user-details-properties</code> parameter is optional.</p>
+        <p>Run the <code>gs-webui</code> script with these parameters:</p><pre><code class="language-bash">gs-webui(.sh/bat) -user-details-provider com.demo.CustomCredentialsProvider -user-details-properties custom-security.server-address=myServer
+</code></pre>
+        <h1><a name="ui-and-custom-credentials"></a>UI and Custom Credentials</h1>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
+        <p>The "Custom Login" option can be accessed using the drop-down menu of the "Security" menu.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/customlogin-option.png" alt="customlogin-option.png" class="tc-picture30" />
+            </p>
+        </div>
+        <p>The "Custom Login" dialog allows to input the class name of the <code>CredentialsProvider</code> implementation and the required properties.
+The implementation class can be placed in a JAR under <code>Gigaspaces\lib\platform\ext</code> or anywhere in the classpath of the UI.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/customlogin-properties-new.png" alt="customlogin-properties-new.png" class="tc-picture50" />
+            </p>
+        </div>
+        <div class="tc-admon-note">
+            <p>If you only have one provider, it might be convenient to set it prior to launching the UI. This will automatically set it as the "user details provider class".</p>
+        </div><pre><code class="language-bash">gs-ui(.sh/.bat) -user-details-provider com.demo.CustomCredentialsProvider
+</code></pre>
+    </body>
+</html>

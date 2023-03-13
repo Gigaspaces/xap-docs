@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Global ID Generator</h1>
+        <table>
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shay Hassidim</td>
+                    <td>7.1</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Overview</h1>
+        <p>When writing objects into the space, you may need to generate a global unique ID for your space objects. The ID will be used later to fetch the object based on its ID via the readById/readByIds methods, or associate it with another object by placing the object ID as a field value within another object.</p>
+        <p>GigaSpaces generates a unique global ID when writing new objects using its built-in internal ID generator utility used when enabling the <code>auto-generate</code> ID property. Still, you may want to have your own custom global unique ID generator.</p>
+        <div class="tc-admon-tip">
+            <p>You can <a href="/attachment_files/sbp/GlobalIDGenerator.zip">download</a> the custom Unique Global ID Generator source code used with this example.</p>
+        </div>
+        <p>The following example includes a custom global unique ID generator PU and a client side utility. The Unique Global ID Generator features the following:</p>
+        <ul>
+            <li>Spring based configured.</li>
+            <li>Store the last generated ID within a space object (<code>IdCounterEntry</code>).</li>
+            <li>Provides range of IDs to a client application. This avoids the need to perform read and update space operations with each generated ID.</li>
+            <li>Provides a numeric ID.</li>
+            <li>Support persisting the <code>IdCounterEntry</code> object within a database. This allows the <code>IdCounterEntry</code> object to be loaded from a database in case the Unique Global ID Generator PU is fully re-started.</li>
+            <li>Once a Unique Global ID Generator is deployed, a <code>IdObjectInitializer</code> is created and generates the <code>IdCounterEntry</code> object within the Unique Global ID Generator space. Only one <code>IdCounterEntry</code> will be created.</li>
+        </ul>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/id_generator.jpg" alt="id_generator.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h1>Using the ID Generator</h1>
+        <p>To use the ID Generator you should:</p>
+        <ol>
+            <li>Deploy the ID Generator PU using the pu.xml below. You should deploy it using <span class="tc-bold">one partition and a backup</span>.</li>
+            <li>With your application, inject a <code>SpaceBasedIdGenerator</code> Bean. You should have it with every application instance.</li>
+            <li>With your client application call the following when you need a unique global ID:</li>
+        </ol><pre><code class="language-java">SpaceBasedIdGenerator idGenerator;
+Integer myNextID = idGenerator.generateId();
+</code></pre>
+        <div class="bs-callout bs-callout-info">
+            <p>The <code>SpaceBasedIdGenerator</code> using <a href="http://static.springsource.org/spring/docs/2.0.x/reference/transaction.html">Spring Transactions</a> to update the <code>IdCounterEntry</code> object.</p>
+        </div>
+        <h1>The ID Generator Components</h1>
+        <p>The following should be used to enable the ID Generator:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  ID Generator PU " style="padding:10px">
+                <p>This is ID Generator <code>pu.xml</code>:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-java">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:os-events="http://www.openspaces.org/schema/events"
+       xmlns:os-sla="http://www.openspaces.org/schema/sla"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd
+       http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/sla/openspaces-sla.xsd"&gt;
+
+    &lt;os-core:annotation-support /&gt;
+    &lt;context:component-scan base-package="com.gigaspaces.idgenerator.pu" /&gt;
+    &lt;os-core:giga-space-context/&gt;
+    &lt;os-core:embedded-space id="IDGeneratoSpace" name="IDGeneratorSpace" /&gt;
+    &lt;os-core:local-tx-manager id="transactionManager" space="IDGeneratoSpace" /&gt;
+    &lt;tx:annotation-driven transaction-manager="transactionManager"   /&gt;
+    &lt;os-core:giga-space id="gigaSpace" space="IDGeneratoSpace" tx-manager="transactionManager"   /&gt;
+
+&lt;!-- ========================================================================================================== --&gt;
+
+    &lt;bean id="IdObjectInitializer" class="com.gigaspaces.idgenerator.pu.IdObjectInitializer"&gt;
+        &lt;property name="initialValue" value="100" /&gt;
+        &lt;property name="idRange" value="1000" /&gt;
+    &lt;/bean&gt;
+
+    &lt;os-sla:sla number-of-instances="1" max-instances-per-vm="1"&gt;
+    &lt;/os-sla:sla&gt;
+
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-java">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:os-events="http://www.openspaces.org/schema/events"
+       xmlns:os-sla="http://www.openspaces.org/schema/sla"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-txxsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd
+       http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/sla/openspaces-sla.xsd"&gt;
+
+    &lt;os-core:annotation-support /&gt;
+    &lt;context:component-scan base-package="com.gigaspaces.idgenerator.pu" /&gt;
+    &lt;os-core:giga-space-context/&gt;
+    &lt;os-core:embedded-space id="IDGeneratoSpace" name="IDGeneratorSpace" /&gt;
+    &lt;os-core:local-tx-manager id="transactionManager" space="IDGeneratoSpace" /&gt;
+    &lt;tx:annotation-driven transaction-manager="transactionManager"   /&gt;
+    &lt;os-core:giga-space id="gigaSpace" space="IDGeneratoSpace" tx-manager="transactionManager"   /&gt;
+
+&lt;!-- ========================================================================================================== --&gt;
+
+    &lt;bean id="IdObjectInitializer" class="com.gigaspaces.idgenerator.pu.IdObjectInitializer"&gt;
+        &lt;property name="initialValue" value="100" /&gt;
+        &lt;property name="idRange" value="1000" /&gt;
+    &lt;/bean&gt;
+
+    &lt;os-sla:sla number-of-instances="1" max-instances-per-vm="1"&gt;
+    &lt;/os-sla:sla&gt;
+
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="  The Client " style="padding:10px">
+                <p>The following should be added to your PU <code>pu.xml</code> used to deploy the client application:</p><pre><code class="language-xml">&lt;context:component-scan base-package="com.gigaspaces.idgenerator.client" /&gt;
+&lt;os-core:giga-space-context/&gt;
+
+&lt;os-core:space-proxy id="IDGeneratoSpace" name="IDGeneratorSpace" /&gt;
+&lt;os-core:local-tx-manager id="IDGeneratortransactionManager" space="IDGeneratoSpace" /&gt;
+&lt;tx:annotation-driven transaction-manager="IDGeneratortransactionManager"   /&gt;
+&lt;os-core:giga-space id="IDGeneratogigaSpace" space="IDGeneratoSpace" tx-manager="IDGeneratortransactionManager"   /&gt;
+&lt;tx:annotation-driven transaction-manager="IDGeneratortransactionManager"/&gt;
+&lt;bean id="idGenerator" class="com.gigaspaces.idgenerator.client.SpaceBasedIdGenerator"/&gt;
+</code></pre>
+            </div>
+        </div>
+    </body>
+</html>

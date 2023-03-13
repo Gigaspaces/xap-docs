@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="New Target"
+  Type="MsWord"
+  Destinations=""
+  ShowMadCapBacklink="true"
+  GlossaryTermConversion="marked"
+  MasterToc="/Project/TOCs/TOC-David-Kubernetes-WAN-GW.fltoc"
+  ConditionTagExpression="include[Version.15-0-born or Version.15-2-born or Version.15-2-only or Version.15-5-died], exclude[Version.14-0-died or Version.14-0-only or Version.14-2-died or Version.14-2-only or Version.14-5-died or Version.14-5-only or Version.15-0-died or Version.15-0-only or Version.15-2-died or Version.15-5-born or Version.15-5-only or Version.15-8-only]">
+  <PrintedOutput
+    CollapseMargins="true"
+    GenerateTOCProxy="false"
+    GenerateIndexProxy="false"
+    GenerateGlossaryProxy="false"
+    OutputFormat="docx" />
+  <Variables>
+    <Variable
+      Name="Versions/product-version-short">15.2</Variable>
+  </Variables>
+</CatapultTarget>

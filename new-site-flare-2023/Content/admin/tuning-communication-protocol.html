@@ -1,0 +1,622 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Communication Protocol</h1>
+        <div class="tc-admon-note">
+            <p>Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with <MadCap:variable name="General.ProductNameXAPPrem" />).</p>
+        </div>
+        <p><MadCap:variable name="General.CompanyName" /> provides a pluggable communication adaptor, LRMI (<span class="tc-bold">Light Remote Method Invocation</span>), built on top of the <a href="http://en.wikipedia.org/wiki/New_I/O" target="_blank">NIO communication protocol</a>.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lrmi.jpg" alt="lrmi.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>LRMI uses a <code>GenericExporter</code> that implements the <a href="[%=Links.ApiJavaDoc%]/index.html?net/jini/export/Exporter.html">net.jini.export.Exporter</a> interface.</p>
+        <p>All <MadCap:variable name="General.CompanyName" /> components that represent remote objects/services (for example:Distributed Transaction Manager, Lookup Service, GSA, GSM, GSC, Space) use the LRMI protocol.</p>
+        <table class="tc-borderless">
+            <tr>
+                <td style="width:75%;">
+                    <p>The LRMI protocol was designed to allow multiple services running within the same JVM to share their communication resources and to allow non-blocking IO communication with minimal serialization overhead. For example, it allows different space instances hosted within the same GSC to share the same LRMI resources without exhausting the JVM and machine resources. LRMI comes with default settings that may not be optimized for every scenario. You may need to change the defaults for the client or server side to have the maximum throughput and lowest latency your network and hardware may provide.</p>
+                </td>
+                <td style="width:20%;">
+                    <p>
+                        <img src="../Resources/Static/attachment_files/lrmi-new.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p>LRMI uses two independent resource pools working collaboratively to allow a client to communicate with a server in a scalable manner: A client connection pool configured via the <code>com.gs.transport_protocol.lrmi.max-conn-pool</code> at the client side and a server connection thread pool configured via the <code>com.gs.transport_protocol.lrmi.max-threads</code> at the server side. You may configure these two pools' sizes and their resource timeouts to provide maximum throughput and low latency when a client communicates with a server. The default LRMI behavior will open a different connection at the client side and start a connection thread at the server side, once a multithreaded client accesses a server component. All client connections may be shared between all the client threads when communicating with the server. All server side connection threads may be shared between all client connections.</p>
+        <h2><a name="client-lrmi-connection-pool"></a>Client LRMI Connection Pool</h2>
+        <p>The client LRMI connection pool is maintained per server component - i.e. by each space partition. For each space partition a client maintains a dedicated connection pool shared between all client threads accessing a specific partition. When having multiple partitions (N) hosted within the same GSC, a client may open maximum of <code>N * com.gs.transport_protocol.lrmi.max-conn-pool</code> connections against the GSC JVM process.</p>
+        <p>You may need to change the <code>com.gs.transport_protocol.lrmi.max-conn-pool</code> value (default = 1024) to have a smaller number. The default may be high for applications with multiple partitions.</p><pre><code class="language-bash">Client total # of open connections = com.gs.transport_protocol.lrmi.max-conn-pool * # of partitions
+</code></pre>
+        <p>This may result in a very large amount of connections started at the client side resulting in a "Too many open files" error. You should increase the OS' max file descriptors amount by calling the following before running the client application (on UNIX):</p><pre><code class="language-bash">ulimit -n 32000
+</code></pre>
+        <p>or by lowering the <code>com.gs.transport_protocol.lrmi.max-conn-pool</code> value.</p>
+        <h2><a name="server-lrmi-connection-thread-pool"></a>Server LRMI Connection Thread Pool</h2>
+        <p>The LRMI connection thread pool is a server side component. It is in charge of executing the incoming LRMI invocations. It is a single thread pool within the JVM that executes all the invocations, from all the clients and all the replication targets.</p>
+        <div class="tc-admon-note">
+            <p>In some cases you might need to increase the LRMI Connection thread pool maximum size. Without this tuning activity, the system might hang in the case of a large amount of concurrent access. Using a value as <span class="tc-bold">1024</span> for the LRMI Connection Thread Pool should be sufficient for most large scale systems.</p>
+        </div>
+        <h2><a name="selector-threads"></a>Selector Threads</h2>
+        <p>To increase the concurrency and scalability of the LRMI behavior, multiple NIO channel selectors are used for write and read network traffic activities and is configured via the <code>com.gs.transport_protocol.lrmi.selector.threads</code> property. The same property is used to configure both the write and read selector thread pool size.</p>
+        <p>Machines with Multi-Core CPUs can leverage this functionality in an optimal manner. A dedicated thread pool exists for socket write operations and another thread pool for socket read operations. The read selector threads (4 by default) listens for incoming client invocations. They receive the incoming traffic from the network, read the raw data bytes and transfer these to be processed by the LRMI connection thread pool. The write selector threads is used when there is a need to send data back to the client side with asynchronous operations (blocking read/ blocking write/notifications).</p>
+        <h2><a name="min-latency-and-max-throughput"></a>Min Latency and Max Throughput</h2>
+        <p>Both of the resource pools elements might have a different life span. Usually, once a connection is established between a client and a server, it will be open as long as the client is still running. The connection will be terminated once a client is terminated or when the client does not perform any network activity for some time and the connection will be identified as idle. See the watchdog description below for how this behavior should be configured. The same goes for LRMI connection threads, it will be available as long as there are clients accessing the server. A connection thread will return into the pool and the pool will shrink itself once there is any remote activity for some time. This timeout is configured via the <code>com.gs.transport_protocol.lrmi.threadpool.idle_timeout</code>. LRMI threads and connection are used also for server to server communication such as data replication.</p>
+        <p>The size of the LRMI connection pool and LRMI thread pool will impact the latency response time for a remote request. Once any of these pools is fully exhausted a client request will be suspended until a free connection or thread becomes available.</p>
+        <p>The number of connections a client should open also depends on the size of the objects being sent across the wire. For a multi-threaded client writing or reading large objects, you may have the same amount of connections established for each client thread. This will ensure minimal latency request duration with maximum throughput.</p><a name="watchdog"></a>
+        <h2><a name="watchdog"></a>Watchdog</h2>
+        <p>When reading from a NIO SocketChannel and the connection between the client and server fails abnormally, no notification is generated. The most common example of this failure type is the network cable becoming disconnected while performing the read operation. In this case, the read operation is blocked for a long time, without ever knowing that the connection is closed. This can cause several problems, such as exceeding the number of open sockets on the server or causing client read requests to hang.</p>
+        <p>Known solutions and problems they may have:</p>
+        <ol>
+            <li>TCP keep alive mechanism – TCP has an option for sending keep alive packets in order to detect communication failures, and the default configuration is 2 hours. We recommend changing this value to several seconds.</li>
+            <li>Read timeout – the old Java IO package allows the execution of read operations with a user defined timeout. This does not work with NIO. You can still set the timeout on <code>channel.socket()</code>, but this only applies to reading from socket <code>InputStream</code> and not channel reads.</li>
+        </ol>
+        <div class="tc-admon-note">
+            <p>If the TCP is configured as follows:</p>
+            <ul>
+                <li>tcp_keepalive_time = 7200 (seconds)</li>
+                <li>tcp_keepalive_intvl = 75 (seconds)</li>
+                <li>tcp_keepalive_probes = 9 (number of probes)</li>
+            </ul>
+            <p>This means that the keepalive process waits for two hours (7200 secs) for socket activity before sending the first keepalive probe, and then resends it every 75 seconds. If no ACK response is received for nine consecutive times, the connection is marked as broken.</p>
+        </div>
+        <p>The watchdog network failure detection mechanism applies to the space proxy (client side) when interacting with a remote space and with space-space interaction (replication). The watchdog is efficient both in terms of memory and CPU consumption with minimal overhead.</p>
+        <p>The network failure detection mechanism is timeout-based – each read operation has a predefined timeout. There are two timeout modes: <span class="tc-bold">Idle connection timeout</span> and <span class="tc-bold">request timeout</span>:</p>
+        <ul>
+            <li>Idle connection timeout – occurs when a thread listens on a server socket for longer than the defined timeout. This happens when a space listens for client requests, or a client waits for server notifications. Configured via the <code>com.gs.transport_protocol.lrmi.idle_connection_timeout</code> system property.
+
+<ul><li>Listening timeout handling – timeout is perceived as a broken link and the server closes existing connection to the client. When the link between the server and the client is restored – connection is reestablished.</li><li>Heartbeat mechanism – used to avoid closing valid connections.</li></ul></li>
+            <li>Request timeout – occurs when the client sends a request to the space and doesn't get a reply for the defined timeout. Configured via the <code>com.gs.transport_protocol.lrmi.request_timeout</code> system property.
+
+<ul><li>Request timeout handling – when a timeout expires, the connection is first tested by establishing a new dummy connection to the server using the same port. If the connection is established successfully, the timeout is ignored and connection timeout is reset. Otherwise, the connection is closed. The dummy request timeout is controlled via the <code>com.gs.transport_protocol.lrmi.inspect_timeout</code> system property.</li></ul></li>
+        </ul>
+        <p>Failure detection uses a watchdog design pattern to monitor timeouts of NIO operations. Watchdog is a singleton thread that runs every predefined period of time, according to timeout resolution, checks all the threads that are currently registered and fires a timeout event on the threads that exceeded their allowed timeout.</p>
+        <div class="tc-admon-note">
+            <p>When network failure occurs and notify is used, the space tries to resend the notify the number of times specified in the <code>&lt;notifier-retries&gt;</code> property. When using a clustered space, <code>&lt;notifier-retries&gt;</code> is used together with the network failure detection properties.</p>
+        </div>
+        <p>A value for the <code>com.gs.transport_protocol.lrmi.idle_connection_timeout</code> and the <code>com.gs.transport_protocol.lrmi.request_timeout</code> properties should be determined based on the amount of total clients a system may have and the number of the concurrent activities these clients may have. Small values (100 and 30, respectively) are recommended for systems with very large amounts of clients with high concurrency. High values (900 and 300, respectively) are recommended for system with very small amount of clients with high concurrency.</p>
+        <h2><a name="bind-port"></a>bind-port</h2>
+        <p>Once a client communicates with a server component it initially uses a bootstrap port specified as part of the server proxy stored with the lookup service. Once a client opens a connection with a server component a random port is opened at the server side and used to serve the client (private port). You may specify range of ports to be used by the server component to restrict the server from using arbitrary random ports that are not available due to a firewall or some other network restriction. The <code>com.gs.transport_protocol.lrmi.bind-port</code> allows you to configure the available ports to use.</p>
+        <h2><a name="maxbuffersize"></a>maxBufferSize</h2>
+        <p>An LRMI connection maintains a buffer that is used when sending TCP packets. This buffer size determines the amount of TCP packets that will be sent to deliver a request. When having requests with large amount of data, you may need to increase the <code>com.gs.transport_protocol.lrmi.maxBufferSize</code> to reduce the amount of packets sent.</p>
+        <h2><a name="client-as-a-server"></a>Client as a Server</h2>
+        <p>A server component may open a connection back to the client in the following cases:</p>
+        <ul>
+            <li>When a request includes a class that cannot be found on the server classpath, the GigaSpaces dynamic class loading component requests the missing class to be sent to the server</li>
+            <li>When a client registers for notifications</li>
+            <li>When a client performs blocking read/take operation (timeout &gt; 0)</li>
+            <li>When a change has been done with the service topology (service terminated or added), the lookup service notifies the client (client lookup cache)</li>
+        </ul>
+        <p>To allow the above, the client must set the <code>java.rmi.server.hostname</code> property with the relevant IP. For a Multi-Homed machines this is a critical setting, since without having this set, the server side might use the wrong IP Address to communicate back with the client.</p>
+        <h1><a name="lrmi-configuration"></a>LRMI Configuration</h1>
+        <p>The <code>LRMI</code> configuration options set as system properties. They are listed below:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property name</th>
+                    <th>Description</th>
+                    <th>Default</th>
+                    <th>Server Client</th>
+                    <th>Unit</th>
+                    <th>Override on Client Side?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.max-conn-pool</td>
+                    <td>The maximum amount of connections to the space server remote services that can work simultaneously in a client connection pool. Starts with 1 connection. Defined per each remote service (by default, each remote service has 1024 maximum connections).</td>
+                    <td>1024</td>
+                    <td>Server</td>
+                    <td>Conne<br />ction</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td><a name="com.gs.t"></a>com.gs.transport_protocol<br />.lrmi.max-threads</td>
+                    <td><MadCap:variable name="General.DataGrid" /> maintains a thread pool on the server side (at the GSC process level), that manages incoming remote requests. This parameter specifies the maximum size of this thread pool. <a href="#com.gs.transport_protocol.lrmi.max-threads">See note below.</a></td>
+                    <td>128</td>
+                    <td>Server</td>
+                    <td>Threads</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.min-threads</td>
+                    <td><MadCap:variable name="General.DataGrid" /> maintains a thread pool on the server side that manages incoming remote requests. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the minimum size of this thread pool.</td>
+                    <td>1</td>
+                    <td>Server</td>
+                    <td>Threads</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol.<br />lrmi.custom.threadpool.max-threads</td>
+                    <td><MadCap:variable name="General.DataGrid" /> maintains a thread pool on the server side that manages incoming remote requests for Task and Notification invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool.</td>
+                    <td>128</td>
+                    <td>Server</td>
+                    <td>Threads</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol.<br />lrmi.custom.threadpool.min-threads</td>
+                    <td><MadCap:variable name="General.DataGrid" /> maintains a thread pool on the server side that manages incoming remote requests for Task and Notification invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the minimum size of this thread pool.</td>
+                    <td>1</td>
+                    <td>Server</td>
+                    <td>Threads</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol.<br />lrmi.system-priority.<br />threadpool.max-threads</td>
+                    <td><MadCap:variable name="General.DataGrid" /> maintains a thread pool on the server side that manages incoming remote requests for admin invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool.</td>
+                    <td>8</td>
+                    <td>Server</td>
+                    <td />
+                    <td />
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol.<br />lrmi.system-priority.<br />threadpool.min-threads</td>
+                    <td><MadCap:variable name="General.DataGrid" /> maintains a thread pool on the server side that manages incoming remote requests for admin invocation. The thread pool size is increased each time with one additional thread and shrinks when existing threads are not used for 5 minutes. This parameter specifies the maximum size of this thread pool.</td>
+                    <td>1</td>
+                    <td>Server</td>
+                    <td />
+                    <td />
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.bind-port</td>
+                    <td>Server port used for incoming client requests, or notifications from server to client. The server port is set by default to 0, which means next free port. This means that whenever <MadCap:variable name="General.DataGrid" /> is launched, it allocates one of the available ports. Define a specific port value to enforce a specific port on the space server or client side. You can define a range of ports</td>
+                    <td>0</td>
+                    <td>Server</td>
+                    <td />
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>java.rmi.server.hostname</td>
+                    <td>Binds the <MadCap:variable name="General.DataGrid" /> Server on a specified network interface. If java.rmi.server.hostname is null the system sets the localhost IP address.</td>
+                    <td>host<br />name</td>
+                    <td>Client &amp; Server</td>
+                    <td />
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.idle_conn<br />ection_timeout</td>
+                    <td>Watchdog idle connection timeout.</td>
+                    <td>900 sec</td>
+                    <td>Client</td>
+                    <td>Seconds</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.request_timeout</td>
+                    <td>Watchdog request timeout.</td>
+                    <td>30 sec</td>
+                    <td>Client</td>
+                    <td>Seconds</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.inspect_timeout</td>
+                    <td>Watchdog dummy packet connection timeout used when the watchdog suspects a request connection is blocked (com.gs.transport_protocol.lrmi.request_timeout elapsed).</td>
+                    <td>1000 millisec</td>
+                    <td>Client</td>
+                    <td>millisec</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.threadpool.idle_timeout</td>
+                    <td>LRMI thread pool idle timeout. Usually should be tuned for server side</td>
+                    <td>300000 milisec</td>
+                    <td>Server</td>
+                    <td>millisec</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.connect_timeout</td>
+                    <td>LRMI timeout to establish a socket connection</td>
+                    <td>30 sec</td>
+                    <td>Server</td>
+                    <td>Seconds</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.maxBufferSize</td>
+                    <td>The NIO internal cache (a DirectByteBuffer) might cause an OutOfMemoryError due-to direct memory exhaustion. To avoid such a scenario, the LRMI layer breaks the outgoing buffer into a several chunks. By doing so, the NIO internal cache is kept small, and may not cause any error. The size of these chunks can be determined by this property</td>
+                    <td>65536 (64k)</td>
+                    <td>Client &amp; Server</td>
+                    <td>Bytes</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.selector.threads</td>
+                    <td>LRMI selector threads. This should be configured with multi core machines. Usualy should be tuned for server side</td>
+                    <td>4</td>
+                    <td>Client &amp; Server</td>
+                    <td>Threads</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.use_async_connect</td>
+                    <td>Use asynchronous IO to connect. The default of true should work for most systems.</td>
+                    <td>true</td>
+                    <td>Client &amp; Server</td>
+                    <td>boolean</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.classloading</td>
+                    <td>Enables LRMI dynamic class loading.</td>
+                    <td>true</td>
+                    <td>Server</td>
+                    <td>boolean</td>
+                    <td>No</td>
+                </tr>
+                <tr MadCap:conditions="Version.15-0-born">
+                    <td>com.gs.transport_protocol<br />.lrmi.simple-classloading</td>
+                    <td>Enables non-LRMI dynamic class loading.</td>
+                    <td>false</td>
+                    <td>Server</td>
+                    <td>boolean</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.classloading.import</td>
+                    <td>Enables importing of classes using LRMI dynamic class loading.</td>
+                    <td>true</td>
+                    <td>Server</td>
+                    <td>boolean</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.classloading.export</td>
+                    <td>Enables exporting of classes using lrmi dynamic class loading.</td>
+                    <td>true</td>
+                    <td>Server</td>
+                    <td>boolean</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.tcp-send-buffer-size</td>
+                    <td>Set the TCP Send Buffer size (SO_SNDBUF).</td>
+                    <td>OS default</td>
+                    <td>Client &amp; Server</td>
+                    <td>bytes</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.tcp-receive-buffer-size</td>
+                    <td>Set the TCP receive Buffer size (SO_RCVBUF).</td>
+                    <td>OS default</td>
+                    <td>Client &amp; Server</td>
+                    <td>bytes</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.tcp-keep-alive</td>
+                    <td>Set the TCP keep alive mode (SO_KEEPALIVE).</td>
+                    <td>true</td>
+                    <td>Client &amp; Server</td>
+                    <td>Seconds</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.timeout_resolution</td>
+                    <td>Resolution in percents. Timeout resolution indicates the accuracy of the request timeout.</td>
+                    <td>10</td>
+                    <td>Client</td>
+                    <td>Percent</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.system-priority.<br />threadpool.min-threads</td>
+                    <td>This parameter specifies the minimum size of a thread pool used to control admin API calls</td>
+                    <td>1</td>
+                    <td>Server</td>
+                    <td>Threads</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.system-priority.threadpool.max-threads</td>
+                    <td>This parameter specifies the maximum size of a thread pool used to control admin API calls</td>
+                    <td>8</td>
+                    <td>Server</td>
+                    <td>Threads</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.custom.threadpool.<br />idle_timeout</td>
+                    <td>Idle timeout</td>
+                    <td>300000 millisec</td>
+                    <td />
+                    <td>Invo<br />cation</td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.threadpool.<br />queue-size</td>
+                    <td>Regualr operations thread pool queue size</td>
+                    <td />
+                    <td>2147483647</td>
+                    <td />
+                    <td>Invo<br />cation</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.custom.threadpool.<br />queue-size</td>
+                    <td>Custom operations thread pool queue size</td>
+                    <td />
+                    <td>2147483647</td>
+                    <td />
+                    <td>Invo<br />cation</td>
+                </tr>
+                <tr>
+                    <td>com.gs.transport_protocol<br />.lrmi.system-priority.<br />threadpool.queue-size</td>
+                    <td>System operations thread pool queue size</td>
+                    <td />
+                    <td />
+                    <td>2147483647</td>
+                    <td />
+                </tr>
+            </tbody>
+        </table>
+        <p><a name="com.gs.transport_protocol.lrmi.max-threads"></a>
+        </p>
+        <div class="tc-admon-note">
+            <p>Please note the following regarding parameter <span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span>. </p>
+        </div>
+        <h2>Tuning <span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span></h2>
+        <p>This property controls the maximum number of threads per space instance which handle incoming operations (i.e. maximum number of remote operations handled simultaneously). </p>
+        <p>The default value of 128 is suitable for common workloads, but some workloads may be optimized from increasing this value, whereas others may benefit by decreasing it. </p>
+        <div class="tc-admon-note">
+            <p>It is suggested to benchmark the effect of increasing/decreasing the value of <span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span> to find the optimum value for your system.</p>
+        </div>
+        <h3>Guidelines for Increasing or Decreasing the Value of <span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span></h3>
+        <p>It may be beneficial to <b>increase</b> the value of <span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span> if the system has a high concurrency level as a result of a large number of remote clients performing:</p>
+        <ul>
+            <li>space operations</li>
+            <li>remote service executions</li>
+            <li>single client with large number of threads</li>
+            <li>notify listener (container) accessing the space.<br /></li>
+        </ul>
+        <p>In this situation, the system may trigger a notify listener (that performs remote space access) or a remote service or a task many times. A low value of <span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span> may allow the system to consume the entire LRMI thread pool, causing new remote requests (by the listener or any other remote activities) to wait until there would be available LRMI threads to handle incoming requests. This may slow down the application performance, causing existing connections to drop.</p>
+        <p>It may be beneficial to <b>decrease</b> the vale of <span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span> for certain workloads, including:</p>
+        <ul>
+            <li>
+                <p>Workloads which perform write or readById on multiple threads</p>
+            </li>
+            <li>
+                <p>Workloads  where most operations are short (e.g. read by id, write, vs. a read which returns lots of results), and require little resources (cpu, disk, network).</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>The parameter <span class="tc-bold">com.gs.transport_protocol.lrmi.max-threads</span> can also be set via the environmental variable <code>GS_LRMI_THREAD_POOL_MAX</code>.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>If you are using the <span class="tc-bold">notification slow consumer</span> mechanism, refer to <a href="slow-consumer.html#configuration">Slow Consumer</a> for additional LRMI parameters to configure.</p>
+        </div>
+        <h2><a name="defining-socket-port-range-per-jvm"></a>Defining the Socket Port Range per JVM</h2>
+        <p>You can define port range using the <code>com.gigaspaces.transport.bind-port</code> property, meaning that every JVM acquires a bind port from a defined port range. This functionality is useful when having multiple JVMs on the same machine (clients or servers), and simplifies firewall setup.</p>
+        <p>Here is how you can set a listening port range for GSA/GSC/GSM:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash">export EXT_JAVA_OPTIONS=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-bash">export <MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT=-Dcom.gs.transport_protocol.lrmi.bind-port=7000-7100</code></pre>
+        <h2><a name="configuration-with-multi-homed-machines"></a>Configuration with Multi-Homed Machines</h2>
+        <p>When working with a multi-homed machine (a computer with multiple network cards), use the following system property to bind the GigaSpaces Server on a specified network interface:</p><pre><code class="language-bash">-Djava.rmi.server.hostname=&lt;hostname or IP address&gt;
+</code></pre>
+        <p>The value of this property represents the host name string that must be associated with the network interface. The default value of this property is the IP address of the local host, in "dotted-quad" format.</p>
+        <h1><a name="monitoring"></a>Monitoring</h1>
+        <p>You can monitor network and usage activity during runtime to track which client is invoking which methods on each space serving remote client requests such as read/write. For more information on monitoring see <a href="monitoring-network-activity.html">Monitoring Network Activity</a>.</p>
+        <h1><a name="troubleshooting"></a>Troubleshooting</h1>
+        <p>You can troubleshoot the space activity using LRMI logging. You can turn on LRMI logging in the following ways:</p>
+        <h2><a name="offline-mode-via-xap-logging-properties"></a>Offline Mode via xap_logging.properties</h2>
+        <p>Step 1: Open <code><MadCap:variable name="General.HomePath" />/config/log/xap_logging.properties</code></p>
+        <p>Step 2: Locate the following line:</p><pre><code class="language-bash">com.gigaspaces.lrmi.level = INFO
+</code></pre>
+        <p>Step 3:
+Set debug logger granularity level:</p>
+        <ul>
+            <li><code>ALL</code> – all debug messages available for LRMI.</li>
+            <li><code>FINE</code> – configuration, watchdog, client connections (connect/disconnect).</li>
+            <li><code>FINER</code> – content and execution state of remote method invocation on remote object. </li>
+            <li><code>SEVERE</code> – caught exceptions by LRMI on server and client side.</li>
+        </ul>
+        <p>Step 4:
+Save and close the <code>xap_logging.properties</code> file.</p>
+        <p>Step 5:
+Start a space by deploying a data-grid PU or a custom PU with a space. You may also start a space via <code><MadCap:variable name="General.HomePath" />/bin/space-instance</code>.</p>
+        <p>LRMI communication transport protocol debug messages are displayed.</p>
+        <h2><a name="during-runtime-using-jmx"></a>During Runtime – Using JMX</h2>
+        <p>Step 1: Start <code>space-instance</code> using the following Java system properties:</p><pre><code class="language-bash">-Dcom.sun.management.jmxremote.port=5001
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.authenticate=false
+</code></pre>
+        <p>Step 2: Start <a href="http://java.sun.com/developer/technicalArticles/J2SE/jconsole.html" target="_blank">jconsole</a> – copy the JMX URL to the JConsole.</p>
+        <p>Step 3: Click <span class="tc-bold">Connect</span>.</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/lrmi_log_jmx_console1.jpg" alt="lrmi_log_jmx_console1.jpg" class="tc-picture50" />
+        </p>
+        <p>Step 4: Set <code>com.gigaspaces.lrmi</code> with a desired log level.</p>
+        <p>Step 5: Click <span class="tc-bold">setLoggerLevel</span>.</p>
+        <p>Step 6: A new log level is defined.</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/lrmi_log_jmx_console2.jpg" alt="lrmi_log_jmx_console2.jpg" class="tc-picture80" />
+        </p>
+        <p>When LRMI logging is turned on, the space displays the following when started:</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/lrmi_log1.JPG" alt="lrmi_log1.JPG" class="tc-picture80" />
+        </p>
+        <p>To test LRMI logging, you can run the <code>space ping</code> utility using the following command. See <a href="space-gigaspaces-cli.html#ping">space ping</a> for more information on this utility.:</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs.bat space ping mySpace_container mySpace -i 1
+</code></pre>
+        <p>
+            <img src="../Resources/Static/attachment_files/lrmi_ping.JPG" alt="lrmi_ping.JPG" class="tc-picture80" />
+        </p>
+        <p>The space displays the following:</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/lrmi_log2.JPG" alt="lrmi_log2.JPG" class="tc-picture80" />
+        </p>
+        <p>The client displays the following:</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/lrmi_log3.JPG" alt="lrmi_log3.JPG" class="tc-picture80" />
+        </p>
+        <h2><a name="jvm-known-issue"></a>JVM Known Issue</h2>
+        <p>In some cases you may encounter the following exception:</p><pre><code class="language-bash">CONFIG [com.gigaspaces.grid.gsc]: initialServiceLoadDelay=5000
+Exception in thread "LRMI Connection--pool-1-thread-1" java.lang.NullPointerException
+at sun.nio.ch.PollSelectorImpl.wakeup(PollSelectorImpl.java:84)
+at com.gigaspaces.lrmi.nio.SelectorThread.registerKey(SelectorThread.java:250)
+at com.gigaspaces.lrmi.nio.ChannelEntry.workerFinishedReading(ChannelEntry.java:131)
+at com.gigaspaces.lrmi.nio.Pivot$Worker.dispatch(Pivot.java:111)
+at com.j_spaces.kernel.WorkingGroup$TaskWrapper.run(WorkingGroup.java:62)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:650)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:675)
+at java.lang.Thread.run(Thread.java:595)
+</code></pre>
+        <p>This is a JVM bug resolved with JDJ 1.6u18. For more details, see <a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6524172" target="_blank">http://bugs.sun.com</a>.</p>
+        <div class="tc-admon-note">
+            <p>If your client application loses its connection to the server, you can follow a simple procedure to check if the server erased any of your notify templates in the interim. For each notify template, write an Entry to the space that matches the template and see if you receive a notification. If you do not receive a notification, this means that while you were disconnected, new Entries matching the notify template entered the space (you can try to find them – depending on their lease time, they may still exist). As a result, your notify template was erased.</p>
+        </div>
+        <h1><a name="monitoring-lrmi-via-the-administration-api"></a>Monitoring LRMI via the Administration API</h1>
+        <p>You may monitor the remote communication activity via the Administration and Monitoring API. You may receive information in real-time about every aspect of the communication and transport activity. The example below demonstrates the usage of the API for consuming this information.</p><pre><code class="language-java">    import java.util.Date;
+    import java.util.Set;
+    import java.util.concurrent.TimeUnit;
+    import javax.management.*;
+    import org.openspaces.admin.*;
+    import com.gigaspaces.lrmi.LRMIProxyMonitoringDetails;
+    import com.gigaspaces.lrmi.LRMIServiceMonitoringDetails;
+
+    public class TransportsStatisticsMain {
+     public static void main(String[] args) throws Exception{
+     Admin admin = new AdminFactory().createAdmin();
+     admin.getGridServiceContainers().waitFor(2, 10, TimeUnit.SECONDS);
+     while (true)
+     {
+     Thread.sleep(5000);
+     for (GridServiceContainer gsc : admin.getGridServiceContainers()) {
+     System.out.println("--------- GSC [" + gsc.getUid() + "] running on Machine " + gsc.getMachine().getHostAddress() +
+     " Pid:"+ gsc.getVirtualMachine().getDetails().getPid()+
+     " Start Time:"+ new Date(gsc.getVirtualMachine().getDetails().getStartTime()) + " --------- ");
+
+     JMXServiceURL jmxUrl = new JMXServiceURL(gsc.getVirtualMachine().getDetails().getJmxUrl());
+     JMXConnector conn = JMXConnectorFactory.newJMXConnector(jmxUrl, null);
+     conn.connect(null);
+     MBeanServerConnection server = conn.getMBeanServerConnection();
+     ObjectName on = new ObjectName("java.lang:type=Threading");
+     Set&lt;ObjectInstance&gt; mbeans = server.queryMBeans(on, null);
+     for (ObjectInstance mbean : mbeans) {
+     ObjectName name = mbean.getObjectName();
+     if (name.toString().contains("Threading")) {
+     long[] tids = (long[]) server.getAttribute(name, "AllThreadIds");
+     System.out.println("All Thread Count:" + tids.length);
+
+     int lrmiThreadCount = 0;
+     int lrmiSelectorReadThreadCount = 0;
+     int lrmiSelectorWriteThreadCount = 0;
+     int lrmiAsyncSelectorThreadCount = 0;
+     int lrmiMonitoringThreadCount = 0;
+     int lrmiLivenessThreadCount = 0;
+
+     int leaseRenewalManagerThreadCount = 0;
+     int backgroundFifoThreadThreadCount = 0;
+     int processorpoolThreadCount = 0;
+     int pendingAnswerspoolThreadCount = 0;
+     int batchNotifierThreadCount = 0;
+     int lookupDiscoveryTaskThreadCount = 0;
+     int leaseManager$ReaperThreadCount = 0;
+     int leaseRenewalManagerTaskThreadCount = 0;
+
+     for (long tid : tids) {
+     Long[] params = new Long[]{tid};
+     String[] sigs = new String[] {"long"};
+     CompositeDataSupport threadInfo;
+     threadInfo = (CompositeDataSupport) server.invoke(name, "getThreadInfo", params, sigs);
+     Object threadName = threadInfo.get("threadName");
+     if (threadName.toString().indexOf("LRMI Connection") &gt; -1)
+     lrmiThreadCount ++;
+     if (threadName.toString().indexOf("LRMI-Selector-Read") &gt; -1)
+     lrmiSelectorReadThreadCount ++;
+     if (threadName.toString().indexOf("LRMI-Selector-Write") &gt; -1)
+     lrmiSelectorWriteThreadCount ++;
+     if (threadName.toString().indexOf("LRMI-async-Selector") &gt; -1)
+     lrmiAsyncSelectorThreadCount ++;
+     if (threadName.toString().indexOf("LRMI Monitoring") &gt; -1)
+     lrmiMonitoringThreadCount ++;
+     if (threadName.toString().indexOf("LeaseRenewalManager") &gt; -1)
+     leaseRenewalManagerThreadCount ++;
+     if (threadName.toString().indexOf("BackgroundFifo") &gt; -1)
+     backgroundFifoThreadThreadCount ++;
+     if (threadName.toString().indexOf("Processor-pool") &gt; -1)
+     processorpoolThreadCount ++;
+     if (threadName.toString().indexOf("Pending Answers") &gt; -1)
+     pendingAnswerspoolThreadCount ++;
+     if (threadName.toString().indexOf("Batch Notifier") &gt; -1)
+     batchNotifierThreadCount ++;
+     if (threadName.toString().indexOf("LookupDiscovery Task") &gt; -1)
+     lookupDiscoveryTaskThreadCount ++;
+     if (threadName.toString().indexOf("LeaseManager$Reaper") &gt; -1)
+     leaseManager$ReaperThreadCount ++;
+     if (threadName.toString().indexOf("LeaseRenewalManager Task") &gt; -1)
+     leaseRenewalManagerTaskThreadCount ++;
+     }
+     System.out.println("LRMI Connection Thread Count:" + lrmiThreadCount);
+     System.out.println("LRMI Selector-Read Thread Count:" + lrmiSelectorReadThreadCount);
+     System.out.println("LRMI Selector-Write Thread Count:" + lrmiSelectorWriteThreadCount);
+     System.out.println("LRMI async-Selector Thread Count:" + lrmiAsyncSelectorThreadCount);
+     System.out.println("LRMI Monitoring Thread Count:" + lrmiMonitoringThreadCount);
+     System.out.println("LRMI Liveness Thread Count:" + lrmiLivenessThreadCount);
+
+     System.out.println("Lease Renewal Manager Thread Count:" + leaseRenewalManagerThreadCount );
+     System.out.println("Background Fifo Thread Count:" + backgroundFifoThreadThreadCount);
+     System.out.println("Processor pool Thread Count:" + processorpoolThreadCount);
+     System.out.println("Pending Answers pool Thread Count:"+pendingAnswerspoolThreadCount);
+     System.out.println("Batch Notifier Thread Count:"+batchNotifierThreadCount);
+     System.out.println("Lookup Discovery Task Thread Count:"+lookupDiscoveryTaskThreadCount) ;
+     System.out.println("Lease Manager Reaper Thread Count:"+leaseManager$ReaperThreadCount);
+     System.out.println("Lease Renewal Manager Task Thread Count:" + leaseRenewalManagerTaskThreadCount );
+
+     }
+     }
+     Transport transportInfo = gsc.getTransport();
+     transportInfo.getLRMIMonitoring().enableMonitoring();
+     System.out.println("LRMI Transport Statistics - Active Threads Count:" + transportInfo.getStatistics().getActiveThreadsCount());
+     System.out.println("LRMI Transport Statistics - Queue Size:" + transportInfo.getStatistics().getQueueSize());
+     System.out.println("LRMI Transport Statistics - Active Threads Perc:" + transportInfo.getStatistics().getActiveThreadsPerc());
+     System.out.println("LRMI Transport Statistics - Completed Task Count:" + transportInfo.getStatistics().getCompletedTaskCount());
+     System.out.println("LRMI Transport Statistics - Completed Task Per Second:" + transportInfo.getStatistics().getCompletedTaskPerSecond());
+
+     LRMIServiceMonitoringDetails lrmiServiceDetails [] = transportInfo.getLRMIMonitoring().fetchMonitoringDetails().
+     getInboundMonitoringDetails().getServicesMonitoringDetails();
+
+     for (int i = 0; i &lt; lrmiServiceDetails.length; i++) {
+     System.out.println("Inbound ServicesMonitoringDetails " + i + " :" + lrmiServiceDetails [i]);
+     }
+
+     LRMIProxyMonitoringDetails lrmiProxyDetails [] = transportInfo.getLRMIMonitoring().fetchMonitoringDetails().
+     getOutboundMonitoringDetails().getProxiesMonitoringDetails();
+
+     for (int i = 0; i &lt; lrmiProxyDetails.length; i++) {
+     System.out.println("Outbound ProxiesMonitoringDetails " + i + " : " +lrmiProxyDetails[i] );
+     }
+     }
+
+     }
+     }
+
+    }
+</code></pre>
+        <p>Example output:</p><pre><code class="language-bash">    --------- GSC 6af9bdbf-0754-4410-b3b9-3f78fd939e1c running on Machine 10.10.10.108 Pid:10212 Start Time:Wed Oct 09 15:17:09 EDT 2013 ---------
+    All Thread Count:156
+    LRMI Connection Thread Count:66
+    LRMI Selector-Read Thread Count:4
+    LRMI Selector-Write Thread Count:4
+    LRMI async-Selector Thread Count:4
+    LRMI Monitoring Thread Count:3
+    LRMI Liveness Thread Count:0
+    Lease Renewal Manager Thread Count:4
+    Background Fifo Thread Count:8
+    Processor pool Thread Count:1
+    Pending Answers pool Thread Count:1
+    Batch Notifier Thread Count:1
+    Lookup Discovery Task Thread Count:6
+    Lease Manager Reaper Thread Count:1
+    Lease Renewal Manager Task Thread Count:4
+    Transport Statistics - ActiveThreadsCount:0
+    Transport Statistics - QueueSize:0
+    Transport Statistics - ActiveThreadsPerc:0.0
+    Transport Statistics - CompletedTaskCount:1895127
+    Transport Statistics - CompletedTaskPerSecond:-1.0
+    .....
+</code></pre>
+    </body>
+</html>

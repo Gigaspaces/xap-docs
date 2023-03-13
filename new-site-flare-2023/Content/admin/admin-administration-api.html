@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Administration API</h1>
+        <p>The Admin API provides a way to administer and monitor all of <MadCap:variable name="General.ProductNameXAP" /> services and components using a simple API. The API provides information and the ability to operate on the currently running <a href="../overview/the-runtime-environment.html#gsa"><MadCap:variable name="General.ProductNameXAP" /> Agent</a>, <a href="../overview/the-runtime-environment.html#gsm">the Manager</a>, <a href="../overview/the-runtime-environment.html#gsc">the Container</a>, <a href="../overview/the-runtime-environment.html#lus">Lookup Service</a>, Processing Unit, and Spaces.</p>
+        <p><span class="tc-bold">Dependencies</span>
+        </p>
+        <p>In order to use this feature, include the <code><MadCap:variable name="General.HomePath" />/lib/platform/service-grid/xap-admin.jar</code> file on your classpath or use maven dependencies:</p><pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;com.gigaspaces&lt;/groupId&gt;
+    &lt;artifactId&gt;xap-admin&lt;/artifactId&gt;
+    &lt;version&gt;[%=Versions.maven-version-MX%]&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+        <div class="tc-admon-refer">
+            <p>For more information on dependencies, refer to <a href="../started/installation-maven-overview.html">Maven Artifacts</a>.</p>
+        </div>
+        <h1><a name="examples"></a>Examples</h1>
+        <p>The following code examples show how the Admin API can be used to display information on the currently deployed services/components:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  GSA " style="padding:10px"><pre><code class="language-java">public void gsa() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+    // wait till things get discovered (you can also use specific waitFor)
+    for (GridServiceAgent gsa : admin.getGridServiceAgents()) {
+        System.out.println("GSA [" + gsa.getUid()
+                + "] running on Machine ["
+                + gsa.getMachine().getHostAddress());
+        for (AgentProcessDetails processDetails : gsa.getProcessesDetails()) {
+            System.out.println("   -&gt; Process ["
+                    + Arrays.toString(processDetails.getCommand()) + "]");
+        }
+    }
+}
+</code></pre>
+            </div>
+            <div title="  GSM " style="padding:10px"><pre><code class="language-java">public void gsm() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+    // wait till things get discovered (you can also use specific waitFor)
+    for (GridServiceManager gsm : admin.getGridServiceManagers()) {
+        System.out.println("GSM [" + gsm.getUid() + "] running on Machine "
+                + gsm.getMachine().getHostAddress());
+    }
+}
+</code></pre>
+            </div>
+            <div title="  GSC " style="padding:10px"><pre><code class="language-java">public void gsc() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+    // wait till things get discovered (you can also use specific waitFor)
+    for (GridServiceContainer gsc : admin.getGridServiceContainers()) {
+        System.out.println("GSC [" + gsc.getUid() + "] running on Machine "
+                + gsc.getMachine().getHostAddress());
+        for (ProcessingUnitInstance puInstance : gsc
+                .getProcessingUnitInstances()) {
+            System.out.println("   -&gt; PU [" + puInstance.getName() + "]["
+                    + puInstance.getInstanceId() + "]["
+                    + puInstance.getBackupId() + "]");
+        }
+    }
+}
+</code></pre>
+            </div>
+            <div title="  Processing Unit " style="padding:10px"><pre><code class="language-java">
+public void pu() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+    // wait till things get discovered (you can also use specific waitFor)
+    for (ProcessingUnit processingUnit : admin.getProcessingUnits()) {
+        System.out.println("Processing Unit: " + processingUnit.getName()
+                    + " status: " + processingUnit.getStatus());
+        if (processingUnit.isManaged()) {
+                System.out.println("   -&gt; Managing GSM: "
+                        + processingUnit.getManagingGridServiceManager()
+                                .getUid());
+        } else {
+                System.out.println("   -&gt; Managing GSM: NA");
+        }
+
+        for (GridServiceManager backupGSM : processingUnit
+                    .getBackupGridServiceManagers()) {
+                System.out.println("   -&gt; Backup GSM: " + backupGSM.getUid());
+        }
+
+        for (ProcessingUnitInstance processingUnitInstance : processingUnit) {
+                System.out.println("   ["
+                        + processingUnitInstance.getClusterInfo()
+                        + "] on GSC ["
+                        + processingUnitInstance.getGridServiceContainer()
+                                .getUid() + "]");
+                if (processingUnitInstance.isEmbeddedSpaces()) {
+                    System.out.println("      -&gt; Embedded Space ["
+                            + processingUnitInstance.getSpaceInstance()
+                                    .getUid() + "]");
+                }
+
+                Map&lt;String, ServiceDetails&gt; services = processingUnitInstance.getServiceDetailsByServiceId();
+
+                for (ServiceDetails details : services.values()) {
+                    System.out.println("      -&gt; Service " + details);
+                }
+        }
+    }
+}
+</code></pre>
+            </div>
+            <div title="  Space " style="padding:10px">
+                <div class="tc-admon-note">
+                    <p>The number of backups — <code>space.getNumberOfBackups() </code>— will be zero or one.</p>
+                </div><pre><code class="language-java">
+public void space() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+
+    for (Space space : admin.getSpaces()) {
+        System.out.println("Space [" + space.getUid()
+                    + "] numberOfInstances [" + space.getNumberOfInstances()
+                    + "] numberOfbackups [" + space.getNumberOfBackups() + "]");
+        System.out.println("  Stats: Write ["
+                    + space.getStatistics().getWriteCount() + "/"
+                    + space.getStatistics().getWritePerSecond() + "]");
+        for (SpaceInstance spaceInstance : space) {
+                System.out.println("   -&gt; INSTANCE [" + spaceInstance.getUid()
+                        + "] instanceId [" + spaceInstance.getInstanceId()
+                        + "] backupId [" + spaceInstance.getBackupId()
+                        + "] Mode [" + spaceInstance.getMode() + "]");
+                System.out.println("         -&gt; Host: "
+                        + spaceInstance.getMachine().getHostAddress());
+                System.out.println("         -&gt; Stats: Write ["
+                        + spaceInstance.getStatistics().getWriteCount() + "/"
+                        + spaceInstance.getStatistics().getWritePerSecond()
+                        + "]");
+            }
+        for (SpacePartition spacePartition : space.getPartitions()) {
+                System.out.println("   -&gt; Partition ["
+                        + spacePartition.getPartitionId() + "]");
+                for (SpaceInstance spaceInstance : spacePartition) {
+                    System.out.println("      -&gt; INSTANCE ["
+                            + spaceInstance.getUid() + "]");
+                }
+        }
+    }
+}
+</code></pre>
+            </div>
+            <div title="  Virtual Machine " style="padding:10px"><pre><code class="language-java">public void virtualMachine() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+        // wait till things get discovered (you can also use specific waitFor)
+    System.out.println("VM TOTAL STATS: Heap Committed ["
+                + admin.getVirtualMachines().getStatistics()
+                        .getMemoryHeapCommittedInGB() + "GB]");
+    System.out.println("VM TOTAL STATS: GC PERC ["
+                + admin.getVirtualMachines().getStatistics()
+                        .getGcCollectionPerc()
+                + "], Heap Used ["
+                + admin.getVirtualMachines().getStatistics()
+                        .getMemoryHeapUsedPerc() + "%]");
+
+    for (VirtualMachine virtualMachine : admin.getVirtualMachines()) {
+            System.out.println("VM [" + virtualMachine.getUid() + "] "
+                    + "Host [" + virtualMachine.getMachine().getHostAddress()
+                    + "] " + "GC Perc ["
+                    + virtualMachine.getStatistics().getGcCollectionPerc()
+                    + "], " + "Heap Usage ["
+                    + virtualMachine.getStatistics().getMemoryHeapUsedPerc()
+                    + "%]");
+
+            for (ProcessingUnitInstance processingUnitInstance : virtualMachine
+                    .getProcessingUnitInstances()) {
+                System.out.println("   -&gt; PU ["
+                        + processingUnitInstance.getUid() + "]");
+            }
+            for (SpaceInstance spaceInstance : virtualMachine
+                    .getSpaceInstances()) {
+                System.out.println("   -&gt; Space [" + spaceInstance.getUid()
+                        + "]");
+            }
+    }
+}
+</code></pre>
+            </div>
+            <div title="  Machine " style="padding:10px"><pre><code class="language-java">public void machine() {
+    Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+        // wait till things get discovered (you can also use specific waitFor)
+    for (Machine machine : admin.getMachines()) {
+            System.out.println("Machine ["
+                    + machine.getUid()
+                    + "], "
+                    + "TotalPhysicalMem ["
+                    + machine.getOperatingSystem().getDetails()
+                            .getTotalPhysicalMemorySizeInGB()
+                    + "GB], "
+                    + "FreePhysicalMem ["
+                    + machine.getOperatingSystem().getStatistics()
+                            .getFreePhysicalMemorySizeInGB() + "GB]]");
+
+            for (SpaceInstance spaceInstance : machine.getSpaceInstances()) {
+                System.out.println("   -&gt; Space [" + spaceInstance.getUid()
+                        + "]");
+            }
+            for (ProcessingUnitInstance processingUnitInstance : machine
+                    .getProcessingUnitInstances()) {
+                System.out.println("   -&gt; PU ["
+                        + processingUnitInstance.getUid() + "]");
+            }
+    }
+}
+</code></pre>
+            </div>
+        </div>
+        <p>Obtaining information about the currently deployed services/components via the started <code>GridServiceAgents</code>:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" GSC " style="padding:10px"><pre><code class="language-java">    public void findStartedGridServiceContainers() {
+        Admin admin = new AdminFactory().createAdmin();
+
+        // wait at least for one agent
+        admin.getGridServiceAgents().waitForAtLeastOne();
+
+        for (GridServiceAgent gsa : admin.getGridServiceAgents()) {
+            for (GridServiceContainer gsc : gsa.getGridServiceContainers()) {
+                // ....
+            }
+        }
+    }
+</code></pre>
+            </div>
+            <div title=" GSM " style="padding:10px"><pre><code class="language-java">    public void findStartedGridServiceManagers() {
+        Admin admin = new AdminFactory().createAdmin();
+
+        // wait at least for one agent
+        admin.getGridServiceAgents().waitForAtLeastOne();
+
+        for (GridServiceAgent gsa : admin.getGridServiceAgents()) {
+            for (GridServiceManager gsm : gsa.getGridServiceManagers()) {
+                // ....
+            }
+        }
+    }
+</code></pre>
+            </div>
+            <div title=" LUS " style="padding:10px"><pre><code class="language-java">    public void findStartedLookupServices() {
+        Admin admin = new AdminFactory().createAdmin();
+
+        // wait at least for one agent
+        admin.getGridServiceAgents().waitForAtLeastOne();
+
+        for (GridServiceAgent gsa : admin.getGridServiceAgents()) {
+            for (LookupService ls : gsa.getLookupServices()) {
+                // ....
+            }
+        }
+    }
+</code></pre>
+            </div>
+            <div MadCap:conditions="Version.15-2-died" title=" ESM " style="padding:10px"><pre><code class="language-java">    public void findStartedElasticServiceManagers() {
+        Admin admin = new AdminFactory().createAdmin();
+
+        // wait at least for one agent
+        admin.getGridServiceAgents().waitForAtLeastOne();
+
+        for (GridServiceAgent gsa : admin.getGridServiceAgents()) {
+            for (ElasticServiceManager esm : gsa.getElasticServiceManagers()) {
+                // ....
+            }
+        }
+    }
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-refer">
+            <p>A fully running example of a <a href="/sbp/scaling-agent.html">Scaling Agent</a> is available in the Solutions &amp; Patterns section.</p>
+        </div>
+        <h1><a name="admin-construction"></a>Admin Construction</h1>
+        <p>The Admin API uses the <code>AdminFactory</code> in order to create <code>Admin</code> instances. After you finish working with the <code>Admin</code>, its <code>Admin#close()</code> method should be called.</p>
+        <p>The Admin API discovers all the advertised services from the <a href="../overview/the-runtime-environment.html#lus">Lookup Service</a>. Use the <code>AdminFactory#addGroup</code> to define which lookup groups. The lookup locators can also be used for non-multicast enabled environments using <code>AdminFactory#addLocator</code>. If the services started are secured, the username and password can be set on the Admin API as well.</p>
+        <h1><a name="discovery-process"></a>Discovery Process</h1>
+        <p>When the <code>Admin</code> is created, it starts to receive discovery events from all the advertised services/components within its lookup groups and lookup locators. The events occur asynchronously and the data model within the Admin API gets initialized in the background with services coming and going.</p>
+        <p>This means that just creating the <code>Admin</code> and calling a specific "getter" for a data structure might not return what is currently deployed, and you should wait until the structures are filled. Some components have a <code>waitFor</code> method that allows waiting for a specific number of services to be up. When navigating the data model, the Admin API provides its most up-to-date state of the system it is monitoring.</p>
+        <h1><a name="domain-model"></a>Domain Model</h1>
+        <p>The Admin Domain Model has representation to all the <MadCap:variable name="General.DataGrid" />-level main actors. They include:</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/admin_DomainModel.jpg" alt="admin_DomainModel.jpg" class="tc-picture50" />
+        </div>
+        <div class="tc-admon-note">
+            <p>The <code>Admin</code> functionality is designed to interact with a service grid deployment. For <code>StandaloneProcessingUnitContainer</code> and <code>IntegratedProcessingUnitContainer</code>, components such as <code>GridServiceAgent</code> and <code>GridServiceManager</code> are not started by default, therefore portions of the Admin functionality aren't available.</p>
+        </div>
+        <h2><a name="accessing-the-domain-model"></a>Accessing the Domain Model</h2>
+        <p>There are two ways to use the Admin API to access information:</p>
+        <ul>
+            <li>Call specific "getters" for the data and iterate over them (as shown in the example at the top of the page).</li>
+            <li>Register for specific events using the Admin API. Events are handled by different components of the Admin API in similar manner. We will take one of them and use it as a reference example.</li>
+        </ul>
+        <p>If we want to register, for example, for Grid Service Container additions, we can use the following code (removing the event listener is not shown here for clarity):</p><pre><code class="language-java">admin.getGridServiceContainers().getGridServiceContainerAdded().add(new GridServiceContainerAddedEventListener() {
+    public void gridServiceContainerAdded(GridServiceContainer gridServiceContainer) {
+        // do something here
+    }
+});
+</code></pre>
+        <p>Removals are done in similar manner:</p><pre><code class="language-java">admin.getGridServiceContainers().getGridServiceContainerRemoved().add(new GridServiceContainerRemovedEventListener() {
+    public void gridServiceContainerRemoved(GridServiceContainer gridServiceContainer) {
+        // do something here
+    }
+});
+</code></pre>
+        <p>Since both removals and additions are common events that we would like to register for at the same time, we can use:</p><pre><code class="language-java">admin.getGridServiceContainers().addLifecycleListener(new GridServiceContainerLifecycleEventListener() {
+    public void gridServiceContainerAdded(GridServiceContainer gridServiceContainer) {
+        // do something here
+    }
+
+    public void gridServiceContainerRemoved(GridServiceContainer gridServiceContainer) {
+        // do something here
+    }
+});
+</code></pre>
+        <p>All other data structures use similar APIs to register for events. Some might have specific events that go beyond additions and removals, but they still use the same model. For example, you can register for Space mode change events across all currently running Space topologies and Space instances:</p><pre><code class="language-java">admin.getSpaces().getSpaceModeChanged().add(new SpaceModeChangedEventListener() {
+    public void spaceModeChanged(SpaceModeChangedEvent event) {
+        System.out.println("Space [" + event.getSpaceInstance().getSpace().getName() + "] " +
+        "Instance [" + event.getSpaceInstance().getInstanceId() + "/" +
+                event.getSpaceInstance().getBackupId() + "] " +
+        "changed mode from [" + event.getPreviousMode() + "] to [" + event.getNewMode() + "]");
+    }
+});
+</code></pre>
+        <p>Of course, you can register the same listener on a specific <code>Space</code> topology, or event on a specific <code>SpaceInstance</code>.</p>
+        <p>Last, the <code>Admin</code> interface provides a one-stop method called <code>addEventListener</code> that accepts an <code>AdminListener</code>. Most event listeners implement this interface. You can create a class that implements several chosen listener interfaces, call the <code>addEventListener</code> method, and they will automatically be added to their respective components. For example, if our listener implements <code>GridServiceContainerAddedEventListener</code> and <code>GridServiceManagerAddedEventListener</code>, the listener will automatically be added to the <code>GridServiceManagers</code> and <code>GridServiceContainers</code>.</p>
+        <h1><a name="security"></a>Security</h1>
+        <p>If you are using the Admnistration API in a secured environment, there are several things that must be taken into consideration when accessing the service grid or deploying grid components (Spaces and Processing Units).</p>
+        <h2><a name="constructing-the-admin-instance"></a>Constructing the Admin Instance</h2>
+        <p>When using a secured Service Grid, the <code>Admin</code> instance needs to be constructed with a <span class="tc-italic">principal</span> which is granted sufficient privileges based on the operations being performed using the administration API. For example, grant <code>Manage Grid</code> to start a Grid Service Manager (GSM) and grant <code>Provision PU</code> to deploy a processing unit.</p>
+        <p>The following creates an <code>Admin</code> instance with the user "user/password".</p><pre><code class="language-java">Admin admin = new AdminFactory().addGroup("gigaspaces").credentials("user", "password").createAdmin();
+</code></pre>
+        <p>For security other than username/password, refer to the <a href="../security/custom-authentication.html">Authentication</a> topic in the <a href="../security/index.html">Security</a> section of the Administration guide.</p>
+        <h2><a name="space-deployment"></a>Space Deployment</h2>
+        <p>Deploying a secured Space:</p><pre><code class="language-java">...
+admin.getGridServiceManagers().deploy(new SpaceDeployment("mySpace").secured(true));
+</code></pre>
+        <p>Deploying a secured Space with credentials supplied. These credentials propagate to internal services, such as Space Filters.</p><pre><code class="language-java">...
+admin.getGridServiceManagers().deploy(new SpaceDeployment("mySpace").userDetails("myUser", "myPassword"));
+</code></pre>
+        <h2><a name="processing-unit-deployment"></a>Processing Unit Deployment</h2>
+        <p>Deploying a secured Processing Unit. This will deploy a Processing Unit with a secured embedded Space.</p><pre><code class="language-java">...
+admin.getGridServiceManagers().deploy(new ProcessingUnitDeployment("myPu").secured(true));
+</code></pre>
+        <p>Deploying a secured Processing Unit with credentials supplied. With this approach, credentials do not need to be hardcoded in the <code>pu.xml</code> declaration. These credential propagate to all the beans that require a proxy to the Space.</p><pre><code class="language-java">...
+admin.getGridServiceManagers().deploy(new ProcessingUnitDeployment("myPu").userDetails("myUser", "myPassword"));
+</code></pre>
+    </body>
+</html>

@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Time Series with Real Time Analytics</h1>
+        <table>
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Allen Terleto</td>
+                    <td>9.7</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Overview</h1>
+        <p>A <code>Time Series</code> is a sequence of data points, measured typically at successive points in time spaced at uniform time intervals (or space). If observations are made on some phenomenon throughout time, it is most sensible to display the data in the order in which they arose, particularly since successive observations will probably be dependent. Time series are best displayed in a scatter plots and line charts. The series value X is plotted on the vertical axis and time t on the horizontal axis. Time is called the independent variable (in this case however, something over which you have little control). There are two kinds of time series data:</p>
+        <ol>
+            <li>Continuous, where we have an observation at every instant of time, e.g. lie detectors, electrocardiograms. We denote this using observation <code>X</code> at time <code>t</code>, <code>X(t)</code>.</li>
+            <li>Discrete, where we have an observation at (usually regularly) spaced intervals. We denote this as <code>Xt</code>.</li>
+        </ol>
+        <p>Good examples of time series are the daily closing value of the Dow Jones, NASDAQ, and S&amp;P indices. They are used in statistics, signal processing, pattern recognition, econometrics, mathematical finance, weather forecasting, earthquake prediction, control engineering, astronomy, and communications engineering.</p>
+        <p>This demo will provide a visual representation of a running time series which is being updated in real-time. Internally concurrent executor threads will mimic the generation of events, by random airline customers, looking to search and book flights to various points of origin. Each event will be processed, categorized, and captured within am in-memory time series object.</p>
+        <p>The User Interface for this demo will mock an <span class="tc-bold">Airline Flight Operations Dashboard</span> which will consistently update a charted time series. The <span class="tc-bold">horizontal axis</span>, <code>t</code>, which is denoted in hours will be updated every 2 seconds. The <span class="tc-bold">vertical axis</span>, <code>X</code>, represents the amount of booked flights from a set source airport to a destination airport. For clarity and readability, this demo will only display the top 5 source and destination pairs.</p>
+        <p><span class="tc-bold">It is designed to be real-time, mission-critical and provide:</span>
+        </p>
+        <ul>
+            <li>Scalability</li>
+            <li>High availability</li>
+            <li>Low latency</li>
+            <li>Write-intensive</li>
+        </ul>
+        <p><span class="tc-bold">The following <MadCap:variable name="General.ProductNameXAP" /> features are utilized:</span>
+        </p>
+        <ul>
+            <li>Event Processing</li>
+            <li>Data Partitioning</li>
+            <li>Indexing</li>
+            <li>Space Querying</li>
+            <li>Leases - Automatic Expiration</li>
+            <li>Projection API</li>
+            <li>Change API</li>
+            <li>DAO</li>
+            <li>Map-Reduce</li>
+            <li>Task Execution</li>
+            <li>Jetty Integration</li>
+            <li>SLA-Driven Capabilities</li>
+        </ul>
+        <h2>Visual Time Series with Real Time Analytics</h2>
+        <p>Once the provided web processing unit is deployed you can access the demo's web page at <code>http://host:port/my-app-web/index.jsp.</code> (i.e. <code>http://localhost:8080/my-app-web/index.jsp</code>)  It will display the generic airline's top-5 predetermined source and destinations airport sets in the left panel. Upon load, the rendered graph will show a time series in the form of a line chart. Its initial data will be limited to the last 10 inactive intervals that reside in the space. The graph can be altered on the fly in the form of area, bar and scatter charts (shown below). Once the loading process is complete the graph will update itself every 2 seconds showing the latest inactive interval along the time series; capturing the booking requests performed by the mocked users.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/time-series-2.png" alt="time-series-2.png" class="tc-picture80" />
+            </p>
+        </div>
+        <h1>Architecture</h1>
+        <p><code>Feeder</code> Processing Unit(s), utilizing Spring's <code>ThreadPoolTaskSchedulers</code>, can concurrently generate a steady load of search and booking requests which are written to a remote space. The demo allows for feeders to be deployed as standard processing units or command-line java programs. By default each feeder is configured to update the clustered space with a pool of three threads.</p>
+        <p>The clustered space being updated by the feeders is embedded in a processing unit called a <code>Processor</code>. By default each <code>Processor</code> will maintain a separate partition of the <span class="tc-bold">space cluster</span> which is routed by the <code>airline</code> attribute. This <code>airline</code> attribute is required in all booking and search requests and for demo purposes is chosen from a fixed set of four airlines.</p>
+        <p>The Processor makes use of two polling containers each individually designated to process their respective type of request; booking and search. Once a request event has been initiated by the Feeder, a pooling container will perform a take operation to remove the request from the space and analyze its <code>airline</code> attribute. The Processor will then use the <code>airline</code> as a routing key to read from the appropriate partition of the space and find the active <code>timeSeries</code> object.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/time-series-1.png" alt="time-series-1.png" class="tc-picture80" />
+            </p>
+        </div>
+        <p>The <code>timeSeries</code> object is designed to track the amount of request occurrences for each set of source and destination airports. It does this with an embedded <code>Map&lt;String, Integer&gt;</code> attribute named <code>sourceDestinatinCounter</code>. Each Time Series can store sourceDestination sets as a key to its map along with an Integer representing the number of occurrences within the given interval. By default a Time Series object only remains active for two seconds, after which the <code>Processor</code> will create a new <code>timeSeries</code> object.</p>
+        <p>The Web Processing Unit hosts a web page that is capable of rendering a graph which will chart the inactive <code>BookingTimeSeries</code> objects according to their sequence in time. By default, the graph will only load the last 10 inactive <code>BookingTimeSeries</code> objects persisted in the space. Once the initial data is loaded, the web page will begin making scheduled AJAX requests to the underlying servlet to get the next available inactive Time Series. By default each interval will last two seconds and will be represented along the horizontal axis, <code>t</code>, in hours.</p>
+        <p>For scalability the servlet will use a <code>TaskDelegate</code> to perform multiple tasks executed in a collocated asynchronous manner with the space. One of the tasks is purposed to retrieve all inactive Time Series which occurred after a provided interval. Since the space is partitioned this task will be broadcasted across the entire cluster and will return a result that is a reduced operation of all the different executions. This Map-Reduce pattern will aggregate all counters from the partitioned spaces and reduce them into a single <code>TreeMap</code> which the web page can iterate in order to load the data into the graph.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/time-series-3.png" alt="time-series-3.png" class="tc-picture50" />
+            </p>
+        </div>
+        <h1>Key Features</h1>
+        <h3>Event Processing</h3>
+        <p>Each type of request has a polling container listening for a new event for request-processing and incrementing the active Time Series <code>sourceDesinationCounter</code>.</p><pre><code class="language-java">@Polling(concurrentConsumers=10)
+public class BookingRequestProcessor {
+
+    private Logger log = Logger.getLogger(this.getClass().getName());
+
+    private long timeSeriesInterval;
+    private Map&lt;String, Integer&gt; intervalAirlineMap = new HashMap&lt;String, Integer&gt;(4);
+
+    private IBookingTimeSeriesDAO bookingTimeSeriesDAO;
+
+
+    @SpaceDataEvent
+    public void processData(BookingRequest bookingRequest) {
+        Assert.notNull(bookingTimeSeriesDAO, "**** bookingTimeSeriesDAO is a required property ****");
+
+        bookingRequest.setProcessedData("PROCESSED : " + bookingRequest.getRawData());
+        bookingRequest.setProcessed(true);
+        String sourceDestinationAirport = AirportDataUtils.generateSourceDestinationKey(bookingRequest.getSourceAirport(), bookingRequest.getDestinationAirport());
+
+        BookingTimeSeries result = bookingTimeSeriesDAO.findBookingTimeSeriesWithinActiveInterval(bookingRequest.getAirline(), timeSeriesInterval);
+        if(result != null)
+            bookingTimeSeriesDAO.incrementSourceDestinationCounter(result, sourceDestinationAirport);
+        else
+            createNewInterval(bookingRequest.getAirline(), sourceDestinationAirport);
+    }
+}
+</code></pre>
+        <h3>Data Partitioning</h3>
+        <p>In a partitioned clustered space, data is routed to a particular partition based on a <code>routing property</code>. In this system we use the <code>airline</code> attribute as our Routing property. This provides <span class="tc-bold">data affinity</span> so that user requests and <code>timeSeries</code> objects are located in the same space, which minimizes latency.</p><pre><code class="language-java">public abstract class TimeSeries implements java.io.Serializable {
+
+    private static final long serialVersionUID = -2128516066057590442L;
+
+    Integer interval;
+    String intervalId;
+    String airline;
+    Date lasttimestamp;
+    Map&lt;String, Integer&gt; sourceDestinationCounter;
+    String status;
+
+    public static final String createIntervalId(Integer interval, String airline) {
+        return interval + Constants.UNDER_SCORE + airline;
+    }
+
+    public TimeSeries() {
+    }
+
+    @SpaceId(autoGenerate=false)
+    public String getIntervalId() {
+        return intervalId;
+    }
+
+    @SpaceRouting
+    @SpaceIndex(type=SpaceIndexType.BASIC)
+    public String getAirline() {
+        return airline;
+    }
+}
+</code></pre>
+        <h3>Indexing</h3>
+        <p>When a space is looking for a match for a read or take operation, it iterates over non-null values in the template, looking for matches in the space. This process can be time consuming, especially when there are many potential matches. To improve performance, it is possible to index one or more properties. The space maintains additional data for indexed properties, which shortens the time required to determine a match, thus improving performance.</p>
+        <p><span class="tc-bold">Basic index</span> - speeds up equality matches
+<span class="tc-bold">Extended index</span> - speeds up comparison matches</p><pre><code class="language-java">    @SpaceRouting
+    @SpaceIndex(type=SpaceIndexType.BASIC)
+    public String getAirline() {
+        return airline;
+    }
+
+    @SpaceIndex(type=SpaceIndexType.EXTENDED)
+    public Date getLasttimestamp() {
+        return lasttimestamp;
+    }
+</code></pre>
+        <h3>Space Querying</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Methodology</th>
+                    <th align="left">Usage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">ID-Based Queries</td>
+                    <td align="left">For best performance a readById operation can be used if ID is available</td>
+                </tr>
+                <tr>
+                    <td align="left">Template Matching</td>
+                    <td align="left">The template is a POJO of the desired entry type, and the properties which are set on the template (i.e. not null) are matched against the respective properties of entries to the same type in the space. Properties with null values are ignored (not matched).</td>
+                </tr>
+                <tr>
+                    <td align="left">SQL Query</td>
+                    <td align="left">The <code>SQLQuery</code> class is used to query the space using SQL-like syntax. The query statement includes only the WHERE statement part - the selection aspect of a SQL statement is embedded in other parameters for a SQL query.</td>
+                </tr>
+            </tbody>
+        </table><pre><code class="language-java">public class BookingTimeSeriesDAO implements IBookingTimeSeriesDAO {
+
+    @GigaSpaceContext(name = "gigaSpace")
+    private GigaSpace gigaSpace;
+
+    public void setGigaSpace(GigaSpace gigaSpace) {
+        this.gigaSpace = gigaSpace;
+    }
+
+    public BookingTimeSeries[] readAllCompletedTimeSeriesAfterInterval(Integer lastInterval) {
+        SQLQuery&lt;BookingTimeSeries&gt; query = new SQLQuery&lt;BookingTimeSeries&gt;(BookingTimeSeries.class, "interval &gt; ? and status = ?");
+            query.setParameter(1, lastInterval);
+                query.setParameter(2, Constants.STATUS_COMPLETE);
+
+        return gigaSpace.readMultiple(query);
+    }
+
+    public BookingTimeSeries readTimeSeriesByIntervalId(Integer interval, String airline) {
+        String intervalId = TimeSeries.createIntervalId(interval, airline);
+        return gigaSpace.readById(BookingTimeSeries.class, intervalId, airline);
+    }
+
+    //BookingTimeSeries will only remain in the space for 60 seconds which correlates to approximately 35-40 intervals
+    public void save(BookingTimeSeries bookingTimeSeries) {
+        gigaSpace.write(bookingTimeSeries, 60000);
+    }
+}
+</code></pre>
+        <h3>Leases - Automatic Expiration</h3>
+        <p>In distributed applications on a network, where there may be partial failures of the network or of components, there needs to be a way for components to be timed out if they have failed, or have become unreachable. Lease is a basic mechanism GigaSpaces provides to address this problem.</p><pre><code class="language-java">public void save(BookingTimeSeries bookingTimeSeries) {
+    gigaSpace.write(bookingTimeSeries, 60000);
+}
+</code></pre>
+        <h3>Projection API</h3>
+        <p>In some cases when querying the space for objects, only specific properties of that objects are required and not the entire object (delta read). For that purpose the <code>Projection API</code> can be used where one can specify which properties are of interest and the space will only populate these properties with the actual data when the result is returned back to the user. This approach reduces network overhead, garbage memory generation and serialization CPU overhead.</p><pre><code class="language-java">public BookingTimeSeries readActiveTimeSeriesByAirline(String airline) {
+    SQLQuery&lt;BookingTimeSeries&gt; query = new SQLQuery&lt;BookingTimeSeries&gt;(BookingTimeSeries.class, "airline = ? and status = ?")
+        .setProjections("interval"); //Use Projections API to return only the interval attribute
+
+    query.setParameter(1, airline);
+    query.setParameter(2, Constants.STATUS_ACTIVE);
+
+    return gigaSpace.read(query);
+}
+</code></pre>
+        <h3>Change API</h3>
+        <p>The <code>GigaSpace.change()</code> operation and its <code>ChangeSet</code> parameter allows updating existing objects in space, by specifying only the required change instead of passing the entire updated object. This reduces the required network traffic between the client and the space, and the network traffic generated from replicating the changes between the space instances (e.g. between the primary space instance and its backup).</p><pre><code class="language-java">public void incrementSourceDestinationCounter(BookingTimeSeries bookingTimeSeries, String sourceDestination) {
+    IdQuery&lt;BookingTimeSeries&gt; idQuery = new IdQuery&lt;BookingTimeSeries&gt;(BookingTimeSeries.class, bookingTimeSeries.getIntervalId());
+    gigaSpace.change(idQuery, new ChangeSet().increment("sourceDestinationCounter." + sourceDestination, 1));
+}
+</code></pre>
+        <h3>DAO</h3>
+        <p>The below interface defines the available operations that can be run against the space for a given Space object. This interface is shared amongst the different processing units alongside the domain model in a separate project called Common. The implementation of the interface can be uniquely determined by any processing unit which adds Common on its build path.</p><pre><code class="language-java">public interface IBookingTimeSeriesDAO {
+    BookingTimeSeries[] readAllCompletedTimeSeriesAfterInterval(Integer lastInterval);
+    BookingTimeSeries readTimeSeriesByIntervalId(Integer interval, String airline);
+    BookingTimeSeries readActiveTimeSeriesByAirline(String airline);
+    void save(BookingTimeSeries bookingTimeSeries);
+    BookingTimeSeries findBookingTimeSeriesWithinActiveInterval(String airline, long timeSeriesInterval);
+    void incrementSourceDestinationCounter(BookingTimeSeries bookingTimeSeries, String sourceDestination);
+    void updateCompletedStatus(BookingTimeSeries bookingTimeSeries);
+}
+</code></pre>
+        <h3>Map-Reduce Pattern</h3>
+        <p>Map-Reduce is a programming model for processing large data sets with a parallel and distributed algorithm on a cluster. A Map-Reduce program is composed of a <code>Map()</code> procedure that performs reads/filtering/sorting and a <code>Reduce()</code> procedure that performs a summary/aggregation operation. Map-Reduce works by marshalling the distributed servers, running the various tasks in parallel, managing all communications and data transfers between the various parts of the system, and providing for redundancy and fault tolerance.</p>
+        <p><span class="tc-bold">Map step:</span> The master node takes the input, divides it into smaller sub-problems, and distributes them to worker nodes. A worker node may do this again in turn, leading to a multi-level tree structure. The worker node processes the smaller problem, and passes the answer back to its master node.</p>
+        <p><span class="tc-bold">Reduce step</span> The master node then collects the answers to all the sub-problems and combines them to form a single output.</p>
+        <table class="tc-borderless">
+            <tr>
+                <td style="width:45%;">
+                    <p>Phase 1 - Sending the Space tasks to be executed:
+</p>
+                    <div class="tc-align-center">
+                        <p>
+                            <img src="../Resources/Static/attachment_files/task/DistributedTaskExecution_phase1.jpg" alt="DistributedTaskExecution_phase1.jpg" />
+                        </p>
+                    </div>
+                </td>
+                <td style="width:45%;">
+                    <p>Phase 2 - Getting the results back to be reduced:
+</p>
+                    <div class="tc-align-center">
+                        <p>
+                            <img src="../Resources/Static/attachment_files/task/DistributedTaskExecution_phase2.jpg" alt="DistributedTaskExecution_phase2.jpg" />
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <h4>Task Execution</h4>
+        <p><MadCap:variable name="General.ProductNameXAP" /> comes with support for executing tasks in a collocated asynchronous manner with the Space. Tasks can be executed directly on a specific cluster member using typical routing declarations. They can also be executed concurrently in <code>broadcast</code> mode on all primary cluster members and reduced to a single result on the client side. Tasks are completely dynamic both in terms of content and class definitions.</p><pre><code class="language-java">@AutowireTask
+public class DetermineInitialIntervalTask implements Task&lt;Integer&gt; {
+
+    private static final long serialVersionUID = -2846168106076276015L;
+
+    private String airline;
+    private Integer maxIntervals;
+
+    @Resource
+    private transient IBookingTimeSeriesDAO bookingTimeSeriesDAO;
+
+    public DetermineInitialIntervalTask() {};
+
+        public DetermineInitialIntervalTask(String airline, Integer maxIntervals) {
+        this.airline = airline;
+        this.maxIntervals = maxIntervals;
+    }
+
+    @SpaceRouting
+    public String getAirline() {
+        return airline;
+    }
+
+        public Integer execute() throws Exception {
+        BookingTimeSeries activeBookingTimeSeries = bookingTimeSeriesDAO.readActiveTimeSeriesByAirline(airline);
+
+        //If applicable, limits the initial graph rendering to a max of provided intervals
+        Integer activeInterval = activeBookingTimeSeries.getInterval();
+        if(activeInterval &gt; maxIntervals) {
+            return activeInterval - maxIntervals;
+        }
+        return 0;
+        }
+
+    public IBookingTimeSeriesDAO getBookingTimeSeriesDAO() {
+        return bookingTimeSeriesDAO;
+    }
+
+    public void setBookingTimeSeriesDAO(IBookingTimeSeriesDAO bookingTimeSeriesDAO) {
+        this.bookingTimeSeriesDAO = bookingTimeSeriesDAO;
+    }
+}
+</code></pre>
+        <p><span class="tc-bold">Distributed Tasks</span>
+        </p>
+        <p>A <code>Distributed Task</code> is a task that ends up executing more than once (concurrently) and returns a result that is a reduced operation of all the different executions. This type of task is used as the implementation of the Map-Reduce Pattern provided by <MadCap:variable name="General.ProductNameXAP" />. For this demo, it will be used to read all inactive timesSeries objects for a given airline which occurred after the provided interval. Each partition will combine the resultant timeSeries' into a <code>TreeMap</code> and return the reduction to the remote client for aggregation.</p><pre><code class="language-java">@AutowireTask
+public class RetrieveCompletedBookingTimeSeriesTask implements DistributedTask&lt;BookingTimeSeries[], TreeMap&lt;String, SourceDestinationAirports&gt;&gt; {
+    private static final long serialVersionUID = -2846168106076276015L;
+
+    private String airline;
+    private Integer lastInterval;
+
+    @Resource
+    private transient IBookingTimeSeriesDAO bookingTimeSeriesDAO;
+
+    public RetrieveCompletedBookingTimeSeriesTask() {};
+
+        public RetrieveCompletedBookingTimeSeriesTask(String airline, Integer lastInterval) {
+        this.airline = airline;
+        this.lastInterval = lastInterval;
+    }
+
+        @SpaceRouting
+        public String getAirline() {
+        return airline;
+        }
+
+    public BookingTimeSeries[] execute() throws Exception {
+        return bookingTimeSeriesDAO.readAllCompletedTimeSeriesAfterInterval(lastInterval);
+        }
+
+        public TreeMap&lt;String, SourceDestinationAirports&gt; reduce(List&lt;AsyncResult&lt;BookingTimeSeries[]&gt;&gt; results) throws Exception {
+            TreeMap&lt;String, SourceDestinationAirports&gt; airports = new TreeMap&lt;String, SourceDestinationAirports&gt;();
+
+            if(results != null) {
+            for(AsyncResult&lt;BookingTimeSeries[]&gt; result: results) {
+                if(result != null) {
+                    if(result.getException() != null) {
+                        throw result.getException();
+                    }
+
+                    for(BookingTimeSeries bookingTimeSeries : result.getResult()) {
+                        if(bookingTimeSeries != null) {
+                            AirportDataUtils.updateAirportMap(bookingTimeSeries, airports);
+                        }
+                    }}}}
+
+        return airports;
+        }
+
+    public IBookingTimeSeriesDAO getBookingTimeSeriesDAO() {
+        return bookingTimeSeriesDAO;
+    }
+
+    public void setBookingTimeSeriesDAO(IBookingTimeSeriesDAO bookingTimeSeriesDAO) {
+        this.bookingTimeSeriesDAO = bookingTimeSeriesDAO;
+    }
+}
+</code></pre>
+        <h3><a name="task-resource-injection">&#160;</a>Task Resource Injection</h3>
+        <p>A <code>Task</code> might need to make use of resources defined within an external processing unit (which may be collocated with the Space). In our case, the task has a reference to a <code>DAO</code> interface but no access to the implementation. In order for the task to successfully operate in runtime its code will need to be injected into the processing unit which hosts the DAO implementation as well as the Space itself.</p>
+        <p>An executed <code>Task</code> goes through the same lifecycle as any bean defined within an external processing unit even though its bean definition is not present. Thanks to this fact, injecting resources can be done using annotations (<code>@Autowired</code> and <code>@Resource</code>).</p><pre><code class="language-java">@Resource
+private transient IBookingTimeSeriesDAO bookingTimeSeriesDAO;
+</code></pre>
+        <h3>Web Processing Unit Container</h3>
+        <p><MadCap:variable name="General.ProductNameXAP" />'s web processing unit run the <code>WAR</code> file deployed onto the Service Grid. The Web Processing Unit Container allows you to run your embedded data (Space), business logic and web packages inside the same processing unit or within the same Service Grid. Or you can simply run a pure standard <code>WAR</code> file in a non-Spring and Spring configuration.</p>
+        <p>In this demo, we are using the Web Processing Unit Container to host the web tier as a remote client to the space. Its servlet uses a <code>TaskDelegate</code> pattern to orchestrate regular and distributed tasks which will be executed within the space. It makes use of <code>Task</code> Resource Injection to access the implementation of the DAO interface and Task Routing to execute within the correct space partition.</p><pre><code class="language-java">public class TimeSeriesServlet extends HttpServlet {
+
+    private TaskDelegate taskDelegate;
+
+    @Override
+    public void init() throws ServletException {
+        taskDelegate = (TaskDelegate) getServletContext().getAttribute("taskDelegate");
+        if(taskDelegate == null) {
+            throw new IllegalStateException("taskDelegate cannot be null");
+        }
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            Assert.notNull(taskDelegate, "**** taskDelegate is a required property ****");
+
+            String service = StringUtils.trim(request.getParameter("service"));
+            String airline = StringUtils.trim(request.getParameter("airline"));
+            Integer lastInterval = StringUtils.stringToInteger(request.getParameter("lastInterval"));
+
+            SortedMap&lt;String, SourceDestinationAirports&gt; sourceDestinationMap = null;
+            if("getAllIntervals".equals(service)) {
+                sourceDestinationMap = taskDelegate.retrieveCompletedBookingTimeSeriesIntervals(airline, 12);
+
+            }else if("getNextInterval".equals(service)) {
+                sourceDestinationMap = taskDelegate.retrieveNextActiveBookingTimeSeries(airline, lastInterval);
+            }
+
+            if(sourceDestinationMap != null) {
+                response.setContentType("text/html");
+                    response.getWriter().println(createXmlResponsePayload(sourceDestinationMap));
+            }
+    }
+</code></pre>
+        <h3>SLA-Driven Capabilities</h3>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> runtime environment provides SLA-driven capabilities via the <code>GSM</code> and the <code>GSC</code> runtime components. The <code>GSC</code> is responsible for running one or more Processing Units; while the GSM is responsible for analyzing the deployment and provisioning the processing unit instances to the available <code>GSCs</code>. The <code>SLA</code> definitions can be provided as part of the processing unit package or during the processing unit's deployment process. They define the number of processing unit instances that should be running and deploy-time requirements such as the amount of free memory or CPU or the clustering topology for processing units which contain a space. The <code>GSM</code> reads the SLA definition, and deploys the processing unit onto the available GSCs according to it.</p>
+        <p>This demo will use a <code>sla.xml</code> file which contains the SLA definitions within the processing units jar file. This file can be located under the <code>META-INF/spring</code> directory, alongside the processing unit's <code>pu.xml</code> file.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-sla="http://www.openspaces.org/schema/sla"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                   http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/9.1/sla/openspaces-sla.xsd"&gt;
+
+    &lt;os-sla:sla cluster-schema="partitioned-sync2backup" number-of-instances="2" number-of-backups="1"</code></pre>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
+                max-instances-per-vm="1"&gt;
+    &lt;/os-sla:sla&gt;
+
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-sla="http://www.openspaces.org/schema/sla"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                   http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/9.1/sla/openspaces-sla.xsd"&gt;
+
+    &lt;os-sla:sla cluster-schema="partitioned-sync2backup" number-of-instances="2" number-of-backups="1"</code></pre>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
+                max-instances-per-vm="1"&gt;
+    &lt;/os-sla:sla&gt;
+
+&lt;/beans&gt;
+</code></pre>
+        <h1>Running the Demo</h1>
+        <p><span class="tc-bold">Step 1.</span> Download the <a href="/download_files/sbp/realTimeAnalyticsTimeSeries.rar">realTimeAnalyticsTimeSeries.rar</a> file and extract it into a folder named <code>realTimeAnalyticsTimeSeries</code>.<br /></p>
+        <p><span class="tc-bold">Step 2.</span> Update setenv.bat to have the right value for <code>JAVA_HOME</code> and <code>JSHOMEDIR</code> variables</p>
+        <p><span class="tc-bold">Step 3.</span> Add <code>maven\bin</code> to your path if you dont have it already installed and run:</p><pre><code class="language-java"><MadCap:variable name="General.HomePath" />\tools\maven\installmavenrep.bat
+</code></pre>
+        <p><span class="tc-bold">Step 4.</span> Build the demo by running the following command:</p><pre><code class="language-java">mvn package
+</code></pre>
+        <p><span class="tc-bold">Step 5.</span> Execute the demo by running the start and deploy scripts in the following order:  <br /></p>
+        <p>Start 1 GSA, 2 GSCs, 1 GSM and 1 LUS</p><pre><code class="language-java">gs-agent.bat
+</code></pre>
+        <p>Start the GigaSpaces Management Center:</p><pre><code class="language-java">gs-ui.bat
+</code></pre>
+        <p><span class="tc-bold">Step 6.</span> Deploy Applications</p>
+        <ul>
+            <li>Find the <code>Launch</code> menu at the top of the GS Management Center UI.<br /></li>
+            <li>Choose SBA Application-Processing Unit from the drop-down. <br /></li>
+            <li>At the top of the Deployment Wizard browse for the listed directory and choose the jar/war file (You do not need to alter the deployment options)Just click the <code>Deploy</code> button on the bottom. <br />1)  realTimeAnalyticsTimeSeries\processor\target\my-app-processor.jar <br />2)  realTimeAnalyticsTimeSeries\feeder\target\my-app-feeder.jar  <br />3)  realTimeAnalyticsTimeSeries\web\target\my-app-web.war</li>
+        </ul>
+        <p><span class="tc-bold">Step 7.</span> Connect to the web page and access the Dashboard by pointing your browser to: (<code>http://host:port/my-app-web/index.jsp</code>)</p>
+        <h1>Monitoring Space and Stats</h1>
+        <table class="tc-borderless">
+            <tr>
+                <td>
+                    <p>Managing Apps</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/sbp/time-series-ui1.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td>
+                    <p>Resource Utilization</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/sbp/time-series-ui2.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td>
+                    <p>Managing Data</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/sbp/time-series-ui3.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td>
+                    <p>Managing Statistics</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/sbp/time-series-ui4.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

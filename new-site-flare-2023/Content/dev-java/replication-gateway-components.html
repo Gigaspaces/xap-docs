@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>WAN Gateway Components</h1>
+        <div class="tc-admon-note">
+            <p>For Dot Net (.NET) users, WAN Gateway components are deployed using procedures identical to those used in Java deployment.</p>
+        </div>
+        <p>A replication WAN Gateway is used in order to send replication events from one data grid to another data grid by acting as the delegator of outgoing replication from one data grid to another, and by receiving incoming replication from a remote WAN Gateway and dispatching it to the local data grid. The WAN Gateway is composed of two components that handle this operation, a delegator and a sink. These components are configured in a standard <code>pu.xml</code> and usually the WAN Gateway should be deployed as a single processing unit (with one instance) into the service grid on each site configured with the local site relevant properties.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/wan_gatway_archi.jpg" alt="wan_gatway_archi.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h2><a name="gateway-delegator"></a>WAN Gateway Delegator</h2>
+        <p>The WAN gateway's delegator main purpose is to delegate outgoing replication from one site to another. The need for the delegator arises from the common WAN Gateway usage topology, which is replicating data between different data grids across the WAN. In this case, usually each data grid space instance machine cannot open a direct socket to the remote site, therefor it uses the local delegator which is deployed on the local network in order to create a replication connection to the remote site. The machine on which the delegator is deployed, should have access to the remote site(s) over the WAN and the ability to open sockets with the ports for discovery and communication which are configured in the WAN gateway. Because the delegator is an outgoing communication point for replication, it is also used in the <a href="replication-gateway-bootstrapping-process.html">Bootstrap</a> process to delegate the bootstrap related communication from the bootstrapped target site to the bootstrap source site.</p>
+        <p>The delegator configuration block in the WAN Gateway <code>pu.xml</code> looks as follows:</p><pre><code class="language-xml">&lt;os-gateway:delegator id="delegator" local-gateway-name="NEWYORK" gateway-lookups="gatewayLookups"&gt;
+  &lt;os-gateway:delegations&gt;
+    &lt;os-gateway:delegation target="LONDON"/&gt;
+    &lt;os-gateway:delegation target="HONGKONG"/&gt;
+  &lt;/os-gateway:delegations&gt;
+&lt;/os-gateway:delegator&gt;
+</code></pre>
+        <p>In this example, we have New-York's delegator WAN Gateway which acts as a delegation point for two targets, London and Hong-Kong. This will be the mediation point for the two replication channels to London and Hong-Kong data grids. It is important to understand that the delegator is not in charge of broadcasting each packet to all the targets but it receives the relevant packet from each source channel and delegate it to the correct target according to the channel endpoint.</p>
+        <h2><a name="gateway-sink"></a>WAN Gateway Sink</h2>
+        <p>The WAN Gateway sink main purpose is to handle incoming replication activity, which is received by a remote WAN Gateway delegator from a remote site, and dispatches it into the local data grid. The sink has a special proxy to the local data grid that it uses in order to dispatch the replication into the data grid. The sink is also used the <a href="replication-gateway-bootstrapping-process.html">Bootstrap</a> process in both ends, it is used to initiate the bootstrap process and to fill in the local data grid with the data. It is also used at the bootstrap source site as the communication mediator between the remote sink and the local data grid which is used as the source for bootstrapping.</p>
+        <p>The sink configuration block in the WAN Gateway <code>pu.xml</code> looks as follows:</p><pre><code class="language-xml">&lt;os-gateway:sink id="sink"
+  local-gateway-name="NEWYORK" gateway-lookups="gatewayLookups"
+  local-space-url="jini://*/*/myNYSpace"&gt;
+  &lt;os-gateway:sources&gt;
+    &lt;os-gateway:source name="LONDON" /&gt;
+    &lt;os-gateway:source name="HONGKONG" /&gt;
+  &lt;/os-gateway:sources&gt;
+&lt;/os-gateway:sink&gt;
+</code></pre>
+        <p>In this example, this is the sink of New-York WAN Gateway that is open for incoming replication from London and Hong-Kong and will dispatch this incoming replication to the local data grid named "myNYSpace".</p>
+        <h1><a name="gateway-lookup-mechanism"></a>WAN Gateway Lookup Mechanism</h1>
+        <p>In the above configuration samples, there is a <code>gateway-lookup</code> attribute, this attribute points to the lookup related configuration parameters.</p>
+        <p>The WAN Gateway components should locate each other in order to communicate with each other. This lookup is done both across sites and in some cases locally. Additionally the local data grid needs to locate the WAN Gateway delegator it needs to use for delegation, and the WAN Gateway sink needs to locate the local data grid in order to dispatch incoming replication to it.</p>
+        <p>We will split the lookup described here into two categories:</p>
+        <ol>
+            <li>Local site lookup - locating components which reside in the local site (network)</li>
+            <li>Cross site lookup - locating components between sites (different networks), this lookup is only relevant for WAN Gateway components locating each other.</li>
+        </ol>
+        <h2><a name="local-site-lookup"></a>Local Site Lookup</h2>
+        <p>This lookup is done using the locally deployed lookup services which are already used by the service grid components and data grids in order to locate each other. The WAN Gateway components register in the local lookup services and therefor can be located by all the local services and components. e.g a data grid locates the local delegator to the remote target via the local lookup service.</p>
+        <h2><a name="cross-site-lookup"></a>Cross Site Lookup</h2>
+        <p>In most common scenarios, each site resides on a different LAN, and there is no direct network connection between the machines on different sites. However, the machines hosting the WAN gateways of each site, needs to have some network connectivity available in order for the WAN Gateway to connect to each other and send the replication data between the sites. For the WAN Gateway to be able to communicate and locate each other, they need to be able to use two available ports, one used for the lookup discovery process and the other for the actual communication activity between the WAN gateways. These are known as the discovery ports (Lookup service port) and the communication port (LRMI port). By default, each WAN Gateway will start an embedded lookup service which is used for the discovery process, that lookup service will be started with the specified discovery port for that WAN gateway. This is not mandatory, and the WAN Gateway can use an <span class="tc-bold">already existing lookup service</span> which will be explained later on. Each component, delegator and sink, will publish themselves in the lookup services in order for the other WAN Gateway components to be able to locate them between the sites.</p>
+        <p>The configuration which specifies the discovery and communication ports, along with the lookup service machine host (which by default should be the WAN Gateway machine itself as it starts the embedded lookup service) is described in each WAN Gateway <code>pu.xml</code> as follows:</p><pre><code class="language-xml">&lt;os-gateway:lookups id="gatewayLookups"&gt;
+  &lt;os-gateway:lookup gateway-name="NEWYORK" host="ny-gateway-host-machine"
+    discovery-port="10001" communication-port="7000" /&gt;
+  &lt;os-gateway:lookup gateway-name="LONDON" host="london-gateway-host-machine"
+    discovery-port="10002" communication-port="8000" /&gt;
+  &lt;os-gateway:lookup gateway-name="HONGKONG" host="hk-gateway-host-machine"
+    discovery-port="10003" communication-port="9000" /&gt;
+&lt;/os-gateway:lookups&gt;
+&lt;!-- The above ports and host names are randomly selected and have no
+     meaning, all sites could designate the same ports as well--&gt;
+</code></pre>
+        <p>The host and discovery port are used for the lookup process only, the communication port is used for the actual replication process after the relevant WAN Gateway component have discovered its target (e.g a delegator locates the target sink). The discovery and communication port should be permitted in the firewalls between the lookup services machines and between the WAN Gateway, when using the default, the lookup services are started inside the WAN gateways, so this ports needs to be permitted between the WAN Gateway machines only.</p>
+        <p>When using the default configuration, in which the WAN Gateway starts the lookup service as embedded, the WAN Gateway should be deployed on the machine specified in its lookup entry as the <code>host</code> attribute, this can be achieved by having a <a href="../overview/the-runtime-environment.html#gsa">GigaSpaces Agent</a> running on that machine with a dedicated zone, and configuring the WAN Gateway to be deployed to that specific zone (see <a href="../admin/the-sla-overview.html">Service Level Agreement (SLA)</a>). Once deployed, the WAN Gateway will check if the <a href="../overview/the-runtime-environment.html#gsc">Container</a> it was deployed into is started with the proper ports, if not it will relocate itself to a proper container, and it may instantiate a new container managed by the agent on that machine if needed.</p>
+        <p>The communication port is optional, if there is no firewall between the WAN gateways or all ports are permitted, this is not needed. Its purpose is to ease the WAN Gateway deployment by having the WAN Gateway automatically detect whether it is instantiated a GSC which was started with the specified communication port (LRMI), and if not it will spawn a new GSC with the correct LRMI port and relocate itself into that GSC thus saving you the need to pre-start a GSC with this specific port. If the GSC that is supposed to host the WAN Gateway is already configured with the right LRMI port, or alternatively, the communication port is not defined, the WAN Gateway will not spawn a new GSC and will not relocate itself.</p>
+        <p>If there is no firewall, and all ports are available, there is no need to specify a communication port as any communication port specified by the OS will work.</p>
+        <p>This process of spawning a new GSC and WAN Gateway relocation done as well when the WAN Gateway is configured to start an embedded lookup service (default) and the hosting GSC is not started with the matching discovery (lookup) port. This will not happen if the WAN Gateway is not configured to start an embedded WAN Gateway and is using an already existing one that is determined by the <code>host</code> and <code>discovery-port</code> attributes. In order to disable the creation of an embedded lookup service all the WAN Gateway components in the WAN Gateway processing unit (Both delegator and sink) should be configured with the following:</p><pre><code class="language-xml">&lt;os-gateway:delegator id="delegator" local-gateway-name=... gateway-lookups=... start-embedded-lus="false"&gt;
+  ...
+&lt;/os-gateway:delegator&gt;
+</code></pre><pre><code class="language-xml">&lt;os-gateway:sink id="sink"
+  local-gateway-name=... gateway-lookups=... start-embedded-lus="false" local-space-url=...&gt;
+  ...
+&lt;/os-gateway:sink&gt;
+</code></pre>
+        <p>In some scenarios, for example when there are many sites, it is more reasonable to use pre-started limited number of lookup services to avoid the creation of lookup services as the number of sites.
+In this case, the <code>start-embedded-lus="false"</code> should be used and the <code>host</code> and <code>discovery-port</code> of the lookup attributes should point to the existing lookup services location. For example:</p><pre><code class="language-xml">&lt;os-gateway:lookups id="gatewayLookups"&gt;
+  &lt;os-gateway:lookup gateway-name="NEWYORK" host="lookup1-host-machine"
+    discovery-port="10001" communication-port=... /&gt;
+  &lt;os-gateway:lookup gateway-name="LONDON" host="lookup2-host-machine"
+    discovery-port="10002" communication-port=... /&gt;
+  &lt;os-gateway:lookup gateway-name="HONGKONG" host="lookup1-host-machine"
+    discovery-port="10001" communication-port=... /&gt;
+&lt;/os-gateway:lookups&gt;
+&lt;!-- The above ports and host names are randomly selected and have no
+     meaning, all sites could designate the same ports as well--&gt;
+</code></pre>
+        <p>In this case it is not that important which <code>host</code> and <code>discovery-port</code> is specified in which site, but it is recommended to use the "nearest" available lookup service configuration per site. However, each existing lookup service should appear at least once under one of the <code>os-gateway:lookup</code> entries in order for it to be used in the lookup process.</p>
+        <h1><a name="full-gateway-configuration-example-file"></a>Full WAN Gateway Configuration Example File</h1>
+        <p>Below is an example <code>pu.xml</code> file for the WAN Gateway of New-York</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:os-core="http://www.openspaces.org/schema/core"
+  xmlns:os-events="http://www.openspaces.org/schema/events"
+  xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+  xmlns:os-sla="http://www.openspaces.org/schema/sla"
+  xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
+    http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+    http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+    http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+    http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+    http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+  &lt;os-gateway:delegator id="delegator" local-gateway-name="NEWYORK"
+    gateway-lookups="gatewayLookups"&gt;
+    &lt;os-gateway:delegation target="LONDON"/&gt;
+    &lt;os-gateway:delegation target="HONGKONG"/&gt;
+  &lt;/os-gateway:delegator&gt;
+
+  &lt;os-gateway:sink id="sink" local-gateway-name="NEWYORK"
+    gateway-lookups="gatewayLookups" local-space-url="jini://*/*/myNYSpace"&gt;
+    &lt;os-gateway:sources&gt;
+      &lt;os-gateway:source name="LONDON" /&gt;
+      &lt;os-gateway:source name="HONGKONG" /&gt;
+    &lt;/os-gateway:sources&gt;
+  &lt;/os-gateway:sink&gt;
+
+  &lt;os-gateway:lookups id="gatewayLookups"&gt;
+    &lt;os-gateway:lookup gateway-name="NEWYORK" host="ny-gateway-host-machine"
+      discovery-port="10001" communication-port="7000" /&gt;
+    &lt;os-gateway:lookup gateway-name="LONDON" host="london-gateway-host-machine"
+      discovery-port="10002" communication-port="8000" /&gt;
+    &lt;os-gateway:lookup gateway-name="HONGKONG" host="hk-gateway-host-machine"
+      discovery-port="10003" communication-port="9000" /&gt;
+  &lt;/os-gateway:lookups&gt;
+  &lt;!-- The above ports and host names are randomly selected
+       and have no meaning, all sites could designate the same ports as well--&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:os-core="http://www.openspaces.org/schema/core"
+  xmlns:os-events="http://www.openspaces.org/schema/events"
+  xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+  xmlns:os-sla="http://www.openspaces.org/schema/sla"
+  xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+    http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+    http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+    http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+    http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+  &lt;os-gateway:delegator id="delegator" local-gateway-name="NEWYORK"
+    gateway-lookups="gatewayLookups"&gt;
+    &lt;os-gateway:delegation target="LONDON"/&gt;
+    &lt;os-gateway:delegation target="HONGKONG"/&gt;
+  &lt;/os-gateway:delegator&gt;
+
+  &lt;os-gateway:sink id="sink" local-gateway-name="NEWYORK"
+    gateway-lookups="gatewayLookups" local-space-url="jini://*/*/myNYSpace"&gt;
+    &lt;os-gateway:sources&gt;
+      &lt;os-gateway:source name="LONDON" /&gt;
+      &lt;os-gateway:source name="HONGKONG" /&gt;
+    &lt;/os-gateway:sources&gt;
+  &lt;/os-gateway:sink&gt;
+
+  &lt;os-gateway:lookups id="gatewayLookups"&gt;
+    &lt;os-gateway:lookup gateway-name="NEWYORK" host="ny-gateway-host-machine"
+      discovery-port="10001" communication-port="7000" /&gt;
+    &lt;os-gateway:lookup gateway-name="LONDON" host="london-gateway-host-machine"
+      discovery-port="10002" communication-port="8000" /&gt;
+    &lt;os-gateway:lookup gateway-name="HONGKONG" host="hk-gateway-host-machine"
+      discovery-port="10003" communication-port="9000" /&gt;
+  &lt;/os-gateway:lookups&gt;
+  &lt;!-- The above ports and host names are randomly selected
+       and have no meaning, all sites could designate the same ports as well--&gt;
+&lt;/beans&gt;
+</code></pre>
+        <h1><a name="indirect-delegation-delegation-via-other-gateways"></a>Indirect Delegation (Delegation via other WAN Gateways)</h1>
+        <p>Some topologies may require in direct delegation, for example in the above topology, there bandwidth between London and Hong-Kong be very poor or maybe there is no direct connection between this two sites but they should still replicate to each other. This replication can be delegated from London to Hong-Kong via New-York and the other way around as well. This is accomplished by chaining delegators together, in this case the delegator of London to Hong-Kong will be actually connected to the delegator of New-York to Hong-Kong thus delegating the replication communication via New-York. In this case the WAN Gateway of London should be configured as follows:</p><pre><code class="language-xml">&lt;os-gateway:delegator id="delegator"
+  local-gateway-name="LONDON" gateway-lookups="gatewayLookups"&gt;
+  &lt;os-gateway:delegations&gt;
+    &lt;os-gateway:delegation target="NEWYORK"/&gt;
+    &lt;os-gateway:delegation target="HONGKONG" delegate-through="NEWYORK"/&gt;
+  &lt;/os-gateway:delegations&gt;
+&lt;/os-gateway:delegator&gt;
+
+&lt;os-gateway:sink id="sink" local-gateway-name="LONDON"
+  gateway-lookups="gatewayLookups" local-space-url="jini://*/*/myNYSpace"&gt;
+  &lt;os-gateway:sources&gt;
+    &lt;os-gateway:source name="LONDON" /&gt;
+    &lt;os-gateway:source name="HONGKONG" /&gt;
+  &lt;/os-gateway:sources&gt;
+&lt;/os-gateway:sink&gt;
+
+&lt;os-gateway:lookups id="gatewayLookups"&gt;
+  &lt;os-gateway:lookup gateway-name="NEWYORK" host="ny-gateway-host-machine"
+    discovery-port="10001" communication-port="7000" /&gt;
+  &lt;os-gateway:lookup gateway-name="LONDON" host="london-gateway-host-machine"
+    discovery-port="10002" communication-port="8000" /&gt;
+&lt;/os-gateway:lookups&gt;
+&lt;!-- The above ports and host names are randomly selected and
+     have no meaning, all sites could designate the same ports as well--&gt;
+&lt;/beans&gt;
+</code></pre>
+        <p>In this configuration we have specifies that the delegator to Hong Kong should be routed via New York. This chaining can contain one or more delegators, i.e New York delegator could have been connected to Hong Kong via some other 4th site. The Hong Kong WAN Gateway should be configured in the same way. Another important thing to notice is that the lookup entry for Hong Kong is removed in London's WAN Gateway since it should never look up Hong Kong directly.</p>
+        <p>In Direct delegation can be used by a <a href="replication-gateway-bootstrapping-process.html">Bootstrap</a> in the same manner, since the WAN Gateway sink in the bootstrapping site is using the local delegator in order to locate the bootstrap source site sink and therefor it will go through the same delegation path.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/wan-delegation.jpg" alt="wan-delegation.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <h1><a name="seperating-or-bundling-the-gateway-components"></a>Seperating or Bundling The WAN Gateway Components</h1>
+        <p>The delegator and sink components are actually isolated and can even be deployed in separate processing units but the most simple deployment would be to bundle theses two together. However, in some cases you might want to separate this into two or more machines due to system loads or other reasons. This is done by simple creating two different processing units for the WAN Gateway, for example one can run the delegator and the other can run the sink.</p>
+        <p>Delegator pu.xml:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  ...
+
+  &lt;os-gateway:delegator id="delegator" local-gateway-name="NEWYORK"
+    gateway-lookups="gatewayLookups"&gt;
+    &lt;os-gateway:delegation target="LONDON"/&gt;
+    &lt;os-gateway:delegation target="HONGKONG"/&gt;
+  &lt;/os-gateway:delegator&gt;
+
+  &lt;os-gateway:lookups id="gatewayLookups"&gt;
+    &lt;os-gateway:lookup gateway-name="NEWYORK" host="ny-gateway-host-machine"
+      discovery-port="10001" communication-port="7000" /&gt;
+    &lt;os-gateway:lookup gateway-name="LONDON" host="london-gateway-host-machine"
+      discovery-port="10002" communication-port="8000" /&gt;
+    &lt;os-gateway:lookup gateway-name="HONGKONG" host="hk-gateway-host-machine"
+      discovery-port="10003" communication-port="9000" /&gt;
+  &lt;/os-gateway:lookups&gt;
+  &lt;!-- The above ports and host names are randomly selected
+       and have no meaning, all sites could designate the same ports as well--&gt;
+&lt;/beans&gt;
+</code></pre>
+        <p>Sink pu.xml:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  ...
+
+  &lt;os-gateway:sink id="sink" local-gateway-name="NEWYORK"
+    gateway-lookups="gatewayLookups" local-space-url="jini://*/*/myNYSpace"&gt;
+    &lt;os-gateway:sources&gt;
+      &lt;os-gateway:source name="LONDON" /&gt;
+      &lt;os-gateway:source name="HONGKONG" /&gt;
+    &lt;/os-gateway:sources&gt;
+  &lt;/os-gateway:sink&gt;
+
+  &lt;os-gateway:lookups id="gatewayLookups"&gt;
+    &lt;os-gateway:lookup gateway-name="NEWYORK" host="ny-gateway-host-machine"
+      discovery-port="10001" communication-port="7000" /&gt;
+    &lt;os-gateway:lookup gateway-name="LONDON" host="london-gateway-host-machine"
+      discovery-port="10002" communication-port="8000" /&gt;
+    &lt;os-gateway:lookup gateway-name="HONGKONG" host="hk-gateway-host-machine"
+      discovery-port="10003" communication-port="9000" /&gt;
+  &lt;/os-gateway:lookups&gt;
+  &lt;!-- The above ports and host names are randomly selected
+       and have no meaning, all sites could designate the same ports as well--&gt;
+&lt;/beans&gt;
+</code></pre>
+        <p>It is also possible to bundle more than one sink and/or delegator in one processing unit, thus having one processing unit acting as the WAN Gateway of multiple data grids.
+It is important to understand that a WAN Gateway is a logical and not a physical term which relates to all of the deployed processing units that contains at least one of the WAN Gateway components with the same name (sink or delegator).
+Additionally, one can bundle two different WAN gateways (i.e WAN Gateway components, sinks or delegators, with different names) in the same processing unit.</p>
+        <h1><a name="nat-configuration"></a>NAT Configuration</h1>
+        <p>When having Network Address Translation (NAT) data transit across different routing devices over the WAN, you should use the <a href="../admin/network-over-nat.html">NAT mapping configuration</a> with your WAN Gateway. Each site WAN Gateway should have a NAT mapping file that maps the remote site local IP to the public IP, therefore each site should have a different mapping file because it should not map its own local IP to the public IP. Additionally, in each site you should place the public IP in the WAN Gateway lookup element of the remote sites WAN Gateway, and the local IP in the lookup element of the local site WAN Gateway, once again, in this case the WAN gateways lookup element in the pu.xml of the WAN Gateways will not be symmetric since the local WAN Gateway lookup element should contain the local IP at each site. After the lookup process is done, both WAN Gateways connect directly as usual.</p>
+        <h1><a name="security"></a>Security</h1>
+        <div class="tc-admon-note">
+            <p>Before addressing the WAN Gateway security,  make sure your Space PU is deployed as secured.  Fore more details, see <a href="../security/securing-your-data.html#processing-unit">Securing the Data Layer</a>.</p>
+        </div>
+        <p>On Multiple Site topologies, securing grid components and data grids is done as described in the <a href="../security/index.html">Security</a> section of the Administration guide. When using a secured environment it is required to provide security credentials for the WAN Gateway components (Sink &amp; Delegator).
+The security credentials are used for accessing a secured data grid and for performing administrative operations such as creating a new GSC for the WAN Gateway components if necessary.</p>
+        <p>Providing the security credentials can be done in two ways:</p>
+        <ul>
+            <li>
+                <p>On deployment (bean level properties)</p>
+            </li>
+            <li>
+                <p>In the WAN Gateway component's pu.xml.</p>
+            </li>
+        </ul>
+        <h3><a name="providing-security-credentials-on-deployment"></a>Providing Security Credentials on Deployment</h3>
+        <p>The following bean level properties should be set:</p>
+        <ul>
+            <li>
+                <p>"security.username"</p>
+            </li>
+            <li>
+                <p>"security.password"</p>
+            </li>
+        </ul>
+        <h3><a name="providing-security-credentials-in-gateway-component-s-pu-xml"></a>Providing security credentials in WAN Gateway component's pu.xml</h3>
+        <p>Setting the security credentials is done using the "security" element in the "os-gateway" namespace:</p><pre><code class="language-xml">&lt;os-gateway:delegator id="delegator" local-gateway-name="USA" gateway-lookups="gatewayLookups"&gt;
+  &lt;os-gateway:delegations&gt;
+    &lt;os-gateway:delegation target="FRANCE" /&gt;
+  &lt;/os-gateway:delegations&gt;
+  &lt;os-gateway:security username="${security.username}" password="${security.password}" /&gt;
+&lt;/os-gateway:delegator&gt;
+
+&lt;os-gateway:sink id="sink" local-gateway-name="USA" gateway-lookups="gatewayLookups"
+         local-space-url="jini://*/*/usaSpace"&gt;
+  &lt;os-gateway:sources&gt;
+    &lt;os-gateway:source name="FRANCE" /&gt;
+  &lt;/os-gateway:sources&gt;
+  &lt;os-gateway:security username="gs" password="1234" /&gt;
+&lt;/os-gateway:sink&gt;
+</code></pre>
+        <p>It is also possible to set a "com.gigaspaces.security.directory.UserDetails" implementation instead of using the username and password attributes:</p><pre><code class="language-xml">&lt;bean id="userDetailsBean" class="com.gigaspaces.security.directory.User"&gt;
+  &lt;constructor-arg&gt;
+    &lt;value&gt;${username}&lt;/value&gt;
+  &lt;/constructor-arg&gt;
+  &lt;constructor-arg&gt;
+    &lt;value&gt;${password}&lt;/value&gt;
+  &lt;/constructor-arg&gt;
+&lt;/bean&gt;
+
+&lt;os-gateway:delegator id="delegator" local-gateway-name="USA" gateway-lookups="gatewayLookups"&gt;
+  &lt;os-gateway:delegations&gt;
+    &lt;os-gateway:delegation target="FRANCE" /&gt;
+  &lt;/os-gateway:delegations&gt;
+  &lt;os-gateway:security user-details="userDetailsBean" /&gt;
+&lt;/os-gateway:delegator&gt;
+
+&lt;os-gateway:sink id="sink" local-gateway-name="USA" gateway-lookups="gatewayLookups"
+        local-space-url="jini://*/*/usaSpace"&gt;
+  &lt;os-gateway:sources&gt;
+    &lt;os-gateway:source name="FRANCE" /&gt;
+  &lt;/os-gateway:sources&gt;
+  &lt;os-gateway:security user-details="userDetailsBean" /&gt;
+&lt;/os-gateway:sink&gt;
+</code></pre>
+    </body>
+</html>

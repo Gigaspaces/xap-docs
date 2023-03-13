@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Dynamic Language Tasks</h1>
+  
+
+<p><a href="event-driven-remoting.html">Event Driven Remoting</a> and <a href="executor-based-remoting.html">Executor Based Remoting</a> allow you to simply expose and execute custom services using the Space as the transport layer. The dynamic tasks feature (also known as "scripting support") allows you to utilize a built remote service, exposed using these two remoting mechanisms, that can execute dynamic language scripts in the space.
+A major benefit of using scripting or dynamic languages is the ability to simply change the behavior without the need to recompile your application. As per the SBA paradigm, dynamic language scripts can be executed collocated with the Space, allowing you to execute the task as close as possible to the data it needs to access, and then return a result.</p>
+
+<p>The following section goes through the steps needed in order to execute dynamic language tasks. The other sections in this page dive more deeply into different dynamic language support features.</p>
+
+<p>The first step in using scripting is exposing the built in scripting service over the Space. Here is a simple example:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+&lt;!-- The scripting built in service executor --&gt;
+&lt;bean id="scriptingExecutor" class="org.openspaces.remoting.scripting.DefaultScriptingExecutor" /&gt;
+
+&lt;!-- The service exporter exposing the scripting service --&gt;
+&lt;os-remoting:service-exporter id="serviceExporter"&gt;
+     &lt;os-remoting:service ref="scriptingExecutor"/&gt;
+&lt;/os-remoting:service-exporter&gt;
+
+&lt;os-core:embedded-space id="space" space-name="mySpace"
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;!-- Polling container exposing the service exporter as async remoting --&gt;
+&lt;os-events:polling-container id="eventContainer" giga-space="gigaSpace"&gt;
+    &lt;os-events:listener ref="serviceExporter"&gt;
+&lt;/os-events:polling-container&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+&lt;!-- The scripting built in service executor --&gt;
+&lt;bean id="scriptingExecutor" class="org.openspaces.remoting.scripting.DefaultScriptingExecutor" /&gt;
+
+&lt;!-- The service exporter exposing the scripting service --&gt;
+&lt;bean id="serviceExporter" class="org.openspaces.remoting.SpaceRemotingServiceExporter"&gt;
+    &lt;property name="services"&gt;
+        &lt;list&gt;
+            &lt;ref bean="scriptingExecutor" /&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;!-- Polling container exposing the service exporter as async remoting --&gt;
+&lt;bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer"&gt;
+    &lt;property name="eventListener" ref="serviceExporter"&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+</div>
+
+<p>The next simple step is using the exposed scripting service on the client side, here is a groovy example :</p>
+
+<pre><code class="language-java">public class MyRemoting {
+
+    @EventDrivenScriptingExecutor
+    private ScriptingExecutor asyncScriptingExecutor;
+
+    @ExecutorScriptingExecutor
+    private ScriptingExecutor execScriptingExecutor;
+
+    public void doSomeScripting() {
+        asyncScriptingExecutor.execute(new StaticScript("myScriptAsync", "groovy",
+                                                                "println 'Async Hello Groovy'"));
+
+        execScriptingExecutor.execute(new StaticScript("myScriptExec", "groovy",
+                                                               "println 'Sync Hello Groovy'"));
+    }
+}
+</code></pre>
+
+<p>On the client side Spring XML configuration, the following needs to be defined (mainly to define the connection to the Space as the transport layer, and define the scripting annotation processor):</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+&lt;os-core:space-proxy id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;os-remoting:annotation-support /&gt;
+
+&lt;bean id="myRemoting" class="MyRemoting" /&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="remotingAnnotationSupport" class="org.openspaces.remoting.RemotingAnnotationBeanPostProcessor" /&gt;
+
+&lt;bean id="myRemoting" class="MyRemoting" /&gt;
+</code></pre>
+</div>
+</div>
+
+<h1><a name="what-is-a-script"></a>What is a Script</h1>
+
+<p><code>Script</code> is a simple interface that is defined within the OpenSpaces scripting over remoting support. It has the following basic methods:</p>
+
+<pre><code class="language-java">public interface Script extends BroadcastIndicator {
+
+    /**
+     * The name of the script. Should uniquely identify scripts.
+     */
+    String getName();
+
+    /**
+     * The type of the script (or actually, language). For example, &lt;code&gt;groovy&lt;/code&gt; or &lt;code&gt;ruby&lt;/code&gt;.
+     */
+    String getType();
+
+    /**
+     * The script source as a string.
+     */
+    String getScriptAsString();
+
+    /**
+     * One or more parameters that will be passed to the script.
+     */
+    Map&lt;String, Object&gt; getParameters();
+
+    /**
+     * The routing index for the script. Can be &lt;code&gt;null&lt;/code&gt;. Defaults
+     * to a random routing.
+     */
+    Object getRouting();
+
+    /**
+     * Should this script be cached or not. Defaults to &lt;code&gt;true&lt;/code&gt;.
+     */
+    boolean shouldCache();
+
+    /**
+     * Returns a set of meta arguments that are used for remote invocation.
+     *
+     * @see org.openspaces.remoting.SpaceRemotingInvocation#getMetaArguments()
+     */
+    Object[] getMetaArguments();
+}
+</code></pre>
+
+<p>There are several implementations of this class which is covered more in the client section. OpenSpaces comes with three different implementations of the <code>Script</code> interface, they are:</p>
+
+<ul>
+<li><code>StaticScript</code>: A script that holds the actual script as a string. The name, type, and script must be provided.</li>
+<li><code>StaticResourceScript</code>: A static script that uses Spring <code>Resource</code> and <code>ResourceLoader</code> to load a given script (for example, from the classpath).</li>
+<li><code>ResourceLazyLoadingScript</code>: A lazy loading script that uses Spring abstraction on top of a resource. The script resource location uses Spring notations for location (similar to a URL, with the addition of the <code>classpath:</code> prefix).</li>
+</ul>
+
+<h1><a name="exposing-javascript-scripting-service"></a>Exposing JavaScript Scripting Service</h1>
+
+<p>OpenSpaces scripting over remoting support has a built in service that allows to expose the execution of scripting code. The service is implemented using the <code>DefaultScriptingExecutor</code> class. The executor supports several scripting languages out of the box, allows to cache compiled scripts, and automatically expose common beans as script parameters.</p>
+
+<h2><a name="local-script-executor"></a>Local Script Executor</h2>
+
+<p>The <code>DefaultScriptingExecutor</code> holds one or more <code>LocalScriptExecutor</code>. A <code>LocalScriptExecutor</code> implementation is an abstraction on top of an actual scripting language (such as groovy or jruby). OpenSpaces scripting support comes with built in local executors for groovy, jruby, and Java 6 <code>ScriptEngine</code> abstraction.</p>
+
+<p>By default, the default scripting executor identifies if groovy, jruby, or Java 6 scripting support exist within the classpath, and automatically registers then as possible local executors. The relevant local executors are <code>GroovyLocalScriptExecutor</code> for groovy, <code>JRubyLocalScriptExecutor</code> for jruby, and <code>Jsr223LocalScriptExecutor</code> for Java 6. The local scripting executor is chosen based on the <code>Script#getType()</code>.</p>
+
+<p>The Java 6 local script executor is a special case as in-itself it allows to execute several scripting engines types. The <code>DefaultScriptingExecutor</code> handles that by trying to offload the execution of an unidentified type to the <code>Jsr223LocalScriptExecutor</code>. Unidentified type is one that has no specific <code>LocalScriptExecutor</code> configured for it within the <code>DefaultScriptingExecutor</code>. This means that if one wishes to execute a JavaScript script that comes built in with Java 6, the type for the script should be <code>JavaScript</code> (and not Jsr223).</p>
+
+<h2><a name="script-execution-parameters"></a>Script Execution Parameters</h2>
+
+<p>The <code>Script</code> interface allows to define specific parameters per script. The <code>DefaultScriptingExecutor</code> can be configured with a set of parameters that is passed to each script execution. A <code>setParameters</code> that accepts a Map can be passed to each script.</p>
+
+<p>By default, the <code>DefaultScriptingExecutor</code> passes beans of type <code>GigaSpace</code>, keyed by their bean id. The Spring <code>ApplicationContext</code> is passed to the script under the <code>applicationContext</code> key, and the <code>ClusterInfo</code> object is passed under the <code>clusterInfo</code> key.</p>
+
+<p>As an example, if my server side Spring application context has a <code>GigaSpace</code> bean with id of <code>myGigaSpace</code>, a simple groovy script to use it (without configuring anything within the default executor) can be: <code>myGigaSpace.write(new Object())</code>. Note, we use the id of the bean to access the <code>GigaSpace</code> and write a new Object.</p>
+
+<div class="tc-admon-note">
+  
+  <p>A quick note regarding usage of <code>GigaSpace</code> beans. The clustered flag plays an important role when using it. This basically allows to control if the script execution of <code>GigaSpace</code> operations works only against its clustered member space, or against the whole cluster.</p>
+</div>
+
+<h2><a name="script-compilation-caching"></a>Script Compilation Caching</h2>
+
+<p>If a scripting engine support compilation of scripting, the <code>DefaultScriptingExecutor</code> allows caching of compiled scripts for faster execution. The actual caching of scripts is abstracted using <code>CompiledScriptCache</code> interface, and has default LRU type cache built in.</p>
+
+<p>The compilation is done based on a flag on the <code>Script</code> interface (which defaults to true), and if cached, the "key" of the cache is the script name. This means that if a script was changed, it needs to be executed with a different script name in order for it to recompile and take affect.</p>
+
+<h1><a name="scripting-on-the-client-side"></a>Scripting on the Client Side</h1>
+
+<p>Using scripting on the client side is very similar to how similar remoting services are used. There are two types of proxies, <code>executor-proxy</code> and <code>event-driven-proxy</code>, and there are specific scripting annotations that allow to simplify the injection of scripting proxies.</p>
+
+<p>Here is the xml definition of an async scripting proxy (the sync proxy is exactly the same except for the tag/class name of the proxy):</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+&lt;os-remoting:event-driven-proxy id="eventDrivenScriptingExecutor" giga-space="gigaSpace"
+                         interface="org.openspaces.remoting.scripting.ScriptingExecutor"&gt;
+    &lt;os-remoting:aspect&gt;
+        &lt;bean class="org.openspaces.remoting.scripting.LazyLoadingRemoteInvocationAspect" /&gt;
+    &lt;/os-remoting:aspect&gt;
+    &lt;os-remoting:routing-handler&gt;
+        &lt;bean class="org.openspaces.remoting.scripting.ScriptingRemoteRoutingHandler" /&gt;
+    &lt;/os-remoting:routing-handler&gt;
+    &lt;os-remoting:meta-arguments-handler&gt;
+        &lt;bean class="org.openspaces.remoting.scripting.ScriptingMetaArgumentsHandler" /&gt;
+    &lt;/os-remoting:meta-arguments-handler&gt;
+&lt;/os-remoting:event-driven-proxy&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+&lt;bean id="eventDrivenScriptingExecutor" class="org.openspaces.remoting.EventDrivenSpaceRemotingProxyFactoryBean"&gt;
+    &lt;property name="gigaSpace" ref="gigaSpace" /&gt;
+    &lt;property name="serviceInterface" value="org.openspaces.remoting.scripting.ScriptingExecutor" /&gt;
+    &lt;property name="remoteInvocationAspect"&gt;
+        &lt;bean class="org.openspaces.remoting.scripting.LazyLoadingRemoteInvocationAspect" /&gt;
+    &lt;/property&gt;
+    &lt;property name="remoteRoutingHandler"&gt;
+        &lt;bean class="org.openspaces.remoting.scripting.ScriptingRemoteRoutingHandler" /&gt;
+    &lt;/property&gt;
+    &lt;property name="metaArgumentsHandler"&gt;
+        &lt;bean class="org.openspaces.remoting.scripting.ScriptingMetaArgumentsHandler" /&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+<div title="  Code " style="padding:10px"><p>Asynchronous scripting executor:</p>
+
+<pre><code class="language-java">
+GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("mySpace")).gigaSpace();
+ScriptingExecutor  executor = new EventDrivenScriptingProxyConfigurer (gigaSpace).scriptingExecutor();
+</code></pre>
+
+<p>Executor based scripting executor:</p>
+
+<pre><code class="language-java">
+GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer("mySpace")).gigaSpace();
+ScriptingExecutor  executor = new ExecutorScriptingProxyConfigurer (gigaSpace).scriptingExecutor();
+</code></pre>
+</div>
+</div>
+
+<p>The different components implemented by scripting basically enables all the different scripting client side features which we will cover in the next sections. The annotation based injection is a much simplified way to use scripting on the client side and is shown in the Overview section.</p>
+
+<h2><a name="routing-index"></a>Routing Index</h2>
+
+<p>The <code>Script</code> interface allows to set a routing index which controls, both in async and sync mode (not in broadcast mode), where the execution of the script is directed. Here is a simple example of it:</p>
+
+<pre><code class="language-java">asyncScriptingExecutor.execute(new StaticScript("myScript", "groovy","println 'Hello Groovy'").routing(1));
+</code></pre>
+
+<p>This causes the routing to go the the second member (assuming hash based routing is configured). Naturally, most often a business level routing will be used, for example, direct a script that executed on a certain share to a partition based on the share symbol.</p>
+
+<h2><a name="lazy-loading-of-scripts"></a>Lazy Loading of Scripts</h2>
+
+<p>The <code>StaticResourceScript</code> holds the actual script contents and it gets passed for each execution of the script. If script supports caching, there is no need to pass the actual contents of the script on each execution, since once the script was compiled, only its parameters and other values are required, not the actual script. The <code>LazyLoadingRemoteInvocationAspect</code> aspect (on the client side) with the <code>ResourceLazyLoadingScript</code> script type allow for such behavior. As an example:</p>
+
+<pre><code class="language-java">asyncScriptingExecutor.execute(new ResourceLazyLoadingScript("test4", "groovy", "classpath:test.groovy").cache(true));
+</code></pre>
+
+<p>The above code only loads the <code>test.groovy</code> file if it is required on the server side. By default it is not sent, and if the server has not compiled it, it returns to the client and request the actual script content. The script is then loaded and sent again to the server. This logic is implemented by the <code>LazyLoadingRemoteInvocationAspect</code>.</p>
+
+</body>
+</html>

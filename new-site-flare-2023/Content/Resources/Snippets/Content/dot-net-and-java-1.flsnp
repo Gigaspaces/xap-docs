@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <body>
+        <div class="easyui-tabs" plain="true">
+            <div title="Java">
+                <pre>
+                    <code class="language-xml">&lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"/&gt;
+
+&lt;os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK"&gt;
+  &lt;os-gateway:target name="LONDON"/&gt;
+  &lt;os-gateway:target name="HONGKONG"/&gt;
+&lt;/os-gateway:targets&gt;
+</code>
+                </pre>
+            </div>
+            <div title="Dot Net">
+                <pre>
+                    <code class="language-xml">&lt;?xml&#160;version="1.0"&#160;encoding="utf-8"&#160;?&gt;
+&lt;configuration&gt;
+&#160;&#160;&lt;configSections&gt;
+&#160;&#160;&#160;&#160;&lt;section&#160;name="GigaSpaces.XAP"&#160;type="GigaSpaces.XAP.Configuration.GigaSpacesXAPConfiguration,&#160;GigaSpaces.Core"/&gt;
+&#160;&#160;&lt;/configSections&gt;
+&#160;&#160;&lt;GigaSpaces.XAP&gt;
+&#160;&#160;&#160;&#160;&lt;ProcessingUnitContainer&#160;Type=
+&#160;&#160;&#160;&#160;"GigaSpaces.XAP.ProcessingUnit.Containers.BasicContainer.BasicProcessingUnitContainer,&#160;GigaSpaces.Core"&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;BasicContainer&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;EmbeddedSpaces&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add Name="myNYSpace"&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Gateway LocalGatewayName="NEWYORK"&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;Targets&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="LONDON"/&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;add&#160;Name="HONGKONG"/&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Targets&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/Gateway&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/add&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;/EmbeddedSpaces&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;/BasicContainer&gt;
+&#160;&#160;&#160;&#160;&lt;/ProcessingUnitContainer&gt;
+&#160;&#160;&lt;/GigaSpaces.XAP&gt;
+&lt;/configuration&gt;</code>
+                </pre>
+            </div>
+        </div>
+    </body>
+</html>

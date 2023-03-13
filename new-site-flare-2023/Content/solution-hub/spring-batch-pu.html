@@ -1,0 +1,598 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Spring Batch PU</h1>
+        <table>
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shay Hassidim</td>
+                    <td>8.0</td>
+                    <td>Spring Batch 2.1.6</td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Overview</h1>
+        <p><a href="http://en.wikipedia.org/wiki/Batch_processing">Batch processing</a> involves usually complex flows using conditional or sequential steps. This involves relatively large CPU cycles and IO access. In such case the data access time required for the processing is relatively small compared to the processing/IO activities duration time.</p>
+        <p>To allow batch processing systems to leverage available resources on the network/cloud, the batch processing system should be able to scale in a dynamic manner across multiple machines.</p>
+        <p>The GigaSpaces Spring Batch PU provides:</p>
+        <ul>
+            <li>
+                <p>Enhanced performance:
+– Distributed parallel processing.
+– Distributed Task execution partitioning.
+– In-memory distributed state management.</p>
+            </li>
+            <li>
+                <p>Management and Monitoring:
+– Task execution queuing.
+– Distributed Deployment environment.
+– Continuous High-Availability.</p>
+            </li>
+            <li>
+                <p>Scalability
+– <MadCap:conditionalText MadCap:conditions="Version.15-2-died">Elastic and</MadCap:conditionalText> Dynamic scalability of the Spring batch PU instances.</p>
+            </li>
+        </ul>
+        <h1>Spring Batch Introduction</h1>
+        <p><a href="http://static.springsource.org/spring-batch">Spring Batch</a> is a lightweight, comprehensive batch framework designed to enable the development of robust batch applications vital for the daily operations of enterprise systems.
+Spring Batch builds upon the productivity, POJO-based development approach, and general ease of use capabilities people have come to know from the Spring Framework, while making it easy for developers to access and leverage more advance enterprise services when necessary.
+Spring Batch is not a scheduling framework.
+There are many good enterprise schedulers available in both the commercial and open source spaces such as Quartz, Tivoli, Control-M, etc.
+It is intended to work in conjunction with a scheduler, not replace a scheduler.</p>
+        <p>Spring Batch provides reusable functions that are essential in processing large volumes of records, including:
+Logging, Tracing, Transaction management, Job processing statistics, Job restart, Job skip, resource management, etc.</p>
+        <p>The Spring Batch <a href="http://static.springsource.org/spring-batch/reference/html/configureJob.html">runtime environment</a> includes the following main components:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/spring_batch_RuntimeEnvironment.jpg" alt="spring_batch_RuntimeEnvironment.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <p>Spring Batch support both <a href="http://static.springsource.org/spring-batch/reference/html/configureStep.html">sequential and conditional flows</a>. This allows building flexible batch processing systems.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/spring_batch_SequentialAndConditionalFlows.jpg" alt="spring_batch_SequentialAndConditionalFlows.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h2>Spring Batch Usage Scenarios</h2>
+        <p>A typical batch program generally reads a large number of records from a database, file, or queue, processes the data in some fashion, and then writes back data in a modified form. Spring Batch automates this basic batch iteration, providing the capability to process similar transactions as a set, typically in an offline environment without any user interaction. Batch jobs are part of most IT projects and Spring Batch is the only open source framework that provides a robust, enterprise-scale solution.</p>
+        <h1>GigaSpaces Spring Batch PU</h1>
+        <p>In GigaSpaces <MadCap:variable name="General.DataGrid" />, you can implement the <a href="master-worker-pattern.html">Master-Worker pattern</a> using several methods:</p>
+        <ul>
+            <li>Task Executors - Best for scenarios where the processing activity is collocated with the data. Designed for low latency situations.</li>
+            <li>Polling Containers - A remote consumer/worker component used with simple processing scenarios.</li>
+            <li>Spring Batch - A remote consumer/worker component used with complex processing scenarios. Leveraging Spring Bach Framework to manage flows.</li>
+        </ul>
+        <p>Polling Container and Spring Batch approach should be used when the processing activity consumes relatively large amount of CPU and takes a large amount of time. It is also relevant if the actual data required for the processing is not stored within the space, or the time it takes to retrieve the required data from the space is much shorter than the time it takes to complete the processing.</p>
+        <h1>GigaSpaces Spring Batch PU Architecture</h1>
+        <p>The Spring Batch PU encapsulates all the required components to run a Spring Batch instance:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/spring_batch_PU_archi.jpg" alt="spring_batch_PU_archi.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <p>The Spring Batch PU supports the Round Robin Workers mode and the Dedicated Workers mode.</p>
+        <h2>Round Robin Worker</h2>
+        <p>With the Round Robin Worker mode a Spring Batch PU instance will be consuming requests from all the space partitions in round robin manner.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/spring_batch_RoundRobinWorker.jpg" alt="spring_batch_RoundRobinWorker.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <h2>Dedicated Worker</h2>
+        <p>With the Dedicated Worker mode a Spring Batch PU instance will be consuming requests from a dedicated specific space partition.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/spring_batch_DedicatedWorker.jpg" alt="spring_batch_DedicatedWorker.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <h1>The Spring Batch PU Implementation</h1>
+        <p>The Spring Batch PU implementation includes the following components:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Components</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Space</td>
+                    <td align="left">A space proxy used by the SpaceItemReader, SpaceItemProcessor and SpaceItemWriter to consume Requests and send back Results.</td>
+                </tr>
+                <tr>
+                    <td align="left">ItemRequest</td>
+                    <td align="left">A Request class. Generated by the Master and consumed by the SpaceItemReader.</td>
+                </tr>
+                <tr>
+                    <td align="left">ItemResult</td>
+                    <td align="left">A Result class. Generated by the SpaceItemProcessor and consumed by the Master.</td>
+                </tr>
+                <tr>
+                    <td align="left">JobRunner</td>
+                    <td align="left">Spring Batch JobRunner Bean</td>
+                </tr>
+                <tr>
+                    <td align="left">SpaceItemReader</td>
+                    <td align="left"><a href="http://static.springsource.org/spring-batch/apidocs/org/springframework/batch/item/ItemReader.html">org.springframework.batch.item.ItemReader</a> implementation</td>
+                </tr>
+                <tr>
+                    <td align="left">SpaceItemProcessor</td>
+                    <td align="left"><a href="http://static.springsource.org/spring-batch/apidocs/org/springframework/batch/item/ItemProcessor.html">org.springframework.batch.item.ItemProcessor</a> implementation</td>
+                </tr>
+                <tr>
+                    <td align="left">SpaceItemWriter</td>
+                    <td align="left"><a href="http://static.springsource.org/spring-batch/apidocs/org/springframework/batch/item/ItemWriter.html">org.springframework.batch.item.ItemWriter</a> implementation</td>
+                </tr>
+                <tr>
+                    <td align="left">JobRepository</td>
+                    <td align="left">Spring Batch JobRepository Bean.</td>
+                </tr>
+                <tr>
+                    <td align="left">JobLauncher</td>
+                    <td align="left">Spring Batch JobLauncher Bean.</td>
+                </tr>
+                <tr>
+                    <td align="left">JobRunner</td>
+                    <td align="left">JobRepository Bean. Encapsulates the JobLauncher. Initiates the processing activity.</td>
+                </tr>
+                <tr>
+                    <td align="left">JobRegistry</td>
+                    <td align="left">MapJobRegistry Bean.</td>
+                </tr>
+                <tr>
+                    <td align="left">SpaceJob</td>
+                    <td align="left">Spring Batch Job. Includes a Spring batch Step with a tasklet using the SpaceItemReader,SpaceItemWriter,SpaceItemProcessor.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Components implementation:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Spring Batch PU " style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:os-core="http://www.openspaces.org/schema/core"
+      xmlns:os-events="http://www.openspaces.org/schema/events"
+      xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+
+    xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd
+          http://www.openspaces.org/schema/core http://www.openspaces.org/schema/core/openspaces-core.xsd
+      http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
+      http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+    xmlns:p="http://www.springframework.org/schema/p"&gt;
+
+    &lt;bean id="itemReader" class="com.gigaspaces.springbatch.SpaceItemReader" &gt;
+        &lt;property name="blocking" value="false"/&gt;
+        &lt;property name="dedicatedWorker" value="true"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="itemWriter" class="com.gigaspaces.springbatch.SpaceItemWriter" /&gt;
+    &lt;bean id="itemProcessor" class="com.gigaspaces.springbatch.SpaceItemProcessor" /&gt;
+
+    &lt;job id="spaceJob" xmlns="http://www.springframework.org/schema/batch" restartable="false" &gt;
+        &lt;step id="step1" &gt;
+            &lt;tasklet&gt;
+                &lt;chunk reader="itemReader" writer="itemWriter" processor="itemProcessor" commit-interval="2" /&gt;
+            &lt;/tasklet&gt;
+        &lt;/step&gt;
+    &lt;/job&gt;
+
+    &lt;bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean"&gt;
+        &lt;property name="transactionManager" ref="transactionManager"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher"&gt;
+        &lt;property name="jobRepository" ref="jobRepository" /&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="jobRunner" class="com.gigaspaces.springbatch.JobRunner"&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="jobRegistry" class="org.springframework.batch.core.configuration.support.MapJobRegistry" /&gt;
+
+    &lt;bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" lazy-init="true"&gt;
+        &lt;property name="dataSource" ref="dataSource" /&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" &gt;
+        &lt;property name="driverClassName" value="org.hsqldb.jdbcDriver"/&gt;
+        &lt;property name="url" value="jdbc:hsqldb:hsql://localhost/xdb"/&gt;
+        &lt;property name="username" value="sa"/&gt;
+        &lt;property name="password" value=""/&gt;
+    &lt;/bean&gt;
+
+    &lt;os-core:space-proxy id="space" name="mySpace"/&gt;
+    &lt;os-core:giga-space id="gigaSpace" space="space" /&gt;
+    &lt;os-core:giga-space-context/&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:os-core="http://www.openspaces.org/schema/core"
+      xmlns:os-events="http://www.openspaces.org/schema/events"
+      xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+
+    xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+          http://www.openspaces.org/schema/core http://www.openspaces.org/schema/core/openspaces-core.xsd
+      http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
+      http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+    xmlns:p="http://www.springframework.org/schema/p"&gt;
+
+    &lt;bean id="itemReader" class="com.gigaspaces.springbatch.SpaceItemReader" &gt;
+        &lt;property name="blocking" value="false"/&gt;
+        &lt;property name="dedicatedWorker" value="true"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="itemWriter" class="com.gigaspaces.springbatch.SpaceItemWriter" /&gt;
+    &lt;bean id="itemProcessor" class="com.gigaspaces.springbatch.SpaceItemProcessor" /&gt;
+
+    &lt;job id="spaceJob" xmlns="http://www.springframework.org/schema/batch" restartable="false" &gt;
+        &lt;step id="step1" &gt;
+            &lt;tasklet&gt;
+                &lt;chunk reader="itemReader" writer="itemWriter" processor="itemProcessor" commit-interval="2" /&gt;
+            &lt;/tasklet&gt;
+        &lt;/step&gt;
+    &lt;/job&gt;
+
+    &lt;bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean"&gt;
+        &lt;property name="transactionManager" ref="transactionManager"/&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher"&gt;
+        &lt;property name="jobRepository" ref="jobRepository" /&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="jobRunner" class="com.gigaspaces.springbatch.JobRunner"&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="jobRegistry" class="org.springframework.batch.core.configuration.support.MapJobRegistry" /&gt;
+
+    &lt;bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" lazy-init="true"&gt;
+        &lt;property name="dataSource" ref="dataSource" /&gt;
+    &lt;/bean&gt;
+
+    &lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" &gt;
+        &lt;property name="driverClassName" value="org.hsqldb.jdbcDriver"/&gt;
+        &lt;property name="url" value="jdbc:hsqldb:hsql://localhost/xdb"/&gt;
+        &lt;property name="username" value="sa"/&gt;
+        &lt;property name="password" value=""/&gt;
+    &lt;/bean&gt;
+
+    &lt;os-core:space-proxy id="space" name="mySpace"/&gt;
+    &lt;os-core:giga-space id="gigaSpace" space="space" /&gt;
+    &lt;os-core:giga-space-context/&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="  Item Base " style="padding:10px"><pre><code class="language-java">public class ItemBase {
+    String id=null;
+    Object payload;
+
+    Integer jobID;
+    Integer routing;
+
+    @SpaceId (autoGenerate = false)
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return " " +id;
+    }
+    public Object getPayload() {
+        return payload;
+    }
+    public void setPayload(Object payload) {
+        this.payload = payload;
+    }
+    public Integer getJobID() {
+        return jobID;
+    }
+    public void setJobID(Integer jobID) {
+        this.jobID = jobID;
+    }
+
+    @SpaceRouting
+    public Integer getRouting() {
+        return routing;
+    }
+    public void setRouting(Integer routing) {
+        this.routing = routing;
+    }
+}
+</code></pre>
+            </div>
+            <div title="  ItemRequest " style="padding:10px"><pre><code class="language-java">@SpaceClass(fifoSupport=FifoSupport.ALL)
+public class ItemRequest extends ItemBase{
+    public ItemRequest ()
+    {
+    }
+
+    void execute(){};
+}
+</code></pre>
+            </div>
+            <div title="  ItemResult " style="padding:10px"><pre><code class="language-java">public class ItemResult  extends ItemBase{
+    public ItemResult(){}
+}
+</code></pre>
+            </div>
+            <div title="  SpaceItemReader " style="padding:10px"><pre><code class="language-java">public class SpaceItemReader&lt;T&gt; implements ItemReader&lt;T&gt;, InitializingBean  {
+
+    @GigaSpaceContext
+    GigaSpace space;
+
+    @ClusterInfoContext
+    ClusterInfo clusterInfo;
+    int instanceID = 0;
+
+    boolean blocking = true;
+    boolean dedicatedWorker= true;
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        if (clusterInfo!=null) instanceID=clusterInfo.getInstanceId();
+        System.out.println("SpaceItemReader been created - Instance ID:"+instanceID + " Blocking mode:" + blocking);
+    }
+
+    @Override
+    public T read() throws Exception, UnexpectedInputException, ParseException,
+            NonTransientResourceException {
+        System.out.println("SpaceItemReader called");
+        ItemRequest request=null;
+        ItemRequest requestTemplate=new ItemRequest();
+
+        if (dedicatedWorker)
+        {
+            if (clusterInfo == null)
+            {
+                System.out.println("Running a single Item Reader");
+            }
+            else
+            {
+                String total_members = space.getSpace().getURL().getProperty(SpaceURL.CLUSTER_TOTAL_MEMBERS);
+                int partitionCount=1;
+                if (total_members != null)
+                    partitionCount = Integer.valueOf(total_members .substring(0,total_members.indexOf(","))).intValue();
+
+                int routingValue = (clusterInfo.getInstanceId() - 1) % partitionCount;
+                requestTemplate.setRouting(routingValue);
+                System.out.println("-&gt; "+ space.getSpace().getName() +
+                    " Space got " + partitionCount+ " partitions - Worker Routing value:"+routingValue);
+            }
+        }
+
+        while (true)
+        {
+            if (blocking)
+                request =space.take(requestTemplate, 10000);
+            else
+            {
+                request=space.take(requestTemplate, 0);
+                if (request==null)
+                {
+                    Thread.sleep(1000);
+                }
+            }
+            if (request !=null)
+                break;
+        }
+        return (T)request;
+    }
+
+    public boolean isBlocking() {
+        return blocking;
+    }
+
+    public void setBlocking(boolean blocking) {
+        this.blocking = blocking;
+    }
+
+    public boolean isDedicatedWorker() {
+        return dedicatedWorker;
+    }
+
+    public void setDedicatedWorker(boolean dedicatedWorker) {
+        this.dedicatedWorker = dedicatedWorker;
+    }
+}
+</code></pre>
+            </div>
+            <div title="  SpaceItemProcessor " style="padding:10px"><pre><code class="language-java">public class SpaceItemProcessor&lt;I,O&gt;  implements ItemProcessor&lt;I,O&gt;{
+
+    @GigaSpaceContext
+    GigaSpace space;
+
+    @Override
+    public O process(I request) throws Exception {
+        System.out.println("SpaceItemProcessor called with Request ID:" + request);
+        Thread.sleep(1000);
+        ItemRequest itemRequest = (ItemRequest)request;
+        ItemResult result = new ItemResult();
+        result.setId(itemRequest.getId());
+        result.setJobID(itemRequest.getJobID());
+        result.setRouting(itemRequest.getRouting());
+        space.write(result);
+        return (O)result;
+    }
+}
+</code></pre>
+            </div>
+            <div title="  SpaceItemWriter " style="padding:10px"><pre><code class="language-java">public class SpaceItemWriter&lt;T&gt; implements ItemWriter&lt;T&gt; , InitializingBean  {
+
+    @GigaSpaceContext
+    GigaSpace space;
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("SpaceItemWriter been created");
+    }
+
+    @Override
+    public void write(List&lt;? extends T&gt; items) throws Exception {
+        System.out.println("SpaceItemWriter called with "+  items.size()+" Space Have " + space.count(new ItemResult()) + " results");
+    }
+}
+</code></pre>
+            </div>
+            <div title="  JobRunner " style="padding:10px"><pre><code class="language-java">public class JobRunner implements ApplicationContextAware,InitializingBean ,DisposableBean{
+
+    FlowJob job ;
+    SimpleJobLauncher launcher;
+    Task launcherTask;
+
+    @Override
+    public void setApplicationContext(ApplicationContext appContent)
+            throws BeansException {
+        job = (FlowJob)appContent.getBean("spaceJob");
+        launcher = (SimpleJobLauncher)appContent.getBean("jobLauncher");
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+
+        ExecutorService threadExecutor = Executors.newFixedThreadPool(1);
+        launcherTask = new Task (launcher,job);
+        threadExecutor.execute(launcherTask);
+    }
+
+    static class Task implements Runnable
+    {
+        SimpleJobLauncher launcher;
+        FlowJob job ;
+        public JobExecution jobExecution;
+
+        public Task(SimpleJobLauncher _launcher, FlowJob _job)
+        {
+            this.launcher=_launcher;
+            this.job=_job;
+        }
+
+        public void run() {
+            org.springframework.batch.core.JobParameters jobParameters = new JobParameters();
+            try {
+                jobExecution = launcher.run(job, jobParameters);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
+    public void destroy() throws Exception {
+        launcherTask.jobExecution.stop();
+    }
+}
+</code></pre>
+            </div>
+        </div>
+        <h1>Spring Batch PU Example</h1>
+        <p>To run the Spring Batch PU Example execute the following steps:</p>
+        <h2>Start a Database</h2>
+        <p>Start an HSQL database. Move into the <code><MadCap:variable name="General.HomePath" />\bin</code> folder and run the following:</p><pre><code class="language-java">java -cp ../lib/platform/jdbc/hsqldb.jar org.hsqldb.Server -database.0 file:mydb -dbname.0 xdb
+</code></pre>
+        <p>This will start an HSQL database used with the Spring Batch PU.</p>
+        <h2>Create the Spring Batch PU</h2>
+        <ul>
+            <li>Download and extract the <a href="/attachment_files/sbp/SpringBatch.zip">Spring Batch PU example</a> into an empty folder.</li>
+            <li>Create a new folder named <code>SpringBatchPU</code> under the <code><MadCap:variable name="General.HomePath" />\deploy</code> folder.</li>
+            <li>Copy the example <span class="tc-bold">bin folder</span> content into the <code><MadCap:variable name="General.HomePath" />\deploy\SpringBatchPU</code> folder.</li>
+        </ul>
+        <h2>Spring Batch PU libraries</h2>
+        <p>Include the following libraries with the Spring Batch PU <code>lib</code> folder:
+</p>
+        <ul>
+            <li>spring-batch-core-2.1.6.RELEASE.jar
+</li>
+            <li>spring-batch-infrastructure-2.1.6.RELEASE.jar
+</li>
+            <li>spring-batch-test-2.1.6.RELEASE.jar
+</li>
+            <li>antlr-2.7.6.jar
+asm-1.5.3.jar
+</li>
+            <li>asm-attrs-1.5.3.jar
+cglib-2.1_3.jar
+</li>
+            <li>common-1.0-SNAPSHOT.jar
+commons-collections-2.1.1.jar
+</li>
+            <li>commons-dbcp-1.2.1.jar
+</li>
+            <li>commons-pool-1.2.jar
+</li>
+            <li>dom4j-1.6.1.jar
+ehcache-1.2.3.jar
+</li>
+            <li>geronimo-spec-jta-1.0.1B-rc4.jar
+</li>
+            <li>hibernate-3.2.6.ga.jar
+</li>
+            <li>hibernate-annotations-3.2.1.ga.jar
+</li>
+            <li>hsqldb-1.8.0.7.jar
+</li>
+            <li>persistence-api-1.0.jar</li>
+        </ul>
+        <div class="tc-admon-tip">
+            <p>To speed up the Spring Batch deploy time you should copy these libraries into the <code><MadCap:variable name="General.HomePath" />\lib\optional\pu-common</code> folder.</p>
+        </div>
+        <h2>Set Deploy Tool Classpath</h2>
+        <p>Add the <code>spring-batch-core-2.1.6.RELEASE.jar</code> to the deploy tool (GS-UI or gs CLI) CLASSPATH.
+You may do that by running the following prior calling the deploy command:</p><pre><code class="language-java">set PRE_CLASSPATH=C:\<MadCap:variable name="General.HomePath" />\deploy\SpringBatchPU\lib\spring-batch-core-2.1.6.RELEASE.jar
+</code></pre>
+        <h2>Deploy the Space</h2>
+        <p>Deploy a space call <code>mySapce</code>. You may deploy a single space or a space in a partitioned topology.</p><pre><code class="language-java">gs deploy-space -cluster schema=partitioned-sync2backup total_members=2,0 mySpace
+</code></pre>
+        <p>Here is the expected output:</p><pre><code class="language-java">Found 1 GSMs
+Deploying [datagrid] with name [mySpace] under groups [gigaspaces-8.0.0-XAPPremium-ga] and locators []
+SLA Not Found in PU.  Using Default SLA.
+Overrding SLA cluster schema with [partitioned-sync2backup]
+Overrding SLA numberOfInstances with [2]
+Overrding SLA numberOfBackups with [0]
+Waiting for [2] processing unit instances to be deployed...
+[mySpace] [1] deployed successfully on [127.0.0.1]
+[mySpace] [2] deployed successfully on [127.0.0.1]
+Finished deploying [2] processing unit instances
+</code></pre>
+        <h2>Deploy the Spring Batch PU</h2>
+        <p>Deploy the Spring Batch PU using the GS-UI or the CLI.</p><pre><code class="language-java">gs deploy -cluster total_members=2 SpringBatchP
+</code></pre>
+        <p>Here is the expected output:</p><pre><code class="language-java">Found 1 GSMs
+Deploying [SpringBatchPU] with name [SpringBatchPU] under groups [gigaspaces-8.0
+.0-XAPPremium-ga] and locators []
+SLA Not Found in PU.  Using Default SLA.
+Overrding SLA numberOfInstances with [2]
+Overrding SLA numberOfBackups with [null]
+Waiting for [2] processing unit instances to be deployed...
+[SpringBatchPU] [1] deployed successfully on [127.0.0.1]
+[SpringBatchPU] [2] deployed successfully on [127.0.0.1]
+Finished deploying [2] processing unit instances
+</code></pre>
+        <h2>Run the Master</h2>
+        <p>To run the master execute the following:</p><pre><code class="language-java">java com.gigaspaces.springbatch.Master
+</code></pre>
+        <p>The Master will write 100 Request objects with a specific Job ID into the space and will wait for 100 Result objects with the relevant Job ID. This cycle will repeat itself 10 times.</p>
+    </body>
+</html>

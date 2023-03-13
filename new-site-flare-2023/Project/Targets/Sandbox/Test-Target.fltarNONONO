@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="2"
+  Comment="MadCap HTML5 Target"
+  Type="MsWord"
+  Destinations=""
+  GlossaryTermConversion="marked"
+  MasterPage="/Content/Resources/MasterPages/content.flmsp"
+  ConditionTagExpression="include[Default.DoNotShow or Default.ReleasedVersions or Default.PrintOnly or Default.ScreenOnly]exclude[Version.14-0-born or Version.14-0-died or Version.14-0-only or Version.14-2-born or Version.14-2-died or Version.14-2-only or Version.14-5-born or Version.14-5-died or Version.14-5-only]"
+  MasterToc="/Project/TOCs/Sandbox/test-pages.fltoc"
+  ExcludeUnreferencedContent="true"
+  MoveOutputContentToRoot="true"
+  InsertMOTW="true"
+  UseCustomTopicFileExtension="true"
+  CustomTopicFileExtension="html">
+  <PrintedOutput
+    CollapseMargins="true"
+    GenerateTOCProxy="true"
+    GenerateIndexProxy="true"
+    GenerateGlossaryProxy="true"
+    OutputFormat="docx" />
+  <Variables>
+    <Variable
+      Name="Versions/java-version">9</Variable>
+    <Variable
+      Name="Versions/maven-version-MX">14.0.0</Variable>
+    <Variable
+      Name="Versions/product-version-long">14.0.0</Variable>
+    <Variable
+      Name="Versions/rest-version">v2</Variable>
+    <Variable
+      Name="Versions/scala-version">2.11.8</Variable>
+    <Variable
+      Name="Versions/spark-version">2.3</Variable>
+    <Variable
+      Name="Versions/product-version-short">14.0</Variable>
+  </Variables>
+  <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
+</CatapultTarget>

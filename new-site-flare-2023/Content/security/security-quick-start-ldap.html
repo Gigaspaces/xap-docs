@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Security Quick Start — LDAP</h1>
+        <p>This document shows how to set up <MadCap:variable name="General.ProductNameXAP" /> security using an LDAP security model. </p>
+        <h1>What is an LDAP Server?</h1>
+        <p><a href="https://tldp.org/HOWTO/LDAP-HOWTO/whatisldap.html#:~:text=LDAP stands for Lightweight Directory,other connection oriented transfer services.">LDAP</a> (Lightweight Directory Access Protocol) is often used by organizations as a central repository for user information and as an authentication service. It can also be used to store role information for application users.</p>
+        <h1>What is LDIF? </h1>
+        <p><a href="https://tldp.org/HOWTO/LDAP-HOWTO/moreonldif.html">LDIF</a> (LDAP Data Interchange Format) is a standard plain text data interchange format for representing LDAP  directory content and update requests. LDIF conveys directory content as a set of records, one record for each object or entry.</p>
+        <div>
+            <h1>Understanding the LDIF file structure</h1>
+            <div class="tc-admon-note">
+                <p>LDIF samples are from <code class="language-bash" style="font-weight: bold;">&lt;prod zip&gt;/config/security/ldap-sample.ldif</code>.</p>
+            </div>
+            <p>As mentioned above, we have used the LDIFexample provided with <MadCap:variable name="General.ProductNameXAP" /> in order to export the user data to the LDAP server. A raw LDIF is shown below.</p>
+            <p>&#160;</p><pre xml:space="preserve">
+<code>version: 1
+#################<br /># Define Roles  #
+#################
+
+# create the groups ou (used to define the role groups)
+
+dn: ou=groups,dc=example,dc=org
+objectclass: top
+objectclass: organizationalUnit
+ou: groups
+
+# create a an analyst role and attach with the following settings:
+# Privilages: MONITOR_PU, SPACE_READ
+# Members   : gs-viewer
+
+dn: cn=ROLE_VIEWER,ou=groups,dc=example,dc=org
+objectclass: top
+objectclass: groupOfNames
+cn: ROLE_VIEWER
+member: uid=gs-viewer,ou=people,dc=example,dc=org
+ou: MONITOR_JVM
+ou: MONITOR_PU
+ou: SPACE_READ
+
+# create a a developer role and attach with the following settings:
+# Privilages: PROVISION_PU, MONITOR_PU, SPACE_READ
+# Members   : gs-mngr
+
+dn: cn=ROLE_MNGR,ou=groups,dc=example,dc=org
+objectclass: top
+objectclass: groupOfNames
+cn: ROLE_MNGR
+member: uid=gs-mngr,ou=people,dc=example,dc=org
+ou: MONITOR_JVM
+ou: MONITOR_PU
+ou: SPACE_READ
+ou: PROVISION_PU
+				</code></pre>
+            <div>
+                <h2>Roles Definition in the LDIF File</h2>
+                <p>As you can see (open the file and read the documented comments for a deeper explanation), we have added an organizational unit (hereinafter ou) called <b>groups</b>. This organizational unit will hold domain names (hereinafter <b>dn</b>) that will define the different roles and their permissions, for example:</p><pre><code>dn: cn=ROLE_MNGR,ou=groups,dc=example,dc=org<br />objectclass: top<br />objectclass: groupOfNames<br />cn: ROLE_MNGR<br />member: uid=gs-mngr,ou=people,dc=example,dc=org<br />ou: MONITOR_JVM<br />ou: MONITOR_PU<br />ou: SPACE_READ</code></pre>
+                <p>We can see here that this dn has a Common Name (hereinafter <b>cn</b>) called ROLE_ANALYST, it is under the groups ou and it has three child ous: MONITOR_JVM, MONITOR_PU and SPACE_READ.</p>
+                <p>These children ou define the privileges granted for this specific role.</p>
+                <p>In addition, the dn can include members (in our example it is anna) that define which users have this role.</p>
+                <p>You can add as many roles, members and privileges as you need.</p>
+                <div class="tc-admon-note">
+                    <p>we recommend following the convention where the cn is ROLE_{role description}.</p>
+                </div>
+            </div>
+            <div>
+                <h2>User Definition in the LDIF File</h2>
+                <p>In addition, we have added an ou called people. This ou will be used to encapsulate the users as its children.</p><pre><code># create the people ou so which encapsulates the users.<br></br>dn: ou=people,dc=example,dc=org<br></br>objectclass: top<br></br>objectclass: organizationalUnit<br></br>ou: people</code></pre>
+                <p>A child user appears as follows:</p><pre><code># add a user with uid = admin, and password = admin
+
+dn: uid=gs-admin,ou=people,dc=example,dc=org<br />objectclass: top<br />objectclass: person<br />objectclass: organizationalPerson<br />objectclass: inetOrgPerson<br />cn: Firstname Lastname<br />sn: Firstname<br />uid: Lastname<br />userPassword: gs-admin				
+				</code></pre>
+                <div>
+                    <p>Note that each user has a uid with his username, and a userPassword with his password. In this example we used plain text passwords, but in production mode we recommend encrypted passwords.</p>
+                </div>
+            </div>
+        </div>
+        <h1>Preparing the Environment for an LDAP Server </h1>
+        <p>In this example we are going to demonstrate how to connect to a docker-based LDAP environment. If you already have an LDAP server for your organization customize this example in order to connect Insightedge to your server.</p>
+        <h2>Adding the LDAP JAR files</h2>
+        <p>In order for the solution to run you should add the following files to the build’s “/lib/optional/spring” folder:</p>
+        <ul>
+            <li>
+                <p>spring-ldap-core-2.3.3.RELEASE.jar</p>
+            </li>
+            <li>
+                <p>spring-security-ldap-5.1.7.RELEASE.jar</p>
+            </li>
+        </ul>
+        <h2>Running the LDAP server</h2>
+        <p>In order to run your LDAP server, use the following command:</p>
+        <div class="tc-admon-note">
+            <p>Try to avoid using relative paths as it may cause errors.</p>
+        </div><pre><code>docker run  --name my-ldap <br />--volume {Path-To-Build}/config/security/ldap-sample.ldif:/container/service/slapd/assets/config/bootstrap/ldif/50-bootstrap.ldif osixia/openldap:1.4.0 <br />--copy-service</code></pre>
+        <p>This command runs a docker container with an LDAP server and exposes it on port 389. In addition, it initiates it with the default domain example.org, and a default administrator user with username:admin and password:admin.</p>
+        <p>Refer to  <a href="https://github.com/osixia/docker-openldap">this documentation </a>for more information regarding the docker image and how to change its default values.</p>
+        <p>Note that we supplied the ldap-sample.ldif file to the container to be used along with the default settings — this exports the ldap-sample.ldif file into the LDAP and adds our users.</p>
+        <div class="tc-admon-note">
+            <p>The files used in this example are found in the following locations:</p>
+            <ul>
+                <li><code class="language-bash">&lt;prod zip&gt;/config/security/ldap-security-config.xml</code>
+                </li>
+                <li><code class="language-bash">&lt;prod zip&gt;/config/security/ldap-sample.ldif</code>
+                </li>
+            </ul>
+        </div>
+        <p>After running the command you should see the following output:</p>
+        <p>
+            <img src="../Resources/Static/images/LDAP-01.png" style="width: 1071px;height: 846px;" />
+        </p>
+        <h2>Extracting the LDAP Local IP Address</h2>
+        <p>Use the following command to extract the container’s local ip address:</p>
+        <p><pre><code>docker container inspect my-ldap | grep IPAddress</code></pre>
+        </p>
+        <p>The output will give you the local ip address. In our case as you can see the ip address is 172.17.0.2.</p>
+        <p>
+            <img src="../Resources/Static/images/LDAP-06.png" style="width: 702px;height: 83px;" />
+        </p>
+        <h2>Viewing your LDIF Information using Apache Directory Studio</h2>
+        <p>Before connecting our LDIF server to Insightedge, let's try to view it in Apache Directory Studio which is a client that helps viewing and modifying the LDAP server in a convenient way.</p>
+        <p>This is an optional step, but in order to follow along with it download <a href="https://directory.apache.org/studio/downloads.html">Apache Directory Studio</a> and follow the installation instructions.</p>
+        <ol>
+            <li>
+                <p>Create a new connection by pressing LDAP (in the top navigation) -&gt; New connection.</p>
+            </li>
+            <li>
+                <p>Set the connection name to any name you want and the hostname to the IP address we extracted previously.</p>
+            </li>
+            <li>
+                <p>Set the Bind DN or user to the defaults: cn=admin, dc=example, dc=org</p>
+            </li>
+            <li>
+                <p>And the password to the default password: admin.</p>
+            </li>
+            <li>
+                <p>Press Finish to create the new connection.</p>
+            </li>
+        </ol>
+        <p>
+            <img src="../Resources/Static/images/LDAP-07.gif" />
+        </p>
+        <p>After the connection is established you can view the different users and groups.</p>
+        <p>We can see in the LDAP browser that we have two groups: <code style="font-weight: bold;">groups </code>that has the roles and <code style="font-weight: bold;">users </code>that has the users:</p>
+        <p>
+            <img src="../Resources/Static/images/LDAP-08.png" />
+        </p>
+        <p>You can click on each element to display and modify it.</p>
+        <h1>Using LDAP as <MadCap:variable name="General.ProductNameIE" />’s Authorization Provider</h1>
+        <p>In order to use the LDAP server we just configured as <MadCap:variable name="General.ProductNameIE" />’s Authorization Provider, follow these steps:</p>
+        <h2>Enabling Security</h2>
+        <p>Make sure your security is enabled in the setenv_overrides file — <code>{GS_HOME}/bin/setenv_overrides.sh/bat</code>.</p>
+        <p>In addition to enabling the security, ensure that the SSL is enabled/disabled as it is a required field.</p>
+        <p>The setenv_<code style="font-weight: bold;">overrides.sh/bat</code> file should look appear as follows:</p>
+        <div class="easyui-tabs" plain="true">
+            <div title="Unix">
+                <p><pre><code>export GS_OPTIONS_EXT='-Dcom.gs.security.enabled=true  -Dcom.gs.manager.rest.ssl.enabled=false'</code></pre>
+                </p>
+            </div>
+            <div title="Windows">
+                <p><pre><code>SET GS_OPTIONS_EXT=-Dcom.gs.security.enabled=true  -Dcom.gs.manager.rest.ssl.enabled=false</code></pre>
+                </p>
+            </div>
+        </div>
+        <h2>Edit the Security Properties File</h2>
+        <p>Edit the properties config file, located at <code style="font-weight: bold;">/config/security/security.properties</code>, to point to <code style="font-weight: bold;">ldap-security-config.xml</code>:</p><pre><code>
+com.gs.security.security-manager.class=com.gigaspaces.security.spring.SpringSecurityManager
+spring-security-config-location=../config/security/security-config.xml								
+				</code></pre>
+        <p>Note that the .xml file location is relative to the /bin/ folder.</p>
+        <h2>Modify the ldap-security-config.xml File</h2>
+        <p>Open the<code style="font-weight: bold;"> ldap-security-config.xml</code> file and make sure that its contextSource has the correct IP address of the LDAP server:</p><pre><code>
+&lt;bean id="contextSource"
+	class="org.springframework.security.ldap.DefaultSpringSecurityContextSource"&gt;
+	&lt;constructor-arg value="ldap://172.17.0.2:389/dc=example,dc=org" /&gt;
+	&lt;property name="userDn" value="cn=admin,dc=example,dc=org" /&gt;
+	&lt;property name="password" value="admin" /&gt;
+	&lt;!--
+	Most LDAP providers do not allow anonymous binding, therefore we'll
+	need to provide a manager DN and password to bind with.
+	&lt;property name="userDn" value="cn=manager,dc=example,dc=com" /&gt;
+	&lt;property name="password" value="password" /&gt;
+	--&gt;
+&lt;/bean&gt;
+</code></pre>
+        <p>Note that since the LDAP server does not allow anonymous queries we should also specify the userDn (the administrator) and his password (default: admin).</p>
+        <h1>A Deeper Look into the ldap-security-config.xml File</h1>
+        <p>We can see that the populator is set to search for the roles in the “groups” ou:</p><pre><code>
+&lt;bean id="populator"
+class="org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator"&gt;
+&lt;constructor-arg ref="contextSource" /&gt;
+&lt;!--  group based DN - we will be searching for groups in "ou=groups,dc=example,dc=com" --&gt;
+&lt;constructor-arg value="ou=groups" /&gt;
+&lt;!-- the name of the attribute that will contain role information (which
+effectively translates to a user's granted authorities. Default is "cn" --&gt;
+&lt;property name="groupRoleAttribute" value="ou" /&gt;
+&lt;!-- case normalization to upper case. Default is true --&gt;
+&lt;property name="convertToUpperCase" value="false" /&gt;
+&lt;!-- role prefix to append to the group name. Default is "ROLE_". --&gt;
+&lt;property name="rolePrefix" value="" /&gt;
+&lt;/bean&gt;
+</code></pre>
+        <p>In addition, we can see that the authenticator has set the username to be the uid, and the members to be part of the “people” ou.</p>
+        <p>Also, the encoder used for decoding the passwords is NoOpPassowrdEncoder as we saved our passwords in plain text.</p><pre><code>
+&lt;bean id="authenticator"
+class="org.springframework.security.ldap.authentication.PasswordComparisonAuthenticator"&gt;
+&lt;constructor-arg ref="contextSource" /&gt;
+&lt;!--  how to find a user in LDAP --&gt;
+&lt;property name="userDnPatterns"&gt;
+&lt;list&gt;
+&lt;!-- {0} servers as a pattern argument placeholder for a username --&gt;
+&lt;value&gt;uid={0},ou=people&lt;/value&gt;
+&lt;/list&gt;
+&lt;/property&gt;
+&lt;property name="passwordEncoder"&gt;
+&lt;!-- This PasswordEncoder is a legacy implementation and using it is considered insecure.
+Instead use BCryptPasswordEncoder, Pbkdf2PasswordEncoder or DelegatingPasswordEncoder 	--&gt;
+&lt;bean class="org.springframework.security.crypto.password.NoOpPasswordEncoder" /&gt;
+&lt;/property&gt;
+&lt;bean&gt;
+</code></pre>
+        <div class="tc-admon-note">
+            <p>In production it is recommended to use encryption for the passwords, and use its relevant decoder.</p>
+        </div>
+        <h1>Displaying the Users in the Apache Directory Studio</h1>
+        <p>Now, If you try to access <MadCap:variable name="General.ProductNameIE" />it will require a username and password. We can use one of the users that exist in the ldap. Lets first try to authenticate with “adam” who is an administrator. We can take a look at adam’s information in Apache Directory Studio before logging in:</p>
+        <p>
+            <img src="../Resources/Static/images/LDAP-14.png" style="width: 797px;height: 200px;" />
+        </p>
+        <p>
+            <img src="../Resources/Static/images/LDAP-15.png" style="width: 790px;height: 149px;" />
+        </p>
+        <p>As you can see, adam is attached to the “ROLE_ADMIN” group and has all the available authorities.</p>
+    </body>
+</html>

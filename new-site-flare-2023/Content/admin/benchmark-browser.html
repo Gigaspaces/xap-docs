@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Benchmark View</h1>
+        <p>The Benchmark view provides a user interface for benchmarking the space.</p>
+        <p>The following options are provided:</p>
+        <ul>
+            <li>
+                <p>Specifying object type.</p>
+            </li>
+            <li>
+                <p>Specifying the JavaSpaces API or Map API operation to perform.</p>
+            </li>
+            <li>
+                <p>Specifying the number of iterations to perform.</p>
+            </li>
+            <li>
+                <p>Specifying the sampling rate.</p>
+            </li>
+            <li>
+                <p>Specifying Object size.</p>
+            </li>
+            <li>
+                <p>Specifying batch size.</p>
+            </li>
+            <li>
+                <p>Specifying the number of concurrent threads.</p>
+            </li>
+            <li>
+                <p>Specifying the transaction type.</p>
+            </li>
+            <li>
+                <p>Specify parallel operations. For example, running write and read operations in separate threads concurrently.</p>
+            </li>
+            <li>
+                <p>Specify distributed cache mode.</p>
+            </li>
+            <li>
+                <p>Export results to a CSV file.</p>
+            </li>
+            <li>
+                <p>Display results in graph and tabular form.</p>
+            </li>
+            <li>
+                <p>Benchmark configuration can be saved.</p>
+            </li>
+        </ul>
+        <p>The Benchmark view is comprised of 4 tabs:</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Settings tab</span> – allows you to configure the benchmark parameters.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Table tab</span> – allows you to view the benchmark results in tabular format.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Graph tab</span> – allows you to view the benchmark results using graphs.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Summary tab</span> – includes the benchmark results summary.</p>
+            </li>
+        </ul>
+        <p>These options and tabs are described in the sections below.</p>
+        <h1><a name="settings-tab"></a>Settings Tab</h1>
+        <p>The <span class="tc-bold">Settings</span> tab allows you to configure the benchmark parameters.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/gmc_space_benchmark_6.0.2.jpg" alt="gmc_space_benchmark_6.0.2.jpg" class="tc-picture100" />
+            </p>
+        </div>
+        <p>It contains the following areas:</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Options</span>
+                </p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Lease</span>
+                </p>
+            </li>
+            <li>
+                <p>Admin operations</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Operations</span>
+                </p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Transaction</span>
+                </p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Master-Local</span>
+                </p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Results Output</span>
+                </p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Configuration</span>
+                </p>
+            </li>
+        </ul>
+        <p>These areas are detailed in the sections below.</p>
+        <h2><a name="options"></a>Options</h2>
+        <p>The Benchmark view <span class="tc-bold">Options</span> area provides the following options:</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Object type</span> – type of object written to the space, possible options: <span class="tc-bold">Entry</span>, <span class="tc-bold">POJO</span>, <span class="tc-bold">JMS</span>, <span class="tc-bold">Externalizable</span>, <span class="tc-bold">Serializable</span>, <span class="tc-bold">FIFO</span>, <span class="tc-bold">POJO Externalizable</span>, <span class="tc-bold">MetaDataEntry Externalizable</span>, <span class="tc-bold">FIFO Externalizable</span>, <span class="tc-bold">UID Externalizable</span>. The selected object type is explained in the <span class="tc-bold">Description</span> area.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Threads</span> – the number of concurrent threads that run the test. This allows you to run multiple threads that call the selected operation at the same time.</p>
+            </li>
+        </ul>
+        <p>If you define that 1000 Entries be written to the space, and have 5 threads defined as part of the threads box, you will end up with 5000 Entries inside the space.</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Iterations</span> – the number of iterations the benchmark calls for the selected operation.</p>
+            </li>
+        </ul>
+        <p>You can allow a read cycle to be conducted several times using the <span class="tc-bold">Repeat Read/Get Operation</span> option.</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Entry size</span> – the size of the Entry payload in bytes that is written to the space. This option is relevant only for the write and put operations.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Sampling rate</span> – the benchmark provides the average TP reading in the <span class="tc-bold">Graph</span> or <span class="tc-bold">Table</span> tabs based on the sampling rate. For example, if you choose to write 5000 Entries to the space and the sampling rate is 1000, the results graph and table display 5 sampling points, which reflect the average TP of the write operation for the last sampling period (the last 1000 write operations). When using the <span class="tc-bold">Repeat Read/Get Operation</span> option, you can select a sampling rate that is greater than the number of iterations.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Batches</span> – this option allows you to call GigaSpaces batch operations (<code>writeMultiple, takeMultiple, readMultiple</code>). The number specified in this box is the number of batches that are performed in order to complete the number of iterations specified. Specifying <code>0</code> as the batch size calls the regular APIs.</p>
+            </li>
+        </ul>
+        <p>The numbers in the <span class="tc-bold">Iterations</span>, <span class="tc-bold">Sampling rate</span>, and <span class="tc-bold">Read/Take timeout</span> boxes are in thousands, and the number in the <span class="tc-bold">Entry size</span> box is in bytes.</p>
+        <h2><a name="lease"></a>Lease</h2>
+        <p>Checking the <span class="tc-bold">Return Lease</span> check defines that operations performed in the space also create a <code>Lease</code> object. You can specify the expiration time of the lease in the <span class="tc-bold">Lease Time</span> area, or check the <span class="tc-bold">FOREVER Lease</span> check box, which means the lease will not expire unless you remove it from the space.</p>
+        <div class="tc-admon-note">
+            <p>Checking the <span class="tc-bold">Return Lease</span> check box might decrease performance.</p>
+        </div>
+        <h2><a name="admin-operations"></a>Admin Operations</h2>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Use Clustered Proxy</span> – <span class="tc-bold">relevant only when working with clustered spaces</span>. This option defines that all operations in the cluster are performed on a clustered proxy, which is responsible for routing the operation to the relevant member/members. If a clustered proxy is not used, operations are performed directly on the selected cluster member, and not on the whole cluster.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Clean Space</span> - if checked, the target space is cleaned (all objects and templates are removed) prior to the start of the benchmark.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Display Thread TP</span> – this check box instructs the <a href="#graph-tab"><span class="tc-bold">Graph</span> tab</a> to display the throughput of each thread separately. Different threads are represented by different colors.</p>
+            </li>
+        </ul>
+        <h2><a name="operations"></a>Operations</h2>
+        <h3><a name="javaspaces-api"></a>JavaSpaces API</h3>
+        <p>JavaSpaces operations use an Entry with 2 attributes:</p>
+        <ul>
+            <li>
+                <p><code>m_counter</code> – <code>java.lang.Long</code>. This stores a running number. This is an indexed attribute. Take and read operations use this attribute for template matching.</p>
+            </li>
+            <li>
+                <p><code>m_content</code> – <code>java.lang.Byte\[\]</code>. This stores the payload data.</p>
+            </li>
+        </ul>
+        <p>The following operations can be performed when the <span class="tc-bold">JavaSpaces</span> area is selected:</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Write</span> – writes objects to the space, according to the number of iterations.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Read</span> – reads objects from the space, according to the number of iterations.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Take</span> – takes objects from the space, according to the number of iterations.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Write and Read</span> – writes and reads objects, according to the number of iterations. For example, defining 20,000 iterations in the <span class="tc-bold">Iterations</span> text box writes 2,000 objects to the space, and reads those 2,000 objects from the space.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Write and Take</span> – writes and takes objects, according to the number of iterations. For example, defining 20,000 iterations in the <span class="tc-bold">Iterations</span> text box writes 2,000 objects to the space, and takes those 2,000 objects from the space.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Write and Notify</span> – writes objects according to the number of iterations, and registers for notifications on those objects. For example, defining 20,000 iterations in the <span class="tc-bold">Iterations</span> text box writes 2,000 objects to the space, sends 2,000 notifications, receives 2,000 notify acknowledgments, and registers for notifications on the written objects.</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>The referral to objects above means either Entries or POJOs, depending on the specified <span class="tc-bold">Object Format</span>.</p>
+        </div>
+        <h3><a name="map-api"></a>Map API</h3>
+        <p>Map operations put an object with 2 attributes (value object) and a string key into the space.</p>
+        <p>The following operations can be performed when the <span class="tc-bold">Map</span> area is selected:</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Put</span> – puts Entries in the space, according to the number of iterations.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Get</span> – gets Entries from the space, according to the number of iterations.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Remove</span> – removes Entries from the space, according to the number of iterations.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Put and Get</span> – puts Entries into the space, and gets Entries from the space, according to the number of iterations. For example, defining 20,000 iterations in the <span class="tc-bold">Iterations</span> text box puts 2,000 Entries in the space, and gets those 2,000 Entries from the space.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Put and Remove</span> – puts Entries into the space, and removes Entries from the space. For example, defining 20,000 iterations in the <span class="tc-bold">Iterations</span> text box puts 2,000 Entries in the space, and removes those 2,000 Entries from the space.</p>
+            </li>
+        </ul>
+        <h3><a name="parallel-operations"></a>Parallel Operations</h3>
+        <p>The <span class="tc-bold">Parallel operations</span> check box is relevant only for <span class="tc-bold">Write and Read</span>, <span class="tc-bold">Write and Take</span>, <span class="tc-bold">Put and Get</span>, and <span class="tc-bold">Put and Remove</span> operations. When selecting this option, the operations are conducted simultaneously – i.e., a thread is spawned for the write operation, another one for the read operation, and these are executed at the same time, allowing the read thread to read an Entry that has been written by the write thread.</p>
+        <h3><a name="repeat-read-get-operation"></a>Repeat Read/Get Operation</h3>
+        <p>This option is relevant for the read or get operations. Specify the number of times to repeat the operation. This option allows you to benchmark the local cache.</p>
+        <h2><a name="transaction"></a>Transaction</h2>
+        <p>The <span class="tc-bold">Transaction</span> area allows you to perform operations under transactions:</p>
+        <ul>
+            <li>
+                <p><span class="tc-bold">None</span> – operations are called without using transactions.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Local</span> – the GigaSpaces Local Transaction Manager is used to create the transaction object with the operations.</p>
+            </li>
+            <li>
+                <p>Distributed - the Jini Distributed Transaction Manager is used to create the transaction object with the operations.
+In the <span class="tc-bold">Txn Manager URL</span> text box, specify the host name and port in which your Jini Lookup Service is running:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/GMC_space_benchmark_txManagerURL_6.1.jpg" alt="GMC_space_benchmark_txManagerURL_6.1.jpg" class="tc-picture30" />
+                </p>
+            </li>
+            <li>
+                <p>You can choose how many operations are performed before a transaction is committed. Default is <span class="tc-bold">Commit every 1 operation</span>, meaning the transaction is committed after every single operation.</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>For more details on transactions, see the <a href="../dev-java/transaction-overview.html">Transactions</a> section in the developer guide.</p>
+        </div>
+        <h2><a name="master-local"></a>Master-Local</h2>
+        <p>Distributed cache is relevant when using read or get operations. This option starts a local cache in the Space Browser's VM. When a read or get operation is called, the Entry is first searched for at the local cache. If the Entry is not found at the local cache, it is searched for at the master space and sent back to the browser. Any subsequent read for the Entry is conducted from the local cache.</p>
+        <h2><a name="results-output"></a>Results Output</h2>
+        <p>To save the benchmark sample readings into a file, check the <span class="tc-bold">Save results to file</span> check box, and specify a file. This generates a file with the results in tab-separated values.</p>
+        <div class="tc-admon-note">
+            <p>The benchmark results are printed to an Excel file, which allows you to easily sort your results. To do this, open your printed Excel file, and select *<span class="tc-italic">Filter</span> &gt; <span class="tc-bold">AutoFilter</span> from the <span class="tc-bold">Data</span> menu at the top.</p>
+        </div>
+        <h2><a name="configuration"></a>Configuration</h2>
+        <p>The <span class="tc-bold">Configuration</span> area allows you to save specific options you selected in the <span class="tc-italic">Service View</span>, instead of having to re-select them every time you run a new benchmark. You can save these options by clicking the <span class="tc-bold">New</span> button. In the <span class="tc-bold">New Configuration</span> dialog type the name of your choice, for example, <code>myConfiguration</code>:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/GMC_space_benchmark_New_Configuration_dialog_small_6.0.jpg" alt="GMC_space_benchmark_New_Configuration_dialog_small_6.0.jpg" class="tc-picture30" />
+            </p>
+        </div>
+        <p>Press <span class="tc-bold">OK</span> to accept and close the dialog, and then click <span class="tc-bold">Save</span>. The saved configuration now exists in the drop-down menu:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/GMC_space_benchmark_Configuration_area_SavedConfiguration_6.0.jpg" alt="GMC_space_benchmark_Configuration_area_SavedConfiguration_6.0.jpg" class="tc-picture30" />
+            </p>
+        </div>
+        <p>You can add as many configurations as you like, and select the one you want to use from the drop-down menu. You can also delete or rename existing configurations using the <span class="tc-bold">Delete</span> and <span class="tc-bold">Rename</span> buttons.</p>
+        <h1><a name="table-tab"></a>Table Tab</h1>
+        <p>The <span class="tc-bold">Table</span> tab allows you to view the benchmark results in tabular format. The table provides the throughput for write, read, or take operations, and the client process memory available during the test period.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/benchmark_table_tab.gif" alt="benchmark_table_tab.gif" class="tc-picture80" />
+            </p>
+        </div>
+        <p>To clear the <span class="tc-bold">Table</span> tab, click the <span class="tc-bold">Clear</span> button.</p>
+        <h1><a name="graph-tab"></a>Graph Tab</h1>
+        <p>The <span class="tc-bold">Graph</span> tab allows you to view the benchmark results using graphs. The graphs provided show the throughput for write/read/take operations and the client process memory available during the test period.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/benchmark_graph_tab.gif" alt="benchmark_graph_tab.gif" class="tc-picture80" />
+            </p>
+        </div>
+        <p>To clear the <span class="tc-bold">Graph</span> tab, click the <span class="tc-bold">Clear</span> button.</p>
+        <h1><a name="summary-tab"></a>Summary Tab</h1>
+        <p>The <span class="tc-bold">Summary</span> tab includes the benchmark results summary.</p>
+        <p>When running multiple benchmarks, the last benchmark summary is added to the previously displayed summaries.</p>
+        <p>The Summary tab includes the client system environment – OS, J2SE, memory, network interfaces information, the total time of the benchmark, the average throughput, the number of bytes written/read from the space, and the edition and build of GigaSpaces.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/benchmark_summary_tab.gif" alt="benchmark_summary_tab.gif" class="tc-picture80" />
+            </p>
+        </div>
+        <p>To clear the <span class="tc-bold">Summary</span> tab, click the <span class="tc-bold">Clear</span> button.</p>
+        <h1><a name="starting-or-stopping-the-benchmark"></a>Starting or Stopping the Benchmark</h1>
+        <p>After completing the benchmark settings, click the <span class="tc-bold">Start</span> button to invoke the selected operation(s) based on the configuration defined in the <span class="tc-bold">Settings</span> tab.</p>
+        <p>To stop the currently running benchmark, click the <span class="tc-bold">Stop</span> button.</p>
+        <h1><a name="progress-bar"></a>Progress Bar</h1>
+        <p>The progress bar at the bottom of the <span class="tc-bold">Service view</span> displays the current benchmark status.</p>
+        <h1><a name="benchmark-cli-utility"></a>Benchmark CLI Utility</h1>
+        <p>The benchmark utility provides a good tool for running performance benchmarks on the cache in various scenarios. This program performs a loop of write/put and read/get, or take/remove operations from a space, according to a different set of parameters. The result is the average time it took to perform the operations. You can define a sampling rate to allow you to track the intermediate performance while the benchmark example is running. You may also dump the results into a file to be converted into graphs and analyzed using a spreadsheet and analysis tools.</p>
+        <div class="tc-admon-note">
+            <p>For more details, see the <a href="benchmark-utility-cli.html">Utility</a> page.</p>
+        </div>
+    </body>
+</html>

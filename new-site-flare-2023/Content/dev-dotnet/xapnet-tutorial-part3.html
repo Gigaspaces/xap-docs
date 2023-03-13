@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Distributed Processing</h1>
+  
+
+<p>In this part of the tutorial we will introduce you to the different processing services you can run on top of the space.
+ <MadCap:variable name="General.ProductNameXAP" /> includes a set of built-in service components such as Task Execution and Messaging services, each implementing commonly used Enterprise integration patterns.
+ It's purpose is to make the implementation of distributed applications on-top of the space simpler and less intrusive and allow you to easily build highly scalable and performing applications.</p>
+
+<h1><a name="task-execution"></a>Task Execution</h1>
+
+<p>Task Execution provides a fine-grained API for performing ad-hoc parallel execution of user defined tasks. This framework should be used in the following scenarios:</p>
+
+<ul>
+<li>When the tasks are defined by clients and can be changed or added while the data-grid servers are running.</li>
+<li>As a dynamic "stored procedure" enabling to execute complex multi stage queries or data manipulation where the data resides, thus enabling to send back only the end result of the calculation and avoid excess network traffic.</li>
+<li>Scatter/Gather pattern - when you need to perform aggregated operations over a cluster of distributed partitions.</li>
+</ul>
+
+<p>Here is an example of a task. We define a task that will collect all users that made a payment to a specific merchant:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Task " style="padding:10px"><pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+
+using GigaSpaces.Core;
+using GigaSpaces.Core.Metadata;
+using GigaSpaces.Core.Executors;
+
+using xaptutorial.model;
+
+[Serializable]
+public class MerchantUserTask : ISpaceTask&lt;HashSet&lt;long?&gt;&gt; {
+    public long? MerchantId;
+
+    public MerchantUserTask(long? merchantId) {
+        this.MerchantId = merchantId;
+    }
+
+    public HashSet&lt;long?&gt; Execute(ISpaceProxy spaceProxy, ITransaction tx)  {
+        SqlQuery&lt;Payment&gt; query = new SqlQuery&lt;Payment&gt;( "MerchantId = ? ");
+        query.SetParameter(1, MerchantId);
+
+        Payment[] payments = spaceProxy.ReadMultiple&lt;Payment&gt;(query, int.MaxValue);
+        HashSet&lt;long?&gt; userIds = new HashSet&lt;long?&gt;();
+
+        // Eliminate duplicate UserId
+        if (payments != null) {
+            for (int i = 0; i &lt; payments.Length; i++) {
+                userIds.Add(payments[i].getUserId());
+            }
+        }
+        return userIds;
+    }
+}
+</code></pre>
+</div>
+<div title="  Execution " style="padding:10px"><pre><code class="language-csharp">public void executeTask()  {
+    MerchantUserTask task = new MerchantUserTask(2);
+
+    //Execute the task on a specific node using a specified routing value (2)
+    HashSet&lt;long?&gt; result = proxy.Execute(task,2);
+}
+</code></pre>
+</div>
+</div>
+
+<div class="tc-admon-note">
+  
+  <p>A space task needs to be serializable because it is being serialized and reconstructed at the node.</p>
+</div>
+
+<h1><a name="distributed-task"></a>Distributed Task</h1>
+
+<p>A DistributedTask is a task that ends up executing more than once (concurrently) and returns a result that is a reduced operation of all the different executions.</p>
+
+<p>In the example below we are creating a distributed task that finds all merchants with a specific category. Once all results are returned to the client, reduce is called and a list of all merchants is created.</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  DistributedTask " style="padding:10px"><pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+
+using GigaSpaces.Core;
+using GigaSpaces.Core.Metadata;
+using GigaSpaces.Core.Executors;
+
+using xaptutorial.model;
+
+[Serializable]
+public class MerchantByCategoryTask : IDistributedSpaceTask&lt;List&lt;Merchant&gt;, Merchant[]&gt; {
+
+    public ECategoryType CategoryType;
+
+    public MerchantByCategoryTask(ECategoryType categoryType) {
+        this.CategoryType = categoryType;
+    }
+
+    public Merchant[] Execute(ISpaceProxy spaceProxy, ITransaction tx)   {
+        SqlQuery&lt;Merchant&gt; query = new SqlQuery&lt;Merchant&gt;( "Category = ?");
+        query.SetParameter(1, CategoryType);
+        return spaceProxy.ReadMultiple&lt;Merchant&gt;(query, int.MaxValue);
+    }
+
+    public List&lt;Merchant&gt; Reduce(SpaceTaskResultsCollection&lt;Merchant[]&gt; results){
+
+        List&lt;Merchant&gt; list = new List&lt;Merchant&gt;();
+
+        foreach (SpaceTaskResult&lt;Merchant[]&gt;  result in results) {
+            if (result.Exception != null) {
+                throw result.Exception;
+            }
+
+            foreach (Merchant res in result.Result) {
+                list.Add (res);
+            }
+        }
+        return list;
+    }
+}
+</code></pre>
+</div>
+<div title="  Execution " style="padding:10px"><pre><code class="language-csharp">public void executeDistributedTask(){
+    MerchantByCategoryTask task = new MerchantByCategoryTask(
+            ECategoryType.AUTOMOTIVE);
+
+    //Execute the task on all the primary nodes with in the cluster
+    List&lt;Merchant&gt; result = proxy.Execute(task);
+}
+</code></pre>
+</div>
+</div>
+
+<h1><a name="asynchronous-task"></a>Asynchronous Task</h1>
+
+<p>A space task can also be executed asynchronously with the corresponding <code>BeginExecute</code> <code>EndExecute</code> method. This follows the standard .NET asynchronous API, once the execution is complete the execute invoker is notified by the async result which is received from the <code>BeginExecute</code> method or to a supplied callback. This will be similar to executing a task in a separate thread, allowing to continue local process while waiting for the result to be calculated at the space nodes.</p>
+
+<p>Here is an example that executes asynchronous using async result:</p>
+
+<pre><code class="language-csharp">public void executeDistributedTaskAsync()
+{
+    MerchantByCategoryTask task = new MerchantByCategoryTask(ECategoryType.AUTOMOTIVE);
+
+    IAsyncResult&lt;List&lt;Merchant&gt;&gt; asyncResult = proxy.BeginExecute(task, null /*callback*/, null /*state object*/);
+    //  ...
+    //This will block until the result execution has arrived
+    asyncResult.AsyncWaitHandle.WaitOne();
+    //Gets the actual result of the async execution
+    List&lt;Merchant&gt; result = proxy.EndExecute(asyncResult);
+}
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p><a href="../dev-dotnet/task-execution-overview.html">Task Execution over the Space</a></p>
+</div>
+
+</body>
+</html>

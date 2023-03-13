@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Query View</h1>
+        <p>Used to query the space using SQL statements and view the resulting data set in tabular format.</p>
+        <p>The Query view allows you to query the space using SQL statements and to get the full resulting data set in tabular format.</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/query_view.gif" alt="query_view.gif" class="tc-picture100" />
+        </p>
+        <p>The Query view includes the following options:</p>
+        <ul>
+            <li>Result set table – the query results are displayed in a table at the lower part of the <span class="tc-bold">Service View</span>, where each row represents Entry data, and each column represents class attribute data. Non-native types' attribute data is displayed using the <code>toString</code> returned value.</li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>Make sure that the space includes the non-native attribute classes as part of its classpath, and that the relevant application has the correct codebase, so that the the query result set table can display non-native type attribute data correctly.</p>
+        </div>
+        <ul>
+            <li>
+                <p>Exporting result set data into HTML, XML or CSV – to export the restored result set data, click the export button (<img src="../Resources/Static/attachment_files/query_export.gif" alt="query_export.gif" />). This displays the export dialog, which requires you to follow 2 simple steps, and then save the file to disk.</p>
+            </li>
+            <li>
+                <p>Entry UID is displayed for each object data – when the SQL query includes the UID as part of the select statement (<code>select uid,\* from person</code>), the first column in the result set table displays the Entry UID.</p>
+            </li>
+            <li>
+                <p>Space classes list query – to query the space for the classes it stores run the following query:</p>
+                <p>SELECT * FROM SYSTABLES</p>
+            </li>
+            <li>
+                <p>Class meta data information – to get the class meta data information, click the meta data button (<img src="../Resources/Static/attachment_files/query_metadata.gif" alt="query_metadata.gif" />). This displays a table in which each row includes information about the table column's meta data. This displays a translation of the relevant class attribute type into its SQL equivalent:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/query_metadata_test.jpg" alt="query_metadata_test.jpg" class="tc-picture100" />
+                </p>
+                <p>Scroll right to see more attributes:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/query_metadata_2.jpg" alt="query_metadata_2.jpg" class="tc-picture100" />
+                </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/query_metadata_3.jpg" alt="query_metadata_3.jpg" class="tc-picture100" />
+                </p>
+            </li>
+            <li>
+                <p>SQL queries can be saved to a file. Right-click the top of the <span class="tc-bold">Service View</span> panel and click <span class="tc-bold">Save to file</span>:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/query_options.gif" alt="query_options.gif" />
+                </p>
+            </li>
+            <li>Inspecting objects using the <a href="gigaspaces-browser-object-inspector.html">Object Inspector</a> or the <a href="gigaspaces-browser-object-inspector.html">Object Snapshot Inspector</a>.</li>
+        </ul>
+    </body>
+</html>

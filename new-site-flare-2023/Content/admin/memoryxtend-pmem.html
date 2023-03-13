@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">MemoryXtend for PMEM</h1>
+        <h1><a name="overview"></a>Overview</h1>
+        <p>Persistent Memory (PMEM) is a new class of memory that combines high capacity and affordability. By expanding affordable system memory capacities (greater than 3TB per CPU socket), end customers can use systems enabled with PMEM to better optimize their workloads by moving and maintaining larger amounts of data closer to the processor, and minimizing the higher latency of fetching data from system storage.</p>
+        <p>The Persistent Memory Development Kit, PMDK, is a collection of libraries that have been developed for various use cases, tuned, validated to production quality, and thoroughly documented. These libraries build on the Direct Access (DAX) feature available in both Linux and Windows, which allows applications direct load/store access to persistent memory by memory-mapping files on a persistent-memory-aware file system. The PMDK also includes a collection of tools, examples, and tutorials on persistent memory programming.</p>
+        <div class="tc-admon-note">
+            <p>The PMEM storage driver does not currently support Windows.</p>
+        </div>
+        <p>PMDK is vendor-neutral, started by Intel and motivated by the introduction of Optane DC persistent memory. PMDK is open source and will work with any persistent memory that provides the SNIA NVM Programming Model.</p>
+        <p>GigaSpaces has developed a PMEM driver that works with Intel's Optane DC PMEM array<MadCap:conditionalText MadCap:conditions="Version.14-2-died">, which is currently in its beta stage</MadCap:conditionalText>. The MemoryXtend pmem storage driver stores Space objects in pmem, outside the Java heap.</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-2-died">
+            <p>Intel's Optane DC is not yet available in the market, so to use the GigaSpaces PMEM driver you need to emulate PMEM on your machine. For information on how to do this, see the section on <a href="https://pmem.io/2016/02/22/pm-emulation.html">how to emulate Persistent Memory</a> on Intel's Persistent Memory Programming project website.</p>
+            <p>If you would like to receive early access to the Optane PC hardware for evaluation purposes, contact us to <a href="https://www.gigaspaces.com/request-demo">request a demo</a> via the GigaSpaces website.</p>
+        </div>
+        <h1>Prerequisites</h1>
+        <h2>Hardware Mode</h2>
+        <p>Intel's Optane DC&#160;PMEM&#160;array supports two modes, Memory mode and App Direct mode. The MemoryXtend PMEM&#160;driver uses Intel's App Direct mode. Ensure that the PMEM&#160;array is set to App Direct mode so that it will work with the MemoryXtend PMEM driver.</p>
+        <div class="tc-admon-note">
+            <p>For more information about the different PMEM modes, see this <a href="https://software.intel.com/en-us/blogs/2018/10/30/new-software-development-opportunities-with-big-affordable-persistent-memory" target="_blank">Intel blog</a>.</p>
+        </div>
+        <h2>Direct Access (DAX)</h2>
+        <p>In order for the MemoryXtend PMEM&#160;driver to work properly, you must mount the PMEM array to a DAX-enabled system.</p>
+        <div class="tc-admon-note">
+            <p>For more information about DAX, see this explanation of <a href="https://www.kernel.org/doc/Documentation/filesystems/dax.txt" target="_blank">Direct Access for files</a>.</p>
+        </div>
+        <p>&#160;</p>
+        <h1><a name="basic-configuration"></a>Basic Configuration</h1>
+        <div class="tc-admon-note">
+            <p>The PMEM storage driver dose not currently support persistence mode.</p>
+        </div>
+        <p>You can create a Space that utilizes the MemoryXtend PMEM storage driver via the <code>pu.xml</code> configuration file, or in the code. For example, to create a Space called "mySpace' with a PMEM memory pool of 20GB to be allocated at <MadCap:conditionalText MadCap:conditions="Version.14-5-died">/mnt/pmem0/pu-local-storage-pool.txt (the path in the file name should point to a file in the DAX&#160;file system)</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-born">/mnt/pmem0/MySpace_container:MySpace.data (pmem-path should point to a DAX&#160;file system)</MadCap:conditionalText>:</p>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+            <div title="pu.xml" style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/pmem-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/pmem-blob-store http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/pmem-blob-store/openspaces-pmem-blob-store.xsd"&gt;
+
+	&lt;blob-store:pmem-blob-store id="myBlobStore" memory-pool-size="20GB" pmem-path="/mnt/pmem0/"/&gt;					
+
+    &lt;os-core:embedded-space id="space" name="MySpace"&gt;
+        &lt;!-- cache-entries-percentage=0 in order to make sure that objects are written to the ssd--&gt;
+        &lt;os-core:blob-store-data-policy  blob-store-handler="myBlobStore"
+                                         cache-entries-percentage="20"
+                                         avg-object-size-KB="10"
+                                         persistent="false"/&gt;
+    &lt;/os-core:embedded-space&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-only"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/pmem-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/pmem-blob-store http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/pmem-blob-store/openspaces-pmem-blob-store.xsd"&gt;
+
+	&lt;blob-store:pmem-blob-store id="myBlobStore" memory-pool-size="20GB" pmem-path="/mnt/pmem0/"/&gt;					
+
+    &lt;os-core:embedded-space id="space" name="MySpace"&gt;
+        &lt;!-- cache-entries-percentage=0 in order to make sure that objects are written to the ssd--&gt;
+        &lt;os-core:blob-store-data-policy  blob-store-handler="myBlobStore"
+                                         cache-entries-percentage="20"
+                                         avg-object-size-KB="10"
+                                         persistent="false"/&gt;
+    &lt;/os-core:embedded-space&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/pmem-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/pmem-blob-store http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/pmem-blob-store/openspaces-pmem-blob-store.xsd"&gt;
+
+	&lt;blob-store:pmem-blob-store id="myBlobStore" memory-pool-size="20GB" pmem-path="/mnt/pmem0/"/&gt;					
+
+    &lt;os-core:embedded-space id="space" name="MySpace"&gt;
+        &lt;!-- cache-entries-percentage=0 in order to make sure that objects are written to the ssd--&gt;
+        &lt;os-core:blob-store-data-policy  blob-store-handler="myBlobStore"
+                                         cache-entries-percentage="20"
+                                         avg-object-size-KB="10"/&gt;
+    &lt;/os-core:embedded-space&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="Java" style="padding:10px"><pre MadCap:conditions="Version.15-0-died"><code class="language-java">// Create off-heap storage driver:
+BlobStoreStorageHandler blobStore = new PmemBlobStoreConfigurer()
+        blobStore.setMemoryPoolSize("20GB");
+        blobStore.setPmemPath("/mnt/pmem0/");
+        blobStore.setVerbose(false);
+        .create();
+// Create space with that storage driver:
+String spaceName = "mySpace";
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer(spaceName)
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore)
+                .setPersistent(false));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-java">// Create off-heap storage driver:
+BlobStoreStorageHandler blobStore = new PmemBlobStoreConfigurer()
+        blobStore.setMemoryPoolSize("20GB");
+        blobStore.setPmemPath("/mnt/pmem0/");
+        blobStore.setVerbose(false);
+        .create();
+// Create space with that storage driver:
+String spaceName = "mySpace";
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer(spaceName)
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+</code></pre>
+            </div>
+        </div>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-died">
+            <div title="pu.xml" style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/pmem-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/pmem-blob-store http://www.openspaces.org/schema/<MadCap:variable name="Versions.xap-version" />/pmem-blob-store/openspaces-pmem-blob-store.xsd"&gt;
+
+	&lt;blob-store:pmem-blob-store id="myBlobStore" memory-pool-size="20GB" file-name="/mnt/pmem0/pu-local-storage-pool.txt"/&gt;					
+
+    &lt;os-core:embedded-space id="space" name="MySpace"&gt;
+        &lt;!-- cache-entries-percentage=0 in order to make sure that objects are written to the ssd--&gt;
+        &lt;os-core:blob-store-data-policy  blob-store-handler="myBlobStore"
+                                         cache-entries-percentage="20"
+                                         avg-object-size-KB="10"
+                                         persistent="false"/&gt;
+    &lt;/os-core:embedded-space&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="Java" style="padding:10px"><pre><code class="language-java">// Create off-heap storage driver:
+BlobStoreStorageHandler blobStore = new PmemBlobStoreConfigurer()
+        blobStore.setMemoryPoolSize("20GB");
+        blobStore.setFileName("/mnt/pmem0/pu-local-storage-pool.txt");
+        blobStore.setVerbose(false);
+        .create();
+// Create space with that storage driver:
+String spaceName = "mySpace";
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer(spaceName)
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore)
+                .setPersistent(false));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+</code></pre>
+            </div>
+        </div>
+        <p>The general MemoryXtend configuration options also apply. For example, you can configure MemoryXtend to cache some data on-heap for faster access.</p>
+        <div class="tc-admon-note">
+            <p>For an example of how to configure the on-heap cache properties, see the <a href="memoryxtend-overview.html#on-heap-cache">MemoryXtend overview</a> topic.</p>
+        </div>
+        <h2><a name="defining-the-memory-pool-size"></a>Defining the Memory Pool Size</h2>
+        <p>In order to use PMEM storage, you must define the amount of memory to allocate, for example. <code>20g</code>. Use the following sizing units:</p>
+        <ul>
+            <li><code>b</code> - Bytes</li>
+            <li><code>k</code>, <code>kb</code> - Kilobytes</li>
+            <li><code>m</code>, <code>mb</code> - Megabytes</li>
+            <li><code>g</code>, <code>gb</code> - Gigabytes</li>
+        </ul>
+        <p>Before any operation that requires memory allocation (write, update, and initial load), the memory manager checks how much of the allocated memory has been used. If the threshold has been breached, an <code>OffHeapMemoryShortageException</code> is thrown. Read, take, and clear operations are always allowed.</p>
+        <h1><a name="monitoring"></a>Monitoring</h1>
+        <p>The amount of used memory can be tracked with the following monitoring and administration tools:</p>
+        <ul>
+            <li>Metrics - The <code>space_blobstore_off-heap_used-bytes_total</code> metric, as described on the <a href="metrics-bundled.html#blobstore-operations">Metrics</a> page.</li>
+            <li>Admin API - Thru <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/admin/space/SpaceInstanceStatistics.html#getBlobStoreStatistics">SpaceInstanceStatistics.getBlobStoreStatistics()</a></li>
+            <li>Web Management Console - In the Space instances view, right-click any of the columns in the table and add the <span class="tc-bold">Used Off-Heap</span> column.</li>
+        </ul>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/DevGuide/ops-manager-view-mx-config.flsnp" MadCap:conditions="Version.15-0-born" />
+        <div class="tc-admon-note">
+            <p>The data grid views the PMEM storage as off-heap storage. Therefore, the monitoring tools are the same for both the PMEM and the off-heap drivers.</p>
+        </div>
+    </body>
+</html>

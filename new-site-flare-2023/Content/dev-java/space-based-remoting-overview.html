@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Space-Based Remoting</h1>
+  
+
+<p>Remoting allows you to use remote invocations of POJO services, with the Space as the transport layer. Spring provides support for <a href="http://static.springframework.org/spring/docs/2.0.x/reference/remoting.html">various remoting technologies</a>. <MadCap:variable name="General.ProductNameXAP" /> uses the same concepts to provide remoting, using the Space as the underlying protocol.</p>
+
+<p>Some benefits of using the Space as the transport layer include:</p>
+
+<ul>
+<li><span class="tc-bold">High availability</span> – the Space by its nature (based on the cluster topology) is highly available, so remote invocations get this feature automatically when using the Space as the transport layer.</li>
+<li><span class="tc-bold">Load-balancing</span> – when using a Space with a partitioned cluster topology, each remote invocation is automatically directed to the appropriate partition (based on its routing handler), providing automatic load balancing.</li>
+<li><span class="tc-bold">Performance</span> – remote invocations are represented in fast internal OpenSpaces objects, providing fast serialization and transport over the net.</li>
+<li><span class="tc-bold">Asynchronous execution</span> – by its nature, remoting support is asynchronous, allowing for much higher throughput of remote invocations. OpenSpaces allows you to use asynchronous execution using Futures, and also provides synchronous support (built on top of it).</li>
+</ul>
+
+<p>The OpenSpaces API supports two types of remoting, distinguished by the underlying implementation used to send the remote call. The first is called <a href="executor-based-remoting.html">Executor-Based Remoting</a>, and the second is called <a href="event-driven-remoting.html">Event-Driven Remoting</a>.</p>
+
+<h1><a name="choosing-the-correct-remoting-mechanism"></a>Choosing the Correct Remoting Mechanism</h1>
+
+<p>This section explains when you should choose to use each of the remoting implementations. As far as the calling code is concerned, the choice between the implementations is transparent and requires only configuration changes.</p>
+
+<p>In most cases, you should choose <a href="executor-based-remoting.html">Executor-Based Remoting</a>. It is based on the <MadCap:variable name="General.ProductNameXAP" /> <a href="task-execution-overview.html">Task Executors</a> feature, and executes the method invocation by submitting a special kind of task that executes on the Space side by calling the invoked service. This option allows for synchronous and asynchronous invocation, map/reduce style invocations, and transparent invocation failover.</p>
+
+<p><a href="event-driven-remoting.html">Event-Driven Remoting</a> supports most of the above capabilities, but does not support map/reduce style invocations. In terms of implementation, it's based on the <a href="polling-container-overview.html">Polling Container</a> feature, which means that it writes an invocation entry to the space which is later consumed by a polling container. Once taking the invocation entry from the space, the polling container's event handler delegates the call to the space-side service.</p>
+
+<p>The <a href="event-driven-remoting.html">Event-Driven Remoting</a> implementation is slower than <a href="executor-based-remoting.html">Executor-Based Remoting</a> because it requires 4 Space operations to complete a single remote call: write invocation entry by client –&gt; take invocation entry by polling container –&gt; write invocation result by polling container –&gt; take invocation result by client. In contrast, <a href="executor-based-remoting.html">Executor-Based Remoting</a> only requires a single <code>execute()</code> call.</p>
+
+<p>However, there are two main scenarios where you should opt for <a href="event-driven-remoting.html">Event-Driven Remoting</a> over <a href="executor-based-remoting.html">Executor-Based Remoting</a>:</p>
+
+<ul>
+<li>When you would like the actual service not to be co-located with the Space. With <a href="executor-based-remoting.html">Executor-Based Remoting</a>, the remote service implementation can only be located within the Space's JVM(s). With <a href="event-driven-remoting.html">Event-Driven Remoting</a>, you can put the client on a remote machine and use the classic <span class="tc-bold">Master/Worker pattern</span> for processing the invocation. This offloads the processing from the Space (at the expense of moving your service away from the data it might need to process).</li>
+<li>When unexpected bursts of invocations are a probable scenario, using <a href="event-driven-remoting.html">Event-Driven Remoting</a> may prove worthwhile, because invocations are not processed as they occur; they are "queued" in the Space and are processed by the polling container when resources are available. By limiting the number of threads of the polling container, you can ensure that the invocations don't monopolize the CPU of the Space. (The <a href="administrative-alerts.html">Alerts</a> API can help monitor this situation.)</li>
+</ul>
+
+<h1><a name="additional-resources"></a>Additional Resources</h1>
+
+<MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://www.youtube.com/watch?v=-07-0PXUoeM," />
+
+</body>
+</html>

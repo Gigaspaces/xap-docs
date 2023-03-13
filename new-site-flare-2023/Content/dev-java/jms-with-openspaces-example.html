@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Example</h1>
+  
+
+<h1><a name="architecture"></a>Architecture</h1>
+
+<p>A processing unit runs the <code>JMSDataFeeder</code> that writes <code>Data</code> objects with raw data into the remote space. The <code>JMSDataFeeder</code> uses Spring's <a href="http://static.springframework.org/spring/docs/2.0.x/api/org/springframework/jms/core/JmsTemplate.html">JmsTemplate</a> over GigaSpaces JMS, to write non-processed <code>Data</code> objects into the space every second. The <code>JMSDataFeeder</code> uses an <code>ObjectMessage2ObjectConverter</code> to convert the JMS ObjectMessages to <code>Data</code> objects before they are written to the space. Every <code>Data</code> object is written to the space with the processed value set to false, which is later set to true by the <code>DataProcessor</code>.</p>
+
+<h1><a name="jmsdatafeeder"></a>JMSDataFeeder</h1>
+
+<p>The <code>JMSDataFeeder</code> is similar to the <code>DataFeeder</code>. The difference between the beans is that the <code>JMSDataFeeder</code> uses Spring's <a href="http://static.springframework.org/spring/docs/2.0.x/api/org/springframework/jms/core/JmsTemplate.html">JmsTemplate</a> on top of the GigaSpaces JMS implementation to write the <code>Data</code> objects to the space; no space API is used directly. This is possible due to the usage of a <code>MessageConverter</code> that converts JMS messages into any required POJO type, in this case, <code>Data</code>. In this example, we configure the <code>ConnectionFactory</code> to use the <code>ObjectMessage2ObjectConverter</code> that comes with the GigaSpaces JMS implementation. The <code>ObjectMessage2ObjectConverter</code> receives a JMS <code>ObjectMessage</code> and returns the message's content (body) as the object to write to the space. The JMS <code>ObjectMessage</code> itself, including headers, properties etc., is not written. The <code>JMSDataFeeder</code> uses Spring's <a href="http://static.springframework.org/spring/docs/2.0.x/api/org/springframework/jms/core/JmsTemplate.html">JmsTemplate</a> and <code>MessageCreator</code> to send <code>ObjectMessages</code> that contain the <code>Data</code> objects, and the converter makes sure that only the contained <code>Data</code> objects are written.</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Code " style="padding:10px"><pre><code class="language-java">public class JMSDataFeeder implements InitializingBean, DisposableBean {
+    [..]
+    Data data = new Data(Data.TYPES[counter++ % Data.TYPES.length], "FEEDER " + Long.toString(time));
+    data.setProcessed(false);
+    jmsTemplate.send(new MessageCreator() {
+        public Message createMessage(Session session) throws JMSException {
+            return session.createObjectMessage(data);
+        }
+    });
+    [..]
+}
+</code></pre>
+</div>
+<div title="  Configuration " style="padding:10px"><pre><code class="language-xml">&lt;bean id="jmsDataFeeder" class="org.openspaces.example.data.feeder.JMSDataFeeder"/&gt;
+</code></pre>
+</div>
+</div>
+
+<p>The <code>JMSDataFeeder</code> is injected with a Spring <a href="http://static.springframework.org/spring/docs/2.0.x/api/org/springframework/jms/core/JmsTemplate.html">JmsTemplate</a>. The <a href="http://static.springframework.org/spring/docs/2.0.x/api/org/springframework/jms/core/JmsTemplate.html">JmsTemplate</a> is injected with a JMS <code>ConnectionFactory</code> and a destination of type <code>Queue</code>. Unlike the <code>DataFeeder</code>, the <code>JMSDataFeeder</code> does not declare an instance of <code>GigaSpace</code>. <code>GigaSpace</code> is injected into the <code>ConnectionFactory</code> bean, and is used behind the scenes by the JMS layer. In addition, the <code>ConnectionFactory</code> is injected with a <a href="jms-space-interoperability.html">MessageConverter</a> of type <code>ObjectMessage2ObjectConverter</code>.</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Code " style="padding:10px"><pre><code class="language-java">public class JMSDataFeeder implements InitializingBean, DisposableBean {
+    [..]
+    /** Sets the JmsTemplate */
+    public void setJmsTemplate(JmsTemplate jmsTemplate)
+    {
+        this.jmsTemplate = jmsTemplate;
+    }
+    [..]
+}
+</code></pre>
+</div>
+<div title="  Configuration " style="padding:10px"><pre><code class="language-xml">&lt;bean id="jmsDataFeeder" class="org.openspaces.example.data.feeder.JMSDataFeeder"&gt;
+    &lt;property name="instanceId" value="${clusterInfo.instanceId}" /&gt;
+    &lt;property name="numberOfTypes" value="${numberOfTypes}" /&gt;
+    &lt;property name="jmsTemplate" ref="jmsTemplate" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate"&gt;
+    &lt;property name="connectionFactory" ref="connectionFactory"/&gt;
+    &lt;property name="defaultDestination" ref="destination" /&gt;
+&lt;/bean&gt;
+
+&lt;os-jms:queue id="destination" name="MyQueue" /&gt;
+
+&lt;os-jms:connection-factory id="connectionFactory" giga-space="gigaSpace" message-converter="messageConverter" /&gt;
+
+&lt;bean id="messageConverter" class="com.j_spaces.jms.utils.ObjectMessage2ObjectConverter" /&gt;
+</code></pre>
+</div>
+</div>
+
+<p>Because the <code>JMSDataFeeder</code> implements Spring's <code>InitializingBean</code> and <code>DisposableBean</code> interfaces, its <code>afterPropertiesSet()</code> and <code>destroy()</code> methods are called when it is created or destroyed, respectively.</p>
+
+</body>
+</html>

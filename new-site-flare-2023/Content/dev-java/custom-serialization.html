@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Custom Serialization</h1>
+        <p>To solve the performance problems associated with class serialization, the serialization mechanism allows you to declare an embedded class is Externalizable. When the ObjectOutputStream writeObject() method is called, it performs the following sequence of actions:</p>
+        <ul>
+            <li>Tests to see if the object is an instance of Externalizable. If so, it uses externalization to marshall the object.</li>
+            <li>If the object isn't an instance of Externalizable, it tests to see whether the object is an instance of Serializable. If so, it uses serialization to marshall the object. If neither of these two cases apply, an exception is thrown.</li>
+        </ul>
+        <p>Externalizable is an interface that consists of two methods:</p><pre><code class="language-java">public void readExternal(ObjectInput in);
+public void writeExternal(ObjectOutput out);
+</code></pre>
+        <p>The Externalization mechanism writes out the identity of the class (which boils down to the name of the class and the appropriate serialVersionUID). It also stores the superclass structure and all the information about the class hierarchy. But instead of visiting each superclass and using it to store some of the state information, it simply calls writeExternal() on the local class definition.
+The Externalization mechanism stores all the metadata, but writes out only the local instance information.</p>
+        <p>When a POJO class with embedded properties uses the Space API, you may implement the <code>Externalizable</code> mechanism for the embedded property. This can be done to control serialization and deserialization when the Object is sent to the space (e.g. write, update and execute Operations) and when it is sent back to the client (e.g. read and take operations). This will optimize the remote call when using Remote Space configuration for single, partitioned, and replicated space topologies.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/serialization2.jpg" alt="storage-type-object.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>
+            <br />
+        </p>
+        <div class="tc-admon-note">
+            <ul>
+                <li>Implementing <code>Externalizable</code> on a property with a storage type other than <a href="storage-types-controlling-serialization.html">OBJECT</a><MadCap:conditionalText MadCap:conditions="Version.15-2-born"> or with any property storage adapter</MadCap:conditionalText> is not supported.</li>
+                <li>Implementing <code>Externalizable</code> for the Space class itself is not supported.</li>
+            </ul>
+        </div>
+        <p>
+            <br />
+        </p>
+        <h1><a name="example"></a>Example</h1>
+        <p>Here is an example; the <code>Person</code> class has an <code>Address</code> property that is being externalized.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" Person.java " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Person {
+
+    private Long id;
+
+    private String lastName;
+
+    private String firstName;
+
+    private Address address;
+
+    @SpaceId(autoGenerate=false)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+}
+</code></pre>
+            </div>
+            <div title=" Address.java " style="padding:10px"><pre><code class="language-java">public class Address implements Externalizable {
+
+    private String street;
+
+    private String city;
+
+    private String country;
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException,ClassNotFoundException {
+        street = (String) in.readObject();
+        city = (String) in.readObject();
+        country = (String) in.readObject();
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(street);
+        out.writeObject(city);
+        out.writeObject(country);
+    }
+}
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="kryo-serialization"></a>Kryo Serialization</h1>
+        <p><a href="https://github.com/EsotericSoftware/kryo" target="_blank">Kryo</a> is a fast and efficient object graph serialization framework for Java. You can use this framework to serialize your objects with <MadCap:variable name="General.ProductNameXAP" />.
+Using the same example from above, the <code>writeExternal</code>  and <code>readExternal</code> methods of the <code>Address</code> class make use of the <code>KryoSerializers</code>.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Address" style="padding:10px"><pre><code class="language-java">package xap.kryo;
+
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
+
+public class Address implements Externalizable {
+
+    private String street;
+
+    private String city;
+
+    private String country;
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(final String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(final String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(final String country) {
+        this.country = country;
+    }
+
+    @Override
+    public void writeExternal(final ObjectOutput stream) throws IOException {
+        KryoSerializers.serialize(stream, this::write);
+    }
+
+    @Override
+    public void readExternal(final ObjectInput stream) throws IOException, ClassNotFoundException {
+        KryoSerializers.deserialize(stream, this::read);
+    }
+
+    protected void write(final Kryo kryo, final Output output) {
+        output.writeString(street);
+        output.writeString(city);
+        output.writeString(country);
+    }
+
+    protected void read(final Kryo kryo, final Input input) {
+        street = input.readString();
+        city = input.readString();
+        country = input.readString();
+    }
+}
+
+</code></pre>
+            </div>
+            <div title="KryoSerializers" style="padding:10px"><pre><code class="language-java">package xap.kryo;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import java.util.function.BiConsumer;
+
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.io.Input;
+import com.esotericsoftware.kryo.io.Output;
+
+public class KryoSerializers {
+
+    private static final ThreadLocal&lt;Kryo&gt; kryos = new ThreadLocal&lt;Kryo&gt;() {
+        protected Kryo initialValue() {
+            Kryo kryo = new Kryo();
+            kryo.register(Address.class);
+            return kryo;
+        };
+    };
+
+    public static void serialize(final ObjectOutput out, final BiConsumer&lt;Kryo, Output&gt; serialize) throws IOException {
+
+        Output output = null;
+
+        try {
+            Kryo kryo = kryos.get();
+            ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
+            output = new Output(byteOutStream);
+            serialize.accept(kryo, output);
+
+            byte[] bytesToWrite = byteOutStream.toByteArray();
+            // write number of bytes that got written by kryo
+            out.writeInt(bytesToWrite.length);
+            out.write(bytesToWrite);
+        } finally {
+            if (output != null) {
+                output.close();
+            }
+        }
+    }
+
+    public static void deserialize(final ObjectInput in, final BiConsumer&lt;Kryo, Input&gt; deserialize) throws IOException {
+
+        Input input = null;
+
+        try {
+            Kryo kryo = kryos.get();
+            // see how many bytes were written and allocate according buffer
+            int bytesToRead = in.readInt();
+            byte[] buffer = new byte[bytesToRead];
+            in.read(buffer);
+            input = new Input(buffer);
+            deserialize.accept(kryo, input);
+        } finally {
+            if (input != null) {
+                input.close();
+            }
+        }
+    }
+
+}
+
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>A complete example of kryo serialization is available <a href="https://github.com/GigaSpaces-ProfessionalServices/kryo-serialization-example" target="_blank">here</a>.</p>
+        </div>
+    </body>
+</html>

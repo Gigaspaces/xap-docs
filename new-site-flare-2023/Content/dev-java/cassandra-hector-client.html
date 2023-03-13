@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Hector Client</h1>
+        <p>A wrapper around the <a href="http://hector-client.github.com/hector/build/html/index.html" target="_blank">Hector Library</a> used for communicating with Cassandra.</p>
+        <p>This component is used by both the <a href="cassandra-space-synchronization-endpoint.html">Cassandra Space Synchronization Endpoint</a> and the <a href="cassandra-space-data-source.html">Cassandra Space Data Source</a>. The main usage is related to metadata operations (such as creating column families, adding secondary indexes, reading column families metadata, etc...).</p>
+        <h1><a name="library-dependencies"></a>Library Dependencies</h1>
+        <p>See <a href="cassandra-space-synchronization-endpoint.html#library-dependencies">Hector library dependencies</a> for required dependencies.</p>
+        <h1><a name="setup"></a>Setup</h1>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Spring " style="padding:10px"><pre><code class="language-xml">&lt;bean id="hectorClient"
+    class="org.openspaces.persistency.cassandra.HectorCassandraClientFactoryBean"&gt;
+
+    &lt;!-- comma separated seed list --&gt;
+    &lt;property name="hosts" value="${cassandra.host}" /&gt;
+
+    &lt;!-- cassandra rpc communication port --&gt;
+    &lt;property name="port" value="${cassandra.port}" /&gt;
+
+    &lt;!-- keyspace name to work with --&gt;
+    &lt;property name="keyspaceName" value="${cassandra.keyspace}" /&gt;
+
+&lt;/bean&gt;
+</code></pre>
+            </div>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">HectorCassandraClient hectorClient = new HectorCassandraClientConfigurer()
+    .hosts(cassandraHosts)
+    .port(cassandraPort)
+    .keyspaceName(cassandraKeyspaceName)
+    .create();
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="hectorcassandraclient-properties"></a>HectorCassandraClient Properties</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">hosts</td>
+                    <td align="left">A comma separated list of seeds in the Cassandra cluster</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">port</td>
+                    <td align="left">The rpc port for Cassandra client communication</td>
+                    <td align="left">9160</td>
+                </tr>
+                <tr>
+                    <td align="left">keyspaceName</td>
+                    <td align="left">The name of the keyspace to work with</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">clusterName</td>
+                    <td align="left">If there is need to connect to more than one Cassandra cluster within the same JVM, each cluster should be references by a different name.</td>
+                    <td align="left">cluster</td>
+                </tr>
+                <tr>
+                    <td align="left">readConsistencyLevel</td>
+                    <td align="left">The <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/persistency/cassandra/CassandraConsistencyLevel.html">CassandraConsistencyLevel</a> in which read operations should be performed</td>
+                    <td align="left">QUORUM</td>
+                </tr>
+                <tr>
+                    <td align="left">writeConsistencyLevel</td>
+                    <td align="left">The <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/persistency/cassandra/CassandraConsistencyLevel.html">CassandraConsistencyLevel</a> in which write operations should be performed</td>
+                    <td align="left">QUORUM</td>
+                </tr>
+                <tr>
+                    <td align="left">columnFamilyGcGraceSeconds</td>
+                    <td align="left">See <a href="http://wiki.apache.org/cassandra/DistributedDeletes" target="_blank">Distributed deletes</a></td>
+                    <td align="left">10 Days (Derived from Cassandra's default value)</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

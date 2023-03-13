@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Read Modifiers</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> <code>ReadModifiers</code> class (see <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/client/ReadModifiers.html">Javadoc</a>) provides static methods and constants to decode read-type modifiers. The sets of modifiers are represented as integers with distinct bit positions representing different modifiers.</p>
+        <p>Four main types of modifiers can be used:</p>
+        <ul>
+            <li><code>REPEATABLE_READ</code> - default modifier</li>
+            <li><code>DIRTY_READ</code>
+            </li>
+            <li><code>READ_COMMITTED</code>
+            </li>
+            <li><code>EXCLUSIVE_READ_LOCK</code>
+            </li>
+        </ul>
+        <p>These should be used for backward compatibility with older versions of GigaSpaces:</p>
+        <ul>
+            <li><code>MATCH_BY_ID</code>
+            </li>
+            <li><code>THROW_PARTIAL_FAILURE</code>
+            </li>
+        </ul>
+        <p>You can use <span class="tc-bold">bitwise</span> or the <code>|</code> operator to unite different modifiers.</p>
+        <div class="tc-admon-note">
+            <p><code>REPEATABLE_READ</code>, <code>DIRTY_READ</code>, and <code>READ_COMMITTED</code> are mutually exclusive (i.e. can't be used together). <code>EXCLUSIVE_READ_LOCK</code> can be joined with any of them.</p>
+        </div>
+        <p>These modifiers can be set either at the proxy level - <code>IJSpace.setReadModifiers(int)</code>, or at the operation level (e.g. using one of <code>IJSpace</code> read <code>readIfExists</code> <code>readMultiple</code> count methods with a modifiers parameter).</p>
+        <h1><a name="spring-xap-readmodifiers"></a>Spring - <MadCap:variable name="General.ProductNameXAP" /> ReadModifiers</h1>
+        <p>The following table describes the mapping between the <a href="http://static.springsource.org/spring/docs/2.0.x/api/org/springframework/transaction/TransactionDefinition.html" target="_blank">Spring TransactionDefinition</a> Mapping to <MadCap:variable name="General.ProductNameXAP" /> ReadModifiers:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Spring TransactionDefinition</th>
+                    <th align="left"><MadCap:variable name="General.ProductNameXAP" /> ReadModifiers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">ISOLATION_READ_UNCOMMITTED</td>
+                    <td align="left">DIRTY_READ</td>
+                </tr>
+                <tr>
+                    <td align="left">ISOLATION_READ_COMMITTED</td>
+                    <td align="left">READ_COMMITTED</td>
+                </tr>
+                <tr>
+                    <td align="left">ISOLATION_REPEATABLE_READ</td>
+                    <td align="left">REPEATABLE_READ</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-important">
+            <p><code>SERIALIZABLE</code>isolation is not supported.No exception is currently thrown when used.</p>
+        </div>
+        <h1><a name="repeatable-read"></a>Repeatable Read</h1>
+        <p><code>REPEATABLE_READ</code> is the default modifier, defined by the JavaSpaces specification.</p>
+        <p>The <code>REPEATABLE_READ</code> isolation level allows a transaction to acquire read locks on an object it returns to an application, and write locks an object it write, updates, or deletes. By using the <code>REPEATABLE_READ</code> isolation level, space operations issued multiple times within the same transaction always yield the same result. A transaction using the <code>REPEATABLE_READ</code> isolation level can retrieve and manipulate the same object as many times as needed until it completes its task. However, no other transaction can write, update, or delete an object that can affect the result being accessed, until the isolating transaction releases its locks. That is, when the isolating transaction is either committed or rolled back.</p>
+        <p>Transactions using the <code>REPEATABLE_READ</code> isolation level wait until the object that is write-locked by other transactions are unlocked before they acquire their own locks. This prevents them from reading "dirty" data. In addition, because other transactions cannot update or delete an object that is locked by a transaction using the <code>REPEATABLE_READ</code> isolation level, non-repeatable read situations are avoided.</p>
+        <h1><a name="dirty-read"></a>Dirty Read</h1>
+        <p>The JavaSpaces specification defines the visibility of object for read operations as follows:
+A read operation performed under a <code>null</code> transaction can only access space objects that are not write-locked by non-null transactions. In other words, space objects that were written or taken by active transactions (transactions that have not been committed or rolled back) are not visible to the user performing a read operation.</p>
+        <p>Sometimes it is desirable for non-transactional read operations to have full visibility of the objects in the space. The <code>DIRTY_READ</code> modifier, once set, enables read/<code>readIfExists</code>/<code>readMultiple</code>/count operations under a <code>null</code> transaction to have this complete visibility.</p>
+        <h2><a name="code-example"></a>Code Example</h2><pre><code class="language-java">// write something under txn X and commit, making it publicly visible
+space.write( something, txnX, Lease.FOREVER);
+txnX.commit();
+
+// update this something with a new one under a different txn Y
+space.update( newSomething, txnY, Lease.FOREVER, IJSpace.NO_WAIT);
+
+// all read operations (read, readIfExists, readMultiple, count) return the
+// version of the object before txnY was committed (newSomething).
+// operations can be performed with a new txn Z or a null txn
+space.read( tmpl, null, ReadModifiers.DIRTY_READ);
+
+// Note: using the same txn (txn Y) will return matches that are visible under the transaction
+</code></pre>
+        <h1><a name="read-committed"></a>Read Committed</h1>
+        <p>The <code>READ_COMMITTED</code> modifier enables a read-committed isolation level in read operations.</p>
+        <p>Read-committed is the isolation-level in which a read operation (under a transaction or a <code>null</code> transaction) can not see changes made by other transactions, until those transactions are committed. At this level of isolation, dirty-reads are not possible, but unrepeatable-reads and phantoms might occur.</p>
+        <p>Read-committed is the default isolation level in database systems. This isolation level means that the read operations return the space objects that are currently committed, regardless of the fact that these space objects might be updated (with a newer version) or taken under an uncommitted transaction. This is opposed to the default space isolation-level (derived from the JavaSpaces specification), which is repeatable-read.</p>
+        <p>The read-committed isolation level is useful for the local cache, local view, and <code>GSIterators</code>, which performs readMultiple and keep their current status by registering notify templates.</p>
+        <p>The <code>READ_COMMITTED</code> modifier is provided at the proxy level and the read API level. It is relevant for read, <code>readIfExists</code>, <code>readMultiple</code>, and count.</p>
+        <p><code>READ_COMMITTED</code> and <code>DIRTY_READ</code> are mutually-exclusive. A space object under an (uncommitted) updating transaction or under a taking (unrolled) transaction returns the original (committed) value unless the operation is under the same transaction as the locking one.</p>
+        <p>If the read operation is under a transaction, there is no need to "enlist" the space object in the transaction (unless its already enlisted).</p>
+        <p><code>readIfExists</code> has less space objects to wait for, unless these are new objects under an uncommitted transaction.</p>
+        <h2><a name="locking-and-blocking-rules"></a>Locking and Blocking Rules</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Operation A/Operation B</th>
+                    <th align="left">Update<br /> under <br />transaction <br />Y</th>
+                    <th align="left">Take <br />under<br />transaction<br /> Y</th>
+                    <th align="left">Read<br /> under<br /> transaction<br /> Y</th>
+                    <th align="left">Update,<br /> null <br />transaction</th>
+                    <th align="left">Take,<br /> null<br /> transaction</th>
+                    <th align="left">Read,<br /> null <br />transaction</th>
+                    <th align="left">Exclusive <br />Read <br />Lock</th>
+                    <th align="left">Dirty<br /> Read<br /> Transaction<br /> Y <br />or null</th>
+                    <th align="left">Read <br />Committed<br /> Transaction<br /> Y <br />or null</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Update under transaction X</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                </tr>
+                <tr>
+                    <td align="left">Take under transaction X</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                </tr>
+                <tr>
+                    <td align="left">Read under transaction X</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                </tr>
+                <tr>
+                    <td align="left">Update, null transaction</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                </tr>
+                <tr>
+                    <td align="left">Take, null transaction</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                </tr>
+                <tr>
+                    <td align="left">Read, null transaction</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                </tr>
+                <tr>
+                    <td align="left">Exclusive Read Lock</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Blocked</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                </tr>
+                <tr>
+                    <td align="left">Read Committed transaction X or null</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                </tr>
+                <tr>
+                    <td align="left">Dirty Read Transaction X or null</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                    <td align="left">Allowed</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Refer to the <a href="transaction-locking-and-blocking.html">Locking and Blocking</a> page for general <MadCap:variable name="General.ProductNameXAP" /> locking and blocking rules.</p>
+        <div class="tc-admon-note">
+            <ul>
+                <li>To read the original state of a space object that is locked under a transaction (take or update) you should use READ_COMMITTED mode.</li>
+                <li>To read the current state of a space object that is locked under transaction (take or update) should use Dirty Read mode.</li>
+                <li>Dirty read (without transaction) does not blocks transactional take operation.</li>
+            </ul>
+        </div>
+        <h2><a name="code-example-1"></a>Code Example</h2>
+        <p>The examples below assumes you are using <code>IJSpace</code> interface that is available via the <code>GigaSpaces.getSpace()</code>. If you are using the <code>GigaSpaces</code> interface and Spring automatic transaction demarcation, you will not need to specify the transaction object explicitly. Still, the blocking rules will be enforced.</p><pre><code class="language-java">GigaSpace space= ...
+// write an object under txn X and commit, making it publicly visible
+space.write( something, txnX, Lease.FOREVER);
+txnX.commit();
+
+// update this object with a new one under a different txn Y
+space.update( newSomething, txnY, Lease.FOREVER, Space.NO_WAIT);
+
+// all read operations (read, readIfExists, readMultiple, count) return the last publicly visible match.
+// operations can be performed with a new txn Z or a null txn
+space.read( tmpl, txnZ, ReadModifiers.READ_COMMITTED);
+
+// Note: using the same txn (txn Y) will return matches that are visible under the transaction
+</code></pre>
+        <h1><a name="exclusive-read-lock"></a>Exclusive Read Lock</h1>
+        <p>The Exclusive Read Lock is similar to select for update SQL for RDBMS, or update lock with ODBMS.</p>
+        <p>In the JavaSpaces specification, a read under a transaction does not allow other users to modify the Entry, but it does allow two readers or more to read the same Entry under different transactions. To allow a user to block other users from reading an object, a read using exclusive read lock mode with a transaction should be performed.</p>
+        <p>The following methods support exclusive read lock when used with a transaction:</p>
+        <ul>
+            <li><code>read()</code>
+            </li>
+            <li><code>readIfExists()</code>
+            </li>
+            <li><code>readByID()</code>
+            </li>
+            <li><code>readMultiple()</code>
+            </li>
+        </ul>
+        <p>The exclusive read lock is supported in a clustered environment when using the Jini Transaction Manager.</p>
+        <div class="tc-admon-note">
+            <p>GigaSpaces throws <code>java.lang.IllegalArgumentException</code>: Using EXCLUSIVE_READ_LOCK modifier without a transaction is illegal exception as a protection mechanism when performing exclusive read <span class="tc-bold">without</span> using a transaction. You must use a transaction when using exclusive read lock.</p>
+        </div>
+        <h2><a name="code-example-2"></a>Code Example</h2><pre><code class="language-java">IJSpace space = ...
+space.setReadModifiers(ReadModifiers.EXCLUSIVE_READ_LOCK);
+// this will allow all read operations with this proxy to use Exclusive Read Lock mode
+Lock lock = new Lock();
+lock.key = new Integer(1);
+lock.data = "my data";
+space.write(lock, null, Lease.FOREVER);
+Transaction txn1 = getTX();
+Lock lock_template1 = new Lock();
+lock_template1.key = new Integer(1);
+Lock lock1 = (Lock) space.read(lock_template1, txn1, 1000);
+If (lock1!= null)
+    System.out.println("Transaction " + txn1.id + " Got exclusive Read Lock on Entry:"
+        + lock1.getId());
+</code></pre>
+        <h3><a name="match-by-id-throw-partial-failure"></a>MATCH_BY_ID &amp; THROW_PARTIAL_FAILURE</h3>
+        <p>The matching behavior can be changed by adding one of these modifiers.</p>
+        <p>Setting <code>MATCH_BY_ID</code> changes the matching algorithm, such that once a SpaceID is set the other fields' values are ignored. The matching is only done according to the SpaceID value.</p>
+        <p>Setting <code>THROW_PARTIAL_FAILURE</code> is only effective when <code>readMultiple()</code> is called. When set and a matching can be performed <span class="tc-bold">only on part of the partitions</span> instead of just returning the partial result a <code>QueryMultiplePartialFailureException</code> is thrown including the partial result and the source of the partial failure.</p>
+    </body>
+</html>

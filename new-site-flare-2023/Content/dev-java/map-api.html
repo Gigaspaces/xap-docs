@@ -1,0 +1,530 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Map API</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> allows applications to interact with the space and cache data using the Map API (JCache) or a <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/api/java/util/Hashtable.html" target="_blank">HashTable API</a>. Accessing the space via the Map API can be done using the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaMap.html" target="_blank">GigaMap</a> interfaces. It includes enhanced options such as declarative transactions support, coherent runtime exception hierarchy, timeout operations , TTL, locking and versioning.</p>
+        <p><span class="tc-bold">Dependencies</span>
+            <br />In order to use this feature, include the <code><MadCap:variable name="General.HomePath" />/lib/optional/map/xap-map.jar</code> and <code><MadCap:variable name="General.HomePath" />/lib/optional/map/xap-map-spring.jar</code> files on your classpath or use maven dependencies:</p><pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;
+    &lt;artifactId&gt;xap-map&lt;/artifactId&gt;
+    &lt;version&gt;[%=Versions.maven-version-MX%]&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;
+    &lt;artifactId&gt;xap-map-spring&lt;/artifactId&gt;
+    &lt;version&gt;[%=Versions.maven-version-MX%]&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+        <div class="tc-admon-note">
+            <p>For more information on dependencies, see <a href="../started/installation-maven-overview.html">Maven Artifacts</a>.</p>
+        </div>
+        <p>There are multiple runtime configurations you may use when caching your data within the space.</p>
+        <h1><a name="gigamap-with-a-remote-space"></a>GigaMap with a Remote Space</h1>
+        <p>A client communicating with a remote space performs all its operation via a remote connection. The remote space can be partitioned (with or without backups) or replicated (sync or async replication based).</p>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
+        <p>&#160;</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/remote-space-map.jpg" alt="remote-space-map.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>Here is a very simple example how a client application can create a <code>GigaMap</code> interface interacting with a remote space:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:space-proxy id="space" space-name="mySpace"/&gt;
+&lt;os-core:map id="map" space="space"/&gt;
+&lt;os-core:giga-map id="gigaMap" map="map" /&gt;
+</code></pre>
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="map" class="org.openspaces.core.map.MapFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaMap" class="org.openspaces.core.GigaMapFactoryBean"&gt;
+    &lt;property name="map" ref="map" /&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">IMap map = new MapConfigurer(new SpaceProxyConfigurer("space").space()).createMap();
+GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="gigamap-with-an-embedded-space"></a>GigaMap with an Embedded Space</h2>
+        <p>A client communicating with a an embedded space performs all its operation via local connection. There is no network overhead when using this approach.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/embedded-space-map.jpg" alt="embedded-space-map.jpg" />
+            </p>
+        </div>
+        <p>To create a <code>GigaMap</code> for a co-located (embedded) space the space URL should use embedded space URL format:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space  id="space" space-name="mySpace"/&gt;
+&lt;os-core:map id="map" space="space"/&gt;
+&lt;os-core:giga-map id="gigaMap" map="map" /&gt;
+</code></pre>
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="map" class="org.openspaces.core.map.MapFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaMap" class="org.openspaces.core.GigaMapFactoryBean"&gt;
+    &lt;property name="map" ref="map" /&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">IMap map = new MapConfigurer(new EmbeddedSpaceConfigurer("space").space()).createMap();
+GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
+</code></pre>
+            </div>
+        </div>
+        <p>The Embedded space can be used in a distributed architecture such as the replicated or partitioned clustered space:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/replicated-space-map.jpg" alt="replicated-space-map.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <p>A simple way to use the embedded space in a clustered architecture would be by packaging your application as a Processing Unit and deploy it using the relevant SLA.</p>
+        <h2><a name="gigamap-with-a-local-near-cache"></a>GigaMap with a Local (Near) Cache</h2>
+        <p>The <code>GigaMap</code> support <a href="local-cache.html">Local Cache</a> (near cache) configuration. This provides a front-end client side cache that will be used with the <code>get</code> operations implicitly. The local cache will be loaded on demand or when you perform a <code>put</code> operation (when the <span class="tc-bold">putFirst</span> option is activated).</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/local_cache-map.jpg" alt="local_cache-map.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <p>Here is an example for a <code>GigaMap</code> construct with a local cache:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+&lt;os-core:space-proxy id="space" space-name="mySpace"/&gt;
+
+&lt;bean id="evictionStrategy" class="com.j_spaces.map.eviction.FIFOEvictionStrategy"&gt;
+    &lt;property name="batchSize" value="1000"/&gt;
+&lt;/bean&gt;
+
+&lt;os-core:map id="map" space="space" compression="1"&gt;
+    &lt;os-core:local-cache-support eviction-strategy="evictionStrategy"
+    put-first="false" size-limit="100000" update-mode="PULL" versioned="true" /&gt;
+&lt;/os-core:map&gt;
+&lt;os-core:giga-map id="gigaMap" map="map" /&gt;
+</code></pre>
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="evictionStrategy" class="com.j_spaces.map.eviction.FIFOEvictionStrategy"&gt;
+    &lt;property name="batchSize" value="1000"/&gt;
+&lt;/bean&gt;
+
+&lt;bean id="map" class="org.openspaces.core.map.MapFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+    &lt;property name="localCacheSupport"&gt;
+        &lt;bean class="org.openspaces.core.map.LocalCacheSupport"&gt;
+             &lt;property name="evictionStrategy" ref="evictionStrategy" /&gt;
+             &lt;property name="putFirst" value="false" /&gt;
+             &lt;proeprty name="sizeLimit" value="100000" /&gt;
+             &lt;property name="updateModeName" value="PULL" /&gt;
+             &lt;property name="versioned" value="true" /&gt;
+        &lt;/bean&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+&lt;bean id="gigaMap" class="org.openspaces.core.GigaMapFactoryBean"&gt;
+    &lt;property name="map" ref="map" /&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">FIFOEvictionStrategy evictionStrategy = new FIFOEvictionStrategy();
+evictionStrategy.setBatchSize(1000);
+IMap map = new MapConfigurer(new SpaceProxyConfigurer("space").space())
+.localCacheEvictionStrategy(evictionStrategy)
+.localCachePutFirst(false)
+.localCacheSizeLimit(100000)
+.localCacheUpdateMode(UpdateMode.PULL)
+.localCacheVersioned(true)
+.useLocalCache()
+.createMap();
+
+GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
+</code></pre>
+            </div>
+        </div>
+        <p>The local cache support the following properties:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property Name</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">evictionStrategy</td>
+                    <td align="left">An implementation of the EvictionStrategy interface</td>
+                    <td align="left">com.j_spaces.map.eviction.FIFOEvictionStrategy</td>
+                </tr>
+                <tr>
+                    <td align="left">putFirst</td>
+                    <td align="left">Boolean value. If true will cache the value on put operation</td>
+                    <td align="left">true</td>
+                </tr>
+                <tr>
+                    <td align="left">sizeLimit</td>
+                    <td align="left">Integer value. The maximum amount of entries within the local cache.</td>
+                    <td align="left">100000</td>
+                </tr>
+                <tr>
+                    <td align="left">updateModeName</td>
+                    <td align="left">Controls the update mode of the local cache. Posible options UpdateMode.PULL or UpdateMode.PUSH.</td>
+                    <td align="left">PULL</td>
+                </tr>
+                <tr>
+                    <td align="left">versioned</td>
+                    <td align="left">Boolean value. Enables optimistic locking support.</td>
+                    <td align="left">true</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="multiple-gigamaps"></a>Multiple GigaMaps</h1>
+        <p>You may have several <code>GigaMap</code> used with your application, each with different characteristics , all will be interacting with the same remote space. In this case each <code>GigaMap</code> should use different set of keys. If you want to use same keys for these different maps, each should use a different space.</p>
+        <h1><a name="gigamap-operations"></a>GigaMap Operations</h1>
+        <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaMap.html" target="_blank">GigaMap</a> provides the exact semantic as the <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Map.html" target="_blank">java.util.Map</a> interface: clear, containsKey, put, putAll, get and remove methods. In addition it includes the lock , putAndUnlock , and the unlock methods.</p><pre><code class="language-java">IMap map = // get IMap either by injection or code creation
+GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
+gigaMap.put(key , value);
+Object value = gigaMap.get(key);
+Object value = gigaMap.remove(key);
+gigaMap.lock(key);
+gigaMap.unlock(key);
+</code></pre>
+        <h1><a name="time-to-live-ttl"></a>Time to Live - TTL</h1>
+        <p>An entry within the cache is immortal by default. You can specify as part of the put operation a specific time for the entry to be alive within the cache. Once this time elapsed, it will be expired automatically. The time unit to specify the TTL is milliseconds.</p><pre><code class="language-java">GigaMap gigaMap = ...
+gigaMap.put(key , value , 5000);
+</code></pre>
+        <h1><a name="declarative-transactions"></a>Declarative Transactions</h1>
+        <p>There is no need to provide a Jini transaction object for the different map operations. <code>GigaMap</code> with the different OpenSpaces <a href="transaction-overview.html">transaction managers</a> and Spring allow simple declarative definition of transactions. This means that if there is an ongoing transaction running, most operations performed using the <code>GigaMap</code> interface join it, using Spring's rich transaction support.</p>
+        <div class="tc-admon-note">
+            <p>It is highly recommended to read the <a href="http://static.springframework.org/spring/docs/2.0.x/reference/transaction.html" target="_blank">transaction management chapter</a> in the Spring reference documentation.</p>
+        </div>
+        <h2><a name="transaction-provider"></a>Transaction Provider</h2>
+        <p>OpenSpaces provides a pluggable transaction provider using the following interface:</p><pre><code class="language-java">public interface TransactionProvider {
+    Transaction getCurrentTransaction(Object transactionalContext, IJSpace space);
+    int getCurrentTransactionIsolationLevel(Object transactionalContext);
+}
+</code></pre>
+        <p>OpenSpaces comes with a default transaction provider implementation, which uses Spring and its transaction manager in order to obtain the currently running transactions, and automatically use them under transactional operations.</p>
+        <p><code>GigaMap</code> allows access to current running transactions using the transaction provider. The following code example shows how the <code>put</code> operation can be performed using <code>IMap</code> (users normally won't be required to do so):</p><pre><code class="language-java">gigaMap.getMap().put("key", "value", gigaMap.getCurrentTransaction(), 1000);
+</code></pre>
+        <h2><a name="transaction-isolation-level"></a>Transaction Isolation Level</h2>
+        <p>GigaSpaces supports three isolation levels: <code>READ_UNCOMMITTED</code>, <code>READ_COMMITTED</code> and <code>REPEATABLE_READ</code> (default). When using <code>GigaMap</code>, the default isolation level it is performed under can be defined in the following manner:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:space-proxy id="space" space-name="mySpace"/&gt;
+&lt;os-core:map id="map" space="space"/&gt;
+&lt;os-core:giga-map id="gigaMap" map="map" default-isolation-level="READ_COMMITTED"/&gt;
+</code></pre>
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="map" class="org.openspaces.core.map.MapFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaMap" class="org.openspaces.core.GigaMapFactoryBean"&gt;
+    &lt;property name="map" ref="map" /&gt;
+    &lt;property name="defaultIsolationLevelName" value="READ_COMMITTED" /&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">IMap map = // get IMap either by injection or code creation
+GigaMap gigaMap = new GigaMapConfigurer(map).defaultIsolationLevel(TransactionDefinition.ISOLATION_READ_COMMITTED)
+                                            .gigaMap();
+</code></pre>
+            </div>
+        </div>
+        <p>In addition, Spring allows you to define the isolation level on the transaction definition itself:</p><pre><code class="language-java">@Transactional(readOnly = true)
+public class DefaultFooService implements FooService {
+
+    private GigaMap gigaMap;
+
+    public void setGigaMap(GigaMap gigaMap) {
+        this.gigaMap = gigaMap;
+    }
+
+    public Foo getFoo(String fooName) {
+        // do something
+    }
+
+    // these settings have precedence for this method
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW, isolation  = Isolation.READ_COMMITTED)
+    public void updateFoo(Foo foo) {
+        // do something
+    }
+}
+</code></pre>
+        <p>In the above example, any operation performed using <code>GigaMap</code> in the <code>updateFoo</code> method automatically works under the <code>READ_COMMITTED</code> isolation level.</p>
+        <h1><a name="lock-api"></a>Lock API</h1>
+        <p>The <code>GigaMap</code> support the Lock API allowing you to establish a distributed lock on a global key. The <code>GigaMap</code> Lock API include the following methods:</p><pre><code class="language-java">LockHandle lock(Object key)
+LockHandle lock(Object key,long lockTimeToLive,long waitingForLockTimeout)
+void unlock(Object key)
+boolean isLocked(Object key)
+void putAndUnlock(Object key,Object value)
+</code></pre>
+        <p>Here is a simple example using the Lock API:</p><pre><code class="language-java">IMap map = new MapConfigurer(new SpaceProxyConfigurer("space").space()).createMap();
+GigaMap gigaMap = new GigaMapConfigurer(map).gigaMap();
+String key = "myKey";
+System.out.println("Before Lock:Is key "  + key+ " locked:" + gigaMap.isLocked(key));
+gigaMap.lock(key);
+System.out.println("After Lock:Is key "  + key+ " locked:" + gigaMap.isLocked(key));
+gigaMap.unlock(key);
+System.out.println("After unLock:Is key "  + key+ " locked:" + gigaMap.isLocked(key));
+</code></pre>
+        <div class="tc-admon-tip">
+            <p>The Lock API using transactions to ensure isolation and data consistency.</p>
+        </div>
+        <h1><a name="gigaspace-api-vs-gigamap-api"></a>GigaSpace API vs. GigaMap API</h1>
+        <p>Here is a simple comparison between the GigaMap API vs. the <a href="the-gigaspace-interface-overview.html">GigaSpace API</a>:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Feature</th>
+                    <th align="center">GigaSpace  API</th>
+                    <th align="center">GigaMap API</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Batch Operations</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Limited.</td>
+                </tr>
+                <tr>
+                    <td align="left">Externalizable Support</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes – The value object should implement Externalizable.</td>
+                </tr>
+                <tr>
+                    <td align="left">Iterator</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Unicast Notifications</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes – Limited.</td>
+                </tr>
+                <tr>
+                    <td align="left">Jini Distributed Transaction Support</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Local Transaction Support</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">XA Transaction Support</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Key based Access</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Lease</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Simple Matching</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Exclusive Read Lock</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes *</td>
+                </tr>
+                <tr>
+                    <td align="left">Optimistic Locking</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Pessimistic Locking</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Administration API</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Spring Support</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Timeout (blocking) operations (read/take with timeout &gt; 0)</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Local Cache</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Replicated Space</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Partitioned Space</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Service Grid Support</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>ISpaceFilter</code> Support</td>
+                    <td align="center">Yes</td>
+                    <td align="center">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">Local View</td>
+                    <td align="center">Yes</td>
+                    <td align="center">No</td>
+                </tr>
+                <tr>
+                    <td align="left">POJO Support</td>
+                    <td align="center">Yes</td>
+                    <td align="center">No</td>
+                </tr>
+                <tr>
+                    <td align="left">Inheritance Support</td>
+                    <td align="center">Yes</td>
+                    <td align="center">No</td>
+                </tr>
+                <tr>
+                    <td align="left">Master-Worker Pattern</td>
+                    <td align="center">Yes</td>
+                    <td align="center">No</td>
+                </tr>
+                <tr>
+                    <td align="left">Continuous Query</td>
+                    <td align="center">Yes</td>
+                    <td align="center">No</td>
+                </tr>
+                <tr>
+                    <td align="left">Custom Query Pattern</td>
+                    <td align="center">Yes</td>
+                    <td align="center">No</td>
+                </tr>
+                <tr>
+                    <td align="left">SQL Query Support</td>
+                    <td align="center">Yes</td>
+                    <td align="center">No</td>
+                </tr>
+                <tr>
+                    <td align="left">FIFO Support</td>
+                    <td align="center">Yes</td>
+                    <td align="center">No</td>
+                </tr>
+                <tr>
+                    <td align="left">Indexing</td>
+                    <td align="center">Yes</td>
+                    <td align="center">No</td>
+                </tr>
+                <tr>
+                    <td align="left">Complex Entry Attribute Query Support</td>
+                    <td align="center">Yes</td>
+                    <td align="center">No</td>
+                </tr>
+                <tr>
+                    <td align="left">Regular Expression Query Support</td>
+                    <td align="center">Yes</td>
+                    <td align="center">No</td>
+                </tr>
+                <tr>
+                    <td align="left">Partial Update</td>
+                    <td align="center">Yes</td>
+                    <td align="center">No</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>* via <code>IMap.getMasterSpace()</code></p>
+        <h1><a name="clustered-flag"></a>Clustered Flag</h1>
+        <p>When configuring a <code>GigaMap</code> with an embedded clustered space or with a remote clustered space, a clustered <code>GigaMap</code> proxy is created. A clustered proxy is a smart proxy that may perform operations against the entire cluster when needed. The <code>put</code> operation will be routing the key and value to the relevant partition (using the key hashcode to calculate the target partition).</p>
+        <p>The <code>get</code> operation will do the same by routing the operation to the relevant partition. The <code>putAll</code> will generate a bucket per partition for all entries that should be placed within the same partition and perform a parallel write to all relevant partition.</p>
+        <p>Many times, especially when working with a Processing Unit that starts an embedded space, operations against the space should be performed directly on the cluster member without interacting with the other space cluster members (partitions). This is a core concept of the SBA and Processing Unit, where most if not all the operations should be performed in-memory without leaving the Processing Unit boundaries, when a Processing Unit starts an embedded space.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/clustered-gigamap.jpg" alt="clustered-gigamap.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p><span class="tc-bold">Embedded Non-Clustered GigaMap proxy vs. Embedded Clustered GigaMap Proxy</span>
+        </p>
+        <p>The decision of working directly with a cluster member or against the whole cluster is done in the GigaMap level. The <code>MapFactoryBean</code> provides a clustered flag with the following logic as the default value: If the space is started in embedded mode (i.e. <code>/./space</code>), the clustered flag is set to <code>false</code>. When the space is looked up in a remote protocol i.e.
+    jini://<span class="tc-italic">/</span>/space</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">
+&lt;os-core:embedded-space  id="space" space-name="mySpace"/&gt;
+
+&lt;!-- By default, since we are starting in embedded mode, clustered=false --&gt;
+&lt;os-core:map id="directMap" space="space"/&gt;
+&lt;os-core:map id="clusteredMap" space="space" clustered="true"/&gt;
+</code></pre>
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">
+&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;!-- By default, since we are starting in embedded mode, clustered=false --&gt;
+&lt;bean id="directMap" class="org.openspaces.core.MapFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="clusteredMap" class="org.openspaces.core.map.MapFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+    &lt;property name="clustered" value="true" /&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">
+IJSpace space = // get Space either by injection or code creation (using /./space url)
+IMap directMap = new MapConfigurer(space).createMap();
+IMap clusteredMap = new MapConfigurer(space).clustered(true).createMap();
+</code></pre>
+            </div>
+        </div>
+        <p>The above example shows a typical scenario where the clustered flag is used. Within a Processing Unit, an application might need to access both the cluster member and the whole cluster directly.</p>
+        <h1><a name="exception-hierarchy"></a>Exception Hierarchy</h1>
+        <p>OpenSpaces is built on top of the Spring <a href="http://static.springframework.org/spring/docs/2.0.x/reference/dao.html#dao-exceptions" target="_blank">consistent exception hierarchy</a> by translating all of the different JavaSpaces exceptions and GigaSpaces exceptions into runtime exceptions, consistent with the Spring exception hierarchy. All the different exceptions exist in the <code>org.openspaces.core</code> package.</p>
+        <p>OpenSpaces provides a pluggable exception translator using the following interface:</p><pre><code class="language-java">public interface ExceptionTranslator {
+    DataAccessException translate(Throwable e);
+}
+</code></pre>
+        <p>A default implementation of the exception translator is automatically used, which translates most of the relevant exceptions into either Spring data access exceptions, or concrete OpenSpaces runtime exceptions (in the <code>org.openspaces.code</code> package).</p>
+    </body>
+</html>

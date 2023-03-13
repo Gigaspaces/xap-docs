@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>JMX Management</h1>
+        <div class="tc-admon-note">
+            <p>Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with <MadCap:variable name="General.ProductNameXAPPrem" />).</p>
+        </div>
+        <p>The Java Management Extensions (JMX specification) describe an architecture, design patterns, API's, and services for application and network management in the Java programming language. JMX functions beyond a simple API since it can specify the architecture as to how that API is used. It provides the means to construct Java code, create smart Java agents, implement distributed management middleware and managers, and integrate these solutions smoothly into existing management systems. You can integrate such solutions with either HTML or industry standards such as SNMP and WBEM. JMX is dynamic, allowing the monitoring and management of resources in real time while they are created, installed, and implemented. The JMX also works along with JVM, the Java Virtual Machine.</p>
+        <div class="tc-admon-note">
+            <p>For more details about JMX, refer to <a href="http://java.sun.com/products/JavaManagement/" target="_blank">JavaManagement</a>.</p>
+        </div>
+        <h2><a name="manageable-resource"></a>Manageable Resource</h2>
+        <p>A JMX manageable resource can be an application, an implementation of a service, a device, a user, etc. It is developed in Java, or at least offers a Java wrapper, and must also be implemented by a Java object called a managed bean (MBeans), according to JMX specifications.</p>
+        <h1><a name="opening-jmx"></a>Opening JMX</h1>
+        <p>Step 1. The easiest way to open JConsole for a specific service is through the GigaSpaces Management Center: </p>
+        <ul>
+            <li>
+                <p>In the Deployments tab, right-click the GSC, GSM, or LookupService tree node, or </p>
+            </li>
+            <li>
+                <p>In the Space Browser tab: </p>
+                <ul>
+                    <li>
+                        <p>In the Grid Tree, right-click the relevant <a href="gigaspaces-browser-tree-panel-and-configuration-panel.html#space-container-node">space container node</a>, or</p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/space_JMX_1_GMC_space_LaunchingJConsoleFromContainerNode_6.5.jpg" alt="space_JMX_1_GMC_space_LaunchingJConsoleFromContainerNode_6.5.jpg" class="tc-picture50" /><![CDATA[  ]]></p>
+                    </li>
+                    <li>
+                        <p>Right-click the relevant <a href="gigaspaces-browser-tree-panel-and-configuration-panel.html#space-node">space node</a> or clustered space node, or </p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/space_JMX_2_GMC_space_LaunchingJConsoleFromSpaceNode_6.5.jpg" alt="space_JMX_2_GMC_space_LaunchingJConsoleFromSpaceNode_6.5.jpg" class="tc-picture30" /> <br /></p>
+                    </li>
+                    <li>
+                        <p>Right-click the relevant space from the <a href="gigaspaces-browser-tree-panel-and-configuration-panel.html#spaces-network-view">space network view</a>: </p>
+                        <p>
+                            <img src="../Resources/Static/attachment_files/space_JMX_3_GMC_space_network_LaunchingJconsole_6.5.jpg" alt="space_JMX_3_GMC_space_network_LaunchingJconsole_6.5.jpg" class="tc-picture80" />
+                            <br />
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p>Step 2. Click <span class="tc-bold">Launch JConsole</span>. </p>
+        <p>Step 3. This opens the JConsole of the selected process.</p>
+        <p>Step 4. You can browse the various MBeans.</p>
+        <p>Step 5. Make sure you have a deployed space.   </p>
+        <p>Step 6. Open a console and type the following command: <code>jconsole</code><br /></p>
+        <div class="tc-admon-note">
+            <p>By default, operations in the MBeans <span class="tc-bold">Operations</span> tab that have <MadCap:variable name="General.ProductNameXAP" /> classes as their type are disabled. To enable these, type the following in your console:<br /><code>jconsole -J-Djava.class.path=%JAVA_HOME%\lib\jconsole.jar;GS_HOME\lib\required\xap-datagrid.jar</code> <br />Instead of <code>GS_HOME</code>, type the directory where GigaSpaces is installed on your computer.</p>
+        </div>
+        <p>Step 7. Connect to the MBean server (choose one of the following options):</p>
+        <ul>
+            <li>Using the <span class="tc-bold">Advanced</span> tab:<ol style="list-style-type: lower-alpha;"><li><p>The JConsole: Connect to Agent window appears. Select the <span class="tc-bold">Advanced</span> tab.</p></li><li><p>In the <span class="tc-bold">JMX URL</span> text box, copy the URL in the log message displayed in your GigaSpaces Server,for example:</p></li><li><p>Press <span class="tc-bold">Connect</span>. </p><p><img src="../Resources/Static/attachment_files/space_JMX_4_space_JMX_IMG992.gif" alt="space_JMX_4_space_JMX_IMG992.gif" class="tc-picture30" /></p><div class="tc-admon-note"><p>New JMXConnectionServer was successfully registered into the MBeanServer
+ using service url: service:jmx:rmi:///jndi/rmi://localhost:10098/jmxrmi.</p></div></li></ol></li>
+        </ul>
+        <ul>
+            <li>Using the <span class="tc-bold">Remote</span> tab:<ol style="list-style-type: lower-alpha;"><li><p>The JConsole: Connect to Agent window appears. Select the <span class="tc-bold">Remote</span> tab.</p></li><li><p>In the <span class="tc-bold">Host or IP</span> text box, copy the host name/IP address from JNDI URL text field in the container configuration.</p></li><li><p>In the <span class="tc-bold">Port</span> text box, copy the port value from the same JNDI URL text field in the container configuration.</p><p><img src="../Resources/Static/attachment_files/space_JMX_5_GMC_space_containerNodeSelected_directoy_services_tab_6.1.jpg" alt="space_JMX_5_GMC_space_containerNodeSelected_directoy_services_tab_6.1.jpg" class="tc-picture80" /><br /></p><p><img src="../Resources/Static/attachment_files/space_JMX_6_jconsole_connect.jpg" alt="space_JMX_6_jconsole_connect.jpg" class="tc-picture50" /></p></li></ol></li>
+        </ul>
+        <p>Step 8. Press <span class="tc-bold">Connect</span>.</p>
+        <p>Here is a code example of implementing such an approach:<br /></p><pre><code class="language-java">IJSpace spaceProxy = ( IJSpace )SpaceFinder.find( "jini://mySpace_container/mySpace");
+System.out.println( "Space found: " + spaceProxy.toString() );
+ContainerConfig containerConfig = ( ( IJSpaceContainerAdmin )spaceProxy.getContainer() ).getConfig();
+String jndiURL = containerConfig.jndiUrl;
+Runtime.getRuntime().exec( "jconsole " + jndiURL );
+</code></pre>
+        <h1><a name="remote-jconsole-connection"></a><a name="Remote_JConsole_Connection"></a>Remote JConsole Connection</h1>
+        <div MadCap:conditions="Version.15-8-born">
+            <p>The Grid Service Agent (GSA) exposes a JMX remote port for each child component (for example GSC). The port is determined by adding the agent id to a base port.</p>
+            <p>The base port should be defined using the environment variable <code>GS_JMX_REMOTE_BASE_PORT</code>, which will be the port of the GSA, and child processes will be <code>GS_JMX_REMOTE_BASE_PORT</code> + id.</p>
+            <p>For example:</p>
+            <ul>
+                <li>
+                    <p>GSA base port 6060</p>
+                </li>
+                <li>
+                    <p>GSC port 6061</p>
+                </li>
+                <li>
+                    <p id="attentionmsg">GSC port 6062</p>
+                </li>
+            </ul>
+            <div class="tc-admon-attention">
+                <p>JMX can be disabled by setting <code class="language-bash">GS_OPTIONS_EXT</code> to <code class="language-bash">-Dcom.gs.jndi.enabled=false</code> in the <code class="language-bash">setenv-overrides.sh/bat</code> file.</p>
+            </div>
+            <h2>Example of definition:</h2><pre><code class="language-bash">export GS_OPTIONS_EXT="-Dcom.sun.management.jmxremote.authenticate=true<br />-Dcom.sun.management.jmxremote.ssl=false<br />-Dcom.sun.management.jmxremote.access.file=[PATH_TO]/jmxremote.access<br />-Dcom.sun.management.jmxremote.password.file=[PATH_TO]/jmxremote.password"<br />export GS_JMX_REMOTE_BASE_PORT=[YOUR_PORT_VAL]
+</code></pre>
+            <div class="tc-admon-note">
+                <p>It is important to verify that all expected ports are open in the firewall.</p>
+            </div>
+        </div>
+        <div MadCap:conditions="Version.15-8-died">
+            <p>In order to enable monitoring and management from remote systems using JMX jconsole set the following system properties or use the setenv shell variable <span class="tc-bold">REMOTE_JMX</span></p><pre><code class="language-bash">REMOTE_JMX=-Dcom.sun.management.jmxremote.port=5001 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
+</code></pre>
+            <p>For a secure JConsole, use the following system properties:</p><pre><code class="language-bash">-Dcom.gigaspaces.system.registryRetries=1
+-Dcom.gigaspaces.system.registryPort=6060
+-Dcom.sun.management.jmxremote.port=6060
+-Dcom.sun.management.jmxremote 
+-Dcom.sun.management.jmxremote.authenticate=true
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.access.file=.../jmxremote.access
+-Dcom.sun.management.jmxremote.password.file=.../jmxremote.password</code></pre>
+        </div>
+        <h1><a name="viewing-thread-cpu-usage-with-jdk-1-6"></a>Viewing Thread CPU Usage </h1>
+        <p>JConsole includes a <a href="https://arnhem.luminis.eu/top-threads-plugin-for-jconsole/" target="_blank">plugin</a> that displays CPU usage for each JVM thread. This tab is displayed using the <a href="http://java.sun.com/javase/[%=Versions.java-version%]/docs/technotes/guides/management/jconsole.html">-pluginpath</a> JConsole parameter (already implemented in GigaSpaces).</p>
+        <p><span class="tc-bold">To view this tab in your JConsole</span>:</p>
+        <ul>
+            <li>
+                <p><a href="https://bitbucket.org/pjtr/topthreads/downloads/topthreads-1.1.jar">Download the topthreads.jar file</a> and add it to your <code><MadCap:variable name="General.HomePath" />\lib\platform\ui</code> folder.</p>
+                <div class="tc-admon-note">
+                    <p><code>topthreads-[%=Versions.topthreads%].jar</code> is used by default. If <code>topthreads-[%=Versions.topthreads%].jar</code> isn't found, the <code>JTop.jar</code> file (which is part of the JDK) is used instead.</p>
+                </div>
+            </li>
+        </ul>
+        <p>The following subsections provide some sample screenshots.</p>
+        <h2><a name="topthread-jar"></a>topthread.jar</h2>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/space_JMX_8_top_threads.jpg" alt="space_JMX_8_top_threads.jpg" class="tc-picture100" />
+            </p>
+        </div>
+        <h2><a name="jtop-jar"></a>JTop.jar</h2>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/space_JMX_9_j_top.jpg" alt="space_JMX_9_j_top.jpg" class="tc-picture100" />
+            </p>
+        </div>
+        <h1><a name="mbeans-view"></a>MBeans View</h1>
+        <p>The jconsole utility (part of Sun J2SE 5.0 JDK and above) includes a <span class="tc-bold">MBeans</span> view, which allows you to perform space administration operations, and to view and control space attributes. These operations are defined in the <a href="http://www.gigaspaces.com/wiki/download/attachments/15078/JavaSpaceMBeanDescriptors.xml">JavaSpaceMBeanDescriptors.xml</a> file, which exists in the <code>xap-datagrid.jar</code> file. If you do not want a certain operation or attribute to be exposed in the JMX <span class="tc-bold">MBeans</span> tab, simply comment or remove the operation from the XML file.</p>
+        <h2><a name="space-container-mbean"></a>Space Container MBean</h2>
+        <p>The container MBean exposes the space container's attributes and operations. The space container manages the space life cycle.</p>
+        <h3><a name="attributes-tab"></a>Attributes Tab</h3>
+        <p>The container <span class="tc-bold">Attributes</span> tab displays a list of container attributes. Attribute values appearing in blue can be controlled, while values in black can not be changed. Red values are unavailable.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/space_JMX_10_IMG994.gif" alt="space_JMX_10_IMG994.gif" class="tc-picture100" />
+            </p>
+        </div>
+        <h3><a name="operations-tab"></a>Operations Tab</h3>
+        <p>The container <span class="tc-bold">Operations</span> tab allows you to perform different space container operations:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Option</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">shutdown</td>
+                    <td align="left">shuts down this container.</td>
+                </tr>
+                <tr>
+                    <td align="left">restart</td>
+                    <td align="left">restarts this container.</td>
+                </tr>
+                <tr>
+                    <td align="left">destroySpace</td>
+                    <td align="left">destroys a space in this container (type the space's name in the <span class="tc-bold">spaceName</span> text box).</td>
+                </tr>
+                <tr>
+                    <td align="left">createSpace (spaceName, schemaName, clusterConfigURL)</td>
+                    <td align="left">creates a space with a unique name in this container and writes the created space to the appropriate Storage Adapter. (Type the name of the space, the name of the schema, and the cluster configuration URL\*\*\* in the relevant text boxes).</td>
+                </tr>
+                <tr>
+                    <td align="left">createSpace (spaceName, schemaName)</td>
+                    <td align="left">creates a space with a unique name in this container.</td>
+                </tr>
+                <tr>
+                    <td align="left">getRuntimeConfigReport</td>
+                    <td align="left">displays a runtime configuration report. For more details, refer to the <a href="gigaspaces-browser-managing-space-container.html#configuration">Configuration</a> section.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/space_JMX_11_IMG995.gif" alt="space_JMX_11_IMG995.gif" class="tc-picture100" />
+            </p>
+        </div>
+        <h3><a name="info-tab"></a>Info Tab</h3>
+        <p>The container <span class="tc-bold">Info</span> tab displays the MBean name and its Java class.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/space_JMX_12_IMG996.gif" alt="space_JMX_12_IMG996.gif" class="tc-picture100" />
+            </p>
+        </div>
+        <h2><a name="space-mbean"></a>Space MBean</h2>
+        <p>The Space MBean exposes space attributes and operations. You can get the basic space operational settings using this MBean.</p>
+        <h3><a name="attributes-tab-1"></a>Attributes Tab</h3>
+        <p>The space <span class="tc-bold">Attributes</span> tab displays a list of space attributes/elements by XPath, in the selected space. Attribute values appearing in blue can be controlled, while values in black can not be changed. Red values are unavailable.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/space_JMX_13_IMG993.gif" alt="space_JMX_13_IMG993.gif" class="tc-picture100" />
+            </p>
+        </div><a name="1"></a>
+        <h3><a name="operations-tab-1"></a>Operations Tab</h3>
+        <p>The space <span class="tc-bold">Operations</span> tab allows you to perform different space operations:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Operation</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">getSpace</td>
+                    <td align="left">returns the space proxy that this manageable bean governs.</td>
+                </tr>
+                <tr>
+                    <td align="left">getStatistics</td>
+                    <td align="left">returns a <code>StatisticsContext</code> according to the operation code you type in the <span class="tc-bold">operationCode</span> text box – each operation has a constant representing it.</td>
+                </tr>
+                <tr>
+                    <td align="left">clean</td>
+                    <td align="left">cleans the selected space.</td>
+                </tr>
+                <tr>
+                    <td align="left">count</td>
+                    <td align="left">when entering a specific class name in the <span class="tc-bold">className</span> textbox, displays the number of Entries in this class.</td>
+                </tr>
+                <tr>
+                    <td align="left">clear</td>
+                    <td align="left">when entering a specific class name in the <span class="tc-bold">className</span> textbox, removes the Entries that match this template from the space.</td>
+                </tr>
+                <tr>
+                    <td align="left">stop</td>
+                    <td align="left">attempts to stop the selected space.</td>
+                </tr>
+                <tr>
+                    <td align="left">start</td>
+                    <td align="left">attempts to start the selected space.</td>
+                </tr>
+                <tr>
+                    <td align="left">ping</td>
+                    <td align="left">checks whether the space is alive and accessible.</td>
+                </tr>
+                <tr>
+                    <td align="left">restart</td>
+                    <td align="left">restarts the space.</td>
+                </tr>
+                <tr>
+                    <td align="left">getClusterPolicy</td>
+                    <td align="left">displays a cluster policy instance.</td>
+                </tr>
+                <tr>
+                    <td align="left">getRuntimeInfo</td>
+                    <td align="left">returns a RuntimeInfo instance.</td>
+                </tr>
+                <tr>
+                    <td align="left">getURL</td>
+                    <td align="left">displays the <code>spaceURL</code> instance which was used to initialize the space.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <ul>
+                <li>For more information, refer to <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/admin/SpaceRuntimeInfo.html">Javadoc</a>.</li>
+                <li><a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/filters/FilterOperationCodes.html">Javadoc</a> and the <a href="[%=Links.ApiJavaDoc%]/constant-values.html#com.j_spaces.core.filters.FilterOperationCodes.AFTER_ALL_NOTIFY_TRIGGER">statistics filter operation codes list</a>.</li>
+                <li><a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/admin/StatisticsAdmin.html">StatisticsAdmin</a> or <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/filters/StatisticsContext.html">StatisticsContext</a>.</li>
+            </ul>
+        </div>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/space_JMX_14_IMG997.gif" alt="space_JMX_14_IMG997.gif" class="tc-picture100" />
+            </p>
+        </div>
+        <h3><a name="info-tab-1"></a>Info Tab</h3>
+        <p>The space <span class="tc-bold">Info</span> tab displays the MBean name and its Java class.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/space_JMX_15_IMG998.gif" alt="space_JMX_15_IMG998.gif" class="tc-picture100" />
+            </p>
+        </div>
+        <h2><a name="space-mbean-extension"></a>Space MBean Extension</h2>
+        <p>The Space MBean Extension exposes advanced space attributes – this includes memory management, persistency and communication settings.</p>
+        <h3><a name="attributes-tab-2"></a>Attributes Tab</h3>
+        <p>The space extensions <span class="tc-bold">Attributes</span> tab displays a list of advanced space attributes/elements by XPath, in the selected space. Attribute values appearing in blue can be controlled, while values in black can not be changed. Red values are unavailable.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/space_JMX_16_IMG999.gif" alt="space_JMX_16_IMG999.gif" class="tc-picture100" />
+            </p>
+        </div>
+        <h3><a name="info-tab-2"></a>Info Tab</h3>
+        <p>The space extensions <span class="tc-bold">Info</span> tab displays the MBean name and its Java class.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/space_JMX_17_IMG200.gif" alt="space_JMX_17_IMG200.gif" class="tc-picture100" />
+            </p>
+        </div>
+        <h1><a name="restricting-and-modifying-mbeans"></a>Restricting and Modifying MBeans</h1>
+        <p>There is an option to restrict the access to space and space container operations or attributes; for example, you can decide to hide some of the attributes and configuration, and disable execution of operations.</p>
+        <div class="tc-admon-note">
+            <p>This way, you can view, restrict or modify most of the space and space container <span class="tc-bold">configuration</span> (as set in the space/container schema files), or the basic <span class="tc-bold">admin operations</span>, which were discussed in the above sections.</p>
+        </div>
+        <p>To do this, modify the following space and space container <span class="tc-bold">MBean Descriptors</span>, which are located inside the <code><MadCap:variable name="General.HomePath" />\lib\required\xap-datagrid.jar</code> file:</p>
+        <ul>
+            <li><code>ContainerMBeanDescriptors.xml</code>
+            </li>
+            <li><code>JavaSpaceExtMBeanDescriptors.xml</code>
+            </li>
+            <li><code>JavaSpaceMBeanDescriptors.xml</code>
+            </li>
+        </ul>
+        <h2><a name="settings-to-modify"></a>Settings to Modify</h2>
+        <p>Following are some space/space container MBeans <span class="tc-bold">Attributes</span> settings you can modify:</p>
+        <ul>
+            <li><span class="tc-bold">Attribute</span> – required, otherwise is optional.</li>
+            <li><span class="tc-bold">name</span> – the name of the attribute.</li>
+            <li><span class="tc-bold">type</span> - The type or class name of the attribute.</li>
+            <li><span class="tc-bold">description</span> – a description of the attribute.</li>
+            <li><span class="tc-bold">isReadable</span> – true if the attribute has a getter method, false otherwise.</li>
+            <li><span class="tc-bold">isWritable</span> – true if the attribute has a setter method, false otherwise.</li>
+        </ul>
+        <p>Following are some space/space container MBeans <span class="tc-bold">Operations</span> settings you can modify:</p>
+        <ul>
+            <li><span class="tc-bold">Operation</span> – required, otherwise optional.</li>
+            <li><span class="tc-bold">name</span> – the name of the method.</li>
+            <li><span class="tc-bold">type</span> – the type of the method's return value.</li>
+            <li><span class="tc-bold">impact</span> – the impact of the method, one of <code>INFO</code>, <code>ACTION</code>, <code>ACTION_INFO</code>, <code>UNKNOWN</code>.</li>
+            <li><span class="tc-bold">description</span> – a description of the operation.</li>
+            <li><span class="tc-bold">signature</span> – <code>MBeanParameterInfo</code> objects describing the parameters (arguments) of the method.</li>
+            <li><span class="tc-bold">Signature</span> – the list of parameters info.
+
+<ul><li><span class="tc-bold">Parameter</span> – required, otherwise optional.</li><li><span class="tc-bold">name</span> – the name of the data.</li><li><span class="tc-bold">type</span> - the type or class name of the data.</li></ul></li>
+        </ul>
+    </body>
+</html>

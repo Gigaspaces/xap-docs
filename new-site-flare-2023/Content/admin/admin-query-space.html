@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:fileTags="File Tags/FileTagSetStatus.HasScreenshot">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Query the Space Data</h1>
+        <div class="tc-admon-note">
+            <p>This functionality is not currently available in the Command Line Interface, REST Manager API, or Administration API.</p>
+        </div>
+        <p>The <MadCap:conditionalText MadCap:conditions="Version.15-2-born">GigaSpaces Ops Manager and the </MadCap:conditionalText>Web Management Console <MadCap:conditionalText MadCap:conditions="Version.15-2-died">and GigaSpaces Management Center </MadCap:conditionalText> support SQL queries, enabling users to perform actions on the data objects in the Space.</p>
+        <p><a name="For_example,_to_query_a_specific_class"></a>
+        </p>
+        <p>For example, to query a specific class:</p><pre><code>SELECT * FROM my.company.com.MyPojo WHERE rownum &lt; 1000
+</code></pre>
+        <div MadCap:conditions="Version.16-2-born">
+            <p>For a Document object with nested properties, you can code:</p><pre xml:space="preserve"><code>SELECT <b>Address:city_name as city_name</b>  FROM my.company.com.MyPojo WHERE rownum &lt; 1000
+</code>
+</pre>
+            <p MadCap:conditions="Version.16-2-born">where the field <code>city_name</code> is a property of the Address object.</p>
+        </div>
+        <h1><span class="tc-bold">Query a Space</span>
+        </h1>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="GigaSpaces Ops Manager" style="padding:10px" MadCap:conditions="Version.15-2-born">
+                <ol>
+                    <li>In the Spaces Overview page, click a Space to drill down to the Space details. </li>
+                    <li>Click on an Object type.</li>
+                    <li>Click the SQL Editor tab. </li>
+                    <li>Modify the SQL&#160;query as necessary, and click <span class="tc-bold">Run Query</span>. The time it took the query to complete is shown below the query area, and the results are displayed in the Results area.</li>
+                </ol>
+                <p> The query must contain the full class name. Additionally, the query must contain a row limit, and <MadCap:variable name="General.ProductNameXAP" /> adds a 1000-row limit by default if you try to run your query without adding the limit yourself. </p>
+                <div class="tc-admon-note">
+                    <p>The maximum number of rows allowed in a query is 10,000.</p>
+                </div>
+                <p>You can also export your query results to a CSV&#160;file.</p>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <ol>
+                    <li>
+                        <p>In the Spaces view, highlight the Space or the Space instance you want to query.</p>
+                    </li>
+                    <li>
+                        <p>Display the Queries pane in the lower area of the view.</p>
+                    </li>
+                    <li>
+                        <p>Type a query, or click a data type from the Types pane.</p>
+                    </li>
+                    <li>
+                        <p>Click <span class="tc-bold">Execute Query</span>.</p>
+                        <p>The query is executed against the selected Space or Space instance. If there are too many results to display on a single web page, you can navigate using the paging controls at the bottom of the table. Paging is static (results are fetched once per execute request).</p>
+                    </li>
+                    <li>
+                        <p>If you have tried to run multiple queries, you can navigate between them using the <span class="tc-bold">Go Back</span>/<span class="tc-bold">Go Forward</span> buttons, or select a query from the dropdown lists next to these buttons.</p>
+                    </li>
+                    <li>
+                        <p>To export the results of a query:</p>
+                        <ol type="a" style="list-style-type: lower-alpha;">
+                            <li>
+                                <p>Click <span class="tc-bold">Export</span>.</p>
+                            </li>
+                            <li>
+                                <p>Select an action (<span class="tc-bold">Open</span>, <span class="tc-bold">Save</span>, or <span class="tc-bold">Cancel</span>).</p>
+                            </li>
+                        </ol>
+                        <p>The results are exported in a zipped CSV file.</p>
+                        <p> support SQL queries, enabling users to perform actions on the data objects in the Space.</p>
+                        <p>For example, to query a specific class:</p><pre><code>SELECT * FROM my.company.com.MyPojo WHERE rownum &lt; 1000
+</code></pre>
+                    </li>
+                </ol>
+            </div>
+            <p>For more information, refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            <p>&#160;</p>
+            <!--            <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.15-2-born">
+                <p>&#160;</p>
+            </div>
+-->
+        </div>
+        <h1>Query an Object Type</h1>
+        <p>When viewing single Space data within the Space Overview page, the IT administrator or developer can drill down to a selected Object Type by clicking on the name of an Object Type in the Object Types table at the bottom of the page. </p>
+        <h1>Navigate to Object Type page</h1>
+        <p>It is possible to drill down from the Space overview page to the Object Type level in two ways:</p>
+        <ul>
+            <li>Click on the Object Type line within the Object Types data table. In this scenario, the user drills down to the overview page of an Object Type.</li>
+            <li>Click on the icon to the left of the Object Type name. It is possible to drill down to the Object Type SQL editor page with the Object Type context already selected within the sample query.</li>
+        </ul>
+        <h1 MadCap:conditions="Version.15-2-born"><span class="tc-bold">Query a Data Object in a Space</span>
+        </h1>
+        <p MadCap:conditions="Version.15-2-born">When viewing single Space data within the Space Overview page, the IT administrator or developer can drill down to a selected Object Type by clicking on the name of an Object Type in the Object Types table at the bottom of the page. </p>
+        <h1 MadCap:conditions="Version.15-2-born">Navigate to Object Type page</h1>
+        <p MadCap:conditions="Version.15-2-born">It is possible to drill down from the Space overview page to the Object Type level in two ways:</p>
+        <ul MadCap:conditions="Version.15-2-born">
+            <li>Click on the Object Type line within the Object Types data table. In this scenario, the user drills down to the overview page of an Object Type.</li>
+            <li>Click on the icon to the left of the Object Type name. It is possible to drill down to the Object Type SQL editor page with the Object Type context already selected within the sample query.</li>
+        </ul>
+    </body>
+</html>

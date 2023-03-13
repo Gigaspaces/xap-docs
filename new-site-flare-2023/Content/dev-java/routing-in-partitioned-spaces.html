@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Routing In Partitioned Spaces</h1>
+        <p>A <a href="../overview/terminology.html">partitioned space</a> provides the ability to perform space operations against multiple spaces from a single proxy transparently. The primary goal of the partitioned space is to provide unlimited In-Memory space storage size and group objects into the same partition to speed up performance. The initial intention is to write data into the partitioned space, and route query operations based on the template data.</p>
+        <p>Note that in such a configuration, the different spaces defined as partitions are not aware of each other ("Share Nothing") - the client proxy is the one that is aware of the partitioned space configuration.</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.15-8-born">
+            <p>If an object has an expected total data capacity that is much smaller than a partition, and it is infrequently updated, it can be set as a <MadCap:xref href="broadcast-objects.html">Broadcast Object</MadCap:xref> for optimized JOIN performance.</p>
+        </div>
+        <p>&#160;</p>
+        <p>&#160;</p><a name="Defining"></a>
+        <h1><a name="defining-a-routing-property"></a>Defining a Routing Property</h1>
+        <p><span class="tc-bold">Partitioning</span> is used when the total data set is too big to be stored in a single space, and we want to divide the data into two or more groups (partitions). In order to do that, the proxy needs to know how to partition the data, i.e. which entry belongs in which partition.</p>
+        <p>In order to accomplish that a <span class="tc-bold">routing property</span> can be defined on the entry type. When the proxy is asked to write an entry, it uses the entry's routing property's hash code to determine the relevant partition for it:</p><pre><code class="language-java">Target partition space ID = safeABS(routing field hashcode) % (number of partitions)
+
+int safeABS( int value)
+{
+     return value == Integer.MIN_VALUE ? Integer.MAX_VALUE : Math.abs(value);
+}
+</code></pre>
+        <p>The routing property can be explicitly set using the <code>@SpaceRouting</code> annotation for <a href="pojo-overview.html">POJO entries</a> or via the <code>SpaceTypeDescriptorBuilder</code> for <a href="document-api.html">document entries</a>. If the routing property is not explicitly set, the space id property is used for routing. If the space id property is not defined, the first indexed property (alphabetically) is used for routing, otherwise the first property (alphabetically) is used for routing.</p>
+        <div class="tc-admon-note">
+            <p>It is highly recommended to explicitly define a routing property - when both space routing and space id are not defined, relying on implicit routing property selection can be confusing (being maintained mainly for backwards compatibility).</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>An auto-generated space ID can be used for routing as well. If the space ID is not defined in a document type, it will be implicitly defined to auto-generate the ID and routing information. (In earlier versions this was not supported, and was ignored in the implicit routing property selection mechanism.)</p>
+        </div>
+        <p>In some scenarios, the data model does not require sophisticated partitioning, and simple space-id-based partitioning is all that's needed (hence the default). In other scenarios this is not enough. For example, suppose we have a <span class="tc-bold">Customer</span> class with a <span class="tc-bold">customerId</span>, and an <span class="tc-bold">Order</span> class with an <span class="tc-bold">orderId</span> and <span class="tc-bold">customerId</span>, and we want all the orders of each customer to be co-located with it in the same partition. In that case we'd explicitly set the routing property of <span class="tc-bold">Order</span> to <span class="tc-bold">customerId</span> to ensure they're co-located.</p>
+        <p>However, note that all objects with a given routing value will be stored on the <span class="tc-italic">same partition</span>. This means that a given partition <span class="tc-italic">must</span> be able to hold all similarly-routed objects. If the routing value is weighted too far in a given direction (i.e., the distribution is very uneven, with one value having 90% of the data set, for example) the partitioning will be uneven. It's best to use a derived routing field that gives a flat distribution across all nodes, if possible.</p><a name="Writing"></a>
+        <h1><a name="writing-new-objects-with-a-collocated-business-logic"></a>Writing New Objects with a Collocated Business Logic</h1>
+        <p>When writing new objects from a collocated business logic with a partitioned space, the routing field must "match" the collocated space instance. When writing new objects from a collocated business logic with a partitioned space, the routing field must "match" the collocated space instance.</p>
+        <div class="tc-admon-refer">
+            <p>See the section about <a href="../admin/clustered-vs-non-clustered-proxies.html#writing-new-objects-from-co-located-business-logic">Writing New Objects from Co-located Business Logic</a>  on the Clustered vs Non-Clustered Proxies page for details.</p>
+        </div><a name="Writing"></a>
+        <h1><a name="writing-to-a-partitioned-space"></a>Writing To a Partitioned Space</h1>
+        <p>As explained above, in <a href="#defining-a-routing-property">Defining a Routing Property</a>, when a proxy is asked to write an entry it extracts the routing property value to determine the relevant partition ID and forwards the entry to that partition. If the routing property value is null, an exception will be thrown indicating the proxy cannot write the entry because it does not know the target partition.</p>
+        <p>When an entry is being updated, the proxy uses the routing property to route the update request to the relevant partition.</p>
+        <p>On a batch write/update via <code>writeMultiple</code>, the proxy iterates over the batch of entries and divides them into groups according to the routing property, and each group is sent to the relevant partition in parallel.</p>
+        <p>An auto-generated ID property can be used for routing as well - the proxy detects that routing is auto-generated, selects a partition using a round-robin approach and forwards the entry to that partition. The space embeds the partition ID in the auto-generated ID value, so if the entry is later updated the proxy will extract the partition ID from the ID value and route the entry to the correct partition. Note that auto-generated routing is only valid in conjunction with auto-generated ID, and cannot be used to route other entries.</p><a name="Querying"></a>
+        <h1><a name="querying-a-partitioned-space"></a>Querying a Partitioned Space</h1>
+        <p>When a proxy is asked to execute a query (template, SQL or id) on a partitioned space, it first checks if the query contains a routing value. If it does, the query is executed only on the relevant partition, otherwise it is broadcast to the entire cluster.</p>
+        <p>This is relevant to all the <code>read</code> / <code>take</code> methods (if exists, by id, async, multiple, etc.), as well as the <code>count</code> and <code>clear</code> methods and space notifications.</p>
+        <div class="tc-admon-note">
+            <p>Blocking operations (<code>read</code> / <code>take</code> with <code>timeout</code> greater than 0) on a partitioned space do not support broadcast - if the routing value is <code>null</code> an exception will be thrown.</p>
+            <p>FIFO ordering is maintained per partition. If a FIFO query is broadcasted to the entire cluster the results are not guaranteed to be FIFO ordered.</p>
+        </div>
+        <h1><a name="initializing-a-partitioned-space"></a>Initializing a Partitioned Space</h1>
+        <p>When initializing a partitioned space, it is possible to load only the data you need for a specific partition.</p>
+        <div class="tc-admon-refer">
+            <p>For more details, see <a href="space-persistency-initial-load.html">Space Persistency Initial Load</a>.</p>
+        </div>
+        <h1><a name="non-partitioned-operations"></a>Non-Partitioned Operations</h1>
+        <p>The <code>clean</code> and <code>snapshot</code> operations are not partition-aware, i.e. they are executed on a default partition that the proxy selects implicitly, and not broadcast to the entire cluster.</p>
+    </body>
+</html>

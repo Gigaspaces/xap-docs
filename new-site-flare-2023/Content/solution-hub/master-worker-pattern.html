@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Master-Worker Pattern</h1>
+        <table>
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shay Hassidim</td>
+                    <td>7.0</td>
+                    <td> </td>
+                    <td><a href="https://github.com/Gigaspaces/solution-hub/blob/master/MasterWorker" target="_blank">Master/Worker pattern</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="overview">&#160;</a>Overview</h1>
+        <p>The <a href="http://books.google.com/books?id=9cV3TbahjW0C&amp;pg=PA153&amp;lpg=PA153&amp;dq=JavaSpaces+Master-Worker+Pattern&amp;source=bl&amp;ots=1l_DQmEGNl&amp;sig=IU2UTbG-xytamrby2r5yaJLnAkk&amp;hl=en&amp;ei=lm6RSo-dGJXjlAeYqOWjDA&amp;sa=X&amp;oi=book_result&amp;ct=result&amp;resnum=1#v=onepage&amp;q=JavaSpaces%20Master-Worker%20Pattern&amp;f=false">Master-Worker Pattern</a> (sometimes called the Master-Slave or the Map-Reduce pattern) is used for parallel processing. It follows a simple approach that allows applications to perform simultaneous processing across multiple machines or processes via a <code>Master</code> and multiple <code>Workers</code>.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sbp/the_master_worker.jpg" alt="the_master_worker.jpg" />
+            </p>
+        </div>
+        <p>In GigaSpaces <MadCap:variable name="General.DataGrid" />, you can implement the Master-Worker pattern using several methods:</p>
+        <ul>
+            <li><a href="map-reduce-pattern-executors-example.html">Task Executors</a> - best for a scenario where the processing activity is collocated with the data (the data is stored within the same space as the tasks being executed).</li>
+            <li><a href="https://docs.gigaspaces.com/latest/dev-java/polling-container.html">Polling Containers</a> - in this case the processing activity runs in a separate machine/VM from the space. This approach should be used when the processing activity consumes a relatively large amount of CPU and takes a large amount of time. It might also be relevant if the actual data required for the processing is not stored within the space, or the time it takes to retrieve the required data from the space is much shorter than the time it takes to complete the processing.</li>
+        </ul>
+        <h1><a name="implementing-master-worker-in-xap-using-polling-containers">&#160;</a>Implementing Master-Worker in <MadCap:variable name="General.ProductNameXAP" /> using Polling Containers</h1>
+        <p>The Polling Containers approach uses the classic JavaSpaces write/take operations to implement the parallel processing. This allows a <code>Master</code> client application to generate a <code>Job</code> that is a set of <code>Request</code> objects, write these into the space and immediately perform a Take operation on the <code>Result</code> objects.</p>
+        <p>The <code>Request</code> object has an <code>execute</code> method that includes the actual processing business logic. The <code>Workers</code>, implemented via a polling container, perform a continuous <code>Take</code> operation on the <code>Request</code> objects. Once a <code>Request</code> object has been consumed, its <code>execute</code> method is called and a <code>Result</code> object is written back into the space. The <code>Master</code> application consumes these incoming objects. Once the amount of <code>Result</code> objects consumed by the <code>Master</code> for the relevant <code>Job</code> matches the amount of <code>Request</code> objects, the <code>Job</code> execution has been completed.</p>
+        <p>When there is one space (with or without a backup) used by the <code>Master</code> and <code>Workers</code>, you can run the workers in blocking mode (take operation with timeout &gt; 0). This means that once a matching <code>Request</code> is written into the space, one of the running workers immediately consumes it.</p>
+        <p>When running multiple <code>Workers</code>, processing is load-balanced across all the workers in an even manner. When there is a large amount of activity, you might need to run a partitioned space to allow the space layer to store a large number of <code>Request</code> objects (there will always be a small number of <code>Result</code> objects in the space), and to cope with a large number of <code>Workers</code>. This makes sure that your system can scale, and the space layer does not act as a bottleneck.</p>
+        <p>When running the space in clustered partitioned mode, you cannot run the workers in blocking mode without assigning a value to the <code>Request</code> object routing field. The <a href="#example-2-designated-workers">Designated Workers approach</a> allows you to run the workers against a partitioned space, in blocking mode.</p>
+        <p>The following sections include code samples and configuration that illustrate the Master-Worker implementation via Polling Containers, using the Random Workers and Designated Workers approach.</p>
+        <h1><a name="example-1-random-workers">&#160;</a>Example 1 - Random Workers</h1>
+        <p>With the Random Workers approach, each worker can consume <code>Request</code> objects from <span class="tc-bold">every</span> space partition. In this case, the non-blocking mode is used. The workers scan the partitions in a round-robin fashion for a <code>Request</code> object to consume and execute. With this approach, there might be a small delay until the workers consume a <code>Request</code> object. This approach might generate some chatting over the network, since the workers connect to all existing partitions to look for <code>Request</code> objects to consume and in case none is found, wait for some time and then try again.</p>
+        <table class="tc-borderless">
+            <tr>
+                <td style="width:50%;">
+                    <p>Step 1:</p>
+                    <div class="tc-align-center">
+                        <p>
+                            <img src="../Resources/Static/attachment_files/sbp/master_worker_rr1.jpg" alt="master_worker_rr1.jpg" />
+                        </p>
+                    </div>
+                </td>
+                <td style="width:50%;">
+                    <p>Step 2:</p>
+                    <div class="tc-align-center">
+                        <p>
+                            <img src="../Resources/Static/attachment_files/sbp/master_worker_rr2.jpg" alt="master_worker_rr2.jpg" />
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  The Master " style="padding:10px"><pre><code class="language-java">public class Master {
+
+    static GigaSpace space;
+
+    public static void main(String[] args) {
+        space= new GigaSpaceConfigurer(new UrlSpaceConfigurer("jini://**/**/mySpace")).gigaSpace();
+
+        for (int i=0;i&lt;10;i++)
+        {
+            submitJob(i, 100);
+        }
+        System.exit(0);
+    }
+
+    static public void submitJob(int jobId , int tasks)
+    {
+        System.out.println(new Date(System.currentTimeMillis())+
+            " - Executing Job " +jobId);
+        Request requests [] = new Request [tasks];
+        for (int i=0;i&lt;tasks; i++)
+        {
+            requests [i] = new  Request ();
+            requests [i].setJobID(jobId);
+            requests [i].setTaskID(jobId + "_"+i);
+        }
+
+        space.writeMultiple(requests);
+        int count = 0;
+        Result reponseTemplate = new Result();
+        reponseTemplate.setJobID(jobId);
+        Result reponses[] = new Result [tasks];
+        while (true)
+        {
+            Result reponse = space.take(reponseTemplate,1000);
+            if (reponse!=null)
+            {
+                reponses[count]= reponse ;
+                count ++;
+            }
+            if (count == tasks)
+            {
+                System.out.println(new Date(System.currentTimeMillis())+ " - Done executing Job " +jobId);
+                break;
+            }
+        }
+    }
+}
+</code></pre>
+            </div>
+            <div title="  The Worker " style="padding:10px"><pre><code class="language-java">@EventDriven @Polling (concurrentConsumers=2)
+public class Worker {
+
+    public Worker ()
+    {
+        System.out.println("Worker started!");
+    }
+
+    @EventTemplate
+    Request template() {
+        Request template = new Request();
+        return template;
+    }
+
+    @ReceiveHandler
+    ReceiveOperationHandler receiveHandler() {
+        SingleTakeReceiveOperationHandler receiveHandler = new SingleTakeReceiveOperationHandler();
+        receiveHandler.setNonBlocking(true);
+        receiveHandler.setNonBlockingFactor(10);
+        return receiveHandler;
+    }
+
+    @SpaceDataEvent
+    public Result execute(Request request) {
+        //process Data here
+        try {Thread.sleep(1000);} catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Result reponse = new Result ();
+        reponse.setJobID(request.getJobID());
+        reponse.setTaskID(request.getTaskID());
+        return reponse;
+    }
+}
+</code></pre>
+            </div>
+            <div title="  The Worker PU config " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:os-events="http://www.openspaces.org/schema/events"
+       xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd"&gt;
+
+    &lt;!-- Enable scan for OpenSpaces and Spring components --&gt;
+    &lt;context:component-scan base-package="org.openspaces.example.masterworker.nonblocking"/&gt;
+    &lt;!-- Enable support for @Polling annotation --&gt;
+    &lt;os-events:annotation-support /&gt;
+    &lt;os-core:space-proxy id="space" name="mySpace" /&gt;
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+    &lt;os-core:giga-space-context/&gt;
+    &lt;os-remoting:annotation-support/&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="  The Base Space Class " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Base {
+
+    public Base (){}
+
+    Integer jobID;
+    String taskID;
+    Object payload;
+
+    @SpaceProperty(index=IndexType.BASIC)
+    @SpaceRouting
+    public Integer getJobID() {
+        return jobID;
+    }
+    public void setJobID(Integer jobID) {
+        this.jobID = jobID;
+    }
+
+    @SpaceId(autoGenerate=false)
+    public String getTaskID() {
+        return taskID;
+    }
+    public void setTaskID(String taskID) {
+        this.taskID = taskID;
+    }
+    public Object getPayload() {
+        return payload;
+    }
+    public void setPayload(Object payload) {
+        this.payload = payload;
+    }
+}
+</code></pre>
+            </div>
+            <div title="  The Request Class " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Request extends Base{
+    public Request (){}
+
+}
+</code></pre>
+            </div>
+            <div title="   The Result Class " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Result extends Base {
+    public Result (){}
+
+}
+</code></pre>
+            </div>
+            <div title="  Deployment Commands " style="padding:10px">
+                <p>Deploying the clustered space PU:</p><pre><code class="language-java">&gt;gs deploy-space -cluster schema=partitioned total_members=2 mySpace
+</code></pre>
+                <p>Deploying the Workers PU:</p><pre><code class="language-java">&gt;gs deploy -cluster total_members=4 MasterWorker.jar
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="example-2-designated-workers">&#160;</a>Example 2 - Designated Workers</h1>
+        <p>With this approach, each new worker is assigned a specific ID and consumes <code>Request</code> objects from a designated partition. In this case, the worker runs in blocking mode. The <code>Request</code> object routing field is populated with the partition ID, with the Polling Container template, and is also populated by the <code>Master</code> application before it is written into the partitioned clustered space.</p>
+        <table class="tc-borderless">
+            <tr>
+                <td style="width:50%;">
+                    <p>Step 1:</p>
+                    <div class="tc-align-center">
+                        <p>
+                            <img src="../Resources/Static/attachment_files/sbp/master_worker_de1.jpg" alt="master_worker_de1.jpg" />
+                        </p>
+                    </div>
+                </td>
+                <td style="width:50%;">
+                    <p>Step 2:</p>
+                    <div class="tc-align-center">
+                        <p>
+                            <img src="../Resources/Static/attachment_files/sbp/master_worker_de2.jpg" alt="master_worker_de2.jpg" />
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="tc-admon-tip">
+            <p>With this approach the number of <code>Workers</code> should be greater than or equal to the number of partitions.</p>
+        </div>
+        <p>See below how the Designated Workers approach should be implemented:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  The Master " style="padding:10px"><pre><code class="language-java">public class Master {
+
+    static GigaSpace space;
+    static int partitions;
+
+    public static void main(String[] args) {
+        space = new GigaSpaceConfigurer(new UrlSpaceConfigurer("jini://*/*/mySpace")).gigaSpace();
+        String total_members = space.getSpace().getURL().getProperty(SpaceURL.CLUSTER_TOTAL_MEMBERS);
+        if (total_members != null)
+            partitions =
+                Integer.valueOf(total_members.substring(0,total_members.indexOf(","))).intValue();
+        else
+            partitions =1;
+
+        for (int i=0;i&lt;10;i++)
+        {
+            submitJob(i, 100);
+        }
+        System.exit(0);
+    }
+
+    static public void submitJob(int jobId , int tasks)
+    {
+        System.out.println(new Date(System.currentTimeMillis())+ " - Executing Job " +jobId);
+        Request requests [] = new Request [tasks];
+        AtomicInteger index = new AtomicInteger(0);
+        for (int i=0;i&lt;tasks; i++)
+        {
+            requests [i] = new  Request ();
+            requests [i].setJobID(jobId);
+            requests [i].setTaskID(jobId + "_"+i);
+            requests [i].setRouting(index.getAndIncrement() %partitions );
+        }
+
+        space.writeMultiple(requests);
+        int count = 0;
+        Result reponseTemplate = new Result();
+        reponseTemplate.setJobID(jobId);
+        while (true)
+        {
+            Result _reponses[] = space.takeMultiple(reponseTemplate,Integer.MAX_VALUE);
+            if (_reponses.length &gt; 0)
+            {
+                count = count +_reponses.length;
+            }
+            if (count == tasks)
+            {
+                System.out.println(new Date(System.currentTimeMillis())+
+                    " - Done executing Job " +jobId);
+                break;
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+</code></pre>
+            </div>
+            <div title="  The Worker  " style="padding:10px"><pre><code class="language-java">@EventDriven @Polling (concurrentConsumers=1)
+public class Worker implements ClusterInfoAware{
+
+    public void setClusterInfo(ClusterInfo clusterInfo) {
+        System.out.println("--------------- &gt; setClusterInfo called");
+        if (clusterInfo != null)
+        {
+            this.clusterInfo = clusterInfo;
+            System.out.println("--------------- &gt; Worker " +
+                clusterInfo.getInstanceId() + " started");
+
+            String total_members = gigaspace.getSpace().getURL().getProperty(SpaceURL.CLUSTER_TOTAL_MEMBERS);
+
+            int partitions ;
+            if (total_members != null)
+                partitions =
+                    Integer.valueOf(total_members .substring(0,total_members.indexOf(","))).intValue();
+            else
+                partitions =1;
+
+            System.out.println("--------------- &gt; "+ gigaspace.getSpace().getName() +
+                " Space got " + partitions + " partitions ");
+            routingValue = (clusterInfo.getInstanceId() - 1) % partitions ;
+
+            System.out.println("--------------- &gt; Worker "+  clusterInfo.getInstanceId() +
+                " attached to Partition:"+ routingValue );
+        }
+        else
+        {
+            System.out.println("--------------- &gt; Worker started in non clustered mode");
+            routingValue = 0;
+        }
+    }
+
+    private ClusterInfo clusterInfo;
+
+    public Worker (){}
+
+    private Integer routingValue;
+
+    @GigaSpaceContext
+    GigaSpace gigaspace;
+
+    public void afterPropertiesSet() throws Exception {
+
+    }
+
+    @EventTemplate
+    Request template() {
+        Request template = new Request();
+        template.setRouting(routingValue);
+        return template;
+    }
+
+    @ReceiveHandler
+    ReceiveOperationHandler receiveHandler() {
+        SingleTakeReceiveOperationHandler receiveHandler = new SingleTakeReceiveOperationHandler();
+        return receiveHandler;
+    }
+
+    @SpaceDataEvent
+    public Result execute(Request request) {
+        //process Data here
+        try {Thread.sleep(1000);} catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        Result reponse = new Result ();
+        reponse.setJobID(request.getJobID());
+        reponse.setTaskID(request.getTaskID());
+        reponse.setRouting(request.getRouting());
+        return reponse;
+    }
+}
+</code></pre>
+            </div>
+            <div title="  The Worker PU config " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:os-events="http://www.openspaces.org/schema/events"
+       xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd"&gt;
+
+    &lt;!-- Enable scan for OpenSpaces and Spring components --&gt;
+    &lt;context:component-scan base-package="org.openspaces.example.masterworker.blocking"/&gt;
+    &lt;!-- Enable support for @Polling annotation --&gt;
+    &lt;os-events:annotation-support /&gt;
+    &lt;os-core:space-proxy id="space" name="mySpace" /&gt;
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+    &lt;os-core:giga-space-context/&gt;
+    &lt;os-remoting:annotation-support/&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="  The Base Space Class " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Base {
+
+    public Base (){}
+
+    Integer jobID;
+    String taskID;
+    Object payload;
+    Integer routing;
+
+    @SpaceProperty(index=IndexType.BASIC)
+    public Integer getJobID() {
+        return jobID;
+    }
+    public void setJobID(Integer jobID) {
+        this.jobID = jobID;
+    }
+
+    @SpaceId(autoGenerate=false)
+    public String getTaskID() {
+        return taskID;
+    }
+    public void setTaskID(String taskID) {
+        this.taskID = taskID;
+    }
+    public Object getPayload() {
+        return payload;
+    }
+    public void setPayload(Object payload) {
+        this.payload = payload;
+    }
+
+    @SpaceRouting
+    public Integer getRouting() {
+        return routing;
+    }
+    public void setRouting(Integer routing) {
+        this.routing = routing;
+    }
+}
+</code></pre>
+            </div>
+            <div title="  The Request Class " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Request extends Base{
+    public Request (){}
+
+}
+</code></pre>
+            </div>
+            <div title="  The Result Class " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Result extends Base {
+    public Result (){}
+
+}
+</code></pre>
+            </div>
+            <div title="  Deployment Commands " style="padding:10px">
+                <p>Deploying the clustered space PU:</p><pre><code class="language-java">&gt;gs deploy-space -cluster schema=partitioned total_members=2 mySpace
+</code></pre>
+                <p>Deploying the Workers PU:</p><pre><code class="language-java">&gt;gs deploy -cluster total_members=4 MasterWorker.jar
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="net-implementation">&#160;</a>.NET Implementation</h1>
+        <p>Here is an <a href="https://github.com/Gigaspaces/solution-hub/blob/master/MasterWorkerForDotNet" target="_blank">example</a> of the Master Worker Pattern for .NET.</p>
+        <h1><a name="references">&#160;</a>References</h1>
+        <ul>
+            <li><a href="http://java.sun.com/developer/Books/JavaSpaces/chapter11.html">JavaSpaces Principles, Patterns, and Practice: Chapter 11</a>
+            </li>
+            <li><a href="https://blog.gigaspaces.com/how-to-implement-my-processor-the-polling-container-benchmark/">Blog post:How to Implement my Processor? - The Polling Container Benchmark</a>
+            </li>
+        </ul>
+    </body>
+</html>

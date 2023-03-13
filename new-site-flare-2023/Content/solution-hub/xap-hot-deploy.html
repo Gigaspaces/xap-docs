@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Hot Deploy&#160;Utility<MadCap:conditionalText MadCap:conditions="Default.DoNotShow"> <span MadCap:conditions="Default.DoNotShow" class="tc-highlight">update table</span></MadCap:conditionalText></h1>
+        <table>
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Anna Babich <br /> Pavlo Romanenko</td>
+                    <td>10.0</td>
+                    <td> </td>
+                    <td />
+                    <td><a href="https://github.com/fe2s/xap-hot-deploy">Github link</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>This tool allows business logic running as a processing unit to be refreshed (rolling PU upgrade) without any system downtime and data loss. The tool uses the hot deploy approach, placing new PU code on the GSM PU deploy folder and later restarting each PU instance.</p>
+        <h1>PU Restart</h1>
+        <p>To refresh the PU code, the tool restarts all processing units for a given PU with these steps. </p>
+        <ol>
+            <li>Old deployment files for the specified PU are moved into a temporary folder to be used in case the upgrade fails. </li>
+            <li>New PU files are copied to the  deploy folder prior to the restart phase. </li>
+            <li>The tool identifies all running PU instances and restarts them one by one, in either stateful or stateless mode. <span style="color: #dc143c;" MadCap:conditions="Default.DoNotShow">based on what</span> </li>
+        </ol>
+        <p>Once the process is completed, both the primary and backup PU instances will run with the updated logic.</p>
+        <h2><a name="stateful-pu-restart">&#160;</a>Stateful  Restart</h2>
+        <p>The tool performs these steps for a stateful restart:</p>
+        <ol>
+            <li>Discovers all PU instances and identifies their Space mode.</li>
+            <li>Restarts all backups  (each instance in a separate thread).</li>
+            <li>Restarts all primaries. If the <code>double_restart</code> option is enabled, primaries are restarted twice to return to the original state (one by one). Without this option, primary partitions  are  restarted one time (each instance in a separate thread). Use <code>double_restart</code> if all instances should be placed in the “original” vm.</li>
+        </ol>
+        <h1>Stateless  Restart</h1>
+        <p>For a stateless restart the tool discover all PU instances and restarts them (each instance in a separate thread).</p>
+        <h1><a name="build">&#160;</a>Build</h1>
+        <p>To build the tool:</p>
+        <ol>
+            <li>Download the source files (<code>xap-hot-deploy-master</code> folder)  from the repository. They can be downloaded to any location on your machine.</li>
+            <li>Enter the command:</li>
+        </ol><pre><code class="language-bash">mvn clean install
+</code></pre>
+        <p>Note, that tests will be skipped in this case. To build with tests see the <a href="#1">tests section</a>.</p>
+        <h1><a name="run">&#160;</a>Run Hot Deploy</h1>
+        <p>To run hot deploy:</p>
+        <ol>
+            <li>Copy new jar(war) files with new classes to the <code>xap-hot-redeploy</code> folder.<span style="color: #dc143c;" MadCap:conditions="Default.DoNotShow"> what/where?</span></li>
+            <li>Configure options in the <code>xap-hot-deploy-master/config.properties</code> file.</li>
+            <li>Run the following script from the xap-hot-deploy-master folder.</li>
+        </ol>
+        <p>&#160;</p>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"> run</code></pre>
+            </div>
+            <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"> run.sh</code></pre>
+            </div>
+        </div>
+        <h2>Runtime configuration</h2>
+        <p>The following options can be configured: </p>
+        <table>
+            <thead>
+                <tr class="tabs-title">
+                    <th>Option</th>
+                    <th>Optional/required</th>
+                    <th>Default value</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>GSM_HOSTS</td>
+                    <td>required</td>
+                    <td>-</td>
+                    <td>Hosts on which GSM are located.</td>
+                </tr>
+                <tr>
+                    <td>PU</td>
+                    <td>required</td>
+                    <td>space=space.jar, web=web.war</td>
+                    <td>Map with key value pairs, where key is processing unit name and value is the name of the file with new classes.</td>
+                </tr>
+                <tr>
+                    <td>SSH_USER</td>
+                    <td>required</td>
+                    <td>user</td>
+                    <td>Name of user on remote machine.</td>
+                </tr>
+                <tr>
+                    <td>GS_HOME_DIR</td>
+                    <td>required</td>
+                    <td>-</td>
+                    <td>Path to gigaspaces directory.</td>
+                </tr>
+                <tr>
+                    <td>LOOKUPLOCATORS</td>
+                    <td>optional</td>
+                    <td>localhost</td>
+                    <td>Jini lookup service locators used for unicast discovery.</td>
+                </tr>
+                <tr>
+                    <td>LOOKUPGROUPS</td>
+                    <td>optional</td>
+                    <td>Gigaspace default lookup group</td>
+                    <td>Jini lookup service group.</td>
+                </tr>
+                <tr>
+                    <td>IDENT_PU_TIMEOUT</td>
+                    <td>required</td>
+                    <td>60</td>
+                    <td>Timeout to identify processing unit (in seconds).</td>
+                </tr>
+                <tr>
+                    <td>IDENT_SPACE_MODE_TIMEOUT</td>
+                    <td>required</td>
+                    <td>60</td>
+                    <td>Timeout to identify space mode (in seconds).</td>
+                </tr>
+                <tr>
+                    <td>IDENT_INSTANCES_TIMEOUT</td>
+                    <td>required</td>
+                    <td>60</td>
+                    <td>Timeout to identify instances (in seconds).</td>
+                </tr>
+                <tr>
+                    <td>RESTART_TIMEOUT</td>
+                    <td>required</td>
+                    <td>60</td>
+                    <td>Timeout for restarting pu (in seconds).</td>
+                </tr>
+                <tr>
+                    <td>IS_SECURED</td>
+                    <td>optional</td>
+                    <td>false</td>
+                    <td>Set this parameter "true" if space is secured.</td>
+                </tr>
+                <tr>
+                    <td>DOUBLE_RESTART</td>
+                    <td>optional</td>
+                    <td>false</td>
+                    <td>Set "true" if all instances should be placed in "original" vm after redeploy. When set to "true" primary instances are restarted twice.</td>
+                </tr>
+                <tr>
+                    <td>LOCAL_CLUSTER_MODE</td>
+                    <td>optional</td>
+                    <td>false</td>
+                    <td>Set "true" for local cluster mode (testing mode).</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Results</h2>
+        <p>If  hot-redeploy runs successfully, you can see success message and details for restarting pu instances, as in this sample:</p><pre><code class="language-bash">14:51:44,392  INFO main ConfigInitializer:init:28 - Gigaspaces location: /home/user/gigaspaces-xap-premium-10.0.0-ga
+14:51:44,393  INFO main ConfigInitializer:init:29 - Pu to restart: [space, cinema, mirror]
+14:51:44,393  INFO main ConfigInitializer:init:30 - Locator: null
+14:51:44,393  INFO main ConfigInitializer:init:31 - Lookup group: null
+14:51:44,394  INFO main ConfigInitializer:init:32 - Timeout for identify pu: 60
+14:51:44,394  INFO main ConfigInitializer:init:33 - Timeout for identify instances: 60
+14:51:44,394  INFO main ConfigInitializer:init:34 - Timeout for identify space mode: 60
+14:51:44,395  INFO main ConfigInitializer:init:35 - Timeout for restart 60
+14:51:44,395  INFO main ConfigInitializer:init:36 - Secured: false
+14:51:44,395  INFO main ConfigInitializer:init:37 - Double restart: false
+14:51:44,395  INFO main ConfigInitializer:init:38 - GSM Hosts: [127.0.0.1]
+14:51:44,395  INFO main ConfigInitializer:init:39 - User: user
+14:51:44,395  INFO main ConfigInitializer:init:40 - Is local cluster: false
+14:51:52,044  INFO main StatefulPuRestarter:restartAllInstances:105 - Restarting pu space with type STATEFUL
+14:51:52,045  INFO pool-6-thread-1 PuInstanceRestarter:restartPUInstance:36 - restarting instance 1 on 127.0.0.1[127.0.0.1] GSC PID:9214 mode:backup...
+14:52:05,085  INFO pool-6-thread-1 PuInstanceRestarter:restartPUInstance:43 - done
+14:52:06,233  INFO pool-7-thread-1 PuInstanceRestarter:restartPUInstance:36 - restarting instance 1 on 127.0.0.1[127.0.0.1] GSC PID:9213 mode:primary...
+14:52:21,367  INFO pool-7-thread-1 PuInstanceRestarter:restartPUInstance:43 - done
+14:52:22,433  INFO main StatelessPuRestarter:restart:23 - Restarting pu cinema with type WEB
+14:52:31,107  INFO main StatelessPuRestarter:restart:25 - done
+14:52:32,116  INFO main StatelessPuRestarter:restart:23 - Restarting pu mirror with type MIRROR
+14:52:38,929  INFO main StatelessPuRestarter:restart:25 - done
+14:52:28,945  INFO main HotRedeployMain:main:17 - Hot redeploy completed successfully
+``
+<![CDATA[
+]]></code></pre>
+        <p>
+If there are any problems during the hot-redeploy, you will see an error message and description of the problem:
+</p><pre><code>
+20:11:27,861  INFO main HotRedeployMain:checkFiles:76 - Please place new files on all GSM machines and try again.
+20:11:27,864  INFO main HotRedeployMain:checkFiles:77 - Hot redeploy failed
+</code></pre>
+        <p>You can see all details about the hot-redeploy process in the <code>hot-redeploy.log</code> file.</p>
+        <h1><a name="tests">&#160;</a>Build with Tests</h1>
+        <p>To build the tool with running tests, enter the command:</p><pre><code class="language-bash">mvn clean install -DskipTests=false
+</code></pre>
+        <h2><a name="prerequisites-for-running-tests">&#160;</a>Prerequisites for running tests:</h2>
+        <ul>
+            <li>Run gs-agent.sh/bat.</li>
+            <li>Set lookup group and locator to default values.</li>
+            <li>Set properties in <code>/tool/src/test/resources/config.properties</code> file. </li>
+            <li>Make sure that there is no pu with name <code>space</code> deployed already.</li>
+        </ul>
+        <h1>Rollback</h1>
+        <p>Rollback functionality helps to avoid the loss of data, if errors occurred during the redeploy (such as a broken pu file).
+When errors occur, the tool searches for backup GSM's. If there is more than one GSM in the system, they will be restarted one by one. If there is only one GSM in the system, the tool will look for an empty GSC and restart it.
+If the rollback finished successfully, all processing units for redeploy return to their original  version, and you will see messages as in this sample.</p><pre><code class="language-bash">
+17:03:48,679  INFO main StatefulPuRestarter:restartAllInstances:105 - Restarting pu space with type STATEFUL
+17:03:48,681  INFO pool-6-thread-1 PuInstanceRestarter:restartPUInstance:36 - restarting instance 1 on 127.0.0.1[127.0.0.1] GSC PID:7612 mode:backup...
+17:04:49,294  INFO pool-6-thread-1 PuInstanceRestarter:restartPUInstance:43 - done
+17:10:35,739  INFO main RollbackChecker:doRollback:100 - Do rollback..
+17:10:35,739  INFO main RollbackChecker:doRollback:106 - There is one GSM in system. Try to find empty GSC
+17:10:35,740  INFO main RollbackChecker:doRollback:109 - Restarting GSC with id 2
+17:10:53,683  INFO main RollbackChecker:doRollback:119 - Rollback completed successfully
+17:10:53,684  WARN main HotRedeployMain:redeploy:44 - Hot redeploy failed. Rollback successfully completed
+</code></pre>
+        <h3><a name="minimal-configuration-for-rollback">&#160;</a>Minimal configuration for rollback:</h3>
+        <p>In order for the rollback to work, the following minimal topology needs to be available:</p>
+        <ul>
+            <li>At least one backup GSM must be deployed.</li>
+        </ul>
+        <ul>
+            <li>If there are n  primary pu instances,  n + 1 GSCs must be deployed.</li>
+        </ul>
+        <p>If no backup GSM and no empty container are found, the rollback will fail and the system will be in unstable state.</p>
+    </body>
+</html>

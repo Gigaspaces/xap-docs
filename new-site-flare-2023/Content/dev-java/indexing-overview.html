@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Indexing</h1>
+        <p>When a Space is looking for a match for a read or take operation, it iterates over non-null values in the template, looking for matches in the Space. This process can be time consuming, especially when there are many potential matches. To improve performance, it is possible to index one or more properties. The Space maintains additional data for indexed properties, which shortens the time required to determine a match, thus improving performance.</p>
+        <h1><a name="choosing-which-properties-to-index"></a>Choosing which Properties to Index</h1>
+        <p>One might wonder why properties are not always indexed, or why all the properties in all the classes are not always indexed. The reason is that indexing has its downsides as well:</p>
+        <ul>
+            <li>An indexed property can speed up read/take operations, but might also slow down write/update operations.</li>
+            <li>An indexed property consumes more resources, specifically memory footprint per entry.</li>
+        </ul>
+        <h1><a name="when-to-use-indexing"></a>When to Use Indexing</h1>
+        <p>Naturally the question arises of when to use indexing. Usually it is recommended to index properties that are used in common queries. However, in some scenarios one might favor less footprint, or faster performance for a specific query, and adding/removing an index should be considered.</p>
+        <div class="tc-admon-important">
+            <p>Keep in mind that "premature optimization is the root of all evil". It is always recommended to benchmark your code to get better results.</p>
+        </div>
+        <h1><a name="dynamic-indexing"></a>Dynamic Indexing</h1>
+        <p>Indexes can be added dynamically during runtime with the <code>GigaSpaceTypeManager</code> interface. This doesn't lock any of the CRUD operations, so system performance is not affected.</p>
+        <div class="tc-admon-note">
+            <p>Refer to <a href="the-space-meta-data.html#modifying-existing-classes">Data Type Metadata</a> for more information.</p>
+        </div>
+        <h1><a name="performance-tips"></a>Performance Tips</h1>
+        <p>Properties that are not indexed and not used for queries can be grouped within a user-defined class (also known as payload class). This improves the read/write performance because these properties aren't introduced to the Space class model.</p>
+        <h1><a name="deprecated-indexing-options"></a>Deprecated Indexing Options</h1>
+        <h2><a name="implicit-indexing"></a>Implicit Indexing</h2>
+        <p>If no properties are indexed explicitly, the Space implicitly indexes the first <span class="tc-bold">n</span> properties (in alphabetical order), where <span class="tc-bold">n</span> is determined by the <code>number-implicit-indexes</code> property in the Space schema.</p>
+        <div class="tc-admon-note">
+            <p>Using this feature is not recommended, because adding/removing properties can have unexpected side effects. It is deprecated, and might be removed in future versions.</p>
+        </div>
+        <h1><a name="query-execution-flow"></a>Query Execution Flow</h1>
+        <p>When a <code>read</code>, <code>take</code>, <code>readMultiple</code>, or <code>takeMultiple</code> call is performed, a template is used to locate matching Space objects. The template may have multiple field values - some may include values and some may not (i.e. <code>null</code> field values acting as wildcard). The fields that do not include values are ignored during the matching process. In addition, some class fields may be indexed and some may not be indexed.</p>
+        <p>When multiple class fields are indexed, the Space looks for the field value index that includes the smallest amount of matching Space objects with the corresponding template field value as the index key.</p>
+        <p>The smallest set of Space objects is the list of objects to perform the matching against (matching candidates). After the candidate Space object list has been constructed, it is scanned to locate Space objects that fully match the given template - i.e. all non-null template fields match the corresponding Space object fields.</p>
+        <div class="tc-admon-note">
+            <p>Class fields that are not indexed are not used to construct the candidate list.</p>
+        </div>
+        <h1 MadCap:conditions="Version.14-2-born">Limitations</h1>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/DevGuide/sql-function-limitation.flsnp" />
+    </body>
+</html>

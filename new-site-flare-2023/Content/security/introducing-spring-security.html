@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Spring Security</h1>
+        <p>Spring Security, historically also known as Acegi Security, provides a comprehensive security solution for handling authentication and authorization. Spring Security namespace provides directives for most common operations, allowing complete security configuration in just a few lines of XML.</p>
+        <p>Spring Security comes with authentication providers for many occasions. Most common are the <code>DaoAuthenticationProvider</code> for retrieving user information from a database; <code>LdapAuthenticationProvider</code> for authentication against a Lightweight Directory Access Protocol (LDAP) server; <code>JaasAuthenticationProvider</code> for retrieving user information from a JAAS login configuration; etc.</p>
+        <p MadCap:conditions="Version.14-5-born">You must apply Password Encoding. See <MadCap:xref href="default-file-based-security-implementation-ext.html">Default File-Based Security</MadCap:xref> for details on defining a password encoder.</p>
+        <div class="tc-admon-note">
+            <p>For more information, please refer to the <a href="http://static.springsource.org/spring-security/site" target="_blank">Spring Security website</a>.</p>
+        </div>
+        <h1><a name="authenticating-users"></a>Authenticating Users</h1>
+        <p>In Spring Security, the authentication manager assumes the job of establishing a user's identity. An authentication manager is defined by the <code>org.springframework.security.authentication.AuthenticationManager</code> interface. The <code>authenticate</code> method will attempt to authenticate the user using the <code>org.springframework.security.core.Authentication</code> object (which carries the principal and credentials). If successful, the <code>authenticate</code> method returns a complete <code>Authentication</code> object, including information about the user's granted authorities. If authentication fails, an authentication exception will be thrown.</p>
+        <p>The <code>AuthenticationManager</code> interface is quite simple and you could easily implement your own <code>AuthenticationManager</code>. But Spring Security comes with <code>org.springframework.security.authentication.ProviderManager</code>, an implementation of <code>AuthenticationManager</code> that is suitable for most situations.</p>
+        <h1><a name="configuring-a-provider-manager"></a>Configuring a Provider Manager</h1>
+        <p><code>ProviderManager</code> is an authentication manager implementation that delegates responsibility for authentication to one or more authentication providers, as shown in the figure below.</p>
+        <p>The purpose of <code>ProviderManager</code> is to enable you to authenticate users against multiple identity management sources. Rather than relying on itself to perform authentication, <code>ProviderManager</code> steps one by one through a collection of authentication providers, until one of them successfully authenticates the user (or until it runs out of providers). This makes it possible for Spring Security to support multiple mechanisms for a single request.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/SpringSecurity-ProviderManager.png" alt="SpringSecurity-ProviderManager.png" class="tc-picture80" />
+            </p>
+        </div>
+        <p>The following chunk of XML shows a typical configuration of <code>ProviderManager</code> in the Spring configuration file:</p><pre><code class="language-java">&lt;sec:authentication-manager&gt;
+   &lt;sec:authentication-provider ref="daoAuthenticationProvider"/&gt;
+   &lt;sec:authentication-provider ref="anonymousAuthenticationProvider"/&gt;
+   &lt;sec:authentication-provider ref="ldapAuthenticationProvider"/&gt;
+&lt;/sec:authentication-manager&gt;</code></pre>
+        <p><code>ProviderManager</code> is given a list of authentication providers through its <code>providers</code> property. Typically, you'll only need one authentication provider, but in some cases, it may be useful to supply a list of several providers so that if authentication fails against one provider, another provider will be tried.</p>
+        <p>Spring comes with numerous authentication providers. We will concentrate on a couple of the most commonly used authentication providers, to give an example how GigaSpaces authorities are to be managed. If you can't find an authentication provider that suits your security needs, you can always create your own by implementing the <code>org.springframework.security.authentication.AuthenticationProvider</code> interface.</p>
+    </body>
+</html>

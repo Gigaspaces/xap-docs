@@ -1,0 +1,980 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="NewSet.New-Changed-16-2">
+    <head>
+        <!--
+        <meta http-equiv="REFRESH" content="0;url=https://docs.gigaspaces.com/latest/started/getting-started-with-gigaspaces-smartcache-set-environment.html" />
+-->
+    </head>
+    <body>
+        <!-- -->
+        <!-- -->
+        <!--       <script type="text/javascript" src="../Resources/Custom/page-toc.js"></script>   -->
+        <!-- -->
+        <!-- -->
+        <h1 class="tc-pagetitle">Installation Procedure for GigaSpaces Smart DIH</h1>
+        <p>This document describes basic operational procedures for installing GigaSpaces <code>Smart DIH</code>, including the Tiered Storage and Data Integration modules.</p>
+        <p>First we install and deploy the basic Smart DIH system:</p>
+        <ul>
+            <li>
+                <p><b>Download </b>the Smart DIH software and place it in the proper directories. The downloaded software includes the <code style="font-weight: bold;">ODSX</code> script. ODSX allows us to install Smart DIH using a simple CLI-based menu.</p>
+            </li>
+            <li>
+                <p>Run the ODSX script to <b>install</b> and <b>deploy</b> a basic Smart DIH installation, including the Tiered Storage module.</p>
+            </li>
+        </ul>
+        <p>  Then we <b>add the Data Integration module</b>:</p>
+        <ul>
+            <li>
+                <p>Note that the installation of Data Integration is performed manually and is not automated by the ODSX script.</p>
+            </li>
+        </ul>
+        <p>Finally, we Run the ODSX script again, this time  to <b>display the status of the Data Integration servers</b>. </p>
+        <!--	<div id="page-toc" style="border: 1px solid blue; width:50%; margin: 15x; padding: 10px; display: none;">   -->
+        <!-- -->
+        <input id="dfb_toc_here" type="hidden"> </input>
+        <h1>What is Smart DIH?</h1>
+        <p>Digital Integration Hub (DIH) is an application architecture that decouples digital applications from the systems of record, and aggregates operational data into a low-latency data fabric. A digital integration hub supports modernization initiatives by offloading from legacy architecture and providing a decoupled API layer that effectively supports modern on-line applications.</p>
+        <p>For more information on the architecture of DIH, see <MadCap:xref href="../SmartDIH.html"> Smart DIH</MadCap:xref> .</p>
+        <h1>Architecture</h1>
+        <p>The example DIH architecture referenced in this topic consists of a Pivot server, used for common access to scripts and resouirces, and several DIH servers. The architecture is shown below.</p>
+        <p>
+            <img src="../Resources/Static/images/dih-main-installation-guide-architecture.png" />
+        </p>
+        <h1>Installing DIH via ODSX – Basic System</h1>
+        <p>This example installs the basic DIH system, including Tiered Storage. For an example using ODSX for the Data Integration module, see <MadCap:xref href="#Installi" class="odsx-di-module">Installing DIH via ODSX – Data Integration Module</MadCap:xref> .</p>
+        <h2>Install the ODSX Installation Script</h2>
+        <p>Smart DIH can be installed using an automated script called ODSX. In order to use ODSX, please note the following prerequisites:</p>
+        <ol>
+            <li>ODSX is supported on RHEL/Centos 7.7.</li>
+            <li>ODSX must run as root.</li>
+            <li>ODSX should be able to connect to the other machines via ssh <b>passwordless</b> (using a ssh key) <b>as root</b>.</li>
+            <li>The Pivot machine should have the following folders:
+			<ul><li><code style="font-weight: bold;">/dbagigashare</code> -  a local folder which contains the sources (installation and configuration files) and is shared (i.e. NFS) with the other dih machines.</li><li><code style="font-weight: bold;">/dbagiga </code>- a local folder (work directory that contains ODSX and DIH)</li></ul><li value="5">Download the latest version of ODSX and DIH sources  to <code>/<b>dbagigashare</b></code> on the Pivot server.<br /></li><div class="tc-admon-note"><p>In order to download ODSX and DIH sources, please contact Customer Success.</p></div></li>
+            <li value="6">Extract the tar file to <code>/dbagiga</code> and create soft links.<br />For example,<br /><![CDATA[  ]]><b>gs-odsx →</b> gs-odsx-3.46-sox-release<br /><b>gigaspaces-smart-ods →</b> gigaspaces-smart-dih-enterprise-16.2.0-m26-thu-30<br /></li>
+            <li>Create a mount point in all the dih machines (except pivot) and configure auto mount<br />For example,<br /> /dbagigashare to: Pivot:/dbagigashare</li>
+        </ol>
+        <h2>Run the ODSX Installation Script</h2>
+        <h3>Prerequisites: Server setup</h3>
+        <p>For this example, we will install using the following servers and IP addresses:</p>
+        <table>
+            <col />
+            <col />
+            <col />
+            <col />
+            <tbody>
+                <tr>
+                    <td>Number</td>
+                    <td>
+                        <p>Instance Type</p>
+                    </td>
+                    <td>
+                        <p>  Instance Name</p>
+                    </td>
+                    <td>
+                        <p>  Private IP</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <p>  ODSX — PIVOT</p>
+                    </td>
+                    <td>
+                        <p>odsx_demo_pivot</p>
+                    </td>
+                    <td>
+                        <p>  10.0.0.165</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>
+                        <p>  Manager1</p>
+                    </td>
+                    <td>
+                        <p>odsx_demo_manager1</p>
+                    </td>
+                    <td>
+                        <p>  10.0.0.198</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>
+                        <p>Manager2</p>
+                    </td>
+                    <td>
+                        <p>odsx_demo_manager2</p>
+                    </td>
+                    <td>
+                        <p>  10.0.0.161</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>
+                        <p>Manager3 </p>
+                    </td>
+                    <td>
+                        <p>ocisx_demo_manager3</p>
+                    </td>
+                    <td>
+                        <p>  10.0.0.36</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>
+                        <p>Space1</p>
+                    </td>
+                    <td>
+                        <p>odsx_demo_space1</p>
+                    </td>
+                    <td>
+                        <p>10.0.0.247 </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>
+                        <p>Space2</p>
+                    </td>
+                    <td>
+                        <p>odsx_demo_space2</p>
+                    </td>
+                    <td>
+                        <p>  10.0.0.56</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>
+                        <p>Space3</p>
+                    </td>
+                    <td>
+                        <p>odsx_demo_space3</p>
+                    </td>
+                    <td>
+                        <p>10.0.0.72 </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>
+                        <p>Grafana/Influx</p>
+                    </td>
+                    <td>
+                        <p>  odsx_demo_influx_grafana </p>
+                    </td>
+                    <td>
+                        <p>10.0.0.82</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Server 1 – Pivot server, containing shared files and the ODSX script</p>
+        <p>Servers 2, 3, 4 – Managers</p>
+        <p>Servers 5, 6, 7  – Space objects (stateful Processing Units)</p>
+        <p>Server 8  – Grafana and InfluxDB, for metrics</p>
+        <p MadCap:conditions="Default.DoNotShow">Servers 9, 10  – "Northbound" management software (load balancer and security protocol)</p>
+        <p MadCap:conditions="Default.DoNotShow">Servers 11, 12, 13 – Data Integration pipelines, including Kafka and Zookeeper. <br /></p>
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
+            <p>In this example, Zookeeper and Kafka have already been installed on servers 11, 12 and 13.</p>
+        </div>
+        <p>&#160;</p>
+        <h3>Navigate to the Pivot server, install and run the ODSX script</h3>
+        <p>To install the ODSX script, navigate to the <code>scripts</code> folder and run the setup script, logged in as <code>root</code>:</p><pre><code class="language-bash">cd gs-odsx/scripts<br />./setup.sh</code></pre>
+        <p>Then exit from the terminal and re-login to the Pivot (ODSX) machine.</p>
+        <p>After connecting to the Pivot server, go to the<code> gs-odsx</code> directory and run the ODSX script:</p><pre><code class="language-bash">cd gs-odsx<br />./odsx.py</code></pre>
+        <h3>The ODSX Menu</h3>
+        <p>The ODSX script presents a structured menu of options and operations, as shown below.</p>
+        <p>
+            <img src="../Resources/Static/images/dih-odsx-menu.png" />
+        </p>
+        <p>The menu options used in this example as are follows:</p>
+        <p MadCap:conditions="Default.DoNotShow">[1] Settings </p>
+        <p><b>[2] Servers</b> – Define and manage servers</p>
+        <p MadCap:conditions="Default.DoNotShow">[3] Data Engine </p>
+        <p MadCap:conditions="Default.DoNotShow">[4] Security </p>
+        <p MadCap:conditions="Default.DoNotShow">[5] Logs </p>
+        <p MadCap:conditions="Default.DoNotShow">[6] Space </p>
+        <p MadCap:conditions="Default.DoNotShow">[7] Streams </p>
+        <p MadCap:conditions="Default.DoNotShow">[8] Wan gateway </p>
+        <p MadCap:conditions="Default.DoNotShow">[9] Object (TBD) </p>
+        <p MadCap:conditions="Default.DoNotShow">[10] Validators </p>
+        <p><b>[11] Tiered Storage</b> – Manage and update Tiered Storage</p>
+        <p MadCap:conditions="Default.DoNotShow">[12] Discover </p>
+        <p MadCap:conditions="Default.DoNotShow">[13] Manage Recovery Policy </p>
+        <p MadCap:conditions="Default.DoNotShow">[14] Utilities </p>
+        <p MadCap:conditions="Default.DoNotShow">[99] EXIT</p>
+        <p>&#160;</p>
+        <h3><b>View Server Information </b>
+        </h3>
+        <p>The <b>[2] Servers</b> option displays the Servers menu, which allows you to install and manage the servers in the system.</p>
+        <p>
+            <img src="../Resources/Static/images/dih-odsx-servers-menu.png" />
+        </p>
+        <p>This sub menu allows you to specify actions for a specific server. </p>
+        <h4><b>Install Grafana </b>
+        </h4>
+        <p>Choose options <code>[2] Servers</code> – <code>[5] Grafana</code> – <code>[1] Install</code> to install Grafana.</p>
+        <p>When complete, messages similar to the following are displayed:</p>
+        <p>
+            <img src="../Resources/Static/images/dih-odsx-servers-menu-grafana-installed.png" />
+        </p>
+        <p>Choose options <code>[2] Servers</code> – <code>[5] Grafana</code> – <code>[4] List</code> to see the status of the Grafana server.</p>
+        <p>
+            <img src="../Resources/Static/images/dih-odsx-servers-menu-grafana-list.png" />
+        </p>
+        <h4><b>Start Grafana </b>
+        </h4>
+        <p>Choose options <code>[2] Servers</code> – <code>[5] Grafana</code> – <code>[2] Start</code> to start Grafana. A display similar to the following will appear:</p>
+        <p>
+            <img src="../Resources/Static/images/dih-odsx-servers-menu-grafana-start.png" />
+        </p>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h4><b>Install InfluxDB</b>
+            </h4>
+            <p>Choose options <code>[2] Servers</code> – <code>[6] Influxdb</code> – <code>[1] Install</code> to install InfluxDB.</p>
+            <p>When complete, messages similar to the following are displayed:</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-menu-influxdb-installed.png" />
+            </p>
+        </div>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h4><b>Install Managers</b>
+            </h4>
+            <p>Choose options <code>[2] Servers</code> – <code>[1] Manager</code> – <code>[1] Install</code> to install the Managers.</p>
+            <p>The script will show the servers that are to be installed:</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-menu-manager-show-servers.png" />
+            </p>
+            <p>When complete, messages similar to the following are displayed:</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-menu-manager-result.png" />
+            </p>
+        </div>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h4><b>Start Managers</b>
+            </h4>
+            <p>Choose options <code>[2] Servers</code> – <code>[1] Manager</code> – <code>[3] Start</code> to start the Managers.</p>
+            <p>The script will show information similar to that shown below, as the processing is executing:</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-menu-manager-start-initial.png" />
+            </p>
+            <p>When complete, choose options <code>[2] Servers</code> – <code>[1] Manager</code> – <code>6] List</code> to see information similar to that shown below.</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-menu-manager-start-result.png" />
+            </p>
+        </div>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h4><b>Install Spaces</b>
+            </h4>
+            <p>Choose options <code>[2] Servers</code> – <code>[2] Space</code> – <code>1] Install</code> to install the Space servers.</p>
+            <p>The script will show the current cluster configuration:</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-menu-space-start-initial.png" />
+            </p>
+            <p>When complete, choose options <code>[2] Servers</code> – <code>[2] Space</code> – <code>4] List</code> to see information similar to that shown below.</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-menu-space-start-final.png" />
+            </p>
+        </div>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h4><b>Start Spaces</b>
+            </h4>
+            <p>Choose options <code>[2] Servers</code> – <code>[2] Space</code> – <code>2] Start</code> to start the Space servers.</p>
+            <p>The script will show information similar to that shown below, as the processing is executing:</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-menu-manager-start-initial.png" />
+            </p>
+            <p>When complete, choose options <code>[2] Servers</code> – <code>2] Space</code> – <code>4] List</code> to see information similar to that shown below.</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-menu-manager-start-result.png" />
+            </p>
+        </div>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h4><b>View Spaces with Version Information</b>
+            </h4>
+            <p>Choose options <code>[2] Servers</code> – <code>[2] Space</code> – <code>6] ListWithVersion</code> to see the list of Space servers with their version information.</p>
+            <p>The script will show information similar to that shown below, as the processing is executing:</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-menu-space-list-with-version.png" />
+            </p>
+            <p>When complete, choose options <code>[2] Servers</code> – <code>2] Space</code> – <code>4] List</code> to see information similar to that shown below.</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-menu-manager-start-result.png" />
+            </p>
+        </div>
+        <div MadCap:conditions="NewSet.JustAColorForDivs,Default.DoNotShow">
+            <h4><b>Install Northbound Servers</b>
+            </h4>
+            <p>Choose options <code>[2] Servers</code> – <code>4] NorthBound</code> – <code>1] Install</code> to install the Northbound servers.</p>
+            <p>In this example, for the prompt "Do you want to install as application service (y/n)"  we choose "n" to illustrate the management server installation.</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-northbound-proceed-with-management-server.png" />
+            </p>
+            <p>Note that the list of servers is displayed, which can be overridden if desired:</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-northbound-list-of-servers.png" />
+            </p>
+            <p>When complete, choose options <code>[2] Servers</code> – <code>[4] NorthBound</code> – <code>4] List</code> to see information similar to that shown below.</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-servers-northbound-show-result.png" />
+            </p>
+        </div>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h4><b>Deploy Tiered Storage</b>
+            </h4>
+            <p>Choose options <code>11] Tiered Storage</code> – <code>1] Deploy</code> to deploy Tiered Storage.</p>
+            <p>In this example, there are no existing Spaces on the cluster with Tiered Storage. Three available Space hosts are also shown.</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-tiered-storage-install-preliminary-list.png" />
+            </p>
+            <p>Enter the requested information as requested by the prompts. Sample information is shown below, including the path to the criteria file for Tiered Storage.</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-tiered-storage-install-some-parameters.png" />
+            </p>
+            <p>A typical Tiered Storage criteria file is shown below.</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-tiered-storage-sample-criteria-file.png" />
+            </p>
+            <p>When deployment is complete, a screen similar to the one below will display.</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-tiered-storage-install-end-result.png" />
+            </p>
+        </div>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <h4><b>Update Tiered Storage</b>
+            </h4>
+            <p>After making changes to the Tiered Storage criteria file, choose options <code>11] Tiered Storage</code> – <code>2] UpdateCachePolicy</code> to update Tiered Storage.</p>
+            <p>You will see a display similar to the example shown below. Note that the upper part of the screen shows the available Spaces. After choosing Space number 1, the instances of that Space are shown. Follow the prompts to continue the process of updating Tiered Storage.</p>
+            <p>
+                <img src="../Resources/Static/images/dih-odsx-tiered-storage-update-before.png" />
+            </p>
+        </div>
+        <h1>Installing the Data Integration Module</h1>
+        <h3>Flink installation</h3>
+        <p>In order to install standalone Flink please do the following.</p>
+        <p>1. Flink should be installed on the same server with Kafka. Download <code>flink</code>  version 1.15.0 from <a href="https://giga-di.s3.eu-west-1.amazonaws.com/Flink/flink-1.15.0-bin-scala_2.12.tgz">here</a>.</p>
+        <p>2. As <code>gsods </code>OS user, copy the downloaded <code>tar.gz</code> file to the following directory: <code>/home/gsods/di-flink</code></p>
+        <div class="tc-admon-note">
+            <p>If DI software should be installed under the different file system or directory , then create a symbolic link from <code>/home/gsods/di-flink</code> to the new installation directory <code>&lt;alternative directory&gt;/di-flink</code></p>
+        </div>
+        <p>3. Unzip and open the downloaded flink archive file:</p><pre><code class="language-bash">tar -xzf flink-1.15.0-bin-scala_2.12.tgz</code></pre>
+        <p>4. Create a symbolic link latest-flink to the new flink directory:</p><pre><code class="language-bash">ln -s flink-1.15.0 latest-flink</code></pre>
+        <p>5. Start Flink as <code>gsods </code>OS user:</p><pre xml:space="preserve"><code class="language-bash">cd  /home/gsods/di-flink/latest-flink/bin<br />./start-cluster.sh</code>
+</pre>
+        <p>6. Flink UI is started on the port 8081. Connect to Flink UI:</p><pre><code class="language-bash">http://&lt;flink server&gt;:8081</code></pre>
+        <div class="tc-admon-note">
+            <p>This is a basic Apache Flink installation. More advanced instructions of a Flink configuration in a cluster mode and flink services configuration will be provided later.</p>
+        </div>
+        <h3>DI Metadata Manager Installation</h3>
+        <p>In order to install DI Metadata Manager first time do the following.</p>
+        <p>1. Download the latest DI Metadata Manager <code>tar.gz</code> file</p>
+        <p>2. Create a directory for DI Metadata Manager software as <code>gsods</code> OS user:</p><pre><code class="language-bash">mkdir /home/gsods/di-Metadata Manager</code></pre>
+        <p>3. Copy the downloaded tar.gz to the <code>/home/gsods/di-Metadata Manager</code>  directory.</p>
+        <p>4. Change to the  /home/gsods/di-Metadata Manager</p><pre><code class="language-bash">cd  /home/gsods/di-Metadata Manager</code></pre>
+        <p>5. Unzip and open the downloaded di-Metadata Manager archive file</p><pre><code class="language-bash">tar -xzf di-Metadata Manager-&lt;version&gt;.tar.gz</code></pre>
+        <p>6. Create a symbolic link <code>latest-di-Metadata Manager</code> to the newly created directory:</p><pre><code class="language-bash">ln -s di-Metadata Manager-&lt;version&gt; latest-di-Metadata Manager</code></pre>
+        <p>7. As root OS user, change to the config directory of the di-Metadata Manager</p><pre xml:space="preserve"><code class="language-bash">su - root<br />cd /home/gsods/di-Metadata Manager/latest-di-Metadata Manager/config</code>
+</pre>
+        <p>8. Copy di-Metadata Manager service file to the systemd services directory (as <code>root </code>OS user)</p><pre><code class="language-bash">cp di-Metadata Manager.service /etc/systemd/system</code></pre>
+        <p>9. Reload systemd configuration (as <code>root </code>OS user)</p><pre><code class="language-bash">systemctl daemon-reload</code></pre>
+        <p>10. Start di-Metadata Manager service (as <code>root </code>OS user)</p><pre><code class="language-bash">systemctl start di-Metadata Manager</code></pre>
+        <p>11. Monitor the log of the di-Metadata Manager (as <code>gsods </code>OS user)</p><pre><code class="language-bash">/home/gsods/di-Metadata Manager/latest-di-Metadata Manager/logs/di-Metadata Manager.log</code></pre>
+        <p>12. DI Metadata Manager service is started on a port 6081, check the DI Metadata Manager rest service</p><pre><code class="language-bash">http://&lt;di Metadata Manager&gt;:6081/swagger-ui</code></pre>
+        <h3>DI Manager installation</h3>
+        <p>In order to install DI Manager first time do the following.</p>
+        <p>1. Download the latest DI Manager <code>tar.gz</code> file</p>
+        <p>2. Create a directory for DI Manager software as <code>gsods </code>OS user</p><pre><code class="language-bash">mkdir /home/gsods/di-manager</code></pre>
+        <p>3. Copy the downloaded <code>tar.gz</code> to the <code>/home/gsods/di-manager</code>  directory</p>
+        <p>4. Change to the<code>  /home/gsods/di-manager</code> directory</p><pre><code class="language-bash">cd  /home/gsods/di-manager</code></pre>
+        <p>5. Unzip and open the downloaded <code>di-manager</code> archive file</p><pre><code class="language-bash">tar -xzf di-manager-&lt;version&gt;.tar.gz</code></pre>
+        <p>6. Create a symbolic link <code>latest-di-manager</code> to the newly created directory</p><pre><code class="language-bash">ln -s di-manager-&lt;version&gt; latest-di-manager</code></pre>
+        <p>7. Change the <code>di-manager</code> parameter to point to the correct <code>di-Metadata Manager</code> server (as <code> gsods</code> OS user)</p><pre><code class="language-bash">cd  /home/gsods/di-manager/latest-di-manager/config<br />vi di-manager-application.properties</code></pre>
+        <p>8. Change <code>Metadata Manager.server.url</code> to point to the <code>Metadata Manager</code> server</p>
+        <div class="tc-admon-note">
+            <p>Avoid using localhost but the actual hostname where Metadata Manager is running. Usually DI-Metadata Manager and DI-Manager will be running on the same host.</p>
+        </div>
+        <p>9. As <code>root </code>OS user change to the <code>config</code>directory of the <code>di-manager</code></p><pre><code class="language-bash">su - root<br />cd /home/gsods/di-manager/latest-di-manager/config</code></pre>
+        <p>10. Copy the <code>di-manager</code> service file to the <code>systemd </code>services directory (as <code>root </code>OS user)</p><pre><code class="language-bash">cp di-manager.service /etc/systemd/system</code></pre>
+        <p>11. Reload <code>systemd</code> configuration (as <code>root</code> OS user)</p><pre><code class="language-bash">systemctl daemon-reload</code></pre>
+        <p>12. Start the <code>di-manager</code> service (as <code>root</code> OS user)</p><pre><code class="language-bash">systemctl start di-manager</code></pre>
+        <p>13. Monitor the log of the <code>di-manager</code> (as <code>gsods</code> OS user)</p><pre><code class="language-bash">/home/gsods/di-manager/latest-di-manager/logs/di-manager.log</code></pre>
+        <p>14. DI Manager service is started on port 6080, check the DI Manager rest service</p><pre><code class="language-bash">http://&lt;di manager host&gt;:6080/swagger-ui</code></pre>
+        <h3>DI packages - upgrade procedure</h3>
+        <p>In order to install new DI package please do the following.</p>
+        <p>1. Via <code>postman</code> stop active pipelines</p>
+        <p>2. As<code> gsods</code> OS user, download the new DI package (<code>di-mdm</code> or <code>di-manager</code>) to the<code> /home/gsods/&lt;DI component&gt;</code></p>
+        <p>3. For <code>di-mdm</code>, download the new <code>tar.gz</code> package to the <code>/home/gsods/di-mdm</code> directory</p>
+        <p>4. For the <code>di-manager</code>, download the new <code>tar.gz</code> package to the <code>/home/gsods/di-manager</code> directory</p>
+        <p>5. As <code>gsods</code> OS user, unzip / untar the newly downloaded package</p><pre><code class="language-bash">tar -xzf &lt;new tar file&gt;</code></pre>
+        <p>6. For <code> di-mdm</code> do the following manual steps as <code>gsods</code>OS user:</p><pre><code class="language-bash">cd /home/gsods/di-mdm/&lt;new package&gt;/lib<br />cp  /home/gsods/di-mdm/latest-di-mdm/lib/sqlitesample.db .</code></pre>
+        <p>7. For <code>di-manager</code> do the following manual step as <code>gsods</code> OS user:</p><pre><code class="language-bash">tar -xzf di-manager-&lt;version&gt;.tar.gz</code></pre><pre><code class="language-bash">cd /home/gsods/di-manager/&lt;new package&gt;/config<br />cp /home/gsods/di-manager/latest-di-manager/config/di-manager-application.properties .</code></pre>
+        <div class="tc-admon-note">
+            <p>The two manual steps shown above will be automated in a future release.</p>
+        </div>
+        <p>8. As <code>root</code> OS user do the following:</p>
+        <p>9. Go to the utils directory of the newly installed package</p><pre><code class="language-bash">cd /home/gsods/di-mdm/&lt;new package&gt;/utils</code></pre>
+        <p>10. Run the installation script</p><pre><code class="language-bash">./install_new_version.sh</code></pre>
+        <div class="tc-admon-note">
+            <p>The installation script does the following:</p>
+            <ul>
+                <li>
+                    <p>Stops the running service of the DI component (<code>di-manager</code>, <code>di-mdm</code>)</p>
+                </li>
+                <li>
+                    <p>Changes the symbolic link <code>latest-&lt;di component&gt;</code> to the active package directory</p>
+                </li>
+                <li>
+                    <p>Starts the DI component service</p>
+                </li>
+            </ul>
+        </div>
+        <p>11. As <code>gsods</code> OS user , upload the updated <code>di-processor</code> jar file to the flink</p>
+        <p>12. Remove the already uploaded <code>di-processor</code> jar file from the flink UI<br /></p>
+        <p>
+            <img src="../Resources/Static/images/DIH-Installation-guide-apache-flink-dashboard.png" />
+        </p>
+        <p>13. Verify in Postman that environment variable points to the latest Metadata Manager processor jar:</p>
+        <p>
+            <img src="../Resources/Static/images/DIH-Installation-guide-verify-in-postman.png" />
+        </p>
+        <p>14. Via postman run Configure Flink API:</p>
+        <p>
+            <img src="../Resources/Static/images/DIH-Installation-guide-via-postman-run.png" />
+        </p>
+        <p>15. Via postman start a pipeline:</p>
+        <h3>Working with Postman</h3>
+        <p>The Postman standalone application can be found very useful in organizing  the various DI layer Rest APIs in a correct logical order.</p>
+        <h4>Create environment variables</h4>
+        <p>As a first step let's define environment with all required environment variables.</p>
+        <ol>
+            <li>
+                <p>Open Postman.</p>
+            </li>
+            <li>
+                <p>Go to the Environments  tab:<br /><img src="../Resources/Static/images/dih-di-installation-guide-environments-tab.png" /></p>
+            </li>
+            <li>
+                <p>Create a new variables environment:<br /><img src="../Resources/Static/images/dih-di-installation-guide-new-environment.png" /></p>
+            </li>
+            <li>
+                <p>Provide a name for this new environment , for example “Development”:<br /><img src="../Resources/Static/images/dih-di-installation-guide-new-environment-provide-name.png" /><br /></p>
+            </li>
+            <li>
+                Define the environment variables listed in the table below.<br /></li>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>Variable name</p>
+                        </td>
+                        <td>
+                            <p>Example</p>
+                        </td>
+                        <td>
+                            <p>Description&#160;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>managerUrl</p>
+                        </td>
+                        <td>
+                            <p>http://di-stage-s1:6080</p>
+                        </td>
+                        <td>
+                            <p>The http URL endpoint of the DI Manager including the port</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>mdmUrl</p>
+                        </td>
+                        <td>
+                            <p>http://di-stage-s1:6081</p>
+                        </td>
+                        <td>
+                            <p>The http URL endpoint of the MDM including the port</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>flinkUrl</p>
+                        </td>
+                        <td>
+                            <p>http://di-stage-kafka1:8081</p>
+                        </td>
+                        <td>
+                            <p>The http URL endpoint of the Flink including port</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>bootstrapServers</p>
+                        </td>
+                        <td>
+                            <p>di-stage-kafka1:9092,</p>
+                            <p>di-stage-kafka2:9092,</p>
+                            <p>di-stage-kafka3:9092</p>
+                        </td>
+                        <td>
+                            <p>Kafka bootstrap servers including ports. Multiple Kafka servers can be included in a comma separated format&#160;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>spaceLookupLocators</p>
+                        </td>
+                        <td>
+                            <p>di-stage-gs1</p>
+                        </td>
+                        <td>
+                            <p>Space server</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>spaceLookupGroups</p>
+                        </td>
+                        <td>
+                            <p>xap-16.2.0</p>
+                        </td>
+                        <td>&#160;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>spaceName</p>
+                        </td>
+                        <td>
+                            <p>DEV</p>
+                        </td>
+                        <td>
+                            <p>Space name</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>kafkaGroupId</p>
+                        </td>
+                        <td>
+                            <p>diprocessor</p>
+                        </td>
+                        <td>
+                            <p>Kafka DI Consumer group name</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>kafkaTopic_CDC</p>
+                        </td>
+                        <td>
+                            <p>pipeline_cdc</p>
+                        </td>
+                        <td>
+                            <p>The name of the Kafka topic for CDC changes</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>kafkaTopic_IL</p>
+                        </td>
+                        <td>
+                            <p>pipeline_il</p>
+                        </td>
+                        <td>
+                            <p>The name of the Kafka topic for initial load changes</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>diProcessorJar</p>
+                        </td>
+                        <td>
+                            <p>/home/gsods/di-manager/latest-di-manager/lib/job-0.0.7.jar</p>
+                        </td>
+                        <td>
+                            <p>The full path of the DI Processor jar</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>pipelineId</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>The ID of the pipeline. This is generated upon pipeline creation and can be retrieved later on via list pipelines REST API</p>
+                            <p>GET {{managerUrl}}/api/v1/pipeline/</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>dbUrl</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>JDBC URL to connect to the source database Db2 zos example:</p>
+                            <p>jdbc:db2://&lt;IP&gt;:&lt;db port&gt;/&lt;DB location&gt;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>dbUsername</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>DI database user name to connect to the source database&#160;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>dbName</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>The name of the source database inside DI internal repository&#160; (this can be any name that logically represents the System of Records)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>dbSchemaName</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>The source database schema that owns tables that DI captures changes from&#160;</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <li>
+                Save the newly created environment variables.<br /><img src="../Resources/Static/images/dih-di-installation-guide-save-environmental-variables.png" /><br /></li>
+        </ol>
+        <h4>Import Collection of APIs</h4>
+        <p>Postman API collection is a group of APIs organized in a logical order that represents certain product functionality , such as create pipeline, define generic environment, or administer pipeline.</p>
+        <p>DI Postman collection is released with every DI release and can be imported into the local postman environment.</p>
+        <p>In order to import released DI collection, proceed as follows.:</p>
+        <ol>
+            <li>
+                <p>Open Postman</p>
+            </li>
+            <li>
+                <p>Go to the Collections tab and click Import:<br /><img src="../Resources/Static/images/dih-di-installation-guide-collections-import.png" /></p>
+            </li>
+            <li>
+                <p>In a file tab click on “Upload files” and choose the newly downloaded DI Postman collection file to import from:</p>
+                <p>
+                    <img src="../Resources/Static/images/dih-di-installation-guide-collections-upload.png" />
+                </p>
+            </li>
+            <li>
+                <p>
+                    At the end of the import you should see a new collection present under the “Collections” tab.<br /></p>
+                <p>
+                    <img src="../Resources/Static/images/dih-di-installation-guide-new-collection.png" style="width: 696px;height: 377px;" />
+                </p>
+            </li>
+        </ol>
+        <h1><a name="Installi"></a>Display the Status of the Data Integration Servers</h1>
+        <p>After connecting to the Pivot server, go to the<code> gs-odsx</code> directory and run the ODSX script, logged in as <code>root</code>:</p><pre><code class="language-bash">cd gs-odsx<br />./odsx.py</code></pre>
+        <h3>The ODSX Menu</h3>
+        <p>The ODSX script presents a structured menu of options and operations, as shown below.</p>
+        <p>
+            <img src="../Resources/Static/images/dih-odsx-menu.png" />
+        </p>
+        <h3><b>View Server Information </b>
+        </h3>
+        <p>The <b>[2] Servers</b> option displays the Servers menu, which allows you to install and manage the servers in the system.</p>
+        <p>
+            <img src="../Resources/Static/images/dih-odsx-servers-menu.png" />
+        </p>
+        <p>The sub menu allows you to specify actions for a specific server.</p>
+        <p> Choose <code>[3] DI</code>, and the following menu appears:</p>
+        <p>
+            <img src="../Resources/Static/images/dih-odsx-servers-menu-DI.png" />
+        </p>
+        <p>Option <code>[4] list</code> shows the available DI servers and their status. An example display is shown below.</p>
+        <p>
+            <img src="../Resources/Static/images/dih-odsx-servers-menu-DI-list.png" />
+        </p>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Release notes 0.0.12.4</h1>
+            <h2>New Features</h2>
+            <p>PIC-844 DI Processor Added basic performance metrics report to the InfluxDB</p>
+            <p>PIC-843 DI Processor performance enhancement to write via distributed task</p>
+        </div>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h2>Bug fixes</h2>
+            <p>PIC-909 FlinkConfig has been stored incorrectly and prevented pipeline from starting</p>
+            <p>PIC-839 DI Processor NULL in a field value causes a parsing error</p>
+            <p>PIC-903 DI Processor generates unnecessary logging of processed records</p>
+            <p>PIC-881 DI Manager Fails to start several jobs in parallel for different pipelines because the same job name is used</p>
+            <p>PIC-858 DI Manager re-deploy DI Processor jar if start job fails with invalid jar id</p>
+        </div>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Release notes 0.0.9.1</h1>
+            <table style="width: 100%;">
+                <col />
+                <col />
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>Release date</p>
+                        </td>
+                        <td>
+                            <p>20/07/2022</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Previous version</p>
+                        </td>
+                        <td>
+                            <p>0.0.8.1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>DI-Manager 0.0.9.1</p>
+                        </td>
+                        <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-manager-0.0.9.1.tar.gz">Download link</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>DI-Metadata Manager      0.0.9.1</p>
+                        </td>
+                        <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-mdm-0.0.9.1.tar.gz">Download link</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Postman collection</p>
+                        </td>
+                        <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/DI+v2.0+stage+-+0.0.9.1.postman_collection.json">Download link</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>New features</h2>
+            <p>PIC-776  Data dictionary fetch from SoR (DB2 ZOS) directly into Metadata Manager</p>
+            <p>PIC-713  Added ZK as a repository to the Metadata Manager</p>
+            <p>PIC-765  DI Manager unified REST API to create pipeline and tables mappings</p>
+            <p>PIC-862  DI Manager start pipeline API - added option to start from a specific Kafka offset</p>
+            <p>PIC-807 DI Manager - added pipeline control APIs</p>
+            <p>PIC7-12  DI Manager / DI Metadata Manager - added OpenAPIv3.0 (Swagger)</p>
+            <p>PIC-872 DI Manager - create Kafka topic if does not exist</p>
+            <p>PIC-709 DI Processor - implemented pluggable architecture concept to the message parsing structure</p>
+            <p>PIC-845 DI Manager - automatic conversion from a sourceType to a spaceType</p>
+            <p>PIC-846 DI Manager - automatic conversion from a spaceType into tableExtraction type</p>
+            <h2>Bug fixes</h2>
+            <p>PIC-838 Start pipeline returns always error code 500</p>
+        </div>
+        <h3>APPENDIX – DI v2.0 Layer - Ports</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>#</p>
+                    </td>
+                    <td>
+                        <p>DI Component</p>
+                    </td>
+                    <td>
+                        <p>Protocol : Port</p>
+                    </td>
+                    <td>
+                        <p>Accessed by</p>
+                    </td>
+                    <td>
+                        <p>Remarks</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>1</p>
+                    </td>
+                    <td>
+                        <p>IIDR DB2ZOS Agent</p>
+                    </td>
+                    <td>
+                        <p>TCP:11801</p>
+                    </td>
+                    <td>
+                        <p>IIDR Windows UI</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>2</p>
+                    </td>
+                    <td>
+                        <p>IIDR Kafka Agent</p>
+                    </td>
+                    <td>
+                        <p>TCP:11701</p>
+                    </td>
+                    <td>
+                        <p>IIDR Windows UI</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>3</p>
+                    </td>
+                    <td>
+                        <p>IIDR Access Server</p>
+                    </td>
+                    <td>
+                        <p>TCP:10101</p>
+                    </td>
+                    <td>
+                        <p>IIDR Windows UI</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>4</p>
+                    </td>
+                    <td>
+                        <p>Flink server</p>
+                    </td>
+                    <td>
+                        <p>HTTP:8081</p>
+                    </td>
+                    <td>
+   Windows UI
+   DI Manager
+  </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>5</p>
+                    </td>
+                    <td>
+                        <p>Kafka</p>
+                    </td>
+                    <td>
+                        <p>TCP:9092</p>
+                    </td>
+                    <td>
+   Flink server
+   IIDR Kafka Agent
+  </td>
+                    <td>
+                        <p>Flink and Kafka are running on the same server</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>6 </p>
+                    </td>
+                    <td>
+                        <p>Zookeeper</p>
+                    </td>
+                    <td>
+                        <p>TCP:2181</p>
+                    </td>
+                    <td>
+                        <p>Metadata Manager</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>7</p>
+                    </td>
+                    <td>
+                        <p>DB2 ZOS</p>
+                    </td>
+                    <td>
+                        <p>TCP:&lt;DB port&gt;</p>
+                    </td>
+                    <td>
+   IIDR DB2ZOS Agent
+   Metadata Manager
+   DI Manager
+  </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>8</p>
+                    </td>
+                    <td>
+                        <p>ZOS</p>
+                    </td>
+                    <td>
+                        <p>TCP:22</p>
+                    </td>
+                    <td>
+                        <p>IIDR DB2ZOS Agent</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>9</p>
+                    </td>
+                    <td>
+                        <p>DI Manager</p>
+                    </td>
+                    <td>
+                        <p>HTTP:6080</p>
+                    </td>
+                    <td>
+                        <p>GS UI (Windows)</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10</p>
+                    </td>
+                    <td>
+                        <p>Metadata Manager</p>
+                    </td>
+                    <td>
+                        <p>HTTP:6081</p>
+                    </td>
+                    <td>
+   GS UI(Windows)
+   DI Manager
+   Flink Server (DI Processor)
+  </td>
+                    <td>
+                        <p>Metadata Manager and DI Manager are running on the same server</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 MadCap:conditions="Default.DoNotShow">Resources</h1>
+        <p MadCap:conditions="Default.DoNotShow"><a href="https://docs.google.com/document/d/1uA0iddbAUgOtQs9PR0R8bXXlmD6Q_87HhlbkVel9rG0/edit">DI v2.0 new design proposal</a>
+        </p>
+        <p>&#160;</p>
+        <div class="tc-admon-note">
+            <p>Need assistance or further information? Don't hesitate to <a href="https://www.gigaspaces.com/contact-us">contact us</a> — we're here to help!</p>
+        </div>
+    </body>
+</html>

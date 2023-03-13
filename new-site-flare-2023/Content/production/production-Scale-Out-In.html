@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">On Demand Scale Out/In</h1>
+        <p style="text-align: center;">
+            <object src="https://www.youtube.com/watch?v=KbetEK1qzSI" style="width: 560px;height: 315px;">
+            </object>
+        </p>
+        <div class="tc-admon-important" MadCap:conditions="Version.16-0-died">
+            <p>On Demand Scale Out/In is at <a href="../rn/lifecycle.html#feature-levels">Beta feature level</a>. It will be available as a fully supported feature in the next release.</p>
+        </div>
+        <h1>Horizontal Scaling</h1>
+        <p>Horizontal scaling, referred to as <b><a href="production-Scale-Out-In.html">On Demand Scale Out/In</a></b>, means to increase or reduce the number of partitions allocated to a service.</p>
+        <p style="text-align: center;">
+            <img src="../Resources/Static/images/Scaling-example-of-horizontal-scaling.jpg" class="tc-picture30">
+            </img>
+        </p>
+        <p>Big data is often stored in geographically dispersed nodes, which includes partitioning of databases.</p>
+        <p>If the application involves few cross-partition joins, it may be appropriate for On Demand Scale Out/In.</p>
+        <p>NoSQL databases often use On Demand Scale Out/In.</p>
+        <h2>Advantages</h2>
+        <ul>
+            <li>Horizontal scaling can be less expensive than vertical scaling - it is generally less expensive to add cloud storage, than to purchase new physical machines.</li>
+            <li>This method of rescaling provides resilience and fault tolerance - with more partitions, the impact of a partition failure is lessened.</li>
+            <li>Horizontal scaling supports linear increases in capacity on the fly - RAM or CPU capacity can be increased or decreased while maintaining a constant RAM:CPU ratio .</li>
+        </ul>
+        <div class="tc-admon-attention">
+            <p>On Demand Scale Out/In will cause a temporary quiesce of the affected partitions. It is recommended to perform the scaling operation during an off-peak period.</p>
+        </div>
+        <h2>Pre-requisites</h2>
+        <p>On Demand Scale Out/In is available for a partitioned cluster schema with a high availability cluster.</p>
+        <p>To enable Scale Out, the service must be deployed with the following property:</p>
+        <p><code class="language-bash">--property pu.dynamic-partitioning=true</code>
+        </p>
+        <div class="tc-admon-note">
+            <p>Capacity planning should include the RAM resources to accommodate the additional partitions during the Scaling Out process. </p>
+        </div>
+        <div class="tc-admon-note" MadCap:conditions="Version.16-0-died">
+            <p>ElasticGrid and ServiceGrid orchestration methods are supported. </p>
+        </div>
+        <div class="tc-admon-attention">
+            <p>in ServiceGrid, the GSC's must be initially spawned by the user before performing a Scale Out operation.</p>
+        </div>
+        <p>&#160;</p>
+        <h2>On Demand Scale Out/In APIs</h2>
+        <p>On Demand Scale Out/In can be performed using the Ops Manager user interface, the Command Line Interface (CLI), and programmatically using REST-API. </p>
+        <div class="tc-admon-note">
+            <p>The terminology for scaling is relative: If there are <b>three</b> partitions using a service, scaling to to <b>five</b> partitions is a <b>Scale Out</b> , while scaling to <b>two</b> partitions is a <b>Scale In</b>.</p>
+        </div>
+        <h1>On Demand Scale Out/In Using the Ops Manager</h1>
+        <div title="GigaSpaces Ops Manager" style="padding:10px">
+            <p>Click on the service card of the desired service in Ops Manager. The Service Details screen will display:</p>
+            <p MadCap:conditions="Version.16-1-died">
+                <img src="../Resources/Static/images/SOSI--click-on-ellipsis-menu.jpg" />
+            </p>
+            <p MadCap:conditions="Version.16-1-born">
+                <img src="../Resources/Static/images/SOSI--click-on-ellipsis-menu-16.1.png" />
+            </p>
+            <p>Note the ellipsis menu (three vertical dots). Click on the option On Demand Scale Out/In. Depending on the method of orchestration you are using, the next screen will appear as follows:</p>
+            <p><b>ServiceGrid:</b>
+            </p>
+            <p style="text-align: center;" MadCap:conditions="Default.DoNotShow">
+                <img src="../Resources/Static/images/SOSI-service-grid.jpg" class="tc-picture40" style="width: 599px;height: 439px;" />
+            </p>
+            <p>
+                <img src="../Resources/Static/images/SOSI-service-grid.png" />
+            </p>
+            <p>In the example above, there is currently one partition alocated for the service. You can choose one of the suggested numbers of partitions, or press Custom to choose any number of partitions. Note that the new partitions will all have the same allocation of RAM and CPU as the existing partitions.</p>
+            <p><b>Kubernetes</b>
+                <MadCap:conditionalText MadCap:conditions="Version.16-0-died"><b> and ElasticGrid</b>
+                </MadCap:conditionalText><b>:</b>
+            </p>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/images/SOSI-Kubernetes-and-ElasticGrid.jpg" class="tc-picture40" />
+            </p>
+            <p>In the example above, there are currently 16 partitions using the service. You can choose one of the suggested numbers of partitions, or press Custom to choose any number of partitions.</p>
+            <p>Note that by default the suggested RAM (8M) and CPU (200Mib) for the new partitions is based on the most frequent allocation for the existing partitions. Click on <b>&gt; CPU </b>or<b> &gt; RAM </b>to override these suggested values for the new partitions.</p>
+            <p>In our example, we will scale to two partitions:</p>
+            <p>
+                <img src="../Resources/Static/images/SOSI-service-grid-choose-two-partitions.png" />
+            </p>
+            <p>After entering the desired values and pressing <b>Apply</b>, the system will display a confirmation screen:</p>
+            <p>
+                <img src="../Resources/Static/images/SOSI-Confirmation-Screen.png" />
+            </p>
+            <p>Press <b>Scale Now</b> to begin the scaling process.</p>
+            <p>As the scaling is underway, a progress message will display in the screen banner:</p>
+            <p>
+                <img src="../Resources/Static/images/SOSI-In-Progress.png" />
+            </p>
+            <p>&#160;</p>
+            <p>Note that while the scaling is in progress, the status of the individual affected services will display in the Service Details screen:</p>
+            <p MadCap:conditions="Version.16-1-died">
+                <img src="../Resources/Static/images/SOSI-Suspended.jpg" />
+            </p>
+            <p MadCap:conditions="Version.16-1-born">
+                <img src="../Resources/Static/images/SOSI-Suspended-16.1.png" />
+            </p>
+        </div>
+        <div title="Command Line Interface" style="padding:10px">
+            <h1>On Demand Scale Out/In using the Command Line Interface </h1>
+            <div title="Command Line Interface" style="padding:10px">
+                <div title="Command Line Interface" style="padding:10px">
+                    <p><span class="tc-bold">Scale Out (Add) or Scale-In (Remove) Partitions</span>
+                    </p>
+                    <p>&#160;</p>
+                    <p><span class="tc-italic">Command (ServiceGrid):</span>
+                    </p>
+                    <p><code>pu scale-horizontal &lt;pu-name&gt; &lt;num-partitions&gt;</code> <br />or <br /><code>pu scale-h &lt;pu-name&gt; &lt;partitions&gt;</code></p>
+                    <div MadCap:conditions="Version.16-0-died">
+                        <p>&#160;</p>
+                        <p><span class="tc-italic">Command (ElasticGrid):</span>
+                        </p>
+                        <p><![CDATA[  ]]><code>pu scale-horizontal &lt;pu-name&gt; &lt;num-partitions&gt;</code> &lt;memory&gt; &lt;cpu&gt;<br />or<br /><code>pu scale-h &lt;pu-name&gt; &lt;partitions&gt; &lt;memory&gt; &lt;cpu&gt;</code></p>
+                    </div>
+                    <p>&#160;</p>
+                    <p><span class="tc-italic">Description:</span>
+                    </p>
+                    <p>The Space is rescaled to the desired number of partitions. </p>
+                    <div class="tc-admon-note" MadCap:conditions="Version.16-0-died">
+                        <p>For ElasticGrid, the memory and CPU allocations for new partitions may be specified, otherwise the default values for the service are used.</p>
+                    </div>
+                    <p><span class="tc-italic">Input Example:</span>
+                    </p><pre><code class="language-bash">pu scale-horizontal myPu 4
+</code></pre>
+                    <p><span class="tc-italic">Output Example:</span>
+                    </p>
+                    <p><pre><code class="language-bash">
+REQUEST DETAILS
+ID 6 
+Description Scale out pu (mySpace) partitions by 2 
+Status running 
+Status Url http://127.0.1.1:8090/v2/pus/mySpace/instances 
+Submitted By anonymous 
+Submitted From 127.0.0.1 
+Submitted At 2020-05-20 16:32:01
+</code></pre>
+                    </p>
+                    <p><span class="tc-italic">Parameters and Options:</span>
+                    </p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>space-name</td>
+                                <td>Name of the Space to rescale</td>
+                            </tr>
+                            <tr>
+                                <td>partitions</td>
+                                <td>Number of partitions for the Space</td>
+                            </tr>
+                            <tr MadCap:conditions="Version.16-0-died">
+                                <td>memory</td>
+                                <td>Memory allocated for the Space (ElasticGrid only)</td>
+                            </tr>
+                            <tr MadCap:conditions="Version.16-0-died">
+                                <td>cpu</td>
+                                <td>CPU allocated for the Space (ElasticGrid only)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><span class="tc-bold">Request Status of a On Demand Scale Out/In Request</span>
+                </p>
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p><code>pu request status &lt;request-id&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>The status of the scaling request is displayed.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre><code class="language-bash">pu request-status 6
+</code></pre>
+                <p><span class="tc-italic">Output Example:</span>
+                </p>
+                <p><pre><code class="language-bash">
+REQUEST DETAILS
+ID 6 
+Description Scale out pu (mySpace) partitions by 2 
+Status successful
+Status Url http://127.0.1.1:8090/v2/pus/mySpace/instances 
+Submitted By anonymous 
+Submitted From 127.0.0.1 
+Submitted At 2020-05-20 16:32:01
+Completed at 2020-05-20 16:32:31
+</code></pre>
+                </p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>request-id</td>
+                        <td>ID of the scaling request</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div title="REST Manager API" style="padding:10px">
+            <h1>On Demand Scale Out/In Using the REST-MANAGER API</h1>
+            <p MadCap:conditions="Version.16-0-died">ServiceGrid:</p><pre><code class="language-bash">
+curl -X POST --header 'Content-Type: application/json' 
+             --header 'Accept: text/plain' 
+'https://172.17.0.4:8090/v2/pus/myProcessingUnit/scale-h?target=4'
+</code></pre>
+        </div>
+        <div title="REST Manager API" style="padding:10px" MadCap:conditions="Version.16-0-died">
+            <p>Elasticgrid:</p><pre><code class="language-bash">
+curl -X POST --header 'Content-Type: application/json' 
+             --header 'Accept: text/plain' 
+'https://172.17.0.4:8090/v2/pus/myProcessingUnit/scale-h?target=4&amp;memory=55&amp;cpu=400'
+</code></pre>
+        </div>
+        <p>&#160;</p>
+        <h1>Programming Note</h1>
+        <div class="tc-admon-important">
+            <p>During a Scale Out operation, the first read/write operation will trigger a Java exception, which can be handled as follows. The example is for a writeMultiple operation.
+			</p><pre><code class="language-java">
+try {
+    gigaSpace.writeMultiple(entries);
+} 
+catch (WriteMultipleException e) {
+    gigaSpace.writeMultiple(entries);
+}
+</code></pre>
+            <p>Subsequent read/write operations will not raise this exception.</p>
+        </div>
+        <h1>Unsupported Features</h1>
+        <p>The following features are not currently supported for On Demand Scale Out/In:</p>
+        <ul>
+            <li>AutoGeneratedId</li>
+            <li>Fifo</li>
+            <li>memoryXtend</li>
+            <li>SpaceIterator</li>
+        </ul>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

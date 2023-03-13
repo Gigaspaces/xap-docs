@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Storing Partition Summary Information</h1>
+  
+
+<p>A scenario may occur where computation is done on a partition by partition basis and you wish to save the results, instead of recalculating them each time. This example calculates values per partition and saves it to the current partition. It will work regardless of the number of partitions that are running in the space. The example uses an Executor Service to make the calcuations on each partition. The <code>ClusterInfo</code> object is used to get information about the partition the service is currently executing in. The results are then saved to a PartitionSummary object.</p>
+
+<p>The following code demonstrates Space Based Remoting, aka Service Executor. A complete example can be found <a href="/download_files/sbp/Store-Partition-Summary.zip">here</a>.</p>
+
+<h1><a name="service-interface"></a>Service Interface</h1>
+
+<p>Configure the service interface as follows:</p>
+
+<pre><code class="language-java">public interface ISummary {
+    public void summary();
+}
+</code></pre>
+
+<h1><a name="service-implementation"></a>Service Implementation</h1>
+
+<p>The Service Implementation includes the code that is to be run on each partition and saves the summary information. The <code>ClusterInfo</code> object is used to gather the partition information.</p>
+
+<pre><code class="language-java">package com.samples.remoting;
+
+import javax.annotation.Resource;
+
+import org.openspaces.core.GigaSpace;
+import org.openspaces.core.cluster.ClusterInfo;
+import org.openspaces.core.cluster.ClusterInfoContext;
+import org.openspaces.remoting.RemotingService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import com.samples.model.ISummary;
+import com.samples.model.PartitionSummary;
+
+@RemotingService
+@Component
+public class SummaryService implements ISummary {
+
+    
+    final Logger logger = LoggerFactory.getLogger(SummaryService.class);
+    
+    @Resource
+    GigaSpace gigaSpace;
+    
+    @ClusterInfoContext 
+    private ClusterInfo clusterInfo; 
+    
+    @Override
+    public void summary() {
+        Integer instanceId = clusterInfo.getInstanceId();
+        PartitionSummary partitionSummary = new PartitionSummary();
+        partitionSummary.setId(instanceId);
+        partitionSummary.setRoutingId(instanceId);
+        
+        logger.info("instanceId is " + instanceId);
+        // ... do calculations ... save to PartitionSummary object
+        gigaSpace.write(partitionSummary);
+        
+    }
+
+}
+
+</code></pre>
+
+<h1><a name="client"></a>Client</h1>
+
+<p>This is how a client might invoke the service:</p>
+
+<pre><code class="language-java">        SpaceProxyConfigurer spaceProxyConfigurer = new SpaceProxyConfigurer(spaceName);
+        gigaSpace = new GigaSpaceConfigurer(spaceProxyConfigurer).gigaSpace();
+
+        iSummary = new ExecutorRemotingProxyConfigurer&lt;ISummary&gt;(gigaSpace, ISummary.class).broadcast(true).proxy();
+        
+        iSummary.summary();
+
+</code></pre>
+
+</body>
+</html>

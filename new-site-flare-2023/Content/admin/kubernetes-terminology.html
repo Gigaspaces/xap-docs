@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Terms and Concepts</h1>
+        <h2><a name="kubegrid"></a>KubeGrid</h2>
+        <p>KubeGrid is GigaSpaces’ Kubernetes-based deployment and orchestration of the data grid and <MadCap:variable name="General.ProductNameIE" />.</p>
+        <h2>Liveness</h2>
+        <p>A probe that Indicates whether a Data Pod is running. If the liveness probe fails, this indicates the the application’s processes are not healthy and that the Pod should be restarted.</p>
+        <h2><a name="node"></a>Node</h2>
+        <p>A node is a worker machine, and can be a either a VM or physical machine (depending on the cluster). Every node includes all the services that are needed to run the Pods that it hosts (including Docker, kubelet and kube-proxy), and is managed by the master components.</p>
+        <h2><a name="pods"></a>Pods</h2>
+        <h3><a name="data-pod"></a>Data Pod</h3>
+        <p>The Data Pod is analogous to the Processing Unit instance in the data grid. Each Data Pod contains a single Processing Unit instance that provides cloud-native support using the Kubernetes built-in controllers, such as auto scaling and self healing.</p>
+        <h3><a name="driver-pod"></a>Driver Pod</h3>
+        <p>A Driver Pod contains the Spark Driver, which creates Spark Executors, connects to them, and executes the required application code. When the application completes, the Driver Pod persists the logs and shuts down, remaining in completed state.</p>
+        <h3><a name="executor-pod"></a>Executor Pod</h3>
+        <p>An Executor Pod contains the Spark Executor, which runs the Spark job on the data in the co-located Data Pod. When the application completes and the Spark jobs are no longer required, the Executor Pod terminates.</p>
+        <h3><a name="management-pod"></a>Management Pod</h3>
+        <p>The Management Pod contains the data grid’s Manager components, namely the Lookup Service (LUS) used by services to discover each other, the REST Manager  for remotely managing the environment from any platform, and Apache Zookeeper for Space leader election.</p>
+        <h3><a name="zeppelin-pod"></a>Zeppelin Pod</h3>
+        <p>The Zeppelin Pod contains the interactive Apache Zeppelin web-based notebook. Use this notebook to perform data-driven, interactive analytics on the data grid.</p>
+        <h2><a name="pod-anti-affinity"></a>Pod Anti-Affinity</h2>
+        <p>An anti-affinity rule forces a group of virtual machines to be placed across different physical hosts. This prevents all the virtual machines from failing at the same time if a single physical host fails.
+Pod anti-affinity allocates the primary and backup Management and Data Pods across the available nodes in such a way that a backup Pod is always located on a different node from its primary Pod.</p>
+        <!--
+## Pod Disruption Budget
+ 
+A Pod can disappear due to a voluntary disruption, meaning a person or a controller destroys it, or if there is an unavoidable hardware or system software error (an involuntary disruption).
+A Pod Disruption Budget (PDB) enables limiting the number Pods that are down simultaneously due to voluntary disruptions. This protects the application by ensuring that a homogeneous set of Pods is always up and available.
+-->
+        <h2><a name="pod-quorum"></a>Pod Quorum</h2>
+        <p>A high availability configuration requires three Management Pods. This ensures an uninterrupted workflow if a Management Pod is disrupted, because there is still a quorum (required minimum) available to continue managing the Data Pods in the system.</p>
+        <!--
+## Readiness
+
+A probe that indicates whether a Data Pod is ready to service requests (the application’s processes are ready to process input). If data is still loading, then the Pod is not ready and the probe will not receive a response.
+-->
+        <h2><a name="services"></a>Services</h2>
+        <h3><a name="service"></a>Service</h3>
+        <p>A Kubernetes service is an abstraction that defines a logical set of Pods, along with a policy for accessing them. We use services to define NodePorts that expose specific Pods to the user, such as for Apache Zeppelin (port <MadCap:conditionalText MadCap:conditions="Version.15-0-died">30990</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born">9090</MadCap:conditionalText>), and Swagger for the REST Manager API (port <MadCap:conditionalText MadCap:conditions="Version.15-0-died">30890</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born">8090</MadCap:conditionalText>).</p>
+        <h3><a name="headless-service"></a>Headless Service</h3>
+        <p>In environments where load-balancing and a single service IP are not needed, you can use headless services to reduce coupling to the Kubernetes system and do discovery independently. In this scenario, no cluster IP is allocated, kube-proxy doesn’t handle these services, and there is no load balancing or proxying done by the platform for them.</p>
+        <h2><a name="statefulset"></a>StatefulSet</h2>
+        <p>A StatefulSet manages the deployment and scaling of a set of Pods for stateful applications. The Pods are based on an identical container definition, but are not interchangeable (each Pod has a persistent identifier that it maintains across any rescheduling). For example, a StatefulSet can manage automated rolling updates of business logic inside a Pod, and can control scaling up Data Pods one at a time.</p>
+    </body>
+</html>

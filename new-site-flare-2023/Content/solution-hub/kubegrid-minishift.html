@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Deploying GigaSpaces Platforms on Minishift</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th align="center">Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dharma Prakash and Dixson Huie</td>
+                    <td>14.0</td>
+                    <td>February 2019</td>
+                    <td>
+                    </td>
+                    <td align="center">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="overview">&#160;</a>Overview</h1>
+        <p>Minishift is a tool that helps you run OpenShift locally by running a single-node OpenShift cluster inside a VM. This topic explains how to prepare the OpenShift environment so you can install KubeGrid (the InsightEdge  Kubernetes deployment) on Minishift. The sample deployment described here deploys InsightEdge using PowerShell and Oracle VirtualBox, but KubeGrid can be installed on any Minishift cluster using your preferred tools.</p>
+        <p>The desktop preparation process for deploying KubeGrid in Minishift involves the following steps, which are explained in detail below:</p>
+        <ol>
+            <li>Set up your local machine or VM.</li>
+            <li>(For Windows environments only) Disable Hyper-V (as this deployment uses Oracle VirtualBox).</li>
+            <li>Configure Minishift to work with Oracle VirtualBox.</li>
+            <li>Set up the OpenShift container environment.</li>
+        </ol>
+        <p>After the desktop has been prepared, you can follow the instructions in the <a href="https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html">Deploying a Data Grid in Kubernetes</a> topic to deploy KubeGrid on Minishift.</p>
+        <h1><a name="prerequisites">&#160;</a>Prerequisites</h1>
+        <p>Before beginning the preparation and deployment process, ensure that you have the following installed on your local machine or a VM:</p>
+        <ul>
+            <li>Kubectl</li>
+            <li>Helm</li>
+            <li>Kubernetes cluster (cloud, on-premise, or local via Minishift)</li>
+            <li>Oracle VirtualBox</li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>This sample deployment used the following software:</p>
+            <ul>
+                <li>Oracle VirtualBox version 5.2.18 r124319</li>
+                <li>Docker version 18.06.1-ce, build e68fc7a</li>
+                <li>Helm version v2.10.0</li>
+                <li>Minishift v1.27.0+707887e</li>
+                <li>Kubectl: Client Version: v1.10.3, Server Version: v1.10.0</li>
+            </ul>
+        </div>
+        <h1><a name="preparing-your-desktop-environment">&#160;</a>Preparing your Desktop Environment</h1>
+        <p>In order to prepare the desktop environment to run OpenShift using Minishift, you need to perform the steps described below. PowerShell is the preferred tool for this process due to the amount of support information available online so that you can easily troubleshoot if you have any difficulty with the preparation and deployment process.</p>
+        <h2><a name="disabling-hyper-v">&#160;</a>Disabling Hyper-V</h2>
+        <div class="tc-admon-note">
+            <p>This step is only required if you are using a machine running Windows. If you are using a machine running Linux, skip this section and begin with Configuring Minishift to Use Oracle VirtualBox.</p>
+        </div>
+        <p>This sample deployment uses Oracle VirtualBox instead of Hyper-V. Therefore you must verify that Hyper-V is disabled. If it isn’t, do the following to disable it.</p>
+        <ol>
+            <li>Open PowerShell as an administrator.</li>
+            <li>In Windows Settings&gt;Apps&gt;Apps and Features, click <span class="tc-bold">Programs and Features</span> on the right side of the window.</li>
+            <li>In the Programs and Features window, from the list on the left click <span class="tc-bold">Turn Windows features on and off</span>.</li>
+            <li>In the Windows Features window, clear the <span class="tc-bold">Hyper-V checkbox</span> and click <span class="tc-bold">OK</span>. At this point you may have to restart the machine.</li>
+            <li>If you restarted your machine, open PowerShell again as an administrator.</li>
+        </ol>
+        <div class="tc-admon-note">
+            <p>This procedure disables Hyper-V temporarily. When the next batch of automatic updates is installed, Hyper-V will be enabled.</p>
+        </div>
+        <h2><a name="configuring-minishift-to-use-virtualbox">&#160;</a>Configuring Minishift to use VirtualBox</h2>
+        <p>Minishift can work with a number of hypervisors, some of which require manual installation of the driver plug-in. The Oracle VirtualBox driver plug-in comes embedded in Minishift, so you only need to set the configuration in order to identify VirtualBox to Minishift.</p>
+        <p>To configure Minishift to use Oracle VirtualBox:</p>
+        <ul>
+            <li>
+                <p>Type the following command in PowerShell:</p><pre><code>minishift config set vm-driver virtualbox
+</code></pre>
+                <p>You should see the following output when the command is run:</p><pre><code>No Minishift instance exists. New 'vm-driver' setting will be applied on next 'minishift start'
+</code></pre>
+            </li>
+        </ul>
+        <h2><a name="starting-minishift">&#160;</a>Starting Minishift</h2>
+        <p>After completing the Minishift configuration, it needs to be initiated.</p>
+        <p>To start Minishift:</p>
+        <ul>
+            <li>
+                <p>Type the following command in PowerShell:</p><pre><code>minishift --memory 20000 --cpus 4 --v=5 start
+</code></pre>
+                <p>This starts a one-node cluster on your machine with 2GB of memory, 4 CPUs, and log level 5.</p>
+            </li>
+        </ul>
+        <h2><a name="setting-up-the-openshift-container-environment">&#160;</a>Setting up the Openshift Container Environment</h2>
+        <p>The next step in the preparation (after the cluster is up and running) is to set up the OC (OpenShift Container) environment so that you can deploy KubeGrid.</p>
+        <p>To set up the OC environment:</p>
+        <ol>
+            <li>
+                <p>To initialize the OC CLI, type the following command in PowerShell:
+For Windows environments:</p><pre><code>minishift oc-env|Invoke-Expression
+</code></pre>
+                <p>For Linux environments:</p><pre><code>eval $(minishift oc-env)
+</code></pre>
+            </li>
+            <li>
+                <p>Log out of the OC environment by typing: oc logout</p>
+            </li>
+            <li>
+                <p>Log into the OC environment as an administrator by typing oc login, using the following credentials:</p>
+                <ul>
+                    <li>username: <code>admin</code></li>
+                    <li>password: <code>admin</code><br /></li>
+                </ul>
+            </li>
+            <li>
+                <p>Type the following command to enable the OpenShift addons:</p><pre><code>minishift addons apply admin-user
+</code></pre>
+            </li>
+            <li>
+                <p>Type the following commands to grant user permissions:</p><pre><code>oc adm policy add-cluster-role-to-user cluster-admin -z default --namespace default
+oc adm policy add-cluster-role-to-user cluster-admin -z default --namespace kube-system
+</code></pre>
+            </li>
+            <li>
+                <p>If you are installing the data grid only, skip this step. If you are installing InsightEdge, type the following commands:</p><pre><code>oc create serviceaccount spark
+oc create clusterrolebinding spark-role --clusterrole=edit --serviceaccount=default:spark --namespace=default
+</code></pre>
+            </li>
+            <li>
+                <p>Type the following to specify the Kubernetes default namespace:</p><pre><code>oc project default
+</code></pre>
+            </li>
+            <li>
+                <p>Type the following command to launch Helm:</p><pre><code>helm init
+</code></pre>
+            </li>
+        </ol>
+        <h1><a name="deploying-kubegrid">&#160;</a>Deploying KubeGrid</h1>
+        <p>Now that the desktop environment is prepared, you can install the InsightEdge demo on Minishift.</p>
+        <p>To deploy KubeGrid and the InsightEdge demo:</p>
+        <ol>
+            <li>
+                <p>Type the following command to access the insightedge GigaSpaces charts for the  data grid and InsightEdge:</p><pre><code>helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
+</code></pre>
+            </li>
+            <li>
+                <p>After adding the GigaSpaces Helm repo, install the required chart(s) by referencing the chart name and product package version. For example, to install InsightEdge, use the following command:</p>
+                <p>&#160;</p>
+                <div><pre><code>helm install gigaspaces/insightedge --version=14.0.1 --name demo</code></pre>
+                    <p MadCap:conditions="Default.DoNotShow">
+                        <div class="easyui-tabs" plain="true">
+                            <div title="Helm 3">
+                                <p><pre><code>helm install demo gigaspaces/insightedge --version=14.0.1</code></pre>
+                                </p>
+                            </div>
+                            <div title="Helm 2">
+                                <p><pre><code>helm install gigaspaces/insightedge --version=14.0.1 --name demo</code></pre>
+                                </p>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </li>
+        </ol>
+        <p>For more information about InsightEdge KubeGrid deployment options, see the <a href="https://docs.gigaspaces.com/xap/14.0/admin/kubernetes-data-grid.html">Deploying a Data Grid in Kubernetes</a> topic.</p>
+    </body>
+</html>

@@ -1,0 +1,701 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>The Space Bean</h1>
+        <p>When a client connects to a space, a proxy is created that holds a connection to the space. All client interaction is performed through this proxy.
+The proxy provides a simpler space API using the <a href="[%=Links.ApiJavaDoc%]/index.html">GigaSpace</a> interface.
+It can be created with a Space Bean and optional parameters.</p>
+        <h1><a name="embedded-space"></a>Embedded Space</h1>
+        <p>Example:</p><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="gsSpace" 
+   versioned="true" lookup-groups="uat" lookup-locators="someHost:4174" /&gt;
+</code></pre>
+        <p>Here are the available parameters for an embedded space:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Default</th>
+                    <th>Required</th>
+                    <th>See Also</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>String</td>
+                    <td>Used to create the GigaSpace Bean</td>
+                    <td>
+                    </td>
+                    <td>Yes</td>
+                    <td><a href="#the-gigaspace-bean">GigaSpace Bean</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>space-name</td>
+                    <td>String</td>
+                    <td>The space name to use</td>
+                    <td>
+                    </td>
+                    <td>Yes</td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>lookup-groups</td>
+                    <td>String</td>
+                    <td>The Jini Lookup Service group to find the space using multicast</td>
+                    <td>
+                    </td>
+                    <td>No</td>
+                    <td><a href="../admin/network-lookup-service-configuration.html">Lookup Service</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>lookup-locators</td>
+                    <td>String</td>
+                    <td>Instructs the started space to locate the Jini Lookup Service on specific host name and port</td>
+                    <td>
+                    </td>
+                    <td>No</td>
+                    <td><a href="../admin/network-lookup-service-configuration.html">Lookup Service</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>lookup-timeout</td>
+                    <td>Number</td>
+                    <td>Lookup timeout in milli seconds</td>
+                    <td>5000ms</td>
+                    <td>No</td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>versioned</td>
+                    <td>Boolean</td>
+                    <td>When false, optimistic lock is disabled. In a local cache and views the default is true, otherwise the default value is false.</td>
+                    <td>False</td>
+                    <td>No</td>
+                    <td><a href="pojo-attribute-annotations.html#spaceversion">Annotation</a>
+                        <br /><a href="transaction-optimistic-locking.html">Optimistic Locking</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>schema</td>
+                    <td>String</td>
+                    <td>Schema options: default, mirror, persistent</td>
+                    <td>default</td>
+                    <td>No</td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>mirrored</td>
+                    <td>Boolean</td>
+                    <td>Asynchronous Persistency - Write Behind</td>
+                    <td>False</td>
+                    <td>No</td>
+                    <td><a href="asynchronous-persistency-with-the-mirror.html">Mirror Service</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>register-for-space-mode-notifications</td>
+                    <td>Boolean</td>
+                    <td>Register for Space mode notifications</td>
+                    <td>False</td>
+                    <td>No</td>
+                    <td><a href="the-space-notifications.html">Space Notifications</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>external-data-source</td>
+                    <td>Reference</td>
+                    <td>External Data Source is supported for Space Documents</td>
+                    <td>
+                    </td>
+                    <td>No</td>
+                    <td><a href="document-api.html#persistency">Space Document</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>space-data-source</td>
+                    <td>Reference</td>
+                    <td>Data Source for the Space</td>
+                    <td>
+                    </td>
+                    <td>No</td>
+                    <td><a href="persistency-for-a-database.html">Space Persistency</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>space-sync-endpoint</td>
+                    <td>Reference</td>
+                    <td>Space Synchronization Endpoint</td>
+                    <td>
+                    </td>
+                    <td>No</td>
+                    <td><a href="asynchronous-persistency-with-the-mirror.html">Asynchronous Persistence</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>enable-member-alive-indicator</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>No</td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>gateway-targets</td>
+                    <td>String</td>
+                    <td>Multi Site WAN Replication</td>
+                    <td>
+                    </td>
+                    <td>No</td>
+                    <td><a href="multi-site-replication-overview.html#configuring-a-space-with-gateway-targets">Multi Site WAN Replication</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="bean-properties"></a>Bean Properties</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                    <th>See Also</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>all-in-cache-policy</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>lru-cache-policy</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>custom-cache-policy</td>
+                    <td>Custom eviction policy API for LRU cache policy mode</td>
+                    <td><a href="custom-eviction-policy.html">Custom eviction policy</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>blob-store-data-policy</td>
+                    <td>Configuration and Deployment with RocksDB</td>
+                    <td><a href="../admin/memoryxtend-rocksdb-ssd.html#basic-configuration">MemoryXtend</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>attribute-store</td>
+                    <td>Configure a persistent SSD RocksDB add-on with an attribute store</td>
+                    <td><a href="../admin/memoryxtend-overview.html#persistence-and-recovery">MemoryXtend</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>leader-selection</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>space-sql-function</td>
+                    <td>Register user defined SQL functions</td>
+                    <td><a href="query-sql-function.html">SQL Functions</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>query-extension-provider</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>space-filter</td>
+                    <td>Space operation interceptors</td>
+                    <td><a href="the-space-filters.html">Space Filters</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>annotation-adapter-filter</td>
+                    <td>Delegate Space Filters using annotations</td>
+                    <td><a href="the-space-filters.html">Space Filters</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>method-adapter-filter</td>
+                    <td>Delegate Space Filters with explicit method listings</td>
+                    <td><a href="the-space-filters.html">Space Filters</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>filter-provider</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>replication-filter-provider</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>space-replication-filter</td>
+                    <td>Filter replication data between sites</td>
+                    <td><a href="replication-gateway-filtering.html">Multi Site WAN Replication</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>security</td>
+                    <td>Accessing a secured space with username and password</td>
+                    <td><a href="../security/securing-your-data.html">Secured Space</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>properties</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="remote-space"></a>Remote Space</h1>
+        <p>Example:</p><pre><code class="language-xml">&lt;os-core:space-proxy id="space" space-name="remoteSpace"
+    lookup-groups="uat" lookup-locators="someHost:4174"/&gt;
+</code></pre>
+        <p>Here are the available parameters for a remote space:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Default</th>
+                    <th>Required</th>
+                    <th>See Also</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>String</td>
+                    <td>Used to create the GigaSpace Bean</td>
+                    <td>
+                    </td>
+                    <td>Yes</td>
+                    <td><a href="#the-gigaspace-bean">GigaSpace Bean</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>space-name</td>
+                    <td>String</td>
+                    <td>The space name to connect to the remote space</td>
+                    <td>
+                    </td>
+                    <td>Yes</td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>instance-id</td>
+                    <td>Number</td>
+                    <td>The id of the space instance within a cluster to connect to</td>
+                    <td>
+                    </td>
+                    <td>No</td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>lookup-groups</td>
+                    <td>String</td>
+                    <td>The Jini Lookup Service group to find the space using multicast</td>
+                    <td>
+                    </td>
+                    <td>No</td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>lookup-locators</td>
+                    <td>String</td>
+                    <td>Instructs the started space to locate the Jini Lookup Service on specific host name and port</td>
+                    <td>
+                    </td>
+                    <td>No</td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>lookup-timeout</td>
+                    <td>MSeconds</td>
+                    <td>Lookup timeout in milli seconds</td>
+                    <td>5000ms</td>
+                    <td>No</td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>versioned</td>
+                    <td>Boolean</td>
+                    <td>When false, optimistic lock is disabled. In a local cache and views the default is true, otherwise the default value is false.</td>
+                    <td>False</td>
+                    <td>No</td>
+                    <td><a href="pojo-attribute-annotations.html#spaceversion">Annotation</a>
+                        <br /><a href="transaction-optimistic-locking.html">Optimistic Locking</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="properties"></a>Properties</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                    <th>See Also</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>security</td>
+                    <td>Accessing a secured space with username and password</td>
+                    <td><a href="../security/securing-your-data.html#processing-unit">Secured Space</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>properties</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="the-gigaspace-bean"></a>The GigaSpace Bean</h1>
+        <p>The <code>GigaSpace</code> Spring Bean provides a simple way to configure a proxy to be injected into the relevant Bean.</p>
+        <p>Here is an example on how to create the proxy:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="space" /&gt;
+&lt;/os-core:giga-space id="mySpace" space="space" /&gt;
+</code></pre>
+            </div>
+            <div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="space"&gt;
+&lt;bean id="mySpace" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+            <div title="Code" style="padding:10px"><pre><code class="language-java">
+   // Create the Space Bean
+   EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace");
+
+   // Create the Proxy
+   GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+
+   // shutting down -- closing the Space
+   spaceConfigurer.destroy();
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>The application is always injected with <code>os-core:giga-space</code> bean that wraps always a <code>os-core:space</code>.</p>
+        </div>
+        <h2><a name="properties-1"></a>Properties</h2>
+        <p>The <code>GigaSpace</code> Bean can have the following elements:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Element</th>
+                    <th align="left">Description</th>
+                    <th align="left">Required</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">space</td>
+                    <td align="left">This can be an embedded space , remote space , local view or local cache.</td>
+                    <td align="left">Yes</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">clustered</td>
+                    <td align="left">Boolean. <a href="../admin/clustered-vs-non-clustered-proxies.html">Cluster flag</a>. Controlling if this GigaSpace will work with a clustered view of the space or directly with a cluster member. By default if this flag is not set it will be set automatically by this factory. It will be set to true if the space is an embedded one AND the space is not a local cache proxy. It will be set to false otherwise (i.e. the space is not an embedded space OR the space is a local cache proxy)</td>
+                    <td align="left">No</td>
+                    <td align="left">true for remote proxy , false for embedded proxy</td>
+                </tr>
+                <tr>
+                    <td align="left">default-read-timeout</td>
+                    <td align="left">Numerical Value. Sets the default read timeout for <code>read(Object)</code> and <code>readIfExists(Object)</code> operations.</td>
+                    <td align="left">No</td>
+                    <td align="left">0 (NO_WAIT). TimeUnit:millsec</td>
+                </tr>
+                <tr>
+                    <td align="left">default-take-timeout</td>
+                    <td align="left">Numerical Value. Sets the default take timeout for <code>take(Object)</code> and <code>takeIfExists(Object)</code> operations.</td>
+                    <td align="left">No</td>
+                    <td align="left">0 (NO_WAIT). TimeUnit:millsec</td>
+                </tr>
+                <tr>
+                    <td align="left">default-write-lease</td>
+                    <td align="left">Numerical Value. Sets the default <a href="leases-automatic-expiration.html">space object lease</a> (TTL) for <code>write(Object)</code> operation.</td>
+                    <td align="left">No</td>
+                    <td align="left">FOREVER. TimeUnit:millsec</td>
+                </tr>
+                <tr>
+                    <td align="left">default-isolation</td>
+                    <td align="left">Options: DEFAULT , READ_UNCOMMITTED, READ_COMMITTED , REPEATABLE_READ</td>
+                    <td align="left">No</td>
+                    <td align="left">DEFAULT</td>
+                </tr>
+                <tr>
+                    <td align="left">tx-manager</td>
+                    <td align="left">Set the transaction manager to enable transactional operations. Can be null if transactional support is not required or the default space is used as a transactional context.</td>
+                    <td align="left">No</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">write-modifier</td>
+                    <td align="left">Defines a single default write modifier for the space proxy. Options: NONE, WRITE_ONLY, UPDATE_ONLY, UPDATE_OR_WRITE, RETURN_PREV_ON_UPDATE, ONE_WAY, MEMORY_ONLY_SEARCH, PARTIAL_UPDATE</td>
+                    <td align="left">No</td>
+                    <td align="left">UPDATE_OR_WRITE</td>
+                </tr>
+                <tr>
+                    <td align="left">read-modifier</td>
+                    <td align="left">The modifier constant name as defined in ReadModifiers. Options:NONE, REPEATABLE_READ, READ_COMMITTED, DIRTY_READ, EXCLUSIVE_READ_LOCK, IGNORE_PARTIAL_FAILURE, FIFO, FIFO_GROUPING_POLL, MEMORY_ONLY_SEARCH</td>
+                    <td align="left">No</td>
+                    <td align="left">READ_COMMITTED</td>
+                </tr>
+                <tr>
+                    <td align="left">take-modifier</td>
+                    <td align="left">Defines a single default take modifier for the space proxy. Options:NONE, EVICT_ONLY, IGNORE_PARTIAL_FAILURE, FIFO, FIFO_GROUPING_POLL, MEMORY_ONLY_SEARCH</td>
+                    <td align="left">No</td>
+                    <td align="left">NONE</td>
+                </tr>
+                <tr>
+                    <td align="left">change-modifier</td>
+                    <td align="left">Defines a single default change modifier for the space proxy. Options:NONE, ONE_WAY, MEMORY_ONLY_SEARCH, RETURN_DETAILED_RESULTS</td>
+                    <td align="left">No</td>
+                    <td align="left">NONE</td>
+                </tr>
+                <tr>
+                    <td align="left">clear-modifier</td>
+                    <td align="left">Defines a single default count modifier for the space proxy. Options:NONE, EVICT_ONLY, MEMORY_ONLY_SEARCH</td>
+                    <td align="left">No</td>
+                    <td align="left">NONE</td>
+                </tr>
+                <tr>
+                    <td align="left">count-modifier</td>
+                    <td align="left">Defines a single default count modifier for the space proxy. Options:NONE, REPEATABLE_READ, READ_COMMITTED, DIRTY_READ, EXCLUSIVE_READ_LOCK, MEMORY_ONLY_SEARCH</td>
+                    <td align="left">No</td>
+                    <td align="left">NONE</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Here is an example of the <code>GigaSpace</code> Bean:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Namespace" style="padding:10px"><pre><code class="language-xml"> &lt;os-core:space id="mySpace" name="space"/&gt;
+
+ &lt;os-core:giga-space id="gigaSpaceClustered" space="mySpace" clustered="true"
+     default-read-timeout="10000"
+     default-take-timeout="10000"
+     default-write-lease="100000"&gt;
+     &lt;os-core:read-modifier value="FIFO"/&gt;
+     &lt;os-core:change-modifier value="RETURN_DETAILED_RESULTS"/&gt;
+     &lt;os-core:clear-modifier value="EVICT_ONLY"/&gt;
+     &lt;os-core:count-modifier value="READ_COMMITTED"/&gt;
+     &lt;os-core:take-modifier value="FIFO"/&gt;
+
+     &lt;!-- to add more than one modifier, simply include all desired modifiers --&gt;
+     &lt;os-core:write-modifier value="PARTIAL_UPDATE"/&gt;
+     &lt;os-core:write-modifier value="UPDATE_ONLY"/&gt;
+    &lt;/os-core:giga-space&gt;
+</code></pre>
+            </div>
+            <div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+     &lt;property name="space" ref="space" /&gt;
+     &lt;property name="clustered" value="true" /&gt;
+     &lt;property name="defaultReadTimeout" value="10000" /&gt;
+     &lt;property name="defaultTakeTimeout" value="100000" /&gt;
+     &lt;property name="defaultWriteLease" value="100000" /&gt;
+     &lt;property name="defaultWriteModifiers"&gt;
+     &lt;array&gt;
+     &lt;bean id="updateOnly"
+     class="org.openspaces.core.config.modifiers.WriteModifierFactoryBean"&gt;
+     &lt;property name="modifierName" value="UPDATE_ONLY" /&gt;
+     &lt;/bean&gt;
+     &lt;bean id="partialUpdate"
+     class="org.openspaces.core.config.modifiers.WriteModifierFactoryBean"&gt;
+     &lt;property name="modifierName" value="PARTIAL_UPDATE" /&gt;
+     &lt;/bean&gt;
+     &lt;/array&gt;
+     &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="examples"></a>Examples</h2>
+        <p>Here are some examples on how to configure the Space Bean and the proxy:</p>
+        <p>Declaring a remote space with a transaction manager:</p><pre><code class="language-xml">&lt;tx:annotation-driven transaction-manager="transactionManager"/&gt;
+
+&lt;os-core:space-proxy id="space" space-name="space" /&gt;
+&lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
+</code></pre>
+        <p>Declaring a remote space with a transaction manager and creating an embedded space:</p><pre><code class="language-xml">&lt;os-core:space-proxy id="spaceRemote" space-name="space" /&gt;
+&lt;os-core:giga-space id="gigaSpaceRemote" space=" spaceRemote"  tx-manager="transactionManager1"/&gt;
+
+&lt;os-core:space id="spaceEmbed" name="space" /&gt;
+&lt;os-core:giga-space id="gigaSpaceEmbed" space="spaceEmbed"  tx-manager="transactionManager2"/&gt;
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="transaction-overview.html">Transaction management</a>
+            </p>
+        </div>
+        <p>Declaring a remote space creating a local view:</p><pre><code class="language-xml">&lt;os-core:space-proxy id="spaceRemote" space-name="space" /&gt;
+&lt;os-core:local-view id="localViewSpace" space="spaceRemote"&gt;
+    &lt;os-core:view-query class="com.example.Message1" where="processed = true"/&gt;
+&lt;/os-core:local-view&gt;
+&lt;os-core:giga-space id="gigaSpaceLocalView" space="localViewSpace"/&gt;
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="local-view.html">Local View</a>
+            </p>
+        </div>
+        <p>Declaring a remote space with a local view , a regular remote space (without a view) and an embedded space:</p><pre><code class="language-xml">&lt;os-core:space-proxy id="spaceRemote" space-name="space" /&gt;
+    &lt;os-core:local-view id="localViewSpace" space="spaceRemote"&gt;
+    &lt;os-core:view-query class="com.example.Message1" where="processed = true"/&gt;
+&lt;/os-core:local-view&gt;
+
+&lt;os-core:giga-space id="gigaSpaceLocalView" space="localViewSpace"/&gt;
+&lt;os-core:giga-space id="gigaSpaceRemote" space="spaceRemote"  tx-manager="transactionManager1"/&gt;
+
+&lt;os-core:space id="spaceEmbed" name="space" /&gt;
+&lt;os-core:giga-space id="gigaSpaceEmbed" space="spaceEmbed"  tx-manager="transactionManager2"/&gt;
+</code></pre>
+        <div class="tc-admon-note">
+            <p>The application is always injected with <code>os-core:giga-space</code> bean that wraps always a <code>os-core:space</code>.</p>
+        </div>
+        <h1><a name="default-operation-modifiers"></a>Default Operation Modifiers</h1>
+        <p>You may configure default modifiers for the different operations in the <code>GigaSpace</code> interface. The default modifiers can be configured in the following manner:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="space" /&gt;
+&lt;os-core:giga-space id="gigaSpace" space="space"&gt;
+  &lt;os-core:read-modifier value="FIFO"/&gt;
+  &lt;os-core:change-modifier value="RETURN_DETAILED_RESULTS"/&gt;
+  &lt;os-core:clear-modifier value="EVICT_ONLY"/&gt;
+  &lt;os-core:count-modifier value="READ_COMMITTED"/&gt;
+  &lt;os-core:take-modifier value="FIFO"/&gt;
+
+  &lt;!-- to add more than one modifier, simply include all desired modifiers --&gt;
+  &lt;os-core:write-modifier value="PARTIAL_UPDATE"/&gt;
+  &lt;os-core:write-modifier value="UPDATE_ONLY"/&gt;
+&lt;/&lt;os-core:giga-space&gt;
+</code></pre>
+            </div>
+            <div title="Plain XML" style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+  &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+  &lt;property name="space" ref="space" /&gt;
+  &lt;property name="defaultWriteModifiers"&gt;
+    &lt;array&gt;
+      &lt;bean id="updateOnly"
+        class="org.openspaces.core.config.modifiers.WriteModifierFactoryBean"&gt;
+        &lt;property name="modifierName" value="UPDATE_ONLY" /&gt;
+      &lt;/bean&gt;
+      &lt;bean id="partialUpdate"
+        class="org.openspaces.core.config.modifiers.WriteModifierFactoryBean"&gt;
+        &lt;property name="modifierName" value="PARTIAL_UPDATE" /&gt;
+      &lt;/bean&gt;
+    &lt;/array&gt;
+  &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+            <div title="Code" style="padding:10px"><pre><code class="language-java">  EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("space");
+
+  GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer)
+  .defaultWriteModifiers(WriteModifiers.PARTIAL_UPDATE.add(WriteModifiers.UPDATE_ONLY))
+  .defaultReadModifiers(ReadModifiers.FIFO)
+  .defaultChangeModifiers(ChangeModifiers.RETURN_DETAILED_RESULTS)
+  .defaultClearModifiers(ClearModifiers.EVICT_ONLY)
+  .defaultCountModifiers(CountModifiers.READ_COMMITTED)
+  .defaultTakeModifiers(TakeModifiers.FIFO)
+  .gigaSpace();
+</code></pre>
+            </div>
+        </div>
+        <p>Any operation on the configured proxy will be treated as if the default modifiers were explicitly passed. If a certain operation requires passing an explicit modifier and also wishes to merge the existing default modifiers, the following  pattern should be used:</p><pre><code class="language-java">GigaSpace gigaSpace = ...
+gigaSpace.write(someObject, gigaSpace.getDefaultWriteModifiers().add(WriteModifiers.WRITE_ONLY));
+</code></pre>
+        <p>For further details on each of the available modifiers see:</p>
+        <ul>
+            <li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ReadModifiers.html">ReadModifiers</a>
+            </li>
+            <li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/WriteModifiers.html">WriteModifiers</a>
+            </li>
+            <li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/TakeModifiers.html">TakeModifiers</a>
+            </li>
+            <li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/CountModifiers.html">CountModifiers</a>
+            </li>
+            <li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ClearModifiers.html">ClearModifiers</a>
+            </li>
+            <li><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ChangeModifiers.html">ChangeModifiers</a>
+            </li>
+        </ul>
+        <h1><a name="exception-hierarchy"></a>Exception Hierarchy</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> is built on top of the Spring <a href="http://static.springframework.org/spring/docs/2.0.x/reference/dao.html#dao-exceptions" target="_blank">consistent exception hierarchy</a> by translating all of the different JavaSpaces exceptions and GigaSpaces exceptions into runtime exceptions, consistent with the Spring exception hierarchy. All the different exceptions exist in the <code>org.openspaces.core</code> package.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> provides a pluggable exception translator using the following interface:</p><pre><code class="language-java">public interface ExceptionTranslator {
+
+    DataAccessException translate(Throwable e);
+}
+</code></pre>
+        <p>A default implementation of the exception translator is automatically used, which translates most of the relevant exceptions into either Spring data access exceptions, or concrete OpenSpaces runtime exceptions (in the <code>org.openspaces.core</code> package).</p>
+        <h2><a name="exception-handling-for-batch-operations"></a>Exception handling for Batch Operations</h2>
+        <p>Batch operations many throw the following Exceptions. Make sure you catch these and act appropriately:</p>
+        <ul>
+            <li><a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/core/WriteMultiplePartialFailureException.html">WriteMultiplePartialFailureException</a>
+            </li>
+            <li><a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/core/WriteMultipleException.html">WriteMultipleException</a>
+            </li>
+            <li><a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/core/ReadMultipleException.html">ReadMultipleException</a>
+            </li>
+            <li><a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/core/TakeMultipleException.html">TakeMultipleException</a>
+            </li>
+            <li><a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/core/ClearException.html">ClearException</a>
+            </li>
+        </ul>
+        <h1><a name="basic-guidelines"></a>Basic Guidelines</h1>
+        <ul>
+            <li>The variable represents a remote or embedded space proxy (for a single space or clustered) and <span class="tc-bold">should be constructed only</span> once throughout the lifetime of the application process.</li>
+            <li>You should treat the variable as a singleton to be shared across multiple different threads within your application.</li>
+            <li>The interface is thread safe and there is no need to create a GigaSpace variable per application thread.</li>
+            <li>In case the space has been fully terminated (no backup or primary instances running any more) the client space proxy will try to reconnect to the space up to a predefined timeout based on the <a href="../admin/tuning-proxy-connectivity.html">Proxy Connectivity</a> settings. If it fails to reconnect, an error will be displayed.</li>
+            <li>Within a single Processing Unit (or Spring application context), several GigaSpace instances can be defined, each with different characteristics, all will be interacting with the same remote space.</li>
+        </ul>
+    </body>
+</html>

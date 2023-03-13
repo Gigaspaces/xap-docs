@@ -1,0 +1,1064 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Modeling your Data in a Distributed Environment</h1>
+        <table>
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shay Hassidim</td>
+                    <td>9.7</td>
+                    <td> </td>
+                    <td><a href="https://github.com/Gigaspaces/solution-hub/blob/master/Space-Data-Model-Example" target="_blank">Space data model example</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="moving-from-a-centralized-to-a-distributed-data-model">&#160;</a>Moving from a Centralized to a Distributed Data Model</h1>
+        <p>When moving from a centralized into a distributed data store, your data must be partitioned across multiple nodes (or partitions). Implementing the partitioning mechanism isn't a technically difficult task; however, planning the distribution of your data for scalability and performance, requires some forethought.</p>
+        <p>There are several questions that should be answered when planning your data partitioning:</p>
+        <p><span class="tc-bold">Question 1</span>
+        </p>
+        <p><span class="tc-italic">What information I should store in memory?</span>
+        </p>
+        <p>The answer to this question is not technical, and should not be confused with the structure of the data. This is in essence a business question; how much the data will it grow over time, and for how long should it be kept?</p>
+        <p>You can use the following table to estimate the answer:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Data Item</th>
+                    <th align="left">Estimated Quantity</th>
+                    <th align="left">Expected Growth</th>
+                    <th align="left">Estimated Object Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Data Type A</td>
+                    <td align="left">100K</td>
+                    <td align="left">10%</td>
+                    <td align="left">2K</td>
+                </tr>
+                <tr>
+                    <td align="left">Data Type B</td>
+                    <td align="left">200K</td>
+                    <td align="left">20%</td>
+                    <td align="left">4K</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>After you have identified the size and expected growth of your data, you can start thinking about partitioning it.</p>
+        <p><span class="tc-bold">Question 2</span>
+        </p>
+        <p><span class="tc-italic">What are my application's use cases?</span>
+        </p>
+        <p>A common approach is to model data according to the logical relationship of the data items. However, for distributed data a different approach is needed. The rule of thumb is to avoid cross-cluster relationships as much as possible, because they can lead to cross-cluster queries and updates that are usually much less scalable and slower than their local counterparts.</p>
+        <p>It is deceptive to think in terms of traditional relationships ("one to one", "one to many" and "many to many") with distributed data. The first issue to consider is how many different associations each entity has. If an entity is associated with several containers (parent entities), that entity can't be embedded within the containing entity. It might be also impossible to store the entity with all of its containers on the same partition.</p>
+        <p>To answer this question effectively, you need to understand the implications of embedded relationships regarding your application. This concept is explained in further detail below.</p>
+        <h1><a name="the-space-data-store">&#160;</a>The Space Data Store</h1>
+        <p>A Space can store many type of entities. The Space can be compared to a database that can contain many tables, in the same way that a Space can contain many space classes. Practically speaking, there is no limit to the number of entities (Space classes or data types) you can store within a given Space cluster. Each Space class can contain an unlimited number of instances (Space objects or entries).</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/in-line-cache.jpg" alt="in-line-cache.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <p>Unlike legacy caching products that promote a Map-per-Entity storage model, with the Space data modeling approach you can treat all your application objects naturally, having one global in-memory data source regardless of their data type.</p>
+        <h1><a name="embedded-vs-non-embedded-relationships">&#160;</a>Embedded vs. Non-Embedded Relationships</h1>
+        <h2><a name="embedded-relationships">&#160;</a>Embedded Relationships</h2>
+        <p>With Embedded Relationships, a parent object physically contains the associated object(s) and there is a <span class="tc-bold">strong</span> lifecycle dependency between them; when you delete the parent object, you also delete all of its contained objects. With this type of object association, all transactions are local because the entire object graph is stored in the same entry within the Space.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/model_embed.jpg" alt="model_embed.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h3><a name="embedded-relationship-data-retrieval-flow">&#160;</a>Embedded Relationship Data Retrieval Flow</h3>
+        <p>When using the Embedded Relationship model, fetching objects from the Space is done using a <a href="https://docs.gigaspaces.com/latest/dev-java/query-sql.html">SQLQuery</a> with the <code>readMultiple</code> call, or the <a href="https://docs.gigaspaces.com/latest/dev-java/query-paging-support.html">IteratorBuilder</a> when you have large sets of objects where the <a href="https://docs.gigaspaces.com/latest/dev-java/query-sql.html">SQLQuery</a> predicate uses root level or embedded object properties. With a single <code>SQLQuery</code>, you can specify a query that spans objects from different data types related to each other or contained in each other. The embedded objects can be elements within an array, any type of collection (List, Map), or just a simple referenced object.</p>
+        <h3><a name="updating-embedded-objects">&#160;</a>Updating Embedded Objects</h3>
+        <p>The <a href="https://docs.gigaspaces.com/latest/dev-java/change-api.html">Change API</a> allows you to modify a specific property(s) within the root space object (or any embedded object) without reading the entire object graph in an atomic manner. This optimizes the amount of data transferred between the client and the primary Space, and also between the primary and backup instances when replicating updates.</p>
+        <p>With the embedded model, updating (as well adding or removing) a nested collection with large number of elements <span class="tc-bold">must use the Change API</span>, because the default behavior is to replicate the entire Space object and its nested collection elements from the primary instance to the backup (or other replica primary copies when using the sync-replicate or the async-replicated cluster schema). The Change API reduces CPU utilization on the primary side, the serialization overhead, and the garbage collection activity on both the primary and backup instances, which significantly improves overall system stability.</p>
+        <h2><a name="non-embedded-relationships">&#160;</a>Non-Embedded Relationships</h2>
+        <p>With Non-Embedded Relationships a parent object is associated with a number of other objects, so you can navigate from one object to others. However, there is no life cycle dependency between them, so if you delete the referencing object (parent), you don't automatically delete the referenced (child) object(s). The association is therefore manifested in storing the child IDs in the parent rather than storing the actual associated object itself. This type of relationship means that you may want to access the child object separately without accessing their parent objects. This approach avoids the need to duplicate child objects if there are references from multiple parent objects. This approach may force you to perform multiple Space operations when accessing the entire parent-child graph across multiple Space cluster partitions.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/model_non_embed.jpg" alt="model_non_embed.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <h3><a name="non-embedded-relationship-data-retrieval-flow">&#160;</a>Non-Embedded Relationship Data Retrieval Flow</h3>
+        <p>The following topics describe the different data modeling options available with Non-Embedded Relationships.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/space-data-modeling-options.jpg" alt="space-data-modeling-options.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <h4><a name="parent-first-data-retrieval-flow">&#160;</a>Parent-First Data Retrieval Flow</h4>
+        <p>With this approach you first retrieve an initial set of "root space objects", usually using a <a href="https://docs.gigaspaces.com/latest/dev-java/query-sql.html">SQLQuery</a> or a <a href="https://docs.gigaspaces.com/latest/dev-java/query-template-matching.html">template</a> with the <code>readMultiple</code> call or the <a href="https://docs.gigaspaces.com/latest/dev-java/query-paging-support.html">IteratorBuilder</a> if you have a large set of objects. After that, you use metadata stored within these root space objects, such as the ID or IDs of related objects, and their routing field values (if they are distributed across remote multiple partitions) to fetch the related (child) objects using the <code>readById</code> or <code>readByIds</code> calls. Both <code>readById</code> and <code>readByIds</code> allow you to provide the routing field value, so there is no need to search the entire cluster for matching objects. You can also use the <a href="https://docs.gigaspaces.com/latest/dev-java/change-api.html">Change API</a> call to modify specific child objects without reading them first.</p>
+        <h4><a name="child-first-data-retrieval-flow">&#160;</a>Child-First Data Retrieval Flow</h4>
+        <p>With this approach the child object stores the parent object ID (and routing field value). You can access the referenced (child) objects directly, and from them you can access their parent object. You can query the Space for child objects via specific properties using a <a href="https://docs.gigaspaces.com/latest/dev-java/query-sql.html">SQLQuery</a> or a <a href="https://docs.gigaspaces.com/latest/dev-java/query-template-matching.html">template</a> with the <code>readMultiple</code> call, iterate over the child object result set to collect the parent IDs, and read all relevant parent objects via the <code>readByIds</code> call .</p>
+        <div class="tc-admon-tip">
+            <p>The data grid supports projections where you can read specific properties (delta read) instead of reading the entire Space object content. This may optimize the data retrieval flow.</p>
+        </div>
+        <h4><a name="parent-child-bi-directional-data-retrieval-flow">&#160;</a>Parent-Child Bi-Directional Data Retrieval Flow</h4>
+        <p>This is a hybrid approach of the Parent-First and Child-First flows, in which the parent stores the ID of the child objects and the child objects store the ID of the parent object. This enables you to choose the appropriate data retrieval flow based on the business logic requirements, which provides greater flexibility. The bi-directional model allows navigating from a child object to its sibling child via the common parent via two simple Space calls. The downside of this approach is redundant metadata maintained in memory, and extra updates required when data is deleted and a transaction which space more objects. This also affects the system concurrency level.</p>
+        <h1><a name="moving-from-a-database-centric-to-a-space-model">&#160;</a>Moving from a Database-Centric to a Space Model</h1>
+        <p>If you have an existing application that evolved with a database as its sole system of record, you may be using Hibernate (or some other mapping layer) to bridge between the object model your application uses and the relational model the database  uses. In other cases, you may be using a JDBC API to access the database.</p>
+        <p>To leverage the Space data modeling approach, you must adapt your existing application entities to use the appropriate data access routines. The entity class should be modified to leverage the Space data model and API. If your application uses Hibernate for example, the changes can be done in a way that is relatively transparent to the application itself. The <a href="/sbp/moving-from-hibernate-to-space.html">Moving from Hibernate to Space</a> topic explains how to perform these changes in the Data Access Objects (DAO). You may also be able to automate this process via auto-code generation or byte code manipulation.</p>
+        <h1><a name="author-and-book-example">&#160;</a>Author and Book Example</h1>
+        <p>In the following example, we have <span class="tc-bold">Author</span> and <span class="tc-bold">Book</span> entities. This is how the original <span class="tc-bold">Author</span> and the <span class="tc-bold">Book</span> Entities look:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Author</th>
+                    <th align="left">Book</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">id:Integer</td>
+                    <td align="left">id:Integer</td>
+                </tr>
+                <tr>
+                    <td align="left">lastName:String</td>
+                    <td align="left">title:String</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="example-code">&#160;</a>Example Code</h2>
+        <p>You can download the <a href="https://github.com/Gigaspaces/solution-hub/blob/master/Space-Data-Model-Example.zip" target="_blank">code</a> used with the examples below. See <code>MainEmbeddedOne2Many</code>, <code>MainEmbeddedOne2One</code>, <code>MainNonEmbeddedOne2Many</code>, <code>MainNonEmbeddedOne2One</code>, and <code>MainJDBC</code> that demonstrate each scenario described below.</p>
+        <h2><a name="remote-vs-co-located-client">&#160;</a>Remote vs. Co-located Client</h2>
+        <p>The examples below can be used with a client accessing a remote space or a co-located client running within the Space, such as a <a href="https://docs.gigaspaces.com/latest/dev-java/task-execution-over-the-space.html">DistributedTask</a> implementation or a <a href="https://docs.gigaspaces.com/latest/dev-java/executor-based-remoting.html">service</a> method invoked in a broadcast mode. The co-located client reduces the serialization and network overhead. When using the co-located client approach with the non-embedded model, you should use the same <a href="https://docs.gigaspaces.com/latest/dev-java/routing-in-partitioned-spaces.html">routing field</a> value for associated objects (parent-child).</p>
+        <h2><a name="one-to-one-relationship">&#160;</a>One-to-One Relationship</h2>
+        <p>With this example, there is a one-to-one relationship between the <span class="tc-bold">Author</span> and the <span class="tc-bold">Book</span> entity; An author may have one (1) book.</p>
+        <p>Users can search for:</p>
+        <ul>
+            <li>All <span class="tc-bold">Book</span> titles written by an <span class="tc-bold">Author</span> with a specific last name (there may be multiple matching authors).</li>
+            <li>An <span class="tc-bold">Author</span> with a specific <span class="tc-bold">Book</span>.</li>
+        </ul>
+        <p>When using JDBC to query for all the <span class="tc-bold">Books</span> related to an <span class="tc-bold">Author</span> with a specific last name, the SQL query will look like this:</p><pre><code class="language-java">select Book.id , Author.id,Author.lastName from Book, Author WHERE Author.lastName='AuthorX' AND Book.authorId = Author.id
+</code></pre>
+        <p>The main problem with this approach is the execution time. The more <span class="tc-bold">Books</span> or <span class="tc-bold">Authors</span> you have, the greater the time required to execute the query. Using the Space API with the embedded and non-embedded model provides much better performance, which isn't affected if there are many <span class="tc-bold">Books</span> or <span class="tc-bold">Authors</span>.</p>
+        <p>We can compare the JDBC approach to the embedded and non-embedded models.</p>
+        <h3><a name="embedded-model">&#160;</a>Embedded Model</h3>
+        <p>In the embedded model, the root Space object is the <span class="tc-bold">Author</span>, and has a <span class="tc-bold">Book</span> object embedded. The representation of these entities looks like this:</p>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Java" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title="The Author Entity" style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Author {
+    Integer id;
+    String lastName;
+    Book book;
+
+    @SpaceId
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @SpaceIndex
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @SpaceIndex(path = "title")
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+}
+</code></pre>
+                        </div>
+                        <div title="  The Embedded Book Entity " style="padding:10px"><pre><code class="language-java">public class Book implements Serializable{
+    Integer id;
+    String title;
+
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div title="C#" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title="  The Author Entity " style="padding:10px"><pre><code class="language-c#">[SpaceClass]
+public class Author
+{
+    [SpaceID]
+    public int Id { get; set; }
+
+    [SpaceIndex]
+    public string LastName { get; set; }
+
+    [SpaceIndex(Path = "Title")]        
+    [SpaceProperty(StorageType = StorageType.Document)]
+    public Book Book { get; set; }
+}
+</code></pre>
+                        </div>
+                        <div title="  The Embedded Book Entity " style="padding:10px"><pre><code class="language-c#">[Serializable]
+public class Book
+{
+    public int Id { get; set; }
+
+    public string Title { get; set; }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tc-admon-tip">
+            <p>See the how the book <span class="tc-bold">Title</span> property is indexed within <span class="tc-bold">Author</span> class.</p>
+        </div>
+        <p>To query for all the <span class="tc-bold">Books</span> written by an <span class="tc-bold">Author</span> with a specific last name, the query code should look like this:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Java " style="padding:10px"><pre><code class="language-java">SQLQuery&lt;Author&gt; query = new SQLQuery &lt;Author&gt;(Author.class , "lastName=?");
+query.setParameter(1, "AuthorX");
+Author authorFounds [] = space.readMultiple(query);
+Set&lt;Book&gt; booksFound = new HashSet&lt;Book&gt; ();
+for (int j = 0; j &lt; authorFounds.length; j++) {
+    booksFound.add(authorFounds[j].getBook());
+}
+return booksFound;
+</code></pre>
+            </div>
+            <div title="  C# " style="padding:10px"><pre><code class="language-c#">var books = new HashSet&lt;Book&gt;();
+
+var query = new SqlQuery&lt;Author&gt;("LastName=?");
+query.SetParameter(1, "AuthorX");
+
+var authors = spaceProxy.ReadMultiple&lt;Author&gt;(query);
+
+foreach (var author in authors)
+{
+    books.Add(author.Book);
+}
+
+return books;
+</code></pre>
+            </div>
+        </div>
+        <p>To query for an <span class="tc-bold">Author</span> with a specific <span class="tc-bold">Book</span> title, the query should look like this:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Java " style="padding:10px"><pre><code class="language-java">SQLQuery&lt;Author&gt; query = new SQLQuery &lt;Author&gt;(Author.class , "lastName=? and book.title="?");"%}}
+query.setParameter(1, "AuthorX");
+query.setParameter(2, "BookX");
+Author authorFounds [] = space.readMultiple(query);
+return authorFounds ;
+</code></pre>
+            </div>
+            <div title="  C# " style="padding:10px"><pre><code class="language-csharp">var query = new  SqlQuery&lt;Author&gt;("LastName=? and Book.Title=?");
+query.SetParameter(1, "AuthorX");
+query.SetParameter(2, "BookX");
+
+Author[] authors = spaceProxy.ReadMultiple&lt;Author&gt;(query);
+return authors;
+</code></pre>
+            </div>
+        </div>
+        <h3><a name="non-embedded-model">&#160;</a>Non-Embedded Model</h3>
+        <p>With the non-embedded model, the <span class="tc-bold">Author</span> and the <span class="tc-bold">Book</span> entities look like this; the ID of the book is stored within the author, rather than in the book object itself. It is stored as a separate Space object:</p>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Java" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title="  The Author Entity " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Author {
+    Integer id;
+    String lastName;
+    Integer bookId;
+
+    @SpaceId(autoGenerate=false)
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @SpaceIndex
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Integer getBookId() {
+        return bookId;
+    }
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
+    }
+
+}
+</code></pre>
+                        </div>
+                        <div title="  The Book Entity " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Book {
+    Integer id;
+    Integer authorId;
+    String title;
+
+    @SpaceId (autoGenerate=false)
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @SpaceIndex
+    public Integer getAuthorId() {
+        return authorId;
+    }
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
+    }
+
+    @SpaceIndex
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div title="C#" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title="  The Author Entity " style="padding:10px"><pre><code class="language-c#">[SpaceClass]
+public class Author
+{
+    [SpaceID(AutoGenerate = false)]
+    public int Id { get; set; }
+
+    [SpaceIndex]
+    public string LastName { get; set; }
+
+    public int BookId { get; set; }
+}
+</code></pre>
+                        </div>
+                        <div title="  The Book Entity " style="padding:10px"><pre><code class="language-c#">[SpaceClass]
+public class Book
+{
+    [SpaceID(AutoGenerate = false)]
+    public int Id { get; set; }
+
+    [SpaceIndex]
+    public int AuthorId { get; set; }
+
+    [SpaceIndex]
+    public string Title { get; set; }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>To query for all the <span class="tc-bold">Books</span> written by an <span class="tc-bold">Author</span> with a specific last name, the query code should look like this (see how the <span class="tc-bold">readById</span> call is used):</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Java " style="padding:10px"><pre><code class="language-java">SQLQuery&lt;Author&gt; query = new SQLQuery &lt;Author&gt;(Author.class , "lastName=?");
+query.setParameter(1, "AuthorX");
+Author authors [] = space.readMultiple(query);
+ArrayList&lt;Book&gt; booksFound = new ArrayList&lt;Book&gt;() ;
+
+// read the Author Book via its ID
+for (int j=0;j&lt;authors.length;j++)
+{
+    Book book = space.readById(Book.class , authors[j].getBookId());
+    booksFound.add(book);
+}
+return booksFound;
+</code></pre>
+            </div>
+            <div title="  C# " style="padding:10px"><pre><code class="language-c#">var books = new HashSet&lt;Book&gt;();
+
+var query = new SqlQuery&lt;Author&gt;("LastName=?");
+query.SetParameter(1, "AuthorX");
+
+Author[] authors = spaceProxy.ReadMultiple&lt;Author&gt;(query);
+
+foreach (Author author in authors)
+{
+   books.Add(spaceProxy.ReadById&lt;Book&gt;(author.BookId));
+}
+
+return books;
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>See the <a href="https://docs.gigaspaces.com/latest/dev-java/query-by-id.html">ID Queries</a> topic for more information on how the <code>readById</code> call can be used.</p>
+        </div>
+        <p>To query for a specific <span class="tc-bold">Author</span> with a specific <span class="tc-bold">Book</span> title, the query code should look like this:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Java " style="padding:10px"><pre><code class="language-java">String authoridsForTitle = "";
+SQLQuery&lt;Book&gt; bookQuery = new SQLQuery &lt;Book&gt;(Book.class , "title="?");
+bookQuery.setParameter(1, "BookX");
+Book booksFounds [] = space.readMultiple(bookQuery);
+for (int j = 0; j &lt; booksFounds.length; j++) {
+    Book book = booksFounds[j];
+    authoridsForTitle = authoridsForTitle + book.getAuthorId().toString() ;
+    if ((j +1)!= booksFounds.length)
+        authoridsForTitle = authoridsForTitle + ",";
+}
+
+SQLQuery&lt;Author&gt; query = new SQLQuery &lt;Author&gt;(Author.class , "lastName=? AND id IN ("+ authoridsForTitle+")");
+query.setParameter(1, "AuthorX");
+Author authorFounds [] = space.readMultiple(query);
+return authorFounds ;
+</code></pre>
+            </div>
+            <div title="  C# " style="padding:10px"><pre><code class="language-c#">var authorIds = new StringBuilder();
+
+var bookQuery = new SqlQuery&lt;Book&gt;("Title=?");
+bookQuery.SetParameter(1, "BookX");
+
+var books = spaceProxy.ReadMultiple&lt;Book&gt;(bookQuery);
+
+foreach (var book in books)
+{
+    authorIds.AppendFormat(",{0}", book.AuthorId);
+}
+
+var inCriteria = authorIds.ToString().TrimStart(',');
+var authorQuery = new SqlQuery&lt;Author&gt;(string.Format("LastName=? AND Id IN ({0})", inCriteria));
+authorQuery.SetParameter(1, "AuthorX");
+
+var authors = spaceProxy.ReadMultiple&lt;Author&gt;(authorQuery);
+return authors;
+
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="one-to-many-relationship">&#160;</a>One-to-Many Relationship</h2>
+        <p>In this example, there is one-to-many relationship between the <span class="tc-bold">Author</span> and the <span class="tc-bold">Book</span> entities; an author may write many books.</p>
+        <p>Users can search for:</p>
+        <ul>
+            <li>All <span class="tc-bold">Book</span> titles written by an <span class="tc-bold">Author</span> with a specific last name (there may be multiple matching authors).</li>
+            <li>An <span class="tc-bold">Author</span> with a specific <span class="tc-bold">Book</span>.</li>
+        </ul>
+        <p>When using JDBC to query for all the <span class="tc-bold">Books</span> related to an <span class="tc-bold">Author</span> with a specific last name, the query code should look like this:</p><pre><code class="language-java">select Book.id , Author.id,Author.lastName from Book, Author WHERE Author.lastName='AuthorX' AND Book.authorId = Author.id
+</code></pre>
+        <p>The main problem with this approach is the execution time. The more <span class="tc-bold">Books</span> or <span class="tc-bold">Authors</span> you have, the greater the time required to execute the query. Using the Space API with the embedded and non-embedded model provides much better performance, which isn't affected if there are many <span class="tc-bold">Books</span> or <span class="tc-bold">Authors</span>.</p>
+        <p>We can compare the JDBC approach with the embedded and non-embedded models.</p>
+        <h3><a name="embedded-model-1">&#160;</a>Embedded Model</h3>
+        <p>In the embedded model the root Space object is the <span class="tc-bold">Author</span>, and it has a <span class="tc-bold">Book</span> collection embedded. The representation of these entities looks like this:</p>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Java" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title="  The Author Entity " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Author {
+    Integer id;
+    String lastName;
+    List&lt;Book&gt; books;
+
+    @SpaceId
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @SpaceIndex
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @SpaceIndex(path = "[*].title")
+    public List&lt;Book&gt; getBooks() {
+        return books;
+    }
+
+    public void setBooks(List&lt;Book&gt; books) {
+        this.books = books;
+    }
+}
+</code></pre>
+                        </div>
+                        <div title="  The Embedded Book Entity " style="padding:10px"><pre><code class="language-java">public class Book implements Serializable{
+    Integer id;
+    String title;
+
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div title="C#" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title="  The Author Entity " style="padding:10px"><pre><code class="language-c#">[SpaceClass]
+public class Author
+{
+    [SpaceID]
+    public int Id { get; set; }
+
+    [SpaceIndex]
+    public string LastName { get; set; }
+
+    [SpaceIndex(Path="[*].Title")]
+    [SpaceProperty(StorageType = StorageType.Document)]
+    public IList&lt;Book&gt; Books { get; set; }
+}
+</code></pre>
+                        </div>
+                        <div title="  The Embedded Book Entity  " style="padding:10px"><pre><code class="language-c#">[Serializable]
+public class Book
+{
+    public int Id { get; set; }
+
+    public string Title { get; set; }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tc-admon-tip">
+            <p>See the how the book <span class="tc-bold">Title</span> property is indexed within the <span class="tc-bold">Author</span> class.</p>
+        </div>
+        <p>To query for all the <span class="tc-bold">Books</span> written by an <span class="tc-bold">Author</span> with a specific last name, the query code should look like this:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Java " style="padding:10px"><pre><code class="language-java">Set&lt;Book&gt; booksFound = new HashSet&lt;Book&gt; ();
+SQLQuery&lt;Author&gt; query = new SQLQuery &lt;Author&gt;(Author.class , "lastName=?");
+query.setParameter(1, "AuthorX");
+Author authorFounds [] = space.readMultiple(query);
+for (int j = 0; j &lt; authorFounds.length; j++) {
+    booksFound.addAll(authorFounds[j].getBooks());
+}
+return booksFound;
+</code></pre>
+            </div>
+            <div title="  C# " style="padding:10px"><pre><code class="language-c#">var books = new List&lt;Book&gt;();
+
+var authorQuery = new SqlQuery&lt;Author&gt;("LastName=?");
+authorQuery.SetParameter(1, "AuthorX");
+var authors = spaceProxy.ReadMultiple&lt;Author&gt;(authorQuery);
+
+foreach (var author in authors)
+{
+    books.AddRange(author.Books);
+}
+
+return books;
+</code></pre>
+            </div>
+        </div>
+        <p>To query for an <span class="tc-bold">Author</span> with a specific <span class="tc-bold">Book</span> title, the query should look like this:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Java " style="padding:10px"><pre><code class="language-java">SQLQuery&lt;Author&gt; query = new SQLQuery &lt;Author&gt;(Author.class , "lastName=? and books[*].title="?");
+query.setParameter(1, "AuthorX");
+query.setParameter(2, "BookY");
+Author authorFounds [] = space.readMultiple(query);
+return authorFounds;
+</code></pre>
+            </div>
+            <div title="  C# " style="padding:10px"><pre><code class="language-c#">var authorQuery = new SqlQuery&lt;Author&gt;("LastName=? AND Books[*].Title=?");
+authorQuery.SetParameter(1, "AuthorX");
+authorQuery.SetParameter(2, "BookY");
+var authors = spaceProxy.ReadMultiple&lt;Author&gt;(authorQuery);
+
+return authors;
+</code></pre>
+            </div>
+        </div>
+        <h3><a name="non-embedded-model-1">&#160;</a>Non-Embedded Model</h3>
+        <p>In the non-embedded model, the <span class="tc-bold">Author</span> and the <span class="tc-bold">Book</span> look like this; the IDs of the books are stored within the author object rather than in the books themselves. These are stored as separate Space objects:</p>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Java" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title="  The Author Entity " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Author {
+    Integer id;
+    String lastName;
+    List&lt;Integer&gt; bookIds;
+
+    @SpaceId(autoGenerate=false)
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @SpaceIndex
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public List&lt;Integer&gt; getBookIds() {
+        return bookIds;
+    }
+    public void setBookIds(List&lt;Integer&gt; bookIds) {
+        this.bookIds = bookIds;
+    }
+
+}
+</code></pre>
+                        </div>
+                        <div title="  The Book Entity " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Book {
+    Integer id;
+    Integer authorId;
+    String title;
+
+    @SpaceId (autoGenerate=false)
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @SpaceIndex
+    public Integer getAuthorId() {
+        return authorId;
+    }
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
+    }
+
+    @SpaceIndex
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div title="C#" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title="  The Author Entity " style="padding:10px"><pre><code class="language-c#">[SpaceClass]
+public class Author
+{
+    [SpaceID(AutoGenerate = false)]
+    public int Id { get; set; }
+
+    [SpaceIndex]
+    public string LastName { get; set; }
+
+    public IList&lt;int&gt; BookIds { get; set; }
+}
+</code></pre>
+                        </div>
+                        <div title="  The Book Entity " style="padding:10px"><pre><code class="language-c#">[SpaceClass]
+public class Book
+{
+    [SpaceID(AutoGenerate = false)]
+    public int Id { get; set; }
+
+    [SpaceIndex]
+    public int AuthorId { get; set; }
+
+    [SpaceIndex]
+    public string Title { get; set; }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>To query for all the <span class="tc-bold">Books</span> written by an <span class="tc-bold">Author</span> with a specific last name, the query code should look like this (see how the <span class="tc-bold">readByIds</span> call is used):</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Java " style="padding:10px"><pre><code class="language-java">SQLQuery&lt;Author&gt; query = new SQLQuery &lt;Author&gt;(Author.class , "lastName=?");
+query.setParameter(1, "AuthorX");
+Author authors [] = space.readMultiple(query);
+ArrayList&lt;Book&gt; booksFound = new ArrayList&lt;Book&gt;() ;
+
+// read all the Author Books via their IDs
+for (int j=0;j&lt;authors.length;j++)
+{
+    Integer ids [] = new Integer[authors[j].getBookIds().size()];
+    ids  = authors[j].getBookIds().toArray(ids);
+    Iterator&lt;Book&gt; bookIter = space.readByIds(Book.class ,ids).iterator();
+    while (bookIter.hasNext()) {
+        booksFound.add((Book) bookIter.next());
+    }
+}
+return booksFound;
+</code></pre>
+            </div>
+            <div title=" C# " style="padding:10px"><pre><code class="language-c#">var authorQuery = new SqlQuery&lt;Author&gt;("LastName=?");
+authorQuery.SetParameter(1, "AuthorX");
+var authors = spaceProxy.ReadMultiple&lt;Author&gt;(authorQuery);
+
+var books = new List&lt;Book&gt;();
+
+foreach (var author in authors)
+{
+    books.AddRange(spaceProxy.ReadByIds&lt;Book&gt;(author.BookIds.Cast&lt;object&gt;().ToArray()));
+}
+
+
+return books;
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>See the <a href="https://docs.gigaspaces.com/latest/dev-java/query-by-id.html">ID Queries</a> topic for more information about how the <code>readByIds</code> call can be used.</p>
+        </div>
+        <p>To query for a specific <span class="tc-bold">Author</span> with a specific <span class="tc-bold">Book</span> title, the query should look like this:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Java " style="padding:10px"><pre><code class="language-java">SQLQuery&lt;Book&gt; bookQuery = new SQLQuery &lt;Book&gt;(Book.class , title="?");
+bookQuery.setParameter(1, "BookX");
+Book booksFounds [] = space.readMultiple(bookQuery);
+String authoridsForTitle="";
+for (int j = 0; j &lt; booksFounds.length; j++) {
+    Book book = booksFounds[j];
+    authoridsForTitle = authoridsForTitle + book.getAuthorId().toString() ;
+    if ((j +1)!= booksFounds.length)
+        authoridsForTitle = authoridsForTitle + ",";
+}
+
+SQLQuery&lt;Author&gt; query = new SQLQuery &lt;Author&gt;(Author.class , "lastName=? AND id IN ("+ authoridsForTitle+")");
+query.setParameter(1, "AuthorX");
+Author authorFounds [] = space.readMultiple(query);
+return authorFounds ;
+</code></pre>
+            </div>
+            <div title="  C# " style="padding:10px"><pre><code class="language-csharp">var bookQuery = new SqlQuery&lt;Book&gt;("Title=?");
+bookQuery.SetParameter(1, "BookX");
+var books = spaceProxy.ReadMultiple&lt;Book&gt;(bookQuery);
+
+var authorIds = new StringBuilder();
+
+foreach (var book in books)
+{
+    authorIds.AppendFormat(",{0}", book.AuthorId);
+}
+
+var authorQueryCriteria = authorIds.ToString().TrimStart(',');
+var authorQuery = new SqlQuery&lt;Author&gt;(string.Format("LastName=? AND Id in ({0})", authorQueryCriteria));
+authorQuery.SetParameter(1, "AuthorX");
+
+var authors = spaceProxy.ReadMultiple&lt;Author&gt;(authorQuery);
+
+return authors;
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="many-to-many-relationship">&#160;</a>Many-to-Many Relationship</h2>
+        <p>In this example, there is many-to-many relationship between the <span class="tc-bold">Author</span> and the <span class="tc-bold">Book</span> entity; an author may write many books, and a book may be written by multiple authors.</p>
+        <p>Users can search for:</p>
+        <ul>
+            <li>All <span class="tc-bold">Book</span> titles written by an <span class="tc-bold">Author</span> with a specific last name (there may be multiple matching authors).</li>
+            <li>An <span class="tc-bold">Author</span> with a specific <span class="tc-bold">Book</span>.</li>
+        </ul>
+        <p>To model this in SQL, you need an additional table that links an author with the related books (or in other words, a book and its authors). Each entry in this table contains a foreign key to the Author table, and a foreign key to the Book table. When using JDBC to query for all the <span class="tc-bold">Books</span> written by an <span class="tc-bold">Author</span> with a specific last name, the SQL query should look like this:</p><pre><code class="language-java">select Book.id, Author.id, Author.lastName from Book, Author, AuthorBookLink WHERE Author.lastName='AuthorX' AND Author.id = AuthorBookLink.authorId AND AuthorBookLink.bookId = Book.id
+</code></pre>
+        <p>The main problem with this approach is the execution time. The more <span class="tc-bold">Books</span> or <span class="tc-bold">Authors</span> you have, the greater the time required to execute the query. Using the Space API with the non-embedded model provides much better performance, which isn't affected if there are many <span class="tc-bold">Books</span> or <span class="tc-bold">Authors</span>.</p>
+        <p>We can compare the JDBC approach to the embedded and non-embedded model.</p>
+        <h3><a name="embedded-model-2">&#160;</a>Embedded Model</h3>
+        <p>In the embedded model, the root Space object is the <span class="tc-bold">Author</span> and it has a <span class="tc-bold">Book</span> collection embedded. The representation of these entities looks like this:</p>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Java" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title="  The Author Entity " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Author {
+    Integer id;
+    String lastName;
+    List&lt;Book&gt; books;
+
+    @SpaceId
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @SpaceIndex
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @SpaceIndex(path = "[*].title")
+    public List&lt;Book&gt; getBooks() {
+        return books;
+    }
+
+    public void setBooks(List&lt;Book&gt; books) {
+        this.books = books;
+    }
+}
+</code></pre>
+                        </div>
+                        <div title="  The Embedded Book Entity " style="padding:10px"><pre><code class="language-java">public class Book implements Serializable {
+    Integer id;
+    String title;
+
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div title="C#" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title="  The Author Entity " style="padding:10px"><pre><code class="language-csharp">[SpaceClass]
+public class Author
+{
+    [SpaceID]
+    public int Id { get; set; }
+
+    [SpaceIndex]
+    public string LastName { get; set; }
+
+    [SpaceIndex(Path="[*].Title")]
+    [SpaceProperty(StorageType = StorageType.Document)]
+    public IList&lt;Book&gt; Books { get; set; }
+}
+</code></pre>
+                        </div>
+                        <div title="  The Embedded Book Entity  " style="padding:10px"><pre><code class="language-csahrp">[Serializable]
+public class Book
+{
+    public int Id { get; set; }
+
+    public string Title { get; set; }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3><a name="non-embedded-model-2">&#160;</a>Non-Embedded Model</h3>
+        <p>In the non-embedded model, the <span class="tc-bold">Author</span> and the <span class="tc-bold">Book</span> look like this. Note that there additional entities expressing a relationship between <span class="tc-bold">Author</span> and <span class="tc-bold">Book</span>; <span class="tc-bold">AuthorBookLink</span>. In this model, <span class="tc-bold">Books</span> are stored as separate Space objects:</p>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Java" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title="  The Author Entity " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Author {
+    Integer id;
+    String lastName;
+
+    @SpaceId
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @SpaceIndex
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+}
+</code></pre>
+                        </div>
+                        <div title="  The Book Entity " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Book {
+    Integer id;
+    String title;
+
+    @SpaceId
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @SpaceIndex
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}
+</code></pre>
+                        </div>
+                        <div title="  The AuthorBookLink Entity " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class AuthorBookLink {
+    Integer id;
+    Integer authorId;
+    Integer bookId;
+
+    @SpaceId
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @SpaceIndex
+    public Integer getAuthorId() {
+        return authorId;
+    }
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
+    }
+
+    @SpaceIndex
+    public Integer getBookId() {
+        return bookId;
+    }
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
+    }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div title="C#" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title="  The Author Entity " style="padding:10px"><pre><code class="language-c#">[SpaceClass]
+public class Author
+{
+    [SpaceID]
+    public int? Id { get; set; }
+
+    [SpaceIndex]
+    public string LastName { get; set; }
+}
+</code></pre>
+                        </div>
+                        <div title="  The Book Entity " style="padding:10px"><pre><code class="language-c#">[SpaceClass]
+public class Book
+{
+    [SpaceID]
+    public int? Id { get; set; }
+
+    [SpaceIndex]
+    public string Title { get; set; }
+}
+</code></pre>
+                        </div>
+                        <div title="  The AuthorBookLink Entity " style="padding:10px"><pre><code class="language-c#">[SpaceClass]
+public class AuthorBookLink
+{
+    [SpaceID]
+    public int? Id { get; set; }
+
+    [SpaceIndex]
+    public int? AuthorId { get; set; }
+    
+    [SpaceIndex]
+    public int? BookId { get; set; }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>See the <a href="{https://docs.gigaspaces.com/latest/dev-java/query-by-id.html">ID Queries</a> topic for more information on how the <code>readByIds</code> call can be used.</p>
+        </div>
+        <div class="tc-admon-tip">
+            <p>More examples are available in the <a href="https://docs.gigaspaces.com/latest/dev-java/query-sql.html">SQLQuery</a> topic, which provides details about query and indexing embedded entities. Additionally, the <a href="parent-child-relationship.html">Parent Child Relationship</a> page contains an example of non-embedded relationships.</p>
+        </div>
+        <h2><a name="real-world-example">&#160;</a>Real World Example</h2>
+        <p>In the <a href="http://www.openspaces.org/display/DAE/GigaSpaces+PetClinic">Pet Clinic application</a> that is based on the <a href="https://github.com/spring-projects/spring-petclinic">Spring pet clinic sample</a>, a <span class="tc-bold">Pet</span> is only associated with an <span class="tc-bold">Owner</span>. We can therefore store each <span class="tc-bold">Pet</span> with its <span class="tc-bold">Owner</span> on the same partition. We can even embed the <span class="tc-bold">Pet</span> object within the physical <span class="tc-bold">Owner</span> entry.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/petclinic_class_model.gif" alt="petclinic_class_model.gif" class="tc-picture80" />
+            </p>
+        </div>
+        <p>However, if a <span class="tc-bold">Pet</span> is also associated with a <span class="tc-bold">Vet</span>, we can't embed the <span class="tc-bold">Pet</span> in the <span class="tc-bold">Vet</span> physical entry (without duplicating each Pet entry), and can't even store the <span class="tc-bold">Pet</span> and its <span class="tc-bold">Vet</span> in the same partition.</p>
+        <h1><a name="guidelines-for-choosing-embedded-relationships">&#160;</a>Guidelines for Choosing Embedded Relationships</h1>
+        <ul>
+            <li>Embed when an entity is meaningful only with the context of its containing object. For example, in the Pet Clinic application, the <span class="tc-bold">Pet</span> entity has a meaning only when it is associated with an <span class="tc-bold">Owner</span>. A <span class="tc-bold">Pet</span> by itself is meaningless without an <span class="tc-bold">Owner</span> in this specific application. There is no business scenario for transferring a <span class="tc-bold">Pet</span> from one<span class="tc-bold">Owner</span> to another <span class="tc-bold">Owner</span>, or for admitting a <span class="tc-bold">Pet</span> to a <span class="tc-bold">Vet</span> without an <span class="tc-bold">Owner</span>.</li>
+            <li>Embedding may sometimes mean duplicating your data. For example, if you want to reference a certain <span class="tc-bold">Visit</span> from both the <span class="tc-bold">Pet</span> and <span class="tc-bold">Vet</span> classes, you'll need duplicate <span class="tc-bold">Visit</span> entries.</li>
+        </ul>
+        <p>Regarding duplication:</p>
+        <ul>
+            <li>Duplication means preferring scalability over footprint. The reason for duplicating is to avoid cluster-wide transactions and in many cases, it is the only way to partition your object in a scalable manner.</li>
+            <li>Duplication means higher memory consumption. While memory is considered a low-cost commodity today, duplication has a hidden cost because you may have two Sspace objects that contain the same data.</li>
+            <li>Duplication means more lenient consistency. When you add a <span class="tc-bold">Visit</span> to a <span class="tc-bold">Pet</span> and a <span class="tc-bold">Vet</span>, for example, you must update them both. You can do this in one (potentially distributed) transaction, or in two separate transactions, which will scale better but be less consistent. This may be sufficient for many types of applications, such as on social networks where losing a post, although undesired, does not incur significant damage. In contrast, this is not feasible for financial applications where every operation must be accounted for.</li>
+        </ul>
+    </body>
+</html>

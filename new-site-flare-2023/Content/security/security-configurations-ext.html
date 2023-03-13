@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Configuration</h1>
+        <p>The security components (GSA, GSM, GSC and Processing Unit) can each have their own security configuration. As such, you can have different security behaviors even between Processing Units. But, all have one common concept: all configurations are declared using properties (either located in a properties file or part of the components properties).</p>
+        <p>The security implementation dictates the properties needed for configuration. For example, if you consider the out-of-the-box file-based security implementation, you can either rely on the defaults or configure the file location, password encoders, etc.</p>
+        <p>When a secured component is started, it looks for the security configuration properties in order to instantiate the security implementation.</p>
+        <h1><a name="enabling-security"></a>Enabling Security</h1>
+        <p>Security can be enabled separately for the <a href="securing-your-data.html">Data layer</a> and the <a href="securing-the-grid-services.html">Grid layer</a>.</p>
+        <h1><a name="logging"></a>Logging</h1>
+        <p>Any configurations that are applied can be seen by setting the logging level to CONFIG (see <code>xap_logging.properties</code>):</p><pre><code class="language-java">com.gigaspaces.security.level = CONFIG
+</code></pre>
+        <h1><a name="security-properties-file"></a>Security Properties File</h1>
+        <p>The security properties file is used to configure the <code>SecurityManager</code>, that is responsible for the authentication and authorization process.
+The <code>security.properties</code> file is common to all components and is usually located under <code><MadCap:variable name="General.HomePath" />/config/security/security.properties</code>.</p>
+        <p>To only affect the Web Management Console, use the <code>webui-security.properties</code> instead.</p>
+        <p>The configuration file can be located anywhere in the classpath or in the classpath under <code>config/security</code>.</p>
+        <p>Alternatively, a system property can be set to indicate the location of the properties file:</p><pre><code class="language-java">-Dcom.gs.security.properties-file = my-security.properties
+</code></pre>
+        <p>By setting <code>-Dcom.gs.security.properties-file</code> the property file will be located as a direct path (e.g. <code>~/home/user/my-security.properties</code>),
+a resource (e.g. "my-security.properties") in the classpath or in the classpath under <code>config/security</code>.</p>
+        <div class="tc-admon-note">
+            <p>Since System Properties are JVM level, any Processing Unit deployed within a GSC will also benefit from this configuration.
+But, if security configurations were provided as part of the <code>pu.properties</code> they will be used instead.</p>
+        </div>
+        <h1><a name="configuration-options"></a>Configuration Options</h1>
+        <h2><a name="space"></a>Space</h2>
+        <p>For a standalone Space, the default Space security configuration file is <code>&lt;space-name&gt;-security.properties</code>.
+Just like the <code>pu.properties</code>, you can include the security properties as part of the custom properties being passed to the space <code>/./space?properties=myCustomProps</code>.</p>
+        <h2><a name="processing-unit"></a>Processing Unit</h2>
+        <p>The default Processing Unit (Space) security configuration file is <code>/META-INF/spring/pu.properties</code>.
+This is equivalent to custom properties being passed to the Space.
+This allows you to configure different configurations for different Processing Units.
+Thus, having a Processing Unit Cluster point to a specific security directory.</p>
+        <p>It is possible to separate the security configurations from the Processing Unit configurations,
+by placing the configurations in <code>/META-INF/spring/&lt;Space name&gt;-security.properties</code> file.</p>
+        <h2><a name="service-grid-components"></a>Service Grid Components</h2>
+        <p>The default Grid components security configuration file is <code>grid-security.properties</code>.<br />Here you can declare different configurations that will affect all the Grid components (such as GSA, GSM, GSC) together.</p>
+        <h2><a name="web-management-console"></a>Web Management Console</h2>
+        <p>The default Web Management Console component security configuration file is <code>webui-security.properties</code>.  The configuration file affects only the <a href="../admin/tools-web-ui.html#security">Web Management Console</a>.</p>
+    </body>
+</html>

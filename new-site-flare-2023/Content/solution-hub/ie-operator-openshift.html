@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Deploying <MadCap:variable name="General.ProductNameIE" /> in OpenShift </h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th align="center">Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Yoram Weinreb</td>
+                    <td>15.0</td>
+                    <td>February 2020</td>
+                    <td> </td>
+                    <td align="center"><a href="https://access.redhat.com/containers/?tab=images#/registry.connect.redhat.com/gigaspaces/insightedge-enterprise-operator" target="_blank">OpenShift OperatorHub</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Red Hat OpenShift is an enterprise-ready Kubernetes container platform with full-stack automated operations to manage hybrid cloud and multi-cloud deployments. <MadCap:variable name="General.ProductNameIE" /> is now a certified Red Hat OpenShift Operator, so <MadCap:variable name="General.ProductNameIE" /> customers can download the <MadCap:variable name="General.ProductNameIE" /> Enterprise Operator from the Red Hat Container Catalog. This enables developing and deploying time-sensitive applications that need performance and scale for transactional processing, along with faster analytics and machine learning on streaming, hot and historical data to enable faster and smarter insights and actions.</p>
+        <p>Red Hat OpenShift, combined with <MadCap:variable name="General.ProductNameXAP" />' multi-region and cloud replication module, helps to improve the efficiency of  cloud and multi-cloud migration initiatives; enterprises can optimize bandwidth and reduce data transfer costs between regions and cloud providers. Data can also be replicated more efficiently, and predefined filters can be leveraged to replicate the desired data changes, custom aggregations and compression. Additionally, data can be encrypted and anonymized in transit to help support privacy regulations such as GDPR.</p>
+        <h1>Deploying The Insightedge Enterprise Operator</h1>
+        <p>In order to deploy the <MadCap:variable name="General.ProductNameIE" /> Enterprise Operator, you need to first create a  project in your environment (on-premise, cloud, or hybrid). Then follow the instructions below to download and install the Operator.</p>
+        <p class="tc-todo">To deploy the <MadCap:variable name="General.ProductNameIE" /> Enterprise Operator:</p>
+        <ol>
+            <li>
+                <p>In the Openshift OperatorHub, navigate to the <span class="tc-bold">Insightedge Enterprise Operator</span> certified operator (you can filter the view by beginning to type the operator name in the search field) and click it.</p>
+            </li>
+            <li>
+                <p>Click <span class="tc-bold">Install</span>.</p>
+            </li>
+            <li>
+                <p>On the Create Operator Subscription page, review the default settings and click <span class="tc-bold">Subscribe</span>.</p>
+            </li>
+            <li>
+                <p>On the Installed Options page, when the status of your operator is <span class="tc-bold">InstallSucceeded</span> (and <span class="tc-bold">up to date</span>), click <span class="tc-bold">InsightEdge Enterprise Operator</span> in the Name column.</p>
+            </li>
+            <li>
+                <p>Click <span class="tc-bold">Create Instance</span>.</p>
+            </li>
+            <li>
+                <p>(Optional) In the editor view, rename the deployment and modify the environment values, for example:</p>
+                <ul>
+                    <li>
+                        <p> To configure high availability: </p><pre><code class="language-bash">manager.ha=true,manager.antiAffinity.enabled=true</code></pre>
+                    </li>
+                    <li>
+                        <p> To specify the number of partitions: </p><pre><code class="language-bash">pu.partitions=n</code></pre>
+                    </li>
+                    <li>
+                        <p> To specify the pod memory allocation: </p><pre><code class="language-bash">pu.resources.limits.memory=256Mi,pu.java.heap=75%</code></pre>
+                    </li>
+                    <li>
+                        <p> To implement MemoryXtend (Persistent  Volume): </p><pre><code class="language-bash">memoryXtendVolume.enabled=true,memoryXtendVolume.volumeClaimTemplate.storage=10Gi,resourceUrl=http://&amp;lt;my-server&amp;gt;/path/to/my-pu.jar</code></pre>
+                    </li>
+                </ul>
+            </li>
+            <li>Navigate to the Workloads&gt;Pods page to verify that all the pods are up and running.</li>
+            <li>Navigate to the Project page and click your project to open the Project details page.</li>
+            <li>Click the Workloads tab to see the list of pods in your project. You can click a pod to view the connection details (service ports) for that pod.</li>
+        </ol>
+        <div class="tc-admon-note">
+            <p><code>insightedge-manager</code> uses the web interface endpoint, and Apache Zeppelin uses the interactive notebook endpoint.</p>
+        </div>
+    </body>
+</html>

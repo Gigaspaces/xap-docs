@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Scripting Executor</h1>
+        <p><a href="task-dynamic-language.html">Dynamic Language Tasks</a> feature has been extended and now supports Scala based script execution.</p>
+        <h1><a name="configuration"></a>Configuration</h1>
+        <p>Here is how you would configure a processing unit to run a scripting executor with scala support and use it from a client proxy. For detailed information on the <code>Scripting Executor</code> framework, see <a href="task-dynamic-language.html">Dynamic Language Tasks</a>.</p>
+        <h2><a name="processing-unit-configuration"></a>Processing Unit Configuration</h2><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;bean id="scriptingExecutorImpl" class="org.openspaces.remoting.scripting.DefaultScriptingExecutor"&gt;
+  &lt;property name="executors"&gt;
+    &lt;map&gt;
+      &lt;entry key="scala"&gt;
+    &lt;bean class="org.openspaces.remoting.scripting.ScalaLocalScriptExecutor"&gt;
+    &lt;/bean&gt;
+      &lt;/entry&gt;
+    &lt;/map&gt;
+  &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;os-remoting:service-exporter id="serviceExporter"&gt;
+  &lt;os-remoting:service ref="scriptingExecutorImpl"/&gt;
+&lt;/os-remoting:service-exporter&gt;
+
+&lt;os-events:polling-container id="remotingContainer" giga-space="gigaSpace"&gt;
+  &lt;os-events:listener ref="serviceExporter"/&gt;
+&lt;/os-events:polling-container&gt;
+</code></pre>
+        <h2><a name="client-side-configuration"></a>Client Side Configuration</h2><pre><code class="language-xml">&lt;os-core:space-proxy  id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+
+&lt;os-remoting:executor-proxy id="executorScriptingExecutor" giga-space="gigaSpace"
+    interface="org.openspaces.remoting.scripting.ScriptingExecutor"&gt;
+  &lt;os-remoting:aspect&gt;
+    &lt;bean class="org.openspaces.remoting.scripting.LazyLoadingRemoteInvocationAspect" /&gt;
+  &lt;/os-remoting:aspect&gt;
+  &lt;os-remoting:routing-handler&gt;
+    &lt;bean class="org.openspaces.remoting.scripting.ScriptingRemoteRoutingHandler" /&gt;
+  &lt;/os-remoting:routing-handler&gt;
+  &lt;os-remoting:meta-arguments-handler&gt;
+    &lt;bean class="org.openspaces.remoting.scripting.ScriptingMetaArgumentsHandler" /&gt;
+  &lt;/os-remoting:meta-arguments-handler&gt;
+&lt;/os-remoting:executor-proxy&gt;
+</code></pre>
+        <h1><a name="usage"></a>Usage</h1>
+        <p>3 new <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/remoting/scripting/Script.html">Script</a> implementations have been added to support compilation and caching of compiled scala scripts. These provide the ability to explicitly set the static type for script parameters which is required when the runtime type is not public. In most cases, there is no need to define these as they can be deduced to use the parameter runtime type.</p>
+        <ul>
+            <li><code>org.openspaces.remoting.scripting.ScalaTypedStaticScript</code> which extends <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/remoting/scripting/StaticScript.html">StaticScript</a>.</li>
+            <li><code>org.openspaces.remoting.scripting.ScalaTypedStaticResourceScript</code> which extends <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/remoting/scripting/StaticResourceScript.html">StaticResourceScript</a>.</li>
+            <li><code>org.openspaces.remoting.scripting.ScalaTypedResourceLazyLoadingScript</code> which extends <a href="[%=Links.ApiJavaDoc%]/index.html?org/openspaces/remoting/scripting/ResourceLazyLoadingScript.html">ResourceLazyLoadingScript</a>.</li>
+        </ul>
+        <h1><a name="example"></a>Example</h1>
+        <p>Import org.openspaces.remoting.scripting.ScalaTypedStaticScript into scope to use the methods demonstrated below.</p><pre><code class="language-scala">val code = """
+val readData: Any = gigaSpace.read(null)
+val numberAsString = someNumber.toString
+val setAsString = someSet.toString
+numberAsString + " " + someString + " " + setAsString + " " + readData
+"""
+
+val script = new ScalaTypedStaticScript("myScript", "scala", code)
+  .parameter("someNumber", 1)
+  .parameter("someString", "str")
+  // explicit type is requierd because the runtime type of the generated
+  // set is not public
+  .parameter("someSet", Set(1,2,3), classOf[Set[_]])
+
+val result = executor.execute(script)
+
+println("Script execution result: " + result)
+</code></pre>
+    </body>
+</html>

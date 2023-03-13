@@ -1,0 +1,917 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Operations</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> provides a simple Space API using the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.html">GigaSpace</a> interface for interacting with the Space.</p>
+        <p>The interface includes the following main operations:</p>
+        <table class="tc-borderless">
+            <tr>
+                <td style="width:50%;">
+                    <p><span class="tc-bold">Write objects into the Space:</span>
+                        <br /><a href="#write">write</a> one object into the space<br /><a href="#writeMultiple">writeMultiple</a> objects into the Space<br /><a href="#asynchronousWrite">asynchronous write</a> to the Space</p>
+                </td>
+                <td style="width:50%;">
+                    <p><span class="tc-bold">Change objects in Space:</span>
+                        <br /><a href="#change">change</a> one object in Space<br /><a href="change-api-overview.html">changeMultiple</a> objects in Space <br /><a href="change-api-overview.html">asynchronous change</a> of objects</p>
+                </td>
+            </tr>
+        </table>
+        <table class="tc-borderless">
+            <tr>
+                <td style="width:50%;">
+                    <p><span class="tc-bold">Reading objects from the Space:</span>
+                        <br /><a href="#read">readById</a> from the Space<br /><a href="#readMultiple">readByIds</a> from the Space<br /><a href="#read">read</a> object by template from the Space<br /><a href="#readMultiple">readMultiple</a> objects from the Space <br /><a href="#asynchronousRead">read asynchronous</a> from the Space <br /><a href="#readIfExists">read if exists</a> <br /><a href="#readIfExists">read if exists by id</a></p>
+                </td>
+                <td style="width:50%;">
+                    <p><span class="tc-bold">Removing objects from the Space:</span>
+                        <br /><a href="#take">take</a> object by template from Space<br /><a href="#take">takeById</a> object by id from Space<br /><a href="#takeMultiple">takeByIds</a> objects by ids from Space<br /><a href="#takeMultiple">takeMultiple</a> objects from Space <br /><a href="#asynchronousTake">take asynchronous</a><br /><a href="#takeIfExists">take if exists</a><br /><a href="#clear">clear</a> objects in Space</p>
+                </td>
+            </tr>
+        </table>
+        <table class="tc-borderless">
+            <tr>
+                <td style="width:50%;">
+                    <p><span class="tc-bold">Other operations:</span>
+                        <br /><a href="#aggregators">aggregation</a>  across the Space<br /><a href="#count">count</a> objects in Space<br /><a href="#counters">counters</a> increment and decrement</p>
+                </td>
+                <td style="width:50%;">
+                </td>
+            </tr>
+        </table>
+        <h1><a name="simpler-api"></a>Simpler API</h1>
+        <p>The <code>GigaSpace</code> interface provides a simpler Space API by utilizing Java 5 generics, and allowing sensible defaults. Here are some examples of the Space operations as defined within <code>GigaSpace</code>:</p><pre><code class="language-java">public interface GigaSpace {
+    &lt;T&gt; LeaseContext&lt;T&gt; write(T entry) throws DataAccessException;
+    // ....
+    &lt;T&gt; T read(ISpaceQuery&lt;T&gt; query, Object id)throws DataAccessException;
+    // ......
+    &lt;T&gt; T take(T template) throws DataAccessException;
+    &lt;T&gt; T take(T template, long timeout) throws DataAccessException;
+    // ......
+}
+</code></pre>
+        <p>In the example above, the take operation can be performed without specifying a timeout. The default take timeout is <code>0</code> (no wait), and can be overridden when configuring the <code>GigaSpace</code> factory. In a similar manner, the read timeout and write lease can be specified.</p><a name="write"></a>
+        <h1><a name="the-write-operation"></a>The Write Operation</h1>
+        <p>In order to write objects to the Space, use the write method of the GigaSpace interface. The write method is used to write objects if these are introduced for the first time, or to update them if they already exist in the Space. In order to override the default semantics, use the overloaded write methods that accept update modifiers such as WriteModifiers.UPDATE_ONLY.</p>
+        <h2><a name="pojo-example"></a>POJO Example</h2>
+        <p>The following example writes an <code>Employee</code> object to the Space:</p><pre><code class="language-java">    GigaSpace space = ....
+
+    Employee employee = new Employee("Last Name", new Integer(32));
+    employee.setFirstName("first name");
+    LeaseContext&lt;Employee&gt; lc = space.write(employee);
+</code></pre>
+        <h2><a name="spacedocument-example"></a>SpaceDocument Example</h2>
+        <p>Here is an example how you create a SpaceDocument, register it with the Space, and then write it to the Space:</p><pre><code class="language-java">     // Create the document
+     DocumentProperties properties = new DocumentProperties()
+       .setProperty("CatalogNumber", "av-9876")
+       .setProperty("Category", "Aviation")
+       .setProperty("Name", "Jet Propelled Pogo Stick")
+       .setProperty("Price", 19.99f)
+       .setProperty("Tags",
+            new String[] { "New", "Cool", "Pogo", "Jet" })
+       .setProperty("Features",
+            new DocumentProperties()
+              .setProperty("Manufacturer", "Acme")
+              .setProperty("RequiresAssembly", true)
+              .setProperty("NumberOfParts", 42));
+
+     SpaceDocument doc = new SpaceDocument("Product", properties);
+
+     // Register the document
+     // Create type descriptor:
+     SpaceTypeDescriptor typeDescriptor = new SpaceTypeDescriptorBuilder(
+        "Product").idProperty("CatalogNumber")
+        .routingProperty("Category")
+        .addPropertyIndex("Name", SpaceIndexType.EQUAL)
+        .addPropertyIndex("Price", SpaceIndexType.ORDERED).create();
+     // Register type:
+     space.getTypeManager().registerTypeDescriptor(typeDescriptor);
+
+    // Write the document into the space
+    LeaseContext&lt;SpaceDocument&gt; lc = space.write(document);
+</code></pre>
+        <h2><a name="time-to-live"></a>Time To Live</h2>
+        <p>To write an object to the Space with a limited time to live, specify <a href="leases-automatic-expiration.html">a lease value</a> (in milliseconds). The object will expire automatically from the Space when the lease is finished.</p><pre><code class="language-java">   gigaSpace.write(myObject, 10000)
+</code></pre><a name="writeMultiple"></a><a name="writeMultiple"></a>
+        <h2><a name="write-multiple"></a>Write Multiple</h2>
+        <p>When writing a batch of objects to the Space, these should be placed into an array to be used by the <code>GigaSpace.writeMultiple</code> operation. The returned array will include the corresponding <code>LeaseContext</code> object.</p>
+        <h2><a name="example"></a>Example</h2><pre><code class="language-java">   Employee emps[] = new Employee[2];
+   emps[0] = new Employee("Last Name A", new Integer(10));
+   emps[1] = new Employee("Last Name B", new Integer(20));
+   try {
+    LeaseContext[] leaseContexts = space.writeMultiple(emps);
+    for (int i = 0;i&lt;leaseContexts.length ; i++) {
+        System.out.println ("Object UID " + leaseContexts[i].getUID() + " inserted into the space");
+    }
+   } catch (WriteMultipleException e) {
+    IWriteResult[] writeResult = e.getResults();
+    for (int i = 0;i&lt; writeResult.length ; i++) {
+        System.out.println ("Problem with Object UID " + writeResult ");
+    }
+  }
+</code></pre>
+        <p><span class="tc-bold">Here are a few important considerations when using the batch operation:</span>
+        </p>
+        <ul>
+            <li>Should be performed with transactions - this allows the client to roll back the Space to its initial state prior to when the operation was started, in case of a failure.</li>
+            <li>Make sure <code>null</code> values are not part of the passed array.</li>
+            <li MadCap:conditions="Default.DoNotShow">
+                <p>Verify that duplicated entries (with the same ID) do not appear as part of the passed array, because the identity of the object is determined based on its <code>ID</code> and not based on its reference. This is extremely important with an embedded Space, because <code>writeMultiple</code> injects the ID value into the object after the write operation (when autogenerate=false).</p>
+            </li>
+            <li>
+                <p>Exception handling - the operation many throw the following exceptions:</p>
+                <ul>
+                    <li><a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/WriteMultiplePartialFailureException.html">WriteMultiplePartialFailureException</a>
+                    </li>
+                    <li><a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/WriteMultipleException.html">WriteMultipleException</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <h2>Duplicate Entries in Write Multiple</h2>
+        <p>Duplicate entries (with the same ID) are not allowed when using the <code class="language-bash">WRITE_ONLY</code> write modifier. This is because the identity of the object is determined based on its ID and not based on its reference. <br />This is extremely important with an embedded Space, because writeMultiple injects the ID value into the object after the write operation (when <code class="language-bash">autogenerate=false</code>).</p>
+        <div class="tc-admon-note">
+            <p>While duplicate entries are allowed with the <code class="language-bash">WRITE_OR_UPDATE</code> modifier, they are not allowed when using MemoryXtend for Disk (RocksDB). </p>
+        </div>
+        <div MadCap:conditions="Version.15-5-born">
+            <p>There are some cases where you may wish to allow duplicates in a single write batch - for example, when you load CSV files using the CSVReader or InsightEdge API, and you do not have full control of the file content.</p>
+            <p>In such cases, you can configure the space property <code class="language-bash">space-config.engine.blobstore.rocksdb.allow_duplicate_uids</code> to <code class="language-bash">true</code>. This flag is automatically enabled when using InsightEdge.</p>
+            <p>If enabled, the behavior is that duplicate entries are removed on the client side, before sending the objects to the Space. Only the last duplicate entry will be used to update the Space.</p>
+            <div class="tc-admon-note">
+                <p><code class="language-bash">PARTIAL_UPDATE</code> and <code class="language-bash">WRITE_ONLY</code> modifiers are not allowed with the space property <br /><code class="language-bash">space-config.engine.blobstore.rocksdb.allow_duplicate_uids</code> set to <code class="language-bash">true</code>.</p>
+            </div>
+            <div class="tc-admon-note">
+                <p> If the same batch has a write and an update, the last entry will be used and it will be a write operation. This is important if you have an event container.</p>
+            </div>
+        </div>
+        <h2><a name="return-previous-value"></a>Return Previous Value</h2>
+        <p>When updating an object that already exists in the Space, in some scenarios it is useful to get the previous value of the object (before the update). This previous value is returned in result <code>LeaseContext.getObject()</code> when using the <code>RETURN_PREV_ON_UPDATE</code> modifier.</p><pre><code class="language-java">  LeaseContext&lt;MyData&gt; lc = space.write(myobject,WriteModifiers.RETURN_PREV_ON_UPDATE.add(WriteModifiers.UPDATE_OR_WRITE));
+  MyData previousValue = lc.getObject();
+</code></pre>
+        <div class="tc-admon-note">
+            <p>In most scenarios the previous value is irrelevant, therefore the default behavior is not to return it (i.e. <code>LeaseContext.getObject()</code> return null). The <code>RETURN_PREV_ON_UPDATE</code> modifier is used to indicate that the previous value should be returned.</p>
+        </div><a name="asynchronousWrite"></a>
+        <h2><a name="asynchronous-write"></a>Asynchronous Write</h2>
+        <p>An asynchronous <code>write</code> operation can be implemented using a <a href="task-execution-overview.html">Task</a>, where the <code>Task</code> implementation include a write operation. With this approach the <code>Task</code> is sent to the space and executed in an asynchronous manner. The write operation itself will be completed when both the primary and the backup acknowledge the operation. This activity is performed as a background activity from the client perspective.</p>
+        <h3><a name="example-1"></a>Example</h3><pre><code class="language-java">  GigaSpace space = new GigaSpaceConfigurer (new SpaceProxyConfigurer("space"))).gigaSpace();
+  MyClass obj = new MyClass(1,"AAA");
+  space.write(obj,WriteModifiers.ONE_WAY);
+</code></pre>
+        <div class="tc-admon-note">
+            <p>Writing an object to a Space may generate <a href="notify-container-overview.html">notifications</a> to registered objects.</p>
+        </div>
+        <p><span class="tc-bold">Method summary</span>
+        </p>
+        <p>Writes a new object to the Space, returning its LeaseContext.</p><pre><code class="language-java">&lt;T&gt; LeaseContext&lt;T&gt; write(T entry) throws DataAccessException
+&lt;T&gt; LeaseContext&lt;T&gt; write(T entry, long lease, long timeout, WriteModifiers modifiers) throws DataAccessException
+......
+
+</code></pre>
+        <p>Writes new objects to the Space, returning its LeaseContexts.<a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.html#writeMultiple(T[])">Java API</a></p><pre><code class="language-java">&lt;T&gt; LeaseContext&lt;T&gt;[] writeMultiple(T[] entries) throws DataAccessException
+&lt;T&gt; LeaseContext&lt;T&gt;[] writeMultiple(T[] entries, long[] leases, WriteModifiers modifiers) throws DataAccessException
+......
+</code></pre>
+        <h2><a name="modifiers"></a>Modifiers</h2>
+        <p>The write operations can be configured with different modifiers:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Modifier and Type</th>
+                    <th align="left">Description</th>
+                    <th align="left">default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">T</td>
+                    <td align="left">POJO, SpaceDocument</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">lease</td>
+                    <td align="left">Time to live</td>
+                    <td align="left">Lease.FOREVER</td>
+                </tr>
+                <tr>
+                    <td align="left">timeout</td>
+                    <td align="left">The timeout of an update operation, in milliseconds. If the entry is locked by another transaction, wait for the specified number of milliseconds for it to be released.</td>
+                    <td align="left">0</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/WriteModifiers.html">WriteModifiers</a>
+                    </td>
+                    <td align="left">Provides modifiers to customize the behavior of write operations</td>
+                    <td align="left">UPDATE_OR_WRITE</td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/com/j_spaces/core/LeaseContext.html">LeaseContext</a>
+                    </td>
+                    <td align="left">LeaseContext is a return-value encapsulation of a write operation.</td>
+                    <td align="left">
+                    </td>
+                </tr>
+            </tbody>
+        </table><a name="change"></a>
+        <h1><a name="the-change-operation"></a>The Change Operation</h1>
+        <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/GigaSpace.html">GigaSpace.change</a> and the <a href="[%=Links.ApiJavaDoc%]/index.html?com/gigaspaces/client/ChangeSet.html">ChangeSet</a> allows updating existing objects in a Space, by specifying only the required change instead of passing the entire updated object.
+This reduces the required network traffic between the client and the Space, and the network traffic generated from replicating the changes between the Space instances (e.g between the primary Space instance and its backup).</p>
+        <p><span class="tc-bold">Example</span>
+        </p>
+        <p>The following example demonstrates how to update the property "firstName' of an object of type "Person' with id "myID'.</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
+String id = "myID";
+IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;Person&gt;(Person.class, id, routing);
+space.change(idQuery, new ChangeSet().set("firstName", "John"));
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="change-api-overview.html">The Change API</a>
+            </p>
+        </div><a name="read"></a>
+        <h1><a name="the-read-operation"></a>The Read Operation</h1>
+        <p>Read operations query the Space for an object that matches the criteria provided. If a match is found, a copy of the matching object is returned. If no match is found, null is returned. Passing a null reference as the template will match any object.</p>
+        <p>Any matching object can be returned. Successive read requests with the same template may or may not return equivalent objects, even if no intervening modifications have been made to the Space.</p>
+        <p>Each invocation of <code>read</code> may return a new object even if the same object is matched in the Space.</p>
+        <p>If you want to read objects in the same order that they were written to the Space, perform the read objects in <a href="fifo-overview.html">FIFO mode</a>.</p>
+        <div class="tc-admon-note">
+            <p>The <code>read</code> operation default timeout is <code>JavaSpace.NO_WAIT</code>.</p>
+        </div>
+        <p>The read operation can be performed with the following options:</p>
+        <ul>
+            <li>Template matching</li>
+            <li>By ID</li>
+            <li>By IdQuery</li>
+            <li>By SQLQuery</li>
+        </ul>
+        <p>To learn more about the different options, refer to <a href="querying-the-space.html">Querying the Space</a></p>
+        <p><span class="tc-bold">Example</span>
+        </p>
+        <p>The following example writes an <code>Employee</code> object to the Space and reads it back from the Space:</p><pre><code class="language-java">    Employee employee = new Employee("Last Name", new Integer(32));
+    employee.setFirstName("first name");
+    space.write(employee);
+
+    // Read by template
+    Employee template = new Employee(new Integer(32));
+    Employee e = space.read(template);
+
+    // Read by id
+    Employee e = space.readById(Employee.class, new Integer(32));
+
+    // Read by IdQuery
+    IdQuery&lt;Employee&gt; query = new IdQuery&lt;Employee&gt;(Employee.class,
+                    new Integer(32));
+    Employee e = space.read(query);
+
+    // Read by SQLQuery
+    SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class,
+                "firstName='first name'");
+    Employee e = space.read(query);
+</code></pre><a name="readMultiple"></a>
+        <h2><a name="read-multiple"></a>Read Multiple</h2>
+        <p>The GigaSpace interface provides simple way to perform bulk read operations. You can read a large amount of objects in one call.</p>
+        <p><span class="tc-bold">Example</span>
+        </p><pre><code class="language-java">   Employee emps[] = new Employee[2];
+   emps[0] = new Employee("Last Name A", new Integer(31));
+   emps[1] = new Employee("Last Name B", new Integer(32));
+
+   space.writeMultiple(emps);
+
+   // Read multiple by template
+   Employee[] employees = space.readMultiple(new Employee());
+
+   // Read multiple by SQLQuery
+   SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class,"lastName ='Last Name B'");
+   Employee[] e = space.readMultiple(query);
+
+   // Read by Ids
+   Integer[] ids = new Integer[] { 31, 32 };
+   ReadByIdsResult&lt;Employee&gt; result = space.readByIds(Employee.class,ids);
+   Employee[] employees = result.getResultsArray();
+
+   // Read by IdsQuery
+   Integer[] ids = new Integer[] { 31, 32 };
+   IdsQuery&lt;Employee&gt; query = new IdsQuery&lt;Employee&gt;(Employee.class, ids);
+   ReadByIdsResult&lt;Employee&gt; result = space.readByIds(query);
+   Employee[] employees = result.getResultsArray();
+
+</code></pre>
+        <p><span class="tc-bold">Here are a few important considerations when using the batch operation:</span>
+        </p>
+        <ul>
+            <li>Boosts the performance, because it perform multiple operations using one call. These methods return the matching results in one result object back to the client. This allows the client and server to utilize the network bandwidth in an efficient manner. In some cases, these batch operations can be up to 10 times faster than multiple single-based operations.</li>
+            <li>Should be handled with care, because they can return a large data set (potentially all the Space data). This can cause an out of memory error in the Space and client process. Use the <a href="query-paging-support.html">Space Iterator</a> to return the result in batches (paging) in such cases.</li>
+            <li><span class="tc-bold">Does not support timeout</span> operations. The simple way to achieve this is by calling the <code>read</code> operation first with the proper timeout, and if non-null values are returned, perform the batch operation.</li>
+            <li>Exception handling - operation may throw the following exceptions: <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/ReadMultipleException.html">ReadMultipleException</a></li>
+        </ul><a name="readIfExists"></a>
+        <h2><a name="readifexists"></a>ReadIfExists</h2>
+        <p>A readIfExists operation will return a matching object, or a null if there is currently no matching object in the Space.</p>
+        <p>If the only possible matches for the template have conflicting locks from one or more other transactions, the timeout value specifies how long the client is willing to wait for interfering transactions to settle before returning a value.
+If at the end of that time no value can be returned that would not interfere with transactional state, null is returned. Due to the remote nature of the Space, read and readIfExists may throw a RemoteException if the network or server fails prior to the timeout expiration.</p>
+        <p><span class="tc-bold">Example</span>
+        </p><pre><code class="language-java">    Employee employee = new Employee("Last Name", new Integer(32));
+    employee.setFirstName("first name");
+    space.write(employee);
+
+    SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class,"firstName='first name'");
+    Employee e = space.readIfExists(query);
+</code></pre><a name="asynchronousRead"></a>
+        <h2><a name="asynchronous-read"></a>Asynchronous Read</h2>
+        <p>The GigaSpace interface supports asynchronous (non-blocking) read operations through the GigaSpace interface. It returns a <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.html">Future&lt;T&gt;</a> object, where T is the type of the object the request returns. Future&lt;T&gt;.get() can be used to query the object to see if a result has been returned or not.</p>
+        <p>Alternatively, asyncRead also accept an implementation of <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/async/AsyncFutureListener.html">AsyncFutureListener</a>, which will have its <code>AsyncFutureListener.onResult</code> method called when the result has been populated. This does not affect the return type of the <code>Future&lt;T&gt;</code>, but provides an additional mechanism for handling the asynchronous response.</p>
+        <p><span class="tc-bold">Example</span>
+        </p><pre><code class="language-java">    Employee employee = new Employee("Last Name", new Integer(32));
+    employee.setFirstName("first name");
+    space.write(employee);
+
+    Integer[] ids = new Integer[] { 31, 32 };
+    IdsQuery&lt;Employee&gt; query = new IdsQuery&lt;Employee&gt;(Employee.class, ids);
+    AsyncFuture&lt;Employee&gt; result = space.asyncRead(query);
+
+    // This part of the code could be executed in a different Thread
+    try {
+        Employee e = result.get();
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    } catch (ExecutionException e) {
+        e.printStackTrace();
+    }
+</code></pre>
+        <h2><a name="passing-an-asyncfuturelistener-with-java-8-lambda-syntax"></a>Passing an AsyncFutureListener with Java 8 Lambda Syntax</h2><pre><code class="language-java">    Employee employee = new Employee("Last Name", new Integer(32));
+    employee.setFirstName("first name");
+    space.write(employee);
+
+    Integer[] ids = new Integer[] { 31, 32 };
+    IdsQuery&lt;Employee&gt; query = new IdsQuery&lt;Employee&gt;(Employee.class, ids);
+    AsyncFuture&lt;Employee&gt; result = space.asyncRead(query, (result) -&gt; {
+        System.out.println("Got a result: " + result.getResult());
+    });
+
+    // This part of the code could be executed in a different Thread
+    try {
+        Employee e = result.get();
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    } catch (ExecutionException e) {
+        e.printStackTrace();
+    }
+</code></pre>
+        <h2><a name="modifiers-1"></a>Modifiers</h2>
+        <p>The read operations can be configured with different modifiers.</p>
+        <p><span class="tc-bold">Example</span>
+        </p><pre><code class="language-java">    Employee template = new Employee();
+
+    // Read objects in a FIFO mode
+    Employee e = space.read(template, 0, ReadModifiers.FIFO);
+
+    // Dirty read
+    Employee e = space.read(template, 0, ReadModifiers.DIRTY_READ);
+</code></pre>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Modifier and Type</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default</th>
+                    <th align="left">Unit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">T</td>
+                    <td align="left">POJO, SpaceDocument</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">timeout</td>
+                    <td align="left">Time to wait for the response.</td>
+                    <td align="left">0</td>
+                    <td align="left">milliseconds</td>
+                </tr>
+                <tr>
+                    <td align="left">query</td>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/ISpaceQuery.html">ISpaceQuery</a>
+                    </td>
+                    <td align="left">
+                    </td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/async/AsyncFutureListener.html">AsyncFutureListener</a>
+                    </td>
+                    <td align="left">Allows registering for a callback on an AsyncFuture, to be notified when a result arrives.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ReadModifiers.html">ReadModifiers</a>
+                    </td>
+                    <td align="left">Provides modifiers to customize the behavior of read operations.</td>
+                    <td align="left">NONE</td>
+                    <td align="left">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Method summary..." style="padding:10px;">
+                    <p>Read by template:</p><pre><code class="language-java">&lt;T&gt; T read(T template) throws DataAccessException
+&lt;T&gt; T read(T template, long timeout, ReadModifiers modifiers)throws DataAccessException
+.....
+</code></pre>
+                    <p>Read by ID:</p><pre><code class="language-java">&lt;T&gt; T readById(Class&lt;T&gt; clazz, Object id) throws DataAccessException
+&lt;T&gt; T readById(Class&lt;T&gt; clazz, Object id, Object routing, long timeout, ReadModifiers modifiers)throws DataAccessException
+.....
+</code></pre>
+                    <p>Read by ISpaceQuery:</p><pre><code class="language-java">&lt;T&gt; T read(ISpaceQuery&lt;T&gt; query, Object id)throws DataAccessException
+&lt;T&gt; T read(ISpaceQuery&lt;T&gt; query, Object routing, long timeout, ReadModifiers modifiers)throws DataAccessException
+....
+</code></pre>
+                    <p>Read multiple:</p><pre><code class="language-java">&lt;T&gt; T[] readMultiple(ISpaceQuery&lt;T&gt; query) throws DataAccessException
+&lt;T&gt; T[] readMultiple(ISpaceQuery&lt;T&gt; query, long timeout, ReadModifiers modifiers) throws DataAccessException
+&lt;T&gt; T[] readMultiple(T template) throws DataAccessException
+&lt;T&gt; T[] readMultiple(T template, long timeout, ReadModifiers modifiers) throws DataAccessException
+&lt;T&gt; T[] readMultiple(ISpaceQuery&lt;T&gt; template, int maxEntries, ReadModifiers modifiers) throws DataAccessException
+...
+</code></pre>
+                    <p>Asynchronous read:</p><pre><code class="language-java">&lt;T&gt; AsyncFuture&lt;T&gt; asyncRead(T template) throws DataAccessException
+&lt;T&gt; AsyncFuture&lt;T&gt; asyncRead(T template, long timeout, ReadModifiers modifiers, AsyncFutureListener&lt;T&gt; listener) throws DataAccessException
+&lt;T&gt; AsyncFuture&lt;T&gt; asyncRead(ISpaceQuery&lt;T&gt; query)throws DataAccessException
+&lt;T&gt; AsyncFuture&lt;T&gt; asyncRead(ISpaceQuery&lt;T&gt; query, long timeout, ReadModifiers modifiers, AsyncFutureListener&lt;T&gt; listener)throws DataAccessException
+.....
+</code></pre>
+                    <p>Read if exists:</p><pre><code class="language-java">&lt;T&gt; T readIfExists(T template)throws DataAccessException
+&lt;T&gt; T readIfExistsById(Class&lt;T&gt; clazz, Object id)throws DataAccessException
+&lt;T&gt; T readIfExistsById(Class&lt;T&gt; clazz, Object id, Object routing, long timeout, ReadModifiers modifiers) throws DataAccessException
+&lt;T&gt; T readIfExistsById(IdQuery&lt;T&gt; query, long timeout, ReadModifiers modifiers) throws DataAccessException
+....
+</code></pre>
+                </div>
+            </div>
+        </div><a name="take"></a>
+        <h1><a name="the-take-operation"></a>The Take Operation</h1>
+        <p>The <code>take</code> operations behave exactly like the corresponding <code>read</code> operations, except that the matching object is removed from the Space on one atomic operation. Two <code>take</code> operations will never return copies of the same object, although if two equivalent objects were in the Space, the two <code>take</code> operations could return equivalent objects.</p>
+        <p>If a <code>take</code> returns a non-null value, then the object has been removed from the Space, possibly within a transaction. This modifies the claims to once-only retrieval; a take is considered to be successful only if all enclosing transactions commit successfully.</p>
+        <p>If a <code>RemoteException</code> is thrown, the take may or may not have been successful.</p>
+        <p>If an <code>UnusableEntryException</code> is thrown, the take <code>removed</code> the unusable object from the Space.</p>
+        <p>If any other exception is thrown, the take did not occur, and no object was removed from the Space.</p>
+        <div class="tc-admon-note">
+            <p>If you want to take objects from the Space in the same order they were written to the Space, perform the take objects in <a href="fifo-support.html">FIFO mode</a>.</p>
+            <p>Taking an object from the space may generate <a href="notify-container-overview.html">notifications</a> to registered objects/queries.</p>
+        </div>
+        <p>The take operation can be performed with the following options:</p>
+        <ul>
+            <li>Template matching</li>
+            <li>By ID</li>
+            <li>By IdQuery</li>
+            <li>By SQLQuery</li>
+        </ul>
+        <div class="tc-admon-refer">
+            <p>To learn more about the different options, refer to <a href="querying-the-space.html">Querying the Space</a>.</p>
+        </div>
+        <p><span class="tc-bold">Example</span>
+        </p>
+        <p>The following example writes an <code>Employee</code> object to the Space and removes it from the Space:</p><pre><code class="language-java">    Employee employee = new Employee("Last Name", new Integer(32));
+    employee.setFirstName("first name");
+    space.write(employee);
+
+    // Take by template
+    Employee template = new Employee(new Integer(32));
+    Employee e = space.take(template);
+
+    // Take by id
+    Employee e = space.takeById(Employee.class, new Integer(32));
+
+    // Take by IdQuery
+    IdQuery&lt;Employee&gt; query = new IdQuery&lt;Employee&gt;(Employee.class,
+                    new Integer(32));
+    Employee e = space.take(query);
+
+    // Take by SQLQuery
+    SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class,
+                "firstName='first name'");
+    Employee e = space.take(query);
+</code></pre><a name="takeMultiple"></a>
+        <h2><a name="take-multiple"></a>Take Multiple</h2>
+        <p>The GigaSpace interface provides simple way to perform bulk take operations. You may take large amount of objects in one call.</p>
+        <div class="tc-admon-note">
+            <p>To remove a batch of objects without returning them back into the client, use <code>GigaSpace.clear(SQLQuery)</code>;.</p>
+        </div>
+        <p><span class="tc-bold">Example</span>
+        </p><pre><code class="language-java">   Employee emps[] = new Employee[2];
+   emps[0] = new Employee("Last Name A", new Integer(31));
+   emps[1] = new Employee("Last Name B", new Integer(32));
+
+   space.writeMultiple(emps);
+
+   // Take multiple by template
+   Employee[] employees = space.takeMultiple(Employee.class);
+
+   // Take multiple by SQLQuery
+   SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class,
+                "lastName ='Last Name B'");
+   Employee[] e = space.takeMultiple(query);
+
+   // Take by Ids
+   Integer[] ids = new Integer[] { 31, 32 };
+   TakeByIdsResult&lt;Employee&gt; result = space.takeByIds(Employee.class,ids);
+   Employee[] employees = result.getResultsArray();
+
+   // Take by IdsQuery
+   Integer[] ids = new Integer[] { 31, 32 };
+   IdsQuery&lt;Employee&gt; query = new IdsQuery&lt;Employee&gt;(Employee.class, ids);
+   TakeByIdsResult&lt;Employee&gt; result = space.takeByIds(query);
+   Employee[] employees = result.getResultsArray();
+
+</code></pre>
+        <p><span class="tc-bold">Here are a few important considerations when using the batch operation:</span>
+        </p>
+        <ul>
+            <li>Boosts the performance, because it performs multiple operations using one call. This method returns the matching results in one result object back to the client. This allows the client and server to utilize the network bandwidth in an efficient manner. In some cases, this batch operation can be up to 10 times faster than multiple single-based operations.</li>
+            <li>Should be handled with care, because it can return a large data set (potentially all the Space data). This can cause an out of memory error in the Space and client processes. Use the <a href="query-paging-support.html">Space Iterator</a> to return the result in batches (paging) in such cases.</li>
+            <li>Should be performed with transactions. This allows the client to roll back the Space to its initial state prior to when the operation was started, in case of a failure.</li>
+            <li>Operation <span class="tc-bold">does not support timeout</span> operations. The simple way to achieve this is by calling the <code>read</code> operation first with the proper timeout, and if non-null values are returned, perform the batch operation.</li>
+            <li>In the event of a take error, DataAccessException will wrap a TakeMultipleException, accessible via DataAccessException.getRootCause().</li>
+        </ul><a name="takeIfExists"></a>
+        <h2><a name="takeifexists"></a>TakeIfExists</h2>
+        <p>A takeIfExists operation will return a matching object, or a null if there is currently no matching object in the Space.</p>
+        <p>If the only possible matches for the template have conflicting locks from one or more other transactions, the timeout value specifies how long the client is willing to wait for interfering transactions to settle before returning a value. If at the end of that time no value can be returned that would not interfere with transactional state, null is returned.</p>
+        <p><span class="tc-bold">Example</span>
+        </p><pre><code class="language-java">    Employee employee = new Employee("Last Name", new Integer(32));
+    employee.setFirstName("first name");
+    space.write(employee);
+
+    SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class,
+                "firstName='first name'");
+    Employee e = space.takeIfExists(query);
+</code></pre><a name="asynchronousTake"></a>
+        <h2><a name="asynchronous-take"></a>Asynchronous Take</h2>
+        <p>The GigaSpace interface supports asynchronous (non-blocking) take operations through the GigaSpace interface. It returns a <a href="http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.html">Future&lt;T&gt;</a> object, where T is the type of the object the request returns. Future&lt;T&gt;.get() can be used to query the object to see if a result has been returned or not.</p>
+        <p>Alternatively, asyncTake also accept an implementation of <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/async/AsyncFutureListener.html">AsyncFutureListener</a>, which will have its <code>AsyncFutureListener.onResult</code> method called when the result has been populated. This does not affect the return type of the <code>Future&lt;T&gt;</code>, but provides an additional mechanism for handling the asynchronous response.</p>
+        <p><span class="tc-bold">Example</span>
+        </p><pre><code class="language-java">    Employee employee = new Employee("Last Name", new Integer(32));
+    employee.setFirstName("first name");
+    space.write(employee);
+
+    Integer[] ids = new Integer[] { 31, 32 };
+    IdsQuery&lt;Employee&gt; query = new IdsQuery&lt;Employee&gt;(Employee.class, ids);
+    AsyncFuture&lt;Employee&gt; result = space.asyncTake(query);
+
+    try {
+        Employee e = result.get();
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    } catch (ExecutionException e) {
+        e.printStackTrace();
+    }
+</code></pre>
+        <h2><a name="passing-an-asyncfuturelistener-with-java-8-lambda-syntax-1"></a>Passing an AsyncFutureListener with Java 8 Lambda Syntax</h2><pre><code class="language-java">    Employee employee = new Employee("Last Name", new Integer(32));
+    employee.setFirstName("first name");
+    space.write(employee);
+
+    Integer[] ids = new Integer[] { 31, 32 };
+    IdsQuery&lt;Employee&gt; query = new IdsQuery&lt;Employee&gt;(Employee.class, ids);
+    AsyncFuture&lt;Employee&gt; result = space.asyncTake(query, (result) -&gt; {
+        System.out.println("Got result: " + result.getResult());
+    });
+
+    try {
+        Employee e = result.get();
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    } catch (ExecutionException e) {
+        e.printStackTrace();
+    }
+</code></pre>
+        <h2><a name="modifiers-2"></a>Modifiers</h2>
+        <p>The take operations can be configured with different modifiers.</p>
+        <p><span class="tc-bold">Examples</span>
+        </p><pre><code class="language-java">    Employee template = new Employee();
+
+    // Takes objects in a FIFO mode
+    Employee e = space.take(template, 0, TakeModifiers.FIFO);
+
+    // Takes objects according to FIFO group
+    Employee e = space.take(template, 0, TakeModifiers.FIFO_GROUPING_POLL);
+</code></pre>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Modifier and Type</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default</th>
+                    <th align="left">Unit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">T</td>
+                    <td align="left">POJO, SpaceDocument</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">timeout</td>
+                    <td align="left">Time to wait for the response.</td>
+                    <td align="left">0</td>
+                    <td align="left">milliseconds</td>
+                </tr>
+                <tr>
+                    <td align="left">query</td>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/ISpaceQuery.html">ISpaceQuery</a>
+                    </td>
+                    <td align="left">
+                    </td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/async/AsyncFutureListener.html">AsyncFutureListener</a>
+                    </td>
+                    <td align="left">Allows registering for a callback on an AsyncFuture to be notified when a result arrives.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/TakeModifiers.html">TakeModifiers</a>
+                    </td>
+                    <td align="left">Provides modifiers to customize the behavior of take operations.</td>
+                    <td align="left">NONE</td>
+                    <td align="left">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>For further details about each of the available modifiers, see <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/TakeModifiers.html">TakeModifiers</a>.</p>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Method summary..." style="padding:10px;">
+                    <p>Take by template:</p><pre><code class="language-java">&lt;T&gt; T take(T template) throws DataAccessException
+&lt;T&gt; T take(T template, long timeout, TakeModifiers modifiers)throws DataAccessException
+.....
+</code></pre>
+                    <p>Take by ID:</p><pre><code class="language-java">&lt;T&gt; T takeById(Class&lt;T&gt; clazz, Object id) throws DataAccessException
+&lt;T&gt; T takeById(Class&lt;T&gt; clazz, Object id, Object routing, long timeout, TakeModifiers modifiers)throws DataAccessException
+.....
+</code></pre>
+                    <p>Take by ISpaceQuery:</p><pre><code class="language-java">&lt;T&gt; T take(ISpaceQuery&lt;T&gt; query, Object id)throws DataAccessException
+&lt;T&gt; T take(ISpaceQuery&lt;T&gt; query, Object routing, long timeout, TakeModifiers modifiers)throws DataAccessException
+....
+</code></pre>
+                    <p>Take multiple:</p><pre><code class="language-java">&lt;T&gt; T[] takeMultiple(ISpaceQuery&lt;T&gt; query) throws DataAccessException
+&lt;T&gt; T[] takeMultiple(ISpaceQuery&lt;T&gt; query, long timeout, TakeModifiers modifiers) throws DataAccessException
+&lt;T&gt; T[] takeMultiple(T template) throws DataAccessException
+&lt;T&gt; T[] takeMultiple(T template, long timeout, TakeModifiers modifiers) throws DataAccessException
+&lt;T&gt; T[] takeMultiple(ISpaceQuery&lt;T&gt; template, int maxEntries, TakeModifiers modifiers) throws DataAccessException
+...
+</code></pre>
+                    <p>Asynchronous take:</p><pre><code class="language-java">&lt;T&gt; AsyncFuture&lt;T&gt; asyncTake(T template) throws DataAccessException
+&lt;T&gt; AsyncFuture&lt;T&gt; asyncTake(T template, long timeout, TakeModifiers modifiers, AsyncFutureListener&lt;T&gt; listener) throws DataAccessException
+&lt;T&gt; AsyncFuture&lt;T&gt; asyncTake(ISpaceQuery&lt;T&gt; query)throws DataAccessException
+&lt;T&gt; AsyncFuture&lt;T&gt; asyncTake(ISpaceQuery&lt;T&gt; query, long timeout, TakeModifiers modifiers, AsyncFutureListener&lt;T&gt; listener)throws DataAccessException
+.....
+</code></pre>
+                    <p>Take if exists:</p><pre><code class="language-java">&lt;T&gt; T takeIfExists(T template)throws DataAccessException
+&lt;T&gt; T takeIfExistsById(Class&lt;T&gt; clazz, Object id)throws DataAccessException
+&lt;T&gt; T takeIfExistsById(Class&lt;T&gt; clazz, Object id, Object routing, long timeout, TakeModifiers modifiers) throws DataAccessException
+&lt;T&gt; T takeIfExistsById(IdQuery&lt;T&gt; query, long timeout, TakeModifiers modifiers) throws DataAccessException
+....
+</code></pre>
+                </div>
+            </div>
+        </div><a name="clear"></a>
+        <h1><a name="the-clear-operation"></a>The Clear Operation</h1>
+        <p>You can use <code>GigaSpace.clear</code> to remove objects from the Space. When using the clear operation, no object/objects are returned.</p>
+        <p><span class="tc-bold">Examples</span>
+        </p><pre><code class="language-java">   GigaSpace space;
+
+   // Clear by Template
+   Employee employee = new Employee("Last Name", new Integer(32));
+   space.clear(employee);
+
+   // Clear by SQLQuery
+   String querystr  = "age &gt; 30";
+   SQLQuery query = new SQLQuery(Employee.class, querystr);
+   space.clear(query);
+
+   // Clear by IdQuery
+   IdQuery&lt;Employee&gt; query = new IdQuery&lt;Employee&gt;(Employee.class,new Integer(32));
+   space.clear(query);
+
+   // Clear with Modifier
+   SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class,"firstName='first name'");
+   space.clear(query, ClearModifiers.EVICT_ONLY);
+</code></pre>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Method summary..." style="padding:10px;">
+                    <p>Clears objects from the Space.</p><pre><code class="language-java">void clear(T entry) throws DataAccessException
+void clear(T entry, ClearModifiers modifiers) throws DataAccessException
+void clear(ISpaceQuery&lt;T&gt; query) throws DataAccessException
+......
+</code></pre>
+                </div>
+            </div>
+        </div>
+        <p><span class="tc-bold">Modifiers</span>
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Modifier and Type</th>
+                    <th align="left">Description</th>
+                    <th align="left">default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">T</td>
+                    <td align="left">POJO, SpaceDocument</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">query</td>
+                    <td align="left">SQLQuery, IdQuery</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/ClearModifiers.html">ClearModifiers</a>
+                    </td>
+                    <td align="left">Provides modifiers to customize the behavior of the clear operations.</td>
+                    <td align="left">NONE</td>
+                </tr>
+            </tbody>
+        </table><a name="count"></a>
+        <h1><a name="the-count-operation"></a>The Count Operation</h1>
+        <p>You can use <code>GigaSpace.count</code> to count objects in a Space.</p>
+        <p><span class="tc-bold">Examples</span>
+        </p><pre><code class="language-java">   GigaSpace space;
+
+   // Count with Template
+   Employee employee = new Employee("Last Name");
+   int count = space.count(employee);
+
+   // Count with SQLQuery
+   String querystr  = "age &gt; 30";
+   SQLQuery query = new SQLQuery(Employee.class, querystr);
+   int count = space.count(query);
+
+   // Count with IdsQuery
+   Integer[] ids = new Integer[] { 32, 33, 34 };
+   IdsQuery&lt;Employee&gt; query = new IdsQuery&lt;Employee&gt;(Employee.class, ids);
+   int count = space.count(query);
+
+   // Count with Modifier
+   SQLQuery&lt;Employee&gt; query = new SQLQuery&lt;Employee&gt;(Employee.class,"firstName='first name'");
+   int count = space.count(query, CountModifiers.EXCLUSIVE_READ_LOCK);
+</code></pre>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Method summary..." style="padding:10px;">
+                    <p>Count objects in a Space.</p><pre><code class="language-java">int count(T entry) throws DataAccessException
+int count(T entry, ClearModifiers modifiers) throws DataAccessException
+int count(ISpaceQuery&lt;T&gt; query) throws DataAccessException
+......
+</code></pre>
+                </div>
+            </div>
+        </div>
+        <p><span class="tc-bold">Modifiers</span>
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Modifier and Type</th>
+                    <th align="left">Description</th>
+                    <th align="left">default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">T</td>
+                    <td align="left">POJO, SpaceDocument</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">query</td>
+                    <td align="left">SQLQuery, IdQuery</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/client/CountModifiers.html">CountModifiers</a>
+                    </td>
+                    <td align="left">Provides modifiers to customize the behavior of the count operations.</td>
+                    <td align="left">NONE</td>
+                </tr>
+            </tbody>
+        </table><a name="counters"></a>
+        <h1><a name="counters"></a>Counters</h1>
+        <p>The <code>ISpaceProxy.Change</code> API allows you to increment or decrement an Numerical field within your Space object or Document. This change may operate on a numeric property only (byte, short, int, long, float, double) or their corresponding Boxed variation. To maintain a counter, use the Change operation with the <code>ChangeSet</code> increment/decrement method that adds/subtract the provided numeric value to the existing counter.</p>
+        <p><span class="tc-bold">Example</span>
+        </p>
+        <p>Incrementing a Counter done using the <code>ChangeSet().Increment</code> call:</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
+String id = "myID";
+IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;(WordCount.class, id);
+space.change(idQuery, new ChangeSet().increment("mycounter", 1));
+</code></pre>
+        <p>Getting the Counter value via the read call:</p><pre><code class="language-java">GigaSpace space = // ... obtain a space reference
+String id = "myID";
+IdQuery&lt;WordCount&gt; idQuery = new IdQuery&lt;WordCount&gt;(WordCount.class, id);
+WordCount wordount = space.readById(WordCount.class , idQuery);
+int counterValue = wordount.getMycounter();
+</code></pre>
+        <div class="tc-admon-refer">
+            <p><a href="the-space-counters.html">The Space Counters</a>
+            </p>
+        </div><a name="aggregators"></a>
+        <h1><a name="aggregators"></a>Aggregators</h1>
+        <p>There is no need to retrieve the entire data set from the Space to the client side, iterate the result set and perform the aggregation. This would be an expensive activity as it might return large amounts of data to the client application. The Aggregators allow you to perform the entire aggregation activity on the Space side, avoiding any data retrieval back to the client side.</p>
+        <p><span class="tc-bold">Example</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Application " style="padding:10px"><pre><code class="language-java">import static org.openspaces.extensions.QueryExtension.*;
+...
+SQLQuery&lt;Person&gt; personSQLQuery = new SQLQuery&lt;Person&gt;();
+// retrieve the maximum value stored in the field "age"
+Number maxAgeInSpace = maxValue(space, personSQLQuery, "age");
+/// retrieve the minimum value stored in the field "age"
+Number minAgeInSpace = minValue(space, personSQLQuery, "age");
+// Sum the "age" field on all space objects.
+Number combinedAgeInSpace = sum(space, personSQLQuery, "age");
+// Sum's the "age" field on all space objects then divides by the number of space objects.
+Double averageAge = average(space, personSQLQuery, "age");
+// Retrieve the space object with the highest value for the field "age".
+Person oldestPersonInSpace = maxEntry(space, personSQLQuery, "age");
+/// Retrieve the space object with the lowest value for the field "age".
+Person youngestPersonInSpace = minEntry(space, personSQLQuery, "age");
+</code></pre>
+            </div>
+            <div title="  Space Class " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Person {
+    private Long id;
+    private Long age;
+    private String country;
+
+    @SpaceId(autoGenerate=false)
+    public Long getId() {
+        return id;
+    }
+
+    public Person setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Long getAge() {
+        return age;
+    }
+
+    public Person setAge(Long age) {
+        this.age = age;
+        return this;
+    }
+
+    @SpaceIndex
+    public String getCountry() {
+        return country;
+    }
+
+    public Person setCountry(String country) {
+        this.country = country;
+        return this;
+    }
+}
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-refer">
+            <p><a href="aggregators.html">Aggregators</a>
+            </p>
+        </div>
+        <h1><a name="async-extension"></a>Async Extension</h1>
+        <p>When running with Java 8, it is possible to have an even simpler Space API with the <code>AsyncExtension</code>. AsyncExtension substituts the Space <code>AsyncFuture</code> with the Java 8 <code>CompletableFuture</code> and thus can make the code more fluent.</p>
+        <p>There is no need to retrieve the entire data set from the Space to the client side  iterate the result set and perform the aggregation. This would be an expensive activity as it might return a large amount of data to the client application. The <code>Aggregators</code> allow you to perform the entire aggregation activity on the Space side, avoiding any data retrieval back to the client side.</p>
+        <p><span class="tc-bold">Example</span>
+        </p><pre><code class="language-java">import static org.openspaces.extensions.AsyncExtension.asyncRead;
+
+asyncRead(gigaSpace, template).thenAccept(value -&gt; {
+    System.out.println("got " + value);
+})
+
+</code></pre>
+    </body>
+</html>

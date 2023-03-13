@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Drools Rule Engine Integration</h1>
+        <table>
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Allen Terleto</td>
+                    <td>10.0.1</td>
+                    <td>&#160;</td>
+                    <td><a href="https://github.com/Gigaspaces/solution-hub/tree/master/gigaspaces-drools-integration">Drools integration</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="summary">&#160;</a>Summary</h1>
+        <p>This article illustrates how to integrate the Drools Rule Engine with the GigaSpaces <MadCap:variable name="General.DataGrid" />.</p>
+        <h1><a name="overview">&#160;</a>Overview</h1>
+        <p>Drools is a business rule management system (BRMS) with a forward and backward chaining inference-based rules engine using an enhanced implementation of the <a href="http://en.wikipedia.org/wiki/Rete_algorithm">Rete algorithm</a>. Reasons to use Drools include:</p>
+        <ul>
+            <li>Declarative Programming</li>
+            <li>Logic and Data Separation</li>
+            <li>Speed and Scalability</li>
+            <li>Centralization of Knowledge</li>
+            <li>Understandable and Transparent Rules</li>
+            <li>Dynamic Rule Deployment</li>
+        </ul>
+        <p>The Drools Rule Engine matches Facts (POJO) against Rules to infer conclusions which result in actions. The process of matching the new or existing facts against Rules is called pattern matching, which is performed by the inference engine.</p>
+        <p>Drools stores its rules in Production Memory and facts in Working Memory. The Agenda manages the execution order of these rules using a Conflict Resolution strategy.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools1.png" alt="drools1" class="tc-picture30" />
+            </p>
+        </div>
+        <p>Drools has a "native" rule language. A rule file typically has a .drl extension. In a DRL file you can have multiple rules, queries and functions, as well as some resource declarations like imports, globals, and attributes.
+A package is a collection of rules and other related constructs, such as imports and globals. The package members are typically related to each other - perhaps HR rules, for instance.</p>
+        <p>A package represents a namespace, which ideally is kept unique for a given grouping of rules.</p>
+        <p>The KnowledgeBase is a repository of all the application's knowledge definitions. It will contain rules, processes, functions, and type models. The KnowledgeBase itself does not contain data; instead, sessions are created from the <code>KnowledgeBase</code> into which data can be inserted and from which process instances may be started. Creating the KnowledgeBase can be heavy, whereas session creation is very light, so it is recommended that KnowledgeBases be cached where possible to allow for repeated session creation.</p>
+        <div class="tc-admon-note">
+            <p>Detailed documentation on Drools 5.6.0.Final can be found <a href="http://docs.jboss.org/drools/release/5.6.0.Final/drools-expert-docs/html_single">here</a>.</p>
+        </div>
+        <h1><a name="drools-integration-with-xap">&#160;</a>Drools Integration with <MadCap:variable name="General.ProductNameXAP" /></h1>
+        <p>As stated earlier, Drools stores all rules and data types in-memory to reduce the overhead of compiling them every time before execution. This benefits enterprise applications with low-latency performance but establishes architectural gaps such as:</p>
+        <ul>
+            <li>Distribution</li>
+            <li>Failover</li>
+            <li>Redundancy</li>
+            <li>Consistency</li>
+            <li>Scalability</li>
+        </ul>
+        <p>Let's discuss these gaps within the context of a stateless application hosted in clustered environment and explain how an integration with <MadCap:variable name="General.ProductNameXAP" /> would benefit its use of Drools.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools2.png" alt="drools1" class="tc-picture80" />
+            </p>
+        </div>
+        <h3><a name="distribution">&#160;</a>Distribution</h3>
+        <p>Drools was not created as a distributed solution. In order to maintain seamless load-balancing in a clustered environment, each instance of an enterprise application would require identical data in its <code>KnowledgeBase(s)</code>. The <MadCap:variable name="General.ProductNameXAP" /> data grid is inherently a distributed environment, so it allows the clustered enterprise applications to distribute their rules across multiple <a href="https://docs.gigaspaces.com/latest/admin/data-partitioning.html">Data Grid partitions (Spaces)</a>. In addition, enterprise applications use a common reference proxy to the Space, allowing them to avoid the burden on managing data locality.</p>
+        <h3><a name="failover">&#160;</a>Failover</h3>
+        <p>Without <MadCap:variable name="General.ProductNameXAP" />, the data in the <code>KnowledgeBase</code> would be lost, in the case of node failure within the cluster, and could not be recovered by the standard failover mechanism. <MadCap:variable name="General.ProductNameXAP" /> provides data failover out of the box via its <a href="https://docs.gigaspaces.com/latest/admin/asynchronous-replication.html">asynchronous replication</a> to back up cluster topology. In the case of a <MadCap:variable name="General.ProductNameXAP" /> primary partition failure, the backup partition becomes the primary, preventing data loss and maintaining data integrity throughout the entire process.</p>
+        <h3><a name="redundancy">&#160;</a>Redundancy</h3>
+        <p>Storing the KnowledgeBase's data in each clustered JVM memory is redundant and costly in terms of memory footprint. Integration with <MadCap:variable name="General.ProductNameXAP" /> removes the enterprise application's need to locally store data because the <code>KnowledgeBase</code> resides in a partition hosted on the Data Grid.</p>
+        <h3><a name="consistency">&#160;</a>Consistency</h3>
+        <p>Similar to the concerns of load balancing, enterprise applications require all clustered JVMs to not only store identical data but also ensure consistency upon any change. Instead of building a custom solution to update the entire cluster, <MadCap:variable name="General.ProductNameXAP" /> can be used to ensure data consistency. By utilizing <MadCap:variable name="General.ProductNameXAP" />'s built-in <a href="https://docs.gigaspaces.com/latest/dev-java/routing-in-partitioned-spaces.html">Routing Mechanism</a>, all instances of the cluster can seamlessly be routed to the unique partition that is storing the relevant KnowledgeBase(s) and always receive a consistent result.</p>
+        <h3><a name="scalability">&#160;</a>Scalability</h3>
+        <p>An enterprise application hosting multiple instances of KnowledgeBases can be limited by the memory constraints of its underlying JVM. Turning to a 64-bit JVM could extend memory resources, but its benefits are eventually offset by incurring an increased garbage collection penalty. With <MadCap:variable name="General.ProductNameXAP" />, KnowledgeBases can be distributed across separate partitions each hosted on top of their own individual 64-bit JVM, allowing Drool's production/working memory to scale into the Terabytes.</p>
+        <h1><a name="integration-pattern">&#160;</a>Integration Pattern</h1>
+        <p>To demonstrate <MadCap:variable name="General.ProductNameXAP" />'s integration with Drools, we designed a pattern in the form of a Maven project. The project is distributed into 4 Maven Modules, each with an individual purpose:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Module</th>
+                    <th align="left">Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">common</td>
+                    <td align="left">Sharable library including data model and utilities</td>
+                </tr>
+                <tr>
+                    <td align="left">client</td>
+                    <td align="left">Load/analyze/execute/remove rules and facts</td>
+                </tr>
+                <tr>
+                    <td align="left">space</td>
+                    <td align="left">Defines space, event containers and remote services</td>
+                </tr>
+                <tr>
+                    <td align="left">web-service</td>
+                    <td align="left">Expose JSON Restful Web Services to execute rules</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The combination of these modules provide you with a working project to deploy a Data Grid, load/compile/remove rules from DRL files, execute rules from a one-off process and/or expose them as JSON Restful Web Service.</p>
+        <p>Let's review each module to understand their code and patterns.</p>
+        <h2><a name="common-module">&#160;</a>Common Module</h2>
+        <p>The main purpose of this module is to define the data model for the entire data grid. The data model includes a <a href="https://docs.gigaspaces.com/latest/dev-java/pojo-overview.html">POJO</a> representation of Facts, Drools Rules, Knowledge Packages, KnowledgeBases, etc.</p>
+        <p>Facts are representations of business entities which will be referenced in either or both the condition and consequence of rules. In order for client applications to dynamically create rules, they must first define Facts which will be loaded into a KnowledgeBase's Working Memory before Rules execution can occur. Therefore the Fact POJO must be created and deployed with the Space module before new dynamic rules can be compiled and executed using them as a reference.</p>
+        <p>The integration between Drools and <MadCap:variable name="General.ProductNameXAP" /> is represented as the <a href="https://docs.gigaspaces.com/latest/dev-java/pojo-support.html">Space Class</a> called KnowledgeBaseWrapper. This object stores a KnowledgeBase in the data grid along with all of its compiled content (i.e. rules, definitions, globals, fact types, etc.). Therefore it is a wrapper of the Drools Production/Working Memory, which is enhanced with the routing capabilities of a Space class along with additional attributes compensating for the KnowledgeBase's lack of transparency.</p>
+        <p>The remaining POJOs are meant to be informative tools for management and governance purposes. Their role is to provide the user with metadata type information about the contents of KnowledgeBase without having to execute operations against the actual objects.</p>
+        <h2><a name="client-module">&#160;</a>Client Module</h2>
+        <p>This module implements classes encapsulating stand-alone functional processes to load, analyze, execute and remove Rules and Facts. These processes can be simply instantiated by running their main methods and will interact with the space via the Space Proxy. If you are using an Eclipse IDE you can just click on the class and choose Run As Configurations to start the process.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools3.png" alt="drools1" class="tc-picture50" />
+            </p>
+        </div>
+        <div class="tc-admon-note">
+            <p>Some main methods allow for you to pass arguments.</p>
+        </div>
+        <p>Here is a list of the functional processes by category:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Category</th>
+                    <th align="left">Function</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Analyze</td>
+                    <td align="left">PrintOutAllKnowledgePackages <br />PrintOutSingleKnowledgePackage</td>
+                </tr>
+                <tr>
+                    <td align="left">Loader</td>
+                    <td align="left">DroolsRuleLoader   <br />FactLoader</td>
+                </tr>
+                <tr>
+                    <td align="left">Manage Rules</td>
+                    <td align="left">ExecuteRule <br />RemoveRule</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a name="analyze">&#160;</a>Analyze</h3>
+        <p>By running these processes you can get a print out to the System.Out log of the KnowledgePackages and their corresponding Rules within the chosen KnowledgeBase.</p>
+        <div class="tc-admon-note">
+            <p>You can also get this information by inspecting the KnowledgePackage Space Class via the <a href="../admin/gigaspaces-management-center.html">GigaSpaces Management Center</a>, which maintains metadata about each available KnowledgePackage across all loaded KnowledgeBase(s).</p>
+        </div>
+        <h3><a name="loader">&#160;</a>Loader</h3>
+        <p>These processes load both the Rules and Facts into the KnowledgeBase(s) stored on one or more instances of Stateful Processing Units representing the Space.</p>
+        <p>Rules meant to reside within the same KnowledgeBase are gathered within their uniquely named <code>RuleSet.xml</code> located inside the <code>resources/META-INF/rules</code> folder. Each XML file will represent a separate <code>KnowledgeBase</code> which will be uniquely routed to its respective partition. The individual rules are encapsulated within DRL files. To add rules, simply add &lt;resource&gt; elements to the &lt;add&gt; element before running the load process. To remove rules just change the &lt;add&gt; element to &lt;remove&gt; and rerun the same process. Here is an example of a <code>RuleSet.xml</code> file.</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;change-set xmlns='http://drools.org/drools-5.0/change-set'
+            xmlns:xs='http://www.w3.org/2001/XMLSchema-instance'
+            xs:schemaLocation='http://drools.org/drools-5.0 change-set.xsd'&gt;
+    &lt;add&gt;
+        &lt;resource source='classpath:META-INF/rules/drl/ValidateAgeRule.drl' type='DRL'/&gt;
+        &lt;resource source='classpath:META-INF/rules/drl/ValidateApplicationRule.drl' type='DRL'/&gt;
+    &lt;/add&gt;
+
+&lt;/change-set&gt;
+</code></pre>
+        <p>The Drools syntax is encapsulated within a DRL file including all reserved keywords such as package, import, rule, etc. This implementation assumes that only a single rule resides within each DRL file. As mentioned earlier, the custom facts which were defined in the common data-model are imported into the rules for use in both the condition (when) and consequence (then).</p><pre><code class="language-xml">package Application
+
+import com.gigaspaces.droolsintegration.model.facts.*;
+
+rule "ValidAgeRule"
+when
+    $applicant : Applicant( age &gt; 18 )
+    $application : Application( processed == false )
+then
+    System.out.println("Applicant is of valid age: " + $applicant.getAge());
+    $application.setApplicantId($applicant.getId());
+    $application.setApplicantName($applicant.getName());
+    $application.setApplicantApproved(true);
+    update($application);
+end
+</code></pre>
+        <p>Aside from loading rules this module can also load facts as Space Classes into the Space. These facts can be later queried as part of a decision web-service transaction and loaded into the KnowledgeBase's working memory before rule(s) execution.</p>
+        <h3><a name="manage-rules">&#160;</a>Manage Rules</h3>
+        <p>If you want to quickly pattern-match a set of facts against a loaded KnowledgeBase without having to create or alter a Restful Web Service, you can run the ExecuteRules class as an Application. To implement your own Rules Execution process, you simply have to account for the input and output parameters which will be passed to the Remote Service, which is collocated with the Space.</p>
+        <p>Since Drools only acts upon Iterable collections our integration pattern includes a utility class called IterableMapWrapper. This class simply wraps a Map and returns an iterator to its values in the iterator method. Use this map to pass all of the input facts which will be used for pattern matching before rules execution.</p>
+        <p>By default, Drools returns all the input facts that have not been deleted from working memory during rules-execution along with any new facts that are added to the collection. This could be an unnecessary cost because it increases memory footprint over the network for client applications that do not require the entire collection of facts as a returned parameter. To avoid the overhead, we allow the client to pass a list as an input, which filters the result collection on the Space side and passes back only the required facts back over the network.</p><pre><code class="language-java">   public void execute(Integer id) {
+        log.info("Starting ExecuteRules Execution");
+
+        Applicant applicant = gigaSpace.readById(Applicant.class, id);
+
+        Application application = new Application();
+        application.setProcessed(false);
+
+        IterableMapWrapper facts = new IterableMapWrapper();
+        facts.put(Applicant.class.getSimpleName(), applicant);
+        facts.put(Application.class.getSimpleName(), application);
+
+        List&lt;String&gt; resultKeyList = new ArrayList&lt;String&gt;();
+        resultKeyList.add(Application.class.getSimpleName());
+
+        try {
+            IterableMapWrapper resultFacts = (IterableMapWrapper) rulesExecutionService.executeRulesWithLimitedResults(RulesConstants.RULE_SET_APPLICANT_AGE, facts, resultKeyList);
+
+            Application result = (Application) resultFacts.get(Application.class.getSimpleName());
+            if(!result.getProcessed()) {
+                result.setApplicantApproved(false);
+                result.setApplicantId(applicant.getId());
+                result.setApplicantName(applicant.getName());
+            }
+
+            log.info("Date Approved: " + result.getDateApproved());
+            log.info("Applicant Id: " + result.getApplicantId());
+            log.info("Applicant Name: " + result.getApplicantName());
+            log.info("Application Processed: " + result.getProcessed());
+
+        }catch(Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        log.info("End ExecuteRules Execution");
+    }
+</code></pre>
+        <p>The client module also allows the removal of an individual rule as an alternative to changing the element inside <code>RuleSet.xml</code> from &lt;add&gt; to &lt;remove&gt;. To remove a specific rule using this utility you need only to change the arguments when running the RemoveRule class as an application.</p>
+        <h2><a name="space-module">&#160;</a>Space Module</h2>
+        <p>This module creates a deployable artifact (JAR) which instantiates Stateful processing unit(s) representing the data grid (Space). By default, the Space uses the SLA.xml file to deploy the predetermined amount of primary and backup partitions with the clustering topology set to <code>partitioned-sync2backup</code>.</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-sla="http://www.openspaces.org/schema/sla"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                           http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/10.0/sla/openspaces-sla.xsd"&gt;
+
+    &lt;os-sla:sla cluster-schema="partitioned-sync2backup" number-of-instances="2" number-of-backups="1"</code></pre>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+            <p>The number of backups per partition is zero or one.</p>
+        </div><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">
+                max-instances-per-vm="1"&gt;
+    &lt;/os-sla:sla&gt;
+
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-sla="http://www.openspaces.org/schema/sla"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/10.0/sla/openspaces-sla.xsd"&gt;
+
+    &lt;os-sla:sla cluster-schema="partitioned-sync2backup" number-of-instances="2" number-of-backups="1"</code></pre>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p>The number of backups per partition is zero or one.</p>
+        </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">
+                max-instances-per-vm="1"&gt;
+    &lt;/os-sla:sla&gt;
+
+&lt;/beans&gt;
+</code></pre>
+        <p>In addition to hosting data, this processing unit takes advantage of <MadCap:variable name="General.ProductNameXAP" />'s collocation of business logic in the form of event processing and Space-based remoting.</p>
+        <p>The event processor of choice is the Polling Container, which listens for specific events to occur on the Space. As part of our integration pattern, we opted to decouple the adding/removing of Rule Events to the Space from the compilation and injection of those rules to their respective KnowledgeBase. Since loading a single instance of a KnowledgeBase creates a bottleneck for a queue of 100+ rules, it makes sense to allow the client (remote client proxy) to fire and forget while the server (Space) does its work at its own pace. Upon notification of an event, the collocated event handler looks up the KnowledgeBase from the data grid and adds the new rule to the KnowledgeBase, assuming compilation was successful. It alsos updates the metadata type Space Classes to keep track of the KnowledgeBase contents for transparency.</p><pre><code class="language-java">@SpaceDataEvent
+public DroolsRuleAddEvent addRule(DroolsRuleAddEvent droolsRuleAddEvent) {
+    String ruleSet = droolsRuleAddEvent.getRuleSet();
+    String knowledgePackageName = droolsRuleAddEvent.getPackageName();
+    String ruleName = droolsRuleAddEvent.getRuleName();
+
+    try {
+        KnowledgeBaseWrapper knowledgeBaseWrapper = knowledgeBaseWrapperDao.read(ruleSet);
+                if(knowledgeBaseWrapper == null) {
+                    knowledgeBaseWrapper = createKnowledgeBaseWrapper(ruleSet);
+                }
+
+                KnowledgePackage knowledgePackage = knowledgePackageDao.read(ruleSet, knowledgePackageName);
+                if(knowledgePackage == null) {
+                    knowledgePackage = createKnowledgePackage(knowledgeBaseWrapper, knowledgePackageName, ruleSet);
+                }
+
+                if(!knowledgePackage.getRules().containsKey(ruleName)) {
+                    DroolsRule droolsRule = createDroolsRule(droolsRuleAddEvent);
+                    knowledgePackageDao.addRule(knowledgePackage, ruleName, droolsRule);
+
+                    addKnowledgePackages(knowledgeBaseWrapper, droolsRuleAddEvent, ruleName);
+                    knowledgeBaseWrapperDao.write(knowledgeBaseWrapper);
+
+                    log.info(String.format("Rule '%s' compiled successfully", ruleName));
+                }else {
+                    log.info(String.format("Rule '%s' already exists in knowledgePackage '%s'", ruleName, knowledgePackageName));
+                }
+        }catch(Exception e) {
+            log.info(String.format("Rule '%s' failed compilation for ruleset", ruleName));
+            log.error(e.getMessage(), e);
+        }
+
+    droolsRuleAddEvent.setProcessed(Boolean.TRUE);
+        return null;
+ }
+</code></pre>
+        <p><a href="https://docs.gigaspaces.com/latest/dev-java/space-based-remoting-overview.html">Space-based remoting</a> is a combination of an interface located in the common module and an implementation of the interface that is deployed co-located with the space. The interface is shared by both the space and the client(s) via the common module. To expose the interface as a Remoting Service, a simple annotation was added to the implementation class as well as a annotation scan within the <a href="https://docs.gigaspaces.com/latest/dev-java/configuring-processing-unit-elements.html">pu.xml</a>.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" Configuration" style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:os-events="http://www.openspaces.org/schema/events"
+       xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.openspaces.org/schema/core http://www.openspaces.org/schema/10.0/core/openspaces-core.xsd
+                           http://www.openspaces.org/schema/events http://www.openspaces.org/schema/10.0/events/openspaces-events.xsd
+                           http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/10.0/remoting/openspaces-remoting.xsd"&gt;
+
+
+    &lt;os-core:space id="space" url="/./space" /&gt;
+
+    &lt;!-- Defines a distributed transaction manager --&gt;
+     &lt;os-core:distributed-tx-manager id="transactionManager"/&gt;
+
+    &lt;!-- OpenSpaces simplified space API built on top of IJSpace/JavaSpace --&gt;
+    &lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
+
+    &lt;!-- Enables the usage of @GigaSpaceContext annotation based injection --&gt;
+    &lt;os-core:giga-space-context/&gt;
+
+    &lt;!-- Enable scan for OpenSpaces and Spring components --&gt;
+    &lt;context:component-scan base-package="com.mycompany.app"/&gt;
+
+    &lt;!-- Enables the usage of @GigaSpaceContext annotation based injection. --&gt;
+    &lt;os-core:giga-space-context/&gt;
+
+    &lt;!--  Enables Spring Annotation configuration  --&gt;
+    &lt;context:annotation-config/&gt;
+
+    &lt;!-- Enables using @Polling and @Notify annotations --&gt;
+    &lt;os-events:annotation-support/&gt;
+
+    &lt;!-- Enables using @RemotingService as well as @ExecutorProxy (and others) annotations --&gt;
+    &lt;os-remoting:annotation-support/&gt;
+
+    &lt;!-- Enables using @PreBackup, @PostBackup and other annotations --&gt;
+    &lt;os-core:annotation-support/&gt;
+
+    &lt;!--Add service exporter for remoting services--&gt;
+    &lt;os-remoting:service-exporter id="serviceExporter"/&gt;
+
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:os-events="http://www.openspaces.org/schema/events"
+       xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.openspaces.org/schema/core http://www.openspaces.org/schema/10.0/core/openspaces-core.xsd
+                           http://www.openspaces.org/schema/events http://www.openspaces.org/schema/10.0/events/openspaces-events.xsd
+                           http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/10.0/remoting/openspaces-remoting.xsd"&gt;
+
+
+    &lt;os-core:space id="space" url="/./space" /&gt;
+
+    &lt;!-- Defines a distributed transaction manager --&gt;
+     &lt;os-core:distributed-tx-manager id="transactionManager"/&gt;
+
+    &lt;!-- OpenSpaces simplified space API built on top of IJSpace/JavaSpace --&gt;
+    &lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
+
+    &lt;!-- Enables the usage of @GigaSpaceContext annotation based injection --&gt;
+    &lt;os-core:giga-space-context/&gt;
+
+    &lt;!-- Enable scan for OpenSpaces and Spring components --&gt;
+    &lt;context:component-scan base-package="com.mycompany.app"/&gt;
+
+    &lt;!-- Enables the usage of @GigaSpaceContext annotation based injection. --&gt;
+    &lt;os-core:giga-space-context/&gt;
+
+    &lt;!--  Enables Spring Annotation configuration  --&gt;
+    &lt;context:annotation-config/&gt;
+
+    &lt;!-- Enables using @Polling and @Notify annotations --&gt;
+    &lt;os-events:annotation-support/&gt;
+
+    &lt;!-- Enables using @RemotingService as well as @ExecutorProxy (and others) annotations --&gt;
+    &lt;os-remoting:annotation-support/&gt;
+
+    &lt;!-- Enables using @PreBackup, @PostBackup and other annotations --&gt;
+    &lt;os-core:annotation-support/&gt;
+
+    &lt;!--Add service exporter for remoting services--&gt;
+    &lt;os-remoting:service-exporter id="serviceExporter"/&gt;
+
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="Java" style="padding:10px"><pre><code class="language-java">@RemotingService
+public class RulesExecutionServiceImpl implements IRulesExecutionService {
+
+    @Autowired
+    private KnowledgeBaseWrapperDao knowledgeBaseWrapperDao;
+
+    @Transactional
+    public Iterable&lt;Object&gt; executeRules(String ruleSet, Iterable&lt;Object&gt; facts,  Map&lt;String, Object&gt; globals) {
+
+        KnowledgeBaseWrapper knowledgeBaseWrapper = knowledgeBaseWrapperDao.readByRuleSet(ruleSet);
+        if(knowledgeBaseWrapper != null) {
+            StatelessKnowledgeSession session = knowledgeBaseWrapper.getKnowledgeBase().newStatelessKnowledgeSession();
+
+            //Session scoped globals
+            if(globals != null) {
+                for(String key : globals.keySet()) {
+                    session.setGlobal(key, globals.get(key));
+                }
+            }
+
+            session.execute(facts);
+        }else {
+            return null;
+        }
+
+        return facts;
+    }
+}
+</code></pre>
+            </div>
+        </div>
+        <p>As with any execution against a partitioned space, a routing key is required for the <a href="../admin/data-partitioning.html">Hash-Based Routing</a> mechanism to determine which partition hosts the client's requested data. The routing key can also simply be set by adding an annotation, but this time to one of the parameters inside the method signature.</p><pre><code class="language-java">public interface IRulesExecutionService {
+
+    Iterable&lt;Object&gt; executeRules(@Routing String resultSet, Iterable&lt;Object&gt; facts,  Map&lt;String, Object&gt; globals);
+
+    Iterable&lt;Object&gt; executeRules(@Routing String resultSet, Iterable&lt;Object&gt; facts);
+
+    Iterable&lt;Object&gt; executeRulesWithLimitedResults(@Routing String resultSet, IterableMapWrapper facts,  List&lt;String&gt; resultKeys, Map&lt;String, Object&gt; globals);
+
+    Iterable&lt;Object&gt; executeRulesWithLimitedResults(@Routing String resultSet, IterableMapWrapper facts, List&lt;String&gt; resultKeys);
+
+}
+</code></pre>
+        <h3><a name="web-services-module">&#160;</a>Web Services Module</h3>
+        <p>This module creates a deployable artifact (WAR) that instantiates a Stateless processing unit(s) hosting JSON Restful Web Services on top of <MadCap:variable name="General.ProductNameXAP" />'s <a href="https://docs.gigaspaces.com/latest/dev-java/web-jetty-processing-unit-container.html">Jetty Processing Unit Container</a>.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools4.png" alt="drools1" class="tc-picture50" />
+            </p>
+        </div>
+        <p>Interaction with these services is very simple, because they only implement the GET REST method. A client only needs an Internet Browser to initiate a HTTP Servlet transaction on the listening Spring Controllers. There are two types of services that are deployed as part of this integration pattern - Decision Services and Generic Data Retrieval Services.</p>
+        <p>Decision services create or look up facts from the Space and pass them to the Remoting Service, which adds them to the KnowledgeBase's working memory and pattern matches them against all compiled rules. To initiate a decision service, enter a URL in the Browser and in response you receive a JSON payload printed to the screen.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools5.png" alt="drools1" class="tc-picture50" />
+            </p>
+        </div>
+        <p>Generic REST Data Retrieval Services come in two flavors - Read-By-ID and Read-By-Type. Read-By-ID requires the client to pass an ID along with the type of Object they are requesting. The Read-By-Type only requires the type returning multiple objects.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools6.png" alt="drools1" class="tc-picture50" />
+            </p>
+        </div>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/drools/drools7.png" alt="drools1" class="tc-picture50" />
+            </p>
+        </div>
+        <h1><a name="running-the-demo">&#160;</a>Running the Demo</h1>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="Step 1: Java Installation " style="padding:10px;">
+                    <p>Confirm Java is installed by running the java -version in your command line.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools8.png" alt="drools1" class="tc-picture50" />
+                    </p>
+                    <p>If Java is not installed, <a href="https://java.com/en/download/index.jsp">download Java</a> and add JAVA_HOME to your system variables.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools9.png" alt="drools1" class="tc-picture30" />
+                    </p>
+                    <p>Add %JAVA_HOME%/bin to your PATH system variable.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools10.png" alt="drools1" class="tc-picture30" />
+                    </p>
+                </div>
+                <div title="Step 2: Maven Installation" style="padding:10px;">
+                    <p>Confirm Maven is installed by running the mvn version in your command line.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools11.png" alt="drools1" class="tc-picture50" />
+                    </p>
+                    <p>If Maven is not installed, <a href="http://maven.apache.org/download.cgi">download Maven</a> and add M2_HOME to your system variables.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools12.png" alt="drools1" class="tc-picture30" />
+                    </p>
+                    <p>Add %M2_HOME%/bin to your PATH system variable.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools13.png" alt="drools1" class="tc-picture30" />
+                    </p>
+                </div>
+                <div title="Step 3: XAP Installation" style="padding:10px;">
+                    <p>If <MadCap:variable name="General.ProductNameXAP" /> is not installed, download the <a href="https://www.gigaspaces.com/downloads/">latest version</a> and add JSHOMEDIR to your system variables.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools14.png" alt="drools1" class="tc-picture30" />
+                    </p>
+                    <p>Add %JSHOMEDIR%/bin to your PATH system variable.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools15.png" alt="drools1" class="tc-picture30" />
+                    </p>
+                </div>
+                <div title="Step 4: Download Example" style="padding:10px;">
+                    <p>Download the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/gigaspaces-drools-integration">example</a> and extract.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools16.png" alt="drools1" class="tc-picture50" />
+                    </p>
+                </div>
+                <div title="Step 5: Execute Maven command" style="padding:10px;">
+                    <p>Navigate to the project root and execute the mvn package command.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools17.png" alt="drools1" class="tc-picture50" />
+                    </p>
+                </div>
+                <div title="Step 6: Start the GigaSpaces agent" style="padding:10px;">
+                    <p>Navigate to the <MadCap:variable name="General.ProductNameXAP" /> bin directory and double-click gs-agent.bat.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools18.png" alt="drools1" class="tc-picture50" />
+                    </p>
+                </div>
+                <div title="Step 7: Start Web management Console" style="padding:10px;">
+                    <p>Start the Web Management Console by double-clicking gs-webui.bat.
+</p>
+                </div>
+                <div title="Step 8: Deploy the PU" style="padding:10px;">
+                    <p>Click the Hosts Tab and find the Deploy drop-down. Choose Processing Unit.</p>
+                </div>
+                <div title="Step 9: Upload file" style="padding:10px;">
+                    <p>Click Upload File and navigate to the space/target directory inside the Distributed Drools project. Double-click the space.jar and click Deploy.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools23.png" alt="drools1" class="tc-picture50" />
+                    </p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools24.png" alt="drools1" class="tc-picture50" />
+                    </p>
+                </div>
+                <div title="Step 10: View the Data Grid" style="padding:10px;">
+                    <p>Confirm that the <code>Space</code> was created by clicking the <code>Data Grid</code> tab.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools25.png" alt="drools1" />
+                    </p>
+                </div>
+                <div title="Step 11: Open Eclipse" style="padding:10px;">
+                    <p>Open the workspace in an Eclipse IDE.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools26.png" alt="drools1" class="tc-picture30" />
+                    </p>
+                </div>
+                <div title="Step 12: Import the project" style="padding:10px;">
+                    <p>Import the existing Maven Project named <code>xap-drools-integration</code>.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools27.png" alt="drools1" class="tc-picture50" />
+                    </p>
+                </div>
+                <div title="Step 13: Load the rules" style="padding:10px;">
+                    <p>Run DroolsRuleLoader.java and FactLoader.java as a Java Application.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools28.png" alt="drools1" class="tc-picture50" />
+                    </p>
+                </div>
+                <div title="Step 14: Confirm rules are loaded" style="padding:10px;">
+                    <p>Confirm that the KnowledgeBasesWrappers and Applicant Facts were loaded to the Space.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools29.png" alt="drools1" class="tc-picture80" />
+                    </p>
+                </div>
+                <div title="Step 15: Deploy web service" style="padding:10px;">
+                    <p>Click the Hosts Tab and deploy the web-services.war file.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools30.png" alt="drools1" class="tc-picture50" />
+                    </p>
+                </div>
+                <div title="Step 16: Confirm the Web Services URL and PORT" style="padding:10px;">
+                    <p>Click the Applications Tab and confirm the Web Services URL and PORT.</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/drools/drools31.png" alt="drools1" class="tc-picture50" />
+                    </p>
+                </div>
+                <div title="Step 17: Test the rules" style="padding:10px;">
+                    <p>Open an Internet Browser and begin testing the Decision and Generic Data Lookup Services.</p>
+                    <p><code>http://localhost:8080/web-services/mycompany/rest/com.mycompany.app.model.facts.Applicant/1</code> <br /><code>http://localhost:8080/web-services/mycompany/rest/com.mycompany.app.model.facts.Applicant</code> <br /><code>http://localhost:8080/web-services/mycompany/rest/decision/processApplicationService/1</code> <br /><code>http://localhost:8080/web-services/mycompany/rest/decision/checkHolidayService/summer/july</code></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

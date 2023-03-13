@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Space Instance Recovery</h1>
+        <p>Recovery is a process that happens on space instance startup or relocation and used to synchronize the space instance data with another space instance in its replication group.</p>
+        <p>When space instance is the first to start and doesn't have another space instance to recover from - it's data is loaded from the External Data Source if such was defined, otherwise the space will start empty.</p>
+        <h1><a name="terminology"></a>Terminology</h1>
+        <ul>
+            <li>Target space instance - the space instance that recovers the data from another space instance.</li>
+            <li>Source space instance - the space instance that the data is recovered from.</li>
+            <li>Recovery data - Recovery involves two types of data to recover:
+
+<ul><li>Space objects</li><li>Notify registrations</li></ul></li>
+        </ul>
+        <h1><a name="recovery-process"></a>Recovery process</h1>
+        <p>Recovery process has two phases: a snapshot phase and a completion phase.</p>
+        <h2><a name="snapshot-phase"></a>Snapshot Phase</h2>
+        <p>All space objects are copied from to the target to the source in batches. This is done concurrently by multiple threads.
+In case the recovery process takes a lot of time, the following configuration can be tuned to decrease the recovery time.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.recovery-chunk-size</td>
+                    <td align="left">Integer value. Defines how many operations are recovered is a single batch</td>
+                    <td align="left">200</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.recovery-thread-pool-size</td>
+                    <td align="left">Integer value. Defines how many threads are recovering the data during the snapshot process .</td>
+                    <td align="left">4</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="completion-phase"></a>Completion Phase</h2>
+        <p>Operations that were performed on the source space during the snapshot phase are not a part of the recovered snapshot, so they are accumulated in the source space instance redo-log and are sent to the target space once the snapshot phase is finished via replication.
+In case a limited redo log is used the following property defines the maximum size of the redo log during recovery:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.redo-log-recovery-capacity</td>
+                    <td align="left">Integer value. Defines the maximum size of the redo log kept on the source space during recovery.</td>
+                    <td align="left">5000000</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <p>For more info refer to <a href="controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</a>.</p>
+        </div>
+        <p>Completion phase is finished according to the consistency requirements of the replication type.</p>
+        <div class="tc-admon-note">
+            <p>For more info refer to <a href="synchronous-replication.html#behavior-during-recovery">Synchronous Replication Behavior During Recovery</a> and <a href="asynchronous-replication.html#behavior-during-recovery">Asynchronous Replication Behavior During Recovery</a>.</p>
+        </div>
+        <p>Once the recovery process is complete, a full report including the total amount of recovered space objects and notify registrations, and their class types, is logged.
+During the recovery process, the source space is available, and the target space is unavailable to clients.</p>
+        <div class="tc-admon-note">
+            <ul>
+                <li>Replication input filter events are called during recovery (on the target).</li>
+                <li>Space filter events are not called during recovery.</li>
+                <li>The space instance locates a space to recover from using the Jini Lookup Service - each replication group has a unique name.
+The source space looks for a matching space with the same replication group to recover from.</li>
+                <li>Partial recovery - the restarted space recovers only classes with the <code>@SpaceClass (replicate=true)</code> decoration (turned on only when partial replication is enabled).</li>
+            </ul>
+        </div>
+        <h1><a name="primary-backup-topology"></a>Primary-Backup Topology</h1>
+        <p>In primary-backup topologies the recovering space instance is always a backup, primary space instances don't recover their data from other spaces.
+The recovering backup space instance connects to its primary space instance and recovers its data only from it.
+If there are other space instances in the same replication group, they don't replicate their data to the recovered space instance.</p>
+        <h2><a name="primary-backup-persistent-topology"></a>Primary-Backup Persistent Topology</h2>
+        <p>Primary and Backup space instances use the same database to stored their data. The space is the system of record. The data is usually persisted through the Mirror service.
+Which data is recovered depends on the space caching policy.
+There is special handling for <a href="../dev-java/transient-entries.html">Transient Entries</a> (<code>persist=false</code>), since they can't be persisted - they are always recovered from the primary.</p>
+        <h3><a name="all-in-cache-policy"></a>All In Cache Policy</h3>
+        <p>A backup instance recovers <span class="tc-bold">all its data</span> from the primary instance - data is not loaded from the database. This is done so that any data changes on the primary during the recovery process are consistent on the backup once recovery finishes.</p>
+        <h3><a name="lru-cache-policy"></a>LRU Cache Policy</h3>
+        <p>A backup instance recovers <span class="tc-bold">only transient</span> entries from the primary instance. Data is not loaded from the database.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/data-grid-sync-persist.jpg" alt="data-grid-sync-persist.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>Since primary and backup use the same database instance, the data will be loaded to the backup on demand.</p>
+        <h2><a name="backup-instance-recovery-failure-handling"></a>Backup Instance Recovery Failure Handling</h2>
+        <p>If a backup space instance recovery process fails, it is handled in the following way:
+If the primary space is unavailable for some reason - recovery will be retried  until one of the following happens:</p>
+        <ul>
+            <li>the primary gets reconnected and then the recovery continues normally.</li>
+            <li>the space itself becomes primary and then no recovery is necessary.</li>
+        </ul>
+        <p>Any other failure - <a href="../dev-java/all-in-cache-cache-policy.html">SpaceMemoryShortageException</a>, Database not available etc. is retried 3 times before failing.</p>
+        <h1><a name="active-active-topology"></a>Active-Active Topology</h1>
+        <p>In active-active topologies the recovering space instance connects to one of the space instances in its replication group and recovers all the data from it.
+If there are other space instances in the same replication group, after recovery other they connect the recovered space instance and replicate their data as well.</p>
+        <h2><a name="active-active-persistent-topology"></a>Active-Active Persistent Topology</h2>
+        <p>Replicated space instances  keep and manage their data in a separate databases.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/data-grid-sync-persist_non_central_db.jpg" alt="data-grid-sync-persist_non_central_db.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>With this scenario:</p>
+        <ol>
+            <li>If the database is empty –&gt; target space instance recovers everything from the source.</li>
+            <li>If database has data –&gt; recover persistent objects from the database + recover transient objects from the source.</li>
+        </ol>
+        <p>For further info and configuration options see <a href="../dev-java/direct-persistency.html#distributed-databases">Distributed Databases</a></p>
+        <h2><a name="space-instance-recovery-failure-handling"></a>Space Instance Recovery Failure Handling</h2>
+        <p>If the recovery process fails, it is retried 3 times before failing.</p>
+    </body>
+</html>

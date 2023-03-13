@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Paging Support - GSIterator</h1>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/GSIterator-deprecate.flsnp" />
+        <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/IteratorBuilder.html">IteratorBuilder</a> with the <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/client/GSIterator.html">GSIterator</a>  provides the ability to exhaustively read through all of the objects from the space that match one or more SQLQuery/templates.</p>
+        <p>There are scenarios where the conventional read operation that returns a single space object does not fit and there is a need to return a collection of entries from the space. Generally, an iterator should be used in cases where returning all the entries in one result with the <code>readMultiple</code> operation will consume too much memory on the client or introduce too much latency before the first space object could be processed.</p>
+        <p>The iterator constructs a match set (a collection of space objects instances) that incrementally returns the necessary objects in chunks or pages. The <code>GSIterator</code> constructs a proxy object that can be used to access a match set created by a space. The <code>GSIterator</code> will initially contain some population of objects specified by the operation that created it. These objects can be retrieved by calling the <code>next</code> method. A successful call to <code>next</code> will remove the returned object from the match set. Match sets can end up in one of two terminal states: <code>exhausted</code> or <code>invalidated</code>.</p>
+        <p>Simple usage example for the <code>IteratorBuilder</code> with the <code>GSIterator</code>:</p><pre><code class="language-java">GigaSpace gigaspace = new GigaSpaceConfigurer( new SpaceProxyConfigurer("mySpace")).gigaSpace();
+
+SQLQuery&lt;MySpaceClass&gt; query1 = new SQLQuery&lt;MySpaceClass&gt;(MySpaceClass.class,"fName like 'f%'");
+SQLQuery&lt;MySpaceClass&gt; query2 = new SQLQuery&lt;MySpaceClass&gt;(MySpaceClass.class,"lName like 'l%'");
+
+IteratorBuilder iteratorBuilder = new IteratorBuilder(gigaspace)
+    .addTemplate(query1)
+    .addTemplate(query2)
+    .bufferSize(100) // Limit of the number of objects to store for each iteration.
+    .iteratorScope(IteratorScope.CURRENT_AND_FUTURE) ;
+// Indicates that this iterator will be first pre-filled with existing matching objects anf future matching objects,
+// otherwise it will start iterating only on newly arriving objects to the space.
+
+GSIterator gsIterator = iteratorBuilder.iterate();
+int count = 0;
+
+for (;;)
+{
+        try
+        {
+        MySpaceClass o = (MySpaceClass)gsIterator.next(60000);
+        System.out.println((count ++ ) + " " + o);
+            } catch (NoSuchElementException e) {
+             // will be thrown if there is no matching object and 60000 ms gone by
+            }
+}
+</code></pre>
+        <h1><a name="the-iteratorbuilder"></a>The IteratorBuilder</h1>
+        <p>The <a href="[%=Links.ApiJavaDoc%]/org/openspaces/core/IteratorBuilder.html">IteratorBuilder</a> is a utility builder class for the GSIterator. It allows to use method chaining for simple configuration of an iterator and then call iterate() to get the actual iterator.</p>
+        <p>By default, when no template is added (using <code>addTemplate</code>), a <code>null</code> template will be used to iterate over all the content of the Space.</p>
+        <p>The iterator can iterate on objects <span class="tc-bold">currently</span> in the space, <span class="tc-bold">future</span> entries or <span class="tc-bold">both</span>. By default it will only iterate on <span class="tc-bold">future</span> objects in the Space (objects that match the given template(s)). Use iteratorScope(IteratorScope) to set the iterator's scope.</p>
+        <p>Lease for the iterator can be controlled using <code>leaseDuration(long)</code>. A leased iterator which expires is considered as invalidated. A canceled iterator is an exhausted iterator and will have no more entities added to it. Calling next on an iterator with either state always returns <code>null</code> or it may throw one of the allowed exceptions. In particular <code>next(timeout)</code> may throw <code>NoSuchObjectException</code> to indicate that no object has been found during the allowed timeout. There is no guarantee that once <code>next(timeout)</code> throws a <code>NoSuchObjectException</code>, or next returns <code>null</code>, all future calls on that instance will do the same.</p>
+        <p>If there is a possibility that an iterator may become invalidated, it must be leased. If there is no possibility that the iterator will become invalidated, implementations should not lease it (i.e. use <code>Lease.FOREVER</code>). If there is no further interest an iterator may be canceled.</p>
+        <p>An active lease on an iterator serves as a hint to the space that the client is still interested in matching objects, and as a hint to the client that the iterator is still functioning. There are cases, however, where this <span class="tc-bold">may not</span> be possible in particular, it is not expected that iteration will maintain across crashes. If the lease expires or is canceled, the iterator is invalidated. Clients should not assume that the resources associated with a leased GSIterator will be freed if the GSIterator reaches the exhausted state, and should instead cancel the lease.</p>
+        <p>The maximum number of objects to pull from the space can be controlled using <code>bufferSize(int)</code> and defaults to <code>100</code>.</p>
+        <h1><a name="the-iteratorscope"></a>The IteratorScope</h1>
+        <p>The <a href="[%=Links.ApiJavaDoc%]/index.html?com/gigaspaces/client/iterator/IteratorScope.html">IteratorScope</a> determines the scope of a GSIterator. Here are the supported options:</p>
+        <ul>
+            <li><code>CURRENT</code> - Indicates that the iterator will process entries currently in the space, and ignores future changes.</li>
+            <li><code>CURRENT_AND_FUTURE</code> - Indicates that the iterator will process both entries currently in the space and future changes.</li>
+            <li><code>FUTURE</code> - Indicates that the iterator will ignore entries currently in the space, and process future changes.</li>
+        </ul>
+        <h1><a name="the-gsiterator"></a>The GSIterator</h1>
+        <p>The <a href="[%=Links.ApiJavaDoc%]/index.html?com/j_spaces/core/client/GSIterator.html">GSIterator</a> will initially contain some population of objects. These objects can be retrieved by calling <code>next</code> method. A successful call to <code>next</code> method will remove the returned object from the iteration result set. An iterator can end up in one of two terminal states, <code>invalidated</code> or <code>exhausted</code>.</p>
+        <p>A leased iterator which expires is considered as invalidated. A canceled iterator is an exhausted iterator and will have no more entities added to it. Calling next on an iterator with either state always returns null or it may throw one of the allowed exceptions. In particular next(timeout) may throw NoSuchObjectException to indicate that no object has been found during the allowed timeout. There is no guarantee that once next(timeout) throws a NoSuchObjectException, or next returns null, all future calls on that instance will do the same.</p>
+        <p>Between the time an iterator is created and the time it reaches a terminal state, objects may be added by the space. However, an object that is removed by a next call may be added back to the iterator if its uniqueness is equivalent. The space may also update or remove objects that haven't yet been returned by a <code>next</code> call, and are not part of the buffered set.</p>
+        <h2><a name="using-gsiterator-with-sqlquery"></a>Using GSIterator with SQLQuery</h2>
+        <p>When using the <code>GSIterator</code> with SQLQuery only <a href="query-sql.html#supported-sql-features">simple SQL queries</a> are supported:
+    (field1 &lt; value1) AND (field2 &gt; value2) AND (field3 == values3)...
+The following operators <span class="tc-bold">are not supported</span> when using <code>GSIterator</code>:</p>
+        <ul>
+            <li><code>NOT LIKE</code>
+            </li>
+            <li><code>OR</code>
+            </li>
+            <li><code>IN</code>
+            </li>
+            <li><code>GROUP BY</code>
+            </li>
+            <li><code>ORDER BY</code>
+            </li>
+        </ul>
+        <h2><a name="initialization"></a>Initialization</h2>
+        <p>When a <code>GSIterator</code> is created, a match set is formulated. The match set initially contains all of the objects within the space that match one or more of the collection templates and are not locked by conflicting transactions (unless using the <code>FUTURE</code> IteratorScope mode, i.e., no initial contents). Each element of the matched set will be returned at most once.</p>
+        <h2><a name="hasnext-next-and-next-timeout"></a>hasNext(), next() and next(timeout)</h2>
+        <p>Calling <code>hasNext()</code> returns <code>true</code> if next returns a non-null element rather than throwing an exception. Calling next removes one element from the matched set and returns it to the caller. Calling <code>next(timeout)</code> blocks next. The iteration is said to be complete if the match set becomes empty or next calls limit (buffer size) has removed Entries from the match set. A <code>next</code> call returns <code>null</code> only if the iteration is complete.</p>
+        <h2><a name="take-and-space-object-lease-expiration"></a>take() and Space Object Lease Expiration</h2>
+        <p>A space object may be, but is not required to be, removed from the match set without being returned by a <code>next</code> call if it is removed from the space or is locked by a conflicting transaction. <code>GSIterator</code> <span class="tc-bold">does not remove</span> the object after it has been buffered.</p>
+        <h2><a name="notifications"></a>Notifications</h2>
+        <p>GSIterator register each of the templates in the templates collection for notification. If a matching object was written to the space after the GSIterator was created, the object will be added to the result set. An object that was locked under a conflicting transaction before or after the GSIterator was created and the lock was released before the iteration was complete will also be added to the result set.</p>
+        <p>A matching that arrived from a notification event will interrupt any blocking <code>next(timeout)</code> operation. If a take operation was called or an object lease timeout, the object will be removed from the next iteration result set.</p>
+        <h2><a name="iterator-lease"></a>Iterator Lease</h2>
+        <p>In most cases, the iterator will be leased and the lease proxy object can be obtained by calling the <code>getLease()</code> method. Cancelling or letting the lease expire will destroy the iterator; thus no notifications from here on will be accounted for, and all subsequent calls to <code>hasNext()</code> will return <code>false</code>. If there is a lease associated with the iterator, clients should not assume that completing the iteration will destroy it and should instead call cancel or let the lease expire when the end of the iteration is reached. A lease <code>renewal(timeout)</code> is used to renew a lease for an additional period of time. This duration is not added to the original lease, but is used to determine a new expiration time for the existing lease. If a lease has expired or has been canceled, a renewal is not allowed.</p>
+        <h2><a name="transactions"></a>Transactions</h2>
+        <p>Iterating through the matched set does not lock the object. Objects that are under transaction and match the specified template/SQLQuery will not be included as part of the matched set.</p>
+    </body>
+</html>

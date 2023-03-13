@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Scripts</h1>
+        <p>The <code><MadCap:variable name="General.HomePath" />/bin</code> folder includes the following scripts that can be used to manage and monitor service grid components and applications in runtime.</p>
+        <h1><a name="general-scripts"></a>General Scripts</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Script</th>
+                    <th align="left">Description</th>
+                    <th align="left">Open Source</th>
+                    <th align="left">XAP Enterprise</th>
+                    <th align="left"><MadCap:variable name="General.ProductNameIE" /> Enterprise</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr MadCap:conditions="Version.14-5-died">
+                    <td align="left">insightedge</td>
+                    <td align="left">Starts the <MadCap:variable name="General.ProductNameIE" /> Command Line Interface (CLI).</td>
+                    <td style="text-align: center;">✔</td>
+                    <td style="text-align: center;">&#160;</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">setenv</td>
+                    <td align="left">Configure the settings for the Common Environment Variables.</td>
+                    <td style="text-align: center;">✔</td>
+                    <td style="text-align: center;">✔</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">setenv-overrides</td>
+                    <td align="left">Use this script to override default settings in the setenv script.</td>
+                    <td style="text-align: center;">✔</td>
+                    <td style="text-align: center;">✔</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr MadCap:conditions="Version.14-5-died">
+                    <td align="left">xap</td>
+                    <td align="left">The <MadCap:variable name="General.ProductNameXAP" /> Command Line Interface (CLI).</td>
+                    <td style="text-align: center;">✔</td>
+                    <td style="text-align: center;">✔</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr MadCap:conditions="Version.14-5-died">
+                    <td align="left">gs</td>
+                    <td align="left">The legacy Gigaspaces CLI.</td>
+                    <td style="text-align: center;">✔</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr MadCap:conditions="Version.14-5-born">
+                    <td align="left">gs</td>
+                    <td align="left">Starts the Command Line Interface (CLI)</td>
+                    <td style="text-align: center;">&#160;</td>
+                    <td style="text-align: center;">✔</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">gs-agent</td>
+                    <td align="left">Starts the Grid Service Agent.</td>
+                    <td style="text-align: center;"> </td>
+                    <td style="text-align: center;">✔</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">gs-ui</td>
+                    <td align="left">Starts the GigaSpaces Management Center.</td>
+                    <td style="text-align: center;"> </td>
+                    <td style="text-align: center;">✔</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">gs-webui</td>
+                    <td align="left">Starts the Web Management Console.</td>
+                    <td style="text-align: center;"> </td>
+                    <td style="text-align: center;">✔</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+            <p>The gs-agent script is deprecated as of version 14.0, as noted in the <a href="../rn/whats-new.html">Release Notes</a>. Use the <code>xap host run-agent</code> or <code>insightedge host run-agent</code> command in the <a href="tools-cli.html">new CLI</a> instead.</p>
+        </div>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p>The gs-agent script is deprecated as of version 14.0, as noted in the <a href="../rn/whats-new.html">Release Notes</a>. Use the <code>gs host run-agent</code>  command in the <a href="tools-cli.html">new CLI</a> instead.</p>
+        </div>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
+        <h1><a name="advanced-scripts"></a>Advanced Scripts</h1>
+        <p>In addition to the scripts listed above, the <code>bin</code> folder (in the <MadCap:variable name="General.ProductNameXAP" /> commercial editions) contains additional scripts in the <span class="tc-bold">advanced_scripts.zip</span> folder, which are only provided to maintain backwards compatibility with earlier versions of <MadCap:variable name="General.ProductNameXAP" /> products.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Script</th>
+                    <th align="left">Description</th>
+                    <th align="left">Open Source</th>
+                    <th align="left">Enterprise</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr MadCap:conditions="Version.15-2-died">
+                    <td align="left">esm</td>
+                    <td align="left">Starts the Elastic Service Manager.</td>
+                    <td style="text-align: center;">&#160;</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">gsc</td>
+                    <td align="left">Starts a Grid Service Container.<br />Instead of this script, start a GSC as described in <a href="admin-service-grid-container-start.html">Managing Containers</a>.</td>
+                    <td style="text-align: center;">&#160;</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">gsm</td>
+                    <td align="left">Starts a Grid Service Manager.<br />Instead of this script, start a <MadCap:variable name="General.ProductNameXAP" /> Manager as described in <a href="admin-service-grid-agent.html">Managing the Grid Service Agent</a>.</td>
+                    <td style="text-align: center;">&#160;</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">gsm_nolus</td>
+                    <td align="left">Starts a Grid Service Manager without a Lookup Service.</td>
+                    <td style="text-align: center;">&#160;</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">gs-memcached</td>
+                    <td align="left">Starts a standalone, unmanaged instance of a <a href="../dev-java/memcached-api.html">Memcached API</a> listener.</td>
+                    <td style="text-align: center;">&#160;</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">lookupbrowser</td>
+                    <td align="left">Used for special debug scenarios to inspect the Lookup Service.</td>
+                    <td style="text-align: center;">&#160;</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">platform-info</td>
+                    <td align="left">Prints GigaSpaces version info.<br />Instead of this script, use the <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code>xap --version</code></MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code>gs version</code></MadCap:conditionalText>command in the CLI.</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">pu-instance</td>
+                    <td align="left">Runs a standalone Processing Unit.<br />Instead of this script, use the<MadCap:conditionalText MadCap:conditions="Version.14-5-died"> <code>xap pu run</code></MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code>gs pu run</code></MadCap:conditionalText> command in the CLI.</td>
+                    <td style="text-align: center;">&#160;</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">startJiniLUS</td>
+                    <td align="left">Starts a Lookup Service.</td>
+                    <td style="text-align: center;">&#160;</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+                <tr>
+                    <td align="left">startJiniTX_Mahalo</td>
+                    <td align="left">Starts an instance of the distributed transaction manager.</td>
+                    <td style="text-align: center;">&#160;</td>
+                    <td style="text-align: center;">✔</td>
+                </tr>
+            </tbody>
+        </table>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/esm-deprecated.flsnp" MadCap:conditions="Version.15-2-died" />
+    </body>
+</html>

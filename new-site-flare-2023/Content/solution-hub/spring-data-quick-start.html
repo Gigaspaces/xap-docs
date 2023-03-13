@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Building a Spring Data Application with <MadCap:variable name="General.ProductNameXAP" /></h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Meir Faraj</td>
+                    <td>15.0</td>
+                    <td>December 2019</td>
+                    <td>
+                        <p>Spring Data Moore SR3</p>
+                        <p>Spring Framework 5.2.2 
+</p>
+                    </td>
+                    <td><a href="https://github.com/Gigaspaces/solution-hub/tree/master/spring-data" target="_blank">Spring Data GigaSpaces</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Overview</h1>
+        <p>This topic explains how to build a Spring data application with   <MadCap:variable name="General.ProductNameXAP" />, using the   Spring Data <MadCap:variable name="General.ProductNameXAP" /> library to store and retrieve POJOs.</p>
+        <p>In order to build a Spring data application with <MadCap:variable name="General.ProductNameXAP" />, you have to do the following:</p>
+        <ul>
+            <li>Install <MadCap:variable name="General.ProductNameXAP" />, Maven, and the <MadCap:variable name="General.ProductNameXAP" /> Maven artifacts (or use the Maven repository)</li>
+            <li>Install and build the Spring Data <MadCap:variable name="General.ProductNameXAP" /> project</li>
+            <li>Populate and test the Space</li>
+            <li>Create a program and begin to read and write objects</li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>The following software versions were used for this implementation:</p>
+            <ul>
+                <li> <MadCap:variable name="General.ProductNameXAP" /> release 15.0</li>
+                <li>Spring version 5.2.2  </li>
+            </ul>
+        </div>
+        <h1>Preparing the Environment</h1>
+        <h2>Installing <MadCap:variable name="General.ProductNameXAP" /> </h2>
+        <p>The first step in preparing your environment is installing the <MadCap:variable name="General.ProductNameXAP" /> product, and then installing Maven and the <MadCap:variable name="General.ProductNameXAP" />&#160;Maven artifacts.</p>
+        <p class="tc-todo">To install <MadCap:variable name="General.ProductNameXAP" />:</p>
+        <ol>
+            <li>
+                <p>Download the <MadCap:variable name="General.ProductNameXAP" /> product you want to use from the  <a href="http://www.gigaspaces.com/download-center" target="_blank">Download Center</a> and install it as described in the <MadCap:xref href="../started/next-level-getting-started-with-smart-cache.html">Getting Started</MadCap:xref> section of the <MadCap:variable name="General.ProductNameXAP" /> documentation.</p>
+            </li>
+            <li>
+                <p>Install Apache Maven as described in the <a href="http://maven.apache.org/download.cgi" target="_blank">Maven documentation</a>.</p>
+                <div class="tc-admon-note">
+                    <p> If you're not familiar with Maven, refer to the topic on <a href="https://spring.io/guides/gs/maven/" target="_blank">Building Java Projects with Maven</a> in the Spring documentation.</p>
+                </div>
+            </li>
+            <li>
+                <p>Install the <MadCap:variable name="General.ProductNameXAP" /> Maven artifacts using the following <MadCap:variable name="General.ProductNameXAP" /> CLI  command:</p><pre><code class="language-bash">maven install</code></pre>
+            </li>
+        </ol>
+        <h2>Installing and Building the Spring Data <MadCap:variable name="General.ProductNameXAP" /> Project</h2>
+        <p>After you set up the <MadCap:variable name="General.ProductNameXAP" /> data grid and Maven artifacts, you need to build a new Maven project using the <code>spring-data-gigaspaces</code> software package.</p>
+        <p class="tc-todo">To install and build the Spring Data <MadCap:variable name="General.ProductNameXAP" /> project:</p>
+        <ol>
+            <li>
+                <p>Download the <a href="https://github.com/Gigaspaces/solution-hub/tree/master/spring-data" target="_blank"><code>spring-data-gigaspaces</code></a> project and build it with Maven, using the following command:</p><pre><code class="language-bash">mvn clean install</code></pre>
+            </li>
+            <li>
+                <p>Copy and paste the code snippet below into your build. This gets you started using <code>spring-data-gigaspaces </code>in your project with a dependency management system.</p><pre><code class="language-xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+         &lt;groupId&gt;org.springframework.data&lt;/groupId&gt;
+         &lt;artifactId&gt;spring-data-gigaspaces&lt;/artifactId&gt;
+         &lt;version&gt;15.0-SNAPSHOT&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;</code></pre>
+            </li>
+        </ol>
+        <h1>Populating and Testing the Space</h1>
+        <h2>Defining a Simple Entity</h2>
+        <p><MadCap:variable name="General.ProductNameXAP" />' in-memory data grid stores data in Spaces. Each Space can be configured as needed (replicated, partitioned, etc). For the Spring <MadCap:variable name="General.ProductNameXAP" /></p>
+        <p>project, we use an embedded Space that is running as part of your program (there is no need to run a separate data grid).</p>
+        <p>The following example shows how to store <code>Book</code> objects.</p><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceClass;
+import com.gigaspaces.annotation.pojo.SpaceId;
+import java.io.Serializable;
+
+@SpaceClass
+public class Book implements Serializable {
+   String id;
+   String author;
+   Integer copies;
+
+   public Book() {
+   }
+
+   public Book(String id, String author, Integer copies) {
+       this.id = id;
+       this.author = author;
+       this.copies = copies;
+   }
+
+   public String getAuthor() {
+       return author;
+   }
+
+   public void setAuthor(String author) {
+       this.author = author;
+   }
+
+   @SpaceId(autoGenerate = false)
+   public String getId() {
+       return id;
+   }
+
+   public void setId(String id) {
+       this.id = id;
+   }
+
+   public Integer getCopies() {
+       return copies;
+   }
+
+   public void setCopies(Integer copies) {
+       this.copies = copies;
+   }
+
+   @Override
+   public String toString() {
+       return "Book{" + "id='" + id + '\'' + ", author='" + author + '\'' + ", copies=" + copies + '}';
+   }
+}</code></pre>
+        <p>The example has the following attributes:</p>
+        <ul>
+            <li>A <code>Book</code> class with three attributes; <code>id</code>, <code>author</code>, and <code>copies</code>. It also contains a constructor to populate the entities when creating a new instance, and the default constructor.</li>
+            <li>The <code>Book</code> class is annotated <code>@SpaceClass</code>. The annotation is not mandatory and you can write objects to the Space without it, but it is used to provide additional <a href="../dev-java/modeling-your-data.html">metadata</a>.</li>
+            <li>The <code>Book</code> class also has a getter for <code>id</code> marked with <code>@SpaceId</code>. This property uniquely identifies the object within the Space, and is similar to a primary key in a database.</li>
+            <li>The number of book copies is defined. This is used when creating simple queries, as described below.</li>
+            <li>The <code>toString()</code> method prints out the book's <code>id</code>, <code>author</code> and <code>copies</code>.</li>
+        </ul>
+        <h2>Creating Simple Queries</h2>
+        <p>The Spring Data <MadCap:variable name="General.ProductNameXAP" /> project focuses on storing data in the <MadCap:variable name="General.ProductNameXAP" /> data grid. It also inherits powerful functionality from the Spring Data Commons project, such as the ability to derive queries. This means that you don't have to learn the query language of   the data grid, but can just write a handful of methods and the queries are generated for you.</p>
+        <p>To see how this works, lets create an interface that queries <code>Book</code> Space objects.</p><pre><code class="language-java">import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
+
+public interface BookRepository extends CrudRepository&lt;Book, String&gt; {
+   List&lt;Book&gt; findByAuthor(String author);
+
+   List&lt;Book&gt; findByCopiesLessThan(Integer copies);
+
+   List&lt;Book&gt; findByAuthorOrCopiesGreaterThan(String author, Integer copies);
+}</code></pre>
+        <p>The <code>BookRepository</code> extends the <code>CrudRepository</code> interface and plugs in the type of values and keys with <code>Book</code> and <code>String</code>. Out of the box, this interface comes with many operations, including standard CRUD (Create, Read, Update, Delete) operations.</p>
+        <p>You can define other queries as needed by declaring their method signature. In this case, we add <code>findByAuthor</code>, which searches for entities of type <code>Book</code> and finds the those that matches with <code>Author</code>.</p>
+        <p>The following queries are also available:</p>
+        <ul>
+            <li><code>findByCopiesLessThan</code> to find books with a number of copies below a certain number</li>
+            <li><code>findByAuthorOrCopiesGreaterThan</code> to find books with a certain author or number of copies above a certain number</li>
+        </ul>
+        <p>At this point, we can put everything together and build the actual Spring Data application.</p>
+        <h1>Building the Application</h1>
+        <h2>Creating your Program</h2>
+        <p>After you have prepared your environment and populated the Space with some test data, you can create the Program class with all the components, and then run your application. For example, see the code example below, which has the following characteristics:</p>
+        <ul>
+            <li>The <code>@EnableGigaspacesRepositories</code> annotation is added to the configuration.</li>
+            <li>The Space is required to store all data, which is done using the Spring Data <MadCap:variable name="General.ProductNameXAP" /> <code>SpaceClient</code> bean. </li>
+            <li>The types are <code>&lt;String, Book&gt;</code>, matching the key type (<code>String</code>) with the value type (<code>Book</code>). </li>
+            <li>The <code>public static void main</code> uses Spring Boot's <code>SpringApplication.run()</code> to launch the application and invoke the <code>CommandLineRunner</code> that builds the relationships. </li>
+            <li>The application autowires an instance of <code>BookRepository</code> that you just defined. Spring Data <MadCap:variable name="General.ProductNameXAP" /> dynamically creates a concrete class that implements that interface, and plugs in the needed query code to meet the interface's obligations. This repository instance is the used by the <code>run()</code> method to demonstrate the functionality.</li>
+            <li>To run the application, add <code>--spring.main.allow-bean-definition-overriding=true --spring.main.web-application-type=none</code>in your Program arguments.</li>
+        </ul><pre><code class="language-java">import org.openspaces.core.GigaSpace;
+import org.openspaces.core.GigaSpaceConfigurer;
+import org.openspaces.core.space.UrlSpaceConfigurer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.repository.core.support.RepositoryFactorySupport;
+import org.springframework.data.gigaspaces.repository.config.EnableGigaspacesRepositories;
+import org.springframework.data.gigaspaces.repository.support.GigaspacesRepositoryFactory;
+
+import java.io.IOException;
+
+@Configuration
+@EnableGigaspacesRepositories
+public class Application implements CommandLineRunner {
+   @Autowired
+   BookRepository bookRepository;
+
+   @Bean
+   GigaSpace spaceClient() {
+       UrlSpaceConfigurer urlConfigurer = new UrlSpaceConfigurer("/./testSpace");
+       return new GigaSpaceConfigurer(urlConfigurer).gigaSpace();
+   }
+
+   @Bean
+   BookRepository bookRepository() {
+       RepositoryFactorySupport factory = new GigaspacesRepositoryFactory(spaceClient(), null);
+       return factory.getRepository(BookRepository.class);
+   }
+
+   @Override
+   public void run(String... strings) throws Exception {
+       Book thinkingInJava = new Book("1234", "Eccel", 10000);
+       Book effectiveJava = new Book("2345", "Bloch", 20000);
+       Book springInAction = new Book("3456", "Walls", 50000);
+       System.out.println("Before writing objects to space...");
+       for (Book book : new Book[]{thinkingInJava, effectiveJava, springInAction}) {
+           System.out.println("\t" + book);
+       }
+       bookRepository.save(thinkingInJava);
+       bookRepository.save(effectiveJava);
+       bookRepository.save(springInAction);
+       System.out.println("Lookup books by author...");
+       for (String name : new String[]{thinkingInJava.author, effectiveJava.author, effectiveJava.author}) {
+           System.out.println("\t" + bookRepository.findByAuthor(name));
+       }
+       System.out.println("Lookup for less popular books...");
+       for (Book book : bookRepository.findByCopiesLessThan(15000)) {
+           System.out.println("\t" + book);
+       }
+       System.out.println("Lookup for popular books or books of specific author...");
+       for (Book book : bookRepository.findByAuthorOrCopiesGreaterThan("Bloch", 30000)) {
+           System.out.println("\t" + book);
+       }
+       System.exit(0);
+   }
+
+   public static void main(String[] args) throws IOException {
+       SpringApplication.run(Application.class, args);
+   }
+}</code></pre>
+        <div class="tc-admon-note">
+            <p>In the above example, the Space is created locally using built-in components and an evaluation license. For a production solution,  use the production version of <MadCap:variable name="General.ProductNameXAP" />, where you can create distributed Spaces across multiple nodes.</p>
+        </div>
+        <h2>Writing and Reading Objects</h2>
+        <p>You can create some <code>Book</code> instances, such as <span class="tc-bold">SpringInAction</span>, <span class="tc-bold">ThinkingInJava</span>, and <span class="tc-bold">EffectiveJava</span>. Initially, they only exist in memory. After creating them, we store them in the Space. After the Book instances are created, you can run queries on them, for example:</p>
+        <ul>
+            <li>Look up books by author</li>
+            <li>Find less popular books</li>
+            <li>Find popular books or books written by a specific author</li>
+        </ul>
+        <p>You should see something like this:</p><pre><code class="language-bash">13:25:42.393 [main] INFO  com.gigaspaces.space.testSpace - Space started [duration=11.668s, url=/./testSpace?schema=default&amp;groups=xap-15.0.0&amp;state=started, policy=all-in-cache, persistency-mode=memory]
+13:25:43.435 [main] INFO  hello.QuickStartTest - Started QuickStartTest in 15.79 seconds (JVM running for 20.418)
+Before writing objects to space...
+	Book{id='1234', author='Eccel', copies=10000}
+	Book{id='2345', author='Bloch', copies=20000}
+	Book{id='3456', author='Walls', copies=50000}
+Lookup books by author...
+	[Book{id='1234', author='Eccel', copies=10000}]
+	[Book{id='2345', author='Bloch', copies=20000}]
+	[Book{id='2345', author='Bloch', copies=20000}]
+Lookup for less popular books...
+	Book{id='1234', author='Eccel', copies=10000}
+Lookup for popular books or books of specific author...
+	Book{id='2345', author='Bloch', copies=20000}
+	Book{id='3456', author='Walls', copies=50000}</code></pre>
+    </body>
+</html>

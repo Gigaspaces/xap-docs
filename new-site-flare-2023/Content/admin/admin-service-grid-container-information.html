@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Viewing Container Information</h1>
+        <p><span class="tc-bold">To view the general container details:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-bold">List all containers</span>
+                </p>
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap container list</code>or <code>insightedge container list</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> container list</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command lists all the containers on the current host.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap container list
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> container list
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> container list
+</code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Output Example:</span>
+                </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/admin/cli-xap-container-list.png" />
+                </p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <p>None</p>
+                <p><span class="tc-bold">List container details</span>
+                </p>
+                <p><span class="tc-italic">Command:</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap container info &lt;container ID&gt;</code> or <code>inisghtedge container info &lt;container ID&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> container info &lt;container ID&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This command lists the container ID, Process ID, zones, and Processing Unit instances for the specified container.</p>
+                <p><span class="tc-italic">Input Example:</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap container info demo-host3~22592
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> container info demo-host3~22592</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> container info demo-host3~22592</code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Output Example:</span>
+                </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/admin/cli-xap-container-info.png" />
+                </p>
+                <p><span class="tc-italic">Parameters and Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">Item</th>
+                            <th align="left">Name</th>
+                            <th align="left">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Parameter</td>
+                            <td align="left">Container ID</td>
+                            <td align="left">Provide the ID of container for which you want to see the details.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-bold">List all containers</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /containers</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists all the containers in the Processing Unit instances.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers'
+</code></pre>
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">[
+  {
+    "id": "admin~13972",
+    "pid": 13972,
+    "zones": [],
+    "instances": [
+      "alertSpace~1",
+      "monitorSpace~1"
+    ]
+  }
+]
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <p>None.</p>
+                <p><span class="tc-bold">List container details</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /containers{id}</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists the container ID, Process ID, zones, and Processing Unit instances for the specified container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972'
+</code></pre>
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
+  "id": "admin~13972",
+  "pid": 13972,
+  "zones": [],
+  "instances": [
+    "alertSpace~1",
+    "monitorSpace~1"
+  ]
+}
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>containerId</td>
+                            <td>Provide the ID of the Processing Unit instance for which you want to see the container details.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">List JVM details for a specific container</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /containers{id}/details/jvm</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists the JVM details for the specified container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972/details/jvm'
+</code></pre>
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
+  "startTime": 1521364936818,
+  "jmxUrl": "service:jmx:rmi:///jndi/rmi://admin:10101/jmxrmi",
+  "vmName": "Java HotSpot(TM) 64-Bit Server VM",
+  "vmVersion": "1.8.0_45",
+  "vmVendor": "Oracle Corporation",
+  "pid": 13972,
+  "inputArguments": [
+    "-XX:+AggressiveOpts",
+    "-XX:+HeapDumpOnOutOfMemoryError",
+    "-Xms512m",
+    "-Xmx512m",
+    "-DagentId=3",
+    "-DgsaServiceID=a22de474-c56a-4331-a068-356d14bd69df",
+    "-DenableDynamicLocators=",
+    "-Djava.util.logging.config.file=C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\config\\log\\xap_logging.properties",
+    "-Djava.security.policy=C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\policy\\policy.all",
+    "-Djava.rmi.server.hostname=ADMIN",
+    "-Dcom.gs.home=C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924"
+  ],
+  "bootClassPath": "C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\resources.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\rt.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\sunrsasign.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\jsse.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\jce.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\charsets.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\jfr.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\classes",
+  "classPath": ";C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924;C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\optional\\sigar\\sigar.jar;;C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\required\\xap-common.jar;C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\platform\\service-grid\\xap-service-grid-boot.jar;",
+  "memoryHeapInitInBytes": 536870912,
+  "memoryHeapMaxInBytes": 514850816,
+  "memoryNonHeapInitInBytes": 2555904,
+  "memoryNonHeapMaxInBytes": -1,
+  "systemProperties": {
+    "com.gigaspaces.grid.gsc.home": "C:\\Users\\hp\\.gigaspaces",
+    "java.io.tmpdir": "C:\\Users\\hp\\AppData\\Local\\Temp\\",
+    "com.gs.jini_lus.groups": "xap-12.3.0",
+    "line.separator": "\r\n",
+    "com.j_spaces.core.container.shutdown_hook": "false",
+    "agentId": "3",
+    "path.separator": ";",
+    "sun.management.compiler": "HotSpot 64-Bit Tiered Compilers",
+    "sun.cpu.endian": "little",
+    "user.script": "",
+    "java.specification.version": "1.8",
+    "java.vm.specification.name": "Java Virtual Machine Specification",
+    "com.gs.manager.rest.url": "http://localhost:8090",
+    "java.vendor": "Oracle Corporation",
+    "java.vm.specification.version": "1.8",
+    "user.home": "C:\\Users\\hp",
+    "file.encoding.pkg": "sun.io",
+    "com.gigaspaces.grid.groups": "gs-grid",
+    "sun.arch.data.model": "64",
+    "sun.boot.library.path": "C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\bin",
+    "user.dir": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\bin",
+    "com.gigaspaces.lib.platform": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\platform\\",
+    "com.gs.embedded-services.httpd.enabled": "false",
+    "com.gigaspaces.lib.opt": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\optional\\",
+    "java.library.path": "C:\\Program Files\\Java\\jdk1.8.0_45\\bin;C:\\Windows\\Sun\\Java\\bin;C:\\Windows\\system32;C:\\Windows;C:\\oracle\\product\\11.1.0\\db_1\\bin;C:\\Program Files\\SlikSvn\\bin;C:\\Program Files\\Java\\jdk1.8.0_45\\bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;c:\\tools\\hugo;C:\\Program Files (x86)\\Git\\cmd;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\100\\DTS\\Binn\\;C:\\tools\\hugo;C:\\tools\\apache-maven-3.5.0\\bin;C:\\Program Files (x86)\\AdminStudio\\2015\\Common\\;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\SlikSvn\\bin;C:\\Program Files (x86)\\QuickTime\\QTSystem\\;C:\\Windows\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files\\MIT\\Kerberos\\bin;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\130\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\130\\DTS\\Binn\\;C:\\Program Files\\PuTTY\\;C:\\Users\\hp\\AppData\\Local\\GitHubDesktop\\bin;C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\platform\\native;C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\platform\\native;.",
+    "sun.cpu.isalist": "amd64",
+    "sun.desktop": "windows",
+    "com.gigaspaces.lib.opt.security": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\optional\\security",
+    "os.arch": "amd64",
+    "java.vm.version": "25.45-b02",
+    "com.gs.jmx.enabled": "true",
+    "java.endorsed.dirs": "C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\endorsed",
+    "java.runtime.version": "1.8.0_45-b15",
+    "java.util.logging.config.file": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\config\\log\\xap_logging.properties",
+    "java.vm.info": "mixed mode",
+    "java.ext.dirs": "C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\ext;C:\\Windows\\Sun\\Java\\lib\\ext",
+    "user.variant": "",
+    "java.runtime.name": "Java(TM) SE Runtime Environment",
+    "file.separator": "\\",
+    "com.gigaspaces.lookupfinder.actualclose": "false",
+    "java.class.version": "52.0",
+    "com.gigaspaces.system.registryPort": "10101",
+    "java.specification.name": "Java Platform API Specification",
+    "sun.boot.class.path": "C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\resources.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\rt.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\sunrsasign.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\jsse.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\jce.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\charsets.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\lib\\jfr.jar;C:\\Program Files\\Java\\jdk1.8.0_45\\jre\\classes",
+    "file.encoding": "Cp1252",
+    "sun.rmi.dgc.client.gcInterval": "36000000",
+    "com.gigaspaces.system.jmxServiceURL": "service:jmx:rmi:///jndi/rmi://admin:10101/jmxrmi",
+    "user.timezone": "Africa/Harare",
+    "sun.rmi.dgc.server.gcInterval": "36000000",
+    "com.gs.work": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\work",
+    "java.specification.vendor": "Oracle Corporation",
+    "sun.java.launcher": "SUN_STANDARD",
+    "os.version": "6.3",
+    "sun.os.patch.level": "",
+    "java.vm.specification.vendor": "Oracle Corporation",
+    "com.gigaspaces.gsc.running": "true",
+    "user.country": "GB",
+    "sun.jnu.encoding": "Cp1252",
+    "com.gs.deploy": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\deploy",
+    "com.gigaspaces.lib": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\",
+    "com.gs.jini_lus.locators": "localhost",
+    "com.gs.jmx.createJmxConnetor": "false",
+    "user.language": "en",
+    "com.gs.start-embedded-lus": "false",
+    "enableDynamicLocators": "",
+    "spark.home": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\insightedge\\spark",
+    "java.vendor.url": "http://java.oracle.com/",
+    "java.rmi.server.hostname": "admin",
+    "java.awt.printerjob": "sun.awt.windows.WPrinterJob",
+    "com.gs.home.fwd-slash": "C:/GigaSpaces/gigaspaces-insightedge-12.3.0-rc2-b18924",
+    "java.awt.graphicsenv": "sun.awt.Win32GraphicsEnvironment",
+    "com.gs.home": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\",
+    "awt.toolkit": "sun.awt.windows.WToolkit",
+    "com.gs.localhost.name": "admin",
+    "java.class.path": ";C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924;C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\optional\\sigar\\sigar.jar;;C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\required\\xap-common.jar;C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\platform\\service-grid\\xap-service-grid-boot.jar;",
+    "gsaServiceID": "a22de474-c56a-4331-a068-356d14bd69df",
+    "java.protocol.handler.pkgs": "net.jini.url",
+    "os.name": "Windows 8.1",
+    "com.gigaspaces.lib.required": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\required\\",
+    "java.security.policy": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\policy\\policy.all",
+    "java.vm.vendor": "Oracle Corporation",
+    "com.gs.licensekey": "Product=InsightEdge;Version=12.3;Type=ENTERPRISE;Customer=evaluation;Expiration=2018-Apr-03;Hash=SP3QPJPWOORObPL6VQNO",
+    "gs.logFileName": "gsc_3",
+    "java.vendor.url.bug": "http://bugreport.sun.com/bugreport/",
+    "user.name": "hp",
+    "org.jini.rio.home": "C:\\Users\\hp\\.gigaspaces",
+    "org.jini.rio.qos.native": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\lib\\platform\\native",
+    "java.vm.name": "Java HotSpot(TM) 64-Bit Server VM",
+    "sun.java.command": "com.gigaspaces.start.SystemBoot services=GSC",
+    "java.home": "C:\\Program Files\\Java\\jdk1.8.0_45\\jre",
+    "java.version": "1.8.0_45",
+    "sun.io.unicode.encoding": "UnicodeLittle"
+  },
+  "environmentVariables": {
+    "<MadCap:variable name="General.EnvVariablePrefix" />_GSA_OPTIONS": "-Xmx512m",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_CLI_OPTIONS": "-Xmx512m",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_GSM_OPTIONS": "-Xmx512m",
+    <MadCap:conditionalText MadCap:conditions="Version.15-2-died">"<MadCap:variable name="General.EnvVariablePrefix" />_ESM_OPTIONS": "-Xmx512m",</MadCap:conditionalText>
+    "<MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_OPTIONS": "-Xmx512m",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_SECURITY_POLICY": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\policy\\policy.all",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_LOGS_CONFIG_FILE": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\config\\log\\xap_logging.properties",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_COMPONENT_OPTIONS": "-Xms512m -Xmx512m",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_GUI_OPTIONS": "-Xmx512m",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS": "-Xms512m -Xmx512m",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_LUS_OPTIONS": "-Xmx512m",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_HOME": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_SETTINGS_FILE": "C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\bin\\\\setenv-overrides.bat",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_NIC_ADDRESS": "ADMIN",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS": "localhost",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS": "-Djava.util.logging.config.file=\"C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\config\\log\\xap_logging.properties\" -Djava.security.policy=\"C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\\policy\\policy.all\" -Djava.rmi.server.hostname=\"ADMIN\" -Dcom.gs.home=\"C:\\GigaSpaces\\gigaspaces-insightedge-12.3.0-rc2-b18924\"",
+    "<MadCap:variable name="General.EnvVariablePrefix" />_WEBUI_OPTIONS": "-Xmx512m"
+  }
+}
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>containerId</td>
+                            <td>Provide the ID of the container for which you want to see the JVM details.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">List transport details for a specific container</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /containers{id}/details/transport</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists transport details, such as port and thread information, for the specified container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972/details/transport'
+</code></pre>
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
+  "hostAddress": "172.20.3.93",
+  "hostName": "admin",
+  "bindHost": "admin",
+  "port": 51469,
+  "minThreads": 1,
+  "maxThreads": 128,
+  "isSslEnabled": false
+} 
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>containerId</td>
+                            <td>Provide the ID of the container for which you want to see the transport details.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">List JVM statistics for a specific container</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /containers{id}/statistcis/jvm</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists the JVM statistics for the specified container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972/statistics/jvm'
+</code></pre>
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
+  "timestamp": 1521376850952,
+  "uptime": 11914185,
+  "memoryHeapCommittedInBytes": 523763712,
+  "memoryHeapUsedInBytes": 75691760,
+  "memoryNonHeapCommittedInBytes": 63700992,
+  "memoryNonHeapUsedInBytes": 62009552,
+  "threadCount": 118,
+  "peakThreadCount": 146,
+  "gcCount": 21,
+  "gcTime": 290
+}
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>containerId</td>
+                            <td>Provide the ID of the container for which you want to see the JVM statistics.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">List transport statistics for a specific container</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /containers{id}/statistcis/transport</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option lists the tranport statistics, such as completed tasks and thread information, for the specified container.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/containers/admin~13972/statistics/transport'
+</code></pre>
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash">{
+  "timestamp": 1521376929557,
+  "completedTaskCount": 19294,
+  "completedTaskPerSecond": 0.000012682590109740723,
+  "activeThreadsCount": 0,
+  "activeThreadsPerc": 0,
+  "queueSize": 0
+}
+</code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>containerId</td>
+                            <td>Provide the ID of the container for which you want to see the transport statistics.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <p>The Hosts view provides general overview of the containers that are running in the <MadCap:variable name="General.ProductNameXAP" /> environment.</p>
+                <div class="tc-admon-note">
+                    <p>For a description of the other information displayed in the Hosts view, see the <a href="admin-service-grid-view-host-information.html">Viewing Host Information</a> topic.</p>
+                </div>
+                <table style="">
+                    <col />
+                    <col />
+                    <tbody>
+                        <tr>
+                            <th>Item</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><i>Grid Service Container</i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>Name of the GSC.</td>
+                        </tr>
+                        <tr>
+                            <td>CPU</td>
+                            <td>Indicator of how much CPU is being used, in %.</td>
+                        </tr>
+                        <tr>
+                            <td>Used Heap (MB)</td>
+                            <td>Indicator of how much heap memory the GSC is utilizing, in both MB and %.</td>
+                        </tr>
+                        <tr>
+                            <td>Threads</td>
+                            <td>How many threads the GSC has open.</td>
+                        </tr>
+                        <tr>
+                            <td>Processing Units</td>
+                            <td>Processing Units and number of Processing Unit instances being hosted by the GSC.</td>
+                        </tr>
+                        <tr>
+                            <td>Primaries &amp; Backups</td>
+                            <td>Processing Unit instances being hosted by the GSC, according to primary and backup status.</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><i>Grid Service Manager/Lookup Service</i> </td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>Name of the container.</td>
+                        </tr>
+                        <tr>
+                            <td>CPU</td>
+                            <td>Indicator of how much CPU is being used, in %.</td>
+                        </tr>
+                        <tr>
+                            <td>Used Heap (MB)</td>
+                            <td>Indicator of how much heap memory the container is utilizing, in both MB and %.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+    </body>
+</html>

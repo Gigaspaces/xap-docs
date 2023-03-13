@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Using a Jupyter Notebook</h1>
+        <p>In addition to native support for Apache Zeppelin, which is used primarily by Java and Scala developers, InsightEdge supports integration with the open-source Jupyter web notebook. Programmers can perform data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and more on objects in the InsightEdge data grid using PySpark.</p>
+        <p>This topic describes how to integrate the Jupyter Notebook with <MadCap:variable name="General.ProductNameIE" />.</p>
+        <h1>Prerequisites</h1>
+        <p>The Jupyter notebook should be installed and included in your system PATH&#160;variable.</p>
+        <div class="tc-admon-note">
+            <p>If you don't have Jupyter installed, refer to the Jupyter documentation for <a href="https://jupyter.readthedocs.io/en/latest/install.html" target="_blank">installation instructions</a>.</p>
+        </div>
+        <h1>Incorporating the Jupyter Web Notebook</h1>
+        <p>You need to incorporate the Jupyter web notebook in the <MadCap:variable name="General.ProductNameIE" /> environment in order to access <a href="https://docs.gigaspaces.com/latest/dev-java/insightedge-python.html?Highlight=dataframe">PySpark</a> using the Jupyter dashboard.</p>
+        <p>To integrate Jupyter in <MadCap:variable name="General.ProductNameIE" />:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Linux" style="padding:10px">
+                <ul>
+                    <li>
+                        <p>Add the following entries to <code><MadCap:variable name="General.HomePath" />/insightedge/bin/insightedge-pyspark</code>:</p><pre><code class="language-bash">export PYSPARK_DRIVER_PYTHON=jupyter
+export PYSPARK_DRIVER_PYTHON_OPTS='notebook'<![CDATA[
+]]></code></pre>
+                    </li>
+                </ul>
+            </div>
+            <div title="Windows" style="padding:10px">
+                <ul>
+                    <li>
+                        <p>Add the following entries to <code><MadCap:variable name="General.HomePath" />\insightedge\bin\insightedge-pyspark</code>:</p><pre><code class="language-bash">set PYSPARK_DRIVER_PYTHON=jupyter
+set PYSPARK_DRIVER_PYTHON_OPTS='notebook'
+</code></pre>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <h1>Running PySpark from the Jupyter Dashboard</h1>
+        <p>After you've installed Jupyter and incorporated it within <MadCap:variable name="General.ProductNameIE" />, you can use the web notebook to access the data in the <MadCap:variable name="General.ProductNameIE" /> data grid and perform the required operations using PySpark.</p>
+        <p>To run PySpark from the Jupyter dashboard:</p>
+        <ol>
+            <li>
+                <p>Run the following command:</p>
+                <p> <code><MadCap:variable name="General.HomePath" />\insightedge\bin\insightedge-pyspark</code></p>
+                <p> The Jupyter dashboard launches in a browser window that opens at localhost:8888.  </p>
+            </li>
+            <li>From the dashboard, view or run existing notebooks or click <span class="tc-bold">New </span>and select a notebook from the list to create a new notebook.</li>
+            <li>
+                <p>  Load data from the InsightEdge data grid as shown in the example on the <a href="https://docs.gigaspaces.com/latest/dev-java/insightedge-python.html?Highlight=dataframe">PySpark</a> page, and use the DataFrames API to manipulate the data as necessary.</p>
+                <p>You can run this sample that loads data from a file and saves it to the demo dataspace.</p><pre><code>from pyspark.conf import SparkConf
+from pyspark.sql import SparkSession
+
+# configure connection to the space
+conf = SparkConf()
+conf.setAppName("InsightEdge Python Example")
+conf.set("spark.insightedge.space.name", "demo")
+conf.set("spark.insightedge.space.lookup.group", "insightedge")
+conf.set("spark.insightedge.space.lookup.locator", "127.0.0.1:4174")
+
+# create pyspark.sql.SparkSession
+spark = SparkSession.builder.config(conf=conf).getOrCreate()
+
+# load SF salaries dataset from file
+jsonFilePath = os.path.join(os.environ["<MadCap:variable name="General.EnvVariablePrefix" />_HOME"], "insightedge/data/sf_salaries_sample.json")
+jsonDf = spark.read.json(jsonFilePath)
+
+# save DataFrame to the grid
+jsonDf.write.format("org.apache.spark.sql.insightedge").mode("overwrite").save("salaries")
+
+# load DataFrame from the grid
+gridDf = spark.read.format("org.apache.spark.sql.insightedge").option("collection", "salaries").load()
+gridDf.show()</code></pre>
+                <p>And see the PySpark commands and output within the Jupyter dashboard.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/started/ie-pyspark-example.png" class="body-container" />
+                </p>
+            </li>
+        </ol>
+    </body>
+</html>

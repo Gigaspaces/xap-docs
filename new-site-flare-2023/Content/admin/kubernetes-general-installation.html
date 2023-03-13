@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Deploying <MadCap:variable name="General.ProductNameXAP" /> Platforms on Kubernetes (All Platforms)</h1>
+        <p>This topic explains how to deploy GigaSpaces on the supported Kubernetes platforms: Amazon EKS, Microsoft Azure AKS, and OpenShift.</p>
+        <div class="tc-admon-tip" MadCap:conditions="Default.DoNotShow">
+            <p>Deploying <MadCap:variable name="General.ProductNameIE" /> involves the same tasks as deploying the <MadCap:variable name="General.ProductNameXAP" /> data grid. The deployment tasks described below use <code>insightedge</code> Helm charts. However, you can also perform these tasks using the <code>xap</code> Helm charts (except for Apache Zeppelin, which is part of the <MadCap:variable name="General.ProductNameIE" /> deployment).</p>
+        </div>
+        <h1>Prerequisites</h1>
+        <p>Before installing GigaSpaces, first set up the desired Cloud platform, and then install additional required software, as described below.</p>
+        <h2>Installing the Cloud Cluster</h2>
+        <p>Depending on which Cloud platform you are using, follow the following instructions to deploy the Cloud cluster:</p>
+        <ul>
+            <li>
+                <p> <a href="https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html" target="_blank">Getting Started with Amazon EKS</a></p>
+            </li>
+            <li>
+                <p><a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli">How to install the Azure CLI</a>
+                </p>
+            </li>
+            <li>
+                <p><a href="https://docs.openshift.com/container-platform/3.11/install/running_install.html">Installing OpenShift Container Platform</a>
+                </p>
+            </li>
+        </ul>
+        <h2>Additional Required Software</h2>
+        <p>Use the following links to install kubectl and Helm:</p>
+        <ul>
+            <li>
+                <p><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">kubectl</a>
+                </p>
+            </li>
+            <li>
+                <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Helm</a>
+                </p>
+            </li>
+        </ul>
+        <h1>Running Helm</h1>
+        <div class="tc-admon-note">
+            <p>This page provides general information on how to deploy KubeGrid in a Kubernetes cluster. For detailed installation and configuration instructions, see <MadCap:xref href="kubernetes-data-grid-helm-only.html" MadCap:conditions="Version.15-8-died">Getting Started with GigaSpaces in Kubernetes Using Helm Charts</MadCap:xref><MadCap:xref href="kubernetes-s10-deploying-and-managing-gigaspaces.html" MadCap:conditions="Version.15-8-born">Getting Started with GigaSpaces in Kubernetes Using Helm Charts and Operator</MadCap:xref>.</p>
+        </div>
+        <p>Use the following commands to fetch the GigaSpaces Helm charts and unpack them locally:</p><pre><code>helm repo add EA https://resources.gigaspaces.com/helm-charts-ea</code></pre><pre><code>helm install umbrella EA/xap --version 16.2.0-m11 --set metrics.enabled=true,manager.ha=true,manager.antiAffinity.enabled=true</code></pre>
+        <h1>Running kubectl</h1>
+        <p>Run the following command to deploy the Space. The <code>yaml</code>file is shown below.</p><pre><code>kubectl apply -f pluggable-connector.yaml</code></pre>
+        <p>yaml file:</p><pre><code class="language-xml">apiVersion: gigaspaces.com/v1
+kind: ProcessingUnit
+metadata:
+  name: pluggable-connector 
+  namespace: default
+spec:
+  image: 
+    repository: gigaspaces/xap-enterprise
+    tag: "16.2.0-m11"
+  resourceUrl: "https://dt-kafka.s3.eu-central-1.amazonaws.com/pluggable-connector-1.0.0.jar"
+  properties: pipeline.config.location="/opt/gigaspaces/deploy/pluggable-connector-1.0.0/data-pipeline.yml";space.name:demo;spring.kafka.bootstrap-servers=18.223.209.24:9092;spring.kafka.consumer-group=DIH;pu.dynamic-partitioning=true
+  partitions: 1
+  antiAffinity: true
+  ha: true
+  license: tryme
+  manager: 
+    api: 8090
+    name: manager 
+  resources: 
+    limits: 
+      memory: 550Mi
+</code></pre>
+    </body>
+</html>

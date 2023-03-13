@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Scaling Agent Example</h1>
+        <p>Example Root|<code><MadCap:variable name="General.HomePath" />\Examples\ScalingAgent</code></p>
+        <p>The <a href="../dev-java/administration-and-monitoring-overview.html">Administration and Monitoring API</a> allows you to monitor an application's health and its resources, to enforce a specific pre-defined configurable SLA that scales the application while it is running. This ensures a deterministic response time when there is an increasing number of users accessing the system, and also ensures the high-availability and robustness of the application.</p>
+        <p>The following example illustrates how you can construct a simple processing unit (<span class="tc-bold">The Scaling Agent</span>) to monitor an application deployed to <MadCap:variable name="General.ProductNameXAP" />, and track the load on the application. Once the average throughput per instance of the application breaches a pre-defined limit, the scaling agent reacts and performs the necessary activities to scale the application tier.</p>
+        <p>The activities to scale up the application could be: starting a new GSC on remote machines, and starting additional application instances. In the same way, the scaling agent can be extended to scale down the application to terminate running GSCs, and reduce the amount of application instances.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/dotnet/scaling agent .net.jpg" alt="scaling agent .net.jpg" class="tc-picture80" />
+        </div>
+        <h1><a name="how-the-scaling-agent-works"></a>How the Scaling Agent Works</h1>
+        <p>The scaling agent periodically samples the throughput of feeds that are processed by the running application instances, and compares the average throughput per instance to a specific threshold. If the average throughput is larger than the pre-defined threshold, which is part of the processing unit configuration, the scaling agent scales up the application by starting a new GSC, and by increasing the amount of instances (see the <code>ScaleUp()</code> method). The sampling is done by letting the feed processor implement the <code>IServiceMonitorsProvider</code> interface, which exposes the public API that is used by the agent.</p>
+        <h2><a name="scaling-agent-implementation"></a>Scaling Agent Implementation</h2>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Code " style="padding:10px"><pre><code class="language-csharp">[BasicProcessingUnitComponent( Name = "Agent" )]
+public class Agent : IDisposable
+{
+  [..]
+
+  public Agent()
+  {
+    //Create service grid admin
+    ServiceGridAdminBuilder adminBuilder = new ServiceGridAdminBuilder();
+    adminBuilder.Groups.Add("$(DefaultLookupGroups)");
+
+    _admin = adminBuilder.CreateAdmin();
+    Console.WriteLine("Locating FeedProcessor processing unit");
+    _monitoredPu = _admin.ProcessingUnits.WaitFor("FeedProcessor", TimeSpan.FromSeconds(30));
+    if (_monitoredPu == null)
+    {
+      Console.WriteLine("Could not locate FeedProcessor processing unit after 30 seconds");
+      throw new TimeoutException("Could not locate FeedProcessor processing unit after 30 seconds");
+    }
+    //Create scale monitor thread
+    _monitorThread = new Thread(new ThreadStart(MonitorStart));
+  }
+
+  [ContainerInitialized]
+  public void Initialize(BasicProcessingUnitContainer container)
+  {
+    //Read parameters from config file
+    _scaleUpThreshold = int.Parse(container.Properties["ScaleUpThreshold"]);
+    _maxNumberOfInstances = int.Parse(container.Properties["MaxNumberOfInstances"]);
+    Console.WriteLine("Start monitoring\n * scale threshold [" +
+      _scaleUpThreshold + "]\n * max number of instances [" +
+      _maxNumberOfInstances + "]");
+    //Starts the monitoring thread
+    _monitorThread.Start();
+  }
+
+  [..]
+
+  private void MonitorStart()
+  {
+    try
+    {
+      while (!_disposed)
+      {
+        MonitorLoad();
+        Thread.Sleep(ScaleMonitorInterval);
+      }
+    }
+    catch(Exception ex)
+    {
+      Console.WriteLine("Monitoring thread caught an exception, stopped monitoring. error is " + ex);
+    }
+  }
+
+  private void MonitorLoad()
+  {
+    //Calculate average tp per instance
+    int averageTp = CalculateAverageTp();
+    Console.WriteLine("Average feed processing through put is " + averageTp);
+    //Check if scale up is needed
+    if (averageTp &gt; _scaleUpThreshold)
+    {
+      if (_monitoredPu.NumberOfInstances &lt; _maxNumberOfInstances)
+        ScaleUp();
+      else
+        Console.WriteLine("Maximum number of instances reached, no scaling is needed");
+    }
+  }
+
+  /// &lt;summary&gt;
+  /// Calculate the average processing through put per processor instance
+  /// &lt;/summary&gt;
+  /// &lt;returns&gt;&lt;/returns&gt;
+  private int CalculateAverageTp()
+  {
+    int totalTp = 0;
+    foreach (IProcessingUnitInstance puInstance in _monitoredPu)
+    {
+      //Query each feed processor for its processing throughput
+      totalTp += int.Parse(puInstance.Statistics.Monitors["Feed Processor Statistics"].Monitors["Processing TP"]);
+    }
+    return totalTp / _monitoredPu.NumberOfInstances;
+  }
+
+  /// &lt;summary&gt;
+  /// Executes scaling up of the application
+  /// &lt;/summary&gt;
+  private void ScaleUp()
+  {
+    Console.WriteLine("Scaling up...");
+    int numberOfInstances = _monitoredPu.NumberOfInstances;
+    IGridServiceAgent gridServiceAgent = _admin.GridServiceAgents.WaitForAtLeastOne(TimeSpan.FromSeconds(5));
+    if (gridServiceAgent == null)
+    {
+      Console.WriteLine("Could not locate grid service agent, scaling up aborted");
+      return;
+    }
+    if (numberOfInstances &gt;= _admin.GridServiceContainers.Count)
+    {
+      Console.WriteLine("Creating a new service grid container to host the new feed processor instance");
+      IGridServiceContainer gridServiceContainer =
+        gridServiceAgent.StartGridServiceAndWait(new GridServiceContainerOptions().UseExecutable(),
+                                                 TimeSpan.FromSeconds(30));
+      if (gridServiceContainer == null)
+        Console.WriteLine("Timeout while waiting for a new GridServiceContainer to start");
+    }
+    Console.WriteLine("Increasing number of feed processor instances");
+    _monitoredPu.IncrementInstance();
+    _monitoredPu.WaitFor(numberOfInstances + 1, TimeSpan.FromSeconds(30));
+  }
+}
+</code></pre>
+            </div>
+            <div title="  Configuration " style="padding:10px"><pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;configuration&gt;
+  &lt;configSections&gt;
+    &lt;section name="GigaSpaces.XAP" type="GigaSpaces.XAP.Configuration.GigaSpacesXAPConfiguration, GigaSpaces.Core"/&gt;
+  &lt;/configSections&gt;
+  &lt;appSettings&gt;
+    &lt;add key="ScaleUpThreshold" value="150"/&gt;
+    &lt;add key="MaxNumberOfInstances" value="4"/&gt;
+  &lt;/appSettings&gt;
+  &lt;GigaSpaces.XAP&gt;
+    &lt;ProcessingUnitContainer Type="GigaSpaces.XAP.ProcessingUnit.Containers.BasicContainer.BasicProcessingUnitContainer, GigaSpaces.Core"&gt;
+      &lt;BasicContainer&gt;
+        &lt;ScanAssemblies&gt;
+          &lt;add AssemblyName="GigaSpaces.Examples.ScalingAgent.Agent"/&gt;
+        &lt;/ScanAssemblies&gt;
+      &lt;/BasicContainer&gt;
+    &lt;/ProcessingUnitContainer&gt;
+  &lt;/GigaSpaces.XAP&gt;
+&lt;/configuration&gt;
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="feed-processor"></a>Feed Processor</h2>
+        <p>The processor waits for new feeds to be fed into the cluster, and acts upon such an event. Since the processor throughput needs to be monitored by the agent, the processor implements the <code>IServiceMonitorsProvider</code> interface to expose its throughput for external query.</p><pre><code class="language-csharp">[PollingEventDriven(Name = "FeedProcessor", MinConcurrentConsumers = 1, MaxConcurrentConsumers = 4)]
+public class FeedProcessor : IDisposable, IServiceMonitorsProvider
+{
+  [..]
+
+  public FeedProcessor()
+  {
+    //We create a timer in order to sample the processor throughput
+    //for external monitoring which in its turn will decide
+    //whether to increase the number of feed processors
+    _tpMonitorTimer = new Timer(MonitorSampleRate);
+    _tpMonitorTimer.AutoReset = true;
+    _tpMonitorTimer.Elapsed += SampleThroughput;
+    _tpMonitorTimer.Start();
+  }
+
+  [..]
+
+  /// &lt;summary&gt;
+  /// The event is triggered when any new feed is inserted to the space
+  /// &lt;/summary&gt;
+  [EventTemplate]
+  public Feed Template
+  {
+    get{ return new Feed();}
+  }
+
+  /// &lt;summary&gt;
+  /// Simulates processing of incomming feeds
+  /// &lt;/summary&gt;
+  /// &lt;param name="feed"&gt;new feed that needs to be processed&lt;/param&gt;
+  [DataEventHandler]
+  public void ProcessFeed(Feed feed)
+  {
+    //process feed...
+
+    //Increase processed events count
+    Interlocked.Increment(ref _processedEvents);
+  }
+
+  private void SampleThroughput(object sender, ElapsedEventArgs e)
+  {
+    //Calculate last sampled through put
+    _lastSampledTp = (int) (_processedEvents/(MonitorSampleRate/1000));
+    _processedEvents = 0;
+  }
+
+  /// &lt;summary&gt;
+  /// Expose service monitors for external monitoring which is used by the agent
+  /// &lt;/summary&gt;
+  public ICollection&lt;IServiceMonitors&gt; ServiceMonitors
+  {
+    get
+    {
+      return new IServiceMonitors[] {new FeedProcessorTpMonitor(_lastSampledTp)};
+    }
+  }
+  [..]
+}
+</code></pre>
+        <p>The processor exposes its throughput statistics via the <code>FeedProcessorTpMonitor</code> class, which is a custom implementation of the <code>IServiceMonitors</code> interface. The interface has a string-based ID, and a name value collection that represents the monitored fields and values, and can hold any custom data. In our case, the <code>FeedProcessorTpMonitor</code> ID is "Feed Processor Statistics", and it has a single property "Processing TP". These strings are used by the agent to extract the throughput value.</p><pre><code class="language-csharp">/// &lt;summary&gt;
+/// Provide throughput monitoring statistics of this service
+/// &lt;/summary&gt;
+public class FeedProcessorTpMonitor : IServiceMonitors
+{
+  private readonly int _throughPut;
+
+  public FeedProcessorTpMonitor(int throughPut)
+  {
+    _throughPut = throughPut;
+  }
+
+  public string Id
+  {
+    get { return "Feed Processor Statistics"; }
+  }
+
+  [..]
+
+  public NameValueCollection Monitors
+  {
+    get
+    {
+      NameValueCollection monitors = new NameValueCollection();
+      monitors.Add("Processing TP", _throughPut.ToString());
+      return monitors;
+    }
+  }
+}
+</code></pre>
+        <h1><a name="running-the-example"></a>Running the Example</h1>
+        <p>The example consists of the following parts:</p>
+        <ul>
+            <li>Data grid</li>
+            <li>Feeder</li>
+            <li>Processor</li>
+            <li>Scaling Agent</li>
+        </ul>
+        <p>The Feeder is a Windows application that feeds the data grid with new feeds at a configurable rate. The Processor is a deployable processing unit that waits for new feeds to be fed into the data grid, in order to "process" them.
+The Scaling Agent monitors the deployed Processors and scales them up on demand. It can be run either as a deployable processing unit, or as a standalone console application. When it is deployed as a processing unit, it is automatically reliable and self healing, like any processing unit that is managed by the service grid.</p>
+        <p>To simplify the deployment of the examples, there are several scripts in the example directory.</p>
+        <ol>
+            <li>First start a grid service agent by running <code>&lt;<MadCap:variable name="General.XAPNet" /> installation&gt;\Bin\Gs-Agent.exe</code>.</li>
+            <li>It is then recommended to run the GigaSpaces Management center to monitor the entire service grid state.</li>
+            <li>After the service grid agent is loaded, in order to deploy the data grid, run <code>&lt;<MadCap:variable name="General.XAPNet" /> installation&gt;\Examples\ScalingAgent\DeploySpace.bat</code>.</li>
+            <li>Now run <code>&lt;<MadCap:variable name="General.XAPNet" /> installation&gt;\Examples\ScalingAgent\DeployProcessor.bat</code> to deploy the processor.</li>
+            <li>The next step is to deploy the Scaling Agent. This can be done by running <code>&lt;<MadCap:variable name="General.XAPNet" /> installation&gt;\Examples\ScalingAgent\DeployAgent.bat</code>, which deploys the agent as a processing unit, or by running <code>&lt;<MadCap:variable name="General.XAPNet" /> installation&gt;\Examples\ScalingAgent\RunStandaloneAgent.bat</code>, which runs the agent as a standalone application.</li>
+            <li>At this stage, the entire application is deployed and waiting for new feeds to be processed. Start a feeder by executing <code>&lt;<MadCap:variable name="General.XAPNet" /> installation&gt;\Examples\ScalingAgent\RunFeeder.bat</code>. Use the feeder user interface to specify the rate of feeding, in order to simulate different loads on the cluster.</li>
+        </ol>
+        <h2><a name="feeder-application"></a>Feeder Application</h2>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/dotnet/ScalingAgentFeeder.jpg" alt="ScalingAgentFeeder.jpg" class="tc-picture100" />
+            </p>
+        </div>
+        <h2><a name="agent-application"></a>Agent Application</h2>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/dotnet/ScalingAgentConsole.jpg" alt="ScalingAgentConsole.jpg" class="tc-picture100" />
+            </p>
+        </div>
+    </body>
+</html>

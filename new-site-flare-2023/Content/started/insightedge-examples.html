@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Running <MadCap:variable name="General.ProductNameIE" /> IDE Examples</h1>
+        <h1><a name="overview"></a>Overview</h1>
+        <p>This section explains how to use the sample code that has been provided with the <MadCap:variable name="General.ProductNameIE" /> package.</p>
+        <div class="tc-admon-note">
+            <ul>
+                <li>
+                    <p>The example sources are located at <code><MadCap:variable name="General.HomePath" />/insightedge/examples</code>.</p>
+                </li>
+                <li>
+                    <p>The example .jar file is located at <code><MadCap:variable name="General.HomePath" />/insightedge/examples/jars</code>.</p>
+                </li>
+            </ul>
+        </div>
+        <h1><a name="building-the-examples"></a>Building the Examples</h1>
+        <p>Building the examples is not required, since the package includes a pre-built .jar file. However, if you want to modify the examples for learning purposes and rebuild them, follow this procedure.</p>
+        <p MadCap:conditions="Version.15-0-died">Before the first time building the examples, you need to install the <MadCap:variable name="General.ProductNameIE" /> artifacts in your local Maven repository. To do that, run the following from the <code><MadCap:variable name="General.HomePath" />/insightedge/tools/maven</code> directory:</p>
+        <p MadCap:conditions="Version.15-0-born">Before the first time building the examples, you need to install the <MadCap:variable name="General.ProductNameIE" /> artifacts in your local Maven repository. To do that, run the following from the <code><MadCap:variable name="General.HomePath" />/bin/</code> directory:</p><pre MadCap:conditions="Version.15-0-died"><code class="language-bash">insightedge-maven
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-bash"><MadCap:variable name="General.CLI-script-all" /> maven install
+</code></pre>
+        <p>Next, use the following command in Maven to build the examples from <code><MadCap:variable name="General.HomePath" />/insightedge/examples</code>:</p><pre><code class="language-bash">mvn clean package
+</code></pre>
+        <p>The end result is an examples .jar located at <code><MadCap:variable name="General.HomePath" />/insightedge/examples/target/insightedge-examples.jar</code>.</p>
+        <h1><a name="running-the-examples"></a>Running the Examples</h1>
+        <p>In order to run the examples on your local machine you need to start a local <MadCap:variable name="General.ProductNameIE" /> environment. If you haven't done so already, refer to <MadCap:xref href="insightedge-local-setup.html">Starting [%=General.ProductNameIE%] on a Local Service Grid</MadCap:xref> for more info.</p>
+        <p>You can run the <MadCap:variable name="General.ProductNameIE" /> example .jar from any of the following:</p>
+        <ul>
+            <li>
+                <p>Apache Zeppelin Web Notebook</p>
+            </li>
+            <li>
+                <p>IDE</p>
+            </li>
+            <li>
+                <p>Command line</p>
+            </li>
+        </ul>
+        <h2><a name="using-the-web-notebook"></a>Using the Web Notebook</h2>
+        <p>To run the examples from the Apache Zeppelin web notebook, go to <code>http://localhost:9090/</code>. </p>
+        <div class="tc-admon-note">
+            <p>For more information, see the <MadCap:xref href="insightedge-zeppelin.html">Using the [%=General.ProductNameIE%] Web Notebook</MadCap:xref> page.</p>
+        </div>
+        <h2><a name="using-an-ide"></a>Using an IDE</h2>
+        <p>You can run the examples from your preferred IDE. Every example has a <code>main</code> method, so it can be executed as standard application. Note these two important configuration requirements:</p>
+        <ul>
+            <li>
+                <p>Enable <code>run-from-ide</code> in the Maven profile. This will switch the required dependencies to <code>compile</code> scope, so they are available in the classpath.</p>
+            </li>
+            <li>
+                <p>Pass the examples as <code>local[*]</code> and <code>demo</code> arguments.</p>
+            </li>
+        </ul>
+        <h2><a name="using-a-command-line"></a>Using a Command Line</h2>
+        <p>To run the examples from a command line, run the following from the <code><MadCap:variable name="General.HomePath" />/insightedge/bin</code> directory:</p><pre><code class="language-bash">insightedge-submit --class {main class name} --master {Spark master URL} {path/to/insightedge-examples.jar}
+</code></pre>
+        <p>For example, <code>SaveRDD</code> can be submitted with the following syntax:</p><pre><code class="language-bash">insightedge-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
+    .<MadCap:variable name="General.HomePath" />/insightedge/examples/jars/insightedge-examples.jar
+</code></pre>
+        <div class="tc-admon-note">
+            <p>Running the <code>TwitterPopularTags</code> example requires you to pass <a href="https://apps.twitter.com/" target="_blank">Twitter app tokens</a> as arguments.</p>
+        </div>
+        <h3><a name="python-examples"></a>Python Examples</h3>
+        <p>In addition to the above, you can run Python examples using the following command:</p>
+        <div class="easyui-tabs" plain="true" data-options=""><pre><code class="language-bash">insightedge-submit --master {Spark master URL} {path/to/your-example.py}
+</code></pre>
+            <p>For example:</p><pre><code class="language-bash">insightedge-submit --master spark://127.0.0.1:7077 ./<MadCap:variable name="General.HomePath" />/insightedge/examples/python/sf_salaries.py
+</code></pre>
+        </div>
+    </body>
+</html>

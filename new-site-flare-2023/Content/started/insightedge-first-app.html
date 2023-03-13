@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <MadCap:snippetBlock src="../Resources/Snippets/Smart-NO-cache-NO-ods-YES-at.flsnp" MadCap:conditions="Version.15-5-only,Default.DoNotShow" />
+        <h1 class="tc-pagetitle">Developing Your First Spark Application</h1>
+        <p>This topic explains how to create an <MadCap:variable name="General.ProductNameIE" /> application that can read and write from/to the Data Grid. You should have a basic knowledge of <a href="http://spark.apache.org/docs/latest/index.html" target="_blank">Apache Spark</a>.</p>
+        <div class="tc-admon-note">
+            <p>For instructions on how to install a minimum <MadCap:variable name="General.ProductNameIE" /> cluster setup and launch it, refer to <a href="insightedge-local-setup.html">Local Machine Setup</a>.</p>
+        </div>
+        <h1><a name="project-dependencies"></a>Project Dependencies</h1>
+        <p><MadCap:variable name="General.ProductNameIE" /> [%=Versions.xap-version%] runs on Spark [%=Versions.spark-version%] and Scala [%=Versions.scala-version%]. These dependencies will be included when you depend on the <MadCap:variable name="General.ProductNameIE" /> artifacts.</p>
+        <p><MadCap:variable name="General.ProductNameIE" /> .jars are not published to Maven Central Repository yet. To install Maven artifacts run the following command from the <code><MadCap:variable name="General.HomePath" />/insightedge/tools/maven</code> directory:</p><pre><code class="language-bash">./gs.sh maven install
+</code></pre>
+        <p>For SBT projects include the following:</p><pre><code class="language-bash">resolvers += Resolver.mavenLocal
+resolvers += "Openspaces Maven Repository" at "http://maven-repository.openspaces.org"
+
+libraryDependencies += "org.gigaspaces.insightedge" % "insightedge-core" % "[%=Versions.maven-version-MX%]" % "provided" exclude("javax.jms", "jms")
+</code></pre>
+        <p>And if you are building with Maven:</p><pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.gigaspaces.insightedge&lt;/groupId&gt;
+    &lt;artifactId&gt;insightedge-core&lt;/artifactId&gt;
+    &lt;version&gt;[%=Versions.maven-version-MX%]&lt;/version&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+        <div class="tc-admon-note">
+            <p><MadCap:variable name="General.ProductNameIE" /> .jars are already packed in the <MadCap:variable name="General.ProductNameIE" /> distribution, and are automatically loaded with your application if you submit them with <code>insightedge-submit</code> script or run the Web Notebook. As such, there is no need to pack them into your uber .jar. However, if you want to run Spark in <code>local[*]</code> mode, the dependencies should be declared with the <code>compile</code> scope.</p>
+        </div>
+        <h1><a name="developing-a-spark-application"></a>Developing a Spark Application</h1>
+        <p><MadCap:variable name="General.ProductNameIE" /> provides an extension to the regular Spark API.</p>
+        <div class="tc-admon-note">
+            <p>Read the <a href="http://spark.apache.org/docs/latest/quick-start.html#self-contained-applications" target="_blank">Self-Contained Applications</a> topic in the Apache Spark documentation if you are new to Spark.</p>
+        </div>
+        <p><code>InsightEdgeConfig</code> is the starting point in connecting Spark with the Data Grid. Create the <code>InsightEdgeConfig</code> and the <code>SparkContext</code>:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Scala" style="padding:10px"><pre><code class="language-scala">import org.insightedge.spark.context.InsightEdgeConfig
+import org.insightedge.spark.implicits.all._
+
+val sparkConf = new SparkConf()
+    .setAppName("sample-app")
+    .setMaster("spark://127.0.0.1:7077")
+    .setInsightEdgeConfig(InsightEdgeConfig("demo"))
+val sc = new SparkContext(sparkConf)
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>It is important to import <code>org.insightedge.spark.implicits.all._</code> to enable the Data Grid specific API.</p>
+            <p><code>demo</code> is the default Data Grid name that the demo mode starts automatically.</p>
+            <p>When you are running Spark applications from the Web Notebook, <code>InsightEdgeConfig</code> is created implicitly with the properties defined in the Spark interpreter.</p>
+        </div>
+        <h1><a name="modeling-data-grid-objects"></a>Modeling Data Grid Objects</h1>
+        <p>Create a case class <code>Product.scala</code> to represent a Product entity in the Data Grid:</p><pre><code class="language-scala">import org.insightedge.scala.annotation._
+import scala.beans.{BeanProperty, BooleanBeanProperty}
+
+case class Product(   
+   @BeanProperty @SpaceId var id: Long,
+   @BeanProperty var description: String,
+   @BeanProperty var quantity: Int,   
+   @BooleanBeanProperty var featuredProduct: Boolean
+) {
+    def this() = this(-1, null, -1, false)
+}
+</code></pre>
+        <h1><a name="saving-to-the-data-grid"></a>Saving to the Data Grid</h1>
+        <p>To save a Spark RDD,  use the <code>saveToGrid</code> method.</p><pre><code class="language-scala">val rdd = sc.parallelize(1 to 1000).map(i =&gt; Product(i, "Description of product " + i, Random.nextInt(10), Random.nextBoolean()))
+rdd.saveToGrid()
+</code></pre>
+        <h1><a name="loading-and-analyzing-data-from-the-data-grid"></a>Loading and Analyzing Data from the Data Grid</h1>
+        <p>Use the <code>gridRdd</code> method of the <code>SparkContext</code> to view Data Grid objects as Spark RDDs.</p><pre><code class="language-scala">val gridRdd = sc.gridRdd[Product]()
+println("total products quantity: " + gridRdd.map(_.quantity).sum())
+</code></pre>
+        <h1><a name="closing-the-spark-context"></a>Closing the Spark Context</h1>
+        <p>When you are done, close the Spark context and all connections to Data Grid with the following command:</p><pre><code class="language-scala">sc.stopInsightEdgeContext()
+</code></pre>
+        <p>Under the hood, this will call the regular Spark <code>sc.stop()</code> command, so there is no need to call it manually.</p>
+        <h1><a name="running-your-spark-application"></a>Running your Spark Application</h1>
+        <p>After you have packaged a .jar, submit the Spark job via <code>insightedge-submit</code> located in <code>&lt;<MadCap:variable name="General.HomePath" />/insightedge/bin</code> instead of <code>spark-submit</code> as follows:</p><pre><code class="language-bash">insightedge-submit --class com.insightedge.spark.example.YourMainClass --master spark://127.0.0.1:7077 path/to/jar/insightedge-examples.jar
+</code></pre>
+    </body>
+</html>

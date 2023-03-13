@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Cluster Information</h1>
+        <p>One of the core concepts of GigaSpaces processing units is the fact that the clustering topology of the processing unit is determined at deployment time. Therefore, when building a processing unit, there is almost no need to be aware of the actual clustering topology with which the processing unit is deployed.
+However, in some cases you may want your processing unit to be aware of it.
+This mechanism is also used internally by the platform to maintain the clustering information when deploying a space for example.</p>
+        <h1><a name="available-cluster-information"></a>Available Cluster Information</h1>
+        <p>As mentioned above the cluster information is passed to the components of each processing unit instance via an instance of the <code>GigaSpaces.Core.ClusterInfo</code> class, which holds the following information:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Attribute Name</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Schema</td>
+                    <td align="left">If the processing unit contains an embedded space, the cluster schema of that space</td>
+                </tr>
+                <tr>
+                    <td align="left">NumberOfInstances</td>
+                    <td align="left">The number of instances of the processing unit. If the processing unit contains an embedded space, denotes the number of primary instances</td>
+                </tr>
+                <tr>
+                    <td align="left">NumberOfBackups</td>
+                    <td align="left">If the processing unit contains an embedded space with backups, denotes the number of backups per primary instance<div class="tc-admon-note"><p>The number of backups per partition is zero or one.</p></div></td>
+                </tr>
+                <tr>
+                    <td align="left">InstanceId</td>
+                    <td align="left">A value between 1 to <code>numberOfInstances</code>, denoting the instance ID of the processing unit instance</td>
+                </tr>
+                <tr>
+                    <td align="left">BackupId</td>
+                    <td align="left">A value of zero or 1, denoting the backup ID of the processing instance. If the processing unit instance is not a backup, then null is returned.</td>
+                </tr>
+                <tr>
+                    <td align="left">RunningNumber</td>
+                    <td align="left">A running number of the processing unit instance instance. Takes into account different topologies and provides a unique identifier (starting from <code>0</code>) of the processing unit instance within the cluster</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <p><code>null</code> value for one of these properties means that they are not applicable for the processing unit instance at hand or the used deployment topology.</p>
+        </div>
+        <h1><a name="obtaining-the-cluster-information"></a>Obtaining the Cluster Information</h1>
+        <p>The cluster information is injected to the processing unit container at runtime and is available throughout it's lifecycle using the singleton <code>ProcessingUnitContainer.Current.ClusterInfo</code>.</p>
+    </body>
+</html>

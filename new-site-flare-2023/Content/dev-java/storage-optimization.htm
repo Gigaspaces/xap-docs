@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Storage Optimization</h1>
+        <p>Storage Optimization is a feature of <MadCap:variable name="General.ProductNameIE" /> that reduces the memory footprint (RAM) of the the properties of a Space Object, with minimal impact on system performance.</p>
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
+            <p>Storage Optimization is at <a href="../rn/lifecycle.html#feature-levels">Preview feature level</a>.<br /></p>
+        </div>
+        <h1>How Does Storage Optimization Work?</h1>
+        <p>In order to reduce the system's RAM footprint, storage-optimized properties are  stored and packed together in a binary format. This reduces the amount of memory required for the properties.</p>
+        <h1>How to Decide Whether to Use Storage Optimization?</h1>
+        <p>The decision whether or not to use Storage Optimization is similar to how you decide whether to index a property.</p>
+        <p>The reduced memory footprint achieved with Storage Optimization is most effective if the Space Object has a high proportion of non-indexed properties that are used primarily in read requests. Properties that are used in queries as keys or aggregated values may not benefit as much from Storage Optimization, due to the frequency of serialization-deserialization that is required.</p>
+        <h1>How to Configure Storage Optimization?</h1>
+        <p>Storage Optimization can be configured when the data is modeled using the Ops Manager user interface, or by specifying annotations in the Java code.</p>
+        <h2>Configure Storage Optimization via Ops Manager</h2>
+        <p>In Ops Manager one-click connect, a toggle on the top of the screen lets you specify Storage Optimization for the Space Object:</p>
+        <p>
+            <img src="../Resources/Static/images/storage-optimization-object-toggle-high-res.png" />
+        </p>
+        <p>Clicking on the toggle will select Storage Optimization for every non-indexed property in the object. This covers the vast majority of the cases. After loading and measuring the data capacity, toggling of individual properties to be BINARY or COMPRESSED is available via the API.</p>
+        <h2>Configure Storage Optimization via the API </h2>
+        <h3>Storage Optimization Options: Direct Layout and Sequential Layout </h3>
+        <p>Two methods are available for Storage Optimization: the default of <b>Direct</b> Layout, and <b>Sequential</b> Layout.</p>
+        <p>With <b>Direct</b> layout, the header of the binary data includes indexes to allow direct access of each property. Direct layout reduces the CPU overhead of Storage Optimization, with a small increase in the memory footprint.</p>
+        <p>
+            <img src="../Resources/Static/images/storage-optimization-selective-aka-direct-layout.png" style="width: 762px;height: 103px;" />
+        </p>
+        <div class="tc-admon-note">
+            <p>The memory overhead for Direct layout is two bytes per indexed property. In this example, the memory overhead is 2 * 3 = six bytes.</p>
+            <p>If the value of a property is not set (null, or zero for primitive types), the memory overhead will be two bytes for the index, but no space will be used for the property data.<br /></p>
+        </div>
+        <div class="tc-admon-attention">
+            <p>Direct layout is limited to a maximum of 64K bytes of data per object entry.</p>
+        </div>
+        <p>With <b>Sequential</b> layout, the properties are stored in binary format, without any indexing mechanism. This means that, for example, in order to locate the third optimized property, the system must first pass through the first and second optimized properties. Sequential layout minimizes the memory footprint, with some increase in CPU overhead, depending on the application's data access patterns.</p>
+        <p>
+            <img src="../Resources/Static/images/storage-optimization-non-selective-aka-sequential-layout.png" style="width: 647px;height: 108px;" />
+        </p>
+        <div class="tc-admon-note">
+            <p>The memory overhead for Sequential layout is one byte for each group of eight indexed properties. In this example, the memory overhead for three properties is one byte.<br /></p>
+        </div>
+        <div>
+            <h3>Invoke Storage Optimization for a Class</h3>
+            <div class="tc-admon-note">
+                <p>Storage Optimization Mode must be defined on the Object (class) level.</p>
+            </div>
+            <p>Storage Optimization is specified at the class level with either Direct optimization (the default), or Sequential optimization.</p>
+            <div class="easyui-tabs" plain="true">
+                <div title="Annotate Class with Selective (Direct) Layout"><pre><code class="language-java">			
+@SpaceClass
+@SpaceClassBinaryStorage(layout = ClassBinaryStorageLayout.<b>DIRECT</b>)
+public class TestObject {
+    …
+}
+</code></pre>
+                </div>
+                <div title="Annotate Class with Non-Selective (Sequential) Layout"><pre><code class="language-java">			
+@SpaceClass
+@SpaceClassBinaryStorage(layout = ClassBinaryStorageLayout.<b>SEQUENTIAL</b>)
+public class TestObject {
+    …
+}
+</code></pre>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3>Property Level Annotation</h3>
+            <p>Three options are available for Property annotation:</p>
+            <ul>
+                <li>
+                    <p><b>No storage optimization</b> — StorageType.OBJECT</p>
+                </li>
+                <li>
+                    <p><b>Storage optimization</b> — StorageType.BINARY</p>
+                </li>
+                <li>
+                    <p><b>Storage compression</b> — StorageType.COMPRESSED<br />This option uses bitwise manipulation to store smaller values in fewer bytes.</p>
+                    <ul>
+                        <li>
+                            <p>Very large values for the data type may require more bytes, e.g. a large <code class="language-java">long </code>property may require 9 bytes instead of 8 bytes.</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <p><code class="language-java">String </code>types and user defined serializable types will be compressed using zip. This is usually effective for large values only.</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <p>By default, specifying Storage Optimization for the class sets <code class="language-java">StorageType.BINARY</code> (storage optimization) for all non-indexed properties in the class, and <code class="language-java">StorageType.OBJECT</code> (no storage optimization) for indexed items. This default can be overridden for individual properties, as follows.</p>
+            <div class="easyui-tabs" plain="true">
+                <div title="Turn OFF Storage Optimization"><pre><code class="language-java">		
+@SpaceClass
+@SpaceClassBinaryStorage
+public class TestObject {
+    …
+    @SpacePropertyStorage(StorageType.<b>OBJECT</b>)<br />    public String getLastName() {
+       return lastName;
+    }
+    ...
+}
+</code></pre>
+                </div>
+                <div title="Turn ON Storage Optimization"><pre><code class="language-java">		
+@SpaceClass
+@SpaceClassBinaryStorage
+public class TestObject {
+    …
+    @SpacePropertyStorage(StorageType.<b>BINARY</b>)<br />    public String getLastName() {
+       return lastName;
+    }
+    ...
+}
+</code></pre>
+                </div>
+                <div title="Turn ON Storage Compression"><pre><code class="language-java">		
+@SpaceClass
+@SpaceClassBinaryStorage
+public class TestObject {
+    …
+    @SpacePropertyStorage(StorageType.<b>COMPRESSED</b>)<br />    public String getLastName() {
+       return lastName;
+    }
+    ...
+}
+</code></pre>
+                </div>
+            </div>
+        </div>
+        <h1>Viewing Storage Optimization Settings in the Object Screen</h1>
+        <p>Using the <MadCap:xref href="../admin/gs-ops-manager-overview.html">[%=General.ProductNameXAP%] Ops Manager</MadCap:xref>, you can view the status of a Space Object. The Storage Optimized icon <img src="../Resources/Static/images/storage-optimization-icon.png" /> is displayed next to fields that are using Storage Optimization.</p>
+        <p>
+            <img src="../Resources/Static/images/storage-optimization-view-space-in-ops-manager.png" style="width: 464px;height: 447px;" />
+        </p>
+        <h1>Limitations</h1>
+        <ul>
+            <li>
+                <p>.NET is not currently supported.</p>
+            </li>
+            <li>
+                <p>MemoryXtend is not currently supported.</p>
+            </li>
+            <li>
+                <p>Direct layout is limited to 64K bytes per object entry.</p>
+            </li>
+        </ul>
+        <p>&#160;</p>
+    </body>
+</html>

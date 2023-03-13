@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Persist to Database</h1>
+        <p>There are many situations where space data needs to be persisted to permanent storage and retrieved from it.</p>
+        <p>For example:</p>
+        <ul>
+            <li>Our online payment system works primarily with the memory space for temporary storage of process data structures, and the permanent storage is used to extend or back up the physical memory of the process running the space.<br /></li>
+            <li>Our online payment system works primarily with the database storage and the space is used to make read processing more efficient. Since database access is expensive, the data read from the database is cached in the space, where it is available for subsequently fast read operations.<br /></li>
+            <li>When a space is restarted, data from its persistent store can be loaded into the space to speed up incoming query processing.</li>
+        </ul>
+        <p>Persistency can be configured to run in Synchronous(direct persistence) or Asynchronous mode.</p>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+            <p>Synchronous <MadCap:snippetText src="../Resources/Snippets/Content/SynchronousDeprecate.flsnp" /></p>
+        </div>
+        <h1><a name="synchronous-persistence"></a>Synchronous Persistence</h1>
+        <p>When running in direct persistency mode the data grid interacts with the data source to persist its data where the client application would get the acknowledgment for the data grid operation only after both the data grid and the SpaceDataSource finished the operation. With this persistency mode, the data grid operations performance would be heavily dependent on the speed of the Space Synchronization Endpoint to commit the data and provide acknowledgment back to the data grid for the successful operation of the transaction.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/qsg/data-grid-sync-persistNew.jpg" class="tc-picture80" />
+        </div>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../dev-dotnet/direct-persistency.html">Direct Persistence</a> page.</p>
+        </div>
+        <h1><a name="asynchronous-persistence"></a>Asynchronous Persistence</h1>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> Mirror Service provides reliable asynchronous persistency. This allows you to asynchronously delegate the operations conducted with the data grid into a backend database, significantly reducing the performance overhead. The Mirror service ensures that data will not be lost in the event of a failure. This way, you can add persistency to your application just by running the Mirror Service, without touching the real-time portion of your application in either configuration or code. This service provides fine-grained control of which object needs to be persisted.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/qsg/data-grid-async-persistNew.jpg" class="tc-picture80" />
+        </div>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../dev-dotnet/asynchronous-persistency-with-the-mirror.html">Async Persistence with the mirror</a> page.</p>
+        </div>
+        <h1><a name="space-persistence"></a>Space Persistence</h1>
+        <p>The Space Persistency is implemented with the <code>ExternalDataSource</code>. These <code>ExternalDataSource</code> provides advanced persistence capabilities for the space to interact with a persistence layer.</p>
+        <ul>
+            <li>handles Pre-Loading data from the persistence layer and lazy load data from the persistence layer.</li>
+            <li>handles changes done within the space delegating it them to the persistence layer.</li>
+        </ul>
+        <h3><a name="persistence-adapter"></a>Persistence Adapter</h3>
+        <p><MadCap:variable name="General.ProductNameXAP" /> comes with a built in implementation of Space Persistency for NHibernate. This implementation is an extension of the <code>AbstractExternalDataSource</code> class. The implementation allows objects to be persisted using NHibernate mappings.</p>
+        <p>Let's use our online payment system to demonstrate how we can implement direct persistence with <MadCap:variable name="General.ProductNameXAP" />.</p>
+        <p>First, we implement the class we want to write into the space and provide persistency for it.
+Note that we use the <code>[SpaceClass(persist=true)]</code> annotation to indicate that the space needs to persist objects of this type.</p><pre><code class="language-csharp">using System;
+using GigaSpaces.Core.Metadata;
+using GigaSpaces.Core.Document;
+
+namespace xaptutorial.model
+{
+  [SpaceClass(persist=true)]
+  public class Merchant {
+
+    [SpaceID(AutoGenerate = false)]
+    [SpaceRouting]
+    public long Id {set; get;}
+    public String Name{set; get;}
+    public double Receipts{set; get;}
+    public double FeeAmount{set; get;}
+    public ECategoryType Category{set; get;}
+    public EAccountStatus Status{set; get;}
+
+    public Merchant() {
+    }
+  }
+}
+</code></pre>
+        <h2><a name="nhibernate-mapping-file"></a>NHibernate Mapping File</h2>
+        <p>In the next step we are creating the NHibernate mapping file. In Visual Studio create a folder to host all <code>hbm</code> files (for example <code>NHibernateCfg</code>) and place the following <code>Merchant.hbm.xml</code> file in it:</p><pre><code class="language-xml">&lt;?xml version="1.0"?&gt;
+&lt;hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"&gt;
+  &lt;class name="xaptutorial.model.Merchant" table="MERCHANT"&gt;
+    &lt;id name="Id" column="ID" type="int"&gt;
+      &lt;generator class="assigned"/&gt;
+    &lt;/id&gt;
+    &lt;property name="Name" /&gt;
+    .....
+    .....
+  &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+</code></pre>
+        <h2><a name="nhibernate-session-factory-configuration-file"></a>NHibernate Session Factory Configuration File</h2>
+        <p>NHibernate requires a session factory that creates new sessions over the database for each operation executed on it. You can create such a session factory, either with a configuration file or by code. This walkthrough demonstrates a simple configuration file for the session factory, over a MySQL database server into a database named <code>dotnetpersistency</code>. These parameters are configured in the <code>Connection</code> string property.</p>
+        <p>Create a file called <code>nHibernate.cfg.xml</code> in the <code>NHibernateCfg</code> folder created earlier and copy the following configuration to it:</p><pre><code class="language-xml">&lt;?xml version="1.0" ?&gt;
+&lt;hibernate-configuration  xmlns="urn:nhibernate-configuration-2.2" &gt;
+  &lt;session-factory&gt;
+
+    &lt;property name="dialect"&gt;NHibernate.Dialect.MySQLDialect&lt;/property&gt;
+    &lt;property name="connection.provider"&gt;NHibernate.Connection.DriverConnectionProvider&lt;/property&gt;
+    &lt;property name="connection.driver_class"&gt;NHibernate.Driver.MySQLDataDriver&lt;/property&gt;
+    &lt;property name="connection.connection_string"&gt;Server=localhost;Database=dotnetpersistency;User ID=root;CharSet=utf8&lt;/property&gt;
+
+    &lt;!--Disable the writing of all the SQL statments to the console--&gt;
+    &lt;property name="show_SQL"&gt;false&lt;/property&gt;
+
+    &lt;!--Disabled the validation of your persistent classes, allows using .NET properties and not getters and setters on your fields--&gt;
+    &lt;property name="use_proxy_validator"&gt;false&lt;/property&gt;
+
+    &lt;!--This will create the tables in the database for your persistent classes according to the mapping file.--&gt;
+    &lt;!--If the tables are already created this will recreate them and clear the data--&gt;
+    &lt;property name="hbm2ddl.auto"&gt;create&lt;/property&gt;
+
+  &lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;
+</code></pre>
+        <h2><a name="creating-a-space-with-an-externaldatasource"></a>Creating a Space with an ExternalDataSource</h2>
+        <p>Now we will configure our processing unit to host an embedded space with our mapping and configuration files:</p><pre><code class="language-xml">&lt;ProcessingUnit&gt;
+  &lt;EmbeddedSpaces&gt;
+    &lt;add Name="tutorialSpace"&gt;
+      &lt;Properties&gt;
+        &lt;!-- Set space cache policy to All-In-Cache --&gt;
+        &lt;add Name="space-config.engine.cache_policy" Value="1"/&gt;
+        &lt;add Name="cluster-config.cache-loader.external-data-source" Value="true"/&gt;
+        &lt;add Name="cluster-config.cache-loader.central-data-source" Value="true"/&gt;
+      &lt;/Properties&gt;
+      &lt;ExternalDataSource Type="GigaSpaces.Practices.ExternalDataSource.NHibernate.NHibernateExternalDataSource"&gt;
+        &lt;Properties&gt;
+          &lt;add Name="nhibernate-config-file" Value="NHibernateCfg\nHibernate.cfg.xml"/&gt;
+          &lt;add Name="nhibernate-hbm-dir" Value="NHibernateCfg"/&gt;
+        &lt;/Properties&gt;
+      &lt;/ExternalDataSource&gt;
+    &lt;/add&gt;
+  &lt;/EmbeddedSpaces&gt;
+&lt;/ProcessingUnit&gt;
+</code></pre>
+        <p>Note that the external data source properties include the <code>nHibernate.cfg.xml</code> and hbm files location. Since these files are needed at runtime, make sure you modify their <span class="tc-bold">Copy to Output Directory</span> settings accordingly (same as <code>pu.config</code>).</p>
+        <p>When you write new or update existing Merchant objects in the space, the objects are automatically saved in the data base. On startup of the above example, the entries from the MERCHANT table are loaded into the space.</p>
+        <div class="tc-admon-note">
+            <p>Before using the <code>ExternalDataSource.NHibernate</code> practice, compile it by calling <code><MadCap:variable name="General.HomePath" />\dotnet\practices\ExternalDataSource\NHibernate\build.bat</code>. and include the resource in your project. For more information, see the <a href="../dev-dotnet/hibernate-space-persistency.html">Hibernate Persistence</a> page.</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Viewing the Deployed Services (Processing Units)</h1>
+        <p><span class="tc-bold">To view information about the deployed <MadCap:variable name="General.ProductNameXAP" /> services:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="GigaSpaces Ops Manager" style="padding:10px">
+                <p>You can see the following information in the Service overview:</p>
+                <ul>
+                    <li>Cluster performance:<ul><li>General status of all deployed services (healthy, degraded, unhealthy)</li><li>CPU&#160;performance (with average CPU usage, in percent)</li><li>RAM utilization (with current utilization, in percent)</li><li><p>IOPS by operation (reads, writes, takes, and executes)</p><div class="tc-admon-note"><p>You can show and hide which operations are shown in the graph.</p></div></li></ul></li>
+                    <li>Service information (per individual service):<ul><li>Service name</li><li>Service type indicated by an icon (stateful, stateless, mirror, web, gateway)</li><li>Actual vs. planned instances</li><li>Number of availability or resource alerts </li></ul></li>
+                </ul>
+                <p>You can filter the view by service label, type, and RAM&#160;utilization. You can sort the view by either alert severity or RAM&#160;utilization. You can also do a text search by service name.</p>
+                <div class="tc-admon-note">
+                    <p>To generate and download a service dump, click the icon in the top right corner of the page.</p>
+                </div>
+            </div>
+            <div title="Command Line Interface" style="padding:10px">
+                <p><span class="tc-bold">Processing Unit</span>
+                </p>
+                <p><span class="tc-italic">Command</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu list</code> or <code>insightedge pu list</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu list</code>
+                </p>
+                <p><span class="tc-italic">Description</span>
+                </p>
+                <p>This command lists all the Processing Units in a table with the Processing Unit name, type, Space, topology, status, file name, state, and number of instances.</p>
+                <p><span class="tc-italic">Input Example</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu list
+</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu list
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu list
+</code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Output Example</span>
+                </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/admin/cli-xap-pu-list.png" />
+                </p>
+                <p><span class="tc-italic">Parameters and Options</span>
+                </p>
+                <p>None.</p>
+                <p><span class="tc-bold">Processing Unit instance</span>
+                </p>
+                <p><span class="tc-italic">Command</span>
+                </p>
+                <p MadCap:conditions="Version.14-5-died"><code>xap pu list-instances &lt;name&gt;</code> or <code>insightedge pu list-instances &lt;name&gt;</code></p>
+                <p MadCap:conditions="Version.14-5-born"><code><MadCap:variable name="General.CLI-script-all" /> pu list-instances &lt;name&gt;</code>
+                </p>
+                <p><span class="tc-italic">Description</span>
+                </p>
+                <p>This command lists all of the instances for a given Processing Unit, along with the Instance ID, Host ID, and Container ID.</p>
+                <p><span class="tc-italic">Input Example</span>
+                </p><pre MadCap:conditions="Version.14-5-died"><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/xap pu list-instances data-processor</code></pre>
+                <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+                    <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> pu list-instances data-processor
+</code></pre>
+                    </div>
+                    <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> pu list-instances data-processor
+</code></pre>
+                    </div>
+                </div>
+                <p><span class="tc-italic">Output Example</span>
+                </p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/admin/cli-xap-pu-list-instances.png" />
+                </p>
+                <p><span class="tc-italic">Parameters and Options</span>
+                </p>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Parameter</td>
+                        <td>name</td>
+                        <td>Name of Processing Unit to list instances for.</td>
+                    </tr>
+                </table>
+            </div>
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-bold">All Processing Units</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /pus</code>
+                </p>
+                <p><span class="tc-italic">Description</span>
+                </p>
+                <p>The Processing Units are listed with the name, Processing Unit type, file name, topology, number of instances, SLA information, and additional details.</p>
+                <p><span class="tc-italic">Example Request</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus'
+</code></pre>
+                <p><span class="tc-italic">Example Response</span>
+                </p><pre><code class="language-bash">[
+  {
+    "name": "monitorSpace",
+    "processingUnitType": "stateful",
+    "resource": "datagrid",
+    "topology": {
+      "instances": 1
+    },
+    "sla": {
+      "requiresIsolation": false,
+      "zones": [],
+      "maxInstancesPerVM": 0,
+      "maxInstancesPerMachine": 0
+    },
+    "spaces": [
+      "monitorSpace"
+    ],
+    "scalable": false,
+    "status": "intact",
+    "quiesceDetails": {
+      "quiesced": false,
+      "description": "initial"
+    },
+    "instances": [
+      "monitorSpace~1"
+    ]
+  },
+  {
+    "name": "alertSpace",
+    "processingUnitType": "stateful",
+    "resource": "datagrid",
+    "topology": {
+      "instances": 1
+    },
+    "sla": {
+      "requiresIsolation": false,
+      "zones": [],
+      "maxInstancesPerVM": 0,
+      "maxInstancesPerMachine": 0
+    },
+    "spaces": [
+      "alertSpace"
+    ],
+    "scalable": false,
+    "status": "intact",
+    "quiesceDetails": {
+      "quiesced": false,
+      "description": "initial"
+    },
+    "instances": [
+      "alertSpace~1"
+    ]
+  }
+]
+</code></pre>
+                <p><span class="tc-italic">Options</span>
+                </p>
+                <p>None</p>
+                <p><span class="tc-bold">Specific Processing Unit</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /pus/{id}</code>
+                </p>
+                <p><span class="tc-italic">Description</span>
+                </p>
+                <p>The given Processing Unit is listed with the name, Processing Unit type, file name, topology, number of instances, SLA information, and additional details.</p>
+                <p><span class="tc-italic">Example Request</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus/alertSpace'
+</code></pre>
+                <p><span class="tc-italic">Example Response</span>
+                </p><pre><code class="language-bash">{
+  "name": "alertSpace",
+  "processingUnitType": "stateful",
+  "resource": "datagrid",
+  "topology": {
+    "instances": 1
+  },
+  "sla": {
+    "requiresIsolation": false,
+    "zones": [],
+    "maxInstancesPerVM": 0,
+    "maxInstancesPerMachine": 0
+  },
+  "spaces": [
+    "alertSpace"
+  ],
+  "scalable": false,
+  "status": "intact",
+  "quiesceDetails": {
+    "quiesced": false,
+    "description": "initial"
+  },
+  "instances": [
+    "alertSpace~1"
+  ]
+}
+</code></pre>
+                <p><span class="tc-italic">Options</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>pu name</td>
+                            <td>Provide the name of the Processing Unit for which you want to see the runtime details.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><span class="tc-bold">Processing Unit Instance</span>
+                </p>
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /pus/{id}/instances/{instanceId</code>
+                </p>
+                <p><span class="tc-italic">Description</span>
+                </p>
+                <p>The given Processing Unit Instance is listed with the Instance ID, Processing Unit name, Host ID, Container ID, and Partition ID, and Backup ID.</p>
+                <p><span class="tc-italic">Example Request</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: application/json' 'http://localhost:8090/v2/pus/alertPu/instances/alertPu~1'
+</code></pre>
+                <p><span class="tc-italic">Example Response</span>
+                </p><pre><code class="language-bash">{
+  "id": "alertPu~1",
+  "processingUnitName": "alertPu",
+  "hostId": "admin",
+  "containerId": "admin~13972",
+  "partitionId": 0,
+  "backupId": 0
+}
+</code></pre>
+                <p><span class="tc-italic">Options</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>pu name</td>
+                            <td>Provide the name of the Processing Unit for which you want to see the runtime details.</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>instanceId</td>
+                            <td>Provide the instanceId of the Processing Unit for which you want to see the runtime details.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <p>You can see the following Processing Unit details in the main Processing Units view:</p>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>Name of the Processing Unit. Expand the Processing Unit node to view the name of the Processing Unit instance, and below that the Space name.</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>
+                            <p>Current status of the Processing Unit:
+        </p>
+                            <ul>
+                                <li><span class="tc-bold">Intact</span> - the Processing Unit was successfully deployed and is operating normally.</li>
+                                <li><span class="tc-bold">Scheduled</span> - the Processing Unit was not yet successfully deployed, but an additional attempt will be made.</li>
+                                <li><span class="tc-bold">Compromised</span> - the Processing Unit is no longer intact, but has not yet completed the undeploy process.</li>
+                                <li><span class="tc-bold">Broken</span> - the Processing Unit could not be deployed.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td>Indicates whether the Processing Unit is stateful or stateless.</td>
+                    </tr>
+                    <tr>
+                        <td>Host Name</td>
+                        <td>Name of the machine hosting the Processing Unit instance.</td>
+                    </tr>
+                    <tr>
+                        <td>PID</td>
+                        <td>Process ID of the Processing Unit instance.</td>
+                    </tr>
+                    <tr>
+                        <td>Application</td>
+                        <td>Client application that is running, if applicable.</td>
+                    </tr>
+                    <tr>
+                        <td>Zones</td>
+                        <td>If configured, the zone where the Processing Unit is located.</td>
+                    </tr>
+                    <tr>
+                        <td>CPU</td>
+                        <td>Amount of CPU resources being used by the Processing Unit instance, in percent.</td>
+                    </tr>
+                    <tr>
+                        <td>Used Heap</td>
+                        <td>Amount of JVM heap being used by the Processing Unit instance, in MB (% of allocated heap).</td>
+                    </tr>
+                </table>
+                <p>If the Space is highlighted, you can click the <span class="tc-bold">Actions</span> icon and drill through to the Spaces view to see the Space details.</p>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developers Guide.</p>
+            </div>
+        </div>
+    </body>
+</html>

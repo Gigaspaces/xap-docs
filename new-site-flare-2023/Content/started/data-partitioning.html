@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Data Partitioning</h1>
+        <p>The space can have a single instance that runs on a single JVM, or multiple instances that run on multiple JVMs. When there are multiple instances, the spaces can be set up in one of several topologies. This architecture determines how the data is distributed across the JVMs.</p>
+        <p>Available topologies:</p>
+        <ul>
+            <li>
+                <p>Replicated - data is copied to all of the JVMs in the cluster.</p>
+            </li>
+            <li>
+                <p>Partitioned - data is distributed across all of the JVMs, each containing a different data subset. A partition is a subset of data that is distributed by a routing key.</p>
+            </li>
+            <li>
+                <p>Partitioned with backup - data resides in a partition, and also in one or more backup space instances for this partition.</p>
+            </li>
+        </ul>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/topologies.jpg" alt="topologies.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>With a partitioned topology, data or operations on data are <a href="../dev-java/routing-in-partitioned-spaces.html">routed</a> to one of several space instances (partitions). Each space instance holds a subset of the data, with no overlap. Business logic can be <a href="/sbp/data-collocation-deployment-topology.html">collocated</a> within the partition to allow for fast parallel processing.</p>
+        <div class="tc-admon-note">
+            <p>To learn more about data partitioning and load balancing, refer to the <a href="../admin/data-partitioning.html">Data Partitioning</a> page in the Administration guide.</p>
+        </div>
+    </body>
+</html>

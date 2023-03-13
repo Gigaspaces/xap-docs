@@ -1,0 +1,708 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle"><a name="top"></a>[New] ......... Getting Started</h1>
+        <p>This topic helps you get started with the <MadCap:variable name="General.ProductNameIE" />. You will learn how to create a project that includes a client and a Space. The client connects to the Space, with the ability to write and read data. </p>
+        <p>&#160;</p>
+        <p>***************************</p>
+        <p>copy everyhting from https://docs.gigaspaces.com/latest/started/xap-ide.html and https://docs.gigaspaces.com/latest/started/installation-maven-overview.html and we will edit them and link to the full pages</p>
+        <p>********************************</p>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <p style="font-weight: bold;color: #ff4500;">∨∨∨∨∨∨∨https://docs.gigaspaces.com/latest/started/xap-ide.html∨∨∨∨∨∨∨∨∨∨∨∨∨∨</p>
+            <h1 class="tc-pagetitle"><a name="Preparin"></a>Preparing Your Development Environment</h1>
+            <div class="tc-admon-note">
+                <h3><span class="tc-bold">Ensure you have a JDK installed</span>. You will need Java 8 or 11.</h3>
+            </div>
+            <h1><a name="checking-your-jdk-version"></a>Checking your JDK Version</h1>
+            <p>To check your installed Java version:</p>
+            <ol>
+                <li>Open a command line window.</li>
+                <li>Run <code>set JAVA_HOME</code>.</li>
+                <li>
+                    <p>A response similar to this suggests you have a JDK installed:</p><pre><code class="language-java">JAVA_HOME=C:\jdk1.8
+</code></pre>
+                </li>
+                <li>
+                    <p>To check the JDK version, run <code>%JAVA_HOME%\bin\java \-version</code>. A response like this from <code>Java</code> indicates you have a valid JDK installed:</p><pre><code class="language-java">java version "1.6.0_23"
+Java(TM) SE Runtime Environment (build 1.6.0_23-b05)
+Java HotSpot(TM) Client VM (build 11.0-b16, mixed mode, sharing)
+</code></pre>
+                </li>
+            </ol>
+            <p>If your installed JDK version is lower than 1.8 or none is installed, see below on how to install one.</p>
+            <h1><a name="installing-a-proper-jdk-java-development-kit"></a>Installing a Proper JDK (Java Development Kit)</h1>
+            <ol>
+                <li>To install a JDK, download and install <a href="http://java.sun.com/javase/downloads/index.jsp"><span class="tc-bold">JDK 6 Update X</span></a><a name="1"></a></li>
+                <li><span class="tc-bold">Download and unzip the latest <MadCap:variable name="General.CompanyName" /> product release</span> from the <a href="https://www.gigaspaces.com/downloads/">downloads page</a>.
+ <a name="2"></a></li>
+                <li><span class="tc-bold">Install a Java IDE</span>. If you don't have an IDE installed, you can <a href="http://www.eclipse.org/downloads">download and unzip the Eclipse IDE for Java Developers</a>, or the <a href="http://www.jetbrains.com/idea/download/index.html">IntelliJ IDEA</a> IDE (we recommend the Ultimate Edition because of its excellent Spring framework support). If you're using Eclipse, it is also recommended to install the <a href="http://www.springsource.com/developer/sts">Spring Tool Suite plugin for Eclipse</a>.</li>
+            </ol>
+            <h1><a name="running-the-application-inside-eclipse-ide"></a>Running the Application inside Eclipse IDE</h1>
+            <ol>
+                <li>Start Eclipse. The <span class="tc-bold">Workspace Launcher</span> window opens.</li>
+                <li>Write a new workspace name or select one of your existing workspaces, and click <span class="tc-bold">OK</span>.</li>
+                <li>To import the project, select <span class="tc-bold">File &gt; Import</span> to open the Import window.</li>
+                <li>Select <span class="tc-bold">Existing projects into workspace</span> and click <span class="tc-bold">Next</span> to open the Import Project window.</li>
+                <li>In the <span class="tc-bold">Select root directory</span> field, click <span class="tc-bold">Browse</span> to open the browse window.</li>
+                <li>Select the folder <code>/examples/helloworld</code> and click <span class="tc-bold">OK</span>.</li>
+                <li>Make sure the following 3 projects are selected: <span class="tc-bold">hello-common</span>, <span class="tc-bold">hello-processor</span>, and <span class="tc-bold">hello-feeder</span>.</li>
+                <li>Click <span class="tc-bold">Finish</span>.</li>
+                <li>Create a new Eclipse environment variable called <span class="tc-bold">GS_HOME</span>, and point it to your GigaSpaces installation Root folder.</li>
+                <li>Right click the <span class="tc-bold">hello-common</span> project in the <span class="tc-bold">Package Explorer</span> tab to open the context menu.</li>
+                <li>Select <span class="tc-bold">Build Path &gt; Configure Build Path</span> to open the <span class="tc-italic">Java Build Path window.</span></li>
+                <li>Select the <span class="tc-bold">Libraries tab* and click the *Add Variable...</span> button to open the <span class="tc-italic">New Variable Classpath Entry dialog</span></li>
+                <li>Click <span class="tc-bold">Configure Variables</span> to open the Classpath Variables window.</li>
+                <li>Click <span class="tc-bold">New</span> to open the New Variable Entry window.</li>
+                <li>In the <span class="tc-bold">Name</span> field, write <code>GS_HOME</code> to name the variable.</li>
+                <li>Click <span class="tc-bold">Folder</span> and browse to <span class="tc-bold">your GigaSpaces installation root folder</span>.</li>
+                <li>Select your <span class="tc-bold">GigaSpaces installation root folder</span> and click <span class="tc-bold">OK</span> (3 times in total).</li>
+                <li>Click <span class="tc-bold">Yes</span> to do a full rebuild.</li>
+                <li>Close the remaining windows.</li>
+            </ol>
+            <h1><a name="classpath"></a>Classpath</h1>
+            <p>The <MadCap:variable name="General.ProductNameXAP" /> libraries are located under <code><MadCap:variable name="General.HomePath" />/lib</code>. There are three sub-directories:</p>
+            <ul>
+                <li><code>lib/required</code> - JAR files that are required for any GigaSpaces application.</li>
+                <li><code>lib/optional</code> - JAR files that enable additional capabilities, such as servlet api.</li>
+                <li><code>lib/platform</code> - JAR files that are used only by the <MadCap:variable name="General.ProductNameXAP" /> platform.</li>
+            </ul>
+            <h2><a name="compilation"></a>Compilation</h2>
+            <p>In order to compile and run <MadCap:variable name="General.ProductNameXAP" /> applications, all the JAR files under the <code><MadCap:variable name="General.HomePath" />/lib/required</code> directory should be included in your compile and run time classpaths. Additional JAR files that you may need for development are located at <code><MadCap:variable name="General.HomePath" />/lib/optional</code>.</p>
+            <h2><a name="runtime-processing-unit"></a>Runtime - Processing Unit</h2>
+            <p>When an application is deployed as a Processing Unit, there is no need to add <MadCap:variable name="General.ProductNameXAP" />-specific JAR files to the Processing Unit classpath. If such are added under the Processing Unit's <code>lib</code> directory, the system will remove those JAR files and  replace them with the system's JARs for compatibility.</p>
+            <h2><a name="runtime-standalone"></a>Runtime - Standalone</h2>
+            <p>When running a standalone client that accesses <MadCap:variable name="General.ProductNameXAP" />, ensure that all the JARs located under the <code><MadCap:variable name="General.HomePath" />/lib/required</code> directory are part of the JVM's classpath. This also holds true for remote Space clients that are used from another JVM (such as a standalone web container). If your client is a JEE web application that is not running within the <MadCap:variable name="General.ProductNameXAP" /> runtime environment, or more specifically a GSC, you must include these JARs in your application's <code>WEB-INF/lib</code> directory.</p>
+            <h1><a name="maven"></a>Maven</h1>
+            <p><MadCap:variable name="General.ProductNameXAP" /> is Maven-friendly. It is built using Maven, which can be easily used by developers constructing <MadCap:variable name="General.ProductNameXAP" /> applications.</p>
+            <p>The main dependency required to use <MadCap:variable name="General.ProductNameXAP" /> is <code>xap-openspaces</code>.</p><pre><code class="language-xml"> &lt;dependency&gt;
+   &lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;
+   &lt;artifactId&gt;xap-openspaces&lt;/artifactId&gt;
+   &lt;version&gt;[%=Versions.maven-version-MX%]&lt;/version&gt;
+ &lt;/dependency&gt;
+</code></pre>
+            <p><MadCap:variable name="General.ProductNameXAP" /> artifacts are currently not published in Maven Central Repo, therefore you must configure a repository:</p><pre><code class="language-xml"> &lt;repository&gt;
+    &lt;id&gt;org.openspaces&lt;/id&gt;
+    &lt;url&gt;http://maven-repository.openspaces.org&lt;/url&gt;
+ &lt;/repository&gt;
+</code></pre>
+            <p style="color: #ff4500;font-weight: bold;">∧∧∧∧∧∧∧∧https://docs.gigaspaces.com/latest/started/xap-ide.html∧∧∧∧∧∧∧∧∧∧∧∧∧</p>
+        </div>
+        <p>&#160;</p>
+        <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+            <p style="color: #ff4500;font-weight: bold;">∨∨∨∨∨∨∨https://docs.gigaspaces.com/latest/started/installation-maven-overview.htmll∨∨∨∨∨∨∨∨∨∨∨∨∨∨</p>
+            <h1 class="tc-pagetitle">Maven Artifacts</h1>
+            <p>Maven is a tool used to automate and simplify the development cycle of any Java-based project. The <MadCap:variable name="General.CompanyName" /> plugin for Maven utilizes Maven to simplify the development cycle of <MadCap:variable name="General.CompanyName" />-based applications. This section describes the  Maven artifacts that are provided, and how to get started with the data grid using Maven.<MadCap:conditionalText MadCap:conditions="Version.14-5-died">. It also describes how to install and use the XAP Maven plugin. </MadCap:conditionalText></p>
+            <h1 MadCap:conditions="Version.14-5-born">Installing Maven Artifacts</h1>
+            <h2 MadCap:conditions="Version.14-5-born">Prerequisites</h2>
+            <p MadCap:conditions="Version.14-5-born">Maven must be installed and included in your system PATH&#160;variable.</p>
+            <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+                <p>If you don't have Maven installed, refer to the Apache Maven documentation for <a href="http://maven.apache.org/download.cgi" target="_blank">download instructions</a>.</p>
+            </div>
+            <h2 MadCap:conditions="Version.14-5-born">Installation</h2>
+            <p>To install the Maven artifacts, run the following command:</p>
+            <div class="easyui-tabs" plain="true" data-options="">
+                <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> maven install</code></pre>
+                </div>
+                <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> maven install</code></pre>
+                </div>
+            </div>
+            <h3 MadCap:conditions="Version.14-5-born">Advanced Installation Options</h3>
+            <p MadCap:conditions="Version.14-5-born">Some Maven setups require a slightly different Maven installation process. <MadCap:variable name="General.CompanyName" />'s Maven installation is designed to be customized if needed, and works as follows:</p>
+            <ol>
+                <li MadCap:conditions="Version.14-5-born">
+                    <p>Create a temporary directory (<code><MadCap:variable name="General.HomePath" />/config/maven/installer</code>), and a main <code>pom.xml</code> for the installation process.</p>
+                </li>
+                <li MadCap:conditions="Version.14-5-born">
+                    <p>Add each artifact in <code><MadCap:variable name="General.HomePath" />/config/maven/gs-artifacts.txt</code> to the main <code>pom.xml</code>, and extract the artifact's pom.xml if needed.</p>
+                </li>
+                <li MadCap:conditions="Version.14-5-born">
+                    <p>Install the main <code>pom.xml</code> using a standard <code>mvn install</code> command.</p>
+                </li>
+                <li MadCap:conditions="Version.14-5-born">
+                    <p>Delete the temporary folder.</p>
+                </li>
+            </ol>
+            <p MadCap:conditions="Version.14-5-born">If needed, you can customize the list of installed artifacts by editing the <code>gs-artifacts.txt</code> file. 
+		In addition, the <code>gs maven install</code> command supports an optional <code>--generate-only</code> flag, which generates the temporary directory and files without installation (steps 1+2), so you can tailor the generated content to your needs. </p>
+            <h1 MadCap:conditions="Version.14-5-born"><a name="xap-maven-repository"></a><MadCap:variable name="General.CompanyName" /> Maven Repository</h1>
+            <p MadCap:conditions="Version.14-5-born"><MadCap:variable name="General.CompanyName" /> artifacts are not currently published in the Maven Central Repo, so you must first configure a repository:</p><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;repository&gt;
+   &lt;id&gt;org.openspaces&lt;/id&gt;
+   &lt;url&gt;http://maven-repository.openspaces.org&lt;/url&gt;
+&lt;/repository&gt;
+</code></pre>
+            <h1 MadCap:conditions="Version.14-5-born"><a name="xap-artifacts"></a><MadCap:variable name="General.CompanyName" /> Artifacts</h1>
+            <p MadCap:conditions="Version.14-5-born">The main dependency required to use the data grid is <code>xap-openspaces</code>.</p><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.gigaspaces&lt;/groupId&gt;
+  &lt;artifactId&gt;xap-openspaces&lt;/artifactId&gt;
+  &lt;version&gt;[%=Versions.maven-version-MX%]&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+            <h2 MadCap:conditions="Version.14-5-born"><a name="core-artifacts"></a>Core Artifacts</h2>
+            <p MadCap:conditions="Version.14-5-born">This section lists the core artifacts. You only need to add <code>xap-openspaces</code>, because all the other core artifacts are its dependencies.</p>
+            <p MadCap:conditions="Version.14-5-born">The group ID for these artifacts is <code>org.gigaspaces</code>.</p>
+            <table MadCap:conditions="Version.14-5-born">
+                <thead>
+                    <tr>
+                        <th>Artifact ID</th>
+                        <th>Location in product</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>xap-openspaces</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/required/xap-openspaces.jar</td>
+                    </tr>
+                    <tr>
+                        <td>xap-datagrid</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/required/xap-datagrid.jar</td>
+                    </tr>
+                    <tr>
+                        <td>xap-common</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/required/xap-common.jar</td>
+                    </tr>
+                    <tr>
+                        <td>xap-trove</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/required/xap-trove.jar</td>
+                    </tr>
+                    <tr>
+                        <td>xap-asm</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/required/xap-asm.jar</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2 MadCap:conditions="Version.14-5-born"><a name="extension-artifacts"></a>Extension Artifacts</h2>
+            <p MadCap:conditions="Version.14-5-born">This section lists extension artifacts. The group ID for these artifacts is <code>org.gigaspaces</code>.</p>
+            <table MadCap:conditions="Version.14-5-born">
+                <thead>
+                    <tr>
+                        <th>Artifact ID</th>
+                        <th>Location in product</th>
+                        <th>Required for</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>xap-map</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/optional/map/xap-map.jar</td>
+                        <td><a href="../dev-java/map-api.html">Map API</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>xap-map-spring</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/optional/map/xap-map-spring.jar</td>
+                        <td><a href="../dev-java/map-api.html">Map API</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>xap-jms</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/optional/jms/xap-jms.jar</td>
+                        <td><a href="../dev-java/messaging-support.html">JMS</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>xap-jetty</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/optional/jetty/xap-jetty/xap-jetty.jar</td>
+                        <td><a href="../dev-java/web-jetty-processing-unit-container.html">Jetty PU Container</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>xap-mongodb</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/optional/mongodb/xap-mongodb.jar</td>
+                        <td><a href="../dev-java/mongodb.html">MongoDB integration</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>xap-spatial</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/optional/spatial/xap-spatial.jar</td>
+                        <td><a href="../dev-java/query-geospatial.html">Geospatial Queries</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>xap-full-text-search</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/optional/full-text-search/xap-full-text-search.jar</td>
+                        <td><a href="../dev-java/query-full-text-search.html">Full Text Search</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2 MadCap:conditions="Version.14-5-born"><a name="premium-extensions"></a>Premium Extensions</h2>
+            <p MadCap:conditions="Version.14-5-born">This section lists Premium artifacts. The group ID for these artifacts is <code>com.gigaspaces</code>.</p>
+            <table MadCap:conditions="Version.14-5-born">
+                <thead>
+                    <tr>
+                        <th>Artifact ID</th>
+                        <th>Location in product</th>
+                        <th>Required for</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>xap-near-cache-spring</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/optional/near-cache/xap-near-cache-spring.jar</td>
+                        <td><a href="../dev-java/client-side-caching.html">Client Side Caching</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>xap-near-cache</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/optional/near-cache/xap-near-cache.jar</td>
+                        <td><a href="../dev-java/client-side-caching.html">Client Side Caching</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>xap-security</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/optional/security/xap-security.jar</td>
+                        <td><a href="../security/index.html">Security</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>xap-zookeeper</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/platform/zookeeper/xap-zookeeper.jar</td>
+                        <td><a href="../admin/leader-election-consistency-biased.html">Consistency-biased leader election</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>xap-admin</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/platform/service-grid/xap-admin.jar</td>
+                        <td><a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2 MadCap:conditions="Version.14-5-born"><a name="enterprise-extensions"></a>Enterprise Extensions</h2>
+            <p MadCap:conditions="Version.14-5-born">This section lists Enterprise artifacts. The group ID for these artifacts is <code>com.gigaspaces</code>.</p>
+            <table MadCap:conditions="Version.14-5-born">
+                <thead>
+                    <tr>
+                        <th>Artifact ID</th>
+                        <th>Location in product</th>
+                        <th>Required for</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>xap-mx-rocksdb</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/optional/memoryxtend/rocksdb/xap-mx-rocksdb.jar</td>
+                        <td><a href="../admin/memoryxtend-overview.html">MemoryXtend - SSD</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>xap-wan-gateway-spring</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/optional/wan-gateway/xap-wan-gateway-spring.jar</td>
+                        <td><a href="../dev-java/multi-site-replication-overview.html">WAN Replication</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>xap-wan-gateway</td>
+                        <td><MadCap:variable name="General.HomePath" />/lib/optional/wan-gateway/xap-wan-gateway.jar</td>
+                        <td><a href="../dev-java/multi-site-replication-overview.html">WAN Replication</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>&#160;</p>
+            <p style="color: #ff4500;font-weight: bold;">∧∧∧∧∧∧∧∧https://docs.gigaspaces.com/latest/started/installation-maven-overview.htmlll∧∧∧∧∧∧∧∧∧∧∧∧∧</p>
+        </div>
+        <p>&#160;</p>
+        <h1>Installing <MadCap:variable name="General.ProductNameIE" /></h1>
+        <p>If you haven’t done so yet, <a href="https://www.gigaspaces.com/downloads/">download</a> and unzip the software package in your preferred location, and apply the license key.</p>
+        <div class="tc-admon-note">
+            <p> For more detailed instructions, see the <MadCap:xref href="installation.html">Downloading and Installing</MadCap:xref> and <MadCap:xref href="license-key.html">Product License</MadCap:xref> topics in this section.</p>
+        </div>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div MadCap:conditions="NewSet.JustAColorForDivs">
+            <p style="color: #ff4500;font-weight: bold;">∨∨∨∨∨∨∨https://docs.gigaspaces.com/latest/started/common-environment-variables.html∨∨∨∨∨∨∨∨∨∨∨∨∨∨</p>
+            <p>&#160;</p>
+            <h1>Configuring the Environment Variables</h1>
+            <p>This topic explains how the <MadCap:variable name="General.ProductNameXAP" /> and <MadCap:variable name="General.ProductNameIE" /> environments are configured, and how to customize them to suit your specific application needs.</p>
+            <h2><a name="xap"></a><MadCap:variable name="General.ProductNameXAP" />
+            </h2>
+            <p>The <MadCap:variable name="General.ProductNameXAP" /> environment configuration is maintained by a configuration script file called <code>setenv</code>, located in the <code><MadCap:variable name="General.EnvVariablePrefix" />/bin</code> directory. Each <MadCap:variable name="General.ProductNameXAP" /> script invokes this script to load the <MadCap:variable name="General.ProductNameXAP" /> configuration. If you are developing a  standalone <MadCap:variable name="General.ProductNameXAP" /> client, it is recommended to use the <code>setenv</code> utility to derive the commonly used <MadCap:variable name="General.ProductNameXAP" /> libraries and setup environment.</p>
+            <p>To use this utility, you can simply call it from within your script file. </p>
+            <h2><a name="insightedge"></a><MadCap:variable name="General.ProductNameIE" />
+            </h2>
+            <p>The <MadCap:variable name="General.ProductNameIE" /> environment configuration is maintained by a configuration script file called <code>insightedge-env</code>, located in the <code><MadCap:variable name="General.EnvVariablePrefix" />/insightedge/conf</code> directory. Each <MadCap:variable name="General.ProductNameIE" /> script invokes this script to load the <MadCap:variable name="General.ProductNameIE" /> configuration. Additionally, <code>insightedge-env</code> starts by invoking the <MadCap:variable name="General.ProductNameXAP" /><code>setenv</code> configuration script, so all of the <MadCap:variable name="General.ProductNameXAP" /> environment configuration is also applied.</p>
+            <h1><a name="customizing-the-environment-variables"></a>Customizing the Environment Variables</h1>
+            <p>During the initial development stages, it is usually unnecessary to change any of the default <MadCap:variable name="General.ProductNameXAP" /> environment values. However, at some point the environment will need customization to suit your specific requirements (such as the Grid Service Container heap size).</p>
+            <div class="tc-admon-note">
+                <p>Do not make changes to the original <code>setenv</code> script, as it complicates upgrading <MadCap:variable name="General.ProductNameXAP" /> later on. Instead, use the <code>setenv-overrides</code> script, which is automatically called by <code>setenv</code> and is intended for specifying custom overrides in a safe manner.</p>
+            </div>
+            <h1><a name="xap-environment-variables"></a><MadCap:variable name="General.ProductNameXAP" /> Environment Variables</h1>
+            <p>The following list describes <MadCap:variable name="General.ProductNameXAP" />-related environment variables:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th align="left">Name</th>
+                        <th align="left">Description</th>
+                        <th align="left">Default Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="left">JAVA_HOME</td>
+                        <td align="left">The directory in which Java is installed.</td>
+                        <td align="left" />
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_HOME</td>
+                        <td align="left">The GigaSpaces <MadCap:variable name="General.ProductNameXAP" /> home directory.</td>
+                        <td align="left">Automatically set via the folder structure</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_LICENSE</td>
+                        <td align="left">License key (for Premium and Enterprise editions).</td>
+                        <td align="left" />
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS</td>
+                        <td align="left">Lookup Service groups used for multicast discovery.</td>
+                        <td align="left">[%=Versions.default-lookup-group%]</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_LOCATORS</td>
+                        <td align="left">Lookup Service Locators used for unicast discovery.</td>
+                        <td align="left" />
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_NIC_ADDRESS</td>
+                        <td align="left">The network interface card that will be used by <MadCap:variable name="General.ProductNameXAP" />.</td>
+                        <td align="left">Automatically set to the host name</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_SECURITY_POLICY</td>
+                        <td align="left">The default policy file.</td>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_HOME/policy/policy.all</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_LOGS_CONFIG_FILE</td>
+                        <td align="left">The location of the <MadCap:variable name="General.ProductNameXAP" /> logging configuration.</td>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_HOME/config/log/xap_logging.properties</td>
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS</td>
+                        <td align="left">Set the list of Manager servers that other machines can connect to.</td>
+                        <td align="left" />
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_PUBLIC_HOST</td>
+                        <td align="left">Define the public IP address for the Docker host machine.</td>
+                        <td align="left" />
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_OPTIONS</td>
+                        <td align="left">Java options for the <MadCap:variable name="General.ProductNameXAP" /> Manager.</td>
+                        <td align="left" />
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS</td>
+                        <td align="left">Java options for the Grid Service Container (GSC).</td>
+                        <td align="left" />
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_GSM_OPTIONS</td>
+                        <td align="left">Java options for the Grid Service Manager (GSM).   <span class="tc-iconexcl">&#160;</span></td>
+                        <td align="left" />
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_GSA_OPTIONS</td>
+                        <td align="left">Java options for the Grid Service Agent (GSA)</td>
+                        <td align="left" />
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_LUS_OPTIONS</td>
+                        <td align="left">Java options for the Lookup Service (LUS).     <span class="tc-iconexcl">&#160;</span></td>
+                        <td align="left" />
+                    </tr>
+                    <tr MadCap:conditions="Version.15-2-died">
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_ESM_OPTIONS</td>
+                        <td align="left">Java options for the Elastic Service Manager (ESM).</td>
+                        <td align="left" />
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_GUI_OPTIONS</td>
+                        <td align="left">Java options for the GigaSpaces Management Center.</td>
+                        <td align="left" />
+                    </tr>
+                    <tr>
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_WEBUI_OPTIONS</td>
+                        <td align="left">Java options for the Web Management Console.</td>
+                        <td align="left" />
+                    </tr>
+                    <tr MadCap:conditions="Version.14-5-born">
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT</td>
+                        <td align="left">
+                            <p align="left">Append these options to the default GigaSpaces <MadCap:variable name="General.ProductNameXAP" /> options.</p>
+                            <p align="left">&#160;</p>
+                        </td>
+                        <td align="left">&#160;</td>
+                    </tr>
+                    <tr MadCap:conditions="Version.14-5-born">
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS</td>
+                        <td align="left">
+                            <p align="left">Override the default GigaSpaces <MadCap:variable name="General.ProductNameXAP" /> options.</p>
+                            <div align="left" class="tc-admon-note">For use by GigaSpaces engineers. To add options, use <MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT.</div>
+                        </td>
+                        <td align="left">&#160;</td>
+                    </tr>
+                    <tr MadCap:conditions="Version.14-5-born">
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_LIBRARY_PATH_EXT</td>
+                        <td align="left">Override the default GigaSpaces  library path and set java.library.path to this path.</td>
+                        <td align="left">&#160;</td>
+                    </tr>
+                    <tr MadCap:conditions="Version.14-5-born">
+                        <td align="left"><MadCap:variable name="General.EnvVariablePrefix" />_LIBRARY_PATH</td>
+                        <td align="left">Append the path to the default GigaSpaces library path and set java.library.path to the result.</td>
+                        <td align="left">&#160;</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><span class="tc-iconexcl">&#160;</span> When running in <code>./gs-agent --manager</code> configuration, this environment variable is ignored.</p>
+            <h1><a name="insightedge-environment-variables"></a><MadCap:variable name="General.ProductNameIE" /> Environment Variables</h1>
+            <p>The following list describes <MadCap:variable name="General.ProductNameIE" />-related environment variables:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th align="left">Name</th>
+                        <th align="left">Description</th>
+                        <th align="left">Default Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="left">SPARK_HOME</td>
+                        <td align="left">The directory where Spark is installed</td>
+                        <td align="left"><code><MadCap:variable name="General.EnvVariablePrefix" />_HOME/insightedge</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">INSIGHTEDGE_CLASSPATH_EXT</td>
+                        <td align="left">Extra classpath to append to <MadCap:variable name="General.ProductNameIE" /> components</td>
+                        <td align="left" />
+                    </tr>
+                    <tr>
+                        <td align="left">INSIGHTEDGE_SPACE_NAME</td>
+                        <td align="left">Space name to use in <MadCap:variable name="General.ProductNameIE" /> scripts and examples</td>
+                        <td align="left"><code>demo</code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>In addition, you can also use standard Spark environment variables. The <MadCap:variable name="General.ProductNameIEP" /> loads Spark components in a manner that preserves their usage. For example, set <code>SPARK_MASTER_PORT</code> to override the default <code>7077</code> port.</p>
+            <h1><a name="upgrading-from-previous-versions"></a>Upgrading from Previous Versions</h1>
+            <p MadCap:conditions="Version.15-0-born">Environment variables in <MadCap:variable name="General.ProductNameIE" /> 15.0 and higher are modified to start with a GS_ prefix in place of the previous XAP_ prefix. To support existing scripts that include environment variables with the XAP_ prefix,  the product reads <MadCap:variable name="General.ProductNameIE" />-specific environment variables,  with both a GS_ prefix and a XAP_ prefix. Therefore if you are upgrading from a previous version, you don't have to modify your scripts right away (although we recommend that you do it eventually).</p>
+            <p MadCap:conditions="Version.15-0-died">In previous versions, environment variable names were inconsistent, which occasionally led to confusion. Starting with <MadCap:variable name="General.ProductNameXAP" /> 11.0, all <MadCap:variable name="General.ProductNameXAP" />-related environment variables were renamed with a <code>XAP_</code> prefix, so they're easier to identify. The following table maps the pre-11.0 names to the current names:</p>
+            <table MadCap:conditions="Version.15-0-died">
+                <thead>
+                    <tr>
+                        <th align="left">Name before 11.0</th>
+                        <th align="left">Name in 12.0 and higher</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="left">JSHOMEDIR</td>
+                        <td align="left">XAP_HOME</td>
+                    </tr>
+                    <tr>
+                        <td align="left">LOOKUPGROUPS</td>
+                        <td align="left">XAP_LOOKUP_GROUPS</td>
+                    </tr>
+                    <tr>
+                        <td align="left">LOOKUPLOCATORS</td>
+                        <td align="left">XAP_LOOKUP_LOCATORS</td>
+                    </tr>
+                    <tr>
+                        <td align="left">NIC_ADDR</td>
+                        <td align="left">XAP_NIC_ADDRESS</td>
+                    </tr>
+                    <tr>
+                        <td align="left">POLICY</td>
+                        <td align="left">XAP_SECURITY_POLICY</td>
+                    </tr>
+                    <tr>
+                        <td align="left">GS_LOGGING_CONFIG_FILE</td>
+                        <td align="left">XAP_LOGS_CONFIG_FILE</td>
+                    </tr>
+                    <tr>
+                        <td align="left">GSC_JAVA_OPTIONS</td>
+                        <td align="left">XAP_GSC_OPTIONS</td>
+                    </tr>
+                    <tr>
+                        <td align="left">GSM_JAVA_OPTIONS</td>
+                        <td align="left">XAP_GSM_OPTIONS</td>
+                    </tr>
+                    <tr>
+                        <td align="left">GSA_JAVA_OPTIONS</td>
+                        <td align="left">XAP_GSA_OPTIONS</td>
+                    </tr>
+                    <tr>
+                        <td align="left">LUS_JAVA_OPTIONS</td>
+                        <td align="left">XAP_LUS_OPTIONS</td>
+                    </tr>
+                    <tr MadCap:conditions="">
+                        <td align="left">ESM_JAVA_OPTIONS</td>
+                        <td align="left">XAP_ESM_OPTIONS</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><a name="extension"></a>
+            </p>
+            <div class="tc-admon-note" MadCap:conditions="Version.15-0-died">
+                <p>If you'd rather postpone or avoid changing your scripts to the new names, you can use the <code>setenv-overrides</code> script to map the corresponding values. For example, suppose you customized the lookup groups and the GSC options. If you followed GigaSpaces best practices, you created a custom script to set those environment variables before calling the original script, for example:</p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title=" my-gs-agent.sh (Unix)" style="padding:10px"><pre><code class="language-bash">export LOOKUPGROUPS=foo
+export GSC_JAVA_OPTIONS=-Xms1024m -Xmx1024m
+./gs-agent.sh
+</code></pre>
+                    </div>
+                    <div title=" my-gs-agent.bat (Windows)" style="padding:10px"><pre><code class="language-bash">set LOOKUPGROUPS=foo
+set GSC_JAVA_OPTIONS=-Xms1024m -Xmx1024m
+call gs-agent.bat
+</code></pre>
+                    </div>
+                </div>
+                <p>The <code>gs-agent</code> script calls the <code>setenv</code> script to set up the environment, which in turn calls the <code>setenv-overrides</code> script mentioned above to implement any customization that overrides the default values. You can modify <code>setenv-overrides</code> to propagate the old variables to the new ones, for example:</p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title=" setenv-overrides.sh (Unix)" style="padding:10px"><pre><code class="language-bash">export <MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS=$LOOKUPGROUPS
+export <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=$GSC_JAVA_OPTIONS
+</code></pre>
+                    </div>
+                    <div title=" setenv-overrides.bat (Windows)" style="padding:10px"><pre><code class="language-bash">set <MadCap:variable name="General.EnvVariablePrefix" />_LOOKUP_GROUPS=%LOOKUPGROUPS%
+set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=%GSC_JAVA_OPTIONS%
+</code></pre>
+                    </div>
+                </div>
+            </div>
+            <p>&#160;</p>
+            <p>&#160;</p>
+            <p style="color: #ff4500;font-weight: bold;">∧∧∧∧∧∧∧∧https://docs.gigaspaces.com/latest/started/common-environment-variables.html∧∧∧∧∧∧∧∧∧∧∧∧∧</p>
+        </div>
+        <p>&#160;</p>
+        <h1>Interactive Shell</h1>
+        <p><MadCap:variable name="General.ProductNameIE" /> is packaged with an interactive shell that lists the available commands when it is launched. </p>
+        <p>
+        To start the interactive shell, open a command window from the <MadCap:variable name="General.Home-directory" />/bin folder.</p>
+        <p>Type the following command to  launch the script:</p>
+        <div>
+            <h4>Command:</h4><pre><code class="language-scala"><MadCap:variable name="General.CLI-script-all" /> version</code></pre>
+            <h4>Output:</h4>
+            <p>xxxxxxxxxxxxxxxxxxxxxxxx</p>
+        </div>
+        <p>Then type the following command to display version information:</p>
+        <div>
+            <h4>Command:</h4><pre><code class="language-scala"> version</code></pre>
+            <h4>Output:</h4>
+            <p>xxxxxxxxxxxxxxxxxxxxxxxx</p>
+        </div>
+        <h1>Project Blueprints</h1>
+        <p><MadCap:variable name="General.ProductNameIE" /> comes packaged with a set of blueprints that can be used to create projects. These blueprints can be generated via the interactive shell. To see information about available blueprints and related commands, type the following:</p>
+        <ul>
+            <li><code>blueprint list</code> - displays a list of available blueprints.</li>
+            <li><code>blueprint</code> - displays a list of available blueprint commands.</li>
+        </ul>
+        <h1>Creating a Project</h1>
+        <p>When you create a project, the blueprint leads you through an interactive work flow where you define a number of options as you create your configuration. Using only the default options in the work flow creates a client application that is configured to use the Space that is generated with it.</p>
+        <div class="tc-admon-tip">
+            <p>When you first begin to generate a blueprint-based project, you can give the project a name. We skip this in the example.</p>
+        </div>
+        <p class="tc-todo">To create a project:</p>
+        <ol>
+            <li>
+                <p>Type <code>blueprint generate</code>. This begins the configuration work flow.</p>
+            </li>
+            <li>A list of available blueprints is displayed. Press <span class="tc-bold">Enter</span> to select the default value (<span class="tc-bold">1</span>=client).</li>
+            <li>The next step is configuring the target path (folder name and location) for the client application files. Press <span class="tc-bold">Enter</span> to select the default value (<span class="tc-bold">my-client</span> in the product package bin folder).</li>
+            <li>The client blueprint supports customizing several additional properties, but for now you should use the default values. Press <span class="tc-bold">Enter</span> to skip the additional configuration.</li>
+            <li>
+                <p>The project is created, and the target path is displayed. You are prompted to open the project in your default file explorer. </p><pre><code class="language-bash">Generated project from client at D:\InsightEdge\gigaspaces-insightedge-enterprise-<MadCap:variable name="Versions.product-version-long" />\bin\my-client1
+Would you like to open it in file explorer? [y]:</code></pre>
+                <p>Press <span class="tc-bold">Enter</span> to view the project files.</p>
+                <p>
+                    <img src="client-blueprint-project-files.png" class="tc-picture80" />
+                </p>
+            </li>
+        </ol>
+        <h2>Project Structure</h2>
+        <p>The project that is created by the client blueprint has the following structure:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/images/client-blueprint-project-structure-remove-line.png" class="tc-picture30" />
+            </p>
+        </div>
+        <p>Where:</p>
+        <ul>
+            <li><span class="tc-bold">pom.xml</span> - a standard Maven project descriptor that contains a single Maven dependency on <code>xap-openspace</code>.</li>
+            <li><span class="tc-bold">Program.java</span> - a simple Java program with a <code>main</code> method that demonstrates how to connect to an existing Space or how to create an embedded Space.</li>
+            <li><span class="tc-bold">employees.csv</span> - a test resource file with sample data.</li>
+            <li><span class="tc-bold">Employee.java</span> - a POJO&#160;file that contains the employee data model.</li>
+            <li><span class="tc-bold">SpaceTestCase.java</span> - a unit test that loads employee data from the resource file, writes the data to the Space, and performs various Space operations.</li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>For more information about using Maven with <MadCap:variable name="General.CompanyName" /> products, see <MadCap:xref href="installation-maven-overview.html">Maven Artifacts</MadCap:xref>.</p>
+        </div>
+        <h2>Building and Running the Project</h2>
+        <h3>From the Command Line</h3>
+        <p class="tc-todo">To build the project:</p>
+        <ol>
+            <li>
+                <p> Open a shell from the <span class="tc-bold">my-client</span> folder.</p>
+            </li>
+            <li>
+                <p>Run the following command to build the project and run the test (as shown in the shell output). The test demonstrates how to write data to the grid, and how to read from the data grid.</p>
+                <div>
+                    <h4>Command:</h4><pre><code class="language-scala"><MadCap:variable name="General.CLI-script-all" /> t</code></pre>
+                </div><pre><code class="language-java">mvn.{sh/bat} package</code></pre>
+            </li>
+        </ol>
+        <h3>In Your Development Environment</h3>
+        <p>You can open any standard Java IDE (for example, Eclipse or IntelliJ IDEA) and import the project using the pom.xml file. After the project is imported, you can run or debug it, and experiment with changing the test to become more familiar with the Space API.</p>
+        <h1>Connecting Your Application to an Existing Space</h1>
+        <h2>Starting a Service Grid</h2>
+        <p>A data grid in a local environment is hosted on a <a href="../overview/the-runtime-environment.html">service grid</a>. The service grid is comprised of one or more machines (service grid nodes) running a <a href="../overview/the-runtime-environment.html#gsa">Grid Service Agent</a> (or GSA), and provides a framework to deploy and monitor applications on the data grid.</p>
+        <p class="tc-todo">To start the service grid:</p>
+        <ul>
+            <li>
+                <p> To start a service grid with 4 containers, navigate to <span class="tc-bold"><MadCap:variable name="General.Home-directory" />/bin</span> and run the following command:</p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> host run-agent --auto --gsc=4
+</code></pre>
+                    </div>
+                    <div title="Windows " style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> host run-agent --auto --gsc=4
+</code></pre>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <h2>Deploying the Data Grid</h2>
+        <p>After you launch a service grid, you can deploy a data grid and begin to use it.</p>
+        <p class="tc-todo">To deploy the data grid:</p>
+        <ul>
+            <li>
+                <p>Open a command window, navigate to <span class="tc-bold"><MadCap:variable name="General.Home-directory" />/bin</span>, and run the following command:</p>
+                <div class="easyui-tabs" plain="true" data-options="">
+                    <div title="Linux " style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Linux" /> space deploy --partitions=2 --ha myGrid
+</code></pre>
+                    </div>
+                    <div title="Windows " style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" /> space deploy --partitions=2 --ha myGrid</code></pre>
+                    </div>
+                </div>
+                <p>This command deploys a data grid (aka Space) called <span class="tc-bold">myGrid</span> with 2 partitions and 1 backup per partition.</p>
+            </li>
+        </ul>
+        <h2>Interacting with the Data Grid</h2>
+        <p>After the data grid has been deployed, you can run your project again. To connect to the existing Space, change the default Space name to the name of the Space you just created.</p>
+        <p class="tc-todo">To run the project again:</p>
+        <ul>
+            <li>Navigate to my-client and type the following in the command line:</li>
+        </ul>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Linux " style="padding:10px"><pre><code class="language-bash"> ./run.sh myGrid
+</code></pre>
+            </div>
+            <div title="Windows " style="padding:10px"><pre><code class="language-bash"> .\run myGrid</code></pre>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Space-Based Remoting in Kubernetes</h1>
+        <p>As part of the basic functionality of a <MadCap:variable name="General.ProductNameXAP" /> environment, the <MadCap:variable name="General.ProductNameXAP" />-based application is deployed on the server side, and remote clients access <MadCap:variable name="General.ProductNameIE" /> and the data grid using LRMI, via a proxy that sits on the client and supports all Space API operations.</p>
+        <div class="tc-admon-note">
+            <p>For more information about Space-based remoting, see the <MadCap:xref href="../dev-java/space-based-remoting-overview.html">Space-Based Remoting</MadCap:xref> section of the developer guide.</p>
+        </div>
+        <p>When deployed on Kubernetes, the server side is isolated, and external access is provided via Kubernetes services. In order to enable Space-based remoting, namely a proxy that communicates with the server (data grid in the Kubernetes cluster), you need to do the following:</p>
+        <ol>
+            <li>Expose each <MadCap:variable name="General.ProductNameXAP" /> service (Processing Unit instance) as a Kubernetes service</li>
+            <li>Enable remote client access:<ul><li>Point the Space proxy in the remote client to the LUS</li><li>Extract the LUS port and IP&#160;address from the <code>manager</code> service (which sits inside Kubernetes)</li></ul></li>
+        </ol>
+        <p>External access is provided via the pod URL, which contains either the port value that was defined for the service, or the node port value (which can be either random or assigned). </p>
+        <div class="tc-admon-attention">
+            <p>Notify containers and local view are not currently supported.</p>
+        </div>
+        <h1>Exposing the <MadCap:variable name="General.ProductNameXAP" /> Services</h1>
+        <p>You may have to modify the service (<code>pu</code>) section of the Helm chart depending on whether you are in a development or a production environment, and the scale of your cluster. You can also enable or disable Space-based remoting by changing the value of the LRMI process in the <code>pu</code> section of the Helm chart.</p>
+        <p>You only have to select the service type if you intend to use the node port, as the <MadCap:variable name="General.ProductNameXAP" /> chart is configured with LoadBalancer enabled by default. After you decide which service type you are using, you then have to expose the Space as a service.</p>
+        <h2>Selecting the Service Type</h2>
+        <p>As explained in the <MadCap:xref href="kubernetes-deploy-pu.html">Deploying a Service in Kubernetes</MadCap:xref>, Kubernetes services use either the LoadBalancer or NodePort service type to enable external access to Pods. Each service type has its advantages and disadvantages, and you may have to weigh them when configuring your environment. Overall, using the NodePort service type (which accesses services using the Nodeport value, which is left undefined by default and so can have a random value) is fine for the development environment, while the LoadBalancer service type (which is defined and therefore doesn't change during runtime) is generally preferred for production environments.</p>
+        <p>The following sections provide more details about each service type.</p>
+        <h3>LoadBalancer</h3>
+        <p>This is the default service type for both the Manager and the service. The load balancer is external to the pod and sits outside the cluster. On startup, Kubernetes creates a load balancer for each service that provides remote access as follows: </p>
+        <ol MadCap:conditions="Version.15-0-born">
+            <li>The Helm chart creates a dedicated service for each pod.</li>
+            <li>During startup, the pod registers itself in the lookup sevice (LUS)&#160;with the loadBalancer IP address.</li>
+            <li>When accessing the <MadCap:variable name="General.ProductNameXAP" /> server environment, the remote client queries the LUS&#160;and retrieves all the member addresses.</li>
+        </ol>
+        <p>In Space-based remoting, every Space instance is exposed as a service. In high availability configurations this can lead to a large number of load balancers; for example, a single 4-partition service is seen by Kubernetes as 8 services and therefore requires 8 load balancers because in high availability configuration each primary Space instance has a backup instance. This can lead to high costs in the cloud. </p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/kubernetes/remote-loadbalancer.png" class="tc-picture50" />
+            </p>
+        </div>
+        <p><code>LoadBalancer</code> is the default configuration for KubeGrid, so there is no need to specify a service type when installing the Helm chart. For example, you can install <MadCap:variable name="General.ProductNameIE" /> with the following command:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-pu --name testspace --set manager.name=testmanager,service.lrmi.InitialNodePort=31200</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm install testspace insightedge-pu --set manager.name=testmanager,service.lrmi.InitialNodePort=31200 </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                        <p><pre><code>helm install insightedge-pu --name testspace --set manager.name=testmanager,service.lrmi.InitialNodePort=31200</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <h3>NodePort</h3>
+        <p>The <code>NodePort</code> service type exposes each service on a specific node port that can be assigned randomly, or specified when you install the Helm chart. When using the <code>NodePort</code> service type, the pod registers in the LUS&#160;with the assigned IP address.</p>
+        <p>The problem with specifying node ports is that pods may move to different nodes during runtime, for example if the current node crashes. This means that they then have different node port values and services can't find the pods on the new nodes. Additionally some cloud services such as Amazon AWS require setting firewall rules that open node ports explicitly in order to support remote client access.</p>
+        <p>To resolve these issues, the service (pu/values.yaml) section of the Helm chart contains an additional value called <code>initialNodeport</code> for the LRMI. By default, this property is empty and Kubernetes assigns a node port randomly for each servic,e using the range 30000-32767. If you want to specify the node ports rather than expose the entire range, you can specify the initial port number and <MadCap:variable name="General.ProductNameXAP" /> will then assign sequential port numbers for each instance. </p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/kubernetes/remote-nodeport.png" class="tc-picture50" />
+            </p>
+        </div>
+        <p><code>NodePort</code> isn't the default service type, so you need to specify it when you install the Helm chart. For example, see the following Helm install command:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-pu --name testspace --set manager.name=testmanager, service.type=NodePort, service.lrmi.InitialNodePort=31200</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm install testspace insightedge-pu --set manager.name=testmanager, service.type=NodePort, service.lrmi.InitialNodePort=31200 </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                        <p><pre><code>helm install insightedge-pu --name testspace --set manager.name=testmanager, service.type=NodePort, service.lrmi.InitialNodePort=31200</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <div class="tc-admon-note" MadCap:conditions="Version.15-0-born">
+            <p>This option requires exposing the assigned ports to external access. You also have to ensure that the assigned ports aren't being used by another service in your cluster.</p>
+        </div>
+        <h2>Exposing the Space as a Service</h2>
+        <p>On the server side, each Space instance must be exposed as a service. To do this, set the <code>service.lrmi.enabled</code> value to <code>true</code>. For example, see the following command:</p>
+        <div><pre MadCap:conditions="Version.15-5-died"><code>helm install insightedge-pu --name testspace --set manager.name=testmanager,service.lrmi.enabled=true</code></pre>
+            <p MadCap:conditions="Version.15-5-born">
+                <div class="easyui-tabs" plain="true">
+                    <div title="Helm 3">
+                        <p><pre><code>helm install testspace insightedge-pu --set manager.name=testmanager,service.lrmi.enabled=true </code></pre>
+                        </p>
+                    </div>
+                    <div title="Helm 2" MadCap:conditions="Version.16-1-died">
+                        <p><pre><code>helm install insightedge-pu --name testspace --set manager.name=testmanager,service.lrmi.enabled=true</code></pre>
+                        </p>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <div class="tc-admon-note">
+            <p>When Space-based remoting is enabled, each Space instance has its own dedicated Kubernetes service, which can result in a high resource requirements. If the service type is <code>loadBalancer</code>, you should disable the <code class="language-bash">lrmi</code> in the service Helm chart when Space-based remoting is no longer required, </p>
+        </div>
+        <h1>Enabling Remote Client Access</h1>
+        <p>The<MadCap:variable name="General.ProductNameXAP" /> proxy uses a single entry point to communicate with the data grid that sits in the Kubernetes environment. This entry point is the LUS&#160;IP&#160;address and port. In Kubernetes, the entry point value depends on the manager service type. For LoadBalancer type, the IP&#160;address is the load balancer IP address with the dedicated LUS&#160;port (4174). For NodePort type, the LUS&#160;IP&#160;address is the manager node IP&#160;address (machine public IP&#160;address) and the assigned node port value . </p>
+        <h2><MadCap:variable name="General.ProductNameXAP" />Manager Configuration</h2>
+        <p>The <code>manager</code> service exposes three processes:</p>
+        <ul>
+            <li><code>api</code> - REST&#160;Manager API, which is used to administer Space-based operations.</li>
+            <li><code>lus</code> - Lookup service for the data grid.</li>
+            <li><code>lrmi</code> - Communication protocol between Spaces and <MadCap:variable name="General.ProductNameXAP" /> services</li>
+        </ul>
+        <p>The LUS and the LRMI&#160;are enabled by default in the <code>manager</code> service, so they are available to the remote client without any additional configuration. </p>
+        <div class="tc-admon-note">
+            <p>It is strongly recommended not to change this configuration.</p>
+        </div>
+        <p>As explained above, the <code>nodePort</code> value is undefined by default. </p>
+        <p>You can view the services and ports for each service using the following command: </p><pre><code class="language-bash">kubectl describe svc &lt;service name&gt;</code></pre>
+        <h2>Extracting the LUS&#160;IP Address and Port</h2>
+        <p>When you create the Space proxy in the remote client, you should use the external IP&#160;address that is exposed in Kubernetes. You can retrieve the external IP&#160;address and ports using the following command:</p><pre><code class="language-bash">kubectl get svc</code></pre>
+        <p>This generates the following output:</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/kubernetes/load-balancer-ip-port.png" class="tc-picture80" />
+        </p>
+        <p>For example, your Space proxy may look like this in the client:</p><pre xml:space="preserve"><code class="language-java">GigaSpace gigaSpace = new GigaSpaceConfigurer(new SpaceProxyConfigurer
+("testspace").lookupLocators(“10.108.81.58:8090”)).gigaSpace();</code></pre>
+        <div class="tc-admon-note">
+            <p>For more information about creating a Space proxy, see <MadCap:xref href="../started/xap-tutorial-part1.html">Interacting with the Space</MadCap:xref>.</p>
+        </div>
+        <h2 MadCap:conditions="Default.DoNotShow">Remote Class Loading</h2>
+        <p MadCap:conditions="Default.DoNotShow">In non-Kubernetes environments, <MadCap:variable name="General.ProductNameXAP" /> uses LRMI&#160;to implement remote class loading. This protocol doesn't always work as expected in Kubernetes environments, so you can configure your system to use simple class loading instead.</p>
+        <div class="tc-admon-note">
+            <p MadCap:conditions="Default.DoNotShow">Simple class loading is supported in all environments - on-premise, cloud, and hybrid.</p>
+        </div>
+        <p MadCap:conditions="Default.DoNotShow">To configure your <MadCap:variable name="General.ProductNameXAP" />-based application, set the <code>com.gs.transport_protocol.lrmi.simple-classloading system</code> property to <code>true</code>.</p>
+        <div class="tc-admon-note">
+            <p MadCap:conditions="Default.DoNotShow">for more information about the LRMI system properties, see the LRMI Configuration section of the <MadCap:xref href="tuning-communication-protocol.html">Communication Protocol</MadCap:xref> topic.</p>
+        </div>
+    </body>
+</html>

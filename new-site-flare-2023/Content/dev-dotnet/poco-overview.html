@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>PONO Support</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> allows you to store and retrieve PONOs to and from the Space. This section introduces the basic concepts and Dynamic Properties.</p>
+        <p>A data unit stored in the space is called an <span class="tc-bold">Entry</span>.  Plain .NET objects are written to the Space and then read back. The API is .NET-friendly, and supports storing and retrieving .NET objects, which are transformed into Space entries under the hood. For example, when the program writes a <code>Message</code> object with a <code>String</code> property called <code>Text</code>, it is actually stored as an entry whose type name is Message, which holds one string property called Text.</p>
+        <p>Most of the time, the terms object and entry are used interchangeably, because the meaning is clear from the context, and the semantics are trivial. However, it is important to understand the difference between them. Moreover, some  features rely on applying semantics to an object to get a specific entry behavior. This page explains how objects are transformed to (and from) entries, and how that process can be controlled and customized.</p>
+        <h1><a name="including-excluding-data-from-an-entry"></a>Including/Excluding Data from an Entry</h1>
+        <p>By default, all public members (fields and properties) in a class are included in the entry, whereas non-public members are excluded. The common design practice is to expose data via public properties that encapsulate protected/private fields, so usually there's no need to adjust this behavior. However, it can be modified for exceptional cases.</p>
+        <h2><a name="customizing-a-specific-class"></a>Customizing a Specific Class</h2>
+        <p>To customize a specific class, apply a <code>[SpaceClass]</code> attribute on the class, and use <code>IncludeProperties</code> and/or <code>IncludeFields</code> to specify which members should be included in the entry. Both <code>IncludeProperties</code> and <code>IncludeFields</code> are an <code>IncludeMembers</code> enumeration, which can be set to one of the following:</p>
+        <ul>
+            <li>
+                <p><code>IncludeMembers.All</code> – all members are included.</p>
+            </li>
+            <li>
+                <p><code>IncludeMembers.Public</code> – public members are included, and non-public members are excluded.</p>
+            </li>
+            <li>
+                <p><code>IncludeMembers.None</code> – all members are excluded.</p>
+            </li>
+        </ul>
+        <h3><a name="example-1-1-default-behavior"></a>Example 1.1 – Default Behavior</h3><pre><code class="language-csharp">public class Person {...}
+</code></pre>
+        <p>This is actually equivalent to the following declaration:</p><pre><code class="language-csharp">[SpaceClass(IncludeFields=IncludeMembers.Public, IncludeProperties=IncludeMembers.Public)]
+public class Person {...}
+</code></pre>
+        <h3><a name="example-1-2-exclude-all-properties-and-include-all-fields-even-private"></a>Example 1.2 – Exclude All Properties and Include All Fields (even Private)</h3><pre><code class="language-csharp">[SpaceClass(IncludeFields=IncludeMembers.All, IncludeProperties=IncludeMembers.None)]
+public class Person {...}
+</code></pre>
+        <h2><a name="customizing-a-specific-member"></a>Customizing a Specific Member</h2>
+        <p>To customize a specific field/property, apply a <code>[SpaceProperty]</code> to include it, or a <code>[SpaceExclude]</code> to exclude it. These settings override the class-level settings.</p>
+        <h3><a name="example-1-3-storing-all-person-properties-except-the-password-property"></a>Example 1.3 – Storing All Person Properties except the Password Property</h3><pre><code class="language-csharp">public class Person
+{
+    [SpaceExclude]
+    public String Password {...}
+}
+</code></pre>
+        <div class="tc-admon-note">
+            <p>Starting with .NET 2.0, properties can have separate accessors for getters and setters (for example, a public getter and private setter). In these cases, if either the getter or the setter is public, the property is considered public (setting <code>IncludeProperties=IncludeMembers.Public</code> includes the property in the entry).</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>Read-only properties (getter, without setter), are included in the entry, but when the object is deserialized, the value is not restored because there's no setter. This enables the Space to be queried using such properties. There are two common scenarios for read-only properties:</p>
+            <ul>
+                <li>
+                    <p>Calculated value – the property returns a calculated value based on other fields/properties. This isn't a problem because no data is lost due to the "missing' setter.</p>
+                </li>
+                <li>
+                    <p>Access protection – the class designer is meant to protect the property from outside changes. This can be problematic because the field value is lost. To prevent this, consider adding a private setter or excluding the property, and including the field (as explained next).</p>
+                </li>
+            </ul>
+        </div>
+        <h1><a name="indexing"></a>Indexing</h1>
+        <p>If a property is used frequently when querying the Space, you can instruct the Space to index it for faster retrieval using the <code>[SpaceProperty]</code> attribute, and specifying <code>Index=SpaceIndexType.Basic</code>. For example:</p><pre><code class="language-csharp">public class Person
+{
+    [SpaceProperty(Index=SpaceIndexType.Basic)]
+    public String UserID {...}
+}
+</code></pre>
+        <div class="tc-admon-note">
+            <p>Indexing a property speeds up queries that include the property, but slows down write operations for that object (because the Space has to index the property). For this reason indexing is off by default, and the user decides which fields should be indexed.</p>
+        </div>
+        <h1><a name="object-id-vs-entry-id"></a>Object ID vs. Entry ID</h1>
+        <h2><a name="the-problem"></a>The Problem</h2>
+        <p>Examine the following piece of code:</p>
+        <h3><a name="example-2"></a>Example 2</h3><pre><code class="language-csharp">Message message = new Message();
+message.Text = "Same Same, But Different";
+proxy.Write(message);
+proxy.Write(message);
+</code></pre>
+        <p>If you execute it, and examine the Space in the GigaSpaces Management Center, you'll see two different entries with the same text, even though from the .NET perspective there's only one object. You should also see an additional column called <span class="tc-bold">UID</span>, which is not part of our .NET object and which contains a unique identifier that distinguishes the entries from each other. This unique identifier is commonly referred to as a <span class="tc-bold">Space ID</span>.</p>
+        <p>What happened behind the scenes? When a write operation executes, a new entry is created and the properties are copied from the object to the entry. Each entry contains an additional special hidden UID property, which we ignored and left as null. When the Space receives an entry to store, it verifies that there's no stored entry with the same UID, and if the UID is null it generates a unique one. In our scenario, because the UID was ignored, the second write operation resulted in a separate entry containing the same data with a different UID.</p>
+        <p>So how do we utilize the Space ID?</p>
+        <h2><a name="exposing-the-generated-space-id"></a>Exposing the Generated Space ID</h2>
+        <p>Let's add the following piece of code – the <code>Message</code> class:</p><pre><code class="language-csharp">private String _messageID;
+[SpaceID(AutoGenerate = true)]
+public String MessageID
+{
+    get { return _messageID; }
+    set { _messageID = value; }
+}
+</code></pre>
+        <p>If you run the code from <span class="tc-bold">example 2</span> again, you'll see that the second write fails with an <code>EntryAlreayInSpaceException</code>. If you examine the newly added <code>MessageID</code> property in the debugger, you'll see that even though we didn't set it, it contains a unique identifier string.</p>
+        <p>When a property is marked as <code>[SpaceID(AutoGenerate = true)]</code>, it is mapped to the entry's UID. On the first write operation the <code>MessageID</code> was null, so the entry UID was null, and the Space generated a UID for it. Before the operation was completed, the generated UID was copied back to the <code>MessageID</code> property, as the debugger shows. On the second write operation, the Space again creates an entry and maps the object data to the entry, but this time the <code>MessageID</code> is no longer empty, so the entry UID is not empty. The Space checked if the UID is unique, discovered that there's another entry with the same UID, and aborted the operation.</p>
+        <p>Next, we'll see how to make the Space use the object when generating the UID.</p>
+        <h2><a name="controlling-the-generated-space-id"></a>Controlling the Generated Space ID</h2>
+        <p>Modify the <code>SpaceID</code> declaration from <code>true</code> to <code>false</code>:</p><pre><code class="language-csharp">[SpaceID(AutoGenerate = false)]
+public String MessageID {...}
+</code></pre>
+        <p>Queries performed with the UID are much faster, because the query mechanism can reduce the result set efficiently.</p>
+        <p>Two modes of SpaceID are supported:</p>
+        <ul>
+            <li>
+                <p>Specify <code>[SpaceID(AutoGenerate=true)]</code> on the property that should hold the generated ID if you want the Space to automatically generate the UID. A SpaceID field that has AutoGenerate=true must be of type <code>string</code>.</p>
+            </li>
+            <li>
+                <p>Specify <code>[SpaceID(AutoGenerate=false)]</code> on a property if you want the Space to generate the UID using a specific value of that property.</p>
+            </li>
+        </ul>
+        <p>The default is <code>AutoGenerate=false</code>. Only one property in a class can be marked as a SpaceID property.</p>
+        <div class="tc-admon-note">
+            <p>There is no need to explicitly index a field that is marked as SpaceID, because it is already indexed.</p>
+        </div>
+        <h1><a name="under-the-hood"></a>Under the Hood</h1>
+        <p>Each public property/field in the object is mapped to a property of the same name and type in the entry. Non-public properties and fields are ignored. This means that any object can be stored in the Space; it does not have to inherit from a specific base class, implement an interface, or have any attributes. The only requirement is to have a parameter-less constructor (it doesn't have to be public), so the object can be created when it is retrieved from the Space.</p>
+        <p>While this generic approach solves simple scenarios easily, in some cases it is not enough. For example, you may want to exclude a specific property from being stored in the Space, or specify that a certain property should be indexed for faster performance. To that end, you can use a set of .NET attributes to control how an object is mapped to an entry. If you don't want to (or can't) use <MadCap:variable name="General.XAPNet" /> attributes in your code, you can create an XML file that defines those behaviors, commonly called <code>gs.xml</code>.</p>
+        <div class="tc-admon-note">
+            <p>Working with .NET attributes is usually simpler and easier than working with external XML files, so this page demonstrates all the features using attributes. However, every feature shown here can also be implemented using <code>gs.xml</code>.</p>
+            <p>Mapping a .NET object to a Space entry does not involve .NET serialization, which means that the <code>[Serializable]</code> indication is not required, and in fact ignored. Even so, it is a good design practice to mark all objects stored in the space as <code>[Serializable]</code>, to maintain .NET standards.</p>
+        </div>
+        <h1><a name="routing"></a>Routing</h1>
+        <p>When working with a clustered Space, one of the properties in a class is used to determine the routing behavior of that class within the cluster (how instances of that class are partitioned across the cluster's nodes). The routing property is determined according to the following rules:</p>
+        <ol>
+            <li>
+                <p>The property marked with <code>[SpaceRouting]</code> attribute is used.</p>
+            </li>
+            <li>
+                <p>Otherwise, the property marked with <code>[SpaceID]</code> is used.</p>
+            </li>
+            <li>
+                <p>Otherwise, the first indexed property in alphabetical order is used.</p>
+            </li>
+            <li>
+                <p>Otherwise, the first property in alphabetical order is used.</p>
+            </li>
+        </ol>
+        <p>Note that only one property in a class can be marked as a routing property.</p>
+        <div class="tc-admon-tip">
+            <p>We recommend explicitly declaring which property is the routing property, and not to rely on rules 2 and onward. Relying on those rules can lead to confusing problems (for example, if the SpaceID is changed, or an index is added to a property). Explicitly declaring the routing property makes your code clearer and less error-prone.</p>
+        </div>
+        <h1><a name="versioning"></a>Versioning</h1>
+        <p>The Space can keep track of an object's version (how many times it was written/updated in the Space), and provide optimistic concurrency using that version information. For this reason, the Space needs to store the object's version in some property in the object. To specify that a property should be used for versioning, mark it with a <code>[SpaceVersion]</code> attribute. If no property is marked as a Space version, the Space does not store version information for that class.</p>
+        <p>Only one property in a class can be marked as a version property, and it must be of type <code>int</code>.</p>
+        <h1><a name="nullvalue"></a>NullValue</h1>
+        <p>When a class contains a field or a property that is not a nullable type, (for example, a primitive such as <code>int</code> or a struct such as <code>DateTime</code>), it is recommended to specify a null value for it that will be used when querying the Space for that class. The <code>NullValue</code> attribute instructs the Space to ignore this field when performing matching or partial update, when the content of the field in the template equals the defined <code>NullValue</code>.</p>
+        <div class="tc-admon-note">
+            <p>We recommend avoiding the use of such fields and properties, and the need to define null values, by wrapping them with their corresponding Nullable, for instance Nullable&lt;int&gt; or Nullable&lt;DateTime&gt;.</p>
+        </div>
+        <p>To specify a null value, the field or property should be marked with the <code>[SpaceProperty(NullValue = ?)]</code> attribute:</p>
+        <h3><a name="example-3-1-null-value-on-a-primitive-int"></a>Example 3.1 - Null Value on a Primitive <code>int</code></h3><pre><code class="language-csharp">public class Person
+{
+    [SpaceProperty(NullValue = -1)]
+    public int Age {...}
+}
+</code></pre>
+        <h3><a name="example-3-2-null-value-on-datetime"></a>Example 3.2 - Null Value on <code>DateTime</code></h3><pre><code class="language-csharp">public class Person
+{
+    [SpaceProperty(NullValue = "1900-01-01T12:00:00")]
+    public DateTime BornDate {...}
+}
+</code></pre>
+        <h1><a name="mapping"></a>Mapping</h1>
+        <p>By default, the name of the class in the Space is the fully-qualified class name (including namespace), and the property/field names in the Space are equal to the .NET name. In some cases, usually in interoperability scenarios, you may have to map your .NET class name and properties to different names in the Space using the <code>AliasName</code> property on <code>[SpaceClass]</code> and <code>[SpaceProperty]</code>. For example, the following .NET Person class contains mapping to an equivalent Java Person class:</p><pre><code class="language-csharp">namespace MyCompany.MyProject
+{
+    [SpaceClass(AliasName="com.mycompany.myproject.Person")]
+    public class Person
+    {
+        [SpaceProperty(AliasName="firstName")]
+        public String FirstName {...}
+    }
+}
+</code></pre>
+        <p>For more information, refer to <a href="interoperability.html">Platform Interoperability</a>.</p>
+        <div class="tc-admon-note">
+            <p>When using Space SqlQuery on an object with properties that are aliased, the query text must use the aliased property names. For more information about SqlQuery, see the <a href="query-sql.html">SQL Query</a> page.</p>
+        </div>
+        <h1><a name="persistency"></a>Persistency</h1>
+        <p>The Space can be attached to an external data source, and persist its classes through it. It can be specified whether a certain class should be persisted or not. To do this, use the <code>[SpaceClass(Persist=true)]</code> or <code>[SpaceClass(Persist=false)]</code> class level attribute. The default is <code>[SpaceClass(Persist=true)]</code>.</p><pre><code class="language-csharp">[SpaceClass(Persist=false)]
+public class Person {...}
+</code></pre>
+        <h1><a name="replication"></a>Replication</h1>
+        <p>Some cluster topologies have replication defined, which means that some or all of the data is replicated between the Spaces. In this case, it can be specified whether each class should be replicated or not using the <code>[SpaceClass(Replicate=true)]</code> or <code>[SpaceClass(Replicate=false)]</code> class level attribute. The default is <code>[SpaceClass(Replicate=true)]</code>.</p><pre><code class="language-csharp">[SpaceClass(Replicate=false)]
+public class Person {...}
+</code></pre>
+        <h1><a name="fifo"></a>FIFO</h1>
+        <p>A class can be marked to operate in FIFO mode, which means that all the inserts, removals and notifications of this class should be done in First-in-First-out mode. You can specify whether each class should operate in FIFO mode or not using the <code>[SpaceClass(Fifo=true)]</code> or <code>[SpaceClass(Fifo=false)]</code> class level attribute. The default is <code>[SpaceClass(Fifo=false)]</code>.</p><pre><code class="language-csharp">[SpaceClass(Fifo=true)]
+public class Person {...}
+</code></pre>
+    </body>
+</html>

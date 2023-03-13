@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Text Search Index</h1>
+        <p>Text Search indexes can be defined by using the <code>@SpaceTextIndex</code> and <code>@SpaceTextIndexs</code> annotations.</p>
+        <p>Lets assume we have a class called <code>NewsArticle</code> that has a <code>content</code> property that describes text we want to execute the text search queries
+against:</p><pre><code class="language-java">import org.openspaces.textsearch.SpaceTextIndex;
+
+import com.gigaspaces.annotation.pojo.SpaceClass;
+import com.gigaspaces.annotation.pojo.SpaceId;
+
+@SpaceClass
+public class NewsArticle {
+    private UUID id;
+    private String content;
+    private Long articleNumber;
+
+    @SpaceId
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    @SpaceTextIndex
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+}
+</code></pre>
+        <p>Here is a query that will trigger the usage of this index:</p><pre><code class="language-java">SQLQuery&lt;NewsArticle&gt; query = new SQLQuery&lt;NewsArticle&gt;(NewsArticle.class, "content text:match ?");
+query.setParameter(1, "deployment"); 
+</code></pre>
+        <div class="tc-admon-note">
+            <p>See <a href="query-full-text-search.html">Full Text Search</a>  for more information on how text search queries work.</p>
+        </div>
+        <h1><a name="nested-index"></a>Nested Index</h1>
+        <p>An index can be defined on a nested property to improve performance of nested queries. Nested properties indexing uses an additional attribute - <code>path()</code>.
+This attribute represents the path of the property within the nested object.</p>
+        <p>In the example below, the <code>author</code> is a property of type <code>Person</code>  which is a property of <code>NewsArticle</code>:</p><pre><code class="language-java">import java.util.UUID;
+
+import org.openspaces.textsearch.SpaceTextIndex;
+import org.openspaces.textsearch.SpaceTextIndexes;
+
+import com.gigaspaces.annotation.pojo.SpaceClass;
+import com.gigaspaces.annotation.pojo.SpaceId;
+
+@SpaceClass
+public class NewsArticle {
+    private UUID id;
+    private String content;
+    private Person author;
+    private Long articleNumber;
+
+    @SpaceTextIndex
+    public String getContent() {
+        return content;
+    }
+
+    @SpaceTextIndexes({ @SpaceTextIndex(path = "firstName"), @SpaceTextIndex(path = "lastName") })
+    public Person getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Person author) {
+        this.author = author;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @SpaceId
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+}
+</code></pre>
+        <p>The following is an example of a query that triggers this index:</p><pre><code class="language-java">SQLQuery&lt;NewsArticle&gt; query = new SQLQuery&lt;NewsArticle&gt;(NewsArticle.class, "author.firstName text:match ? AND  author.lastName text:match ?");
+query.setParameter(1, "Friedrich");
+query.setParameter(2, "Durrenmatt");
+</code></pre>
+        <h1><a name="combining-text-and-standard-predicates"></a>Combining Text and Standard Predicates</h1>
+        <p>Suppose our <code>NewsArticle</code> class contains a articleNumber property as well, and we want to enhance our query and find the NewsArticle with a articleNumber. We can simply add the relevant predicate to the query's criteria:</p><pre><code class="language-java">SQLQuery&lt;NewsArticle&gt; query = new SQLQuery&lt;NewsArticle&gt;(NewsArticle.class, "content text:match ? AND articleNumber &lt; ?");
+query.setParameter(1, "deployment");
+query.setParameter(2, new Long(1000));  
+</code></pre>
+        <div class="tc-admon-note">
+            <p>You should make an effort to choose the optimal index. For example, If both <code>content</code> and <code>articleNumber</code> are indexed, the index which appears first in the query is the one that will be used. This may significantly effect the performance of your query, so it's recommended to estimate which index is most efficient for each query and put it first.</p>
+        </div>
+        <h1><a name="space-document"></a>Space Document</h1>
+        <p>The text search is also supported with <a href="document-overview.html">Space Documents</a>. Lets take the above example of the <code>NewsArticle</code> and use it as a <code>SpaceDocument</code>:</p><pre><code class="language-java">DocumentProperties author = new DocumentProperties();
+author.put("firstName", "Friedrich");
+author.put("lastName", "Durrenmatt");
+
+SpaceDocument doc =  new SpaceDocument("NewsArticle")
+    .setProperty("id", 1)
+    .setProperty("content", "The quick brown fox jumps over the lazy dog")
+    .setProperty("author", author);
+ 
+// ...
+</code></pre>
+        <p>Defining the TypeDescriptor and registering with the Space is done with the <code>addQueryExtensionInfo</code> method:</p><pre><code class="language-java">GigaSpace gigaSpace = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("xapSpace")).gigaSpace();
+
+// With Index 
+gigaSpace.getTypeManager().registerTypeDescriptor(new SpaceTypeDescriptorBuilder(typeName).idProperty("id")
+                .addQueryExtensionInfo("content", LuceneTextSearchQueryExtensionProvider.index()).create());
+                
+// Nested Index 
+gigaSpace.getTypeManager().registerTypeDescriptor(new SpaceTypeDescriptorBuilder(typeName).idProperty("id")
+                .addQueryExtensionInfo("author.firstName", LuceneTextSearchQueryExtensionProvider.index())
+                .addQueryExtensionInfo("author.lastName", LuceneTextSearchQueryExtensionProvider.index())
+                .create()); 
+</code></pre>
+        <p>The following is an example of a query that triggers this index:</p><pre><code class="language-java">SQLQuery&lt;SpaceDocument&gt; query = new SQLQuery("NewsArticle", "author.firstName text:match ? AND author.lastName text:match ?")
+    query.setParameter(1, "Frierich");
+    query.setParameter(2, "Durrnmatt");
+SpaceDocument result = this.gigaSpace.read(query);
+</code></pre>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="document-overview.html">Space Document</a> page.</p>
+        </div>
+    </body>
+</html>

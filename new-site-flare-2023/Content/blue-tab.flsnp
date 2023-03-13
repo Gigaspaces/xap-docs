@@ -1,0 +1,32 @@
+﻿		
+		
+			$(document).ready(function() {
+			//anything in here will only be called/work when the document is ready.
+			
+			
+//	$('#dfb-tabs-10').html('<span style="color:blue">Java</span>'); 
+			
+			
+			
+			$("span.tabs-title").each(function(){
+			var originalSpanTest = $(this).text();
+			
+			if (originalSpanTest == "Java")
+			{
+			$(this).html('<span style="color:blue">Java</span>');
+			}
+			
+			if (originalSpanTest == "Dot Net")
+			{
+			$(this).html('<span style="color:blue">Dot Net</span>');
+			}
+			
+			});
+			
+			
+			
+			
+			//call your function in here, instead of bodyonload
+			});
+		
+		

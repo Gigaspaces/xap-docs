@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Transactions</h1>
+  
+
+<p><code>GigaSpace</code> with the different <MadCap:variable name="General.ProductNameXAP" /> <a href="transaction-overview.html">transaction managers</a> and Spring allow simple declarative definition of transactions. This boils down to the fact that if there is an ongoing transaction running, any operation performed using the <code>GigaSpace</code> interface joins it, using Spring's rich transaction support.</p>
+
+<div class="tc-admon-note">
+  
+  <p>In order to have <MadCap:variable name="General.ProductNameXAP" /> transactional, the transaction manager must be provided as a reference when constructing the GigaSpace bean.
+For example (using the distributed transaction manager):</p>
+</div>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="Namespace" style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="space" /&gt;
+&lt;os-core:distributed-tx-manager id="transactionManager"/&gt;
+&lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager"/&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="transactionManager" class="org.openspaces.core.transaction.manager.DistributedJiniTransactionManager"&gt;
+    &lt;property name="space" ref="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+    &lt;property name="transactionManager" ref="transactionManager" /&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+</div>
+
+<div class="tc-admon-refer">
+  
+  <p>It is highly recommended to read the <a href="http://static.springframework.org/spring/docs/3.0.x/reference/transaction.html" target="_blank" >transaction management chapter</a> in the Spring reference documentation.</p>
+</div>
+
+<h1><a name="transaction-provider"></a>Transaction Provider</h1>
+
+<p>OpenSpaces provides a pluggable transaction provider using the following interface:</p>
+
+<pre><code class="language-java">public interface TransactionProvider {
+    Transaction getCurrentTransaction(Object transactionalContext, IJSpace space);
+    int getCurrentTransactionIsolationLevel(Object transactionalContext);
+}
+</code></pre>
+
+<p>OpenSpaces comes with a default transaction provider implementation, which uses Spring and its transaction manager in order to obtain the currently running transactions and automatically use them under transactional operations.</p>
+
+<p><MadCap:variable name="General.ProductNameXAP" /> allows access to the current running transaction using the transaction provider. The following code example shows how the take operation can be performed using <code>IJspace</code> (users normally won't be required to do so):</p>
+
+<pre><code class="language-java">gigaSpace.getSpace().take(obj, gigaSpace.getCurrentTransaction(), 1000);
+</code></pre>
+
+<h1><a name="isolation-level"></a>Isolation Level</h1>
+
+<p><MadCap:variable name="General.ProductNameXAP" /> supports three isolation levels: <code>READ_UNCOMMITTED</code>, <code>READ_COMMITTED</code> and <code>REPEATABLE_READ</code> (default). When using <code>GigaSpace</code>, the default isolation level that it will perform under can be defined in the following manner:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="space" /&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="space" default-isolation="READ_COMMITTED"/&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+    &lt;property name="defaultIsolationLevelName" value="READ_COMMITTED" /&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+<div title="  Code " style="padding:10px"><pre><code class="language-java">IJSpace space = // get Space either by injection or code creation
+
+GigaSpace gigaSpace = new GigaSpaceConfigurer(space)
+                          .defaultIsolationLevel(TransactionDefinition.ISOLATION_READ_COMMITTED)
+                          .gigaSpace();
+</code></pre>
+</div>
+</div>
+
+<p>In addition, Spring allows you to define the isolation level on the transaction definition itself:</p>
+
+<pre><code class="language-java">@Transactional(readOnly = true)
+public class DefaultFooService implements FooService {
+
+    private GigaSpace gigaSpace;
+
+    public void setGigaSpace(GigaSpace gigaSpace) {
+        this.gigaSpace = gigaSpace;
+    }
+
+    public Foo getFoo(String fooName) {
+        // do something
+    }
+
+    // these settings have precedence for this method
+    @Transactional(readOnly = false,
+                   propagation = Propagation.REQUIRES_NEW,
+                   isolation  = Isolation.READ_COMMITTED)
+    public void updateFoo(Foo foo) {
+        // do something
+    }
+}
+</code></pre>
+
+<p>In the above example, any operation performed using <code>GigaSpace</code> in the <code>updateFoo</code> method automatically works under the <code>READ_COMMITTED</code> isolation level.</p>
+
+<div class="tc-admon-refer">
+  
+  <p><a href="transaction-overview.html">Transaction Management</a></p>
+</div>
+
+</body>
+</html>

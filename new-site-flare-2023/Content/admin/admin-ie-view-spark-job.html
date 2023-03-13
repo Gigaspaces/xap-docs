@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Viewing the Spark Job Status</h1>
+        <div class="tc-admon-note">
+            <p>This functionality is not yet available in the Command Line Interface, Web Management Console, GigaSpaces Management Center, or Administration API administration tools.</p>
+        </div>
+        <p><span class="tc-bold">To view the Spark job status:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <!--
+<div title="Command Line Interface" style="padding:10px"><p>N/A</p>
+</div>
+-->
+            <div title="REST Manager API" style="padding:10px">
+                <p><span class="tc-italic">Path</span>
+                </p>
+                <p><code>GET /spark/applications/{id}</code>
+                </p>
+                <p><span class="tc-italic">Description:</span>
+                </p>
+                <p>This option shows the status of the Spark jobs in the system.</p>
+                <p><span class="tc-italic">Example Request:</span>
+                </p><pre><code class="language-bash">curl -X GET --header 'Accept: text/plain' 'http://localhost:8090/v2/spark/applications/application1'
+</code></pre>
+                <p><span class="tc-italic">Example Response:</span>
+                </p><pre><code class="language-bash"></code></pre>
+                <p><span class="tc-italic">Options:</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>Provide the ID of the Spark driver for which you want to see the jobs.</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">RDD API</h1>
+        <p>This section describes how to load data from the Data Grid to Spark.</p>
+        <h1><a name="creating-the-data-grid-rdd"></a>Creating the Data Grid RDD</h1>
+        <p>To load data from the Data Grid, use <code>SparkContext.gridRdd[R]</code>. The type parameter <code>R</code> is a Data Grid model class. For example,</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Scala" style="padding:10px"><pre><code class="language-scala">val products = sc.gridRdd[Product]()
+</code></pre>
+            </div>
+        </div>
+        <p>Once RDD is created, you can perform any generic Spark actions or transformations, e.g.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Scala" style="padding:10px"><pre><code class="language-scala">val products = sc.gridRdd[Product]()
+println(products.count())
+println(products.map(_.quantity).sum())
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="saving-rdd-to-the-data-grid"></a>Saving RDD to the Data Grid</h1>
+        <p>To save Spark RDD to the Data Grid, use <code>RDD.saveToGrid</code> method. It assumes that type parameter <code>T</code> of your <code>RDD[T]</code> is a Space class otherwise an exception will be thrown at runtime.</p>
+        <p>Example:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Scala" style="padding:10px"><pre><code class="language-scala">val rdd = sc.parallelize(1 to 1000).map(i =&gt; Product(i, "Description of product " + i, Random.nextInt(10), Random.nextBoolean()))
+rdd.saveToGrid()
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="grid-side-rdd-filters"></a>Grid-Side RDD Filters</h1>
+        <p>To query a subset of data from the Data Grid, use the <code>SparkContext.gridSql[R](sqlQuery, args)</code> method. The type parameter <code>R</code> is a Data Grid model class, the <code>sqlQuery</code>parameter is a native Data Grid SQL query, <code>args</code> are arguments for the SQL query. For example, to load only products with a quantity more than 10:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Scala" style="padding:10px"><pre><code class="language-scala">val products = sc.gridSql[Product]("quantity &gt; 10")
+</code></pre>
+            </div>
+        </div>
+        <p>You can also bind parameters in the SQL query:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Scala" style="padding:10px"><pre><code class="language-scala">val products = sc.gridSql[Product]("quantity &gt; ? and featuredProduct = ?", Seq(10, true))
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-refer">
+            <p>For more information about the Data Grid SQL queries, refer to <a href="query-sql.html">Data Grid documentation</a>.</p>
+        </div>
+        <h1><a name="zip-rdd-with-grid-sql-data"></a>Zip RDD with Grid SQL Data</h1>
+        <p>You may want to transform the RDD by executing SQL query for each element in the RDD. This can be done using <code>rdd.zipWithGridSql()</code> method. It returns a new RDD of tuple (element, query result items).
+Note, this might be an expensive operation.</p>
+        <p>For example, you have RDD of Customers and want to associate them with their orders:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Scala" style="padding:10px"><pre><code class="language-scala">val customers: RDD[Customer] = ...
+val query = "customerId = ?"
+val queryParamsConstructor = (c: Customer) =&gt; Seq(c.id)
+val projections = None
+val orders: RDD[(Customer, Seq[Order])] = customers.zipWithGridSql[Order](query, queryParamsConstructor, projections)
+
+</code></pre>
+            </div>
+        </div>
+        <p>
+            <br />
+        </p>
+        <h1><a name="controlling-spark-partitions"></a>Controlling Spark partitions</h1>
+        <p>Methods <code>SparkContext.gridRdd()</code> and <code>SparkContext.gridSql()</code> take an optional <code>splitCount</code> parameter which defines the number of Spark partitions per Data Grid partition. This feature is limited to <code>bucketed</code> grid model.</p>
+        <div class="tc-admon-refer">
+            <p>For more information, refer to <a href="insightedge-modeling.html">Data Modeling</a>.</p>
+        </div>
+    </body>
+</html>

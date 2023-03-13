@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Security Quick Start — In-Memory Security</h1>
+        <p>This document shows how to set up <MadCap:variable name="General.ProductNameXAP" /> security using an in-memory security model. It is suggested that you understand this basic technique before studying the other supported security methods.</p>
+        <h1>What is Quick Start Security?</h1>
+        <p>As implemented out of the box, <MadCap:variable name="General.ProductNameXAP" /> runs without a default security model — user logins are not required. Setting a single environmental variable (see below) implements our Quick Start security model. </p>
+        <p>The Quick Start security model defines three levels of user — administrator, manager or viewer – and requires a login to use the GUI, command line or REST API. Users, passwords and permissions are defined in an XML file in clear text.</p>
+        <h1>What are the Supported Security Models?</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports three security providers or models: in-memory, LDAP and JDBC. We will start with the simplest security model, in-memory, and then explain the more complex models of LDAP and JDBC in later topics.</p>
+        <div class="tc-admon-note">
+            <p>In additon to in-memory, LDAP and JDBC, any other Authentication provider compatible with <MadCap:xref href="introducing-spring-security.html">Spring Security</MadCap:xref> is supported.</p>
+        </div>
+        <h1>Enable Security - Set the GS_OPTIONS_EXT Environmental Variable</h1>
+        <div class="tc-admon-note">
+            <p>This example of in-memory security uses a flat file with clear text for the user and password. This is for learning purposes only, and is not a secure method for production use.</p>
+        </div>
+        <p>To set up security, we set the <code style="font-weight: bold;">GS_OPTIONS_EXT</code> environmental variable. This informs the system that security of some kind will be required.</p>
+        <p>Add the environmental variable definition to the<code style="font-weight: bold;"> setenv-overrides.sh/bat</code>file, as shown below. </p>
+        <div class="easyui-tabs" plain="true">
+            <div title="Unix">
+                <p><pre><code>export GS_OPTIONS_EXT='-Dcom.gs.security.enabled=true  -Dcom.gs.manager.rest.ssl.enabled=false'</code></pre>
+                </p>
+            </div>
+            <div title="Windows">
+                <p><pre><code>SET GS_OPTIONS_EXT=-Dcom.gs.security.enabled=true  -Dcom.gs.manager.rest.ssl.enabled=false</code></pre>
+                </p>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>SSL encryption is a separate feature that can be configured independently of <MadCap:variable name="General.ProductNameXAP" /> security. In this example, we are enabling GS security and disabling SSL encryption.</p>
+        </div>
+        <p>That's it! Basic in-memory security is now enabled in <MadCap:variable name="General.ProductNameXAP" />.</p>
+        <h1>What Users are Defined in Quick Start Security?</h1>
+        <p>Quick Start Security uses the default settings in the <code style="font-weight: bold;">../config/security/security-config.xml</code> file. These default users are as follows:</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col style="width: 428px;" />
+            <col MadCap:conditions="Default.DoNotShow" />
+            <thead>
+                <tr>
+                    <th>User/Password</th>
+                    <th>User Type</th>
+                    <th>Available functions</th>
+                    <th>Authorities (See <MadCap:xref href="security-quick-start-understanding-config-file.html#What2">What is an Authority?</MadCap:xref> for details)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><![CDATA[
+]]><b>gs-admin/</b>gs-admin
+</td>
+                    <td><![CDATA[
+]]><b>Administrator</b> — has access to all system functions 
+</td>
+                    <td>Connect to data source, deploy/undeploy  processing units (pu's) and services, monitor, start and stop the system, vertical and horizontal scaling, object analysis
+</td>
+                    <td>MONITOR_JVM, MONITOR_PU, SPACE_READ, PROVISION_PU, MANAGE_GRID, MANAGE_PU</td>
+                </tr>
+                <tr>
+                    <td><b>gs-mngr</b>/gs-mngr</td>
+                    <td><![CDATA[
+]]><b>Manager</b> — has access to monitoring and deployment functions, except those related to starting, stopping or configuring the system.
+</td>
+                    <td>
+                        <p>
+Functionality <b>includes</b> monitoring, deployment, and querying the system.
+</p>
+                        <p>
+Functionality <b>excludes</b> those related to defining and controlling the system — cannot connect to data source, deploy processing units and services, start and stop the system, perform vertical and horizontal scaling
+
+</p>
+                    </td>
+                    <td>MONITOR_JVM, MONITOR_PU, SPACE_READ, PROVISION_PU</td>
+                </tr>
+                <tr>
+                    <td><![CDATA[
+]]><b>gs-viewer</b>/gs-viewer
+</td>
+                    <td><![CDATA[
+]]><b>Viewer</b> — has access to querying and monitoring functions.
+</td>
+                    <td>
+Includes functionality related to data querying, system performance and monitoring</td>
+                    <td>MONITOR_JVM, MONITOR_PU, SPACE_READ</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Testing Quick Start Security</h1>
+        <p>In order to do a basic test of Quick Start security, proceed as follows:</p>
+        <ol>
+            <li>
+                <p>
+                    <p> Run the following script:</p>
+                    <div class="easyui-tabs" plain="true">
+                        <div title="Unix">
+                            <p><pre><code><code class="language-bash" style="font-weight: bold;">...bin/gs.sh demo</code></code></pre>
+                            </p>
+                        </div>
+                        <div title="Windows">
+                            <p><pre><code><code class="language-bash" style="font-weight: bold;">...bin/gs.bat demo</code></code></pre>
+                            </p>
+                        </div>
+                    </div>
+                    <p>This will start a demo environment.</p>
+                </p>
+            </li>
+            <li>
+                <p> Log into the Ops Manager at <b>localhost:8090</b>. The system should accept the users defined above. </p>
+            </li>
+        </ol>
+        <h2><b>Next Topic:</b> <MadCap:xref href="security-quick-start-understanding-config-file.html">Understanding the Default Security Configuration File</MadCap:xref></h2>
+    </body>
+</html>

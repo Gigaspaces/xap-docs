@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Migrating From External Data Source API</h1>
+        <p>This page describes how EDS implementations prior to <MadCap:variable name="General.ProductNameXAP" /> version 9.5 should migrate to the new Space Persistency APIs.</p>
+        <p>External Data Source API contains 5 interfaces the implementation can use:</p>
+        <ol>
+            <li><code>ManagedDataSource</code> - base interface which provides the ability to initial load data from the data source upon space initialization.</li>
+            <li><code>DataProvider</code> - reading data from the data source using a template.</li>
+            <li><code>SQLDataProvider</code> - reading data from the data source using SQL queries.</li>
+            <li><code>DataPersister</code> - persisting non transactional data to the data source.</li>
+            <li><code>BulkDataPersister</code> - persisting batched or transactional data to the data source.</li>
+        </ol>
+        <p>These interfaces have been replaced with two new classes which can be extended:</p>
+        <h4><a name="spacedatasource"></a>SpaceDataSource</h4>
+        <ul>
+            <li>Initial load metadata from the data source.</li>
+            <li>Initial load data from the data source.</li>
+            <li>Read data from data source upon space request.</li>
+        </ul>
+        <h4><a name="spacesynchronizationendpoint"></a>SpaceSynchronizationEndpoint</h4>
+        <ul>
+            <li>Persist batches of data to the data source.</li>
+            <li>Persist transactional data to the data source.</li>
+            <li>Persist metadata changes such as dynamic index creation and type introduction to the data source.</li>
+            <li>Intercept events such as <code>Distributed Transaction Consolidation</code>, successful batch or write synchronization.</li>
+        </ul>
+        <div class="tc-admon-tip">
+            <p>Please note that the new two classes <code>SpaceDataSource</code> and <code>SpaceSynchronizationEndpoint</code> are abstract classes and therefore only methods one wants to customize should be implemented. For instance, the <code>SpaceDataSource.getById</code> method is delegated to the <code>SpaceDataSource.getDataIterator</code> method by default so in case there isn't an optimized way to implement the <code>getById</code> method it is recommended <span class="tc-bold">NOT</span> to override it.</p>
+        </div>
+        <h1><a name="migrating-from-eds-apis-to-space-persistency-apis"></a>Migrating From EDS APIs to Space Persistency APIs</h1>
+        <p>One of the advantages the <code>SpaceDataSource</code> and <code>SpaceSynchronizationEndpoint</code> is the fact that it defines a single API for the purpose of persistency so instead of implementing many interfaces, one should extend only the the classes and methods which matches the requested functionality.
+The following table lists the EDS interfaces methods replaced by the new Space Persistency classes:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">EDS Method</th>
+                    <th align="left">Space Persistency Method</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">ManagedDataSource.init</td>
+                    <td align="left">Properties injected via Spring</td>
+                </tr>
+                <tr>
+                    <td align="left">ManagedDataSource.initialLoad</td>
+                    <td align="left">SpaceDataSource.initialDataLoad</td>
+                </tr>
+                <tr>
+                    <td align="left">ManagedDataSource.shutdown</td>
+                    <td align="left">Life cycle managed by user code or Spring</td>
+                </tr>
+                <tr>
+                    <td align="left">DataProvider.read</td>
+                    <td align="left">SpaceDataSource.getDataIterator/SpaceDataSource.getById</td>
+                </tr>
+                <tr>
+                    <td align="left">DataProvider.iterator</td>
+                    <td align="left">SpaceDataSource.getDataIterator</td>
+                </tr>
+                <tr>
+                    <td align="left">SQLDataProvider.iterator</td>
+                    <td align="left">SpaceDataSource.getDataIterator</td>
+                </tr>
+                <tr>
+                    <td align="left">DataPersister.write</td>
+                    <td align="left">SpaceSynchronizationEndpoint.onOperationsBatchSynchronization</td>
+                </tr>
+                <tr>
+                    <td align="left">DataPersister.update</td>
+                    <td align="left">SpaceSynchronizationEndpoint.onOperationsBatchSynchronization</td>
+                </tr>
+                <tr>
+                    <td align="left">DataPersister.remove</td>
+                    <td align="left">SpaceSynchronizationEndpoint.onOperationsBatchSynchronization</td>
+                </tr>
+                <tr>
+                    <td align="left">*BulkDataPersister.executeBulk</td>
+                    <td align="left">SpaceSynchronizationEndpoint.onOperationsBatchSynchronization</td>
+                </tr>
+                <tr>
+                    <td align="left">*BulkDataPersister.executeBulk</td>
+                    <td align="left">SpaceSynchronizationEndpoint.onTransactionSynchronization</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>When using EDS API, <code>BulkDataPersister.executeBulk</code> might be invoked on two occasions:</p>
+        <ol>
+            <li>Batch execution.</li>
+            <li>Transaction execution.</li>
+        </ol>
+        <p>On transaction execution, getting the transaction metadata was done using the <code>BulkDataPersisterContext.getCurrentContext</code> method. This is no longer needed because on transaction execution, the <code>SpaceSynchronizationEndpoint.onTransactionSynchronization</code> method is invoked and receives the transaction data as a parameter.</p>
+        <h1><a name="configuration-changes"></a>Configuration Changes</h1>
+        <p>When using <a href="persistency-for-a-database.html">Space Persistency</a> - the same space properties used to configure the EDS can be used with two exceptions:</p>
+        <ul>
+            <li>
+                <p>"space-config.external-data-source.usage" specifies the EDS operation mode (read-only or read-write) is no longer used and the operation mode is determined by whether a <code>SpaceSynchronizationEndpoint</code> implementation has been specified or not. If it has been specified it means the operation mode is "read-write', otherwise "read-only'.</p>
+            </li>
+            <li>
+                <p>"space-config.external-data-source.supports-inheritance" specifies whether the EDS implementation supports types inheritance. This space property is no longer and whether inheritance is supported by the implementation is determined by the <code>SpaceDataSource.supportsInheritance</code> method.</p>
+            </li>
+        </ul>
+        <h1><a name="built-in-hibernate-implementation"></a>Built In Hibernate Implementation</h1>
+        <p>GigaSpaces provides a built in Hibernate EDS implementation. This implementation has been adjusted to work with the new <a href="persistency-for-a-database.html">Space Persistency</a> APIs. Therefore, two new Hibernate implementation classes were created: <code>DefaultHibernateSpaceDataSource</code> and <code>DefaultHibernateSpaceSynchronizationEndpoint</code>.</p>
+        <p>The following example shows how to configure a space with a Hibernate <code>SpaceDataSource</code> and a Mirror service with a Hibernate <code>SpaceSynchronizationEndpoint</code>:</p><pre><code class="language-xml">&lt;!-- SPACE --&gt;
+&lt;bean id="hibernateSpaceDataSource" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceDataSourceFactoryBean"&gt;
+    &lt;property name="sessionFactory" ref="sessionFactory"/&gt;
+    &lt;property name="initialLoadChunkSize" value="2000"/&gt;
+&lt;/bean&gt;
+&lt;os-core:embedded-space  id="space" space-name="space" schema="persistent"
+    mirror="true" space-data-source="hibernateSpaceDataSource"&gt;
+    &lt;os-core:properties&gt;
+        &lt;props&gt;
+            &lt;prop key="cluster-config.cache-loader.external-data-source"&gt;true&lt;/prop&gt;
+            &lt;prop key="cluster-config.cache-loader.central-data-source"&gt;true&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/os-core:properties&gt;
+&lt;/os-core:embedded-space&gt;
+
+&lt;!-- MIRROR --&gt;
+&lt;bean id="hibernateSpaceSynchronizationEndpoint" class="org.openspaces.persistency.hibernate.DefaultHibernateSpaceSynchronizationEndpointFactoryBean"&gt;
+    &lt;property name="sessionFactory" ref="sessionFactory"/&gt;
+&lt;/bean&gt;
+&lt;os-core:mirror id="mirror" url="/./mirror-service" space-sync-endpoint="hibernateSpaceSynchronizationEndpoint" operation-grouping="group-by-space-transaction"&gt;
+    &lt;os-core:source-space name="mySpace" partitions="2" backups="1"/&gt;
+&lt;/os-core:mirror&gt;
+</code></pre>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
+    </body>
+</html>

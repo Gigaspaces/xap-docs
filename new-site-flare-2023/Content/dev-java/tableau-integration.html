@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Integrating <MadCap:variable name="General.ProductNameIE" /> with Tableau Desktop</h1>
+        <p MadCap:conditions="Version.15-5-born">This topic describes how to integrate Tableau Desktop with <MadCap:variable name="General.ProductNameIE" /> using the <MadCap:variable name="General.ProductNameIE" /> JDBC connector to retrieve data for visualization and business intelligence needs.</p>
+        <h1>Prerequisites</h1>
+        <p>Your host machine must have the following installed:</p>
+        <ul>
+            <li>
+                <p>Java 8 or higher</p>
+            </li>
+            <li>
+                <p>Tableau version 2019.1 or higher <MadCap:conditionalText MadCap:conditions="Version.15-2-born">(2020.1 or later includes simpler connector integration)</MadCap:conditionalText></p>
+                <MadCap:snippetBlock src="../Resources/Snippets/Content/DevGuide/tableau-not-supported.flsnp" MadCap:conditions="Version.14-5-only,Version.15-0-only" />
+            </li>
+            <li>
+                <p>(MacOS&#160;only) <MadCap:xref href="../started/installation-maven-overview.html">Maven Artifacts</MadCap:xref></p>
+            </li>
+        </ul>
+        <h1>Setting Up the  <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;Connector </h1>
+        <h2>Windows Environment</h2>
+        <p>The <MadCap:variable name="General.CompanyName" />-Tableau integration package provides an automated script that creates the JDBC&#160;connector for Tableau Desktop, so that Tableau Desktop can query the <MadCap:variable name="General.ProductNameIE" /> data grid directly using the <MadCap:variable name="General.ProductNameIE" /> JDBC driver. You can customize some default values for the setup process if necessary, as well as create standalone packages for other Tableau users so they can run analytics on data from <MadCap:variable name="General.ProductNameIE" /> .</p>
+        <p id="view-tableau-class-loader-issue">The integration package is available in the <code>&lt;product&gt;/tools/tableau</code> folder of the <MadCap:variable name="General.ProductNameIE" /> software package. It contains the following files:</p>
+        <ul>
+            <li><code>gs-tableau.bat</code> - runs the setup process for the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> JDBC&#160;connector.</li>
+            <li><code>gs-tableau-env</code> - environment variables that can be used to customize certain default values for the setup process.</li>
+            <li><code>gs-tableau-package</code> - script that creates a standalone connector package.</li>
+        </ul>
+        <h3>Adding the <MadCap:variable name="General.ProductNameIE" /> JDBC Driver to Tableau  </h3>
+        <div class="tc-admon-important" MadCap:conditions="Version.15-5-born">
+            <p>In Tableau 2020.2 and later, a class loader isolation option was introduced.</p>
+            <p>It is necessary to disable this option by editing the <code class="language-bash">gs-tableau.bat </code>script as follows: </p>
+            <p> &#160;&#160; Under <span class="tc-bold">:RUN_TABLEAU</span>, add this parameter to the "start" line:</p>
+            <p>&#160;&#160;&#160;&#160; <code class="language-bash"> -DJdbcDriverCustomLoad=false</code></p>
+        </div>
+        <p>The <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector is based on the Tableau Connector SDK and JDBC integration. The setup process includes providing proprietary requirements about various file locations and execution arguments. <MadCap:variable name="General.CompanyName" /> provides a script that automates the setup process and starts Tableau Desktop with the <MadCap:variable name="General.CompanyName"></MadCap:variable>-<MadCap:variable name="General.ProductNameIE"></MadCap:variable> connector enabled. </p>
+        <p>
+			To setup the <MadCap:variable name="General.CompanyName" />-Tableau integration, run the <code>&lt;product&gt;/tools/tableau/gs-tableau.bat</code> script. 
+			<MadCap:conditionalText MadCap:conditions="Version.15-2-born">If you're using Tableau 2020.1 or later, you can now start Tableau as usual and use the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector. If you're using an older version of Tableau you'll need to start it using the gs-tableau.bat script to use the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector.</MadCap:conditionalText></p>
+        <div class="tc-admon-note">
+            <p>
+		The first time this script runs it requires elevated permissions, because it automatically packages and copies the <MadCap:variable name="General.ProductNameIE" /> JDBC driver to Tableau's installation files, which generally reside in the <code>Program Files</code> folder.
+		</p>
+        </div>
+        <h3>Customizing the Setup Process</h3>
+        <p>If necessary, you can customize some of the default setup process values, such as the location of the Tableau installation folder or the JDBC driver heap size. To do this, open the <code>product&gt;/tools/tableau/gs-tableau.env</code> script and edit the required environment variables.</p>
+        <h3>Creating a Standalone Connector Package</h3>
+        <p>If your organization includes Tableau Desktop users who aren't developers (for example, data scientists that don't need <MadCap:variable name="General.ProductNameIE" /> installed locally) you can provide a standalone connector package so that these users can integrate the <MadCap:variable name="General.CompanyName" />-<MadCap:variable name="General.ProductNameIE" /> connector with their Tableau Desktop installation and perform the necessary analytics on the <MadCap:variable name="General.ProductNameIE" /> data. </p>
+        <p>To create the connector package, run the <code>gs-tableau-package</code> script from the <code>&lt;product&gt;tools\tableau</code> folder. This package can then be distributed and installed on any machine to enable accessing <MadCap:variable name="General.ProductNameIE" /> data using Tableau Desktop.</p>
+        <h2>MacOS Environment</h2>
+        <p>In order to integrate Tableau Desktop with <MadCap:variable name="General.ProductNameIE" /> in a MacOS environment, you have to create the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;driver, copy it to the Drivers folder in the Tableau Desktop program files, and then point to the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;connector in Tableau Dektop. This process requires that you have <MadCap:xref href="../started/installation-maven-overview.html">Maven Artifacts</MadCap:xref> already installed on the host machine where you will create the <MadCap:variable name="General.ProductNameIE" />-Tableau integration.</p>
+        <h3>Adding the <MadCap:variable name="General.ProductNameIE" /> JDBC Driver to Tableau </h3>
+        <p class="tc-todo">To add the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;driver to Tableau:</p>
+        <ol>
+            <li>
+                <p>If the JDBC&#160;driver was not yet created, run the following command  to create the <code class="language-bash">insightedge-jdbc-client.jar</code> file.</p><pre><code>&lt;product&gt;/tools/jdbc/build-jdbc-client.sh</code></pre>
+            </li>
+            <li>
+                <p>Run the following command  to copy the JDBC&#160;driver to the Tableau Drivers folder.</p><pre><code>cp &lt;product&gt;/tools/jdbc/insightedge-jdbc-client.jar&lt;TABLEAU_HOME&gt;/Drivers</code></pre>
+            </li>
+            <li>
+                <p>Run the Tableau Desktop application with a pointer (the <code>-DConnectPluginsPath</code> system property) to the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;driver in the Tableau program files, as shown in this sample  command:</p><pre><code>"/Applications/Tableau Desktop 2019.2.app/Contents/MacOS/Tableau" -DConnectPluginsPath=$<MadCap:variable name="General.HomePath" />/tools/tableau</code></pre>
+            </li>
+        </ol>
+        <h1>Connecting to the Space</h1>
+        <p class="tc-todo">To configure the data source after Tableau Desktop is started:</p>
+        <ol>
+            <li>
+                <p>Click <span class="tc-bold">Connect</span> in the Tableau desktop, and select  <span class="tc-bold">Gigaspaces InsightEdge</span> as the data source.</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/sbp/tableau/tableau_6.png" style="width: 874px; height: 630px;" class="tc-picture50" />
+                </p>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+                    <p>If <span class="tc-bold">Gigaspaces InsightEdge</span> does not appear in the <span class="tc-bold">Connect</span> menu on first access ,click <span class="tc-bold">More</span> and select <span class="tc-bold">Gigaspaces InsightEdge</span> from the alphabetic list.</p>
+                </div>
+            </li>
+            <li MadCap:conditions="Version.14-5-born">In the <span class="tc-bold">Gigaspaces InsightEdge</span> window, configure the options as follows:<ol style="list-style-type: lower-alpha;"><li>Type the <span class="tc-bold">Server</span> host name or IP address. Include the port number if the Space is not using the default port.</li><li>(Optional) If your <MadCap:variable name="General.ProductNameIE" /> system includes <a href="https://docs.gigaspaces.com/14.5/dev-java/data-lake-acceleration.html">AnalyticsXtreme</a>, you can type <span class="tc-bold">True</span> for <span class="tc-bold">Enable AnalyticsXtreme</span>.</li><li>Type the <span class="tc-bold">Space</span> name.</li><li>(Optional) Add <span class="tc-bold">Advanced Parameters</span> for the JDBC connection as key-value pairs.</li><li><p>If your system is configured with a secure Space, type the <span class="tc-bold">Username</span> and <span class="tc-bold">Password</span>.</p><div class="tc-admon-note"><p>For more information about secure Spaces, see the <a href="https://docs.gigaspaces.com/14.5/started/xap-tutorial-part10.html">Security</a> section of the Administration guide.</p></div></li></ol></li>
+            <li>
+                <p>Click <span class="tc-bold">Sign In</span> to connect to the <MadCap:variable name="General.ProductNameIE" /> data grid.</p>
+            </li>
+            <li>
+                <p>Verify that Tableau Desktop can see the tables in your Space.</p>
+                <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+                    <p>If your data source uses POJOs, they must be configured for java.sql.Date rather than java.util.Date.</p>
+                </div>
+            </li>
+        </ol>
+        <h2>Querying the Space using Tableau</h2>
+        <p>After the setup process is complete and the connection has been configured, you can execute queries against the <MadCap:variable name="General.ProductNameIE" /> data grid. </p>
+        <h1>Additional Resources</h1>
+        <table style="width: 100%;" class="tc-borderless">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://youtu.be/WPn46dUdWUI," />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Predictive Stock Pricing Demo</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+    </body>
+</html>

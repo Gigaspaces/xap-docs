@@ -1,0 +1,1986 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Changelog</h1>
+        <p>This section lists the changes that were made to <MadCap:variable name="General.CompanyName" /> products for <MadCap:variable name="Versions.product-version-short" />.x.<MadCap:conditionalText MadCap:conditions="Version.16-1-only"> This version is early access, so the documentation is in draft form and subject to change.</MadCap:conditionalText></p>
+        <p MadCap:conditions="Version.16-0-only,Default.DoNotShow">There are no features and enhancements at this time. </p>
+        <div MadCap:conditions="Version.16-3-only">
+            <p>&#160;</p>
+            <h1>16.3</h1>
+            <div MadCap:conditions="Version.16-3-only">
+                <h2>Features and Enhancements</h2>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14836," />: Add support to add dynamic index in tiered storage, and allow to remove it before writing to tier</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14919," />: Tiered storage configuration is missing data</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14873," />: Zookeeper upgrade to (at least) 3.6.0 (vulnerability + integration)</li>
+                </ul>
+                <p MadCap:conditions="Default.DoNotShow">There are no features and enhancements at this time.</p>
+            </div>
+            <h2>Resolved Issues</h2>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14733," />: Increased memory usage of MarshalOutputStream in CPeer/Writer</li>
+            </ul>
+            <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time. </p>
+            <h2>Known Issues</h2>
+            <p>There are no known issues at this time.</p>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs,Default.DoNotShow">
+                <ul>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14868," />: Problems deploying WAN Gateway after upgrade to 16.x<br /></li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14742," />: smart-externalizable classcastexception when PUs share a GSC </li>
+                    <li>
+                        <p>As explained in the Jiras, these issues can be addressed by specifying the parameter<code> -Dcom.gs.smart-externalizable.enabled=false</code></p>
+                    </li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14893," />: Hibernate integration - fail to fetch eagerly collection with 5.6.7 hibernate version </li>
+                </ul>
+            </div>
+            <p>&#160;</p>
+        </div>
+        <div MadCap:conditions="Version.16-2-1-only">
+            <h1>16.2.1</h1>
+            <div MadCap:conditions="Default.DoNotShow">
+                <h2>Features and Enhancements</h2>
+                <p>There are no features and enhancements at this time.</p>
+            </div>
+            <h2>Resolved Issues</h2>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14006," />: Aggregate  causes a NPE when type definition is missing in one of the partitions</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14825," />: Object should not remain locked when related transaction throws exception in commit</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14848," />: Unable to replicate to mirror due to regex pattern syntax exception after upgrade</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14882," />: Memory leak and OOM due to incomplete AdminAPI Cleanup</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14883," />: Upgrade Spring &amp; Spring security to 5.3.22 and 5.6.2 or higher</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14889," />: LUS memory consumption increases when using Spring Boot Space PU</li>
+            </ul>
+            <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time. </p>
+            <h2>Known Issues</h2>
+            <p MadCap:conditions="Default.DoNotShow">There are no known issues at this time.</p>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <ul>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14868," />: Problems deploying WAN Gateway after upgrade to 16.x<br /></li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14742," />: smart-externalizable classcastexception when PUs share a GSC </li>
+                    <li>
+                        <p>As explained in the Jiras, these issues can be addressed by specifying the parameter<code> -Dcom.gs.smart-externalizable.enabled=false</code></p>
+                    </li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14893," />: Hibernate integration - fail to fetch eagerly collection with 5.6.7 hibernate version </li>
+                </ul>
+            </div>
+            <p>&#160;</p>
+        </div>
+        <div MadCap:conditions="Version.16-2-only">
+            <h1>16.2</h1>
+            <h2>Features and Enhancements</h2>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14756," />: Vulnerability in Netty version (4.1.65.Final)</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14272," />: Experimental API to unregister type descriptor</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14779," />: Validate CR8 stream JSON file by the "load configuration" button</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14728," />: Enhance SpaceId to support multiple properties</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14776," />: ManagerClusterInfo Initialization on Admin –  improve mechanism to avoid incorrect initialization due to discovery events order</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14758," />: Expose InfluxDB metrics via REST</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14746," />: Add global atomic counter for Manager REST requests</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14626," />: Add audit for secured service grid - Audit for operations that cause a change in the grid</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14741," />: Support CEF log messages</li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14735," />: End of Life - Entry and MetaDataEntry</li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14720," />: End of Life - GSIterator (use SpaceIterator instead)</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14711," />: Enhance replication to replicate drop type to backup</li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14725," />: End of Life - Memcached integration</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14627," />: WEB-UI - Add audit information</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14723," />: Set Zeppelin Jdbc Interpreter to run with v3 driver</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14688," />: Java 17 support</li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14721,">
+                    </MadCap:snippetText>: End of Life - JMS Integration</li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14706,">
+                    </MadCap:snippetText>: End of Life - ESM/EPU</li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14713,">
+                    </MadCap:snippetText>: End of Life - Scala REPL tool</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14624,">
+                    </MadCap:snippetText>: Add ability to support https connection to influxdb</li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14705,">
+                    </MadCap:snippetText>: End of Life - ElasticGrid</li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14704,">
+                    </MadCap:snippetText>: End of Life - Mule integration</li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14703,">
+                    </MadCap:snippetText>: End of Life - AnalyticsXtreme</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14570," />: upgrade commons-compress to latest version 1.21</li>
+            </ul>
+            <h2>Resolved Issues</h2>
+            <div MadCap:conditions="NewSet.YetAnotherColorForDivs">
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14885," />: OPS UI does not display in Tiered Storage configuration types registered with criteria, if   Tiered Storage also configured in Space</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14826," />: In OPS UI, criteria do not show in Space configuration when dynamically registering type with tier criteria</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14887," />: Null pointer exception when trying to evict objects in Tiered Storage space</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14872," />: Redo log using SQLite fails to deserialize operations when involved objects contain an enum, or when serial number of a member field class is not the same as the space class</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14857," />: Kubernetes – no support for installing more than one PU using an umbrella chart</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14860," />: Clean up after uninstalling umbrella chart in Kubernetes</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14867," />: Kubernetes – support anti-affinity between zones</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14790," />: REST API – query Space data fails after failover</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14800," />: Pipeline - Failure to retrieve pipelines caused  Spaces and Services Overview to become unavailable in ops-ui</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14805," />: Pipeline - the Consumer avoids existing messages if space is redeployed</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14809," />: Pipeline - Consumer failed on null value when a value of a property which is part of compound id  is null</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14812," />: Pipeline - Consumer Fail to consume without logging any error</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14443," />: Data loss due to instances disconnections from ZooKeeper due to long garbage collection</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14744," />: Unwanted stdout logging in 16.1</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14799," />: Primary failed to recover from SQLite due to Date ClassCastException, causing data loss</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14776," />: ManagerClusterInfo Initialization on Admin –  improve mechanism to avoid incorrect initialization due to discovery events order</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14745," />: Remove unwanted stdout logging in DocumentProperties</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14615," />: Chaining aggregators logic not working with GroupByAggregator in 15.8.1 version</li>
+                </ul>
+            </div>
+            <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time. </p>
+            <h2>Known Issues</h2>
+            <p MadCap:conditions="Default.DoNotShow">There are no known issues at this time.</p>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <ul>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14868," />: Problems deploying WAN Gateway after upgrade to 16.x<br /></li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14742," />: smart-externalizable classcastexception when PUs share a GSC </li>
+                    <li>
+                        <p>As explained in the Jiras, these issues can be addressed by specifying the parameter<code> -Dcom.gs.smart-externalizable.enabled=false</code></p>
+                    </li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14893," />: Hibernate integration - fail to fetch eagerly collection with 5.6.7 hibernate version </li>
+                </ul>
+            </div>
+            <p>&#160;</p>
+        </div>
+        <div MadCap:conditions="Version.16-1-1-only">
+            <h1>16.1.1</h1>
+            <h2>Features and Enhancements</h2>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14184," />: Support Compound Space ID with Space Document</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14354," />: Protect server from OOM caused by Client request</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14734," />: Add placeholder for service account in Helm charts</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14272," />: Experimental API to unregister type descriptor</li>
+            </ul>
+            <h2>Resolved Issues</h2>
+            <div MadCap:conditions="NewSet.YetAnotherColorForDivs">
+                <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14819," />: Hibernate security vulnerability - upgrade  3rd party jar to latest release each new release of GS version</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14815," />: Data loss due to Redolog corruption caused by ConcurrentModificationException</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14829," />: Incorrect "failed" and "discarded" metrics from mirror</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14352," />: Redolog can't be read and will keep growing  if redolog went to disk and change operations were done by 14.0 or older clients on 14.2 or newer  server</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14764," />: Failed to deploy Consumer in tiered storage space due to missing dynamic properties restriction in the type definition</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14801," />: Consumer of CDC: Inability to resume initial load (full sync) in case of an error</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14802," />: CDC consumer cannot resume stream activity to space after an error</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14353," />: Add ability to recover corrupted redolog by skipping record that can't be deserialized</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14786," />: Pipeline – need to add an option to control (override) the starting offset</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14643," />: NPE when doing clear operation when clear is the first operation done by the client (regression starting 15.8)</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14468," />: Can't use broadcast table if table extends any base class</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14185," />: Support drops all Class's entries and all its templates from the space</li>
+                </ul>
+            </div>
+            <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time. </p>
+            <h2>Known Issues</h2>
+            <p MadCap:conditions="Default.DoNotShow">There are no known issues at this time.</p>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <ul>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14868," />: Problems deploying WAN Gateway after upgrade to 16.x<br /></li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14742," />: smart-externalizable classcastexception when PUs share a GSC </li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14893," />: Hibernate integration - fail to fetch eagerly collection with 5.6.7 hibernate version </li>
+                </ul>
+                <p>As explained in the Jiras, these issues can be addressed by specifying the parameter<code> -Dcom.gs.smart-externalizable.enabled=false</code></p>
+            </div>
+            <p>&#160;</p>
+        </div>
+        <div MadCap:conditions="Version.16-1-only">
+            <h1>16.1</h1>
+            <h2>Features and Enhancements</h2>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14607," />: When securing webui using ssl, passwords should not be passed in using system properties</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14606," />: Configuring ssl with webui keyManagerPassword should not be required</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs,Default.DoNotShow">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14599," />: Upgrade Jetty to 9.4.43</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14566," />: Allow coding Instance SLA - currently class path issue</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14586," />: Upgrade Netty to 4.1.66</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14587," />: Upgrade H2 to 1.4.200</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14581," />: Add property for Primary Key First</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14573," />: Support SUM aggregation with scalar</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14572," />: upgrade Avatica to 1.18.0</li>
+            </ul>
+            <h2>Resolved Issues</h2>
+            <div MadCap:conditions="NewSet.YetAnotherColorForDivs">
+                <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14615," />: Chaining aggregators logic not working with GroupByAggregator in 15.8.1 version</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAnotherColorForDivs,Default.DoNotShow">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14598," />: Deployed single space after a different topology should fail</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14591," />: xap-jdbc.jar is not installed when running "gs maven install" command</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14557," />: Unable to run with Custom SSL Filter using manager due to class loader issues</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14553," />: GS_LUS_OPTIONS for xmx are not taken when gs script runs without a manager</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14571," />: NPE when running query with NULLIF</li>
+                </ul>
+            </div>
+            <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time. </p>
+            <h2>Known Issues</h2>
+            <p MadCap:conditions="Default.DoNotShow">There are no known issues at this time.</p>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <ul>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14868," />: Problems deploying WAN Gateway after upgrade to 16.x<br /></li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14742," />: smart-externalizable classcastexception when PUs share a GSC </li>
+                </ul>
+                <p>As explained in the Jiras, these issues can be addressed by specifying the parameter<code> -Dcom.gs.smart-externalizable.enabled=false</code></p>
+            </div>
+            <p>&#160;</p>
+        </div>
+        <div MadCap:conditions="Version.16-0-only">
+            <h1>16.0</h1>
+            <h2>Features and Enhancements</h2>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14520," />: Improve array creation for user-defined types using bytecode generation</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14531," />: Remove user home dir usage</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14519," />: Cursor iterator supports LRU space</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14506," />: Improve performance of auto-generated default factory</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14508," />: Add SmartExternalizable interface to optimize serialization</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14515," />: Upgrade Spring Security to 5.5.0</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14514," />: Upgrade Spring to 5.3.7</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14510," />: Enable/disable transport version detection via environment variable or system property</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14509," />: Improve platform version comparison</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14517," />: Generate wrapper classes from the UI</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14463," />: Kubernetes increase liveness probe values</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14497," />: Add environment variables for common LRMI settings</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14496," />: Change default LRMI port from 0 to 8200-8299</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14492," />: Upgrade Jetty to 9.4.40</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14487," />: Enhance Java version parsing to support early access builds</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14486," />: Add user name to system report in beginning of log</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14473," />: Upgrade hsqldb version from 2.3.2 to 2.5.2</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14474," />: Support running Docker and Kubernetes as non-root user</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14478," />: Improve Space clear with null template when Space contains broadcast table</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14475," />: Support loading "com.gs.security.properties-file" from url</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14476," />: Support loading "java.util.logging.config.file" from url</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14477," />: Support loading "com.gigaspaces.metrics.config" from url</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14429," />: Issue with deploying Manager to multiple namespace in K8s (GS-15.8)</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14420," />: Upgrade Oshi to 5.5.0 </li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14415," />: Match performance of read/takeByIds with a single Id to that of read/takeById API </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14389," />: Move heap report to zookeeper</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14391," />: Upgrade Spring Security to 5.4.2</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14390," />: Upgrade Spring to 5.2.12</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14387," />: End of Life - Sigar integration</li>
+            </ul>
+            <h2>Resolved Issues</h2>
+            <div MadCap:conditions="NewSet.YetAnotherColorForDivs">
+                <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14551," />: REST V2 - Fix REST-API for getting requests info</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14540," />: Fail to start local view inside Kubernetes cluster</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14539," />: java.lang.NumberFormatException: For input string: "∞"</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14537," />: java.sql.SQLException: Statement is invalid while deleting rows from tables - hsqldb version must be changed back to 2.3.2</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14518," />: ClassCastException thrown when select query with wrong  date/time format executed on indexed date/time class variable</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14479," />: Unable to change zookeeper clientPort</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14465," />: Allow to configure security in Kubernetes</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14458," />:  First-app example missing slf4j dependency</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14460," />: Concurrent modification bug in system task</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14409," />: Can't connect to a secured space using Ops Manager, or to query data in the rest API</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14421," />: Quiesce Mode during fail over is not resolved even after the curator client already reports RECONNECTED</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14438," />: Default Cursor iterator does not support LRU space</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14435," />: Default Cursor iterator does not support local view</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14450," />: NPE running cursor iterator in DEBUG log level</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14399," />:  Upgrade from 14.5 to 15.x - ClusterInfo.getInstanceId() is wrong in some conditions</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14442," />:  "Templating dataTypeName" error in Grafana v7.4.1 when displaying Space Object Type Index Metrics</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14442," />:  "Templating dataTypeName" error in Grafana v7.4.1 when displaying Space Object Type Index Metrics</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14427," />:  Kubernetes operator - Pass LRMI properties to PU</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14426," />:  Kubernetes operator - Pass license to Kubernetes manager</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14423," />:  Replace null values with "N/A" to avoid write failure In Constructor OSVendorDetails caused by Oshi version not supporting MacOs version</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14422," />:  Block unauthorized features in REST and Ops-UI</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14417," />:  REST: Path variable with dot (.) is  truncated in URL</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14388," />:  Upgrade from 12.3 to 15.5.1 log regression — unable to create log per PU using  slf4j logger api and  Log4j configuration</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14404," />:  Service Dump does not complete if an exception is thrown during operation</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14406," />:  Add scroll bar for data types and indexes table</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14396," />:  Query time shown in OpsManager is incorrect</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14400," />:  Scale operation on single Space should not be allowed</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14401," />:  Service card is green despite number of actual instances greater than planned</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14395," />:  Logging mismatch between context and log name
+				</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14398," />:  Kubernetes scale up doesn't allow scale up/down right after first scale without changing the last values (OPS-UI)</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14393," />:  OPS-UI: NPE while writing to single space </li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14394," />:  Deploying/undeploying a space succeeds but returns an operation timeout in the CLI</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14392," />:  Operation fails when scale up/down in Kubernetes is performed with same existing resource (Memory/CPU) values</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14386," />:  Zeppelin Notebook and Spark examples use the same case class
+				</li>
+                </ul>
+            </div>
+            <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time. </p>
+            <h2>Known Issues</h2>
+            <p MadCap:conditions="Default.DoNotShow">There are no known issues at this time.</p>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <ul>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14868," />: Problems deploying WAN Gateway after upgrade to 16.x<br /></li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14742," />: smart-externalizable classcastexception when PUs share a GSC </li>
+                </ul>
+                <p>As explained in the Jiras, these issues can be addressed by specifying the parameter<code> -Dcom.gs.smart-externalizable.enabled=false</code></p>
+            </div>
+        </div>
+        <div MadCap:conditions="Version.15-8-only">
+            <h1>15.8.1 </h1>
+            <h2>Features and Enhancements</h2>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14463," />: Kubernetes increase liveness probe values</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14487," />: Enhance Java version parsing to support early access builds</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14486," />: Add username to system report in beginning of log</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14474," />: Support running Docker and Kubernetes as non-root user</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14478," />: Improve Space clear with null template when Space contains broadcast table</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14475," />: Support loading "com.gs.security.properties-file" from url</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14476," />: Support loading "java.util.logging.config.file" from url</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14477," />: Support loading "com.gigaspaces.metrics.config" from url</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14458," />:  First-app example missing slf4j dependency</li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14460," />: Concurrent modification bug in system task</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14429," />: Issue with deploying Manager to multiple namespaces in Kubernetes</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14420," />: Upgrade Oshi to 5.5.0 </li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14415," />: Match performance of read/takeByIds with a single Id to that of read/takeById API </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14389," />: Move heap report to zookeeper</li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14391," />: Upgrade Spring Security to 5.4.2</li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14390," />: Upgrade Spring to 5.2.12</li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14387," />: End of Life - Sigar integration</li>
+            </ul>
+            <h2>Resolved Issues</h2>
+            <div MadCap:conditions="NewSet.YetAnotherColorForDivs">
+                <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14479," />: Unable to change zookeeper clientPort</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14465," />: Allow to configure security in Kubernetes</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14409," />: Can't connect to a secured space using Ops Manager, same goes to the query data in the rest API</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14460," />: Concurrent modification bug in system task</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14421," />: Quiesce Mode during fail over is not resolved even after the curator client already reports RECONNECTED</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14438," />: Default Cursor iterator does not support LRU space</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14435," />: Default Cursor iterator does not support local view</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14450," />: NPE running cursor iterator in DEBUG log level</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14399," />:  Upgrade from 14.5 to 15.x - ClusterInfo.getInstanceId() is wrong in some conditions</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14442," />:  "Templating dataTypeName" error in Grafana v7.4.1 when displaying Space Object Type Index Metrics</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14427," />:  Kubernetes operator - Pass LRMI properties to PU</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14426," />:  Kubernetes operator - Pass license to Kubernetes manager</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14423," />: Marshalling exception caused by Oshi when parsing Mac OS version</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14422," />:  Block unauthorized features in REST and Ops-UI</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14417," />:  REST: Path variable with dot (.) is  truncated in URL</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14388," />:  Upgrade from 12.3 to 15.5.1 log regression — unable to create log per PU using  slf4j logger api and  Log4j configuration</li>
+                    <li MadCap:conditions="Default.DoNotShow">
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14404," />:  Service Dump does not complete if an exception is thrown during operation</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14406," />:  Add scroll bar for data types and indexes table</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14396," />:  Query time shown in Ops Manager is incorrect</li>
+                    <li MadCap:conditions="Default.DoNotShow">
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14400," />:  Scale operation on single Space should not be allowed</li>
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14401," />:  Service card is green despite number of actual instances greater than planned</li>
+                    <li MadCap:conditions="Default.DoNotShow">
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14395," />:  Logging mismatch between context and log name
+				</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li MadCap:conditions="Default.DoNotShow">
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14398," />:  Kubernetes scale up doesn't allow scale up/down right after first scale without changing the last values (OPS-UI)</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14393," />:  Ops Manager doesn't display number of entries in single Space due to NPE </li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14394," />:  Deploying/undeploying a Space succeeds but returns an operation timeout in the CLI</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li MadCap:conditions="Default.DoNotShow">
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14392," />:  Operation fails when scale up/down in Kubernetes is performed with same existing resource (Memory/CPU) values</li>
+                </ul>
+                <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                    <li MadCap:conditions="Default.DoNotShow">
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14386," />:  Zeppelin Notebook and Spark examples use the same case class
+				</li>
+                </ul>
+            </div>
+            <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time. </p>
+            <h2>Known Issues</h2>
+            <p MadCap:conditions="Default.DoNotShow">There are no known issues at this time.</p>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14542," />: Exception in manager: java.sql.SQLException: statement is invalid while deleting rows from tables <br /></li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14544," />: Exception in manager: org.hsqldb.HsqlException: statement execution aborted: timeout reached </li>
+            </ul>
+            <p>&#160;</p>
+        </div>
+        <div MadCap:conditions="Version.15-8-only">
+            <h1>15.8</h1>
+            <h2>Features and Enhancements</h2>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14332," />: Add more configurations for deploying a processing unit with Kubernetes Operator</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14369," />: Ops-UI : Expose broadcast object and storage optimized </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14379," />: Kubernetes  operator web app deployment</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14342," />: Count number of read operations instead of number of actually read objects while handling data type read counts</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14340," />: Support Horizontal Scale for Kubernetes Stateful Sets</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14358," />: Kubernetes - Deploy MemoryXtend space from Ops-UI </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14346," />: Package Kubernetes Operator </li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14341," />: Support vertical scale for Kubernetes Stateful Sets using Operator </li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14350," />: Block scale in/out and undeploy features if the processing unit is deployed from helm charts </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14329," />: Remove commons-lang and commons-codec from lib/platform/commons
+				</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14347," />: Upgrade Apache POI to 4.1.2
+				</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14348," />: Upgrade Snakeyaml to 1.27 </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14349," />: Upgrade Zookeeper’s Netty to 4.1.48
+				</li>
+            </ul>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14273," />: ElasticGrid - Add service name to GSC log folder name in service dump </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14274," />: Add more logs to service dump in ElasticGrid </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14344," />: Upgrade Spring to 5.1.19 </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14345," />: Upgrade Spring Security to 5.1.13 </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14343," />: Upgrade Jetty to 9.4.35
+				</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14158," />: New gs.sh cli tool does not support deployment of 0 instances </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14009," />:  Deterministic deployment should use demote instead of restarts
+				</li>
+            </ul>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14337,">
+                    </MadCap:snippetText>: Ops-ui: reads by partition per Data type displays empty bar chart </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14336,">
+                    </MadCap:snippetText>: Remove unnecessary Space metrics metadata to decrease HSQLDB memory footprint </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14335," />: RESTful Space query throws NullPointerException caused by non-required fields being empty </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14326,">
+                    </MadCap:snippetText>: Add support for deploy of Processing Unit using Kubernetes Operator</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14328,">
+                    </MadCap:snippetText>: Deploy stateless PU using Kubernetes Operator </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14329," />: Remove dependency of commons-lang and commons-codec jars from lib/platform/commons </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14310,">
+                    </MadCap:snippetText>: JDBC - Support functions in Select clause</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14311,">
+                    </MadCap:snippetText>: Support Inner Join </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14312,">
+                    </MadCap:snippetText>: Support non-scalar subqueries (subquery as table) </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14313,">
+                    </MadCap:snippetText>: JDBC - Execute Join collocated with the data for relevant queries </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14314,">
+                    </MadCap:snippetText>: JDBC - Add support for Left Join </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14315,">
+                    </MadCap:snippetText>: Support function in Group By clause </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14305," />: ElasticGrid - add PostgreSQL as a built-in service </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14297," />: ElasticGrid — allow auto deploying blueprint when using data connectivity </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14013," />: New configuration option to define initial port for JMX </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14295,">
+                    </MadCap:snippetText>: Upgrading Curator to release 5.1.0</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14291,">
+                    </MadCap:snippetText>: ElasticGrid - add option for disabling SSL on manager service<li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14285," />: Explain Plan is now available in Ops Manager</li></li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14242," />:  ElasticGrid - improve life cycle of processing units</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14277," />:  ElasticGrid - allow public access for AWS Cluster</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14267," />:  ElasticGrid - use AWS credentials from the client host for node add/remove commands</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14263," />:  ElasticGrid - Use --server=&lt;node-ip&gt; to communicate with cluster</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14264," />:  ElasticGrid - ask for confirmation when running destroy command</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14251," />:  Define liveness health check and cancel restarts in readiness health check for stateful service on ElasticGrid </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14258," />:  Display a tooltip showing the index hits count in the object drill down page of the Ops Manager UI </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14225," />:  Added support for scale up/down stateful pu without HA </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14247," />:  Set logger level using environment variable or system property </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14246," />:  Set metrics xml config file via GS_METRICS_CONFIG environment variable </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14245," />:  Set metric sampler using environment variable or system property </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14205," />:  Upgrade Oshi to 5.2.5 </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14239," />:  Change default pu memory to 512mb and managers default to 1024mb on ElasticGrid </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14236," />:  Fix text overflow in GSCTL output to display all details including the token </li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14236," />:  Change default characters per line and set minimum value </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14219," />:  Rename rest-manager to ops-manager in ElasticGrid list-services command </li>
+            </ul>
+            <h2>Resolved Issues</h2>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14334," />:  ClassNotFoundException when running on Java 8 on an IBM J9 VM within WebSphere</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14367," />:  Ops-UI services page - Align IOPS chart to the other charts</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14361," />:  Scale up/down - show cpu units in millicores</li>
+            </ul>
+            <ul MadCap:conditions="NewSet.JustAColorForDivs">
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14355," />:  Ops-UI: Hide IOPS chart of non-stateful services</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14357," />:  SQL functions executed twice if function also in Group By</li>
+            </ul>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14331,">
+                    </MadCap:snippetText>:  CPU and memory data not displayed in ops-ui</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14322," />:  DB tables for the Ops Manager metrics are not created if local language is not English </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14271," />:  Backup should recover from primary Space when using non-persistent blob-store data policy </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14307,">
+                    </MadCap:snippetText>:  ElasticGrid - Unable to access the data grid from outside the cluster </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14308," />:  Unable to login to Ops Manager when switching between secured and unsecured modes </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14306," />: Ops Manager data connectivity assigns wrong index type </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14048,">
+                    </MadCap:snippetText>:  Property com.gs.jmx.enabled to false does not disable JMX </li>
+            </ul>
+            <ul>
+                <li>
+                    <p>
+                        <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14282," />: Illegal state - connection to ZooKeeper resumed but leadership is held by another session </p>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14284," />: ElasticGrid - undeploy of a failed deployment leaks resources and  causes error on redeploy </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14280," />: NullPointerException when failing to initialize connection to HSQLDB  </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14278," />: ElasticGrid - scale out may hang when adding more than one partition with insufficient resources </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14279," />: ElasticGrid - node remove command may terminate nodes without draining them when removing multiple nodes </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14252," />: ElasticGrid  - create cluster may fail when user-provided VPC/SG/subnet is in use </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14265," />: CPU utilization not consistently reported across platforms </li>
+            </ul>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14261," />: Stateful blueprints fail to compile using Java 11 due to missing javax.annotation dependency </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14243," />:  ElasticGrid - Creating AWS cluster using user-provided security group may fail when the inbound rules contain a rule for the client machine IP </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14074," />: After upgrading to 15 version, classNotFound exception due to usage of symbolic links </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14254," />: Order of processing removal events prevents proper removal of VirtualMachine from Machine object in Admin API </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14238," />: Retry policy used to connect a client to ZooKeeper elapses prematurely </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14223," />: Space remains in stopped state after network reconnection </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14257," />: Ops Manager UI displays an empty index </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14234," />: NPE while running Explain Plan for Select Query that has id in Where clause </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14256," />: Change log level of SQLTransientConnectionException from SEVERE to WARNING </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14206," />: Oshi cause permanent WMI requests from XAP processes that are leading to a high CPU consumption </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14255," />: Ignore GS_PU_DYNAMIC_PARTITIONING environmental variable when deploying non-partitioned service </li>
+            </ul>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14240," />:  Create command might fail when using auto-generated subnet because of wrong availability zone choice </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14241," />:  Grafana got 502 error in ElasticGrid caused by DNS resolution </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14080," />:  Can't change port and IP in WEB UI </li>
+            </ul>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14226," />:  Change default disk size in ElasticGrid AWS </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14233," />: On Space shutdown, close ZooKeeper client's connection state listener  </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14216," />:  ElasticGrid support for Java 11 and later </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14228," />:  After gsm restarted, exception [java.sql.SQLException: statement is closed] thrown for gsc </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14232," />:   'gsctl node add' command fails if a wrong component name was provided </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14220," />:  ElasticGrid node add does not work with profile name that includes spaces </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14221," />:  gsctl info command does not work if the cluster is not created yet </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14217," />:  ElasticGrid disabling metrics when metrics-related built-in services are disabled </li>
+            </ul>
+            <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time. </p>
+            <h2>Known Issues</h2>
+            <div MadCap:conditions="NewSet.JustAColorForDivs">
+                <p>For client version 14.0 or older, there is a possibility that the redo log will be corrupted and not available for system recovery.</p>
+                <p>This can only happen if all of the following conditions are true:</p>
+                <ul>
+                    <li>
+                        <p>The client system is version 14.0 or older</p>
+                    </li>
+                    <li>
+                        <p>AND the server-side system is a later release of 14.2 or higher</p>
+                    </li>
+                    <li>
+                        <p>AND the old client did a Change operation.</p>
+                    </li>
+                    <li>
+                        <p>AND  the redo log exceeds RAM capacity and goes to the hard drive,.</p>
+                    </li>
+                </ul>
+            </div>
+            <p>.</p>
+        </div>
+        <div MadCap:conditions="Version.15-5-only">
+            <h1 MadCap:conditions="Version.15-5-only">15.5.1</h1>
+            <h2>Features and Enhancements</h2>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14242,">
+                    </MadCap:snippetText>:  ElasticGrid - improve life cycle of processing units</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14277,">
+                    </MadCap:snippetText>:  ElasticGrid - allow public access for AWS Cluster</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14267,">
+                    </MadCap:snippetText>:  ElasticGrid - use AWS credentials from the client host for node add/remove commands</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14263,">
+                    </MadCap:snippetText>:  ElasticGrid - Use --server=&lt;node-ip&gt; to communicate with cluster</li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14264,">
+                    </MadCap:snippetText>:  ElasticGrid - ask for confirmation when running destroy command</li>
+            </ul>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14251,">
+                    </MadCap:snippetText>:  Define liveness health check and cancel restarts in readiness health check for stateful service on ElasticGrid </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14258,">
+                    </MadCap:snippetText>:  Display a tooltip showing the index hits count in the object drill down page of the Ops Manager UI </li>
+            </ul>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14225,">
+                    </MadCap:snippetText>:  Added support for scale up/down stateful pu without HA </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14247,">
+                    </MadCap:snippetText>:  Set logger level using environment variable or system property </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14246,">
+                    </MadCap:snippetText>:  Set metrics xml config file via GS_METRICS_CONFIG environment variable </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14245,">
+                    </MadCap:snippetText>:  Set metric sampler using environment variable or system property </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14205,">
+                    </MadCap:snippetText>:  Upgrade Oshi to 5.2.5 </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14239,">
+                    </MadCap:snippetText>:  Change default pu memory to 512mb and managers default to 1024mb on ElasticGrid </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14236,">
+                    </MadCap:snippetText>:  Fix text overflow in GSCTL output to display all details including the token </li>
+            </ul>
+            <ul>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14236," />:  Change default characters per line and set minimum value </li>
+            </ul>
+            <p MadCap:conditions="Default.DoNotShow">There are no features and enhancements at this time.</p>
+            <h2>Resolved Issues</h2>
+            <ul>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14284,">
+                </MadCap:snippetText>: ElasticGrid - undeploy of a failed deployment leaks resources and  causes error on redeploy <li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14280,"></MadCap:snippetText>: NullPointerException when failing to initialize connection to HSQLDB  </li><li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14278,"></MadCap:snippetText>: ElasticGrid - scale out may hang when adding more than one partition with insufficient resources </li><li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14279,"></MadCap:snippetText>: ElasticGrid - node remove command may terminate nodes without draining them when removing multiple nodes </li><li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14252,"></MadCap:snippetText>: ElasticGrid  - create cluster may fail when user-provided VPC/SG/subnet is in use </li><li><MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14265,"></MadCap:snippetText>: CPU utilization not consistently reported across platforms </li></ul>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14261,">
+                    </MadCap:snippetText>: Stateful blueprints fail to compile using Java 11 due to missing javax.annotation dependency </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14243,">
+                    </MadCap:snippetText>:  ElasticGrid - Creating AWS cluster using user-provided security group may fail when the inbound rules contain a rule for the client machine IP </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14074,">
+                    </MadCap:snippetText>: After upgrading to 15 version, classNotFound exception due to usage of symbolic links </li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14254,">
+                    </MadCap:snippetText>: Order of processing removal events prevents proper removal of VirtualMachine from Machine object in Admin API </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14238,">
+                    </MadCap:snippetText>: Retry policy used to connect a client to ZooKeeper elapses prematurely </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14223,">
+                    </MadCap:snippetText>: Space remains in stopped state after network reconnection </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14257,">
+                    </MadCap:snippetText>: Ops Manager UI displays an empty index </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14234," />: NullPointerException while running Explain Plan for Select Query that has id in Where clause </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14256,">
+                    </MadCap:snippetText>: Change log level of SQLTransientConnectionException from SEVERE to WARNING </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14206,">
+                    </MadCap:snippetText>: Oshi cause permanent WMI requests from XAP processes that are leading to a high CPU consumption </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14255,">
+                    </MadCap:snippetText>: Ignore GS_PU_DYNAMIC_PARTITIONING environmental variable when deploying non-partitioned service </li>
+            </ul>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14240,">
+                    </MadCap:snippetText>:  Create command might fail when using auto-generated subnet because of wrong availability zone choice </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14241,">
+                    </MadCap:snippetText>:  Grafana got 502 error in ElasticGrid caused by DNS resolution </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14080,">
+                    </MadCap:snippetText>:  Can't change port and IP in WEB UI </li>
+            </ul>
+            <ul>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14226,">
+                    </MadCap:snippetText>:  Change default disk size in ElasticGrid AWS </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14233,">
+                    </MadCap:snippetText>: On Space shutdown, close ZooKeeper client's connection state listener  </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14216,">
+                    </MadCap:snippetText>:  ElasticGrid support for Java 11 and later </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14228,">
+                    </MadCap:snippetText>:  After gsm restarted, exception [java.sql.SQLException: statement is closed] thrown for gsc </li>
+                <li>
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14232,">
+                    </MadCap:snippetText>:   'gsctl node add' command fails if a wrong component name was provided </li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14220,">
+                    </MadCap:snippetText>:  ElasticGrid node add does not work with profile name that includes spaces </li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14221,">
+                    </MadCap:snippetText>:  gsctl info command does not work if the cluster is not created yet </li>
+                <li MadCap:conditions="Default.DoNotShow">
+                    <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14217," />:  ElasticGrid disabling metrics when metrics-related built-in services are disabled </li>
+            </ul>
+            <p MadCap:conditions="Default.DoNotShow">There are no resolved issues at this time.</p>
+            <h2>Known Issues</h2>
+            <div MadCap:conditions="NewSet.JustAColorForDivs">
+                <p>For client version 14.0 or older, there is a possibility that the redo log will be corrupted and not available for system recovery.</p>
+                <p>This can only happen if all of the following conditions are true:</p>
+                <ul>
+                    <li>
+                        <p>The client system is version 14.0 or older</p>
+                    </li>
+                    <li>
+                        <p>AND the server-side system is a later release of 14.2 or higher</p>
+                    </li>
+                    <li>
+                        <p>AND the old client did a Change operation.</p>
+                    </li>
+                    <li>
+                        <p>AND  the redo log exceeds RAM capacity and goes to the hard drive,.</p>
+                    </li>
+                </ul>
+            </div>
+            <p MadCap:conditions="Default.DoNotShow">There are no known issues at this time.</p>
+        </div>
+        <h1 MadCap:conditions="Version.15-5-only">15.5.0</h1>
+        <h2 MadCap:conditions="Version.15-5-only">Features and Enhancements</h2>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14178," />:  Service horizontal scale in Elastic Grid </li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14177," />: Service vertical scale in Elastic Grid </li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14170," />: Deploy/Undeploy Processing Units in ElasticGrid </li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14199," />: Enhance InsightEdge JDBC driver to properly report catalog support </li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14166," />: Add ability to deploy Processing Unit using the Ops Manager </li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14180," />: Add ability to undeploy Processing Units using the Ops Manager</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14182," />: Add ability to run SQL Query with explain plan using the Ops Manager</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14157," />: Simplify Spring security integration </li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14189," />: Add MongoDB as a built-in service for ElasticGrid</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14188," />: Support for @Repeatable meta-annotation</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14168," />: Improve performance of storing reported metrics to hsqldb</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14165," />: Support Compound Index from data connectivity</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14154," />: New REST API for vertical scaling of a service for ElasticGrid and Kubernetes</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14160," />: On-demand service scale with multiple partitions using Ops Manager with Kubernetes</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14163," />: View log of Service instance in Ops Manager</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14079," />: Dynamically scale in/out a Space partition</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14169," />: GSCTL as REST Service</li>
+            <li MadCap:conditions="Default.DoNotShow">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14171," />: Add support on REST API for vertical scaling of a stateless service
+			</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14175," />: Add new CLI command for vertical scaling of a service for ElasticGrid and Kubernetes</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14167," />: Set index type and edit existing index in data connectivity view</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14114," />: Volume support for services persistence for ElasticGrid
+			</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14100," />: Heap size report in Ops Manager</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14131," />: On-demand single partition vertical scale in Ops Manager for ElasticGrid and Kubernetes</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14143,">
+                </MadCap:snippetText>: Enhance data connectivity to support tables with multiple column primary keys</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14161,">
+                </MadCap:snippetText>: Custom roles for in-memory Spring security configuration</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14155,">
+                </MadCap:snippetText>: Service To service continuous data transfer</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14159,">
+                </MadCap:snippetText>: Allow configuring Jetty's request header size</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14156,">
+                </MadCap:snippetText>: Session cookies for GigaSpaces web-based tools are now unique</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14141,">
+                </MadCap:snippetText>: Enhance mirror service with Apache Kafka</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14148,">
+                </MadCap:snippetText>: Add option for auto revert on vertical scale in Kubernetes</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14151," />: Start ElasticGrid cluster with security</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14130," />: Show index hits in Ops Manager</li>
+            <li MadCap:conditions="Default.DoNotShow">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14147," />: Add validations to on-demand vertical scale on single partition when running Kubernetes</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14123," />: TDVT – Update dialect, connection string and utils for Tableau JDBC connector</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14122," />: Start ElasticGrid cluster with TLS enabled</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14139," />: Secure Ops Manager with authentication</li>
+            <li MadCap:conditions="Default.DoNotShow">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14138," />: Refactor UID prefix to be stored on typeDesc instead of limited cache</li>
+            <li MadCap:conditions="Default.DoNotShow">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14137," />: Removed obsolete reflection inspection for "__getUID"</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li MadCap:conditions="Default.DoNotShow">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14136," />: Removed obsolete system property com.gs.serUID</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14133," />: Allow to predefine data sources for Ops Manager</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14132," />: Automatically select optimal iterator type for embedded/remote space</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14125," />: Report and display data type index hits in Grafana</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14105," />: Allow duplicate UIDs in single writeMultiple on InsightEdge w/RocksDB</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14126," />: Enhance QueryCache to log a warning when cache is full</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14111,">
+                </MadCap:snippetText>: Upgrade Nomad from 0.10.1 to 0.11.2 and Consul from 1.6.1 to 1.7.3</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14104,">
+                </MadCap:snippetText>: Adding support for IAM role binding to an EC2 instance</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14095,">
+                </MadCap:snippetText>: Support helm 3</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14081,">
+                </MadCap:snippetText>: ElasticGrid hybrid cluster support</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14094,">
+                </MadCap:snippetText>: Upgrade Zookeeper version to 3.5.7</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14085," />: Expose instances log in Ops Manager</li>
+            <li MadCap:conditions="Version.15-5-only">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14077," />: Improved performance using getLastStatistics instead of getStatistics</li>
+            <li MadCap:conditions="Version.15-5-only">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14119," />: Optimize shortest-index selection to speed up query execution</li>
+            <li MadCap:conditions="Version.15-5-only">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14214," />: Data-connectivity support for Oracle and PostgreSQL</li>
+        </ul>
+        <h2 MadCap:conditions="Version.15-5-only">Resolved Issues</h2>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14088," />: Add support in data-connectivity for database tables with an auto-generated ID column</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14179," />: Error creating bean specified in LDAP Spring security configuration file</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14145," />: Override metrics DB port using com.gs.ui.metrics.db.port system property</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14135," />: Select shortest index for known and unknown sizes</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14144," />: Explain plan shows unusable index as selected for matching</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14121," />: Configure amount of time to block on a read call from socket</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14117,">
+                </MadCap:snippetText>: The 'pu run' and 'space run' CLI commands fail when Java 11 is used</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14112,">
+                </MadCap:snippetText>: Space Iterator of type CURSOR returns empty results with super type queries</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14109,">
+                </MadCap:snippetText>: After a network reconnect a pending instance might be discarded and not monitored for liveness</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14096," />: Failing validation phase couldn't destroy the cluster and its dynamic resources on AWS mode</li>
+        </ul>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li MadCap:conditions="Version.15-5-only">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14091," />: Destroy terminates all instances related to the vpc provided by the user</li>
+            <li MadCap:conditions="Version.15-5-only">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14083," />: When there is a dash in the space name, the Object type drill down does not work</li>
+        </ul>
+        <h2 MadCap:conditions="Version.15-5-only">Known Issues</h2>
+        <ul MadCap:conditions="Version.15-5-only">
+            <li MadCap:conditions="Version.15-5-only">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14215," />: Edge case when the deployment of a service failed and the job will remain in Nomad <br /></li>
+            <li MadCap:conditions="Version.15-5-only">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14206," />: Oshi cause permanent WMI requests from XAP processes that are leading to a high CPU consumption </li>
+            <li MadCap:conditions="Version.15-5-only">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14206," />: Tableau 2020.02 (or later) support requires disabling custom load.<br /></li>
+        </ul>
+        <div MadCap:conditions="Version.15-5-only">
+            <p>For client version 14.0 or older, there is a possibility that the redo log will be corrupted and not available for system recovery.</p>
+            <p>This can only happen if all of the following conditions are true:</p>
+            <ul>
+                <li>
+                    <p>The client system is version 14.0 or older</p>
+                </li>
+                <li>
+                    <p>AND the server-side system is a later release of 14.2 or higher</p>
+                </li>
+                <li>
+                    <p>AND the old client did a Change operation.</p>
+                </li>
+                <li>
+                    <p>AND  the redo log exceeds RAM capacity and goes to the hard drive,.</p>
+                </li>
+            </ul>
+        </div>
+        <p>&#160;</p>
+        <h1 MadCap:conditions="Version.15-2-only">15.2</h1>
+        <h2 MadCap:conditions="Version.15-2-only">Features and Enhancements</h2>
+        <ul MadCap:conditions="Version.15-2-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14034,">
+                </MadCap:snippetText>: Object type exploration.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14043,">
+                </MadCap:snippetText>: View the indexes in Object type exploration.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13997,">
+                </MadCap:snippetText>: Dynamic Service Orchestration.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13992,">
+                </MadCap:snippetText>: Auto Data Source Connect from OpsManager or Blueprint.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14040,">
+                </MadCap:snippetText>: Allow tracing synchronous methods in proxy with OpenTracing API.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14073,">
+                </MadCap:snippetText>: Kubernetes - update default memory limit for manager pods to 400Mi.</li>
+            <li MadCap:conditions="Version.15-2-only">
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14062,">
+                </MadCap:snippetText>: Upgrade Hibernate to 5.3.10.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13995,">
+                </MadCap:snippetText>: Introduce a new Space iterator implementation.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14050,">
+                </MadCap:snippetText>: Add ability to monitor the read distribution of the data objects.
+			</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14038,">
+                </MadCap:snippetText>: Add ability to monitor the number and sizes of the data objects per partition.			</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13953,">
+                </MadCap:snippetText>: Improved the performance of text-based Space indexing.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13975,">
+                </MadCap:snippetText>: Simplify Tableau integration using Tableau Connector (.taco) file.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14065,">
+                </MadCap:snippetText>: Expose configuration of login timeout for shared JDBC connection used by GigaSpaces Ops Manager.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13918,">
+                </MadCap:snippetText>: Add target name to replication log message and use sub-logger.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14064,">
+                </MadCap:snippetText>: Add new CLI command for retrieving request status by ID.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14063,">
+                </MadCap:snippetText>: Add new CLI command to scale stateful processing unit service in Kubernetes.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14033,">
+                </MadCap:snippetText>: Avoid duplication in Maven dependencies.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14027,">
+                </MadCap:snippetText>: When a 'gs' cli command fails, print verbose info if the GS_CLI_VERBOSE environment variable is set to true.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14058,">
+                </MadCap:snippetText>: Remove redundant com.springsource.org.aopalliance.jar from packaging.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14061,">
+                </MadCap:snippetText>: Enhance the '--zones' and '--primary-zones' options in the 'pu deploy' CLI command to accept multiple comma-separated zones.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13676,">
+                </MadCap:snippetText>: Improved error logging when executing invalid SQL queries from Ops Manager.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14012,">
+                </MadCap:snippetText>: Support quotes and white spaces in JavaCommandBuilder#optionsFromEn.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14049,">
+                </MadCap:snippetText>: Add new REST API for modifying a statefulset on Kubernetes during runtime.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13953,">
+                </MadCap:snippetText>: Improved the performance of text-based Space indexing.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14049,">
+                </MadCap:snippetText>: Add new REST API for modifying a stateful service on Kubernetes during runtime.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14026,">
+                </MadCap:snippetText>: Support JDBC queries on top of DataFrames.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14025,">
+                </MadCap:snippetText>: Use String as the default type for idProperty in type descriptor.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13998,">
+                </MadCap:snippetText>: When running the interactive gs shell, start continuous commands in a separate window (if the OS supports this).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14018,">
+                </MadCap:snippetText>: Added '--zones' option to 'container kill' CLI command to kill containers from specific zone(s).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14017,">
+                </MadCap:snippetText>: Added '--zones' option to 'container list' CLI command to show containers from specific zone(s).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14016,">
+                </MadCap:snippetText>: Added '--count' option to 'container create' CLI command to create multiple containers.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13999,">
+                </MadCap:snippetText>: Add nodeSelector option to GigaSpaces Helm charts.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13977,">
+                </MadCap:snippetText>: Add PropertyStorageAdapter API to let users control property storage (e.g. compress, encrypt).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13979,">
+                </MadCap:snippetText>: Support property encryption with AES using AesGcmAdapter and AesCbcAdapter.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13919,">
+                </MadCap:snippetText>: Add session timeout for the Web Management Console.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13986,">
+                </MadCap:snippetText>: GigaSpaces Ops Manager Spaces view.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13990,">
+                </MadCap:snippetText>: Load service configuration values from the gs-service-config.yaml file if it exists.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13991,">
+                </MadCap:snippetText>: Support the yaml properties files when running 'pu deploy' and 'pu run' commands.</li>
+        </ul>
+        <h2 MadCap:conditions="Version.15-2-only">Resolved Issues</h2>
+        <ul MadCap:conditions="Version.15-2-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14101,">
+                </MadCap:snippetText>: Kafka wrong host advertised as a consul service</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14032,">
+                </MadCap:snippetText>: User gets a warning message because open source code uses deprecated hibernate.Criteria.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13982,">
+                </MadCap:snippetText>: Customer cannot submit Spark job in InsightEdge version 15.0 with specific Kubernetes versions.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14022,">
+                </MadCap:snippetText>: XAP won't start when running Java 11 on Windows 10.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13917,">
+                </MadCap:snippetText>: When query results are exported from the Web Management Console, they are missing the first row.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14054,">
+                </MadCap:snippetText>: ProcessingUnit class loader does not prioritize local slf4j over system slf4j.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14052,">
+                </MadCap:snippetText>: Space iterator requires EXECUTE Space user privileges in a secured Space.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14045,">
+                </MadCap:snippetText>: Support Tableau 2019.4.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14044,">
+                </MadCap:snippetText>: Java 11 - Fixed areas where code didn't parse the Java version correctly.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14031,">
+                </MadCap:snippetText>: Kubernetes service (PU) startup sequence handles an inaccessible manager incorrectly, leading to a stray service instance.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14024,">
+                </MadCap:snippetText>: spark.read.grid(collectionName) doesn't work if the collection isn't written via the DataFrame API.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14020,">
+                </MadCap:snippetText>: The 'pu deploy --property' CLI command mishandles properties containing a ';' (semi-colon) character.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14010,">
+                </MadCap:snippetText>: Using z.load in Apache Zeppelin paragraphs stopped working.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14003,">
+                </MadCap:snippetText>: Installing interpreters  in Zeppelin stopped working.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-14008,">
+                </MadCap:snippetText>: Can only deploy one environment on a Kubernetes cluster.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13993,">
+                </MadCap:snippetText>: ClassNotFoundException is thrown when submitting a Spark job with --conf spark.executor.extraClassPath on Kubernetes.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13984,">
+                </MadCap:snippetText>: Spark version bundled with InsightEdge doesn't support recent Kubernetes release (SPARK-28921).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13981,">
+                </MadCap:snippetText>: When the Kubernetes remote Space access is enabled for the Manager but disabled for the Space, proxies within Kubernetes connect to the Space using the public instead of the private IP address.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13980,">
+                </MadCap:snippetText>: Kubernetes Space-based remoting fails on minikube with the NodePort service type.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13978,">
+                </MadCap:snippetText>: The create container API creates a container with Java's default Xmx.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13972,">
+                </MadCap:snippetText>: Local view fails to start when locator is defined as IPv6.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13976," />: The CPU metric displayed in the Grafana dashboard processing units shows the value in a range between 0 and 1 instead of 0 and 100.</li>
+        </ul>
+        <h1 MadCap:conditions="Version.15-0-only">15.0.0</h1>
+        <h2 MadCap:conditions="Version.15-0-only">Features and Enhancements</h2>
+        <p MadCap:conditions="Version.15-0-only">&#160;</p>
+        <ul MadCap:conditions="Version.15-0-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13956," />: Add readiness probe to Kubernetes.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13908," />: New GigaSpaces Ops Manager user interface (UI).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13971," />:  Upgrade Jackson Databind to 2.9.9.3.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13964," />: Improved support for Spring annotation-based configuration.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13955," />: Set default of GSC serviceLimit to 1.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13967," />: Configure the log folder location via either the com.gs.logs system property or the GS_LOGS environment variable.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13966," />: Support environment variable configuration for system locations.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13963," />: Instantiate pending Processing Unit instances right after an undeploy event.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13958," />: Add '--ha' option to 'pu deploy' command (alias for '--backups=1').</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13952," />: Enhance lib/required processing to auto-include additional JAR files in the system class loader.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13855," />: Add AnalyticXtreme batch indexing to InsightEdge.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13950," />: Upgrade Apache Spark to 2.4.4.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13951," />: Upgrade Apache Zeppelin to 0.8.2.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13915," />: Support remote classloading in Kubernetes environment.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13728," />: Remove JOTM (Java Open Transaction Manager) module from product.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13849," />: Remove GS_OPTIONS_EXT usage from Dockerfile to simplify external usage.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13942," />: upgrade OSHI to version 4.0.0 and JNA to 5.4.0.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13660," />: Upgrade Apache Calcite to 1.21 and Avatica to 15.0.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13940," />: Improve shutdown hook process in SystemBoot.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13880," />: Refactor environment variable processing from script to GsCommandFactory.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13884," />: Support 'GS_' alias prefix for 'XAP_' environment variables.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13992," />: Reduce replication contention when registering local view or durable notification.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13935," />: Enhance CsvReader to support quoted string values.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13934," />: Enhance license manager to search for licenses in gs-license.txt in addition to xap-license.txt.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13932," />: Enhance 'container create' CLI command to accept JVM options using '--vm-option' .</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13928," />: Enhance CsvReader to ignore case when parsing header.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13929," />: Enhance CsvReader to read from InputStream in addition to Path.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13927," />: Customize CsvReader invalid line processing.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13926," />: Enhance CsvReader to support charsets other than UTF-8.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13920," />: Unify LRMI thread pool names for consistency.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13885," />: Upgrade Apache Zookeeper to 3.5.5, Curator to 4.2.0.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13914," />: Upgrade Apache Calcite to 1.14.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13903," />: Simplified the RocksDB configuration for the MemoryXtend driver for SSD.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13901," />: Add new "space_replciation_redo_log_used-percent" metric.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13900," />: Add new "memory-heap-used-percent" metric.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13887," />: Kubernetes network policy enhancement to enable data operations from remote clients via a public IP/port.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13881," />: Added Lucene support for collections in full text search.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13883," />: Enhance InsightEdge JDBC driver to optionally get schema from an alternative URL instead of from a Space.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13683," />: Upgrade Jetty to 9.4.19.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13816," />: Improve SQL query performance when distinct keyword is used.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13696," />: User-defined SQL functions now support setting parameters.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13893," />: Added the CONTAINS_KEY built-in SQL function that checks if a map contains a key.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-12362," />: The GS Agent only monitors (and restarts) components that were started successfully.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13891," />: Upgrade RocksDB to 6.0.1.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13879," />: Upgrade Hibernate to 5.2.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13868," />: Added support in AnalyticsXtreme for Hive partitioned tables.</li>
+        </ul>
+        <h2 MadCap:conditions="Version.15-0-only">Resolved Issues</h2>
+        <ul MadCap:conditions="Version.15-0-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13974," />: NullPointerException in the Web Management Console when undeploying a Processing Unit.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13970," />: Standalone Processing Unit - instantiate a new processing unit one time only.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13969," />: Some incorrect output labels in CLI command: space info-instance  --replication-stats.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13965," />: The request status of a failed RESTful increment instance command is incorrect due to an underlying NullPointerException.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13939," />: Properties provided via the 'container create --property' command don't override environment variables in the setenv-overrides script.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13931," />: In rare scenarios, the system threw an OutOfMemory Error due to ClassLoaderContext._specificListeners allocations.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13937," />: Manager auto-detection fails when literal IPv6 addresses are used.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13849," />: GSC stdio sometimes closes prematurely, causing shutdown to hang indefinitely.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13878," />: SpaceIterator.close() throws an exception when the data isn't fully consumed.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13936," />: REST Manager API deployment status shows Pending instead of Failed.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13897," />: Default values in property placeholder syntax aren't supported.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13889," />: Processing Unit failed to deploy after problematic content was removed with LinkageError exception.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13905," />: Passing options to interactive shell doesn't work.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13899," />: The "process_cpu_used-percent" metric doesn't record the correct value.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13894," />: GS Agent components don't terminate when the parent process is no longer alive.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13863," />: Full recovery failed when using a FIFO group.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13207," />: Polling container didn't have a graceful shutdown when using a DynamicEventTemplate in combination with a SQL query.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13812," />: Full recovery does not preserve the FIFO grouping order.</li>
+        </ul>
+        <h2 MadCap:conditions="Version.15-0-only">Known Issues</h2>
+        <div MadCap:conditions="Version.15-0-only">
+            <p>For client version 14.0 or older, there is a possibility that the redo log will be corrupted and not available for system recovery.</p>
+            <p>This can only happen if all of the following conditions are true:</p>
+            <ul>
+                <li>
+                    <p>The client system is version 14.0 or older</p>
+                </li>
+                <li>
+                    <p>AND the server-side system is a later release of 14.2 or higher</p>
+                </li>
+                <li>
+                    <p>AND the old client did a Change operation.</p>
+                </li>
+                <li>
+                    <p>AND  the redo log exceeds RAM capacity and goes to the hard drive,.</p>
+                </li>
+            </ul>
+        </div>
+        <h1 MadCap:conditions="Version.14-5-only">14.5.0</h1>
+        <h2 MadCap:conditions="Version.14-5-only">Features and Enhancements</h2>
+        <ul MadCap:conditions="Version.14-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13851," />: Support MemoryXtend for persistent volumes in Kubernetes.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13873," />: Kubernetes - change default service type to LoadBalancer .</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13877," />: Added GridServiceContainerOptions.Builder to simplify GSC creation from Admin API.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13840," />: AnalyticsXtreme - add JOIN support to query.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13726," />: Upgrade Spring to 5.1.7, Spring Security to 5.1.5.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13869," />: Query optimization for "OR" conditions in AnalyticsXtreme.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13839," />: GigaSpaces blueprints for creating new projects.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13854," />: Consolidate CLI scripts (gs, xap, insightedge) to a single script (gs).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13859," />: Deprecated duplicate scripts and removed obsolete scripts.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13862," />: Added SLF4J dependency for logging.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13860," />: InsightEdge JDBC Driver enhancement - push down projection when aggregation is used.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13838," />: New GigaSpaces-Tableau JDBC Connector.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13858," />: Upgrade Jetty to 9.3.27.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13498," />: Tag durable notify containers with business-oriented names.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13820," />: Remove the XAP Maven plugin from the software package.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13847," />: New 'maven install' CLI command for installing GigaSpaces Maven artifacts.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13848," />: Remove bundled Apache Maven from package.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13844," />: Added CsvReader to simplify reading data from .CSV files.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13843," />: Upgrade Apache Calcite to 1.13.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13841," />: Enhanced JDBC support - the standard java.sql.Driver file is now packaged.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13813," />: Replace Sigar with Oshi.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13826," />: Interactive shell for command line interface.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13834," />: Deprecate EXT_JAVA_OPTIONS - use XAP_OPTIONS_EXT instead.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13830," />: Add XAP_LIBRARY_PATH and XAP_LIBRARY_PATH_EXT environment variables to override/extend java.library.path.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13833," />: Add XAP_OPTIONS and XAP_OPTIONS_EXT environment variables.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13832," />: Enhance 'pu run' CLI command to accept properties.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13678," />: Upgrade PicoCLI to 3.9.5.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13829," />: Rename mx-pmem file name parameter with pmem-path.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13807," />: Reduce network traffic when the GSC connects with the GSM.</li>
+        </ul>
+        <h2 MadCap:conditions="Version.14-5-only">Resolved Issues</h2>
+        <ul MadCap:conditions="Version.14-5-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13871," />: Force timezone to UTC when using a Spark data source with AnalyticsXtreme</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13853," />: The os_cpu_used-percent operating system metric reported the wrong values.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13842," />: Support reading DataFrame of a POJO with an enum field.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13828," />: Processing Unit stays in COMPROMISED state after network disruption, due to failure of the GSC to register with the GSM.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13831," />: Command line generator does not quote the com.gs.home path if it contains space characters.</li>
+        </ul>
+        <h2 MadCap:conditions="Version.14-5-only">Known Issues</h2>
+        <div MadCap:conditions="Version.14-5-only">
+            <p>For client version 14.0 or older, there is a possibility that the redo log will be corrupted and not available for system recovery.</p>
+            <p>This can only happen if all of the following conditions are true:</p>
+            <ul>
+                <li>
+                    <p>The client system is version 14.0 or older</p>
+                </li>
+                <li>
+                    <p>AND the server-side system is a later release of 14.2 or higher</p>
+                </li>
+                <li>
+                    <p>AND the old client did a Change operation.</p>
+                </li>
+                <li>
+                    <p>AND  the redo log exceeds RAM capacity and goes to the hard drive,.</p>
+                </li>
+            </ul>
+        </div>
+        <h1 MadCap:conditions="Version.14-2-only">14.2.0</h1>
+        <h2 MadCap:conditions="Version.14-2-only">Features and Enhancements</h2>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13444," />: Upgrade Hibernate to 5.1.17.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13662," />: Added AnalyticsXtreme feature for data lake acceleration.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13806," />: SparkSessionFactory class for creating Spark sessions within Processing Units.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13705," />: Upgrade Apache Spark version to 2.4.0.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13795," />: Upgrade Apache ZooKeeper to 3.4.13.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13768," />: Decouple the Hibernate integration and put in a separate module.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13793," />: When killing a process in Microsoft Windows, automatically kill any child processes recursively.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13761," />: Parse Java version more generically to support future releases (&gt;11).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13792," />: Auto-disable Sigar on Windows when Java version is 9 or higher.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13790," />: Remove Java distribution from XAP.NET package.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13785," />: Improved the PU resource upload REST call to include the resource URL in the response body.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13786," />: Added a new CLI command to upload a Processing Unit resource.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13776," />: Added ability to disable caching of the change path for the Change API.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13784," />: The Apache Zeppelin Shell interpreter is now packaged with InsightEdge.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13774," />: New CLI now supports using a properties file to configure the Processing Unit properties.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13772," />: Upgrade Apache Zeppelin to 0.8.1.</li>
+        </ul>
+        <h2 MadCap:conditions="Version.14-2-only">Resolved Issues</h2>
+        <ul MadCap:conditions="Version.14-2-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13810," />: Fixed scripts (build-jdbc-client.cmd/sh) that build the JDBC client uber-jar (insightedge-jdbc-client.jar).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13799," />: Wrong host CPU and memory usage values displayed in the GigaSpaces Management Center and Web Management Console when the Sigar library is missing.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13781," />: Java vendor parsing failed on StringIndexOutOfBoundsException with AdoptOpenJDK 1.8.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13714," />: Executing a SQL query with a function on an indexed field returned incorrect results.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13777," />: In rare circumstances, a Processing Unit remains in UNDEPLOYED state although all instances have terminated.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13741," />: Aggregation operation ignores transactions.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13604," />: Change API ignores the 'AND' in SQL queries on SpaceDocument objects when one of the conditions is the SpaceId property.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13783," />: XAP Manager relinquish leadership event is delayed by remote call.</li>
+        </ul>
+        <h2 MadCap:conditions="Version.14-2-only">Known Issues</h2>
+        <div MadCap:conditions="Version.14-2-only">
+            <p>For client version 14.0 or older, there is a possibility that the redo log will be corrupted and not available for system recovery.</p>
+            <p>This can only happen if all of the following conditions are true:</p>
+            <ul>
+                <li>
+                    <p>The client system is version 14.0 or older</p>
+                </li>
+                <li>
+                    <p>AND the server-side system is a later release of 14.2 or higher</p>
+                </li>
+                <li>
+                    <p>AND the old client did a Change operation.</p>
+                </li>
+                <li>
+                    <p>AND  the redo log exceeds RAM capacity and goes to the hard drive,.</p>
+                </li>
+            </ul>
+        </div>
+        <h1 MadCap:conditions="Version.14-0-only">14.0.1</h1>
+        <h2 MadCap:conditions="Version.14-0-only">Features and Enhancements</h2>
+        <ul MadCap:conditions="Version.14-0-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13424," />: Support for Java 11.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13742," />: Ephemeral nodes of Space instances aren't removed from Apache ZooKeeper when the Space throws "IllegalStateException: Identified another participant with the same name".</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13733," />: Added a Kubernetes liveness probe to the Data (Processing Unit) and Management Pods.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13736," />: Added a retry for failed connection attempts of discovered services to the Administration API.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13734," />: Support adding Java options to the Data (Processing Unit) and Manager Pods in KubeGrid.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13725," />: Improve KubeGrid pod termination handling.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13722," />: Increase client timeout for all Web Management Console service dump operations.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13720," />: Upgrade Apache Lucene to version 7.5.0.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13719," />: Fixed InsightEdge Spark Streaming example.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-12252," />: Avoid starting security manager by default - permission checks consume a lot of memory in serialization when security manager is on.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13712," />: Support was added to detect SpaceStatusChanged via listener and annotation.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13715," />: Improve network calls when the GSC registers with the GSM.</li>
+        </ul>
+        <h2 MadCap:conditions="Version.14-0-only">Resolved Issues</h2>
+        <ul MadCap:conditions="Version.14-0-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13723," />: When running an aggregation query with multiple columns to a space,  the columns don't stay in the correct order.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13745," />: GigaSpaces Services Manager in XAP.NET fails when trying to stop a service.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13595," />: The REST Manager API creates excess files in the temp directory.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13729," />: NPE when deserializing query result in .NET client.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13717," />: Polling container that is configured via XML doesn't stop when the Space is quiesced/demoted.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13711," />: The Admin API reference in the alert-integration example isn't closed when the example is undeployed.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13659," />: Processing Unit fails to deploy when a namespace is provided for Spring beans .</li>
+        </ul>
+        <h1 MadCap:conditions="Version.14-0-only">14.0.0</h1>
+        <h2 MadCap:conditions="Version.14-0-only">Features and Enhancements</h2>
+        <ul MadCap:conditions="Version.14-0-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13598," />: Demote Primary Space to Backup.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13593," />: Kubernetes support.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13601," />: New MemoryXtend driver for Persistent Memory (PMEM).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13679," />: Change InsightEdge space name in demo mode.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13681," />: Migrate InsightEdge examples from separate repo to InsightEdge.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13695," />: Upgrade Jetty version to 9.3 latest.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13693," />: Deprecate gs-agent script.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13692," />: Deprecate legacy command line interface.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13688," />: Support querying space data from REST Manager and CLI.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13686," />: Enhanced CLI "pu run' command validation to include invalid instances.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13685," />: Improve error message for CLI command "pu run' when file not found.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13622," />: Support unmanaged Processing Units in Admin API.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13599," />: Changed default rownum from 5000 to 10 in Web Management Console.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13644," />: Upgrade Zeppelin to 0.8.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13656," />: Add Zeppelin InsightEdge JDBC interpreter.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13650," />: Add autoCommit property to InsightEdge JDBC Driver (for Zeppelin).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13309," />: New API to initialize InsightEdge from existing Spark context/session.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13667," />: Increase ZooKeeper client session timeout setting to 15 seconds.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13588," />: Enhanced XAP.NET to support dtd validation via Tls12 url (s3).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13677," />: End Of Life - XAP.NET for .NET v3.5.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13675," />: InsightEdge JDBC driver automatically creates an alias for types using short name if not ambigous.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13674," />: InsightEdge JDBC driver automatically creates an alias for types using underscores to allow non-escaped usage.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13672," />: End Of Life - GigaSpace.getModifiersForIsolationLevel().</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13671," />: Deprecation - GSIterator and GigaSpace.iterator().</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13669," />: Enhance Deploy command in CLI to auto-zip resource in case it is a directory.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13668," />: Reduce Web Management Console (web-ui) memory consumption due to unused statistics.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13666," />: Upgrade Spark to 2.3.2.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13637," />: Upgrade to Spring Security 4.2.8 and Spring Framework 4.3.19.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13643," />: Configure insightedge-submit script to use Platform Manager name instead of lookup locator when running on Kubernetes.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13499," />: Reduce replication network traffic by skipping discarded packets.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13618," />: Add ChangeSet.isEmpty() to indicate if it contains any change operations.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13619," />: Override the IdQuery.equals() default implementation to streamline unit testing.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13602," />: Expose Jetty ports in the Admin API (such as the SslSelectChannelConnector used for HTTPS).</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13615," />: Run InsightEdge Spark jobs on Kubernetes using the InsightEdge Docker image.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13600," />: Add system property to show standalone Spaces in REST Manager API and CLI.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13448," />: Enhance logging to reflect replication connection state changes.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13596," />: Enhance command line <code>--server</code> option to support <code>host:port</code> format.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13591," />: Add a summary to CLI output.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13573," />: Improve XAP and InsightEdge demo command behavior when XAP_MANAGER_SERVERS is configured.</li>
+        </ul>
+        <h2 MadCap:conditions="Version.14-0-only">Resolved Issues</h2>
+        <ul MadCap:conditions="Version.14-0-only">
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13689," />: InsightEdge JDBC driver does not work with Spark SQL.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13631," />: When a transaction aborts due to network failure, it may not release the participating entries immediately.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13658," />: Misspelled License in "Licence data is corrupted" error message.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13657," />: Typo in XAP Manager system property for configuring ZooKeeper session timeout.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13649," />: Fix InsightEdge JDBC Driver initialization to return null when connection fails.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13627," />: EXT_JAVA_OPTIONS environment variable is ignored when using OpenJDK with Microsoft Windows.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13661," />: SPARK_MOUNTED_CLASSPATH contains incorrect semicolon on Microsoft Windows.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13535," />: Null comparison does not work in SQL query when using a nested collection of objects.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13625," />: SQL query with Java date/time WHERE clause fails when date/time format property is configured.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13603," />: The Web Management Console fails to parse java.util.Date properties.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13404," />: Can't generate dump files from user interface after first attempt.</li>
+            <li>
+                <MadCap:snippetText src="../Resources/Snippets/Jira.flsnp" MadCap:snippetVariables="Links.JIRA-Id:GS-13386," />: "Only Live Services Log Dump" doesn't work as expected.</li>
+        </ul>
+        <div class="tc-admon-note">
+            <p MadCap:conditions="Default.DoNotShow">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText>.</p>
+            <p MadCap:conditions="Version.14-0-only">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText>.</p>
+            <p MadCap:conditions="Version.14-2-only">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText>.</p>
+            <p MadCap:conditions="Version.14-5-only">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText>.</p>
+            <p MadCap:conditions="Version.15-0-only">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText>.</p>
+            <p MadCap:conditions="Version.15-2-only">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText>.</p>
+            <p MadCap:conditions="Version.15-5-only">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText>.</p>
+            <p MadCap:conditions="Version.15-8-only">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText>.</p>
+            <p MadCap:conditions="Version.16-0-only">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"> <a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17797" target="_blank">Jira</a></MadCap:conditionalText>.</p>
+            <p MadCap:conditions="Version.16-1-only">The complete list of changes is also available in <MadCap:conditionalText MadCap:conditions="Version.14-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17743" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-2-only"><a href="https://insightedge.atlassian.net/issues/?filter=17761" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-only"><a href="https://insightedge.atlassian.net/issues/?filter=17766" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17771" target="_blank"> Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-2-only"><a href="https://insightedge.atlassian.net/issues/?filter=17785" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-5-only"><a href="https://insightedge.atlassian.net/issues/?filter=17788" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-8-only"><a href="https://insightedge.atlassian.net/issues/?filter=17792" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-0-only"><a href="https://insightedge.atlassian.net/issues/?filter=17797" target="_blank">Jira</a></MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-1-only"><a href="https://insightedge.atlassian.net/issues/?filter=17813" target="_blank">Jira.</a></MadCap:conditionalText></p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Space Persistency</h1>
+        <p>The Space Persistency is provided via a component called <span class="tc-bold">External Data Source</span>. This component provides persistency capabilities for the space architecture to interact with a persistency layer:</p>
+        <ul>
+            <li>Pre-loading data from the persistency layer and lazy load data from the persistency (available when the Space is running in LRU mode).</li>
+            <li>Delegating changes within the Space to the persistency layer.</li>
+        </ul>
+        <p><MadCap:variable name="General.ProductNameXAP" /> Space Persistency provides the <code>AbstractExternalDataSource</code> class, which can be extended and then used to load and store data into an existing data source. Data is <a href="space-persistency-initial-load.html">loaded from the data source</a> during Space initialization, and from then onwards the application works directly with the Space.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/data-grid-initial-loadNew.jpg" alt="data-grid-initial-loadNew.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <p>Persistency can be configured to run in Synchronous or Asynchronous mode:</p>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+            <p>Synchronous <MadCap:snippetText src="../Resources/Snippets/Content/SynchronousDeprecate.flsnp" /></p>
+        </div>
+        <ul>
+            <li>
+                <p>Synchronous Mode - see <a href="direct-persistency.html">Direct Persistency</a></p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/data-grid-sync-persist.jpg" alt="data-grid-sync-persist.jpg" class="tc-picture50" />
+                </p>
+            </li>
+            <li>
+                <p>Asynchronous Mode - see  <a href="asynchronous-persistency-with-the-mirror.html">Asynchronous Persistency with the Mirror</a></p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/data-grid-async-persist.jpg" alt="data-grid-async-persist.jpg" class="tc-picture50" />
+                </p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>The difference between Synchronous and Asynchronous persistency mode is the way that data is persisted back to the database. In Synchronous mode, data is persisted immediately after the operation is conducted where the client application waits for the <code>ExternalDataSource</code> to confirm the write. In Asynchronous mode (mirror Service), data is persisted in a <span class="tc-bold">reliable</span> asynchronous manner using the mirror Service as a write-behind activity. This mode provides maximum performance.</p>
+        </div>
+        <h1><a name="space-persistency-api"></a>Space Persistency API</h1>
+        <p>The Space Persistency API contains an abstract class that should be extended in order to customize the Space persistency functionality. The ability to customize the Space persistency functionality allows <MadCap:variable name="General.ProductNameXAP" /> to interact with any external application or data source.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Client Call</th>
+                    <th align="left">External Data Source Call</th>
+                    <th align="left">Cache Policy Mode</th>
+                    <th align="left">EDS Usage Mode</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left"><code>Write</code>, <code>Change</code>, <code>Take</code>, <code>WriteMultiple</code>, <code>TakeMultiple</code>, <code>Clear</code></td>
+                    <td align="left"><code>ExecuteBulk</code>
+                    </td>
+                    <td align="left">ALL_IN_CACHE, LRU</td>
+                    <td align="left">read-write</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>Transaction Commit</code>
+                    </td>
+                    <td align="left"><code>ExecuteBulk</code>
+                    </td>
+                    <td align="left">ALL_IN_CACHE, LRU</td>
+                    <td align="left">read-write</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>Read</code>, <code>ReadMultiple</code>, <code>ReadById</code>, <code>ReadByIds</code>, <code>Count</code></td>
+                    <td align="left"><code>GetEnumerator</code>
+                    </td>
+                    <td align="left">LRU</td>
+                    <td align="left">read-write,read-only</td>
+                </tr>
+                <tr>
+                    <td align="left"><code>TakeMultiple</code>
+                    </td>
+                    <td align="left"><code>GetEnumerator</code>
+                    </td>
+                    <td align="left">ALL_IN_CACHE, LRU</td>
+                    <td align="left">read-write</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <p>For detailed API information, see the <a href="hibernate-space-persistency.html">External Data Source API</a> page.</p>
+        </div>
+        <p><MadCap:variable name="General.ProductNameXAP" /> comes with a built-in implementation of <code>AbstractExternalDataSource</code> called <a href="hibernate-space-persistency.html">NHibernate Space Persistency</a>.</p>
+        <div class="tc-admon-note">
+            <p>Refer to <a href="space-persistency-initial-load.html">Space Persistency Initial Load</a> for information on how to allow the Space to pre-load its data.</p>
+        </div>
+    </body>
+</html>

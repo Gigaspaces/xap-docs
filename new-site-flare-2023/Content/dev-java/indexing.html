@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Space Index</h1>
+  
+
+<h1><a name="index-types"></a>Index Types</h1>
+
+<p>The index type is determined by the <code>SpaceIndexType</code> enumeration. The index types are:</p>
+
+<p><span class="tc-bold">NONE</span> - No indexing is used.</p>
+
+<p><span class="tc-bold">EQUAL</span> - performs equality matching (equal to/not equal to).</p>
+
+<p><span class="tc-bold">ORDERED</span> - performs ordered matching (bigger than/less than).</p>
+
+<p><span class="tc-bold">EQUAL_AND_ORDERED</span> - performs both equality and ordered matching, and uses a larger memory footprint than the other indexing types.</p>
+
+<div class="tc-admon-note">
+  
+  <p>The <span class="tc-bold">BASIC</span> and <span class="tc-bold">EXTENDED</span> index types have been deprecated as of version 12.3.</p>
+</div>
+
+<h1><a name="indexing-at-design-time"></a>Indexing at Design Time</h1>
+
+<p>Specifying which properties of a class are indexed is done using annotations or gs.xml.</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Annotations " style="padding:10px"><pre><code class="language-java">@SpaceClass
+public class Person
+{
+    private String lastName;
+    private String firstName;
+    private Integer age;
+
+    ...
+    @SpaceIndex(type=SpaceIndexType.EQUAL)
+    public String getFirstName() {return firstName;}
+    public void setFirstName(String firstName) {this.firstName = firstName;}
+
+    @SpaceIndex(type=SpaceIndexType.EQUAL)
+    public String getLastName() {return lastName;}
+    public void setLastName(String name) {this.lastName = name;}
+
+    @SpaceIndex(type=SpaceIndexType.ORDERED)
+    public Integer getAge() {return age;}
+    public void setAge(Integer age) {this.age = age;}
+}
+</code></pre>
+</div>
+<div title="  XML " style="padding:10px"><pre><code class="language-java">&lt;gigaspaces-mapping&gt;
+    &lt;class name="com.gigaspaces.examples.Person" persist="false" replicate="false" fifo="false" &gt;
+        &lt;property name="lastName"&gt;
+            &lt;index type="EQUAL"/&gt;
+        &lt;/property&gt;
+        &lt;property name="firstName"&gt;
+            &lt;index type="EQUAL"/&gt;
+        &lt;/property&gt;
+        &lt;property name="age"&gt;
+             &lt;index type="ORDERED"/&gt;
+        &lt;/property&gt;
+    &lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+</div>
+</div>
+
+<h2><a name="inheritance"></a>Inheritance</h2>
+
+<p>By default, a property's index is inherited in sub-classes (i.e. if a property is indexed in a superclass, it is also indexed in a sub-class). If you need to change the index type of a property in a sub-class, you can override the property and annotate it with <code>@SpaceIndex</code> using the requested index type (to disable indexing, use <code>NONE</code>).</p>
+
+</body>
+</html>

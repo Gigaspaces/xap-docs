@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1><MadCap:variable name="General.ProductNameXAP" /> Manager</h1>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> Manager (or simply The Manager) is a component that stacks together the <a href="../overview/the-runtime-environment.html#lus">LUS</a> and <a href="../overview/the-runtime-environment.html#gsm">GSM</a>
+along with <a href="http://zookeeper.apache.org/" target="_blank">Apache ZooKeeper</a> and an embedded web application which hosts an admin instance with a <a href="xap-manager-rest.html">RESTful management API</a> on top of it.</p>
+        <p>In addition to simplifying setup and management, the Manager also provides the following benefits:</p>
+        <ul>
+            <li>
+                <p>Space leader election uses Apache Zookeeper instead of the LUS, providing a more robust process (consistent when network partitions occur), and eliminating split brain.</p>
+            </li>
+            <li>
+                <p>When using MemoryXtend, the last primary will automatically be stored in Apache Zookeeper (instead of having to set up a shared NFS and configure the Processing Unit to use it).</p>
+            </li>
+            <li>
+                <p>The GSM uses Apache Zookeeper for leader election (instead of the active-active topology used today). This provides a more robust process (consistent when network partitions occur). Also, having a single leader GSM means that the general behaviour is more deterministic and logs are easier to read.</p>
+            </li>
+            <li>
+                <p>REST API for managing the environment remotely from any platform.</p>
+            </li>
+        </ul>
+        <h1><a name="getting-started"></a>Getting Started</h1>
+        <p>The easiest way to get started is to run a standalone Manager on your machine - simply run the following command:</p>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-died">
+            <div title="Linux" style="padding:10px"><pre><code class="language-bash">./gs-agent.sh --manager-local</code></pre>
+            </div>
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash">gs-agent.bat --manager-local</code></pre>
+            </div>
+        </div>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+            <div title="Linux" style="padding:10px"><pre><code class="language-bash">./gs.sh host run-agent --auto</code></pre>
+            </div>
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash">gs.bat host run-agent --auto</code></pre>
+            </div>
+        </div>
+        <p>In the Manager log file (<MadCap:variable name="General.HomePath" /><code>/logs</code>), you can see:</p>
+        <ul>
+            <li>
+                <p>The Manager has started the LUS, Zookeeper, GSM and REST API (and various other details about them).</p>
+            </li>
+            <li>
+                <p>Apache Zookeeper files reside in <code><MadCap:variable name="General.HomePath" />/work/manager/zookeeper</code>.</p>
+            </li>
+            <li>
+                <p>The REST API is started on <a href="http://localhost:8090/" target="_blank">localhost:8090</a> .</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>The local Manager is intended for local use on the developer's machine, so it binds to <code>localhost</code> and is not accessible from other machines. If you want to start a Manager and access it from other hosts (remote access), follow the procedure described in <span class="tc-bold">High Availability</span> below with a single host.</p>
+        </div>
+        <h1><a name="high-availability"></a>High Availability</h1>
+        <p>In a production environment, you'll probably want a cluster of Managers on multiple hosts to ensure high availability. You'll need 3 machines (an odd number is required to ensure a quorum during network partitions). For example, suppose you’ve selected machines alpha, bravo and charlie to host the managers:</p>
+        <ol>
+            <li>
+                <p>Edit the <code><MadCap:variable name="General.HomePath" />/bin/setenv-overrides.sh/bat</code> script and set <code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS</code> to the list of hosts. For example: <code>export <MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS=alpha,bravo,charlie</code>/</p>
+            </li>
+            <li>
+                <p>Copy the modified <code>setenv-overrides.sh/bat</code> to each machine that runs a <code>gs-agent</code>.</p>
+            </li>
+            <li>
+                <p>Run <code>./gs.sh[bat] host run-agent --auto</code> on the manager machines (alpha, bravo, and charlie in this case).</p>
+            </li>
+        </ol>
+        <p>Starting more than one Manager on the same host is not supported.</p>
+        <h1><a name="configuration"></a>Configuration</h1>
+        <h2><a name="ports"></a>Ports</h2>
+        <p>The following ports can be modified using system properties, e.g. via the <code>setenv-overrides</code> script located in <code><MadCap:variable name="General.HomePath" />/bin</code>:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Port</th>
+                    <th>System Property</th>
+                    <th>Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>REST</td>
+                    <td><code>com.gs.manager.rest.port</code>
+                    </td>
+                    <td>8090</td>
+                </tr>
+                <tr>
+                    <td>Zookeeper</td>
+                    <td><code>com.gs.manager.zookeeper.discovery.port</code>
+                        <br /><code>com.gs.manager.zookeeper.leader-election.port</code>
+                        <br /><code MadCap:conditions="Version.15-8-born">com.gs.zookeeper.client.port</code>
+                    </td>
+                    <td>2888<br />3888<br />2181</td>
+                </tr>
+                <tr>
+                    <td>Lookup Service</td>
+                    <td><code>com.gs.multicast.discoveryPort</code>
+                    </td>
+                    <td>4174</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <p>Apache Zookeeper requires that each Manager can reach the other Managers. If you change the Apache Zookeeper ports, make sure you use the same port on all machines. If that is not possible for some reason, you may specify the ports via the <code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS</code> environment variable.  For example:</p><pre><code class="language-bash"><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_SERVERS="alpha;zookeeper=2000:3000;lus=4242,bravo;zookeeper=2100:3100,charlie;zookeeper=2200:3200"
+</code></pre>
+            <p>When using this syntax in Unix/Linux systems, make sure to wrap it in quotes (as shown), because of the semi-colons.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>Configuring manager servers includes LUS definitions. When you define <code>GS_MANAGER_SERVERS</code>, do not define<code> GS_LOOKUP_LOCATORS</code>.</p>
+        </div>
+        <div class="tc-admon-note" MadCap:conditions="Version.15-8-born">
+            <p>Zookeeper client port can also be modified by declaring the environment variable <code>GS_ZOOKEEPER_CLIENT_PORT</code> and also through the Zookeeper config file located at <code>config/zookeeper/zoo.cfg</code>.</p>
+            <p>If defining more than one property, the order of priorities (highest to lowest) is -- java property, environment variable, config file.</p>
+            <p>When using the Admin API standalone client, you can configure the port using the Java system property or the environmental variable.</p>
+        </div>
+        <div MadCap:conditions="Version.15-0-born">
+            <h2>HSQLDB Configuration</h2>
+            <p><MadCap:variable name="General.ProductNameXAP" /> Manager stores statistical data in an HSQLDB database. The data is held for a predefined period of time, in order to show related metrics in the Ops Manager.</p>
+            <div class="tc-admon-important">
+                <p> It is important to monitor the size of the HSQLDB database (<code>{GS_HOME}/work/db/metricsdb.data</code>), and change the data retention policy if necessary.</p>
+                <p><MadCap:variable name="General.ProductNameXAP" />provides reasonable default values for the retention policy. Depending on cluster size, and number of types and indexes, these default values may not remove old data fast enough from the database, causing the database to increase in size on disk, and possibly also causing internal database memory issues.</p>
+            </div>
+            <p>The HSQLDB port can be set as follows:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.port=9101</code> (default is 9101)<br /><code class="language-bash">-Dcom.gs.ui.query-timeout=700</code> <br /><code class="language-bash">-Dcom.gs.ui.metrics.db.host=DBHost</code> (usually no need to change)<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.name=metricsdb</code><br /></p>
+            <p>The retention policy for this data can be configured as follows:</p>
+            <ul>
+                <li>
+                    <p>How long to keep data in the database:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.retain-duration=PT10M</code> (default is ten minutes)</p>
+                </li>
+                <li>
+                    <p>How often to run the delete task:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.delay-duration=PT1M</code> (default is one minute)</p>
+                </li>
+                <li MadCap:conditions="Version.15-5-born">
+                    <p>How many rows to delete each time:<br /><code class="language-bash">-Dcom.gs.ui.metrics.db.retention.batch-size=20000</code> (default is 20,000)</p>
+                </li>
+                <li MadCap:conditions="Version.15-5-died">
+                    <p>Note that the number of rows to delete each time is a fixed value of 10,000.</p>
+                </li>
+            </ul>
+            <h2>Disabling HSQLDB Usage</h2>
+            <p>If desired, HSQLDB usage can be disabled as follows:</p>
+            <p MadCap:conditions="Version.15-8-born"><code class="language-bash">-Dcom.gs.hsqldb.all-metrics-recording.enabled=false
+<br />-Dcom.gs.ops-ui.enabled=false</code>
+            </p>
+            <p MadCap:conditions="Version.15-8-died"><code class="language-bash">-Dcom.gs.newwebui.enabled=false</code>
+            </p>
+        </div>
+        <h2><a name="apache-zookeeper"></a>Apache Zookeeper</h2>
+        <p>Apache ZooKeeper's behavior is governed by its configuration file (<code>zoo.cfg</code>).
+When using <MadCap:variable name="General.ProductNameXAP" /> Manager, an embedded Zookeeper instance is started using a default configuration located at <code><MadCap:variable name="General.HomePath" />/config/zookeeper/zoo.cfg</code>.
+If you need to override the default settings, either edit the default file, or use the <code><MadCap:variable name="General.EnvVariablePrefix" />_ZOOKEEPER_SERVER_CONFIG_FILE</code> environment variable or the <code>com.gs.zookeeper.config-file</code> system property to point to your custom configuration file.
+The default Zookeeper port is 2181.</p>
+        <div class="tc-admon-note">
+            <p>For more information about Apache Zookeeper configuration, see <a href="https://zookeeper.apache.org/doc/r3.4.9/zookeeperAdmin.html#sc_configuration" target="_blank">ZooKeeper configuration</a>.</p>
+        </div>
+        <h3><a name="zookeeper-configuration-file"></a>Zookeeper Configuration File</h3>
+        <p>The ZooKeeper configuration file <code>zoo.cfg</code> is preset with the following parameters.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>tickTime</td>
+                    <td>Time unit used by ZooKeeper, in milliseconds.</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td>initLimit</td>
+                    <td>Amount of time, in ticks, to allow followers to connect and sync to a leader.</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>syncLimit</td>
+                    <td>Amount of time, in ticks, to allow followers to sync with ZooKeeper.</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>clientPort</td>
+                    <td>The port to listen for client connections; the port that clients attempt to connect to.</td>
+                    <td>2181</td>
+                </tr>
+                <tr>
+                    <td>maxSessionTimeout</td>
+                    <td>The maximum session timeout that the server will allow the client to negotiate, in milliseconds.</td>
+                    <td>60000</td>
+                </tr>
+                <tr>
+                    <td>autopurge</td>
+                    <td>Automatic purging of the snapshots and corresponding transaction logs.</td>
+                    <td>enabled by purgeInterval &gt; 0</td>
+                </tr>
+                <tr>
+                    <td>autopurge.purgeInterval</td>
+                    <td>The time interval for which the purge task has to be triggered (zero to disable), in hours.</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>autopurge.snapRetainCount</td>
+                    <td>Retains the most recent snapshots and the corresponding transaction logs and deletes the rest.</td>
+                    <td>3</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="zookeeper-client"></a>ZooKeeper Client</h2>
+        <p>The Manager stack uses the ZooKeeper leader election to select a leader among the Grid Service Managers. The leader GSM will act as the managing (active) GSM of the deployed Processing Units.
+The ZooKeeper quorum ensures that there will only be one elected Manager. In the absence of a quorum, and until a GSM is elected leader, the GSMs will only monitor the cluster.
+As a participant of the ZooKeeper leader election, the GSM is configurable using the following properties:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>System Property</th>
+                    <th>Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>com.gs.manager.leader-election.zookeeper.connection-timeout</code>
+                    </td>
+                    <td>5000</td>
+                </tr>
+                <tr>
+                    <td><code>com.gs.manager.leader-election.zookeeper.session-timeout</code>
+                    </td>
+                    <td>15000</td>
+                </tr>
+                <tr>
+                    <td><code>com.gs.manager.leader-election.zookeeper.retry-timeout</code>
+                    </td>
+                    <td>Integer.MAX_VALUE</td>
+                </tr>
+                <tr>
+                    <td><code>com.gs.manager.leader-election.zookeeper.retry-interval</code>
+                    </td>
+                    <td>100</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="backwards-compatibility"></a>Backwards Compatibility</h1>
+        <p>The Manager is offered side-by-side with the existing stack (GSM, LUS, etc.). We think this is a better way of working with <MadCap:variable name="General.ProductNameXAP" />, and we want new users and customers to work solely with it.
+On the same note we understand that it requires some effort from existing users which upgrade to 12.1 (probably not too much, mostly on changing the scripts they use to start the environment),
+so if you’re upgrading for bug fixes/other features and don’t want the manager for now, you can switch from 12.0 to 12.1 and continue using the old components - it’s all still there.</p>
+        <div class="tc-admon-note">
+            <p>The Manager uses a different selection strategy when selecting resources where to deploy a Processing Unit instance. The strategy is to choose the container with the least relative weight. This is achieved by calculating the relative weight of each container in regards to other containers. Prior to 12.1, the strategy was to calculate the weight of a container based on gathering remote state. In large deployments, the network overhead and the overall deployment time is costly. We can achieve almost the same behavior with the new strategy.</p>
+            <p>You may experience a different instance distribution than before. Although in both strategies we take a "best-effort" approach, in some cases it may still be an uneven distribution due to simultaneous selection process.</p>
+            <p>To change between selector strategies, use the following system property (org.jini.rio.monitor.serviceResourceSelector). For example, to set the strategy to the on prior to 12.1, assign the following when loading the manager (in <code><MadCap:variable name="General.EnvVariablePrefix" />_MANAGER_OPTIONS</code> environment variable):</p><pre><code class="language-bash">-Dorg.jini.rio.monitor.serviceResourceSelector=org.jini.rio.monitor.WeightedSelector
+</code></pre>
+        </div>
+        <div class="tc-admon-attention" MadCap:conditions="Version.16-0-born">
+            <p><b>Regarding the Spring Profile: </b>
+                <br />Two profiles have been added to the Ops Manager UI: <code>gs-ops-manager-secured</code> and <code>gs-ops-manager</code> (default). These profiles are defined in the <code>war </code>file <code>$GS_HOME$/lib/platform/manager/webapps/V2.war</code>. Inside the war file, the profiles are located in WEB-INF/spring/spring-security.xml, as follows:<br /></p>
+            <p>
+                <img src="../Resources/Images/ops-manager-spring-profiles.png" style="width: 1522px;height: 56px;" />
+            </p>
+            <p><b>If you are using a system property to set the active Spring profile, please take these profiles into consideration.</b>
+            </p>
+        </div>
+        <h1><a name="faq"></a>FAQ</h1>
+        <h3><a name="q-why-do-i-need-3-managers-in-previous-versions-2-lus-2-gsm-was-enough-for-high-availability"></a>Q. Why do I need 3 Managers? In previous versions 2 LUS + 2 GSM was enough for high availability.</h3>
+        <p>With an even number of managers, consistency cannot be assured in case of a network partition, hence the need for 3 Managers.</p>
+        <h3><a name="q-i-want-higher-availability-can-i-use-5-managers-instead-of-3"></a>Q. I want higher availability - can I use 5 Managers instead of 3?</h3>
+        <p>Theoretically this is possible (Apache Zookeeper supports this), but currently this is not supported in <MadCap:variable name="General.ProductNameXAP" /> - starting 5 managers would also start 5 Lookup Services, which will lead to excessive chatiness and performance drop. This issue is in our backlog, though - if it's important for you please contact support or your sales rep to vote it up.</p>
+        <h3><a name="q-can-i-use-a-load-balancer-in-front-of-the-rest-api"></a>Q. Can I use a load balancer in front of the REST API?</h3>
+        <p>Yes. However, make sure to use sticky sessions, as some of the operations (e.g. upload/deploy) take time to propagate to the other Managers.</p>
+    </body>
+</html>

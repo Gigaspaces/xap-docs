@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Space-Based Architecture</h1><a name="Space"></a>
+        <p><span class="tc-bold">A Space-Based Architecture (SBA) implementation</span> is a set of Processing Units, with the following properties:</p>
+        <ul>
+            <li>
+                <p>Each processing unit instances holds a <a href="terminology.html#partitioned-data-grid">partitioned</a> space instance and one or more services that are registered on events on that specific partition. Together they form an application cluster. If the cluster is required to be highly available, each primary partition has one or more backup partitions, which run in their own processing unit instances. These instances are inactive, and become active only when their primary partition fails.</p>
+            </li>
+            <li>
+                <p>Each Processing Unit instance handles only the data sent to the space partition it runs.</p>
+            </li>
+            <li>
+                <p>Clients interact with the system by writing and updating objects in the space cluster, and the services on each processing unit instance react to object written to that specific instance. In an SBA application, the data will be partitioned in such a way that the services that is triggered as a result will not have to read or write data from other partitions, thus achieving data affinity and in memory read and write speeds. .</p>
+            </li>
+            <li>
+                <p>The system can be scaled by simply increasing the number of space partitions and their corresponding processing unit instances.</p>
+            </li>
+            <li>
+                <p>When deployed onto the <a href="terminology.html#service-grid">Service Grid</a>, self-healing and SLA capabilities are added.</p>
+            </li>
+            <li>
+                <p>Full monitoring and management during runtime are available through the <a href="../admin/tools-desktop-ui.html">GigaSpaces Management Center</a>.</p>
+            </li>
+        </ul>
+        <p><span class="tc-bold">SBA Implementation with 3 Primary Instances and 1 Backup for Each, Accessed by 2 Client Applications</span>
+        </p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sba_with_backup.jpg" alt="sba_with_backup.jpg" class="tc-picture100" />
+            </p>
+        </div>
+        <h1><a name="space-based-architecture-artifacts"></a>Space-Based Architecture Artifacts</h1>
+        <p>When a <a href="../dev-java/the-processing-unit-structure-and-configuration.html">Processing Unit library</a> is deployed, a processing unit instance is created. The processing unit instance is hosted within the <a href="the-runtime-environment.html#gsc">GigaSpaces container</a>. If the processing unit instance includes a space, all the collocated beans within the processing unit instance inherit the space primary/backup mode. If the space is running in primary mode, they will be active; if the space is running in backup mode, they will be in standby mode.</p>
+        <p>The following diagram illustrates a deployed Processing Unit with 2 partitions and a backup. The Processing Unit includes a Space, polling container and 2 User Beans. The deployed Processing Unit is hosted within 2 GigaSpaces containers.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/term_sba_artifacts.jpg" alt="term_sba_artifacts.jpg" class="tc-picture100" />
+            </p>
+        </div>
+        <p><span class="tc-bold">Legend</span>
+        </p>
+        <ul>
+            <li>
+                <p>JVM - Java process. Native OS process.</p>
+            </li>
+            <li>
+                <p>Processing unit - Deployable package (bundle).</p>
+            </li>
+            <li>
+                <p>GigaSpaces Container - Hosting deployed PU.</p>
+            </li>
+            <li>
+                <p><a href="../dev-java/the-processing-unit-overview.html">Processing unit Instance</a> - deployed instantiated PU.</p>
+            </li>
+            <li>
+                <p><a href="terminology.html">Space Partition</a> - Data-Grid Member. Store data in-memory.</p>
+            </li>
+            <li>
+                <p>Data-Grid - Collection of Space Partitions.</p>
+            </li>
+            <li>
+                <p>Local Proxy - Access to collocated space partition.</p>
+            </li>
+            <li>
+                <p>Clustered Proxy - Access to all space partitions.</p>
+            </li>
+            <li>
+                <p>Primary Instance - Active space partition.</p>
+            </li>
+            <li>
+                <p>Backup Instance - standby space partition.</p>
+            </li>
+            <li>
+                <p>Standby Bean - Bean collocated with a backup instance.</p>
+            </li>
+            <li>
+                <p>Partition - Collection of primary and backup processing unit instances</p>
+            </li>
+            <li>
+                <p><a href="../dev-java/polling-container-overview.html">Polling container</a> - Execution queue. Consumes objects from the space.</p>
+            </li>
+        </ul>
+    </body>
+</html>

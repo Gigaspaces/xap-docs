@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Hosts, Zones &amp; Machine Utilization</h1>
+        <p>The provisioning process of processing unit instances makes no guarantee regarding which GSCs each instance is provisioned on. It makes a best effort to evenly distribute the instances across available GSCs, taking into account the number of services on each host.</p>
+        <p>The SLA enables you to define requirements which control the provisioning process of processing unit instances on the available GSCs. The requirements are based on machine level statistics and grouping of the GSC processes to zones (see below).</p>
+        <p>The following example shows the variety of supported requirements:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-sla:sla&gt;
+    &lt;os-sla:requirements&gt;
+        &lt;os-sla:host ip="192.168.0.1" /&gt;
+        &lt;os-sla:host ip="192.168.0.2" /&gt;
+        &lt;os-sla:zone name="zone1" /&gt;
+        &lt;os-sla:zone name="zone2" /&gt;
+        &lt;os-sla:cpu high=".9" /&gt;
+        &lt;os-sla:memory high=".8" /&gt;
+    &lt;/os-sla:requirements&gt;
+&lt;/os-sla:sla&gt;
+</code></pre>
+            </div>
+            <div title="  Plain " style="padding:10px"><pre><code class="language-xml">&lt;bean id="SLA" class="org.openspaces.pu.sla.SLA"&gt;
+    &lt;property name="requirements"&gt;
+        &lt;list&gt;
+            &lt;bean class="org.openspaces.pu.sla.requirement.HostRequirement"&gt;
+                &lt;property name="id" value="192.168.0.1" /&gt;
+            &lt;bean class="org.openspaces.pu.sla.requirement.HostRequirement"&gt;
+                &lt;property name="id" value="192.168.0.2" /&gt;
+            &lt;/bean&gt;
+            &lt;bean class="org.openspaces.pu.sla.requirement.ZoneRequirement"&gt;
+                &lt;property name="zone" value="zone1" /&gt;
+            &lt;/bean&gt;
+            &lt;bean class="org.openspaces.pu.sla.requirement.ZoneRequirement"&gt;
+                &lt;property name="zone" value="zone2" /&gt;
+            &lt;/bean&gt;
+            &lt;bean class="org.openspaces.pu.sla.requirement.CpuRequirement"&gt;
+                &lt;property name="high" value=".9" /&gt;
+            &lt;/bean&gt;
+            &lt;bean class="org.openspaces.pu.sla.requirement.MemoryRequirement"&gt;
+                &lt;property name="high" value=".8" /&gt;
+            &lt;/bean&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <p>The above requirements contain the following provisioning constraints which are enforced by the GSM:</p>
+        <ul>
+            <li>Only provision the processing unit instances to hosts 192.168.0.1 and 192.168.0.2</li>
+            <li>Only provision the processing unit instances to GSCs which belong to zone "zone1" or zone "zone2"</li>
+            <li>Do not provision processing unit instances to GSCs whose hosting machine utilizes more than 90% of its CPU</li>
+            <li>Do not provision processing unit instances to GSCs whose hosting JVM process utilizes more than 80% of its RAM</li>
+        </ul>
+        <p>When using the host or zone requirements, note that more than one requirement can be defined (for example, to define a set of machines this Processing Unit can be deployed to; define the machine's CPU utilization limit; and define the GSC's memory usage limit ).</p>
+        <h1><a name="using-zones"></a>Using Zones</h1>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/zones.jpg" alt="zones.jpg" class="tc-picture100" />
+            </p>
+        </div>
+        <p>Defining zones allows you to configure logical tags for each GSC, according to which the processing unit instances will be provisioned to. You can use any alphanumeric combination for a zone name. The GSC can be started with a set of zones that are tagged to it, which match (or not) a given zone requirement in the processing unit's SLA (the zone name matching is case sensitive). The zones of a GSC are specified via the <code>com.gs.zones</code> system property. Typically this will be done by setting the <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS environment variable before running the GSC, as shown below (note that you can also edit the <code>setenv.sh/bat</code> script manually, but it is less recommended since it touches a core system script):</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Unix " style="padding:10px"><pre><code class="language-bash">export <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gs.zones=zone1,zone3 ${<MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS}
+</code></pre>
+            </div>
+            <div title="  Windows " style="padding:10px"><pre><code class="language-bash">set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gs.zones=zone1,zone3 %<MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS%
+</code></pre>
+            </div>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">Admin admin = new AdminFactory().create();
+admin.getGridServiceAgents().waitForAtLeastOne();
+GridServiceAgents agents = admin.getGridServiceAgents();
+for (GridServiceAgent gridServiceAgent : agents) {
+    if (gridServiceAgent.getMachine().getHostName().equalsIgnoreCase("machineA"))
+    {
+        GridServiceAgent agent = admin.getGridServiceAgents().waitForAtLeastOne();
+        GridServiceContainerOptions gscOptions = new GridServiceContainerOptions();
+        gscOptions.vmInputArgument("-Dcom.gs.zones=zone1,zone3");
+        gscOptions.vmInputArgument("-Xmx256m");
+        agent.startGridService(gscOptions);
+    }
+}
+</code></pre>
+            </div>
+        </div>
+        <p>The above defines zones "zone1" and "zone3" to be tagged to the GSC which will be started. Note that multiple zones can be specified using a comma separated list.</p>
+        <p>The following table explains when a container with a specified zone can satisfy a Processing Unit with a required zone:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Processing Unit</th>
+                    <th align="left">Container</th>
+                    <th align="left">Zone match?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">PU[]</td>
+                    <td align="left">GSC[]</td>
+                    <td align="left">YES</td>
+                </tr>
+                <tr>
+                    <td align="left">PU[]</td>
+                    <td align="left">GSC[zone1]</td>
+                    <td align="left">YES</td>
+                </tr>
+                <tr>
+                    <td align="left">PU[zone1]</td>
+                    <td align="left">GSC[zone1]</td>
+                    <td align="left">YES</td>
+                </tr>
+                <tr>
+                    <td align="left">PU[zone1,zone2]</td>
+                    <td align="left">GSC[zone1]</td>
+                    <td align="left">YES</td>
+                </tr>
+                <tr>
+                    <td align="left">PU[zone1]</td>
+                    <td align="left">GSC[zone1,zone2]</td>
+                    <td align="left">YES</td>
+                </tr>
+                <tr>
+                    <td align="left">PU[zone1]</td>
+                    <td align="left">GSC[]</td>
+                    <td align="left">NO</td>
+                </tr>
+                <tr>
+                    <td align="left">PU[zone1]</td>
+                    <td align="left">GSC[zone2]</td>
+                    <td align="left">NO</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="max-instances-per-zone"></a>Max Instances per Zone</h1>
+        <p>The SLA definition allows to define maximum instances of a processing unit per zone. The semantics of the setting is different when using a processing unit that has an embedded space with primary / backup, and all other cases (non backup processing unit with embedded space, and plain processing units).</p>
+        <p>When there are no backups, the setting basically controls the maximum instances per zone out of all the processing unit instances. The setting is usually used with the zone requirement setting to constrain where the processing unit instances will be created. Here is an example of a deployment where only 4 instances are allowed in zone1, and 3 instances are allowed in zone2, and the processing unit should only be instantiated on these two zones:</p><pre><code class="language-xml">&lt;os-sla:sla max-instances-per-zone="zone1/4,zone2/3"&gt;
+    &lt;os-sla:requirements&gt;
+        &lt;os-sla:zone name="zone1" /&gt;
+        &lt;os-sla:zone name="zone2" /&gt;
+    &lt;/os-sla:requirements&gt;
+&lt;/os-sla:sla&gt;
+</code></pre>
+        <p>If, for example, we want to only have 4 instances running on zone1, 3 instances running on zone2, and the rest on zone3, then we can simply allow processing units to be created on zone3 as well in the requirements:</p><pre><code class="language-xml">&lt;os-sla:sla max-instances-per-zone="zone1/4,zone2/3"&gt;
+    &lt;os-sla:requirements&gt;
+        &lt;os-sla:zone name="zone1" /&gt;
+        &lt;os-sla:zone name="zone2" /&gt;
+        &lt;os-sla:zone name="zone3" /&gt;
+    &lt;/os-sla:requirements&gt;
+&lt;/os-sla:sla&gt;
+</code></pre>
+        <p>When a processing unit does start an embedded space with a backup topology, the semantics of the SLA applies on a per partition level. This means that the setting allows to control if the primary and backup will run on the same zone or not. For example, if we want to deploy a primary with backup topology with 10 partitions each with one backup, and have the primary and backup not run on the same zone we can do the following:</p><pre><code class="language-xml">&lt;os-sla:sla number-of-instances="10" number-of=backups="1" max-instances-per-zone="zone1/1,zone2/1"&gt;</code></pre>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div><pre><code class="language-xml">
+    &lt;os-sla:requirements&gt;
+        &lt;os-sla:zone name="zone1" /&gt;
+        &lt;os-sla:zone name="zone2" /&gt;
+    &lt;/os-sla:requirements&gt;
+&lt;/os-sla:sla&gt;
+</code></pre>
+        <p>In the above case, the primary and the backup will not run on the same zone. If the primary of partition 1 was started on zone1, then the backup of partition 1 will be started on zone2. This comes very handy when defining rack aware deployments.</p>
+        <h1><a name="requires-isolation"></a>Requires Isolation</h1>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-0-born">
+            <p>
+                <MadCap:snippetText src="../Resources/Snippets/Content/isolationDeprecate.flsnp" />
+            </p>
+        </div>
+        <p>If <code>requires isolation</code> is true a, single processing unit instance takes exclusivity on a given GSC and only it can be deployed onto this GSC, (like GSC -Dcom.gigaspaces.grid.gsc.serviceLimit=1)</p>
+        <p>The following example shows the requires isolation configuration:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="${dataGridName}"/&gt;
+
+&lt;os-sla:sla cluster-schema="partitioned" number-of-instances="2" number-of-backups="0" requires-isolation="true"&gt;</code></pre>
+                <div class="tc-admon-note">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre><code class="language-xml">
+&lt;/os-sla:sla&gt;
+</code></pre>
+            </div>
+            <div title="  AdminApi " style="padding:10px"><pre><code class="language-java">gsm.deploy(new SpaceDeployment("mySpace").numberOfInstances(2).numberOfBackups(0).requiresIsolation(true));</code></pre>
+                <div class="tc-admon-note">
+                    <p>The number of backups per partition is zero or one.</p>
+                </div><pre><code class="language-java">
+gsm.deploy((new ProcessingUnitDeployment("myPU").numberOfInstances(2).numberOfBackups(0).requiresIsolation(true)));
+</code></pre>
+            </div>
+            <div title="  Command Line Interface " style="padding:10px"><pre><code class="language-xml">gs&gt; deploy-space -requires-isolation true mySpace
+gs&gt; deploy -requires-isolation true myPU
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="instance-level-requirements"></a>Instance Level Requirements</h1>
+        <p>You can also define SLA deployment requirements on per processing unit instance basis. Here is an example:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-sla:sla&gt;
+    &lt;os-sla:requirements&gt;
+        &lt;os-sla:cpu high=".9" /&gt;
+        &lt;os-sla:memory high=".8" /&gt;
+    &lt;/os-sla:requirements&gt;
+    &lt;os-sla:instance-SLAs&gt;
+        &lt;os-sla:instance-SLA instance-id="1"&gt;
+             &lt;os-sla:requirements&gt;
+                &lt;os-sla:host ip="100.0.0.1" /&gt;
+             &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="1" backup-id="1"&gt;
+             &lt;os-sla:requirements&gt;
+                &lt;os-sla:host ip="100.0.0.2" /&gt;
+             &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+    &lt;/os-sla:instance-SLAs&gt;
+&lt;/os-sla:sla&gt;
+</code></pre>
+            </div>
+            <div title="  Plain " style="padding:10px"><pre><code class="language-xml">&lt;bean id="SLA" class="org.openspaces.pu.sla.SLA"&gt;
+    &lt;property name="requirements"&gt;
+        &lt;list&gt;
+            &lt;bean class="org.openspaces.pu.sla.requirement.CpuRequirement"&gt;
+                &lt;property name="high" value=".9" /&gt;
+            &lt;/bean&gt;
+            &lt;bean class="org.openspaces.pu.sla.requirement.MemoryRequirement"&gt;
+                &lt;property name="high" value=".8" /&gt;
+            &lt;/bean&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+    &lt;property name="instanceSLAs"&gt;
+        &lt;list&gt;
+            &lt;bean class="org.openspaces.pu.sla.InstanceSLA"&gt;
+                &lt;property name="instanceId" value="1" /&gt;
+                &lt;property name="requirements"&gt;
+                    &lt;list&gt;
+                        &lt;bean class="org.openspaces.pu.sla.requirement.HostRequirement"&gt;
+                            &lt;property name="id" value="100.0.0.1" /&gt;
+                        &lt;/bean&gt;
+                    &lt;/list&gt;
+                &lt;/property&gt;
+            &lt;/bean&gt;
+            &lt;bean class="org.openspaces.pu.sla.InstanceSLA"&gt;
+                &lt;property name="instanceId" value="1" /&gt;
+                &lt;property name="backupId" value="1" /&gt;
+                &lt;property name="requirements"&gt;
+                    &lt;list&gt;
+                        &lt;bean class="org.openspaces.pu.sla.requirement.HostRequirement"&gt;
+                            &lt;property name="id" value="100.0.0.2" /&gt;
+                        &lt;/bean&gt;
+                    &lt;/list&gt;
+                &lt;/property&gt;
+            &lt;/bean&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+        </div>
+        <p>The above example verifies that the <span class="tc-bold">first instance</span> is deployed to a specific machine (specified by its IP address), and its <span class="tc-bold">second instance</span> for the same partition is deployed to a different machine. All instances share the "general" requirements of CPU and memory. The first instance <span class="tc-bold">might be</span> the primary and the second might be the backup, but there is no guarantee these will remain primary/backup as these are runtime properties and might change during the life-cycle of the clustered space. The activation property of the space (primary or backup) is determined once the instance is deployed and is not controlled by the GSM but as part of the primary election process.</p>
+        <h1><a name="zone-based-partitioning-provisioning"></a>Zone Based Partitioning Provisioning</h1>
+        <p>To accommodate partitions with different size we can use the zones configuration to provision each partition into a different zone. Each zone will be associated with GSCs having a different heap size (Xmx). The assumption here is a GSCs hosting a single partition instance (primary or a backup instance). With the following example we deploy a cluster with 3 partitions where each partition deployed into a different zone: Small (1GB GSC), Medium (2GB GSC ) and Large (3GB GSC).</p>
+        <p>To start the small zone:</p><pre><code class="language-bash">set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gs.zones=zoneSmall -Xmx1g
+gs-agent.bat
+</code></pre>
+        <p>To start the medium zone:</p><pre><code class="language-bash">set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gs.zones=zoneMedium -Xmx2g
+gs-agent.bat
+</code></pre>
+        <p>To start the large zone:</p><pre><code class="language-bash">set <MadCap:variable name="General.EnvVariablePrefix" />_GSC_OPTIONS=-Dcom.gs.zones=zoneLarge -Xmx3g
+gs-agent.bat
+</code></pre>
+        <p>Deploy a 3 partitions with a backup space cluster using the following sla.xml:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:os-sla="http://www.openspaces.org/schema/sla"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/sla/openspaces-sla.xsd"&gt;
+
+&lt;os-sla:sla&gt;
+    &lt;os-sla:instance-SLAs&gt;
+        &lt;os-sla:instance-SLA instance-id="1"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneSmall" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="1" backup-id="1"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneSmall" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="2"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneMedium" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="2" backup-id="1"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneMedium" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="3"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneLarge" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="3" backup-id="1"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneLarge" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+    &lt;/os-sla:instance-SLAs&gt;
+&lt;/os-sla:sla&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:os-sla="http://www.openspaces.org/schema/sla"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/sla/openspaces-sla.xsd"&gt;
+
+&lt;os-sla:sla&gt;
+    &lt;os-sla:instance-SLAs&gt;
+        &lt;os-sla:instance-SLA instance-id="1"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneSmall" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="1" backup-id="1"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneSmall" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="2"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneMedium" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="2" backup-id="1"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneMedium" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="3"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneLarge" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="3" backup-id="1"&gt;
+            &lt;os-sla:requirements&gt;
+                &lt;os-sla:zone name="zoneLarge" /&gt;
+            &lt;/os-sla:requirements&gt;
+        &lt;/os-sla:instance-SLA&gt;
+    &lt;/os-sla:instance-SLAs&gt;
+&lt;/os-sla:sla&gt;
+&lt;/beans&gt;
+</code></pre>
+        <div class="tc-admon-note">
+            <p>When using instance level SLA, max-instances settings do not apply (or any cluster level setting).</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>JMS Basics</h1>
+  
+
+<p>The JMS 1.0.2 specification introduced two domains:</p>
+
+<ul>
+<li>Point to Point - in this domain, a producer sends messages to a destination of type Queue. Each message is consumed by only one consumer.</li>
+<li>Publish/Subscribe - in this domain, a producer publishes messages to a destination of type Topic. Any consumer that listens on that Topic receives the messages.</li>
+</ul>
+
+<p>In JMS 1.0.2, each domain used a separate set of interfaces. JMS 1.1 presents the unified model, that unites the usage of both domains under a single set of interfaces. GigaSpaces <MadCap:variable name="General.ProductNameXAP" /> JMS implementation supports both the unified model, and the separate domains.</p>
+
+<h3><a name="basic-jms-workflow"></a>Basic JMS Workflow</h3>
+
+<ol>
+<li>Obtain/create a <code>ConnectionFactory</code> instance.</li>
+<li>Create a <code>Connection</code> with the <code>ConnectionFactory</code>.</li>
+<li>Create a <code>Session</code> with the <code>Connection</code>.</li>
+<li>Obtain/create a <code>Destination</code> (<code>Topic</code> or <code>Queue</code>).</li>
+
+<li><p>Message production:</p>
+
+<ol>
+<li>Create <code>MessageProducers</code> with the <code>Session</code> and the destination.</li>
+<li>Create a <code>Message</code> with the <code>Session</code>.</li>
+<li>Send the <code>Message</code> with the <code>MessageProducer</code>.</li>
+</ol></li>
+
+<li><p>Message Consumption:</p>
+
+<ol>
+<li>Create <code>MessageConsumers</code> with the <code>Session</code> and the destination.</li>
+<li>Enable connection message consumption by calling the <code>Connection.start()</code> method.</li>
+<li>For synchronous consumption, call the <code>MessageConsumer.receive()</code> method.</li>
+<li>For asynchronous consumption, set the <code>MessageConsumer</code> <code>MessageListener</code>, and implement the <code>onMessage()</code> method.</li>
+</ol></li>
+
+<li><p>When the application finishes, release all resources by closing the connection.</p></li>
+</ol>
+
+<h3><a name="using-unified-messaging-model-jms-1-1"></a>Using Unified Messaging Model (JMS 1.1)</h3>
+
+<div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="JMS 1.1" style="padding:10px;"><pre><code class="language-java">ConnectionFactory connectionFactory = // obtain
+Connection connection = connectionFactory.createConnection();
+Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+Queue destination = // obtain (the destination can also be a Topic)
+
+// producer code
+MessageProducer producer = session.createProducer(destination);
+Message msg = session.createMessage();
+for (...) {
+    producer.send(msg);
+}
+
+// consumer code
+
+// synchronous consumer code
+MessageConsumer consumer = session.createConsumer(destination);
+for (...) {
+    Message msg = consumer.receive();
+    ...
+}
+
+// asynchronous consumer code
+MessageConsumer consumer = session.createConsumer(destination);
+consumer.setMessageListener(new MessageListener() {
+    public void onMessage(Message msg) {
+        ...
+    }
+});
+
+// start the connection to receive messages
+connection.start();
+
+// release resources
+connection.close();
+</code></pre>
+</div>
+</div></div>
+
+<h3><a name="using-separate-domains-jms-1-0-2"></a>Using Separate Domains (JMS 1.0.2)</h3>
+
+<h4><a name="publish-subscribe"></a>Publish/Subscribe</h4>
+
+<div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="Publish/Subscribe" style="padding:10px;"><pre><code class="language-java">TopicConnectionFactory topicConnectionFactory = // obtain
+TopicConnection topicConnection = topicConnectionFactory.createTopicConnection();
+TopicSession topicSession = topicConnection.createTopicSession
+(false, Session.AUTO_ACKNOWLEDGE);
+Topic destination = // obtain
+
+// producer code
+TopicPublisher publisher = topicSession.createPublisher();
+Message msg = topicSession.createMessage();
+for (...) {
+    publisher.send(msg);
+}
+
+// consumer code
+
+// synchronous consumer code
+TopicSubscriber subscriber = topicSession.createSubscriber(destination);
+for (...) {
+    Message msg = subscriber.receive();
+    ...
+}
+
+// asynchronous consumer code
+TopicSubscriber subscriber = topicSession.createSubscriber(destination);
+subscriber.setMessageListener(new MessageListener() {
+    public void onMessage(Message msg) {
+        ...
+    }
+});
+
+// start the connection to receive messages
+topicConnection.start();
+
+// release resources
+topicConnection.close();
+</code></pre>
+</div>
+</div></div>
+
+<h4><a name="point-to-point"></a>Point to Point</h4>
+
+<div class="row"><div class="easyui-accordion" data-options="selected:'-1'" plain="true"><div title="Point to Point" style="padding:10px;"><pre><code class="language-java">QueueConnectionFactory queueConnectionFactory = // obtain
+QueueConnection queueConnection = queueConnectionFactory.createQueueConnection();
+QueueSession queueSession = queueConnection.createQueueSession
+(false, Session.AUTO_ACKNOWLEDGE);
+Queue destination = // obtain
+
+// producer code
+QueueSender sender = queueSession.createSender(destination);
+Message msg = qSession.createMessage();
+for (...) {
+    sender.send(msg);
+}
+
+// consumer code
+
+// synchronous consumer code
+QueueReceiver receiver = queueSession.createReceiver(destination);
+for (...) {
+    Message msg = receiver.receive();
+    ...
+}
+
+// asynchronous consumer code
+QueueReceiver receiver = queueSession.createReceiver(destination);
+receiver.setMessageListener(new MessageListener() {
+    public void onMessage(Message msg) {
+        ...
+    }
+});
+
+// start the connection to receive messages
+queueConnection.start();
+
+// release resources
+queueConnection.close();
+</code></pre>
+</div>
+</div></div>
+
+</body>
+</html>

@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1><MadCap:variable name="General.ProductNameXAP" /> in 5 Minutes</h1>
+        <p>This tutorial explains how to deploy and use a <MadCap:variable name="General.ProductNameXAP" /> <a href="../overview/the-in-memory-data-grid.html">Data Grid</a> from a Java client application.</p>
+        <h1><a name="starting-a-service-grid"></a>Starting a Service Grid</h1>
+        <p>A Data Grid requires a <a href="../overview/the-runtime-environment.html">Service Grid</a> to host it. A service grid is composed of one or more machines (service grid nodes) running a <a href="../overview/the-runtime-environment.html#gsa">Service Grid Agent</a> (or <code>GSA</code>), and provides a framework to deploy and monitor applications on those machines, in our case the Data Grid.</p>
+        <p>In this tutorial you'll launch a single node service grid on your machine. To start the service grid <MadCap:conditionalText MadCap:conditions="Version.14-5-born">with 4 containers</MadCap:conditionalText>, navigate to the product's <code>bin</code> folder and run the following command.</p>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-died">
+            <div title="Unix CLI" style="padding:10px"><pre><code class="language-bash">./gs-agent.sh
+</code></pre>
+            </div>
+            <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash">gs-agent.bat
+</code></pre>
+            </div>
+            <div title="REST" style="padding:10px"><pre><code class="language-bash"># start the agent with the REST interface
+# Windows
+gs-agent.bat --manager-local --gsc=2
+# Unix
+./gs-agent.sh --manager-local --gsc=2
+</code></pre>
+            </div>
+        </div>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+            <div title="Unix CLI" style="padding:10px"><pre><code class="language-bash">./gs host run-agent --auto --gsc=4<![CDATA[
+]]></code></pre>
+            </div>
+            <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash">gs host run-agent --auto --gsc=4<![CDATA[
+]]></code></pre>
+            </div>
+            <div title="REST" style="padding:10px"><pre><code class="language-bash"># start the agent with the REST interface
+# Windows
+gs host run-agent --manager-local --gsc=4
+# Unix
+./gs host run-agent --manager-local --gsc=4
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p><MadCap:variable name="General.ProductNameXAP" /> provides a web-based tool called the Web Management Console for monitoring and management. From the <code>bin</code> folder, start the <code>gs-webui</code> script, then browse to <code>localhost:8099</code>. Click <b>Login </b>and click the <span class="tc-italic">Hosts</span> tab to see the service grid components created on your machine.</p>
+        </div>
+        <h1><a name="deploying-the-data-grid"></a>Deploying the Data Grid</h1>
+        <p>The Data grid can be deployed from command line, from the web management tool or via an Administration API. In this tutorial we'll use the command line.</p>
+        <p>Start a command line, navigate to the product's <code>bin</code> folder and run the following command:</p>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-died">
+            <div title="Unix CLI" style="padding:10px"><pre><code class="language-bash">./gs.sh deploy-space -cluster total_members=2,1 myGrid
+</code></pre>
+            </div>
+            <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash">gs.bat deploy-space -cluster total_members=2,1 myGrid
+</code></pre>
+            </div>
+            <div title="REST" style="padding:10px"><pre><code class="language-json">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+'http://localhost:8090/v1/spaces?name=myGrid&amp;partitions=2&amp;backups=true&amp;requiresIsolation=true'
+</code></pre>
+            </div>
+        </div>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.14-5-born">
+            <div title="Unix CLI" style="padding:10px"><pre><code class="language-bash">./gs space deploy --partitions=2 --ha myGrid
+</code></pre>
+            </div>
+            <div title="Windows CLI" style="padding:10px"><pre><code class="language-bash">gs.bat space deploy --partitions=2 --ha myGrid</code></pre>
+            </div>
+            <div title="REST" style="padding:10px"><pre><code class="language-json">curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 
+'http://localhost:8090/v1/spaces?name=myGrid&amp;partitions=2&amp;backups=true&amp;requiresIsolation=true'
+</code></pre>
+            </div>
+        </div>
+        <p>This command deploys a Data Grid (aka space) called <span class="tc-bold">myGrid</span> with 2 partitions and 1 backup per partition <MadCap:conditionalText MadCap:conditions="Version.14-5-died">(hence the <code>2,1</code> syntax)</MadCap:conditionalText>.</p>
+        <p>If you're using the web console mentioned above to see what's going on, you'll see that the data grid has been deployed.</p>
+        <h1><a name="interacting-with-the-data-grid"></a>Interacting with the Data Grid</h1>
+        <h2><a name="connecting-to-the-grid"></a>Connecting to the Grid</h2>
+        <p>Since the Data grid is not located in our client process, we need some sort of address to find it. Data grids are searched using a <code>SpaceProxyConfigurer("spaceName")</code>. This roughly translates to: find a remote Space called <code>spaceName</code>.</p>
+        <p>Now that we have an address, we can connect to the grid:</p><pre><code class="language-java">SpaceProxyConfigurer configurer = new SpaceProxyConfigurer("myGrid");
+GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).create();
+</code></pre>
+        <p>The result is a <code>GigaSpace</code> instance, which is a proxy to the <code>myGrid</code> data grid.</p>
+        <div class="tc-admon-note">
+            <p>For more information on the <code>SpaceProxyConfigurer</code> and <code>GigaSpaceConfigurer</code> see <a href="../dev-java/the-space-configuration.html">The Space URL</a> page in the developer guide.</p>
+        </div>
+        <h2><a name="implementing-a-pojo"></a>Implementing a POJO</h2>
+        <p>We now have a <code>GigaSpace</code> instance connected to our grid, which we can use to store and retrieve entries. But what shall we write? Actually, any POJO can be stored in the space, so long as it has a default constructor and an ID property. For this tutorial let's define a <code>Person</code> class with the following properties:</p><pre><code class="language-java">import com.gigaspaces.annotation.pojo.SpaceId;
+
+public class Person {
+
+    private Integer ssn;
+    private String firstName;
+    private String lastName;
+
+    // Default constructor (required by <MadCap:variable name="General.DataGrid" />)
+    public Person() {}
+
+    @SpaceId
+    public Integer getSsn() {
+        return ssn;
+    }
+    public void setSsn(Integer ssn) {
+        this.ssn = ssn;
+    }
+
+    // Getters and Setters of firstName and lastName are omitted in this snippet.    
+}
+</code></pre>
+        <p>Note that we've annotated the <code>ssn</code> property's getter with a custom <MadCap:variable name="General.DataGrid" /> annotation <code>@SpaceId</code> to mark it as the entry's ID.</p>
+        <h2><a name="interacting-with-the-grid"></a>Interacting with the Grid</h2>
+        <p>Now that we have a <code>GigaSpace</code> instance connected to our grid and a POJO which can be stored, we can store entries in the grid using the <code>write()</code> method and read them using various <code>read()</code> methods:</p><pre><code class="language-java">System.out.println("Write (store) a couple of entries in the data grid:");
+gigaSpace.write(new Person(1, "Vincent", "Chase"));
+gigaSpace.write(new Person(2, "Johnny", "Drama"));
+
+System.out.println("Read (retrieve) an entry from the grid by its id:");
+Person result1 = gigaSpace.readById(Person.class, 1);
+
+System.out.println("Read an entry from the grid using a SQL-like query:");
+Person result2 = gigaSpace.read(new SQLQuery&lt;Person&gt;(Person.class, "firstName=?", "Johnny"));
+
+System.out.println("Read all entries of type Person from the grid:");
+Person[] results = gigaSpace.readMultiple(new Person());
+</code></pre>
+        <p>If you're using the web console mentioned above to see what's going on, you'll see two entries stored in the grid, one in each partition.</p>
+        <h2><a name="full-source-code"></a>Full Source Code</h2>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title=" Program.java   " style="padding:10px"><pre><code class="language-java">package com.gigaspaces.demo;
+
+import com.j_spaces.core.client.SQLQuery;
+import org.openspaces.core.GigaSpace;
+import org.openspaces.core.GigaSpaceConfigurer;
+import org.openspaces.core.space.SpaceProxyConfigurer;
+
+public class Program {
+
+    public static void main(String[] args) {
+
+        System.out.println("Connecting to data grid");
+        SpaceProxyConfigurer configurer = new SpaceProxyConfigurer("myGrid");
+        configurer.lookupGroups("[%=Versions.default-lookup-group%]");
+        GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).create();
+
+        System.out.println("Write (store) a couple of entries in the data grid:");
+        gigaSpace.write(new Person(1, "Vincent", "Chase"));
+        gigaSpace.write(new Person(2, "Johnny", "Drama"));
+
+        System.out.println("Read (retrieve) an entry from the grid by its id:");
+        Person result1 = gigaSpace.readById(Person.class, 1);
+        System.out.println("Result: " + result1);
+
+        System.out.println("Read an entry from the grid using a SQL-like query:");
+        Person result2 = gigaSpace.read(new SQLQuery&lt;Person&gt;(Person.class, "firstName=?", "Johnny"));
+        System.out.println("Result: " + result2);
+
+        System.out.println("Read all entries of type Person from the grid:");
+        Person[] results = gigaSpace.readMultiple(new Person());
+        System.out.println("Result: " + java.util.Arrays.toString(results));
+
+        configurer.close();
+    }
+}
+</code></pre>
+            </div>
+            <div title="  Person.java " style="padding:10px"><pre><code class="language-java">package com.gigaspaces.demo;
+
+import com.gigaspaces.annotation.pojo.SpaceId;
+import com.gigaspaces.annotation.pojo.SpaceIndex;
+import com.gigaspaces.metadata.index.SpaceIndexType;
+
+public class Person {
+
+    private Integer ssn;
+    private String firstName;
+    private String lastName;
+
+    // Default constructor (required by <MadCap:variable name="General.DataGrid" />)
+    public Person() {}
+
+    public Person(Integer ssn, String firstName, String lastName) {
+        this.ssn = ssn;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    @SpaceId(autoGenerate=false)
+    public Integer getSsn() {
+        return ssn;
+    }
+    public void setSsn(Integer ssn) {
+        this.ssn = ssn;
+    }
+
+    @SpaceIndex(type=SpaceIndexType.EQUAL)
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Person #" + ssn + ": " + firstName + " " + lastName;
+    }
+}
+</code></pre>
+            </div>
+        </div>
+    </body>
+</html>

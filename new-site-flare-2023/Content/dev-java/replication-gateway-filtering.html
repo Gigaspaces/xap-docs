@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Filtering  Data</h1>
+        <p>In some cases, there can be data that should not be replicated between the sites but should still be replicated locally between the primary and the backup/mirror service. In this case using the replicate class level or object level decoration is irrelevant as there is a need to control the replication behavior only to the remote site. Since a replication channel to a gateway is like any other replication channel, therefore a custom <a href="../admin/cluster-replication-filters.html">Replication Filter</a> at the source space can be used to filter the relevant data from being sent to the target gateway.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/WAN-replicationfilter.jpg" alt="WAN-replicationfilter.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>This filtering should be based on the replication target name in order to identify the correct replication filter is called for the outgoing replication to the gateway.</p>
+        <div class="tc-admon-tip">
+            <p>The output-filter can be used also to modify the replicated data before it is arriving the target site. When using a <code>SpaceDocument</code> the modified field must be a predefined field described with the document schema (fixed field).</p>
+        </div>
+        <h1><a name="using-the-filter"></a>Using the Filter</h1>
+        <h3><a name="filtering-objects"></a>Filtering Objects</h3>
+        <p>With the example below a replication filter is used with the source space (output-filter). The New-York space is configured not to replicate the Stock object type to London site. This Stock object type still being replicated to all other location replication targets (backup/mirror) and also to the remote Hong Kong gateway. The filtering can be determined also based on the content of the replicated object or any other custom business logic.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  New York Space " style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:os-core="http://www.openspaces.org/schema/core"
+    xmlns:os-events="http://www.openspaces.org/schema/events"
+    xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+    xmlns:os-sla="http://www.openspaces.org/schema/sla"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+       http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+        &lt;bean id="londonFilter" class="com.gigaspaces.examples.gateway.LondonReplicationFilter"/&gt;
+
+        &lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"&gt;
+          &lt;os-core:space-replication-filter&gt;
+            &lt;os-core:output-filter ref="londonFilter"/&gt;
+          &lt;/os-core:space-replication-filter&gt;
+        &lt;/os-core:embedded-space&gt;
+
+        &lt;os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK"&gt;
+          &lt;os-gateway:target name="LONDON"/&gt;
+          &lt;os-gateway:target name="HONGKONG"/&gt;
+        &lt;/os-gateway:targets&gt;
+
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:os-core="http://www.openspaces.org/schema/core"
+    xmlns:os-events="http://www.openspaces.org/schema/events"
+    xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+    xmlns:os-sla="http://www.openspaces.org/schema/sla"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/[%=Versions.product-version-short%]/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/[%=Versions.product-version-short%]/remoting/openspaces-remoting.xsd
+       http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd
+       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd"&gt;
+
+        &lt;bean id="londonFilter" class="com.gigaspaces.examples.gateway.LondonReplicationFilter"/&gt;
+
+        &lt;os-core:embedded-space id="space" space-name="myNYSpace" gateway-targets="gatewayTargets"&gt;
+          &lt;os-core:space-replication-filter&gt;
+            &lt;os-core:output-filter ref="londonFilter"/&gt;
+          &lt;/os-core:space-replication-filter&gt;
+        &lt;/os-core:embedded-space&gt;
+
+        &lt;os-gateway:targets id="gatewayTargets" local-gateway-name="NEWYORK"&gt;
+          &lt;os-gateway:target name="LONDON"/&gt;
+          &lt;os-gateway:target name="HONGKONG"/&gt;
+        &lt;/os-gateway:targets&gt;
+
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="  Replication Filter Implementation " style="padding:10px"><pre><code class="language-java">public class LondonReplicationFilter implements IReplicationFilter {
+
+  public void init(IJSpace space, String paramUrl, ReplicationPolicy replicationPolicy) {
+  }
+
+  public void process(int direction, IReplicationFilterEntry replicationFilterEntry, String replicationTargetName) {
+      if (replicationTargetName.equals("gateway:LONDON")) {
+          if (replicationFilterEntry.getClassName().equals(Stock.class.getName())) {
+              replicationFilterEntry.discard();
+          }
+      }
+  }
+
+  public void close() {
+  }
+}
+</code></pre>
+            </div>
+        </div>
+        <h3><a name="filtering-space-events"></a>Filtering Space Events</h3>
+        <p>You can choose which Space events (Take, Lease Expiration etc) are replicated. In the example below we define a filter that prevents the <code>DISCARD</code> and <code>LEASE_EXPIRATION</code> events to be replicated:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Source Space" style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-core="http://www.openspaces.org/schema/core" xmlns:os-events="http://www.openspaces.org/schema/events"
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+    xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-[%=Versions.spring-short%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-[%=Versions.spring-short%].xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd"&gt;
+
+    &lt;context:component-scan base-package="com.gigaspaces.demo" /&gt;
+
+    &lt;!-- Enables the usage of @GigaSpaceContext annotation based injection. --&gt;
+    &lt;os-core:giga-space-context /&gt;
+
+    &lt;context:annotation-config /&gt;
+    &lt;!--&lt;tx:annotation-driven transaction-manager="transactionManager" /&gt;--&gt;
+
+    &lt;os-core:distributed-tx-manager id="transactionManager" /&gt;
+
+    &lt;!-- Enable support for @Polling annotation --&gt;
+    &lt;os-events:annotation-support /&gt;
+   
+    &lt;!-- Bean to filter the take operations --&gt;
+    &lt;bean id="XPIFilter" class="com.gigaspaces.demo.XPIReplicationFilter"/&gt;
+
+    &lt;os-core:embedded-space id="space" space-name="wanSpaceAgency" gateway-targets="gatewayTargets"&gt;    
+        &lt;os-core:space-replication-filter&gt;
+            &lt;os-core:output-filter ref="XPIFilter"/&gt;
+        &lt;/os-core:space-replication-filter&gt;
+    &lt;/os-core:space&gt;
+ 
+    &lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager" /&gt;
+
+    &lt;os-gateway:targets id="gatewayTargets" local-gateway-name="XPI"&gt;
+        &lt;os-gateway:target name="IE" /&gt;
+    &lt;/os-gateway:targets&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:os-core="http://www.openspaces.org/schema/core" xmlns:os-events="http://www.openspaces.org/schema/events"
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
+    xmlns:os-gateway="http://www.openspaces.org/schema/core/gateway"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.openspaces.org/schema/events http://www.openspaces.org/schema/events/openspaces-events.xsd
+       http://www.openspaces.org/schema/core/gateway http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/gateway/openspaces-gateway.xsd
+       http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/remoting/openspaces-remoting.xsd"&gt;
+
+    &lt;context:component-scan base-package="com.gigaspaces.demo" /&gt;
+
+    &lt;!-- Enables the usage of @GigaSpaceContext annotation based injection. --&gt;
+    &lt;os-core:giga-space-context /&gt;
+
+    &lt;context:annotation-config /&gt;
+    &lt;!--&lt;tx:annotation-driven transaction-manager="transactionManager" /&gt;--&gt;
+
+    &lt;os-core:distributed-tx-manager id="transactionManager" /&gt;
+
+    &lt;!-- Enable support for @Polling annotation --&gt;
+    &lt;os-events:annotation-support /&gt;
+   
+    &lt;!-- Bean to filter the take operations --&gt;
+    &lt;bean id="XPIFilter" class="com.gigaspaces.demo.XPIReplicationFilter"/&gt;
+
+    &lt;os-core:embedded-space id="space" space-name="wanSpaceAgency" gateway-targets="gatewayTargets"&gt;    
+        &lt;os-core:space-replication-filter&gt;
+            &lt;os-core:output-filter ref="XPIFilter"/&gt;
+        &lt;/os-core:space-replication-filter&gt;
+    &lt;/os-core:space&gt;
+ 
+    &lt;os-core:giga-space id="gigaSpace" space="space" tx-manager="transactionManager" /&gt;
+
+    &lt;os-gateway:targets id="gatewayTargets" local-gateway-name="XPI"&gt;
+        &lt;os-gateway:target name="IE" /&gt;
+    &lt;/os-gateway:targets&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="Replication Filter" style="padding:10px"><pre><code class="language-java">package com.gigaspaces.demo;
+
+import com.j_spaces.core.cluster.*;
+import com.j_spaces.core.*;
+
+public class XPIReplicationFilter implements IReplicationFilter {
+    
+    public void init(IJSpace space, String paramUrl, ReplicationPolicy replicationPolicy) {
+    }
+    
+    public void process(int direction, IReplicationFilterEntry replicationFilterEntry, String replicationTargetName) {
+      
+        switch ( replicationFilterEntry.getOperationType() )
+        {
+            case TAKE: replicationFilterEntry.discard(); break;
+            case DISCARD: replicationFilterEntry.discard(); break;
+            case LEASE_EXPIRATION: replicationFilterEntry.discard(); break;
+        }
+    }
+    
+    public void close() {
+    }
+}
+</code></pre>
+            </div>
+        </div>
+    </body>
+</html>

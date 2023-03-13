@@ -1,0 +1,563 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>SQL Query Using SDK</h1>
+        <p>The <code>SQLQuery</code> class is used to query the Space using SQL-like syntax. The query statement includes only the <code>WHERE</code> statement part - the selection aspect of a SQL statement is embedded in other parameters for a SQL query.</p>
+        <div class="tc-admon-note">
+            <p>&#160;</p>
+            <p>For full ANSI SQL-99 support, see the <MadCap:xref href="insight-edge-legacy-jdbc-driver.html">[%=General.ProductNameIE%] JDBC&#160;Driver</MadCap:xref> page.</p>
+            <p>This documentation refers only to SQL operations using SDK, which is not ANSI SQL-99 compliant.</p>
+            <p>For the full documentation of the class's methods and constructors, see the <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">API documentation</a>.</p>
+        </div>
+        <h1><a name="examples"></a>Examples</h1>
+        <p>A <code>SQLQuery</code> is composed from the <span class="tc-bold">type</span> of entry to query and an <span class="tc-bold">expression</span> in a SQL syntax.</p>
+        <p>For example, suppose we have a class called <code>MyClass</code> with an <code>Integer</code> property called <span class="tc-bold">num</span> and a <code>String</code> property called <span class="tc-bold">name</span>:</p><pre><code class="language-java">// Read an entry of type MyClass whose num property is greater than 500:
+MyClass result1 = gigaSpace.read(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num &gt; 500"));
+
+// Take an entry of type MyClass whose num property is less than 500:
+MyClass result2 = gigaSpace.take(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num &lt; 500"));
+
+MyClass[] results;
+// Read all entries of type MyClass whose num is between 1 and 100:
+results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num &gt;= 1 AND num &lt;= 100"));
+
+// Read all entries of type MyClass who num is between 1 and 100 using BETWEEN syntax:
+results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num BETWEEN 1 AND 100"));
+
+// Read all entries of type MyClass whose num is either 1, 2, or 3:
+results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num IN (1,2,3)"));
+
+// Read all entries of type MyClass whose num is greater than 1,
+// and order the results by the name property:
+results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num &gt; 1 ORDER BY name"));
+</code></pre>
+        <div class="tc-admon-note">
+            <p>For an example of <code>SQLQuery</code> with <code>EventSession</code>, see the <a href="session-based-messaging-api.html#register-for-notifications">Session Based Messaging API</a> page.</p>
+        </div>
+        <h1><a name="supported-space-operations"></a>Supported Space Operations</h1>
+        <p>The following operations fully support <code>SQLQuery</code>:</p>
+        <ul>
+            <li>
+                <p>count</p>
+            </li>
+            <li>
+                <p>clear</p>
+            </li>
+            <li>
+                <p>read, readIfExists, readMultiple</p>
+            </li>
+            <li>
+                <p>take, takeIfExists, takeMultiple</p>
+            </li>
+        </ul>
+        <p>The following operations support<code>SQLQuery</code> only with simple queries:</p>
+        <ul>
+            <li>
+                <p>snapshot</p>
+            </li>
+            <li>
+                <p>EventSession</p>
+            </li>
+            <li>
+                <p>GSIterator</p>
+            </li>
+        </ul>
+        <h1><a name="supported-sql-features"></a>Supported SQL Features</h1>
+        <p>SQLQuery supports the following:</p>
+        <ul>
+            <li>
+                <p><code>AND</code> / <code>OR</code> operators to combine two or more conditions.</p>
+            </li>
+            <li>
+                <p>All basic logical operations to create conditions: <code>=, &lt;&gt;, &lt;, &gt;, &gt;=, &lt;=, like, NOT like, is null, is NOT null, IN</code>.</p>
+            </li>
+            <li>
+                <p><a href="aggregators.html">Aggregate</a> functions: COUNT, MAX, MIN, SUM, AVG</p>
+            </li>
+            <li>
+                <p><code>BETWEEN</code>
+                </p>
+            </li>
+            <li>
+                <p><code>ORDER BY (ASC | DESC)</code> for multiple properties. Supported only by readMultiple. <code>ORDER BY</code> supports also nested object fields. <code>ORDER BY</code> supports <code>NULLS LAST</code> to control the order behavior of a field when its value is <code>null</code>.</p>
+            </li>
+            <li>
+                <p><code>GROUP BY</code> - performs DISTINCT on the properties. Supported only by readMultiple. <code>GROUP BY</code> supports also nested object fields.</p>
+            </li>
+            <li>
+                <p><code>sysdate</code> - current system date and time.</p>
+            </li>
+            <li>
+                <p><code>rownum</code> - limits the number of rows to select.</p>
+            </li>
+            <li>
+                <p>Sub queries.</p>
+            </li>
+            <li>
+                <p>"." used to indicate a double data type.</p>
+            </li>
+            <li>
+                <p><a href="indexing.html">Regular Index</a> and a <a href="indexing-compound.html">Compound Index</a> - Index a single property or multiple properties to improve query execution time.</p>
+            </li>
+        </ul>
+        <h1><a name="unsupported-sql-features"></a>Unsupported SQL Features</h1>
+        <div class="tc-admon-note">
+            <p>&#160;</p>
+            <p>For full ANSI SQL-99 support, see the <MadCap:xref href="insight-edge-legacy-jdbc-driver.html">[%=General.ProductNameIE%] JDBC&#160;Driver</MadCap:xref> page.</p>
+            <p>This documentation refers only to SQL operations using SDK, which is not ANSI SQL-99 compliant.</p>
+            <p>For the full documentation of the class's methods and constructors, see the <a href="[%=Links.ApiJavaDoc%]/index.html" target="_blank">API documentation</a>.</p>
+        </div>
+        <p>SQLQuery does <span class="tc-bold">not</span> support the following:</p>
+        <ul>
+            <li>
+                <p>Multiple tables select - This is supported with the <a href="jdbc-driver.html">JDBC API</a>.</p>
+            </li>
+            <li>
+                <p>DISTINCT - This is supported with the <a href="jdbc-driver.html">JDBC API</a>.</p>
+            </li>
+            <li>
+                <p>The SQL statements: VIEW, TRIGGERS, EXISTS, NOT, CREATE USER, GRANT, REVOKE, SET PASSWORD, CONNECT USER, ON.</p>
+            </li>
+            <li>
+                <p>Constraints: NOT NULL, IDENTITY, UNIQUE, PRIMARY KEY, Foreign Key/REFERENCES, NO ACTION, CASCADE, SET NULL, SET DEFAULT, CHECK.</p>
+            </li>
+            <li>
+                <p>Set operations: Union, Minus, Union All.</p>
+            </li>
+            <li>
+                <p>Advanced Aggregate Functions: STDEV, STDEVP, VAR, VARP, FIRST, LAST. These may be implemented via <a href="aggregators.html#custom-aggregation">Custom Aggregation</a>.</p>
+            </li>
+            <li>
+                <p>Using a non constant right-hand side comparison operator. This can be implemented via <a href="aggregators.html#custom-aggregation">Custom Aggregation</a>.</p>
+            </li>
+            <li>
+                <p>LEFT OUTER JOIN</p>
+            </li>
+            <li>
+                <p>RIGHT OUTER JOIN</p>
+            </li>
+            <li>
+                <p>INNER JOIN</p>
+            </li>
+        </ul>
+        <div class="tc-admon-attention">
+            <p>For a LEFT Join, the LEFT parameter must be coded on the left side of the equation, before the ON parameter, for example:</p><code class="language-sql">SELECT first_name, last_name, order_date, amount</code>
+            <br /><code class="language-sql">FROM orders o</code>
+            <br /><code class="language-sql">LEFT JOIN customers c</code>
+            <br /><code class="language-sql">ON o.customer_id = c.customer_id;</code>
+        </div>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-8-born">
+            <p>For a LEFT Join, joining more than one table is not supported.<br />For example, the following statement is not supported:</p><code class="language-sql">SELECT first_name, last_name, order_date, amount</code>
+            <br /><code class="language-sql">FROM orders o</code>
+            <br /><code class="language-sql">LEFT JOIN customers c</code>
+            <br /><code class="language-sql">ON o.customer_id = c.customer_id</code>
+            <br /><code class="language-sql">LEFT JOIN products p</code>
+            <br /><code class="language-sql">ON o.product_id = p.product_id;</code>
+            <br />
+        </div>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-8-born">
+            <p>For a LEFT Join, fields in the <code>ON </code>clause must reference the second table, the table coded to the <b>right</b> of the <code>LEFT JOIN</code> parameter.<br />For example, the following statement is not supported:</p><code class="language-sql">SELECT first_name, last_name, order_date, amount</code>
+            <br /><code class="language-sql">FROM orders o</code>
+            <br /><code class="language-sql">LEFT JOIN customers c</code>
+            <br /><code class="language-sql">ON o.customer_id = c.customer_id AND <span class="tc-textred">o.amount &lt;&gt; 234.56</span>;</code>
+            <br />This example is not supported because of the reference to <code>o.amount</code>. Only fields in the first table (<code>customers c</code>) can be referenced in the ON clause.<br /><br /></div>
+        <h1><a name="comparing-null-values"></a>Comparing Null Values</h1>
+        <p><code>SQLQuery</code> comparisons evaluate the non-null values for a field. If you want to include objects with null values in a <code>SQLQuery</code> you must add another condition to your clause.</p>
+        <p>For example, if you have an object with a property named message of type <code>String</code> that is set to <code>null</code> and you write it to the Space, then write a <code>SQLQuery</code> with the where clause is:
+<code>"message &lt;&gt; 'abcd'"</code>.</p>
+        <p>You might expect that the object with <code>message = null</code> will be returned in the query. However it doesn't, as the comparison looks at only non-null values. To get the objects that are also null for message, use the following:
+<code>"message &lt;&gt; 'abcd' or message = null"</code> to include objects whose message property is set to null.</p>
+        <h1><a name="indexing"></a>Indexing</h1>
+        <p>It is highly recommended to use indexes on relevant properties to increase performance when using equality, bigger/less than, BETWEEN, IN, LIKE, NOT LIKE, or IS NULL statements. For more information, see <a href="indexing-overview.html">Indexing</a>. The above supported query features can leverage indexes except for the <code>is NOT null</code> and <code>NOT IN</code> statement.</p>
+        <h1><a name="parameterized-queries"></a>Parameterized Queries</h1>
+        <p>In many cases developers prefer to separate the concrete values from the SQL criteria expression. In <code>SQLQuery</code>, this can be done by placing a <span class="tc-bold">'?'</span> symbol instead of the actual value in the expression. When executing the query, the conditions that include <span class="tc-bold">'?'</span> are replaced with corresponding parameter values supplied via the <code>setParameter</code>/<code>setParameters</code> methods, or  the <code>SQLQuery</code> constructor. For example:</p><pre><code class="language-java">// Option 1 - Use the fluent setParameter(int index, Object value) method:
+SQLQuery&lt;MyClass&gt; query1 = new SQLQuery&lt;MyClass&gt;(MyClass.class,"num &gt; ? or num &lt; ? and name = ?")
+    .setParameter(1, 2)
+    .setParameter(2, 3)
+    .setParameter(3, "smith");
+
+// Option 2 - Use the setParameters(Object... parameters) method:
+SQLQuery&lt;MyClass&gt; query2 = new SQLQuery&lt;MyClass&gt;(MyClass.class,"num &gt; ? or num &lt; ? and name = ?");
+query.setParameters(2, 3, "smith");
+
+// Option 3: Use the constructor to pass the parameters:
+SQLQuery&lt;MyClass&gt; query3 = new SQLQuery&lt;MyClass&gt;(MyClass.class,"num &gt; ? or num &lt; ? and name = ?", 2, 3, "smith");
+</code></pre>
+        <div class="tc-admon-note">
+            <p>The number of <span class="tc-bold">'?'</span> symbols in the expression string must match the number of parameters set on the query. For example, when using <code>IN</code> condition:</p><pre><code class="language-java">SQLQuery&lt;MyClass&gt; query = new SQLQuery&lt;MyClass&gt;(MyClass.class,"name = ? AND num IN (?,?,?)");
+query.setParameters("A", 1, 2, 3);
+
+// Is equivalent to:
+SQLQuery&lt;MyClass&gt; query = new SQLQuery&lt;MyClass&gt;(MyClass.class,"name = 'A' AND num IN (1,2,3)");
+</code></pre>
+            <p>You can use the "IN' condition with Java's <code>Collection</code> or primitive arrays. For example:</p><pre><code class="language-java">Collection&lt;Integer&gt; collection = new HashSet&lt;Integer&gt;();
+collection.add(1);
+collection.add(2);
+collection.add(3);
+
+SQLQuery&lt;MyClass&gt; query = new SQLQuery&lt;MyClass&gt;(MyClass.class,"name = ? AND num IN (?)");
+query.setParameter(1,"A");
+query.setParameter(2,collection);
+</code></pre>
+        </div>
+        <div class="tc-admon-important">
+            <p>Parameter assignment to the <code>SQLQuery</code> instance is not thread-safe. If the query is intended to be executed on multiple threads which may change the parameters, it is recommended to use different <code>SQLQuery</code> instances. This has an analogue in JDBC, because <code>PreparedStatement</code> is not thread-safe either.</p>
+        </div>
+        <h1><a name="nested-properties"></a>Nested Properties</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> SQL syntax contains various extensions to support matching nested properties, maps, collections and arrays.</p>
+        <p>Some examples:</p><pre><code class="language-java">// Query for a Person who lives in New York:
+... = new SQLQuery&lt;Person&gt;(Person.class, "address.city = 'New York'");
+// Query for a Dealer which sales a Honda:
+... = new SQLQuery&lt;Dealer&gt;(Dealer.class, "cars[*] = 'Honda'");
+</code></pre>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="query-nested-properties.html">Nested Properties</a> page.</p>
+        </div>
+        <h1><a name="enum-properties"></a>Enum Properties</h1>
+        <p>An enum property can be matched either using the enum's instance value or its string representation. For example:</p><pre><code class="language-java">public class Vehicle {
+    public enum VehicleType { CAR, BIKE, TRUCK };
+
+    private VehicleType type;
+    // Getters and setters are omitted for brevity
+}
+
+// Query for vehicles of type CAR using the enum's value:
+... = new SQLQuery&lt;Vehicle&gt;(Vehicle.class, "type = ?", VehicleType.CAR);
+// Query for vehicles of type CAR using the enum's string representation:
+... = new SQLQuery&lt;Vehicle&gt;(Vehicle.class, "type = 'CAR'");
+</code></pre>
+        <div class="tc-admon-note">
+            <p>When using an Enum string value, the value must be identical (case sensitive) to the name of the Enum value.</p>
+        </div>
+        <h1><a name="date-properties"></a>Date Properties</h1>
+        <p>A <code>Date</code> property can be matched either using the Date instance value or its string representation. For example:</p><pre><code class="language-java">// Query using a Date instance value:
+... = new SQLQuery&lt;MyClass&gt;(MyClass.class, "birthday &lt; ?", new java.sql.Date(2020, 11, 20));
+// Query using a Date string representation:
+... = new SQLQuery&lt;MyClass&gt;(MyClass.class ,"birthday &lt; '2020-12-20'");
+</code></pre>
+        <p>Specifying date and time values as strings is error prone because it requires configuring the date and time format properties, and adhering to the selected format. It is recommended to simply use <code>Date</code> instance parameters.</p>
+        <p>When string representation is required, the following Space properties should be used:</p><pre><code class="language-xml">space-config.QueryProcessor.date_format
+space-config.QueryProcessor.datetime_format
+space-config.QueryProcessor.time_format
+</code></pre>
+        <p>For example:</p><pre><code class="language-xml">&lt;beans&gt;
+    &lt;os-core:embedded-space id="space" space-name="mySpace"&gt;
+        &lt;os-core:properties&gt;
+            &lt;props&gt;
+                &lt;prop key="space-config.QueryProcessor.date_format"&gt;yyyy-MM-dd HH:mm:ss&lt;/prop&gt;
+                &lt;prop key="space-config.QueryProcessor.time_format"&gt;HH:mm:ss&lt;/prop&gt;
+            &lt;/props&gt;
+        &lt;/os-core:properties&gt;
+    &lt;/os-core:embedded-space&gt;
+&lt;/beans&gt;
+</code></pre>
+        <p>These Space properties should be configured with a valid Java format pattern, as defined in the <a href="http://java.sun.com/docs/books/tutorial/i18n/format/simpleDateFormat.html" target="_blank">official Java language documentation</a>.</p>
+        <div class="tc-admon-note">
+            <p>The <code>space-config.QueryProcessor.date_format</code> property used when your query includes a String representing the date. Date properties are often used for comparison (greater/less than). Consider using <a href="indexing.html">ordered indexing</a> to boost performance.</p>
+        </div>
+        <h2><a name="the-sysdate-property"></a>The Sysdate Property</h2>
+        <p>The <code>sysdate</code> value is evaluated differently when using the JDBC API vs when using it with <code>SQLQuery</code> API. When used with JDBC API, it is evaluated using the Space clock. When used with <code>SQLQuery</code> API, it is evaluated using the client clock. If you have a partitioned Space across multiple different machines and the clock across these machines is not synchronized, you might not get the desired results. If you use the JDBC API, you should consider setting the date value as part of the SQL within the client side (because you might write objects using the GigaSpace API). In this case, you should synchronize all the client machine times. In short, all the machines (client and server) clocks should be synchronized.</p>
+        <ul>
+            <li>
+                <p>For Windows, there is a <a href="http://technet.microsoft.com/en-us/library/cc773061(WS.10).aspx" target="_blank">Windows service</a> that deals with clock synchronization.</p>
+            </li>
+            <li>
+                <p>For Linux, there is a <a href="http://www.brennan.id.au/09-Network_Time_Protocol.html#starting" target="_blank">daemon service</a> that deals with clock synchronization.</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>Internally, dates are stored as a <span class="tc-bold">TimeStamp</span>. This means that both time (hour/min/sec) and date (year/month/day) information is available for date range queries.</p>
+        </div>
+        <h1><a name="java-8-dates"></a>Java 8 Dates</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports the <code>LocalDate</code>, <code>LocalTime</code> and <code>LocalDateTime</code> classes. The following Space properties must be defined in order to use the classes in queries:</p><pre><code class="language-xml">    &lt;os-core:embedded-space id="space" space-name="sandboxSpace"&gt;
+        &lt;os-core:properties&gt;
+            &lt;props&gt;
+                &lt;prop key="space-config.QueryProcessor.date_format"&gt;yyyy-MM-dd HH:mm:ss&lt;/prop&gt;
+                &lt;prop key="space-config.QueryProcessor.time_format"&gt;HH:mm:ss&lt;/prop&gt;
+                &lt;prop key="space-config.QueryProcessor.datetime_format"&gt;yyyy-MM-dd HH:mm:ss&lt;/prop&gt;
+            &lt;/props&gt;
+        &lt;/os-core:properties&gt;
+    &lt;/os-core:embedded-space&gt;
+</code></pre>
+        <p>Here are examples on how to use the Java 8 dates:</p>
+        <div class="row">
+            <div class="easyui-accordion" data-options="selected:'-1'" plain="true">
+                <div title="LocalDate" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title=" LocalDatePojo" style="padding:10px"><pre><code class="language-java">public class LocalDatePojo {
+    private LocalDate myData;
+    private Integer id = null;
+
+    public LocalDatePojo() {
+    }
+
+    public LocalDate getMyDate() {
+        return myData;
+    }
+
+    public void setMyDate(LocalDate date) {
+        this.myData = date;
+    }
+
+    @SpaceId
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+}
+
+</code></pre>
+                        </div>
+                        <div title=" Program" style="padding:10px"><pre><code class="language-java">public void testLocalDate() {
+    LocalDate d = LocalDate.now();
+
+    LocalDatePojo pojo = new LocalDatePojo();
+    pojo.setId(new Integer(1));
+    pojo.setMyDate(d);
+    dateSpace.write(pojo);
+
+    DateTimeFormatter formatter = DateTimeFormatter
+            .ofPattern("yyyy-MM-dd HH:mm:ss");
+    String inAnHourDate = formatter.format(LocalDateTime.now().plusDays(1));
+
+    SQLQuery&lt;LocalDatePojo&gt; q = new SQLQuery&lt;LocalDatePojo&gt;(
+                LocalDatePojo.class, "myDate &lt; '" + inAnHourDate + "' ");
+    pojo = dateSpace.read(q);
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div title="LocalTime" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title=" LocalTimePojo" style="padding:10px"><pre><code class="language-java">public class LocalTimePojo {
+    private LocalTime myTime;
+    private Integer id = null;
+
+    public LocalTimePojo() {
+    }
+
+    public LocalTime getMyTime() {
+        return myTime;
+    }
+
+    public void setMyTime(LocalTime myTime) {
+        this.myTime = myTime;
+    }
+
+    @SpaceId
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+}
+</code></pre>
+                        </div>
+                        <div title=" Program" style="padding:10px"><pre><code class="language-java">    public void testLocalTime() {
+        LocalTime t = LocalTime.now();
+
+        LocalTimePojo pojo = new LocalTimePojo();
+        pojo.setId(new Integer(1));
+        pojo.setMyTime(t);
+        dateSpace.write(pojo);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String inAnHourDate = formatter.format(LocalDateTime.now().plusMinutes(
+                10));
+
+        SQLQuery&lt;LocalTimePojo&gt; q = new SQLQuery&lt;LocalTimePojo&gt;(
+                LocalTimePojo.class, "myTime &lt; '" + inAnHourDate + "' ");
+        pojo = dateSpace.read(q);
+    }
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div title="LocalDateTime" style="padding:10px;">
+                    <div class="easyui-tabs" plain="true" data-options="">
+                        <div title=" LocalDateTimePojo" style="padding:10px"><pre><code class="language-java">public class LocalDateTimePojo {
+    private LocalDateTime myData;
+    private Integer id = null;
+
+    public LocalDateTimePojo() {
+    }
+
+    public LocalDateTime getMyDate() {
+        return myData;
+    }
+
+    public void setMyDate(LocalDateTime date) {
+        this.myData = date;
+    }
+
+    @SpaceId
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+}
+</code></pre>
+                        </div>
+                        <div title=" Program" style="padding:10px"><pre><code class="language-java">public void testLocalDateTime() {
+    LocalDateTime d = LocalDateTime.now();
+
+    LocalDateTimePojo pojo = new LocalDateTimePojo();
+    pojo.setMyDate(d);
+    pojo.setId(new Integer(1));
+    dateSpace.write(pojo);
+
+    DateTimeFormatter formatter = DateTimeFormatter
+                .ofPattern("yyyy-MM-dd HH:mm:ss");
+    String inAnHourDate = formatter.format(LocalDateTime.now()
+                .minusMinutes(10));
+
+    SQLQuery&lt;LocalDateTimePojo&gt; q = new SQLQuery&lt;LocalDateTimePojo&gt;(
+                LocalDateTimePojo.class, "myDate &gt; '" + inAnHourDate + "' ");
+    pojo = dateSpace.read(q);
+ }
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tc-admon-important">
+            <p>Java 8's LocalDate, LocalTime, and LocalDateTime are currently not interoperable with the .NET DateTime class. Refer to the <a href="../dev-dotnet/interoperability.html#supported-types-for-matching-and-interoperability">.NET Interoperability</a> page.</p>
+        </div>
+        <h1><a name="aggregators"></a>Aggregators</h1>
+        <p><a href="aggregators.html">Aggregators</a> allows you to perform aggregations (Average, Max, Min, Sum, Group By, Having) on a relatively large Space object data set. A query (SQLQuery or template) may be specified to determine the exact subset of Space objects to iterate while performing the aggregation. Aggregators support single and compound-based execution and a fully customized Aggregation.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/built-in-Compound-aggregators.jpg" alt="aggreg.jpg" class="tc-picture30" />
+        </div>
+        <h1><a name="blocking-operations"></a>Blocking Operations</h1>
+        <p>Blocking operations (i.e. <code>read</code> or <code>take</code> with <code>timeout</code> greater than <code>0</code>) are supported with the following restrictions:</p>
+        <ul>
+            <li>Blocking operations on a partitioned Space require a routing value (broadcast is not supported). For more information, see <a href="#routing">Routing</a>.</li>
+            <li>Blocking operations on complex queries are not supported. For more information, see <a href="#simple-vs-complex-queries">Simple Queries</a> definition.</li>
+        </ul><pre><code class="language-java">long timeout = 100000;
+MyClass result = space.take(new SQLQuery&lt;MyClass&gt;(MyClass.class ,"num &gt; 500"), timeout);
+</code></pre><a name="routing"></a>
+        <h1><a name="routing"></a>Routing</h1>
+        <p>When running on a partitioned Space, it is important to understand how routing is determined for SQL queries.</p>
+        <p>If the routing property is part of the criteria expression with an equality operand and without ORs, its value is used for routing.</p>
+        <p>For example, suppose the routing property of <code>MyClass</code> is <code>num</code>:</p><pre><code class="language-java">// Execute query on partition #1
+SQLQuery&lt;MyClass&gt; query1 = new SQLQuery&lt;MyClass&gt;(MyClass.class,"num = 1");
+
+// Execute query on all partitions - no way to tell which partitions hold matching results:
+SQLQuery&lt;MyClass&gt; query2 = new SQLQuery&lt;MyClass&gt;(MyClass.class,"num &gt; 1");
+
+// Execute query on all partitions - no way to tell which partitions hold matching results:
+SQLQuery&lt;MyClass&gt; query3 = new SQLQuery&lt;MyClass&gt;(MyClass.class,"num = 1 OR name='smith'");
+</code></pre>
+        <p>Note that in <code>query1</code> the <code>num</code> property is used both for routing and matching.</p>
+        <p>In some scenarios, we may want to execute the query on a specific partition without matching the routing property (e.g. blocking operation). This can be done via the <code>setRouting</code> method:</p><pre><code class="language-java">SQLQuery&lt;MyClass&gt; query = new SQLQuery&lt;MyClass&gt;(MyClass.class,"num &gt; 3");
+query.setRouting(1);
+MyClass[] result = gigaspace.readMultiple(query);
+</code></pre>
+        <h1><a name="best-practice"></a>Best Practice</h1>
+        <h2><a name="compound-index"></a>Compound Index</h2>
+        <p>When having an <span class="tc-bold">AND</span> query or a template that use two or more fields for matching, a <a href="indexing-compound.html">Compound Index</a> may boost the query execution time. The Compound Index should be defined on multiple properties for a specific Space class, and is used implicitly when a SQL Query or a <a href="query-template-matching.html">Template</a> uses these properties.</p>
+        <h2><a name="re-using-sqlquery"></a>Re-using SQLQuery</h2>
+        <p>Constructing an <code>SQLQuery</code> instance is a relatively expensive operation. When possible, use <code>SQLQuery.setParameters</code> and <code>SQLQuery.setParameter</code> to modify an existing query instead of creating a new one. However, remember that <code>SQLQuery</code> is not thread-safe.
+<MadCap:variable name="General.ProductNameXAP" /> reuses <code>SQLQuery</code> objects by using a bounded cache mechanism - when using <code>SQLQuery.setParameter</code> as described above,  the queries are fetched from the cache without the penalty of recreating <code>SQLQuery</code> objects. The cache size can be modified by setting the <code>com.gs.queryCache.cacheSize</code> system property to the required value (the default value is 1,000).</p>
+        <h2><a name="minimize-or-usage"></a>Minimize OR usage</h2>
+        <p>When using the <code>OR</code> logical operator together with the <code>AND</code> logical operator as part of your query, you can speed up the query execution by minimizing the number of <code>OR</code> conditions in the query. For example:</p><pre><code class="language-java">(A = 'X' OR A = 'Y') AND (B &gt; '2000-10-1' AND B &lt; '2003-11-1')
+</code></pre>
+        <p>would be executed much faster when changing it to be:</p><pre><code class="language-java">(A = 'X' AND B &gt; '2000-10-1' AND B &lt; '2003-11-1')
+OR
+(A = 'Y' AND B &gt; '2000-10-1' AND B &lt; '2003-11-1')
+</code></pre>
+        <h2><a name="projecting-partial-results"></a>Projecting Partial Results</h2>
+        <p>You can specify that the <code>SQLQuery</code> contain only partial results, which means that the returned object should only be populated with the projected properties.</p>
+        <div class="tc-admon-note">
+            <p>For details on how to use the projection API, refer to the <a href="query-partial-results.html">Projection</a> page.</p>
+        </div><a name="SimpleQueries"></a>
+        <h1><a name="simple-vs-complex-queries"></a>Simple vs. Complex Queries</h1>
+        <p>Most space operations and features support any SQL query, but some support only <span class="tc-bold">simple</span> queries and not <span class="tc-bold">complex</span> ones.
+A query is considered complex if it contains one or more of the following:</p>
+        <ul>
+            <li>
+                <p><code>GROUP BY</code>
+                </p>
+            </li>
+            <li>
+                <p><code>ORDER BY</code>
+                </p>
+            </li>
+            <li>
+                <p>Sub queries</p>
+            </li>
+        </ul>
+        <p>The following features support only simple SQL queries:</p>
+        <ul>
+            <li>
+                <p>Snapshot</p>
+            </li>
+            <li>
+                <p>Blocking operations</p>
+            </li>
+            <li>
+                <p><a href="session-based-messaging-api.html">Notifications</a>
+                </p>
+            </li>
+            <li>
+                <p><a href="query-paging-support.html">GSIterator</a>
+                </p>
+            </li>
+        </ul>
+        <h1><a name="interface-classes"></a>Interface Classes</h1>
+        <p><code>SQLQuery</code> supports concrete classes, derived classes and abstract classes. Interface classes are <span class="tc-bold">not supported</span>.</p>
+        <h1><a name="reserved-words"></a>Reserved Words</h1>
+        <p>The following are reserved keywords in the <MadCap:variable name="General.ProductNameXAP" /> SQL syntax:</p>
+        <ul>
+            <li>
+                <p>alter add all and asc avg between by create call drop desc bit tinyint</p>
+            </li>
+            <li>
+                <p>end from group in is like rlike max min not null or distinct</p>
+            </li>
+            <li>
+                <p>order select substr sum sysdate upper where count delete varchar2 char</p>
+            </li>
+            <li>
+                <p>exception rownum index insert into set table to_char to_number smallint</p>
+            </li>
+            <li>
+                <p>update union values commit rollback uid using as date datetime time</p>
+            </li>
+            <li>
+                <p>float real double number decimal numeric boolean integer</p>
+            </li>
+            <li>
+                <p>varchar bigint long clob blob lob true false int timestamp longvarchar</p>
+            </li>
+        </ul>
+        <p>If a reserved word needs to be used as a property name it needs to be escaped using ``.<br />For example: to query a property by the name of count, which is a reserved word, do the following:</p><pre><code class="language-java">new SQLQuery&lt;MyData&gt;(MyData.class, "`count` = 5")
+</code></pre>
+        <h1><a name="reserved-separators-and-operators"></a>Reserved Separators and Operators</h1>
+        <p>:= || ; . ROWTYPE ~ &lt; &lt;= &gt;  &gt;= =&gt; != &lt;&gt; (+) ( ) * / + - ? { }</p>
+        <h1>String Conversion</h1>
+        <p>If you write a SQL query that uses a field in a class that is a custom type (not one of the common supported Java types), and you don't set a parameter, the query will fail if the SQL query doesn't have a converter from a String literal to the object of that type.</p>
+        <p>One example of a field inside the class is the custom type MYID. <code>SQLquery</code> doesn't have a converter defined, and the query will fail with an exception. </p>
+        <p>To convert this kind of field to a Type string:</p>
+        <ul>
+            <li> In the custom class, implement the <code class="language-bash">parse()</code> method that uses the signature <code class="language-bash">public static &lt;class of object&gt; parse(String s)</code>. This method is responsible for converting from String to an object.</li>
+        </ul>
+        <ul>
+            <li> The parent class must use the class in its field definition.</li>
+        </ul>
+        <p>You can then run the query, as in this example from the Web Management Console, using the name of the custom class that implements the conversion method:</p><pre><code class="language-sql">select UID,* from com.samples.common.PojoWithMyid 
+where myid = '073f739f-6937-4632-a9c5-3b74e9337c90' and rowNum&amp;lt;10</code></pre>
+    </body>
+</html>

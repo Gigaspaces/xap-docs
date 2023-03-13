@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Viewing Alerts</h1>
+        <div class="tc-admon-note">
+            <p>This functionality is not yet available in the Command Line Interface or REST Manager API administration tools.</p>
+        </div>
+        <p><span class="tc-bold">To view alerts:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="Version.15-2-born">
+            <!--
+<div title="Command Line Interface" style="padding:10px"><p>N/A</p>
+</div>
+
+<div title="REST Manager API" style="padding:10px"><p>N/A</p>
+</div>
+-->
+            <div title="Ops Manager" style="padding:10px">
+                <p>You can view resource and availability alerts in the Services area of the Cluster overview. The alerts are displayed along a timeline, which can be adjusted to show the last 5 minutes, the last hour, or the last day (24 hours). </p>
+                <h2>Alert Types</h2>
+                <MadCap:snippetBlock src="../Resources/Snippets/Content/Admin/ops-manager-alerts.flsnp" />
+                <p>Click a service to drill through and see alerts for individual instances. </p>
+            </div>
+            <div title="Web Management Console" style="padding:10px">
+                <p>You can view alerts in the Web Management Console Alerts panel, displayed in <MadCap:variable name="General.ProductNameXAP" /> Alert groups (according to correlation key). Alerts are grouped together by type, such as CPU, Memory, etc. When an alert is triggered, it is aggregated with other consecutive alerts of the same type. A resolved alert closes the aggregation. A new alert of the same type triggers a new aggregation. You can sort the on <span class="tc-bold">Status</span> column in ascending order to show the latest unresolved alerts.</p>
+                <ul>
+                    <li>From the menu bar, click <span class="tc-bold">Alerts</span>. The list of alerts in the system is displayed with the following details:</li>
+                </ul>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>Severity of the alert (Warning, Severe). Expand the top-level alert to see the recurrences of the alert and if/when it was resolved. A green check mark indicates an alert than has been resolved.</td>
+                    </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td>Type of alert.</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>Detailed description of the alert.</td>
+                    </tr>
+                    <tr>
+                        <td>Location</td>
+                        <td>Service grid component where the alert occurred.</td>
+                    </tr>
+                    <tr>
+                        <td>Last Update</td>
+                        <td>Time that the alert was generated.</td>
+                    </tr>
+                </table>
+                <p>The Alert number displayed in the menu bar indicates the amount of currently active alerts.</p>
+                <p>You can generate a dump file for the alert's related grid components by clicking the <span class="tc-bold">Action</span> icon in the relevant line of the alert list. See <a href="admin-service-grid-generate-dump.html">Generating Dump Files</a> for information on how to define the dump file contents.</p>
+                <div class="tc-admon-note">
+                    <p>The Web Management Console server utilizes the <code><MadCap:variable name="General.HomePath" />/config/alerts/alerts.xml</code> configuration file. These configurations apply to any client connecting to the Web Management Console at the specified host and port.</p>
+                </div>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+                <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+    </body>
+</html>

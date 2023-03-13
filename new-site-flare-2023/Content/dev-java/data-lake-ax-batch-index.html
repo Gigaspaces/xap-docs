@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">AnalyticsXtreme Batch Indexing</h1>
+        <p MadCap:conditions="Default.DoNotShow"><MadCap:variable name="General.ProductNameIE" /> only</p>
+        <p>Indexing is an effective way to improve query performance on regular databases. However, organizations can store up to terabytes and petabytes of data in data lakes. Indexing all of the data is impractical because it results in very high overhead; while indexing might improve performance, it isn't cost effective because of the storage required to support an index of that size. </p>
+        <p>AnalyticsXtreme provides intelligent data tiering with its batch indexing feature, which enables differentiating between older (cold) data  that is still frequently accessed, and data that can be archived because it is only relevant for historical purposes. This keeps the size of the index small while still providing high performance.</p>
+        <p>Using batch indexing, you can create a full data life cycle policy that automatically tiers your aging data into cold and archive storage in your data lake, to complement AnalyticsXtreme's handling of hot data (stored in RAM) and warm data (stored in SSD) that is ingested in automatic data tiering mode. This end-to-end approach optimizes your data storage, so you can maintain the right balance between performance and cost as capacity increases and your data moves between the frequent access and infrequent access tiers.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lambda/AX-perf-capacity-cost.png" class="tc-picture30" />
+            </p>
+        </div>
+        <p>Batch indexing, which supports all AnalyticsXtreme functionality, uses partitions and buckets to categorize data in the file system or object store, so you can designate a specific location for each type of data. For example, you might partition your data according to city, but then want to query using SQL, JDBC, or Spark by customer name. In order to successfully query this, you must map the names to the cities.</p>
+        <div class="tc-admon-note">
+            <p><MadCap:variable name="General.ProductNameXAP" /> supports using batch indexing with Hive over any Hive-supported file system or storage layer. Hive over HDFS is a fully tested and verified data storage solution.</p>
+        </div>
+        <p>When the batch index is deployed, <MadCap:variable name="General.ProductNameIE" /> performs an initial indexing of the defined index period. The batch index is available only after it is completely initialized. This doesn't affect the ability to run AnalyticsXtreme queries, but if you query your data lake during this period, the performance benefit isn't realized because the batch index isn't accessed until the initialization process completes. </p>
+        <h1>Data Life Cycle with Batch Index</h1>
+        <p>The basic AnalyticsXtreme data life cycle from speed (hot) to batch (cold)  is detailed in the <MadCap:xref href="data-lake-acceleration.html">Data Lake Acceleration</MadCap:xref> topic. Batch indexing, which also leverages <MadCap:variable name="General.CompanyName" />'s MemoryXtend module, extends the life cycle from speed (hot) &gt;&gt; batch (warm) &gt;&gt; indexed data lake (cold) &gt;&gt; unindexed data lake (archive). </p>
+        <p>As data moves from the speed layer to the batch layer, it is added to the batch index when it moves through the speed layer eviction time window (buffer). As the data moves into the batch layer, it is directed to the relevant partitions and buckets. At this point, the data is still available for frequent access.</p>
+        <p> As the batch layer time window expires, the data moves into the batch index eviction time window. When this time window expires, the data is expunged from the index and is available only as archived data.</p>
+        <p>&#160;</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lambda/AX-batch-index.png" class="tc-picture80" />
+            </p>
+        </div>
+        <h2>Architecture</h2>
+        <p>The batch index is stored in a separate Space, which maintains a mapping of the batch index values to the partition values. This Space is accessed internally via the <MadCap:variable name="General.ProductNameIE" /> JDBC driver when the batch layer is queried.</p>
+        <p>By default, the index is deployed using the MemoryXtend driver for SSD.</p>
+        <h2>Querying with the Batch Index</h2>
+        <p>When a query is executed in the AnalyticsXtreme client, <MadCap:variable name="General.ProductNameIE" /> first checks whether the index is available. If the index is up and running, <MadCap:variable name="General.ProductNameIE" /> verifies the following, to ensure that the retrieved data is accurate and correct:</p>
+        <ul>
+            <li>The time definition doesn't exceed the batch index period.</li>
+            <li>The query doesn't contain conditions on the partition columns.</li>
+        </ul>
+        <p>If either of the above verifications fail, the index isn't used. If the query matches the defined index period, the query runs using the index and only the relevant partitions are returned (those with data that match the query). The original query from the client is then updated with the partition condition.</p>
+        <div class="tc-admon-note">
+            <p><MadCap:variable name="General.ProductNameIE" /> doesn't index entries that have null values in the index or partition columns.</p>
+        </div>
+        <p>If the query only applies to a subset of the batch index period, then only the relevant time slices are retrieved. For example, the client may need to find a customer in the database. If the query is associated with only three time slices within the batch index period, then it only retrieves those three slices from the batch index period; this speeds up the query considerably. </p>
+        <p>The AnalyticsXtreme batch indexing feature supports multiple indexes (defining an index on more than one column of the data) and multiple partitions (data tables that are partitioned by multiple columns) are supported. <span class="tc-bold">ORDERED</span> index type is also supported.</p>
+        <h2>Granularity vs. Size</h2>
+        <p>The <span class="tc-italic">batch index period </span>is the entire amount of cold data in the batch layer that is indexed. For example, if you want to index one month out of a full year of data, then one month is the batch index period. The month needs to be further segmented into time slices (this is the index granularity). The more granular the time slices, the larger the index becomes in the dedicated Space (which resides on SSD), but this also results in greater accuracy and faster performance. The longer the time slice the less granular the indexing, so the query must scan larger chunks of data but the memory footprint is smaller.</p>
+        <p>In essence, you must balance your need for faster performance vs. storage costs when defining the granularity of the time slices. </p>
+        <h1>Batch Index Policy</h1>
+        <p>The batch index policy contains the following parameters.</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                    <th>Unit</th>
+                    <th>Default Value</th>
+                    <th>Required</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>columnName</td>
+                    <td>Column on which the index is defined.</td>
+                    <td>Text</td>
+                    <td>&#160;</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>period</td>
+                    <td>Length of the batch index period.</td>
+                    <td>See <MadCap:xref href="data-lake-acceleration-ax-server-side.html#Java">Java Time Pattern</MadCap:xref> description</td>
+                    <td>Java time format (see the <a href="https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_LOCAL_DATE_TIME" target="_blank">Java API documentation)</a></td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>granularity</td>
+                    <td>Length of the time slice within the batch index period.</td>
+                    <td>See <MadCap:xref href="data-lake-acceleration-ax-server-side.html#Java">Java Time Pattern</MadCap:xref> description</td>
+                    <td>Java time format (see the <a href="https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#ISO_LOCAL_DATE_TIME" target="_blank">Java API documentation)</a></td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>ordered</td>
+                    <td>Defines whether this is an <span class="tc-bold">ORDERED</span> index type.</td>
+                    <td>True/False</td>
+                    <td>False</td>
+                    <td>No</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Example </h1>
+        <p>In the following example there is a table called Person in Hive that is partitioned by columns country and city.</p><pre><code class="language-java">@SpaceClass
+public class Person {
+
+
+    private Integer id;
+    private Timestamp joinDate;
+    private String name;
+    private String country;
+    private String city;
+    private Integer age;
+    private Integer salary;</code></pre>
+        <h2>Defining the Batch Index Policy</h2>
+        <p>We can define a batch index on the Name column, where the batch index period is 5 hours, with 30-minute time slices (the granularity). The <code>BatchIndexPolicy</code> is defined as follows:</p><pre><code class="language-xml">&lt;bean id="basicIndexPolicy" class="com.gigaspaces.analytics_xtreme.batch_index.BatchIndexPolicyFactoryBean"&gt;
+        &lt;property name="columnName" value="name"/&gt;
+        &lt;property name="period" value="pt5h"/&gt;
+        &lt;property name="granularity" value="pt30m"/&gt;
+        &lt;property name="ordered" value="false"/&gt;
+    &lt;/bean&gt;</code></pre>
+        <p>An ordered batch index can also be defined on the Age column, where the batch index period is 5 hours and the granularity is 1-hour time slices. The <code>BatchIndexPolicy</code> is then defined as follows:</p><pre><code class="language-xml">&lt;bean id="rangeIndexPolicy" class="com.gigaspaces.analytics_xtreme.batch_index.BatchIndexPolicyFactoryBean"&gt;
+        &lt;property name="columnName" value="age"/&gt;
+        &lt;property name="period" value="pt5h"/&gt;
+        &lt;property name="granularity" value="pt1h"/&gt;
+        &lt;property name="ordered" value="true"/&gt;
+    &lt;/bean&gt;</code></pre>
+        <h2>Defining the Data Life Cycle</h2>
+        <p>In order to know when data moves from the speed layer to the batch layer (and is therefore indexed), the data life cycle must be defined in the DataLifeCyclePolicy bean:</p><pre><code class="language-xml">&lt;bean id="partitionedDataLifecyclePolicy" class="com.gigaspaces.analytics_xtreme.DataLifecyclePolicyFactoryBean"&gt;
+        &lt;property name="typeName" value="model.Person"/&gt;
+        &lt;property name="speedPeriod" value="pt5h"/&gt;
+        &lt;property name="timeColumn" value="joinDate"/&gt;
+        &lt;property name="batchDataSource" ref="ax-datasource"/&gt;
+        &lt;property name="batchDataTarget" ref="ax-datatarget"/&gt;
+        &lt;property name="mutabilityPeriod" value="pt4h50m"/&gt;
+        &lt;property name="batchFeedInterval" value="pt60s"/&gt;
+        &lt;property name="evictionPollingInterval" value="pt10m"/&gt;
+        &lt;property name="evictionBuffer" value="pt10m"/&gt;
+        &lt;property name="timeFormat" value="yyyy-MM-dd HH:mm:ss"/&gt;
+        &lt;property name="batchIndexSpaceName" value="batchIndex"/&gt;
+        &lt;property name="batchIndexPolicies"&gt;
+            &lt;list&gt;
+                &lt;ref bean="basicIndexPolicy"/&gt;
+                &lt;ref bean="rangeIndexPolicy"/&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;</code></pre>
+        <h2>Running Queries on the Data</h2>
+        <p>In order to define a query to run on the data, we can assume that today's date is 2019-10-01 17:00, and that the batch layer contains the following data entries.</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>Age</th>
+                    <th>Salary</th>
+                    <th>JoinDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>John</td>
+                    <td>England</td>
+                    <td>London</td>
+                    <td>22</td>
+                    <td>7000</td>
+                    <td>2019-10-01 09:05</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>John</td>
+                    <td>England</td>
+                    <td>Brighton</td>
+                    <td>45</td>
+                    <td>12000</td>
+                    <td>2019-10-01 09:40</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>David</td>
+                    <td>France</td>
+                    <td>Paris</td>
+                    <td>30</td>
+                    <td>9500</td>
+                    <td>2019-10-01 11:05</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>William</td>
+                    <td>France</td>
+                    <td>Marseille</td>
+                    <td>30</td>
+                    <td>5550</td>
+                    <td>2019-10-01 11:33</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The index for the Name column is:</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Index Value</th>
+                    <th>Time Slice</th>
+                    <th>Partitions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>2019-10-01 09:00</td>
+                    <td>(England,London) , (England,Brighton)</td>
+                </tr>
+                <tr>
+                    <td>David</td>
+                    <td>2019-10-01 11:00</td>
+                    <td>(France,Paris)</td>
+                </tr>
+                <tr>
+                    <td>William</td>
+                    <td>2019-10-01 11:00</td>
+                    <td>(France,Marseille)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The index for the Age column is:</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Index Value</th>
+                    <th>Time Slice</th>
+                    <th>Partitions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>22</td>
+                    <td>2019-10-01 09:00</td>
+                    <td>(England,London)</td>
+                </tr>
+                <tr>
+                    <td>45</td>
+                    <td>2019-10-01 09:30</td>
+                    <td>(England,Brighton)</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">30</td>
+                    <td>2019-10-01 11:00</td>
+                    <td>(France,Paris)</td>
+                </tr>
+                <tr>
+                    <td>2019-10-01 11:30</td>
+                    <td>(France,Marseille)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>First we can run the following query: </p>
+        <p><code class="language-sql">SELECT * FROM Person WHERE name = ‘John’ AND joinDate &gt; 2019-10-01 07:00</code>
+        </p>
+        <p><MadCap:variable name="General.ProductNameIE" /> verifies that it matches the batch index definitions, and the query is modified as follows:</p>
+        <p><code class="language-sql">SELECT * FROM Person WHERE (name = ‘John’ AND ((country = ‘England’ AND city  = ‘London’) OR (country = ‘England’ AND city  = ‘Brighton’)) AND joinDate &gt; 2019-10-01 03:00</code>
+        </p>
+        <p>The following results are returned:</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>Age</th>
+                    <th>Salary</th>
+                    <th>JoinDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>John</td>
+                    <td>England</td>
+                    <td>London</td>
+                    <td>22</td>
+                    <td>7000</td>
+                    <td>2019-10-01 09:05</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>John</td>
+                    <td>England</td>
+                    <td>Brighton</td>
+                    <td>45</td>
+                    <td>12000</td>
+                    <td>2019-10-01 09:40</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Next, we can run another query:</p>
+        <p><code class="language-sql">SELECT * FROM Person WHERE age &gt; 25 AND joinDate &gt; 2019-10-01 07:00</code>
+        </p>
+        <p><MadCap:variable name="General.ProductNameIE" /> verifies that it matches the batch index definitions, and the query is modified as follows:</p>
+        <p><code class="language-sql">SELECT * FROM Person WHERE (age &gt; 25 AND ((country = ‘England’ AND city  = ‘Brighton’) OR (country = ‘France’ AND city  = ‘Paris’) OR (country = ‘France’ AND city  = ‘Marseille’)) AND joinDate &gt; 2019-10-01 07:00</code>
+        </p>
+        <p>The following results are returned:</p>
+        <table style="width: 100%;" class="tc-standard">
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>Age</th>
+                    <th>Salary</th>
+                    <th>JoinDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2</td>
+                    <td>John</td>
+                    <td>England</td>
+                    <td>Brighton</td>
+                    <td>45</td>
+                    <td>12000</td>
+                    <td>2019-10-01 09:40</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>David</td>
+                    <td>France</td>
+                    <td>Paris</td>
+                    <td>30</td>
+                    <td>9500</td>
+                    <td>2019-10-01 11:05</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>William</td>
+                    <td>France</td>
+                    <td>Marseille</td>
+                    <td>30</td>
+                    <td>5550</td>
+                    <td>2019-10-01 11:33</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Limitations</h1>
+        <p>AnalyticsXtreme batch indexing has the following limitations:</p>
+        <ul>
+            <li>JOIN queries are not supported.</li>
+            <li>Hive tables that are bucketed ("bucket by") are not supported.</li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,1408 @@
+/*<meta />*/
+
+html
+{
+	font-size: 16px;
+}
+
+body
+{
+	color: #4a4a4a;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 1rem;
+	font-weight: normal;
+	line-height: 20px;
+}
+
+h1
+{
+	color: #4a4a4a;
+	font-size: 1.875rem;
+	line-height: 30px;
+	font-weight: 300;
+	margin-top: 45px;
+}
+
+.header-hidden
+{
+	display: none;
+	mc-heading-level: 0;
+}
+
+h1.tc-pagetitle
+{
+	color: #006cb8;
+	font-size: 2.1875rem;
+}
+
+h1.tc-pagetitle2
+{
+	color: #006cb8;
+	font-size: 2.1875rem;
+}
+
+h1:first-of-type
+{
+	margin-top: 0px;
+}
+
+h2
+{
+	color: #4a4a4a;
+	font-size: 1.575rem;
+	line-height: 30px;
+	font-weight: 300;
+	margin-top: 45px;
+}
+
+h3
+{
+	color: #4a4a4a;
+	font-size: 1.325rem;
+	line-height: 30px;
+	font-weight: 400;
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
+h3.skip-toc
+{
+	color: #4a4a4a;
+	font-size: 1.325rem;
+	line-height: 30px;
+	font-weight: 400;
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
+h4
+{
+	color: #00c0f3;
+	font-size: 1.125rem;
+	line-height: 30px;
+	font-weight: 300;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+h5
+{
+	font-size: .75rem;
+	line-height: 30px;
+	font-weight: 500;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+/* EASY UI */
+
+div.easyui-accordion,
+div.easyui-tabs
+{
+	/* Placeholder */
+}
+
+div.easyui-tabs .tabs
+{
+	margin-left: 0;
+	padding-left: 0;
+}
+
+div.easyui-tabs .tabs > li::before
+{
+	display: none;
+}
+
+div.easyui-tabs .tabs > li .tabs-inner,
+div.easyui-tabs .tabs > li.tabs-selected a.tabs-inner
+{
+	background: #f7fbff;
+	border-left-color: #a4aab3;
+	border-right-color: #a4aab3;
+	border-top-color: #a4aab3;
+	border-radius: 0;
+}
+
+div.easyui-tabs .tabs > li .tabs-title
+{
+	font-size: .875rem;
+	font-weight: 400;
+	/*	color: red; */
+}
+
+div.easyui-tabs .tabs > li.tabs-selected .tabs-title
+{
+	font-weight: 500;
+}
+
+div.easyui-tabs .tabs-panels,
+div.easyui-accordion,
+div.easyui-accordion .panel-header,
+div.easyui-accordion .panel-body
+{
+	border-color: #a4aab3;
+}
+
+/* Notes */
+
+div.tc-admon-attention,
+div.tc-admon-note,
+div.tc-admon-refer,
+div.tc-admon-tip,
+div.tc-admon-important
+{
+	border: solid 1px transparent;
+	border-left-width: 5px;
+	/* border-radius: 3px; */
+	margin: 10px 0;
+	min-height: 75px;
+	padding: 10px 10px 10px 70px;
+	position: relative;
+}
+
+div.tc-admon-attention
+{
+	background: #fef7ec;
+	border-left-color: #ff9500;
+}
+
+div.tc-admon-note
+{
+	background: #f4fbfd;
+	border-left-color: #00c0f3;
+}
+
+div.tc-admon-refer
+{
+	background: #f4fbfd;
+	border-left-color: #00c0f3;
+}
+
+div.tc-admon-tip
+{
+	background: #f9fbec;
+	border-left-color: #bfd730;
+}
+
+div.tc-admon-important
+{
+	background: #fce4ee;
+	border-left-color: #ff0090;
+}
+
+div.tc-admon-attention > :first-child:before,
+div.tc-admon-note > :first-child:before,
+div.tc-admon-refer > :first-child:before,
+div.tc-admon-tip > :first-child:before,
+div.tc-admon-important > :first-child:before
+{
+	content: '';
+	display: block;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+div.tc-admon-attention > :first-child:before
+{
+	content: 'Attention';
+}
+
+div.tc-admon-note > :first-child:before
+{
+	content: 'Note';
+}
+
+div.tc-admon-refer > :first-child:before
+{
+	content: 'Note';
+}
+
+div.tc-admon-tip > :first-child:before
+{
+	content: 'Tip';
+}
+
+div.tc-admon-important > :first-child:before
+{
+	content: 'Important';
+}
+
+div.tc-admon-attention::before,
+div.tc-admon-note::before,
+div.tc-admon-refer::before,
+div.tc-admon-tip::before,
+div.tc-admon-important::before
+{
+	background: transparent url('../Custom/images/icons/Note.svg') no-repeat;
+	background-size: 35px;
+	display: block;
+	font-size: 1rem;
+	font-weight: 700;
+	height: 35px;
+	left: 10px;
+	position: absolute;
+	width: 35px;
+}
+
+div.tc-admon-attention::before
+{
+	background-image: url('../Custom/images/icons/Attention.svg');
+	/* content: 'Attention'; */
+	content: '';
+}
+
+div.tc-admon-note::before
+{
+	/* content: 'Note'; */
+	content: '';
+}
+
+div.tc-admon-refer::before
+{
+	/* content: 'See also:'; */
+	content: '';
+}
+
+div.tc-admon-tip::before
+{
+	background-image: url('../Custom/images/icons/Tip.svg');
+	/* content: 'Tip'; */
+	content: '';
+}
+
+div.tc-admon-important::before
+{
+	background-image: url('../Custom/images/icons/Important.svg');
+	color: #ff0090;
+	/* content: 'Important'; */
+	content: '';
+}
+
+div.tc-admon-attention > :first-child,
+div.tc-admon-note > :first-child,
+div.tc-admon-refer > :first-child,
+div.tc-admon-tip > :first-child,
+div.tc-admon-important > :first-child
+{
+	margin-top: 0;
+}
+
+div.tc-admon-attention > :last-child,
+div.tc-admon-note > :last-child,
+div.tc-admon-refer > :last-child,
+div.tc-admon-tip > :last-child,
+div.tc-admon-important > :last-child
+{
+	margin-bottom: 0;
+}
+
+div.tc-admon-attention ul,
+div.tc-admon-note ul,
+div.tc-admon-refer ul,
+div.tc-admon-tip ul,
+div.tc-admon-important ul
+{
+	padding-left: 0;
+}
+
+div.tc-admon-attention ul li,
+div.tc-admon-note ul li,
+div.tc-admon-refer ul li,
+div.tc-admon-tip ul li,
+div.tc-admon-important ul li
+{
+	padding-left: 2.5rem;
+}
+
+div.tc-align-left
+{
+	/* placeholder */
+}
+
+div.tc-align-center
+{
+	text-align: center;
+}
+
+div.decisionTreeCards
+{
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+div.decisionTreeCards > div
+{
+	background: #FFFFFF;
+	border: 1px solid #E6E5E5;
+	cursor: pointer;
+	height: 200px;
+	margin: 0 20px 30px 0;
+	position: relative;
+	text-align: center;
+	transition: 0.5s all ease;
+	width: 280px;
+}
+
+div.decisionTreeCards > div:hover
+{
+	box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);
+}
+
+div.decisionTreeCards > div > a
+{
+	display: block;
+	text-decoration: none;
+	padding: 20px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+div.decisionTreeCards > div > a img
+{
+	display: block;
+	max-width: 200px;
+}
+
+div.decisionTreeCards > div > a p
+{
+	flex-basis: 100%;
+	color: #4a4a4a;
+	font-size: 1.325rem;
+	font-weight: 400;
+	margin-top: 10px;
+}
+
+a,
+a:link,
+a:visited
+{
+	color: #006DB8;
+	text-decoration: none;
+}
+
+table a:link
+{
+	color: #337ab7;
+	text-decoration: none;
+}
+
+table a:visited
+{
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #00C0F3;
+	text-decoration: underline;
+}
+
+.body-container a[target="_blank"]::after,
+.body-container a[href^="http"]::after
+{
+	content: ' \f08e';
+	font: normal normal normal 16px / 1 FontAwesome;
+	padding-right: 0.5em;
+}
+
+a[name]
+{
+	opacity: 0;
+	visibility: hidden;
+	height: 0;
+	width: 0;
+}
+
+.topic-content img
+{
+	height: auto;
+	max-width: 100%;
+	width: auto;
+}
+
+img.tc-picture100
+{
+	/* placeholder */
+}
+
+img.tc-picture150
+{
+	max-width: 150%;
+}
+
+img.tc-picture90
+{
+	max-width: 90%;
+}
+
+img.tc-picture80
+{
+	max-width: 80%;
+}
+
+img.tc-picture70
+{
+	max-width: 70%;
+}
+
+img.tc-picture60
+{
+	max-width: 60%;
+}
+
+img.tc-picture65
+{
+	max-width: 65%;
+}
+
+img.tc-picture50
+{
+	max-width: 50%;
+}
+
+img.tc-picture40
+{
+	max-width: 40%;
+}
+
+img.tc-picture30
+{
+	max-width: 30%;
+}
+
+img.tc-picture25
+{
+	max-width: 25%;
+}
+
+img.tc-picture20
+{
+	max-width: 20%;
+}
+
+img.tc-pictureinline
+{
+	max-height: 17px;
+}
+
+img.tc-thumbnail
+{
+	mc-thumbnail: popup;
+	mc-thumbnail-max-width: 90%;
+	mc-thumbnail-max-height: auto;
+}
+
+ol,
+ul
+{
+	font-size: 1rem;
+	margin-bottom: 10px;
+	margin-top: 0px;
+}
+
+li,
+p
+{
+	font-weight: 300;
+	line-height: 1.5;
+	margin: .5em 0px;
+}
+
+.topic-content ol,
+.topic-content ul
+{
+	list-style: none;
+	margin-left: -1.1em;
+}
+
+.topic-content ol ol,
+.topic-content ol ul,
+.topic-content ul ul,
+.topic-content ul ol
+{
+	margin-left: -1.5em;
+}
+
+.topic-content ul > li
+{
+	position: relative;
+}
+
+.topic-content ul > li::before
+{
+	content: '\2022';
+	color: #00c0f3;
+	font-size: 1.4rem;
+	margin-left: -1em;
+	margin-top: -5px;
+	position: absolute;
+	width: 1em;
+}
+
+.topic-content li > ul > li::before
+{
+	font-size: 1rem;
+}
+
+.topic-content ol
+{
+	counter-reset: li;
+	list-style-type: none !important;
+}
+
+.topic-content ol > li
+{
+	counter-increment: li;
+	position: relative;
+}
+
+.topic-content ol > li::before
+{
+	content: counter(li) '. ';
+	color: #00c0f3;
+	font-weight: 300;
+	margin-left: -1.5em;
+	margin-right: 0.5em;
+	position: absolute;
+	text-align: right;
+	width: 1em;
+}
+
+.topic-content li > ol > li::before
+{
+	content: counter(li, lower-alpha) '. ';
+}
+
+p
+{
+	color: #4a4a4a;
+	font-size: 1rem;
+	font-family: 'Rubik', sans-serif;
+	line-height: 1.5;
+}
+
+p.tc-admon-title
+{
+	font-weight: 700;
+}
+
+p.tc-bodytext
+{
+	/* placeholder */
+}
+
+p.tc-comment
+{
+	color: #ff0000;
+	font-style: italic;
+	mc-conditions: 'Default.DoNotShow';
+}
+
+p.tc-capitalize
+{
+	text-transform: capitalize;
+}
+
+p.tc-iconinfo,
+span.tc-iconinfo
+{
+	/* placeholder */
+}
+
+p.tc-iconinfo:before,
+span.tc-iconinfo:before
+{
+	color: #3B73AF;
+	content: "\f05a";
+	font: normal normal normal 16px / 1 FontAwesome;
+	/* padding-right: 0.5em; */
+}
+
+p.tc-iconexcl,
+span.tc-iconexcl
+{
+	/* placeholder */
+}
+
+p.tc-iconexcl:before,
+span.tc-iconexcl:before
+{
+	color: #CF9E53;
+	content: "\f071";
+	font: normal normal normal 16px / 1 FontAwesome;
+	/* padding-right: 0.5em; */
+}
+
+p.tc-tablehead
+{
+	font-size: 1rem;
+	margin: 0;
+	line-height: 17px;
+}
+
+p.tc-tablebody
+{
+	font-size: 1rem;
+	line-height: 17px;
+}
+
+p.tc-todo
+{
+	color: #006cb8;
+	font-weight: 400;
+}
+
+pre
+{
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	color: #333;
+	display: block;
+	font-size: 14px;
+	line-height: 1.42857143;
+	margin: 0 0 10px;
+	padding: 9.5px;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+pre code
+{
+	background-color: transparent;
+	border-radius: 0;
+	color: inherit;
+	font-size: inherit;
+	padding: 0;
+	white-space: pre-wrap;
+}
+
+code
+{
+	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+code:not([class])
+{
+	background-color: #f5f5f5;
+	border-radius: 4px;
+	color: black;
+	font-size: 90%;
+	padding: 2px 4px;
+}
+
+code.language-bash
+{
+	/* placeholder */
+}
+
+code.language-csharp
+{
+	/* placeholder */
+}
+
+code.language-java
+{
+	/* placeholder */
+}
+
+code.language-scala
+{
+	/* placeholder */
+}
+
+code.language-sql
+{
+	/* placeholder */
+}
+
+code.language-xml
+{
+	/* placeholder */
+}
+
+span.tc-bold
+{
+	font-weight: 500;
+}
+
+span.tc-highlight
+{
+	background-color: #ffff00;
+}
+
+span.tc-italic
+{
+	font-style: italic;
+}
+
+span.tc-textblue
+{
+	color: #0000ff;
+}
+
+span.tc-textgreen
+{
+	color: #008000;
+}
+
+span.tc-textred
+{
+	color: #ff0000;
+}
+
+table a:active,
+table a:hover
+{
+	text-decoration: underline;
+}
+
+table
+{
+	color: #666;
+	text-shadow: 1px 1px 0px #fff;
+	background: #ffffff;
+	margin: 0px;
+	margin-bottom: 20px;
+	/* XAP*/
+	border: #a4aab3 1px solid;
+	border-collapse: collapse;
+	width: 100%;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-moz-box-shadow: 0 1px 2px #d1d1d1;
+	-webkit-box-shadow: 0 1px 2px #d1d1d1;
+	box-shadow: 0 1px 2px #d1d1d1;
+}
+
+table th
+{
+	padding: 10px 10px 10px 10px;
+	border-left: 1px solid #e0e0e0;
+	background: #f7fbff;
+	font-size: 1rem;
+	font-family: 'Rubik', sans-serif;
+	font-weight: 500;
+}
+
+table th:first-child
+{
+	border-left: none;
+	text-align: left;
+	padding-left: 10px;
+}
+
+table tr:first-child th:first-child
+{
+	-moz-border-radius-topleft: 3px;
+	-webkit-border-top-left-radius: 3px;
+	border-top-left-radius: 3px;
+}
+
+table tr:first-child th:last-child
+{
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-right-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+table tr
+{
+	border-bottom: 1px solid #e0e0e0;
+	padding-left: 10px;
+	text-align: left;
+}
+
+table td:first-child
+{
+	border-left: 0;
+	padding-left: 10px;
+	text-align: left;
+}
+
+table td
+{
+	padding: 10px;
+	border-left: 1px solid #e0e0e0;
+	background: #fafafa;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+	background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
+	font-size: 1rem;
+	font-family: 'Rubik', sans-serif;
+	font-weight: 300;
+}
+
+table td ol,
+table td ul
+{
+	font-size: .75rem;
+	font-weight: 300;
+}
+
+table tr.even td
+{
+	background: #f6f6f6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+	background: -moz-linear-gradient(top, #f8f8f8, #f6f6f6);
+}
+
+table tr:last-child td
+{
+	border-bottom: 0;
+}
+
+table tr:last-child td:first-child
+{
+	-moz-border-radius-bottomleft: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+table tr:last-child td:last-child
+{
+	-moz-border-radius-bottomright: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+table.tc-standard
+{
+	/* Placeholder */
+}
+
+table.tc-borderless,
+table.tc-borderless *
+{
+	background: transparent !important;
+	border: none !important;
+	border-collapse: collapse !important;
+	box-shadow: none !important;
+	color: #000000;
+	white-space: normal;
+}
+
+table.tc-borderless img
+{
+	max-width: auto;
+}
+
+p.caption
+{
+	font-weight: 300;
+	line-height: 1.5;
+	margin: .5em 0px;
+	text-align: center;
+	font-style: italic;
+}
+
+MadCap|xref.rt
+{
+	mc-format: 'Runtime';
+}
+
+MadCap|xref.logging-options
+{
+	mc-format: 'Logging options can be changed dynamically';
+}
+
+MadCap|xref.Undeploy-feature-of-the-Ops-Manager-UI
+{
+	mc-format: 'Undeploy feature of the Ops Manager UI';
+}
+
+MadCap|xref
+{
+	mc-format: '{h1}';
+}
+
+MadCap|xref.new-blank
+{
+	mc-format: ;
+}
+
+MadCap|xref.kubegrid
+{
+	mc-format: ;
+}
+
+MadCap|xref.kubernetes
+{
+	mc-format: 'Kubegrid orchestration';
+}
+
+MadCap|xref.tiered-storage-business-rules
+{
+	mc-format: 'Business rules';
+}
+
+MadCap|xref.tiered-storage-data-aging
+{
+	mc-format: 'data aging';
+}
+
+MadCap|xref.text-of-bookmarked-paragraph
+{
+	mc-format: 'Improved system resilency';
+}
+
+MadCap|xref.ss-opm-undeploy
+{
+	mc-format: 'automatically save and restore';
+}
+
+MadCap|xref.explain-plan-for-select
+{
+	mc-format: 'Explain Plan for Select';
+}
+
+MadCap|xref.jdbc-v3-extended-configuration-options
+{
+	mc-format: 'extended configuration options';
+}
+
+MadCap|xref.postgreSQL-driver
+{
+	mc-format: 'PostgreSQL driver';
+}
+
+MadCap|xref.new-detailed-Grafana-based-dashboard
+{
+	mc-format: 'new detailed Grafana-based dashboard';
+}
+
+MadCap|xref.secured-space
+{
+	mc-format: 'Secured Space';
+}
+
+MadCap|xref.Deploy-Data-Gateway-Service
+{
+	mc-format: 'Deploy Data Gateway Service';
+}
+
+MadCap|xref.com-gs-replication-replicaProgressTimeout
+{
+	mc-format: 'com.gs.replication.replicaProgressTimeout ';
+}
+
+MadCap|xref.Note
+{
+	mc-format: 'Note';
+}
+
+MadCap|xref.see-here
+{
+	mc-format: 'here';
+}
+
+MadCap|xref.enhanced-sql-support
+{
+	mc-format: 'Enhanced SQL support';
+}
+
+MadCap|xref.spaces
+{
+	mc-format: 'Spaces';
+}
+
+MadCap|xref.services
+{
+	mc-format: 'services';
+}
+
+MadCap|xref.supports
+{
+	mc-format: 'supports';
+}
+
+MadCap|xref.deploy-gigaspaces-services
+{
+	mc-format: 'GigaSpaces services';
+}
+
+MadCap|xref.deploy-gigaspaces-spaces
+{
+	mc-format: 'deploy and manage GigaSpaces Spaces';
+}
+
+MadCap|xref.your-choice-of-metrics-reporter
+{
+	mc-format: 'your choice of metrics reporter';
+}
+
+MadCap|xref.your-system-configuration
+{
+	mc-format: 'your system configuration';
+}
+
+MadCap|xref.introduces
+{
+	mc-format: 'introduces';
+}
+
+MadCap|xref.part-1
+{
+	mc-format: 'Setting the Environment';
+}
+
+MadCap|xref.setting-the-environment
+{
+	mc-format: 'Setting the Environment';
+}
+
+MadCap|xref.part-2
+{
+	mc-format: 'Part 2';
+}
+
+MadCap|xref.part-2-import-a-database
+{
+	mc-format: 'Part 2 — Import a Database';
+}
+
+MadCap|xref.part-3-import-a-database
+{
+	mc-format: 'Import a Database';
+}
+
+MadCap|xref.Part-2-Launch-Ops-Manager
+{
+	mc-format: 'Launch Ops Manager';
+}
+
+MadCap|xref.convert-a-program
+{
+	mc-format: 'Convert a Program';
+}
+
+MadCap|xref.horizontal-vertical-scaling
+{
+	mc-format: 'horizontal/vertical scaling';
+}
+
+MadCap|xref.storage-optimization
+{
+	mc-format: 'storage optimization';
+}
+
+MadCap|xref.co-located-data-and-code
+{
+	mc-format: 'co-located data and code';
+}
+
+MadCap|xref.multi-region-replication-in-a-wide-area-network
+{
+	mc-format: 'multi-region replication in a wide area network';
+}
+
+MadCap|xref.readbyid
+{
+	mc-format: 'readById';
+}
+
+MadCap|xref.full-source-code
+{
+	mc-format: 'below';
+}
+
+MadCap|xref.procedure-to-define-a-data-pipeline
+{
+	mc-format: 'Create a Heartbeat Table and add it to the Data Pipeline';
+}
+
+MadCap|xref.definition-of-the-data-pipeline
+{
+	mc-format: 'definition of the Data Pipeline';
+}
+
+MadCap|xref.space-objects
+{
+	mc-format: 'Space Objects';
+}
+
+MadCap|xref.documents-objects
+{
+	mc-format: 'Document Objects';
+}
+
+MadCap|xref.h2-class-special
+{
+	mc-format: '{h2}';
+}
+
+MadCap|xref.format-of-the-redo-log
+{
+	mc-format: 'Format of the Redo Log';
+}
+
+MadCap|xref.checks-for-oom-conditions
+{
+	mc-format: 'Checks for Out of Memory conditions';
+}
+
+MadCap|xref.two-options-are-available
+{
+	mc-format: 'Two options are available';
+}
+
+MadCap|xref.available-in-a-standard-database-format
+{
+	mc-format: 'available in a standard SQLite database format';
+}
+
+MadCap|xref.configMap
+{
+	mc-format: 'configMap';
+}
+
+MadCap|xref.statefulSet
+{
+	mc-format: 'statefulSet';
+}
+
+MadCap|xref.Grafana-interface
+{
+	mc-format: 'Grafana interface';
+}
+
+MadCap|xref.CRUD-operations
+{
+	mc-format: 'CRUD operations';
+}
+
+MadCap|xref.DDL-statements
+{
+	mc-format: 'DDL statements';
+}
+
+MadCap|xref.can-be-deployed-in-kubernetes
+{
+	mc-format: 'can be deployed in Kubernetes';
+}
+
+MadCap|xref.deploying-and-managing
+{
+	mc-format: 'Deploying and Managing GigaSpaces in Kubernetes';
+}
+
+MadCap|xref.unzipped-and-installed
+{
+	mc-format: 'unzipped and installed';
+}
+
+/*<meta sourceDocument="C:\Users\David\Downloads\DI v2.0 Users Guide, no TOC.docx" />*/
+
+MadCap|xref.multiple-and-or-expressions
+{
+	mc-format: 'multiple AND/OR expressions';
+}
+
+MadCap|xref.wan-gateway
+{
+	mc-format: 'WAN Gateway';
+}
+
+MadCap|xref.Out-of-the-box-integration-logic-and-generic-data-pipelines
+{
+	mc-format: 'Out of the box integration logic and generic data pipelines';
+}
+
+MadCap|xref.wan-gw
+{
+	mc-format: 'Multi-Region Replication Using WAN Gateway';
+}
+
+MadCap|xref.Tableau-supplied-JDBC-driver
+{
+	mc-format: 'Tableau-supplied JDBC driver';
+}
+
+MadCap|xref.zoned-a-a
+{
+	mc-format: 'Zoned Anti-Affinity';
+}
+
+MadCap|xref.nested-objects
+{
+	mc-format: 'nested objects';
+}
+
+MadCap|xref.via_SQL_commands
+{
+	mc-format: 'via SQL commands';
+}
+
+MadCap|xref.odsx-di-module
+{
+	mc-format: 'Installing DIH via ODSX – Data Integration Module';
+}
+
+MadCap|xref.transactions
+{
+	mc-format: 'Transactions';
+}
+
+MadCap|xref.multiple-instances-of-data-gateway
+{
+	mc-format: 'multiple instances of Data Gateway';
+}
+
+MadCap|xref.odsx-installation-script
+{
+	mc-format: 'ODSX installation script';
+}
+
+MadCap|xref.xap-dot-net-in-5-minutes
+{
+	mc-format: 'XAP.NET in 5 Minutes';
+}
+
+MadCap|xref.Installing-Smart-DIH
+{
+	mc-format: 'Install Smart DIH';
+}
+
+MadCap|xref.here
+{
+	mc-format: 'here';
+}
+
+MadCap|xref.gigaspaces-core
+{
+	mc-format: 'GigaSpaces Core';
+}
+
+MadCap|miniTocProxy
+{
+	
+}
+
+p.MiniTOC1
+{
+	display: list-item;
+}
+
+MadCap|xref.sql-select-where
+{
+	mc-format: 'via the SQL SELECT statement and the WHERE clause';
+}
+
+MadCap|xref.JSON-format-configuration-file
+{
+	mc-format: 'JSON-format configuration file';
+}
+
+MadCap|xref.space
+{
+	mc-format: 'Space';
+}
+
+MadCap|xref.basic-gigaSpaces-dih-environment
+{
+	mc-format: 'basic GigaSpaces DIH environment';
+}
+
+MadCap|xref.spaces-status
+{
+	mc-format: 'Spaces Status';
+}
+
+MadCap|xref.Data-Pipeline-Monitoring
+{
+	mc-format: 'Data Pipeline Monitoring';
+}
+
+MadCap|xref.Data-Query
+{
+	mc-format: 'Data Query';
+}
+
+MadCap|xref.data-pipeline-definition
+{
+	mc-format: 'data pipeline definition';
+}
+
+MadCap|xref.define-a-data-pipeline
+{
+	mc-format: 'define a data pipeline';
+}
+
+MadCap|xref.Managing-Users-and-Roles
+{
+	mc-format: 'Managing Users and Roles';
+}
+
+MadCap|xref.monitoring
+{
+	mc-format: 'Monitoring';
+}
+
+MadCap|xref.Objects-Types
+{
+	mc-format: 'Objects-Types';
+}
+
+MadCap|xref.Partitions
+{
+	mc-format: 'Partitions';
+}
+
+MadCap|xref.broadcast-object
+{
+	mc-format: 'Broadcast Object';
+}
+
+MadCap|xref.General-information
+{
+	mc-format: 'General information';
+}
+
+MadCap|xref.properties
+{
+	mc-format: 'Properties';
+}
+
+MadCap|xref.Indexes
+{
+	mc-format: 'Indexes';
+}
+
+MadCap|xref.spacedeck-data-pipeline
+{
+	mc-format: 'SpaceDeck – Data Pipeline';
+}
+
+MadCap|xref.data-sources
+{
+	mc-format: 'Data Sources';
+}
+
+MadCap|xref.data-pipeline
+{
+	mc-format: 'Data Pipeline';
+}
+
+MadCap|xref.data-query-2
+{
+	mc-format: 'Data Query';
+}
+
+MadCap|xref.Schema-Evolution
+{
+	mc-format: 'Schema Evolution';
+}
+
+MadCap|xref.GS-Manager
+{
+	mc-format: 'GS Manager';
+}
+

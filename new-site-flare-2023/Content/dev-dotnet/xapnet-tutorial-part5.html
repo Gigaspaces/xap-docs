@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Creating a Processing Unit</h1>
+        <p>The PU is the fundamental unit of deployment in <MadCap:variable name="General.ProductNameXAP" />. The PU itself runs within a Processing Unit Container and is deployed onto the Service Grid. Once a PU is deployed, a PU instance is the actual runtime entity.</p>
+        <p>There are two types of Processing Unit Containers:</p>
+        <ul>
+            <li>
+                <p>Integrated Processing Unit Container
+A container that runs the PU inside VisualStudio. The integrated processing unit container enables to run the PU inside VisualStudio for testing and debugging purposes.</p>
+            </li>
+            <li>
+                <p>Service Grid Processing Unit Container
+A Processing Unit Container which runs within a Grid Service Container. It enables running the PU within a service grid, which provides self-healing and SLA capabilities to components deployed on it.</p>
+            </li>
+        </ul>
+        <h1><a name="processing-unit-pu"></a>Processing Unit (PU)</h1>
+        <p>The PU is a deployable, independent, scalable unit, which is the building block for the Space Based Architecture (SBA). The PU is a combination of service beans and/or an embedded space instance.</p>
+        <p>There are several types of PU's; data only, business-logic only, mixed PU's (which contain both data and business logic) and special purpose PU's.</p>
+        <h4><a name="data-only-pu"></a>Data Only PU</h4>
+        <p>This type of PU does not include any business logic, only a Space. The PU simply defines the runtime characteristics of the space, i.e. its runtime topology, the number of space replicas/partitions, etc.</p>
+        <h4><a name="business-logic-only-pu"></a>Business Logic Only PU</h4>
+        <p>The Business-logic Only PU implements your application code, and does not include any data. Typically, your code interacts with a remote Space which is defined by another PU. By defining the PU as business logic only, you create an application server which is hosted and monitored by the <MadCap:variable name="General.ProductNameXAP" /> Service Grid.</p>
+        <h4><a name="mixed-pu"></a>Mixed PU</h4>
+        <p>This type of PU's includes both business logic and a space. Typically, the business logic interacts with a local space instance (i.e. a data grid instance running within the same PU instance) to achieve lowest possible latency and best performance.</p>
+        <h1><a name="creating-a-processing-unit"></a>Creating a Processing Unit</h1>
+        <p>A processing unit is essentially a .NET class library with a deployment descriptor called <code>pu.config</code>. Creating a processing unit is simple:</p>
+        <ol>
+            <li>In Visual Studio, Create a new <code>Class Library</code> project.</li>
+            <li>Add a reference to <code>GigaSpaces.Core.dll</code> from the product's <code>bin</code> folder.</li>
+            <li>Add an xml file called <code>pu.config</code> to the project.</li>
+            <li>Right-click <code>pu.config</code>, select <span class="tc-bold">Properties</span>, and modify the <a href="http://msdn.microsoft.com/en-us/library/0c6xyb66%28v=vs.100%29.aspx" target="_blank">Copy to Output Directory</a> to <span class="tc-bold">Copy Always</span> (or <span class="tc-bold">Copy If Newer</span>).</li>
+            <li>Copy the following configuration into <code>pu.config</code>:</li>
+        </ol><pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;configuration&gt;
+  &lt;configSections&gt;
+    &lt;section name="ProcessingUnit" type="GigaSpaces.XAP.Configuration.ProcessingUnitConfigurationSection, GigaSpaces.Core"/&gt;
+  &lt;/configSections&gt;
+  &lt;ProcessingUnit&gt;
+    &lt;!-- Processing unit configuration goes here --&gt;
+  &lt;/ProcessingUnit&gt;
+&lt;/configuration&gt;
+</code></pre>
+        <div class="tc-admon-note">
+            <p>From here on, processing unit configuration snippets will usually be shortened to focus on the <code>&lt;ProcessingUnit&gt;</code> tag.</p>
+        </div>
+        <h1><a name="service-level-agreement-sla"></a>Service Level Agreement (SLA)</h1>
+        <p>The SLA definitions can be provided as part of the PU package or during the PU's deployment process. They define the number of PU instances that should be running and deploy-time requirements such as clustering topology for PU's which contain a space. The GSM reads the SLA definition, and deploys the PU onto the available GSCs according to it.</p>
+        <p>To include the SLA in the processing unit, add an xml file called <code>sla.xml</code> and modify its <span class="tc-bold">Copy To Output Directory</span> setting (same as <code>pu.config</code>).</p>
+        <p>A sample SLA definition is shown below:</p><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-sla="http://www.openspaces.org/schema/sla"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd"&gt;
+
+      &lt;os-sla:sla cluster-schema="partitioned"
+            number-of-instances="2" number-of-backups="1"
+            max-instances-per-vm="1"&gt;
+       &lt;/os-sla:sla&gt;
+&lt;/beans&gt;
+</code></pre>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+            <p>The number of backups per partition is zero or one.</p>
+        </div><pre MadCap:conditions="Version.14-5-born"><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-sla="http://www.openspaces.org/schema/sla"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/sla http://www.openspaces.org/schema/[%=Versions.product-version-short%]/sla/openspaces-sla.xsd"&gt;
+
+      &lt;os-sla:sla cluster-schema="partitioned"
+            number-of-instances="2" number-of-backups="1"
+            max-instances-per-vm="1"&gt;
+       &lt;/os-sla:sla&gt;
+&lt;/beans&gt;
+</code></pre>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-born">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../admin/the-sla-overview.html">SLA Overview</a> page.</p>
+        </div>
+        <h1><a name="deployment"></a>Deployment</h1>
+        <p>When deploying the PU to the  Service Grid, the PU is uploaded to the  Manager (GSM) and extracted to the deploy directory of the local <MadCap:variable name="General.ProductNameXAP" /> installation (located by default under <MadCap:variable name="General.HomePath" />\deploy).
+Once extracted, the GSM processes the deployment descriptor and based on that provisions PU instances to the running <MadCap:variable name="General.ProductNameXAP" /> containers.</p>
+        <p>Each GSC to which a certain instance was provisioned, downloads the PU from the GSM, extracts it to its local working directory (located by default under <MadCap:variable name="General.HomePath" />\work\deployed-processing-units) and starts the PU instance.</p>
+        <div class="tc-admon-tip">
+            <p>To build directly to the deploy folder,  change the PU project output directory to <code>GS_HOME\deploy\[pu-name\]</code>, since this is the default path used by the GUI and the command line interface will find the PU's to deploy under this file structure.</p>
+        </div>
+        <h1><a name="example"></a>Example</h1>
+        <p>Our Online Payment system is expected to handle a large amount of concurrent users performing transactions. The system also needs to be highly available. This is where the PU comes into play. We will create a polling container that takes a payment event as input and processes it. Then, we will deploy this code as a PU onto the data grid. Payment events are being written into a space and the polling container will pick up the events and process them. We will use the <code>pu.config</code> file to define the deployment and add an SLA configuration to it to provide failover and scalability.</p>
+        <h3><a name="polling-container"></a>Polling Container</h3>
+        <p>First we define a polling container that will handle the business logic upon receiving a payment event. In our example we define a polling container that will receive events when a new payment is created:</p><pre><code class="language-csharp">using System;
+
+using GigaSpaces.Core.Events;
+using GigaSpaces.XAP.Events.Polling;
+using GigaSpaces.XAP.Events;
+
+using xaptutorial.model;
+
+[PollingEventDriven]
+public class PaymentEventProcessor 
+{
+    // Define the event we are interested in
+    [EventTemplate]
+    Payment unprocessedData()
+    {
+        return new Payment { Status=ETransactionStatus.NEW };
+    }
+
+    [DataEventHandler]
+    public Payment eventListener(Payment ev)
+    {
+        Console.WriteLine("Payment received; processing .....");
+        // set the status on the event and write it back into the space
+        ev.Status=ETransactionStatus.PROCESSED;
+        return ev;
+    }
+}
+</code></pre>
+        <h3><a name="processing-unit"></a>Processing Unit</h3>
+        <p>Next, we'll configure <code>pu.config</code> to create an embedded space for the polling container:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;configuration&gt;
+  &lt;configSections&gt;
+    &lt;section name="ProcessingUnit" type="GigaSpaces.XAP.Configuration.ProcessingUnitConfigurationSection, GigaSpaces.Core"/&gt;
+  &lt;/configSections&gt;
+  &lt;ProcessingUnit&gt;
+    &lt;EmbeddedSpaces&gt;
+      &lt;add Name="eventSpace"/&gt;
+    &lt;/EmbeddedSpaces&gt;
+  &lt;/ProcessingUnit&gt;
+&lt;/configuration&gt;
+</code></pre>
+        <h3><a name="deployment-1"></a>Deployment</h3>
+        <p>Now we have all the pieces that are necessary to create the deployment. After we built the project its time to deploy the PU onto the data grid. Again, you can do this in three ways; by script, c# code or via the admin UI. In our example will use the scripts to deploy the PU.</p>
+        <p>First let's launch <code>gs-agent.exe</code> from the product's <code>bin</code> folder - this is the Grid Service Agent (GSA) that will host our data grid on this machine.</p>
+        <p>Next we deploy the PU onto the data grid:</p><pre><code class="language-bash">GS_HOME\bin\gs-cli deploy PaymentProcessor
+</code></pre>
+        <p>If you start up the Admin UI you will be able to see that through the deployment a space called eventSpace was created and a PU named with the name <code>processing</code>.</p>
+        <h3><a name="client-interface"></a>Client Interface</h3>
+        <p>Now its time to create a client that creates events and writes them into the space.</p><pre><code class="language-csharp">using System;
+using System.Threading;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using GigaSpaces.Core;
+using common;
+
+namespace UnitTest
+{
+    [TestClass]
+    public class UnitTest
+    {
+        private ISpaceProxy proxy;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            proxy = new SpaceProxyFactory("eventSpace").Create();
+        }
+
+        [TestMethod]
+        public void PostPayment()
+        {
+            // Create a payment and write it to the space:
+            proxy.Write(new Payment { CreatedDate=new DateTime(), MerchantId=1L, PaymentAmount=120.70, Status=ETransactionStatus.NEW });
+            // Wait for the payment to be processed by the event container
+            Thread.Sleep(10000);
+            // Read the payment from the space
+            payment = proxy.Read&lt;Payment&gt;(new SqlQuery&lt;Payment&gt;("MerchantId=1"));
+            // Test the payment
+            Assert.AreEqual(payment.Status, ETransactionStatus.PROCESSED);
+        }
+    }
+}
+</code></pre>
+        <p>When you run this code you should see that the PU deployed onto the IMDG is processing the event, changes the status of the payment to PROCESSED and writes the event back into the space. The client then will receive an event because it has registered a listener that listens for processed payment events.</p>
+        <h2><a name="deploy-a-pu-with-the-web-admin-ui"></a>Deploying a PU Using the Web Management Console</h2>
+        <p>There is complete example available of  a PU on GitHub. You can download, build and deploy this example. Here is an example how you deploy a PU with the Web Management Console:</p>
+        <table class="tc-borderless">
+            <tr>
+                <td style="width:25%;">
+                    <p>Deploy PU</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/EventPU1.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td style="width:25%;">
+                    <p>Applications deployed
+</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/EventPU2.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td style="width:25%;">
+                    <p>Data Grid</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/EventPU3.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+                <td style="width:25%;">
+                    <p>Statistics</p>
+                    <p>
+                        <img src="../Resources/Static/attachment_files/qsg/EventPU4.png" class="tc-thumbnail" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h3><a name="failover-and-scalability"></a>Failover and Scalability</h3>
+        <p>One of our non-functional requirements for our online payment system is that it is highly available and it can handle a large amount of concurrent transactions. This can be accomplish in a couple of ways. We can deploy the PU with multiple concurrent threads and or multiple PU instances on top of the grid.</p>
+        <h3><a name="multi-threaded-event-container"></a>Multi-Threaded Event Container</h3>
+        <p>By default the event container is single threaded. With a simple annotation you can tell <MadCap:variable name="General.ProductNameXAP" /> how many threads the event container should run with.</p><pre><code class="language-csharp">[PollingEventDriven(Name = "DataProcessor", MinConcurrentConsumers = 1, MaxConcurrentConsumers = 4)]
+public class PaymentProcessor
+{
+    //......
+}
+</code></pre>
+        <h4><a name="multiple-pu-s"></a>Multiple PUs</h4>
+        <p>Lets assume that we have two machines available for our deployment. We want to deploy 4 instances of our PU, two on each machine.</p>
+        <p>The deployment script for this scenario looks like this:</p><pre><code class="language-bash">With a stateful PU, embedded space
+gs-cli deploy -cluster schema=partitioned total_members=4,0 -max-instances-per-machine 2 eventProcessor
+With a stateless PU
+gs-cli deploy -cluster total_members=4 -max-instances-per-machine 2 eventProcessor
+</code></pre>
+        <div class="tc-admon-note">
+            <p>Deploying with the command line options will override the SLA definitions. For more information, see the <a href="../admin/deploy-command-line-interface.html">Deploy Command Line Interface</a> page.</p>
+        </div>
+    </body>
+</html>

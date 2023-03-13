@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Data Lake Acceleration with AnalyticsXtreme</h1>
+        <p MadCap:conditions="Default.DoNotShow"><MadCap:variable name="General.ProductNameIE" /> only</p>
+        <h1>Overview</h1>
+        <p>AnalyticsXtreme is a data lake accelerator that  operationalizes your data lake for real-time analytics, which can run simultaneously on both real-time, mutable streaming data and on historical data that is stored on data lakes based on Hadoop, Amazon S3 or Azure Blob Storage, without exposing a separate data load procedure or data duplication.  Moving from on-premise to the cloud, or changing technology stacks for example from Cloudera to Amazon S3, is seamless to machine learning applications; increasing flexibility while reducing development and maintenance. </p>
+        <p>With AnalyticsXtreme, your data is available for immediate searching, queries, and running analytics; there is a single logical view for hot, warm and cold data. The hot data resides on <MadCap:variable name="General.ProductNameIE" />'s in-memory data grid, while cold (historical) data can be stored on any big-data platform such as HDFS or Amazon S3. Additionally, the hot data is mutable, supporting real-time updates. The data becomes immutable when it is stored on the external big data platform.</p>
+        <p>&#160;</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lambda/AnalyticsXtreme.png" class="tc-picture50" />
+            </p>
+        </div>
+        <p>This approach enables smooth access to frequently used historical data, because applications can access any data - hot or cold - via a unified layer using Spark SQL or JDBC. You can easily integrate BI&#160;tools such as <a href="tableau-integration.html">Tableau</a>, Looker, and PowerBI. It also ensures that every entry is retrieved only once, from the correct layer.</p>
+        <p> AnalyticsXtreme provides automatic life cycle management, handling the underlying data movement, optimization and deletion using an internal data life cycle policy.</p>
+        <h1>Implementation</h1>
+        <p>AnalyticsXtreme is a time-based feature that can be used in either automatic data tiering mode, or in external data tiering mode. </p>
+        <p>In automatic data tiering mode, AnalyticsXtreme is implemented as shown above. Data is streamed to the speed layer, and from that point on it is managed by the feature's data life cycle policy as it ages and eventually gets moved to the external data source, based on the life cycle that was defined in the policy. </p>
+        <p>In external data tiering mode, data is streamed to both the <MadCap:variable name="General.ProductNameIE" /> data grid and the external data source in parallel. This means that AnalyticsXtreme provides only the speed layer for the purpose of facilitating accelerated query results, so the data life cycle policy only needs to manage the data until it reaches its expiration point. After it expires, the data is evicted from the data grid.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lambda/AnalyticsXtreme-mode2.png" class="tc-picture50" />
+            </p>
+        </div>
+        <h2>Supported Data Formats</h2>
+        <p>AnalyticsXtreme supports all the data formats that are supported by Apache Spark, such as Apache Parquet and Apache Avro.</p>
+        <h2>Supported APIs</h2>
+        <p>AnalyticsXtreme supports Spark/SQL and JDBC for querying the speed and batch layers via the <MadCap:variable name="General.ProductNameIE" /> JDBC&#160;driver.</p>
+        <h1>Explaining the Data Life Cycle Policy</h1>
+        <p>An important function of AnalyticsXtreme is managing the life cycle of the data from the moment it is streamed to the <MadCap:variable name="General.ProductNameIE" /> data grid. In automatic data tiering mode, this includes moving the data from the speed layer (data grid) to the batch layer (external data storage) as it ages and becomes cold. In external data tiering mode, this means evicting the data when it reaches the end of the life cycle. </p>
+        <p>In order to handle this data transfer or deletion transparently, several things must to be taken into consideration. For example, the business application may trigger a query on the data at any point in time, so AnalyticXtreme needs to know where the data is located in order to successfully complete the query and return accurate results. The query may be complex, and therefore may take a relatively long time to complete. Additionally, there may be remote clients sending their queries, which means network latency needs to be taken into account. And finally, if the network connection isn't stable, the latency period may be even longer for some queries before they are finally received and executed.</p>
+        <p>The data life cycle policy was designed to handle this movement of data from the speed layer to the batch layer in a safe and predictable way. For example, we may have a system where data that is up to 5 hours old is considered hot and should be held in the speed layer, while anything older is considered cold and therefore must be moved to the batch layer. This 5-hour interval is the <code>speedPeriod</code>. The end of the <code>speedPeriod</code> is the query threshold; if a query is sent at 6 PM that requires data up to 5 hours old, the query threshold is 1 PM, and the query manager will look for the data in the speed layer only. If the query needs data that is more than 5 hours old, the query manager will look for that data in either the batch layer only, or in both the speed and batch layers and combine the results.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lambda/ax-1-speedperiod.png" class="tc-picture50" />
+            </p>
+        </div>
+        <p>When the data is in the speed layer, it is dynamic and can be updated as necessary. When it is in the batch layer, the data is immutable. As the data nears the end of the <code>speedPeriod</code>, the data life cycle policy has to prepare for moving it to the batch layer. Therefore, the policy includes a <code>mutabilityPeriod</code>, during which time the data remains fully dynamic. When the data ages out of the <code>mutabilityPeriod</code>, it becomes immutable so that it is ready to be moved to the batch layer. By default, the <code>mutabilityPeriod</code> is set to 80% of the <code>speedPeriod</code>; looking at our example, if the <code>speedPeriod</code> is 5 hours, then the <code>mutabilityPeriod</code> is 4 hours, and data that is between 4-5 hours old is in an immutable window.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lambda/ax-2-mutabilityperiod.png" class="tc-picture50" />
+            </p>
+        </div>
+        <p>In order to keep system performance consistent, and to ensure that the data can be easily verified when it is moved between layers, if AnalyticsXtreme has been implemented in automatic data tiering mode, the data life cycle policy copies the data from the speed layer to the batch layer in small chunks as it nears the end of the immutable window, according to the <span class="tc-italic">batchFeedInterval</span>. At this point, the aging data exists both in the speed layer and in the batch layer.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lambda/ax-3-batchfeed.png" class="tc-picture50" />
+            </p>
+        </div>
+        <p>After the aging data is residing safely to the batch layer and the <code>speedPeriod</code> expires, the data needs to be evicted from the speed layer. However, since the query threshold is a sliding window, a small safety margin is needed to ensure that long-running queries can complete, and to account for network latency regarding remote clients that sent queries just before the <code>speedPeriod</code> expired (so the query will need the data to be located in the speed layer). This safety margin, which provides data consistency, is the <span class="tc-italic">evictionBuffer</span>, and is set by default to 10 minutes.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/lambda/ax-4-eviction.png" class="tc-picture50" />
+            </p>
+        </div>
+        <p>After the data is evicted from the speed layer, it exists as historical data in the batch layer. Any queries that need data that is older than the query threshold (in this example, 1 PM) will access the batch layer only.</p>
+        <h1>Additional Resources</h1>
+        <table style="width: 100%;" class="tc-borderless">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://youtu.be/SXah9jTnndk," />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>AnalyticsXtreme demo</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

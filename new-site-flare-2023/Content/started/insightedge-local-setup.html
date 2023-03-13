@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Starting <MadCap:variable name="General.ProductNameIE" /> on a Local Service Grid</h1>
+        <p>This section explains how to start an <MadCap:variable name="General.ProductNameIE" /> environment on a local machine.</p>
+        <h1><a name="prerequisites"></a>Prerequisites</h1>
+        <p>Before running <MadCap:variable name="General.ProductNameIE" />, verify that you have the following installed in your environment:</p>
+        <ul>
+            <li>Java 8 or 11</li>
+            <li>Scala 2.11</li>
+            <li>Maven 3.1+</li>
+        </ul>
+        <h1><a name="starting-the-local-environment"></a>Starting the Local Environment</h1>
+        <p>The <MadCap:variable name="General.ProductNameIE" /> environment consists of Spark and the <MadCap:variable name="General.ProductNameXAP" /> data grid. You can use the Command Line Interface tool to start <MadCap:variable name="General.ProductNameIE" /> as described below.</p>
+        <h2><a name="starting-a-complete-environment"></a>Starting a Complete Environment</h2>
+        <p>To start a complete <MadCap:variable name="General.ProductNameIE" /> environment on your local machine, run the following command from the <code><MadCap:variable name="General.HomePath" />/bin</code> directory:</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+            <MadCap:snippetBlock src="../Resources/Snippets/InsighedgeXap.flsnp" />
+        </div>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash">./<MadCap:variable name="General.CLI-script-Linux" />  host run-agent --auto --gsc=2
+ </code></pre>
+            </div>
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" />  host run-agent --auto --gsc=2
+ </code></pre>
+            </div>
+        </div>
+        <p>This will start the following components on your machine:</p>
+        <ul>
+            <li>Spark Master UI at <a href="http://localhost:8080" target="_blank">localhost:8080</a><ul><li>URL for submitting spark jobs: <code>spark://127.0.0.1:7077</code></li></ul></li>
+            <li>Spark Worker UI at <a href="http://localhost:8081" target="_blank">localhost:8081</a></li>
+            <li>Zeppelin UI at <a href="http://localhost:9090" target="_blank">localhost:9090</a></li>
+            <li><MadCap:variable name="General.ProductNameXAP" /> service grid:
+
+<ul><li><MadCap:variable name="General.ProductNameXAP" /> Manager at <a href="http://localhost:8090" target="_blank">localhost:8090</a></li><li>2 Grid Service Containers (GSCs)</li></ul></li>
+            <li><MadCap:variable name="General.ProductNameXAP" /> Web Management Console at <a href="http://localhost:8099" target="_blank">localhost:8099</a><br /></li>
+        </ul>
+        <p>Then run the following command to deploy a Space called <code>demo</code> with 2 partitions on those GSCs:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash">./<MadCap:variable name="General.CLI-script-Linux" /> space deploy --partitions=2 demo
+ </code></pre>
+            </div>
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows" />  space deploy --partitions=2 demo<![CDATA[
+ ]]></code></pre>
+            </div>
+        </div>
+        <h1><a name="stopping-the-local-environment"></a>Stopping the Local Environment</h1>
+        <p>To stop the local environment, use the <code>kill-agent</code> command that sends a kill signal to all relevant processes:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Linux/Mac" style="padding:10px"><pre><code class="language-bash">./<MadCap:variable name="General.CLI-script-Linux" /> host kill-agent
+</code></pre>
+            </div>
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.CLI-script-Windows"></MadCap:variable>   host kill-agent
+
+ </code></pre>
+            </div>
+        </div>
+        <h1><a name="what-s-next"></a>What's Next?</h1>
+        <ul>
+            <li>To get started with the Apache Zeppelin Web Notebook, see <a href="insightedge-zeppelin.html">Using the InsightEdge Web Notebook</a>.</li>
+            <li>To run the examples on your local <MadCap:variable name="General.ProductNameIE" /> environment, see <a href="insightedge-examples.html">Running InsightEdge IDE Examples</a></li>
+            <li>To create your first <MadCap:variable name="General.ProductNameIE" /> application, see <a href="insightedge-first-app.html">Developing Your First Application</a></li>
+            <li>To learn more about the <code><MadCap:variable name="General.CLI-script-Windows" />i</code> CLI script, use the <code>--help</code> option</li>
+            <li>To set up a cluster on a set of machines, see <a href="../admin/admin-ie-cluster_setup.html">Cluster Setup For InsightEdge</a></li>
+        </ul>
+    </body>
+</html>

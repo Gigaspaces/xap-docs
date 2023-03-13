@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Properties Metadata</h1>
+  
+
+<p>All the properties are written automatically into the Space. If the property is a reference to another object, it has to be Serializable and it will be written into the Space as well. Only the properties that need special Space behavior need to be specified in the gs.xml file. Specify the properties that are IDs, indexes or need exclusions, etc.</p>
+
+<h1><a name="property"></a>Property</h1>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>property name</td>
+</tr>
+
+<tr>
+<td>Argument</td>
+<td>name of the attribute</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>contains mapping info for a property of a class</td>
+</tr>
+</tbody>
+</table>
+
+<p><span class="tc-bold">Example</span></p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+&lt;class name="Model.Person" persist="false" replicate="false"&gt;
+    &lt;property name="Age" /&gt;
+&lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<h3><a name="spaceproperty"></a>SpaceProperty</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>null-value</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>Specifies that an attribute value be treated as <code>null</code> when the object is written to the Space and no value is assigned to the attribute. (where <code>-1</code> functions as a <code>null</code> value in case of an int)</td>
+</tr>
+</tbody>
+</table>
+
+<p><span class="tc-bold">Example</span></p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+&lt;class name="Model.Person" persist="false" replicate="false"&gt;
+    &lt;property name="Age" null-value="-1" /&gt;
+    &lt;property name="Status" null-value="-1" /&gt;
+&lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<h3><a name="reference"></a>Reference</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>reference</td>
+</tr>
+
+<tr>
+<td>Argument</td>
+<td>class name</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>contains mapping information for a property of a class that is not primitive, but references another entity object.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+&lt;class name="Person"&gt;
+    &lt;property name="FirstName" /&gt;
+    &lt;property name="Address" reference="Model.Address" /&gt;
+&lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<h3><a name="spacestoragetype"></a>SpaceStorageType</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>storage-type</td>
+</tr>
+
+<tr>
+<td>Argument</td>
+<td><a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_Metadata_StorageType.htm">StorageType</a></td>
+</tr>
+
+<tr>
+<td>Default</td>
+<td>object</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>This tag is used to specify how the property is stored in the Space.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+&lt;class name="Model.Person" persist="false" replicate="false"&gt;
+    &lt;property name="Age" null-value="-1" /&gt;
+    &lt;property name="Address" storage-type="binary" /&gt;
+&lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p><a href="poco-storage-type.html">Object Sorage Types</a></p>
+</div>
+
+<h3><a name="spaceindex"></a>SpaceIndex</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>index type</td>
+</tr>
+
+<tr>
+<td>Argument</td>
+<td><a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_Metadata_SpaceIndexType.htm">SpaceIndexType</a></td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>Querying indexed fields speeds up read and take operations. The <code>index</code> tag should be used to specify an indexed field.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+    &lt;class name="Model.Person" persist="false" replicate="false" &gt;
+        &lt;property name="LastName"&gt;
+            &lt;index type="equal"/&gt;
+        &lt;/property&gt;
+        &lt;property name="FirstName"&gt;
+            &lt;index type="equal"/&gt;
+        &lt;/property&gt;
+        &lt;property name="Age"&gt;
+             &lt;index type="ordered"/&gt;
+        &lt;/property&gt;
+    &lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p><a href="indexing.html">Indexing Objects</a></p>
+</div>
+
+<h3><a name="spaceindex-path"></a>SpaceIndex Path</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>path type</td>
+</tr>
+
+<tr>
+<td>Argument</td>
+<td><a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_Metadata_SpaceIndexType.htm">SpaceIndexType</a></td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>The <code>path</code> attribute represents the path of the indexed property within a nested object.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+    &lt;class name="Model.Person"  &gt;
+        &lt;property name="PersonalInfo"&gt;
+            &lt;index path="SocialSecurity" type = "ordered"/&gt;
+            &lt;index path="Address.zipCode" type = "equal"/&gt;
+        &lt;/property&gt;
+    &lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p><a href="indexing-nested-properties.html">Indexing Nested Properties</a></p>
+</div>
+
+<h3><a name="unique-index"></a>Unique Index</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>index type unique</td>
+</tr>
+
+<tr>
+<td>Argument</td>
+<td><a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_Metadata_SpaceIndexType.htm">SpaceIndexType</a></td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>Unique constraints can be defined for an attribute or attributes of a space class.</td>
+</tr>
+
+<tr>
+<td>Note</td>
+<td>The uniqueness is enforced per partition and not over the whole cluster.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+    &lt;class name="Model.Person" persist="false" replicate="false" &gt;
+        &lt;property name="LastName"&gt;
+            &lt;index type="   EQUAL" unique="true"/&gt;
+        &lt;/property&gt;
+        &lt;property name="FirstName"&gt;
+            &lt;index type="EQUAL"/&gt;
+        &lt;/property&gt;
+        &lt;property name="Age"&gt;
+             &lt;index type="ORDERED"/&gt;
+        &lt;/property&gt;
+    &lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p><a href="indexing.html">Indexing Objects</a></p>
+</div>
+
+<h3><a name="spacefifogroupingindex"></a>SpaceFifoGroupingIndex</h3>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>fifo-grouping-index path</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>This tag is used to define a space FIFO grouping Index.</td>
+</tr>
+
+<tr>
+<td>Note</td>
+<td>This tag can be declared on several properties in a class in order to assist in efficient traversal.<br/>If defined, there must be a property in the class, marked with the <code>@SpaceFifoGroupingProperty</code> annotation.<br/>A compound index that contains this FIFO grouping index and the FIFO grouping property will be created.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+    &lt;class name="com.gigaspaces.examples.FlightReservation /&gt;
+        &lt;property name="ProcessingState"&gt;
+            &lt;fifo-grouping-index /&gt;
+        &lt;/property&gt;
+        &lt;property name="Customer"&gt;
+            &lt;fifo-grouping-index  path="id"/&gt;
+        &lt;/property&gt;
+&lt;/gigaspaces-mapping&gt;
+
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p><a href="fifo-grouping.html">FIFO Grouping</a></p>
+</div>
+
+<h1><a name="spaceid"></a>SpaceId</h1>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>id name</td>
+</tr>
+
+<tr>
+<td>Argument</td>
+<td>auto-generate</td>
+</tr>
+
+<tr>
+<td>Default</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>Defines whether this field value is used when generating the Object ID. The field value should be unique – i.e., no multiple objects with the same value should be written into the Space (each object should have a different field value). When writing an object into the Space with an existing <code>id</code> field value, an <code>EntryAlreadyInSpaceException</code> is thrown. The Object ID is created, based on the <code>id</code> field value.<br/>Specifies if the object ID is generated automatically by the Space when written into the Space. If <code>false</code>, the field is indexed automatically, and if <code>true</code>, the field isn't indexed. If <code>autoGenerate</code> is declared as <code>false</code>, the field is indexed automatically. If <code>autoGenerate</code> is declared as <code>true</code>,the field isn't indexed. If <code>autoGenerate</code> is <code>true</code>, the field must be of the type <code>String</code>.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+    &lt;class name="Model.Person"&gt;
+        &lt;property name="PersonId" /&gt;
+        &lt;property name="FirstName" /&gt;
+        &lt;property name="LastName" /&gt;
+        &lt;property name="Type" /&gt;
+        &lt;id name="PersonId" auto-generate="true" /&gt;
+    &lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p><a href="poco-object-id.html">Object Id</a></p>
+</div>
+
+<h1><a name="spacerouting"></a>SpaceRouting</h1>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>routing name</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>The <code>routing</code> tag specifies a get method for the field to be used to calculate the target Space for the Space operation (read , write...). The <code>routing</code> field value hash code is used to calculate the target Space when the Space is running in <span class="tc-bold">partitioned mode</span>.<br/>The field value hash code is used to calculate the target Space when the Space is running in <span class="tc-bold">partitioned mode</span>.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+    &lt;class name="Model.Person"&gt;
+        &lt;property name="Id" /&gt;
+        &lt;property name="FirstName" /&gt;
+        &lt;property name="LastName" /&gt;
+        &lt;property name="Type" /&gt;
+        &lt;id name="Id" auto-generate="true" /&gt;
+        &lt;routing name="Type" /&gt;
+    &lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p><a href="../admin/data-partitioning.html">Data Partitioning</a></p>
+</div>
+
+<h1><a name="class-reference"></a>Class Reference</h1>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>class-ref</td>
+</tr>
+
+<tr>
+<td>Argument</td>
+<td>class name</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>Contains the full qualified name of the specified class.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+&lt;class name="Person"&gt;
+    &lt;property name="FirstName" /&gt;
+    &lt;property class-ref="Model.Person" /&gt;
+&lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<h1><a name="spacepersist"></a>SpacePersist</h1>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>persist name</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>This specifies a getter method for holding the persistency mode of the object overriding the class level persist declaration. This field should be of the boolean data type.<br/>If the persist class level annotation is true, all objects of this class type will be persisted into the underlying data store (Mirror, ExternalDataSource, Storage Adapter).</td>
+</tr>
+
+<tr>
+<td>Note</td>
+<td>When using this option, you must have the Space class level <code>persist</code> decoration specified.</td>
+</tr>
+</tbody>
+</table>
+
+<p><span class="tc-bold">Example</span></p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+&lt;class name="Model.Person" persist="false" replicate="false"&gt;
+    &lt;property name="Age" null-value="-1" /&gt;
+    &lt;persist name="Persistence" /&gt;
+&lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<h1><a name="spaceversion"></a>SpaceVersion</h1>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>version name</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>This tag is used for object versioning used for optimistic locking.</td>
+</tr>
+
+<tr>
+<td>Note</td>
+<td>The attribute must be an <code>int</code> data type.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+    &lt;class name="Model.Person"&gt;
+        &lt;property name="Id" /&gt;
+        &lt;property name="VersionId" /&gt;
+        &lt;property name="FirstName" /&gt;
+        &lt;property name="LastName" /&gt;
+        &lt;property name="Type" /&gt;
+        &lt;id name="Id" auto-generate="true" /&gt;
+        &lt;routing name="Type" /&gt;
+        &lt;version name="VersionId" /&gt;
+    &lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p><a href="transaction-optimistic-locking.html">Transactions Optimistic Locking</a></p>
+</div>
+
+<h1><a name="spaceexclude"></a>SpaceExclude</h1>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>exclude name</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>When this tag is specified the property is not written into the Space.</td>
+</tr>
+
+<tr>
+<td>Note</td>
+<td>- When <code>include-properties</code> is defined as <code>implicit</code>, <code>exclude</code> should   be used. This is because <code>implicit</code> instructs the system to take all PONO fields into account.<br/>- When <code>include-properties</code> is defined as <code>explicit</code>, there is no need to use <code>exclude</code>.<br/>- <code>exclude</code> can still be used, even if <code>include-properties</code> is not defined.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+    &lt;class name="Model.Person"&gt;
+        &lt;property name="Id" /&gt;
+        &lt;property name="FirstName" /&gt;
+        &lt;property name="LastName" /&gt;
+        &lt;property name="Type" /&gt;
+        &lt;id name="Id" auto-generate="true" /&gt;
+        &lt;routing name="Type" /&gt;
+        &lt;exclude name="StreetAddress" /&gt;
+    &lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<h1><a name="spaceleaseexpiration"></a>SpaceLeaseExpiration</h1>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>lease-expiration name</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>This tag specifies the property for holding the timestamp of when the instance's lease expires. This property should not be populated by the user code. The Space will populate this property automatically based on the lease time given by the user when writing the object. When using an external data source, you can choose to persist this value to the database. Subsequently, when data is reloaded from the external data source (at startup time for example), the Space will filter out instances whose lease expiration timestamp has already passed. This field should be a <code>long</code> data type.</td>
+</tr>
+</tbody>
+</table>
+
+<p><span class="tc-bold">Example</span></p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+    &lt;class name="Model.Person"&gt;
+        &lt;property name="Id" /&gt;
+        &lt;property name="FirstName" /&gt;
+        &lt;property name="LeaseExp" /&gt;
+        &lt;property name="Type" /&gt;
+        &lt;id name="Id" auto-generate="true" /&gt;
+        &lt;routing name="Type" /&gt;
+        &lt;lease-expiration name="LeaseExp" /&gt;
+    &lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p><a href="leases-automatic-expiration.html">Lease automatic expiration</a></p>
+</div>
+
+<h1><a name="spacefifogroupingproperty"></a>SpaceFifoGroupingProperty</h1>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>fifo-grouping-property name path</td>
+</tr>
+
+<tr>
+<td>Argument</td>
+<td>path</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>This tag is used to define a space FIFO grouping property.</td>
+</tr>
+
+<tr>
+<td>Note</td>
+<td>If defined, the <code>TakeModifiers.FIFO_GROUPING_POLL</code> or <code>ReadModifiers.FIFO_GROUPING_POLL</code> modifiers can be used to return all space entries that match the selection template in FIFO order. Different values of the FG property define groups of Space entries that match each value. FIFO ordering exists within each group and not between different groups.</td>
+</tr>
+</tbody>
+</table>
+
+<p><span class="tc-bold">Example</span></p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+    &lt;class name="com.gigaspaces.examples.FlightReservation"&gt;
+            &lt;fifo-grouping-property name="FlightInfo" path="FlightNumber" /&gt;
+    &lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p><a href="fifo-grouping.html">FIFO Grouping</a></p>
+</div>
+
+<h1><a name="spacedynamicproperties"></a>SpaceDynamicProperties</h1>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Syntax</td>
+<td>dynamic-properties name</td>
+</tr>
+
+<tr>
+<td>Description</td>
+<td>Allows adding properties freely to a class without worrying about the schema.</td>
+</tr>
+
+<tr>
+<td>Note</td>
+<td>Only one property per class can be declared as <code>dynamic-properties</code>.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Example:</p>
+
+<pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+    &lt;class name="Model.Person"&gt;
+        &lt;property name="Id" /&gt;
+        &lt;property name="FirstName" /&gt;
+        &lt;property name="PersonInfo" /&gt;
+        &lt;property name="Type" /&gt;
+        &lt;id name="Id" auto-generate="true" /&gt;
+        &lt;routing name="Type" /&gt;
+        &lt;dynamic-properties name="PersonInfo" /&gt;
+    &lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+
+<div class="tc-admon-refer">
+  
+  <p><a href="poco-dynamic-properties.html">Dynamic Properties</a></p>
+</div>
+
+</body>
+</html>

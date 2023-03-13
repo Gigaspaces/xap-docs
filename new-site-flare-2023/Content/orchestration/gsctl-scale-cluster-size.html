@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Scaling a Cluster</h1>
+        <p>You can horizontally scale your <MadCap:variable name="General.ProductNameXAP" /> cluster by adding and removing nodes. This can be useful if for example, you want to deploy new services and your cluster is already close to capacity, or if you expect high load on a stateless service for a holiday weekend, and then want to scale back down when the workload returns to normal.</p>
+        <p>The <code>node</code> command has the following functionality:</p>
+        <div class="easyui-tabs" plain="true">
+            <div title="AWS">
+                <table style="width: 100%;">
+                    <col />
+                    <col />
+                    <col />
+                    <col />
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Use</th>
+                            <th>Options</th>
+                            <th>Default behavior</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2">add</td>
+                            <td rowspan="2">Add a worker node to a cluster. </td>
+                            <td>
+                                <p>Profile - define the type of node to be added. </p>
+                            </td>
+                            <td>Uses the first profile in the cluster.yaml list unless otherwise specified.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Count - specify how many nodes to be added.</p>
+                            </td>
+                            <td>Adds 1 node unless otherwise specified.</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4">&#160; remove</td>
+                            <td rowspan="4">&#160; Removes a worker node from a cluster. </td>
+                            <td>
+                                <p>Public IP - the public IP&#160;address of the machine to be removed from the cluster.</p>
+                            </td>
+                            <td>&#160;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Private IP - the private IP&#160;address of the machine to be removed from the cluster.</p>
+                            </td>
+                            <td>&#160;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Profile - define the type of node to be removed. </p>
+                            </td>
+                            <td>Uses the first profile in the cluster.yaml list unless otherwise specified.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Count - specify how many nodes to be removed.</p>
+                            </td>
+                            <td>Removes 1 node unless otherwise specified.</td>
+                        </tr>
+                        <tr>
+                            <td>list</td>
+                            <td>Lists all the master and worker nodes in a cluster along with their public and private IP addresses. </td>
+                            <td>&#160;</td>
+                            <td>&#160;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="On premise">
+                <table style="width: 100%;">
+                    <col />
+                    <col />
+                    <col />
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Use</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2">add</td>
+                            <td rowspan="2">Add a node to a cluster. You can add multiple nodes with a single command.</td>
+                            <td>
+                                <p>Public IP - the public IP&#160;address of the machine to be added to the cluster</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Private IP - the private IP&#160;address of the machine to be added to the cluster</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>remove</td>
+                            <td>Removes a node from a cluster. You may only remove a worker node.</td>
+                            <td>&#160;</td>
+                        </tr>
+                        <tr>
+                            <td>list</td>
+                            <td>Lists all the master and worker nodes in a cluster along with their public and private IP addresses. </td>
+                            <td>&#160;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p class="tc-todo">To add a node to a cluster:</p>
+        <div class="easyui-tabs" plain="true">
+            <div title="AWS">
+                <p>Type the following command to add two nodes of the <code>default aws worker name</code> profile:</p><pre><code class="language-bash">node add --profile-"default aws worker name" --count=2</code></pre>
+            </div>
+            <div title="On premise">
+                <p>Type the following command to add two nodes to the cluster (replace the sample IP&#160;addresses with your own machine IP addresses):</p><pre><code class="language-bash">node add --ip=192.168.32.97 --ip=192.168.32.98</code></pre>
+            </div>
+        </div>
+        <p class="tc-todo">To remove a node from a cluster:</p>
+        <div class="easyui-tabs" plain="true">
+            <div title="AWS">
+                <p>Type the following command to remove two nodes of the <code>default aws worker name</code> profile:</p><pre><code class="language-bash">node remove --profile-"default aws worker name" --count=2</code></pre>
+            </div>
+            <div title="On premise">
+                <p>Type the following command to remove two nodes from the cluster (replace the sample IP&#160;addresses with your own machine IP addresses):</p><pre><code class="language-bash">node remove --ip=192.168.32.97 --ip=192.168.32.98</code></pre>
+            </div>
+        </div>
+        <p class="tc-todo">To list the nodes in a cluster:</p>
+        <p>Type the following command to get a list of all the master and worker nodes in the cluster:</p><pre><code class="language-bash">node list</code></pre>
+        <p>The output looks like this, with the public and private IP&#160;addresses of all the nodes.</p>
+        <p>
+            <img src="../Resources/Static/attachment_files/gigaops-stack/gsctl-list-nodes.png" class="tc-picture30" />
+        </p>
+    </body>
+</html>

@@ -1,0 +1,646 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="NewSet.New-Changed-16-2">
+    <head>
+        <!--
+        <meta http-equiv="REFRESH" content="0;url=https://docs.gigaspaces.com/latest/started/getting-started-with-gigaspaces-smartcache-set-environment.html" />
+-->
+    </head>
+    <body>
+        <!-- -->
+        <!-- -->
+        <!--       <script type="text/javascript" src="../Resources/Custom/page-toc.js"></script>   -->
+        <!-- -->
+        <!-- -->
+        <h1 class="tc-pagetitle">Installation Procedure for DIH Data Integration </h1>
+        <p>This document describes basic operational procedures for GigaSpaces release 16.2.</p>
+        <div id="page-toc">
+            <p class="boxHeading">On this... page:</p>
+            <!-- page table of contents generated here -->
+        </div>
+        <h1>What is DIH Data Integration?</h1>
+        <p>Data Integration (DI) allows data to be loaded into the GigaSpaces data grid using easily-defined, reusable Data Pipelines that require no user code.</p>
+        <p>See the <MadCap:xref href="data-integration.html">Data Integration</MadCap:xref> topic for a detailed discussion of DI and its uses in the GigaSpaces environment.</p>
+        <p MadCap:conditions="Default.DoNotShow">This introduction consists of four parts:</p>
+        <ul MadCap:conditions="Default.DoNotShow">
+            <li>
+                <p>Part 1 — <MadCap:xref href="../started/next-level-getting-started-with-gigaspaces-smartcache-set-environment.html" class="part-1" style="font-weight: normal;">Setting the Environment</MadCap:xref> —  Prepare a database that will be imported into GigaSpaces. In these examples, we will use data from the PostgreSQL database.</p>
+            </li>
+            <li>
+                <p>Part 2 — <MadCap:xref href="../started/next-level-getting-started-with-gigaspaces-smartcache-launch-ops-manager.html" class="Part-2-Launch-Ops-Manager">Launch Ops Manager</MadCap:xref> — Run and view the GigaSpaces user interface.</p>
+            </li>
+            <li>
+                <p>Part 3 — <MadCap:xref href="../started/next-level-getting-started-with-gigaspaces-smartcache-import-a-database.html" class="part-3-import-a-database">Import a Database</MadCap:xref> — Bring data from the PostgreSQL database into Smart Cache, the GigaSpaces in-memory grid, and run some SQL operations.</p>
+            </li>
+            <li>
+                <p>Part 4 — <MadCap:xref href="../started/next-level-getting-started-with-gigaspaces-convert-a-program.html" class="convert-a-program" style="font-style: normal;">Convert a Program</MadCap:xref> — Explore the tools to convert a Java program from JDBC access to the GigaSpaces Java API.</p>
+            </li>
+        </ul>
+        <h1 MadCap:conditions="Default.DoNotShow">High Level architecture</h1>
+        <p MadCap:conditions="Default.DoNotShow">
+            <img src="../Resources/Static/images/DIH-Installation-guide-high-level-architecture.png" />
+            <br />
+        </p>
+        <h1>DI components installation procedure</h1>
+        <h2 MadCap:conditions="Default.DoNotShow">IIDR installation</h2>
+        <h2>Flink installation</h2>
+        <p>In order to install standalone Flink please do the following.</p>
+        <p>1. Flink should be installed on the same server with Kafka. Download <code>flink</code>  version 1.15.0 from <a href="https://giga-di.s3.eu-west-1.amazonaws.com/Flink/flink-1.15.0-bin-scala_2.12.tgz">here</a>.</p>
+        <p>2. As <code>gsods </code>OS user, copy the downloaded <code>tar.gz</code> file to the following directory: <code>/home/gsods/di-flink</code></p>
+        <div class="tc-admon-note">
+            <p>If DI software should be installed under the different file system or directory , then create a symbolic link from <code>/home/gsods/di-flink</code> to the new installation directory <code>&lt;alternative directory&gt;/di-flink</code></p>
+        </div>
+        <p>3. Unzip and open the downloaded flink archive file:</p><pre><code class="language-bash">tar -xzf flink-1.15.0-bin-scala_2.12.tgz</code></pre>
+        <p>4. Create a symbolic link latest-flink to the new flink directory:</p><pre><code class="language-bash">ln -s flink-1.15.0 latest-flink</code></pre>
+        <p>5. Start Flink as <code>gsods </code>OS user:</p><pre xml:space="preserve"><code class="language-bash">cd  /home/gsods/di-flink/latest-flink/bin<br />./start-cluster.sh</code>
+</pre>
+        <p>6. Flink UI is started on the port 8081. Connect to Flink UI:</p><pre><code class="language-bash">http://&lt;flink server&gt;:8081</code></pre>
+        <div class="tc-admon-note">
+            <p>This is a basic Apache Flink installation. More advanced instructions of a Flink configuration in a cluster mode and flink services configuration will be provided later.</p>
+        </div>
+        <h2>DI Metadata Manager Installation</h2>
+        <p>In order to install DI Metadata Manager first time do the following.</p>
+        <p>1. Download the latest DI Metadata Manager <code>tar.gz</code> file</p>
+        <p>2. Create a directory for DI Metadata Manager software as <code>gsods</code> OS user:</p><pre><code class="language-bash">mkdir /home/gsods/di-Metadata Manager</code></pre>
+        <p>3. Copy the downloaded tar.gz to the <code>/home/gsods/di-Metadata Manager</code>  directory.</p>
+        <p>4. Change to the  /home/gsods/di-Metadata Manager</p><pre><code class="language-bash">cd  /home/gsods/di-Metadata Manager</code></pre>
+        <p>5. Unzip and open the downloaded di-Metadata Manager archive file</p><pre><code class="language-bash">tar -xzf di-Metadata Manager-&lt;version&gt;.tar.gz</code></pre>
+        <p>6. Create a symbolic link <code>latest-di-Metadata Manager</code> to the newly created directory:</p><pre><code class="language-bash">ln -s di-Metadata Manager-&lt;version&gt; latest-di-Metadata Manager</code></pre>
+        <p>7. As root OS user, change to the config directory of the di-Metadata Manager</p><pre xml:space="preserve"><code class="language-bash">su - root<br />cd /home/gsods/di-Metadata Manager/latest-di-Metadata Manager/config</code>
+</pre>
+        <p>8. Copy di-Metadata Manager service file to the systemd services directory (as <code>root </code>OS user)</p><pre><code class="language-bash">cp di-Metadata Manager.service /etc/systemd/system</code></pre>
+        <p>9. Reload systemd configuration (as <code>root </code>OS user)</p><pre><code class="language-bash">systemctl daemon-reload</code></pre>
+        <p>10. Start di-Metadata Manager service (as <code>root </code>OS user)</p><pre><code class="language-bash">systemctl start di-Metadata Manager</code></pre>
+        <p>11. Monitor the log of the di-Metadata Manager (as <code>gsods </code>OS user)</p><pre><code class="language-bash">/home/gsods/di-Metadata Manager/latest-di-Metadata Manager/logs/di-Metadata Manager.log</code></pre>
+        <p>12. DI Metadata Manager service is started on a port 6081, check the DI Metadata Manager rest service</p><pre><code class="language-bash">http://&lt;di Metadata Manager&gt;:6081/swagger-ui</code></pre>
+        <h2>DI Manager installation</h2>
+        <p>In order to install DI Manager first time do the following.</p>
+        <p>1. Download the latest DI Manager <code>tar.gz</code> file</p>
+        <p>2. Create a directory for DI Manager software as <code>gsods </code>OS user</p><pre><code class="language-bash">mkdir /home/gsods/di-manager</code></pre>
+        <p>3. Copy the downloaded <code>tar.gz</code> to the <code>/home/gsods/di-manager</code>  directory</p>
+        <p>4. Change to the<code>  /home/gsods/di-manager</code> directory</p><pre><code class="language-bash">cd  /home/gsods/di-manager</code></pre>
+        <p>5. Unzip and open the downloaded <code>di-manager</code> archive file</p><pre><code class="language-bash">tar -xzf di-manager-&lt;version&gt;.tar.gz</code></pre>
+        <p>6. Create a symbolic link <code>latest-di-manager</code> to the newly created directory</p><pre><code class="language-bash">ln -s di-manager-&lt;version&gt; latest-di-manager</code></pre>
+        <p>7. Change the <code>di-manager</code> parameter to point to the correct <code>di-Metadata Manager</code> server (as <code> gsods</code> OS user)</p><pre><code class="language-bash">cd  /home/gsods/di-manager/latest-di-manager/config<br />vi di-manager-application.properties</code></pre>
+        <p>8. Change <code>Metadata Manager.server.url</code> to point to the <code>Metadata Manager</code> server</p>
+        <div class="tc-admon-note">
+            <p>Avoid using localhost but the actual hostname where Metadata Manager is running. Usually DI-Metadata Manager and DI-Manager will be running on the same host.</p>
+        </div>
+        <p>9. As <code>root </code>OS user change to the <code>config</code>directory of the <code>di-manager</code></p><pre><code class="language-bash">su - root<br />cd /home/gsods/di-manager/latest-di-manager/config</code></pre>
+        <p>10. Copy the <code>di-manager</code> service file to the <code>systemd </code>services directory (as <code>root </code>OS user)</p><pre><code class="language-bash">cp di-manager.service /etc/systemd/system</code></pre>
+        <p>11. Reload <code>systemd</code> configuration (as <code>root</code> OS user)</p><pre><code class="language-bash">systemctl daemon-reload</code></pre>
+        <p>12. Start the <code>di-manager</code> service (as <code>root</code> OS user)</p><pre><code class="language-bash">systemctl start di-manager</code></pre>
+        <p>13. Monitor the log of the <code>di-manager</code> (as <code>gsods</code> OS user)</p><pre><code class="language-bash">/home/gsods/di-manager/latest-di-manager/logs/di-manager.log</code></pre>
+        <p>14. DI Manager service is started on port 6080, check the DI Manager rest service</p><pre><code class="language-bash">http://&lt;di manager host&gt;:6080/swagger-ui</code></pre>
+        <h2>DI packages - upgrade procedure</h2>
+        <p>In order to install new DI package please do the following.</p>
+        <p>1. Via <code>postman</code> stop active pipelines</p>
+        <p>2. As<code> gsods</code> OS user, download the new DI package (<code>di-mdm</code> or <code>di-manager</code>) to the<code> /home/gsods/&lt;DI component&gt;</code></p>
+        <p>3. For <code>di-mdm</code>, download the new <code>tar.gz</code> package to the <code>/home/gsods/di-mdm</code> directory</p>
+        <p>4. For the <code>di-manager</code>, download the new <code>tar.gz</code> package to the <code>/home/gsods/di-manager</code> directory</p>
+        <p>5. As <code>gsods</code> OS user, unzip / untar the newly downloaded package</p><pre><code class="language-bash">tar -xzf &lt;new tar file&gt;</code></pre>
+        <p>6. For <code> di-mdm</code> do the following manual steps as <code>gsods</code>OS user:</p><pre><code class="language-bash">cd /home/gsods/di-mdm/&lt;new package&gt;/lib<br />cp  /home/gsods/di-mdm/latest-di-mdm/lib/sqlitesample.db .</code></pre>
+        <p>7. For <code>di-manager</code> do the following manual step as <code>gsods</code> OS user:</p><pre><code class="language-bash">tar -xzf di-manager-&lt;version&gt;.tar.gz</code></pre><pre><code class="language-bash">cd /home/gsods/di-manager/&lt;new package&gt;/config<br />cp /home/gsods/di-manager/latest-di-manager/config/di-manager-application.properties .</code></pre>
+        <div class="tc-admon-note">
+            <p>The two manual steps shown above will be automated in a future release.</p>
+        </div>
+        <p>8. As <code>root</code> OS user do the following:</p>
+        <p>9. Go to the utils directory of the newly installed package</p><pre><code class="language-bash">cd /home/gsods/di-mdm/&lt;new package&gt;/utils</code></pre>
+        <p>10. Run the installation script</p><pre><code class="language-bash">./install_new_version.sh</code></pre>
+        <div class="tc-admon-note">
+            <p>The installation script does the following:</p>
+            <ul>
+                <li>
+                    <p>Stops the running service of the DI component (<code>di-manager</code>, <code>di-mdm</code>)</p>
+                </li>
+                <li>
+                    <p>Changes the symbolic link <code>latest-&lt;di component&gt;</code> to the active package directory</p>
+                </li>
+                <li>
+                    <p>Starts the DI component service</p>
+                </li>
+            </ul>
+        </div>
+        <p>11. As <code>gsods</code> OS user , upload the updated <code>di-processor</code> jar file to the flink</p>
+        <p>12. Remove the already uploaded <code>di-processor</code> jar file from the flink UI<br /></p>
+        <p>
+            <img src="../Resources/Static/images/DIH-Installation-guide-apache-flink-dashboard.png" />
+        </p>
+        <p>13. Verify in Postman that environment variable points to the latest Metadata Manager processor jar:</p>
+        <p>
+            <img src="../Resources/Static/images/DIH-Installation-guide-verify-in-postman.png" />
+        </p>
+        <p>14. Via postman run Configure Flink API:</p>
+        <p>
+            <img src="../Resources/Static/images/DIH-Installation-guide-via-postman-run.png" />
+        </p>
+        <p>15. Via postman start a pipeline:</p>
+        <h1>Working with Postman</h1>
+        <p>The Postman standalone application can be found very useful in organizing  the various DI layer Rest APIs in a correct logical order.</p>
+        <h2>Create environment variables</h2>
+        <p>As a first step let's define environment with all required environment variables.</p>
+        <ol>
+            <li>
+                <p>Open Postman.</p>
+            </li>
+            <li>
+                <p>Go to the Environments  tab:<br /><img src="../Resources/Static/images/dih-di-installation-guide-environments-tab.png" /></p>
+            </li>
+            <li>
+                <p>Create a new variables environment:<br /><img src="../Resources/Static/images/dih-di-installation-guide-new-environment.png" /></p>
+            </li>
+            <li>
+                <p>Provide a name for this new environment , for example “Development”:<br /><img src="../Resources/Static/images/dih-di-installation-guide-new-environment-provide-name.png" /><br /></p>
+            </li>
+            <li>
+                Define the environment variables listed in the table below.<br /></li>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>Variable name</p>
+                        </td>
+                        <td>
+                            <p>Example</p>
+                        </td>
+                        <td>
+                            <p>Description&#160;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>managerUrl</p>
+                        </td>
+                        <td>
+                            <p>http://di-stage-s1:6080</p>
+                        </td>
+                        <td>
+                            <p>The http URL endpoint of the DI Manager including the port</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>mdmUrl</p>
+                        </td>
+                        <td>
+                            <p>http://di-stage-s1:6081</p>
+                        </td>
+                        <td>
+                            <p>The http URL endpoint of the MDM including the port</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>flinkUrl</p>
+                        </td>
+                        <td>
+                            <p>http://di-stage-kafka1:8081</p>
+                        </td>
+                        <td>
+                            <p>The http URL endpoint of the Flink including port</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>bootstrapServers</p>
+                        </td>
+                        <td>
+                            <p>di-stage-kafka1:9092,</p>
+                            <p>di-stage-kafka2:9092,</p>
+                            <p>di-stage-kafka3:9092</p>
+                        </td>
+                        <td>
+                            <p>Kafka bootstrap servers including ports. Multiple Kafka servers can be included in a comma separated format&#160;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>spaceLookupLocators</p>
+                        </td>
+                        <td>
+                            <p>di-stage-gs1</p>
+                        </td>
+                        <td>
+                            <p>Space server</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>spaceLookupGroups</p>
+                        </td>
+                        <td>
+                            <p>xap-16.2.0</p>
+                        </td>
+                        <td>&#160;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>spaceName</p>
+                        </td>
+                        <td>
+                            <p>DEV</p>
+                        </td>
+                        <td>
+                            <p>Space name</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>kafkaGroupId</p>
+                        </td>
+                        <td>
+                            <p>diprocessor</p>
+                        </td>
+                        <td>
+                            <p>Kafka DI Consumer group name</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>kafkaTopic_CDC</p>
+                        </td>
+                        <td>
+                            <p>pipeline_cdc</p>
+                        </td>
+                        <td>
+                            <p>The name of the Kafka topic for CDC changes</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>kafkaTopic_IL</p>
+                        </td>
+                        <td>
+                            <p>pipeline_il</p>
+                        </td>
+                        <td>
+                            <p>The name of the Kafka topic for initial load changes</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>diProcessorJar</p>
+                        </td>
+                        <td>
+                            <p>/home/gsods/di-manager/latest-di-manager/lib/job-0.0.7.jar</p>
+                        </td>
+                        <td>
+                            <p>The full path of the DI Processor jar</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>pipelineId</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>The ID of the pipeline. This is generated upon pipeline creation and can be retrieved later on via list pipelines REST API</p>
+                            <p>GET {{managerUrl}}/api/v1/pipeline/</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>dbUrl</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>JDBC URL to connect to the source database Db2 zos example:</p>
+                            <p>jdbc:db2://&lt;IP&gt;:&lt;db port&gt;/&lt;DB location&gt;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>dbUsername</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>DI database user name to connect to the source database&#160;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>dbName</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>The name of the source database inside DI internal repository&#160; (this can be any name that logically represents the System of Records)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>dbSchemaName</p>
+                        </td>
+                        <td>&#160;</td>
+                        <td>
+                            <p>The source database schema that owns tables that DI captures changes from&#160;</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <li>
+                Save the newly created environment variables.<br /><img src="../Resources/Static/images/dih-di-installation-guide-save-environmental-variables.png" /><br /></li>
+        </ol>
+        <h2>Import Collection of APIs</h2>
+        <p>Postman API collection is a group of APIs organized in a logical order that represents certain product functionality , such as create pipeline, define generic environment, or administer pipeline.</p>
+        <p>DI Postman collection is released with every DI release and can be imported into the local postman environment.</p>
+        <p>In order to import released DI collection, proceed as follows.:</p>
+        <ol>
+            <li>
+                <p>Open Postman</p>
+            </li>
+            <li>
+                <p>Go to the Collections tab and click Import:<br /><img src="../Resources/Static/images/dih-di-installation-guide-collections-import.png" /></p>
+            </li>
+            <li>
+                <p>In a file tab click on “Upload files” and choose the newly downloaded DI Postman collection file to import from:</p>
+                <p>
+                    <img src="../Resources/Static/images/dih-di-installation-guide-collections-upload.png" />
+                </p>
+            </li>
+            <li>
+                <p>
+                    At the end of the import you should see a new collection present under the “Collections” tab.<br /></p>
+                <p>
+                    <img src="../Resources/Static/images/dih-di-installation-guide-new-collection.png" style="width: 696px;height: 377px;" />
+                </p>
+            </li>
+        </ol>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Release notes 0.0.12.4</h1>
+            <h2>New Features</h2>
+            <p>PIC-844 DI Processor Added basic performance metrics report to the InfluxDB</p>
+            <p>PIC-843 DI Processor performance enhancement to write via distributed task</p>
+        </div>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h2>Bug fixes</h2>
+            <p>PIC-909 FlinkConfig has been stored incorrectly and prevented pipeline from starting</p>
+            <p>PIC-839 DI Processor NULL in a field value causes a parsing error</p>
+            <p>PIC-903 DI Processor generates unnecessary logging of processed records</p>
+            <p>PIC-881 DI Manager Fails to start several jobs in parallel for different pipelines because the same job name is used</p>
+            <p>PIC-858 DI Manager re-deploy DI Processor jar if start job fails with invalid jar id</p>
+        </div>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Release notes 0.0.9.1</h1>
+            <table style="width: 100%;">
+                <col />
+                <col />
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>Release date</p>
+                        </td>
+                        <td>
+                            <p>20/07/2022</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Previous version</p>
+                        </td>
+                        <td>
+                            <p>0.0.8.1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>DI-Manager 0.0.9.1</p>
+                        </td>
+                        <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-manager-0.0.9.1.tar.gz">Download link</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>DI-Metadata Manager      0.0.9.1</p>
+                        </td>
+                        <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/di-mdm-0.0.9.1.tar.gz">Download link</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Postman collection</p>
+                        </td>
+                        <td><a href="https://giga-di.s3.eu-west-1.amazonaws.com/di-packages/manualBuild/DI+v2.0+stage+-+0.0.9.1.postman_collection.json">Download link</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>New features</h2>
+            <p>PIC-776  Data dictionary fetch from SoR (DB2 ZOS) directly into Metadata Manager</p>
+            <p>PIC-713  Added ZK as a repository to the Metadata Manager</p>
+            <p>PIC-765  DI Manager unified REST API to create pipeline and tables mappings</p>
+            <p>PIC-862  DI Manager start pipeline API - added option to start from a specific Kafka offset</p>
+            <p>PIC-807 DI Manager - added pipeline control APIs</p>
+            <p>PIC7-12  DI Manager / DI Metadata Manager - added OpenAPIv3.0 (Swagger)</p>
+            <p>PIC-872 DI Manager - create Kafka topic if does not exist</p>
+            <p>PIC-709 DI Processor - implemented pluggable architecture concept to the message parsing structure</p>
+            <p>PIC-845 DI Manager - automatic conversion from a sourceType to a spaceType</p>
+            <p>PIC-846 DI Manager - automatic conversion from a spaceType into tableExtraction type</p>
+            <h2>Bug fixes</h2>
+            <p>PIC-838 Start pipeline returns always error code 500</p>
+        </div>
+        <h1>APPENDIX 1 - DI v2.0 Layer - Ports</h1>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>#</p>
+                    </td>
+                    <td>
+                        <p>DI Component</p>
+                    </td>
+                    <td>
+                        <p>Protocol : Port</p>
+                    </td>
+                    <td>
+                        <p>Accessed by</p>
+                    </td>
+                    <td>
+                        <p>Remarks</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>1</p>
+                    </td>
+                    <td>
+                        <p>IIDR DB2ZOS Agent</p>
+                    </td>
+                    <td>
+                        <p>TCP:11801</p>
+                    </td>
+                    <td>
+                        <p>IIDR Windows UI</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>2</p>
+                    </td>
+                    <td>
+                        <p>IIDR Kafka Agent</p>
+                    </td>
+                    <td>
+                        <p>TCP:11701</p>
+                    </td>
+                    <td>
+                        <p>IIDR Windows UI</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>3</p>
+                    </td>
+                    <td>
+                        <p>IIDR Access Server</p>
+                    </td>
+                    <td>
+                        <p>TCP:10101</p>
+                    </td>
+                    <td>
+                        <p>IIDR Windows UI</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>4</p>
+                    </td>
+                    <td>
+                        <p>Flink server</p>
+                    </td>
+                    <td>
+                        <p>HTTP:8081</p>
+                    </td>
+                    <td>
+   Windows UI
+   DI Manager
+  </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>5</p>
+                    </td>
+                    <td>
+                        <p>Kafka</p>
+                    </td>
+                    <td>
+                        <p>TCP:9092</p>
+                    </td>
+                    <td>
+   Flink server
+   IIDR Kafka Agent
+  </td>
+                    <td>
+                        <p>Flink and Kafka are running on the same server</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>6 </p>
+                    </td>
+                    <td>
+                        <p>Zookeeper</p>
+                    </td>
+                    <td>
+                        <p>TCP:2181</p>
+                    </td>
+                    <td>
+                        <p>Metadata Manager</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>7</p>
+                    </td>
+                    <td>
+                        <p>DB2 ZOS</p>
+                    </td>
+                    <td>
+                        <p>TCP:&lt;DB port&gt;</p>
+                    </td>
+                    <td>
+   IIDR DB2ZOS Agent
+   Metadata Manager
+   DI Manager
+  </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>8</p>
+                    </td>
+                    <td>
+                        <p>ZOS</p>
+                    </td>
+                    <td>
+                        <p>TCP:22</p>
+                    </td>
+                    <td>
+                        <p>IIDR DB2ZOS Agent</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>9</p>
+                    </td>
+                    <td>
+                        <p>DI Manager</p>
+                    </td>
+                    <td>
+                        <p>HTTP:6080</p>
+                    </td>
+                    <td>
+                        <p>GS UI (Windows)</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>10</p>
+                    </td>
+                    <td>
+                        <p>Metadata Manager</p>
+                    </td>
+                    <td>
+                        <p>HTTP:6081</p>
+                    </td>
+                    <td>
+   GS UI(Windows)
+   DI Manager
+   Flink Server (DI Processor)
+  </td>
+                    <td>
+                        <p>Metadata Manager and DI Manager are running on the same server</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1 MadCap:conditions="Default.DoNotShow">Resources</h1>
+        <p MadCap:conditions="Default.DoNotShow"><a href="https://docs.google.com/document/d/1uA0iddbAUgOtQs9PR0R8bXXlmD6Q_87HhlbkVel9rG0/edit">DI v2.0 new design proposal</a>
+        </p>
+        <p>&#160;</p>
+        <div class="tc-admon-note">
+            <p>Need assistance or further information? Don't hesitate to <a href="https://www.gigaspaces.com/contact-us">contact us</a> — we're here to help!</p>
+        </div>
+    </body>
+</html>

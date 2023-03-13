@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Session Based Messaging API</h1>
+        <p>In some cases, SBA applications require the ability to call the user's business logic once a relevant event occurs in the space. This can be a trader desk application that is notified when a quote stock object modifies its data, or when a matching engine removes/updates a matched order. The space supports a message delivery mechanism that allows clients to register for matching events inside the space - aka Continuous query. Once a matching event occurs in the space, the space triggers an event and notifies the client by calling the client business logic.</p>
+        <p>The Event Session API is the low level API for notifications. It is preferable to use the high level <a href="notify-container-overview.html">Notify Container</a> with simple continuous query scenarios. You can use the Notify Container programmatically using its <code>SimpleNotifyContainerConfigurer</code>.</p>
+        <p>Basic Flow:</p>
+        <ul>
+            <li>
+                <p>The JavaSpaces API includes the standard notify method, that allows an application to receive notifications once a new Entry has been written into the space. To receive notifications, the client application needs to register for notification delivery.<br /></p>
+            </li>
+            <li>
+                <p>The most important part of the notify registration is preparing the right template - all Entries that match the template (conducted by the appropriate operation), trigger an event back to the registered client application. <br /></p>
+            </li>
+            <li>
+                <p>When a new Entry that matches the template arrives at the space, the notify method of the <code>RemoteEventListener</code> in the registration is invoked, supplying the client with a <code>RemoteEvent</code> object.</p>
+            </li>
+        </ul>
+        <p>When using the Session Event API, you should implement 3 basic routines:</p>
+        <ol>
+            <li>
+                <p>Register for notifications.</p>
+            </li>
+            <li>
+                <p>Filter the events before sent to the client (optional).</p>
+            </li>
+            <li>
+                <p>Receive the event.</p>
+            </li>
+        </ol>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sessionbasedmessagingapi11.jpg" alt="sessionbasedmessagingapt11.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <p>The session-based messaging API is designed with the following objectives:</p>
+        <ul>
+            <li>
+                <p>Simple and unified interfaces</p>
+            </li>
+            <li>
+                <p>Single entry point - users access all the event-related services from a single entry point.</p>
+            </li>
+            <li>
+                <p>Extensibility - allows simple extensions for other types of event services, as well as other configuration parameters.</p>
+            </li>
+            <li>
+                <p>Backwards compatibility - coexists with the existing API in a way that allows a deprecation period without duplicating the code.</p>
+            </li>
+            <li>
+                <p>Support for Spring bean creation/configuration.</p>
+            </li>
+            <li>
+                <p>Batch notification support.</p>
+            </li>
+        </ul>
+        <p>Some advanced options supported with the Session messaging API:</p>
+        <ul>
+            <li>
+                <p>No client codebase needs to be set.</p>
+            </li>
+            <li>
+                <p>Support registering large amount of listeners using the same session reducing resource consumption.</p>
+            </li>
+            <li>
+                <p>Provides the ability to get the Entry that triggered the event in the space.</p>
+            </li>
+            <li>
+                <p>Allows registration for specific notification events, for example, write, update, take, and lease expiration events.</p>
+            </li>
+            <li>
+                <p>Option delivering events in FIFO order (default is non-FIFO).</p>
+            </li>
+            <li>
+                <p>Supports server-side notification filtering capabilities.</p>
+            </li>
+        </ul>
+        <p>The session API provides a convenient and efficient mechanism for sending messaging to multiple recipients through the space. Every recipient can register for notifications by creating a <code>DataEventSession</code> object.</p>
+        <div class="tc-admon-tip">
+            <p>When using EventSession in several threads, each thread should create and use its own EventSession.</p>
+        </div>
+        <p>The sender of the message can write an Entry with a limited lease time to the space. The recipients receive the Entry through the remote event. New recipients have the opportunity to get old messages from the space through read. The messages are cleaned automatically by the expiration mechanism.</p>
+        <h1><a name="supported-topologies"></a>Supported Topologies</h1>
+        <p>Event registration is available with all supported space topologies. Each topology allows the client to receive the event. Still, there are behaviors you should be aware of when deploying the application.</p>
+        <h2><a name="single-remote-space"></a>Single Remote Space</h2>
+        <p>When registering for notifications with a remote space, the space performs a remote call when delivering the event to the client application.</p>
+        <h2><a name="embedded-space"></a>Embedded Space</h2>
+        <p>When the client registers for notifications running in the same JVM as the space, no remote calls are involved. This allows fast notification delivery without serialization of the object that started the event.</p>
+        <h2><a name="replicated-space"></a>Replicated Space</h2>
+        <p>When deploying a replicated space, you might want to replicate notify registration from the source space (primary) to the replica (backup space), allowing the replica space to continue and send notifications in case the source space failed.</p>
+        <p>Receiving events occurs as a result of data replication, and not directly from a client-space operation. This is popular in WAN-based applications, where a remote client running in the remote site wants to be notified when an operation occurs in the source space, without getting the actual notification from the remote source space, but from a replica space that is located at its local site.</p>
+        <h2><a name="partitioned-space"></a>Partitioned Space</h2>
+        <p>The most common requirement when deploying partitioned spaces is to register the notification to all partitions, and receive the notifications from all partitions when a matching event is identified. This is the default behavior of the partitioned space.</p>
+        <h2><a name="local-cache"></a>Local Cache</h2>
+        <p>When registering for notifications using a proxy running in the [local cache], notifications are delivered from the master space. Any matching event in the master space is delivered to the registered client. Events in the local cache are not delivered to the registered client, unless you specifically register for events by getting the local cache proxy.</p>
+        <h2><a name="local-view"></a>Local View</h2>
+        <p>When registering for notifications using a proxy running in the [local view], notifications are delivered from the local view. These do not involve remote calls and are based on activities performed in the local view. The events do not affect the remote master space or other clients accessing the master space. The events delivered from the local view are relatively fast, and do not involve serialization. Since notifications received from the local view are based on the local view query filter, the registered client might not receive events that other clients, registered for notifications using the master space, receive.</p>
+        <div class="tc-admon-tip">
+            <p>The Local view uses the replication mechanism to update the local view.</p>
+        </div>
+        <h1><a name="register-for-notifications"></a>Register for Notifications</h1>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="DataEventSession" style="padding:10px">
+                <p>Sessions are created with the <code>space.newDataEventSession</code> method.
+Every session is configured according to an <code>EventSessionConfig</code> object and is bound to a transaction.</p>
+                <p>Example:</p><pre><code class="language-java">EventSessionConfig config = new EventSessionConfig();
+DataEventSession session = space.newDataEventSession(config);
+</code></pre>
+            </div>
+            <div title=" Simple Template Registration" style="padding:10px">
+                <p>Here is an example for creating the <code>DataEventSession</code> and registering for notifications using simple template and canceling the registration:</p><pre><code class="language-java">public class DataSessionEventExample implements RemoteEventListener
+{
+ public void simpleTemplate() throws Exception
+ {
+   EventSessionConfig config = new EventSessionConfig();
+   DataEventSession session = space.newDataEventSession(config);
+   EventRegistration registration = session.addListener(new MyData(),this,Lease.FOREVER,null,null);
+   // wait for notifications
+   session.removeListener(registration );
+   session.close();
+ }
+}
+</code></pre>
+            </div>
+            <div title="SQLQuery Template Registration" style="padding:10px">
+                <p>Here is an example for creating the <code>DataEventSession</code> and registering for notifications using a <code>SQLQuery}</code>template and canceling the registration:</p><pre><code class="language-java">public class DataSessionEventExample implements RemoteEventListener
+{
+  public void sqlTemplate() throws Exception
+  {
+   EventSessionConfig config = new EventSessionConfig();
+   DataEventSession session = space.newDataEventSession(config); 
+   SQLQuery query = new SQLQuery (new MyData() , "m_integer &gt; 22 and m_long &gt; 15");
+   EventRegistration registration = session.addListener(query ,this,Lease.FOREVER,null,null);
+   // wait for notifications
+   session.removeListener(registration );
+   session.close();
+ }
+}
+</code></pre>
+            </div>
+            <div title="Batch Notification Registration" style="padding:10px">
+                <p>When a client expects to receive a large amount of events, it is recommended to deliver the events from the space into the client in batches. Batch notifications minimize the amount of remote calls the space needs to perform in order to deliver the events to the client. The downside when using this approach is the potential of some latency issues when delivering the events to the client.</p><pre><code class="language-java">public class DataSessionEventExample implements RemoteEventListener
+{
+ public void batchNotify() throws Exception
+ {
+  final long TIME = 5000;
+  EventSessionConfig config = new EventSessionConfig();
+  config.setFifo(true);
+
+  // setting batch size to 3 entries
+  config.setBatch(3, TIME);
+  DataEventSession session = space.newDataEventSession(config);
+
+  EventRegistration registration = session.addListener(new MyData(),this,Lease.FOREVER,null,null);
+
+  // wait for notifications
+  session.removeListener(registration);
+  session.close();
+ }
+}
+</code></pre>
+            </div>
+            <div title="EventSession" style="padding:10px">
+                <p>The session-based API defines an entity called <code>EventSession</code> – a stateful registration service that is used to register/un-register listeners to the space.
+The <code>EventSession</code> is created using the <code>space.newDataEventSession</code> method, and configured using the <code>EventSessionConfig</code> entity.</p>
+                <p>The <code>EventSessionConfig</code> can be configured using:</p>
+                <ul>
+                    <li>A specific API<br /></li>
+                    <li>The Properties object</li>
+                    <li>The properties file located in the classpath</li>
+                    <li>Using a Spring application context</li>
+                </ul>
+                <p>The created session is bound to a specific space (or cluster), and can be bounded to a specific transaction. Closing a session is done via the <code>close()</code> method.</p>
+                <p>The <code>EventSession</code> interface includes the following methods:</p><pre><code class="language-java">public interface EventSession
+{
+EventSessionConfig getSessionConfig();
+void close() throws RemoteException, UnknownLeaseException;
+}
+</code></pre>
+            </div>
+            <div title="DataEventSession" style="padding:10px">
+                <p>The <code>DataEventSession</code> is a unified class that encapsulate the capabilities of the:</p>
+                <ul>
+                    <li><code>NotifyDelegator</code>
+                    </li>
+                    <li><code>NotifyDelegatorMultiplextor</code>
+                    </li>
+                </ul>
+                <p>The <code>addListener()</code> method on the <code>DataEventSession</code> receives, among other parameters, the <code>NotifyActionType</code> parameter:</p>
+                <ul>
+                    <li><code>NOTIFY_WRITE</code>
+                    </li>
+                    <li><code>NOTIFY_TAKE</code>
+                        <br />
+                    </li>
+                    <li><code>NOTIFY_UPDATE</code>
+                        <br />
+                    </li>
+                    <li><code>NOTIFY_LEASE_EXPIRATION</code>
+                    </li>
+                    <li><code>NOTIFY_NONE</code>
+                    </li>
+                    <li><code>NOTIFY_UNMATCHED</code>
+                    </li>
+                    <li><code>NOTIFY_MATCHED_UPDATE</code>
+                        <br />
+                    </li>
+                    <li><code>NOTIFY_REMATCHED_UPDATE</code>
+                    </li>
+                </ul>
+                <div class="tc-admon-note">
+                    <p>This type is a type-safe replacement for the old <code>NotifyModifiers</code> constants. Notifications for expired objects sent both from the primary and the backup space (in case you have such).</p>
+                </div>
+                <p>The <code>DataEventSession</code> interface includes the following methods:</p><pre><code class="language-java">public interface DataEventSession extends EventSession
+{
+ EventRegistration addListener(Object template,RemoteEventListener listener,long
+      lease,MarshalledObject handback,
+      INotifyDelegatorFilter filter,NotifyActionType actionTypes)
+         throws RemoteException, TransactionException;
+
+EventRegistration addListener(Entry template,RemoteEventListener listener, long lease,MarshalledObject handback,
+   INotifyDelegatorFilter filter,NotifyActionType actionTypes)
+     throws RemoteException, TransactionException;
+
+void removeListener(EventRegistration registration) throws RemoteException, UnknownLeaseException;
+}
+</code></pre>
+            </div>
+            <div title="EventRegistration" style="padding:10px">
+                <p>The <code>EventRegistration</code> is a utility class used as a return value for event-interest registration methods. Objects in this class encapsulate the information needed by a client in order to identify a notification as a response to a registration request, and to maintain that registration request. It is not mandatory for an event-interest registration method to use this class.</p>
+                <p>A registration of interest in an event that occurs in the scope of a transaction is leased in the same way as other event interest registrations. However, the duration of the registration is the minimum length of the lease and the duration of the transaction. In other words, when the transaction ends (either because of a commit or an abort) the interest registration also ends. This is true even if the lease for the event registration has not expired, and no call has been made to cancel the lease.</p><pre><code class="language-java">net.jini.core.event.EventRegistration implements Serializable
+{
+//Returns the identifier that will be used in all RemoteEvents generated for
+//this interest registration.
+long getID()
+
+//Returns the Lease object for this registration.
+lease getLease()
+
+//Returns the value of the sequence number on the event kind that was current
+// when the registration was granted, allowing comparison with the sequence number
+// in any subsequent notifications.
+long getSequenceNumber()
+
+//Returns the source that will be used in all RemoteEvents generated for this interest registration.
+Object getSource()
+}
+</code></pre>
+            </div>
+            <div title="EventSessionConfig" style="padding:10px">
+                <p>This class is used to configure an <code>EventSession</code>. It contains a set of configuration parameters that influence the way event listeners are registered with the space, and how event notifications are processed.</p>
+                <p>There are three different ways to create an <code>EventSessionConfig</code> object:</p>
+                <ul>
+                    <li>Use the empty constructor, and set the different parameters using API.<br /></li>
+                    <li>Pass a <code>Properties</code> object, that contains a list of parameters according the a list specified below, to the constructor.<br /></li>
+                    <li>Use a pre-configured, named set of parameters. The name is used to load a properties file that resides in the <code>config</code> directory</li>
+                </ul>
+                <p>The names of the parameters that can be used in the <code>Properties</code> object or file:</p>
+                <ul>
+                    <li><code>comType</code> – specifies the communication protocol: <code>UNICAST</code>/<code>MULTIPLEX</code>.</li>
+                    <li><code>batchSize</code> – buffered notifications – the size of the batch used when sending notifications to the client. Must be used with <code>batchTime</code>.</li>
+                    <li><code>batchTime</code> – the maximum elapsed time between two batch notifications. Must be used with <code>batchSize</code>.<br /></li>
+                    <li><code>replicateNotifyTemplate</code> – whether to replicate the registration to other spaces in the cluster.<br /></li>
+                    <li><code>triggerNotifyTemplate</code> – whether to send notifications from all spaces in the cluster.</li>
+                    <li><code>leaseListener</code> – <code>LeaseListener</code> callback to be called in case the renew failed.</li>
+                    <li><code>fifo</code> – whether to return notification in fifo order or as soon as possible.<br /></li>
+                    <li><code>autoRenew</code> – whether to automatically renew the lease of the registered listeners.</li>
+                    <li><code>renewExpiration</code> – specifies the time of expiration of the registration. Used when <code>autoRenew=true</code>.</li>
+                    <li><code>renewDuration</code> – specifies the time for each renew. Used when <code>autoRenew=true</code>.<br /></li>
+                    <li><code>renewRTT</code> – specifies the time that takes the Lease to renew. Used when <code>autoRenew=true</code>.</li>
+                </ul>
+            </div>
+        </div>
+        <h1><a name="receive-the-event"></a>Receive the Event</h1>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="RemoteEventListener" style="padding:10px">
+                <p>The <code>RemoteEventListener</code> interface should to be implemented to receive the notification from the space. The class implementing this interface does not need to be the object that originally registered interest in the occurrence of an event. To allow the notification of an event's occurrence to be sent to an entity other than the one that made the interest registration, the registration call needs to accept a destination parameter, which indicates to which object the notification should be sent. This parameter must be an object which supports the <code>RemoteEventListener</code> interface.</p><pre><code class="language-java">public interface net.jini.core.event.RemoteEventListener extends Remote, EventListener
+{
+ //Notify the listener about an event.
+ public void notify(RemoteEvent theEvent) throws UnknownEventException,RemoteException
+}
+</code></pre>
+                <p>Below, the <code>DataSessionEventExample</code> implements the <code>RemoteEventListener</code>. The <code>EntryArrivedRemoteEvent</code> is used to retrieve the object that starts the event:</p><pre><code class="language-java">public class DataSessionEventExample implements RemoteEventListener
+{
+public void notify(RemoteEvent theEvent) throws UnknownEventException, RemoteException
+{
+  try {
+   EntryArrivedRemoteEvent arrivedRemoteEvent =(EntryArrivedRemoteEvent) theEvent;
+   MyData msg = (MyData) arrivedRemoteEvent.getObject();
+   // ...
+  } catch (Exception ex) {
+    ex.printStackTrace();
+  }
+ }
+}
+</code></pre>
+            </div>
+            <div title="EntryArrivedRemoteEvent" style="padding:10px">
+                <p>The <code>EntryArrivedRemoteEvent</code> allows you to retrieve the object that triggered the event, as well as retrieving additional meta data about the event.</p>
+                <p>The <code>EntryArrivedRemoteEvent</code> extends the <code>RemoteEvent</code>, and implements the <code>Externalizable</code> and <code>Cloneable</code> interfaces.</p>
+                <p>The <code>EntryArrivedRemoteEvent</code> includes the following methods:</p><pre><code class="language-java"> // Returns a shallow copy of this EntryArrivedRemoteEvent instance.
+ Object clone();
+
+ // Returns the ExternalEntry that triggered the specified remote event.
+ ExternalEntry getExternalEntry();
+
+ String getKey();
+
+ // Returns a notify type of this event.
+ int getNotifyType();
+
+ // Returns the entry by specification of user.
+ Object getObject();
+
+ MarshalledObject getRegistrationObject();
+
+ Object getSource();
+
+ //Returns the unique uid of the space the event originated from.
+ Uuid getSpaceUuid();
+
+ //returns templateID
+ String getTemplateUID();
+
+ // specific is the event comes from replication or not.
+ boolean isFromReplication();
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="notify-recovery"></a>Notify-Recovery</h1>
+        <p>When a partitioned space is started each partition getting list of existing notify registrations from the other partitions. This is useful when the partition fails and restarted. This avoids the client side to re-issue a new notify registrations against the restarted partition. If you are not using notifications or running a partitioned space with backups you may disable this mechanism using the cluster-config.notify-recovery property (boolean property). This will speed up the space deployment time since when a partition looking for the other partitions and these have not been started yet, it might take some time for the entire clustered space to be fully available. By default this property is enabled (true).</p>
+        <h1><a name="cancelling-registration-and-closing-the-session"></a>Canceling Registration and Closing the Session</h1>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Cancelling Notify Registration" style="padding:10px">
+                <p>To cancel the notify registration, call the following:</p><pre><code class="language-java">  DataEventSession removeListener(EventRegistration registration)
+</code></pre>
+                <p>This frees the relevant resources allocated to manage the notify registration, such as cancelling the automatic lease renewal, un exporting object client stubs, and releasing the client FIFO thread.</p>
+            </div>
+            <div title="Closing the Session" style="padding:10px">
+                <p>To close the session, call the following:</p><pre><code class="language-java"> DataEventSession.close();
+</code></pre>
+                <p>This cancels all the registrations done with the <code>DataEventSession</code>. You need to start a new session in order to register for new events.</p>
+            </div>
+        </div>
+        <h1><a name="filtering-events"></a>Filtering Events</h1>
+        <p>The session messaging API allows for space-side notify filtering. To control the events delivered to the client, implement the <code>INotifyDelegatorFilter</code> interface, pass the object implementing the <code>INotifyDelegatorFilter</code>, and return a <code>false</code> value from the <code>INotifyDelegatorFilter.process</code> for events you do not want to be sent to the registered client.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="INotifyDelegatorFilter" style="padding:10px">
+                <p>The <code>INotifyDelegatorFilter</code> allows you to execute business logic at the space side before the event is delivered to the client. The <code>INotifyDelegatorFilter</code> might prevent a specific event from being delivered to the client registered for the matching event, by returning <code>false</code> from the process method.</p>
+                <p>The <code>INotifyDelegatorFilter</code> interface includes the following methods:</p><pre><code class="language-java">public interface INotifyDelegatorFilter extends Serializable
+{
+ // called when the filter created
+ public void init( IJSpace space, Object notifyTemplate );
+
+ // called before the event delivered to the client. Returning false will not
+ // deliver the event to the client
+ public boolean process( EntryArrivedRemoteEvent theEvent);
+
+ // called when the registration cancelled
+ public void close();
+}
+</code></pre>
+            </div>
+            <div title="INotifyDelegatorFilter Implementation Example" style="padding:10px">
+                <p>Below is an example for the <code>INotifyDelegatorFilter</code> implementation, where the <code>process()</code> method allows only messages with the value <code>aaa</code> to be delivered to the client:</p><pre><code class="language-java">package com.j_spaces.examples.sessionevent;
+
+import net.jini.core.entry.Entry;
+import net.jini.core.entry.UnusableEntryException;
+import com.j_spaces.core.IJSpace;
+import com.j_spaces.core.client.EntryArrivedRemoteEvent;
+import com.j_spaces.core.client.INotifyDelegatorFilter;
+
+public class MyNotifyFilter implements INotifyDelegatorFilter
+{
+ public void init(IJSpace space, Object entry)
+ {
+  System.out.println(" -&gt;&gt; Init called - Registration Template:"+entry);
+ }
+
+ // only messages with m_string = aaa will be delivered to the registered client
+ public boolean process(EntryArrivedRemoteEvent theEvent)
+ {
+  EntryArrivedRemoteEvent arrivedRemoteEvent = (EntryArrivedRemoteEvent) theEvent;
+  MyData msg;
+  try {
+    msg = (MyData) arrivedRemoteEvent.getObject();
+    int notifyType = arrivedRemoteEvent.getNotifyType();
+    String msgStr = " -&gt;&gt; process called - Type:" + DataSessionEventExample.getNotifyDesc(notifyType)+" - Data:" + msg ;
+    System.out.println(msgStr);
+    return (msg.m_string.equals("aaa"));
+   } catch (UnusableEntryException e) {
+    e.printStackTrace();
+  }
+  return false;
+ }
+
+ public void close()
+ {
+   System.out.println(" -&gt;&gt; closed called");
+ }
+}
+</code></pre>
+                <p>The notify registration:</p><pre><code class="language-java"> EventSessionConfig config = new EventSessionConfig();
+ DataEventSession session = space.newDataEventSession(config);
+ MyNotifyFilter filter = new MyNotifyFilter ();
+ EventRegistration registration = session.addListener(new MyData(),this,Lease.FOREVER,null,filter);
+</code></pre>
+                <p>When writing the following objects, only <code>msg1</code> is delivered to the client who registered for notifications:</p><pre><code class="language-java"> MyData msg1 = new MyData("aaa", new Long (100 ) , new Time(10,5,20) ,
+ new Date (107, 10, 40),new Integer (60 ) ,new Double (500.2));
+ MyData msg2 = new MyData("bbb", new Long (100 ) , new Time(10,5,20) ,
+ new Date (107, 10, 40),new Integer (60 ) ,new Double (500.2));
+
+ space.write(msg1, null, Lease.FOREVER);
+ space.write(msg2, null, Lease.FOREVER);
+</code></pre>
+                <div class="tc-admon-note">
+                    <p>The <code>INotifyDelegatorFilter</code> implementation class should be part of the space classpath.</p>
+                </div>
+            </div>
+        </div>
+        <h1><a name="advanced-options"></a>Advanced Options</h1>
+        <h2><a name="registering-large-number-of-listeners"></a>Registering Large Number of Listeners</h2>
+        <p>When having a system that requires  large number of listeners (above few hundreds) the <code>Multiplex</code> communication mode should be used. With this mode the amount of resources (threads) used to invoke the listener are shared between all the session listeners. This approach reduces the memory footprint of the client considerably. This option avoiding the need to construct multiple [notify containers|notify container] that may consume large amount of resources when having many of these created. See below how the <code>MULTIPLEX</code> communication mode should be used:</p><pre><code class="language-java"> EventSessionConfig config = new EventSessionConfig();
+ config.setComType(ComType.MULTIPLEX);
+ DataEventSession session = space.newDataEventSession(config);
+ 
+ for (int i=0;i&lt;100;i++)
+ {
+  Listener lisenter = new Listener("Listener " + i);
+  SQLQuery&lt;MyData&gt; query = new SQLQuery&lt;MyData&gt;(MyData.class , "key1='A"+i+"'");
+  EventRegistration registration = session.addListener(query,lisenter,Lease.FOREVER,null,null);
+ }
+</code></pre>
+        <h2><a name="auto-re-register-notifications-after-space-failure"></a>Auto Re-Register Notifications After Space Failure</h2>
+        <p>Event Session under the hood uses Notification Registration. When a remote client with an independent life cycle creates a Event Session and is terminated, the registration remains in the space. This may create an overhead for the space once there are other clients registered with many templates.</p>
+        <p>To avoid this overhead, an optimization is required where notification registration is created with a limited lease and the client periodically renews the lease to keep it active. If client is shutdown or does not need this events anymore, the lease is not renewed thereby removing the registration.</p>
+        <p>Lease Renewal Manager provides a systematic lease renewal and management framework and is used by Event Session for managing the notification registration leases. Leases are managed in an automatic manner without any application intervention. More information regarding Lease Renewal Manager can be found at the [Leases - Automatic Expiration] section.</p>
+        <p>To allow a remote client using an Event Session to continue and receive notifications in case the space cluster was completely shutdown and restarted, you should use the <code>LeaseListener</code> and re-create the Event Session in case its lease renewal failed (i.e. <code>LeaseListener.notify()</code> been called). The Event Session <span class="tc-italic">must enable</span> the <code>autoRenew</code> property to instruct <MadCap:variable name="General.ProductNameXAP" /> to construct a <code>Lease Renewal Manager</code> and have the associated <code>LeaseListener</code> implementation to be invoked.</p>
+        <p>With this approach we assume the space will be available is some point to acknowledge the registration and continue and send notifications for the matching events back to the client.</p>
+        <p>See below <code>com.gigaspaces.events.EventSessionConfig</code> methods you should use passing the <code>LeaseListener</code> implementation:</p><pre><code class="language-java">setAutoRenew(boolean renew, net.jini.lease.LeaseListener listener)
+setAutoRenew(boolean renew, net.jini.lease.LeaseListener listener, long renewExpiration, long renewDuration, long renewRTT)
+</code></pre>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default</th>
+                    <th align="left">Unit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">renew</td>
+                    <td align="left">If set to <code>true</code>, automatically performs lease renewal and call the <code>LeaseListener.notify()</code> if fails to renew, where the lease's desired expiration time has not yet been reached.</td>
+                    <td align="left">false</td>
+                    <td align="left">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">renewExpiration</td>
+                    <td align="left">The period of time your notifications stopped from being renewed. Applies Only when <code>renew</code> is <code>true</code></td>
+                    <td align="left">Lease.FOREVER</td>
+                    <td align="left">ms</td>
+                </tr>
+                <tr>
+                    <td align="left">renewDuration</td>
+                    <td align="left">The period of time that passes between client failure, and the time your notifications stop from being sent. Should be larger than renewRTT. Applies Only when <code>renew</code> is <code>true</code>.</td>
+                    <td align="left">20000</td>
+                    <td align="left">ms</td>
+                </tr>
+                <tr>
+                    <td align="left">renewRTT</td>
+                    <td align="left">RoundTripTime - The time that takes to reach the server and return. Applies Only when <code>renew</code> is <code>true</code>.</td>
+                    <td align="left">10000</td>
+                    <td align="left">ms</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-tip">
+            <p>Prior calling the <code>LeaseListener.notify()</code> , the <code>LeaseRenewalManager</code> used by the Notify container, will remove the affected lease from its managed set of leases.</p>
+        </div>
+        <p>LeaseListener Implementation:</p><pre><code class="language-java">public class MyLeaseListener implements LeaseListener{
+
+ public MyLeaseListener (DataEventSession session)
+ {
+   this.session=session;
+ }
+ DataEventSession session;
+
+ //Called by the LeaseRenewalManager when it cannot renew a lease that it is managing,
+ //and the lease's desired expiration time has not yet been reached.
+ public void notify(LeaseRenewalEvent event) {
+   System.out.println("Can't renew - try to re-register");
+   session.addListener(new MyData(),this,Lease.FOREVER,null,null);
+   System.out.println("Notfy ReRegistration Done!");
+ }
+}
+
+</code></pre>
+        <h2><a name="slow-consumer"></a>Slow Consumer</h2>
+        <p>The <a href="../admin/slow-consumer.html">Slow Consumer</a> mechanism allows <MadCap:variable name="General.ProductNameXAP" /> to identify clients that cannot receive events and cancel their notify registration. This avoids system instability and out of memory problems.</p>
+        <h2><a name="transient-notify-registration"></a>Transient Notify Registration</h2>
+        <p>Notify registrations are consider to be Transient.
+Transient registrations are not persistent, and aren't recovered once the space is restarted.</p>
+        <h2><a name="stale-notify-registration"></a>Stale Notify Registration</h2>
+        <p>When the space detects a stale notify registration (clients that registered for a notify registration but do not respond to the triggered event), the notify registration is cancelled.
+If you need to terminate the notify registration before the lease expires, it is recommended to use the <code>DataEventSession removeListener(EventRegistration registration)</code> method. This cancels the registration lease.</p>
+        <h2><a name="notifications-with-transactions"></a>Notifications with Transactions</h2>
+        <p>When performing operations using transactions while performing notify registration using a <code>null</code> transaction object, matching events are delivered to clients only when the transaction is committed. Matching events for notify registration using a transaction object are triggered immediately when the operation is called using the same transaction object that is used as part of the notify registration.</p>
+        <h2><a name="long-notification-lease-time"></a>Long Notification Lease Time</h2>
+        <p>Use <code>Lease.FOREVER</code> as the notify registration lease time carefully. Registration for notifications is cancelled automatically when the notification object invalidates – i.e. is cleared by the garbage collector. With abnormal termination of the application, the garbage collector cannot finalize the registration object. This might lead to delays when delivering notifications to live clients, because the space accumulates notification registrations without the ability to clear these once they are invalidated.</p>
+        <p>The space includes a mechanism that detects stale notify registrations. Once a notification can't be delivered to a client (network failure or a dead client), the space retries to send the notification several times (according the <code>space-config.notifier-retries</code> parameter value) and once it fails, the notify registration is removed. If there are many clients terminating their operation in an abnormal manner while having an active event registration, the space might need some time to detect all stale clients and their notify registrations, delaying notification delivery to existing live clients.</p>
+        <p>The root cause of this behavior is the thread pool within the space engine that is responsible for delivering events to clients. When all pool threads are fully consumed, notification delivery time suffers, due to the time it takes to detect and remove all stale registrations.</p>
+        <div class="tc-admon-note">
+            <p>To configure the notification thread pool size you should use the following Space properties:</p>
+            <ul>
+                <li>
+                    <p><code>space-config.engine.notify_min_threads</code>
+                    </p>
+                </li>
+                <li>
+                    <p><code>space-config.engine.notify_max_threads</code>
+                    </p>
+                </li>
+            </ul>
+            <p>See the <a href="notify-container-overview.html#scaling-notification-delivery">Scaling Notification Delivery</a> for details.</p>
+        </div>
+        <p>To reduce the amount of stale registrations, register notification with a reasonable lease time (30 seconds - 2 minutes can be a good interval), and renew these using the <a href="[%=Links.ApiJavaDoc%]/index.html?net/jini/lease/LeaseRenewalManager.html">LeaseRenewalManager</a> every 30 seconds - 2 minutes. This ensures that once the client exists in an abnormal manner, the registration automatically expires and is removed, reducing the chance to fully consume the notification thread pool and delay notification delivery to live clients.</p>
+        <h2><a name="improving-notification-speed"></a>Improving Notification Speed</h2>
+        <p>When the space is running in a different JVM than the client that is registered for the notifications, remote calls between the space and the notified client are involved. This means that the object that triggered the notification sent as part of the <code>RemoteEvent</code> is serialized at the space side, and de-serialized at the client side when delivered to the client. To minimize the impact of the serialization process, it is recommended to implement the <code>Externalizable</code> interface – this optimizes the footprint of the delivered packet across the network.</p>
+        <h2><a name="fifo-based-notifications"></a>FIFO-Based Notifications</h2>
+        <p>When registering for notifications in FIFO mode, a special thread at the client side is responsible for delivering the events to the listener in FIFO order. By default, the space uses a dedicated thread pool to trigger the events at the client side, where the client itself is using another thread pool to call the listener notify method implementation.</p>
+        <p>The FIFO thread at the client side uses the event sequence number generated in the space to order the incoming events handled by the different threads, and calls the listener in the right order. Since the ordering requires some amount of synchronization, FIFO-based notifications are slower than non-FIFO notifications.</p>
+        <div class="tc-admon-note">
+            <p>For the custom client-side FIFO-based notifications example, send a request to <span class="tc-textblue">support@gigaspaces.com</span>.</p>
+        </div>
+        <h2><a name="notification-reliability"></a>Notification Reliability</h2>
+        <p>Notifications are asynchronous by nature. The client that triggered the notification is unaware of the notification delivery, and does not wait for an acknowledgement from the client receiving the notification for successful arrival of the event before continuing with its operation – i.e., when process A registers for notification delivery, and B writes an Entry to the space, process B does not wait for process A to receive the notification before taking control after the write operation. Process B might perform additional space operations before process A receives the notification.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/sessionbasedmessagingapi22.jpg" alt="sessionbasedmessagingapi22.jpg" class="tc-picture50" />
+            </p>
+        </div>
+        <p>When a space running in a fault tolerant configuration (<code>primary-backup</code> or <code>partitioned</code> cluster schemas) and the primary space fails, the backup space takes over and sends the notifications to the registered clients. In such a configuration, the primary and backup spaces do not establish a handshake mechanism when a notification is sent to the client. The backup space, that is running in stand-by mode, is unaware of the notifications that have been sent by the primary space, and the acknowledgement that the recipients clients provided when receiving the events is not sent.</p>
+        <p>To allow the backup space to send notifications when the primary fails and move to active mode, the backup space should have the notification registration information (notify templates) replicated/recovered from the primary space. The cluster configuration includes the following properties allowing notification registrations to survive space failures:</p>
+        <ul>
+            <li><code>replicate-notify-templates</code> – boolean value. Set to <code>true</code> if you want to make notification templates available in the target space.</li>
+            <li><code>trigger-notify-templates</code> – boolean value. Set to <code>true</code> if you want to trigger matching notification templates when Entries are written to the space, because of replication (and thus causing remote events to be generated and sent to the notify template listeners). If set to <code>true</code>, triggering occurs; if set to <code>false</code>, triggering does not occur.</li>
+        </ul>
+        <h3><a name="replicate-notify-template-and-trigger-notify-template"></a>Replicate Notify Template and Trigger Notify Template</h3>
+        <p>The replication settings allows replicating notification registration, and the ability to trigger events that are a result of replication (and not a direct client operation) from a source space.</p>
+        <p>Here is the system behavior when using these options:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Replicate Notify Template Setting</th>
+                    <th align="left">Trigger Notify Template Setting</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">true</td>
+                    <td align="left">false</td>
+                    <td align="left">The client gets notifications from the master space while it is active after registration.<br />If failover has been configured, it gets notifications from the replica space when the master space fails.</td>
+                </tr>
+                <tr>
+                    <td align="left">false</td>
+                    <td align="left">true</td>
+                    <td align="left">The client gets notifications only from the spaces it registered to for notifications.<br />A notification occurs when data has been delivered to the space, either by a client application, or from the replication.</td>
+                </tr>
+                <tr>
+                    <td align="left">true</td>
+                    <td align="left">true</td>
+                    <td align="left">The client gets notifications from all clustered spaces after registration.<br />The client gets multiple notifications for every space event.</td>
+                </tr>
+                <tr>
+                    <td align="left">false</td>
+                    <td align="left">false</td>
+                    <td align="left">The client gets notifications only from the spaces to which it registered.<br />The client does not get notifications from spaces that received their data by replication.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Replicated notify templates and triggered notify templates are orthogonal. However, if you enable them both, you should be aware that for each Entry that matches the notify template and is replicated to another space, you get an event.</p>
+        <p>This might result in more events than you initially intended. You can use the source of the event to check which space triggered it.</p>
+        <h2><a name="durable-notifications-notification-delivery-during-failover"></a>Durable Notifications - Notification Delivery During Failover</h2>
+        <p>Due to the asynchronous nature of notification delivery, when a primary space fails right after replicating an operation to the backup space and before sending the notification to the registered client, the backup space might not be able to send the missing notifications, since it is in the process of moving to active mode. This means that during this very short period of time, the registered client might not receive events that occurred in the primary space and were replicated to the backup space.</p>
+        <p>To ensure notification delivery by the backup space during the failover period, durable notifications mode needs to be enabled:</p><pre><code class="language-java">  EventSessionConfig config = new EventSessionConfig();
+  config.setDurableNotifications(true);
+  DataEventSession session = space.newDataEventSession(config);
+</code></pre>
+        <p>Durable notifications are based on the replication mechanism and as such have some different semantics regarding other <code>EventSessionConfig</code> parameters.
+For further details see <a href="durable-notifications.html">Durable Notifications</a>.</p>
+        <h2><a name="the-unmatched-notifyactiontype"></a>The UNMATCHED NotifyActionType</h2>
+        <p>The <code>UNMATCHED</code> <code>NotifyActionType</code> should be used when you would like to receive notifications for objects which got their value been updated where the object that was initially matches the template no longer matches the template.</p>
+        <p>Example: You would like to maintain within the client side a list for all the objects which got their status as <code>true</code>. You register for notifications using a template which had the status field as <code>true</code>.</p>
+        <p>An object with status as <code>true</code> is written into the space. This triggers a notification about the existence of this object. In some point the object is read from the space, the status field value changed from <code>true</code> to <code>false</code> and the object is written back into the space with its updated data.</p>
+        <p>Registering a notification using a template which got <code>status=true</code> with the <code>NOTIFY_UPDATE</code> <code>NotifyActionType</code> without using the <code>UNMATCHED NotifyActionType</code> as well, <span class="tc-italic">will not trigger</span> a notification when the <code>status</code> field value changed from <code>true</code> to <code>false</code>.</p>
+        <p>You have to include the <code>UNMATCHED NotifyActionType</code> to receive a notification when the object changing <code>status=true</code> to <code>status=false</code>.</p>
+        <h2><a name="the-matched-update-notifyactiontype"></a>The MATCHED_UPDATE NotifyActionType</h2>
+        <p>The <code>MATCHED_UPDATE</code> <code>NotifyActionType</code> should be used to receive notifications for entries that match a given notify template after being updated and did not match before that update.</p>
+        <p>Example:</p><pre><code class="language-java">  template = new Pojo(null, true);
+  eventSession.addListener(template, listener, Lease.FOREVER, NotifyActionType.NOTIFY_MATCHED_UPDATE)
+  myPojo = new Pojo("1", false); // myPojo, before update, doesn't match the template.
+  gigaSpace.write(myPojo);
+  myPojo.setProcessed(true);
+  gigaSpace.write(myPojo); // myPojo, after being updated, matches the template.
+</code></pre>
+        <p>The last operation (updating myPojo's "processed' property from false to true) will trigger the NotifyActionType.NOTIFY_MATCHED_UPDATE notification.</p>
+        <p>NOTIFY_MATCHED_UPDATE and NOTIFY_UPDATE cannot be used together for the same listener.</p>
+        <h2><a name="the-rematched-update-notifyactiontype"></a>The REMATCHED_UPDATE NotifyActionType</h2>
+        <p>The <code>REMATCHED_UPDATE</code> <code>NotifyActionType</code> should be used to receive notifications for entries that match a given notify template after being updated and that were also a match before that update.</p>
+        <p>Example:</p><pre><code class="language-java">  template = new Pojo(null, false);
+  eventSession.addListener(template, listener, Lease.FOREVER, NotifyActionType.NOTIFY_MATCHED_UPDATE)
+  myPojo = new Pojo("1", false); // myPojo, before update, matches the template.
+  gigaSpace.write(myPojo);
+  myPojo.setProcessed(true);
+  gigaSpace.write(myPojo); // myPojo, after being updated, still matches the template.
+</code></pre>
+        <p>The last operation (updating myPojo's "processed' property from false to true) will trigger the NotifyActionType.NOTIFY_REMATCHED_UPDATE notification.</p>
+        <p>The first write of myPojo will trigger the NotifyActionType.NOTIFY_WRITE notification if there was also a registration with NOTIFY_WRITE type and the same template.</p>
+        <div class="tc-admon-note">
+            <p>NOTIFY_REMATCHED_UPDATE and NOTIFY_UPDATE cannot be used together for the same listener.</p>
+        </div>
+    </body>
+</html>

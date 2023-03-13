@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Viewing Alerts</h1>
+        <p>You can view alerts in the Web Management Console Alerts panel, displayed by <MadCap:variable name="General.ProductNameXAP" /> Alert groups (alerts are grouped by correlation key), and also generate an alert dump for specific grid components.</p>
+        <div class="tc-admon-note">
+            <p>The Web Management Console server utilizes the <code><MadCap:variable name="General.HomePath" />/config/alerts/alerts.xml</code> configuration file. These configurations apply to any client connecting to the Web Management Console at the specified host and port.</p>
+        </div>
+        <p>Alerts are grouped together by type, such as CPU, Memory, etc. When an alert is raised, it is aggregated with other consecutive alerts of the same type. Previous alerts from the aggregation get "pushed" down (circled in red). A resolved alert "closes" the aggregation (circled in green). A new alert of the same type will trigger a new aggregation.</p>
+        <p>Sort the "status' column in ascending order to show the latest unresolved alerts.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/alerts.jpg" alt="hosts1.jpg" class="tc-picture100" />
+            </p>
+        </div>
+        <h1><a name="generating-an-alert-dump"></a>Generating an Alert Dump</h1>
+        <p>A logs dump can be retrieved for the alert's related grid components. This can be done by opening the Alert Actions menu and clicking "Generate dump", after which, a window will appear providing configuration of the dump:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/generate_dump.png" alt="generate_dump.png" class="tc-picture50" />
+            </p>
+        </div>
+        <p>Select the desired components for the dump and click "Generate", and a zip file will be downloaded containing log files for each of the selected components.</p>
+    </body>
+</html>

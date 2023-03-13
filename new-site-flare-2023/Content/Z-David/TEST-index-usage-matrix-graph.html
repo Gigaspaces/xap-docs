@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Index Usage</h1>
+        <p>In order to facilitate the planning and evaluation of your data architecture, <MadCap:variable name="General.ProductNameIE" /> provides real-time measurements of the frequency of use and usage patterns of data indexes.</p>
+        <h1>Index Efficiency </h1>
+        <p><MadCap:variable name="General.ProductNameIE" /> allows the definition of indexes of various types (for example, compound or nested) for each object type within a space. These indexes are stored in-memory to enable fast access to data stored in memory or on disk.</p>
+        <p>One of the key challenges of administrators and developers is to find the best balance between the benefits of having many indexes, and the memory footprint required by the indexes. As a guide, an efficient index means an index that is heavily used by applications or queries, and consumes a minimal amount of storage space. Indexes that are used infrequently can be analyzed for their efficiency.</p>
+        <p>In order to analyze index efficiency, the user can review two types of information within the Ops Manager:</p>
+        <ul>
+            <li>Index size - the memory footprint of the index</li>
+            <li>The relative percentage of index hits out of the total number of read accesses of the object type.. </li>
+        </ul>
+        <p>This information is stored as part of InsightEdge metrics, and can be reviewed using Grafana or Ops Manager.</p>
+        <h1>Viewing Index Usage Statistics</h1>
+        <p><MadCap:variable name="General.ProductNameIE" /> enables users to capture and review index usage information in two charts:</p>
+        <ul>
+            <li>The Index Hits Trend Chart shows the total number of hits in a given time period. It is possible to monitor the last 24 or 48 hours in order to identify indexes with no or minimal usage.</li>
+            <li>The Total Number of Hits per Index Chart shows a summary or total view of all index hits from the beginning of the deployment.</li>
+        </ul>
+        <p>The combination of both charts enables users to review the overall usage of an index and the actual usage from the last few days. This enables analysis of indexes that where never in use, or perhaps used during specific time frames. An example is an index that was in use a month ago, but due to changes in application code, was not used recently.</p>
+        <div class="tc-admon-note">
+            <p>In addition to the five-minute index metrics available in Ops Manager, Grafana provides various dashboards that display information for different defined time periods.</p>
+        </div>
+        <h1>Access Index Usage Statistics through Grafana</h1>
+        <p>
+            See <MadCap:xref href="../admin/web-management-monitoring.html">Using Grafana for Monitoring and Analytics</MadCap:xref> for details on how to access graphs.
+</p>
+        <h1>Index Efficiency Charts on the Grafana Space Dashboard     </h1>
+        <p>The Space dashboard contains multiple charts or graphs with information such as the number of entries etc. In addition to these charts, two new charts are available – Index Hits Trend and Total Number of Hits per Index.</p>
+        <h2>The Index Hits Trend Chart</h2>
+        <p>The Index Hits Trend chart shows the total number of hits per index by defined time period. It is possible to monitor the last 24 or 48 hours in order to identify indexes with minimal or no usage:</p>
+        <p>
+            <img src="../Resources/Static/images/index-usage-matrix-left-exploded.jpg" />
+        </p>
+        <h2>The Total Number of Hits per Index Chart</h2>
+        <p>The Total Number of Hits per Index chart shows a summary or total view of all index hits from the beginning of deployment:</p>
+        <p>
+            <img src="../Resources/Static/images/index-usage-matrix-right-exploded.jpg" />
+        </p>
+        <h2>Using the Information in These Charts</h2>
+        <p>The combination of both charts enables users to review the overall usage of an index and the actual usage from the last few days. This enables analyses of indexes that are rarely or never used, or that are used in specific time frames – for example, an index that was in use a month ago but due to changes in application code, was not used recently.</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

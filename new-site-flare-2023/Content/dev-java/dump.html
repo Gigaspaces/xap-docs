@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Dump</h1>
+        <p>The dump feature of the Admin API allows to easily generate dump information from the <MadCap:variable name="General.ProductNameXAP" /> runtime environment. Here is an example:</p><pre><code class="language-java">Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+
+// wait a bit for components to be discovered (or use waitFor) ...
+
+DumpResult dumpResult = admin.dump("reason comes here", null,"summary", "thread", "log", "processingUnits");
+dumpResult.download(new File("target/dump.zip"), null);
+</code></pre>
+        <p>The above example will go over all the currently discovered runtime elements in <MadCap:variable name="General.ProductNameXAP" /> (GSA, GSM, GSC, LUS) and generate a dump of them (stored locally to each runtime component). Then, the <code>DumpResult</code> can be used to download all the dump information, from all the different runtime components, into a file.</p>
+        <p>The above example generates dump that will include a simple "summary" information (JVM information and stats, for example), a thread dump, all the logs associated with the given runtime component, and all the processing unit instances running (applied to a GSC).</p>
+        <h1><a name="dump-provider"></a>Dump Provider</h1>
+        <p>Most of the elements within the Admin API implement the <code>DumpProvider</code> interface, allowing to generate dump information. This include discrete elements such as <code>GridServiceContainer</code>, or <code>GridServiceManager</code>, but also includes compound elements such as <code>GridServiceManagers</code> and even <code>Admin</code>. This means that quite easily, a dump for a one or more runtime components already grouped by the Admin API can be easily performed. Here are some examples:</p><pre><code class="language-java">Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+
+// wait a bit for components to be discovered (or use waitFor) ...
+
+// dump all the GSMs
+DumpResult dumpResult = admin.getGridServiceManagers().dump("reason comes here", null,"summary", "thread", "log", "processingUnits");
+dumpResult.download(new File("target/gsms.zip"), null);
+
+// dump all the GSCs
+dumpResult = admin.getGridServiceContainers().dump("reason comes here", null,"summary", "thread", "log", "processingUnits");
+dumpResult.download(new File("target/gscs.zip"), null);
+
+dumpResult = admin.getZones().getByName("zoneA").dump("reason comes here", null,"summary", "thread", "log", "processingUnits");
+dumpResult.download(new File("target/zoneA.zip"), null);
+</code></pre>
+        <p>If the natural grouping provided by the admin API is not enough, then the <code>CompoundDumpResult</code> can be used in order to accumulate dump results. Here is an example:</p><pre><code class="language-java">CompoundDumpResult dumpResult = new CompoundDumpResult();
+dumpResult.add(gridServiceContainer1.dump(...));
+dumpResult.add(gridServiceManager2.dump(...));
+dumpResult.add(gridServiceAgent3.dump(...));
+
+dumpResult.download(new File("target/compound.zip", null);
+</code></pre>
+        <h1><a name="dump-processors"></a>Dump Processors</h1>
+        <p>The dump process occurs in stages within the runtime component. Each stage is called a processor and the following is a list of all the different processors:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>summary</td>
+                    <td>General summary information of the process.</td>
+                </tr>
+                <tr>
+                    <td>network</td>
+                    <td>Information on the network layer of the process and the OS network stats.</td>
+                </tr>
+                <tr>
+                    <td>thread</td>
+                    <td>Thread dump of the process.</td>
+                </tr>
+                <tr>
+                    <td>heap</td>
+                    <td>Heap dump of the process. <span class="tc-bold">Note, this is a heavy operation and can produce very large dump files</span>.</td>
+                </tr>
+                <tr>
+                    <td>log</td>
+                    <td>Adds all the log files of the process to the dump file.</td>
+                </tr>
+                <tr>
+                    <td>processingUnits</td>
+                    <td>Dump of all the processing units (applicable only for GSCs) information.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The <span class="tc-bold">log</span> process is the only processor that takes into account the context (Map&lt;String, Object&gt;) that can be passed as part of the dump command. It tries to find under the <code>logEntryMatcher</code> key a <code>LogEntryMatcher</code> that will be used to filter out just relevant parts of the log files to be returned. If no matcher is provided, all the log files will be returned. Here is an example of specifying a log entry matcher:</p><pre><code class="language-java">Map&lt;String, Object&gt; context = new HashMap&lt;String, Object&gt;();
+context.put("logEntryMatcher", lastN(200));
+DumpResult dumpResult = admin.generateDump("test", context, "summary", "log");
+</code></pre>
+        <div class="tc-admon-note">
+            <p>The above code will generate a dump, including the last 200 log entries which the log dump processor will process.</p>
+        </div>
+        <h1><a name="dump-file-structure"></a>Dump File Structure</h1>
+        <p>The dump file structure would look like this:</p><pre><code class="language-bash">dump_file.zip
+
+    gsa-10.10.10.249-23610--1284928573201
+        network.txt
+        summary.txt
+        threads.txt
+        logs
+            2010-09-19~08.22-gigaspaces-gsa-10.10.10.249-23610.log
+
+    gsc-10.10.10.249-23739--1284928573169
+        network.txt
+        summary.txt
+        threads.txt
+        logs
+            2010-09-19~08.22-gigaspaces-gsc_1-10.10.10.249-23739.log
+        processing-units
+            space
+                1
+                    pu.xml
+                    spaces
+                        space
+                            summary.txt
+
+    gsc-10.10.10.249-23766--1284928573079
+        network.txt
+        summary.txt
+        threads.txt
+        logs
+            2010-09-19~08.22-gigaspaces-gsc_2-10.10.10.249-23766.log
+        processing-units
+            mirror
+                1
+                    pu.xml
+                    spaces
+                        mirror
+                            summary.txt
+            space
+                1_1
+                    pu.xml
+                    spaces
+                        space
+                            summary.txt
+
+    gsm-10.10.10.249-24112--1284928573193
+        network.txt
+        summary.txt
+        threads.txt
+        logs
+            2010-09-19~08.22-gigaspaces-gsm_3-10.10.10.249-24112.log
+    lus-10.10.10.249-24127--1284928573201
+        network.txt
+        summary.txt
+        threads.txt
+        logs
+            2010-09-19~08.22-gigaspaces-lus_4-10.10.10.249-24127.log
+</code></pre>
+        <h1><a name="dump-configuration"></a>Dump Configuration</h1>
+        <p>You can configure <MadCap:variable name="General.ProductNameXAP" /> to generate a heap dump when memory shortage occurs.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property name</th>
+                    <th>Description</th>
+                    <th>Default</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>com.gs.memory.create-heap-dump-on-memory-shortage</td>
+                    <td>Turn on and off heap dump</td>
+                    <td>false</td>
+                </tr>
+                <tr>
+                    <td>com.gs.memory.max-heaps-on-memory-shortage</td>
+                    <td>Turn off the heap dump after n times</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>com.gs.memory.heaps-on-memory-shortage-quiet-period</td>
+                    <td>How much time to wait between heap dumps</td>
+                    <td>24h</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-refer">
+            <p>These values can be modified using the JConsole using the <code>HeapDumpMBean</code> with ObjectName <code>org.xap:type=HeapDumpMBean</code>
+Refer to <a href="../admin/space-jmx-management.html">JMX Management</a></p>
+        </div>
+        <h1><a name="gigaspaces-management-center"></a><MadCap:variable name="General.ProductNameXAP" /> Management Center</h1>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
+        <p>The dump can be created via the <a href="../admin/gigaspaces-dump.html">GigaSpaces Management Center</a>.</p>
+        <h1><a name="web-management-console"></a>Web Management Console</h1>
+        <p>The dump can be created via the <a href="../admin/web-management-dump.html">Web Management Console</a>.</p>
+        <h1>Ops Manager</h1>
+        <p>You can generate a service log dump from <MadCap:xref href="../admin/gs-ops-manager-overview.html">[%=General.ProductNameXAP%] Ops Manager</MadCap:xref>.</p>
+    </body>
+</html>

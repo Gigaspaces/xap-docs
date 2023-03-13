@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Cluster View</h1>
+        <p>Cluster View presents a graphic representation of the spaces in a cluster, the groups they comprise (replication, failover and load-balancing groups), and the relationships among them.
+Cluster View complements the visualization provided by the Container Tree panel, because it uses the cluster configuration file, as well as the GigaSpaces Server, as a reference. As a result, you can visualize spaces whether they are online or offline, without loading their containers. While the Container Tree panel is a good way to see which spaces are currently running, Cluster View gives you a larger picture of the space architecture.</p>
+        <p>Another important advantage of Cluster View over the Container Tree panel is that it shows groups as an intermediate level between spaces and clusters. This level has always been a part of cluster configuration files, but it is now easier to visualize.</p>
+        <p>An important distinction between Cluster View and the Container Tree is that the Cluster View is exclusively a monitoring tool. It does not allow you to perform any operations on clusters, groups or spaces, or to modify cluster or space configuration.</p>
+        <h1><a name="cluster-view-areas"></a>Cluster View Areas</h1>
+        <p>The Cluster View is divided into four main areas:</p>
+        <ul>
+            <li><span class="tc-bold">Cluster tree</span> – at the top of the tree is the cluster node (<img src="../Resources/Static/attachment_files/spaceTreeIcon.gif" alt="spaceTreeIcon.gif" class="tc-pictureinline" />), each representing a space listed in the cluster configuration file.</li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>Each cluster node (<img src="../Resources/Static/attachment_files/GMC_space_OperationsClusterNode_icon_6.5.jpg" alt="GMC_space_OperationsClusterNode_icon_6.5.jpg" />), which allows you to view all cluster information in one node (for more details, see <a href="#viewing-information-for-entire-cluster">below</a>).</p>
+        </div>
+        <ul>
+            <li>
+                <p><span class="tc-bold">Visual display</span> – this area changes according to your selection in the tree. When you select the cluster node, the visual display shows the groups in the cluster.</p>
+                <div class="tc-align-center">
+                    <p>
+                        <img src="../Resources/Static/attachment_files/GMC_space_cluster_MainClusterNodeSelected_6.5.jpg" alt="GMC_space_cluster_MainClusterNodeSelected_6.5.jpg" class="tc-picture100" />
+                    </p>
+                </div>
+                <p>When you select a group node, the display shows the spaces in the node. When you select a space, either by double-clicking it here or by clicking its node in the tree, the display focuses on that space and shows its connections to other spaces (in a replication group).</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Legend</span> – shows the meaning of the colors used in the visual display. There is a different legend for full cluster view and for spaces-in-group view.</p>
+            </li>
+            <li>
+                <p><span class="tc-bold">Information Panel</span> – when you select the cluster node in the tree, basic details about all the cluster's members are displayed here. When you select a space, by clicking its node in the tree or its representation in the visual display, this area divides into a number of tabs that provide a detailed description of the space's configuration settings, and its replication connections (in a replication group). All the information displayed in this panel is read-only.</p>
+                <div class="tc-align-center">
+                    <p>
+                        <img src="../Resources/Static/attachment_files/GMC_space_cluster_SpecificClusterNodeSelected_6.5.jpg" alt="GMC_space_cluster_SpecificClusterNodeSelected_6.5.jpg" class="tc-picture100" />
+                    </p>
+                </div>
+            </li>
+        </ul>
+        <div class="tc-admon-important">
+            <p>The view above does not display the number of objects for persistent spaces in LRU mode, since this might result in very high CPU usage. To change this, see the <a href="gigaspaces-browser-menus-and-buttons.html#display-persistent-lru-space-metrics">Menus and Buttons</a> section.</p>
+        </div>
+        <h2><a name="viewing-information-for-entire-cluster"></a>Viewing Information for Entire Cluster</h2>
+        <p>The <span class="tc-bold">Operations</span> cluster node (<img src="../Resources/Static/attachment_files/GMC_space_OperationsClusterNode_icon_6.5.jpg" alt="GMC_space_OperationsClusterNode_icon_6.5.jpg" class="tc-pictureinline" />) allows you to view all classes, data, statistics, transactions, and connections for the entire cluster under a single node.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/GMC_space_cluster_OperationsNodeTree_6.5.jpg" alt="GMC_space_cluster_OperationsNodeTree_6.5.jpg" class="tc-picture30" />
+            </p>
+        </div>
+        <p>The views under the <span class="tc-bold">Operations</span> node have the same functionality as the views under the regular space/cluster nodes:</p>
+        <ul>
+            <li><span class="tc-bold">Data Types view</span> – allows you to view all classes in the cluster and to inspect class objects. For more details, refer to the <a href="gigaspaces-browser-data-types-view.html">Classes View</a> section.</li>
+            <li><span class="tc-bold">Transactions view</span> – displays all transactions in the cluster. For more details, refer to the <a href="gigaspaces-browser-transaction-view.html">Transactions View</a> section.</li>
+            <li><span class="tc-bold">Query view</span> – allows you to query space classes and to inspect class objects. For more details, refer to the <a href="gigaspaces-browser-query-view.html">Query View</a> section.</li>
+            <li><span class="tc-bold">Statistics view</span> – displays statistics for operations performed in the cluster. For more details, refer to the <a href="gigaspaces-browser-statistics-view.html">Statistics View</a> section.</li>
+            <li><span class="tc-bold">Connections view</span> – displays connections to the cluster (includes additional columns: <span class="tc-bold">Cluster Member Name</span>, <span class="tc-bold">Server IP Address</span>, <span class="tc-bold">Server Port</span>). For more details, refer to the <a href="gigaspaces-browser-connection-view.html">Connections View</a> section.</li>
+        </ul>
+    </body>
+</html>

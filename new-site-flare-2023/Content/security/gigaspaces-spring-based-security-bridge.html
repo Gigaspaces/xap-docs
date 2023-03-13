@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Spring-Based Bridge</h1>
+        <p>You may have noticed that Spring's Security <code>AuthenticationProvider</code> and <code>AuthenticationManager</code>, aren't much different from the GigaSpaces <code>com.gigaspaces.security.SecurityManager</code>. In Fact, they share a similar <code>authentication</code> method that handles authentication.</p>
+        <p>The <code>org.openspaces.security.spring.SpringSecurityManager</code> is a the GigaSpaces Spring Security bridge (between Spring Security and GigaSpaces Security Manager). It relies on the Spring Security XML configuration file for its context definitions. The Spring Security configuration resides in a standalone XML file.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/SpringSecurityBridge.png" alt="SpringSecurityBridge.png" class="tc-picture80" />
+            </p>
+        </div>
+        <p>The Spring Security XML configuration file contains the <code>AuthenticationManager</code>, <code>ProviderManager</code> and <code>AuthenticationProvider</code> references. The authentication manager is discovered by the GigaSpaces Spring Security bridge (i.e. it iterates through all the types of authentication manager and plugs it in automatically).</p><pre><code class="language-java">&lt;sec:authentication-manager&gt;
+   &lt;sec:authentication-provider ref="ldapAuthenticationProvider"/&gt;
+&lt;/sec:authentication-manager&gt;</code></pre>
+        <h1><a name="configuring-the-security-manager"></a>Configuring the Security Manager</h1>
+        <p>The Spring security configurations are loaded using Spring's <code>FileSystemXmlApplicationContext</code> taking the context definition files from the file system or from URLs. The location of the configuration file is set using the <code>spring-security-config-location</code> property; if not set, a default <code>security-config.xml</code> is considered (if present).</p>
+        <p>As with all GigaSpaces security configurations, they must be placed in a properties file. In order to configure the security manager to use the Spring Security bridge, we set the <code>security-manager.class</code> property along with the expected <code>spring-security-config-location</code> property.</p><pre><code class="language-java">com.gs.security.security-manager.class = org.gigaspaces.security.spring.SpringSecurityManager
+spring-security-config-location = ../config/security/security-config.xml
+</code></pre>
+        <p>This is all the configuration required to enable the use of the Spring-based security bridge. The rest is part of the Spring Security configuration XML file.</p>
+        <div class="tc-admon-note">
+            <p>For convenience, the template properties <code>config/security/spring-security.properties</code> can be renamed to <code>security.properties</code> or referenced using a system property (see <a href="security-configurations.html">Security Configurations</a>).</p>
+        </div>
+        <h1><a name="logging"></a>Logging</h1>
+        <p>Any configurations that are applied can be seen by setting the logging level to CONFIG (see xap_logging.properties):</p><pre><code class="language-java">com.gigaspaces.security.level = CONFIG
+</code></pre>
+        <h1><a name="testing-the-spring-based-security-bridge"></a>Testing the Spring-based Security Bridge</h1>
+        <p>Before launching up a whole full-blown application, you may want to test that the bridge is actually working to your satisfaction. For example, that the users, roles, and authorities are extracted correctly, etc. For this, you don't even need a GigaSpaces instance.</p>
+        <p>Here is a sample code, which sets up a GigaSpaces <code>SpringSecurityManager</code> instance by passing it the <code>spring-security-config-location</code> as an explicit property. The security manager calls the <code>authenticate</code> method with "username"/"password" returning (if successful) an <code>Authentication</code> object. This result contains the user details and the populated authorities of this user (all authorities including those extracted from the groups (roles) the user is part of).</p><pre><code class="language-java">import java.util.Arrays;
+import java.util.Properties;
+import com.gigaspaces.security.directory.User;
+import com.gigaspaces.security.directory.UserDetails;
+import org.openspaces.security.spring.SpringSecurityManager;
+
+public class Main {
+    public static void main(String[] args) {
+        Properties props = new Properties();
+        props.setProperty("spring-security-config-location", "my-security-config.xml");
+        SpringSecurityManager securityManager = new SpringSecurityManager();
+        securityManager.init(props);
+        com.gigaspaces.security.Authentication authenticate = securityManager
+                .authenticate(new User("username", "password"));
+        UserDetails userDetails = authenticate.getUserDetails();
+        System.out.println("user: " + userDetails.getUsername() + " password: "
+                + userDetails.getPassword() + " authorities: "
+                + Arrays.toString(userDetails.getAuthorities()));
+    }
+}
+</code></pre>
+        <div class="tc-admon-note">
+            <p>When running a standalone test, you will need to include the following jars in your classpath:</p>
+            <ul>
+                <li>
+                    <p><code> <MadCap:variable name="General.HomePath" />/lib/optional/security/spring-security-core-*.jar </code>
+                    </p>
+                </li>
+                <li>
+                    <p> <code><MadCap:variable name="General.HomePath" />/lib/optional/spring/*.jar , <MadCap:variable name="General.HomePath" />/lib/required/*.jar</code></p>
+                </li>
+            </ul>
+        </div>
+        <h1><a name="gigaspaces-security-authorities"></a>GigaSpaces Security Authorities</h1>
+        <p>GigaSpaces provides a set of <a href="security-authorities.html">Security Authorities</a> which can be stored as a String in any external directory. Much like the Spring's Security <code>GrantedAuthority</code> s which translate to and from a String.</p>
+        <p>Lets take for example a Box-Office employee which has <code>READ</code> privileges, for class "eg.cinema.Movie".
+We convert the class expression using the <code>WildcardExpressionToFilterConverter</code> methods. This converter takes in an expression, for example a regular expression expressing the permitted classes the employee can read.</p><pre><code class="language-java">System.out.println(new SpaceAuthority(SpacePrivilege.READ,
+                WildcardExpressionToFilterConverter.convert(
+                        "eg.cinema.Movie", true)));
+</code></pre>
+        <p>The output result is:</p><pre><code class="language-java">"SpacePrivilege READ ClassFilter eg.cinema.Movie"
+</code></pre>
+        <p>This String represents the authority which, for example, can be stored in a database.</p>
+        <p>Spring's Security <code>authenticate</code> method returns an <code>Authentication</code> object holding all <code>GrantedAuthority</code> s. These authorities are String based, and should equal to the GigaSpaces authority String as above. Each authority is converted back (by <code>SpringSecurityManager</code>) into its object instance using the GigaSpaces <code>AuthorityFactory</code>. Of course, all this has already been done for you - all you need is to store the appropriate authority Strings.</p>
+        <p>Not always would you need an expressions as a filter. If we would have wanted to grant full <code>READ</code> privileges, than the authority would be represented as:</p><pre><code class="language-java">System.out.println(new SpaceAuthority(SpacePrivilege.READ));
+</code></pre>
+        <p>The output result is:</p><pre><code class="language-java">"SpacePrivilege READ"
+</code></pre>
+        <p>Similar, are the <code>GridAuthority</code>, <code>MonitorAuthority</code> and <code>SystemAuthority</code>. For example, the Gird authority <code>Provision PU</code> allows to deploy, un-deploy processing units, and is represented as:</p><pre><code class="language-java">System.out.println(new GridAuthority(GridPrivilege.PROVISION_PU));
+</code></pre>
+        <p>The output result is:</p><pre><code class="language-java">"GridPrivilege PROVISION_PU"
+</code></pre>
+    </body>
+</html>

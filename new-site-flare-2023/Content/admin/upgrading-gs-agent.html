@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Upgrading the GS-Agent Command</h1>
+        <p>When the new <a href="tools-cli.html">Command Line Interface</a> was introduced in <MadCap:variable name="General.ProductNameIEP" /> and <MadCap:variable name="General.ProductNameXAP" /> release 12.3, it included the <a href="admin-service-grid-agent.html">host run-agent</a> command for starting a GigaSpaces agent on the current host.</p>
+        <p>While the <a href="the-runtime-environment.html">legacy gs-agent</a> script is still supported, it has been deprecated as of <MadCap:variable name="General.ProductNameIEP" /> and <MadCap:variable name="General.ProductNameXAP" /> release 14.0 and will be removed in a future version. Customers upgrading from older versions are encouraged to upgrade to the new CLI command. The new CLI only supports working with the <MadCap:variable name="General.ProductNameXAP" /> Manager.</p>
+        <p>To get started with the new CLI command, simply run <MadCap:conditionalText MadCap:conditions="Version.14-5-died"><code>xap host run-agent --help</code></MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.14-5-born"><code>gs host run-agent --help</code>from the product's <code>bin</code></MadCap:conditionalText> folder.</p>
+        <div class="tc-admon-note" MadCap:conditions="Version.14-5-died">
+            <MadCap:snippetBlock src="../Resources/Snippets/InsighedgeXap.flsnp" />
+        </div>
+        <h1><a name="commonly-used-options"></a>Commonly Used Options</h1>
+        <p>The following commonly-used options have the same functionality, except for the command name:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Old Command</th>
+                    <th>New Command</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr MadCap:conditions="">
+                    <td>Run <MadCap:variable name="General.ProductNameXAP" /> Manager</td>
+                    <td><code>gs-agent --manager</code>
+                    </td>
+                    <td><code><MadCap:variable name="General.CLI-script-Windows" /> host run-agent --manager</code>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="">
+                    <td>Run "N' Grid Service Containers (GSCs)</td>
+                    <td><code>gs-agent --gsc=N</code>
+                    </td>
+                    <td><code><MadCap:variable name="General.CLI-script-Windows" /> host run-agent --gsc=N</code>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="">
+                    <td>Run the Web Management Console (web-ui)</td>
+                    <td><code>gs-agent --webui</code>
+                    </td>
+                    <td><code><MadCap:variable name="General.CLI-script-Windows" /> host run-agent --webui</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>Starting a Local Manager</p>
+        <p>The <code>--manager-local</code> option was used in the previous version to start a <MadCap:variable name="General.ProductNameXAP" /> Manager on a local environment without configuration. This is superseded by the <code>--auto</code> option in the new version, which has the following improved functionality:</p>
+        <ul>
+            <li>If <MadCap:variable name="General.ProductNameXAP" /> Manager is not configured, the command starts a local manager.</li>
+            <li>If <MadCap:variable name="General.ProductNameXAP" /> Manager is configured, the  configuration is inspected to check whether or not a manager should be started on the current host, and the command is executed accordingly.</li>
+        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Old Command</th>
+                    <th>New Command</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr MadCap:conditions="">
+                    <td>Run a local <MadCap:variable name="General.ProductNameXAP" /> Manager</td>
+                    <td><code>gs-agent --manager-local</code>
+                    </td>
+                    <td><code><MadCap:variable name="General.CLI-script-Windows" /> host run-agent --auto</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="custom-component"></a>Custom Component</h1>
+        <p>The gs-agent is extensible, and allows users to create custom options using <code>.xml</code> files that describe what those options do. This customization is still supported in the new syntax, but now requires a <code>--custom</code> prefix, to instruct the command line interpreter to skip syntax validation for the custom option.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Old Command</th>
+                    <th>New Command</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr MadCap:conditions="">
+                    <td>Start "N' instances of <code>foo.xml</code></td>
+                    <td><code>gs-agent --foo=N</code>
+                    </td>
+                    <td><code><MadCap:variable name="General.CLI-script-Windows" /> host run-agent --custom foo=N</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="starting-management-components-manually"></a>Starting Management Components Manually</h1>
+        <p>Before the <MadCap:variable name="General.ProductNameXAP" /> Manager was introduced in release 12.1, users had to manually start the GSM and Lookup Service management components. This option is not available in the new command because the <MadCap:variable name="General.ProductNameXAP" /> Manager is now the recommended option, and the ability to start a management environment without it has been deprecated.</p>
+        <div class="tc-admon-note">
+            <p>You can still start GSM and LUS using the <code>--custom</code> option, but we recommend doing this only as an interim step within the migration process, because support for non-manager environments will be removed in a future version.</p>
+        </div>
+        <p>In addition to the above, the <code>global</code> modifier is not available in the new command because it is only relevant for multicast discovery, and the <MadCap:variable name="General.ProductNameXAP" /> Manager uses unicast discovery. You can use the <code>--custom</code> option as a workaround for this.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Old Command</th>
+                    <th>New Command</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Run Grid Service Manager (GSM)</td>
+                    <td><code>gs-agent --gsm=1</code>
+                    </td>
+                    <td><code><MadCap:variable name="General.CLI-script-Windows" /> host run-agent --custom gsm=1</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Run Lookup Service (LUS)</td>
+                    <td><code>gs-agent --lus=1</code>
+                    </td>
+                    <td><code><MadCap:variable name="General.CLI-script-Windows" /> host run-agent --custom lus=1</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Run Global Grid Service Manager (GSM)</td>
+                    <td><code>gs-agent --global.gsm=1</code>
+                    </td>
+                    <td><code><MadCap:variable name="General.CLI-script-Windows" /> host run-agent --custom global.gsm=1</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Run Global Lookup Service (LUS)</td>
+                    <td><code>gs-agent --global.lus=1</code>
+                    </td>
+                    <td><code><MadCap:variable name="General.CLI-script-Windows" /> host run-agent --custom global.lus=1</code>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

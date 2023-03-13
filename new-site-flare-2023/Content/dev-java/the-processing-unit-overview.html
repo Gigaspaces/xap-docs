@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <p><a name="Smart_The_Processing_Unit_Service"></a>
+        </p>
+        <h1 class="tc-pagetitle">The Processing Unit Service</h1>
+        <p>The Processing Unit is the unit of packaging and deployment in the <MadCap:variable name="General.ProductNameXAP" /> platform, and is essentially the main <MadCap:variable name="General.ProductNameXAP" /> service. This section describes its <a href="the-processing-unit-structure-and-configuration.html">directory structure</a> and how to set the values in the <a href="configuring-processing-unit-elements.html">configuration file</a>.</p>
+        <p>You can <a href="obtaining-cluster-information.html">obtain cluster information</a> about the topology, member ID and other related parameters. Cluster information can be provided to the processing unit instances at deployment time. You can also <a href="reloading-business-logic.html">reload business logic</a> (Spring beans) without shutting down the application or undeploying a Processing Unit.</p>
+        <p>If you want to build a <a href="custom-processing-unit-details-and-monitors.html">Custom Processing Unit</a>, you can can implement the ServiceDetailsProvider and ServiceMonitorsProvider interfaces to expose information to calling APIs, or to be viewable in the Web Managment Console.</p>
+        <p>In order to <a href="deploying-and-running-overview.html">deploy and run</a> the Processing Unit service, you have to choose the appropriate runtime mode and possibly do some debugging. There are also a number of deployment properties that can be set.</p>
+        <p MadCap:conditions="Version.15-0-born">You can view metrics, Space operation statistics, alerts, and other information about the Processing Unit and other services in the <MadCap:variable name="General.ProductNameXAP" /> Ops Manager, at the cluster level and drilling through to the instance level. For more information, see <MadCap:xref href="../admin/gs-ops-manager-overview.html">[%=General.ProductNameXAP%] Ops Manager</MadCap:xref>.</p>
+    </body>
+</html>

@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Space Object Modeling</h1>
+        <table>
+            <col />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Reference</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shay Hassidim</td>
+                    <td>7.1</td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>When constructing the space classes and their relationship, and having persistency turned on, you should design the space classes to follow a few basic rules. The rules are mostly relevant when having associations between different objects, and when the database tables include foreign and primary key relations that need to be mapped to objects in memory.</p>
+        <p>There are two options you may use: a <span class="tc-bold">Hibernate-based model</span> and a <span class="tc-bold">Space-based model</span>. The latter is the recommended one, since it provides better performance, scalability and consumes less memory when an object is stored in memory.</p>
+        <h1><a name="the-hibernate-based-object-model">&#160;</a>The Hibernate-Based Object Model</h1>
+        <p>When you have an object graph object model with collections or references association (using Hibernate OneToMany, ManyToOne), you can use the Hibernate model to load these objects into the space. There are some important considerations when using this approach:</p>
+        <ul>
+            <li>You should use the DefaultExternalDataSource.</li>
+            <li>The footprint utilization is high since you might end up loading the same object more than once into the space JVM. This can happen in the following cases:<ol><li>When the loaded objects are regular space objects (in case you wrote these also as space objects) and also an embedded object within another space object.</li><li>When you have the same object referenced from more than one space object.</li></ol></li>
+        </ul>
+        <ul>
+            <li>The initial-load phase is relatively slow (mostly due to the duplicated objects).</li>
+            <li>Data should be fully loaded from the database - only <span class="tc-bold">Eager mode</span> is supported. Lazy fetching is not supported.</li>
+            <li>You might end up having data inconsistency problems due to the duplicated objects in memory.</li>
+        </ul>
+        <h1><a name="the-space-object-model">&#160;</a>The Space Object Model</h1>
+        <p>If you want to optimize the memory footprint, and avoid duplicated objects in memory, and the inconsistency involved with the usage of the Hibernate model when loading collection/reference objects, you need to implement the collection/reference object load and store, using the GigaSpaces API (at the DAO layer or some helper class). Important considerations when using this approach:</p>
+        <ul>
+            <li>
+                <p>You can use the StatelessExternalDataSource that is usually faster than the DefaultExternalDataSource - but it does not support collection/reference load and store.</p>
+            </li>
+            <li>
+                <p>To load a collection/reference you should:</p>
+                <ol>
+                    <li>
+                        <p>Store the ID (and the routing data) of the parent object within the child object (in case we have a oneToMany relationship), to be able to fetch the collection. This ID field within the child object (of its parent object ID) should be indexed to allow fast data retrieval. The GigaSpace.readMultiple should be used to implement the relevant data access routine. In some cases it makes sense to implement such data access routines using the Task executors that allow you to implement multi-level object graph data retrieval without having multiple remote calls.</p>
+                    </li>
+                    <li>
+                        <p>Store the ID (and routing data) of the child object within the parent (in case of a OneToOne relationship). The GigaSpace.readById method should be used to implement the relevant data access routine.</p>
+                    </li>
+                </ol>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p>The initial load phase runs faster than the Hibernate-based model.</p>
+            </li>
+            <li>
+                <p>Since each object loaded is a true space object, you have better control of how data is partitioned.</p>
+            </li>
+            <li>
+                <p>With this approach, the actual referenced object/collection within the space object is not stored within the space object. It should be excluded using the @SpaceExclude decoration. This allows the field data to be transient within the space object.</p>
+            </li>
+        </ul>
+        <h2><a name="example">&#160;</a>Example</h2>
+        <p>The Parent Class:</p><pre><code class="language-java">@Entity
+@Table(name = "parent")
+public class Parent
+{
+    @Transient
+    private Child child;
+
+    @SpaceExclude
+    public Child getChild() {
+        return this.child;
+    }
+
+    @Column(name = "child_id")
+    private Integer childId;
+
+    protected void setChild(Child child) {
+        this.child= child;
+        if (child!= null) {
+            this.childId = child.getId();
+        }  else {
+            this.childId = null;
+        }
+    }
+
+    protected Integer getChildId()
+    {
+        return childId;
+    }
+
+    protected void setChildId(Integer childId)
+    {
+        this.childId= childId;
+    }
+
+}
+</code></pre>
+        <p>The Child Class:</p><pre><code class="language-java">public class Child implements Serializable {
+
+    @Id
+    private Integer id;
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @SpaceId(autoGenerate = false)
+    @SpaceRouting
+    public Integer getId() {
+        return id;
+    }
+}
+</code></pre>
+        <p>The Data access layer:</p><pre><code class="language-java">public Child loadChild(int childId) {
+    Child child = gigaSpace.readById(Child.class, childId);
+    return child;
+}
+</code></pre><pre><code class="language-java">@Transactional
+public void storeChild(Child entity) {
+if (entity.getId() == null) {
+    entity.setId(idGenerator.generateId());
+}
+gigaSpace.write(entity);
+}
+</code></pre>
+        <p>In both cases, you can implement object navigation (myObject.getA().getB()). You just need to make sure that the collections/references object load is supported.</p>
+    </body>
+</html>

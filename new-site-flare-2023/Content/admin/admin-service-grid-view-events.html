@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Viewing Events</h1>
+        <div class="tc-admon-note">
+            <p>This functionality is not yet available in the Command Line Interface or REST Manager API administration tools.</p>
+        </div>
+        <p><span class="tc-bold">To view events:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <!--
+<div title="Command Line Interface" style="padding:10px"><p>N/A</p>
+</div>
+
+<div title="REST Manager API" style="padding:10px"><p>N/A</p>
+</div>
+-->
+            <div title="Web Management Console" style="padding:10px">
+                <p>The event timeline shows the deployment life cycle of all the Processing Units.</p>
+                <p><span class="tc-bold">Life cycle success events for each instance</span>
+                </p>
+                <ul>
+                    <li>
+                        <p>installation attempt: an attempt to provision a Processing Unit instance on an available GSC.</p>
+                    </li>
+                    <li>
+                        <p>instance added: a Processing Unit instance was successfully instantiated on a GSC.</p>
+                    </li>
+                    <li>
+                        <p>instance uninstalled: a Processing Unit instance was successfully removed.</p>
+                    </li>
+                    <li>
+                        <p>Container N/A: a Processing Unit instance is pending instantiation until an available GSC is discovered.</p>
+                    </li>
+                </ul>
+                <p><span class="tc-bold">Life cycle success events for each Processing Unit</span>
+                </p>
+                <ul>
+                    <li>
+                        <p>installation succeeded: deployment of a Processing Unit has been completed successfully (all instances instantiated).</p>
+                    </li>
+                    <li>
+                        <p>installation uninstalled: undeployment of a Processing Unit has been completed (all instances undeployed).</p>
+                    </li>
+                </ul>
+                <p><span class="tc-bold">Life cycle failure events for each instance</span>
+                </p>
+                <ul>
+                    <li>
+                        <p>installation failed: a Processing Unit instance failed to instantiate.</p>
+                    </li>
+                    <li>
+                        <p>installation unresponsive: a Processing Unit instance is unresponsive to “member-is-alive” attempts (failure is suspected).</p>
+                    </li>
+                    <li>
+                        <p>installation crashed: an unresponsive Processing Unit instance has timed out (failure was detected).</p>
+                    </li>
+                    <li>
+                        <p>installation re-detected: a Processing Unit instance was previously unresponsive but is now responsive.</p>
+                    </li>
+                </ul>
+                <p>From the menu bar, click <span class="tc-bold">Events</span>. The list of events in the system is displayed with the following information:</p>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Component</td>
+                        <td>Service grid component where the event occurred.</td>
+                    </tr>
+                    <tr>
+                        <td>Message</td>
+                        <td>Type of event that occurred.</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>Detailed description of the event.</td>
+                    </tr>
+                    <tr>
+                        <td>Time</td>
+                        <td>Complete timestamp of the event (month, day, year and time of day).</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>Current status of the event (Success, In progress, Failed).</td>
+                    </tr>
+                </table>
+                <p>The Event number displayed in the menu bar indicates the amount of events that have occurred since the last time you viewed events.</p>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+    </body>
+</html>

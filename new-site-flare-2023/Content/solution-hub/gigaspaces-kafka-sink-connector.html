@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle"><MadCap:variable name="General.ProductNameXAP" /> Kafka Sink Connector</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Product Version</th>
+                    <th>Last Updated</th>
+                    <th>Reference</th>
+                    <th align="center">Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Yoram Weinreb</td>
+                    <td>15.2</td>
+                    <td>April 2020</td>
+                    <td> </td>
+                    <td align="center"><a href="https://github.com/GigaSpaces-ProfessionalServices/gigaspaces-kafka-connector">github</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><a href="https://www.confluent.io/resources/kafka-the-definitive-guide">Kafka</a> is enterprise software that provides a publish/subscribe data communication service. Kafka can be used to indicate the location of output data for a <MadCap:variable name="General.ProductNameXAP" /><a href="https://docs.gigaspaces.com/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition"> SpaceType Descriptor</a>. </p>
+        <h1>Prerequisites</h1>
+        <p>In order to deploy the <MadCap:variable name="General.ProductNameIE" /> Kafka Sink Connector, the following prerequisites are required:</p>
+        <ul>
+            <li>
+                <p>Install Kafka and Kafka Connect</p>
+            </li>
+            <li>
+                <p>Install <a href="https://docs.gigaspaces.com/latest/started/installation.html?Highlight=download)">Insightedge v15.2</a></p>
+            </li>
+            <li>Install Git, Maven and JDK 8</li>
+        </ul>
+        <h1>Installation Steps</h1>
+        <ul>
+            <li><code>git clone</code> the repo</li>
+            <li><code>mvn clean package</code>
+            </li>
+            <li>Move the generated jar (from the target folder) to the Kafka connect connector's <code>lib </code>folder.</li>
+            <li>Define the connector configuration as outlined below.</li>
+        </ul>
+        <p>Schema and type definitions for the data can be expressed via the json file as shown below.</p>
+        <div class="tc-admon-note">
+            <p>The maven Kafka artifacts in the <code>pom.xml</code> file must match the Kafka version.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>If you have developed a GigaSpaces data model, you do not have to provide a json file. Instead, you can provide the generated jar file containing the relevant POJOs.</p>
+        </div>
+        <h1>Configuration</h1>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector properties file,<code>connect-gigaspaces-sink.properties</code> .<pre><code>
+bootstrap.servers=localhost:9092
+name=gigaspaces-kafka
+connector.class=com.gigaspaces.kafka.connector.GigaspacesSinkConnector
+tasks.max=1
+topics=Pet,Person
+gs.connector.name=gs
+# True -- start gs inside the same JVM as connector; False - separate JVM (default)
+gs.space.embedded=false
+# Name of the target gs Space
+gs.space.name=demo
+# Location of GS Manager:
+gs.space.locator=127.0.0.1:4174
+#Choose one of the following -- Jar file or Json file: 
+gs.model.json.path=&lt;path to gigaspaces kafka connector repo&gt;/example/resources/model.json
+#
+plugin.path=&lt;path to gigaspaces kafka connector repo&gt;<br /><br />value.converter=org.apache.kafka.connect.json.JsonConverter
+value.converter.schemas.enable=false<br /><br />key.converter=org.apache.kafka.connect.storage.StringConverter
+# Currently the connector does not support Kafka schema.
+key.converter.schemas.enable=false
+#key.converter.schemas.enable=true
+#value.converter.schemas.enable=true<br /><br />offset.storage.file.filename=/tmp/connect.offsets
+# Flush much faster than normal, which is useful for testing/debugging
+offset.flush.interval.ms=10000
+				</code></pre><p>&#160;</p>Following is an example of a <MadCap:variable name="General.CompanyName" /> connector model schema json file.<div class="tc-admon-note"><p>These JSON fields map to the Space Type Descriptor in GS. For more information, see <a href="https://docs.gigaspaces.com/latest/dev-dotnet/document-api.html?Highlight=descriptor#TypeDefinition">Space type Descriptor</a> in the GigaSpaces documentation center.</p></div><p>&#160;</p><pre><code class="language-json">
+				[{
+				"type": "com.gs.Person",
+				"FixedProperties": {
+				"firstname": "java.lang.String",
+				"lastname": "java.lang.String",
+				"age": "java.lang.Integer",
+				"num": "java.lang.Integer"
+				},
+				"Indexes": {
+				"compoundIdx": {"type":"EQUAL", "properties": ["firstname", "lastname"], "unique": false},
+				"ageIdx": {"type":"ORDERED", "properties": ["age"], "unique": false}
+				},
+				"Id": {"field":"num", "autogenerate": false},
+				"RoutingProperty": "firstname"
+				},
+				{
+				"type": "com.gs.Pet",
+				"FixedProperties": {
+				"kind": "java.lang.String",
+				"name": "java.lang.String",
+				"age": "java.lang.Integer"
+				},
+				"Indexes": {
+				"compoundIdx": {"type":"EQUAL", "properties": ["kind", "name"], "unique": false},
+				"ageIdx": {"type":"ORDERED", "properties": ["age"], "unique": false}
+				},
+				"Id": {"field":"name"},
+				"RoutingProperty": "name"
+				}]}]				
+		</code></pre><h1>Running the Example</h1><div class="tc-admon-note"><p>The steps must be run in the order indicated below.</p></div><p>In this example, we will consume data from a text file using the <code>FileStreamSource</code> source connector. 
+		This connector will publish the lines it reads to the type topics in Kafka. 
+			The <MadCap:variable name="General.CompanyName" /> sink connector will read the data from the topics and store them in the in-memory grid (the "Space"). 
+			All files are under the <code>example/resources</code> folder.</p><p style="text-align: center;"><img src="../Resources/Static/images/kafka-sh-diagram-2.jpg" class="tc-picture80" /></p><div style="margin:auto;width:80%;"><table style="width: 80%;"><col style="width: 90px;" /><col style="width: 846px;" /><thead><tr><th colspan="2" style="font-weight: bold;text-align: center;">Key to Diagram</th></tr></thead><tbody><tr><td style="text-align: center;"><img src="../Resources/Static/images/blue-01.png" style="width: 35px;height: 39px;" /></td><td style="text-align: left;">Consume data from text files based on information in properties files.</td></tr><tr><td style="text-align: center;"><img src="../Resources/Static/images/blue-02.png" style="width: 36px;height: 40px;" /></td><td style="text-align: left;">FileStreamSource source connector publishes the lines it reads to the type topics in Kafka.</td></tr><tr><td style="text-align: center;"><img src="../Resources/Static/images/blue-03.png" style="width: 37px;height: 41px;" /></td><td style="text-align: left;">Gigaspaces sink connector reads the data from the topics and stores them in the in-memory grid (the "Space").</td></tr></tbody></table></div><ol><li>Start Gigaspaces and have a Space running. In this example, we are running the demo project: <code>gs.sh demo</code></li><li MadCap:conditions="Default.DoNotShow">Start Zookeeper.
+<div class="tc-admon-note"><p>Do not use port 2181.</p></div></li><li>Start Kafka using the same port used for Zookeeper.</li><li>Start the connect with the source and sink connectors and see how the data is consumed and published to the space, as shown below:
+            <p><code>connect-standalone connect-standalone.properties people-source.properties pet-source.properties connect-gigaspaces-sink.properties</code></p><div class="tc-admon-note"><p>The three connectors properties are found in <code>&lt;path to gigaspaces kafka connector repo&gt;/example/resources</code>.</p></div><div class="tc-admon-note"><p>Ensure that the file parameter in the <code>people-source.properties</code> file and the <code>pet-source.properties</code> file points to the location of the corresponding txt files.</p></div></li><li>Connect to the <MadCap:variable name="General.CompanyName" /> Ops Manager using the <a href="../admin/gs-ops-manager-overview.html#Ops-Manager-URL">Ops Manager URL</a>, and view the types that were defined and the data that was inserted into the spaces by the connector.</li><li><p>From the Ops Manager screen, choose <b>Analyze my data</b>:<br /><img src="../Resources/Static/images/Analyze-OPS-MGR.png" class="tc-picture50" /><br /></p><p>&#160;</p></li><li>
+				In the Spaces Overview, select the <code>demo </code>Space:
+<br /><img src="../Resources/Static/images/demo-OPS-MGR.png" class="tc-picture50" /><![CDATA[          ]]></li><div class="tc-admon-note"><p>If the Demo Space remains empty and you receive the following message in connector stdout:<br />&#160;&#160;&#160;<b>INFO: Call put with record count 0</b><br />Then proceed as follows:<br />&#160;&#160;&#160;<b>rm -rf /tmp/connect.offsets</b> (clean the offset file)</p><p>This should solve the issue and then you should be able to see the records in the Space and see the following in the sink connectror stdout:</p><p style="font-weight: bold;">&#160;&#160;<span style="font-weight: normal;">&#160;INFO: Call put with record count 11</span><br /></p></div><li>			You can now see the two object types, <code>Pet</code> and <code>Person</code>, and the number of entries for each object:	
+				<br /><img src="../Resources/Static/images/demo-object-types-OPS-MGR.png" class="tc-picture80" /><![CDATA[
+			]]></li></ol><p>&#160;</p></body>
+</html>

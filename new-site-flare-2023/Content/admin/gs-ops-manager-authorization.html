@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <map id="map1">
+            <area shape="rectangle" coords="31,228,438,655" dragDirection="0" />
+            <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
+            <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
+        </map>
+        <h1 class="tc-pagetitle"><MadCap:variable name="General.ProductNameXAP" /> Ops Manager Authorization</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> provides role-based security that provides access based on the user's intended activity in the organization.</p>
+        <h2>User Roles</h2>
+        <p>InsightEdge Ops Manager provides advanced capabilities of services monitoring, data analysis, and connectivity to multiple data sources. These capabilities are divided into a list of screens and features with permissions for logging user roles:</p>
+        <ul>
+            <li><b>Admin</b> (superuser) – has access to all capabilities including features related to services orchestration that has high impact on the environment resources consumption (e.g. scale up/down of service partitions).</li>
+            <li><b>Manager</b> – can deploy one or many services and connect with client applications and other components such as databases, Kafka, etc. A Manager will deploy services, will test them – function and performance - and analyze the data behavior within the Space.</li>
+            <li><b>Viewer</b> – data expert with a goal to view, interact with and query the data.</li>
+        </ul>
+        <h2>Roles and Permissions in Ops Manager</h2>
+        <p>The following table lists the various functionalities available in Ops Manager, based on the user's assigned role.</p>
+        <table>
+            <tbody>
+                <tr>
+                    <td style="font-weight: normal;">
+                        <p style="font-weight: bold;">Screen/Feature</p>
+                    </td>
+                    <td style="font-weight: normal;">
+                        <p><b>Description</b>
+                        </p>
+                    </td>
+                    <td style="font-weight: normal;">
+                        <p><b>Roles</b>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Monitor My Services Screen</p>
+                    </td>
+                    <td>
+                        <p>Enable/disable user role to review the deployed services within GigaSpaces grid including screens of services overview, drill-down to single service, drill-down to instance level etc.</p>
+                        <p><b>Outcome</b>: User role with no permission to monitor services will not be able to access these screens through the landing page or navigation panel. All screens related to services monitoring are hidden.</p>
+                    </td>
+                    <td>
+                        <p>Admin, Manager</p>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Version.15-2-born">
+                    <td>
+                        <p>Deploy a Service</p>
+                    </td>
+                    <td>
+                        <p>For user role that can review and monitor services, enable/disable the ability to deploy a new service through the Ops Manager.</p>
+                        <p><b>Outcome</b>: User role with no permission to deploy a service will not see/be able to activate the deploy feature at any orchestration layer – ServiceGrid, Kubernetes<MadCap:conditionalText MadCap:conditions="Version.16-0-died">, ElasticGrid</MadCap:conditionalText>.</p>
+                    </td>
+                    <td>
+                        <p>Admin, Manager</p>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Version.15-2-born">
+                    <td>
+                        <p>On-Demand Scale Up/Down for a Service and a Partition </p>
+                    </td>
+                    <td>
+                        <p>Enable/disable the view and activation of the Scale Up/Down feature at the level of a service (all partitions) and for a single partition. This is valid for Kubernetes<MadCap:conditionalText MadCap:conditions="Version.16-0-died"> and ElasticGrid</MadCap:conditionalText>.</p>
+                        <p><b>Outcome</b>: The Scale Up/Down feature at service or partition level is hidden for user role that does not have permission.</p>
+                    </td>
+                    <td>
+                        <p>Admin</p>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Version.15-2-born">
+                    <td>
+                        <p>On-Demand Scale Out/In for a Service</p>
+                    </td>
+                    <td>
+                        <p>Enable/disable the view and activation of the Scale Out/In feature at the level of a service. This is valid for <MadCap:conditionalText MadCap:conditions="Version.16-0-died">ElasticGrid and </MadCap:conditionalText>ServiceGrid orchestration.</p>
+                        <p><b>Outcome</b>: The Scale Out/In feature at service level is hidden for user role that does not have permission.</p>
+                    </td>
+                    <td>
+                        <p>Admin</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Download Logs</p>
+                    </td>
+                    <td>
+                        <p>Enable/disable the ability to download log files to client. This feature is valid at all orchestration layers.</p>
+                        <p><b>Outcome</b>: The Download Logs feature is available in the user interface for user role that has permission to download to their client.</p>
+                    </td>
+                    <td>
+                        <p>Admin, Manager</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>View Logs</p>
+                    </td>
+                    <td>
+                        <p>Enable/disable the ability to viewing partition log files with Ops Manager. This feature is valid at all orchestration layers.</p>
+                        <p><b>Outcome</b>: The View Logs feature is available in the user interface for user role that has this permission.</p>
+                    </td>
+                    <td>
+                        <p>Admin, Manager</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Analyze my Data Screen</p>
+                    </td>
+                    <td>
+                        <p>Enable/disable user role to review the deployed spaces and their entities including metrics/performance and queries.</p>
+                        <p><b>Outcome</b>: User role with no permission to analyze data will not be able to access these screens through the landing page nor navigation panel. All screens related to data analysis and queries are hidden.</p>
+                    </td>
+                    <td>
+                        <p>Admin, Manager, Viewer</p>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Default.DoNotShow">
+                    <td>
+                        <p>1..N Spaces Analysis</p>
+                    </td>
+                    <td>
+                        <p>Enable access (review and query) to specific Space. As default, user role that can access the analyze my data screen has access to all Spaces, but it is possible to limit users/roles to selected Spaces only.</p>
+                        <p><b>Outcome</b>: Partial list of Spaces is available for specific user role according to the definition.</p>
+                    </td>
+                    <td>
+                        <p>Admin, Manager, Viewer</p>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Default.DoNotShow">
+                    <td>
+                        <p>1..N Object Types Analysis</p>
+                    </td>
+                    <td>
+                        <p>User role that has access to specific Space may have permission to review and analyze all object types within the Space (default) or can access specific object types only.</p>
+                        <p><b>Outcome</b>: Partial list of object types is available for user role according to their permissions.</p>
+                    </td>
+                    <td>
+                        <p>Admin, Manager, Viewer</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>SQL Query</p>
+                    </td>
+                    <td>
+                        <p>Enable/disable the ability to define and execute SQL queries. For user role with no permission – the SQL query tab will be hidden with no access to data.</p>
+                        <p><b>Outcome</b>: The SQL query tab is hidden at both Space and object type levels for user role with no permission.</p>
+                    </td>
+                    <td>
+                        <p>Admin, Manager, Viewer</p>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="">
+                    <td>
+                        <p>Objects Analysis</p>
+                    </td>
+                    <td>
+                        <p>Enable/disable the ability to trigger the Object Analysis (on-demand and scheduled) process or to review reports/last run report. This is valid for all orchestration layers.</p>
+                        <p><b>Outcome</b>: User role with no permission to trigger the object analysis feature will not have these actions as part of their Space screen.</p>
+                    </td>
+                    <td>
+                        <p>Admin</p>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Default.DoNotShow">
+                    <td>
+                        <p>Reports Tab</p>
+                    </td>
+                    <td>
+                        <p>Control the visibility of the Reports tab in Space/object type screens. User role with no permission for reports, will not be able to review this tab and open a report from the history list.</p>
+                    </td>
+                    <td>
+                        <p>Admin, Manager, Viewer</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Connect to Data Sources Screen</p>
+                    </td>
+                    <td>
+                        <p>Enable/disable user role to access the data sources screen and connect/fetch data.</p>
+                        <p><b>Outcome</b>: User role with no permission to connect to data sources will not be able to access these screens through the landing page or navigation panel. All screens related to data analysis and queries are hidden.</p>
+                    </td>
+                    <td>
+                        <p>Admin, Manager</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Deploy a Blueprint</p>
+                    </td>
+                    <td>
+                        <p>Enable the ability to automatically deploy a blueprint using either ServiceGrid or Kubernetes as the orchestration layer. All user roles that have access to the data sources screen can download a blueprint but need specific permission to deploy it from the Ops Manager.</p>
+                        <p><b>Outcome</b>: The automatic deploy of a blueprint is available/visible only for user roles that have this permission.&#160;</p>
+                    </td>
+                    <td>
+                        <p>Admin, Manager</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+    </body>
+</html>

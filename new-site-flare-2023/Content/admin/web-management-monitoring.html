@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle"><a name="top"></a>Using Grafana for Monitoring and Analytics</h1>
+        <h1><a name="overview"></a>Overview</h1>
+        <p>Monitoring a production environment of any system requires inspecting many statistics. <MadCap:conditionalText MadCap:conditions="Version.15-0-born"><MadCap:variable name="General.ProductNameXAP" /> provides the Ops Manager for general monitoring and troubleshooting, and t</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-died">T</MadCap:conditionalText>he Web Management Console provides various metrics (by polling the system's components) with the following limitations:</p>
+        <ul>
+            <li><span class="tc-bold">History</span> - Since statistics are polled and aggregated at runtime in memory, they're limited to a few minutes of history, whereas in production users often need to store metrics for a few days at least.</li>
+            <li><span class="tc-bold">Persistency</span> - If the web server goes down, all statistics are lost.</li>
+            <li><span class="tc-bold">Scalability</span> - The web server gathers statistics by polling each component. This approach is not scalable, and does not behave well on large clusters.</li>
+        </ul>
+        <p>To overcome these limitations, <MadCap:variable name="General.ProductNameXAP" /> also provides a powerful and versatile <a href="metrics-overview.html">framework for reporting metrics</a>. Each component can report its own predefined or user-defined metrics to any database or tool by implementing a <a href="metrics-custom-reporter.html">metrics reporter</a>. In addition, <MadCap:variable name="General.ProductNameXAP" /> provides a <a href="metrics-influxdb-reporter.html">built-in reporter for InfluxDB</a> and integration with Grafana to provide metrics storage and visualization:</p>
+        <ul>
+            <li><a href="http://influxdb.com/" target="_blank">InfluxDB</a> is an open-source distributed time-series database with a powerful query language.</li>
+            <li><a href="http://grafana.org" target="_blank">Grafana</a> is an enterprise tool for organizations with a graph and dashboard builder for visualizing time-series metrics, which supports InfluxDB (and other data sources).</li>
+        </ul>
+        <p>When these metrics are enabled, <MadCap:variable name="General.ProductNameXAP" /> reports them to InfluxDB, and the Web Management Console provides an embedded Grafana view in the <span class="tc-bold">Monitoring</span> tab, as well as automatic creation of dashboards in Grafana whenever a new Processing Unit is deployed.</p>
+        <p>InfluxDB and Grafana are both open-source and free, but are not bundled in <MadCap:variable name="General.ProductNameXAP" /> distribution. Installation is straightforward, as described below. Note that <MadCap:variable name="General.ProductNameXAP" />'s default metrics configuration is set to match the default settings of InfluxDB and Grafana, so if this is your first time we recommend leaving the default configuration to simplify the process.</p>
+        <h1><a name="installing-and-configuring-influxdb"></a>Installing and Configuring InfluxDB</h1>
+        <p>To install InfluxDB (1.8.0 or earlier), download from <a href="https://influxdb.com/download/index.html" target="_blank">here</a> and follow the <a href="https://influxdb.com/docs/v0.9/introduction/installation.html" target="_blank">installation instructions</a>.</p>
+        <p MadCap:conditions="Version.16-0-born">To configure InfluxDB,  edit the <span class="tc-bold">metrics.xml</span> file, found under<code><![CDATA[  ]]><MadCap:variable name="General.HomePath"></MadCap:variable>/charts/xap-manager/config</code> for Kubernetes, and under <code><MadCap:variable name="General.HomePath" />/config/metrics</code> for ServiceGrid. Change the following part according to your InfluxDB host (myhost) and database name (mydb) that stores metrics:</p>
+        <p MadCap:conditions="Version.16-0-died">To configure InfluxDB,  edit the <span class="tc-bold">metrics.xml</span> file, found under <code><MadCap:variable name="General.HomePath" />/config/metrics</code> for ServiceGrid. Change the following part according to your InfluxDB host (myhost) and database name (mydb) that stores metrics:</p><pre><code class="language-xml">
+    &lt;grafana&gt;
+        &lt;datasources&gt;
+            &lt;datasource name="influxdb"&gt;
+                &lt;property name="type" value="influxdb"/&gt;
+                &lt;property name="url" value="http://myhost:8086/db/mydb"/&gt;
+                &lt;property name="username" value="root"/&gt;
+                &lt;property name="password" value="root"/&gt;
+            &lt;/datasource&gt;
+            &lt;datasource name="grafana"&gt;
+                &lt;property name="type" value="influxdb"/&gt;
+                &lt;property name="url" value="http://myhost:8086/db/grafana"/&gt;
+                &lt;property name="username" value="root"/&gt;
+                &lt;property name="password" value="root"/&gt;
+                &lt;property name="grafanaDB" value="true"/&gt;
+            &lt;/datasource&gt;
+        &lt;/datasources&gt;
+    &lt;/grafana&gt;
+
+</code></pre>
+        <h1><a name="installing-and-configuring-grafana"></a>Installing and Configuring Grafana</h1>
+        <p>To install Grafana (6.7.3 or earlier), download from <a href="http://grafana.org/download/" target="_blank">here</a>, and follow the <a href="http://docs.grafana.org/installation/" target="_blank">installation instructions</a>.</p>
+        <div class="tc-admon-note">
+            <p>Starting with Grafana version 6.2.0, the following flag in the <code>defaults.ini</code> file should be set to <code>true </code>in order to allow opening grafana within our web-ui:<br /> <code>allow_embedding=true</code></p>
+        </div>
+        <p MadCap:conditions="Version.16-0-born">After installation, you need to configure Grafana to work with <MadCap:variable name="General.ProductNameXAP" />'s metrics configuration, which is located at <code><![CDATA[  ]]><MadCap:variable name="General.HomePath" />/charts/xap-manager/config/metrics.xml</code> for Kubernetes, and at <code><MadCap:variable name="General.HomePath" />/config/metrics/metrics.xml</code> for ServiceGrid. Assuming you've installed InfluxDB and Grafana without changing the defaults, all you need to do is uncomment the InfluxDB <code>reporter</code> and <code>grafana</code> elements, as shown below:</p>
+        <p MadCap:conditions="Version.16-0-died">After installation, you need to configure Grafana to work with <MadCap:variable name="General.ProductNameXAP" />'s metrics configuration, which is located at <code><MadCap:variable name="General.HomePath" />/config/metrics/metrics.xml</code>. Assuming you've installed InfluxDB and Grafana without changing the defaults, all you need to do is uncomment the InfluxDB <code>reporter</code> and <code>grafana</code> elements, as shown below:</p><pre><code class="language-xml">&lt;metrics-configuration&gt;
+    &lt;reporters&gt;
+        &lt;reporter name="influxdb"&gt;
+            &lt;property name="host" value="localhost"/&gt;
+            &lt;property name="database" value="mydb"/&gt;
+        &lt;/reporter&gt;
+    &lt;/reporters&gt;
+    &lt;grafana url="http://localhost:3000" api-key="" user="admin" password="admin"&gt;
+        &lt;datasources&gt;
+            &lt;datasource name="xap"&gt;
+                &lt;property name="type" value="influxdb"/&gt;
+                &lt;property name="isDefault" value="true"/&gt;
+                &lt;property name="url" value="http://localhost:8086"/&gt;
+                &lt;property name="database" value="mydb"/&gt;
+                &lt;property name="access" value="proxy"/&gt;
+            &lt;/datasource&gt;
+        &lt;/datasources&gt;
+    &lt;/grafana&gt;
+&lt;/metrics-configuration&gt;
+</code></pre>
+        <ul>
+            <li><code>reporter</code> - InfluxDB installation automatically creates a database called <code>mydb</code>, which matches the default. See <a href="metrics-influxdb-reporter.html">InfluxDB Reporter</a> for information about other optional settings.</li>
+            <li><code>grafana</code> - Grafana installation defaults to port <code>3000</code> with username/password <code>admin</code>/<code>admin</code>. In production you'll probably change those in Grafana, so make sure to change them in <code>metrics.xml</code> as well. Even better, you can generate an API key in Grafana and place it in the <code>api-key</code> attribute.</li>
+            <li><code>datasource</code> - This tells Grafana how to connect to your InfluxDB database. Note that InfluxDB uses port <code>8086</code> by default for an API endpoint, and that we're connecting to the default <code>mydb</code> database.</li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>We recommend verifying that the default database exists. Some InfluxDB packages do not automatically create the default <code>mydb</code> database. You can use the InfluxDB <a href="https://influxdb.com/docs/v0.9/tools/web_admin.html">Web Admin</a> or <a href="https://influxdb.com/docs/v0.9/tools/shell.html">shell</a> to check if the database exists, and create it if needed. For more information, see the <a href="https://influxdb.com/docs/v0.9/introduction/getting_started.html#logging-in-and-creating-your-first-database">Getting Started with InfluxDB</a> topic on the InfluxDB website .</p>
+        </div>
+        <h1><a name="getting-started"></a>Getting Started</h1>
+        <p>After you install InfluxDB and Grafana and configure the <code>metrics.xml</code> file, start the Web Management Console and navigate to the <span class="tc-bold">Monitoring</span> tab - you'll see Grafana's home page (you'll probably get a login page on the first time - just type in the default <code>admin</code>/<code>admin</code>, and you'll get the home page.</p>
+        <div MadCap:conditions="Version.16-0-born">
+            <h1><a name="dashboards"></a>Dashboards</h1>
+            <p>Following are examples of predefined dashboards.</p>
+            <h2><a name="GigaSpac"></a>GigaSpaces Spaces Dashboard</h2>
+            <p>
+                <img src="../Resources/Static/images/grafana-1.png" alt="image" class="tc-picture100" />
+            </p>
+            <h2>GigaSpaces Infrastructure</h2>
+            <p>
+                <img src="../Resources/Static/images/grafana-2.png" alt="image" class="tc-picture100" />
+            </p>
+            <h1>How to Disable Grafana Metrics</h1>
+            <p>By default, Grafana metrics are automatically enabled during product installation. </p>
+            <p>If you wish to disable Grafana metrics, proceed as follows:</p>
+            <ul>
+                <li>
+                    <p>Create a chart with dependencies to other charts (known as an umbrella chart) which are completely external, using the <code>requirements.yaml</code> file (a YAML file listing dependencies for the chart).</p>
+                </li>
+                <li>
+                    <p>In the installation of the umbrella chart, include the following parameter: <code>-- set metrics.enabled=false</code></p>
+                </li>
+            </ul>
+        </div>
+        <p>&#160;</p>
+        <div MadCap:conditions="Version.16-0-died">
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/monitor.jpg" alt="image" class="tc-picture100" />
+            </p>
+            <p>Since we haven't deployed anything yet, the <span class="tc-bold">Dashboards</span> list is empty. If you deploy a Space or any other processing unit, a default dashboard is created for each, with graphs showing commonly used metrics.</p>
+            <h1><a name="dashboards"></a>Dashboards</h1>
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/monitor1.jpg" alt="image" class="tc-picture100" />
+            </p>
+            <h2><a name="default-space-dashboard"></a>Default Space Dashboard</h2>
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/monitor2.jpg" alt="image" class="tc-picture100" />
+            </p>
+            <h2><a name="default-processing-unit-dashboard"></a>Default Processing Unit Dashboard</h2>
+            <p>
+                <img src="../Resources/Static/attachment_files/web-console/monitor3.jpg" alt="image" class="tc-picture100" />
+            </p>
+        </div>
+    </body>
+</html>

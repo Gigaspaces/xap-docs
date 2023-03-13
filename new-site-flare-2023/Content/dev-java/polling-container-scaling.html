@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Concurrent Consumers</h1>
+  <p>By default, the polling event container starts a single thread that performs the receive operations and invokes the event listener. It can be configured to start several concurrent consumer threads and have an upper limit to the concurrent consumer threads. This provides faster processing of events, however, any FIFO behavior that might be configured in the space and/or template is lost.</p>
+
+<p>In order to receive events using multiple consumer threads, in the same order they are written to the Space:</p>
+
+<ul>
+<li>You may start multiple polling containers consuming data in FIFO manner , each running a single consumer thread using different (mutually exclusive) templates. Each thread may potentially consume a batch of space objects at a time.</li>
+<li>You may use one polling container with multiple consumer threads and enable FIFO Grouping. The FIFO order of each value is not broken. See <a href="fifo-grouping.html">FIFO Grouping</a> page for more details.  Each thread may potentially consume a batch of space objects at a time.</li>
+</ul>
+
+<p>Here is an example of a polling container with 3 concurrent consumers and 5 maximum concurrent consumers:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Annotation " style="padding:10px"><pre><code class="language-java">@EventDriven @Polling(concurrentConsumers = 3, maxConcurrentConsumers = 5)
+public class SimpleListener {
+
+    @EventTemplate
+    Data unprocessedData() {
+        Data template = new Data();
+        template.setProcessed(false);
+        return template;
+    }
+
+    @SpaceDataEvent
+    public Data eventListener(Data event) {
+        //process Data here
+    }
+}
+</code></pre>
+</div>
+<div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-events:polling-container id="eventContainer" giga-space="gigaSpace"
+                             concurrent-consumers="3" max-concurrent-consumers="5"&gt;
+    &lt;!-- ... --&gt;
+&lt;/os-events:polling-container&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer"&gt;
+    &lt;property name="concurrentConsumers" value="3" /&gt;
+    &lt;property name="maxConcurrentConsumers" value="5" /&gt;
+    &lt;!-- ... --&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+</div>
+
+<p>Sometimes, it is very convenient to have a listener instance per concurrent polling thread. This allows a thread-safe instance variable to be constructed without worrying about concurrent access. In such a case, the <code>prototype</code> Spring scope can be used in conjunction with a <code>listenerRef</code> bean name injection. Here is an example:</p>
+
+<div class="easyui-tabs" plain="true" data-options=""><div title="  Namespace " style="padding:10px"><pre><code class="language-xml">&lt;bean id="listener" class="eg.SimpleListener" scope="prototype" /&gt;
+
+&lt;os-events:annotation-adapter id="adapterListener" scope="prototype"&gt;
+    &lt;os-events:delegate ref="listener"/&gt;
+&lt;/os-events:annotation-adapter&gt;
+
+&lt;os-events:polling-container id="eventContainer" giga-space="gigaSpace" concurrent-consumers="2"&gt;
+    &lt;!-- ... --&gt;
+    &lt;os-events:listener ref="adapterListener" /&gt;
+&lt;/os-events:polling-container&gt;
+</code></pre>
+</div>
+<div title="  Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="listener" class="eg.SimpleListener" scope="prototype" /&gt;
+
+&lt;bean id="adapterListener" class="org.openspaces.events.adapter.AnnotationEventListenerAdapter" scope="prototype"&gt;
+    &lt;property name="delegate" ref="listener" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="eventContainer" class="org.openspaces.events.polling.SimplePollingEventListenerContainer"&gt;
+    &lt;property name="concurrentConsumers" value="2" /&gt;
+    &lt;property name="eventListenerRef" value="adapterListener" /&gt;
+    &lt;!-- ... --&gt;
+&lt;/bean&gt;
+</code></pre>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Distributed Processing</h1>
+        <p>In this part of the tutorial we will introduce you to the different processing services you can run on top of the space.</p>
+        <p><MadCap:variable name="General.DataGridInitCap" /> includes a set of built-in service components such as Task Execution and Messaging services, each implementing commonly used Enterprise integration patterns. It's purpose is to make the implementation of distributed applications on-top of the space simpler and less intrusive and allow you to easily build highly scalable and performing applications. All services follow the POJO/Spring based abstraction approach which includes dependency injection and annotations.</p>
+        <h1><a name="task-execution"></a>Task Execution</h1>
+        <p>Task Execution provides a fine-grained API for performing ad-hoc parallel execution of user defined tasks. This framework should be used in the following scenarios:</p>
+        <ul>
+            <li>
+                <p>When the tasks are defined by clients and can be changed or added while the data-grid servers are running.</p>
+            </li>
+            <li>
+                <p>As a dynamic "stored procedure" enabling to execute complex multi stage queries or data manipulation where the data resides, thus enabling to send back only the end result of the calculation and avoid excess network traffic.</p>
+            </li>
+            <li>
+                <p>Scatter/Gather pattern - when you need to perform aggregated operations over a cluster of distributed partitions.</p>
+            </li>
+        </ul>
+        <p>Task execution comes in two flavors:</p>
+        <ul>
+            <li>
+                <p>Java Tasks - In this mode you can pass Java code from the client to the cluster to be executed on the data grid nodes. The code is dynamically introduced to the server nodes classpath.</p>
+            </li>
+            <li>
+                <p>Dynamic language tasks - Tasks can be defined using one of the dynamic languages supported by the JVM (JSR-223) and be compiled and executed on the fly. In this part of the tutorial we will not cover Dynamic language tasks.</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../dev-java/task-dynamic-language.html">Dynamic Language Tasks</a> page in the developer guide.</p>
+        </div>
+        <p>Java Tasks can be more efficient in terms of performance and tend to be more type-safe then dynamic tasks. Dynamic tasks on the other hand can be changed more frequently without causing class version conflicts and are more concise given the nature of dynamic languages..</p>
+        <div class="tc-admon-note">
+            <p>Java Tasks have the following characteristics:</p>
+            <ul>
+                <li>
+                    <p>They execute in a "broadcast" mode on all the primary cluster members concurrently and reduced to a single result on the client side. <br /></p>
+                </li>
+                <li>
+                    <p>They can execute directly on a specific cluster member using typical routing declarations. <br /></p>
+                </li>
+                <li>
+                    <p>They are completely dynamic both in terms of content and class definitions (the task class definition does not have to be defined within the space classpath).</p>
+                </li>
+            </ul>
+        </div>
+        <p>Here is an example of a Java task. We define a task that will collect all users that made a payment to a specific merchant:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Task " style="padding:10px"><pre><code class="language-java">public class MerchantUserTask implements Task&lt;HashSet&lt;Integer&gt;&gt; {
+     private Long merchantId;
+
+     @TaskGigaSpace
+     private transient GigaSpace space;
+
+     public MerchantUserTask(Long merchantId) {
+        this.merchantId = merchantId;
+     }
+
+     public HashSet&lt;Integer&gt; execute() throws Exception {
+       SQLQuery&lt;Payment&gt; query = new SQLQuery&lt;Payment&gt;(Payment.class,"receivingMerchantId = ? ");
+       query.setParameter(1, merchantId);
+
+       Payment[] payments = space.readMultiple(query, Integer.MAX_VALUE);
+       HashSet&lt;Integer&gt; userIds = new HashSet&lt;Integer&gt;();
+
+       // Eliminate duplicate UserId
+       if (payments != null) {
+         for (int i = 0; i &lt; payments.length; i++) {
+            userIds.add(payments[i].getPayingAccountId());
+         }
+       }
+       return userIds;
+    }
+}
+</code></pre>
+            </div>
+            <div title="  Execution " style="padding:10px"><pre><code class="language-java">public void executeTask() throws InterruptedException, ExecutionException {
+     MerchantUserTask task = new MerchantUserTask(1L);
+
+     AsyncFuture&lt;HashSet&lt;Integer&gt;&gt; result = space.execute(task);
+     HashSet&lt;Integer&gt; hashSet = result.get();
+}
+</code></pre>
+            </div>
+        </div>
+        <p>Task execution is asynchronous in nature, returning an AsyncFuture as the result of the execution allowing to get the result at a later stage in the code. AsyncFuture itself extends java.util.concurrent.Future that adds the ability to register a listener which will be called when the results are available.</p>
+        <p>Here is an example of a Future Listener:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Async Listener " style="padding:10px"><pre><code class="language-java">public class AsyncListener implements AsyncFutureListener&lt;HashSet&lt;Integer&gt;&gt; {
+
+     public void onResult(AsyncResult&lt;HashSet&lt;Integer&gt;&gt; result) {
+          System.out.println("Listener received result");
+     }
+}
+</code></pre>
+            </div>
+            <div title="  Execution " style="padding:10px"><pre><code class="language-java">public void executeAsyncTask() throws InterruptedException {
+    MerchantUserTask task = new MerchantUserTask(2L);
+    AsyncListener l = new AsyncListener();
+
+    space.execute(task, l);
+}
+</code></pre>
+            </div>
+        </div>
+        <h4><a name="task-routing"></a>Task Routing</h4>
+        <p>By nature, task execution is broadcasted to all partitions in the space. You can route a task directly to one of the partitions of the space. Here is an example demonstrating how to route a task to a partition:</p><pre><code class="language-java">public void executeTaskWithRouting() throws InterruptedException, ExecutionException {
+     // Route the task to partion 2
+     AsyncFuture&lt;HashSet&lt;Integer&gt;&gt; result = space.execute(task, 2);
+}
+</code></pre>
+        <p>There are other options available for task routing.</p>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../dev-java/task-execution-overview.html">Task Execution</a> section in the developer guide.</p>
+        </div>
+        <h1><a name="distributed-task"></a>Distributed Task</h1>
+        <p>A DistributedTask is a task that ends up executing more than once (concurrently) and returns a result that is a reduced operation of all the different executions.</p>
+        <p>In the example below we are creating a distributed task that finds all merchants with a specific category. Once all results are returned to the client, reduce is called and a list of all merchants is created.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  DistributedTask " style="padding:10px"><pre><code class="language-java">public class MerchantByCategoryTask implements DistributedTask&lt;Merchant[], List&lt;Merchant&gt;&gt; {
+
+    private ECategoryType categoryType;
+    @TaskGigaSpace
+    private transient GigaSpace gigaSpace;
+
+    public MerchantByCategoryTask(ECategoryType categoryType) {
+      this.categoryType = categoryType;
+    }
+
+    public Merchant[] execute() throws Exception {
+       SQLQuery&lt;Merchant&gt; query = new SQLQuery&lt;Merchant&gt;(Merchant.class,"category = ?");
+       query.setParameter(1, categoryType);
+       return gigaSpace.readMultiple(query, Integer.MAX_VALUE);
+    }
+    public List&lt;Merchant&gt; reduce(List&lt;AsyncResult&lt;Merchant[]&gt;&gt; results) throws Exception {
+       List&lt;Merchant&gt; list = new ArrayList&lt;Merchant&gt;();
+
+       for (AsyncResult&lt;Merchant[]&gt; result : results) {
+         if (result.getException() != null) {
+           throw result.getException();
+         }
+         Collections.addAll(list, result.getResult());
+       }
+       return list;
+   }
+}
+</code></pre>
+            </div>
+            <div title="  Execution " style="padding:10px"><pre><code class="language-java">public void executeDistributedTask() throws InterruptedException,ExecutionException {
+    MerchantByCategoryTask task = new MerchantByCategoryTask(ECategoryType.AUTOMOTIVE);
+
+    AsyncFuture&lt;List&lt;Merchant&gt;&gt; result = space.execute(task);
+    List&lt;Merchant&gt; list = result.get();
+}
+</code></pre>
+            </div>
+        </div>
+        <p>By default, the task is broadcasted to all primary nodes. You can also execute a distributed task on selected nodes based on different routing values:</p><pre><code class="language-java">AsyncFuture&lt;List&lt;Merchant&gt;&gt; result = space.execute(task,1,2,3);
+</code></pre>
+        <p><MadCap:variable name="General.DataGridInitCap" /> provides out of the box Aggregator Tasks.</p>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../dev-java/aggregators.html">Aggregators</a> page in the Space Interface section of the developer guide.</p>
+        </div>
+        <h4><a name="executorbuilder"></a>ExecutorBuilder</h4>
+        <p>The executor builder allows to combine several task executions (both distributed ones and non distributed ones) into a seemingly single execution (with a reduce phase).</p>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../dev-java/task-execution-overview.html">Task Execution</a> section of the developer guide.</p>
+        </div>
+        <h1><a name="space-based-remoting"></a>Space-Based Remoting</h1>
+        <p>Spring provides support for various remoting technologies. <MadCap:variable name="General.DataGridInitCap" /> uses the same concepts to provide remoting, using the space as the underlying protocol.</p>
+        <p>Why would you use the space as the transport layer include:</p>
+        <ul>
+            <li>
+                <p>High availability - since the space by its nature (based on the cluster topology) is highly available, remote invocations get this feature automatically when using the space as the transport layer.</p>
+            </li>
+            <li>
+                <p>Load-balancing - when using a space with a partitioned cluster topology, each remote invocation is automatically directed to the appropriate partition (based on its routing handler), providing automatic load-balancing.</p>
+            </li>
+            <li>
+                <p>Performance - remote invocations are represented in fast internal <MadCap:variable name="General.DataGrid" /> objects, providing fast serialization and transport over the net.</p>
+            </li>
+            <li>
+                <p>Asynchronous execution - by its nature, remoting support is asynchronous, allowing for much higher throughput of remote invocations. <MadCap:variable name="General.DataGridInitCap" /> allows you to use asynchronous execution using Futures, and also provides synchronous support (built on top of it).</p>
+            </li>
+            <li>
+                <p>Executor-Based Remoting - Executor-Based Remoting executes synchronous or asynchronous calls between the client and the server. In this mode the client invocation executes a task that invokes the corresponding server method immediately when the call arrives at the server. The server must therefore be collocated with the space.</p>
+            </li>
+            <li>
+                <p>Event-Driven Remoting - Event-Driven Remoting supports most of the above capabilities, but does not support map/reduce style invocations. In terms of implementation, it's based on the Polling Container feature, which means that it writes an invocation entry to the space which is later consumed by a polling container. Once taking the invocation entry from the space, the polling container's event handler delegates the call to the space-side service.</p>
+            </li>
+        </ul>
+        <p>In this tutorial will look at an Executor based Remoting service.</p>
+        <h2><a name="defining-the-contract"></a>Defining the Contract</h2>
+        <p>In order to support remoting, the first step is to define the contract between the client and the server. Here is an example of a payment service:</p><pre><code class="language-java">public interface IPaymentProcessor {
+    Payment processPayment(Payment data);
+}
+</code></pre>
+        <h2><a name="implement-the-service"></a>Implementing the Service</h2>
+        <p>Next, an implementation of this contract needs to be provided. This implementation will "live" on the server side. Here is a sample implementation:</p><pre><code class="language-java">@RemotingService
+public class PaymentProcessor implements IPaymentProcessor {
+     public Payment processPayment(Payment payment) {
+       System.out.println("Processing payment ");
+       return payment;
+    }
+}
+</code></pre>
+        <h2><a name="exporting-the-service"></a>Exporting the Service</h2>
+        <p>The service is exported to the server with the Spring configuration. Here is an example:</p><pre><code class="language-xml">&lt;!-- Scan the packages for annotations / --&gt;
+&lt;context:component-scan base-package="xap.qsg" /&gt;
+
+&lt;!-- Enables using @RemotingService and other remoting related annotations --&gt;
+&lt;os-remoting:annotation-support /&gt;
+
+&lt;!-- A bean representing a space (an IJSpace implementation) --&gt;
+&lt;os-core:embedded-space id="space" space-name="xapTutorialSpace" /&gt;
+
+&lt;!-- Define the GigaSpace instance that the application will use to access the space --&gt;
+&lt;os-core:giga-space id="xapTutorialSpace" space="space"/&gt;
+
+&lt;os-remoting:service-exporter id="serviceExporter" /&gt;
+</code></pre>
+        <h2><a name="client-side-invocation"></a>Client-Side Invocation</h2>
+        <p>On the client side, the remoting proxy is injected with the @ExecutorProxy annotation:</p><pre><code class="language-java">public class RemoteService {
+     @Autowired
+     @Qualifier(IRemotingService.SPACE)
+     private GigaSpace space;
+
+     @ExecutorProxy
+     private IPaymentProcessor paymentProcessor;
+
+     public void executePaymentService() {
+        Payment payment = paymentProcessor.processPayment(new Payment());
+     }
+}
+</code></pre>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../dev-java/space-based-remoting-overview.html">Space Based Remoting</a> section of the developer guide.</p>
+        </div>
+    </body>
+</html>

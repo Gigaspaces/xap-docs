@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<head></head>
+<body>
+<h1>Authorities and Privileges</h1>
+  
+
+<p><span class="tc-bold">Authority</span> refers to a grouping of privileges. A <span class="tc-bold">Privilege</span> (permission) is a granted right to perform an operation/action on a resource. For example, a user may have a read privileges to access data.</p>
+
+<pre><code class="language-java">public interface Authority {
+
+    /**
+     * @return a representation of the granted authority
+     */
+    String getAuthority();
+}
+</code></pre>
+
+<h2><a name="space-authority"></a>Space Authority</h2>
+
+<p>The <span class="tc-bold">Space Authority</span> consists of privileges for operation on space (stored) data. The operations are divided into five groups of interest.</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Write</td>
+<td>Write and Update operations</td>
+</tr>
+
+<tr>
+<td>Create</td>
+<td>Write only (no Updates) operations</td>
+</tr>
+
+<tr>
+<td>Read</td>
+<td>Read, Count and Notify operations</td>
+</tr>
+
+<tr>
+<td>Take</td>
+<td>Take and Clear operations</td>
+</tr>
+
+<tr>
+<td>Alter</td>
+<td>Register type descriptor, Clean and Drop-Class operations</td>
+</tr>
+
+<tr>
+<td>Execute</td>
+<td>Execute tasks</td>
+</tr>
+</tbody>
+</table>
+
+<p>When you grant a privilege you are allowing the user to perform the operation on the space. If you wish to restrict the operation to certain classes, a "Class-Filter' may be defined.</p>
+
+<h4><a name="restricting-of-privileges"></a>Restricting of privileges</h4>
+
+<p>A "Class-Filter' <span class="tc-bold">allows</span> or <span class="tc-bold">denies</span> operations on certain classes based on their fully qualified name, package name, or wild-card manipulation. For example, you may define a user with <span class="tc-bold">Read</span> privileges for Class <code>com.gigaspaces.office.Employee</code>, <span class="tc-bold">Write</span> privileges for Package <code>com.gigaspaces.vacations.\*</code> and <span class="tc-bold">Take</span> privileges for a match of <code>com.gigaspaces.sickdays*</code>. You may also define a user which is <span class="tc-bold">denied</span> of reading <code>com.gigaspaces.salary.*</code>.</p>
+
+<h4><a name="class-filter-matching-using-hierarchy"></a>Class-Filter matching using Hierarchy</h4>
+
+<p>When performing a matching operation (e.g. space read), a template is supplied. Matches can be returned also from subclasses of this template.
+Take for example, the following hierarchy:</p>
+
+<ul>
+<li>Shape
+
+<ul>
+<li>Circle</li>
+<li>Rectangle
+
+<ul>
+<li>Square</li>
+</ul></li>
+<li>Triangle</li>
+</ul></li>
+</ul>
+
+<p>When we read using a <code>Shape</code> template, a <code>Shape</code>, <code>Circle</code>, <code>Rectangle</code>, <code>Triangle</code> and even <code>Square</code> are part of the result set.
+But if we read using a <code>Rectangle</code> template, only it and its subclass <code>Square</code> are part of a result set.</p>
+
+<p>This should be considered when you <span class="tc-bold">allow</span> a Class-Filter for <span class="tc-italic">matching</span> operations (<span class="tc-bold">Read</span>, <span class="tc-bold">Take</span>, <span class="tc-bold">Alter</span>).</p>
+
+<p>But, when you <span class="tc-bold">deny</span> a Class more caution should be taken. If you <span class="tc-bold">deny</span> a <code>Rectangle</code> Class from being read it means you can't perform read with this class. But it does not mean you cannot perform read with <code>Square</code>. Moreover, it does not mean that <code>Rectangle</code> won't be returned in the result set when performing read with <code>Shape</code>. If your packages are flexible you can deny using wildcard matching or package matching. Otherwise you need to <span class="tc-bold">deny</span> <span class="tc-italic">all</span> classes in the hierarchy.</p>
+
+<h4><a name="example"></a>Example</h4>
+
+<p>The <code>UserDetails.getAuthorities()</code> method lists the granted authorities of a user. An <code>Authority</code> represents a grouping of privileges. For example, a <code>SpaceAuthority</code> consists of write, read, execute privileges. Each of these can be specifically assigned to a user. These authorities are populated upon a user's authentication process.</p>
+
+<p>Here is a simple user with read + write privileges construction:</p>
+
+<pre><code class="language-java">UserDetails user = new User("John Smith", "password", 
+                        new SpaceAuthority(SpacePrivilege.READ), 
+                        new SpaceAuthority(SpacePrivilege.WRITE));
+</code></pre>
+
+<div class="tc-admon-note">
+  
+  <p>The SecurityManager interface provides an extension to a user defined <code>DirectoryManager</code>. This allows you to connect to any storage to manage users and roles.
+This method is <span class="tc-bold"><span class="tc-italic">not mandatory</span></span>, and implementors can throw <code>DirectoryAccessDeniedException</code> if management should be done via external user management tools.</p>
+
+<p>See <a href="security-directory-manager.html">Users and Roles</a> section for more details.</p>
+
+<pre><code class="language-java">interface SecurityManager {
+    ...
+    DirectoryManager createDirectoryManager(UserDetails userDetails) throws AuthenticationException, 
+                                                                               AccessDeniedException;
+...
+}
+</code></pre>
+</div>
+
+<h2><a name="role-authority"></a>Role Authority</h2>
+
+<p>The <code>RoleAuthrority</code> represents a logical name for a role. This provides an authorities-to-role grouping. The <code>RoleDetails</code> defines the authorities belonging to a specific role.</p>
+
+<p>For example, lets define a guest role with read privileges assigned to an anonymous user:</p>
+
+<pre><code class="language-java">RoleDetails role = new Role("guest", new SpaceAuthority(SpacePrivilege.READ));
+UserDetails user = new User("anonymous", new RoleAuthority("guest"));
+</code></pre>
+
+<p>And define a contributor, with read and write privileges:</p>
+
+<pre><code class="language-java">RoleDetails role = new Role("contributor", new SpaceAuthority(SpacePrivilege.READ), new SpaceAuthority(SpacePrivilege.WRITE));
+UserDetails user = new User("gigaspacer", new RoleAuthority("contributor"));
+</code></pre>
+
+<p>This separation between users and roles allows to store the <code>RoleDetails</code> independent to the <code>UserDetails</code>.</p>
+
+<h2><a name="system-authority"></a>System Authority</h2>
+
+<p>The <span class="tc-bold">System Authority</span> consists of two privileges and defines the distinction between a user who is allowed to define roles and a user which is only allowed to assign user's to predefined roles.
+In general, one can have both management capabilities, but in some organizations this separation may be required.</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Manage Roles</td>
+<td>Define roles (a set of privileges assigned to a logical role name)</td>
+</tr>
+
+<tr>
+<td>Manage Users</td>
+<td>Assign users to pre-defined roles, or assign user-specific privileges</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

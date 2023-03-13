@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Property Storage Type</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" />'s PBS (Portable Binary Serialization) is the underlying technology used to serialize and transport non Java objects from the client side to the space side. It is highly optimized serialization technology allowing a .NET or C++ client to communicate with the space in very efficiency manner.</p>
+        <p>To control Space Class field serialization you should use the <a href="[%=Links.ApiDotNetDoc%]/T_GigaSpaces_Core_Metadata_StorageType.htm">StorageType</a> attribute.
+Example:</p><pre><code class="language-csharp">public class Message
+{
+    private PayloadObject _payload;
+    private SortedList&lt;int, PayloadObject&gt; _payloadList;
+    [SpaceProperty (StorageType=StorageType.Binary)]
+    public PayloadObject PayLoad
+    {
+        get { return this._payload; }
+        set { this._payload = value; }
+    }
+    [SpaceProperty(StorageType = StorageType.Binary)]
+    public SortedList&lt;int, PayloadObject&gt; Payloadlist
+    {
+        get { return this._payloadList; }
+        set { this._payloadList = value; }
+    }
+...
+}
+</code></pre>
+        <p>Here are the <code>StorageType</code> supported options:</p>
+        <ul>
+            <li><span class="tc-bold">Object</span> - The space proxy will serialize the property value using <code>PBS</code> and the space will deserialize it into its java counterpart, and store it in the space as such. When the entry is read/taken from the space the property will be serialized back in the same manner.</li>
+            <li><span class="tc-bold">Binary</span> - The space proxy will serialize the property value using <code>PBS</code>, but the space will not deserialize it, just keep the bytes in a special Binary container in the space. When the entry is read/taken the binary content will be passed as-is back to the .NET proxy, which will deserialize it back to a .NET object.</li>
+            <li><span class="tc-bold">BinaryCustom</span> - Same as Binary, except that .NET serialization is used instead of <code>PBS</code> serialization.</li>
+            <li><span class="tc-bold">Document</span> - The space proxy will serialize the property value in <code>PBS</code> and the space will deserialize it as a <code>SpaceDocument</code>, and store it in the space as such. This allows matching on nested properties inside the property and to index these nested properties as well.</li>
+            <li><span class="tc-bold">Compressed</span> - Same as BinaryCustom, except that the value is compressed as well.</li>
+        </ul>
+        <div class="tc-admon-note">
+            <p>Indexing a property with a <code>Binary</code> / <code>BinaryCustom</code> / <code>Compressed</code> storage type is not supported. For more information about indexing see <a href="indexing.html">Indexing</a>.</p>
+        </div>
+        <h1><a name="interoperability"></a>Interoperability</h1>
+        <p>StorageType can be defined on .NET classes and C++ classes, but it currently cannot be defined on POJOs (planned for future releases).</p>
+        <p>Effectively this means a POJO property is always considered as StorageType.Object.</p>
+        <ul>
+            <li><code>Object</code> and <code>Document</code> are fully interoperable across all proxy types (Java, .NET, c++).</li>
+            <li><code>Binary</code> is fully interoperable between .NET and C++, and partial interop with java (a java proxy can read the pojo, and access/modify all properties which are StorageType.Object, leaving the rest unchanged).</li>
+            <li><code>BinaryCustom</code> and <code>Compressed</code> are currently only supported for .NET proxies, with partial interop with java and C++ as described above.</li>
+        </ul>
+        <h1><a name="defaults"></a>Defaults</h1>
+        <p>There is a list of types which have "premium citizenship' in the <code>PBS</code> protocol, which means all platforms know how to read/write them. These are: all the primitives (int, DateTime, string, etc,), nullables (Nullable&lt;int&gt;, Nullable&lt;DateTime&gt;, etc), arrays/collections/maps/dictionaries of such. All of these types default to Object storage types.</p>
+        <p>Any other type is assumed to be a user defined type, and its default storage type will be BinaryCustom, to make sure a novice user will have no trouble working with it. Setting it to Object would required the user to provide the space with an equivalent POJO class, so the space would be able to store it, and this is something most .NET users don't care about. Setting it to Binary might provide faster result, but it have some limitations (e.g. complex object graphs which contains the same object twice, or cycles).</p>
+        <h1><a name="performance-considerations"></a>Performance Considerations</h1>
+        <ul>
+            <li><code>Binary</code> is supposed to be the fastest (almost) always, because the server side doesn't need to deserialize/serialize on write/read.</li>
+            <li><code>BinaryCustom</code> is somewhat slower in most cases than Binary, because <code>PBS</code> serialization is customized for <MadCap:variable name="General.ProductNameXAP" /> whereas .NET serialization is more generic. However, on the space side, the data is still stored as a blob.</li>
+            <li><code>Object</code> and <code>Document</code> serialization are usually the slower because the space have to fully deserialize the blob and reconstruct the pojo or the document.</li>
+            <li><code>Compressed</code> is slower on one hand because compression takes time, but faster on the other because network traffic is reduced and the data is stored in the space as a blob and is not deserialized.</li>
+        </ul>
+        <p>Note that for common primitive types (int, string, DateTime, etc.) these performance diffs are negligible (if at all), and there's no sense in changing the default from object. As the property's payload gets bigger, it makes more sense to start tweaking it's storage type.</p>
+    </body>
+</html>

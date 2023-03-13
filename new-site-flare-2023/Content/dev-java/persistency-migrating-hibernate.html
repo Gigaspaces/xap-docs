@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Migrating from Hibernate</h1>
+        <p>To benefit from data caching and other capabilities, it is worthwhile to migrate a legacy application that uses the Hibernate API, to the GigaSpace or GigaMap API. In such cases, these applications can benefit from the ability to scale when using the GigaSpaces Data Grid. This is achieved by partitioning the data across different spaces running on different machines, and having the business logic colocated with each partition. This allows the space and the business logic to run in same memory address, eliminating remote calls when accessing the data.</p>
+        <p>The following tables show the correspondence between the Hibernate basic API methods to <a href="the-gigaspace-interface-overview.html">GigaSpaces API</a> and the <a href="map-api.html">GigaMap API</a> methods.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">org.hibernate.Session Method</th>
+                    <th align="left"><MadCap:variable name="General.ProductNameXAP" /> Method</th>
+                    <th align="left"><MadCap:variable name="General.ProductNameXAP" /> Method</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">save</td>
+                    <td align="left">write</td>
+                    <td align="left">put</td>
+                </tr>
+                <tr>
+                    <td align="left">persist</td>
+                    <td align="left">write</td>
+                    <td align="left">put</td>
+                </tr>
+                <tr>
+                    <td align="left">delete</td>
+                    <td align="left">clear</td>
+                    <td align="left">remove</td>
+                </tr>
+                <tr>
+                    <td align="left">update</td>
+                    <td align="left">write</td>
+                    <td align="left">put</td>
+                </tr>
+                <tr>
+                    <td align="left">merge</td>
+                    <td align="left">write</td>
+                    <td align="left">put</td>
+                </tr>
+                <tr>
+                    <td align="left">saveOrUpdate</td>
+                    <td align="left">write</td>
+                    <td align="left">put</td>
+                </tr>
+                <tr>
+                    <td align="left">replicate</td>
+                    <td align="left">write</td>
+                    <td align="left">put</td>
+                </tr>
+                <tr>
+                    <td align="left">get</td>
+                    <td align="left">read, readByID</td>
+                    <td align="left">get</td>
+                </tr>
+                <tr>
+                    <td align="left">load</td>
+                    <td align="left">read, readByID</td>
+                    <td align="left">get</td>
+                </tr>
+                <tr>
+                    <td align="left">createSQLQuery</td>
+                    <td align="left">readByIDs, readMultiple(SQLQuery) ,</td>
+                    <td align="left">Not supported</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The <a href="/sbp/moving-from-hibernate-to-space.html">Moving from Hibernate to Space</a> best practice includes step by step instructions for moving from Hibernate based application to GigaSpaces Data-Grid as the data access layer. This use Hibernate as the space persistency layer using write-through approach when pushing updates into the database.</p>
+        <div class="tc-admon-refer">
+            <p>The space can be used as a <a href="/sbp/gigaspaces-for-hibernate-orm-users.html">Hibernate second level cache</a>.</p>
+        </div>
+        <h1><a name="caching-policies-and-space-persistency"></a>Caching policies and Space Persistency</h1>
+        <p><a href="persistency-for-a-database.html">Space Persistency</a> supports the <span class="tc-bold">All In Cache</span> and <span class="tc-bold">LRU</span> <a href="memory-management-overview.html">Cache policies</a>.</p>
+        <h2><a name="all-in-cache-policy"></a>All In Cache Policy</h2>
+        <p>With the <a href="all-in-cache-cache-policy.html">All In Cache policy</a>, the assumption is the Space holds the entire data in memory. In this case, the space communicated with the data source at startup, and loads all the data. If data within the space is updated/added/removed, the space is calling the <a href="space-synchronization-endpoint-api.html">SpaceSynchronizationEndpoint</a> implementation to update the underlying data source. All data activities leveraging the data in memory.</p>
+        <h2><a name="lru-cache-policy-read-ahead"></a>LRU Cache Policy - Read-Ahead</h2>
+        <p>LRU persistency model is based on the eviction model: <span class="tc-bold">Some</span> of the data stored In-Memory (based on auto expiration mechanism or explicit data eviction) and <span class="tc-bold">ALL</span> the data stored on disk where the preferred disk media is a database. You may leverage Hibernate as the mapping layer when data is persist or have a custom persistency mapping implemented leveraging the <a href="space-data-source-api.html">Space Data Source API</a>.</p>
+        <div class="tc-admon-tip">
+            <p>GigaSpaces does not support the overflow model when persisting data since it may lead to inconsistency situations.</p>
+        </div>
+        <p>Using a database to store the data allows you to:</p>
+        <ul>
+            <li>Reload it very fast into the space with plenty of flexibility to customize the load activity.</li>
+            <li>Allows the system to query the database when needed.</li>
+        </ul>
+        <p>Database technology has proven itself to be able to store vast amount of data very efficiently with very good high-availability. You may use <a href="http://en.wikipedia.org/wiki/RDBMS">RDBMS</a> SQL databases (mySQL, Oracle, Sybase, DB2) or <a href="http://en.wikipedia.org/wiki/NoSQL">NoSQL</a> databases (MongoDB , MarkLogic, AllegroGraph) as the space persistency layer.</p>
+        <div class="tc-admon-tip">
+            <p>When using NoSQL databases you may also leverage GigaSpaces <a href="document-api.html">Document API</a> support to map complex data structure into a document data store model.</p>
+        </div>
+        <p>With the <a href="lru-cache-policy.html">LRU policy</a>, the assumption is that some of the data (recently used) is stored in memory. The amount of data stored in memory is limited by the <span class="tc-bold">cache size</span> parameter, the memory usage watermark threshold parameters and available free GSC JVM heap size. In this case, once the space is started is loads data up 50% (you may tune this value) of the defined cache max size (total of objects per partition).</p>
+        <p>If data within the space is updated/added/removed, the space is calling the <a href="space-synchronization-endpoint-api.html">SpaceSynchronizationEndpoint</a> implementation to update the underlying data source. When performing read operations for a single object (read/readById/readIfExists) and no matching object is found in-memory (cache miss), the <a href="space-data-source-api.html">SpaceDataSource</a> implementation is called to search for a matching data to be loaded back into the space and from there sent to the client application (read-ahead). If a query is executed (readMultiple), and the max objects to read exceed beyond the amount of matching objects in memory, the <code>SpaceDataSource</code> is called to search for matching data elements to be loaded back into the space and from there sent to the client application. In this case, the client might have in return objects that were originally within the space, and objects that have been read from the data source and loaded into the space as a result of the query operation.</p>
+        <div class="tc-admon-tip">
+            <p>The <a href="/sbp/imdg-with-large-backend-database-support.html">IMDG with Large Backend Database Support</a> best practice suggest a simple approach you may use to leverage LRU Space with a large database allowing the application to <span class="tc-bold">execute queries</span> against the space in an optimal manner.</p>
+        </div>
+        <p>In both cases (ALL_IN_CACHE and LRU cache policy), you can <a href="space-persistency-initial-load.html">customize the data load phase</a> to speed up the space initialization phase.</p>
+        <h1><a name="space-persistency"></a>Space Persistency</h1>
+        <p>The space can load data from data sources, store data into data sources, and persist data into a relational data source or any other media via a custom <a href="space-synchronization-endpoint-api.html">SpaceSynchronizationEndpoint</a> implementation. <a href="persistency-for-a-database.html">Space Persistency</a> a built-in implementation using <a href="hibernate-space-persistency.html">Hibernate</a>, to store data in an existing data source and in the space. Data is loaded from the data source during space initialization (via the <code>SpaceDataSource</code> implementation), and from then onwards the application works with the space directly. Meanwhile, the data source is constantly updated with all the changes made in the space (via the <code>SpaceSynchronizationEndpoint</code> implementation). This is the recommended model.</p>
+        <p>The <a href="hibernate-space-persistency.html">Hibernate Space Persistency</a> support RDBMS. The <a href="cassandra-space-persistency.html">Cassandra Space Persistency</a> allows applications to leverage NoSQL Cassandra DB having a distributed database infrastructure as an alternative to RDBMS.</p>
+    </body>
+</html>

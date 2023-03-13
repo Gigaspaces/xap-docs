@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Memcached API</h1>
+        <p><a href="http://memcached.org/" target="_blank">Memcached</a> is a popular caching protocol and server. The integration provided allows to use GigaSpaces as a memcached server (talking the memcached protocol) enhancing the memcached to provide high availability, write behind, and all the other features that come built in with the space.</p>
+        <p>The memcached support is provided as a template deployment (similar to how basic data grid deployment works), allowing to easily issue commands to deploy a memcached cluster using the CLI, Admin API, or the UI. See <a href="../admin/the-runtime-environment.html">The Runtime Environment</a> for an explanation of the moving parts and components in a <MadCap:variable name="General.ProductNameXAP" /> server instance.</p>
+        <h1><a name="why-use-memcached"></a>Why Use Memcached?</h1>
+        <p>Memcached is a simple protocol, which makes it naturally cross-platform. This simplicity means a reduction in features, such as failover or distribution of data. The traditional memcached client/server architecture has one memcached client connected to a number of <span class="tc-italic">disconnected</span> memcached server instances, which share no data and are entirely unaware of each other.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/traditional_memcached_client.jpg" alt="traditional_memcached_client.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>One deployment model for memcached with <MadCap:variable name="General.ProductNameXAP" /> has one client connecting to multiple access points, each of which is a <MadCap:variable name="General.ProductNameXAP" /> node that wraps the data grid access with the memcached protocol:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/oneclient_manyproxies.jpg" alt="oneclient_manyproxies.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>This model is a drop-in replacement for the traditional memcached deployment, except it adds fault tolerance and distribution to memcached.</p>
+        <p>The last deployment model uses a single access point for access - a single node compared to the previous model. This model shares locally cached information from the memcached instance, which reduces the infrastructure impact from duplicated cached data.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/xap_memcached_router.jpg" alt="xap_memcached_router.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <h1><a name="using-memcached"></a>Using Memcached</h1>
+        <p>Memcached uses a standardized and language-neutral <a href="https://code.google.com/p/memcached/wiki/NewCommands" target="_blank">protocol</a>, providing fourteen commands (six reads, two sets, two updates, one delete, and some status-related commands), issued over a plain text connection. A client application can open a telnet session and use a memcached server with no problems (assuming no errors are made in using the protocol, of course.)</p>
+        <p>However, since the protocol is simple and well-known, there have been many client libraries written that provide access to memcached services.</p>
+        <h2><a name="using-memcached-from-java"></a>Using Memcached from Java</h2>
+        <p>There are many memcached clients for Java; the one GigaSpaces' example applications have used is <a href="http://code.google.com/p/xmemcached/" target="_blank">xmemcached</a>.</p>
+        <h2><a name="maven"></a>Maven</h2>
+        <p>If you use Maven, you can include spymemcached as a dependency, by adding a repository reference and a dependency:</p><pre><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;com.googlecode.xmemcached&lt;/groupId&gt;
+  &lt;artifactId&gt;xmemcached&lt;/artifactId&gt;
+  &lt;version&gt;1.2.6.2&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+        <p>To connect to a memcached instance, you would first deploy a memcached space in GigaSpaces. For the sake of example, let's assume the memcached instance is deployed on two IPs: 192.168.0.10 (on a server named "memcached1") and 192.168.0.11 ("memcached2").</p>
+        <p>The code to connect to a server is:</p><pre><code class="language-java">MemcachedClientBuilder builder = new XMemcachedClientBuilder(
+                        AddrUtil.getAddresses("memcached1:11211 memcached2:11211"));
+MemcachedClient c = builder.build();
+</code></pre>
+        <div class="tc-admon-important">
+            <p>Traditional memcached servers shard data by running multiple instances as unassociated peers. Clients connect to each of them, and manually determine which of the server instances data is sent to.</p>
+            <p><MadCap:variable name="General.DataGrid" />s memcached service would run access points on each of the servers - memcached1 and memcached2, as shown above - but the servers share data, so you could get the same dataset by just connecting to only one of the server instances.</p>
+        </div>
+        <p>Setting data and retrieving it is very simple:</p><pre><code class="language-java">int secondsToLive=60; // 60 seconds
+c.set("key", secondsToLive, "value");
+
+String value=(String)c.get("key");
+
+// note that async versions of get exist as well
+</code></pre>
+        <h1><a name="deploying"></a>Deploying</h1>
+        <p>Deploying memcached requires a single parameter, which is the space to use for the memcached data. The parameter is the space url, and can either be an embedded space, or a remote connection url to an already deployed url. Here are some examples to deploy memcached using the CLI:</p><pre><code class="language-java"># use the gs-memcached script to start a memcached instance at /./memcached, port 11211
+
+$ gs-memcached.sh
+
+# use the gs-memcached script to start a memcached instance at /./newMemcached
+
+$ gs-memcached.sh /./newMemcached
+
+# deploy a single instance memcached with an embedded space
+
+$ gs.sh deploy-memcached /./mySpace
+
+# deploy a clustered memcached
+
+$ gs.sh deploy-memcached -cluster total_members=2,1 /./mySpace
+
+# deploy a memcached with 5 instances connecting to a remote space
+
+$ gs.sh deploy-memcached -cluster total_members=5 jini://*/*/mySpace
+
+# deploy a memcached instance as local cache connecting to a remote space
+
+$ gs.sh deploy-memcached jini://*/*/mySpace
+</code></pre>
+        <p>Deploying using the Admin API is similar:</p><pre><code class="language-java">Admin admin = new AdminFactory().addGroup("myGroup").createAdmin();
+
+admin.getGridServiceManagers().waitFor(1);
+admin.getGridServiceContainers().waitFor(2);
+
+ProcessingUnit unit = admin.getGridServiceManagers()
+                           .deploy(new MemcachedDeployment("/./test").partitioned(1, 1));
+unit.waitFor(unit.getTotalNumberOfInstances());
+
+for (ProcessingUnitInstance instance : unit) {
+    System.out.println(instance.getClusterInfo().getUniqueName() +
+              ": Memcached started on port [" + instance.getMemcachedDetails().getPort() + "]");
+}
+
+while (true) {
+    Thread.sleep(3000);
+    System.out.println("---------------------------------");
+    for (ProcessingUnitInstance instance : unit) {
+        System.out.println(instance.getClusterInfo().getUniqueName() +
+             ": Gets [" + instance.getStatistics().getMemcached().getGetCmds() + "]");
+    }
+}
+</code></pre>
+        <h1><a name="deployment-descriptor"></a>Deployment Descriptor</h1>
+        <p>The memcached deployment descriptor looks as follows, for deployment with a GigaSpaces processing unit:</p><pre><code class="language-xml">&lt;!--
+    Spring property configurer which allows us to use system properties (such as user.name).
+--&gt;
+&lt;bean id="propertiesConfigurer"
+      class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"&gt;
+    &lt;property name="properties"&gt;
+        &lt;props&gt;
+            &lt;prop key="url"&gt;/./memcached&lt;/prop&gt;
+            &lt;prop key="port"&gt;11211&lt;/prop&gt;
+            &lt;prop key="portRetries"&gt;10&lt;/prop&gt;
+            &lt;prop key="threaded"&gt;true&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;!--
+    A bean representing an embedded space (an IJSpace implementation).
+--&gt;
+&lt;os-core:embedded-space  id="space" url="${name}" versioned="true" /&gt;
+
+&lt;os-core:local-cache id="localCache" space="space" /&gt;
+
+&lt;os-core:giga-space id="gigaSpace" space="localCache" /&gt;
+
+&lt;bean id="memcached" class="org.openspaces.memcached.MemCacheDaemon"&gt;
+    &lt;property name="space" ref="gigaSpace" /&gt;
+    &lt;property name="port" value="${port}"/&gt;
+    &lt;property name="portRetries" value="${portRetries}" /&gt;
+    &lt;property name="threaded" value="${threaded}" /&gt;
+&lt;/bean&gt;
+</code></pre>
+        <p>The deployment defined a space, with the provided deployment url (so it can be embedded or remote). It defines a local cache on top of the space, and that local cache is passed to the <code>MemCacheDaemon</code>.</p>
+        <p>The <code>MemCacheDaemon</code> start listening on the provided port, and if that port is busy, the next port will be used. The daemon accepts different memcached protocol commands, and translates them into operations on the space.</p>
+        <h3><a name="local-cache"></a>Local Cache</h3>
+        <p>A local cache is started by default on each instance, and works against the whole cluster. Since memcached clients have no concept of routing and how routing is done by the space, a request can hit a certain instance, and be routed to a different space instance. The idea of the local cache is to improve the performance of "get" requests.</p>
+        <p>Most memcached clients allow to provide a list of memcached servers to connect to. Another improvement that most of them provides us the ability to have consistent hashing of keys to the same server instance. This can result in both high hit rate on the local cache, and less eviction happening.</p>
+        <h1><a name="performance"></a>Performance</h1>
+        <p>The results below compares native memcached with GigaSpaces memcached:</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/native_memcachedvsGigaSpaces_memcached.jpg" alt="native_memcachedvsGigaSpaces_memcached.jpg" class="tc-picture80" />
+            </p>
+        </div>
+        <p>The command used to generate the results is:</p><pre><code class="language-java">memslap --concurrency=$i --test=get --servers=$SERVER:$PORT
+</code></pre>
+        <h2><a name="test-setup"></a>Test Setup</h2>
+        <ul>
+            <li>Client: CentOS 5 , 4 x AMD Opteron Dual-core 8220 2.8Ghz , Sun Fire X4600</li>
+            <li>memcached Server:CentOS 5 , Intel® Xeon® CPU X5570  @ 2.93GHz , CISCO USC</li>
+            <li>Space Configuration: one instance. No backup. Deploy command:</li>
+        </ul><pre><code class="language-java">gs.sh deploy-memcached /./mySpace
+</code></pre>
+    </body>
+</html>

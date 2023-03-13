@@ -1,0 +1,460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Logging</h1>
+        <p>This section explains how to configure the  logging for <MadCap:variable name="General.CompanyName" /> products. You can format the log output, choose file names, and define rollover policies.</p>
+        <div class="tc-admon-note">
+            <p>Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with <MadCap:variable name="General.ProductNameXAPPrem" />).</p>
+        </div>
+        <p><MadCap:variable name="General.ProductNameXAP" /> makes logging calls using the Java platform's core logging facilities. For a detailed explanation of the Java logging framework, refer to <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/logging/overview.html" target="_blank">Java Logging Overview</a> on the Oracle website.</p>
+        <div class="tc-admon-tip">
+            <p>Logging options can be defined during <MadCap:xref href="#configuration">Configuration</MadCap:xref>, and changed dynamically at <MadCap:xref href="#logging-management-at-runtime" class="rt">Runtime</MadCap:xref>.</p>
+        </div>
+        <div MadCap:conditions="Version.16-1-1-born">
+            <h1><a name="Logging"></a>Logging File Format</h1>
+            <p>Two formats are available for the logging files:</p>
+            <ul>
+                <li>
+                    <p><b>Standard GigaSpaces Format</b>
+                        <br />This is a proprietary internal format. It is the default choice for logging files.</p>
+                </li>
+                <li>
+                    <p><b>CEF – Common Event Format</b>
+                        <br />CEF is a logging format that is provided by <a href="https://community.microfocus.com/cyberres/productdocs/w/connector-documentation/38809/arcsight-common-event-format-cef-implementation-standard">ArcSight</a>. In order to configure the system to use CEF format for logs, edit the the <code>xap_logging.properties</code> file in the <code>...config/log</code> folder as follows:</p>
+                    <ol>
+                        <li>
+                            <p>Locate the line containing <code style="font-weight: bold;">com.gigaspaces.logger.GSSimpleFormatter.format =</code> (located near line 70 of the properties file).</p>
+                        </li>
+                        <li>
+                            <p>Change the line as follows:<br /><code>com.gigaspaces.logger.GSSimpleFormatter.format = <b>{0,date,yyyy-MM-dd HH:mm:ss,SSS} {6} {3} [{4}] - {5}</b></code></p>
+                        </li>
+                    </ol>
+                    <div class="tc-admon-note">
+                        <p>You may customize the log message as desired. The numbers in braces indicate the placeholders defined in the properties file. For example <code>{3} </code>is the placeholder for the log level.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h1><a name="configuration"></a>Configuration</h1>
+        <p>The logging configuration is initialized using a configuration file that is read at startup. This configuration file is in the standard <code>java.util.Properties</code> format. It configures custom versions of both <code>java.util.logging.Handler</code> and <code>java.util.logging.Formatter</code>, and default levels for frequently used loggers (categories).</p>
+        <h2><a name="default-configuration"></a>Default Configuration</h2>
+        <p>The default <MadCap:variable name="General.ProductNameXAP" /> logger configuration file is located under:</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/config/log/xap_logging.properties
+</code></pre>
+        <h2><a name="overriding-the-default-configuration"></a>Overriding the Default Configuration</h2>
+        <p>The configuration defined in the <code>xap_logging.properties</code> file may be overridden either by using system properties, or by providing an external configuration file with overrides. This external configuration file should be located in the classpath under:</p><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/config/log/xap_logging_ext.properties
+</code></pre>
+        <p>Any configuration that you want to override in the <code>xap_logging.properties</code> file, should appear in <code>xap_logging_ext.properties</code> with its new value. The same applies for system properties, for example:</p><pre><code class="language-bash">-Dcom.gigaspaces.exceptions.level=WARNING
+</code></pre>
+        <div class="tc-admon-note">
+            <p>The recommended way to define system properties when starting service grid components is to wrap the original script, e.g. <code>gsc.sh(bat)</code> with a wrapper script which include the <MadCap:conditionalText MadCap:conditions="Version.14-5-died">EXT_JAVA_OPTIONS</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.14-5-born"><MadCap:variable name="General.EnvVariablePrefix" />_OPTIONS_EXT</MadCap:conditionalText> variable. The <code>setenv.sh(bat)</code> script, which is used by these components, will pick these options automatically and use them as JVM arguments.</p>
+        </div>
+        <h2><a name="overriding-the-configuration-file"></a>Overriding the Configuration File</h2>
+        <p>Your own configuration file may also be used instead of the platform's default. This is done via URL, or by setting the configuration file location using a system property:</p><pre><code class="language-bash">-Djava.util.logging.config.file=myfile.properties
+</code></pre>
+        <p><MadCap:variable name="General.ProductNameXAP" /> scripts rely on the exported environment variable <code><MadCap:variable name="General.EnvVariablePrefix" />_LOGS_CONFIG_FILE</code> (declared in <code><MadCap:variable name="General.HomePath" />/bin/setenv script</code>). The preferred way to apply your override file is to use a wrapper script; export the new setting of this variable and call the original script. This ensures that when <code>setenv.sh(bat)</code> is called from within the platform's scripts, it will pick up the override.</p><pre><code class="language-bash"># unix
+
+export <MadCap:variable name="General.EnvVariablePrefix" />_LOGS_CONFIG_FILE=myfile.properties
+./gsc.sh
+</code></pre>
+        <p>If your application initializes the logging facility via the Logging API (e.g. <code>LogManager.readConfiguration(InputStream ins)</code>), you may want to disable the <MadCap:variable name="General.ProductNameXAP" /> configuration altogether. When the <MadCap:variable name="General.ProductNameXAP" /> logging configuration is disabled, your Java logging settings take their place. This is done using the following system property:</p><pre><code class="language-bash">-Dcom.gs.logging.disabled=true
+</code></pre>
+        <h1><a name="troubleshooting"></a>Troubleshooting</h1>
+        <p>To troubleshoot and detect which logging properties file was loaded and from where, set the following system property to <span class="tc-bold">true</span>. This property already exists in the scripts (for convenience) and by default is set to <span class="tc-bold">false</span>.</p><pre><code class="language-bash">-Dcom.gs.logging.debug=true
+</code></pre>
+        <h2><a name="verbose-system-report"></a>Verbose System Report</h2>
+        <p>Whenever a service grid component is started, it prints a system report in its log file. Increasing the log level from INFO to CONFIG or beyond will generate a verbose report and include all system properties and environment variables, which can be useful for troubleshooting.</p>
+        <p>For example, to enable a verbose system report for GSC, change the following log level:</p><pre><code class="language-bash">com.gigaspaces.grid.gsc.level = CONFIG
+</code></pre>
+        <h1><a name="handlers"></a>Handlers</h1>
+        <p>Out of the box, <MadCap:variable name="General.ProductNameXAP" /> configures its logging with two log Handlers,</p>
+        <ul>
+            <li>
+                <p><code>java.util.logging.ConsoleHandler</code> - A simple handler for writing formatted output to System.err (level is set to ALL).</p>
+            </li>
+            <li>
+                <p><code>com.gigaspaces.logger.RollingFileHandler</code> - A handler that writes formatted output to a file that rolls over if a certain policy is triggered. Refer to <a href="logging-managing-files.html">Managing Log Files</a>.</p>
+            </li>
+        </ul>
+        <p>Java util logging supports other handlers. MemoryHandler, SocketHandler or any other handler can be used instead of the above. For more information about handlers, refer to this Oracle topic on <a href="http://docs.oracle.com/javase/[%=Versions.java-version%]/docs/technotes/guides/logging/">logging</a>. You can also use one of the <a href="http://java-source.net/open-source/logging" target="_blank">open source logging frameworks</a> that supports java.util.logging.</p>
+        <h1><a name="formatters"></a>Formatters</h1>
+        <p>Formatters are in charge of formatting the log messages and adding metadata to them (date, time, level, etc).
+<MadCap:variable name="General.ProductNameXAP" /> configures the logging handler's <code>formatter</code> property with a single <code>Formatter</code> implementation class:
+<code>com.gigaspaces.logger.GSSimpleFormatter</code>. This formatter class is based on the <code>java.util.logging.SimpleFormatter</code> class. Refer to <a href="logging-formatting-messages.html">Formatting Log Messages</a> for more details.</p>
+        <h1><a name="exception-visibility"></a>Exception Visibility</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" /> prints exception stack traces for log messages with level <code>SEVERE</code> or higher.</p><pre><code class="language-bash">com.gigaspaces.exceptions.level = SEVERE
+</code></pre>
+        <p>Messages with lower levels will only be logged with the exception's <code>toString()</code> value. To force the logger to print the stack trace of exceptions with lower levels, such as Level <code>WARNING</code>, set the <code>com.gigaspaces.exceptions.level</code> property to <code>WARNING</code>.</p>
+        <p>The stack trace of a <code>java.lang.RuntimeException</code> is always be logged, regardless of the level definition.</p>
+        <h1><a name="logging-management-at-runtime"></a>Logging Management at Runtime</h1>
+        <p>You can change various logger level settings while the system is up and running, without having to restart. This can be very useful in production environments when you have to troubleshoot the system, but cannot restart it.</p>
+        <div MadCap:conditions="Version.15-8-born">
+            <h2><a name="Runtime-Logging-Management"></a>Runtime Logging Management via Ops Manager/Command Line/REST-API</h2>
+            <p>The logging options can be changed dynamically via one of the following approaches:</p>
+            <div class="easyui-tabs" plain="true" data-options="" MadCap:conditions="NewSet.JustAColorForDivs">
+                <div title="GigaSpaces Ops Manager" style="padding:10px" MadCap:conditions="Version.15-0-born">
+                    <p>Click the card in the Services area of the Services Overview page. On the top right of the screen, click on the three-dot menu. The following popup will appear:</p>
+                    <p>
+                        <img src="../Resources/Static/images/ops-manager-change-log-level.png" />
+                    </p>
+                    <p>Click Change Log Level, and the following popup will appear:</p>
+                    <p>
+                        <img src="../Resources/Static/images/ops-manager-log-levels.png" />
+                    </p>
+                    <p>In this example, <code class="language-bash">com.gigaspaces.core.common</code> is the name of the log file that you wish to change. You can see the list of log files in <MadCap:variable name="General.HomePath" />/config/log/xap_logging.properties </p>
+                    <p>The dropdown list allows you to choose a logging level. In this example, the new logging level is <b>FINEST</b>. Click <a href="https://docs.oracle.com/en/java/javase/15/docs/api/java.logging/java/util/logging/class-use/Level.html">here</a> for information on logging levels. </p>
+                </div>
+                <div title="Command Line Interface" style="padding:10px">
+                    <p><span class="tc-italic">Command example:</span>
+                    </p>
+                    <p><code>gs logger set-level --service=demo com.gigaspaces.core.common FINE</code>
+                    </p>
+                    <p><span class="tc-italic">Description:</span>
+                    </p>
+                    <p>For the log file for service <code class="language-bash">demo com.gigaspaces.core.common</code>, set the log level to FINE..</p>
+                </div>
+                <div title="REST Manager API" style="padding:10px">
+                    <p><span class="tc-italic">Path</span>
+                    </p>
+                    <p><code>POST/pus/{id}/log-level</code>
+                    </p>
+                    <p><span class="tc-italic">Description</span>
+                    </p>
+                    <p>Dynamically change the logging level for a log file used by a service.</p>
+                    <p><span class="tc-italic">Example Request</span>
+                    </p><pre><code class="language-bash">curl -X POST --header 'Accept: application/json' 'http://localhost:8090/v2/pus?id=demo&amp;log=com.gigaspaces.core.common&amp;level=FINEST'
+</code></pre>
+                    <p>This example changes the logging level for the log file  <span class="tc-bold">com.gigaspaces.core.common</span> in service <span class="tc-bold">demo</span> to <span class="tc-bold">FINEST</span>.</p>
+                    <p><span class="tc-italic">Options:</span>
+                    </p>
+                    <table>
+                        <col />
+                        <col />
+                        <col />
+                        <col />
+                        <thead>
+                            <tr>
+                                <th>Option</th>
+                                <th>Description</th>
+                                <th>Sample Data</th>
+                                <th>Required</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>The name of the service that contains the log you are modifying</td>
+                                <td>demo</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>log</td>
+                                <td>The name of the log file you wish to change — see the list of log files in <MadCap:variable name="General.HomePath" />/config/log/xap_logging.properties </td>
+                                <td>com.gigaspaces.core.common</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>level</td>
+                                <td>The new logging level. Click <a href="https://docs.oracle.com/en/java/javase/15/docs/api/java.logging/java/util/logging/class-use/Level.html">here</a> for information on logging levels.</td>
+                                <td>FINEST</td>
+                                <td>Yes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <h2 MadCap:conditions="Version.15-8-born">Runtime Logging Management via JMX</h2>
+        </div>
+        <p>To do this, connect to the JMX Bean of the Java logging facility via a monitoring tool such as JConsole. You can start JConsole for a specific running GSC or GSM using the <MadCap:variable name="General.CompanyName" /> Management Center (<code>&lt;product&gt;\bin\gs-ui.sh(bat)</code>).</p>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
+        <p><span class="tc-bold">To change the logging level in JConsole</span>
+        </p>
+        <ol>
+            <li>
+                <p>Traverse to the MBeans tab.</p>
+            </li>
+            <li>
+                <p>Expand the <code>java.util.logging</code> tree node and locate the Logging tree node.</p>
+            </li>
+            <li>
+                <p>Select the Operations tab.</p>
+            </li>
+            <li>
+                <p>Type the logger's name and level for the arguments of the <code>setLoggerLevel()</code> method. For example, If you want to change <code>com.gigaspaces.exceptions.level</code> level to <code>WARNING</code>, use <code>setLoggerLevel(com.gigaspaces.exceptions, WARNING)</code>.</p>
+            </li>
+        </ol>
+        <div class="tc-admon-note">
+            <p>You must use the logging level without the .level string, for example <code>com.gigaspaces.core.cluster.replication</code>, and set the value to <code>FINE</code>.</p>
+        </div>
+        <p>The LoggingMXBean enables you to:</p>
+        <ul>
+            <li>
+                <p>Get the name of the log level associated with the specified logger.</p>
+            </li>
+            <li>
+                <p>Get the list of currently registered loggers.</p>
+            </li>
+            <li>
+                <p>Get the name of the parent for the specified logger.</p>
+            </li>
+            <li>
+                <p>Set the specified logger to the specified new level.</p>
+            </li>
+        </ul>
+        <h1><a name="logging-level"></a>Logging Level</h1>
+        <p>The <a href="https://docs.oracle.com/en/java/javase/[%=Versions.java-version%]/docs/api/java.logging/java/util/logging/Level.html" target="_blank">logging level</a> class defines a set of standard logging levels that can be used to control logging output. The logging levels are ordered, and are specified by ordered integers/constants.</p>
+        <div class="tc-admon-note">
+            <p>Enabling logging at a given level also enables logging at all higher levels.</p>
+        </div>
+        <p>The supported logging levels (in descending order) are:</p>
+        <ul>
+            <li>
+                <p>SEVERE (highest value)</p>
+            </li>
+            <li>
+                <p>WARNING</p>
+            </li>
+            <li>
+                <p>INFO</p>
+            </li>
+            <li>
+                <p>CONFIG</p>
+            </li>
+            <li>
+                <p>FINE</p>
+            </li>
+            <li>
+                <p>FINER</p>
+            </li>
+            <li>
+                <p>FINEST (lowest value)</p>
+            </li>
+        </ul>
+        <p>In addition, there is a level <span class="tc-bold">OFF</span> that can be used to turn off logging, and a level <span class="tc-bold">ALL</span> that can be used to enable logging of all messages.</p>
+        <h1><a name="logging-categories"></a>Logging Categories</h1>
+        <p>The following logging categories are supported:</p>
+        <ul>
+            <li>
+                <p>Client</p>
+            </li>
+            <li>
+                <p>Communication Protocol</p>
+            </li>
+            <li>
+                <p>Class Loader</p>
+            </li>
+            <li>
+                <p>Space (Caching, Query, Replication, etc.)</p>
+            </li>
+            <li>
+                <p>Runtime (GCC, GSM, etc.)</p>
+            </li>
+            <li>
+                <p>Security</p>
+            </li>
+            <li>
+                <p>Web Container</p>
+            </li>
+            <li>
+                <p>Mule Integration</p>
+            </li>
+            <li>
+                <p>Management</p>
+            </li>
+        </ul>
+        <p>For each category, there are specific logger names you should use when configuring the logging level. See the <code>xap_logging.properties</code> file for the exact logger names supported for each category. You can also find all logger names in the <code>com.gigaspaces.logger.Constants</code> class.</p>
+        <p>The following sections describe the different modules, their logging names, and their default logging levels.</p>
+        <h2><a name="client-general"></a>Client General</h2><pre><code class="language-bash">com.gigaspaces.client.level = INFO
+com.gigaspaces.client.cluster.liveness.level = INFO
+</code></pre>
+        <p>The GigaSpaces Client can be another component or application that connects to a GigaSpaces cluster.
+Liveness check is functionality that runs inside a GigaSpaces proxy (usually held by a client connecting to a Space) to keep track of the cluster members.
+Additional information about the GigaSpaces proxy can be found <a href="tuning-proxy-connectivity.html">here</a>.</p>
+        <h2><a name="net-api"></a>.NET API</h2>
+        <p>The logging configuration file includes declarations of the loggers available at the bridge between .NET and Java.</p><pre><code class="language-bash">com.gigaspaces.externaldatasource.dotnet.level = INFO
+com.gigaspaces.bridge.dispatcher.level = INFO
+com.gigaspaces.bridge.pbsexecuter.level = INFO
+com.gigaspaces.dotnet.pu.level = INFO
+</code></pre>
+        <h2><a name="openspaces"></a>OpenSpaces</h2><pre><code class="language-bash">org.openspaces.level = INFO
+</code></pre>
+        <p>OpenSpaces wraps the core product with Spring, which enables applying Spring configuration and the Spring life cycle to <MadCap:variable name="General.CompanyName" /> applications.</p>
+        <h2><a name="pu"></a>PU</h2><pre><code class="language-bash">org.openspaces.pu.container.support.level = WARNING
+org.openspaces.pu.container.jee.context.ProcessingUnitWebApplicationContext.level = WARNING
+</code></pre>
+        <h2><a name="spring"></a>Spring</h2>
+        <p>GigaSpaces Spring application logging</p><pre><code class="language-bash">com.gigaspaces.spring.level = WARNING
+</code></pre>
+        <h2><a name="hibernate"></a>Hibernate</h2><pre><code>org.hibernate.level = WARNING
+</code></pre>
+        <h2><a name="jms-api"></a>JMS API</h2><pre><code class="language-bash">com.gigaspaces.jms.level = INFO
+</code></pre>
+        <h2><a name="comunication-protocol"></a>Comunication Protocol</h2><pre><code class="language-bash">com.gigaspaces.lrmi.nio.filters.SSLFilterFactory.level = INFO
+com.gigaspaces.lrmi.level = INFO
+com.gigaspaces.lrmi.stubcache.level = INFO
+com.gigaspaces.lrmi.context.level = INFO
+com.gigaspaces.lrmi.marshal.level = INFO
+com.gigaspaces.lrmi.watchdog.level = INFO
+com.gigaspaces.lrmi.classloading.level = INFO
+com.gigaspaces.lrmi.slow_consumer.level = INFO
+com.gigaspaces.lrmi.exporter.level = INFO
+com.gigaspaces.lrmi.communication.transport.level = INFO
+com.gigaspaces.lrmi.communication.manager.level = INFO
+com.gigaspaces.lrmi.channel.transport.level = INFO
+com.gigaspaces.lrmi.channel.manager.level = INFO
+com.gigaspaces.lrmi.channel.protocol.level = INFO
+</code></pre>
+        <h2><a name="class-loader"></a>Class Loader</h2><pre><code class="language-bash">com.gigaspaces.core.classloadercleaner.level = INFO
+com.gigaspaces.core.classloadercache.level = INFO
+</code></pre>
+        <p><MadCap:variable name="General.CompanyName" /> applications run as part of a <MadCap:variable name="General.ProductNameXAP" /> runtime container, and are packaged using the structure described <a href="../dev-java/the-processing-unit-structure-and-configuration.html">here</a>.
+Application JARs/classes are packaged in different folders, and some of the classes may be loaded as part of GigaSpaces containers (GSCs). There are multiple class loaders involved when an application is running. More information about the class loaders and their hierarchy can be found <a href="../dev-java/the-processing-unit-structure-and-configuration.html">here</a>.</p>
+        <h2><a name="space"></a>Space</h2>
+        <h3><a name="core-and-kernel"></a>Core and Kernel</h3><pre><code class="language-bash">com.gigaspaces.core.engine.level = INFO
+com.gigaspaces.core.lease.level = INFO
+com.gigaspaces.core.types.level = INFO
+com.gigaspaces.memory-manager.level = INFO
+com.gigaspaces.kernel.level = CONFIG
+com.gigaspaces.core.common.level = INFO
+com.gigaspaces.core.config.level = CONFIG
+com.gigaspaces.container.level = INFO
+</code></pre>
+        <p>Core runtime for the GigaSpaces Space component. The above loggers relate to this component and some aspects of this engine, including lease, object types, and Memory Manager.</p>
+        <h3><a name="filters"></a>Filters</h3><pre><code class="language-bash">com.gigaspaces.filters.level = INFO
+</code></pre>
+        <p>The Space filters are described here <a href="../dev-java/the-space-filters.html">Java version</a> |<a href="../dev-dotnet/the-space-filters.html"> .NET version</a>.</p>
+        <h3><a name="persistency"></a>Persistency</h3><pre><code class="language-bash">com.gigaspaces.persistent.level = INFO
+com.gigaspaces.persistent.shared_iterator.level = INFO
+org.hibernate.level = WARNING
+</code></pre>
+        <p>The GigaSpaces persistence options are explained here <a href="../dev-java/persistency-for-a-database.html">Java version</a> |<a href="../dev-dotnet/space-persistency-overview.html"> .NET version</a>. One of the packaged External Data Source implementations uses Hibernate. It is called Hibernate External Data Source, which is described <a href="../dev-java/hibernate-space-persistency.html">here</a>.</p>
+        <h3><a name="query"></a>Query</h3><pre><code class="language-bash">com.gigaspaces.query.level = INFO
+</code></pre>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports SQL queries on data in the Space, and the logger corresponds to this functionality <a href="../dev-java/query-sql.html">Java version</a> |<a href="../dev-dotnet/query-sql.html"> .NET version</a>.</p>
+        <h3><a name="lru-and-eviction"></a>LRU and Eviction</h3><pre><code class="language-bash">com.gigaspaces.cache.level = INFO
+</code></pre>
+        <p>More information about the LRU policy and eviction behavior is available <a href="../dev-java/lru-cache-policy.html">here</a>.</p>
+        <h3><a name="notifications"></a>Notifications</h3><pre><code class="language-bash">com.gigaspaces.core.notify.level = INFO
+</code></pre>
+        <p>The Notification mechanism can be used to identify events related to Space data (write, update, take, etc). Notifications are typically used with a <a href="../dev-java/notify-container-overview.html">Notify Container</a>.
+Notifications can also be used via Session-based messaging, which is discussed in detail <a href="../dev-java/session-based-messaging-api.html">here</a>.</p>
+        <h3><a name="fifo"></a>FIFO</h3><pre><code class="language-bash">com.gigaspaces.core.fifo.level = INFO
+</code></pre>
+        <p>FIFO functionality is applicable for write, read and event (notifications), and is discussed  in detail here <a href="../dev-java/fifo-support.html">Java version</a> |<a href="../dev-dotnet/fifo-support.html"> .NET version</a>.</p>
+        <h3><a name="replication"></a>Replication</h3><pre><code class="language-bash">com.gigaspaces.core.cluster.replication.level = INFO
+com.gigaspaces.core.cluster.replication.redolog.level = INFO
+com.gigaspaces.core.cluster.sync_replication.level = INFO
+</code></pre>
+        <p>When a cluster topology is replicated, the replication functionality is enabled.</p>
+        <p>Replication between Spaces is one of the core features of <MadCap:variable name="General.ProductNameXAP" />, and is explained in detail <a href="replication.html">here</a>.</p>
+        <h3><a name="partitioning"></a>Partitioning</h3><pre><code class="language-bash">com.gigaspaces.core.cluster.partition.level = INFO
+</code></pre>
+        <p>When a cluster uses partitioned topology, the data is partitioned across multiple Space instances.</p>
+        <h3><a name="active-election"></a>Active-Election</h3><pre><code class="language-bash">com.gigaspaces.cluster.active_election.level = INFO
+</code></pre>
+        <p>When there are multiple instances (primary/backup(s)), an Active-Election process is used by the cluster members to determine which member acts as the primary instance.</p>
+        <h3><a name="pojo"></a>POJO</h3><pre><code class="language-bash">com.gigaspaces.pojo.level = INFO
+</code></pre>
+        <p>This logger corresponds to <MadCap:variable name="General.CompanyName" /> POJO support. More information is available <a href="../dev-java/pojo-overview.html">here</a>.</p>
+        <h3><a name="xa-manager"></a>XA Manager</h3><pre><code class="language-bash">com.gigaspaces.core.xa.level = INFO
+</code></pre>
+        <p>This logger corresponda to the XA Transaction manager running in the Space. More information is available here <a href="../dev-java/transaction-overview.html">Java version</a> |<a href="../dev-dotnet/transaction-overview.html"> .NET version</a>.</p>
+        <h3><a name="jini-dist-tx-manager"></a>Jini Dist. TX Manager</h3><pre><code class="language-bash">com.sun.jini.mahalo.startup.level = INFO
+com.sun.jini.mahalo.destroy.level = INFO
+</code></pre>
+        <p>This logger is for the Jini Distributed Transaction manager. More information is available here <a href="../dev-java/transaction-overview.html">Java version</a> |<a href="../dev-dotnet/transaction-overview.html"> .NET version</a>.</p>
+        <h3><a name="spaceurl-spacevalidator-spaceurlparser"></a>SpaceURL, SpaceValidator, SpaceURLParser</h3><pre><code class="language-bash">com.gigaspaces.common.spaceurl.level = INFO
+com.gigaspaces.common.spacefinder.level = INFO
+com.gigaspaces.common.lookupfinder.level = INFO
+com.gigaspaces.common.resourceloader.level = INFO
+</code></pre>
+        <p>The SpaceURL and its constraints are explained here <a href="../dev-java/the-space-configuration.html">Java version</a> |<a href="../dev-dotnet/the-space-configuration.html"> .NET version</a>. Other loggers are related to this one, and are applicable when a client is trying to create a Space proxy using a URL.</p>
+        <h3><a name="multicast-notifications"></a>Multicast Notifications</h3><pre><code class="language-bash">com.gigaspaces.worker.multicast.level = INFO
+</code></pre>
+        <p>Space notifications support multicast mode, and this logger corresponds to multicast <a href="../dev-java/session-based-messaging-api.html#advanced-options">functionality</a>.</p>
+        <h1><a name="runtime"></a>Runtime</h1>
+        <h2><a name="service-container-general"></a>Service Container - General</h2><pre><code class="language-bash">com.gigaspaces.grid.space.SpaceHandler.level = FINE
+org.jini.rio.level = INFO
+com.gigaspaces.start.level = CONFIG
+com.gigaspaces.grid.space.GigaSpacesFaultDetectionHandler.level=INFO
+com.gigaspaces.grid.lookup.level = INFO
+com.gigaspaces.management.level = INFO
+</code></pre>
+        <h2><a name="lookup-service"></a>Lookup Service</h2><pre><code class="language-bash">com.gigaspaces.core.lookupmanager.level = INFO
+com.sun.jini.reggie.level = INFO
+net.jini.discovery.LookupLocatorDiscovery.level = INFO
+net.jini.lookup.ServiceDiscoveryManager.level = INFO
+net.jini.discovery.LookupDiscovery.level = INFO
+net.jini.lookup.JoinManager.level = INFO
+net.jini.config.level = WARNING
+com.sun.jini.start.service.starter.level = INFO
+com.sun.jini.thread.TaskManager.level = INFO
+</code></pre>
+        <p>The Lookup Service (LUS) is a runtime registry of GigaSpaces components. Each component registers itself to a LUS, which provides visibility to other components. For example, a GSM discovers a GSC by looking at an entry in the LUS, and a GSC discovers a GSM in a similar way. More information about the LUS is available <a href="../overview/the-runtime-environment.html#lus">here</a>.</p>
+        <h2><a name="gsm"></a>GSM</h2><pre><code class="language-bash">com.gigaspaces.grid.gsm.level = INFO
+com.gigaspaces.grid.gsm.peer.level = INFO
+com.gigaspaces.grid.gsm.feedback.level = INFO
+com.gigaspaces.grid.gsm.provision.level = INFO
+com.gigaspaces.grid.gsm.services.level = INFO
+com.gigaspaces.grid.gsm.service-instances.level = INFO
+com.gigaspaces.grid.gsm.selector.level = INFO
+org.jini.rio.tools.webster.level = INFO
+</code></pre>
+        <p>The Grid Service Manager (GSM) manages the applications and maintains the SLAs for deployments. More information about the GSM is available <a href="../overview/the-runtime-environment.html#gsm">here</a>.</p>
+        <h2><a name="gsc"></a>GSC</h2><pre><code class="language-bash">com.gigaspaces.grid.gsc.level = INFO
+com.gigaspaces.grid.gsc.GSCFaultDetectionHandler.level = INFO
+com.gigaspaces.grid.gsm.GSMFaultDetectionHandler.level = INFO
+org.openspaces.pu.container.servicegrid.PUFaultDetectionHandler.level = INFO
+</code></pre>
+        <p>The Grid Service Container (GSC) is the runtime environment for GigaSpaces applications. More information about GSCs is available <a href="../overview/the-runtime-environment.html#gsc">here</a>.</p>
+        <div MadCap:conditions="Version.15-2-died">
+            <h2><a name="esm"></a>ESM</h2><pre><code class="language-bash">org.openspaces.grid.esm.level = INFO
+</code></pre>
+            <p>The Elastic Service Manager (ESM) is an implementation of the Elastic Middleware Services. It is built on top of the existing administrative API exposed by the GigaSpaces components. See the <a href="../dev-java/elastic-processing-unit-overview.html">Elastic Service Manager</a> page for more details.</p>
+        </div>
+        <h2><a name="gsa"></a>GSA</h2><pre><code class="language-bash">com.gigaspaces.grid.gsa.level = INFO
+</code></pre>
+        <p>The Grid Service Agent (GSA) acts as a process manager that can spawn and manage Service Grid processes (operating-system-level processes), such as the Grid Service Manager (GSM), Grid Service Container (GSC), and Lookup Service (LUS). More information about the GSA is available <a href="../overview/the-runtime-environment.html#gsa">here</a>.</p>
+        <h1><a name="replication-1"></a>Replication</h1><pre><code class="language-bash">com.gigaspaces.replication.channel.level = INFO
+com.gigaspaces.replication.channel.verbose.level = INFO
+com.gigaspaces.replication.replica.level = INFO
+com.gigaspaces.replication.node.level = INFO
+com.gigaspaces.replication.router.level = INFO
+com.gigaspaces.replication.group.level = INFO
+com.gigaspaces.replication.backlog.level = INFO
+</code></pre>
+        <h1><a name="metrics"></a>Metrics</h1><pre><code class="language-bash">com.gigaspaces.metrics.manager.level = INFO
+com.gigaspaces.metrics.registry.level = INFO
+com.gigaspaces.metrics.sampler.level = INFO
+</code></pre>
+        <h1><a name="security"></a>Security</h1><pre><code class="language-bash">com.gigaspaces.security.level = INFO
+</code></pre>
+        <p>This logger corresponds to the security of GigaSpaces components. This includes configuration and runtime execution of security functionality. More information regarding GigaSpaces security is available <a href="../security/index.html">here</a>.</p>
+        <h1><a name="web-container"></a>Web Container</h1>
+        <p>Any web application default logging level (the logger name for web applications is web.<code>[processing unit name].[instance id]</code>).</p><pre><code class="language-bash">web.level = INFO
+org.mortbay.level = WARNING
+</code></pre>
+        <p><MadCap:variable name="General.ProductNameXAP" /> uses a Jetty container to provide support for Web applications. These loggers correspond to the Web Container. More information about GigaSpaces Web Application support is available <a href="../dev-java/web-jetty-processing-unit-container.html">here</a>.</p>
+        <h1><a name="mule-integration"></a>Mule Integration</h1><pre><code class="language-bash">org.mule.level = WARNING
+org.mule.MuleServer.level = INFO
+org.mule.RegistryContext.level = INFO
+org.openspaces.esb.mule.level = WARNING
+</code></pre>
+        <p>These loggers correspond to the Mule integration. More information about Mule integration is available in the <a href="../dev-java/mule-esb.html">Mule ESB</a> and <a href="../dev-java/mule-processing-unit.html">Mule Processing Unit</a> topics.</p>
+        <h1><a name="management"></a>Management</h1>
+        <p>For GUI, browser, cluster view, and JMX logging:</p><pre><code class="language-bash">com.gigaspaces.admin.level = INFO
+com.gigaspaces.admin.ui.level = INFO
+com.gigaspaces.admin.ui.cluster.view.level = INFO
+com.gigaspaces.admin.ui.spacebrowser.level = INFO
+com.gigaspaces.admin.cli.level = INFO
+com.gigaspaces.jmx.level = INFO
+</code></pre>
+        <p>These loggers correspond to the GigaSpaces Management Center. Additional information regarding the user interface is available <a href="gigaspaces-management-center.html">here</a>.</p>
+        <MadCap:snippetBlock src="../Resources/Snippets/Content/GS-UI-deprecate.flsnp" MadCap:conditions="Version.15-0-born" />
+        <h1><a name="persistence"></a>Persistence</h1>
+        <p>For persistence logging:</p><pre><code class="language-bash">com.gigaspaces.persistent.level = INFO
+com.gigaspaces.persistent.shared_iterator.level = INFO
+</code></pre>
+    </body>
+</html>

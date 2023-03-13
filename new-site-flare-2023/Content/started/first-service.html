@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Your First Service</h1>
+        <p>This topic explains how to create, configure, and deploy a service (Processing Unit) in the <MadCap:variable name="General.ProductNameXAP" /> environment. You will learn how to configure the service properties and ???.</p>
+        <h1>Overview</h1>
+        <h2>Installing the <MadCap:variable name="General.CompanyName" /> Product</h2>
+        <p>If you haven’t done so yet, download and unzip the software package in your preferred location, and apply the license key.</p>
+        <div class="tc-admon-note">
+            <p> For more detailed instructions, see the <MadCap:xref href="installation.html">Downloading and Installing</MadCap:xref> and <MadCap:xref href="license-key.html">Product License</MadCap:xref> topics in this section.</p>
+        </div>
+        <h2>Interactive Shell</h2>
+        <p><MadCap:variable name="General.CompanyName" /> products are packaged with an interactive shell that lists the available commands when it is launched. </p>
+        <p class="tc-todo">To start the interactive shell:</p>
+        <ul>
+            <li>Open a command window from the <MadCap:variable name="General.Home-directory" />/bin folder and type <MadCap:variable name="General.CLI-script-all" /> to launch the script.</li>
+        </ul>
+        <div class="tc-admon-tip">
+            <p>After you launch the script, run the version command to try out the shell. This command prints version information, which you can use to verify that you are running the correct version.</p>
+        </div>
+        <h2><MadCap:variable name="General.ProductNameXAP" /> Blueprints</h2>
+        <p><MadCap:variable name="General.CompanyName" /> products come packaged with a set of blueprints that can be used to create projects. These blueprints can be generated via the interactive shell. To see information about available blueprints and related commands, type the following:</p>
+        <ul>
+            <li><code>blueprint list</code> - displays a list of available blueprints.</li>
+            <li><code>blueprint</code> - displays a list of available blueprint commands.</li>
+        </ul>
+        <h1>Creating and Deploying a Service</h1>
+        <h2>Creating a Service</h2>
+        <p>&#160;</p>
+        <p class="tc-todo">To create a service:</p>
+        <ol>
+            <li>
+                <p> Open a shell from the <span class="tc-bold">bin</span> folder.</p>
+            </li>
+            <li>
+                <p>Run the following command to deploy the service.</p><pre><code class="language-bash">blueprint generate</code></pre>
+            </li>
+            <li>At the prompt, type <code>2</code> to select the pu-stateful blueprint.</li>
+        </ol>
+        <p><span class="tc-highlight">add explanation from google doc that explains the pu-stateful blueprint structure.</span>
+        </p>
+        <ol>
+            <li>Navigate to the my-pu-stateful folder under <MadCap:variable name="General.Home-directory" />/bin and run the build script.</li>
+        </ol>
+        <h2>Configuring the Service Properties</h2>
+        <p>Under my-pu-stateful/src/main/resources, you can use the service.properties file to configure the service properties that you need to modify from the default values.</p>
+        <p>You can update the service properties directly from the command line. For example, to create a Space called <code>foo</code>, type the following command:</p><pre><code class="language-bash">run --property space.name=foo</code></pre>
+        <p>To create a Space called <code>foo</code> with two partitions, type the following command:</p><pre><code>run --property space.name=foo --partitions=2 --lus</code></pre>
+        <p>This results in a Space with two partitions (instances), where one is the primary and the other is the backup.</p>
+        <h2>Deploying the Service</h2>
+        <p>After you prepare the service, there are a few ways to deploy it. </p>
+        <p class="tc-todo">To deploy a service locally on a service grid:</p>
+        <ul>
+            <li>
+                <p>To deploy the service using the command line, type the following:</p><pre><code>gs host run-agent --auto --gsc=1</code></pre>
+            </li>
+            <li>Alternatively, you can run the deploy script int the service folder (in this example, <span class="tc-italic">my-pu-stateful</span>).</li>
+        </ul>
+        <p>&#160;</p>
+        <p>You can open <MadCap:variable name="General.ProductNameXAP" /> Ops Manager to view your service and its Spaces.</p>
+        <p>Other things you can do:</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

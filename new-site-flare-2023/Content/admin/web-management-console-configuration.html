@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Customizing the Configuration Options</h1>
+        <p>The Web Management Console has an out-of-the-box default configuration that can be used with any standard environment. However, when preparing for deployment, you may want to customize certain configuration options to suit your specific organization needs.</p>
+        <h1><a name="localizing-the-user-interface"></a>Localizing the User Interface</h1>
+        <p>In addition to the default English, the Web Management Console supports localization to Chinese. You can define the language in which the user interface is displayed by either creating a new configuration file, or modifying the existing configuration file.</p>
+        <h2><a name="creating-a-new-configuration-file"></a>Creating a New Configuration File</h2>
+        <ol>
+            <li>
+                <p>Create a new XML file with the following contents:</p><pre><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd"&gt;
+
+    &lt;import resource="classpath:xap-webui-context.xml" /&gt;
+
+    &lt;bean id="localeConf" class="com.gigaspaces.admin.webui.shared.beans.LocaleConf"&gt;
+        &lt;property name="name" value="LOCALE"/&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre>
+            </li>
+            <li>
+                <p>Replace the <code>LOCALE</code> value with the required language code (<code>zh_CN</code>).</p>
+            </li>
+            <li>
+                <p>Save the file under <span class="tc-bold"><MadCap:variable name="General.HomePath" />/config</span>.</p>
+            </li>
+            <li>
+                <p>Pass this file as a system property to the Web Management Console launcher script, as follows:</p>
+            </li>
+        </ol>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Linux " style="padding:10px"><pre><code class="language-bash"># specify the locale context location
+export WEBUI_JAVA_OPTIONS=-Dcom.gs.webui.context=classpath:config/locale.xml
+
+# launch the web UI
+bin/gs-webui.sh
+</code></pre>
+            </div>
+            <div title="  Windows " style="padding:10px"><pre><code class="language-bash">:: specify the locale context location
+set WEBUI_JAVA_OPTIONS=-Dcom.gs.webui.context=classpath:config/locale.xml
+
+:: launch the web UI
+bin\gs-webui.bat
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="updating-the-existing-configuration-file"></a>Updating the Existing Configuration File</h2>
+        <ol>
+            <li>Open the <span class="tc-bold">xap-webui-[version-build].war</span> archive (located under <code><MadCap:variable name="General.HomePath" />/tools/gs-webui</code>) for exploring and navigate to <code>/WEB-INF/lib</code>.</li>
+            <li>
+                <p>Edit the <span class="tc-bold">web-context.xml</span> file to add the <code>localeConf</code> bean with the desired language (<code>zh_CN</code> for Chinese or <code>en</code> for English).</p><pre><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd"&gt;
+    
+    &lt;import resource="classpath:webui-context.xml" /&gt;
+
+    ...
+
+    &lt;bean id="localeConf" class="com.gigaspaces.admin.webui.shared.beans.LocaleConf"&gt;
+        &lt;property name="name" value="zh_CN"/&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre>
+            </li>
+        </ol>
+        <h1><a name="specifying-a-custom-port"></a>Specifying a Custom Port</h1>
+        <p>To override the default port, you can either use the <code>org.openspaces.launcher.port</code> system property (by defining WEBUI_PORT variable), or specify <code>-port &lt;listen port&gt;</code> as an argument to the <code>gs-webui</code> script. Here is an example on how it's done (starting to listen on port 80):</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Linux " style="padding:10px"><pre><code class="language-bash">#Specify port via a command line argument
+./gs-webui.sh -port 80
+
+#Specify port with a system property
+export WEBUI_PORT=80
+./gs-webui.sh
+</code></pre>
+            </div>
+            <div title="  Windows " style="padding:10px"><pre><code class="language-bash">#Specify port via a command line argument
+gs-webui.bat -port 80
+
+#Specify port with a system property
+set WEBUI_PORT=80
+gs-webui.bat
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="binding-to-a-specific-host"></a>Binding to a Specific Host</h1>
+        <p>To bind to specific host, you can either use the <code>org.openspaces.launcher.bind-address</code> system property (by defining BIND_ADDRESS variable), or specify <code>-bind-address &lt;myhost&gt;</code> as an argument to the <code>gs-webui</code> script.
+Default used bind address is 0.0.0.0 .
+Here is an example on how it's done (starting on host 192.168.10.1):</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Linux " style="padding:10px"><pre><code class="language-bash">#Specify bind address via a command line argument
+./gs-webui.sh -bind-address 192.168.10.1
+
+#Specify bind address with a system property
+export BIND_ADDRESS=192.168.10.1
+./gs-webui.sh
+</code></pre>
+            </div>
+            <div title="  Windows " style="padding:10px"><pre><code class="language-bash">#Specify bind address via a command line argument
+gs-webui.bat -bind-address 192.168.10.1
+
+#Specify bind address with a system property
+set BIND_ADDRESS=192.168.10.1
+gs-webui.bat
+</code></pre>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">SNMP Alerts</h1>
+        <h1>Overview</h1>
+        <p>The <MadCap:variable name="General.CompanyName" /> data grid <code>Alert</code> interface exposes the data grid environment and the application's health state. It allows users to register listeners on one or more alert types and receive notifications once an alert has been raised or has been resolved. You may use this framework to build a custom integration with a third party monitoring products to leverage the data grid alerting system.
+A recommended approach for this type of integration is to construct a listener that writes the selected alert types into the logger mechanism. Examples of this are the log4j and commons-logging frameworks.</p>
+        <p>The main advantage to this approach is the ability to use an extensive set of out-of-the-box log appenders that translate log messages into different protocols and APIs to be consumed by third-party products.
+</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/AlertsLoggerBridge.jpg" alt="AlertsLoggerBridge.jpg" class="tc-picture100" />
+        </div>
+        <h1><a name="example"></a>AlertsLoggingGatway Example</h1>
+        <p>The <code>AlertLoggingGateway</code> example provided with the <MadCap:variable name="General.CompanyName" /> distribution uses an existing <code>Log4J</code> Appender (SnmpTrapAppender) to convert log messages into SNMP traps, resulting in the alerts being propagated to a third-party network management solution.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/SNMP_Appender.jpg" alt="SNMP_Appender.jpg" class="tc-picture100" />
+        </div>
+        <h2><a name="alertslogginggatway-components"></a>Components</h2>
+        <h3><a name="snmptraptransmitter"></a>SnmpTrapTransmitter</h3>
+        <p>The <span class="tc-bold">SnmpTrapTransmitter</span> is a  Processing Unit that is responsible for the generic Alert-to-Log bridging, and listens to all alerts in its alert filter file. Any incoming alerts are written to the commons log. The SnmpTrapTransmitter is generic and can therefore be reused in similar projects without any changes. The SnmpTrapTransmitter exposes the following configuration parameters:</p>
+        <ul>
+            <li><span class="tc-bold">AlertFileFilter</span> - the name of Alert filter xml file used to filter Alerts to be logged.<br /><span class="tc-bold">loggerName</span> - the name of the logger to be created.<br /><span class="tc-bold">group</span> - the data grid group for which the Alert listener will be configured.</li>
+        </ul><pre><code class="language-xml">  &lt;bean id="SnmpTrapTransmitter" class="org.openspaces.example.alert.logging.snmp.SnmpTrapTransmitter" &gt;
+    &lt;property name="alertFileFilter" value="notify-alerts.xml" /&gt;
+    &lt;property name="loggerName" value="org.openspaces.example.alert.logging.AlertLoggingGateway" /&gt;
+    &lt;property name="group" value="group-name-here" /&gt;
+  &lt;/bean&gt;
+</code></pre>
+        <p>If you implement your own variant for this class, then for other types of alert interceptions you also have to do the following:</p>
+        <ul>
+            <li>Override the <code>construct()</code> method to register for alerts</li>
+            <li>Override the <code>destroy()</code> method to clean up the registration</li>
+            <li>Create your own class implementing the <code>AlertTriggeredEventListener</code> interface in which you will issue the logging calls.</li>
+        </ul>
+        <p>See the following example:</p><pre><code class="language-java">public class SnmpTrapTransmitter {
+
+    private Log logger;
+
+    @PostConstruct
+    public void construct() throws Exception {
+        registerAlertTrapper();
+    }
+
+    @PreDestroy
+    public void destroy() throws Exception {
+            alertManager.getAlertTriggered().remove(atListener);
+    }
+
+    private void registerAlertTrapper() {
+        atListener = new AlertTriggeredEventListener() {
+            public void alertTriggered(Alert alert) {
+                String loggRecord;
+                loggRecord = alert.toString();
+                logger.info(loggRecord);
+            }
+        };
+
+        XmlAlertConfigurationParser cparse = new XmlAlertConfigurationParser(alertFileFilter);
+        alertManager.configure(cparse.parse());
+        alertManager.getAlertTriggered().add(atListener);
+    }
+}
+</code></pre>
+        <h3><a name="snmptrapsender"></a>SnmpTrapSender</h3>
+        <p>The <span class="tc-bold">SnmpTrapSender</span> is a utility class that implements the SnmpTrapAppender's <code>SnmpTrapSenderFacade</code> interface with an implementation that queues and asynchronously transmits Alerts as SNMP traps. The SNMP transmission method - <code>sendTrap()</code> - uses the snmp4j library as its underlying implementation.</p><pre><code class="language-java">public class SnmpTrapSender implements SnmpTrapSenderFacade {
+
+    public void addTrapMessageVariable(String trapOID, String trapValue) {
+        trapQueue.add(trapValue);
+    }
+
+
+    public void initialize(SNMPTrapAppender arg0) {
+        trapQueue.clear();
+        loadRunParams();
+    }
+
+    public void sendTrap() {
+        String trapVal = trapQueue.removeFirst();
+                PDUv1 trapPdu = (PDUv1)DefaultPDUFactory.createPDU(SnmpConstants.version1);
+                trapPdu.setType(PDU.V1TRAP);
+                // pack trapVal into trapPdu
+        snmp.send(trapPdu, target);
+    }
+
+</code></pre>
+        <h2><a name="logging"></a>Logging</h2>
+        <p>The <span class="tc-bold">Commons-logging.properties</span> file is a commons logging configuration file that redirects its calls to a log4j logger. In our example, this file contains a redirection of commons-logging to log4j because the SNMP trapper used is on top of log4j.
+<span class="tc-bold">log4j.properties</span> is a log4j configuration file that delegates log writes to the SNMPTrapAppender, resulting in SNMP traps.</p><pre><code class="language-bash">log4j.rootCategory=INFO,TRAP_LOG
+log4j.appender.TRAP_LOG=org.apache.log4j.ext.SNMPTrapAppender
+log4j.appender.TRAP_LOG.ImplementationClassName=org.openspaces.example.alert.logging.snmp.SnmpTrapSender
+log4j.appender.TRAP_LOG.ManagementHost=127.0.0.1
+log4j.appender.TRAP_LOG.ManagementHostTrapListenPort=162
+log4j.appender.TRAP_LOG.CommunityString=public
+log4j.appender.TRAP_LOG.Threshold=INFO
+log4j.appender.TRAP_LOG.layout=org.apache.log4j.PatternLayout
+log4j.appender.TRAP_LOG.layout.ConversionPattern=%d,%p,%t,%c,%m%n
+</code></pre>
+        <h1><a name="running-the-example"></a>Using the AlertsLoggingGatway Example</h1>
+        <h2>External Dependencies</h2>
+        <ul>
+            <li>
+                <p>Minimum log4j version is 1.2.14</p>
+            </li>
+            <li>
+                <p>Minimum snmpTrapAppender version is 1.2.9</p>
+            </li>
+            <li>
+                <p>Minimum snmp4j version is 1.11.2</p>
+            </li>
+            <li>
+                <p>To build the example, you must have <a href="http://maven.apache.org" target="_blank">Apache Maven</a> installed. <MadCap:conditionalText MadCap:conditions="Version.14-5-died">You may find it already part of the GigaSpaces folders under <code>\<MadCap:variable name="General.HomePath" />\tools\maven</code>.</MadCap:conditionalText></p>
+            </li>
+        </ul>
+        <h2>Running the Example</h2>
+        <p>The AlertsLoggingGatway example is located under <code>&lt;product&gt;/tools/alert-integration</code>.</p>
+        <p>To run the example:</p>
+        <ol>
+            <li>
+                <p>Set the <code>group </code>value in the pu.xml file to your own data grid group. (Optionally, you can edit the function <code>registerAlertTrapper()</code> in <code>SnmpTrapTransmitter.java</code> to create your own <code>Admin</code> object in any way you see fit.)</p>
+            </li>
+            <li>
+                <p>(Optional) Edit the <code>notify-alerts.xml</code> file to set your own alerts and alert conditions that will be listened to by this example.</p>
+            </li>
+            <li>
+                <p>(Optional) Edit <code>log4j.properties</code> to set the IP address and port used by your SNMP server software (if any).</p>
+            </li>
+            <li>
+                <p>If you don't have SNMP server software, download one in order to run and test this example. For example, the iReasoning MIB browser (<a href="http://ireasoning.com/mibbrowser.shtml" target="_blank">mibbrowser</a>) provides good basic SNMP trap viewing capabilities with a free personal edition. Make sure to configure <code>log4j.properties </code>to use the same IPaddress and port used by the server.</p>
+            </li>
+            <li MadCap:conditions="Version.14-5-died">
+                <p>Install <MadCap:variable name="General.ProductNameXAP" />'s Maven dependencies to the local Maven repository by running the <code><MadCap:variable name="General.HomePath" />/tools/maven/installmavenrep.sh(bat)</code> script.</p>
+            </li>
+            <li MadCap:conditions="Version.14-5-born">Install <MadCap:variable name="General.CompanyName" />'s Maven dependencies to the local Maven repository by running the <code>&lt;product&gt;/insightedge/bin/gs maven install</code> script.</li>
+            <li>
+                <p>Build and pack the sample project into a JAR file. This can be done by executing the command <code>mvn </code>from the project's root directory, or by performing an equivalent action within your UI. A successful build should result in the creation of the example JAR&#160;file in <span class="tc-italic">target/AlertLoggingGateway.jar</span>.</p>
+            </li>
+            <li>
+                <p>If needed, start the data grid with at least one running LUS, GSM and GSC belonging to the data grid group declared in step 1.</p>
+            </li>
+            <li>
+                <p>Deploy the sample JAR to the GSC.</p>
+            </li>
+            <li>
+                <p>If needed, perform data grid actions that will trigger one or more of the defined alerts. Creating a new GSC is usually a good way to creating a multitude of different alerts.</p>
+            </li>
+            <li>
+                <p>Start up your SNMP server to intercept and view incoming traps. If you're using a MIB browser, enter the Trap Receiver (Ctrl-I) and make sure it is configured to listen on the correct IP address and port.</p>
+            </li>
+        </ol>
+    </body>
+</html>

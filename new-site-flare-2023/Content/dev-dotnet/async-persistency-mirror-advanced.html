@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Advanced Configuration</h1>
+        <h1><a name="custom-mirror-service-name"></a>Custom Mirror Service Name</h1>
+        <p>A Mirror Service can be configured per Space cluster. You can't have multiple Mirror services configured for the same space cluster.</p>
+        <div class="tc-admon-tip">
+            <p>If you need "multiple mirrors" for the same space cluster you can implement a Mirror Service that will route the data and operations to other multiple "agents" that will persist the data - effectively make the default Mirror act as a dispatcher.</p>
+        </div>
+        <p>If you have multiple different space clusters, each with its own Mirror service running, you should use a different name for each Mirror Service.</p>
+        <p>The Mirror Service name is used as part of the space config, specified via the <code>cluster-config.mirror-service.url</code> property. Its default is <code>jini://*/mirror-service_container/mirror-service</code> which match the "mirror-service" that is used as part of the <code>url</code> property used to start the mirror service.</p>
+        <p>As an example, let's say we would like to call my mirror service <code>mymirror-service</code> (instead of the default <code>mirror-service</code>). Here is how the mirror service should be started:</p><pre><code class="language-xml">&lt;ProcessingUnit&gt;
+  &lt;Mirrors&gt;
+    &lt;add Name="myMirror-service"&gt;
+      &lt;SourceSpace Name="mySpace" Partitions="..." Backups="..."/&gt;
+      &lt;ExternalDataSource Type="GigaSpaces.Practices.ExternalDataSource.NHibernate.NHibernateExternalDataSource"&gt;
+        &lt;!-- NHibernate-specific config goes here --&gt;
+      &lt;/ExternalDataSource&gt;
+    &lt;/add&gt;
+  &lt;/Mirrors&gt;
+&lt;/ProcessingUnit&gt;
+</code></pre>
+        <p>Here is how the space should be started:</p><pre><code class="language-xml">&lt;ProcessingUnit&gt;
+  &lt;EmbeddedSpaces&gt;
+    &lt;add Name="mySpace" Mirrored="true"&gt;
+      &lt;ExternalDataSource Type="GigaSpaces.Practices.ExternalDataSource.NHibernate.NHibernateExternalDataSource" 
+                          Usage="ReadOnly"&gt;
+        &lt;!-- NHibernate-specific config goes here --&gt;
+      &lt;/ExternalDataSource&gt;
+      &lt;Properties&gt;
+        &lt;add Name="cluster-config.mirror-service.url" Value="jini://*/mymirror-service_container/mymirror-service"/&gt;
+      &lt;/Properties&gt;
+    &lt;/add&gt;
+  &lt;/EmbeddedSpaces&gt;
+&lt;/ProcessingUnit&gt;
+</code></pre>
+        <h1><a name="multiple-mirrors"></a>Multiple Mirrors</h1>
+        <p>In some cases you may need to asynchronously persist data both into a relational database and a file, or persist the data into a relational database and transfer some of the data into some other system.</p>
+        <p>In such a case you may need to have multiple mirrors. In order to implement this, you should have one base mirror (for example the Hibernate Space Persistency) and extend it to include the extra functionality you may need.</p>
+        <div class="tc-admon-note">
+            <p>See the <a href="/sbp/mirror-monitor.html">Mirror Monitor</a> for a simple example how such approach should be implemented.</p>
+        </div>
+        <h1><a name="usage-scenarios"></a>Usage Scenarios</h1>
+        <h3><a name="writing-asynchronously-to-the-mirror-data-source"></a>Writing Asynchronously to the Mirror Data Source</h3>
+        <table class="tc-borderless">
+            <col />
+            <col />
+            <tr>
+                <td>
+                    <p>The following is a schematic flow of a synchronous replicated cluster with three members, which are communicating with a Mirror Service:</p>
+                </td>
+                <td>
+                    <img src="../Resources/Static/attachment_files/IMG101.gif" alt="" title="" class="tc-thumbnail" />
+                </td>
+            </tr>
+        </table>
+        <h3><a name="reading-from-the-data-source"></a>Reading from the Data Source</h3>
+        <table class="tc-borderless">
+            <col />
+            <col />
+            <tr>
+                <td>
+                    <p>The Mirror Service space is used to asynchronously <span class="tc-bold">persist</span> data into the data source. As noted elsewhere, the Mirror is <span class="tc-bold">not</span> a regular space, and should <span class="tc-bold">not</span> be interacted with directly. Thus, data can't be read from the data source using the Mirror Service space. Nonetheless, the data might be read by other spaces which are configured with a space data source.</p>
+                    <p>The data-grid pu.xml needs to be configured to use an <span class="tc-bold">space data source</span> which, when dealing with a Mirror, is <span class="tc-bold">central</span> to the cluster.</p>
+                    <p>Here is a schematic flow of how a Mirror Service asynchronously receives data, to persist into an data source, while the cluster is reading data directly from the data source.</p>
+                </td>
+                <td>
+                    <img src="../Resources/Static/attachment_files/IMG103.gif" alt="" title="" class="tc-thumbnail" />
+                </td>
+            </tr>
+        </table>
+        <h3><a name="partitioning-over-a-central-mirror-data-source"></a>Partitioning Over a Central Mirror Data Source</h3>
+        <table class="tc-borderless">
+            <col />
+            <col />
+            <tr>
+                <td>
+                    <p>When partitioning data, each partition asynchronously replicates data into the Mirror Service. Each partition can read back data that belongs to it (according to the load-balancing policy defined).</p>
+                    <p>Here is a schematic flow of how two partitions (each a primary-backup pair) asynchronously interact with a data source:</p>
+                </td>
+                <td>
+                    <img src="../Resources/Static/attachment_files/IMG104.gif" alt="" title="" class="tc-thumbnail" />
+                </td>
+            </tr>
+        </table><a name="dist-txn-mirror"></a>
+        <h1><a name="considerations-and-known-issues"></a>Considerations and Known Issues</h1>
+        <div class="tc-admon-note">
+            <p><a href="space-persistency-advanced-topics.html#limits">Space persistency considerations</a> also apply to the Mirror Service.</p>
+        </div>
+        <ul>
+            <li>The Mirror Service cannot be used with a single space. It is supported with the <code>async-replicated</code>, and <code>partitioned</code> cluster schemas.</li>
+            <li>The Mirror Service is a single space which joins a replication group. The Mirror Service is not a clustered space or part of the replication group declaration.</li>
+            <li>When the Mirror Service is loaded, it does not perform memory recovery.</li>
+            <li><a href="transient-entries.html">Transient Entries</a> are not persisted into the data source, just as in any other persistent mode.</li>
+            <li>You should have one Mirror Service running per Data Grid cluster.</li>
+            <li>The Mirror Service cannot be clustered. Deploying it as a Processing Unit ensures its high-availability.</li>
+            <li>The Mirror does not load data back into the space. The <code>ExternalDataSource</code> implementation of the space should be used to initialize the space when started.</li>
+        </ul>
+        <h1><a name="troubleshooting"></a>Troubleshooting</h1>
+        <h2><a name="log-messages"></a>Log Messages</h2>
+        <p>The space persistency logging level can be modified as part of the <code><MadCap:variable name="General.HomePath" />\Net vX.x\Config\Log\xap_logging.properties</code> file. By default, it is set to <code>INFO</code>:</p><pre><code class="language-java">com.gigaspaces.persistent.level = INFO
+</code></pre>
+        <p>Logging is divided according to <code>Level</code> as follows:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Level</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">INFO</td>
+                    <td align="left">The default level for informative messages.</td>
+                </tr>
+                <tr>
+                    <td align="left">CONFIG</td>
+                    <td align="left">Mirror Service-relevant configuration messages.</td>
+                </tr>
+                <tr>
+                    <td align="left">FINER</td>
+                    <td align="left">Fairly detailed messages of:<br />- <span class="tc-bold">Entering and exiting</span> interface methods (displaying the parameter's <code>toString()</code> method)<br />- <span class="tc-bold">Throwing of exceptions</span> between the space and the underlying implementation.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="failover-handling"></a>Failover Handling</h1>
+        <p>This section describes how the GigaSpaces Mirror Service handles different failure scenarios. The following table lists the services involved, and how the failure is handled in the cluster.</p>
+        <p>Active services are <span class="tc-textgreen">green</span>, while failed services are <span class="tc-textred">red</span>.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Active/Failed Services</th>
+                    <th align="left">Cluster Behavior</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">* <span class="tc-textgreen">Primary</span><br />- <span class="tc-textgreen">Backup</span><br />- <span class="tc-textgreen">Mirror</span><br />- <span class="tc-textgreen">Database</span><br /></td>
+                    <td align="left">* The primary and backup spaces, each include a copy of the mirror replication queue (which is created in the backup, as part of the synchronized replication between the primary and the backup). <br />- The mirror doesn't acknowledge the replication until the data is successfully committed to the database.<br />- Every time the primary gets an acknowledgment from the mirror, it notifies the backup of the last exact point in the replication queue where replication to the mirror was successful.<br />- This way, the primary and backup space include the same copy of the data and are also in sync with whatever data was replicated to the mirror and written to the database.</td>
+                </tr>
+                <tr>
+                    <td align="left">* <span class="tc-textred">Primary</span><br />- <span class="tc-textgreen">Backup</span><br />- <span class="tc-textgreen">Mirror</span><br />- <span class="tc-textgreen">Database</span><br /></td>
+                    <td align="left">* The backup space holds all the information in-memory, since the replication channel between them is synchronous. <br />- The backup space is constantly notified of the last exact point in the replication queue where replication to the mirror was successful. This means that it knows specifically when the failure occurred. Therefore, it replicates the data received from that point onwards, to the mirror.<br />- One possible scenario is that the same Entry is sent to the mirror, both by the primary and the backup space. However, the mirror handles this situation, so no data is lost or duplicated.<br />- If the primary space is restarted (typically by the Service Grid infrastructure), it recovers all of the data from the backup space. Once the primary has retrieved all data from the backup, it continues replicating as usual. No data is lost.</td>
+                </tr>
+                <tr>
+                    <td align="left">* <span class="tc-textgreen">Primary</span><br />- <span class="tc-textred">Backup</span><br />- <span class="tc-textgreen">Mirror</span><br />- <span class="tc-textgreen">Database</span><br /></td>
+                    <td align="left">* The primary keeps functioning as before: replicating data to the mirror and persisting data asynchronously, so no data is lost. <br />- The primary space is constantly notified of the last exact point in the replication queue where replication to the mirror was successful. This means that it knows specifically when the failure occurred. Therefore, it replicates the data received from that point onwards to the mirror.<br />- One possible scenario is that the same Entry is sent to the mirror both by the primary and the backup space. However, the mirror handles this situation, so no data is lost or duplicated.<br />- If the backup space is restarted (typically by the Service Grid infrastructure), it recovers all of the data from the primary space. Once the backup has retrieved all data from the primary, it continues replicating as usual. No data is lost.</td>
+                </tr>
+                <tr>
+                    <td align="left">* <span class="tc-textgreen">Primary</span><br />- <span class="tc-textgreen">Back Up</span><br />- <span class="tc-textred">Mirror</span><br />- <span class="tc-textgreen">Database</span><br /></td>
+                    <td align="left">* The primary and backup spaces accumulate the Entries and replicate them to their mirror replication queue (which is highly available since they both share it). <br />- When the mirror is restarted, replication is resumed from the point it was stopped, prior to the failure. No data is lost.</td>
+                </tr>
+                <tr>
+                    <td align="left">* <span class="tc-textgreen">Primary</span><br />- <span class="tc-textgreen">Backup</span><br />- <span class="tc-textgreen">Mirror</span><br />- <span class="tc-textred">Database</span><br /></td>
+                    <td align="left">* The primary space is constantly synchronized with the mirror, which stops sending acknowledgments or starts sending errors to it. <br />- The primary and backup spaces accumulate the Entries and replicate them to their mirror replication queue (which is highly available since they both share it). <br />- When the database is restarted, the mirror reconnects to it and persistency is resumed from the point it was stopped, prior to the failure. No data is lost.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="unlikely-failure-scenarios"></a>Unlikely Failure Scenarios</h1>
+        <p>The following failure scenarios are highly unlikely. However, it might be useful to understand how such scenarios are handled by GigaSpaces. This is detailed in the table below.</p>
+        <p>Active services are <span class="tc-textgreen">green</span>, while failed services are <span class="tc-textred">red</span>.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Active/Failed Services</th>
+                    <th align="left">Cluster Behavior</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">* <span class="tc-textred">Primary</span><br />- <span class="tc-textgreen">Backup</span><br />- <span class="tc-textred">Mirror</span><br />- <span class="tc-textgreen">Database</span><br /></td>
+                    <td align="left">* Data which has already been saved in the database is safe.<br />- Data held in the mirror replication queue still exists in the backup, so no data is lost.</td>
+                </tr>
+                <tr>
+                    <td align="left">* <span class="tc-textred">Primary</span><br />- <span class="tc-textgreen">Backup</span><br />- <span class="tc-textgreen">Mirror</span><br />- <span class="tc-textred">Database</span><br /></td>
+                    <td align="left">* Data which has already been saved in the database is safe. <br />- Data held in the mirror replication queue still exists in the backup, so no data is lost.</td>
+                </tr>
+                <tr>
+                    <td align="left">* <span class="tc-textgreen">Primary</span><br />- <span class="tc-textred">Backup</span><br />- <span class="tc-textred">Mirror</span><br />- <span class="tc-textgreen">Database</span><br /></td>
+                    <td align="left">Same as above – no data is lost.</td>
+                </tr>
+                <tr>
+                    <td align="left">* <span class="tc-textgreen">Primary</span><br />- <span class="tc-textred">Backup</span><br />- <span class="tc-textgreen">Mirror</span><br />- <span class="tc-textred">Database</span><br /></td>
+                    <td align="left">Same as above – no data is lost.</td>
+                </tr>
+                <tr>
+                    <td align="left">* <span class="tc-textgreen">Primary</span><br />- <span class="tc-textgreen">Backup</span><br />- <span class="tc-textred">Mirror</span><br />- <span class="tc-textred">Database</span><br /></td>
+                    <td align="left">* Data which has already been saved in the database is safe. <br />- Data queued in the mirror replication queue still exists in the primary and the backup, so no data is lost.</td>
+                </tr>
+                <tr>
+                    <td align="left">* <span class="tc-textred">Primary</span><br />- <span class="tc-textred">Backup</span><br />- <span class="tc-textgreen">Mirror</span><br />- <span class="tc-textgreen">Database</span><br /></td>
+                    <td align="left">* All data that was successfully replicated to the mirror (and hence persisted to the database) is safe.<br />- Data queued in the mirror replication queue in the primary and backup spaces is lost. <br /><MadCap:conditionalText MadCap:conditions="Default.DoNotShow">- If you encounter this scenario, a configuration with two backups per partition should be considered.</MadCap:conditionalText></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

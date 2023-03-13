@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Version.15-2-died">
+    <head>
+    </head>
+    <body>
+        <h1>Configuration Properties</h1>
+        <h1><a name="elastic-deployment-topology-configuration"></a>Elastic Deployment Topology Configuration</h1>
+        <p>Here are the main configuration properties you may use with the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/space/ElasticSpaceDeployment.html">ElasticSpaceDeployment</a> and the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/ElasticStatefulProcessingUnitDeployment.html">ElasticStatefulProcessingUnitDeployment</a>:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Type</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default</th>
+                    <th align="left">Mandatory</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">highlyAvailable</td>
+                    <td align="left">boolean</td>
+                    <td align="left">Specifies if the space should duplicate each information on two different machines.</td>
+                    <td align="left">true</td>
+                    <td align="left">No</td>
+                </tr>
+                <tr>
+                    <td align="left">memoryCapacityPerContainer</td>
+                    <td align="left">int , MemoryUnit</td>
+                    <td align="left">Specifies the the heap size per container (operating system process)</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">minNumberOfCpuCoresPerMachine</td>
+                    <td align="left">double</td>
+                    <td align="left">Overrides the minimum number of CPU cores per machine assumption.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">No</td>
+                </tr>
+                <tr>
+                    <td align="left">maxMemoryCapacity</td>
+                    <td align="left">int , MemoryUnit</td>
+                    <td align="left">Specifies an estimate of the maximum memory capacity for this processing unit.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">maxNumberOfCpuCores</td>
+                    <td align="left">int</td>
+                    <td align="left">Specifies an estimate for the maximum total number of cpu cores used by this processing unit.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">No</td>
+                </tr>
+                <tr>
+                    <td align="left">numberOfPartitions</td>
+                    <td align="left">int</td>
+                    <td align="left">Defines the number of processing unit partitions.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">No</td>
+                </tr>
+                <tr>
+                    <td align="left">numberOfBackupsPerPartition</td>
+                    <td align="left">int</td>
+                    <td align="left">Overrides the number of backup processing unit instances per partition.<div class="tc-admon-note"><p>The number of backups per partition is zero or one.</p></div></td>
+                    <td align="left">1</td>
+                    <td align="left">No</td>
+                </tr>
+                <tr>
+                    <td align="left">secured</td>
+                    <td align="left">boolean</td>
+                    <td align="left">deploy a secured processing unit.</td>
+                    <td align="left">false</td>
+                    <td align="left">No</td>
+                </tr>
+                <tr>
+                    <td align="left">singleMachineDeployment</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">Allows deployment of the processing unit on a single machine, by lifting the limitation for primary and backup processing unit instances from the same partition to be deployed on different machines.</td>
+                    <td align="left">false</td>
+                    <td align="left">No</td>
+                </tr>
+                <tr>
+                    <td align="left">userDetails</td>
+                    <td align="left">UserDetails</td>
+                    <td align="left">Advanced: Sets the security user details for authentication and authorization of the processing unit.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">No</td>
+                </tr>
+                <tr>
+                    <td align="left">scale</td>
+                    <td align="left"><a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/config/EagerScaleConfig.html">EagerScaleConfig</a> or <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/config/ManualCapacityScaleConfig.html">ManualCapacityScaleConfig</a></td>
+                    <td align="left">Enables the specified scale strategy, and disables all other scale strategies.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">No</td>
+                </tr>
+                <tr>
+                    <td align="left">useScriptToStartContainer</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">Allow the GridServiceContainer to be started using a script and not a pure Java process.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">No</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="scale-strategy-configuration"></a>Scale Strategy Configuration</h1>
+        <p>Here are the main configuration properties you may use with the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/config/EagerScaleConfig.html">EagerScaleConfig</a> and the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/config/ManualCapacityScaleConfig.html">ManualCapacityScaleConfig</a>:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Type</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default</th>
+                    <th align="left">Mandatory</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">memoryCapacityInMB</td>
+                    <td align="left">int</td>
+                    <td align="left">Specifies the total memory capacity of the processing unit.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">Yes</td>
+                </tr>
+                <tr>
+                    <td align="left">numberOfCpuCores</td>
+                    <td align="left">int</td>
+                    <td align="left">Specifies the total CPU cores for the processing unit.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">No</td>
+                </tr>
+                <tr>
+                    <td align="left">maxConcurrentRelocationsPerMachine</td>
+                    <td align="left">int</td>
+                    <td align="left">Specifies the number of processing unit instance relocations each machine can handle concurrently. By setting this value higher than 1, processing unit re balancing completes faster, by using more machine cpu and network resources</td>
+                    <td align="left">1</td>
+                    <td align="left">No</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="machine-provisioning-configuration"></a>Machine Provisioning Configuration</h1>
+        <p>Here are the main configuration properties you may use with the <a href="[%=Links.ApiJavaDoc%]/org/openspaces/admin/pu/elastic/config/DiscoveredMachineProvisioningConfigurer.html">DiscoveredMachineProvisioningConfigurer</a> that is passed to the <code>dedicatedMachineProvisioning</code> and <code>sharedMachineProvisioning</code> methods:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Type</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default</th>
+                    <th align="left">Mandatory</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">reservedMemoryCapacityPerMachine</td>
+                    <td align="left">int</td>
+                    <td align="left">Sets the expected amount of memory (total RAM) per machine that is reserved for processes other than grid containers (GSCs created dynamically). These include Grid Agent, Grid Service Manager, Lookup Service , Elastic Service  Manager , Web UI , GigaSpaces Management Center and also any other daemon/process running on the machine (Non-<MadCap:variable name="General.ProductNameXAP" /> related process).<br />In most cases the default value will be <span class="tc-bold">too small</span> as you may choose to allocate more than 1GB for the <MadCap:variable name="General.ProductNameXAP" /> grid management processes (GSA, GSM, LUS, ESM, Web Management Console, GigaSpaces Management Center) and other processes running on the machine.<br />Recommended value should be total <MadCap:variable name="General.ProductNameXAP" /> grid management processes required RAM + 20% of the total machine RAM + total memory required for all non-<MadCap:variable name="General.ProductNameXAP" /> processes running on the machine.</td>
+                    <td align="left">1024 MB.</td>
+                    <td align="left">No</td>
+                </tr>
+                <tr>
+                    <td align="left">reservedMemoryCapacityPerManagementMachine</td>
+                    <td align="left">int</td>
+                    <td align="left">This property is similar to <code>reservedMemoryCapacityPerMachine</code>:<br />It sets the expected amount of memory (total RAM) per management machine (which runs the ESM) that is reserved for processes other than grid containers (GSCs created dynamically). These include Grid Agent, Grid Service Manager, Lookup Service , Elastic Service  Manager , Web UI , GigaSpaces Management Center and also any other daemon/process running on the machine (Non-<MadCap:variable name="General.ProductNameXAP" /> related process).<br />In most cases the default value will be <span class="tc-bold">too small</span> as you may choose to allocate more than 1GB for the <MadCap:variable name="General.ProductNameXAP" /> grid management processes (GSA, GSM, LUS, ESM, Web Management Console, GigaSpaces Management Center) and other processes running on the machine.<br />Recommended value should be total <MadCap:variable name="General.ProductNameXAP" /> grid management processes required RAM + 20% of the total machine RAM + total memory required for all non-<MadCap:variable name="General.ProductNameXAP" /> processes running on the machine.</td>
+                    <td align="left">1024 MB.</td>
+                    <td align="left">No</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

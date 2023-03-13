@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Viewing Transaction Details</h1>
+        <div class="tc-admon-note">
+            <p>This functionality is not yet available in the Command Line Interface or REST Manager API administration tools.</p>
+        </div>
+        <p><span class="tc-bold">To view the transaction details:</span>
+        </p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <!--
+<div title="Command Line Interface" style="padding:10px"><p>N/A</p>
+</div>
+
+<div title="REST Manager API" style="padding:10px"><p>N/A</p>
+</div>
+-->
+            <div title="Web Management Console" style="padding:10px">
+                <p>Transaction information is only available for Space instances that are in primary mode.</p>
+                <ol>
+                    <li>
+                        <p>In the Spaces view, highlight the Space or Space instance for which you want to see the transaction details.</p>
+                    </li>
+                    <li>
+                        <p>Display the Transaction pane in the lower area of the view.</p>
+                    </li>
+                    <li>
+                        <p>You can view the following transaction information:</p>
+                        <ul>
+                            <li>
+                                <p>Per Space or Space instance:</p>
+                                <table>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>ID of the transaction.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</td>
+                                        <td>Transaction type. </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status</td>
+                                        <td>Transaction status. </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Start Time</td>
+                                        <td>Time the transaction started.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>End Time</td>
+                                        <td>Time the transaction completed.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Timeout</td>
+                                        <td>Length of time after which the transaction expires.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Locked Objects</td>
+                                        <td>Number of locked data objects in the transaction.</td>
+                                    </tr>
+                                </table>
+                            </li>
+                            <li>
+                                <p>Per individual transaction (when drilling down), when a transaction is blocked:</p>
+                                <table>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td>UID</td>
+                                        <td>ID of the data entry in the Space that is blocked.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Class Name</td>
+                                        <td>Type of data entry.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Operation Code</td>
+                                        <td>Data operation that was being performed when the transaction became blocked.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lock Type</td>
+                                        <td>Type of lock on the transaction.</td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            <div title="GigaSpaces Management Center" style="padding:10px" MadCap:conditions="Version.15-2-died">
+                <p>Refer to the <a href="gigaspaces-management-center.html">GigaSpaces Management Center</a> topics in the Administration section.</p>
+            </div>
+            <div title="Administration API" style="padding:10px">
+                <p>Refer to the <a href="../dev-java/administration-and-monitoring-overview.html">Admin API</a> topics in the Developer Guide.</p>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Event-Driven Programming</h1>
+        <p>The Space's Messaging and Events support provides messaging handlers that simplify event driven programming. Events are generated when objects are written, updated or taken from the space. With this framework you select events based on its content and designate a method that would be triggered as a result of that event, all through a simple and non-intrusive configuration. There are two main event handlers that are available:</p>
+        <h1><a name="notify-container"></a>Notify Container</h1>
+        <p>The Notify Container is the equivalent of a publish/subscribe semantics. An event listener is registered with the space that declares the type of events it is interested in. Upon receiving an event the listener is triggered. In this case all registered matching subscribers will be notified at the same time.</p>
+        <h1><a name="polling-container"></a>Polling Container</h1>
+        <p>The Polling Container is the equivalent of a point to point paradigm. Unlike the notify container, the Polling Container blocks contentiously on space connection until a matching event arrives. Polling containers ensures that one and only one listener will be triggered per event even if there are more then one listener that matches that event. The entry will be removed from the space when the listener is invoked.</p>
+        <h1><a name="example"></a>Example</h1>
+        <p>Lets take our online processing service; we want to create a notification container that receives events when a payment has been cancelled.
+First, we define the Notifier Container.</p><pre><code class="language-csharp">using System;
+
+using GigaSpaces.Core.Events;
+using GigaSpaces.<MadCap:variable name="General.ProductNameXAP" />.Events.Notify;
+using GigaSpaces.XAP.Events;
+
+using xaptutorial.model;
+
+[NotifyEventDriven(NotifyType = DataEventType.Write | DataEventType.Update)]
+[TransactionalEvent]
+public class PaymentListener {
+    [EventTemplate]
+    Payment unprocessedData() {
+        Payment template = new Payment();
+        template.Status=ETransactionStatus.CANCELLED;
+        return template;
+    }
+
+    [DataEventHandler]
+    public Payment eventListener(Payment ev) {
+        // process Payment
+        Console.WriteLine("Notifier Received a payment");
+        return null;
+    }
+}
+</code></pre>
+        <p>In this example we define:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Annotation</th>
+                    <th align="left">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">[NotifyEventDriven]</td>
+                    <td align="left">the listener as a notification listener</td>
+                </tr>
+                <tr>
+                    <td align="left">NotifyType</td>
+                    <td align="left">type of operation that causes a notification</td>
+                </tr>
+                <tr>
+                    <td align="left">[EventTemplate]</td>
+                    <td align="left">the event that will trigger the listener; a payment that was cancelled</td>
+                </tr>
+                <tr>
+                    <td align="left">[SpaceDataEvent]</td>
+                    <td align="left">the method that processes the event arrives. The return value is null, nothing will be written back into the space</td>
+                </tr>
+                <tr>
+                    <td align="left">[TransactionalEvent]</td>
+                    <td align="left">under transaction</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>By default all events will trigger the notification. In our example we are restricting the events to be received by using the <code>NotifyType</code> annotation. In our example we are only interested in write and update events.</p>
+        <p>You can also define an event template using an SQLQuery.</p><pre><code class="language-csharp">[EventTemplate]
+SqlQuery&lt;Payment&gt; unprocessedData() {
+    SqlQuery&lt;Payment&gt; template = new SqlQuery&lt;Payment&gt;("Status = ?");
+    template.SetParameter(1, ETransactionStatus.CANCELLED);
+
+    return template;
+}
+</code></pre>
+        <p>Now we are ready to register the container with the space:</p><pre><code class="language-csharp">public void registerNotifierListener() {
+
+    NotifyEventListenerContainer&lt;PaymentListener&gt; notifyEventListenerContainer =
+        new NotifyEventListenerContainer&lt;PaymentListener&gt;(spaceProxy);
+
+    notifyEventListenerContainer.Template = new PaymentListener();
+    notifyEventListenerContainer.Start ();
+
+    // when needed dispose of the container
+    notifyEventListenerContainer.Dispose();
+}
+</code></pre>
+        <p>You can now execute a simple test that writes a Payment object into the space that will trigger the notification event:</p><pre><code class="language-csharp">public void notifyTest() {
+     Payment payment = new Payment();
+     payment.Status=ETransactionStatus.CANCELLED;
+     proxy.Write(payment);
+}
+</code></pre>
+        <p>Lets assume we want to implement a polling container that receives audit notifications.  Here is an example on how you would define a polling listener:</p><pre><code class="language-csharp">using System;
+
+using GigaSpaces.XAP.Events.Polling;
+using GigaSpaces.XAP.Events;
+
+using xaptutorial.model;
+
+[PollingEventDriven]
+public class AuditListener {
+
+    [EventTemplate]
+    Payment unprocessedData() {
+        Payment template = new Payment();
+        template.Status=ETransactionStatus.AUDITED;
+        return template;
+    }
+
+    [DataEventHandler]
+    public Payment eventListener(Payment e) {
+        // process Payment
+        Console.WriteLine("Polling Received a payment:");
+        return null;
+    }
+}
+</code></pre>
+        <p>And now we register the polling listener:</p><pre><code class="language-csharp">public void registerPollingListener() {
+    PollingEventListenerContainer&lt;AuditListener&gt; pollingEventListenerContainer =
+        new PollingEventListenerContainer&lt;AuditListener&gt; (spaceProxy);
+
+    pollingEventListenerContainer.Template = new AuditListener ();
+    pollingEventListenerContainer.Start();
+
+    // when needed dispose of the container
+    pollingEventListenerContainer.Dispose();
+}
+</code></pre>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../dev-dotnet/event-processing.html">Event Processing</a> page.</p>
+        </div>
+        <h1><a name="fifo-support"></a>FIFO Support</h1>
+        <p>Sometimes it is necessary to process events in the order the way they have been created. By default events are not ordered. <MadCap:variable name="General.ProductNameXAP" /> supports FIFO (First In, First Out) processing of events.  To enable FIFO operations you can turn on FIFO support for classes which will participate in such operations.</p>
+        <p>Here is an example how you can enable FIFO support for a class using the <code>[SpaceClass]</code> annotation:</p><pre><code class="language-csharp">using System;
+
+using GigaSpaces.Core.Metadata;
+
+namespace xaptutorial.model
+{
+    [SpaceClass(FifoSupport = FifoSupport.Operation)]
+    public class Payment   {
+        [SpaceID(AutoGenerate = true)]
+        public String Id;
+        [SpaceIndex(Type = SpaceIndexType.Basic)]
+        public long? UserId;
+        [SpaceRouting]
+        [SpaceIndex(Type = SpaceIndexType.Basic)]
+        public long?  MerchantId;
+
+        // ....
+    }
+}
+</code></pre>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="../dev-dotnet/fifo-support.html">FIFO Support</a> page.</p>
+        </div>
+        <h1><a name="master-worker-pattern"></a>Master Worker Pattern</h1>
+        <p>The Master-Worker Pattern (sometimes called the Master-Slave or the Map-Reduce pattern) is used for parallel processing. It follows a simple approach that allows applications to perform simultaneous processing across multiple machines or processes via a <code>Master</code> and multiple <code>Workers</code>.
+In <MadCap:variable name="General.ProductNameXAP" />, you can implement the Master-Worker pattern using several methods:</p>
+        <ul>
+            <li><a href="/sbp/map-reduce-pattern-executors-example.html">Task Executors</a> - best for a scenario where the processing activity is collocated with the data (the data is stored within the same space as the tasks being executed).</li>
+            <li><a href="../dev-dotnet/polling-container-overview.html">Polling Containers</a> - in this case the processing activity runs in a separate machine/VM from the space. This approach should be used when the processing activity consumes a relatively large amount of CPU and takes a large amount of time.</li>
+        </ul>
+        <p>It might also be relevant if the actual data required for the processing is not stored within the space, or the time it takes to retrieve the required data from the space is much shorter than the time it takes to complete the processing.</p>
+        <div class="tc-align-center">
+            <img src="../Resources/Static/attachment_files/qsg/the_master_worker.jpg" alt="" title="" class="tc-picture80" />
+        </div>
+        <div class="tc-admon-note">
+            <p>For more information, see the <a href="/sbp/master-worker-pattern.html">Master Worker Pattern</a> page.</p>
+        </div>
+    </body>
+</html>

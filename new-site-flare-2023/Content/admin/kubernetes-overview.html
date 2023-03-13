@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:searchable="False" MadCap:conditions="NewSet.New-Changed-16-2">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle"><a name="overview"></a>Kubernetes Overview</h1>
+        <p>Kubernetes is an open-source orchestration system for automating the deployment, scaling and management of containerized applications. It can be used as an alternative to the GigaSpaces service grid for deploying and orchestrating <MadCap:variable name="General.ProductNameIE" /> and the <MadCap:variable name="General.ProductNameXAP" /> data grid in a cloud-native environment.</p>
+        <p>Kubernetes works in synergy with <MadCap:variable name="General.ProductNameIE" />, which simplifies the operationalizing of machine learning and transactional processing at scale. <MadCap:variable name="General.ProductNameIE" /> leverages Kubernetes features such as cloud-native orchestration automation with self-healing, cooperative multi-tenancy, RBAC authorization, and auto-scaling. Auto-deployment of data services, the Apache Spark deep learning and machine learning framework, and Apache Zeppelin (providing visualization and interactive analytics), seamlessly support <MadCap:variable name="General.ProductNameIE" />-based applications.</p>
+        <p><MadCap:variable name="General.ProductNameIE" /> uses Kubernetes' anti-affinity rules to ensure that primary and backup instances are always on separate Kubernetes nodes. This high-availability design, combined with self-healing, load-balancing and fast-load mechanisms, provides zero downtime and no data loss. Additionally, rolling upgrades can be automated and implemented pod by pod using Kubernetes' Stateful Sets. This allows for a smooth upgrade process with no downtime.</p>
+        <!--
+ Automatic scaling is supported, using predefined metrics along with CPU and memory monitoring to signal to Kubernetes when to scale up or down. Customized scaling rules according to personalized SLA, based on production needs, optimize the resources required to support the application requirements.
+
+Through the persistent volume driver, <MadCap:variable name="General.ProductNameIE" />’s intelligent MemoryXtend multi-tier storage offering lets customers configure data prioritization according to the application’s business logic. This ensures that the most relevant data resides in the fastest data storage tier for optimized TCO.
+-->
+        <h1><a name="architecture"></a>Architecture</h1>
+        <p>KubeGrid, GigaSpace’s Kubernetes-based deployment option, utilizes the key features of the Kubernetes platform mentioned above to set up and run the data grid. KubeGrid can also auto-deploy data services and frameworks, such as Spark Drivers and Spark Executors, to enable Spark machine learning and Spark SQL.</p>
+        <p>KubeGrid deploys several components that comprise the data grid.</p>
+        <p>The Management Pod contains the data grid’s management components. A minimum of one Management Pod is deployed in a regular environment, while three are deployed in a high availability environment.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/kubernetes/management-pod.png" width="235" height="278" />
+            </p>
+        </div>
+        <p>The Management Pod contains the the following:</p>
+        <ul>
+            <li>Lookup Service (LUS) – A mechanism for services to discover each other. For example, the LUS can be queried for the location of active Data Pods.</li>
+            <li>REST Manager - A RESTful API that is used to manage the data grid and <MadCap:variable name="General.ProductNameIE" /> environment remotely, from any platform.</li>
+            <li>Apache Zookeeper - A centralized service that determines Space leader election.</li>
+        </ul>
+        <p>The Management Pod manages the Data Pods, which are the fundamental unit of deployment in the data grid. Each Data Pod contains a single Processing Unit instance that provides cloud-native support using built-in Kubernetes controllers, such as auto scaling and self healing.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/kubernetes/data-pod.png" width="235" height="278" />
+            </p>
+        </div>
+        <h2><a name="functionality"></a>Functionality</h2>
+        <p>KubeGrid enforces SLA-driven capabilities that leverage the Kubernetes controllers and schedulers.This enables defining the following for environment stability:</p>
+        <ul>
+            <li>Requirements for controlling the provisioning process of available Pods.</li>
+            <li>Hosts, zones and nodes. The SLA requirements are based on machine-level statistics, and grouping the Pod processes in zones.</li>
+            <li>Deterministic deployment by explicitly defining the primary and backup instances.</li>
+        </ul>
+        <p>Additional benefits include:</p>
+        <ul>
+            <li>High Availability in conjunction with the Kubernetes Pod anti-affinity rule, which ensures that primary and backup Pods will be allocated on - different nodes.</li>
+            <li>Ability to scale the system up or down, and apply rolling updates with zero downtime using StatefulSets (persistent identifiers per Pod).</li>
+        </ul>
+        <!--
+- Pod Disruption Budget to provide system stability by limiting voluntary disruptions, so that a homogeneous set of Pods is always up and available.
+-->
+        <h2><a name="automatic-pod-failover"></a>Automatic Pod Failover</h2>
+        <p>KubeGrid supports automatic Pod failover behavior. The following example describes the failover behavior for a 2,1 primary/backup topology. When Pod anti-affinity is defined, the Pods are distributed over multiple nodes so that each primary/backup pair is hosted on different nodes.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/kubernetes/pod-failover-before.png" width="610" height="373" />
+            </p>
+        </div>
+        <p>If the primary Data Pod B is disrupted for some reason (either voluntary for scenarios such as rolling upgrades, or involuntary for reasons such as loss of connectivity), the system fails over to the backup Data Pod B, ensuring business continuity. Backup Data Pod B switches roles, and becomes a primary Data Pod.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/kubernetes/pod-failover-after.png" width="610" height="373" />
+            </p>
+        </div>
+        <p>When the original primary Data Pod B is back up and available, the system can fail back to the restored Data Pod B, which resumes its role as a primary Data Pod.</p>
+        <!--
+The acting primary Data Pod B returns to backup status.
+-->
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/kubernetes/pod-failback.png" width="610" height="373" />
+            </p>
+        </div>
+        <h2><a name="running-spark-on-kubegrid-for-insightedge-applications"></a>Running Spark on KubeGrid for <MadCap:variable name="General.ProductNameIE" /> Applications</h2>
+        <p>Kubernetes has native support for Apache Spark. When you submit a Spark application, the following occurs:</p>
+        <ul>
+            <li>A Spark driver is created that runs within a Driver Pod.</li>
+            <li>The Spark driver creates Spark executors that run within Executor Pods</li>
+            <li>The Spark driver connects to the Spark Executors and executes the  application code.</li>
+            <li>When the application completes, the Executor Pods terminate and are cleaned up.</li>
+            <li>The Driver Pod stays in “completed state”, persisting the logs until it is manually cleaned up or garbage collection is performed at some point.</li>
+        </ul>
+        <p>The scheduling of the Driver Pod and the Executor Pods is handled by Kubernetes.</p>
+        <div class="tc-admon-note">
+            <p>In completed state, the Driver Pod doesn’t consume any computational or memory resources.</p>
+        </div>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/kubernetes/ie-kubegrid.png" alt="ie-kubegrid.png" class="tc-picture80" />
+            </p>
+        </div>
+        <p>When the Spark application runs, the Driver Pod and Executor Pods are created according to the schedule that was configured.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/kubernetes/ie-kubegrid-spark.png" alt="ie-kubegrid-spark.png" class="tc-picture80" />
+            </p>
+        </div>
+        <p>The Executor Pods can access the required data objects from any of the Data Pods in the cluster, regardless of which node they reside on. When the Spark jobs are complete, the Executor Pods are cleaned up and the platform is ready for the next submit.</p>
+        <h1>Additional Resources</h1>
+        <table style="width: 100%;" class="tc-borderless">
+            <col />
+            <tbody>
+                <tr>
+                    <td>
+                        <MadCap:snippetBlock src="../Resources/Snippets/YouTube.flsnp" MadCap:snippetVariables="Links.YouTube:https://youtu.be/i4Z4__l8N9Q," />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>One-click deployment with Kubernetes</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!--
+## Using Apache Zeppelin with <MadCap:variable name="General.ProductNameIE" />
+
+Apache Zeppelin is a multi-purpose web notebook that supports data ingestion and discovery, as well as data analytics, visualization, and collaboration.
+
+Apache Zeppelin contains a built-in Apache Spark integration. This provides the following:
+
+- Automatic SparkContext and SQLContext injection
+- Runtime JAR dependency loading from the local file system or Maven repository
+- Ability to view job progress and cancel jobs 
+
+The Zeppelin notebook packaged with <MadCap:variable name="General.ProductNameIE" /> includes several <MadCap:variable name="General.ProductNameIE" /> demo applications, along with <MadCap:variable name="General.ProductNameIE" />-specific settings that can be configured in the Spark interpreter in order to establish the connection between Spark and the data grid. 
+
+KubeGrid runs Apache Zeppelin in a dedicated Pod, to enable ???
+-->
+    </body>
+</html>

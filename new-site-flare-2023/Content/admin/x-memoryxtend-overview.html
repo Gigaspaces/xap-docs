@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">MemoryXtend</h1>
+        <p>The MemoryXtend (blobstore) storage model allows an external storage medium (one that does not reside on the JVM heap) to store the Space data. This section describes the general MemoryXtend architecture and functionality, and its off-heap RAM, hSSD, and PMEM implementations.</p>
+        <p>MemoryXtend is designed as a pluggable architecture, supporting multiple implementations of off-heap storage (also called blobstore). Space entries are stored in the blobstore (a wrapper around SSD/HDD storage or direct memory buffer regions), while the indexes are stored in the managed JVM heap. This allows queries that leverage indexes to minimize off-heap penalty, because most of the work is done in-memory and only matched entries are loaded from the off-heap storage.</p>
+        <p>In addition, MemoryXtend uses an LRU cache for data entries, so entries that are read frequently can be retrieved directly from the in-memory storage.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/admin/memoryxtend-2019.png" width="624" height="526" />
+            </p>
+        </div>
+        <p>MemoryXtend offers the following storage driver options:</p>
+        <ul>
+            <li><a href="memoryxtend-rocksdb-ssd.html">MemoryXtend for Disk (SSD/HDD Storage</a> - For storing data on SSD or any other disk device.</li>
+            <li><a href="memoryxtend-ohr.html">MemoryXtend for Off-Heap Memory</a> - For storing data in off-heap memory (also known as native heap).</li>
+            <li><a href="memoryxtend-pmem.html">MemoryXtend for PMEM</a> - For storing data in PMEM memory.</li>
+        </ul>
+        <h1><a name="class-level-settings"></a>Class-Level Settings</h1>
+        <p>When MemoryXtend is configured for a Space, all entries stored in that Space are stored using the MemoryXtend settings. This is somewhat slower than entries stored in-memory with the traditional data grid storage mechanism. In certain scenarios, it makes sense to use MemoryXtend for some classes but not for others. For example, a user may have a limited amount of <code>Customer</code> entries, but a lot of <code>Order</code> entries, and therefore may want to disable MemoryXtend for the <code>Customer</code> entries. This can be done via the Space class metadata. For example:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Annotation" style="padding:10px"><pre><code class="language-java">@SpaceClass(blobstoreEnabled = false)
+public class Customer {
+    //
+}
+</code></pre>
+            </div>
+            <div title="gs.xml" style="padding:10px"><pre><code class="language-xml">&lt;gigaspaces-mapping&gt;
+    &lt;class name="com.test.Customer" "blobstoreEnabled"="false"&gt;
+     &lt;/class&gt;
+&lt;/gigaspaces-mapping&gt;
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="on-heap-cache"></a>On-Heap Cache</h1>
+        <p>MemoryXtend comes with a built-in, LRU-based cache that stores objects on-heap for faster access. The following table describes the blobstore cache configuration options.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default</th>
+                    <th align="left">Use</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cache-entries-percentage</td>
+                    <td align="left">The cache size is determined based on the percentage of the GSC JVM max memory(-Xmx). If <code>-Xmx</code> is not specified, the default cache size is <code>10000</code> objects.</td>
+                    <td align="left">20%</td>
+                    <td align="left">optional</td>
+                </tr>
+                <tr>
+                    <td align="left">avg-object-size-KB</td>
+                    <td align="left">Average object size, in KB. <code>avg-object-size-bytes</code> and <code>avg-object-size-KB</code> cannot be used together.</td>
+                    <td align="left">5</td>
+                    <td align="left">optional</td>
+                </tr>
+                <tr>
+                    <td align="left">avg-object-size-bytes</td>
+                    <td align="left">Average object size, in bytes. <code>avg-object-size-bytes</code> and <code>avg-object-size-KB</code> cannot be used together.</td>
+                    <td align="left">5000</td>
+                    <td align="left">optional</td>
+                </tr>
+                <tr MadCap:conditions="Version.15-0-died">
+                    <td align="left">persistent</td>
+                    <td align="left">Data is written to external storage, and the Space performs recovery from the external storage if needed.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">required</td>
+                </tr>
+                <tr>
+                    <td align="left">blob-store-cache-query</td>
+                    <td align="left">One or more SQL queries that determine which objects will be stored in cache.</td>
+                    <td align="left">
+                    </td>
+                    <td align="left">optional</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="example"></a>Example</h2>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="pu.xml" style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd"&gt;
+
+    &lt;blob-store:rocksdb-blob-store id="rocksDbBlobstore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/&gt;
+
+    &lt;os-core:embedded-space id="space" space-name="mySpace" &gt;
+        &lt;os-core:blob-store-data-policy blob-store-handler="rocksDbBlobstore" persistent="true" avg-object-size-KB="5" cache-entries-percentage="20" /&gt;
+    &lt;/os-core:embedded-space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.14-5-only"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd"&gt;
+
+    &lt;blob-store:rocksdb-blob-store id="rocksDbBlobstore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/&gt;
+
+    &lt;os-core:embedded-space id="space" space-name="mySpace" &gt;
+        &lt;os-core:blob-store-data-policy blob-store-handler="rocksDbBlobstore" persistent="true" avg-object-size-KB="5" cache-entries-percentage="20" /&gt;
+    &lt;/os-core:embedded-space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd"&gt;
+
+    &lt;blob-store:rocksdb-blob-store id="rocksDbBlobstore" persistent="true"/&gt;
+
+    &lt;os-core:embedded-space id="space" space-name="mySpace" &gt;
+        &lt;os-core:blob-store-data-policy blob-store-handler="rocksDbBlobstore" avg-object-size-KB="5" cache-entries-percentage="20" /&gt;
+    &lt;/os-core:embedded-space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="Java Code" style="padding:10px"><pre MadCap:conditions="Version.15-0-died"><code class="language-java">// Create RocksDB storage driver:
+BlobStoreStorageHandler blobStore = new RocksDBBlobStoreConfigurer()
+        .setPaths("[/mnt/db1,/mnt/db2]")
+        .setMappingDir("/tmp/mapping")
+        .create();
+// Create space with that storage driver:
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore)
+                .setPersistent(true)
+                .setAvgObjectSizeKB(5)
+                .setCacheEntriesPercentage(20));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-java">// Create RocksDB storage driver:
+BlobStoreStorageHandler blobStore = new RocksDBBlobStoreConfigurer().setPersistent(true).create();
+// Create space with that storage driver:
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
+        .cachePolicy(new BlobStoreDataCachePolicy()
+                .setBlobStoreHandler(blobStore)
+                .setAvgObjectSizeKB(5)
+                .setCacheEntriesPercentage(20));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+</code></pre>
+            </div>
+        </div>
+        <h2><a name="Caching"></a>Caching in MemoryXtend</h2>
+        <h3><a name="default-cache-lru"></a>Default Cache - LRU</h3>
+        <p>By default the cache uses an LRU strategy to cache and evict entries. The cache size is controlled by two settings:</p>
+        <ul>
+            <li>Cache Entries Percentage - determines how much RAM out of the JVM heap should be used for caching (in percentage)</li>
+            <li>Average object size - determines the average entry object size in RAM, either in bytes or kilobytes.</li>
+        </ul>
+        <p>These settings determine the maximum number of objects in cache, according to the following calculation:</p>
+        <p><code>Number of objects = ((GSC Xmx) * (cache-entries-percentage/100))/average-object-size-bytes</code>
+        </p>
+        <p>Once that number is reached, adding an entry to the cache will automatically evict the least recently used one.</p>
+        <p>For example, On a 10GB GSC, if we set a cache entries percentage to 20, and an average object size of 2KB (the default):</p>
+        <p>10GB * 20% / 2KB = ((10 * 1024 * 1024 * 1024) * 0.2) / (2 * 1024) = <span class="tc-bold">1,048,576</span></p>
+        <h3><a name="user-defined-cache"></a>User-Defined Cache</h3>
+        <p>The <code>blob-store-cache-query</code> option enables customizing the cache contents. You can define a set of SQL queries, so that only objects that fit the queries:</p>
+        <ul>
+            <li>Are pre-loaded into the JVM heap upon data grid initialization/restart.</li>
+            <li>Are stored in the JVM heap after Space operations.</li>
+        </ul>
+        <p>This guarantees that any subsequent read requests will hit RAM, providing predictable latency (and avoiding cache misses). This customization is useful when read latencies for specific class types (such as hot data, current day stocks) must be predictable.</p>
+        <p>The SQL queries are static and cannot be changed dynamically. To update them, make the necessary modifications and then restart the application.</p>
+        <p><span class="tc-bold">Example</span>
+        </p>
+        <p>In this example, an online trading platform defines the following criteria for "hot" data:</p>
+        <ul>
+            <li><code>Stock</code> instances where the price &gt; 1000</li>
+            <li><code>Trade</code> instances with volume &gt; 10000</li>
+            <li><code>Account</code> instances with platinum rating</li>
+        </ul>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Java Code" style="padding:10px"><pre MadCap:conditions="Version.15-0-died"><code class="language-java">BlobStoreStorageHandler blobStore = ...;
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
+    .cachePolicy(new BlobStoreDataCachePolicy()
+        .setBlobStoreHandler(blobStore)
+        .setPersistent(true)
+        .addCacheQuery(new SQLQuery(Stock.class, "price &gt; 1000"))
+        .addCacheQuery(new SQLQuery(Trade.class, "volume &gt; 10000"))
+        .addCacheQuery(new SQLQuery(Account.class, "rating = 'platinum'")));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-java">BlobStoreStorageHandler blobStore = ...;
+EmbeddedSpaceConfigurer spaceConfigurer = new EmbeddedSpaceConfigurer("mySpace")
+    .cachePolicy(new BlobStoreDataCachePolicy()
+        .setBlobStoreHandler(blobStore)
+        .addCacheQuery(new SQLQuery(Stock.class, "price &gt; 1000"))
+        .addCacheQuery(new SQLQuery(Trade.class, "volume &gt; 10000"))
+        .addCacheQuery(new SQLQuery(Account.class, "rating = 'platinum'")));
+GigaSpace gigaSpace = new GigaSpaceConfigurer(spaceConfigurer).gigaSpace();
+</code></pre>
+            </div>
+            <div title="pu.xml" style="padding:10px"><pre MadCap:conditions="Version.15-0-died"><code class="language-xml">&lt;blob-store:rocksdb-blob-store id="myBlobStore" paths="[/tmp/rocksdb]" mapping-dir="/tmp/mapping"/&gt;
+
+&lt;os-core:embedded-space id="space" name="mySpace"&gt;
+    &lt;os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore"&gt;
+        &lt;os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Stock" where="price &gt; 1000"/&gt;
+        &lt;os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Trade" where="volume &gt; 10000"/&gt;
+        &lt;os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Account" where="rating = 'platinum'"/&gt;
+    &lt;/os-core:blob-store-data-policy&gt;
+&lt;/os-core:embedded-space&gt;
+
+     &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;blob-store:rocksdb-blob-store id="myBlobStore" persistent="true"/&gt;
+
+&lt;os-core:embedded-space id="space" name="mySpace"&gt;
+    &lt;os-core:blob-store-data-policy blob-store-handler="myBlobStore"&gt;
+        &lt;os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Stock" where="price &gt; 1000"/&gt;
+        &lt;os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Trade" where="volume &gt; 10000"/&gt;
+        &lt;os-core:blob-store-cache-query class="com.gigaspaces.blobstore.rocksdb.Account" where="rating = 'platinum'"/&gt;
+    &lt;/os-core:blob-store-data-policy&gt;
+&lt;/os-core:embedded-space&gt;
+
+     &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+</code></pre>
+            </div>
+        </div>
+        <p>When the <code>com.gigaspaces.cache</code> logging is turned on, the following output is generated:</p><pre><code class="language-bash">2016-12-26 07:57:56,378  INFO [com.gigaspaces.cache] - BlobStore internal cache recovery:
+blob-store-queries: [SELECT * FROM com.gigaspaces.blobstore.rocksdb.Stock WHERE price &gt; 1000, SELECT * FROM com.gigaspaces.blobstore.rocksdb.Trade WHERE volume &gt; 10000, SELECT * FROM com.gigaspaces.blobstore.rocksdb.Account WHERE rating = 'platinum'].
+Entries inserted to blobstore cache: 80.
+</code></pre>
+        <h3><a name="cache-metrics"></a>Cache Metrics</h3>
+        <p>The concept of cache <span class="tc-italic">hit</span> and cache <span class="tc-italic">miss</span> is very important for cache analysis. A hit occurs when querying data that is stored in the cache. A miss occurs when querying data that is stored on disk.</p>
+        <p>Custom caching distinguishes between hot data (that fits the custom queries) and cold data. Hot data is stored in cache and on disk, while cold data is stored only on disk.</p>
+        <p>Ideally, all hot data would be found in cache. However, the cache size is limited, and likely isn't able to store all the hot data. This means that data can exist in one of three states:</p>
+        <ul>
+            <li>Hot data <span class="tc-italic">and</span> found in cache. Querying this data will result in a <span class="tc-bold"><span class="tc-italic">cache hit</span></span>.</li>
+            <li>Hot data <span class="tc-italic">not</span> found in cache (because cache is full). Querying this data will result in a <span class="tc-bold"><span class="tc-italic">hot data cache miss</span></span>.</li>
+            <li>Cold data that is stored only on disk. Querying this data will result in a <span class="tc-bold"><span class="tc-italic">cold data cache miss</span></span>.</li>
+        </ul>
+        <p>Total cache misses = hot data cache misses + cold data cache misses.</p>
+        <p>By modifying the custom queries, the cache efficiency (maximizing hits and minimizing misses) can be improved. To keep track of the cache efficiency, key metrics are measured and stored, including hits, total misses, and hot data misses.
+For information about <MadCap:variable name="General.ProductNameXAP" /> metrics and how to use them, refer to the <a href="metrics-overview.html">Metrics</a> section of this guide.</p>
+        <h3><a name="data-recovery-on-restart"></a>Data Recovery on Restart</h3>
+        <p>The MemoryXtend architecture allows for data persisted on the blobstore to be available for the data grid upon restart. To enable this, you have to enable the <code>persistent</code> option in the blobstore <MadCap:conditionalText MadCap:conditions="Version.15-0-died">policy</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.15-0-born">handler (for handlers which support persistence)</MadCap:conditionalText>.</p><pre MadCap:conditions="Version.15-0-died"><code class="language-xml">  &lt;os-core:blob-store-data-policy persistent="true" blob-store-handler="myBlobStore"&gt;
+</code></pre>
+        <h3><a name="lazy-load"></a>Lazy Load</h3>
+        <p>If no custom queries are defined, the <span class="tc-italic">lazy load</span> approach is used and no data is loaded into the JVM heap upon restart. MemoryXtend saves only the indexes in RAM, and the rest of the objects are stored on disk. As read throughput increases from clients, most of the data eventually loads into the data grid RAM tier. This is a preferred approach when the volume of data persisted on disk exceeds what can fit into memory.</p>
+        <h1><a name="persistence-and-recovery"></a>Persistence and Recovery</h1>
+        <p>When using a cluster with backups for high availability, if one of the nodes fails and restarts, it automatically locates the primary node and copies all the data from it so it can serve as a backup again. This process is called <span class="tc-italic">recovery</span>. The more data in the Space, the longer recovery takes, and if MemoryXtend is used this is no longer a RAM-only process. The primary Space must iterate through its MemoryXtend instance to fetch all the data for the backup node performing the recovery.</p>
+        <p>However, when using a MemoryXtend storage driver that is based on non-volatile technology (for example, SSD), the backup can use the persisted data for the recovery process, and instead of recovering everything from the primary, it can recover only the delta that it missed while it was down. In addition, the backup can rebuild the indexes for the persisted data without intervention or assistance from the primary instance.</p>
+        <p MadCap:conditions="Version.15-0-born">Persistency is determined by the blobstore handler; the off-heap handler doesn't support persistency (because RAM is volatile), and the SSD handler can be configured to be persistent or transient. </p>
+        <p MadCap:conditions="Version.15-0-died">Persistency is disabled by default, and must be explicitly enabled. For example:</p><pre MadCap:conditions="Version.15-0-died"><code class="language-xml">&lt;os-core:embedded-space id="space" name="mySpace" &gt;
+    &lt;os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/&gt;
+&lt;/os-core:embedded-space&gt;
+</code></pre>
+        <p>In addition, persistency requires the settings described in the sections below.</p>
+        <h2><a name="machine-instance-affinity"></a>Machine-Instance Affinity</h2>
+        <p>If a GSC or a machine running a GSC restarts, there is no guarantee the data grid instance running within the GSC will be provisioned to the same machine where it was running before. When MemoryXtend is used in a non-persistent manner, this isn't problematic because the instance recovers from the primary, but if MemoryXtend is set to <code>persistent=true</code>, you must ensure that the instance is provisioned on the same machine where it was located before, so it can recover from the correct device, which is usually local to the machine.</p>
+        <div class="tc-admon-note">
+            <p>Central Storage mode allows you to use MemoryXtend without configuring the Machine-Instance Affinity.</p>
+        </div>
+        <p>To ensure that the Service Grid deploys the <MadCap:variable name="General.ProductNameXAP" /> instances on the correct machines, use <a href="the-sla-overview.html">instance-level SLA</a>. For example:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Partitioned with a backup SLA" style="padding:10px">
+                <p>The following <code>sla.xml</code> example shows a single partition with a backup where the first instance is provisioned into <code>HostA</code>, and the second instance for the same partition is provisioned into <code>HostB</code>.</p><pre><code class="language-xml">&lt;os-sla:sla&gt;
+        &lt;os-sla:instance-SLAs&gt;
+           &lt;os-sla:instance-SLA instance-id="1"&gt;
+               &lt;os-sla:requirements&gt;
+                 &lt;os-sla:host ip="HostA"/&gt;
+                &lt;/os-sla:requirements&gt;
+            &lt;/os-sla:instance-SLA&gt;
+            &lt;os-sla:instance-SLA instance-id="1" backup-id="1"&gt;
+                &lt;os-sla:requirements&gt;
+                    &lt;os-sla:host ip="HostB"/&gt;
+                &lt;/os-sla:requirements&gt;
+            &lt;/os-sla:instance-SLA&gt;
+        &lt;/os-sla:instance-SLAs&gt;
+&lt;/os-sla:sla&gt;
+</code></pre>
+            </div>
+            <div title="Partitioned without a backup SLA" style="padding:10px">
+                <p>The following <code>sla.xml</code> shows a partitioned (2 partitions) data grid without backups SLA example where both instances are provisioned into the <code>HostA</code>:</p><pre><code class="language-xml">&lt;os-sla:sla&gt;
+        &lt;os-sla:instance-SLAs&gt;
+            &lt;os-sla:instance-SLA instance-id="1"&gt;
+                &lt;os-sla:requirements&gt;
+                    &lt;os-sla:host ip="HostA"/&gt;
+                &lt;/os-sla:requirements&gt;
+            &lt;/os-sla:instance-SLA&gt;
+        &lt;os-sla:instance-SLA instance-id="2"&gt;
+                &lt;os-sla:requirements&gt;
+                    &lt;os-sla:host ip="HostA"/&gt;
+                &lt;/os-sla:requirements&gt;
+            &lt;/os-sla:instance-SLA&gt;
+        &lt;/os-sla:instance-SLAs&gt;
+&lt;/os-sla:sla&gt;
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-note">
+            <p>Make sure you provide the <code>sla.xml</code> location at deploy time (<code>-sla</code> deploy command option), or locate it at the root of the Processing Unit JAR or under the <code>META-INF/spring</code> directory, alongside the Processing Unit's <code>pu.xml</code> file.</p>
+        </div>
+        <h2><a name="last-primary"></a>Last Primary</h2>
+        <p>When a Space instance starts as part of a primary-backup cluster, it undergoes a process called <span class="tc-italic">active election</span> to determine if it should be a primary or a backup instance. Generally speaking, the first instance that is loaded is the primary, and the rest are backups. </p>
+        <div class="tc-admon-note">
+            <p>The number of backups per partition is zero or one.</p>
+        </div>
+        <p>If a persistent system is restarted in an orderly manner (meaning all the data was flushed to both the primary and backup instances before shutting down), it doesn't matter which instance becomes primary, because they are all identical. However, if both the primary and backup instances crash unexpectedly for some reason and then restart, it is important to ensure that the last instance that was primary before the crash is elected primary again, because it holds a more accurate version of the data.</p>
+        <p>To overcome this problem, the Space can be configured with an <span class="tc-italic">attribute store</span> that is updated whenever a new primary Space is elected. When the system restarts, instead of electing the first available instance, the system will wait for the last primary Space to become available and re-elect it. If the last primary Space cannot be restarted, the user can manually remove the last primary entry from the attribute store. This will allow a backup Space to become the primary.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> products are bundled with two implementations:</p>
+        <ul>
+            <li>File-based implementation of an attribute store, which can be used in conjunction with an NFS file system to maintain the last primary.</li>
+            <li>Storing the last primary automatically in Apache Zookeeper.</li>
+        </ul>
+        <p>The following examples demonstrate how to configure a persistent disk-based storage driver with such an attribute store:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="File-based" style="padding:10px"><pre MadCap:conditions="Version.14-5-died"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd"&gt;
+
+    &lt;bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/&gt;
+    &lt;bean id="attributeStoreHandler" class="com.gigaspaces.attribute_store.PropertiesFileAttributeStore"&gt;
+        &lt;constructor-arg name="path" value="/your-shared-folder/lastprimary.properties"/&gt;
+    &lt;/bean&gt;
+
+    &lt;blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/&gt;
+    &lt;os-core:embedded-space id="space" name="mySpace" &gt;
+        &lt;os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/&gt;
+        &lt;os-core:attribute-store store-handler="attributeStoreHandler"/&gt;
+    &lt;/os-core:embedded-space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+            <div title="Zookeeper-based" style="padding:10px"><pre MadCap:conditions="Version.14-5-only"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd"&gt;
+
+    &lt;bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/&gt;
+    &lt;bean id="attributeStoreHandler" class="org.openspaces.zookeeper.attribute_store.ZooKeeperAttributeStore" &gt;
+          &lt;constructor-arg name="name" value="blobstore_lastPrimary"/&gt;
+      &lt;/bean&gt;
+
+    &lt;blob-store:rocksdb-blob-store id="myBlobStore" paths="[/mnt/db1,/mnt/db2]" mapping-dir="/tmp/mapping"/&gt;
+    &lt;os-core:embedded-space id="space" name="mySpace" &gt;
+        &lt;os-core:blob-store-data-policy blob-store-handler="myBlobStore" persistent="true"/&gt;
+        &lt;os-core:attribute-store store-handler="attributeStoreHandler"/&gt;
+    &lt;/os-core:embedded-space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+</code></pre><pre MadCap:conditions="Version.15-0-born"><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
+       xmlns:blob-store="http://www.openspaces.org/schema/rocksdb-blob-store"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-[%=Versions.spring-short%].xsd
+       http://www.openspaces.org/schema/core http://www.openspaces.org/schema/[%=Versions.product-version-short%]/core/openspaces-core.xsd
+       http://www.openspaces.org/schema/rocksdb-blob-store http://www.openspaces.org/schema/[%=Versions.product-version-short%]/rocksdb-blob-store/openspaces-rocksdb-blobstore.xsd"&gt;
+
+    &lt;bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/&gt;
+    &lt;bean id="attributeStoreHandler" class="org.openspaces.zookeeper.attribute_store.ZooKeeperAttributeStore" &gt;
+          &lt;constructor-arg name="name" value="blobstore_lastPrimary"/&gt;
+      &lt;/bean&gt;
+
+    &lt;blob-store:rocksdb-blob-store id="myBlobStore" persistent="true"/&gt;
+    &lt;os-core:embedded-space id="space" name="mySpace" &gt;
+        &lt;os-core:blob-store-data-policy blob-store-handler="myBlobStore"/&gt;
+        &lt;os-core:attribute-store store-handler="attributeStoreHandler"/&gt;
+    &lt;/os-core:embedded-space&gt;
+
+    &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
+&lt;/beans&gt;
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="supported-xap-apis"></a>Supported Data Grid APIs</h1>
+        <p>All of the data grid APIs are supported with the blobstore configuration. This includes the Space (POJO and Document), JDBC, JPA, JMS, and Map APIs. In addition, all co-located business logic functionality (event containers, task executors, remoting services, aggregators, etc.) are fully supported.</p>
+        <h1><a name="limitations"></a>Limitations</h1>
+        <ul>
+            <li>MemoryXtend and <a href="../dev-java/direct-persistency.html">Direct Persistency</a> configuration is not supported.</li>
+            <li>MemoryXtend is only supported with the Space caching policy set to ALL_IN_CACHE. LRU and other cache policies that use eviction are not supported.</li>
+            <li MadCap:conditions="Version.15-2-died">MemoryXtend is not supported with the <code>ESM</code>.</li>
+            <li MadCap:conditions="Version.14-5-born">If <a href="../dev-java/fifo-grouping.html">FIFO grouping</a> is used with MemoryXtend, the FIFO order is not always maintained after failover.</li>
+        </ul>
+    </body>
+</html>

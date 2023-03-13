@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Local View</h1>
+        <p>A local view is a read-only, client-side Space that maintains a subset of the master Space's data, allowing the client to read distributed data without performing any remote calls or data serialization.</p>
+        <p>Data is streamed into the client application's local view based on predefined criteria (a collection of <a href="query-sql.html">SQLQuery</a> objects) specified by the client when the local view is created.</p>
+        <p>During the local view initialization, data is loaded into the client's memory based on the view criteria. Afterwards, the local view is continuously updated by the master Space asynchronously; any operation executed on the master Space that affects an entry matching the view criteria is automatically propagated to the client.</p>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Static/attachment_files/devguide/space-local-view.png" width="521" height="160" />
+            </p>
+        </div>
+        <p>The following operations are supported (they are served by the local view). The master Space is not accessed when calling these:</p>
+        <ul>
+            <li><code>read</code> , <code>readMultiple</code> , <code>asyncRead</code> , <code>count</code> , using <a href="query-template-matching.html">Template Matching</a>, <a href="query-by-id.html">Id Queries</a> or <a href="query-sql.html">SQLQuery</a></li>
+            <li><a href="notify-container-overview.html">Notify Container</a> , <a href="session-based-messaging-api.html">Session Based Messaging API</a></li>
+            <li><a href="query-paging-support.html">IteratorBuilder</a>
+            </li>
+        </ul>
+        <p>The following operations are <span class="tc-bold">not</span> supported when using local view, and should be performed using a regular Space proxy:</p>
+        <ul>
+            <li>Any operation that creates or changes data (<code>write</code>, <code>writeMultiple</code>, <code>update</code>, <code>updateMultiple</code>, <code>execute</code>)</li>
+            <li>Any operation that removes data (<code>clean</code>, <code>clear</code>, <code>take</code>, <code>takeById</code>, <code>takeMultiple</code>, <code>asyncTake</code>, etc.)</li>
+            <li>Any operation under a transaction</li>
+        </ul>
+        <h1><a name="usage"></a>Usage</h1>
+        <p>Creating a local view is similar to creating a <a href="the-gigaspace-interface-overview.html">GigaSpace</a> instance, except that the Space is wrapped with a local view before exposing it as a <code>GigaSpace</code>. The local view can be configured via Spring using <code>LocalViewSpaceFactoryBean</code> or the <code>&lt;os-core:local-view&gt;</code> Spring tag, or in code using <code>LocalViewSpaceConfigurer</code>. For example:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="    Namespace   " style="padding:10px"><pre><code class="language-xml">&lt;os-core:space-proxy  id="space" space-name="mySpace"/&gt;
+
+&lt;os-core:local-view id="localViewSpace" space="space"&gt;
+    &lt;os-core:properties&gt;
+     &lt;props&gt;
+     &lt;prop key="space-config.engine.memory_usage.write_only_block_percentage"&gt;88&lt;/prop&gt;
+     &lt;prop key="space-config.engine.memory_usage.write_only_check_percentage"&gt;86&lt;/prop&gt;
+     &lt;/props&gt;
+    &lt;/os-core:properties&gt;
+    &lt;os-core:view-query class="com.example.Message1" where="processed = true"/&gt;
+    &lt;os-core:view-query class="com.example.Message2" where="priority &gt; 3"/&gt;
+&lt;/os-core:local-view&gt;
+
+&lt;os-core:giga-space id="localView" space="localViewSpace"/&gt;
+</code></pre>
+            </div>
+            <div title="  Plain   XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
+    &lt;property name="name" value="space" /&gt;
+&lt;/bean&gt;
+
+&lt;bean id="viewSpace" class="org.openspaces.core.space.cache.LocalViewSpaceFactoryBean"&gt;
+    &lt;property name="space" ref="space" /&gt;
+    &lt;property name="localViews"&gt;
+        &lt;list&gt;
+            &lt;bean class="com.j_spaces.core.client.view.View"&gt;
+                &lt;constructor-arg index="0" value="com.example.Message1" /&gt;
+                &lt;constructor-arg index="1" value="processed = true" /&gt;
+            &lt;/bean&gt;
+            &lt;bean class="com.j_spaces.core.client.view.View"&gt;
+                &lt;constructor-arg index="0" value="com.example.Message2" /&gt;
+                &lt;constructor-arg index="1" value="priority &gt; 3" /&gt;
+            &lt;/bean&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+            </div>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">// Initialize remote space configurer:
+SpaceProxyConfigurer urlConfigurer = new SpaceProxyConfigurer("mySpace");
+// Initialize local view configurer
+LocalViewSpaceConfigurer localViewConfigurer = new LocalViewSpaceConfigurer(urlConfigurer)
+    .batchSize(1000)
+    .batchTimeout(100)
+    .maxDisconnectionDuration(1000*60*60)
+    .addProperty("space-config.engine.memory_usage.high_watermark_percentage", "90")
+    .addProperty("space-config.engine.memory_usage.write_only_block_percentage", "88")
+    .addProperty("space-config.engine.memory_usage.write_only_check_percentage", "86")
+    .addProperty("space-config.engine.memory_usage.retry_count", "5")
+    .addProperty("space-config.engine.memory_usage.explicit", "false")
+    .addProperty("space-config.engine.memory_usage.retry_yield_time", "50")
+    .addViewQuery(new SQLQuery(com.example.Message1.class, "processed = true"))
+    .addViewQuery(new SQLQuery(com.example.Message2.class, "priority &gt; 3"));
+// Create local view:
+GigaSpace localView = new GigaSpaceConfigurer(localViewConfigurer).gigaSpace();
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="memory-management"></a>Memory Management</h1>
+        <p>Data is never evicted from the local view (the cache policy is hardwired to <code>ALL_IN_CACHE</code>). Therefore, specifying a criteria that retrieves large amounts of data from the master Space can cause the client to run out of memory.</p>
+        <h2><a name="multiple-instances-within-the-same-client"></a>Multiple Instances within the Same Client</h2>
+        <p>It can be problematic to run multiple local view instances (for different master Spaces) within the same client without allocating reasonable headroom for the local view to operate. This will manifest in <code>MemoryShortageException</code> being thrown sporadically.</p>
+        <p>The main reason for this is the interdependency between all the co-located local views regarding the utilized memory. The <code>MemoryShortageException</code> is thrown when the JVM's total utilized memory is above a certain threshold (not for a specific local view's utilized memory), therefore an "over-utilized" local view may affect other local views running within the same client. The recommended approach to ensure deterministic behavior is to provide some extra headroom for the client JVM heap size, to accommodate the potential total amount of objects stored by all the local views.</p>
+        <p><span class="tc-bold">Example</span>
+        </p>
+        <p>Client X runs two local view instances, LV1 for master Space A matching 100,000 objects, and LV2 for master Space B matching 100 objects. Some other clients write data to Space A. LV1 matches these written/updated objects, therefore LV1 gets these objects automatically (via notifications) and updates its view. At some point, other clients write data into Space B. LV2 matches these objects, therefore it automatically has these objects propagated locally.</p>
+        <p>If the JVM running client X's available memory exceeds the <code>write_only_block_percentage</code> threshold, a <code>MemoryShortageException</code> is thrown when the listener on the client side (for LV1 or LV2) that receives the notifications with the new/updated objects tries to write them to the relevant local view. In this case, the client might not even perform an explicit read. It will have a "phantom" <code>MemoryShortageException</code> thrown that is a result of new/updated objects written to the Space by other clients (or by itself). Even if LV2 is cleared somehow (as a result of objects taken from Space B), a <code>MemoryShortageException</code> is thrown on the client side when new objects are written to Space A.</p>
+        <h1><a name="synchronization"></a>Synchronization</h1>
+        <p>The local view uses <a href="../admin/replication.html">replication</a> instead of <a href="session-based-messaging-api.html">notifications</a> to synchronize with the master Space, because replication provides higher reliability than notification. In general, this is an implementation detail that should not concern the user, except for the following cases:</p>
+        <ul>
+            <li>Using a view query on a type/class configured to be <a href="modeling-your-data.html">non-replicable</a>.</li>
+            <li>Using a cluster with an <a href="../admin/replication-topologies.html">Active-Active</a> topology, or a non-clustered Space.</li>
+        </ul>
+        <p>In these cases, the local view automatically reverts to notification-based synchronization.</p>
+        <h2><a name="configuration"></a>Configuration</h2>
+        <h3><a name="server-side-local-view-properties"></a>Server-Side Local View Properties</h3>
+        <p>The following properties can be configured on the Space side, and will affect all the local views that are created on top of that Space.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.redo-log-local-view-capacity</td>
+                    <td align="left">Specifies the total capacity of replication packets the redo log can hold for a local view replication target</td>
+                    <td align="left">150000</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.redo-log-local-view-recovery-capacity</td>
+                    <td align="left">Specifies the total capacity of replication packets the redo log can hold for a local view replication target while the local view is in recovery state (initial load process)</td>
+                    <td align="left">1000000</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.local-view-max-disconnection-time</td>
+                    <td align="left">Specifies the maximum amount of time (in milliseconds) the space will wait for the local view replication target before it is considered disconnected, after which the target will be dropped.</td>
+                    <td align="left">300000</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>When configuring the redo log memory capacity for the local view, it needs to be smaller than the general redo log memory capacity (to prevent creating swap files).</p>
+        <h3><a name="notifications"></a>Notifications</h3>
+        <p>If local view synchronization is done using notifications, the round-trip-time can be configured using the <code>space-config.dist-cache.events.lease-renew.round-trip-time</code> custom property. For more information about this setting refer to <a href="session-based-messaging-api.html">Session Based Messaging API</a>.</p>
+        <h2><a name="batch-synchronization"></a>Batch Synchronization</h2>
+        <p>Changes in the server are grouped and sent to the client in batches. The following configuration settings controls synchronization batching:</p>
+        <ul>
+            <li>Batch Size - When the batch size reaches the configured value, the batch is sent to the client. The default batch size is 1000 packets.</li>
+            <li>Batch timeout - When the oldest event in the batch reaches the configured value, the batch is sent to the client. The default age is 100 milliseconds.</li>
+        </ul>
+        <p>Setting lower values for batch size and timeout reduce data staleness but increase network load, and vice versa.</p>
+        <p>Batch settings can be configured using <code>LocalViewSpaceFactoryBean</code> for Spring, or using <code>LocalViewSpaceConfigurer</code> at runtime. For example:</p><pre><code class="language-xml">&lt;os-core:local-view id="localViewSpace" space="space" batch-size="1000" batch-timeout="100"&gt;
+    &lt;os-core:view-query class="com.example.Message1" where="processed = true"/&gt;
+&lt;/os-core:local-view&gt;
+</code></pre>
+        <h1><a name="monitoring-the-connection"></a>Monitoring the Connection</h1>
+        <p>The local view requires a constant connection to the master Space in order to keep the data synchronized. Short, intermittent disconnections may occur that don't significantly affect data syncing. In this case, the client application can continue to read data from the local view. A lengthy disconnection means the data in the local view isn't synced with the master Space, so the local view doesn't accept operations from the client and instead throws an exception.</p>
+        <p>The <code>max-disconnection-duration</code> parameter defines for how long the local view can be disconnected from the master Space before the view is no longer viable.</p>
+        <h2><a name="connection-states"></a>Connection States</h2>
+        <p>The local view connection can be in any of the following states:</p>
+        <ul>
+            <li>ACTIVE - The local view is connected to the master Space and the data is in sync.</li>
+            <li>DISCONNECTED - The connection to the master Space was briefly disrupted. The local view will remain in this state as long as the disconnection period is shorter than the maximum disconnection duration that was configured.</li>
+            <li>INACTIVE - If the disconnection period exceeds the configured maximum disconnection duration, the local view enters an inactive state, and each operation throws an exception stating the view is inactive.</li>
+            <li>CLOSED -  The local view is permanently closed. Operations on the view throw exceptions stating that the view is closed.</li>
+        </ul>
+        <h2><a name="configuring-the-maximum-disconnection-duration"></a>Configuring the Maximum Disconnection Duration</h2>
+        <p>When the connection between a local view and remote master Space is disrupted, the local view starts trying to reconnect with the remote Space. As long as the disconnection period is shorter than the <code>max-disconnection-duration</code> value, querying the local view will return a result, although it isn't guaranteed to be in sync with the master Space. If the disconnection period exceeds the <code>max-disconnection-duration</code> value, the local view cannot be queried.</p>
+        <p>You can configure the <code>max-disconnection-duration</code> parameter using <code>LocalViewSpaceFactoryBean</code> for Spring, or using <code>LocalViewSpaceConfigurer</code> at runtime (the default is 1 minute). For example:</p><pre><code class="language-xml">&lt;os-core:local-view id="localViewSpace" space="space" max-disconnection-duration="60000"&gt;
+    &lt;os-core:view-query class="com.example.Message1" where="processed = true"/&gt;
+&lt;/os-core:local-view&gt;
+</code></pre>
+        <h2><a name="recovering-from-disconnection"></a>Recovering from Disconnection</h2>
+        <p>When the connection to the remote master Space is restored, the local view reloads all its data from the master Space (this is the same behavior as in the initialization process) before restoring the state to active. This ensures that the local view is consistent when it is accessed.</p>
+        <div class="tc-admon-note">
+            <p>When the synchronization is replication-based (default), the local view is resilient to failover because if a primary Space fails and a backup Space replaces it before the maximum disconnection duration expires, the local view remains intact during the failover process. When the synchronization is notification-based, this is not guaranteed because notifications may be lost during the failover process.</p>
+        </div>
+        <h2><a name="local-view-monitor-interface"></a>Local View Monitor Interface</h2>
+        <p>You can do the following using the <code>LocalViewMonitor</code> interface:</p>
+        <ul>
+            <li>Read the current connection state of the local view.</li>
+            <li>Add and remove connection state listeners.</li>
+        </ul>
+        <h3><a name="reading-the-connection-state"></a>Reading the Connection State</h3>
+        <p>The code snippet below demonstrates how to use the Local View Monitor to read the local view connection state:</p><pre><code class="language-java">// Initialize remote space configurer:
+GigaSpaceConfigurer gigaSpaceConfigurer = new GigaSpaceConfigurer("mySpace");
+
+// Initialize local view configurer
+LocalViewSpaceConfigurer localViewSpaceConfigurer = new LocalViewSpaceConfigurer(gigaSpaceConfigurer)
+    .maxDisconnectionDuration(1000*60*60)
+    .addViewQuery(new SQLQuery(com.example.Message1.class, "processed = true"))
+    .addViewQuery(new SQLQuery(com.example.Message2.class, "priority &gt; 3"));
+
+// Creating the local view:
+GigaSpace localView = new GigaSpaceConfigurer(localViewSpaceConfigurer).gigaSpace();
+
+// Getting the local view monitor from the configurer - after space creation!
+LocalViewMonitor localViewMonitor = localViewSpaceConfigurer.getLocalViewMonitor();
+
+// Getting the local view connection state and printing it to console
+LocalViewConnectionState localViewConnectionState = localViewMonitor.getConnectionState();
+</code></pre>
+        <h3><a name="adding-a-connection-state-listener-to-the-local-view"></a>Adding a Connection State Listener to the Local View</h3>
+        <p>The <code>LocalViewConnectionStateListener</code> interface is a simple one-method interface:</p><pre><code class="language-java">public interface LocalViewConnectionStateListener{
+
+    void onConnectionStateChanged(LocalViewConnectionState previousState, LocalViewConnectionState currentState);
+}
+</code></pre>
+        <p>Objects implementing this interface can register to the local view. On connection state changes, all registered listeners are notified, receiving the previous and current connection state.</p>
+        <p>The following example shows how to add a simple listener to the local view:</p><pre><code class="language-java">//A simple listener that on state change, prints to console the previous and current connection state
+Class MySimpleListener implements LocalViewConnectionStateListener{
+
+    @Override
+    public void onConnectionStateChanged(LocalViewConnectionState previousState, LocalViewConnectionState currentState){
+        System.out.println("Local view connection changed from " + previousState + " to " + currentState);
+    }
+}
+</code></pre><pre><code class="language-java">GigaSpace localView = new GigaSpaceConfigurer(localViewSpaceConfigurer).gigaSpace();
+
+// Getting the local view monitor from the configurer - after space creation!
+LocalViewMonitor localViewMonitor = localViewSpaceConfigurer.getLocalViewMonitor();
+
+//The custom listener
+MySimpleListener mySimpleListener = new MySimpleListener();
+
+//Adding the listener to the local view
+localViewMonitor.addConnectionStateListener(mySimpleListener);
+
+//Removing the listener from the local view
+localViewMonitor.removeConnectionStateListener(mySimpleListener);
+</code></pre>
+        <h1><a name="considerations"></a>Considerations</h1>
+        <p>When a local view contains complex objects (nested structure), it is recommended to perform a deep clone after these have been read to allow incoming updates to refresh the state of the cached objects (copy on read).
+The client application should use the cloned object, because the original object returned back from the read operation holds a reference used by the local view.</p>
+    </body>
+</html>

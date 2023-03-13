@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Application Debugging</h1>
+        <p>In some cases, you might want to monitor the activity of the JVM running as part of your .NET application. The <a href="http://java.sun.com/j2se/1.5.0/docs/guide/management/jconsole.html">jconsole</a> is a great tool that allows you to troubleshoot the JVM internals.</p>
+        <h1><a name="opening-the-jmx-port"></a>Opening the JMX Port</h1>
+        <p>The following is used to open the JMX port to view and monitor the JVM loaded into the .NET process memory address.</p>
+        <p>Have the following settings as part of your <code>app.config</code> file:</p><pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;configuration&gt;
+  &lt;configSections&gt;
+    &lt;section name="GigaSpaces" type="GigaSpaces.Core.Configuration.GigaSpacesCoreConfiguration, GigaSpaces.Core"/&gt;
+  &lt;/configSections&gt;
+  &lt;GigaSpaces&gt;
+    &lt;JvmSettings&gt;
+      &lt;JvmCustomOptions IgnoreUnrecognized="false"&gt;
+        &lt;add Option="-Dcom.sun.management.jmxremote.port=5144"/&gt;
+        &lt;add Option="-Dcom.sun.management.jmxremote.ssl=false"/&gt;
+        &lt;add Option="-Dcom.sun.management.jmxremote.authenticate=false"/&gt;
+      &lt;/JvmCustomOptions&gt;
+    &lt;/JvmSettings&gt;
+  &lt;/GigaSpaces&gt;
+&lt;/configuration&gt;
+</code></pre>
+        <p>See <a href="jvm-configuration.html">.NET JVM Configuration</a> for more details.</p>
+        <h1><a name="viewing-in-jconsole"></a>Viewing in JConsole</h1>
+        <ol>
+            <li>
+                <p>Start <code>jconsole</code> – jconsole is located under the bin directory of the Java home, by default it is under <code>&lt;Installation dir&gt;\Runtime\java\bin</code></p>
+            </li>
+            <li>
+                <p>Once the <code>jconsole</code> is started, select the <span class="tc-bold">Local</span> tab:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/dotnet/jcon11.jpg" alt="jcon1.jpg" class="tc-picture50" />
+                </p>
+            </li>
+            <li>
+                <p>This shows the status of the JVM running in your .NET application:</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/dotnet/jcon21.jpg" alt="jcon2.jpg" class="tc-picture80" />
+                </p>
+            </li>
+        </ol>
+        <div class="tc-admon-note">
+            <p>For more details about JMX and <code>jconsole</code>, refer to:
+- <a href="http://java.sun.com/j2se/1.5.0/docs/guide/management/agent.html">Sun - Monitoring and Management Using JMX</a>
+- <a href="http://java.sun.com/j2se/1.5.0/docs/guide/management/jconsole.html">Sun - Using jconsole</a>.</p>
+        </div>
+        <h1><a name="viewing-in-jvisualvm"></a>Viewing in JVisualVM</h1>
+        <p>As an alternative to viewing in JConsole, you can use JVisualVM.</p>
+        <ol>
+            <li>
+                <p>Start JVisualVM. The default location is the <code>C:\GigaSpaces\XAP.NET-[%=Versions.xap-release%]-x64\Runtime\Java</code> directory.</p>
+            </li>
+            <li>
+                <p>Connect via JMX. Go to File | Add JMX Connection...
+</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/dotnet/jvisualvm-connect.png" alt="jvisualvm-connect.png" class="tc-picture80" />
+                </p>
+            </li>
+            <li>
+                <p>Enter the Connection: <code>localhost:5144</code></p>
+            </li>
+            <li>
+                <p>For thread dumps, go to the "Threads" tab, and click on the "Thread Dump" button.
+</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/dotnet/jvisualvm-thread1.png" alt="jvisualvm-thread1.png" class="tc-picture80" />
+                </p>
+                <p>
+Or:
+Right click on the application in the left pane, and select "Thread Dump".
+</p>
+                <p>
+                    <img src="../Resources/Static/attachment_files/dotnet/jvisualvm-thread2.png" alt="jvisualvm-thread2.png" class="tc-picture80" />
+                </p>
+            </li>
+            <li>
+                <p>Similarly for heap dumps, go to the "Monitor" tab, click on the "Heap Dump" button. Or right click on the application in the left pane and select "Heap Dump".</p>
+            </li>
+        </ol>
+    </body>
+</html>

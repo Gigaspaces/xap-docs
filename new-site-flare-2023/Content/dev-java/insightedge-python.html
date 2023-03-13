@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">PySpark</h1>
+        <p><MadCap:variable name="General.ProductNameIE" /> has a Python API available via PySpark. Its functionality is limited to the DataFrame API.</p>
+        <h1><a name="interactive-use"></a>Interactive Use</h1>
+        <p>You can use the following tools to analyze data interactively in Python:</p>
+        <ul>
+            <li><a href="../started/insightedge-zeppelin.html">Zeppelin</a>
+                <br />
+            </li>
+            <li>Command line shell</li>
+            <li MadCap:conditions="Version.14-5-born"><a href="../started/insightedge-jupyter.html">Jupyter</a>
+            </li>
+        </ul>
+        <h1><a name="zeppelin-notebook"></a>Zeppelin Notebook</h1>
+        <p>To develop notebooks in Python, use the <code>%pyspark</code> interpreter in the Zeppelin web notebook. See the <code>InsightEdge python example</code> notebook as a reference example.</p>
+        <h1><a name="command-line-shell"></a>Command Line Shell</h1>
+        <p>To start the command line shell, run the <code>./bin/insightedge-pyspark</code> script in the <MadCap:variable name="General.ProductNameIE" /> directory.</p>
+        <p>For example, start the <MadCap:variable name="General.ProductNameIE" /> demo:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Linux" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/bin/gs.sh demo
+</code></pre>
+            </div>
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\bin\gs demo
+</code></pre>
+            </div>
+        </div>
+        <p>Then start the command line shell:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Linux" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/insightedge/bin/insightedge-pyspark --master spark://127.0.0.1:7077
+</code></pre>
+            </div>
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\insightedge\bin\insightedge-pyspark --master spark://127.0.0.1:7077
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="saving-and-loading-dataframes-in-python"></a>Saving and Loading DataFrames in Python</h1>
+        <p>To operate on <MadCap:variable name="General.ProductNameIE" /> DataFrames, use the regular PySpark DataFrame API with the <code>org.apache.spark.sql.insightedge</code> format, and specify Data Grid <code>collection</code> or <code>class</code> options. For example,</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Python" style="padding:10px"><pre><code class="language-python"># create pyspark.sql.SparkSession
+spark = SparkSession.builder.getOrCreate()
+
+# load SF salaries dataset from file
+jsonFilePath = os.path.join(os.environ["<MadCap:variable name="General.EnvVariablePrefix" />_HOME"], "insightedge/data/sf_salaries_sample.json")
+jsonDf = spark.read.json(jsonFilePath)
+
+# save DataFrame to the grid
+jsonDf.write.format("org.apache.spark.sql.insightedge").mode("overwrite").save("salaries")
+
+# load DataFrame from the grid
+gridDf = spark.read.format("org.apache.spark.sql.insightedge").option("collection", "salaries").load()
+gridDf.show()
+</code></pre>
+            </div>
+        </div>
+        <p>You can also load a DataFrame backed by a DataGrid Scala class with the <code>class</code> options, for example:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Python" style="padding:10px"><pre><code class="language-python">df = spark.read.format("org.apache.spark.sql.insightedge").option("class", my_class_name).load()
+</code></pre>
+            </div>
+        </div>
+        <h1><a name="self-contained-applications"></a>Self-Contained Applications</h1>
+        <p>To develop a self-contained submittable application, use the regular PySpark and configure the <MadCap:variable name="General.ProductNameIE" /> settings in <code>SparkConf</code>:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Python" style="padding:10px"><pre><code class="language-python">from pyspark.conf import SparkConf
+from pyspark.sql import SparkSession
+
+conf = SparkConf()
+conf.setAppName("InsightEdge Python Example")
+conf.set("spark.insightedge.space.name", "demo")
+conf.set("spark.insightedge.space.lookup.group", "insightedge")
+conf.set("spark.insightedge.space.lookup.locator", "127.0.0.1:4174")
+
+spark = SparkSession.builder.config(conf=conf).getOrCreate()
+
+</code></pre>
+            </div>
+        </div>
+        <p>The complete source code is available at <code><MadCap:variable name="General.HomePath" />/insightedge/examples/python/sf_salaries.py</code>.</p>
+        <p>The application can be submitted with the <code>insightedge-submit</code> script, for example:</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Linux" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />/insightedge/bin/insightedge-submit --master spark://127.0.0.1:7077 <MadCap:variable name="General.HomePath" />/insightedge/examples/python/sf_salaries.py
+</code></pre>
+            </div>
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"><MadCap:variable name="General.HomePath" />\insightedge\bin\insightedge-submit --master spark://127.0.0.1:7077 <MadCap:variable name="General.HomePath" />\insightedge\examples\python\sf_salaries.py
+</code></pre>
+            </div>
+        </div>
+        <div class="tc-admon-attention">
+            <p>PySpark doesn't support Java 11. Make sure your JAVA_HOME environment variable is pointing to a JDK&#160;8 folder. See <a href="https://stackoverflow.com/questions/53583199/pyspark-error-unsupported-class-file-major-" target="_blank">here</a> for more information about PySpark and Java.</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Replication Parameters</h1>
+        <h1><a name="general-parameters"></a>General Parameters</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr MadCap:conditions="Version.16-1-1-born">
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.storage-type</td>
+                    <td align="left"><a name="Optional_values:_byte-buffer,_sqlite."></a>Optional values: <code>byte-buffer</code>, <code>sqlite</code>.<br />-  <span class="tc-bold">byte-buffer</span> (default) writes the log in a binary format.<br />- <span class="tc-bold">sqlite</span> writes the log to a database. The database can be accessed using standard tools to view the details of the log. For more information, see <MadCap:xref href="controlling-the-replication-redo-log.html#configuring-the-redo-log-capacity" class="format-of-the-redo-log">Format of the Redo Log.</MadCap:xref></td>
+                    <td align="left">byte-buffer</td>
+                </tr>
+                <tr MadCap:conditions="Version.16-1-1-born">
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.sqlite-flush-buffer-packet-count</td>
+                    <td align="left">Relevant only if <code>storage-type</code> is <code>sqlite</code>.<br />This is the value used for for sqlite swap redo log mechanism.</td>
+                    <td align="left">1500</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.replication-mode</td>
+                    <td align="left">Optional values: <code>sync</code>, <code>async</code>.<br />- The <span class="tc-bold">async</span> mode replicates Space operations to the target Space after the client receives an acknowledgment from the source Space for the operation.<br />- The <span class="tc-bold">sync</span> mode replicates Space operations to the target Space before the client receives the acknowledgment from the source Space for the operation. The client gets the acknowledgment for the operation only after all target Spaces have confirmed the arrival of the replicated data.</td>
+                    <td align="left"><code>async</code> is used with the async-replicated schema.<br /><code>sync</code> is used with the sync-replicated, primary-backup and partitioned cluster schema.</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.policy-type</td>
+                    <td align="left">Optional values:<br />* Full-replication - all objects are replicated. <br />*  Partial-replication - objects with the <code>@SpaceClass</code> configured (replicate = false) will not be replicated.This allows you to control replication at a class base level.<br />See the <a href="../dev-java/the-space-configuration.html">POJO Metadata</a> page for details.</td>
+                    <td align="left">partial-replication</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.repl-find-timeout</td>
+                    <td align="left">Timeout (in milliseconds) to wait for the lookup of a peer Space.<br />This parameter applies only when the Space is searched in a Jini Lookup Service.</td>
+                    <td align="left">5000 [ms]</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.repl-full-take</td>
+                    <td align="left">If set to <code>true</code>, the entire object is replicated when a take operation is called. If set to <code>false</code>, only the ID, class information, and primitive fields are replicated. <br /><span class="tc-bold">This option is valid only when replicating data to an internal target as backup, Local View, or durable notify container (the mirror gets the full entry)</span>.</td>
+                    <td align="left">false</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.replicate-notify-templates</td>
+                    <td align="left">Boolean value. If set to <code>true</code>, the notify templates are replicated to the target Space.</td>
+                    <td align="left">true</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.trigger-notify-templates</td>
+                    <td align="left">Boolean value. If set to <code>true</code>, the replicated operations will trigger the notify templates and send events to the registered listeners.</td>
+                    <td align="left">false</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.on-conflicting-packets</td>
+                    <td align="left">Enum value. If set to <code>ignore</code>, the conflicting operations are ignored. If set to <code>override</code>, the newest operation will override the data in the target.</td>
+                    <td align="left">ignore</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1><a name="asynchronous-replication-parameters"></a>Asynchronous Replication Parameters</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.async-replication.repl-chunk-size</td>
+                    <td align="left">Number of packets transmitted together on the network when the replication event is triggered. The maximum value you can assign for this property is <code>repl-interval-opers</code>.</td>
+                    <td align="left">500</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.async-replication.repl-interval-millis</td>
+                    <td align="left">Time (in milliseconds) to wait between replication operations.</td>
+                    <td align="left">3000 [ms]</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.async-replication.repl-interval-opers</td>
+                    <td align="left">Number of destructive operations to wait before replicating.</td>
+                    <td align="left">500</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.async-replication.async-channel-shutdown-timeout</td>
+                    <td align="left">Determines how long (in milliseconds) the primary Space will wait for a pending replication to be replicated to its targets before shutting down.</td>
+                    <td align="left">300000 [ms]</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-refer">
+            <p>For more information, see the <a href="asynchronous-replication.html">Asynchronous Replication</a> page.</p>
+        </div>
+        <h1><a name="synchronous-replication-parameters"></a>Synchronous Replication Parameters</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.sync-replication.throttle-when-inactive</td>
+                    <td align="left">Boolean value. Set to <code>true</code> if you want to throttle replicated operations when the channel is inactive (disconnection).</td>
+                    <td align="left"><code>true</code> in primary backup.<br /><code>false</code> in full sync replicated.</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.sync-replication.max-throttle-tp-when-inactive</td>
+                    <td align="left">Integer value. If the above is true, this will specify the maximum operations per second the throttle will maintain when the channel is in-active (disconnection), if the last measured throughput when the channel was active was higher than that, the measured throughput will be used instead.</td>
+                    <td align="left">50,000 operations/second</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.sync-replication.min-throttle-tp-when-active</td>
+                    <td align="left">Integer value. This specifies the minimum operations per second the throttle can reduce to when the channel is active (during asynchronous state). The throttling when the channel is active is always adapted to the current throughput and size of the redo log in order to keep the redo log size decreasing.</td>
+                    <td align="left">1,000 operations/second</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.sync-replication.target-consume-timeout</td>
+                    <td align="left">The timeout time (in milliseconds) that the target Space waits for consuming replication packets. When the timeout expires, the replication channel moves to asynchronous state.</td>
+                    <td align="left">10000 [ms]</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-refer">
+            <p>For more info refer to <a href="synchronous-replication.html">Synchronous Replication</a></p>
+        </div>
+        <h1><a name="recovery-parameters"></a>Recovery Parameters</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.recovery-chunk-size</td>
+                    <td align="left">Integer value. Defines how many operations are recovered in a single batch.</td>
+                    <td align="left">200</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.recovery-thread-pool-size</td>
+                    <td align="left">Integer value. Defines how many threads are recovering the data during the snapshot process.</td>
+                    <td align="left">4</td>
+                </tr>
+                <tr>
+                    <td align="left"><a name="com.gs.r"></a>com.gs.replication.replicaProgressTimeout </td>
+                    <td align="left">
+                        <p align="left">Timeout on recovery process (in milliseconds) to wait for the backup partition to start up.</p>
+                        <div class="tc-admon-note">
+                            <p>When using the <MadCap:xref href="../dev-java/indexing-geospatial.html">Geospatial Index</MadCap:xref> feature, complex geographic features may require an increase in this parameter.</p>
+                        </div>
+                    </td>
+                    <td align="left">60000</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-refer">
+            <p>For more info refer to <a href="space-instance-recovery.html">Space Instance Recovery</a></p>
+        </div>
+        <h1><a name="redo-log-parameters"></a>General Redo Log Parameters</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                    <th>Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>cluster-config.groups.group.repl-policy.redo-log-capacity</td>
+                    <td>Specifies the total amount of replication packets the redo log can hold for a standard replication target.</td>
+                    <td>150000</td>
+                </tr>
+                <tr>
+                    <td>cluster-config.groups.group.repl-policy.redo-log-memory-capacity</td>
+                    <td>Specifies the maximum number of replication packets the redo log keeps in memory.</td>
+                    <td>150000</td>
+                </tr>
+                <tr>
+                    <td>cluster-config.groups.group.repl-policy.redo-log-recovery-capacity</td>
+                    <td>Specifies the total amount of replication packets the redo log can hold for a standard replication target while it is undergoing a recovery process.</td>
+                    <td>5000000</td>
+                </tr>
+                <tr>
+                    <td>cluster-config.groups.group.repl-policy.on-redo-log-capacity-exceeded</td>
+                    <td>See the <a href="controlling-the-replication-redo-log.html#handling-a-increasingly-larger-redo-log">Handling an Increasing Redo Log</a> page for details.</td>
+                    <td>drop-oldest</td>
+                </tr>
+                <tr>
+                    <td>cluster-config.groups.group.repl-policy.on-missing-packets</td>
+                    <td>Options: <code>ignore</code>, <code>recover</code>. See the <a href="controlling-the-replication-redo-log.html#handling-dropped-replication-packets">Handling Dropped Replication Packets</a> page for details.</td>
+                    <td>recover</td>
+                </tr>
+                <tr>
+                    <td>cluster-config.mirror-service.redo-log-capacity</td>
+                    <td>Specifies the total amount of replication packets the redo log can hold for a mirror service replication target.</td>
+                    <td>1000000</td>
+                </tr>
+                <tr>
+                    <td>cluster-config.mirror-service.on-redo-log-capacity-exceeded</td>
+                    <td>See the <a href="controlling-the-replication-redo-log.html#handling-a-increasingly-larger-redo-log">Handling an Increasing Redo Log</a> page for details.</td>
+                    <td>block-operations</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The following  are low-level configuration parameters that relate to the swap redo log mechanism:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Space Cluster Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.flush-buffer-packet-count</td>
+                    <td align="left">Specifies the number of packets (buffer size) that the swap redo log uses when flushing packets to the disk.</td>
+                    <td align="left">500</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.swap-redo-log.segment-size</td>
+                    <td align="left">Specifies the size (in bytes) of each swap redo log segment file.</td>
+                    <td align="left">10MB</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.fetch-buffer-packet-count</td>
+                    <td align="left">Specifies the number of packets (buffer size) that the swap redo log usES when retrieving packets from disk to memory.</td>
+                    <td align="left">500</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.max-scan-length</td>
+                    <td align="left">Specifies the maximum allowed scan length (in bytes) in the swap redo log file in order to locate a packet.</td>
+                    <td align="left">50KB</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.swap-redo-log.max-open-cursors</td>
+                    <td align="left">Specifies the maximum number of open file descriptors that the swap redo log will use.</td>
+                    <td align="left">10</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-refer">
+            <p>For more information, see the <a href="controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</a> page.</p>
+        </div>
+        <h1><a name="mirror-service-parameters"></a>Mirror Service Parameters</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.mirror-service.url</td>
+                    <td align="left">Used to locate the Mirror Service. If you change the name of the Mirror Service specified as part of the Mirror Processing Unit, modify this parameter value to facilitate the correct Mirror service URL.</td>
+                    <td align="left">jini://*/mirror-service_container/mirror-service</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.mirror-service.bulk-size</td>
+                    <td align="left">The amount of operations to be transmitted in one bulk operation (in quantity and not actual memory size) from an active primary to the Mirror Service.</td>
+                    <td align="left">100</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.mirror-service.interval-millis</td>
+                    <td align="left">The replication frequency; replication will happen every <code>interval-millis</code> milliseconds.</td>
+                    <td align="left">2000</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.mirror-service.interval-opers</td>
+                    <td align="left">The replication buffer size; replication will happen every <code>interval-opers</code> operations.</td>
+                    <td align="left">100</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.mirror-service.on-redo-log-capacity-exceeded</td>
+                    <td align="left">Available options:<br /><code>block-operations</code> - all cluster operations that need to be replicated (write/update/take) are blocked until the redo log size drops below the maximum capacity. (Users get RedoLogCapacityExceededException exceptions while trying to execute these operations.)<br /><code>drop-oldest</code> - the oldest packet in the redo log is dropped.<br />See the <a href="controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</a> page for details.</td>
+                    <td align="left">block-operations</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.mirror-service.redo-log-capacity</td>
+                    <td align="left">Specifies the total amount of replication packets the redo log can hold for a mirror service replication target.</td>
+                    <td align="left">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-refer">
+            <p>For more information, refer to the <a href="controlling-the-replication-redo-log.html">Controlling the Replication Redo Log</a> topic.</p>
+        </div>
+        <h1><a name="durable-notifications-parameters"></a>Durable Notification Parameters</h1>
+        <p>When configuring the redo log memory capacity, it needs to be smaller than the general redo log memory capacity (to prevent creating swap files).</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.redo-log-durable-notification-capacity</td>
+                    <td align="left">Specifies the total amount of replication packets the redo log can hold for a durable notification replication target.</td>
+                    <td align="left">150000</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.durable-notification-max-disconnection-time</td>
+                    <td align="left">Specifies the maximum amount of time (in milliseconds) the Space will wait for the durable notification replication target before it is considered disconnected, after which the target will be dropped.</td>
+                    <td align="left">300000</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-refer">
+            <p>For more information about Durable Notifications, refer to the <a href="../dev-java/durable-notifications.html">Durable Notifications</a> topic in the Developer guide.</p>
+        </div>
+        <h1><a name="local-view-parameters"></a>Local View Parameters</h1>
+        <p>When configuring the redo log memory capacity for the local view, it needs to be smaller than the general redo log memory capacity (to prevent creating swap files).</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Property</th>
+                    <th align="left">Description</th>
+                    <th align="left">Default Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.redo-log-local-view-capacity</td>
+                    <td align="left">Specifies the total amount of replication packets the redo log can hold for a local view replication target.</td>
+                    <td align="left">150000</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.redo-log-local-view-recovery-capacity</td>
+                    <td align="left">Specifies the total amount of replication packets the redo log can hold for a local view replication target while the local view is in recovery state (initial load process).</td>
+                    <td align="left">1000000</td>
+                </tr>
+                <tr>
+                    <td align="left">cluster-config.groups.group.repl-policy.local-view-max-disconnection-time</td>
+                    <td align="left">Specifies the maximum amount of time (in milliseconds) the Space will wait for the local view replication target before it is considered disconnected, after which the target will be dropped.</td>
+                    <td align="left">300000</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
