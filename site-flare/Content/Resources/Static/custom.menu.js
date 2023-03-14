@@ -35,7 +35,7 @@
  // '10.1': { 'url': '/xap101.html', 'topicBanner': 'old' },
  // '10.0': { 'url': '/xap100.html', 'topicBanner': 'old' },
  // '9.7': { 'url': '/xap97.html', 'topicBanner': 'old' },
-  'Archive': { 'url': '/admin/Archive.html' }
+  'Archive': { 'url': '/Archive.html' }
 };
 
 var resourcesData = {
