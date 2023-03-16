@@ -162,13 +162,12 @@ $(document).ready(function(){
         }
     },
     selectMenuItems: function () {
-      var menuLoaded = setInterval(function() {
-          if ($('ul.sidenav li').length) {
-              clearInterval(menuLoaded);
-              $('ul.sidenav .selected').parentsUntil('ul.sidenav').last().addClass('selected-root');
+     setTimeout(function() {
+          if ($('ul.sidenav .selected').length) {
+              $('ul.sidenav .selected').parentsUntil('ul.sidenav').addClass('selected-root');
           }
-        }, 100);
-}
+        }, 600);
+      }
     },
     utils: {
       getVar: function (vname) {
