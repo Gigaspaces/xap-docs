@@ -34,6 +34,8 @@ $(document).ready(function(){
         _self.methods.breadcrumb();
         _self.methods.generateNavItems();
         _self.methods.addClipboardButtons();
+        _self.methods.handleRightMenu();
+        _self.methods.selectMenuItems();
         $('.sidenav').on('loaded', function () {
         $('#footer').addClass('show');
         });
@@ -139,7 +141,7 @@ $(document).ready(function(){
           /* } */
         }
         // If MENU_LABEL was not replaced (no version), set place holder
-        vMenu = vMenu.replace('MENU_LABEL', 'Select a Version');
+        vMenu = vMenu.replace('MENU_LABEL', 'Version');
         vMenu += menuEnd;
         $(vMenu).appendTo(navBar);
 
@@ -153,7 +155,20 @@ $(document).ready(function(){
           $('#version-menu ul a').on('touchstart', function (e) {
             document.location.href = $(this).attr('href');
           });
-      }
+      },
+      handleRightMenu: function () {
+        if ($('.ipn-content ul ul').length) {
+            $('.ipn-content').addClass('show');
+        }
+    },
+    selectMenuItems: function () {
+      var menuLoaded = setInterval(function() {
+          if ($('ul.sidenav li').length) {
+              clearInterval(menuLoaded);
+              $('ul.sidenav .selected').parentsUntil('ul.sidenav').last().addClass('selected-root');
+          }
+        }, 100);
+}
     },
     utils: {
       getVar: function (vname) {
