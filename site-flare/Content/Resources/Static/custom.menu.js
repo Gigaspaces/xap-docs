@@ -10,8 +10,9 @@
 	'16.3': { 'url': '/16.3/landing-new.html', 'label': '16.3', 'hide': true }, // current
 	'latest': { 'url': '/latest/landing-new.html', 'label': '16.3' },	// also current
 
-	'16.2.1': { 'url': '/16.2.1/landing.html', 'label': '16.2.1', 'hide': true }, 
-	'latest': { 'url': '/latest/landing.html', 'label': '16.2.1' },	
+	//'16.2.1': { 'url': '/16.2.1/landing.html', 'label': '16.2.1', 'hide': true }, 
+	//'latest': { 'url': '/latest/landing.html', 'label': '16.2.1' },
+	'16.2.1': { 'url': '/16.2.1/landing.html', 'label': '16.2.1',  'topicBanner': 'old' },	
 	'16.2': { 'url': '/16.2/landing.html', 'label': '16.2',  'topicBanner': 'old' },
 	'16.1.1': { 'url': '/16.1/landing.html', 'label': '16.1.1',  'topicBanner': 'old' },
 	'16.0': { 'url': '/16.0/landing.html', 'label': '16.0',  'topicBanner': 'old' },
