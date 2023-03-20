@@ -405,150 +405,156 @@ The basic unit of scalability in SBA is the <a href="../dev-java/the-processing-
         <div class="tc-admon-note">
             <p>For more details on how to configure the replication mechanisms of the Space, refer to <a href="../admin/replication.html">Replication</a> in the <a href="../admin/index.html">Administration Guide</a>.</p>
         </div>
-        <h1><a name="data-grid-topologies"></a>Data Grid Topologies</h1>
-        <p>The following data grid topologies are supported.</p>
-        <h3><a name="replicated"></a>Replicated</h3>
+        <h1 MadCap:conditions="Version.16-3-died"><a name="data-grid-topologies"></a>Data Grid Topologies</h1>
+        <p MadCap:conditions="Version.16-3-died">The following data grid topologies are supported.</p>
+        <h3 MadCap:conditions="Version.16-3-died"><a name="replicated"></a>Replicated</h3>
         <table class="tc-borderless">
+            <col MadCap:conditions="Version.16-3-died" />
+            <col MadCap:conditions="Version.16-3-died" />
             <tr>
                 <td style="width:80%;">
                     <table>
                         <thead>
                             <tr>
-                                <th>Description</th>
-                                <th>Two or more space instances with replication between them.</th>
+                                <th MadCap:conditions="Version.16-3-died">Description</th>
+                                <th MadCap:conditions="Version.16-3-died">Two or more space instances with replication between them.</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Common Use</td>
-                                <td>Allowing two or more applications to work with their own dedicated data store, while working on the same data as the other applications. Also allows for load distribution between multiple space instances in read-intensive scenarios</td>
+                                <td MadCap:conditions="Version.16-3-died">Common Use</td>
+                                <td MadCap:conditions="Version.16-3-died">Allowing two or more applications to work with their own dedicated data store, while working on the same data as the other applications. Also allows for load distribution between multiple space instances in read-intensive scenarios</td>
                             </tr>
                             <tr>
-                                <td>Options</td>
-                                <td>Replication can be synchronous (slower but with better consistency) or asynchronous (faster but less reliable, as it does not guarantee consistency and immediate replication). <br />Space instances can run on the same JVM as the application (embedded - allows faster read access) or in a separate process (remote - allows multiple applications to use the space, easier management).</td>
+                                <td MadCap:conditions="Version.16-3-died">Options</td>
+                                <td MadCap:conditions="Version.16-3-died">Replication can be synchronous (slower but with better consistency) or asynchronous (faster but less reliable, as it does not guarantee consistency and immediate replication). <br />Space instances can run on the same JVM as the application (embedded - allows faster read access) or in a separate process (remote - allows multiple applications to use the space, easier management).</td>
                             </tr>
                         </tbody>
                     </table>
                 </td>
                 <td style="width:20%;">
-                    <p>
+                    <p MadCap:conditions="Version.16-3-died">
                         <img src="../Resources/Static/attachment_files/dg_a_topology2a.gif" class="tc-thumbnail" />
                     </p>
                 </td>
             </tr>
         </table>
-        <h3><a name="partitioned"></a>Partitioned</h3>
+        <h3 MadCap:conditions="Version.16-3-died"><a name="partitioned"></a>Partitioned</h3>
         <table class="tc-borderless">
+            <col MadCap:conditions="Version.16-3-died" />
+            <col MadCap:conditions="Version.16-3-died" />
             <tr>
                 <td style="width:80%;">
                     <table>
                         <thead>
                             <tr>
-                                <th align="left">Description</th>
-                                <th align="left">Data and operations are split between two or more space instances (partitions) according to a routing field defined in the data.</th>
-                                <th align="left" />
+                                <th align="left" MadCap:conditions="Version.16-3-died">Description</th>
+                                <th align="left" MadCap:conditions="Version.16-3-died">Data and operations are split between two or more space instances (partitions) according to a routing field defined in the data.</th>
+                                <th align="left" MadCap:conditions="Version.16-3-died" />
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td align="left">Common Use</td>
-                                <td align="left">Allows the In-Memory Data Grid to hold large volumes of data, even if it is larger than the memory of a single machine, by splitting the data across several partitions.</td>
-                                <td align="left" />
+                                <td align="left" MadCap:conditions="Version.16-3-died">Common Use</td>
+                                <td align="left" MadCap:conditions="Version.16-3-died">Allows the In-Memory Data Grid to hold large volumes of data, even if it is larger than the memory of a single machine, by splitting the data across several partitions.</td>
+                                <td align="left" MadCap:conditions="Version.16-3-died" />
                             </tr>
                             <tr>
-                                <td align="left">Options</td>
-                                <td align="left">With/without backup space instance for each partition.<br />- Business logic can be collocated with each partition and act on the data of the local partition. <br />This is one of the principles of the SBA paradigm</td>
-                                <td align="left" />
+                                <td align="left" MadCap:conditions="Version.16-3-died">Options</td>
+                                <td align="left" MadCap:conditions="Version.16-3-died">With/without backup space instance for each partition.<br />- Business logic can be collocated with each partition and act on the data of the local partition. <br />This is one of the principles of the SBA paradigm</td>
+                                <td align="left" MadCap:conditions="Version.16-3-died" />
                             </tr>
                         </tbody>
                     </table>
                 </td>
                 <td style="width:20%;">
-                    <p>
+                    <p MadCap:conditions="Version.16-3-died">
                         <img src="../Resources/Static/attachment_files/dg_a_topology3.gif" class="tc-thumbnail" />
                     </p>
                 </td>
             </tr>
         </table>
-        <h3><a name="local-cache"></a>Local Cache</h3>
+        <h3 MadCap:conditions="Version.16-3-died"><a name="local-cache"></a>Local Cache</h3>
         <table class="tc-borderless">
+            <col MadCap:conditions="Version.16-3-died" />
+            <col MadCap:conditions="Version.16-3-died" />
             <tr>
                 <td style="width:80%;">
                     <table>
                         <thead>
                             <tr>
-                                <th align="left">Description</th>
-                                <th align="left">Each client has a lightweight, embedded cache (space instance), which is initially empty. Upon the first time data is read, it is loaded from a master space to the local cache (this is called lazy loading); the next time the same data is read, it is fetched quickly from the local cache without network access. Later on data is either updated from the master or evicted from the cache.</th>
+                                <th align="left" MadCap:conditions="Version.16-3-died">Description</th>
+                                <th align="left" MadCap:conditions="Version.16-3-died">Each client has a lightweight, embedded cache (space instance), which is initially empty. Upon the first time data is read, it is loaded from a master space to the local cache (this is called lazy loading); the next time the same data is read, it is fetched quickly from the local cache without network access. Later on data is either updated from the master or evicted from the cache.</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td align="left">Common Use</td>
-                                <td align="left">Boosting read performance for frequently used data. A useful rule of thumb is to use a local cache when over 80% of all operations are repetitive read operations.</td>
+                                <td align="left" MadCap:conditions="Version.16-3-died">Common Use</td>
+                                <td align="left" MadCap:conditions="Version.16-3-died">Boosting read performance for frequently used data. A useful rule of thumb is to use a local cache when over 80% of all operations are repetitive read operations.</td>
                             </tr>
                             <tr>
-                                <td align="left">Options</td>
-                                <td align="left">The master cache can be clustered in any of the other topologies: replicated, partitioned, etc.</td>
+                                <td align="left" MadCap:conditions="Version.16-3-died">Options</td>
+                                <td align="left" MadCap:conditions="Version.16-3-died">The master cache can be clustered in any of the other topologies: replicated, partitioned, etc.</td>
                             </tr>
                         </tbody>
                     </table>
                 </td>
                 <td style="width:20%;">
-                    <p>
+                    <p MadCap:conditions="Version.16-3-died">
                         <img src="../Resources/Static/attachment_files/dg_a_topology4.gif" class="tc-thumbnail" />
                     </p>
                 </td>
             </tr>
         </table>
         <div class="tc-admon-note">
-            <p>For more information, refer to Local Cache <a href="../dev-java/local-cache.html">Java version</a> |<a href="../dev-dotnet/local-cache.html"> .NET version</a>.</p>
+            <p MadCap:conditions="Version.16-3-died">For more information, refer to Local Cache <a href="../dev-java/local-cache.html">Java version</a> |<a href="../dev-dotnet/local-cache.html"> .NET version</a>.</p>
         </div>
-        <h3><a name="local-view"></a>Local View</h3>
-        <table class="tc-borderless">
+        <h3 MadCap:conditions="Version.16-3-died"><a name="local-view"></a>Local View</h3>
+        <table class="tc-borderless" MadCap:conditions="Version.16-3-died">
             <tr>
                 <td style="width:80%;">
                     <table>
                         <thead>
                             <tr>
-                                <th align="left">Description</th>
-                                <th align="left">Each client has a lightweight, embedded cache (space instance), which contains a subset of the mater space's data. The client defines which data is cached using a collection of SQL queries, and the master space pushes the matching data to the client's cache.</th>
+                                <th align="left" MadCap:conditions="Version.16-3-died">Description</th>
+                                <th align="left" MadCap:conditions="Version.16-3-died">Each client has a lightweight, embedded cache (space instance), which contains a subset of the mater space's data. The client defines which data is cached using a collection of SQL queries, and the master space pushes the matching data to the client's cache.</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td align="left">Common Use</td>
-                                <td align="left">Achieving maximal read performance for a predetermined subset of the data.</td>
+                                <td align="left" MadCap:conditions="Version.16-3-died">Common Use</td>
+                                <td align="left" MadCap:conditions="Version.16-3-died">Achieving maximal read performance for a predetermined subset of the data.</td>
                             </tr>
                             <tr>
-                                <td align="left">Options</td>
-                                <td align="left">The master cache can be clustered in any of the other topologies: replicated, partitioned, etc.</td>
+                                <td align="left" MadCap:conditions="Version.16-3-died">Options</td>
+                                <td align="left" MadCap:conditions="Version.16-3-died">The master cache can be clustered in any of the other topologies: replicated, partitioned, etc.</td>
                             </tr>
                         </tbody>
                     </table>
                 </td>
                 <td style="width:20%;">
-                    <p>
+                    <p MadCap:conditions="Version.16-3-died">
                         <img src="../Resources/Static/attachment_files/dg_a_topology5.gif" class="tc-thumbnail" />
                     </p>
                 </td>
             </tr>
         </table>
         <div class="tc-admon-note">
-            <p>For more information, refer to Local View <a href="../dev-java/local-view.html">Java version</a> |<a href="../dev-dotnet/local-view.html"> .NET version</a>.</p>
+            <p MadCap:conditions="Version.16-3-died">For more information, refer to Local View <a href="../dev-java/local-view.html">Java version</a> |<a href="../dev-dotnet/local-view.html"> .NET version</a>.</p>
         </div>
-        <p>The topologies above are provided in the GigaSpaces product as predefined cluster schemas. The schema names are:</p>
+        <p MadCap:conditions="Version.16-3-died">The topologies above are provided in the GigaSpaces product as predefined cluster schemas. The schema names are:</p>
         <ul>
             <li>
-                <p>Synchronous replication - <code>sync-replicated</code></p>
+                <p MadCap:conditions="Version.16-3-died">Synchronous replication - <code>sync-replicated</code></p>
             </li>
             <li>
-                <p>Asynchronous replication - <code>async-replicated</code></p>
+                <p MadCap:conditions="Version.16-3-died">Asynchronous replication - <code>async-replicated</code></p>
             </li>
             <li>
-                <p>Partitioned with backup - <code>partitioned-sync2backup</code></p>
+                <p MadCap:conditions="Version.16-3-died">Partitioned with backup - <code>partitioned-sync2backup</code></p>
             </li>
         </ul>
-        <p>The local cache and local view topologies do not need their own schemas, because they are defined on the client side.</p>
+        <p MadCap:conditions="Version.16-3-died">The local cache and local view topologies do not need their own schemas, because they are defined on the client side.</p>
         <h1><a name="split-brain"></a>Split Brain</h1>
         <div class="tc-admon-important">
             <p>A partitioned space topology with no backups should not be used in production. Running a  space with no backups may cause split brain and data inconsistency issues.</p>

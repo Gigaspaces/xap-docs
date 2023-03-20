@@ -5,5 +5,157 @@
     <body>
         <h1>Deploy Topologies</h1>
         <MadCap:menuProxy mc-linked-toc="/Project/TOCs/Production/NewDesign_Test.fltoc" style="mc-toc-depth: 1;mc-context-sensitive: True;mc-include-parent: False;mc-include-siblings: False;mc-include-children: True;" data-mc-skin="/Project/Skins/Section-Menu-2023.flskn" />
+        <p MadCap:conditions="Version.16-3-born"><a name="data-grid-topologies"></a>Data Grid Topologies</p>
+        <p MadCap:conditions="Version.16-3-born">The following data grid topologies are supported.</p>
+        <h3 MadCap:conditions="Version.16-3-born"><a name="replicated"></a>Replicated</h3>
+        <table class="tc-borderless">
+            <col MadCap:conditions="Version.16-3-born" />
+            <col MadCap:conditions="Version.16-3-died" />
+            <tr>
+                <td style="width:80%;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th MadCap:conditions="Version.16-3-born">Description</th>
+                                <th MadCap:conditions="Version.16-3-born">Two or more space instances with replication between them.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td MadCap:conditions="Version.16-3-born">Common Use</td>
+                                <td MadCap:conditions="Version.16-3-born">Allowing two or more applications to work with their own dedicated data store, while working on the same data as the other applications. Also allows for load distribution between multiple space instances in read-intensive scenarios</td>
+                            </tr>
+                            <tr>
+                                <td MadCap:conditions="Version.16-3-born">Options</td>
+                                <td MadCap:conditions="Version.16-3-born">Replication can be synchronous (slower but with better consistency) or asynchronous (faster but less reliable, as it does not guarantee consistency and immediate replication). <br />Space instances can run on the same JVM as the application (embedded - allows faster read access) or in a separate process (remote - allows multiple applications to use the space, easier management).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td style="width:20%;">
+                    <p MadCap:conditions="Version.16-3-born">
+                        <img src="../Resources/Static/attachment_files/dg_a_topology2a.gif" class="tc-thumbnail" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h3 MadCap:conditions="Version.16-3-born"><a name="partitioned"></a>Partitioned</h3>
+        <table class="tc-borderless">
+            <col MadCap:conditions="Version.16-3-born" />
+            <col MadCap:conditions="Version.16-3-born" />
+            <tr>
+                <td style="width:80%;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th align="left" MadCap:conditions="Version.16-3-born">Description</th>
+                                <th align="left" MadCap:conditions="Version.16-3-born">Data and operations are split between two or more space instances (partitions) according to a routing field defined in the data.</th>
+                                <th align="left" MadCap:conditions="Version.16-3-born" />
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="left" MadCap:conditions="Version.16-3-born">Common Use</td>
+                                <td align="left" MadCap:conditions="Version.16-3-born">Allows the In-Memory Data Grid to hold large volumes of data, even if it is larger than the memory of a single machine, by splitting the data across several partitions.</td>
+                                <td align="left" MadCap:conditions="Version.16-3-born" />
+                            </tr>
+                            <tr>
+                                <td align="left" MadCap:conditions="Version.16-3-born">Options</td>
+                                <td align="left" MadCap:conditions="Version.16-3-born">With/without backup space instance for each partition.<br />- Business logic can be collocated with each partition and act on the data of the local partition. <br />This is one of the principles of the SBA paradigm</td>
+                                <td align="left" MadCap:conditions="Version.16-3-born" />
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td style="width:20%;">
+                    <p MadCap:conditions="Version.16-3-born">
+                        <img src="../Resources/Static/attachment_files/dg_a_topology3.gif" class="tc-thumbnail" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <h3 MadCap:conditions="Version.16-3-born"><a name="local-cache"></a>Local Cache</h3>
+        <table class="tc-borderless">
+            <col MadCap:conditions="Version.16-3-born" />
+            <col MadCap:conditions="Version.16-3-born" />
+            <tr>
+                <td style="width:80%;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th align="left" MadCap:conditions="Version.16-3-born">Description</th>
+                                <th align="left" MadCap:conditions="Version.16-3-born">Each client has a lightweight, embedded cache (space instance), which is initially empty. Upon the first time data is read, it is loaded from a master space to the local cache (this is called lazy loading); the next time the same data is read, it is fetched quickly from the local cache without network access. Later on data is either updated from the master or evicted from the cache.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="left" MadCap:conditions="Version.16-3-born">Common Use</td>
+                                <td align="left" MadCap:conditions="Version.16-3-born">Boosting read performance for frequently used data. A useful rule of thumb is to use a local cache when over 80% of all operations are repetitive read operations.</td>
+                            </tr>
+                            <tr>
+                                <td align="left" MadCap:conditions="Version.16-3-born">Options</td>
+                                <td align="left" MadCap:conditions="Version.16-3-born">The master cache can be clustered in any of the other topologies: replicated, partitioned, etc.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td style="width:20%;">
+                    <p MadCap:conditions="Version.16-3-born">
+                        <img src="../Resources/Static/attachment_files/dg_a_topology4.gif" class="tc-thumbnail" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <div class="tc-admon-note">
+            <p MadCap:conditions="Version.16-3-born">For more information, refer to Local Cache <a href="../dev-java/local-cache.html">Java version</a> |<a href="../dev-dotnet/local-cache.html"> .NET version</a>.</p>
+        </div>
+        <h3 MadCap:conditions="Version.16-3-born"><a name="local-view"></a>Local View</h3>
+        <table class="tc-borderless">
+            <col MadCap:conditions="Version.16-3-born" />
+            <col MadCap:conditions="Version.16-3-born" />
+            <tr>
+                <td style="width:80%;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th align="left" MadCap:conditions="Version.16-3-born">Description</th>
+                                <th align="left" MadCap:conditions="Version.16-3-born">Each client has a lightweight, embedded cache (space instance), which contains a subset of the mater space's data. The client defines which data is cached using a collection of SQL queries, and the master space pushes the matching data to the client's cache.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="left" MadCap:conditions="Version.16-3-born">Common Use</td>
+                                <td align="left" MadCap:conditions="Version.16-3-born">Achieving maximal read performance for a predetermined subset of the data.</td>
+                            </tr>
+                            <tr>
+                                <td align="left" MadCap:conditions="Version.16-3-born">Options</td>
+                                <td align="left" MadCap:conditions="Version.16-3-born">The master cache can be clustered in any of the other topologies: replicated, partitioned, etc.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td style="width:20%;">
+                    <p MadCap:conditions="Version.16-3-born">
+                        <img src="../Resources/Static/attachment_files/dg_a_topology5.gif" class="tc-thumbnail" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <div class="tc-admon-note">
+            <p MadCap:conditions="Version.16-3-born">For more information, refer to Local View <a href="../dev-java/local-view.html">Java version</a> |<a href="../dev-dotnet/local-view.html"> .NET version</a>.</p>
+        </div>
+        <p MadCap:conditions="Version.16-3-born">The topologies above are provided in the GigaSpaces product as predefined cluster schemas. The schema names are:</p>
+        <ul>
+            <li>
+                <p MadCap:conditions="Version.16-3-born">Synchronous replication - <code>sync-replicated</code></p>
+            </li>
+            <li>
+                <p MadCap:conditions="Version.16-3-born">Asynchronous replication - <code>async-replicated</code></p>
+            </li>
+            <li>
+                <p MadCap:conditions="Version.16-3-born">Partitioned with backup - <code>partitioned-sync2backup</code></p>
+            </li>
+        </ul>
+        <p MadCap:conditions="Version.16-3-born">The local cache and local view topologies do not need their own schemas, because they are defined on the client side.</p>
     </body>
 </html>
