@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <div>
+            <h1 class="tc-pagetitle" style="text-align: left;">Data Integration (DI) Architecture</h1>
+            <h2>High-Level DI Architecture</h2>
+            <p style="text-align: left;">&#160;</p>
+            <p style="text-align: center;">
+                <img src="../Resources/Images/DI-High-Level-V2.png" style="width: 816px;height: 558px;" />
+            </p>
+            <h2>Components</h2>
+            <p>There are several functional components which comprise the DI&#160;layer all serve ongoing DI operations as part of the data integration layer of the Smart DIH platform.</p>
+            <p>The table below summarizes all the key DI layer components.</p>
+            <table>
+                <col style="width: 290px;" />
+                <col style="width: 293px;" />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Purpose</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>IIDR&#160;Source&#160;Database Agent</td>
+                        <td>Captures the changes from the source System of Records. For example Oracle,&#160;DB2, MSSQL)</td>
+                        <td>
+                            <p>IIDR Source database agent is a java application that usually installed on a source database server.
+</p>
+                            <p>
+IIDR Agent captures changes from the source database transaction log files in real time
+</p>
+                            <p style="font-weight: bold;">
+IIDR Oracle agent   Port: 11001
+</p>
+                            <p style="font-weight: bold;">
+IIDR Db2 zos agent Port: 11801
+</p>
+                            <p style="font-weight: bold;">
+IIDR Db2 AS-400 agent Port: 11111
+</p>
+                            <p style="font-weight: bold;">
+IIDR MSSQL agent Port: 10501</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>IIDR Target Kafka Agent</td>
+                        <td>Writes the changes captured by IIDR&#160;source agent to Kafka.</td>
+                        <td>
+                            <p>IIDR Kafka Agent is a Java application that runs on the Linux machine and writes changes captured by the IIDR&#160;source agent to Kafka.</p>
+                            <p style="font-weight: bold;">Port:11710</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>IIDR&#160;Access Server</td>
+                        <td>IIDR administration service and Metadata Manager</td>
+                        <td>
+                            <p>IIDR Access Server is responsible for creating all logical IIDR entities and objects such as subscriptions and  data stores. </p>
+                            <p>All metadata is stored in the internal IIDR database (Pointbase)
+</p>
+                            <p style="font-weight: bold;">
+IIDR AS Port: 10101</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DI&#160;Manager</td>
+                        <td>This is the primary interface which controls all DI&#160;components</td>
+                        <td>
+                            <p>Web service, exposes REST&#160;APIs to:</p>
+                            <p>1) Create pipeline and source db connection</p>
+                            <p>2) Stop/ start pipeline</p>
+                            <p>3) Other administration tasks</p>
+                            <p style="font-weight: bold;">Port: 6080</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DI MDM (Metadata Manager)</td>
+                        <td>Stores and retrieves metadata in Zookeeper</td>
+                        <td>
+                            <p>Web service, expose REST API 
+
+</p>
+                            <p>Communicates with DI Manager 
+
+</p>
+                            <p>Stores and retrieves metadata that is essential for a DI operation:
+</p>
+                            <p>1) 
+Data dictionary about tables, columns and indexes</p>
+                            <p>
+
+2) Pipeline configuration
+
+</p>
+                            <p>3) Other important metadata records that are required for ongoing DI operations
+</p>
+                            <p style="font-weight: bold;">
+Port: 6081</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DI&#160;Processor</td>
+                        <td>Java library run by Flink as a job. It is responsible for writing changes to the space.</td>
+                        <td>Java library , deployed to Flink and invoked as a Flink job. Main responsibility to read messages from Kafka , perform a transformation from a Kafka message into a space document and write this change into the space relevant object. </td>
+                    </tr>
+                    <tr>
+                        <td>Zookeeper (ZK)</td>
+                        <td>Serves as a persistent data store for DI&#160;components. Serves as a ZK that is required by Kafka.</td>
+                        <td>
+                            <p>ZK runs on 3 nodes for H/A purposes. ZK data is replicated between all nodes.</p>
+                            <p><b>Port: 2181</b>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kafka</td>
+                        <td>Serves as a streaming processing platform.</td>
+                        <td>
+                            <p>Kafka is deployed in a cluster of 3 nodes when it uses ZK is its dependency.
+</p>
+                            <p>
+IIDR publishes changes to the Kafka topic and theDI Processor (Flink job) consumes these messages and writes changes to Space.
+</p>
+                            <p><![CDATA[
+]]><b>Kafka Port: 9092</b></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>High-Level Data Flow</h2>
+            <p style="text-align: center;">
+                <img src="../Resources/Images/DI-Data-Flow.png" />
+            </p>
+        </div>
+    </body>
+</html>
