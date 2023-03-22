@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div MadCap:conditions="Version.16-3-born">
+            <h1 class="tc-pagetitle">Nested Objects&#160;Search</h1>
+            <p>When there are Java POJO classes that are not made of primitive type fields only, those objects are available for retrieval through SQL.</p>
+            <p>It is also possible to store an original JSON document in its original form within a Space and retrieve its data through SQL.</p>
+            <p>&#160;</p>
+            <p>Syntax: to select nested field was used  JSONPath expression (each next nested level accessing by “.”, getting value from array by index and from map by spring key - “[]”)</p>
+            <p>&#160;</p>
+            <ol>
+                <li>
+                    <p>identifier with simple nesteds (next - ISN) has such view:</p><pre>baseField1:nestedFieldDeep1.nestedFieldDeep2….nestedFieldDeepN</pre>
+                </li>
+                <li>
+                    <p>identifier with array nesteds (next - IAN) has such view:</p><pre>baseField1:nestedFieldDeep1[intArrayIndex | *].nestedFieldDeep2 | *….nestedFieldDeepN - as the index in square brackets only &gt;= 0 numbers have to be used</pre>
+                </li>
+                <li>
+                    <p>identifier with map nesteds (next - IMN) has such view:</p><pre>baseField1:nestedFieldDeep1[‘stringMapKey’  | *].nestedFieldDeep2 | *….nestedFieldDeepN  - as the key in square brackets only &gt;= 0 numbers have to be used</pre>
+                </li>
+            </ol>
+            <p>&#160;</p>
+            <p>General structure for Select with nesteds is:</p><pre xml:space="preserve">SELECT ISN | alias, IAN | alias, IMN  | alias …  aggregation_function(ISN) | alias  FROM 
+TableExpression1
+[INNER | CROSS | LEFT | RIGHT] JOIN
+TableExpression1
+ON (booleanExpression with usage ISN)
+WHERE (booleanExpression with usage (ISN | IAN | IMN  | alias) only from one side of 
+operator
+GROUP BY (ISN | alias)
+HAVING (booleanExpression with usage (ISN | IAN | IMN  | alias))
+ORDER BY (ISN | alias, IAN | alias, IMN  | alias …  aggregation_function(ISN) | alias) ASC | 
+DESC
+(formatting keywords like in postgres f.e. - https://www.postgresql.org/docs/current/sql-select.html)</pre>
+            <p>&#160;</p>
+            <h3>Additional supported features:</h3>
+            <ol>
+                <li><pre>AND / OR operators to combine two or more conditions.</pre>
+                </li>
+                <li><pre>All basic logical operations to create conditions: =, &lt;&gt;, &lt;, &gt;, &gt;=, &lt;=, like, NOT like, is null, is NOT null, IN.</pre>
+                </li>
+                <li><pre>Aggregate functions: COUNT, MAX, MIN, SUM, AVG</pre>
+                </li>
+                <li><pre>BETWEEN</pre>
+                </li>
+            </ol>
+            <p>&#160;</p>
+            <h3>Examples:</h3>
+            <p>For example, suppose we have a class (or SpaceDocument with DocumentProperties):</p><pre><b>Company</b> company {
+ <b>Integer</b> id;
+ <b>Director</b> director  {
+   <b>Integer</b> id;&gt;
+   <b>Integer</b> salary;
+   <b>String</b> email;
+   <b>DevTeam</b> team {
+     <b>Integer</b> id;
+     <b>String</b> specialization;
+     <b>Employee[]</b> employees;
+     <b>Map&lt;String, Employee&gt;</b> lineEmployeesMap;
+     <b>Employee</b> mainEmployee {
+       <b>Integer</b> id
+       <b>String</b> email;
+      }
+     }
+    }
+   }</pre>
+            <p><b>Company:</b> Integer Id, Director director</p>
+            <p><b>Director:</b>     Integer id,  Integer salary, String email, DevTeam team</p>
+            <p><b>DevTeam:</b>  Integer id,  String specialization,  Employee[] employees,  Map&lt;String, Employee&gt; lineEmployeesMap, Employee mainEmploye</p>
+            <p><b>Employee:</b> Integer id,  String email</p>
+            <p>In the above example we have a list of companies each having a company id and directory, who has a name, salary and DevTeam. </p>
+            <p>The DevTeam contains an id, specialization name and three types of employees: object, array and StringKey-Employee Map,</p>
+            <p>&#160;</p>
+            <h4>To search for all the directors for all companies (company director = toString of director):</h4><pre>Select company.director from Company as company</pre>
+            <p>As director is a complex object, the result will be printed by overriden method toString in director class.</p>
+            <p>&#160;</p>
+            <h4>A way to access nested path field</h4>
+            <p>If we want to get a particular simple field (e.g. director id) from the base field (in our example it is directory) we need to use a colon. &#160;This symbol separates the base field part from the nested json path part:</p><pre>Select <b>company.director:id</b> as company_director_id from Company as company</pre>
+            <ul>
+                <li>
+                    <p><b>company:</b> alias to Company table</p>
+                </li>
+                <li>
+                    <p><b>director:</b> base field of Company table</p>
+                </li>
+                <li>
+                    <p><b>id:</b> nested field of director base field with deep level 1</p>
+                </li>
+                <li>
+                    <p><b>company_director_id:</b> alias to provide such a name to the result column, otherwise the default column name = base field = director,</p>
+                </li>
+            </ul>
+            <p>&#160;</p>
+            <h4>A nested and base field in one select:</h4>
+            <p>Get company id and director salary:</p><pre>Select id as company_id, director:salary as company_director_salary, director:team as company_director_team  from Company</pre>
+            <p>Example result if we have one company in the database (emails will be the entire array of emails to string):</p><pre class="body-container">company_id	 |company_director_salary 	    | company_director_team |
+1                |20				     | DevTeam toString()    |</pre>
+            <p>&#160;</p>
+            <h4>Using nested queries in aggregation functions and groupBy with having section. </h4>
+            <p>Calculate the sum of salaries for directors who have teams with the same specializations for all companies where the sum of the director salary is not higher than 1000 and order sum for max to min:</p><pre xml:space="preserve">Select <b>sum(director:salary)</b> as director_salary, <b>director:team.specialiazation</b>
+as director_team_specialization from Company group by director_team_specialization 
+having director_salary &lt;= 1000 ORDER BY director_salary DESC</pre>
+            <p>&#160;</p>
+            <h4>Using Arrays as nesteds</h4>
+            <p>To get the company id and list of emails for all employees in all companies:</p><pre>Select id as company_id, <b>director:team.employees[*].email</b> as employee_emails</pre>
+            <p>Example result (emails will be entire array of emails to string):</p><pre class="body-container" xml:space="preserve">company_id	 |employee_emails                                          |
+1                |["test@gmail.com","test1@gmail.com"]                     |
+2		  |["test3@gmail.com","test4@gmail.com","test5@gmail.com"]  |</pre>
+            <p>To get the company id and each second email of employees in each company:</p><pre xml:space="preserve">Select id, director:team.employees[1].email</pre>
+            <p>&#160;</p>
+            <h4>Using Maps as Nesteds - accessing map fields giving a key</h4>
+            <p>To get the director email and emails of all employees that have the label "BestEmploee" for each company:</p><pre xml:space="preserve">Select director:email,<b>director:team.lineEmployeesMap['BestEmployee'].email</b></pre>
+            <p>&#160;</p>
+            <h4>Using Nesteds with Joins</h4>
+            <p>Join Company and Employee Classes row when director email equals to the employee email, or if devTeam mainEmployee email equals to the employee email:</p><pre xml:space="preserve">Select new Employee.id,company,id,company.director:email from Company as company <b>INNER JOIN</b>&#160;
+Employee as newEmployee ON&#160;newEmployee.email=director:email OR newEmployee.email = director:team.mainEmployee.email
+</pre>
+            <p>&#160;</p>
+            <input id="dfb_toc_here" type="hidden"> </input>
+        </div>
+    </body>
+</html>

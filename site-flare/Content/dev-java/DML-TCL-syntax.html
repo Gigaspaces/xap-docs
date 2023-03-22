@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div>
+            <h1 class="tc-pagetitle">Data Manipulation (DML) and Transactions Control (TCL) Syntax</h1>
+            <input id="dfb_toc_here" type="hidden"> </input>
+            <div MadCap:conditions="NewSet.JustAColorForDivs">
+                <div MadCap:conditions="Version.16-1-1-born">
+                    <h2><a name="Data"></a>Data Change Operations</h2>
+                    <p>Insert</p>
+                    <p>{ INSERT } INTO tablePrimary</p>
+                    <p>[ '(' column [, column ]* ')' ]</p>
+                    <p>[ VALUES '(' column [, column ]* ')' ]</p>
+                    <p>&#160;</p>
+                    <p>Update:</p>
+                    <p>UPDATE tablePrimary</p>
+                    <p>SET assign [, assign ]*</p>
+                    <p>[ WHERE booleanExpression ]</p>
+                    <p>&#160;</p>
+                    <p>Delete: 
+                    </p>
+                    <p>DELETE FROM tablePrimary [ [ AS ] alias ]</p>
+                    <p>[ WHERE booleanExpression ]</p>
+                    <p>&#160;</p>
+                    <p>Explain: 
+                    </p>
+                    <p>EXPLAIN&#160;PLAN</p>
+                    <p style="text-indent: 0.5in;">FOR { query }</p>
+                </div>
+                <p style="text-align: left;">EXPLAIN ANALYZE</p>
+                <p style="text-align: left;text-indent: 0.5in;">FOR { query }</p>
+                <div MadCap:conditions="Version.16-1-1-born">
+                    <p>&#160;</p>
+                </div>
+            </div>
+            <div MadCap:conditions="Version.16-2-born">
+                <h2><a name="Transact"></a>Transaction Control (TCL&#160;Syntax)</h2>
+                <p>BEGIN/START and END/COMMIT are available to define the beginning and end of a Logical Unit of Work as a transaction. ROLLBACK can also be used to undo a transaction.</p>
+                <p>Example 1:</p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>BEGIN (or START); </p>
+                            </td>
+                            <td>
+                                <p>Begin transaction</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  INSERT
+  …xxx…;</p>
+                            </td>
+                            <td>
+                                <p>&#160;</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  INSERT
+  …yyy…;</p>
+                            </td>
+                            <td>
+                                <p>&#160;</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  SELECT
+  …xxx…;  </p>
+                            </td>
+                            <td>
+                                <p>OK</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  SELECT
+  …yyy…;  </p>
+                            </td>
+                            <td>
+                                <p>OK</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>END (or COMMIT);</p>
+                            </td>
+                            <td>
+                                <p>End transaction with commit</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Example 2:</p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>BEGIN (or START); </p>
+                            </td>
+                            <td>
+                                <p>Begin transaction</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  INSERT
+  …xxx…;</p>
+                            </td>
+                            <td>
+                                <p>&#160;</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  SELECT
+  …xxx…;  </p>
+                            </td>
+                            <td>
+                                <p>OK</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  ROLLBACK;   </p>
+                            </td>
+                            <td>
+                                <p>End transaction with rollback </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  SELECT
+  …xxx…;  </p>
+                            </td>
+                            <td>
+                                <p>Not found</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  INSERT
+  …yyy…;</p>
+                            </td>
+                            <td>
+                                <p>&#160;</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  SELECT
+  …yyy…;  </p>
+                            </td>
+                            <td>
+                                <p>OK</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  COMMIT;
+    </p>
+                            </td>
+                            <td>
+                                <p>End transaction with commit</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>  SELECT
+  …yyy…;  </p>
+                            </td>
+                            <td>
+                                <p>OK</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>END (or COMMIT);</p>
+                            </td>
+                            <td>
+                                <p>End transaction with commit (nothing to commit)</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

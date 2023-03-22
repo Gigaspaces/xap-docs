@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div>
+            <h1 class="tc-pagetitle">Data Query (DQL) Syntax</h1>
+            <input id="dfb_toc_here" type="hidden"> </input>
+            <p>&#160;</p>
+            <p class="p_1"><span class="span_5">statement</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160; |&#160;&#160; explain</p>
+            <p class="p_6">&#160; |&#160;&#160; describe</p>
+            <p class="p_6">&#160; |&#160;&#160; query</p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">statementList</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; statement [ ';' statement ]* [ ';' ]</p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">explain</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; EXPLAIN PLAN</p>
+            <p class="p_1"><span class="span_7">&#160;&#160;&#160;&#160; </span><span class="span_6">&#160;&#160;&#160;&#160;&#160; FOR { query }</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; EXPLAIN ANALYZE</p>
+            <p class="p_1"><span class="span_7">&#160;&#160;&#160;&#160; </span><span class="span_6">&#160;&#160;&#160;&#160;&#160; FOR { query }</span>
+            </p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">Describe</span><span class="span_6">: </span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; DESCRIBE DATABASE databaseName</p>
+            <p class="p_6">&#160; |&#160;&#160; DESCRIBE CATALOG [ databaseName . ] catalogName</p>
+            <p class="p_6">&#160; |&#160;&#160; DESCRIBE SCHEMA [ [ databaseName . ] catalogName ] . schemaName</p>
+            <p class="p_6">&#160; |&#160;&#160; DESCRIBE [ TABLE ] [ [ [ databaseName . ] catalogName . ] schemaName . ] tableName [ columnName ]</p>
+            <p class="p_6">&#160; |&#160;&#160; DESCRIBE [ STATEMENT ] { query }</p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">query</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; values</p>
+            <p class="p_1"><span class="span_6">&#160; |&#160;&#160; WITH </span><span class="span_5">withItem</span><span class="span_6"> [ , withItem ]* query</span>
+            </p>
+            <p class="p_6">&#160; |&#160;&#160; {</p>
+            <p class="p_1"><span class="span_6">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </span><span class="span_5">select</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; |&#160;&#160; selectWithoutFrom</p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; }</p>
+            <p class="p_1"><span class="span_6">&#160;&#160;&#160;&#160;&#160; [ ORDER BY orderItem [, </span><span class="span_5">orderItem</span><span class="span_6"> ]* ]</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ LIMIT [ start, ] { count | ALL } ]</p>
+            <p class="p_7">&#160;&#160;&#160;&#160; </p>
+            <p class="p_1"><span class="span_5">withItem</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; name</p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ '(' column [, column ]* ')' ]</p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; AS '(' query ')'</p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">orderItem</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; expression [ ASC | DESC ] [ NULLS FIRST | NULLS LAST ]</p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">select</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; SELECT [ ALL | DISTINCT ]</p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; { * | projectItem [, projectItem ]* }</p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; FROM tableExpression</p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ WHERE booleanExpression ]</p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ GROUP BY { groupItem [, groupItem ]* } ]</p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ HAVING booleanExpression ]</p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; </p>
+            <p class="p_1"><span class="span_5">selectWithoutFrom</span><span class="span_6">: [Scalar]</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; SELECT [ ALL | DISTINCT ]</p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; { * | projectItem [, projectItem ]* }</p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">projectItem</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; expression [ [ AS ] columnAlias ]</p>
+            <p class="p_6">&#160; |&#160;&#160; tableAlias . *</p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">tableExpression</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; tableReference [, tableReference ]*</p>
+            <p class="p_1"><span class="span_6">&#160; |&#160;&#160; tableExpression [ NATURAL ] [ { LEFT | RIGHT }</span><span class="span_6">] JOIN tableExpression [ joinCondition ]</span>
+            </p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">joinCondition</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; ON booleanExpression</p>
+            <p class="p_6">&#160; |&#160;&#160; USING '(' column [, column ]* ')'</p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">tableReference</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; tablePrimary</p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ FOR SYSTEM_TIME AS OF expression ]</p>
+            <p class="p_1"><span class="span_7">&#160;&#160;&#160;&#160; </span><span class="span_6"> [ [ AS ] alias [ '(' columnAlias [, columnAlias ]* ')' ] ]</span>
+            </p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">tablePrimary</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; [ [ catalogName . ] schemaName . ] tableName</p>
+            <p class="p_1"><span class="span_6">&#160;&#160;&#160;&#160; '(' TABLE [ [ catalogName . ] schemaName . ] tableName ')'</span>
+            </p>
+            <p class="p_1"><span class="span_7">&#160; </span><span class="span_6">|&#160;&#160; [ LATERAL ] '(' query ')'</span>
+            </p>
+            <p class="p_1"><span class="span_7">&#160; </span><span class="span_6">|&#160;&#160; [ LATERAL ] TABLE '(' [ SPECIFIC ] functionName '(' expression [, expression ]* ')' ')'</span>
+            </p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">columnDecl</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; column type [ NOT NULL ]</p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">optionValue</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; stringLiteral</p>
+            <p class="p_6">&#160; |&#160;&#160; numericLiteral</p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">columnOrList</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; column</p>
+            <p class="p_6">&#160; |&#160;&#160; '(' column [, column ]* ')'</p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">exprOrList</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; expr</p>
+            <p class="p_6">&#160; |&#160;&#160; '(' expr [, expr ]* ')'</p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">values</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; VALUES expression [, expression ]*</p>
+            <p class="p_1">&#160;</p>
+            <p class="p_1"><span class="span_5">groupItem</span><span class="span_6">:</span>
+            </p>
+            <p class="p_6">&#160;&#160;&#160;&#160;&#160; expression</p>
+            <p class="p_6">&#160; |&#160;&#160; '(' ')'</p>
+            <p class="p_6">&#160; |&#160;&#160; '(' expression [, expression ]* ')'</p>
+            <p class="p_1"><span class="span_6"> |&#160;&#160; GROUPING SETS '(' groupItem [, groupItem ]* ')'</span>
+            </p>
+        </div>
+    </body>
+</html>

@@ -544,7 +544,23 @@
             Link="/Content/dev-java/jdbc-driver.html" />
           <TocEntry
             Title="[%=System.LinkedTitle%]"
-            Link="/Content/dev-java/sql-supported-syntax.html" />
+            Link="/Content/dev-java/sql-supported-syntax.html">
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/dev-java/DML-TCL-syntax.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/dev-java/data-query-DQL-syntax.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/dev-java/data-query-functions-operators.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/dev-java/data-types.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/dev-java/nested-objects-search.html" />
+          </TocEntry>
           <TocEntry
             Title="[%=System.LinkedTitle%]"
             Link="/Content/dev-java/sql-queries.html"></TocEntry>
@@ -1770,7 +1786,7 @@
         </TocEntry>
       </TocEntry>
       <TocEntry
-        Title="Data Processing and Management">
+        Title="Data Processing ">
         <TocEntry
           Title="[%=System.LinkedTitle%]"
           Link="/Content/started/xap-tutorial-part6.html">
@@ -2333,6 +2349,9 @@
         Link="/Content/dev-java/administration-and-monitoring-overview.html">
         <TocEntry
           Title="[%=System.LinkedTitle%]"
+          Link="/Content/admin/admin-administration-api.html" />
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
           Link="/Content/dev-java/dump.html" />
         <TocEntry
           Title="[%=System.LinkedTitle%]"
@@ -2340,342 +2359,58 @@
         <TocEntry
           Title="[%=System.LinkedTitle%]"
           Link="/Content/dev-java/snmp-connectivity-via-alert-logging-gateway.html" />
-      </TocEntry>
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/dev-java/multi-space-replication-overview.html">
         <TocEntry
           Title="[%=System.LinkedTitle%]"
-          Link="/Content/dev-java/replication-gateway-lan-bootstrapping-process.html" />
-      </TocEntry>
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/dev-java/multi-site-replication-overview.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/api-docs/api-docs-version.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/admin/admin-tools.html">
+          Link="/Content/api-docs/api-docs-version.html" />
         <TocEntry
           Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/gs-ops-manager-overview.html"
-          conditions="Version.15-0-born" />
+          Link="/Content/admin/admin-tools.html"
+          conditions="Default.DoNotShow"></TocEntry>
         <TocEntry
           Title="[%=System.LinkedTitle%]"
-          Link="/Content/opm/opm-deploy-undeploy-service.html"
-          conditions="Version.15-5-born" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/tools-cli.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-rest-manager-api.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/tools-web-ui.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/tools-desktop-ui.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-administration-api.html" />
+          Link="/Content/admin/admin-rest-manager-api.html">
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/xap-manager-rest.html">
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/deploy-rest.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/xap-manager-rest-pluggable.html" />
+          </TocEntry>
+        </TocEntry>
         <TocEntry
           Title="[%=System.LinkedTitle%]"
           Link="/Content/admin/scripts.html" />
-      </TocEntry>
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/admin/admin-legacy-tools.html">
         <TocEntry
           Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/command-line-interface.html">
+          Link="/Content/admin/tools-cli.html">
           <TocEntry
             Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/rest-deploy-command-line-interface.html" />
+            Link="/Content/admin/upgrading-cli.html" />
           <TocEntry
             Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/space-gigaspaces-cli.html" />
+            Link="/Content/admin/upgrading-gs-agent.html"></TocEntry>
           <TocEntry
             Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/quiesce-command-line-interface.html" />
+            Link="/Content/admin/admin-quiesce-pu.html" />
           <TocEntry
             Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/command-line-interface-cli-security.html" />
+            Link="/Content/admin/admin-service-grid-view-host-information.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-service-grid-container-information.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-service-grid-container-start.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-service-grid-agent.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-service-grid-security.html" />
         </TocEntry>
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/gigaspaces-management-center.html">
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/gigaspaces-browser-menus-and-buttons.html" />
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/gigaspaces-browser-tree-panel-and-configuration-panel.html">
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/gigaspaces-browser-connection-view.html" />
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/gigaspaces-browser-data-types-view.html" />
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/gigaspaces-browser-object-inspector.html" />
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/gigaspaces-browser-query-view.html" />
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/gigaspaces-browser-statistics-view.html" />
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/gigaspaces-browser-transaction-view.html" />
-          </TocEntry>
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/gigaspaces-browser-managing-space-container.html" />
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/working-with-clusters-gigaspaces-browser.html">
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/cluster-view-gigaspaces-browser.html">
-              <TocEntry
-                Title="[%=System.LinkedTitle%]"
-                Link="/Content/admin/customizing-cluster-view-gigaspaces-browser.html" />
-              <TocEntry
-                Title="[%=System.LinkedTitle%]"
-                Link="/Content/admin/viewing-cluster-policy-settings-for-space-gigaspaces-browser.html" />
-              <TocEntry
-                Title="[%=System.LinkedTitle%]"
-                Link="/Content/admin/viewing-space-interrelations-in-cluster-gigaspaces-browser.html" />
-              <TocEntry
-                Title="[%=System.LinkedTitle%]"
-                Link="/Content/admin/visualizing-cluster-groups-and-members-gigaspaces-browser.html" />
-            </TocEntry>
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/failover-group-gigaspaces-browser.html" />
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/replication-group-gigaspaces-browser.html" />
-          </TocEntry>
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/working-with-spaces-gigaspaces-browser.html">
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/space-maintenance-gigaspaces-browser.html" />
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/space-timeout,-filters-and-lease-manager-gigaspaces-browser.html" />
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/space-serialization-and-engine-thread-pool-gigaspaces-browser.html" />
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/space-memory-management-gigaspaces-browser.html" />
-          </TocEntry>
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/pending-notify-templates-information.html" />
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/gigaspaces-management-center-ui-security.html" />
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/gigaspaces-dump.html" />
-        </TocEntry>
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/web-management-console.html">
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/web-management-console-configuration.html" />
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/web-management-hosts-view.html" />
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/web-management-pu.html" />
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/web-management-data-grid-view.html" />
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/web-management-common-view.html">
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/web-management-deploy-space.html" />
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/web-management-deploy-pu.html" />
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/web-management-view-alerts.html" />
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/web-management-view-events.html" />
-            <TocEntry
-              Title="[%=System.LinkedTitle%]"
-              Link="/Content/admin/web-management-dump.html" />
-          </TocEntry>
-        </TocEntry>
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/xap-manager-rest.html">
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/deploy-rest.html" />
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/admin/xap-manager-rest-pluggable.html" />
-        </TocEntry>
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/upgrading-cli.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/upgrading-gs-agent.html"></TocEntry>
-      </TocEntry>
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/admin/admin-spaces-pu.html">
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/loading-data.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/opm/opm-connect-to-data-source.html"
-          conditions="Version.15-2-born"></TocEntry>
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/opm/opm-data-schema-definition.html"
-          conditions="Version.15-2-born" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/gs-ops-manager-cluster-overview.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-deploy-space.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-view-gen-space-details.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-view-space-info.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-query-space.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-deploy-pu.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-view-gen-pu-details.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-view-pu-configuration.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-pu-undeploy.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-view-types.html"></TocEntry>
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-on-demand-object-analysis.html"
-          conditions="Version.15-5-born" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-index-usage-matrix-graph.html"
-          conditions="Version.15-5-born" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-view-space-stats.html"></TocEntry>
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-view-client-side-cache.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-view-event-container-detail.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-view-network-details.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-view-transaction-details.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-quiesce-pu.html" />
-      </TocEntry>
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/admin/admin-service-grid.html">
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-service-grid-view-host-information.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-service-grid-container-information.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-service-grid-container-start.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-service-grid-view-logs.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-service-grid-view-events.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-service-grid-view-alerts.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-service-grid-generate-dump.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-service-grid-agent.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/admin-service-grid-security.html" />
-      </TocEntry>
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/admin/data-grid-clustering.html">
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/failover.html" />
-      </TocEntry>
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/admin/the-sla-overview.html">
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/the-sla-zones.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/the-sla-deterministic.html" />
-      </TocEntry>
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/admin/logging-overview.html">
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/opm/opm-view-log-files.html"
-          conditions="Version.15-5-born" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/logging-formatting-messages.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/logging-api.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/logging-managing-files.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/logging-backing-custom-policy.html" />
       </TocEntry>
       <TocEntry
         Title="[%=System.LinkedTitle%]"
@@ -2729,28 +2464,48 @@
         <TocEntry
           Title="[%=System.LinkedTitle%]"
           Link="/Content/admin/suggested-monitoring-tools.html" />
-      </TocEntry>
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/admin/metrics-overview.html">
         <TocEntry
           Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/metrics-configuration.html" />
+          Link="/Content/admin/logging-overview.html">
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/opm/opm-view-log-files.html"
+            conditions="Version.15-5-born" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/logging-formatting-messages.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/logging-api.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/logging-managing-files.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/logging-backing-custom-policy.html" />
+        </TocEntry>
         <TocEntry
           Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/metrics-influxdb-reporter.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/ca-apm-introscope-reporter.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/metrics-custom-reporter.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/metrics-user-defined.html" />
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/metrics-bundled.html" />
+          Link="/Content/admin/metrics-overview.html">
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/metrics-configuration.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/metrics-influxdb-reporter.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/ca-apm-introscope-reporter.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/metrics-custom-reporter.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/metrics-user-defined.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/metrics-bundled.html" />
+        </TocEntry>
       </TocEntry>
       <TocEntry
         Title="[%=System.LinkedTitle%]"
@@ -2784,21 +2539,26 @@
           Link="/Content/admin/tuning-threads-usage.html" />
       </TocEntry>
       <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/admin/benchmarking.html">
+        Title="Multi-Region">
         <TocEntry
           Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/benchmark-utility-cli.html" />
+          Link="/Content/dev-java/multi-space-replication-overview.html">
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/dev-java/replication-gateway-lan-bootstrapping-process.html" />
+        </TocEntry>
         <TocEntry
           Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/benchmark-browser.html" />
+          Link="/Content/dev-java/multi-site-replication-overview.html" />
       </TocEntry>
       <TocEntry
         Title="[%=System.LinkedTitle%]"
-        Link="/Content/admin/quiescemode.html" />
+        Link="/Content/admin/admin-spaces-pu.html"
+        conditions="Default.DoNotShow"></TocEntry>
       <TocEntry
         Title="[%=System.LinkedTitle%]"
-        Link="/Content/admin/resource-load-balancing.html" />
+        Link="/Content/admin/admin-service-grid.html"
+        conditions="Default.DoNotShow"></TocEntry>
       <TocEntry
         Title="[%=System.LinkedTitle%]"
         Link="/Content/security/index.html">
@@ -2953,6 +2713,16 @@
         Link="/Content/production/index.html">
         <TocEntry
           Title="[%=System.LinkedTitle%]"
+          Link="/Content/admin/the-sla-overview.html">
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/the-sla-zones.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/the-sla-deterministic.html" />
+        </TocEntry>
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
           Link="/Content/production/production-hardware-selection.html" />
         <TocEntry
           Title="[%=System.LinkedTitle%]"
@@ -2960,6 +2730,16 @@
         <TocEntry
           Title="[%=System.LinkedTitle%]"
           Link="/Content/production/production-network-requirements.html"></TocEntry>
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/admin/benchmarking.html">
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/benchmark-utility-cli.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/benchmark-browser.html" />
+        </TocEntry>
         <TocEntry
           Title="[%=System.LinkedTitle%]"
           Link="/Content/production/production-capacity-planning.html" />
@@ -2988,6 +2768,18 @@
         <TocEntry
           Title="[%=System.LinkedTitle%]"
           Link="/Content/production/production-monitoring.html" />
+      </TocEntry>
+      <TocEntry
+        Title="Maintanence Operations">
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/admin/quiescemode.html"></TocEntry>
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/admin/resource-load-balancing.html" />
+        <TocEntry
+          Title="Troubleshooting - Common User Issues"
+          Link="/Content/admin/troubleshooting-common-user-issues.html" />
       </TocEntry>
     </TocEntry>
     <TocEntry
@@ -3024,6 +2816,218 @@
           Title="[%=System.LinkedTitle%]"
           Link="/Content/spacedeck/spacedeck-data-query.html" />
       </TocEntry>
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/admin/gs-ops-manager-overview.html"
+        conditions="Version.15-0-born">
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/opm/opm-deploy-undeploy-service.html"
+          conditions="Version.15-5-born" />
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/admin/loading-data.html" />
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/opm/opm-connect-to-data-source.html"
+          conditions="Version.15-2-born"></TocEntry>
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/opm/opm-data-schema-definition.html"
+          conditions="Version.15-2-born" />
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/admin/gs-ops-manager-cluster-overview.html" />
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/admin/admin-on-demand-object-analysis.html"
+          conditions="Version.15-5-born" />
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/admin/admin-index-usage-matrix-graph.html"
+          conditions="Version.15-5-born" />
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/admin/admin-service-grid-generate-dump.html" />
+      </TocEntry>
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/admin/tools-web-ui.html">
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/admin/web-management-console.html">
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/web-management-console-configuration.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/web-management-hosts-view.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/web-management-pu.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/web-management-data-grid-view.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/web-management-common-view.html">
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/web-management-deploy-space.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/web-management-deploy-pu.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/web-management-view-alerts.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/web-management-view-events.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/web-management-dump.html" />
+          </TocEntry>
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-service-grid-view-alerts.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-service-grid-view-events.html" />
+        </TocEntry>
+      </TocEntry>
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/admin/tools-desktop-ui.html">
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/admin/gigaspaces-management-center.html">
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/gigaspaces-browser-menus-and-buttons.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/gigaspaces-browser-tree-panel-and-configuration-panel.html">
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/gigaspaces-browser-connection-view.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/gigaspaces-browser-data-types-view.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/gigaspaces-browser-object-inspector.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/gigaspaces-browser-query-view.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/gigaspaces-browser-statistics-view.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/gigaspaces-browser-transaction-view.html" />
+          </TocEntry>
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-view-gen-space-details.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-deploy-space.html"
+            conditions="Default.DoNotShow" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-view-space-info.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-query-space.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-deploy-pu.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-view-gen-pu-details.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-view-pu-configuration.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-view-client-side-cache.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-view-space-stats.html"></TocEntry>
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-view-event-container-detail.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-view-network-details.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-view-transaction-details.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-service-grid-view-logs.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-pu-undeploy.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/admin-view-types.html"></TocEntry>
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/gigaspaces-browser-managing-space-container.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/working-with-clusters-gigaspaces-browser.html">
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/cluster-view-gigaspaces-browser.html">
+              <TocEntry
+                Title="[%=System.LinkedTitle%]"
+                Link="/Content/admin/customizing-cluster-view-gigaspaces-browser.html" />
+              <TocEntry
+                Title="[%=System.LinkedTitle%]"
+                Link="/Content/admin/viewing-cluster-policy-settings-for-space-gigaspaces-browser.html" />
+              <TocEntry
+                Title="[%=System.LinkedTitle%]"
+                Link="/Content/admin/viewing-space-interrelations-in-cluster-gigaspaces-browser.html" />
+              <TocEntry
+                Title="[%=System.LinkedTitle%]"
+                Link="/Content/admin/visualizing-cluster-groups-and-members-gigaspaces-browser.html" />
+            </TocEntry>
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/failover-group-gigaspaces-browser.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/replication-group-gigaspaces-browser.html" />
+          </TocEntry>
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/working-with-spaces-gigaspaces-browser.html">
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/space-maintenance-gigaspaces-browser.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/space-timeout,-filters-and-lease-manager-gigaspaces-browser.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/space-serialization-and-engine-thread-pool-gigaspaces-browser.html" />
+            <TocEntry
+              Title="[%=System.LinkedTitle%]"
+              Link="/Content/admin/space-memory-management-gigaspaces-browser.html" />
+          </TocEntry>
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/pending-notify-templates-information.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/gigaspaces-management-center-ui-security.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/admin/gigaspaces-dump.html" />
+        </TocEntry>
+      </TocEntry>
     </TocEntry>
   </TocEntry>
   <TocEntry
@@ -3036,80 +3040,6 @@
   <TocEntry
     Title="[%=System.LinkedTitle%]"
     Link="/Content/landing-pages/reference-implementations.htm">
-    <TocEntry
-      Title="[%=System.LinkedTitle%]"
-      Link="/Content/dev-java/persistency-for-a-database.html"
-      conditions="Version.16-0-born">
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/dev-java/hibernate-space-persistency.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/dev-java/archive-container.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/dev-java/mongodb.html">
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/dev-java/mongodb-space-persistency.html">
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/dev-java/mongodb-space-data-source.html" />
-          <TocEntry
-            Title="[%=System.LinkedTitle%]"
-            Link="/Content/dev-java/mongodb-space-synchronization-endpoint.html" />
-        </TocEntry>
-        <TocEntry
-          Title="[%=System.LinkedTitle%]"
-          Link="/Content/dev-java/mongodb-archive-operation-handler.html" />
-      </TocEntry>
-    </TocEntry>
-    <TocEntry
-      Title="[%=System.LinkedTitle%]"
-      Link="/Content/solution-hub/kafka-integration.html" />
-    <TocEntry
-      Title="Troubleshooting - Common User Issues"
-      Link="/Content/admin/troubleshooting-common-user-issues.html" />
-    <TocEntry
-      Title="[%=System.LinkedTitle%]"
-      Link="/Content/solution-hub/integrations.html">
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/solution-hub/gigaspaces-kafka-sink-connector.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/solution-hub/data-visualization-grafana.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/solution-hub/grafana-influxdb-ie-kubernetes.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/solution-hub/ie-operator-openshift.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/solution-hub/insightedge-bigdl.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/solution-hub/xap-drools-integration.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/solution-hub/jta-xa-example.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/solution-hub/oracle-delta-server.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/solution-hub/rtd-and-udf-examples-gigaspaces-excel-integration.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/solution-hub/i10n-scalatest.html" />
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/solution-hub/mainframe-integration.html"></TocEntry>
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
-        Link="/Content/solution-hub/db2-delta-server.html" />
-    </TocEntry>
     <TocEntry
       Title="[%=System.LinkedTitle%]"
       Link="/Content/solution-hub/best-practices.html">
@@ -3208,10 +3138,83 @@
     </TocEntry>
     <TocEntry
       Title="[%=System.LinkedTitle%]"
-      Link="/Content/dev-java/scala-enhanced-repl.html"></TocEntry>
+      Link="/Content/solution-hub/integrations.html">
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/solution-hub/gigaspaces-kafka-sink-connector.html" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/solution-hub/data-visualization-grafana.html" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/solution-hub/grafana-influxdb-ie-kubernetes.html" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/solution-hub/ie-operator-openshift.html" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/solution-hub/insightedge-bigdl.html" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/solution-hub/xap-drools-integration.html" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/solution-hub/jta-xa-example.html" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/solution-hub/oracle-delta-server.html" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/solution-hub/rtd-and-udf-examples-gigaspaces-excel-integration.html" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/solution-hub/i10n-scalatest.html" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/solution-hub/mainframe-integration.html"></TocEntry>
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/solution-hub/db2-delta-server.html" />
+    </TocEntry>
     <TocEntry
       Title="[%=System.LinkedTitle%]"
-      Link="/Content/dev-java/scala-exemplary-project.html" />
+      Link="/Content/dev-java/persistency-for-a-database.html"
+      conditions="Version.16-0-born">
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/dev-java/hibernate-space-persistency.html" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/dev-java/archive-container.html" />
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/dev-java/mongodb.html">
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/dev-java/mongodb-space-persistency.html">
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/dev-java/mongodb-space-data-source.html" />
+          <TocEntry
+            Title="[%=System.LinkedTitle%]"
+            Link="/Content/dev-java/mongodb-space-synchronization-endpoint.html" />
+        </TocEntry>
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/dev-java/mongodb-archive-operation-handler.html" />
+      </TocEntry>
+    </TocEntry>
+    <TocEntry
+      Title="[%=System.LinkedTitle%]"
+      Link="/Content/solution-hub/kafka-integration.html" />
+    <TocEntry
+      Title="[%=System.LinkedTitle%]"
+      Link="/Content/dev-java/scala-enhanced-repl.html"
+      conditions="Default.DoNotShow"></TocEntry>
+    <TocEntry
+      Title="[%=System.LinkedTitle%]"
+      Link="/Content/dev-java/scala-exemplary-project.html"
+      conditions="Default.DoNotShow" />
     <TocEntry
       Title="[%=System.LinkedTitle%]"
       Link="/Content/admin/ca-apm-introscope-reporter.html" />

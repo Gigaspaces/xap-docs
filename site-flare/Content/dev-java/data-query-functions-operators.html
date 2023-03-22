@@ -1,0 +1,659 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <div>
+            <h1 class="tc-pagetitle">Functions and Operators</h1>
+            <input id="dfb_toc_here" type="hidden"> </input>
+            <h1>Aggregate Functions</h1>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <p class="p_1">&#160;</p>
+                <table class="table_1">
+                    <col class="col_16">
+                    </col>
+                    <col class="col_17">
+                    </col>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">COUNT(*) :: BIGINT</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the number of input rows.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">COUNT(any) :: BIGINT</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the number of input rows in which the input value is not null.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">COUNT(DISTINCT *) :: BIGINT</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the number of input rows in which the input value is unique.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">COUNT(DISTINCT any) :: BIGINT</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the number of input rows in which the input value is unique and not null.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_20"><span class="span_9">SUM(TINYINT | SMALLINT | INT) :: BIGINT</span><span class="span_3">, </span><span class="span_9">SUM(BIGINT | DECIMAL) :: DECIMAL</span><span class="span_3">, </span><span class="span_9">SUM(REAL) :: REAL</span><span class="span_3">, </span><span class="span_9">SUM(DOUBLE) :: DOUBLE</span>
+                            </p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the sum of the non-null input values.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_20"><span class="span_9">SUM(DISTINCT TINYINT | SMALLINT | INT) :: BIGINT</span><span class="span_3">, </span><span class="span_9">SUM(DISTINCT BIGINT | DECIMAL) :: DECIMAL</span><span class="span_3">, </span><span class="span_9">SUM(DISTINCT REAL) :: REAL</span><span class="span_3">, </span><span class="span_9">SUM(DISTINCT DOUBLE) :: DOUBLE</span>
+                            </p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the sum of the unique, non-null input values.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_20"><span class="span_9">AVG(DECIMAL) :: DECIMAL</span><span class="span_3">, </span><span class="span_9">AVG(DOUBLE) :: DOUBLE</span>
+                            </p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the mean of all the non-null input values.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_20"><span class="span_9">AVG(DISTINCT DECIMAL) :: DECIMAL</span><span class="span_3">, </span><span class="span_9">AVG(DISTINCT DOUBLE) :: DOUBLE</span>
+                            </p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the mean of all the unique, non-null input values.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">MIN(any) :: same type as the input</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Calculates the minimum of the non-null input values. Applicable also to OBJECT type, if the underlying value is java.lang.Comparable.</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <h1><a name="_Toc84959197"></a>Comparison Operators</h1>
+                <p class="p_1">&#160;</p>
+                <table class="table_1">
+                    <col class="col_7">
+                    </col>
+                    <col class="col_8">
+                    </col>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_10">=</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Equal to</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_11"><span class="span_3">!=</span><span class="span_4"> or </span><span class="span_3">&lt;&gt;</span>
+                            </p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Not equal to</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_10">&lt;</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Less than</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_10">&gt;</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Greater than</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_10">&lt;=</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Less than or equal to</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_10">&gt;=</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Greater than or equal to</p>
+                        </td>
+                    </tr>
+                </table>
+                <p class="p_1">&#160;</p>
+            </div>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <h1><a name="_Toc84959203"></a>Date and Time Functions</h1>
+                <p class="p_1">&#160;</p>
+                <table class="table_1">
+                    <col class="col_14">
+                    </col>
+                    <col class="col_15">
+                    </col>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">EXTRACT(element, date)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_18">Extracts element from date.</p>
+                            <p class="p_19"><span class="span_4">Supported elements: </span><span class="span_3">MILLENIUM, CENTURY, DECADE, YEAR, ISOYEAR, QUARTER, MONTH, WEEK, DAY, DOW, ISODOW, DOY, HOUR, MINUTE, SECOND, MILLISECOND, MICROSECOND, EPOCH</span>
+                            </p>
+                            <p class="p_19"><span class="span_4">Supported date types</span><span class="span_3">: DATE, TIME, TIMESTAMP, TIMESTAMP WITH TIME ZONE</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">TO_TIMESTAMP_TZ(BIGINT)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_19"><span class="span_4">Converts </span><span class="span_3">BIGINT</span><span class="span_4"> values as seconds to </span><span class="span_3">TIMESTAMP_WITH_TIMEZONE</span><span class="span_4">.</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">TO_EPOCH_MILLIS(TIMESTAMP_WITH_TIMEZONE)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_19"><span class="span_4">Converts </span><span class="span_3">TIMESTAMP_WITH_TIMEZONE</span><span class="span_4"> values to an </span><span class="span_3">EPOCH</span><span class="span_4"> value in milliseconds.</span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                <p class="p_1">&#160;</p>
+            </div>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <h1><a name="_Toc84959196"></a>Expressions</h1>
+                <p class="p_1">&#160;</p>
+                <p class="p_8">AND/OR Operators</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_8">NOT Operator</p>
+                <p class="p_1">&#160;</p>
+                <p class="p_8">IS Operator</p>
+                <p class="p_1">&#160;</p>
+                <table class="table_1">
+                    <col class="col_4">
+                    </col>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">IS TRUE</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">IS NOT TRUE</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">IS FALSE</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">IS NOT FALSE</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">IS NULL</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">IS NOT NULL</p>
+                        </td>
+                    </tr>
+                </table>
+                <p class="p_1">&#160;</p>
+                <p class="p_8">IN Operator</p>
+                <p class="p_1">&#160;</p>
+                <table class="table_1">
+                    <col class="col_5">
+                    </col>
+                    <col class="col_6">
+                    </col>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_3">IN</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Evaluates to TRUE if the value on the left of the operator is in the list of values on the right.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_3">NOT IN</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Evaluates to TRUE if the value on the left of the operator is not in the list of values on the right.</p>
+                        </td>
+                    </tr>
+                </table>
+                <p class="p_1">&#160;</p>
+            </div>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <h1><a name="_Toc84959199"></a>Mathematical Functions</h1>
+                <p class="p_1">&#160;</p>
+                <table class="table_1">
+                    <col class="col_9">
+                    </col>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">ABS(number)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">CEIL(number)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">DEGREES(double)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">EXP(number)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">FLOOR(number)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">LN(number)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">LOG10(number)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">RADIANS(double)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">RAND</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">RAND(number)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">ROUND(number)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">ROUND(number, s integer)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">TRUNCATE(number)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_12">TRUNCATE(number, s integer)</p>
+                        </td>
+                    </tr>
+                </table>
+                <p class="p_1">&#160;</p>
+            </div>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <h1><a name="_Toc84959198"></a>Mathematical Operators</h1>
+                <p class="p_1">&#160;</p>
+                <p class="p_1">&#160;</p>
+                <table class="table_1">
+                    <col class="col_7">
+                    </col>
+                    <col class="col_8">
+                    </col>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_10">+</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Addition</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_10">-</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Subtraction</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_10">*</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Multiplication</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_10">/</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Division</p>
+                        </td>
+                    </tr>
+                </table>
+                <p class="p_1">&#160;</p>
+            </div>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <h1><a name="_Toc84959202"></a>Special Functions</h1>
+                <p class="p_1">&#160;</p>
+                <table class="table_1">
+                    <col class="col_10">
+                    </col>
+                    <col class="col_11">
+                    </col>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">CAST(value AS type)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_17">Convert the value to the given type</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">NULLIF(expression1, expression2)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Returns NULL if the expressions are equal. The data type of the NULL value returned is the same as the first expression.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">COALESCE( expression1 [, expression2 [, expression3 ] …​] )</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Evaluates each expression at a time, starting from the first. If the value of any expression is not NULL, its value is returned. If all the expressions are NULL, NULL is returned. Arguments to the right of the first non-null argument are not evaluated.</p>
+                        </td>
+                    </tr>
+                </table>
+                <p class="p_1">&#160;</p>
+                <table class="table_1">
+                    <col class="col_10">
+                    </col>
+                    <col class="col_12">
+                    </col>
+                    <tr class="tr_1">
+                        <td class="td_1">
+                            <p class="p_4">CASE</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_18">Returns a value when the first condition is met (like an if-then-else statement).</p>
+                        </td>
+                    </tr>
+                </table>
+                <p class="p_1">&#160;</p>
+                <table class="table_1">
+                    <col class="col_10">
+                    </col>
+                    <col class="col_13">
+                    </col>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">BETWEEN</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Evaluates to TRUE if the value on the left of the operator is in a given range between the first value on the right and the second value on the right. (a &gt;= b AND a &lt;= c)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">BETWEEN SYMMETRIC</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Evaluates to TRUE if the value on the left of the operator is in a given range between the first value on the right and the second value on the right or the second value on the right and the first value on the right. (a &gt;= b AND a &lt;= c) OR (a &gt;= c AND a &lt;= b).</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">NOT BETWEEN</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Evaluates to TRUE if the value on the left of the operator is not in a given range between the first value on the right and the second value on the right.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_4">NOT BETWEEN SYMMETRIC</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_5">Evaluates to TRUE if the value on the left of the operator is not in a given range between the first value on the right and the second value on the right or the second value on the right and the first value on the right.</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <h1><a name="_Toc84959201"></a>String Functions</h1>
+                <p class="p_1">&#160;</p>
+                <table class="table_1">
+                    <col class="col_7">
+                    </col>
+                    <col class="col_8">
+                    </col>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_13">string || string</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_14">Concatenate two strings</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_13">ASCII(string)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_14">ASCII code of the first character of the argument</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_13">INITCAP(string)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_14">Convert the first letter of each word to upper case, and the rest to lower case</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_13">LENGTH(string)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_14">Length of the string</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_15">LIKE</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_14">Return TRUE if the value string follows the pattern</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_15">LIKE …​ ESCAPE</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_14">Return TRUE if the value string follows the pattern, escaping a special character in the pattern</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_13">LOWER(string)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_14">Convert the string to lower case</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_13">LTRIM(string)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_16"><span class="span_4">Equivalent to TRIM(LEADING ' ' FROM string)</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_13">RTRIM(string)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_16"><span class="span_4">Equivalent to TRIM(TRAILING ' ' FROM string)</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_13">SUBSTRING(string FROM integer)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_14">Extract substring starting with the given position</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_13">SUBSTRING(string FROM integer FOR integer)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_14">Extract substring starting with the given position for the given length</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_13">TRIM([LEADING|TRAILING|BOTH] [characters FROM] string)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_16"><span class="span_4">Remove characters (a space by default) from the start/end/both ends of the string</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_13">TRIM(characters FROM string)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_16"><span class="span_4">Equivalent to TRIM(BOTH characters FROM string)</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_13">TRIM(string)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_16"><span class="span_4">Equivalent to TRIM(BOTH ' ' FROM string)</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_13">UPPER(string)</p>
+                        </td>
+                        <td class="td_1">
+                            <p class="p_14">Convert the string to upper case</p>
+                        </td>
+                    </tr>
+                </table>
+                <p class="p_1">&#160;</p>
+            </div>
+            <div MadCap:conditions="NewSet.JustAnotherColorForDivs">
+                <h1><a name="_Toc84959200"></a>Trigonometric Functions</h1>
+                <p class="p_1">&#160;</p>
+                <table class="table_1">
+                    <col class="col_4">
+                    </col>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">ACOS(double)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">ASIN(double)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">ATAN(double)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">COS(double)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">COT(double)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">SIN(double)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_1">
+                            <p class="p_9">TAN(double) </p>
+                        </td>
+                    </tr>
+                </table>
+                <p class="p_1">&#160;</p>
+            </div>
+        </div>
+    </body>
+</html>
