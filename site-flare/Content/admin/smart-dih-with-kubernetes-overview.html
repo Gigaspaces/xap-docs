@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:searchable="False" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle"><a name="overview"></a>Smart DIH Orchestration: Kubernetes </h1>
+        <h1>Overview</h1>
+        <p>Kubernetes is an open-source orchestration system for automating the deployment, scaling and management of containerized applications. </p>
+        <p>Gigaspaces DIH (Digital Integration Hub) is at its core an encapsulation of multiple components that serve as an integration and acceleration of data streams.</p>
+        <p> On the outbound, DIH can be configured to connect to different components of the client such as databases, streams, APIs and applications.</p>
+        <p>To that end, our DIH uses Kubernetes as its orchestration solution and as an enabler for using advanced technologies like memory grid, streaming and automation.</p>
+        <p>&#160;</p>
+        <p>Using Kubernetes Gigaspaces DIH solution offers production grade qualities in the following areas:</p>
+        <ol>
+            <li>
+                <p>Network and compute control</p>
+            </li>
+            <li>
+                <p>High Availability and Self-Healing</p>
+            </li>
+            <li>
+                <p>Security</p>
+            </li>
+            <li>
+                <p>TCO&#160;reduction and maintainability</p>
+            </li>
+        </ol>
+        <p>DIH installation using Kubernetes <a href="https://helm.sh/">Helm</a> charts makes the deployment of the solution easier for operational staff as best practices and standard Kubernetes procedures are followed. The installation is flexible and can be tailored to user needs by handling a rich set of deployment parameters.</p>
+        <!--
+ Automatic scaling is supported, using predefined metrics along with CPU and memory monitoring to signal to Kubernetes when to scale up or down. Customized scaling rules according to personalized SLA, based on production needs, optimize the resources required to support the application requirements.
+
+Through the persistent volume driver, <MadCap:variable name="General.ProductNameIE" />’s intelligent MemoryXtend multi-tier storage offering lets customers configure data prioritization according to the application’s business logic. This ensures that the most relevant data resides in the fastest data storage tier for optimized TCO.
+-->
+        <h1>Network and Compute</h1>
+        <h2>Cloud Installation</h2>
+        <p>DIH can be installed on any of the major cloud vendors. Typically, start by setting a virtual network (i.e. VPC), then Kubernetes can be installed followed by DIH. Connectivity to your current databases and applications can be established using appropriate gateways. Client applications can run within the same network, using a VPN connection or other means that adhere to security requirements (see security). </p>
+        <div class="tc-admon-note">
+            <p>Your databases and applications can be held where they are today (e.g. on premises) so no migration is required.</p>
+        </div>
+        <div class="tc-align-center">
+            <p>
+                <img src="../Resources/Images/K8sCloudInstallation.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" style="width: 631px;height: 489px;" />
+            </p>
+        </div>
+        <h2>On-Premise Installations</h2>
+        <p>Once Kubernetes is installed on-premise, be that a bare-metal installation or a private cloud, DIH can be installed and connected to your existing applications.</p>
+        <p>&#160;</p>
+        <p style="text-align: center;">
+            <img src="../Resources/Images/K8sOnPremInstallation.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" style="width: 634px;height: 387px;" />
+        </p>
+        <h2>Hybrid Installations</h2>
+        <p>A hybrid installation typically involves two environments that differ in some characteristics. </p>
+        <p>An example could be on-premise (e.g. an air-gapped environment) and cloud environment, where the applications that consume the data are divided between the two (for security reasons for example). In such a case 2 DIH installations would be required and data would be replicated (full or partial) between the two.</p>
+        <p>&#160;</p>
+        <p style="text-align: center;">
+            <img src="../Resources/Images/K8sHybridInstallation.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" style="width: 684px;height: 525px;" />
+        </p>
+        <h1>High&#160;Availability (HA) and Self-Healing</h1>
+        <h2>Space High Availability</h2>
+        <p>The In-Memory Data Grid (IMDG) is at the center of the DIH. The data grid (also called a space) is maintained by an automation component (Kubernetes operator) that guarantees that the data will not be lost in the case of a pod going down.</p>
+        <p>Pods that serve the data grid, hold the data in memory and on disk (see Tiered Storage capabilities). The data grid is divided into partitions and each pod is assigned to hold a partition of the data as well as an availability mode - a “primary” or a “backup”. The Primary pods are online, however, if a primary pod goes down, the backup pod then becomes the primary and a new backup is quickly reassembled. This flow avoids downtime as data is seamlessly served from the pods memory by switching between a primary pod and its backup.</p>
+        <p>Partitions of the data grid are also backed up by the disk. This is a secondary measure to guarantee high availability.  Availability for the data on disk (which can be larger than memory) is maintained by the storage facility and it is kept intact if the pod goes down.</p>
+        <p>&#160;</p>
+        <p>In the diagram below, if POD-0 goes down POD-1 becomes the primary and Kubernetes will create a new POD-0 which will then be tagged as the backup. </p>
+        <div class="tc-admon-note">
+            <p>In the case where a backup is recreated, the memory entries will be copied from the primary.</p>
+        </div>
+        <p style="text-align: center;">
+            <img src="../Resources/Images/K8sHA.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" style="width: 740px;height: 396px;" />
+        </p>
+        <h2>Services High Availability</h2>
+        <p>Low-code services are created by the user in order to open a channel for applications to interact with the data grid using a REST API. Due to this, it is important to maintain their high availability. These services are stateless and DIH leverages the replication attribute of Kubernetes to maintain high availability.</p>
+        <p>In the diagram below, service “ABC” is replicated and serviced using a load balancer. In the case of one of the services going down the other continue to serve its client.</p>
+        <p style="text-align: center;">
+            <img src="../Resources/Images/K8LB.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" style="width: 304px;height: 390px;" />
+        </p>
+        <h1>Security</h1>
+        <h2>Responsibilities </h2>
+        <p>Gigaspaces SaaS DIH has been designed with strong security defaults in mind so that the burden of securely using the service is minimized for the customer. These defaults include always-on authentication, authorization, encryption in transit, encryption at rest, and no access from the Internet by default. Additionally, Gigaspaces provides automated patching of the underlying infrastructure and Gigaspaces clusters with zero downtime.</p>
+        <p>Customers are responsible for creating users and roles to access Gigaspaces,</p>
+        <p>which to create their clusters, and the cluster type. They can optionally bring their own certificate for service access</p>
+        <!--
+## Using Apache Zeppelin with <MadCap:variable name="General.ProductNameIE" />
+
+Apache Zeppelin is a multi-purpose web notebook that supports data ingestion and discovery, as well as data analytics, visualization, and collaboration.
+
+Apache Zeppelin contains a built-in Apache Spark integration. This provides the following:
+
+- Automatic SparkContext and SQLContext injection
+- Runtime JAR dependency loading from the local file system or Maven repository
+- Ability to view job progress and cancel jobs 
+
+The Zeppelin notebook packaged with <MadCap:variable name="General.ProductNameIE" /> includes several <MadCap:variable name="General.ProductNameIE" /> demo applications, along with <MadCap:variable name="General.ProductNameIE" />-specific settings that can be configured in the Spark interpreter in order to establish the connection between Spark and the data grid. 
+
+KubeGrid runs Apache Zeppelin in a dedicated Pod, to enable ???
+-->
+    </body>
+</html>
