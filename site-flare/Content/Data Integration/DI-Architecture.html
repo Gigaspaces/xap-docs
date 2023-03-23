@@ -8,7 +8,7 @@
             <h2>High-Level DI Architecture</h2>
             <p style="text-align: left;">&#160;</p>
             <p style="text-align: center;">
-                <img src="../Resources/Images/DI-High-Level-V2.png" style="width: 816px;height: 558px;" />
+                <img src="../Resources/Images/DIUpdated1.png" style="width: 818px;height: 531px;" />
             </p>
             <h2>Components</h2>
             <p>There are several functional components which comprise the DI&#160;layer all serve ongoing DI operations as part of the data integration layer of the Smart DIH platform.</p>
@@ -135,6 +135,26 @@ IIDR publishes changes to the Kafka topic and theDI Processor (Flink job) consum
             <p style="text-align: center;">
                 <img src="../Resources/Images/DI-Data-Flow.png" />
             </p>
+            <h2>DI&#160;Subscription&#160;Manager</h2>
+            <p style="text-align: center;">
+                <img src="../Resources/Images/DI-sub-mgr.png" style="width: 372px;height: 397px;" />
+            </p>
+            <p>&#160;</p>
+            <p>DI Subscription Manager is a web service that exposes set of APIs on a port.</p>
+            <p>DI Subscription Manager is a microservice that is responsible to provide the following services:</p>
+            <p>1. Unified API that controls various  CDC engines to implement our pluggable connector vision.</p>
+            <ul>
+                <li>
+                    <p>Defines CDC flows and entities</p>
+                </li>
+                <li>
+                    <p>Start / Stop CDC subscription or stream</p>
+                </li>
+                <li>
+                    <p>Monitors CDC components</p>
+                </li>
+            </ul>
+            <p>2. Unified method to extract data dictionary from various sources, such as the CDC engine , source database , schema registry or enterprise data catalog and populate the DI data dictionary internal repository (MDM)</p>
         </div>
     </body>
 </html>

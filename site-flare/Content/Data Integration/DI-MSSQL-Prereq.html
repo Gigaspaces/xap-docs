@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <div>
+            <h1 class="tc-pagetitle" style="text-align: left;">MSSQL Source Prerequisites</h1>
+            <p>The <b>IIDR&#160;MSSQL Agent</b> should be installed on the source MSSQL server. Prior to doing so, the following requirements have to be completed:</p>
+            <ol>
+                <li>
+                    <p>1GB disk space.</p>
+                </li>
+                <li>
+                    <p>IIDR&#160;MSSQL Atent requires 1GB of RAM to function properly,</p>
+                </li>
+                <li>
+                    <p>IIDR MSSQL Agent uses  <b>port 1050.</b> This port should be accessible from the IIDR&#160;Management Console (MC), IIDR&#160;AS&#160;Server and the IIDR&#160;Kafka Agent.</p>
+                </li>
+                <li>
+                    <p>Create MSSQL loging user as follows:</p>
+                </li>
+                <ol style="list-style-type: lower-alpha;">
+                    <li>
+                        <p>Username  :  GSIIDR</p>
+                    </li>
+                    <li>
+                        <p>For the GSIIDR login user, there are two options for configuring the required database privileges:</p>
+                        <ol style="list-style-type: lower-roman;">
+                            <li>
+                                <p>sysadmin role: This option is the simplest because it enables CDC&#160;Replication to execute the necessary statements to set up additional items that are necessary for replication.</p>
+                            </li>
+                            <li>
+                                <p>dbowner role with additional required set privileges for IIDR&#160;normal functionality. &#160;This list of privileges can be found in the <b>grantuser-sqlnosa,sql</b> on the DI&#160;Appendix page.</p>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+                <li>
+                    <p>Enable replication on the database that changes should be captured from. The relevant commands can be found in the  <b>enablerepl-sql-nosa.sq</b>l on the DI&#160;Appendix page.</p>
+                </li>
+                <li>
+                    <p>Create or choose an OS Windows account that will be used to install the IIDR MSSQL Agent. This account must have the following privileges:</p>
+                </li>
+                <ol style="list-style-type: lower-alpha;">
+                    <li>
+                        <p>Standard user privileges</p>
+                    </li>
+                    <li>
+                        <p>Logon as a service</p>
+                    </li>
+                    <li>
+                        <p>Debug security policy settings\</p>
+                    </li>
+                </ol>
+                <li>
+                    <p>Enable TCP/IP network protocol on the MSSQL&#160;server.</p>
+                </li>
+                <li>
+                    <p>MSSQL&#160;recovery model should be configured to a "Full" recovery model.</p>
+                </li>
+            </ol>
+        </div>
+    </body>
+</html>
