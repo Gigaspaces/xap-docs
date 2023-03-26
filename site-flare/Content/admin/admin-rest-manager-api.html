@@ -23,7 +23,7 @@
         </div>
         <p>The REST Manager API was built with <a href="http://swagger.io/" target="_blank">Swagger</a>. Swagger provides typical information for each operation (parameters, responses, etc.). In addition, you can experiment with it by setting parameters and clicking the <code>Try it out!</code> button from within the documentation. This invokes the operation, and you can see the response code and body, as well as the <code>curl</code> command and request URL that were used to invoke the command. If you are familiar with the older Admin API, most of this is self explanatory. You can also download the <code>yaml</code> specification and use Swagger's <code>Online Editor</code> to generate a client in your favorite language.</p>
         <p>
-            <img src="../Resources/Static/attachment_files/rest-admin/rest-admin-2.png" alt="image" class="tc-picture80" />
+            <img src="../Resources/Images/RESTAPI.png" style="width: 937px;height: 849px;" />
         </p>
         <h1><a name="long-running-operations"></a>Long-Running Operations</h1>
         <p>In the Admin API, long-running operations (for example, <code>deploy</code> and <code>undeploy</code>) are asynchronous with no future or callback. You can either track progress manually, or use various ‘andWait’ overloads (for example, <code>deployAndWait</code>). The REST Manager API  cannot use <code>andWait</code> so you must poll for completion, but each such operation behaves differently.</p>
@@ -155,7 +155,7 @@ the <a href="http://localhost:8090/%7b%7b%25version%20rest-version%25%7d%7d/inde
                 <p>Spaces - See the <a href="http://localhost:8090/v2/index.html#/Spaces" target="_blank">Spaces</a> page.</p>
             </li>
             <li>
-                <p>Spark - See the <a href="http://localhost:8090/v2/index.html#/Spark" target="_blank">Spark</a> page.</p>
+                <p MadCap:conditions="Version.16-2-1-died">Spark - See the <a href="http://localhost:8090/v2/index.html#/Spark" target="_blank">Spark</a> page.</p>
             </li>
         </ul>
         <h1><a name="online-editor"></a>Online Editor</h1>

@@ -41,9 +41,11 @@
     StartSection="false">
     <TocEntry
       Title="[%=System.LinkedTitle%]"
-      Link="/Content/landing-pages/AO-TechStack.htm">
+      Link="/Content/landing-pages/AO-TechStack.htm"
+      conditions="Default.DoNotShow">
       <TocEntry
-        Title="New Entry" />
+        Title="New Entry"
+        conditions="Default.DoNotShow" />
     </TocEntry>
     <TocEntry
       Title="[%=System.LinkedTitle%] "
@@ -717,7 +719,11 @@
         Link="/Content/landing-pages/AO-Orch-Kubernetes.htm">
         <TocEntry
           Title="[%=System.LinkedTitle%]"
-          Link="/Content/admin/kubernetes-overview.html"></TocEntry>
+          Link="/Content/admin/smart-dih-with-kubernetes-overview.html" />
+        <TocEntry
+          Title="[%=System.LinkedTitle%]"
+          Link="/Content/admin/kubernetes-overview.html"
+          conditions="Default.DoNotShow"></TocEntry>
         <TocEntry
           Title="[%=System.LinkedTitle%]"
           Link="/Content/admin/kubernetes-s10-deploying-and-managing-gigaspaces.html" />
@@ -748,9 +754,6 @@
       </TocEntry>
       <TocEntry
         Title="[%=System.LinkedTitle%]"
-        Link="/Content/admin/admin-cli-open-source.html"></TocEntry>
-      <TocEntry
-        Title="[%=System.LinkedTitle%]"
         Link="/Content/admin/runtime-configuration.html">
         <TocEntry
           Title="[%=System.LinkedTitle%]"
@@ -768,6 +771,9 @@
           Title="[%=System.LinkedTitle%]"
           Link="/Content/admin/system-properties.html" />
       </TocEntry>
+      <TocEntry
+        Title="[%=System.LinkedTitle%]"
+        Link="/Content/admin/admin-cli-open-source.html"></TocEntry>
     </TocEntry>
     <TocEntry
       Title="[%=System.LinkedTitle%]"

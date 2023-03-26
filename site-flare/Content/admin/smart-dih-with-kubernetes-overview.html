@@ -39,21 +39,21 @@ Through the persistent volume driver, <MadCap:variable name="General.ProductName
         </div>
         <div class="tc-align-center">
             <p>
-                <img src="../Resources/Images/K8sCloudInstallation.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" style="width: 631px;height: 489px;" />
+                <img src="../Resources/Images/K8sCloudInstallation.png" style="width: 631px;height: 489px;" />
             </p>
         </div>
         <h2>On-Premise Installations</h2>
         <p>Once Kubernetes is installed on-premise, be that a bare-metal installation or a private cloud, DIH can be installed and connected to your existing applications.</p>
         <p>&#160;</p>
         <p style="text-align: center;">
-            <img src="../Resources/Images/K8sOnPremInstallation.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" style="width: 634px;height: 387px;" />
+            <img src="../Resources/Images/K8sOnPremInstallation.png" style="width: 634px;height: 387px;" />
         </p>
         <h2>Hybrid Installations</h2>
         <p>A hybrid installation typically involves two environments that differ in some characteristics. </p>
         <p>An example could be on-premise (e.g. an air-gapped environment) and cloud environment, where the applications that consume the data are divided between the two (for security reasons for example). In such a case 2 DIH installations would be required and data would be replicated (full or partial) between the two.</p>
         <p>&#160;</p>
         <p style="text-align: center;">
-            <img src="../Resources/Images/K8sHybridInstallation.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" style="width: 684px;height: 525px;" />
+            <img src="../Resources/Images/K8sHybridInstallation.png" style="width: 684px;height: 525px;" />
         </p>
         <h1>High&#160;Availability (HA) and Self-Healing</h1>
         <h2>Space High Availability</h2>
@@ -66,19 +66,30 @@ Through the persistent volume driver, <MadCap:variable name="General.ProductName
             <p>In the case where a backup is recreated, the memory entries will be copied from the primary.</p>
         </div>
         <p style="text-align: center;">
-            <img src="../Resources/Images/K8sHA.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" style="width: 740px;height: 396px;" />
+            <img src="../Resources/Images/K8sHA.png" style="width: 740px;height: 396px;" />
         </p>
         <h2>Services High Availability</h2>
         <p>Low-code services are created by the user in order to open a channel for applications to interact with the data grid using a REST API. Due to this, it is important to maintain their high availability. These services are stateless and DIH leverages the replication attribute of Kubernetes to maintain high availability.</p>
         <p>In the diagram below, service “ABC” is replicated and serviced using a load balancer. In the case of one of the services going down the other continue to serve its client.</p>
         <p style="text-align: center;">
-            <img src="../Resources/Images/K8LB.png" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" style="width: 304px;height: 390px;" />
+            <img src="../Resources/Images/K8LB.png" style="width: 304px;height: 390px;" />
         </p>
         <h1>Security</h1>
         <h2>Responsibilities </h2>
-        <p>Gigaspaces SaaS DIH has been designed with strong security defaults in mind so that the burden of securely using the service is minimized for the customer. These defaults include always-on authentication, authorization, encryption in transit, encryption at rest, and no access from the Internet by default. Additionally, Gigaspaces provides automated patching of the underlying infrastructure and Gigaspaces clusters with zero downtime.</p>
-        <p>Customers are responsible for creating users and roles to access Gigaspaces,</p>
-        <p>which to create their clusters, and the cluster type. They can optionally bring their own certificate for service access</p>
+        <p>Gigaspaces DIH has been designed with strong security defaults in mind. These defaults include always-on authentication, authorization, encryption in transit and encryption at rest and no access from the Internet by default. DIH includes the notion of roles that can be attached to users to preserve a minimal access policy.</p>
+        <h2>Access</h2>
+        <p>Authentication and Authorization are at the core of the system. Access to every asset of the system is protected by these fundamentals. DIH supports a rich set of Authentication and Authorization capabilities and can seamlessly connected with SSO (single sign on)  and various IDPs (Identity providers),</p>
+        <h2>At Transit</h2>
+        <p>Data is encrypted in transit. It is up to the user to open a public access and Gigaspaces will provide means to secure data at transit using protocols such as TLS. The typical connection is within the private network, This  can be constructed using networking techniques such as VPN, Private link, VPC peering or other related protocols.</p>
+        <h2>At Rest</h2>
+        <p>Encryption can be set up by DIH or by the customer to ensure that the data is secured at rest.</p>
+        <h1>TCO&#160;Reduction and Maintainability</h1>
+        <h2>Installation</h2>
+        <p>DIH is installed with standard Kubernetes tools using common practices and flows. Helm is the go-to application used for installing DIH and enables installation in single command using a DIH Helm umbrella chart installation. An umbrella chart is when a chart is created for the purpose of grouping together related subcharts/services, such as to compose a whole application or deployment. A rich set of values can be applied upon installation, creating a customized deployment. Upgrades can leverage these tools so that future enhancements of DIH can also take place with minimal effort. </p>
+        <h2>Elasticity</h2>
+        <p>Kubernetes has built-in mechanisms that expand and contract resources depending on load (given cloud support). This means that during run-time the system deployment is optimized for the current workload.</p>
+        <h2>Control</h2>
+        <p>Kubernetes tools support various operations for managing the system. This includes control resources count, security, metrics and logging parameters. DIH in this sense provides additional controls at the DIH level (SpaceDeck) which may also affect the underlying deployment by leveraging Kubernetes operators.</p>
         <!--
 ## Using Apache Zeppelin with <MadCap:variable name="General.ProductNameIE" />
 

@@ -4,47 +4,109 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Platform&#160;Access</h1>
-        <p>This page explains how Smart Cache and Smart DIH are accessed.</p>
+        <p>This page explains how Smart Cache and Smart DIH features are accessed.</p>
         <p>&#160;</p>
         <table style="width: 100%;">
             <col />
-            <col />
-            <col />
+            <col style="width: 215px;" />
+            <col style="width: 260px;" />
             <col />
             <thead>
                 <tr>
-                    <th>Operation</th>
-                    <th style="text-align: left;">Access</th>
-                    <th style="text-align: left;">Applicable</th>
-                    <th style="text-align: left;">Additional Notes</th>
+                    <th style="font-weight: bold;">Operation</th>
+                    <th style="text-align: left;font-weight: bold;">Access</th>
+                    <th style="text-align: left;font-weight: bold;">
+                        <p>Applicable:</p>
+                        <p>Smart DIH, Smart Cache, Both.</p>
+                    </th>
+                    <th style="text-align: left;font-weight: bold;">Additional Notes</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Identify Provider Preferences</td>
+                    <td>Hosts Management </td>
                     <td>SpaceDeck</td>
-                    <td>Smart Cache / Smart DIH</td>
-                    <td>Existing &amp;&#160;new user roles</td>
-                </tr>
-                <tr>
-                    <td>Management of Data Sources</td>
-                    <td>SpaceDeck</td>
-                    <td>Smart DIH</td>
+                    <td>
+                        <p>Both</p>
+                    </td>
                     <td>&#160;</td>
                 </tr>
                 <tr>
-                    <td>Management of Pipelines</td>
-                    <td>SpaceDeck</td>
-                    <td>Smart DIH</td>
-                    <td>&#160;</td>
-                </tr>
-                <tr>
-                    <td>Management of Spaces</td>
+                    <td>Containers </td>
                     <td>
                         <p>SpaceDeck</p>
-                        <p>Ops Manager</p>
+                        <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                        </p>
+                        <p>CLI</p>
+                        <p>GS-UI</p>
+                        <p>WEB-UI</p>
                     </td>
-                    <td>Smart Cache / Smart DIH</td>
+                    <td>
+                        <p>Both</p>
+                        <p>Both</p>
+                        <p>Both</p>
+                        <p>Both</p>
+                        <p>Both</p>
+                    </td>
+                    <td>Manage the running process (restart, statistics, etc.)</td>
+                </tr>
+                <tr>
+                    <td>Identify Provider Preferences </td>
+                    <td>
+                        <p>SpaceDeck (DIH)</p>
+                        <p>Admin API (both)</p>
+                    </td>
+                    <td>
+                        <p>Smart DIH</p>
+                        <p>Both</p>
+                    </td>
+                    <td>For existing &amp;&#160;new user roles</td>
+                </tr>
+                <tr>
+                    <td>Management of Data Sources </td>
+                    <td>
+                        <p>SpaceDeck</p>
+                        <p>REST&#160;API</p>
+                    </td>
+                    <td>
+                        <p>Smart DIH</p>
+                        <p>Smart DIH</p>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>Management of Pipelines </td>
+                    <td>
+                        <p>SpaceDeck</p>
+                        <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>Smart DIH</p>
+                        <p>Smart DIH</p>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>Management of Spaces </td>
+                    <td>
+                        <p>SpaceDeck (K8s only)</p>
+                        <p>WEB-UI (Non-K8s)</p>
+                        <p>Ops Manager (both)</p>
+                        <p>GS-UI (cache)</p>
+                        <p>Admin&#160;API (both)</p>
+                        <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a> (both) </p>
+                        <p>CLI (both - not in K8s)</p>
+                    </td>
+                    <td>
+                        <p>Smart DIH</p>
+                        <p>Both</p>
+                        <p>Both</p>
+                        <p>Smart Cache</p>
+                        <p>Both</p>
+                        <p>Both</p>
+                        <p>Both</p>
+                    </td>
                     <td>
                         <p><b>SD</b>: New Space basic control including partitions and redundancy</p>
                         <p style="font-weight: normal;"><b>Ops Manager:</b> Advanced configuration of the Space</p>
@@ -52,31 +114,51 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Management of Data Access Micro-Services</td>
-                    <td>SpaceDeck</td>
-                    <td>Smart DIH</td>
-                    <td><b>Manual:</b>&#160;Secure Space config proxy</td>
-                </tr>
-                <tr>
-                    <td>Hosts Management</td>
-                    <td>SpaceDeck</td>
-                    <td>Smart Cache</td>
-                    <td>&#160;</td>
-                </tr>
-                <tr>
-                    <td>Data Gateway</td>
-                    <td>Ops&#160;Manager</td>
-                    <td>Smart Cache</td>
-                    <td>&#160;</td>
-                </tr>
-                <tr>
-                    <td>Deploying PUs</td>
+                    <td>Management of Data Access Services (PUs) </td>
                     <td>
-                        <p>Ops Manager</p>
-                        <p>Kubernetes</p>
+                        <p>SpaceDeck</p>
+                        <p>WEB-UI</p>
+                        <p>Ops Manager </p>
+                        <p>GS-UI </p>
+                        <p>ADMIN&#160;API </p>
+                        <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API </a>
+                        </p>
+                        <p>CLI </p>
                     </td>
-                    <td>Smart Cache</td>
-                    <td>When using Kubernetes this is achieved via Kubernetes orchestration</td>
+                    <td>
+                        <p>Smart DIH (k8s only)</p>
+                        <p>Both (non K8s)</p>
+                        <p>Both</p>
+                        <p>Smart Cache</p>
+                        <p>Both</p>
+                        <p>Both</p>
+                        <p>Both (non K8s)</p>
+                    </td>
+                    <td>
+                        <p><b>Manual:</b>&#160;Secure Space config proxy</p>
+                        <p>When using Kubernetes this is achieved Helm commands or Ops Manager</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data Access Micro-Services (Low-Code) </td>
+                    <td>SpaceDeck </td>
+                    <td>
+                        <p>Both (k8s only)</p>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>Data Gateway </td>
+                    <td>
+                        <p>Ops&#160;Manager</p>
+                        <p>CLI - no K8s</p>
+                        <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>Both</p>
+                    </td>
+                    <td>&#160;</td>
                 </tr>
             </tbody>
         </table>
