@@ -113,7 +113,7 @@ having director_salary &lt;= 1000 ORDER BY director_salary DESC</pre>
             <p>To get the company id and each second email of employees in each company:</p><pre xml:space="preserve">Select id, director:team.employees[1].email from Company</pre>
             <p>&#160;</p>
             <h4>Using Maps as Nesteds - accessing map fields giving a key</h4>
-            <p>To get the director email and emails of all employees that have the label "BestEmploee" for each company:</p><pre xml:space="preserve">Select director:email,<b>director:team.lineEmployeesMap['BestEmployee'].email</b>from Company</pre>
+            <p>To get the director email and emails of all employees that have the label "BestEmploee" for each company:</p><pre xml:space="preserve">Select director:email,<b>director:team.lineEmployeesMap['BestEmployee'].email</b> from Company</pre>
             <p>&#160;</p>
             <h4>Using Nesteds with Joins</h4>
             <p>Join Company and Employee Classes row when director email equals to the employee email, or if devTeam mainEmployee email equals to the employee email:</p><pre xml:space="preserve">Select new Employee.id,company,id,company.director:email from Company as company <b>INNER JOIN</b>&#160;
