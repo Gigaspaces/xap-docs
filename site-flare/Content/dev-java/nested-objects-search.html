@@ -9,17 +9,19 @@
             <p>When there are Java POJO classes that are not made of primitive type fields only, those objects are available for retrieval through SQL.</p>
             <p>It is also possible to store an original JSON document in its original form within a Space and retrieve its data through SQL.</p>
             <p>&#160;</p>
-            <p>Syntax: to select nested field was used  JSONPath expression (each next nested level accessing by “.”, getting value from array by index and from map by spring key - “[]”)</p>
+            <p>Syntax: to select nested field was used  JSONPath expression (each next nested level accessing by “.”, getting value from array by integer index - [int] and from map by spring key - ['stringKey'])</p>
             <p>&#160;</p>
             <ol>
                 <li>
-                    <p>identifier with simple nesteds (next - ISN) has such view:</p><pre>baseField1:nestedFieldDeep1.nestedFieldDeep2….nestedFieldDeepN</pre>
+                    <p>identifier with simple nesteds (ISN) has such view:</p><pre>baseField1:nestedFieldDeep1.nestedFieldDeep2….nestedFieldDeepN</pre>
                 </li>
                 <li>
-                    <p>identifier with array nesteds (next - IAN) has such view:</p><pre>baseField1:nestedFieldDeep1[intArrayIndex | *].nestedFieldDeep2 | *….nestedFieldDeepN - as the index in square brackets only &gt;= 0 numbers have to be used</pre>
+                    <p>identifier with array nesteds (IAN) has such view:</p><pre xml:space="preserve">baseField1:nestedFieldDeep1[intArrayIndex | *].nestedFieldDeep2 | *….nestedFieldDeepN - as the index in square brackets only 
+&gt;= 0 numbers have to be used</pre>
                 </li>
                 <li>
-                    <p>identifier with map nesteds (next - IMN) has such view:</p><pre>baseField1:nestedFieldDeep1[‘stringMapKey’  | *].nestedFieldDeep2 | *….nestedFieldDeepN  - as the key in square brackets only &gt;= 0 numbers have to be used</pre>
+                    <p>identifier with map nesteds (IMN) has such view:</p><pre xml:space="preserve">baseField1:nestedFieldDeep1[‘stringMapKey’  | *].nestedFieldDeep2 | *….nestedFieldDeepN  - as the key in square brackets only 
+&gt;= 0 numbers have to be used</pre>
                 </li>
             </ol>
             <p>&#160;</p>
@@ -33,8 +35,7 @@ operator
 GROUP BY (ISN | alias)
 HAVING (booleanExpression with usage (ISN | IAN | IMN  | alias))
 ORDER BY (ISN | alias, IAN | alias, IMN  | alias …  aggregation_function(ISN) | alias) ASC | 
-DESC
-(formatting keywords like in postgres f.e. - https://www.postgresql.org/docs/current/sql-select.html)</pre>
+DESC</pre>
             <p>&#160;</p>
             <h2>Additional Supported Features:</h2>
             <ol>
@@ -105,14 +106,14 @@ as director_team_specialization from Company group by director_team_specializati
 having director_salary &lt;= 1000 ORDER BY director_salary DESC</pre>
             <p>&#160;</p>
             <h4>Using Arrays as nesteds</h4>
-            <p>To get the company id and list of emails for all employees in all companies:</p><pre>Select id as company_id, <b>director:team.employees[*].email</b> as employee_emails</pre>
+            <p>To get the company id and list of emails for all employees in all companies:</p><pre xml:space="preserve">Select id as company_id, <b>director:team.employees[*].email</b> as employee_emails from Company</pre>
             <p>Example result (emails will be entire array of emails to string):</p><pre class="body-container" xml:space="preserve">company_id	 |employee_emails                                          |
 1                |["test@gmail.com","test1@gmail.com"]                     |
 2		  |["test3@gmail.com","test4@gmail.com","test5@gmail.com"]  |</pre>
-            <p>To get the company id and each second email of employees in each company:</p><pre xml:space="preserve">Select id, director:team.employees[1].email</pre>
+            <p>To get the company id and each second email of employees in each company:</p><pre xml:space="preserve">Select id, director:team.employees[1].email from Company</pre>
             <p>&#160;</p>
             <h4>Using Maps as Nesteds - accessing map fields giving a key</h4>
-            <p>To get the director email and emails of all employees that have the label "BestEmploee" for each company:</p><pre xml:space="preserve">Select director:email,<b>director:team.lineEmployeesMap['BestEmployee'].email</b></pre>
+            <p>To get the director email and emails of all employees that have the label "BestEmploee" for each company:</p><pre xml:space="preserve">Select director:email,<b>director:team.lineEmployeesMap['BestEmployee'].email</b>from Company</pre>
             <p>&#160;</p>
             <h4>Using Nesteds with Joins</h4>
             <p>Join Company and Employee Classes row when director email equals to the employee email, or if devTeam mainEmployee email equals to the employee email:</p><pre xml:space="preserve">Select new Employee.id,company,id,company.director:email from Company as company <b>INNER JOIN</b>&#160;

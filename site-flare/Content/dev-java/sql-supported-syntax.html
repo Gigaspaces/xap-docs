@@ -12,50 +12,34 @@
                 <h1><a name="_Toc84959195"></a>JDCB V3 &#160;Driver Syntax - Supporting Multiple Statements</h1>
                 <p class="p_6">statementList:</p>
                 <p class="p_6" style="text-indent: 0.5in;">statement [ ';' statement ]* [ ';' ]</p>
-                <div MadCap:conditions="Version.16-1-1-born">
-                    <h1>Data Definition (DDL) Syntax</h1>
-                    <h2><a name="Data2"></a>Data Definition Operations</h2>
-                    <p class="p_1"><span class="span_5">Create Table</span><span class="span_6">: </span>
-                    </p>
-                    <p class="p_6"> CREATE TABLE table_name {( [</p>
-                    <p>{ column_name data_type [ column_constraint [ ... ] ]</p>
-                    <p>| table_constraint }</p>
-                    <p>[PRIMARY KEY (column)]</p>
-                    <p>[INDEX (column)]</p>
-                    <p>[PARTITION BY]</p>
-                    <p>[BROADCAST]</p>
-                    <p>] )</p>
-                    <p>|</p>
-                    <p>AS SELECT column [, column]*</p>
-                    <p>FROM table_name</p>
-                    <p>[WHERE booleanExpression]</p>
-                    <p>}</p>
-                    <p>&#160;</p>
-                    <p class="p_1"><span class="span_5">DropTable</span><span class="span_6">: </span>
-                    </p>
-                    <p class="p_6"> DROP TABLE [ IF EXISTS ] name</p>
-                    <p class="p_6">&#160;</p>
-                    <p class="p_6"><span class="span_5">Describe</span><span class="span_6">: </span>
-                    </p>
-                    <p>  DESCRIBE DATABASE databaseName</p>
-                    <p>| DESCRIBE CATALOG [ databaseName . ] catalogName</p>
-                    <p>| DESCRIBE SCHEMA [[ databaseName . ] catalogName ] . schemaName</p>
-                    <p>| DESCRIBE TABLE ] [[[ databaseName . ] catalogName ] . schemaName. ] tableName [columnName ]</p>
-                    <p>| DESCRIBE [ STATEMENT ] { query }</p>
-                </div>
+            </div>
+            <p class="p_6">&#160;</p>
+            <p class="p_6"><span class="span_5">statement</span><span class="span_6">:</span>
+            </p>
+            <div MadCap:conditions="NewSet.JustAColorForDivs">
+                <p class="p_6">&#160; |&#160;&#160; explain</p>
+                <p class="p_6">&#160; |&#160;&#160; describe</p>
+                <p class="p_6">&#160; |&#160;&#160; query</p>
                 <div MadCap:conditions="Version.16-1-1-born">
                     <p>&#160;</p>
                 </div>
                 <p MadCap:conditions="Version.16-1-1-born">Refer to the following related topics:</p>
                 <ul MadCap:conditions="Version.16-1-1-born">
                     <li>
-                        <p>
-                            <MadCap:xref href="DML-TCL-syntax.html">Data Manipulation (DML) and Transactions Control (TCL) Syntax</MadCap:xref>
+                        <p><a href="DDL-syntax.html">Data Definition (DDL) Syntax</a>
+                        </p>
+                    </li>
+                    <li>
+                        <p><a href="DML-syntax.html">Data Manipulation (DML)&#160;Syntax</a>
                         </p>
                     </li>
                     <li>
                         <p>
                             <MadCap:xref href="data-query-DQL-syntax.html">Data Query (DQL) Syntax</MadCap:xref>
+                        </p>
+                    </li>
+                    <li>
+                        <p><a href="TCL-syntax.html">Transaction Control (TCL) Syntax</a>
                         </p>
                     </li>
                     <li>
