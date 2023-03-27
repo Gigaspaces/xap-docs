@@ -236,7 +236,7 @@ ul.landing-banner-items li {
 }
 
 .landing-banner-items a:hover {
-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .landing-banner-items a {
@@ -879,8 +879,8 @@ div#ipn-toggle-open:before {
   > a.selected:hover {
   font-weight: normal;
   font-weight: 500;
-  color: #006DB8;
-  border-left: solid #006DB8 1px;
+  color: #006db8;
+  border-left: solid #006db8 1px;
 }
 
 .ipn-content {
@@ -1092,7 +1092,13 @@ div#ipn-toggle-open:before {
 /* Last updated */
 
 #last-updated {
-  margin: 20px 0;
+	margin: 20px 10px 10px 0;
+	padding-left: 30px;
+	display: inline-block;
+	line-height: 31px;
+	background-image: url('Images/last-updated.svg');
+	background-repeat: no-repeat;
+	background-position: center lef
 }
 
 .searchTopic #last-updated,
@@ -1111,8 +1117,9 @@ div#ipn-toggle-open:before {
 /* Product label bar */
 
 div.product-bar {
-  display: flex;
+  display: inline-flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 div.link-button {
@@ -1458,6 +1465,14 @@ h1 {
 
   .landing .body-container {
     max-height: calc(100vh - 200px);
+  }
+
+  div.product-bar {
+    margin-top: 0;
+  }
+
+  #last-updated {
+    margin-bottom: 0;
   }
 
   nav.title-bar.tab-bar.sticky {

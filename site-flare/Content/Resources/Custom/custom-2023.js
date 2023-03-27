@@ -1,6 +1,10 @@
 $(document).ready(function(){	
   $('.header-left').insertAfter('.logo-wrapper');
   $('.header-right').insertAfter('.header-left');
+  if($('.product-bar').length) {
+    $('.product-bar').insertAfter('#last-updated');
+  }
+  
   $('html').addClass('show');
 });
 
