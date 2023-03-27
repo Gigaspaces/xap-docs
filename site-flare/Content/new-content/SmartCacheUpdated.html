@@ -26,7 +26,7 @@
                 <p>Seamlessly scales up and out with no downtime</p>
             </li>
             <li>
-                <p>Can be deployed on-premises, in the cloud, or in a hybrid environment, including Kubernetes and OpenShift, or use its own service grid orchestration mechanism</p>
+                <p>Can be deployed on-premises, in the cloud, or in a hybrid environment, including <a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html">Kubernetes</a> and <a href="../solution-hub/ie-operator-openshift.html">OpenShift</a>, or use its own service grid orchestration mechanism</p>
             </li>
             <li>
                 <p>Easily integrates with BI tools such as Tableau, Looker, and PowerBI</p>
@@ -39,10 +39,10 @@
             <p style="text-align: center;"><i>Architecture of Smart Cache</i>
             </p>
             <p>&#160;</p>
-            <p>Smart Cache runs server side processing, providing the high performance of advanced operations and avoiding data retrieval back to the client side. Aggregation is performed in-memory, on relevant data only, regardless of total data size. It uses Space-Based Architecture (SBA) as a primary design pattern. With SBA, applications are built out of a set of self-sufficient units, known as Processing Units (PU). These units are completely independent of each other, so that an application can scale without increasing complexity, just by adding more units. SBA is based on the Tuple Space paradigm. SBA follows many of the principles of Service-Oriented Architecture and Event-Driven Architecture, as well as elements of grid computing.</p>
+            <p>Smart Cache runs server side processing, providing the high performance of advanced operations and avoiding data retrieval back to the client side. Aggregation is performed in-memory, on relevant data only, regardless of total data size. It uses <a href="../overview/space-based-architecture.html">Space-Based Architecture</a> (SBA) as a primary design pattern. With SBA, applications are built out of a set of self-sufficient units, known as <a href="../dev-java/the-processing-unit-overview.html">Processing Units</a> (PU). These units are completely independent of each other, so that an application can scale without increasing complexity, just by adding more units. SBA is based on the Tuple Space paradigm. SBA follows many of the principles of Service-Oriented Architecture and Event-Driven Architecture, as well as elements of grid computing.</p>
             <h2>Transaction Processing</h2>
             <p>Smart Cache provides a powerful solution for launching and running digital services. Its APIs support ultra-fast transaction processing and task execution that is event driven, offering high availability, reliability and scale. Smart Cache’s server side processing accelerates performance and reduces networking and serialization overhead, even during peaks with high numbers of concurrent users. The platform supports both Kubernetes and alternative elastic orchestration systems.</p>
-            <p>Smart Cache offers efficient and cost-effective data replication across regions and clouds, and between cloud and on-premises deployments. It supports both polling and push notifications, including FIFO and FIFO grouping ordering. Business rules can also be applied locally and remotely as they are embedded in each partition and on remote nodes.</p>
+            <p>Smart Cache offers efficient and cost-effective data replication across regions and clouds, and between cloud and on-premises deployments. It supports both polling and push notifications, including <a href="../dev-java/fifo-overview.html">FIFO</a> and <a href="../dev-java/fifo-grouping.html">FIFO grouping</a> ordering. Business rules can also be applied locally and remotely as they are embedded in each <a href="../admin/data-partitioning.html">partition</a> and on remote nodes.</p>
             <h2>High Availability</h2>
             <p>Smart Cache is an always-on, ACID-compliant and secured system, with disaster recovery ensured  through efficient data replication (Active-Passive) between sites, including hybrid environments.</p>
             <p>&#160;</p>
@@ -64,12 +64,12 @@
                 </li>
             </ol>
             <h2>Multi-Region Replication</h2>
-            <p>Multi-Region Replication is implemented for disaster recovery planning, where each site is distant from the other sites, even on a different continent; for failover scenarios when one site acts as a failover target for another, or to maintain data locality for performance or regulations. For more information, see Multi-Region Replication.</p>
+            <p><a href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication</a> is implemented for disaster recovery planning, where each site is distant from the other sites, even on a different continent; for <a href="../production/production-failover-considerations.html">failover</a> scenarios when one site acts as a failover target for another, or to maintain data locality for performance or regulations. For more information, see Multi-Region Replication.</p>
             <h2>Distributed WAN Gateway</h2>
-            <p>The WAN Gateway enables bidirectional replication of data between cloud repositories or to and from cloud storage. This distributed WAN Gateway is totally stateless, ensuring no loss of data. Transactions at the local site are replicated in atomic manner in the correct order to the remote sites. Site bootstrapping ensures that once a site starts, it can reload its entire data or specific data from a remote site without introducing data consistency problems.</p>
+            <p>The <a href="../solution-hub/wan-gateway-distributed.html">distributed WAN Gateway</a> enables bidirectional replication of data between cloud repositories or to and from cloud storage. This distributed WAN Gateway is totally stateless, ensuring no loss of data. Transactions at the local site are replicated in atomic manner in the correct order to the remote sites. Site bootstrapping ensures that once a site starts, it can reload its entire data or specific data from a remote site without introducing data consistency problems.</p>
             <p>The WAN Gateway replication utilizes a custom plugin that allows users to filter or modify data before it is replicated, and also after it has been replicated at each source or target node. In addition, the WAN replication topology can be updated in runtime - adding or removing remote sites does not result in system shutdown.</p>
             <h2>Persistence</h2>
-            <p>Smart Cache data persistence consists of two components:</p>
+            <p>Smart Cache <a href="../started/xap-tutorial-part7.html">data persistence</a> consists of two components:</p>
             <ul>
                 <li>
                     <p><b>Space Data Source</b>: Handles the pre-loading of data and the lazy load of data from from the persistence layer</p>
@@ -79,15 +79,16 @@
                 </li>
             </ul>
             <p>This Space persistence provides classes which can be extended and then used to load and store data  in an existing data source. Data is loaded from the data source during space initialization, after which the application works with the space directly.</p>
-            <p style="text-indent: 0.5in;text-align: center;">
-                <img src="../Resources/Images/SmartCachePersistency.png" style="width: 519px;height: 251px;" />
+            <p style="text-align: center;">
+                <img src="../Resources/Static/attachment_files/qsg/data-grid-sync-persistNew.jpg" alt="image" class="tc-picture80" />
             </p>
             <p style="text-align: center;font-style: italic;">Smart Cache Persistency Components</p>
             <h2>Mirror Service</h2>
-            <p>The GigaSpaces mirror service (write behind) provides reliable asynchronous persistence. This allows for the asynchronous delegation of the operations conducted with the In-Memory-Data-Grid (IMDG) into a backend database, significantly reducing the performance overhead. This service ensures that data will not be lost in the event of a failure.</p>
+            <p>The GigaSpaces <a href="../dev-java/asynchronous-persistency-with-the-mirror.html">mirror service</a> (write behind) provides reliable asynchronous persistence. This allows for the asynchronous delegation of the operations conducted with the In-Memory-Data-Grid (IMDG) into a backend database, significantly reducing the performance overhead. This service ensures that data will not be lost in the event of a failure.</p>
             <p>A mirror service can be attached to an application, providing fine-grained control of the objects that need to be persisted, without affecting the real-time portion of the app in either configuration or code. The mirror does not require a backup instance since it does not maintain any state. The actual state of the latest committed database transaction is stored within the primary and the backup space instances, not in the mirror.</p>
+            <p>&#160;</p>
             <p style="text-align: center;">
-                <img src="../Resources/Images/SmartCacheMirror.png" />
+                <img src="../Resources/Static/attachment_files/data-grid-async-persist.jpg" alt="data-grid-async-persist.jpg" class="tc-picture80" />
             </p>
             <p style="text-align: center;font-style: italic;">Mirror Service (Write Behind)</p>
             <h2>Scaling</h2>
@@ -100,7 +101,7 @@
             <h2>Management of Smart Cache</h2>
             <p>The REST Manager API and UI tools enable management of the Smart Cache cluster in Kubernetes deployments, providing typical information (such as parameters and responses) for each operation. This API  enables administration of local, remote, and cloud-based application environments.</p>
             <h3>Command Line Interface (CLI)</h3>
-            <p>The GigaSpaces CLI enables users to administer local, remote, and cloud-based application environments, and for maintenance tasks. The CLI is based on the REST Manager API.</p>
+            <p>The <a href="../admin/tools-cli.html">GigaSpaces CLI</a> enables users to administer local, remote, and cloud-based application environments, and for maintenance tasks. The CLI is based on the REST Manager API.</p>
             <h2>Supported APIs</h2>
             <h3>Java Integration</h3>
             <p>The Java SDK offers the best expected performance, with full coverage of Space interfaces and functions.</p>
