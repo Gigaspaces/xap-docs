@@ -95,6 +95,10 @@
         _self.methods.scrollToTop();
         _self.methods.addClipboardButtons();
 
+        if($('.gs-banner').length) {
+          $('.gs-banner').prependTo('#mc-main-content');
+        }
+
         $('<div id="sidebar-toggle" />')
           .click(function () {
             $(this).parent().toggleClass('closed');

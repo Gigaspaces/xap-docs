@@ -4,6 +4,9 @@ $(document).ready(function(){
   if($('.product-bar').length) {
     $('.product-bar').insertAfter('#last-updated');
   }
+  if($('.gs-banner').length) {
+    $('.gs-banner').insertBefore('#last-updated');
+  }
   
   $('html').addClass('show');
 });
@@ -82,7 +85,8 @@ $(document).ready(function(){
           var homelink = $('a.logo').attr('href');
           console.log(homelink);
           if($('.breadcrumbs').length) {
-            $('.breadcrumbs').prepend('<span id="breadcrumb-home"><a class="MCBreadcrumbsLink" href="'+ homelink +'">Docs Home</a></span><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>')
+            var breadcrumbVersion = $('#breadcrumb-version-number').text();
+            $('.breadcrumbs').prepend('<span id="breadcrumb-home"><a class="MCBreadcrumbsLink" href="https://docs.gigaspaces.com/">Docs Home</a></span><span class="MCBreadcrumbsDivider"> &gt;&gt; </span><span id="breadcrumb-version"><a class="MCBreadcrumbsLink" href="'+ homelink +'">' + breadcrumbVersion + '</a></span><span class="MCBreadcrumbsDivider"> &gt;&gt; </span>')
           }
           $('a.logo').attr('href', 'https://www.gigaspaces.com/').attr('target','_blank');
       },
