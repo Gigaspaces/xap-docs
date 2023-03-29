@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <map id="map1">
+            <area shape="rectangle" coords="31,228,438,655" dragDirection="0" />
+            <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
+            <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
+        </map>
+        <h1 class="tc-pagetitle">SpaceDeck – Hosts</h1>
+        <p>These screens allow the user view hosts information and generate dump logs.</p>
+        <h1>Main Hosts page</h1>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts1.png" style="width: 1037px;height: 583px;" />
+        </p>
+        <h2>Hosts Fields</h2>
+        <ul>
+            <li>
+                <p><b>HOST&#160;NAME</b> – The host name in the machine.</p>
+            </li>
+            <li>
+                <p><b>HOST&#160;IP&#160;ADDRESS</b> – The host IP address is a unique label assigned to a machine.</p>
+            </li>
+            <li>
+                <p><b>GRID&#160;COMPONENTS</b> – The number of grid components in the host.</p>
+            </li>
+            <li>
+                <p><b>%CPU </b> – Refers to the percentage of a machine's CPU that is being used at a given time.</p>
+            </li>
+            <li>
+                <p><b>DAILY&#160;AVERAGE&#160;%&#160;CPU</b> – Refers to the average percentage of a machine's CPU over a 24 hour period. Used to understand how much CPU is typical for a system over time.</p>
+            </li>
+            <li>
+                <p><b>%RAM </b> – Refers to the percentage of a machine's RAM (Random Access Memory) that is being used at a given time.</p>
+            </li>
+            <li>
+                <p><b>DAILY&#160;AVERAGE&#160;%&#160;CPU </b> – Refers to the average percentage of a machine's RAM over a 24 hour period. Used to understand how much RAM is typical for a system over time.</p>
+            </li>
+        </ul>
+        <h2>Generate Dumps</h2>
+        <p>There is the ability to generate log dump files, that are saved locally, that include information about the runtime environment.</p>
+        <p>Log dumps can be generated in three different ways:</p>
+        <ol>
+            <li>
+                <p>Log dump of a single host: Selecting a single host </p>
+                <p>
+                    <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts2a.png" style="width: 1005px;height: 549px;" />
+                </p>
+            </li>
+            <li>
+                <p>Log dump of selected hosts: Select more than one and clicking the <b>Generate Selected Dump</b> situated above the table</p>
+                <p>
+                    <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts3a.png" style="width: 1004px;height: 560px;" />
+                </p>
+            </li>
+            <li>
+                <p>Log dump of all hosts: Clicking the <b>Generate All Dump</b> option situated above the table</p>
+                <p>
+                    <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts1a.png" style="width: 1005px;height: 490px;" />
+                </p>
+            </li>
+        </ol>
+        <h1>Hosts Details</h1>
+        <p>Click on a host name to view details of that host. &#160;Two tabs are available: System Information and Containers.</p>
+        <p>.<img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts9.png" /></p>
+        <h2>View Hosts Details - System Information Tab</h2>
+        <p>The System Information tab displays information relating to the architecture of the machine. In addition the services running on this host are displayed, including heap used, percentage of CPU and number of threads:</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts5a.png" style="width: 858px;height: 484px;" />
+        </p>
+        <p>On the right side of the screen there are two metrics displayed: the memory and CPU utilization of this host. It is possible to change the view of the time measure:</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts5b.png" style="width: 859px;height: 483px;" />
+        </p>
+        <h2>View Hosts Details - Containers Tab</h2>
+        <p>The Containers tab displays the containers of the host.</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts6.png" style="width: 861px;height: 477px;" />
+        </p>
+        <h2>Containers Fields</h2>
+        <ul>
+            <li>
+                <p><b>CONTAINER&#160;ID</b> – Identifier of the container.</p>
+            </li>
+            <li>
+                <p><b>SERVICE&#160;ID</b> – The service on this container.</p>
+            </li>
+            <li>
+                <p><b>TYPE</b> – Primary or Backup.</p>
+            </li>
+            <li>
+                <p><b>STATUS </b> – This will display Active or Error.</p>
+            </li>
+            <li>
+                <p><b>ZONES</b> - This is displayed if the user defines a zone name of this container.</p>
+            </li>
+            <li>
+                <p><b>USED&#160;HEAP&#160;(MB) </b> – Refers to the heap used, in MB.</p>
+            </li>
+            <li>
+                <p><b>CPU </b> – Refers to the percentage of a machine's CPU that the container is using.</p>
+            </li>
+            <li>
+                <p><b>THREADS</b> – The number threads running on this container.</p>
+            </li>
+        </ul>
+        <h2>Container Actions</h2>
+        <p>By selecting the kebab menu (vertical three-dot menu) on the far right, two options will be displayed:</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts6a.png" style="width: 868px;height: 508px;" />
+        </p>
+        <p><b>View Logs:</b> Opens a searchable log from a selected container:</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts7.png" style="width: 868px;height: 488px;" />
+        </p>
+    </body>
+</html>

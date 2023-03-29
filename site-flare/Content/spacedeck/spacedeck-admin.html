@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <map id="map1">
+            <area shape="rectangle" coords="31,228,438,655" dragDirection="0" />
+            <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
+            <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
+        </map>
+        <h1 class="tc-pagetitle">SpaceDeck – Administration</h1>
+        <h1>Access the Administration Screen</h1>
+        <p>If a user is defined as an Admin, the Administration options can be accessed via the cog at the bottom left hand corner.</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin1.png" style="width: 930px;height: 453px;" />
+        </p>
+        <p id="YES-TOC">.</p>
+        <h1>General&#160;Setup - Connection</h1>
+        <p>Once the connection fields are filled in, click <b>Apply</b>.</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin2.png" style="width: 1135px;height: 292px;" />
+        </p>
+        <h2>Connection Fields</h2>
+        <ul>
+            <li>
+                <p><b>Provider type</b> – The protocol the IDP supports. Currently <MadCap:variable name="General.ProductNameIE" /> supports OpenID.</p>
+            </li>
+            <li>
+                <p><b>Provider id</b> – This is a generic ID that will be used as a name for the auth-config creator.</p>
+            </li>
+            <li>
+                <p><b>Redirect URIs</b> – Upon successful sign-in, this endpoing in our server will receive the data from the IDP,</p>
+            </li>
+            <li>
+                <p><b>Issue&#160;URL</b> – URL&#160;of the IDP&#160;issuer. &#160;For example, Okta, AWS, Github.</p>
+            </li>
+            <li>
+                <p><b>Client Id</b> – Unlike the Provider ID, this ID serves as a unique identifier which the IDP generates to the user so they can identify with it,</p>
+            </li>
+            <li>
+                <p><b>Client Secret</b> – This is a secret key that is used with the Client ID in order to improve security.</p>
+            </li>
+            <li>
+                <p><b>Authorization Grant Type</b> – Each IDP has rules regarding how roles are grouped. These rules have an arbitrary name provided by the IDP. The roles user must use this name to create the roles.</p>
+            </li>
+        </ul>
+        <p>Enter the connection details and click <b>Apply</b>. </p>
+        <h2>Roles Management</h2>
+        <p>Roles Management configures the....</p>
+        <p>Create a new role by clicking  <b>Create New Role</b></p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin3.png" style="width: 1042px;height: 245px;" />
+        </p>
+        <p><span style="color: #ff0000;">TBD</span>
+        </p>
+        <p>&#160;</p>
+        <p>The Configuration screen will display:</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck_DS2.png" style="width: 1028px;height: 400px;" />
+        </p>
+        <h2>Data Source Fields</h2>
+        <ul>
+            <li>
+                <p><b>Date Source Name</b> – the name you define to the data source.</p>
+            </li>
+            <li>
+                <p><b>Data Source Type</b> – the database type for the data source, as defined in the System of Record.</p>
+            </li>
+            <li>
+                <p><b>URL</b> – the URL for the data source.</p>
+            </li>
+            <li>
+                <p><b>Username </b>and<b> Password</b> – the credentials for accessing the data source.</p>
+            </li>
+            <li>
+                <p><b>Description</b> – a free-format description of the data source.</p>
+            </li>
+        </ul>
+        <p>Enter the configuration details and click <b>Save Connection</b>, The new data source will be included in the list in the  Data Sources screen.</p>
+    </body>
+</html>
