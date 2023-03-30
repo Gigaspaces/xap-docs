@@ -23,13 +23,14 @@
         </p>
         <p>The following graphs are available:</p>
         <h3>Ops/Sec Over Time</h3>
-        <p>This graph shows the I/O operations over time. You can click on the operation type (<b>Execute</b>, <b>Update</b>, etc.) or view the <b>Total</b> for all operation types (default),</p>
+        <p>This graph shows the I/O operations over time. You can click on the operation type (<b>Read</b>, <b>Write</b>, etc.) or select them all for all operation types (default),</p>
         <p>
-            <img src="../Resources/Static/images/spacedeck-monitoring-graph-ops-sec-over-time.png" style="width: 856px;height: 571px;" />
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces14.png" />
         </p>
         <h3>Total Ops Over Time</h3>
-        <p>This graph shows the total I/O operations over time.</p>
-        <p><span style="color: #ff0000;">INSERT&#160;IMAGE</span>
+        <p>This graph shows the total I/O operations over time. You can click on the operation type (<b>Execute</b>, <b>Update</b>, etc.) or view the <b>Total</b> for all operation types (default),</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces15.png" />
         </p>
         <h3>Memory Utilization</h3>
         <p>This graph displays the memory utilization over time, as the percent of memory used in the Space.</p>
@@ -55,13 +56,19 @@
         </p>
         <h3>Tiered Storage – Hits Per Tier</h3>
         <p>This graphs shows the Tiered Storage hit to hot storage (RAM memory; left side of graph) and to warm storage (SSD memory; right side of graph). </p>
-        <p>Note that if Tiered Storage is not defined, this graph will display as empty.</p>
+        <div class="tc-admon-note">
+            <p>If Tiered Storage is not defined, this graph will not be displayed.</p>
+        </div>
         <p>
             <img src="../Resources/Static/images/spacedeck-monitoring-graph-tiered-storage-hits-per-tier.png" style="width: 882px;height: 601px;" />
         </p>
-        <h3>Tiered Storage – Five Objects with Biggest Distance From Expected</h3>
-        <p>This graphs shows up to five Tiered Storage objects with the greatest divergence from the expected usage. You can scroll this graph to show all objects in descending order (by distance from expected).</p>
-        <p>Note that if Tiered Storage is not defined, this graph will display as empty.</p>
+        <div>
+            <h3>Tiered Storage – Five Objects with Biggest Distance From Expected</h3>
+            <p>This graphs shows up to five Tiered Storage objects with the greatest divergence from the expected usage. You can scroll this graph to show all objects in descending order (by distance from expected).</p>
+            <div class="tc-admon-note">
+                <p>If Tiered Storage is not defined, this graph will not be displayed.</p>
+            </div>
+        </div>
         <p>
             <img src="../Resources/Static/images/spacedeck-monitoring-graph-tiered-storage-5-objects.png" style="width: 884px;height: 603px;" />
         </p>
