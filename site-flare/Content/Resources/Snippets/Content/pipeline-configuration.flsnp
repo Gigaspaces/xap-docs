@@ -49,8 +49,7 @@
                 </li>
             </ul>
             <p>Press <b>Create Pipeline</b> to create the new data pipeline.</p>
-            <h3>&#160;</h3>
-            <h3>Select Tables for the Pipeline</h3>
+            <h2>Select Tables for the Pipeline</h2>
             <p>Once the pipeline has been created, click <b>Add / Remove tables</b> to select which tables to include in the pipeline. </p>
             <p>
                 <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline12.png" style="width: 1008px;height: 561px;" />
@@ -62,7 +61,7 @@
                 <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline13a.png" />
             </p>
             <div class="tc-admon-note">
-                <p>Once Add is selected, it will take a few seconds to update.</p>
+                <p>Once <b>Add</b> is clicked, it will take a few seconds to update.</p>
             </div>
             <h1>Edit the Tables</h1>
             <div class="tc-admon-important">
@@ -80,17 +79,38 @@
             <p><span style="color: #ff0000;">2:</span> Go to previous Space Type entry</p>
             <p><span style="color: #ff0000;">3.</span> Go to next Space Type entry</p>
             <p><span style="color: #ff0000;">4.</span> Add Indexes</p>
-            <h2>Adding an Index</h2>
-            <p>It is recommended to add Indexes as this allows the user to........</p>
+            <p>It is possible to change the name of the Space Type to be different to that of the table name.</p>
+            <h2>Indexes, Space ID and Routing ID</h2>
             <p>
-                <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline19.png" style="width: 555px;height: 234px;" />
+                <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline24.png" />
             </p>
-            <h2>Change Space ID and Routing ID</h2>
-            <p>In order to...........</p>
-            <p>
-                <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline20.png" style="width: 370px;height: 390px;" />
-            </p>
-            <p>Tiered storage - for the future</p>
+            <p>The <b>Indexes</b> area contains the following fields and options:</p>
+            <ul>
+                <li>
+                    <p><b>Index Name</b> – Supply an index name</p>
+                </li>
+                <li>
+                    <p><b>Properties</b> – Select the  columns to be part of this index</p>
+                </li>
+            </ul>
+            <p>&#160;</p>
+            <p>The <b>Space ID</b> area contains the following fields and options:</p>
+            <ul>
+                <li>
+                    <p><b>Position</b> –</p>
+                </li>
+                <li>
+                    <p><b>Primary Key</b> - </p>
+                </li>
+            </ul>
+            <p>&#160;</p>
+            <p>The  <b>Routing ID</b> area contains the following fields and options:</p>
+            <ul>
+                <li>
+                    <p><b>Routing ID</b> – Select a column in order to change the routing key.</p>
+                </li>
+            </ul>
+            <h5>Tiered storage will be part of a future release.</h5>
             <h2>Navigating the Configuration screen -&#160;Fields Tab</h2>
             <div class="tc-admon-note">
                 <p>In the <b>Fields</b> tab of this screen, the <b>Field (column) names</b> are initially the names of the fields from the database table that are included in the data pipeline. These can be edited to provide different property names (column names) in the GigaSpaces object type (table), or to include or exclude it.<br />Other fields in this screen will be editable in a future release.</p>
@@ -107,20 +127,19 @@
                     <p><b>Field (column) names</b> – initially, the names of the fields from the database table, that are included in the data pipeline. These can be edited to provide different property names (column names) in the GigaSpaces object type (table).<br />In this example, the fields are named MEAL_ID, COMPANY_ID, etc.</p>
                 </li>
             </ul>
-            <p>If you click on one of the field names, the <b>Pipeline Fields</b> section appears, which allows you to to edit the field characteristics:<br /></p>
+            <p>
+                <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline22.png" style="width: 990px;height: 414px;" />
+            </p>
+            <p>If you click on one of the field names, the <b>Pipeline Fields</b> section appears, which allows you to edit the field characteristics:<br></br></p>
             <ul>
                 <li>
                     <p><b>Name</b> – name of the field</p>
                 </li>
                 <li>
-                    <p><b>Included Toggle</b> - Can include or exclude the table.</p>
+                    <p><b>Included Toggle</b> - Can include or exclude the a field of the table from the space type.</p>
                 </li>
             </ul>
-            <p>
-                <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline22.png" style="width: 990px;height: 414px;" />
-            </p>
-            <p>Save means I cannot edit it anymore</p>
-            <p>&#160;</p>
+            <p>Once the setup has been completed, return to the main Data Pipelines screen and select save.</p>
             <p>Remove the table and then add it again to be able to edit it again</p>
             <h1>Start the Pipeline</h1>
             <p>Once the pipeline has been defined, it can be started from two different menus.</p>
@@ -158,20 +177,20 @@
                 <p>Once the pipeline has been started, it cannot be edited. To make changes it is necessary to delete the pipeline (from the main data Pipeline screen) and build it again.</p>
             </div>
             <p>After you have added the tables and saved the pipeline, save the changes and press <b>Start</b> to start the pipeline.</p>
-            <p>The pipeline will show as <b>Started</b> in the Data Pipeline Status screen.</p>
-            <div MadCap:conditions="Default.DoNotShow">
-                <h1>Edit the Tables</h1>
-                <p MadCap:conditions="Default.DoNotShow">There is an option to edit a pipeline which has been created.</p>
-                <div class="tc-admon-note">
-                    <p>In order to edit the Pipeline, it first has be stopped</p>
-                </div>
-                <h3>Edit Pipeline – Parameters Tab</h3>
+            <p>The pipeline will show as <b>Started</b> in the Data Pipeline Status screen and <b>Active</b> in the Spaces screen.</p>
+            <h1>Deleting a Pipeline</h1>
+            <p>From the main Data Pipelines screen, it is possible to delete a pipeline</p>
+            <p>
+                <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline25.png" />
+            </p>
+            <p>If you decide to delete a pipeline the following confirmation pop-up screen will be displayed before the action can be completed:</p>
+            <p>
+                <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline26.png" style="width: 500px;height: 196px;" />
+            </p>
+            <div class="tc-admon-note">
+                <p>Once <b>Approve</b> has been clicked, the pipeline is deleted immediately and cannot be restored.</p>
             </div>
             <div MadCap:conditions="Default.DoNotShow">
-                <p MadCap:conditions="Default.DoNotShow">Initially, the Parameters tab will display.</p>
-                <p>
-                    <img src="../../Static/images/spacedeck-data-pipeline-edit.png" style="width: 70%;" />
-                </p>
                 <div MadCap:conditions="Default.DoNotShow">
                     <p>The Parameters tab contains the following fields and options:</p>
                     <ul>
