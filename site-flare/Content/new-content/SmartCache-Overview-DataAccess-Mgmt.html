@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <h1 class="tc-pagetitle" style="text-align: left;"><MadCap:variable name="General.ProductNameXAP" /> Smart Cache - Data Access &amp; Management </h1>
+        <div>
+            <h2>Transaction Processing</h2>
+            <p>Smart Cache provides a powerful solution for launching and running digital services. Its APIs support ultra-fast transaction processing and task execution that is event driven, offering high availability, reliability and scale. Smart Cache’s server side processing accelerates performance and reduces networking and serialization overhead, even during peaks with high numbers of concurrent users. The platform supports both Kubernetes and alternative elastic orchestration systems.</p>
+            <p>Smart Cache offers efficient and cost-effective data replication across regions and clouds, and between cloud and on-premises deployments. It supports both polling and push notifications, including <a href="../dev-java/fifo-overview.html">FIFO</a> and <a href="../dev-java/fifo-grouping.html">FIFO grouping</a> ordering. Business rules can also be applied locally and remotely as they are embedded in each <a href="../admin/data-partitioning.html">partition</a> and on remote nodes.</p>
+            <h2>High Availability</h2>
+            <p>Smart Cache is an always-on, ACID-compliant and secured system, with disaster recovery ensured  through efficient data replication (Active-Passive) between sites, including hybrid environments.</p>
+            <p>&#160;</p>
+            <p style="text-align: center;">
+                <img src="../Resources/Images/SmartCacheHA.png" />
+            </p>
+            <p style="text-align: center;font-style: italic;">Highly Available partitions with primary backup instances</p>
+            <p>&#160;</p>
+            <p>High availability is achieved through the following levels with primary and backup instances:</p>
+            <ol>
+                <li>
+                    <p><b>Partition Level:</b> Highly-available partitions with synchronic data replication between primary  and backup instances for in-memory high availability.</p>
+                </li>
+                <li>
+                    <p><b>Cluster Level</b>: Tier storage and disk persistence, together with built-in mirroring service to an  external database or disk, including initial load and store to database, delivering disk persistence to any storage class or database.</p>
+                </li>
+                <li>
+                    <p><b>Site Level</b>: Efficient asynchronous data replication (active-passive or active-active) between  sites or regions, including hybrid environment for conflict resolution and disaster recovery.</p>
+                </li>
+            </ol>
+            <h2>Multi-Region Replication</h2>
+            <p><a href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication</a> is implemented for disaster recovery planning, where each site is distant from the other sites, even on a different continent; for <a href="../production/production-failover-considerations.html">failover</a> scenarios when one site acts as a failover target for another, or to maintain data locality for performance or regulations. For more information, see Multi-Region Replication.</p>
+            <h2>Distributed WAN Gateway</h2>
+            <p>The <a href="../solution-hub/wan-gateway-distributed.html">distributed WAN Gateway</a> enables bidirectional replication of data between cloud repositories or to and from cloud storage. This distributed WAN Gateway is totally stateless, ensuring no loss of data. Transactions at the local site are replicated in atomic manner in the correct order to the remote sites. Site bootstrapping ensures that once a site starts, it can reload its entire data or specific data from a remote site without introducing data consistency problems.</p>
+            <p>The WAN Gateway replication utilizes a custom plugin that allows users to filter or modify data before it is replicated, and also after it has been replicated at each source or target node. In addition, the WAN replication topology can be updated in runtime - adding or removing remote sites does not result in system shutdown.</p>
+            <div>
+                <h2>Data Tiering</h2>
+                <p>Data is stored in multiple data storage tiers — hot (in-memory), and warm (SSD)					</p>
+                <div>
+                    <p>User-defined business rules allows you to place the most <i>important </i>data in hot storage, while other data can be in warm storage. </p>
+                    <p> GigaSpaces manages the full data lifecycle by automatically storing the relevant data in the relevant tiers, federating the queries under the hood to gather all the data in optimal latency and evicting the data according to various policies, from least-recently-used (LRU) to user custom policies. Click <a href="../admin/intelligent-tiering-details.html">here</a> for more information about tiered storage.</p>
+                    <p style="text-align: center;">
+                        <img src="../Resources/Images/x-tiered-storage-no-border.png" style="width: 633px;height: 394px;" />
+                    </p>
+                </div>
+            </div>
+            <h2>Persistence</h2>
+            <p>Smart Cache <a href="../started/xap-tutorial-part7.html">data persistence</a> consists of two components:</p>
+            <ul>
+                <li>
+                    <p><b>Space Data Source</b>: Handles the pre-loading of data and the lazy load of data from from the persistence layer</p>
+                </li>
+                <li>
+                    <p><b>Space Synchronization Endpoint</b>: Handles changes made within the space delegation to the  persistence layer</p>
+                </li>
+            </ul>
+            <p>This Space persistence provides classes which can be extended and then used to load and store data  in an existing data source. Data is loaded from the data source during space initialization, after which the application works with the space directly.</p>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/attachment_files/qsg/data-grid-sync-persistNew.jpg" alt="image" class="tc-picture80" />
+            </p>
+            <p style="text-align: center;font-style: italic;">Smart Cache Persistency Components</p>
+            <h2>Mirror Service</h2>
+            <p>The GigaSpaces <a href="../dev-java/asynchronous-persistency-with-the-mirror.html">mirror service</a> (write behind) provides reliable asynchronous persistence. This allows for the asynchronous delegation of the operations conducted with the In-Memory-Data-Grid (IMDG) into a backend database, significantly reducing the performance overhead. This service ensures that data will not be lost in the event of a failure.</p>
+            <p>A mirror service can be attached to an application, providing fine-grained control of the objects that need to be persisted, without affecting the real-time portion of the app in either configuration or code. The mirror does not require a backup instance since it does not maintain any state. The actual state of the latest committed database transaction is stored within the primary and the backup space instances, not in the mirror.</p>
+            <p>&#160;</p>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/attachment_files/data-grid-async-persist.jpg" alt="data-grid-async-persist.jpg" class="tc-picture80" />
+            </p>
+            <p style="text-align: center;font-style: italic;">Mirror Service (Write Behind)</p>
+            <h2>Scaling</h2>
+            <p>Smart Cache delivers a scaling process that offers almost no downtime while the system scales. This scaling can be performed both horizontally and vertically, enabling the increase or reduction of the number of partitions allocated to a service.</p>
+            <p>Vertical scaling allows the increase or decrease of the amount of RAM and CPU for an active GigaSpaces cluster – such as the addition of memory or CPUs to an existing physical node - without downtime. Vertical scaling offers many advantages:</p>
+            <p>Resources are located in close physical proximity, enabling faster access to related data such as credit/debit tables that are updated in a closed (atomic) unit of work</p>
+            <p>A performance gain, because more RAM and CPUs are available for each update</p>
+            <p>Horizontal scaling allows adding and reducing the number of partitions used for an application, such as the creation of additional partitions in the same server, or the addition/removal of servers. Horizontal scaling supports linear increases in capacity on-the-fly; RAM or CPU capacity can be increased or decreased while maintaining a constant RAM/CPU ratio.</p>
+            <p>Smart Cache supports the full SQL-99 standard, allowing complex queries to be performed with optimal speed and minimal memory footprint. Standard SQL requests used for relational data manipulation can be used without requiring source code changes. Using Java and .NET APIs, advanced capabilities are available — such as object store, and various data modeling options.</p>
+            <h2>APIs</h2>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/images/CacheAPIs.png" style="width: 644px;height: 361px;" />
+            </p>
+            <div>
+                <p style="text-align: center;">Smart Cache APIs</p>
+            </div>
+            <p>Smart Cache supports the full SQL-99 standard, allowing complex queries to be performed with optimal speed and minimal memory footprint. <a href="https://docs.gigaspaces.com/latest/dev-java/jdbc-driver.html">Standard SQL requests</a> used for relational data manipulation can be used without requiring source code changes. </p>
+            <p>Using Java and .NET APIs, advanced capabilities are available — such as object store, and <a href="https://docs.gigaspaces.com/solution-hub/modeling-your-data.html">various data modeling options</a>.
+</p>
+            <p><a href="https://docs.gigaspaces.com/latest/admin/admin-rest-manager-api.html?Highlight=rest">REST-API</a> and <a href="https://docs.gigaspaces.com/latest/admin/tools-cli.html">command line</a> interfaces are also available.</p>
+            <p>Smart Cache can easily integrate with BI tools such as <a href="https://docs.gigaspaces.com/latest/dev-java/tableau-integration.html">Tableau</a>, Looker, and PowerBI.</p>
+            <h2>Advanced Indexing</h2>
+            <p>Smart Cache provides unlimited amount of secondary <a href="https://docs.gigaspaces.com/latest/dev-java/indexing-overview.html">indexes</a> for the stored data, such as Exact, Range, Collections, Compound, Text, and Geo Spatial for optimal performance.</p>
+            <p>Unlike key-value stores that need to duplicate the entire data store for each defined index,  GigaSpaces  only creates additional indexing data structures on one instance of data. </p>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/images/smart-index-vs-key-value.png" class="tc-picture40" />
+            </p>
+            <p style="text-align: center;">Smart Cache advanced indexing</p>
+            <h2>Customized Routing</h2>
+            <p>When the objects are written to the Data Grid, they are <a href="https://docs.gigaspaces.com/latest/dev-java/routing-in-partitioned-spaces.html?Highlight=routing">routed</a> to the proper partition, according to a predefined attribute in the object that acts as the routing index.
+</p>
+            <p style="text-align: center;">
+                <img src="../Resources/Static/images/Smart-routing-diagram.jpg" style="width: 604px;height: 161px;" />
+            </p>
+        </div>
+    </body>
+</html>
