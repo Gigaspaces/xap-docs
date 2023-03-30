@@ -62,8 +62,66 @@
                 <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline13a.png" />
             </p>
             <div class="tc-admon-note">
-                <p>Tables can also be added from this screen once the pipeline has been started.</p>
+                <p>Once Add is selected, it will take a few seconds to update.</p>
             </div>
+            <h1>Edit the Tables</h1>
+            <div class="tc-admon-important">
+                <p>Editing the table can only be performed during the initial setup and configuration process. The pipeline has to be deleted and configured from new in order to perform this action again.</p>
+            </div>
+            <p>From the <b>Included Table</b>s area of the screen, click Edit</p>
+            <p>
+                <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline13c.png" style="width: 1000px;height: 300px;" />
+            </p>
+            <h2>Navigating the Configuration screen -&#160;Parameters Tab</h2>
+            <p>
+                <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline18.png" style="width: 725px;height: 485px;" />
+            </p>
+            <p><span style="color: #ff0000;">1:</span> Return to Data Pipelines screen</p>
+            <p><span style="color: #ff0000;">2:</span> Go to previous Space Type entry</p>
+            <p><span style="color: #ff0000;">3.</span> Go to next Space Type entry</p>
+            <p><span style="color: #ff0000;">4.</span> Add Indexes</p>
+            <h2>Adding an Index</h2>
+            <p>It is recommended to add Indexes as this allows the user to........</p>
+            <p>
+                <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline19.png" style="width: 555px;height: 234px;" />
+            </p>
+            <h2>Change Space ID and Routing ID</h2>
+            <p>In order to...........</p>
+            <p>
+                <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline20.png" style="width: 370px;height: 390px;" />
+            </p>
+            <p>Tiered storage - for the future</p>
+            <h2>Navigating the Configuration screen -&#160;Fields Tab</h2>
+            <div class="tc-admon-note">
+                <p>In the <b>Fields</b> tab of this screen, the <b>Field (column) names</b> are initially the names of the fields from the database table that are included in the data pipeline. These can be edited to provide different property names (column names) in the GigaSpaces object type (table), or to include or exclude it.<br />Other fields in this screen will be editable in a future release.</p>
+            </div>
+            <p>
+                <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline21.png" style="width: 995px;height: 559px;" />
+            </p>
+            <p>The <b>Fields</b> tab contains the following fields and options:</p>
+            <ul>
+                <li>
+                    <p><b>Field ID</b> – search for a field by field id</p>
+                </li>
+                <li>
+                    <p><b>Field (column) names</b> – initially, the names of the fields from the database table, that are included in the data pipeline. These can be edited to provide different property names (column names) in the GigaSpaces object type (table).<br />In this example, the fields are named MEAL_ID, COMPANY_ID, etc.</p>
+                </li>
+            </ul>
+            <p>If you click on one of the field names, the <b>Pipeline Fields</b> section appears, which allows you to to edit the field characteristics:<br /></p>
+            <ul>
+                <li>
+                    <p><b>Name</b> – name of the field</p>
+                </li>
+                <li>
+                    <p><b>Included Toggle</b> - Can include or exclude the table.</p>
+                </li>
+            </ul>
+            <p>
+                <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline22.png" style="width: 990px;height: 414px;" />
+            </p>
+            <p>Save means I cannot edit it anymore</p>
+            <p>&#160;</p>
+            <p>Remove the table and then add it again to be able to edit it again</p>
             <h1>Start the Pipeline</h1>
             <p>Once the pipeline has been defined, it can be started from two different menus.</p>
             <ol>
@@ -84,26 +142,32 @@
             <p>
                 <img src="../../Images/SpaceDeck/SpaceDeck-Pipeline16.png" />
             </p>
-            <p>Point in time options:</p>
+            <h2>Point in time options:</h2>
             <ul>
                 <li>
-                    <p><b>EARLIEST</b> - <span style="color: #ff0000;">TBD</span></p>
+                    <p><b>EARLIEST</b> - Start a pipeline from the beginning, means whatever is available for consumption in our queue , start processing from the beginning.</p>
                 </li>
                 <li>
-                    <p><b>LATEST</b> -</p>
+                    <p><b>LATEST</b> - Start a pipeline from now , start consuming and processing data from a current message regardless last stored checkpoint.</p>
                 </li>
                 <li>
-                    <p><b>COMMITTED</b> -</p>
+                    <p><b>COMMITTED</b> - Start a pipeline from the last successful processed message (kind of a checkpoint).</p>
                 </li>
             </ul>
-            <p>Then click start to <b>Start</b> the pipeline.</p>
-            <h1>Edit the Pipeline</h1>
-            <p MadCap:conditions="Default.DoNotShow">In order to Edit the pipeline, first it has to be stopped.</p>
-            <h3>Edit Pipeline – Parameters Tab</h3>
             <div class="tc-admon-note">
-                <p>This tab will be supported in a future release.</p>
+                <p>Once the pipeline has been started, it cannot be edited. To make changes it is necessary to delete the pipeline (from the main data Pipeline screen) and build it again.</p>
             </div>
-            <div>
+            <p>After you have added the tables and saved the pipeline, save the changes and press <b>Start</b> to start the pipeline.</p>
+            <p>The pipeline will show as <b>Started</b> in the Data Pipeline Status screen.</p>
+            <div MadCap:conditions="Default.DoNotShow">
+                <h1>Edit the Tables</h1>
+                <p MadCap:conditions="Default.DoNotShow">There is an option to edit a pipeline which has been created.</p>
+                <div class="tc-admon-note">
+                    <p>In order to edit the Pipeline, it first has be stopped</p>
+                </div>
+                <h3>Edit Pipeline – Parameters Tab</h3>
+            </div>
+            <div MadCap:conditions="Default.DoNotShow">
                 <p MadCap:conditions="Default.DoNotShow">Initially, the Parameters tab will display.</p>
                 <p>
                     <img src="../../Static/images/spacedeck-data-pipeline-edit.png" style="width: 70%;" />
@@ -192,14 +256,13 @@
                     </ul>
                 </div>
             </div>
-            <p>&#160;</p>
-            <h3>Edit Pipeline – Fields Tab</h3>
+            <h3 MadCap:conditions="Default.DoNotShow">Edit Pipeline – Fields Tab</h3>
             <p MadCap:conditions="Default.DoNotShow">The Fields tab appears as follows.</p>
-            <div class="tc-admon-note">
+            <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
                 <p>In the <b>Pipeline fields</b> section of this screen, the <b>Field (column) names</b> are initially the names of the fields from the database table that are included in the data pipeline. These can be edited to provide different property names (column names) in the GigaSpaces object type (table).<br />Other fields in this screen will be editable in a future release.</p>
             </div>
             <p>
-                <img src="../../Static/images/spacedeck-data-pipeline-pipeline-change-column-properties.png" style="width: 70%;" />
+                <img src="../../Static/images/spacedeck-data-pipeline-pipeline-change-column-properties.png" style="width: 70%;" MadCap:conditions="Default.DoNotShow" />
             </p>
             <div MadCap:conditions="Default.DoNotShow">
                 <p>The <b>Fields</b> tab contains the following fields and options:</p>
