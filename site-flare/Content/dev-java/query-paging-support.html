@@ -96,7 +96,7 @@
         <p MadCap:conditions="Version.15-2-born">When the client initiates the Space iterator, an iterator is created on the server side. In order to know when to close the iterator that was opened on the server side, there is a timer that measures the activity of the client-side iterator. If the client-side iterator is inactive for a specific period of time, the server-side iterator closes automatically. This parameter, <code>setMaxInactiveDuration</code>, has a default value of 1 minute.</p>
         <p MadCap:conditions="Version.15-2-born">The Space iterator implements the java Closeable interface. On <code>close()</code> invocations, the server-side iterators are also closed.</p>
         <div class="tc-admon-note">
-            <p MadCap:conditions="Version.15-2-born">When using <code>SpaceIteratorType.PREFETCH.UIDS</code>,  <code>setMaxInactiveDuration</code> is not supported.</p>
+            <p MadCap:conditions="Version.15-2-born">When using <code>SpaceIteratorType.PREFETCH.UIDS</code>,  <code>setMaxInactiveDuration</code> is <b>not</b> supported.</p>
         </div>
         <h3 MadCap:conditions="Version.15-2-born">Automatic Activity Renewal</h3>
         <p MadCap:conditions="Version.15-2-born">The Space iterator on the server side is active throughout the lifetime of the iterator on the client side. When the Space iterator is initialized on the client side, a background thread starts that periodically renews the activity duration for the iterator on the server side. The period for this background task is half of the Maximum Inactivity Duration value; when using the default value for the <code>setMaxInactiveDuration</code> parameter, the task is triggered every 30 seconds.</p>
