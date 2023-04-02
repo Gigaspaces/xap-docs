@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <div>
+            <h1 class="tc-pagetitle" style="text-align: left;">DI Kubernetes Components Configuration</h1>
+            <p>The following table contains the configuration for the DI&#160;Kubernetes components.</p>
+            <p style="text-align: left;">&#160;</p>
+            <table>
+                <col style="width: 474px;" />
+                <col style="width: 557px;" />
+                <col style="width: 425px;" />
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>di_flink.rootLoggerLevel</td>
+                        <td>Root Logger Level</td>
+                        <td>INFO</td>
+                    </tr>
+                    <tr>
+                        <td>di_flink.jobmanager.memoryProcessSize</td>
+                        <td>Total Process Memory size for the JobManager</td>
+                        <td>1600m</td>
+                    </tr>
+                    <tr>
+                        <td>di_flink.taskmanager.numberOfTaskSlots</td>
+                        <td>The number of parallel Pipelines. min 1 max 10</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>di_flink.taskmanager.memoryProcessSize</td>
+                        <td>Total Process Memory size for the TaskExecutors</td>
+                        <td>1728m</td>
+                    </tr>
+                    <tr>
+                        <td>tags.iidr</td>
+                        <td>install iidr</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>tags.oracle</td>
+                        <td>install oracle db</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>kafka.enabled</td>
+                        <td>&#160;</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>kafka.replicaCount</td>
+                        <td>&#160;</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>kafka.service.ports.client</td>
+                        <td>client port</td>
+                        <td>9092</td>
+                    </tr>
+                    <tr>
+                        <td>xap.enabled</td>
+                        <td>&#160;</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>xapSingleSpace.enabled</td>
+                        <td>&#160;</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>iidrKafka.envs.bootstrapServers</td>
+                        <td>&#160;</td>
+                        <td>kafka</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

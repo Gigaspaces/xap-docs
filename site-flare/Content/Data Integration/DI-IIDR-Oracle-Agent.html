@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <div>
+            <h1 class="tc-pagetitle" style="text-align: left;">IIDR Oracle Agent Installation</h1>
+            <p style="text-align: left;">For deployment model option 1, the IIDR&#160;source database agent should be installed on a source database server.</p>
+            <p style="text-align: left;">The following instructions should be followed to complete the installation for the IIDR&#160;Oracle Agent.</p>
+            <p style="text-align: left;">&#160;</p>
+            <ol>
+                <li>
+                    <p style="text-align: left;">Login to the Oracle server mcahing as <code class="language-bash">gsods OS user</code></p>
+                </li>
+                <li>
+                    <p>Create a directory where the IIDR&#160;Agent software will be installed.</p>
+                </li><pre>mkdir -p /home/gsods/iidr
+cd /home/gsods/iidr</pre>
+                <li>
+                    <p>Download the IIDR&#160;Oracle Agent to the newly created directory of <code class="language-bash">/home/gsods/iidr</code></p>
+                </li>
+                <li>
+                    <p>The downloaded file should then be used in the setup using the following command (example Agent version used is 11.4.0.4:</p>
+                </li><pre xml:space="preserve">setup -iidr-11.4.0.4-5629-linux-x86.bin</pre>
+                <li>
+                    <p>Ensure that the DISPLAY environment is not set</p>
+                </li><pre>unset DISPLAY</pre>
+                <li>
+                    <p>Begin the IIDR&#160;Oracle installation:</p>
+                </li><pre>chmod u+x setup-iidr-11.4.0.4-5629-linux-x86.bin
+./setup-iidr-11.4.0.4-5629-linux-x86.bin</pre>
+                <li>
+                    <p>Select the Locale (language)</p>
+                </li><pre>Preparing to install
+Extracting the JRE from the installer archive...
+Unpacking the JRE...
+Extracting the installation resources from the installer archive...
+Configuring the installer for this system's environment...
+					
+Launching installer...
+===============================================================================
+Choose Locale...
+----------------
+     1- Deutsch
+   -&gt;2- English
+     3- Español
+     4- Italiano
+     5- Português  (Brasil)
+					
+CHOOSE LOCALE BY NUMBER: 2</pre>
+                <li>
+                    <p>Select "Install new product"</p>
+                </li><pre>Introduction
+InstallAnywhere will guide you through the installation of IBM InfoSphere Data
+Replication 11.4.0.4
+Respond to each prompt to proceed to the next step in the installation.  If
+you want to change something on a previous step, type 'back'.
+						
+You may cancel this installation at any time by typing 'quit'.
+   -&gt;1- Install new product
+     2- Upgrade existing product
+						
+ENTER THE NUMBER FOR YOUR CHOICE, OR PRESS &lt;ENTER&gt; TO ACCEPT THE DEFAULT:: 1</pre>
+                <li>
+                    <p>Select Datastore Type: Oracle (option 8):</p>
+                </li>
+                <p>
+                    <img src="../Resources/Images/DI/IIDR_Oracle1a.png" style="width: 644px;height: 243px;" />
+                </p>
+                <li>
+                    <p>Select the IIDR Offering "IBM&#160;InfoSphere Data Replication" (option 4):</p>
+                </li>
+                <p>
+                    <img src="../Resources/Images/DI/IIDR_Oracle1.png" style="width: 722px;height: 249px;" />
+                </p>
+                <li>Choose the installation folder<code class="language-bash"> /home/gsods/iidr/iidr-oracle</code></li>
+                <li>Accept the license agreement, by entering 1:</li>
+                <img src="../Resources/Images/DI/IIDR_Oracle2.png" style="width: 731px;height: 55px;" />
+                <li>
+                    <p>Click enter, to select to keep the default Instance Folder of IIDR to be under<code class="language-bash"> /home/gsods/iidr/iidr-oracle</code></p>
+                </li>
+                <p>
+                    <img src="../Resources/Images/DI/IIDR_Oracle3.png" style="width: 733px;height: 163px;" />
+                </p>
+                <li>Review the Pre-Installation Summary carefully and then press Enter to start the installation. Note:&#160;This will start the full installation.</li>
+                <img src="../Resources/Images/DI/IIDR_Oracle4.png" style="width: 734px;height: 561px;" />
+                <br />
+                <li>
+                    <p>Upon a successful installation, the following message is displayed:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle5.png" style="width: 739px;height: 205px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>The Configuration Tool will be launched to configure a new instance of the Oracle Agent. &#160;You must provide a name for the new agent instance, in the example below <b>ORACLE</b> is used:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle7.png" style="width: 739px;height: 130px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Accept the <b>default port 11001</b></p>
+                </li>
+                <li>
+                    <p>Change the Staging Store Disk Quota from the default of 100GB to <b>1GB</b></p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle8a.png" style="width: 748px;height: 78px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Accept the default max memory of <b>1024MB</b></p>
+                </li>
+                <li>
+                    <p>Select [n] for a read-only database connection</p>
+                </li>
+                <li>
+                    <p>Select [n] for archive-only mode</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle9.png" style="width: 757px;height: 64px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Select option 1 - <b>Manage Encryption Profile</b></p>
+                </li>
+                <li>
+                    <p>Select option 1 - <b>Add encryption profile:</b></p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle10.png" style="width: 768px;height: 295px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Enter the name <b>profile 1</b> for the encryption profile name.</p>
+                </li>
+                <li>
+                    <p>Select option 2 - Disabled - for the above encryption file:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle11.png" style="width: 776px;height: 197px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Select <b>Enter</b> for the <b>no-private key store</b> option:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle12.png" style="width: 976px;height: 23px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Enter the default path of the trust store:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle13.png" style="width: 980px;height: 20px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Enter the default password to encrypt the trust store:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle14.png" style="width: 976px;height: 22px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Select <b>JKS</b> as the trust store type (this is the default option 1):</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle15.png" style="width: 784px;height: 242px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Complete the encryption profile definition by selecting <b>option 4</b> - <b>Completed management of encryption profiles</b>:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle16.png" style="width: 787px;height: 321px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>On the following screen, the newly created encryption profile is displayed. Select option 1 of the encryption profile -<b>profile1</b>:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle17.png" />
+                    </p>
+                </li>
+                <li>
+                    <p>Select [n] not to use JMS.</p>
+                </li>
+                <li>
+                    <p>Enter the full path to ORACLE_HOME (in this example - /u01/app/oracle.product/19.0.0/dbhome_1):</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle18.png" style="width: 982px;height: 32px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Enter the full path of the <b>tnsnames.ora</b> file. &#160;By default it is located under $ORACLE_HOME/network/admin:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle19.png" style="width: 984px;height: 20px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Select tns alias from the list that connects to the local database, for example ORCL:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle20.png" style="width: 990px;height: 198px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Select [y] for advanced parameters configuration:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle21.png" style="width: 993px;height: 34px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Select NONE&#160;(default) for the JDBC&#160;parameters.</p>
+                </li>
+                <li>
+                    <p>Select [n] (default) for the Kerberos authentication.</p>
+                </li>
+                <li>
+                    <p>Select [n] (default) for database login credentials from an extgernal secret source:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle22.png" style="width: 1003px;height: 67px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Enter the username GSIIDR and the password:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle23.png" />
+                    </p>
+                </li>
+                <li>
+                    <p>Select the GSIIDR schema number from the list. The GSIIDR schema holds the IIDR&#160;objects),</p>
+                </li>
+                <li>
+                    <p>Select [n] to replicate encrypted columns:</p>
+                </li>
+                <p>
+                    <img src="../Resources/Images/DI/IIDR_Oracle24.png" style="width: 802px;height: 429px;" />
+                </p>
+                <li>
+                    <p>Select <b>Local log reading</b> (option 1) for the IIDR&#160;Oracle Agent configuration mode:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle25.png" style="width: 803px;height: 279px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Review the summary and start the Oracle IIDR&#160;Agent instance:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle26.png" style="width: 811px;height: 143px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Review the existing instances:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle27.png" style="width: 814px;height: 216px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Select <b>Exit</b> (option 6) to complete the setup:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/IIDR_Oracle28.png" />
+                    </p>
+                </li>
+                <p>&#160;</p>
+                <p>&#160;</p>
+            </ol>
+        </div>
+    </body>
+</html>

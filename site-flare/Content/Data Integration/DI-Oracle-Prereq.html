@@ -5,7 +5,7 @@
     <body style="text-align: left;">
         <div>
             <h1 class="tc-pagetitle" style="text-align: left;">Oracle Source Prerequisites</h1>
-            <p>The <b>IIDR&#160;Oracle Agent</b>t should be installed on the source database server. Prior to doing so, these requirements have to be completed:</p>
+            <p>The <b>IIDR&#160;Oracle Agent</b>t should be installed on the source database server. Prior to IIDR Oracle Agent installation,  the following requirements have to be completed:</p>
             <ol>
                 <li>
                     <p>1GB disk space.</p>
@@ -14,10 +14,10 @@
                     <p>IIDR Oracle Agent allocates  <b>port 11001</b> for communication with client workstations running Management Console and other servers.</p>
                 </li>
                 <li>
-                    <p>IIDR Oracle agent OS user should be part of the Unix groups that own the Oracle and Oracle ASM files and directories.</p>
+                    <p>IIDR Oracle agent OS user should be part of the Unix groups that own the Oracle and Oracle ASM files and directories. For example, create user named gsods that is part of the Linux group dba (dba group is an OS&#160;users group that owns Oracle data files and directories):</p><pre>useradd -ms /bin/bash gsods -G dba</pre>
                 </li>
                 <li>
-                    <p>Create oracle database user as follows :</p>
+                    <p>Create an oracle database user as follows :</p>
                 </li>
                 <ol style="list-style-type: lower-alpha;">
                     <li>

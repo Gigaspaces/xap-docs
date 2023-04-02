@@ -3,11 +3,11 @@
     <head>
     </head>
     <body style="text-align: left;">
-        <h1 class="tc-pagetitle" style="text-align: left;"><MadCap:variable name="General.ProductNameXAP" /> Smart Cache - Data Access &amp; Management </h1>
+        <h1 class="tc-pagetitle" style="text-align: left;">Smart Cache - Data Access &amp; Management </h1>
         <div>
-            <h2>Transaction Processing</h2>
-            <p>Smart Cache provides a powerful solution for launching and running digital services. Its APIs support ultra-fast transaction processing and task execution that is event driven, offering high availability, reliability and scale. Smart Cache’s server side processing accelerates performance and reduces networking and serialization overhead, even during peaks with high numbers of concurrent users. The platform supports both Kubernetes and alternative elastic orchestration systems.</p>
-            <p>Smart Cache offers efficient and cost-effective data replication across regions and clouds, and between cloud and on-premises deployments. It supports both polling and push notifications, including <a href="../dev-java/fifo-overview.html">FIFO</a> and <a href="../dev-java/fifo-grouping.html">FIFO grouping</a> ordering. Business rules can also be applied locally and remotely as they are embedded in each <a href="../admin/data-partitioning.html">partition</a> and on remote nodes.</p>
+            <h2>Data Processing</h2>
+            <p>Smart Cache provides a powerful solution for data processing, launching, and running digital services. Its APIs support ultra-fast <a href="../dev-dotnet/xapnet-tutorial-part6.html">transaction</a> processing, data filters, task execution, remote services, aggregations, change API, and <a href="../started/xap-tutorial-part4.html">event-driven</a> business rules. It also supports both polling and pushing notifications, including <a href="../dev-java/fifo-overview.html">FIFO</a> and <a href="../dev-java/fifo-grouping.html">FIFO grouping</a> ordering. Business rules can be applied locally on each <a href="../admin/data-partitioning.html">partition</a> or remotely on the client side.</p>
+            <p>distributed server-side processing accelerates performance and reduces networking and serialization overhead, even during peaks with high numbers of concurrent users</p>
             <h2>High Availability</h2>
             <p>Smart Cache is an always-on, ACID-compliant and secured system, with disaster recovery ensured  through efficient data replication (Active-Passive) between sites, including hybrid environments.</p>
             <p>&#160;</p>
@@ -25,14 +25,12 @@
                     <p><b>Cluster Level</b>: Tier storage and disk persistence, together with built-in mirroring service to an  external database or disk, including initial load and store to database, delivering disk persistence to any storage class or database.</p>
                 </li>
                 <li>
-                    <p><b>Site Level</b>: Efficient asynchronous data replication (active-passive or active-active) between  sites or regions, including hybrid environment for conflict resolution and disaster recovery.</p>
+                    <p><b>Site Level</b>: Efficient asynchronous data replication (active-passive or active-active) between sites or regions, including hybrid environment cloud-on-premise, allowing custom conflict resolution.</p>
                 </li>
             </ol>
-            <h2>Multi-Region Replication</h2>
-            <p><a href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication</a> is implemented for disaster recovery planning, where each site is distant from the other sites, even on a different continent; for <a href="../production/production-failover-considerations.html">failover</a> scenarios when one site acts as a failover target for another, or to maintain data locality for performance or regulations. For more information, see Multi-Region Replication.</p>
-            <h2>Distributed WAN Gateway</h2>
-            <p>The <a href="../solution-hub/wan-gateway-distributed.html">distributed WAN Gateway</a> enables bidirectional replication of data between cloud repositories or to and from cloud storage. This distributed WAN Gateway is totally stateless, ensuring no loss of data. Transactions at the local site are replicated in atomic manner in the correct order to the remote sites. Site bootstrapping ensures that once a site starts, it can reload its entire data or specific data from a remote site without introducing data consistency problems.</p>
-            <p>The WAN Gateway replication utilizes a custom plugin that allows users to filter or modify data before it is replicated, and also after it has been replicated at each source or target node. In addition, the WAN replication topology can be updated in runtime - adding or removing remote sites does not result in system shutdown.</p>
+            <h2>Multi-Site Replication</h2>
+            <p><a href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication</a> is implemented for disaster recovery planning, where each site is distant from the other sites, even on a different continent; for <a href="../production/production-failover-considerations.html">failover</a> scenarios when one site acts as a failover target for another, or to maintain data locality for performance or regulations. </p>
+            <p>There could be several reason for site replication including disaster recovery, regulations, exposing some data on cloud and locality. For more information, see <a href="../solution-hub/wan-gateway-distributed.html">Distributed WAN&#160;Gateway</a>,</p>
             <div>
                 <h2>Data Tiering</h2>
                 <p>Data is stored in multiple data storage tiers — hot (in-memory), and warm (SSD)					</p>
@@ -94,8 +92,8 @@
             </p>
             <p style="text-align: center;">Smart Cache advanced indexing</p>
             <h2>Customized Routing</h2>
-            <p>When the objects are written to the Data Grid, they are <a href="https://docs.gigaspaces.com/latest/dev-java/routing-in-partitioned-spaces.html?Highlight=routing">routed</a> to the proper partition, according to a predefined attribute in the object that acts as the routing index.
-</p>
+            <p>When the objects are written to the Data Grid, they are <a href="https://docs.gigaspaces.com/latest/dev-java/routing-in-partitioned-spaces.html?Highlight=routing">routed</a> to the proper partition, according to a predefined logic defined in the object that acts as the routing index.
+More information can be found on <a href="../dev-java/routing-in-partitioned-spaces.html">Routing in Partitioned Spaces</a>. By default, data is distributed according to the routing, but there are tables which are exceptions to this which are replicated on each partition and link to broadcast tables - see <a href="../dev-java/broadcast-objects.html">Broadcast Objects</a>, for more information.</p>
             <p style="text-align: center;">
                 <img src="../Resources/Static/images/Smart-routing-diagram.jpg" style="width: 604px;height: 161px;" />
             </p>

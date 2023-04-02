@@ -7,7 +7,7 @@
             <h1 class="tc-pagetitle" style="text-align: left;">DI Deployment Models</h1>
             <h2>Option 1: IIDR&#160;Agent On-Prem and&#160;DI in Kubernetes Cloud</h2>
             <p>This is the recommended deployment model for when the IIDR database source agent, such as Oracle, MSSQL, DB2, is running on-prem inside a source database server whilst all the remaining DI components are running in a Kubernetes cloud environment.</p>
-            <h3>Deployment Model Prerequisites</h3>
+            <h2>Deployment Model Prerequisites</h2>
             <ol>
                 <li>
                     <p>VPN is configured between the on-prem deployment and AWS&#160;Kubernetes segment</p>
@@ -26,7 +26,7 @@
             <h1>Option 2: All IIDR&#160;Components On-Prem and DI in a Kubernetes Cloud</h1>
             <p>This deployment model allows installation of all IIDR related resources on-premises while the rest of a DI layer should be run in a Kubernetes cloud environment.</p>
             <p>This deployment can be useful when the source database network segment cannot be accessed directly from the cloud segment. When such a network constraint is present, the IIDR AS with IIDR Kafka Agent can be installed on a local Linux server that is located on-prem and resides in a network segment that has access to the database server network.</p>
-            <h3>Deployment Model Prerequisites</h3>
+            <h2>Deployment Model Prerequisites</h2>
             <ol>
                 <li>
                     <p>VPN is configured between the on-prem deployment and AWS&#160;Kubernetes segment</p>
@@ -35,12 +35,50 @@
                     <p>IIDR&#160;Source Database Agent software can be installed and configured on the source database server</p>
                 </li>
                 <li>
-                    <p>There is a bi-directional working network communication between the IIDR&#160;Components and DI&#160;Components in AWS</p>
+                    <p>There is a bi-directional working network communication between the IIDR&#160;components and DI&#160;components in AWS</p>
                 </li>
             </ol>
             <p>&#160;</p>
             <p style="text-align: center;">
-                <img src="../Resources/Images/DI Option 2 Deploy Model.png" style="width: 741px;height: 414px;" />
+                <img src="../Resources/Images/DI/DIDeplOpt2.png" />
+            </p>
+            <h1>Option 3: IIDR&#160;with Remote Source Database Engine</h1>
+            <p>This deployment model can be useful when the IIDR agent is not allowed to be installed on a source database server.  In this case the IIDR remote agent can be used in order to connect to the source database.</p>
+            <p>IIDR source database remote agent is supported for:</p>
+            <ol>
+                <li>
+                    <p>Db2 zos database as a source</p>
+                </li>
+                <li>
+                    <p>Oracle database as a source</p>
+                </li>
+            </ol>
+            <p>IIDR remote agent can <b>not</b> be used with:</p>
+            <ol>
+                <li>
+                    <p>Db2 AS-400 database as a source</p>
+                </li>
+                <li>
+                    <p>MSSQL database as a source</p>
+                </li>
+            </ol>
+            <div class="tc-admon-important">
+                <p>Oracle database log files (redo logs) should be physically accessible by the IIDR remote agent, &#160;This is achieved by ensuring the Oracle redo logs and archive files are located on a shared NFS location that can be accessed from the server where the IIDR Oracle agent is running,</p>
+            </div>
+            <h2>Deployment Model Prerequisites</h2>
+            <ol>
+                <li>
+                    <p>VPN is configured between the on-prem deployment and AWS&#160;Kubernetes segment</p>
+                </li>
+                <li>
+                    <p>IIDR&#160;Source Database Agent software can be installed and configured on the source database server</p>
+                </li>
+                <li>
+                    <p>There is a bi-directional working network communication between the IIDR&#160;Source Agent and DI&#160;Components in AWS</p>
+                </li>
+            </ol>
+            <p style="text-align: center;">
+                <img src="../Resources/Images/DI/DIDeplOpt3.png" />
             </p>
         </div>
     </body>

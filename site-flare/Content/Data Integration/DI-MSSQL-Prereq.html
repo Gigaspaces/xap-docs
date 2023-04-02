@@ -5,7 +5,8 @@
     <body style="text-align: left;">
         <div>
             <h1 class="tc-pagetitle" style="text-align: left;">MSSQL Source Prerequisites</h1>
-            <p>The <b>IIDR&#160;MSSQL Agent</b> should be installed on the source MSSQL server. Prior to doing so, the following requirements have to be completed:</p>
+            <p>The <b>IIDR&#160;MSSQL Agent</b> should be installed on the source MSSQL server. </p>
+            <p>Prior to IIDR MSSQL Agent installation,  the following requirements have to be completed:</p>
             <ol>
                 <li>
                     <p>1GB disk space.</p>
@@ -27,10 +28,10 @@
                         <p>For the GSIIDR login user, there are two options for configuring the required database privileges:</p>
                         <ol style="list-style-type: lower-roman;">
                             <li>
-                                <p>sysadmin role: This option is the simplest because it enables CDC&#160;Replication to execute the necessary statements to set up additional items that are necessary for replication.</p>
+                                <p><b>sysadmin role:</b> This option is the simplest because it enables CDC&#160;Replication to execute the necessary statements to set up additional items that are necessary for replication.</p>
                             </li>
                             <li>
-                                <p style="font-weight: bold;"><span style="font-weight: normal;">dbowner role with additional required set privileges. &#160;This is the full set of MSSQL of privileges</span>: <b><a href="https://github.com/Gigaspaces/TechDocRef/blob/main/MSSQL-IIDR-Schema-Privileges" style="font-weight: normal;">MSSQL IIDR Schema Privileges</a></b> </p>
+                                <p style="font-weight: bold;"><span style="font-weight: normal;">dbowner role + additional required set privileges. &#160;This is the full set of MSSQL of privileges</span>: <b><a href="https://github.com/Gigaspaces/TechDocRef/blob/main/MSSQL-IIDR-Schema-Privileges" style="font-weight: normal;">MSSQL IIDR Schema Privileges</a></b> </p>
                             </li>
                         </ol>
                     </li>
@@ -56,7 +57,7 @@
                     <p>Enable TCP/IP network protocol on the MSSQL&#160;server.</p>
                 </li>
                 <li>
-                    <p>MSSQL&#160;recovery model should be configured to a "Full" recovery model.</p>
+                    <p>MSSQL&#160;recovery model should be configured to a <b>Full</b> recovery model.</p>
                 </li>
             </ol>
         </div>
