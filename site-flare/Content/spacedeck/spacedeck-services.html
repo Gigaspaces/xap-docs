@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <map id="map1">
+            <area shape="rectangle" coords="31,228,438,655" dragDirection="0" />
+            <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
+            <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
+        </map>
+        <h1 class="tc-pagetitle">SpaceDeck – Services</h1>
+        <p>This part of the system allows you to create and execute low code data services.</p>
+        <h1>View List of Services</h1>
+        <p>The main screen displays a list of services. &#160;For our example, there have been three services created which have different statuses:</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services1.png" style="width: 966px;height: 408px;" />
+        </p>
+        <h2>Services&#160;Fields</h2>
+        <ul>
+            <li>
+                <p><b>SERVICE NAME</b> – the name you define to the data source</p>
+            </li>
+            <li>
+                <p><b>STATUS</b> – The status of the service:</p>
+                <ul style="list-style-type: circle;">
+                    <li>
+                        <p><b>Undeployed</b>: a service that has been deployed and is not underployed for edit purposes.</p>
+                    </li>
+                    <li>
+                        <p><b>Deployed:</b> Ready for external execution</p>
+                    </li>
+                    <li>
+                        <p><b>Created:</b> a service that has not been deployed and can still be edited,</p>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><b>SPACE&#160;NAME</b> – The name of the space to which the service is associated.</p>
+            </li>
+            <li>
+                <p><b>URL</b> – The URL of the service.</p>
+            </li>
+            <li>
+                <p><b>DESCRIPTION</b> – a free-format description of the service</p>
+            </li>
+            <li>
+                <p><b>REPLICAS</b> – The amount of replicas. If it is a large service, it is recommended to define more than 1 so it can be balanced over multiple instances.</p>
+            </li>
+        </ul>
+        <h2>Create a Service - Configuration</h2>
+        <p>From the main Services screen, click on <b>New +</b></p>
+        <p>The following configuration screen is displayed - the mandatory fields are outlined in red:</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services5.png" style="width: 850px;height: 535px;" />
+        </p>
+        <h2>Services Configuration Parameters</h2>
+        <ul>
+            <li>
+                <p><b>(Source drop-down list)</b> – Choose which GigaSpaces Space object the service should be executed against.</p>
+            </li>
+            <li>
+                <p><b>Load Query</b>: Displays a list of previously saved and run queries.</p>
+            </li>
+            <li>
+                <p><b>Service Name:</b> Provide a unique name for the service.</p>
+            </li>
+            <li>
+                <p><b>Replicas:</b> How many replicas are being used.</p>
+            </li>
+            <li>
+                <p><b>Description:</b>&#160;Description of the service you are creating.</p>
+            </li>
+            <li>
+                <p><b>(Body of the service)</b> – enter a SQL-99 compliant service. Initially there is an example query service displayed in gray, As soon as you lick on that area, it is replaced by a blank screen ready for you to create your service. The results of the example service are also displayed (MIN_AGE, MAX_AGE).</p>
+                <p><b>Retrieve first</b> – limit the query response to the desired number of rows. A maximum of 10,000 rows can be retrieved.</p>
+            </li>
+        </ul>
+        <h1>Run or Save the Query</h1>
+        <p>Click <b>Run Query</b> to test the query. The query results will be displayed.</p>
+        <p>Click <b>Save query</b> to save the query which will then be accessible via the Load Query dropdown.</p>
+        <p>Click <b>Create Service</b> to create and deploy a servive.</p>
+    </body>
+</html>

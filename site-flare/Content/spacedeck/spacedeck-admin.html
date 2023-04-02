@@ -15,8 +15,8 @@
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin1.png" style="width: 930px;height: 453px;" />
         </p>
         <p id="YES-TOC">.</p>
-        <h1>General&#160;Setup - Connection</h1>
-        <p>Once the connection fields are filled in, click <b>Apply</b>.</p>
+        <h1>General&#160;Setup </h1>
+        <p>Populate the Connection fields in order to configure SSO. Once they are populated, click <b>Apply</b>.</p>
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin2.png" style="width: 1135px;height: 292px;" />
         </p>
@@ -32,7 +32,7 @@
                 <p><b>Redirect URIs</b> – Upon successful sign-in, this endpoing in our server will receive the data from the IDP,</p>
             </li>
             <li>
-                <p><b>Issue&#160;URL</b> – URL&#160;of the IDP&#160;issuer. &#160;For example, Okta, AWS, Github.</p>
+                <p><b>Issue&#160;URL</b> – URL&#160;of the IDP&#160;issuer. &#160;For example, Okta, JumpCloud, AWS, Github.</p>
             </li>
             <li>
                 <p><b>Client Id</b> – Unlike the Provider ID, this ID serves as a unique identifier which the IDP generates to the user so they can identify with it,</p>
@@ -44,38 +44,39 @@
                 <p><b>Authorization Grant Type</b> – Each IDP has rules regarding how roles are grouped. These rules have an arbitrary name provided by the IDP. The roles user must use this name to create the roles.</p>
             </li>
         </ul>
-        <p>Enter the connection details and click <b>Apply</b>. </p>
-        <h2>Roles Management</h2>
-        <p>Roles Management configures the....</p>
-        <p>Create a new role by clicking  <b>Create New Role</b></p>
+        <p>Once the connection details are entered, click <b>Apply</b>. </p>
+        <h1>Roles Management</h1>
+        <p>Each role that is configured will have certain roles assigned to it.</p>
+        <p>There are two default roles that are included with the installation which cannot be edited: ROLE_ADMIN and ROLE_MNGR. </p>
+        <p>To see which roles are applied to them, click on the role. </p>
+        <p> <img src="../Resources/Images/SpaceDeck/SpaceDeck-Login4_default.png" style="width: 907px;height: 159px;" /></p>
+        <p>Create a new role by clicking  <b>New +</b> to access the role setup page.</p>
+        <p>On the setup page:</p>
+        <ol>
+            <li>
+                <p>Provide a name for the new role. In our example it is ROLE_DEMO_USER.</p>
+            </li>
+            <li>
+                <p>Provide a description of the role.</p>
+            </li>
+            <li>
+                <p>Select which permissions the role should have by selecting from the list and using the right-arrow to move the role into the list on the right.</p>
+            </li>
+            <li>
+                <p>Click <b>Apply</b></p>
+            </li>
+        </ol>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin3.png" style="width: 1042px;height: 245px;" />
+            <img src="../Resources/Images/SpaceDeck/99.png" style="width: 830px;height: 412px;" />
         </p>
+        <p>&#160;</p>
+        <p>Once apply is click the following screen is displayed, where you can see the new role has now been added.</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/12.png" style="width: 929px;height: 194px;" />
+        </p>
+        <p>List of Roles:</p>
         <p><span style="color: #ff0000;">TBD</span>
         </p>
         <p>&#160;</p>
-        <p>The Configuration screen will display:</p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck_DS2.png" style="width: 1028px;height: 400px;" />
-        </p>
-        <h2>Data Source Fields</h2>
-        <ul>
-            <li>
-                <p><b>Date Source Name</b> – the name you define to the data source.</p>
-            </li>
-            <li>
-                <p><b>Data Source Type</b> – the database type for the data source, as defined in the System of Record.</p>
-            </li>
-            <li>
-                <p><b>URL</b> – the URL for the data source.</p>
-            </li>
-            <li>
-                <p><b>Username </b>and<b> Password</b> – the credentials for accessing the data source.</p>
-            </li>
-            <li>
-                <p><b>Description</b> – a free-format description of the data source.</p>
-            </li>
-        </ul>
-        <p>Enter the configuration details and click <b>Save Connection</b>, The new data source will be included in the list in the  Data Sources screen.</p>
     </body>
 </html>
