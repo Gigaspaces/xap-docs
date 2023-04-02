@@ -539,14 +539,34 @@ ul._Skins_Section_Menu_2023 > li > a {
   display: none;
 }
 
-ul._Skins_Section_Menu_2023 ul {
+ul._Skins_Section_Menu_2023 ul, div.image-tiles {
   display: flex;
   justify-content: flex-start;
   margin: 0 0px 0 -20px;
   flex-wrap: wrap;
 }
 
-ul._Skins_Section_Menu_2023 ul > li {
+div.image-tiles {
+  margin-left: -10px;
+}
+
+div.image-tiles img {
+  align-self: center;
+}
+
+div.image-tiles p {
+  display: flex;
+	justify-content: center;
+}
+
+div.image-tiles p > a {
+  display: flex;
+  justify-content: center;
+  padding: 0 10px!important;
+}
+
+ul._Skins_Section_Menu_2023 ul > li, div.image-tiles p {
+  background: white;
   width: 200px;
   position: relative;
   height: 120px;
@@ -559,7 +579,7 @@ ul._Skins_Section_Menu_2023 ul > li {
   display: none;
 }
 
-ul.menu._Skins_Section_Menu_2023.mc-component ul > li > a {
+ul.menu._Skins_Section_Menu_2023.mc-component ul > li > a, div.image-tiles p > a {
   transition: 0.2s linear;
   position: absolute;
   width: 100%;
