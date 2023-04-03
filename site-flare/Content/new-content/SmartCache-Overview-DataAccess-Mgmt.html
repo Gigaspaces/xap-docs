@@ -30,7 +30,6 @@
             </ol>
             <h2>Multi-Site Replication</h2>
             <p><a href="../dev-java/multi-site-replication-overview.html">Multi-Region Replication</a> is implemented for disaster recovery planning, where each site is distant from the other sites, even on a different continent; for <a href="../production/production-failover-considerations.html">failover</a> scenarios when one site acts as a failover target for another, or to maintain data locality for performance or regulations. </p>
-            <p>There could be several reason for site replication including disaster recovery, regulations, exposing some data on cloud and locality. For more information, see <a href="../solution-hub/wan-gateway-distributed.html">Distributed WAN&#160;Gateway</a>,</p>
             <div>
                 <h2><a name="DataTiering"></a>Data Tiering</h2>
                 <p>Data is stored in multiple data storage tiers — hot (in-memory), and warm (SSD)					</p>
@@ -66,12 +65,11 @@
             </p>
             <p style="text-align: center;font-style: italic;">Mirror Service (Write Behind)</p>
             <h2>Scaling</h2>
-            <p>Smart Cache delivers a scaling process that offers almost no downtime while the system scales. This scaling can be performed both horizontally and vertically, enabling the increase or reduction of the number of partitions allocated to a service.</p>
+            <p>Smart Cache delivers a <a href="../production/production-Rescaling-your-application-in-GigaSpaces.html">scaling process</a> that offers almost no downtime while the system scales. This scaling can be performed both horizontally and vertically, enabling the increase or reduction of the number of partitions allocated to a service.</p>
             <p>Vertical scaling allows the increase or decrease of the amount of RAM and CPU for an active GigaSpaces cluster – such as the addition of memory or CPUs to an existing physical node - without downtime. Vertical scaling offers many advantages:</p>
             <p>Resources are located in close physical proximity, enabling faster access to related data such as credit/debit tables that are updated in a closed (atomic) unit of work</p>
             <p>A performance gain, because more RAM and CPUs are available for each update</p>
             <p>Horizontal scaling allows adding and reducing the number of partitions used for an application, such as the creation of additional partitions in the same server, or the addition/removal of servers. Horizontal scaling supports linear increases in capacity on-the-fly; RAM or CPU capacity can be increased or decreased while maintaining a constant RAM/CPU ratio.</p>
-            <p>Smart Cache supports the full SQL-99 standard, allowing complex queries to be performed with optimal speed and minimal memory footprint. Standard SQL requests used for relational data manipulation can be used without requiring source code changes. Using Java and .NET APIs, advanced capabilities are available — such as object store, and various data modeling options.</p>
             <h2>APIs</h2>
             <p style="text-align: center;">
                 <img src="../Resources/Static/images/CacheAPIs.png" style="width: 644px;height: 361px;" />
@@ -93,7 +91,7 @@
             <p style="text-align: center;">Smart Cache advanced indexing</p>
             <h2>Customized Routing</h2>
             <p>When the objects are written to the Data Grid, they are <a href="https://docs.gigaspaces.com/latest/dev-java/routing-in-partitioned-spaces.html?Highlight=routing">routed</a> to the proper partition, according to a predefined logic defined in the object that acts as the routing index.
-More information can be found on <a href="../dev-java/routing-in-partitioned-spaces.html">Routing in Partitioned Spaces</a>. By default, data is distributed according to the routing, but there are tables which are exceptions to this which are replicated on each partition and link to broadcast tables - see <a href="../dev-java/broadcast-objects.html">Broadcast Objects</a>, for more information.</p>
+More information can be found on <a href="../dev-java/routing-in-partitioned-spaces.html">Routing in Partitioned Spaces</a>. By default, data is distributed according to the routing, but there are tables which are exceptions to this which are replicated on each partition - see <a href="../dev-java/broadcast-objects.html">Broadcast Objects</a>, for more information.</p>
             <p style="text-align: center;">
                 <img src="../Resources/Static/images/Smart-routing-diagram.jpg" style="width: 604px;height: 161px;" />
             </p>
