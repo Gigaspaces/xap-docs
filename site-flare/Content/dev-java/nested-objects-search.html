@@ -9,18 +9,18 @@
             <p>When there are Java POJO classes that are not made of primitive type fields only, those objects are available for retrieval through SQL.</p>
             <p>It is also possible to store an original JSON document in its original form within a Space and retrieve its data through SQL.</p>
             <p>&#160;</p>
-            <p>Syntax: to select nested field was used  JSONPath expression (each next nested level accessing by “.”, getting value from array by integer index - [int] and from map by spring key - ['stringKey'])</p>
+            <p>Syntax: to select nested field by using  JSONPath expression (each next nested level accessing by “.”, getting value from array by integer index - [int] and from map by spring key - ['stringKey'])</p>
             <p>&#160;</p>
             <ol>
                 <li>
-                    <p>identifier with simple nesteds (ISN) has such view:</p><pre>baseField1:nestedFieldDeep1.nestedFieldDeep2….nestedFieldDeepN</pre>
+                    <p>Identifier with simple nesteds (ISN) has such view:</p><pre>baseField1:nestedFieldDeep1.nestedFieldDeep2….nestedFieldDeepN</pre>
                 </li>
                 <li>
-                    <p>identifier with array nesteds (IAN) has such view:</p><pre xml:space="preserve">baseField1:nestedFieldDeep1[intArrayIndex | *].nestedFieldDeep2 | *….nestedFieldDeepN - as the index in square brackets only 
+                    <p>Identifier with array nesteds (IAN) has such view:</p><pre xml:space="preserve">baseField1:nestedFieldDeep1[intArrayIndex | *].nestedFieldDeep2 | *….nestedFieldDeepN - as the index in square brackets only 
 &gt;= 0 numbers have to be used</pre>
                 </li>
                 <li>
-                    <p>identifier with map nesteds (IMN) has such view:</p><pre xml:space="preserve">baseField1:nestedFieldDeep1[‘stringMapKey’  | *].nestedFieldDeep2 | *….nestedFieldDeepN  - as the key in square brackets only 
+                    <p>Identifier with map nesteds (IMN) has such view:</p><pre xml:space="preserve">baseField1:nestedFieldDeep1[‘stringMapKey’  | *].nestedFieldDeep2 | *….nestedFieldDeepN  - as the key in square brackets only 
 &gt;= 0 numbers have to be used</pre>
                 </li>
             </ol>

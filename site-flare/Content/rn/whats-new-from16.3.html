@@ -8,7 +8,7 @@
         <p>This section describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
         <h1>New Features and Functionality</h1>
         <h1>Introducing SpaceDeck</h1>
-        <p>GigaSpaces new User Interface<i><MadCap:xref href="../spacedeck/spacedeck-overview.html">GigaSpaces SpaceDeck</MadCap:xref></i> is now available for Smart DIH users. </p>
+        <p>GigaSpaces new User Interface<i><MadCap:xref href="../spacedeck/spacedeck-overview.html">GigaSpaces SpaceDeck</MadCap:xref></i> is now fully available for Smart DIH users. </p>
         <p>SpaceDeck is the ultimate command and control center for the Digital Integration Hub (Smart DIH). It is a secure and fast data ops solution that democratizes your data!</p>
         <div class="tc-admon-note">
             <p>&#160;For Smart DIH SpaceDeck does not yet cover all functionality. Our<MadCap:xref href="../admin/gs-ops-manager-overview.html"> Ops Manager</MadCap:xref> UI is still used to manage <a href="platform-access.html">certain functionality</a>. SpaceDeck is initially available for SmartDIH installations, and will be extended in future releases to eventually replace the older UIs. Smart Cache also uses <MadCap:xref href="../admin/tools-desktop-ui.html">GigaSpaces Management Center</MadCap:xref> and <MadCap:xref href="../admin/tools-web-ui.html">Web Management Console</MadCap:xref>.</p>
@@ -16,7 +16,10 @@
         <p>SpaceDeck includes the following features:</p>
         <ul>
             <li>
-                <p>Hosts - XXXX</p>
+                <p><a href="../spacedeck/spacedeck-hosts.html" style="text-decoration: none;">Hosts</a>: displays hosts information with ability to drill-down for additional details such as System Information and Containers.</p>
+            </li>
+            <li>
+                <p><a href="../spacedeck/spacedeck-admin.html">Admin:</a> Provides security authentication, user management and connection via IDP.</p>
             </li>
         </ul>
         <ul>
@@ -31,57 +34,29 @@
                     <MadCap:xref href="../spacedeck/spacedeck-data-pipeline-overview.html" class="data-pipeline">Data Pipeline</MadCap:xref>: display data pipeline details such as monitoring, source table/s in the System of Record, resulting Object in GigaSpaces, and parameters of the data connection. Also allows quick one-click creation of new data pipelines.</p>
             </li>
             <li>
-                <p>Services - XXXX</p>
+                <p><a href="../spacedeck/spacedeck-services.html" style="text-decoration: none;">Services</a>: Creating and testing queries via JDBC v3 format and creating services out of it. Create service will deploy a REST service that will ruin the query. For use in client services, which are applications that interact with Spaces.</p>
             </li>
             <li>
                 <p>
                     <MadCap:xref href="../spacedeck/spacedeck-data-query.html" class="data-query-2">Data Query</MadCap:xref>: Querying the data using SQL commands, supporting full ANSI SQL-99 syntax.</p>
             </li>
         </ul>
-        <h1>Data Pipeline/Data Integration Enhancements</h1>
+        <h1>Data Integration (DI) Layer - DIH&#160;Only</h1>
         <ul>
             <li>
-                <p>
-                    <MadCap:xref href="../DIH/data-integration.html" class="Out-of-the-box-integration-logic-and-generic-data-pipelines">Out of the box integration logic and generic data pipelines</MadCap:xref> dramatically shortens time-to-market for new digital services and minimizes service downtime.</p>
-                <ul>
-                    <li>
-                        <p>Data pipeline support is enhanced to include DB2 on IBM iSeries (AS/400), in addition to previously-supported IBM z/OS mainframe.</p>
-                    </li>
-                </ul>
+                <p>Introducing the <a href="../Data Integration/DI-Intro.html">Data Integration (DI)</a> layer, which is a vital part of the Digital Integration Hub (DIH) platform. DI is the gateway for incoming data into the Data Integration Hub (DIH) system. This is deployed via Kubernetes only. The DI components are delivered as part of the GigaSpaces DIH Package. DI contains four components which are responsible for reading and analyzing Kafka messages and for pushing them into the Space. DI is responsible for a wide range of data integration tasks as ingesting data in batches or streaming data changes. DI integrates with DB2 on AS/400, Oracle and MSSQL databases. It also contains the  IBM Infosphere Data Replication (IIDR) which is a connector engine for data pipelines.</p>
             </li>
         </ul>
-        <h1>SQL Enhancements</h1>
+        <h1>SQL Over&#160;Nested Objects Search</h1>
         <ul>
             <li>
-                <p>Document Support in SQL – queries for <MadCap:xref href="../dev-java/query-nested-properties.html" class="nested-objects">nested objects</MadCap:xref> can now be accessed <MadCap:xref href="../admin/admin-query-space.html#For_example,_to_query_a_specific_class" class="sql-select-where">via the SQL SELECT statement and the WHERE clause</MadCap:xref>.</p>
+                <p><a href="../dev-java/sql-supported-syntax.html" style="text-decoration: none;">JDBC V3</a> supported syntax in SQL for  <a href="../dev-java/nested-objects-search.html" style="text-decoration: none;">nested objects search</a>  is now available. The object (one-to-one) or array (one-to-many) relationships defined in the schema can be used to make a nested query. That is, fetch data for a type along with data from a nested or related type.</p>
             </li>
         </ul>
-        <p>&#160;</p>
-        <ul>
-            <li>
-                <p>
-                    <MadCap:xref href="../DIH/data-integration.html" class="Out-of-the-box-integration-logic-and-generic-data-pipelines">Out of the box integration logic and generic data pipelines</MadCap:xref> dramatically shortens time-to-market for new digital services and minimizes service downtime.</p>
-                <ul>
-                    <li>
-                        <p> IBM Infosphere Data Replication (IIDR) is available as an out-of-the-box connector engine for data pipelines. </p>
-                    </li>
-                    <li>
-                        <p>Data pipeline support is enhanced to include DB2 on IBM z/OS mainframe<MadCap:conditionalText MadCap:conditions="Default.DoNotShow">, Oracle and MS&#160;SQL Server</MadCap:conditionalText>.</p>
-                    </li>
-                    <li>
-                        <p>Generic declarative data loader can load any data based on configuration per data source.</p>
-                    </li>
-                    <li>
-                        <p>Ensure business continuity while changing the data schema (adding tables) and reloading data.</p>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <h1 MadCap:conditions="Version.15-2-only">Kubernetes Improvements</h1>
-        <p MadCap:conditions="Version.15-2-only">This release provides the following improvements for Kubernetes-based <MadCap:variable name="General.ProductNameXAP" /> applications:</p>
-        <p MadCap:conditions="Version.15-2-only">&#160;</p>
+        <h1>Smart DIH&#160;Installation via Kubernetes</h1>
+        <p>Smart DIH can now be installed via Kubernetes. </p>
         <h1>Third-Party Integration License Agreements</h1>
-        <p>There are several updated or new <a href="third-party.html">third party license agreements</a>.</p>
+        <p>There are several updated <a href="third-party.html" style="text-decoration: none;">third party license agreements</a> and new sections for Data Integration (DI)&#160;and SpaceDeck.</p>
         <p> </p>
         <p MadCap:conditions="Default.DoNotShow">There are currently no third-party license agreements changes or updates.</p>
     </body>
