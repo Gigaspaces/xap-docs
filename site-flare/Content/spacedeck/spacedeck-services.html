@@ -9,7 +9,23 @@
             <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
         </map>
         <h1 class="tc-pagetitle">SpaceDeck – Services</h1>
-        <p>This part of the system allows you to create and execute low code data services. </p>
+        <p>This part of the system allows you to create and execute low code data services. A query service will trigger a space query every time a request is made. </p>
+        <h1>Service Creator</h1>
+        <p>ServiceCreator service, which exposes the REST&#160;endpoints, is deployed in the environment via the Kubernetes orchestration. Any new service creation request generates a new resource of the kind QueryService by submitting a request to the ServiceCreator service. Via the SpringBoot REST&#160;application, ServiceCreator service exposes the following APIs:</p>
+        <ul>
+            <li>
+                <p>Create Query Service given Spec.</p>
+            </li>
+            <li>
+                <p>Get service spec-parameters given its ID.</p>
+            </li>
+            <li>
+                <p>Get list of available services of this kind (queryService).</p>
+            </li>
+            <li>
+                <p>Delete service.</p>
+            </li>
+        </ul>
         <h1>View List of Services</h1>
         <p>The main screen displays a list of services. &#160;For our example, there have been three services created which have different statuses:</p>
         <p>
