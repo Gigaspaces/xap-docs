@@ -5,7 +5,7 @@
     <body style="text-align: left;">
         <h1 class="tc-pagetitle" style="text-align: left;"><MadCap:variable name="General.ProductNameXAP" /> Smart Cache </h1>
         <h1>Smart Cache Overview</h1>
-        <p>Smart Cache is a high-speed, distributed in-memory data storage and processing grid. The platform co-locates applications and data, offering ultra-low latency, high-throughput transaction and stream processing. Smart Cache offers unique capabilities that are not available in simple caching solutions, such as full SQL compatibility, mufti-criteria queries, dynamic server-side processing, full data integrity, policy-driven data tiering, seamless database integration, and cloud-native deployment.</p>
+        <p>Smart Cache is <MadCap:variable name="General.ProductNameIE" /> high-speed, distributed in-memory data storage and processing grid. The platform co-locates applications and data, offering ultra-low latency, high-throughput transaction and stream processing. Smart Cache offers unique capabilities that are not available in simple caching solutions, such as full SQL compatibility, mufti-criteria queries, dynamic server-side processing, full data integrity, policy-driven data tiering, seamless database integration, and cloud-native deployment.</p>
         <p>Smart Cache provides a highly-reliable, distributed, in-memory storage and processing engine. Essentially, it is an in-memory data grid designed to support  millisecond-level latency and millions of operations per second, providing for thousands of deployed services, and hundreds to thousands of concurrent users. This solution makes the implementation of distributed applications above the <a href="../dev-java/the-gigaspace-interface-overview.html">Space</a> simpler and less intrusive, enabling efficient building of highly scalable and highly performing applications.</p>
         <p style="text-align: left;" MadCap:conditions="Version.16-0-died">&#160;</p>
         <p>Smart Cache offers:</p>
@@ -43,6 +43,11 @@
             <h2>Transaction Processing</h2>
             <p>Smart Cache provides a powerful solution for launching and running digital services. Its APIs support ultra-fast transaction processing and task execution that is event driven, offering high availability, reliability and scale. Smart Cache’s server side processing accelerates performance and reduces networking and serialization overhead, even during peaks with high numbers of concurrent users. The platform supports both Kubernetes and alternative elastic orchestration systems.</p>
             <p>Smart Cache offers efficient and cost-effective data replication across regions and clouds, and between cloud and on-premises deployments. It supports both polling and push notifications, including <a href="../dev-java/fifo-overview.html">FIFO</a> and <a href="../dev-java/fifo-grouping.html">FIFO grouping</a> ordering. Business rules can also be applied locally and remotely as they are embedded in each <a href="../admin/data-partitioning.html">partition</a> and on remote nodes.</p>
+            <h2>Data Tiering</h2>
+            <p>Data is stored in multiple data storage <a href="../dev-java/intelligent-tiering-intro.html">tiers</a> — hot (in-memory), and warm (SSD). User-defined business rules place the most important data (not necessarily the most frequently accessed data) in hot storage, while other data can be in warm storage. GigaSpaces manages the full data lifecycle by automatically storing the relevant data in the relevant tiers, federating the queries under the hood to gather all the data in optimal latency and evicting the data according to various policies, from least-recently-used (LRU) to user custom policies. </p>
+            <p style="text-align: center;">
+                <img src="../Resources/Images/x-tiered-storage-no-border.png" style="width: 518px;height: 322px;" />
+            </p>
             <h2>High Availability</h2>
             <p>Smart Cache is an always-on, ACID-compliant and secured system, with disaster recovery ensured  through efficient data replication (Active-Passive) between sites, including hybrid environments.</p>
             <p>&#160;</p>
@@ -51,10 +56,10 @@
             </p>
             <p style="text-align: center;font-style: italic;">Highly Available partitions with primary backup instances</p>
             <p>&#160;</p>
-            <p>High availability is achieved through the following levels with primary and backup instances:</p>
+            <p><a href="../admin/data-grid-clustering.html">High availability</a> is achieved through the following levels with primary and backup instances:</p>
             <ol>
                 <li>
-                    <p><b>Partition Level:</b> Highly-available partitions with synchronic data replication between primary  and backup instances for in-memory high availability.</p>
+                    <p><b>Partition Level:</b> Highly-available partitions with synchronic <a href="../admin/replication.html">data replication</a> between primary  and backup instances for in-memory high availability.</p>
                 </li>
                 <li>
                     <p><b>Cluster Level</b>: Tier storage and disk persistence, together with built-in mirroring service to an  external database or disk, including initial load and store to database, delivering disk persistence to any storage class or database.</p>
