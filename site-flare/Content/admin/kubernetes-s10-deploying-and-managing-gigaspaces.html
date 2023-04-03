@@ -3,6 +3,10 @@
     <head>
     </head>
     <body>
+        <div class="product-bar">
+            <p><a>Smart Cache</a>
+            </p>
+        </div>
         <script type="text/javascript" src="../Resources/Custom/page-toc.js">
         </script>
         <h1 class="tc-pagetitle">Deploying and Managing GigaSpaces in Kubernetes</h1>
@@ -10,7 +14,6 @@
         <div class="tc-admon-note">
             <p>The topics in this section assume basic knowledge of the GigaSpaces platform. If you aren't familiar with GigaSpaces, review the contents of the general <a href="../started/next-level-getting-started-with-smart-cache.html">Getting Started</a> section before performing the tasks described here.</p>
         </div>
-        <input id="dfb_toc_here" type="hidden"> </input>
         <h1>Prerequisites</h1>
         <ul>
             <li>
@@ -26,7 +29,6 @@
             </li>
         </ul>
         <p>This topic describes how to do basic and intermediate-level deployment tasks for the Space and the GigaSpaces platform, using simple Helm commands. </p>
-        <p>&#160;</p>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
             <h1>Deploying the GigaSpaces Platform</h1>
             <p>In order to prepare the environment for use, first the Platform Manager must be deployed. This deploys two pods: the Manager pod, and the Operator pod.</p>
@@ -107,8 +109,8 @@ helm install demo ./xap-pu/ --set manager.name=xap,partitions=1</code></pre>
         <div class="tc-admon-note">
             <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
         </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
-]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b><![CDATA[
-]]>
+]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b>
+
 xap-grafana-5574c8bcd5-v2xsr    1/1     Running   0          7m34s
 xap-influxdb-0                  1/1     Running   0          7m34s
 xap-operator-57d9d445ff-slsrr   1/1     Running   0          7m34s
