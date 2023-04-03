@@ -8,91 +8,14 @@
             </p>
         </div>
         <h1 class="tc-pagetitle">Upgrading from a Previous Version:&#160;Smart Grid to Smart&#160;Grid</h1>
-        <p>If you are currently using a previous version of  <MadCap:variable name="General.ProductNameIE" />&#160;Smart Cache, you can contact <a href="mailto:support@gigaspaces.com">support@gigaspaces.com</a> for information on how to upgrade to the most recent <a href="https://www.gigaspaces.com/download-center">version</a>.</p>
+        <p>If you are currently using a previous version of  <MadCap:variable name="General.ProductNameIE" />&#160;Smart Cache, you can download the newest version from the download tab in the support portal.</p>
         <h1><a name="backwards-compatibility"></a>Backwards Compatibility</h1>
         <p> For information about GigaSpaces' backwards compatibility policy, refer to the <MadCap:xref href="lifecycle.html">Product Life Cycle and End-of-Life Policy</MadCap:xref> page.</p>
+        <p>Regarding the node, if a change </p>
         <div class="tc-admon-important" MadCap:conditions="Version.14-2-born">
-            <p>A change operation from an older version of the client is not supported.</p>
+            <p>A change operation from a version including and older than 14.0.1 to a newer version might cause some issues in certain scenarios. See this <a href="https://insightedge.atlassian.net/browse/GS-14352">Jira</a> issue for more details.</p>
         </div>
-        <h1>Hot Upgrade Overview</h1>
-        <p>Hot Upgrade is required in order to perform changes without downtime, allowing the application users to keep working,</p>
-        <p>If there is no change in replication mechanism. GigaSpaces version hot upgrade is possible.</p>
-        <p>In order to upgrade to a new <MadCap:variable name="General.ProductNameIE" />version without downtime, we have to allow a cluster with both new and old version to run simultaneously.</p>
-        <p>The hot upgrade feature is guaranteed only in the case of upgrading from the same major version, (e.g upgrade from 16.2 to 16.3 )</p>
-        <p>It is not guaranteed in case of different major versions.</p>
-        <h1>Hot Upgrade - Supported Change&#160;Types</h1>
-        <p>These are the supported changes types:</p>
-        <ul>
-            <li>
-                <p>Changes in PU&#160;business logic</p>
-            </li>
-            <li>
-                <p>Changes in Data type schema</p>
-            </li>
-            <li>
-                <p>Change in GS&#160;version</p>
-            </li>
-            <li>
-                <p>Changes in host OS or Java version</p>
-            </li>
-        </ul>
-        <div class="tc-admon-note">
-            <p>In order to have the ability for hot upgrade, HA&#160;is a must. This includes backup instances and, in the case of Java/OS change manager as well.</p>
-        </div>
-        <h2>Hot Upgrade for Stateful&#160;Services</h2>
-        <p>By following this method, minimal impact is ensured:</p>
-        <ol>
-            <li>
-                <p>If the upgrade requires a machine restart, it is important to ensure that the machine contains only backups. This is achieved by demoting primaries. This is important in order to reduce the impact on production.</p>
-            </li>
-            <li>
-                <p>Perform the upgrade.</p>
-            </li>
-            <li>
-                <p>In order to use the new version, restart the GSCs which hold the backup instances.</p>
-            </li>
-            <li>
-                <p>After all the backups are fully recovered from the primaries, demote the existing primaries and restart their containers.</p>
-            </li>
-        </ol>
-        <h2>Hot Upgrade for Managers</h2>
-        <ul>
-            <li>
-                <p>Managers should be restarted one by one.</p>
-            </li>
-            <li>
-                <p>Validate that each manager is fully recovered from the previous version before continuing to restart other manager.</p>
-            </li>
-        </ul>
-        <h2>Hot Upgrade for New GS/OS/Java Version</h2>
-        <p>Following is the procedure for performing hot upgrade for new GS/OS/Java versions:</p>
-        <ol>
-            <li>
-                <p>Install the new version on one of the hosts</p>
-            </li>
-            <li>
-                <p>Demote all spaces on this host, so it only contains backups</p>
-            </li>
-            <li>
-                <p>Stop GS on this host</p>
-            </li>
-            <li>
-                <p>Start GS  from the new installation</p>
-            </li>
-            <li>
-                <p>See that backups in this host recover from the primaries and are active.</p>
-            </li>
-            <li>
-                <p>If it is a manager machine check that it reconnects to the other managers.</p>
-            </li>
-            <li>
-                <p>Do the same for the next host.</p>
-            </li>
-            <li>
-                <p>Re-balance primaries &amp; backups.</p>
-            </li>
-        </ol>
-        <h1 MadCap:conditions="Version.14-5-born">Regular Upgrade </h1>
+        <h1>Recommended Upgrade Steps</h1>
         <p>Follow this suggested upgrade procedure for performing a regular upgrade:</p>
         <ol>
             <li>
@@ -132,5 +55,12 @@
                 <p>Retest and validate behaviour.</p>
             </li>
         </ol>
+        <h1>Hot Upgrade Overview</h1>
+        <p>Hot Upgrade is required in order to perform changes without downtime, allowing the application users to keep working,</p>
+        <p>If there is no change in replication mechanism. GigaSpaces version hot upgrade is possible.</p>
+        <p>In order to upgrade to a new <MadCap:variable name="General.ProductNameIE" />version without downtime, we have to allow a cluster with both new and old version to run simultaneously.</p>
+        <p>The hot upgrade feature is guaranteed only in the case of upgrading from the same major version, (e.g upgrade from 16.3 to 16.3.1 )</p>
+        <p>It is not guaranteed in case of different major versions.</p>
+        <p>For more information: <a href="hot-upgrade.html">Hot Upgrade</a></p>
     </body>
 </html>
