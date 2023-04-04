@@ -12,11 +12,19 @@
         <h1>Access the Administration Screen</h1>
         <p>If a user is defined as an Admin, the Administration options can be accessed via the cog at the bottom left hand corner.</p>
         <p>
+            <div class="tc-admon-attention">
+                <p>In order to create, delete or update Connection (Identify Provider) or Roles Management settings, the user should be assigned the appropriate role. These are specified below.<br />An explanation of all the available permissions can be found on the <a href="../started/xap-tutorial-part10.html">Role-Based Security</a> page.</p>
+            </div>
+        </p>
+        <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin1.png" style="width: 930px;height: 453px;" />
         </p>
         <p id="YES-TOC">.</p>
         <h1>General&#160;Setup </h1>
         <p>Populate the Connection fields in order to configure SSO. Once they are populated, click <b>Apply</b>.</p>
+        <div class="tc-admon-attention">
+            <p>In order to be able to configure the <b>Connection (Identify Provider)</b>fields the user has to be assigned the specific permission of <b>Manager Identify Providers</b>, otherwise an error 403 (Forbidden) response will be displayed. <br />An explanation of all the available permissions can be found on the <a href="../started/xap-tutorial-part10.html">Role-Based Security</a> page.</p>
+        </div>
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin2.png" style="width: 1135px;height: 292px;" />
         </p>
@@ -52,6 +60,9 @@
         <p>To see which roles are applied to each role, click on the role name: </p>
         <p> <img src="../Resources/Images/SpaceDeck/SpaceDeck-Login4_default.png" style="width: 907px;height: 159px;" /></p>
         <p>Create a new role by clicking  <b>New +</b> to access the role setup page.</p>
+        <div class="tc-admon-attention">
+            <p>In order to create, delete or update the <b>Roles Management</b> settings, the user has to be assigned the specific permission of <b>Manage Roles</b>, otherwise an error 403 (Forbidden) response will be displayed. <br />An explanation of all the available permissions can be found on the <a href="../started/xap-tutorial-part10.html">Role-Based Security</a> page.</p>
+        </div>
         <p>On the setup page:</p>
         <ol>
             <li>
@@ -78,9 +89,5 @@
         <p>
             <img src="../Resources/Images/SpaceDeck/12.png" style="width: 929px;height: 194px;" />
         </p>
-        <p>List of Roles:</p>
-        <p><span style="color: #ff0000;">TBD</span>
-        </p>
-        <p>&#160;</p>
     </body>
 </html>
