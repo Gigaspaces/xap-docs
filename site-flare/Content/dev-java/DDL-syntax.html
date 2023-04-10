@@ -3,38 +3,31 @@
     <head>
     </head>
     <body>
-        <div>
-            <h1 class="tc-pagetitle">Data Definition (DDL) Syntax</h1>
-            <div MadCap:conditions="Version.16-1-1-born">
-                <h2><a name="Data2"></a>Data Definition Operations</h2>
-                <p class="p_1"><span class="span_5">Create Table</span><span class="span_6">: </span>
-                </p>
-                <p class="p_6"> CREATE TABLE table_name {( [</p>
-                <p>{ column_name data_type [ column_constraint [ ... ] ]</p>
-                <p>| table_constraint }</p>
-                <p>[PRIMARY KEY (column)]</p>
-                <p>[INDEX (column)]</p>
-                <p>[PARTITION BY]</p>
-                <p>[BROADCAST]</p>
-                <p>] )</p>
-                <p>|</p>
-                <p>AS SELECT column [, column]*</p>
-                <p>FROM table_name</p>
-                <p>[WHERE booleanExpression]</p>
-                <p>}</p>
-                <p>&#160;</p>
-                <p class="p_1"><span class="span_5">DropTable</span><span class="span_6">: </span>
-                </p>
-                <p class="p_6"> DROP TABLE [ IF EXISTS ] name</p>
-                <p class="p_6">&#160;</p>
-                <p class="p_6"><span class="span_5">Describe</span><span class="span_6">: </span>
-                </p>
-                <p>  DESCRIBE DATABASE databaseName</p>
-                <p>| DESCRIBE CATALOG [ databaseName . ] catalogName</p>
-                <p>| DESCRIBE SCHEMA [[ databaseName . ] catalogName ] . schemaName</p>
-                <p>| DESCRIBE TABLE ] [[[ databaseName . ] catalogName ] . schemaName. ] tableName [columnName ]</p>
-                <p>| DESCRIBE [ STATEMENT ] { query }</p>
-            </div>
-        </div>
+        <h1 class="tc-pagetitle">Data Definition (DDL) Syntax</h1>
+        <h2><a name="Data2"></a>Data Definition Operations</h2>
+        <p><b>Create Table:</b>
+        </p><pre class="p_1">CREATE TABLE table_name {( [
+        { column_name data_type [ column_constraint [ ... ] ]
+        | table_constraint }
+        [PRIMARY KEY (column)]
+        [INDEX (column)]
+        [PARTITION BY]
+        [BROADCAST]
+        ] )
+        |
+        AS SELECT column [, column]*
+        FROM table_name
+        [WHERE booleanExpression]
+        }</pre>
+        <p>&#160;</p>
+        <p><b>DropTable:</b>
+        </p><pre>DROP TABLE [ IF EXISTS ] name</pre>
+        <p>&#160;</p>
+        <p><b> Describe:</b>
+        </p><pre>DESCRIBE DATABASE databaseName
+        | DESCRIBE CATALOG [ databaseName . ] catalogName
+        | DESCRIBE SCHEMA [[ databaseName . ] catalogName ] . schemaName
+        | DESCRIBE TABLE ] [[[ databaseName . ] catalogName ] . schemaName. ] tableName [columnName ]
+        | DESCRIBE [ STATEMENT ] { query }</pre>
     </body>
 </html>

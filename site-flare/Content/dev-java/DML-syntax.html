@@ -5,36 +5,22 @@
     <body>
         <div>
             <h1 class="tc-pagetitle">Data Manipulation (DML) Syntax</h1>
-            <input id="dfb_toc_here" type="hidden"> </input>
-            <div MadCap:conditions="NewSet.JustAColorForDivs">
-                <div MadCap:conditions="Version.16-1-1-born">
-                    <h2><a name="Data"></a>Data Manipulation Syntax</h2>
-                    <p>Insert</p>
-                    <p>{ INSERT } INTO tablePrimary</p>
-                    <p>[ '(' column [, column ]* ')' ]</p>
-                    <p>[ VALUES '(' column [, column ]* ')' ]</p>
-                    <p>&#160;</p>
-                    <p>Update:</p>
-                    <p>UPDATE tablePrimary</p>
-                    <p>SET assign [, assign ]*</p>
-                    <p>[ WHERE booleanExpression ]</p>
-                    <p>&#160;</p>
-                    <p>Delete: 
-                    </p>
-                    <p>DELETE FROM tablePrimary [ [ AS ] alias ]</p>
-                    <p>[ WHERE booleanExpression ]</p>
-                    <p>&#160;</p>
-                    <p>Explain: 
-                    </p>
-                    <p>EXPLAIN&#160;PLAN</p>
-                    <p style="text-indent: 0.5in;">FOR { query }</p>
-                </div>
-                <p style="text-align: left;" MadCap:conditions="Version.16-2-1-born,Version.16-1-1-born">EXPLAIN ANALYZE</p>
-                <p style="text-align: left;text-indent: 0.5in;" MadCap:conditions="Version.16-1-1-born">FOR { query }</p>
-                <div MadCap:conditions="Version.16-1-1-born">
-                    <p>&#160;</p>
-                </div>
-            </div>
-        </div>
+            <h2><a name="Data"></a>Data Manipulation Syntax</h2>
+            <p><b>Insert:</b>
+            </p><pre>{ INSERT } INTO tablePrimary
+[ '(' column [, column ]* ')' ]
+[ VALUES '(' column [, column ]* ')' ]           </pre>
+            <p>&#160;</p>
+            <p><b>Update:</b>
+            </p>&gt;
+            <pre>UPDATE tablePrimary
+SET assign [, assign ]*
+[ WHERE booleanExpression ]			</pre><p>&#160;</p><p><b>Delete:</b></p>&gt;
+            <pre>DELETE FROM tablePrimary [ [ AS ] alias ]
+[ WHERE booleanExpression ]</pre><p>&#160;</p><p><b>Explain:</b></p>&gt;
+            <pre>EXPLAIN PLAN
+   FOR { query }
+EXPLAIN ANALYZE
+   FOR { query }</pre><p>&#160;</p></div>
     </body>
 </html>
