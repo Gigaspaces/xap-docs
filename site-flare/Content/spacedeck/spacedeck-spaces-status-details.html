@@ -12,9 +12,17 @@
         <h1>Spaces Status Details</h1>
         <p>When viewing the Spaces Status screen, you can click on a Space name to see details about the Space:</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces4.png" style="width: 1010px;height: 490px;" />
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces4a.png" style="width: 988px;height: 313px;" />
         </p>
-        <p>The resulting screen has three tabs: <MadCap:xref href="#View" class="monitoring">Monitoring</MadCap:xref>, <MadCap:xref href="#View2" class="Objects-Types">Objects-Types</MadCap:xref>, and <MadCap:xref href="#View3" class="Partitions">Partitions</MadCap:xref>.</p>
+        <p>The resulting screen has three tabs: <MadCap:xref href="#View" class="monitoring">Monitoring</MadCap:xref>, <MadCap:xref href="#View2" class="Objects-Types">Objects-Types</MadCap:xref>, and <MadCap:xref href="#View3" class="Partitions">Partitions.</MadCap:xref></p>
+        <p>A log can be generated or a space can be undeployed by selecting the kebab menu (vertical three-dot menu) on the far top right:</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services10a.png" style="width: 1214px;height: 146px;" />
+        </p>
+        <p>Then select either<b>Generate Logs </b>or<b> Undeploy Space</b>:</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces21.png" />
+        </p>
         <h2><a name="View"></a>View Space Details – Monitoring</h2>
         <p>The <b>Monitoring</b> tab displays graphs showing various Space-related statistics. </p>
         <p>Note that a dropdown list on the right side of the screen allows you to change the reported time interval:</p>
@@ -93,18 +101,19 @@
         <h2><a name="View2"></a>View Space Details – Space Types</h2>
         <p>The Space Types tab displays a list of the Space types (tables) associated with the Space.</p>
         <p>
-            <img src="../Resources/Static/images/spacedeck-spaces-object-types.png" style="width: 70%;" />
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces19.png" style="width: 1124px;height: 255px;" />
         </p>
         <h3>View Space Types –  Summary Information</h3>
         <p>Each row represents one table in the Space. The Space Types fields are as follows:</p>
         <div>&#160;<ul><li><b>NAME</b> — Name of the object-type</li><li><b>COUNT</b> — number of rows in the object-type</li><li><b>NUMBER&#160;OF&#160;INDEXES</b> — number of indexes defined for the object-type</li><li><b>SPACE ID</b> — the GigaSpaces Space object that contains the object-type data</li><li><b>ROUTING&#160;KEY</b> — The identifier that will be used by GigaSpaces to distribute the data among multiple partitions</li><li><b>BROADCAST</b> – whether or not this object type is in a Space that is a <MadCap:xref href="../dev-java/broadcast-objects.html" class="broadcast-object">Broadcast Object</MadCap:xref></li></ul></div>
-        <p>Click on one of the object types to see detailed information for the object type's properties and indexes. The Space Types information is divided into three categories: <MadCap:xref href="#View_Space_Details_–_Objects-Types_–_General_Information" class="General-information">General information</MadCap:xref>, <MadCap:xref href="#View_Space_Details_–_Objects-Types_–_Properties" class="properties">Properties</MadCap:xref>, and <MadCap:xref href="#View_Space_Details_–_Objects-Types_–_Indexes" class="Indexes">Indexes</MadCap:xref>.</p>
+        <p>&#160;</p>
+        <p>Click on one of the Space Types to see detailed information for the object type's properties and indexes. The Space Types information is divided into three categories: <MadCap:xref href="#View_Space_Details_–_Objects-Types_–_General_Information" class="General-information">General information</MadCap:xref>, <MadCap:xref href="#View_Space_Details_–_Objects-Types_–_Properties" class="properties">Properties</MadCap:xref>, and <MadCap:xref href="#View_Space_Details_–_Objects-Types_–_Indexes" class="Indexes">Indexes</MadCap:xref>.</p>
         <div>
             <p><a name="View Space Types_–_General_Information"></a>
             </p>
             <h3>View Space Types  – General Information</h3>
             <p>
-                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces5.png" />
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces5a.png" />
             </p>
         </div>
         <div><b>General Information options:</b>
@@ -117,7 +126,7 @@
         </p>
         <h3>View Space Types – Properties</h3>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces6.png" style="width: 902px;height: 211px;" />
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces6a.png" style="width: 997px;height: 222px;" />
         </p>
         <ul>
             <li><b>NAME</b> — Name of the property (field)</li>
@@ -137,10 +146,10 @@
             <li><b>HITS IN %</b> — The percent each index is used, compared to the overall queries of the specific object type.</li>
         </ul>
         <h2><a name="View3"></a>View Space Details – Partitions</h2>
-        <p>The Partitions tab displays details about the partitions where the Space data is stored.</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces8.png" style="width: 1146px;height: 202px;" />
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces8a.png" style="width: 1002px;height: 193px;" />
         </p>
+        <p>The Partitions tab displays details about the partitions where the Space data is stored.</p>
         <ul>
             <li><b>PARTITION</b> — Partition Name</li>
             <li><b>INSTANCE&#160;ID</b> — Each instance has its own instance ID</li>
@@ -150,5 +159,6 @@
             <li><b>MEMORY</b> – Current memory utilization</li>
             <li><b>CPU</b> — Current CPU utilization </li>
         </ul>
+        <p>&#160;</p>
     </body>
 </html>

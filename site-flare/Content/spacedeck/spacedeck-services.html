@@ -31,7 +31,7 @@
         <h1>View List of Services</h1>
         <p>The main screen displays a list of services. &#160;For our example, there have been three services created which have different statuses:</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services1.png" style="width: 966px;height: 408px;" />
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services1a.png" />
         </p>
         <h2>Services&#160;Fields</h2>
         <ul>
@@ -93,13 +93,14 @@
                 <p><b>Retrieve first</b> – limit the query response to the desired number of rows. A maximum of 10,000 rows can be retrieved.</p>
             </li>
         </ul>
-        <h1>Run or Save the Query</h1>
+        <h2>Run or Save the Query and Create the Service</h2>
         <p>Click <b>Run Query</b> to test the query. The query results will be displayed. If there is a problem with the query a Query validation failed error will be displayed at the bottom of the screen.</p>
         <p>Click <b>Save query</b> to save the query which will then be accessible via the <b>Load Query</b> drop-down.</p>
         <p>Click <b>Create Service</b> to create a service. It will now be displayed on the main screen with the status <b>Created</b>:</p>
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services6.png" style="width: 378px;height: 302px;" />
         </p>
+        <h2>Deploy the Service</h2>
         <p>Click on the new service name and then to deploy the service, click <b>Deploy</b>:</p>
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services7.png" style="width: 761px;height: 434px;" />
@@ -108,6 +109,7 @@
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services8.png" style="width: 396px;height: 322px;" />
         </p>
+        <h2>Undeploy the Service</h2>
         <p>A deployed service can be undeployed by clicking on the SERVICE&#160;NAME and clicking <b>Undeploy</b>:</p>
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services9.png" style="width: 764px;height: 504px;" />
@@ -116,6 +118,17 @@
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services10.png" style="width: 408px;height: 342px;" />
         </p>
+        <div>
+            <h2>Delete a Service</h2>
+            <p>There is an option to Undeploy and then Delete a service by clicking on the kebab menu (vertical three-dot menu) on the far right of the main Services Fields:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services1b.png" style="width: 908px;height: 135px;" />
+            </p>
+            <p>Then select <b>Undeploy</b> and then <b>Delete</b> the service: </p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services11a.png" />
+            </p>
+        </div>
         <div MadCap:conditions="Default.DoNotShow">
             <h2>Behind the Scenes</h2>
             <p>The ServiceCreator service, which exposes REST endpoints, is deployed in the environment. &#160;In addition, the ServiceCreator operator is deployed. A new service request generates a new resource of type QueryService by submitting a request to the ServiceCreator service. More information about <a href="../admin/deploying-services.html">Deploying Services</a>.</p>
