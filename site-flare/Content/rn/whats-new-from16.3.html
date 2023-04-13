@@ -17,7 +17,7 @@
             <p>SpaceDeck includes the following features:</p>
             <ul>
                 <li>
-                    <p><a href="../spacedeck/spacedeck-hosts.html" style="text-decoration: none;">Hosts</a>: displays hosts information with ability to drill-down for additional details such as System Information and Containers.</p>
+                    <p MadCap:conditions="Default.DoNotShow"><a href="../spacedeck/spacedeck-hosts.html" style="text-decoration: none;">Hosts</a>: displays hosts information with ability to drill-down for additional details such as System Information and Containers.</p>
                 </li>
                 <li>
                     <p><a href="../spacedeck/spacedeck-admin.html">Admin:</a> Provides security authentication, user management and connection via IDP.</p>
@@ -51,7 +51,7 @@
         </div>
         <div>
             <h1>Data Integration (DI) Layer </h1>
-            <p>Introducing the <a href="../Data Integration/DI-Intro.html">Data Integration (DI)</a> layer, which is a vital part of the Digital Integration Hub (DIH) platform. DI is the gateway for incoming data into the Data Integration Hub (DIH) system. This is deployed via Kubernetes only. The DI components are delivered as part of the GigaSpaces DIH Package. DI contains four components which are responsible for reading and analyzing Kafka messages and for pushing them into the Space. DI is responsible for a wide range of data integration tasks as ingesting data in batches or streaming data changes. DI integrates with DB2 on AS/400, Oracle and MSSQL databases. It also contains the  IBM Infosphere Data Replication (IIDR) which is a connector engine for data pipelines.</p>
+            <p>Introducing the <MadCap:xref href="../landing-pages/AO-DataIntegration.htm">Data Integration (DI)</MadCap:xref> layer, which is a vital part of the Digital Integration Hub (DIH) platform. DI is the gateway for incoming data into the Data Integration Hub (DIH) system. This is deployed via Kubernetes only. The DI components are delivered as part of the GigaSpaces DIH Package. DI contains four components which are responsible for reading and analyzing Kafka messages and for pushing them into the Space. DI is responsible for a wide range of data integration tasks as ingesting data in batches or streaming data changes. DI integrates with DB2 on AS/400, Oracle and MSSQL databases. It also contains the  IBM Infosphere Data Replication (IIDR) which is a connector engine for data pipelines.</p>
         </div>
         <div>
             <h1>SQL Over&#160;Nested Objects Search</h1>
@@ -59,14 +59,12 @@
         </div>
         <div>
             <h1>Smart DIH&#160;Installation via Kubernetes</h1>
-            <p>Kubernetes is an open-source orchestration system for automating the deployment, scaling and management of containerized applications.</p>
-            <p>Gigaspaces DIH (Digital Integration Hub) is at its core an encapsulation of multiple components that serve as an integration and acceleration of data streams.</p>
-            <p>On the outbound, DIH can be configured to connect to different components of the client such as databases, streams, APIs and applications.</p>
-            <p>To that end, our DIH uses Kubernetes as its orchestration solution and as an enabler for using advanced technologies like memory grid, streaming and automation. &#160;For more information visit the <a href="../admin/smart-dih-with-kubernetes-overview.html">Smart DIH&#160;Orchestration:&#160;Kubernetes</a> page.</p>
+            <p>GigaSpaces SmartDIH can now be easily installed on a K8s cluster. SmartDIH that was built as a K8s native platform leverages K8s strengths such as scalability, smart orchestration, easy cloud deployment and more. All 3 layers of SmartDIH - from the DI (Data Integration), through the in-memory data grid, to the data services - are built as multi-pod platforms that allow native K8s installation, orchestration and scale. The full SmartDIH package is delivered as one K8s Umbrella that can be deployed on any K8s cluster.</p>
+            <p>&#160;For more information visit the <a href="../admin/smart-dih-with-kubernetes-overview.html">Smart DIH&#160;Orchestration:&#160;Kubernetes</a> page.</p>
         </div>
         <div>
-            <h1>Smart Cache Installation via Kubernetes</h1>
-            <p> XAP operator have been enhanced to support more features, adapt to cloud deployments, and extend the Custom Resource Definition of a PU (Processing Unit).</p>
+            <h1>Smart Cache &amp;&#160;Smart DIH - New Features</h1>
+            <p> The&#160;XAP operator has been enhanced to support more features, adapt to cloud deployments, and extend the Custom Resource Definition of a PU (Processing Unit).</p>
             <p>This includes:</p>
             <ul>
                 <li>
