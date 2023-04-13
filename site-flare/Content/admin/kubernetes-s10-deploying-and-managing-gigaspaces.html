@@ -9,8 +9,8 @@
         </div>
         <script type="text/javascript" src="../Resources/Custom/page-toc.js">
         </script>
-        <h1 class="tc-pagetitle">Deploying and Managing GigaSpaces in Kubernetes</h1>
-        <p>This topic describes how to deploy GigaSpaces products in a Kubernetes environment. The integration is packaged as a <a href="https://docs.helm.sh/developing_charts/#charts">Helm chart</a>. You can deploy the full GigaSpaces platform, using the Helm chart available in the GigaSpaces Helm repository.</p>
+        <h1 class="tc-pagetitle">Deploying and Managing Smart Cache with Kubernetes</h1>
+        <p>This topic describes how to deploy Smart Cache in a Kubernetes environment. The integration is packaged as a <a href="https://docs.helm.sh/developing_charts/#charts">Helm chart</a>. You can deploy the full Smart Cache platform, using the Helm chart available in the GigaSpaces Helm repository.</p>
         <div class="tc-admon-note">
             <p>The topics in this section assume basic knowledge of the GigaSpaces platform. If you aren't familiar with GigaSpaces, review the contents of the general <a href="../started/next-level-getting-started-with-smart-cache.html">Getting Started</a> section before performing the tasks described here.</p>
         </div>
@@ -30,11 +30,11 @@
         </ul>
         <p>This topic describes how to do basic and intermediate-level deployment tasks for the Space and the GigaSpaces platform, using simple Helm commands. </p>
         <div MadCap:conditions="NewSet.JustAColorForDivs">
-            <h1>Deploying the GigaSpaces Platform</h1>
+            <h1>Deploying Smart Cache</h1>
             <p>In order to prepare the environment for use, first the Platform Manager must be deployed. This deploys two pods: the Manager pod, and the Operator pod.</p>
             <p>Note that Platform Manager is deployed by using a Helm chart, and further operations can also be performed using the UI, CLI or REST-API tools.</p>
             <p MadCap:conditions="Default.DoNotShow">Type the following Helm command to create a Management Pod called <code class="language-bash">testmanager</code> that deploys Manager and Operator pods:</p>
-            <h1>Create a local repository from the Helm server and install GigaSpaces</h1>
+            <h1>Create a local repository from the Helm server and install Smart Cache</h1>
             <div class="tc-admon-note">
                 <p>The <code style="font-weight: bold;">xap</code> chart used in the following example is an "umbrella" chart that references more than one Helm chart.</p>
             </div>
