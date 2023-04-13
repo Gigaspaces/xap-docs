@@ -48,11 +48,19 @@
             </ul>
         </div>
         <h1>What Actions Do I Take with SpaceDeck?</h1>
-        <p>Using SpaceDeck, you can <b>define</b> and modify  which data will be pulled from the System of Record and placed in the GigaSpaces in-memory data grid or in SSD storage. This data will then be available for fast read/write access. Note that in-memory and SSD data is constantly synchronized with the SoR data.</p>
+        <p>Using SpaceDeck, you can:</p>
+        <p>
+            <MadCap:xref href="spacedeck-spaces-status-overview.html">SpaceDeck – Spaces Status Overview</MadCap:xref>- the logical in-memory service which stores entries of information. See <MadCap:xref href="../dev-java/the-gigaspace-interface-overview.html">The Space Interface</MadCap:xref> for more information.</p>
+        <p><b>Define and Modify Data</b> - which data will be pulled from the System of Record and placed in the GigaSpaces in-memory data grid or in SSD storage. This data will then be available for fast read/write access. Note that in-memory and SSD data is constantly synchronized with the SoR data.</p>
         <p>This definition process includes defining the Data Sources (databases), specifying which tables and fields will be pulled in-memory, and includes additional options to minimize memory footprint and prioritize high-use data.</p>
-        <p>SpaceDeck is also used to <b>monitor</b> the GigaSpaces system, viewing transaction times and counts, spotting data bottlenecks, and ensuring the smooth 24/7 operation of the system.</p>
+        <p> <b>Monitor</b> the GigaSpaces system, viewing transaction times and counts, spotting data bottlenecks, and ensuring the smooth 24/7 operation of the system.</p>
         <div MadCap:conditions="Default.DoNotShow">
             <p>Using SpaceDeck, you can define the following items:</p>
+            <ul>
+                <li>
+                    <p><b>Space</b> - </p>
+                </li>
+            </ul>
             <ul>
                 <li>
                     <p><b>Data Source</b> – the database in the System of Record that will be used as a source and target of data for the Data Pipeline</p>
@@ -69,11 +77,27 @@
                 </li>
                 <li>
                     <p>
-                        <MadCap:xref href="spacedeck-data-pipeline-monitoring-pipelines.html" class="Data-Pipeline-Monitoring">Data Pipeline Monitoring</MadCap:xref> screen – view Data Pipeline statuses, and stop/start pipelines</p>
+                        <MadCap:xref href="spacedeck-data-pipeline-details.html" class="Data-Pipeline-Monitoring">Data Pipeline Monitoring</MadCap:xref> screen – view Data Pipeline statuses, and stop/start pipelines</p>
                 </li>
                 <li>
                     <p>
                         <MadCap:xref href="spacedeck-data-query.html" class="Data-Query">Data Query</MadCap:xref> screen – perform SQL queries against the data in a Space</p>
+                </li>
+            </ul>
+            <p>&#160;</p>
+            <p>Advantages of Data Pipelines include:</p>
+            <ul>
+                <li>
+                    <p>Flexible extract of data from multiple databases and tables</p>
+                </li>
+                <li>
+                    <p>Import of data into the high-speed GigaSpaces in-memory <MadCap:variable name="General.DataGridInitCap"></MadCap:variable></p>
+                </li>
+                <li>
+                    <p>Unified data model for read/write of pipeline data<br></br></p>
+                </li>
+                <li>
+                    <p>A metrics dashboard showing data activity, including data volumes and statistics and any data validation errors or other access errors.</p>
                 </li>
             </ul>
         </div>
@@ -90,7 +114,7 @@
                     <th style="text-align: center; vertical-align: top;">Define/Modify the Data Sources from the System or Record</th>
                     <th style="text-align: center; vertical-align: top;">Define/Modify a Data Pipeline</th>
                     <th style="text-align: center; vertical-align: top;">Monitor the activity of the Data Pipeline</th>
-                    <th>Create and execute low-code data services</th>
+                    <th style="vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 1px;border-left-color: #e0e0e0;">Create and execute low-code data services</th>
                     <th style="text-align: center; vertical-align: top;">Perform SQL queries on Space/Pipeline data</th>
                 </tr>
             </thead>
@@ -98,14 +122,14 @@
                 <tr>
                     <td style="width: 25%;text-align: left; vertical-align: top;">Choose <b>which databases</b> to import into the in-memory data grid – <MadCap:xref href="spacedeck-data-sources.html">SpaceDeck – Data Sources</MadCap:xref></td>
                     <td style="text-align: left; vertical-align: top;">Choose <b>which tables and fields</b> to use, and decide which Spaces will contain this data – <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref></td>
-                    <td style="text-align: left; vertical-align: top;">View <b>data performance</b> and manage the system – <MadCap:xref href="spacedeck-data-pipeline-monitoring-pipelines.html">SpaceDeck – Data Pipeline – Monitoring Pipelines</MadCap:xref></td>
+                    <td style="text-align: left; vertical-align: top;">View <b>data performance</b> and manage the system – <MadCap:xref href="spacedeck-data-pipeline-details.html">SpaceDeck – Data Pipeline – Monitoring Pipelines</MadCap:xref></td>
                     <td>Create and execute low-code services: <MadCap:xref href="spacedeck-services.html">SpaceDeck – Services</MadCap:xref></td>
                     <td style="width: 25%;text-align: left; vertical-align: top;">Perform <b>SQL queries</b> – <MadCap:xref href="spacedeck-data-query.html">SpaceDeck – Data Query</MadCap:xref></td>
                 </tr>
                 <tr MadCap:conditions="Default.DoNotShow">
                     <td style="width: 25%;text-align: left; vertical-align: top;">Specify URLs for the SoR databases in SpaceDeck – <MadCap:xref href="spacedeck-data-sources.html">SpaceDeck – Data Sources</MadCap:xref></td>
                     <td style="text-align: left; vertical-align: top;">Specify which Data Source feeds the Data Pipeline, and which in-memory Space will contain the data – <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref></td>
-                    <td style="text-align: left; vertical-align: top;">View dynamic metrics and start/stop the pipeline – <MadCap:xref href="spacedeck-data-pipeline-monitoring-pipelines.html">SpaceDeck – Data Pipeline – Monitoring Pipelines</MadCap:xref></td>
+                    <td style="text-align: left; vertical-align: top;">View dynamic metrics and start/stop the pipeline – <MadCap:xref href="spacedeck-data-pipeline-details.html">SpaceDeck – Data Pipeline – Monitoring Pipelines</MadCap:xref></td>
                     <td>&#160;</td>
                     <td style="width: 25%;text-align: left; vertical-align: top;">Use supported SQL-99 commands – <MadCap:xref href="spacedeck-data-query.html">SpaceDeck – Data Query</MadCap:xref></td>
                 </tr>
@@ -123,10 +147,10 @@
                         <img class="tc-thumbnail" src="../Resources/Static/images/spacedeck-overview-thumbnail-data-pipeline-monitor-2.png" />
                     </td>
                     <td style="text-align: center; width: 25%;">
-                        <img class="tc-thumbnail" src="../Resources/Images/SpaceDeck/SpaceDeck-Services5.png" style="width: 768px;height: 484px;" />
+                        <img class="tc-thumbnail" src="../Resources/Images/SpaceDeck/SpaceDeck-Services5.png" style="width: 1053px;height: 664px;" />
                     </td>
                     <td style="text-align: center; width: 25%;">
-                        <img src="../Resources/Images/SpaceDeck/DataQuery_Thumbnail.png" style="width: 302px;height: 273px;" />
+                        <img src="../Resources/Images/SpaceDeck/DataQuery_Thumbnail.png" />
                     </td>
                 </tr>
             </tbody>

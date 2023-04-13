@@ -8,54 +8,15 @@
             <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
             <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
         </map>
-        <h1 class="tc-pagetitle">SpaceDeck – Data Pipeline – Monitoring Pipelines</h1>
-        <h1>Data Pipeline Status Screen</h1>
-        <p>The Data Pipeline Status screen shows the status of the existing data pipelines. You can see details of a pipeline by clicking on its name in the list. </p>
-        <div class="tc-admon-note">
-            <p>The <b>New +</b> button allows you to create a new pipeline. See <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref> for instructions to define a new pipeline.</p>
-        </div>
-        <p><a href="../Resources/Images/SpaceDeck/SpaceDeck-Pipeline1a.png"><img src="../Resources/Images/SpaceDeck/SpaceDeck-Pipeline1a.png" style="width: 909px;height: 282px;" /></a>
-        </p>
-        <h2>Data Pipeline Status Fields</h2>
-        <ul>
-            <li>
-                <p><b>Error</b> – pipeline is not available because of one of the following conditions: not found/connection error/not started/started but not running/loading stopped/suspended</p>
-            </li>
-            <li>
-                <p><b>Loading</b> – pipeline is in the process of being configured</p>
-            </li>
-            <li>
-                <p><b>Idle</b> –  pipeline is configured and the data integration is available</p>
-            </li>
-            <li>
-                <p><b>Group by Status</b> –  toggle to display the list of pipelines grouped by the pipeline status</p>
-            </li>
-            <li>
-                <p><b>NAME</b> –  name assigned to the pipeline</p>
-            </li>
-            <li>
-                <p><b>STATUS</b> –  one of the following conditions: started/stopped/not starting/restarting/not found</p>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <p><b>TYPE</b> –  the connection type for the pipeline, for example, IIDR</p>
-            </li>
-            <li>
-                <p><b>ORIGIN</b> –  data source type from the System of Record, e.g. DB2</p>
-            </li>
-            <li>
-                <p><b>TOTAL&#160;OPERATIONS&#160;(LAST 24 HOURS)</b> – number of operations performed by the pipeline in the last 24 hours</p>
-            </li>
-            <li>
-                <p><b>TOTAL&#160;ERRORS&#160;(LAST 24 HOURS)</b> –  number of error operations performed by the pipeline in the last 24 hours</p>
-            </li>
-            <li>
-                <p><b>Kebab menu</b>  (vertical three-dot menu) on the far right - Option to start or delete a pipeline</p>
-            </li>
-        </ul>
+        <h1 class="tc-pagetitle">SpaceDeck – Data Pipeline – Details</h1>
         <h1>Data Pipeline Details</h1>
-        <p>Click on the pipeline name to view details of the pipeline. Three tabs are available: Monitoring, Tables, and Configuration:</p>
+        <p>Click on the pipeline name to view additional details of the pipeline. </p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Pipeline1b.png" style="width: 816px;height: 253px;" />
+        </p>
+        <p>&#160;</p>
+        <p>Three tabs are available: <b>Monitoring, Tables,</b> and <b>Configuration</b>:</p>
+        <p>&#160;</p>
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Pipeline23.png" />
             <br />
@@ -68,7 +29,7 @@
         <h3>Monitoring Tab Fields</h3>
         <ol>
             <li>
-                <p><b>Last 24 hours</b> – select the timeframe for the following statistics </p>
+                <p><b>Last 24 hours</b> – select the time-frame for the tables showing various statistics </p>
             </li>
             <li>
                 <p><b>Ops/Sec over time</b> – the average number of operations per second<br /><img src="../Resources/Static/images/spacedeck-data-pipeline-monitoring-ops-sec-over-time.png" style="width: 70%;" /><br /></p>
@@ -144,7 +105,7 @@
                 <p><b>UNIQUE</b> –  indicates if unique or non-unique values are allowed for the index</p>
             </li>
         </ul>
-        <h3>View Pipeline Details – Configuration</h3>
+        <h2>View Pipeline Details – Configuration</h2>
         <p> The <b>Configuration</b> tab shows pipeline configuration information. The data is read-only when the pipeline is running.</p>
         <MadCap:snippetBlock src="../Resources/Snippets/Content/pipeline-configuration.flsnp" MadCap:snippetVariables="NewSet.TopicName:Data-Pipeline-Monitoring-," />
     </body>

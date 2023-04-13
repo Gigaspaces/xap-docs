@@ -10,19 +10,56 @@
         </map>
         <h1 class="tc-pagetitle">SpaceDeck – Data Pipelines Overview</h1>
         <p> Data Pipelines are flexible, configurable, no-code components that gather data from a mix of System of Record databases and tables. This data is loaded into the extremely high speed GigaSpaces data grid, where it can be accessed on a read/write basis.</p>
-        <p>Advantages of Data Pipelines include:</p>
+        <h1>Data Pipeline - Main Screen</h1>
+        <p>The Data Pipeline main screen shows the status of the existing data pipelines. You can see details of a pipeline by clicking on its name in the list. </p>
+        <p>&#160;</p>
+        <p><a href="../Resources/Images/SpaceDeck/SpaceDeck-Pipeline1a.png"><img src="../Resources/Images/SpaceDeck/SpaceDeck-Pipeline1a.png" style="width: 909px;height: 282px;"></img></a>
+        </p>
+        <h2>Data Pipeline Fields</h2>
+        <p><b>Data Pipeline Status:</b>
+        </p>
         <ul>
             <li>
-                <p>Flexible extract of data from multiple databases and tables</p>
+                <p><b>Error</b> – pipeline is not available because of one of the following conditions: not found/connection error/not started/started but not running/loading stopped/suspended</p>
             </li>
             <li>
-                <p>Import of data into the high-speed GigaSpaces in-memory <MadCap:variable name="General.DataGridInitCap" /></p>
+                <p><b>Loading</b> – pipeline is in the process of being configured</p>
             </li>
             <li>
-                <p>Unified data model for read/write of pipeline data<br /></p>
+                <p><b>Idle</b> –  pipeline is configured and the data integration is available</p>
+            </li>
+        </ul>
+        <p><b>Field Names:</b>
+        </p>
+        <ul>
+            <li>
+                <p><b>Group by Status</b> –  toggle to show the pipelines grouped  status</p>
             </li>
             <li>
-                <p>A metrics dashboard showing data activity, including data volumes and statistics and any data validation errors or other access errors.</p>
+                <p><b>New +</b> – select this to configure a new pipeline. See <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref> for instructions on how to define a new pipeline.</p>
+            </li>
+            <li>
+                <p><b>NAME</b> –  name assigned to the pipeline</p>
+            </li>
+            <li>
+                <p><b>STATUS</b> –  one of the following conditions: started/stopped/not starting/restarting/not found</p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p><b>TYPE</b> –  the connection type for the pipeline, for example, IIDR</p>
+            </li>
+            <li>
+                <p><b>ORIGIN</b> –  data source type from the System of Record, e.g. DB2</p>
+            </li>
+            <li>
+                <p><b>TOTAL&#160;OPERATIONS&#160;(LAST 24 HOURS)</b> – number of operations performed by the pipeline in the last 24 hours</p>
+            </li>
+            <li>
+                <p><b>TOTAL&#160;ERRORS&#160;(LAST 24 HOURS)</b> –  number of error operations performed by the pipeline in the last 24 hours</p>
+            </li>
+            <li>
+                <p><b>Kebab menu</b>  (vertical three-dot menu) on the far right - Option to start or delete a pipeline</p>
             </li>
         </ul>
         <p>&#160;</p>
@@ -31,7 +68,7 @@
             <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref>
         </p>
         <p>
-            <MadCap:xref href="spacedeck-data-pipeline-monitoring-pipelines.html">SpaceDeck – Data Pipeline – Monitoring Pipelines</MadCap:xref>
+            <MadCap:xref href="spacedeck-data-pipeline-details.html">SpaceDeck – Data Pipeline – Monitoring Pipelines</MadCap:xref>
         </p>
     </body>
 </html>
