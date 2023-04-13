@@ -6,11 +6,11 @@
         <h1 class="tc-pagetitle"><a name="overview"></a>Smart DIH Orchestration: Kubernetes </h1>
         <h1>Overview</h1>
         <p>Kubernetes is an open-source orchestration system for automating the deployment, scaling and management of containerized applications. </p>
-        <p>Gigaspaces DIH (Digital Integration Hub) is at its core an encapsulation of multiple components that serve as an integration and acceleration of data streams.</p>
-        <p> On the outbound, DIH can be configured to connect to different components of the client such as databases, streams, APIs and applications.</p>
-        <p>To that end, our DIH uses Kubernetes as its orchestration solution and as an enabler for using advanced technologies like memory grid, streaming and automation.</p>
+        <p>Smart DIH (Digital Integration Hub) is at its core an encapsulation of multiple components that serve as an integration and acceleration of data streams.</p>
+        <p> On the outbound, Smart DIH can be configured to connect to different components of the client such as databases, streams, APIs and applications.</p>
+        <p>To that end, our Smart DIH uses Kubernetes as its orchestration solution and as an enabler for using advanced technologies like memory grid, streaming and automation.</p>
         <p>&#160;</p>
-        <p>Using Kubernetes Gigaspaces DIH solution offers production grade qualities in the following areas:</p>
+        <p>Using Kubernetes, our Smart DIH solution offers production grade qualities in the following areas:</p>
         <ol>
             <li>
                 <p>Network and compute control</p>
@@ -25,7 +25,7 @@
                 <p>TCO&#160;reduction and maintainability</p>
             </li>
         </ol>
-        <p>DIH installation using Kubernetes <a href="https://helm.sh/">Helm</a> charts makes the deployment of the solution easier for operational staff as best practices and standard Kubernetes procedures are followed. The installation is flexible and can be tailored to user needs by handling a rich set of deployment parameters.</p>
+        <p>Smart DIH installation using Kubernetes <a href="https://helm.sh/">Helm</a> charts makes the deployment of the solution easier for operational staff as best practices and standard Kubernetes procedures are followed. The installation is flexible and can be tailored to user needs by handling a rich set of deployment parameters.</p>
         <!--
  Automatic scaling is supported, using predefined metrics along with CPU and memory monitoring to signal to Kubernetes when to scale up or down. Customized scaling rules according to personalized SLA, based on production needs, optimize the resources required to support the application requirements.
 
@@ -33,7 +33,7 @@ Through the persistent volume driver, <MadCap:variable name="General.ProductName
 -->
         <h1>Network and Compute</h1>
         <h2>Cloud Installation</h2>
-        <p>DIH can be installed on any of the major cloud vendors. Typically, start by setting a virtual network (i.e. VPC), then Kubernetes can be installed followed by DIH. Connectivity to your current databases and applications can be established using appropriate gateways. Client applications can run within the same network, using a VPN connection or other means that adhere to security requirements (see security). </p>
+        <p>Smart DIH can be installed on any of the major cloud vendors. Typically, start by setting a virtual network (i.e. VPC), then Kubernetes can be installed followed by Smart DIH. Connectivity to your current databases and applications can be established using appropriate gateways. Client applications can run within the same network, using a VPN connection or other means that adhere to security requirements (see security). </p>
         <div class="tc-admon-note">
             <p>Your databases and applications can be held where they are today (e.g. on premises) so no migration is required.</p>
         </div>
@@ -43,21 +43,21 @@ Through the persistent volume driver, <MadCap:variable name="General.ProductName
             </p>
         </div>
         <h2>On-Premise Installations</h2>
-        <p>Once Kubernetes is installed on-premise, be that a bare-metal installation or a private cloud, DIH can be installed and connected to your existing applications.</p>
+        <p>Once Kubernetes is installed on-premise, be that a bare-metal installation or a private cloud, Smart DIH can be installed and connected to your existing applications.</p>
         <p>&#160;</p>
         <p style="text-align: center;">
             <img src="../Resources/Images/K8sOnPremInstallation.png" style="width: 634px;height: 387px;" />
         </p>
         <h2>Hybrid Installations</h2>
         <p>A hybrid installation typically involves two environments that differ in some characteristics. </p>
-        <p>An example could be on-premise (e.g. an air-gapped environment) and cloud environment, where the applications that consume the data are divided between the two (for security reasons for example). In such a case 2 DIH installations would be required and data would be replicated (full or partial) between the two.</p>
+        <p>An example could be on-premise (e.g. an air-gapped environment) and cloud environment, where the applications that consume the data are divided between the two (for security reasons for example). In such a case 2 Smart DIH installations would be required and data would be replicated (full or partial) between the two.</p>
         <p>&#160;</p>
         <p style="text-align: center;">
             <img src="../Resources/Images/K8sHybridInstallation.png" style="width: 684px;height: 525px;" />
         </p>
         <h1>High&#160;Availability (HA) and Self-Healing</h1>
         <h2>Space High Availability</h2>
-        <p>The In-Memory Data Grid (IMDG) is at the center of the DIH. The data grid (also called a space) is maintained by an automation component (Kubernetes operator) that guarantees that the data will not be lost in the case of a pod going down.</p>
+        <p>The In-Memory Data Grid (IMDG) is at the center of Smart DIH. The data grid (also called a space) is maintained by an automation component (Kubernetes operator) that guarantees that the data will not be lost in the case of a pod going down.</p>
         <p>Pods that serve the data grid, hold the data in memory and on disk (see Tiered Storage capabilities). The data grid is divided into partitions and each pod is assigned to hold a partition of the data as well as an availability mode - a “primary” or a “backup”. The Primary pods are online, however, if a primary pod goes down, the backup pod then becomes the primary and a new backup is quickly reassembled. This flow avoids downtime as data is seamlessly served from the pods memory by switching between a primary pod and its backup.</p>
         <p>Partitions of the data grid are also backed up by the disk. This is a secondary measure to guarantee high availability.  Availability for the data on disk (which can be larger than memory) is maintained by the storage facility and it is kept intact if the pod goes down.</p>
         <p>&#160;</p>
@@ -69,27 +69,27 @@ Through the persistent volume driver, <MadCap:variable name="General.ProductName
             <img src="../Resources/Images/K8sHA.png" style="width: 740px;height: 396px;" />
         </p>
         <h2>Services High Availability</h2>
-        <p>Low-code services are created by the user in order to open a channel for applications to interact with the data grid using a REST API. Due to this, it is important to maintain their high availability. These services are stateless and DIH leverages the replication attribute of Kubernetes to maintain high availability.</p>
+        <p>Low-code services are created by the user in order to open a channel for applications to interact with the data grid using a REST API. Due to this, it is important to maintain their high availability. These services are stateless and Smart DIH leverages the replication attribute of Kubernetes to maintain high availability.</p>
         <p>In the diagram below, service “ABC” is replicated and serviced using a load balancer. In the case of one of the services going down the other continue to serve its client.</p>
         <p style="text-align: center;">
             <img src="../Resources/Images/K8LB.png" style="width: 304px;height: 390px;" />
         </p>
         <h1>Security</h1>
         <h2>Responsibilities </h2>
-        <p>Gigaspaces DIH has been designed with strong security defaults in mind. These defaults include always-on authentication, authorization, encryption in transit and encryption at rest and no access from the Internet by default. DIH includes the notion of roles that can be attached to users to preserve a minimal access policy.</p>
+        <p>Smart DIH has been designed with strong security defaults in mind. These defaults include always-on authentication, authorization, encryption in transit and encryption at rest and no access from the Internet by default. Smart DIH includes the notion of roles that can be attached to users to preserve a minimal access policy.</p>
         <h2>Access</h2>
-        <p>Authentication and Authorization are at the core of the system. Access to every asset of the system is protected by these fundamentals. DIH supports a rich set of Authentication and Authorization capabilities and can seamlessly connected with SSO (single sign on)  and various IDPs (Identity providers),</p>
+        <p>Authentication and Authorization are at the core of the system. Access to every asset of the system is protected by these fundamentals. Smart DIH supports a rich set of Authentication and Authorization capabilities and can seamlessly connected with SSO (single sign on)  and various IDPs (Identity providers),</p>
         <h2>At Transit</h2>
         <p>Data is encrypted in transit. It is up to the user to open a public access and Gigaspaces will provide means to secure data at transit using protocols such as TLS. The typical connection is within the private network, This  can be constructed using networking techniques such as VPN, Private link, VPC peering or other related protocols.</p>
         <h2>At Rest</h2>
-        <p>Encryption can be set up by DIH or by the customer to ensure that the data is secured at rest.</p>
+        <p>Encryption can be set up by Smart DIH or by the customer to ensure that the data is secured at rest.</p>
         <h1>TCO&#160;Reduction and Maintainability</h1>
         <h2>Installation</h2>
-        <p>DIH is installed with standard Kubernetes tools using common practices and flows. Helm is the go-to application used for installing DIH and enables installation in single command using a DIH Helm umbrella chart installation. An umbrella chart is when a chart is created for the purpose of grouping together related subcharts/services, such as to compose a whole application or deployment. A rich set of values can be applied upon installation, creating a customized deployment. Upgrades can leverage these tools so that future enhancements of DIH can also take place with minimal effort. </p>
+        <p>Smart DIH is installed with standard Kubernetes tools using common practices and flows. Helm is the go-to application used for installing Smart DIH and enables installation in single command using a Smart DIH Helm umbrella chart installation. An umbrella chart is when a chart is created for the purpose of grouping together related subcharts/services, such as to compose a whole application or deployment. A rich set of values can be applied upon installation, creating a customized deployment. Upgrades can leverage these tools so that future enhancements of Smart DIH can also take place with minimal effort. </p>
         <h2>Elasticity</h2>
         <p>Kubernetes has built-in mechanisms that expand and contract resources depending on load (given cloud support). This means that during run-time the system deployment is optimized for the current workload.</p>
         <h2>Control</h2>
-        <p>Kubernetes tools support various operations for managing the system. This includes control resources count, security, metrics and logging parameters. DIH in this sense provides additional controls at the DIH level (SpaceDeck) which may also affect the underlying deployment by leveraging Kubernetes operators.</p>
+        <p>Kubernetes tools support various operations for managing the system. This includes control resources count, security, metrics and logging parameters. Smart DIH in this sense provides additional controls at the Smart DIH level (<a href="../spacedeck/spacedeck-overview.html">SpaceDeck</a>) which may also affect the underlying deployment by leveraging Kubernetes operators.</p>
         <!--
 ## Using Apache Zeppelin with <MadCap:variable name="General.ProductNameIE" />
 
