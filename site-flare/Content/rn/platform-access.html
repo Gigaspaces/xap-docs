@@ -5,20 +5,25 @@
     <body>
         <h1 class="tc-pagetitle">Platform&#160;Feature Access</h1>
         <p>This page explains how Smart Cache and Smart DIH features are accessed.</p>
+        <p>Everything in K8s can be installed using&#160;Helm.</p>
         <p>&#160;</p>
         <table style="width: 100%;">
             <col />
-            <col style="width: 215px;" />
-            <col style="width: 260px;" />
+            <col style="width: 193px;" />
+            <col style="width: 193px;" />
+            <col style="width: 316px;" />
             <col />
             <thead>
                 <tr>
                     <th style="font-weight: bold;">Operation</th>
                     <th style="text-align: left;font-weight: bold;">Access</th>
+                    <th><b>Platform</b>
+                    </th>
                     <th style="text-align: left;font-weight: bold;">
-                        <p><b>Applicable</b>
+                        <p><b>Applicable Environment</b>
                         </p>
-                        <p>Smart DIH, Smart Cache, Both.</p>
+                        <p>Kubernetes</p>
+                        <p>Non-Kubernetes or Both</p>
                     </th>
                     <th style="text-align: left;font-weight: bold;">Additional Notes</th>
                 </tr>
@@ -27,19 +32,21 @@
                 <tr>
                     <td>Hosts Management </td>
                     <td>
-                        <p><a href="../dev-java/administration-and-monitoring-overview.html">Admin API </a>
+                        <p><a href="../dev-java/administration-and-monitoring-overview.html">Admin API <a href="../admin/admin-rest-manager-api.html">REST&#160;API</a><a href="../admin/tools-cli.html"><br />CLI</a><br /><a href="../admin/tools-web-ui.html">WEB-UI</a><br /></a>
                         </p>
                     </td>
                     <td>
                         <p>Smart Cache</p>
+                        <p>Smart DIH</p>
                     </td>
-                    <td>&#160;</td>
+                    <td>
+                        <p>Non-Kubernetes</p>
+                    </td>
+                    <td>For Kubernetes this is handled by the Kubernetes installation</td>
                 </tr>
                 <tr>
                     <td>Containers </td>
                     <td>
-                        <p><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck</a>
-                        </p>
                         <p><a href="../dev-java/administration-and-monitoring-overview.html">Admin API </a>
                         </p>
                         <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
@@ -50,26 +57,29 @@
                         </p>
                     </td>
                     <td>
-                        <p>Both</p>
-                        <p>Both</p>
-                        <p>Both</p>
-                        <p>Both</p>
-                        <p>Both</p>
+                        <p>Smart Cache</p>
+                        <p>Smart DIH</p>
                     </td>
-                    <td>Manage the running process (restart, statistics, etc.)</td>
+                    <td>
+                        <p>Non-Kubernetes</p>
+                    </td>
+                    <td style="text-align: justify;vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 1px;border-left-color: #e0e0e0;">
+                        <p>&#160;</p>
+                        <p>Managing the running processes (restart, statistics, etc.) </p>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Identify Provider Preferences </td>
+                    <td>Identify Provider (IDP) Preferences </td>
                     <td>
                         <p><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck</a> </p>
-                        <p><a href="../dev-java/administration-and-monitoring-overview.html">Admin API </a>
-                        </p>
+                    </td>
+                    <td>Smart DIH&#160;Only</td>
+                    <td>
+                        <p>Kubernetes</p>
                     </td>
                     <td>
-                        <p>Smart DIH</p>
-                        <p>Both</p>
+                        <p>For existing &amp;&#160;new user roles</p>
                     </td>
-                    <td>For existing &amp;&#160;new user roles</td>
                 </tr>
                 <tr>
                     <td>Management of Data Sources </td>
@@ -79,11 +89,11 @@
                         <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
                         </p>
                     </td>
-                    <td>
-                        <p>Smart DIH</p>
-                        <p>Smart DIH</p>
-                    </td>
                     <td>&#160;</td>
+                    <td>
+                        <p>Kubernetes</p>
+                    </td>
+                    <td>Not relevant for Smart Cache</td>
                 </tr>
                 <tr>
                     <td>Management of Pipelines </td>
@@ -93,11 +103,11 @@
                         <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
                         </p>
                     </td>
+                    <td>Smart DIH&#160;Only</td>
                     <td>
-                        <p>Smart DIH</p>
-                        <p>Smart DIH</p>
+                        <p>Kubernetes</p>
                     </td>
-                    <td>&#160;</td>
+                    <td>Not relevant for Smart Cache</td>
                 </tr>
                 <tr>
                     <td>Management of Spaces </td>
@@ -112,24 +122,25 @@
                         </p>
                     </td>
                     <td>
-                        <p>Smart DIH (k8s only)</p>
-                        <p>Both (no K8s)</p>
+                        <p>Smart Cache</p>
+                        <p>Smart DIH</p>
+                    </td>
+                    <td>
+                        <p>Kubernetes</p>
+                        <p>Non-Kubernetes</p>
                         <p>Both</p>
                         <p>Both</p>
                         <p>Both</p>
-                        <p>Both (no K8s)</p>
+                        <p>Non-Kubernetes</p>
                     </td>
                     <td>
                         <p><b>SpaceDeck</b>: New Space basic control including partitions and redundancy</p>
-                        <p style="font-weight: normal;"><b>Ops Manager:</b> Advanced configuration of the Space</p>
-                        <p><b>Manual</b>:  Secure Space</p>
+                        <p style="font-weight: normal;"><b>Ops Manager:</b> Advanced configuration of the Space and secure space (for both Smart Cache and Smart DIH)</p>
                     </td>
                 </tr>
                 <tr>
                     <td>Management of Data Access Services (PUs) </td>
                     <td>
-                        <p><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck</a>
-                        </p>
                         <p><a href="../admin/tools-web-ui.html">WEB-UI</a>
                         </p>
                         <p><a href="../admin/gs-ops-manager-overview.html">Ops Manager</a>
@@ -141,12 +152,15 @@
                         <p><a href="../admin/tools-cli.html">CLI</a> </p>
                     </td>
                     <td>
-                        <p>Smart DIH (k8s only)</p>
-                        <p>Both (no K8s)</p>
+                        <p>Smart Cache</p>
+                        <p>Smart DIH</p>
+                    </td>
+                    <td>
+                        <p>Non-Kubernetes</p>
                         <p>Both</p>
                         <p>Both</p>
                         <p>Both</p>
-                        <p>Both (no K8s)</p>
+                        <p>Non-Kubernetes</p>
                     </td>
                     <td>
                         <p><b>Manual:</b>&#160;Secure Space config proxy</p>
@@ -156,10 +170,11 @@
                 <tr>
                     <td>Data Access Micro-Services (Low-Code) </td>
                     <td><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck</a> </td>
+                    <td>Smart DIH&#160;Only</td>
                     <td>
-                        <p>Both (k8s only)</p>
+                        <p>Kubernetes</p>
                     </td>
-                    <td>&#160;</td>
+                    <td>Not relevant for Smart Cache</td>
                 </tr>
                 <tr>
                     <td>Data Gateway </td>
@@ -171,7 +186,30 @@
                         </p>
                     </td>
                     <td>
-                        <p>Both </p>
+                        <p>Smart Cache</p>
+                        <p>Smart DIH</p>
+                    </td>
+                    <td>
+                        <p>Both</p>
+                        <p>Non-Kubernetes<br />Both</p>
+                    </td>
+                    <td>
+                        <p>Provides the ability to connect to the Space using other data tools, for example, DBeaver. </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data Query </td>
+                    <td>
+                        <p><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck<br /></a>
+                        </p><a href="../admin/gs-ops-manager-overview.html">Ops Manager<br /><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a></a>
+                    </td>
+                    <td>
+                        <p>Smart Cache</p>
+                        <p>Smart DIH</p>
+                    </td>
+                    <td>
+                        <p>Kubernetes</p>
+                        <p>Non-Kubernetes<br />Both</p>
                     </td>
                     <td>&#160;</td>
                 </tr>
