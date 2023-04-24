@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Platform Feature Access</h1>
+        <p>This page explains how Smart DIH and Smart Cache features are accessed.</p>
+        <p>Everything in Kubernetes can be <a href="../admin/DIH-installation-kubernetes.html">installed using&#160;Helm</a>.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Smart DIH" style="padding:10px">
+                <table>
+                    <col style="width: 328px;" />
+                    <col style="width: 215px;" />
+                    <col style="width: 214px;" />
+                    <col />
+                    <thead>
+                        <tr>
+                            <th align="left">Operation</th>
+                            <th align="left">Access</th>
+                            <th align="left">Environment</th>
+                            <th align="left">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Hosts Management</td>
+                            <td align="left"><a href="../dev-java/administration-and-monitoring-overview.html">Admin API </a><a href="../admin/admin-rest-manager-api.html"><br />REST&#160;API</a><a href="../admin/tools-cli.html"><br />CLI</a>
+                                <br /><a href="../admin/tools-web-ui.html">WEB-UI</a>
+                            </td>
+                            <td align="left">
+                                <p>Non-Kubernetes</p>
+                            </td>
+                            <td align="left">&#160;</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Containers</td>
+                            <td align="left"><a href="../dev-java/administration-and-monitoring-overview.html">Admin API </a>
+                                <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                                </p>
+                                <p><a href="../admin/tools-cli.html">CLI</a>
+                                </p>
+                                <p><a href="../admin/tools-web-ui.html">WEB-UI</a>
+                                </p>
+                            </td>
+                            <td align="left">Non-Kubernetes</td>
+                            <td align="left">Managing the running processes (restart, statistics, etc.) </td>
+                        </tr>
+                        <tr MadCap:conditions="">
+                            <td align="left">Identify Provider (IDP) Preferences</td>
+                            <td align="left"><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck</a>
+                            </td>
+                            <td align="left">Kubernetes</td>
+                            <td align="left">
+                                <p>For existing &amp;&#160;new user roles</p>
+                            </td>
+                        </tr>
+                        <tr MadCap:conditions="">
+                            <td align="left">Management of Data Sources</td>
+                            <td align="left"><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck</a>
+                                <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                                </p>
+                            </td>
+                            <td align="left">Kubernetes</td>
+                            <td align="left">&#160;</td>
+                        </tr>
+                        <tr MadCap:conditions="">
+                            <td align="left">Management of Pipelines</td>
+                            <td align="left"><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck</a>
+                                <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                                </p>
+                            </td>
+                            <td align="left">Kubernetes</td>
+                            <td align="left">&#160;</td>
+                        </tr>
+                        <tr MadCap:conditions="">
+                            <td align="left">Management of Spaces</td>
+                            <td align="left"><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck</a>
+                                <p><a href="../admin/tools-web-ui.html">WEB-UI </a>
+                                </p>
+                                <p><a href="../admin/gs-ops-manager-overview.html">Ops Manager</a>
+                                </p>
+                                <p><a href="../dev-java/administration-and-monitoring-overview.html">Admin&#160;API</a>
+                                </p>
+                                <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                                </p>
+                                <p><a href="../admin/tools-cli.html">CLI </a>
+                                </p>
+                            </td>
+                            <td align="left">
+                                <p>Kubernetes</p>
+                                <p>Non-Kubernetes</p>
+                                <p>Both</p>
+                                <p>Both</p>
+                                <p>Both</p>
+                                <p>Non-Kubernetes</p>
+                            </td>
+                            <td align="left"><b>SpaceDeck</b>: New Space basic control including partitions and redundancy.<p style="font-weight: normal;"><b>Ops Manager:</b> Advanced configuration of the Space and secure space </p></td>
+                        </tr>
+                        <tr MadCap:conditions="">
+                            <td align="left">Management of Data Access Services (PUs)</td>
+                            <td align="left"><a href="../admin/tools-web-ui.html">WEB-UI</a>
+                                <p><a href="../admin/gs-ops-manager-overview.html">Ops Manager</a>
+                                </p>
+                                <p><a href="../dev-java/administration-and-monitoring-overview.html">ADMIN&#160;API </a>
+                                </p>
+                                <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API </a>
+                                </p>
+                                <p><a href="../admin/tools-cli.html">CLI</a>
+                                </p>
+                            </td>
+                            <td align="left">
+                                <p>Non-Kubernetes</p>
+                                <p>Both</p>
+                                <p>Both</p>
+                                <p>Both</p>
+                                <p>Non-Kubernetes</p>
+                            </td>
+                            <td align="left"><b>Manual:</b>&#160;Secure Space config proxy<p>When using Kubernetes this is achieved Helm commands or Ops Manager</p></td>
+                        </tr>
+                        <tr MadCap:conditions="">
+                            <td align="left">Data Access Micro-Services (Low-Code)</td>
+                            <td align="left"><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck</a>
+                            </td>
+                            <td align="left">Kubernetes</td>
+                            <td align="left">&#160;</td>
+                        </tr>
+                        <tr MadCap:conditions="">
+                            <td align="left">Data Gateway</td>
+                            <td align="left"><a href="../admin/gs-ops-manager-overview.html">Ops&#160;Manager</a>
+                                <p><a href="../admin/tools-cli.html">CLI</a>
+                                </p>
+                                <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                                </p>
+                            </td>
+                            <td align="left">
+                                <p>Both</p>
+                                <p>Non-Kubernetes<br />Both</p>
+                            </td>
+                            <td align="left">
+                                <p>Provides the ability to connect to the Space using other data tools, for example, DBeaver. </p>
+                            </td>
+                        </tr>
+                        <tr MadCap:conditions="">
+                            <td align="left">Data Query</td>
+                            <td align="left"><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck<br></br></a>
+                                <p><a href="../admin/gs-ops-manager-overview.html">Ops Manager<br></br><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a></a>
+                                </p>
+                            </td>
+                            <td align="left"><a href="http://www.apache.org/licenses/LICENSE-2.0.html"><p>Kubernetes</p><p>Non-Kubernetes<br />Both</p></a>
+                            </td>
+                            <td align="left">&#160;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div title="Smart Cache" style="padding:10px">
+                <table>
+                    <col style="width: 330px;" />
+                    <col style="width: 213px;" />
+                    <col style="width: 215px;" />
+                    <col />
+                    <thead>
+                        <tr>
+                            <th align="left">Operation</th>
+                            <th align="left">Access</th>
+                            <th align="left">Environment</th>
+                            <th align="left">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr MadCap:conditions="">
+                            <td align="left">Hosts Management </td>
+                            <td align="left">
+                                <p align="left"><a href="../dev-java/administration-and-monitoring-overview.html">Admin API </a>
+                                </p>
+                                <p align="left"><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a><a href="../admin/tools-cli.html"><br />CLI</a>
+                                    <br /><a href="../admin/tools-web-ui.html">WEB-UI</a>
+                                </p>
+                            </td>
+                            <td align="left">
+                                <p>Non-Kubernetes</p>
+                            </td>
+                            <td align="left">&#160;</td>
+                        </tr>
+                        <tr MadCap:conditions="">
+                            <td align="left">Containers </td>
+                            <td align="left">
+                                <p><a href="../dev-java/administration-and-monitoring-overview.html">Admin API </a>
+                                </p>
+                                <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                                </p>
+                                <p><a href="../admin/tools-cli.html">CLI</a>
+                                </p>
+                                <p><a href="../admin/tools-web-ui.html">WEB-UI</a>
+                                </p>
+                            </td>
+                            <td align="left">
+                                <p>Non-Kubernetes</p>
+                            </td>
+                            <td align="left">Managing the running processes (restart, statistics, etc.) </td>
+                        </tr>
+                        <tr MadCap:conditions="">
+                            <td align="left">Management of Spaces </td>
+                            <td align="left">
+                                <p><a href="../admin/tools-web-ui.html">WEB-UI </a>
+                                </p>
+                                <p><a href="../admin/gs-ops-manager-overview.html">Ops Manager</a>
+                                </p>
+                                <p><a href="../dev-java/administration-and-monitoring-overview.html">Admin&#160;API</a>
+                                </p>
+                                <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                                </p>
+                                <p><a href="../admin/tools-cli.html">CLI </a>
+                                </p>
+                            </td>
+                            <td align="left">
+                                <p>Non-Kubernetes</p>
+                                <p>Both</p>
+                                <p>Both</p>
+                                <p>Both</p>
+                                <p>Non-Kubernetes</p>
+                            </td>
+                            <td align="left"><b>Ops Manager:</b> Advanced configuration of the Space and secure space.</td>
+                        </tr>
+                        <tr MadCap:conditions="">
+                            <td align="left">Management of Data Access Services (PUs) </td>
+                            <td align="left">
+                                <p><a href="../admin/tools-web-ui.html">WEB-UI</a>
+                                </p>
+                                <p><a href="../admin/gs-ops-manager-overview.html">Ops Manager</a>
+                                </p>
+                                <p><a href="../dev-java/administration-and-monitoring-overview.html">ADMIN&#160;API </a>
+                                </p>
+                                <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API </a>
+                                </p>
+                                <p><a href="../admin/tools-cli.html">CLI</a>
+                                </p>
+                            </td>
+                            <td align="left">
+                                <p>Non-Kubernetes</p>
+                                <p>Both</p>
+                                <p>Both</p>
+                                <p>Both</p>
+                                <p>Non-Kubernetes</p>
+                            </td>
+                            <td align="left">&#160;</td>
+                        </tr>
+                        <tr MadCap:conditions="">
+                            <td align="left">Data Gateway</td>
+                            <td align="left">
+                                <p><a href="../admin/gs-ops-manager-overview.html">Ops&#160;Manager</a>
+                                </p>
+                                <p><a href="../admin/tools-cli.html">CLI</a>
+                                </p>
+                                <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                                </p>
+                            </td>
+                            <td align="left">
+                                <p>Both</p>
+                                <p>Non-Kubernetes<br />Both</p>
+                            </td>
+                            <td align="left">Provides the ability to connect to the Space using other data tools, for example, DBeaver.</td>
+                        </tr>
+                        <tr MadCap:conditions="">
+                            <td align="left">Data Query</td>
+                            <td align="left"><a href="../admin/gs-ops-manager-overview.html">Ops Manager</a><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                            </td>
+                            <td align="left">
+                                <p>Non-Kubernetes<br />Both</p>
+                            </td>
+                            <td align="left">&#160;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
