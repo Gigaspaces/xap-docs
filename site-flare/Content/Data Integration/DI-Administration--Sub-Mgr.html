@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <div>
+            <h1 class="tc-pagetitle" style="text-align: left;">Pipeline Setup Via Subscription Manager and SpaceDeck</h1>
+            <p style="text-align: left;">Setting up a DI&#160;pipeline requires the configuration of several components in the following order:</p>
+            <ol>
+                <li>
+                    <p style="text-align: left;">Prepare the Kubernetes cluster</p>
+                </li>
+                <li>
+                    <p style="text-align: left;">Setup IIDR subscription via the DI&#160;Subscription&#160;Manager</p>
+                </li>
+                <li>
+                    <p style="text-align: left;">Create a pipeline using SpaceDeck UI</p>
+                </li>
+            </ol>
+            <h2>Step 1: Prepare the Kubernetes Cluster</h2>
+            <ol>
+                <li>
+                    <p style="text-align: left;">Add required secrets</p>
+                </li><pre xml:space="preserve">
+kubectl create secret docker-registry myregistrysecret --docker-server=https://index.docker.io/v1/ 
+--docker-username=dihcustomers --docker-password=dckr_pat_NYcQySRyhRFZ6eUQAwLsYm314QA 
+--docker-email=dih-customers@gigaspaces.com
+
+kubectl create secret generic datastore-credentials --from-literal=username='system' --from-literal=password='admin11'</pre>
+                <li>
+                    <p>Add Smart DIH repo and update</p>
+                </li><pre xml:space="preserve">
+helm repo add dih https://s3.amazonaws.com/resources.gigaspaces.com/helm-charts-dih;
+helm repo update;
+</pre>
+                <li>
+                    <p>Install the Smart DIH&#160;umbrella</p>
+                    <div class="tc-admon-attention">
+                        <p>In order to install the Smart DIH&#160;umbrella, the ingress URL of the Kuberenetes cluster where the umbrella is going to be installed must be correctly indentified.</p>
+                        <p>The example outlined below does the following:</p>
+                        <p>1) Install a deployment named dih</p>
+                        <p>2) Has the version of the installed umbrella</p>
+                        <p>3) Sets the following configuration parameters:</p>
+                        <p style="text-indent: 0.5in;">a. tags.iidr=true - this installs iidr as a part of the umbrella</p>
+                        <p style="text-indent: 0.5in;">b. manager.license=" ..." - this submits the license for xap deployment</p>
+                        <p style="text-indent: 0.5in;">c. operator.license=" ..." - this submits the license for xap deployment</p>
+                        <p style="text-indent: 0.5in;">d. global.iidrKafkaHost="team1.gigaspaces.net"</p>
+                    </div>
+                </li><pre xml:space="preserve">
+helm install dih dih/dih --version 16.3.0-rc3 --set tags.iidr=true,manager.license="Product=XAP;Version=16.3;
+Type=PREMIUM;Customer=evaluation;Expiration=2023-May-03;Hash=NYrMXNRqPCRStyRyP7GN",operator.license="Product=XAP;
+Version=16.3;Type=PREMIUM;Customer=evaluation;Expiration=2023-May-03;Hash=NYrMXNRqPCRStyRyP7GN",
+global.iidrKafkaHost=team1.gigaspaces.net</pre>
+                <li>
+                    <p>Install a demo space</p>
+                </li><pre xml:space="preserve">
+helm install demo dih/xap-pu --version 16.3.0-rc3 --set ha=true</pre>
+            </ol>
+            <h2>Step 2: IIDR&#160;Subscription Setup Via DI-Subscription-Manager</h2>
+            <div class="tc-admon-attention">
+                <p>If encounter the error <code class="language-sql">"Error creating bean with name 'scopedTarget.embeddedScriptExecutor' defined in URL [jar:file:/home/gsods/app.jar!/BOOT-INF/classes!/com/gigaspaces/di/subscriptionmanager/EmbeddedScriptExecutor.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.gigaspaces.di.subscriptionmanager.EmbeddedScriptExecutor]: Constructor threw exception; nested exception is com.datamirror.ea.api.ApiException: Your account has been locked because the number of consecutive log-in failures exceeded the maximum allowed. Please contact your IBM InfoSphere Data Replication administrator for assistance."</code>, then just execute</p>
+                <p><code class="language-sql">kubectl exec svc/iidr-as -- /home/gsods/di-api/unlock_as_user.sh</code>
+                </p>
+            </div>
+            <p>Port forward DI&#160;Subscription Manager: kubectl port-forward svc/di-subscription-manager 6082</p>
+            <p>Open postman collection via <a href="https://elements.getpostman.com/redirect?entityId=22986763-e09fd09c-01da-47f9-892e-66e6783bc547&amp;entityType=collection">https://elements.getpostman.com/redirect?entityId=22986763-e09fd09c-01da-47f9-892e-66e6783bc547&amp;entityType=collection</a> and use it from your local postman or open the swagger via <a href="http://localhost:6082/swagger-ui/index.html#/">http://localhost:6082/swagger-ui/index.html#/</a> and execute following requests:</p>
+            <ol>
+                <li>
+                    <p>Execute createDataStore method in Postman or POST <a href="http:///api/v1/datastores ">/api/v1/datastores</a> in Swagger</p>
+                </li>
+            </ol>
+            <ol style="list-style-type: lower-alpha;">
+                <li>
+                    <p>Request body:</p>
+                </li>
+            </ol>
+            <ol><pre xml:space="preserve">
+{
+   "sorName": "ORACLE",
+   "dbProvider": "ORACLE",
+   "url": "iidr://&lt;IP address of the Oracle server with IIDR Oracle agent&gt;:11001",
+   "username": "SYSTEM",
+   "password": "admin11",
+   "additionalInfo": "string",  
+   "offlineMode": true
+}
+</pre>
+                <p xml:space="preserve" class="tc-bodytext">
+
+
+
+
+
+
+
+
+
+
+
+</p>
+            </ol>
+            <p>b. Expected output:</p>
+            <ol><pre xml:space="preserve">
+{  
+    "name": "ORACLE",
+    "hostName": "10.0.0.1",
+    "shortVersion": "V11R4M0T4BIIDR_master_5629",
+    "database": "JDBC",
+    "type": "Dual",
+    "status": "",
+    "context": ""
+}
+</pre>
+            </ol>
+            <p>2. Execute getDataStoreList method in Postman or GET <a href="http:// /api/v1/datastores">/api/v1/datastores</a> in Swagger</p>
+            <p>a. Expected output:</p>
+            <ol><pre xml:space="preserve">
+[
+     {
+        "name": "KAFKA",   
+        "hostName": "iidr-kafka@11701",
+        "shortVersion": "V11R4M0", 
+        "database": "JDBC",
+        "type": "Target",
+        "status": "Not connected",
+        "context": ""
+     },
+     {  
+        "name": "ORACLE",
+        "hostName": "iidr-oracle@11001",
+        "shortVersion": "V11R4M0",
+        "database": "JDBC",
+        "type": "Dual",
+        "status": "Not connected",
+        "context": ""
+     }
+]
+</pre>
+            </ol>
+            <div>
+                <p>3. Execute createSubscription method in Postman or POST <a href="http:///api/v1/{sourceDataStore}/subscriptions/">/api/v1/{sourceDataStore}/subscriptions/</a> in Swagger</p>
+                <p>a. Parameters:</p>
+                <ol><pre xml:space="preserve">sourceDataStore: ORACLE</pre>
+                </ol>
+                <p>b. Request body:</p>
+                <ol><pre xml:space="preserve">{
+   "name": "DEMO"
+}</pre>
+                </ol>
+                <p>c. Expected output:</p>
+                <ol><pre xml:space="preserve">{
+   "name": "DEMO"
+   "description": "",
+   "sourceDataStore": "ORACLE",
+   "targetDataStore": "KAFKA",
+   "sourceId": "DEMO",
+   "tcpHost": "Auto Select",
+   "persistency": "Yes",
+   "transferableWork": "Target",
+   "propagationControl": ""
+}</pre>
+                </ol>
+            </div>
+            <div>
+                <p>4. Execute getSubscriptionsList method in Postman or GET <a href="http:///api/v1/{sourceDataStore}/subscriptions/">/api/v1/{sourceDataStore}/subscriptions/</a> in Swagger</p>
+                <p>a. Parameters:</p>
+                <ol><pre xml:space="preserve">sourceDataStore: ORACLE</pre>
+                </ol>
+                <p>b. Expected output:</p>
+                <ol><pre xml:space="preserve">[
+    {
+        "name": "DEMO"
+        "state": "INACTIVE",
+        "sourceDataStore": "ORACLE",
+        "targetDataStore": "KAFKA",
+        "latency": "",
+        "scheduleEnd": ""
+     }
+]</pre>
+                </ol>
+            </div>
+            <div>
+                <p>5. Execute addTableToSubscription method in Postman or POST <a href="http:///api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/tables">/api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/tables</a> in Swagger</p>
+                <p>a. Parameters:</p>
+                <ol><pre xml:space="preserve">sourceDataStore: ORACLE
+subscriptionName:&#160;DEMO</pre>
+                </ol>
+                <p>b. Request body:</p>
+                <ol><pre xml:space="preserve">{
+   "schema": "RETAIL_DEMO",
+   "table": "ORDERS"
+}</pre>
+                </ol>
+                <p>c. Expected output:</p>
+                <ol><pre xml:space="preserve">{
+   "sourceTable": "RETAIL_DEMO.ORDERS",
+   "target": "Kafka",
+   "mappingType": "Avro JSON",
+   "method": "Mirror",
+   "status": "Refresh",
+   "context": "Yes"
+}</pre>
+                </ol>
+            </div>
+            <div>
+                <p>6. Execute getSubscriptionTableMappings method in Postman or GET <a href="http:///api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/tables">/api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/tables</a> in Swagger</p>
+                <p>a. Parameters:</p>
+                <ol><pre xml:space="preserve">sourceDataStore: ORACLE
+subscriptionName:&#160;DEMO</pre>
+                </ol>
+                <p>b. Expected output:</p>
+                <ol><pre xml:space="preserve">[
+   {
+      "sourceTable": "RETAIL_DEMO.ORDERS",
+      "target": "Kafka",
+      "mappingType": "Avro JSON",
+      "method": "Mirror",
+      "status": "Refresh",
+      "context": ""
+   }
+]</pre>
+                </ol>
+            </div>
+            <div>
+                <p>7. Execute startSubscription method in Postman or POST <a href="http:///api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/start">/api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/start</a> in Swagger</p>
+                <p>a. Parameters:</p>
+                <ol><pre xml:space="preserve">sourceDataStore: ORACLE
+subscriptionName:&#160;DEMO</pre>
+                </ol>
+                <p>b. Request body:</p>
+                <ol><pre xml:space="preserve">{}  </pre>
+                </ol>
+                <p>c. Expected output:</p>
+                <ol><pre xml:space="preserve">{
+   "subscriptionName": "DEMO",
+   "sourceDataStore": "ORACLE",
+   "state": "STARTING"
+}</pre>
+                </ol>
+            </div>
+            <div>
+                <p>8. Execute getSubscriptionStatus method in Postman <a href="http:// /api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/status"> /api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/status</a> in Swagger</p>
+                <p>a. Parameters</p>
+                <ol><pre xml:space="preserve">sourceDataStore: ORACLE
+subscriptionName:&#160;DEMO</pre>
+                </ol>
+                <p>b. Expected output:</p>
+                <ol><pre xml:space="preserve">{
+   "subscriptionName": "DEMO",
+   "sourceDataStore": "ORACLE",
+   "state": "MIRROR_CONTINUOUS"
+}</pre>
+                </ol>
+            </div>
+            <h2>Step 3:&#160;Pipeline Creation Using SpaceDeck</h2>
+            <ol>
+                <li>
+                    <p>For creating a Pipeline in&#160;SpaceDeck, follow the procedure in the <MadCap:xref href="../spacedeck/spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref> page using the following attributes in the Pipeline Configuration screen:</p>
+                </li>
+            </ol>
+            <ul>
+                <li>
+                    <p>Pipeline name: demo 1</p>
+                </li>
+                <li>
+                    <p>Space name: demo</p>
+                </li>
+                <li>
+                    <p>Connector type:&#160;IIDR</p>
+                </li>
+                <li>
+                    <p>Data Source Connection: ORACLE</p>
+                </li>
+                <li>
+                    <p>CDC&#160;Kafka Topic:&#160;DEMO</p>
+                </li>
+                <li>
+                    <p>Select the RETAIL_DEMO.ORDERS table</p>
+                </li>
+            </ul>
+            <p>2. Start the Pipeline, select Point in time: EARLIEST</p>
+            <p>3. Verify that all the data from ORACLE appears in the Space</p>
+            <ol style="list-style-type: lower-alpha;">
+                <li>
+                    <p>Add a new row to the ORDERS table (for example, via DBeaver)</p>
+                </li>
+                <li>
+                    <p>Using SpaceDeck Data Query screen (see <MadCap:xref href="../spacedeck/spacedeck-data-query.html">SpaceDeck – Data Query</MadCap:xref>) type the query "SELECT * FROM&#160;ORDERS" and click "Run Query".</p>
+                </li>
+                <li>
+                    <p>Verify that all the data from&#160;Oracle is displayed.</p>
+                </li>
+            </ol>
+        </div>
+    </body>
+</html>

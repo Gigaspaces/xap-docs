@@ -8,11 +8,11 @@
         <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
         <div>
             <h1>Introducing SpaceDeck</h1>
-            <p><a href="../spacedeck/spacedeck-overview.html">SpaceDeck</a>, GigaSpaces new User Interface, is now fully available. </p>
+            <p><a href="../spacedeck/spacedeck-overview.html">SpaceDeck</a>, GigaSpaces new User Interface, is now fully available for use in our Smart DIH&#160;product via Kubernetes installation. </p>
             <p>SpaceDeck is an intuitive, streamlined user interface to manage and control the GigaSpaces environment.</p>
             <p>Using SpaceDeck, you can define the tools to bring legacy System of Record (SoR) databases into the in-memory data grid that is the core of the GigaSpaces system.</p>
             <div class="tc-admon-note">
-                <p>&#160;For Smart DIH SpaceDeck does not yet cover all functionality. Our  <a href="../admin/gs-ops-manager-overview.html">Ops Manager UI</a> is still used to manage <a href="platform-access.html">certain functionality</a>. SpaceDeck is initially available for SmartDIH installations, and will be extended in future releases to eventually replace the older UIs. Smart Cache also uses our <![CDATA[  ]]><MadCap:xref href="../admin/tools-web-ui.html">Web Management Console</MadCap:xref>.</p>
+                <p>&#160;For Smart DIH SpaceDeck does not yet cover all functionality. Our  <a href="../admin/gs-ops-manager-overview.html">Ops Manager UI</a> is still used to manage <a href="platform-access.html">certain functionality</a>. SpaceDeck is initially available for SmartDIH installations on Kubernetes, and will be extended in future releases to eventually replace the older UIs.</p>
             </div>
             <p>SpaceDeck includes the following features:</p>
             <ul>
@@ -26,20 +26,20 @@
             <ul>
                 <li>
                     <p>
-                        <MadCap:xref href="../spacedeck/16-2-spacedeck-spaces.html" class="spaces">Spaces</MadCap:xref>: display status, monitoring and resource usage of Spaces and related partitions.</p>
+                        <MadCap:xref href="../spacedeck/16-2-spacedeck-spaces.html" class="spaces">Spaces</MadCap:xref>: displays status, monitoring and resource usage of Spaces and related partitions.</p>
                 </li>
                 <li>
                     <p>
-                        <MadCap:xref href="../spacedeck/spacedeck-data-sources.html" class="data-sources">Data Sources</MadCap:xref>: specify the data source that will be used to provide data in a data pipeline. </p>
+                        <MadCap:xref href="../spacedeck/spacedeck-data-sources.html" class="data-sources">Data Sources</MadCap:xref>: specifies the data source that will be used to provide data in a data pipeline. </p>
                     <p>
-                        <MadCap:xref href="../spacedeck/spacedeck-data-pipeline-overview.html" class="data-pipeline">Data Pipeline</MadCap:xref>: display data pipeline details such as monitoring, source table/s in the System of Record, resulting Object in GigaSpaces, and parameters of the data connection. Also allows quick one-click creation of new data pipelines.</p>
+                        <MadCap:xref href="../spacedeck/spacedeck-data-pipeline-overview.html" class="data-pipeline">Data Pipeline</MadCap:xref>: displays data pipeline details such as monitoring, source table/s in the System of Record, resulting Object in GigaSpaces, and parameters of the data connection. Also allows quick one-click creation of new data pipelines.</p>
                 </li>
                 <li>
-                    <p><a href="../spacedeck/spacedeck-services.html" style="text-decoration: none;">Services</a>: Creating and testing queries via JDBC v3 format and creating services out of it. Create service will deploy a REST service that will ruin the query. For use in client services, which are applications that interact with Spaces.</p>
+                    <p><a href="../spacedeck/spacedeck-services.html" style="text-decoration: none;">Services</a>: used for creating and testing queries via JDBC v3 format and creating services out of it. Create service will deploy a REST service that will ruin the query. For use in client services, which are applications that interact with Spaces.</p>
                 </li>
                 <li>
                     <p>
-                        <MadCap:xref href="../spacedeck/spacedeck-data-query.html" class="data-query-2">Data Query</MadCap:xref>: Querying the data using SQL commands, supporting full ANSI SQL-99 syntax.</p>
+                        <MadCap:xref href="../spacedeck/spacedeck-data-query.html" class="data-query-2">Data Query</MadCap:xref>: querying the data using SQL commands, supporting full ANSI SQL-99 syntax.</p>
                 </li>
             </ul>
         </div>
@@ -51,7 +51,7 @@
         </div>
         <div>
             <h1>Data Integration (DI) Layer </h1>
-            <p>Introducing the <MadCap:xref href="../landing-pages/AO-DataIntegration.htm">Data Integration (DI)</MadCap:xref> layer, which is a vital part of the Digital Integration Hub (DIH) platform. DI is the gateway for incoming data into the Data Integration Hub (DIH) system. This is deployed via Kubernetes only. The DI components are delivered as part of the GigaSpaces DIH Package. DI contains four components which are responsible for reading and analyzing Kafka messages and for pushing them into the Space. DI is responsible for a wide range of data integration tasks as ingesting data in batches or streaming data changes. DI integrates with DB2 on AS/400, Oracle and MSSQL databases. It also contains the  IBM Infosphere Data Replication (IIDR) which is a connector engine for data pipelines.</p>
+            <p>Introducing the <MadCap:xref href="../landing-pages/AO-DataIntegration.htm">Data Integration (DI)</MadCap:xref> layer, which is a vital part of the Digital Integration Hub (DIH) platform. DI is the gateway for incoming data into the Data Integration Hub (DIH) system. This is deployed via Kubernetes only. The DI components are delivered as part of the GigaSpaces DIH Package. DI contains four components which are responsible for reading and analyzing Kafka messages and for pushing them into the Space. DI is responsible for a wide range of data integration tasks as ingesting data in batches or streaming data changes. DI integrates with  Oracle and MSSQL databases. It also contains the  IBM Infosphere Data Replication (IIDR) which is a connector engine for data pipelines.</p>
         </div>
         <div>
             <h1>SQL Over&#160;Nested Objects Search</h1>

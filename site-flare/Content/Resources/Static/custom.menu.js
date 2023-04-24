@@ -15,7 +15,7 @@
 	'16.2.1': { 'url': '/16.2.1/landing.html', 'label': '16.2.1',  'topicBanner': 'old' },	
 	'16.2': { 'url': '/16.2/landing.html', 'label': '16.2',  'topicBanner': 'old' },
 	'16.1.1': { 'url': '/16.1/landing.html', 'label': '16.1.1',  'topicBanner': 'old' },
-	'16.0': { 'url': '/16.0/landing.html', 'label': '16.0',  'topicBanner': 'old' },
+	//'16.0': { 'url': '/16.0/landing.html', 'label': '16.0',  'topicBanner': 'old' },//
 	'15.8': { 'url': '/15.8/landing.html', 'label': '15.8',  'topicBanner': 'old' },
 	'15.5': { 'url': '/15.5/landing.html', 'label': '15.5',  'topicBanner': 'old' },
 	'15.2': { 'url': '/15.2/index.html', 'label': '15.2',  'topicBanner': 'old' },
