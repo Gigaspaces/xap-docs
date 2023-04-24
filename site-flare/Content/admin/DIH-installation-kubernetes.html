@@ -13,6 +13,8 @@
         <p>.</p>
         <div class="tc-admon-important">
             <p>Smart DIH is protected by license. The initial step of this installation is signing up and agreeing to the terms and conditions found in the Free Trial (Smart DIH) link found at the top of each page of the <a href="../landing-new.html">documentation site</a>. After signing up, you will receive a token. This token should be used, when requested, in the installation steps below.</p>
+            <p>&#160;</p>
+            <p>Contact <a href="mailto:support@gigaspaces.com">customer support</a> to obtain a license for IIDR and for assistance for this installation.</p>
         </div>
         <h1>Prerequisites</h1>
         <p>Following are the prerequisites required for deploying Smart&#160;DIH using&#160;Kubernetes.</p>
@@ -51,7 +53,7 @@ helm repo update dih
 </pre>
             <li>
                 <p>Fully install Smart DIH:</p>
-            </li><pre xml:space="preserve">helm install dih dih/dih -n dih --version 16.3.0-m10 \ --set
+            </li><pre xml:space="preserve">helm install dih dih/dih -n dih --version 16.3.0 \ --set
 spacedeck.ingress.enabled=true, spacedeck.ingress.host=myhost.com, tags.iidr-true</pre>
             <li>
                 <p>Smart DIH is now installed in H/A mode. The following pods should be up and ready:</p>
