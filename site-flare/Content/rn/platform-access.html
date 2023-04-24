@@ -4,21 +4,18 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Platform&#160;Feature Access</h1>
-        <p>This page explains how Smart Cache and Smart DIH features are accessed.</p>
+        <p>This page explains how Smart DIH and Smart Cache features are accessed.</p>
         <p>Everything in Kubernetes can be <a href="../admin/DIH-installation-kubernetes.html">installed using&#160;Helm</a>.</p>
-        <p>&#160;</p>
+        <h2>Smart DIH</h2>
         <table style="width: 100%;">
-            <col style="width: 284px;" />
-            <col style="width: 166px;" />
-            <col style="width: 193px;" />
-            <col style="width: 274px;" />
+            <col style="width: 343px;" />
+            <col style="width: 136px;" />
+            <col style="width: 363px;" />
             <col />
             <thead>
                 <tr>
                     <th style="font-weight: bold;">Operation</th>
                     <th style="text-align: left;font-weight: bold;">Access</th>
-                    <th><b>Platform</b>
-                    </th>
                     <th style="text-align: left;font-weight: bold;">
                         <p><b>Applicable Environment</b>
                         </p>
@@ -34,10 +31,6 @@
                     <td>
                         <p><a href="../dev-java/administration-and-monitoring-overview.html">Admin API <a href="../admin/admin-rest-manager-api.html">REST&#160;API</a><a href="../admin/tools-cli.html"><br />CLI</a><br /><a href="../admin/tools-web-ui.html">WEB-UI</a><br /></a>
                         </p>
-                    </td>
-                    <td>
-                        <p>Smart Cache</p>
-                        <p>Smart DIH</p>
                     </td>
                     <td>
                         <p>Non-Kubernetes</p>
@@ -57,10 +50,6 @@
                         </p>
                     </td>
                     <td>
-                        <p>Smart Cache</p>
-                        <p>Smart DIH</p>
-                    </td>
-                    <td>
                         <p>Non-Kubernetes</p>
                     </td>
                     <td style="text-align: justify;vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 1px;border-left-color: #e0e0e0;">
@@ -73,7 +62,6 @@
                     <td>
                         <p><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck</a> </p>
                     </td>
-                    <td>Smart DIH&#160;Only</td>
                     <td>
                         <p>Kubernetes</p>
                     </td>
@@ -89,7 +77,6 @@
                         <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
                         </p>
                     </td>
-                    <td>Smart DIH&#160;Only</td>
                     <td>
                         <p>Kubernetes</p>
                     </td>
@@ -103,7 +90,6 @@
                         <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
                         </p>
                     </td>
-                    <td>Smart DIH&#160;Only</td>
                     <td>
                         <p>Kubernetes</p>
                     </td>
@@ -120,10 +106,6 @@
                         <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a> </p>
                         <p><a href="../admin/tools-cli.html">CLI </a>
                         </p>
-                    </td>
-                    <td>
-                        <p>Smart Cache</p>
-                        <p>Smart DIH</p>
                     </td>
                     <td>
                         <p>Kubernetes</p>
@@ -152,10 +134,6 @@
                         <p><a href="../admin/tools-cli.html">CLI</a> </p>
                     </td>
                     <td>
-                        <p>Smart Cache</p>
-                        <p>Smart DIH</p>
-                    </td>
-                    <td>
                         <p>Non-Kubernetes</p>
                         <p>Both</p>
                         <p>Both</p>
@@ -170,7 +148,6 @@
                 <tr>
                     <td>Data Access Micro-Services (Low-Code) </td>
                     <td><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck</a> </td>
-                    <td>Smart DIH&#160;Only</td>
                     <td>
                         <p>Kubernetes</p>
                     </td>
@@ -186,10 +163,6 @@
                         </p>
                     </td>
                     <td>
-                        <p>Smart Cache</p>
-                        <p>Smart DIH</p>
-                    </td>
-                    <td>
                         <p>Both</p>
                         <p>Non-Kubernetes<br />Both</p>
                     </td>
@@ -201,11 +174,9 @@
                     <td>Data Query </td>
                     <td>
                         <p><a href="../landing-pages/AO-MonACon-SpaceDeck.htm">SpaceDeck<br /></a>
-                        </p><a href="../admin/gs-ops-manager-overview.html">Ops Manager<br /><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a></a>
-                    </td>
-                    <td>
-                        <p>Smart DIH</p>
-                        <p>Smart Cache</p>
+                        </p>
+                        <p><a href="../admin/gs-ops-manager-overview.html">Ops Manager<br /><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a></a>
+                        </p>
                     </td>
                     <td>
                         <p>Kubernetes</p>
@@ -215,5 +186,136 @@
                 </tr>
             </tbody>
         </table>
+        <h2>Smart Cache</h2>
+        <table style="width: 100%;">
+            <col style="width: 346px;" />
+            <col style="width: 104px;" />
+            <col style="width: 358px;" />
+            <col />
+            <thead>
+                <tr>
+                    <th style="font-weight: bold;">Operation</th>
+                    <th style="text-align: left;font-weight: bold;">Access</th>
+                    <th style="text-align: left;font-weight: bold;">
+                        <p><b>Applicable Environment</b>
+                        </p>
+                        <p>Kubernetes, Non-Kubernetes, Both</p>
+                    </th>
+                    <th style="text-align: left;font-weight: bold;">Additional Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hosts Management </td>
+                    <td>
+                        <p><a href="../dev-java/administration-and-monitoring-overview.html">Admin API <a href="../admin/admin-rest-manager-api.html">REST&#160;API</a><a href="../admin/tools-cli.html"><br />CLI</a><br /><a href="../admin/tools-web-ui.html">WEB-UI</a><br /></a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>Non-Kubernetes</p>
+                    </td>
+                    <td>For Kubernetes this is handled by the Kubernetes installation</td>
+                </tr>
+                <tr>
+                    <td>Containers </td>
+                    <td>
+                        <p><a href="../dev-java/administration-and-monitoring-overview.html">Admin API </a>
+                        </p>
+                        <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                        </p>
+                        <p><a href="../admin/tools-cli.html">CLI</a>
+                        </p>
+                        <p><a href="../admin/tools-web-ui.html">WEB-UI</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>Non-Kubernetes</p>
+                    </td>
+                    <td style="text-align: justify;vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 1px;border-left-color: #e0e0e0;">
+                        <p>&#160;</p>
+                        <p>Managing the running processes (restart, statistics, etc.) </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Management of Spaces </td>
+                    <td>
+                        <p><a href="../admin/tools-web-ui.html">WEB-UI </a>
+                        </p>
+                        <p><a href="../admin/gs-ops-manager-overview.html">Ops Manager</a>
+                        </p>
+                        <p><a href="../dev-java/administration-and-monitoring-overview.html">Admin&#160;API</a>
+                        </p>
+                        <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                        </p>
+                        <p><a href="../admin/tools-cli.html">CLI </a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>Non-Kubernetes</p>
+                        <p>Both</p>
+                        <p>Both</p>
+                        <p>Both</p>
+                        <p>Non-Kubernetes</p>
+                    </td>
+                    <td>
+                        <p style="font-weight: normal;"><b>Ops Manager:</b> Advanced configuration of the Space and secure space (for both Smart Cache and Smart DIH)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Management of Data Access Services (PUs) </td>
+                    <td>
+                        <p><a href="../admin/tools-web-ui.html">WEB-UI</a>
+                        </p>
+                        <p><a href="../admin/gs-ops-manager-overview.html">Ops Manager</a>
+                        </p>
+                        <p><a href="../dev-java/administration-and-monitoring-overview.html">ADMIN&#160;API </a>
+                        </p>
+                        <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API </a>
+                        </p>
+                        <p><a href="../admin/tools-cli.html">CLI</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>Non-Kubernetes</p>
+                        <p>Both</p>
+                        <p>Both</p>
+                        <p>Both</p>
+                        <p>Non-Kubernetes</p>
+                    </td>
+                    <td>
+                        <p><b>Manual:</b>&#160;Secure Space config proxy</p>
+                        <p>When using Kubernetes this is achieved Helm commands or Ops Manager</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data Gateway </td>
+                    <td>
+                        <p><a href="../admin/gs-ops-manager-overview.html">Ops&#160;Manager</a>
+                        </p>
+                        <p><a href="../admin/tools-cli.html">CLI</a>
+                        </p>
+                        <p><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>Both</p>
+                        <p>Non-Kubernetes<br />Both</p>
+                    </td>
+                    <td>
+                        <p>Provides the ability to connect to the Space using other data tools, for example, DBeaver. </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data Query </td>
+                    <td><a href="../admin/gs-ops-manager-overview.html">Ops Manager<br /><a href="../admin/admin-rest-manager-api.html">REST&#160;API</a></a>
+                    </td>
+                    <td>
+                        <p>Non-Kubernetes<br />Both</p>
+                    </td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
     </body>
 </html>
