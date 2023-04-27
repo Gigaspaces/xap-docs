@@ -25,8 +25,7 @@
 kubectl create secret docker-registry myregistrysecret --docker-server=https://index.docker.io/v1/ 
 --docker-username=dihcustomers --docker-password=dckr_pat_NYcQySRyhRFZ6eUQAwLsYm314QA 
 --docker-email=dih-customers@gigaspaces.com
-
-kubectl create secret generic datastore-credentials --from-literal=username='system' --from-literal=password='admin11'</pre>
+</pre>
                 <li>
                     <p>Add Smart DIH repo and update</p>
                 </li><pre xml:space="preserve">
@@ -80,7 +79,7 @@ helm install demo dih/xap-pu --version 16.3.0-rc3 --set ha=true</pre>
    "dbProvider": "ORACLE",
    "url": "iidr://&lt;IP address of the Oracle server with IIDR Oracle agent&gt;:11001",
    "username": "SYSTEM",
-   "password": "admin11",
+   "password": "&lt;password&gt;",
    "additionalInfo": "string",  
    "offlineMode": true
 }
@@ -99,7 +98,7 @@ helm install demo dih/xap-pu --version 16.3.0-rc3 --set ha=true</pre>
 
 </p>
             </ol>
-            <p>b. Expected output:</p>
+            <p>b. Sample output:</p>
             <ol><pre xml:space="preserve">
 {  
     "name": "ORACLE",
