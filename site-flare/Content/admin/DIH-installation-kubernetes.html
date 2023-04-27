@@ -53,8 +53,15 @@ helm repo update dih
 </pre>
             <li>
                 <p>Fully install Smart DIH:</p>
-            </li><pre xml:space="preserve">helm install dih dih/dih -n dih --version 16.3.0 \ --set
-spacedeck.ingress.enabled=true, spacedeck.ingress.host=myhost.com, tags.iidr-true</pre>
+            </li><pre xml:space="preserve">helm install dih dih/dih -n dih --version 16.3.0 </pre>
+            <li>
+                <p>Set the following flags:</p><pre xml:space="preserve">spacedeck.auth.enabled=true
+manager.securityService.enabled=true
+spacedeck.ingress.enabled=true 
+spacedeck.ingress.host=myhost.com 
+tags.iidr=true
+</pre>
+            </li>
             <li>
                 <p>Smart DIH is now installed in H/A mode. The following pods should be up and ready:</p>
                 <p>
