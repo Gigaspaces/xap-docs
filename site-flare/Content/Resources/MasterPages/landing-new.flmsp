@@ -1,19 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-MX7TMJ');</script>
+        <!-- End Google Tag Manager -->
         <meta charset="utf-8" />
         <meta name="description" content="" />
         <meta name="author" content="" /><title></title>
         <script src="https://use.fontawesome.com/ed7d2ff279.js">
         </script>
-        <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet" type="text/css" />
-        <link href="../Custom/custom-2023.css" rel="stylesheet" type="text/css" />
-		<script src="../Custom/custom-2023.js" type="text/javascript">
-		</script>
+        <link href="../Custom/easyui.css" rel="stylesheet" type="text/css" />
+        <link href="../Custom/vs.css" rel="stylesheet" type="text/css" />
+        <script src="../Custom/jquery.easyui.min.js" type="text/javascript">
+        </script>
+        <script src="../Custom/highlight.pack.js" type="text/javascript">
+        </script>
+        <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700" rel="stylesheet" />
+        <link href="../Custom/[%=HTML2023_Variables.CSS%]" rel="stylesheet" type="text/css" />
+        <script src="../Custom/[%=HTML2023_Variables.JS%]" type="text/javascript">
+        </script>
     </head>
-    <body class="landing">
-        <MadCap:snippetBlock src="header-content.flsnp" />
-        <MadCap:bodyProxy />
-        <MadCap:snippetBlock src="footer-content.flsnp" />
+    <body>
+        <div MadCap:conditions="Version.16-3-born">
+            <MadCap:snippetBlock src="header-content.flsnp" />
+            <MadCap:bodyProxy />
+            <MadCap:snippetBlock src="footer-content.flsnp" />
+        </div>
+        <div MadCap:conditions="Version.16-3-died">
+            <!-- Google Tag Manager (noscript) -->
+            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MX7TMJ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+            </noscript>
+            <!-- End Google Tag Manager (noscript) -->
+            <!-- -->
+            <!-- -->
+            <script type="text/javascript" src="../Custom/page-toc.js">
+            </script>
+            <!-- -->
+            <div class="breadcrumb-container">
+                <MadCap:breadcrumbsProxy />
+            </div>
+            <div class="topic-container">
+                <div class="topic-content">
+                    <MadCap:bodyProxy />
+                </div>
+                <div class="ipn-content">
+                    <MadCap:menuProxy style="mc-context-sensitive: True;mc-include-parent: True;mc-include-siblings: True;mc-include-children: True;" data-mc-skin="/Project/Skins/HTML5 - Side Menu.flskn" mc-linked-toc="$topicHeadings" />
+                </div>
+            </div>
+            <!--  toc added  begin  -->
+            <div id="page_toc">
+                <div id="was-page-toc-body" style="border: 1px solid blue; width:80%; margin: 15x; padding: 10px; display: block;">
+                    <h3 class="skip-toc">Table of Contents	
+					
+						<!-- begin formatted text      .........................................   --><img id="toc-plus-image" src="../Static/images/toc-plus.png" style="float: right;width: 33px;height: 33px;display:none;" onclick="document.getElementById('page-toc-body').style.display = 'block';        document.getElementById('toc-plus-image').style.display = 'none';       document.getElementById('toc-minus-image').style.display = 'block';      " /><img id="toc-minus-image" src="../Static/images/toc-minus.png" style="float: right;width: 33px;height: 33px; display:block;" onclick="document.getElementById('page-toc-body').style.display = 'none';        document.getElementById('toc-minus-image').style.display = 'none';       document.getElementById('toc-plus-image').style.display = 'block';      " /><!-- end formatted text .................................................  --></h3>
+                    <!--     <br style="height:100%;"></br>  --><span id="page-toc-body" style="display:block;"><!-- page table of contents generated here --></span>
+                </div>
+            </div>
+            <!-- existing before add toc code -->
+            <!-- existing before add toc code -->
+            <!--  toc added  end  -->
+            <div id="footer">
+                <div class="container">
+                    <p>Copyright © GigaSpaces  <MadCap:variable name="General.Year" />
+						All rights reserved |&#160;&#160;
+						<a href="https://www.gigaspaces.com/privacy%20policy">Privacy Policy</a>&#160;&#160;|&#160;&#160;
+						<a href="/terms-of-use.html">Terms of Use</a>&#160;&#160;|&#160;&#160;
+					<a href="/release_notes/third-party.html">3rd Party License Agreements</a></p>
+                </div>
+            </div>
+            <div style="display:none;"><a href="../../404.html"></a>
+            </div>
+            <script>
+				/*                   <![CDATA[ */
+				$('pre code').each(function(i, block) {
+				hljs.highlightBlock(block);
+				});
+				/* ]]> */
+			</script>
+        </div>
     </body>
 </html>

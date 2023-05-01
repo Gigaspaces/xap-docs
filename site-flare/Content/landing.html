@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" style="mc-template-page: url('Resources\MasterPages\landing-new.flmsp');">
     <head>
     </head>
     <body style="text-align: left;">
@@ -15,9 +15,19 @@
         </p>
 -->
         <div MadCap:conditions="Version.16-3-died">
+			<script>
+				$(function() {
+				$('body').addClass('content');
+				});
+			</script>
             <MadCap:snippetBlock src="Resources/Snippets/Smart-Overview-Landing.flsnp" />
         </div>
         <div MadCap:conditions="Version.16-3-born">
+            <script>
+			$(function() {
+			$('body').addClass('landing');
+			});
+		</script>
             <div class="landing-hero">
                 <div class="landing-banner">
                     <ul class="landing-banner-items">

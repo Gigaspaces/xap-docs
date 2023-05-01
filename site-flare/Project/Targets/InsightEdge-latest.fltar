@@ -96,6 +96,10 @@
       Name="Links/ApiDotNetDoc">https://resources.gigaspaces.com/api/xap/16.3.0/dotnet/html</Variable>
     <Variable
       Name="Links/ApiJavaDoc">https://resources.gigaspaces.com/api/16.3.0/java</Variable>
+    <Variable
+      Name="HTML2023_Variables/JS">custom-2023.js</Variable>
+    <Variable
+      Name="HTML2023_Variables/CSS">custom-2023.css</Variable>
   </Variables>
   <PostBuild>cscript.exe //nologo "$(ProjectDirectory)\Content\Resources\Custom\postBuildEvent.js" "$(OutputDirectory)"</PostBuild>
   <MicroContentSearch>
