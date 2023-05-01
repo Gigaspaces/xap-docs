@@ -43,11 +43,9 @@
         <h1>Instructions</h1>
         <ol>
             <li>
-                <p>Use the token provided by <MadCap:variable name="General.ProductNameXAP" /> and install as a secret:</p>
-            </li><pre xml:space="preserve">Kubectl apply -f gsSecret.yaml -n dih</pre>
-            <li> Get the Smart DIH&#160;Helm repo and update:</li><pre xml:space="preserve">helm repo add dih 
-
-<a href="https://s3.amazonaws.com/resources.gigaspaces.com/helm-charts-dih">https://s3.amazonaws.com/resources.gigaspaces.com/helm-charts-dih</a>
+                <p>Use the <code class="language-bash">gsSecret.yaml</code> you got from <MadCap:variable name="General.ProductNameXAP" /> to install the software token.</p>
+            </li>
+            <li> Get the Smart DIH&#160;Helm repo and update:</li><pre xml:space="preserve">helm repo add dih <a href="https://resources.gigaspaces.com/helm-charts-dih">https://resources.gigaspaces.com/helm-charts-dih</a> 
 
 helm repo update dih
 </pre>
@@ -57,7 +55,6 @@ helm repo update dih
             <li>
                 <p>Set the following flags:</p><pre xml:space="preserve">spacedeck.auth.enabled=true
 manager.securityService.enabled=true
-spacedeck.ingress.enabled=true 
 spacedeck.ingress.host=myhost.com 
 tags.iidr=true
 </pre>
