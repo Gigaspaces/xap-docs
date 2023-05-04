@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <div>
+            <h1 class="tc-pagetitle" style="text-align: left;">IIDR MSSQL Agent Installation</h1>
+            <p style="text-align: left;">For deployment model option 1, the IIDR&#160;source database agent should be installed on a source database server.</p>
+            <p style="text-align: left;">The following instructions should be followed to complete the installation for the IIDR&#160;MSSQL Agent on the SQL&#160;Server database server.</p>
+            <div class="tc-admon-attention">
+                <p>The IIDR MSSQL Agent should be installed on the same server where MSSQL database is running</p>
+            </div>
+            <ol>
+                <li>
+                    <p style="text-align: left;">Login to the server as the OS&#160;user that was defined in <MadCap:xref href="DI-MSSQL-Prereq.html">MSSQL Source Prerequisites</MadCap:xref></p>
+                </li>
+                <li>
+                    <p>Download the <b>IIDR MSSQL software</b> (ask Gigaspaces customer support for a most updated IIDR software download link). For example, the IIDR Agent of 11.4.0.4 version is delivered in a form of an exe file : setup-iidr-11.4.0.4-5672-x86.exe</p>
+                </li>
+                <li>
+                    <p>Perform the following steps to start the <b>IIDR Agent</b> installation </p>
+                    <ol style="list-style-type: lower-alpha;">
+                        <li>
+                            <p>Open an ms-dos command prompt and set the JAVA_TOOL_OPTIONS variable with the following value:</p><pre>set JAVA_TOOL_OPTIONS="-Dos.name=Windows Server 2016"</pre>
+                        </li>
+                        <li>
+                            <p>From the same DOS session, start the IIDR&#160;Agent installer.</p><pre>C:\Users\dih\Downloads&gt;setup-iidr-[version #].exe</pre>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <p>Now install the new product: Under <b>Introduction</b>, select <b>Install new product</b>:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/DI_MSSQL1.png" style="width: 584px;height: 389px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Under <b>Select Datastore Type</b>, select <b>Microsoft SQL Server</b>:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/DI_MSSQL2.png" style="width: 585px;height: 425px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Under <b>Select Offering</b>, select <b>IBM&#160;InfoSphere Data Replication</b>:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/DI_MSSQL3.png" style="width: 584px;height: 420px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Under <b>Choose Install&#160;Folder</b>, keep the default installation folder:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/DI_MSSQL4.png" style="width: 589px;height: 389px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Under, <b>License Agreement</b> accept the license terms agreement:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/DI_MSSQL5.png" style="width: 593px;height: 420px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Under <b>Choose a Shortcut Folder</b>, select <b>On the Desktop</b> for more convenient access:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/DI_MSSQL6.png" style="width: 596px;height: 395px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Under <b>Choose Instance Folder</b>, keep the default location for the creation of instance and product logs:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/DI_MSSQL7.png" style="width: 595px;height: 425px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>Start the installation:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/DI_MSSQL8.png" style="width: 602px;height: 432px;" />
+                    </p>
+                </li>
+                <li>
+                    <p>At the conclusion of the IIDR&#160;software installation process, select <b>Launch Configuration Tool</b> as this must be launched:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/DI_MSSQL9.png" style="width: 601px;height: 426px;" />
+                    </p>
+                    <p>&#160;</p>
+                </li>
+            </ol>
+            <p>Once the IIDR&#160;Agent instance configuration tool has been launched, complete the IIDR&#160;Agent configuration by following these steps:</p>
+            <ol>
+                <li>
+                    <p>In the <b>Instance Configuration tab</b>, enter the following parameters in the <b>Instance</b> section:</p>
+                    <ol style="list-style-type: lower-alpha;">
+                        <li>
+                            <p><b>Name</b>:&#160;MSSQL</p>
+                        </li>
+                        <li>
+                            <p><b>Staging Store Disk&#160;Quota (GB):</b> Reduce from the default of 100GB to 1GB</p>
+                            <p>
+                                <img src="../Resources/Images/DI/DI_MSSQL10.png" style="width: 568px;height: 538px;" />
+                            </p>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <p>Define the encryption profile. </p>
+                    <ol style="list-style-type: lower-alpha;">
+                        <li>
+                            <p>Under <b>Encryption profile</b>, click <b>Manage</b>:</p>
+                            <p>
+                                <img src="../Resources/Images/DI/DI_MSSQL11a.png" style="width: 585px;height: 165px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Click <b>Add</b> to add a new encryption profile:</p>
+                            <p>
+                                <img src="../Resources/Images/DI/DI_MSSQL12.png" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>For the new encryption profile, provide the following parameters:</p>
+                        </li>
+                    </ol>
+                    <ol style="list-style-type: lower-roman;">
+                        <li>
+                            <p><b>Profile name:</b>&#160;dummy</p>
+                        </li>
+                        <li>
+                            <p><b>Encryption:</b> Disabled</p>
+                            <p>
+                                <img src="../Resources/Images/DI/DI_MSSQL13.png" style="width: 609px;height: 476px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Returning to the In the <b>Instance Configuration tab</b>, under <b>Encryption profile</b>, select <b>dummy</b>as the working encryption profile for this agent:</p>
+                            <p>
+                                <img src="../Resources/Images/DI/DI_MSSQL14a.png" style="width: 626px;height: 189px;" />
+                            </p>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <p>In the Instance Configuration tab's Database section under the Database Authentication and Refresh Loader sections populate using the following parameters:</p>
+                </li>
+                <ol>
+                    <ol style="list-style-type: lower-alpha;">
+                        <li>
+                            <p><b>Name:</b> dev1 (for example)</p>
+                        </li>
+                        <li>
+                            <p><b>User and Password:</b> Use those defined in the prerequisite step  </p>
+                        </li>
+                        <li>
+                            <p><b>Refresh Loader Path:</b> Choose a folder</p>
+                            <p>
+                                <img src="../Resources/Images/DI/DI_MSSQL15a.png" style="width: 625px;height: 292px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Start the IIDR&#160;Agent creation</p>
+                            <div class="tc-admon-important">
+                                <p>For the newly created MSSQL database you may get the following message at the end of the IIDR instance creation. This means that database requires a full backup. Ask the client DBA to complete a full database backup.</p>
+                            </div>
+                        </li>
+                        <p>
+                            <img src="../Resources/Images/DI/DI_MSSQL16.png" style="width: 626px;height: 619px;" />
+                        </p>
+                    </ol>
+                </ol>
+                <li>
+                    <p>Start the IIDR&#160;Agent instance:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/DI_MSSQL17.png" />
+                    </p>
+                </li>
+                <li>
+                    <p>A successfully started IIDR Agent instance will look similar to this:</p>
+                    <p>
+                        <img src="../Resources/Images/DI/DI_MSSQL18.png" />
+                    </p>
+                </li>
+            </ol>
+        </div>
+    </body>
+</html>
