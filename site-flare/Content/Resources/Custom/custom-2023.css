@@ -598,7 +598,13 @@ ul.menu._Skins_Section_Menu_2023.mc-component ul > li > a, div.image-tiles p > a
   padding: 0;
 }
 
-/* Breadcrumbs */
+/* Breadcrumbs and toolbar */
+
+.breadcrumb-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 MadCap|breadcrumbsProxy {
   border-bottom: none;
@@ -623,6 +629,17 @@ span#breadcrumb-home {
 
 .topic-content {
   padding-left: 20px;
+}
+
+._Skins_Toolbar_2023.mc-component .button.send-feedback-button .button-text
+{
+	padding-left: 8px;
+}
+.topicToolbarProxy .button-group-container-left {
+  min-width: 60px;
+}
+._Skins_Toolbar_2023.mc-component .button .button-text:hover {
+  color: #00c0f3;
 }
 
 /* Old */
@@ -713,7 +730,7 @@ ul.sidenav > li {
 .content .topic-container .topic-content {
   flex: 1 1;
   overflow: auto;
-  padding: 12px 20px 0px 20px;
+  padding: 12px 0px 0px 20px;
 }
 
 /* In-Page Nav */
@@ -1493,6 +1510,9 @@ h1 {
   .landing ul#version-menu {
     top: 0px;
     right: 42px;
+  }
+  ._Skins_Toolbar_2023.mc-component .button.send-feedback-button .button-text {
+    display: none;
   }
 
   .body-container {
