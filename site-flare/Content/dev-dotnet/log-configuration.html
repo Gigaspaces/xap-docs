@@ -21,24 +21,18 @@
         </div>
         <h1><a name="advanced-configuration"></a>Advanced Configuration</h1>
         <p>Here are some features/scenarios which might be useful:</p>
-        <p>You can use any of the built-in trace listeners offered by <code>System.Diagnostics</code>:<br />
-- ConsoleTraceListener<br />
-- TextWriterTraceListener<br />
-- XmlWriterTraceListener<br />
-- DelimitedListTraceListener<br />
-- EventLogTraceListener<br /></p>
+        <p>You can use any of the built-in trace listeners offered by <code>System.Diagnostics</code>:<br />- ConsoleTraceListener<br />- TextWriterTraceListener<br />- XmlWriterTraceListener<br />- DelimitedListTraceListener<br />- EventLogTraceListener<br /></p>
         <div class="tc-admon-refer">
-            <p>For more details see <a href="http://msdn2.microsoft.com/en-us/library/4y5y10s7.aspx" target="_blank">Trace Listener</a>.</p>
+            <p>For more details see <a href="https://learn.microsoft.com/en-us/dotnet/framework/debug-trace-profile/trace-listeners" target="_blank">Trace Listener</a>.</p>
         </div>
         <p>You can configure a trace listener with a filter to handle specific events.</p>
         <div class="tc-admon-refer">
-            <p>For more details see: <a href="http://msdn2.microsoft.com/en-us/library/system.diagnostics.eventtypefilter.aspx" target="_blank">EventTypeFilter Class</a>.</p>
+            <p>For more details see: <a href="https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.eventtypefilter?view=net-8.0" target="_blank">EventTypeFilter Class</a>.</p>
         </div>
         <p>You can implement a custom trace listener to handle traced events in a desired manner (e-mail, SMS, custom log, etc.). If you are planning to do this, we recommend that you examine the implementation of custom trace listeners provided in Microsoft's Logging Application Block as a reference.</p>
         <div class="tc-admon-refer">
-            <p>For more details, see:<br />
-- <a href="http://msdn2.microsoft.com/EN-US/library/aa480464.aspx" target="_blank">Logging Application Block</a><br />
-- <a href="http://msdn2.microsoft.com/en-us/library/ms228989.aspx" target="_blank">Trace Sources</a></p>
+            <p>For more details, see:<br />- <a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-7.0" target="_blank">Logging Application Block</a> and <a href="https://learn.microsoft.com/en-us/dotnet/core/extensions/logging-providers">Logging providers in .NET</a><br />- <a href="https://learn.microsoft.com/en-us/dotnet/framework/debug-trace-profile/how-to-create-and-initialize-trace-sources" target="_blank">Trace Sources </a></p>
+            <p>- <a href="https://learn.microsoft.com/en-us/dotnet/framework/debug-trace-profile/how-to-use-tracesource-and-filters-with-trace-listeners">Use TraceSource and Filters with Trace Listeners</a></p>
         </div>
     </body>
 </html>
