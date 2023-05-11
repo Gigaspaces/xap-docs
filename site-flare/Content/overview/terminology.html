@@ -14,7 +14,7 @@
                     </p>
                 </td>
                 <td style="width:70%;">
-                    <p>The cache instance that holds data objects in memory.</p>
+                    <p>The cache instance that holds data objects in memory and might also hold them in layered in tiering.</p>
                 </td>
             </tr>
         </table>
@@ -31,7 +31,7 @@
                 </td>
             </tr>
         </table>
-        <h1><a name="processing-unit"></a>Processing Unit</h1>
+        <h1><a name="processing-unit"></a>Service</h1>
         <table class="tc-borderless">
             <tr>
                 <td style="width:30%;">
@@ -40,20 +40,35 @@
                     </p>
                 </td>
                 <td style="width:70%;">
-                    <p>A combination of clients and/or an embedded Space instance. This is the fundamental unit of deployment in the data grid. The Processing Unit itself is typically deployed onto the Service Grid. When a Processing Unit is deployed, a <span class="tc-bold">Processing Unit instance</span> is the actual runtime entity.</p>
+                    <p>A service performs operations with the underlying data. There are several types of Services:</p>
+                    <ul>
+                        <li>
+                            <p>Stateful PU/Service - space containing data and also might embed services related to that space's data.</p>
+                        </li>
+                        <li>
+                            <p>Stateless PU/Service - There are built-in services as mirror wan-GW, data-GW. In addition, there are custom services which are customer driven.</p>
+                        </li>
+                        <li>
+                            <p>Client Services - applications that interact with spaces. &#160;In&#160;Smart DIH these include low-code micro services.</p>
+                        </li>
+                    </ul>
+                    <p>Stateless services are shown in UI tools (ops-ui/SpaceDeck).</p>
+                    <p>Metrics of stateless services are managed.</p>
+                    <p>If running in a Kubernetes environment, client services can use spring boot and enjoy Kubernetes direct management and manage their own metrics directly.</p>
+                    <p>When running in Service Grid, the SLA of all services is managed by the Service Grid.</p>
                 </td>
             </tr>
         </table>
-        <h2><a name="processing-unit-configured-with-an-embedded-space"></a>Processing Unit Configured with an Embedded Space</h2>
+        <h1><a name="processing-unit"></a>Processing Unit (PU)</h1>
         <table class="tc-borderless">
             <tr>
                 <td style="width:30%;">
                     <p>
-                        <img src="../Resources/Static/attachment_files/overview/PU_space.png" width="154" height="103" />
+                        <img src="../Resources/Static/attachment_files/overview/processing_unit.png" width="154" height="103" />
                     </p>
                 </td>
                 <td style="width:70%;">
-                    <p>A deployable package that instantiates an embedded Space instance, also called a data grid instance. A set of embedded Space instances that run within the Processing Units typically form a data grid.</p>
+                    <p>A combination of clients and/or an embedded Space instance. This is the fundamental unit of deployment in the data grid. The Processing Unit itself is typically deployed onto the cluster. When a Processing Unit is deployed, a <span class="tc-bold">Processing Unit instance</span> is the actual runtime entity. &#160;The number of PU instances in a PU will be deployed according to the SLA defined.</p>
                 </td>
             </tr>
         </table>
@@ -88,15 +103,17 @@
         <p>A set of Space instances, typically running within their respective processing unit instances. The space instances are connected to each other to form a space cluster. The relations between the spaces define the data grid topology.</p>
         <h2><a name="data-grid-topologies"></a>Data Grid Topologies</h2>
         <h3><a name="partitioned-data-grid"></a>Partitioned Data Grid</h3>
-        <table class="tc-borderless">
+        <table class="tc-borderless" style="width: 1345px;">
+            <col />
+            <col style="width: -124px;" />
             <tr>
                 <td style="width:40%;">
                     <p>
                         <img src="../Resources/Static/attachment_files/overview/partitioned_data_grid.png" />
                     </p>
                 </td>
-                <td style="width:60%;">
-                    <p>Each Data Grid instance (partition) holds a different subset of the objects in the data grid. When the objects are written to this data grid, they are routed to the proper partition according to a predefined attribute in the object that acts as the routing index.</p>
+                <td>
+                    <p>Each partition holds a different subset of the objects. When the objects are written to this data grid, they are routed to the proper partition according to a predefined attribute in the object that acts as the routing index. There is an exception for routing which duplicates  data over all the partitions using a Broadcast Table. See <MadCap:xref href="../dev-java/broadcast-objects.html">Broadcast Objects</MadCap:xref><a href="../dev-java/broadcast-objects.html">.for more information</a></p>
                 </td>
             </tr>
         </table>
@@ -122,25 +139,26 @@
                     </p>
                 </td>
                 <td style="width:55%;">
-                    <p>A partitioned data grid, with one or more backup instances for each partition. Each data grid instance (partition) holds a different subset of the objects in the data grid, and replicates this subset to its backup instance/s.</p>
+                    <p>A partitioned data grid, with backup  for each partition. Each data grid instance (partition) holds a different subset of the objects in the data grid, and replicates this subset to its backup instance.</p>
                 </td>
             </tr>
         </table>
         <h1><a name="runtime-components"></a>Runtime Components</h1>
         <h2><a name="processing-unit-container"></a>Processing Unit Container</h2>
         <p>&#160;</p>
-        <p>A container that hosts a Processing Unit. The Processing Unit can run only inside a hosting Processing Unit Container.</p>
+        <p>A container that hosts a Processing Unit. The Processing Unit can run only inside a hosting Processing Unit Container. In Service Grid this is referred to as the GSC (Grid Service&#160;Container) and in Kubernetes this is referred to as the Pod.</p>
         <h2><a name="types-of-processing-unit-containers"></a>Types of Processing Unit Containers</h2>
         <h3><a name="integrated-processing-unit-container"></a>Integrated Processing Unit Container</h3>
-        <p>A container that runs the Processing Unit inside an IDE (e.g. IntelliJ IDEA, Eclipse).</p>
-        <h3><a name="service-grid-processing-unit-container-sla-driven-container"></a>Service Grid Processing Unit Container (SLA-Driven Container)</h3>
-        <p>A Processing Unit Container that runs within a Grid Service Container. It enables running the Processing Unit within a service grid, which provides self-healing and SLA capabilities to components deployed on it.</p>
+        <p>A container that runs the Processing Unit inside a development environment (e.g. IntelliJ IDEA, Eclipse).</p>
+        <h3><a name="service-grid-processing-unit-container-sla-driven-container"></a>Processing Unit Container (SLA-Driven Container)</h3>
+        <p>When working with Service&#160;Grid orchestration, the PU SLA is managed by the Service Grid. For more information: <a href="../admin/the-sla-overview.html">the-sla-overview. </a></p>
+        <p>In the Kubernetes environment, client services SLA will be managed by Kubernetes. The PU&#160;SLA will be managed by the XAP&#160;manager. </p>
         <h3><a name="service-grid"></a>Service Grid</h3>
-        <p>A set of Grid Service Containers (GSCs) managed by a Grid Service Manager. The containers host various deployments of Processing Units and data grids.
-Each container can be run on a separate physical machine.</p>
+        <p>A built-in orchestration tool which contains a set of Grid Service Containers (GSCs) managed by a Grid Service Manager. The containers host various deployments of Processing Units and data grids.
+Each container can be run on a separate physical machine. &#160;This orchestration is available for Smart&#160;Cache only. For Smart DIH, we recommend using our Kubernetes orchestration.</p>
         <h3><a name="grid-service-container-gsc"></a>Grid Service Container (GSC)</h3>
-        <p>A service grid component that hosts Processing Unit instances. A machine can run one or more GSC processes. Each GSC communicates with a manager component (GSM). The GSC receives requests to start/stop a Processing Unit instance, and sends information about the machine that runs it (operating system, processor architecture, current memory and CPU stats), the software installed on it, and the status of Processing Unit instances currently running on it.</p>
+        <p>A component that hosts Processing Unit instances. A machine can run one or more GSC processes. Each GSC communicates with a manager component (GSM which is part of the <a href="../admin/xap-manager.html">GigaSpaces Manager</a>). The GSC receives requests to start/stop a Processing Unit (PU) instance, and sends information about the machine that runs it (operating system, processor architecture, current memory and CPU stats), the software installed on it, and the status of Processing Unit instances currently running on it.</p>
         <h3><a name="grid-service-manager-gsm"></a>Grid Service Manager (GSM)</h3>
-        <p>The GSM is a service grid component that manages a set of Grid Service Containers (GSCs). A GSM has an API for deploying/undeploying Processing Units. When a GSM is instructed to deploy a Processing Unit, it finds an appropriate, available GSC and tells that GSC to run an instance of that Processing Unit. It then continuously monitors that Processing Unit instance to verify that it is alive, and that the SLA is not breached.</p>
+        <p>The GSM is a part of the <a href="../admin/xap-manager.html">GigaSpaces&#160;Manager</a> that manages and monitors deployments of Processing Units (PUs). </p>
     </body>
 </html>
