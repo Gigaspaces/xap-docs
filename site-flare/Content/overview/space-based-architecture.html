@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Space-Based Architecture</h1><a name="Space"></a>
-		<MadCap:snippetBlock src="../Resources/Snippets/gs-banner.flsnp" />
+        <MadCap:snippetBlock src="../Resources/Snippets/gs-banner.flsnp" />
         <p><span class="tc-bold">A Space-Based Architecture (SBA) implementation</span> is a set of Processing Units, with the following properties:</p>
         <ul>
             <li>
@@ -20,10 +20,13 @@
                 <p>The system can be scaled by simply increasing the number of space partitions and their corresponding processing unit instances.</p>
             </li>
             <li>
-                <p>When deployed onto the <a href="terminology.html#service-grid">Service Grid</a>, self-healing and SLA capabilities are added.</p>
+                <p>When deployed onto the <a href="terminology.html#service-grid">Service Grid</a> or on Kubernetes self-healing and SLA capabilities are added.</p>
             </li>
             <li>
-                <p>Full monitoring and management during runtime are available through the <a href="../admin/tools-desktop-ui.html">GigaSpaces Management Center</a>.</p>
+                <p>Full monitoring and management during runtime are available through the&#160;UI&#160;Tools.</p>
+            </li>
+            <li MadCap:conditions="Version.16-3-born">
+                <p MadCap:conditions="Version.16-3-born">An example of UI&#160;tools can be see in the <a href="../landing-pages/user-guide.htm">User Guide</a> section.</p>
             </li>
         </ul>
         <p><span class="tc-bold">SBA Implementation with 3 Primary Instances and 1 Backup for Each, Accessed by 2 Client Applications</span>
