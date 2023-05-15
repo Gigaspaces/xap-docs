@@ -75,8 +75,8 @@
         <h3><a name="compute-grid"></a>Compute Grid</h3>
         <p>The compute grid is a mechanism that allows you to run user code on all/some nodes of the grid, so that the code can run locally with the data.</p>
         <p>Compute grids are an efficient solution when a computation requires a large data set to be processed, so that moving the code to where the data is, is much more efficient than moving the data to where the code is.</p>
-        <p>For dynamic execution of code from the server side, use Task Execution. <a href="../dev-java/task-execution-overview.html">Java version</a> |<a href="../dev-dotnet/task-execution-overview.html"> .NET version</a>. The efficiency derives from the fact that the processing task is sent to all the desired grid nodes concurrently. A partial result is calculated using the data on that  particular node, and then sent back to the client, where all the partial results are reduced to a final result.</p>
         <p>The process is widely known as map/reduce, and is used extensively by companies like Google whenever a large data set needs to be processed in a short amount of time.</p>
+        <p>For dynamic execution of code from the server side, use Task Execution. <a href="../dev-java/task-execution-overview.html">Java version</a> |<a href="../dev-dotnet/task-execution-overview.html"> .NET version</a>. The efficiency derives from the fact that the processing task is sent to all the desired grid nodes concurrently. A partial result is calculated using the data on that  particular node, and then sent back to the client, where all the partial results are reduced to a final result.</p>
         <div>
             <h2><a name="processing-services"></a>Processing Services</h2>
             <p>With the Messaging and Events and Space-Based Remoting and Task Execution, we can build distributed parallel processing services </p>
