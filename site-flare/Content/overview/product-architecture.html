@@ -72,11 +72,10 @@
         <h2><a name="space-based-remoting"></a>Space Based Remoting and Task Execution</h2>
         <p>The Remoting <a href="../dev-java/space-based-remoting-overview.html">Java version</a> |<a href="../dev-dotnet/space-based-remoting-overview.html"> .NET version</a> package provides capabilities for clients to access remote services. Remoting in <MadCap:variable name="General.ProductNameXAP" /> is implemented on top of the data grid's clustering model, which provides location transparency, fail-over, and performance to remote service invocations. <MadCap:variable name="General.ProductNameXAP" /> implements remoting , using the Space as the transport layer, similar to the Spring remoting components.</p>
         <p>Remoting can be viewed as the alternative to Java EE Session Beans, or Java RMI, as it provides all of their capabilities as well as supporting synchronous and asynchronous invocations, and dynamic scripting languages - enabling you to use Groovy or Ruby in your space-based applications.</p>
-        <p>For dynamic execution of code from the server side, use Task Execution. <a href="../dev-java/task-execution-overview.html">Java version</a> |<a href="../dev-dotnet/task-execution-overview.html"> .NET version</a></p>
         <h3><a name="compute-grid"></a>Compute Grid</h3>
         <p>The compute grid is a mechanism that allows you to run user code on all/some nodes of the grid, so that the code can run locally with the data.</p>
         <p>Compute grids are an efficient solution when a computation requires a large data set to be processed, so that moving the code to where the data is, is much more efficient than moving the data to where the code is.</p>
-        <p>The efficiency derives from the fact that the processing task is sent to all the desired grid nodes concurrently. A partial result is calculated using the data on that  particular node, and then sent back to the client, where all the partial results are reduced to a final result.</p>
+        <p>For dynamic execution of code from the server side, use Task Execution. <a href="../dev-java/task-execution-overview.html">Java version</a> |<a href="../dev-dotnet/task-execution-overview.html"> .NET version</a>. The efficiency derives from the fact that the processing task is sent to all the desired grid nodes concurrently. A partial result is calculated using the data on that  particular node, and then sent back to the client, where all the partial results are reduced to a final result.</p>
         <p>The process is widely known as map/reduce, and is used extensively by companies like Google whenever a large data set needs to be processed in a short amount of time.</p>
         <div>
             <h2><a name="processing-services"></a>Processing Services</h2>
@@ -85,8 +84,6 @@
             <p>Sometimes the scalability bottleneck is within the processing capabilities. This means that there is a need to gain more processing power to be executed concurrently. In other words, there is a need for parallel processing. When there is no state involved, it is common to spawn many processes on multiple machines, and to assign a different task to each process.</p>
             <p>However, the problem becomes much more complex when the tasks for execution require sharing of information. <MadCap:variable name="General.ProductNameXAP" /> has built-in services for parallel processing. The <a href="../solution-hub/master-worker-pattern.html">master/worker pattern</a> is used, where one process serves as the master and writes objects into the space, and many worker services each take work for execution and share the results. The workers then request a new piece of work, and so on. This pattern is important in practice, since it automatically balances the load.</p>
         </div>
-        <h2><a name="integrations"></a>Integrations</h2>
-        <p>This package contains integrations with non-<MadCap:variable name="General.ProductNameXAP" /> components. For more information please refer to the developer guide.</p>
         <div MadCap:conditions="Version.15-2-died">
             <h1><a name="elastic-application-container"></a>Elastic Application</h1>
             <p><MadCap:variable name="General.ProductNameXAP" /> is an end-to-end-scalable execution environment with "elastic deployment" to meet extreme throughput requirements.</p>
