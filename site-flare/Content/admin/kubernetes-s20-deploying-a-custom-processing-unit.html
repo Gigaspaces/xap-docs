@@ -36,7 +36,7 @@
             <p>The blueprint we are using, option 4 in the procedure, is creating a stateless Processing Unit.</p>
             <ol>
                 <li>
-                    <p><code>cd </code>to the <code>bin </code>folder.</p>
+                    <p><code>cd </code>to the <code>bin </code>folder and then run <code>gs.sh</code> (or <code>gs.bat</code>).</p>
                 </li>
                 <li>
                     <p>Type <code>blueprint generate</code>. This begins the configuration work flow.</p>
@@ -58,9 +58,15 @@ mvn clean install -DskipTests
 </code></pre>
             <h1>Create a Docker Image</h1>
             <p>Copy the created jar file from the <code>target </code>folder to the local folder.</p>
-            <p>Create a docker file named <code>Dockerfile</code>, with the following content:</p><pre><code class="language-bash">
+            <p>Create a docker file named <code>Dockerfile</code>, with the following content:</p><pre MadCap:conditions="Version.16-3-died"><code class="language-bash">
 FROM gigaspaces/xap-enterprise:<MadCap:variable name="Versions.product-version-long" />
-ADD my-pu-stateless-0.1.jar /opt/gigaspaces/bin/pu.jar
+ADD target/my-pu-stateless-0.1.jar /opt/gigaspaces/bin/pu.jar
+
+ENTRYPOINT ["/opt/entrypoint.sh"]
+CMD ["host", "run-agent", "--auto"]
+</code></pre><pre MadCap:conditions="Version.16-3-born"><code class="language-bash">
+FROM gigaspaces/smart-cache-enterprise:<MadCap:variable name="Versions.product-version-long" />
+ADD target/my-pu-stateless-0.1.jar /opt/gigaspaces/bin/pu.jar
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
 CMD ["host", "run-agent", "--auto"]
@@ -78,14 +84,21 @@ fi
 
 /opt/gigaspaces/bin/gs.sh $*
 </code></pre>
-            <p>Perform a Docker build operation, in the directory that has <code>Dockerfile </code>and the <code>jar </code>file. This will create a Docker image.</p><pre><code class="language-bash"> docker build -t my-pu-stateless .</code></pre>
-            <p>Deploy the Docker image in GigaSpaces.</p><pre><code class="language-bash">					
+            <p>Perform a Docker build operation, in the directory that has <code>Dockerfile </code>and the <code>jar </code>file. This will create a Docker image.</p>
+            <div class="tc-admon-note">
+                <p>You might need to push the image to a remote docker registry if your cluster cannot access the local one</p>
+            </div><pre><code class="language-bash"> docker build -t my-pu-stateless .</code></pre>
+            <p>Deploy the Docker image in GigaSpaces.</p>
+            <div MadCap:conditions="Version.16-3-died"><pre><code class="language-bash">					
 helm install custom-pu ./xap-pu/ --set manager.name=xap,
 <MadCap:conditionalText MadCap:conditions="Version.16-2-1-born">instances=1,</MadCap:conditionalText>resourceUrl=pu.jar,
 <MadCap:conditionalText MadCap:conditions="Version.16-2-died">livenessProbe.enabled=false,readinessProbe.enabled=false,</MadCap:conditionalText>metrics.enabled=false,
 image.repository=my-pu-stateless,
 image.tag=latest					
 </code></pre>
+            </div>
+        </div>
+        <div MadCap:conditions="Version.16-3-born"><pre><code class="language-bash">helm install custom-pu gigaspaces/xap-pu --set instances=1,partitions=0,resourceUrl=pu.jar,image.repository=my-pu-stateless,image.tag=latest</code></pre>
         </div>
         <p>Enter the command <code>kubectl get pods</code> to see the result:</p><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
 ]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b>

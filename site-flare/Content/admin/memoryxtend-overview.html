@@ -5,6 +5,9 @@
     <body>
         <h1 class="tc-pagetitle">Tiered Storage with MemoryXtend</h1>
         <p>The MemoryXtend (blobstore) storage model allows an external storage medium (one that does not reside on the JVM heap) to store the Space data. This section describes the general MemoryXtend architecture and functionality, and its off-heap RAM, hSSD, and PMEM implementations.</p>
+        <div class="tc-admon-note">
+            <p>MemoryXtend is NOT supported in Kubnernetes Orchestration Installations</p>
+        </div>
         <p>MemoryXtend is designed as a pluggable architecture, supporting multiple implementations of off-heap storage (also called blobstore). Space entries are stored in the blobstore (a wrapper around SSD/HDD storage or direct memory buffer regions), while the indexes are stored in the managed JVM heap. This allows queries that leverage indexes to minimize off-heap penalty, because most of the work is done in-memory and only matched entries are loaded from the off-heap storage.</p>
         <p>In addition, MemoryXtend uses an LRU cache for data entries, so entries that are read frequently can be retrieved directly from the in-memory storage.</p>
         <div class="tc-align-center">
