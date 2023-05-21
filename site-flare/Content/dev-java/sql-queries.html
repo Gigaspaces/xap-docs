@@ -99,7 +99,7 @@ Connecting the data grid through JDBC is done using a connection string as shown
             <p><code>Properties props = new Properties();</code>
             </p>
             <p><code>props.put("com.gs.embeddedQP.enabled", "true")</code>;</p>
-            <p><code>Connection conn = DriverManager.getConnection("jdbc:gigaspaces:v3:localhost/mySpace", props);</code>
+            <p><code>Connection conn = DriverManager.getConnection("jdbc:gigaspaces:v3://localhost:4174/mySpace", props);</code>
             </p>
             <h2><a name="JDBC"></a>JDBC v3 Configuration Extensions</h2>
             <p>For enhanced flexibility of query parsing and to allow quick migration from different SQL dialect, we provide the following extensions that need to be set as part of the context properties of the Space, or as System properties at the client side when running an embedded query processor. Note that using those extensions may have some performance impact, that can be avoided by modifying the original query to meet our native SQL dialect.</p>
