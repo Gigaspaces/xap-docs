@@ -9,6 +9,7 @@
 
 	'16.3': { 'url': '/16.3/landing.html', 'label': '16.3', 'hide': true }, // current
 	'latest': { 'url': '/latest/landing.html', 'label': '16.3' },	// also current
+	'main': { 'url': 'https://docs.gigaspaces.com/', 'label': '16.3' },	// also current
 
 	//'16.2.1': { 'url': '/16.2.1/landing.html', 'label': '16.2.1', 'hide': true }, 
 	//'latest': { 'url': '/latest/landing.html', 'label': '16.2.1' },
