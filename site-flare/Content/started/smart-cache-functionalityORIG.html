@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Smart Cache Functionality</h1>
+        <h1>Introduction</h1>
+        <p>The <MadCap:variable name="General.DataGrid" /> in-memory data grid engine in Smart Cache is <a href="https://github.com/xap/xap/">open source</a>. &#160;</p>
+        <p>There is <a href="#Additional-Functionality">additional functionality</a> which is not open source, details of which you can find below.</p>
+        <p MadCap:conditions="Default.DoNotShow">The data grid in-memory data grid engine is open source. GigaSpaces provides the developer community with a battle-tested and leading in-memory data grid that is capable of addressing mission critical use cases ranging from real-time analytics, to extreme transaction processing, internet of things (IOT) and high-performance computing. With the open source edition, anyone can test-drive the power of in-memory computing throughout any development and/or staging environment.</p>
+        <p MadCap:conditions="Default.DoNotShow">For those that require enterprise-grade monitoring and management, security, high availability, multi-tiered data storage, and cross-data-center replication, we recommend downloading the GigaSpaces Enterprise edition and trying it out using the 90-day free trial license.</p>
+        <h1><a name="what-parts-of-xap-are-open-source"></a>What Parts of Data Grid are Open Source?</h1>
+        <p>The following features are part of the open source edition:</p>
+        <ul>
+            <li>
+                <p><a href="../overview/the-in-memory-data-grid.html">In-Memory Data Grid&#160;(IMDG): </a>
+                </p>
+                <p>Search in-page for the topics below:</p>
+                <ul>
+                    <li>Embedded</li>
+                    <li>Clustering</li>
+                    <li>Replication</li>
+                    <li>Partitioning</li>
+                    <li>
+                        <p>High availability through in-memory backups</p>
+                    </li>
+                </ul>
+            </li>
+            <div class="tc-admon-note">
+                <p>The number of backups per partition is zero or one.</p>
+            </div>
+            <ul>
+                <li>
+                    <p>Data grid in-memory management</p>
+                </li>
+            </ul>
+            <li>
+                <ul>
+                    <li><a href="../dev-java/query-sql.html">SQL queries</a>
+                    </li>
+                    <li><a href="../dev-java/jdbc-driver.html">JDBC V1</a>
+                    </li>
+                    <li><a href="../dev-java/indexing-overview.html">Indexing</a>
+                    </li>
+                    <li><a href="../dev-java/transaction-overview.html">Transaction support</a>
+                    </li>
+                    <li>
+                        <p><a href="../dev-java/transaction-overview.html">Distributed transactions</a>
+                        </p>
+                    </li>
+                    <li><a href="../dev-java/the-gigaspace-interface-overview.html">Space API</a>
+                    </li>
+                    <li><a href="../dev-java/jpa-api-overview.html">JPA</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>Multiple data models:</p>
+                <ul>
+                    <li><a href="../dev-java/pojo-overview.html">POJOs</a>
+                    </li>
+                    <li><a href="../dev-java/document-api.html">Document</a>
+                    </li>
+                    <li MadCap:conditions="Version.16-0-died">Map</li>
+                    <li MadCap:conditions="Version.16-0-died">Memcached</li>
+                </ul>
+            </li>
+            <li>
+                <p>Processing:</p>
+                <ul>
+                    <li><a href="../dev-java/event-processing.html">Events</a> Processing</li>
+                    <li>Task Execution <a href="../dev-java/task-execution-overview.html">Java version</a> | <a href="../dev-dotnet/task-execution-overview.html">.NET version</a></li>
+                    <li>Space-Based Remoting <a href="../dev-java/space-based-remoting-overview.html">Java version</a> | <a href="../dev-dotnet/space-based-remoting-overview.html">.NET version</a></li>
+                    <li>Aggregators <a href="../dev-java/aggregators.html">Java version</a> | <a href="../dev-dotnet/aggregators.html">.NET version</a></li>
+                </ul>
+            </li>
+            <li>
+                <p>Persistence:</p>
+                <ul>
+                    <li>Direct <a href="../dev-java/direct-persistency.html">Java version</a> | <a href="../dev-dotnet/direct-persistency.html">.NET version</a></li>
+                    <li>Asynchronous <a href="../dev-java/asynchronous-persistency-with-the-mirror.html">Java version</a> | <a href="../dev-dotnet/asynchronous-persistency-with-the-mirror.html">.NET version</a></li>
+                    <li>Initial Load <a href="../dev-java/space-persistency-initial-load.html">Java version</a> | <a href="../dev-dotnet/space-persistency-initial-load.html">.NET version</a></li>
+                    <li><a href="../dev-java/hibernate-space-persistency.html">Hibernate support</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p><a href="installation-maven-overview.html">Maven</a> project files for quick IDE development</p>
+            </li>
+        </ul>
+        <p>To learn more about the <MadCap:variable name="General.DataGrid" /> <a href="https://github.com/xap/xap/">open-source</a> features, continue reading our documentation and check out the <a href="https://github.com/xap/xap/tree/master/xap-examples">code examples</a>.</p>
+        <h1><a name="Additional-Functionality"></a>Additional Functionality</h1>
+        <p>In addition to Open Source Data Grid functionality, Smart Cache also contains the following proprietary functionality:</p>
+        <ul>
+            <li><a href="data-partitioning.html">Data Partitioning OS</a>
+            </li>
+            <li><a href="xap-tutorial-part3.html">Distributed Execution OS</a>
+            </li>
+            <li><a href="xap-tutorial-part4.html">Event Processing OS</a>
+            </li>
+            <li><a href="xap-tutorial-part6.html">Full Transactionality OS</a>
+            </li>
+            <li><a href="../dev-java/intelligent-tiering-intro.html">Intelligent Data Tiering</a>
+            </li>
+            <li><a href="../dev-java/persistency-for-a-database.html">Persistency</a>
+            </li>
+            <li><a href="xap-tutorial-part1.html">Rich Query Language OS</a>
+            </li>
+            <li><a href="../dev-java/sql-queries.html">JDBC/ODBC V3</a>
+            </li>
+            <li>Client-Side Caching <a href="../dev-java/client-side-caching.html">Java version</a> | <a href="../dev-dotnet/client-side-caching.html">.NET version</a></li>
+            <li><a href="../admin/runtime-configuration.html">Orchestration via Service Grid</a>
+            </li>
+            <li><a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html">Orchestration via Kubernetes</a>
+            </li>
+            <li><a href="../security/index.html">Security Secured space - OS , Secured Grid - No</a>
+            </li>
+            <li MadCap:conditions="Version.16-3-born"><a href="../landing-pages/AO-MonitorAndCtrl.htm">Monitoring &amp;&#160;Control</a>
+            </li>
+            <li MadCap:conditions="Version.16-3-died"><a href="../admin/index.html">Monitoring &amp;&#160;Control</a>
+            </li>
+            <li MadCap:conditions="Version.16-3-born"><a href="../landing-pages/AO-MonACon-UI-Tools.htm">UI&#160;Tools</a>
+            </li>
+            <li MadCap:conditions="Version.16-3-died"><a href="../admin/admin-tools.html">UI&#160;Tools</a>
+            </li>
+            <li><a href="../admin/admin-rest-manager-api.html">REST&#160;Manager API</a>
+            </li>
+            <li><a href="../dev-dotnet/index.html">.NET&#160;Support (XAP.NET)</a>
+            </li>
+        </ul>
+        <h1 MadCap:conditions="Default.DoNotShow"><a name="how-can-i-contribute-to-the-xap-open-source-data-grid"></a>How Can I Contribute to the Data Grid Open Source Data Grid?</h1>
+        <p MadCap:conditions="Default.DoNotShow">All contributions will be evaluated and approved before being added to the open source code base. First, you must sign the GigaSpaces contributor agreement, available at <a href="https://xap.github.io/">https://xap.github.io/</a>. After the agreement has been signed and accepted, GigaSpaces will consider accepting pull requests from committers.</p>
+    </body>
+</html>
