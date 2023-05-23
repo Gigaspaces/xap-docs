@@ -4,28 +4,6 @@
     </head>
     <body>
         <h1 class="tc-pagetitle">Custom Aggregators</h1>
-        <table>
-            <col />
-            <col />
-            <col />
-            <col />
-            <thead>
-                <tr>
-                    <th>Author</th>
-                    <th>Product Version</th>
-                    <th>Reference</th>
-                    <th>Download</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Shay Hassidim</td>
-                    <td>10.1</td>
-                    <td>&#160;</td>
-                    <td>&#160;</td>
-                </tr>
-            </tbody>
-        </table>
         <p>Aggregators provided by the core <MadCap:variable name="General.ProductNameXAP" /> platform are extensible, allowing developers to modify existing functionality as well as add new features. This flexibility allows the framework to grow with changing requirements and new technologies.  Creating a new aggregator or extending an existing one is a small level of effort for the developer.  This document will describe different patterns to write custom aggregators and some common use cases.</p>
         <h1>SpaceEntriesAggregator</h1>
         <p>The <a href="[%=Links.ApiJavaDoc%]/com/gigaspaces/query/aggregators/SpaceEntriesAggregator.html">SpaceEntriesAggregator</a> is an abstract class that serves as the base class for all aggregators, including the ones provided by the core platform.  Extending this class will provide several methods to allow the user to easily implement a custom aggregator.  The methods are as follows:</p>
