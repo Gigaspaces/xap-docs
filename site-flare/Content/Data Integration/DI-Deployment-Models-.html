@@ -5,7 +5,7 @@
     <body style="text-align: left;">
         <div>
             <h1 class="tc-pagetitle" style="text-align: left;">DI Deployment Models</h1>
-            <h1><a name="DIOPtion1"></a>Option 1: IIDR&#160;Agent On-Prem and&#160;DI in Kubernetes Cloud</h1>
+            <h1><a name="DIOption1"></a>Option 1: IIDR&#160;Agent On-Prem and&#160;DI in Kubernetes Cloud</h1>
             <p>This is the recommended deployment model for when the IIDR database source agent, such as Oracle, MSSQL, DB2, is running on-prem inside a source database server whilst all the remaining DI components are running in a Kubernetes cloud environment.</p>
             <h2>Deployment Model Prerequisites</h2>
             <ol>
@@ -13,7 +13,7 @@
                     <p>VPN is configured between the on-prem deployment and AWS&#160;Kubernetes segment</p>
                 </li>
                 <li>
-                    <p>IIDR&#160;Source Database Agent software can be installed and configured on the source database server</p>
+                    <p>IIDR&#160;Source <a href="DI-Deployment-Option1.htm">Database Agent</a> software can be installed and configured on the source database server</p>
                 </li>
                 <li>
                     <p>There is a bi-directional working network communication between the IIDR&#160;Source Agent and the DI&#160;Components in AWS</p>
@@ -23,7 +23,7 @@
             <p style="text-align: center;">
                 <img src="../Resources/Images/Option 1 Deploy Model.png" style="width: 789px;height: 438px;" />
             </p>
-            <h1>Option 2: All IIDR&#160;Components On-Prem and DI in a Kubernetes Cloud</h1>
+            <h1><a name="DIOption2"></a>Option 2: All IIDR&#160;Components On-Prem and DI in a Kubernetes Cloud</h1>
             <p>This deployment model allows installation of all IIDR related resources on-premises while the rest of a DI layer should be run in a Kubernetes cloud environment.</p>
             <p>This deployment can be useful when the source database network segment cannot be accessed directly from the cloud segment. When such a network constraint is present, the IIDR AS with IIDR Kafka Agent can be installed on a local Linux server that is located on-prem and resides in a network segment that has access to the database server network.</p>
             <h2>Deployment Model Prerequisites</h2>
