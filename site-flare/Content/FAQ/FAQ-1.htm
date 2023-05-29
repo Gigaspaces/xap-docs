@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Frequently Asked Questions (From the Field)</h1>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Failed to find an active server for partition</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>'Failed to find an active server for partition #x' means we can't find a primary space for the specified partition, and therefore the operation failed.</p>
+                <p>This can happen when:</p>
+                <p>1. Space is failing over - Space was restarted or demoted and backup was not elected to be the new primary yet.</p>
+                <p>To verify, have a look at the primary and backup logs at the time you saw the exception.</p>
+                <p>In addition, have a look at the manager log to see if it suspected or detected failure of this instance.</p>
+                <p>2. The primary space is not responding - a common reason for a primary delay in response is GC activity</p>
+                <p>to verify have a look at the verbose gc log of that primary space.</p>
+                <p>make sure verbose GC is enabled, (You can use https://gceasy.io/ to analyze the verbose gc logs) and if the problem is indeed GC, you can tune GC parameters or increase heap size if needed and/or analyze the heap dump to have a better understanding regarding what the process hold in memory.</p>
+                <p>see: <a href="https://docs.gigaspaces.com/latest/production/production-jvm-tuning.html?Highlight=verbose%20gc">https://docs.gigaspaces.com/latest/production/production-jvm-tuning.html?Highlight=verbose%20gc</a></p>
+                <p>Another reason for primary delays can be high load, in this case, you should look at the CPU monitor at the time of the exception. Taking several thread dumps of the primary can also give some indication regarding what it's doing.</p>
+                <p>Any delay in network response can be a cause for this error. Some uncommon causes we have seen are virus scans, vmware vmotion events taking too long, faulty network cards.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>&#160;</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Disable/Secure JMX</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Creating JMX URL per each GS component allows accessing the component using that URL and allows accessing it with jconsole, jtop visualvm etc, Common usage of JMX in GS product, is changing log level at run time.</p>
+                <p>Most of the other capabilities accessing space and container beans can be achieved using admin API or rest API.</p>
+                <p>That said, for security reasons, You can either configure secure JMX or disable it altogether.</p>
+                <p>In gs-ui doc you can see jmx function: <a href="https://docs.gigaspaces.com/latest/admin/space-jmx-management.html">https://docs.gigaspaces.com/latest/admin/space-jmx-management.html</a></p>
+                <p>Disable JMX</p>
+                <p>Starting from GS version 15.8 disabling JMX requires setting the following parameters:</p>
+                <p>-Dcom.gs.jmx.enabled=false and  -Dcom.gs.jndi.enabled=false</p>
+                <p>In the previous versions you should add:</p>
+                <p>-Dcom.gigaspaces.system.registryRetries=0 -Dcom.gigaspaces.system.registryPort=80</p>
+                <p>The setting should be done at setenv-overrides script, setting GS_OPTIONS_EXT or JAVA_EXT_OPTIONS variable.</p>
+                <p>for .Net users the flags should be added at:</p>
+                <p>JvmCustomOptions section in the configuration file , e.g:</p>
+                <p>&lt;add Option="-Dcom.gigaspaces.system.registryRetries=0"/&gt;</p>
+                <p>&lt;add Option="-Dcom.gigaspaces.system.registryPort=80"/&gt;</p>
+                <p>Secure JMX (starting from GS 15.8)</p>
+                <p>export GS_OPTIONS_EXT="-Dcom.sun.management.jmxremote.authenticate=true</p>
+                <p>-Dcom.sun.management.jmxremote.ssl=false</p>
+                <p>-Dcom.sun.management.jmxremote.access.file=[PATH_TO]/jmxremote.access</p>
+                <p>-Dcom.sun.management.jmxremote.password.file=[PATH_TO]/jmxremote.password"</p>
+                <p>export GS_JMX_REMOTE_BASE_PORT=[YOUR_PORT_VAL]</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>&#160;</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Too many open files</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>This message means that the number of File Descriptors/Handlers reached its limit.</p>
+                <p>You can change the limit using ulimit cmd</p>
+                <p>please see:<a href="https://docs.gigaspaces.com/latest/admin/tuning-infrastructure.html?Highlight=Ulimit">https://docs.gigaspaces.com/latest/admin/tuning-infrastructure.html?Highlight=Ulimit</a>
+			for more details.</p>
+                <p>In some rare cases, the number of threads is larger than expected, in that case, taking a thread dump will help to identify the affected pool, and max threads allowed at the pool should be configured.
+			see: <a href="https://docs.gigaspaces.com/latest/admin/tuning-threads-usage.html?Highlight=Thread">https://docs.gigaspaces.com/latest/admin/tuning-threads-usage.html?Highlight=Thread</a></p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+        <p>&#160;</p>
+        <MadCap:dropDown>
+            <MadCap:dropDownHead>
+                <MadCap:dropDownHotspot>Redolog grows seeing RedoLogCapacityExceededException in the log</MadCap:dropDownHotspot>
+            </MadCap:dropDownHead>
+            <MadCap:dropDownBody>
+                <p>Reliable Async replication requires keeping a redo log on the source (both on primary and backup) till the target acknowledges getting the packets.</p>
+                <p>Async replication targets can be of the following types:</p>
+                <p>1. Mirror - Synchronization Endpoint</p>
+                <p>2. LocalView target</p>
+                <p>3. Durable notification target</p>
+                <p>4. Wan Gateway target</p>
+                <p>One redo log is kept per all the targets, and pointers are kept per each target keeping the last key ack.</p>
+                <p>You should configure per each target the allowed redo log size, and behavior when the redo log size reaches its limit</p>
+                <p>RedoLogCapacityExceeded will be thrown when redo log capacity for that target reached its limit.</p>
+                <p>In the case of a mirror, the redo log will usually grow if the sync endpoint is writing to a database and that database is disconnected or in case of an unhandled exception.</p>
+                <p>it's important to avoid constraints in the database and implement an exception handler for an exception that will not be overcome by a retry. for more details see: Mirror Exception Handler</p>
+                <p>In addition in order to avoid the growth of the redo log when the database is disconnected it's recommended to use Kafka as a buffer between the mirror and the database, so all operations are written to Kafka and written to the database when they are consumed. see more at Schema Evolution-Kafka bridge  -Kafka Bridge Between Space and External Database section.</p>
+                <p>For targets as local views and durable notifications, the redo log will grow in case of disconnection and slow-consuming, For those targets, it's recommended to make sure that redo log will not go to disk, and keep the default that drops those members in case of redo log growth.</p>
+            </MadCap:dropDownBody>
+        </MadCap:dropDown>
+    </body>
+</html>
