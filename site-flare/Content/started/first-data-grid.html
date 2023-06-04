@@ -98,6 +98,22 @@ Would you like to open it in file explorer? [y]:</code></pre>
                     </div>
                 </li>
             </ul>
+            <h3>Running a Service Grid on a Single Server</h3>
+            <p>Service Grid can also be run on a single server which can be accessed by remote users.</p>
+            <p><code>gs host run-agent --auto</code> creates the manager using the localhost. Other computers will not be able to access it.</p>
+            <p>For running on a single server, follow these steps:</p>
+            <ol>
+                <li>
+                    <p>Modify the <MadCap:variable name="General.Home-directory" />/bin/setenv-overrides.(sh|bat) file</p>
+                    <p>Set the GS_MANAGERS_SERVERS to the hostname.</p>
+                    <div class="tc-admon-note">
+                        <p>It is highly recommended to set the GS_NIC_ADDRESS to the IP&#160;address of the host.</p>
+                    </div>
+                </li>
+                <li>
+                    <p>To start the Service Grid <code>run gs.(sh|bat) host run-agent --manager --webuse --gsc=4</code></p>
+                </li>
+            </ol>
             <h2>Deploying the Data Grid</h2>
             <p>After you launch a service grid, you can deploy a data grid and begin to use it.</p>
             <p class="tc-todo">To deploy the data grid:</p>
