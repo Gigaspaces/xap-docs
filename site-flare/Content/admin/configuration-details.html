@@ -1,0 +1,672 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:fileTags="File Tags/FileTagSetStatus.HasScreenshot">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Detailed Configuration:&#160;Smart Cache and Smart&#160;DIH</h1>
+        <p>This topic contains detailed customization information required for the installation of Smart DIH and Smart&#160;Cache.</p>
+        <div class="tc-admon-note">
+            <p>The parameters provided are Helm values that can be overridden using <code>-set</code> or by included them in a dedicated <code>values.yaml</code> file and overriding them by using the <code>-values helm</code> parameter.</p>
+        </div>
+        <p>Helm values can be applied in the following two places:</p>
+        <ol>
+            <li>
+                <p>Initial deployment of Smart DIH or Smart Cache. This is the umbrella installation. Refer to <a href="smart-dih-with-kubernetes-overview.html">Smart DIH&#160;Installation</a> or <a href="kubernetes-s10-deploying-and-managing-gigaspaces.html">Smart Cache Installation</a> for comprehensive instructions.</p>
+            </li>
+            <li>
+                <p>Deploying a Space (or PU) when you change the Space deployment in order to add features such as Tiered Storage, Resources and Probes. Refer to <a href="kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Customer Processing Unit</a> for more information. When the parameter belongs to the&#160;Space installation it is defined as a PU&#160;Parameter.</p>
+            </li>
+        </ol>
+        <h1>Common Setup (Both&#160;Smart Cache and Smart DIH)</h1>
+        <h2>Feature Flags</h2>
+        <p>Default values are shown in bold.</p>
+        <table style="width: 1276px;">
+            <col style="width: 374px;" />
+            <col style="width: 138px;" />
+            <col style="width: 684px;" />
+            <thead>
+                <tr>
+                    <th>Helm Parameter</th>
+                    <th style="text-align: left;">Values</th>
+                    <th style="text-align: left;">Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>metrics.enabled</td>
+                    <td><b>true</b>/false</td>
+                    <td>Adding influx and grafana deployments</td>
+                </tr>
+                <tr>
+                    <td>manager.metrics.enabled</td>
+                    <td><b>true</b>/false</td>
+                    <td>Manager generate metrics in influxdb</td>
+                </tr>
+                <tr>
+                    <td>manager.securityService.enabled</td>
+                    <td>true/<b>false</b></td>
+                    <td>Manager runs in secure mode (see security documentation)</td>
+                </tr>
+                <tr>
+                    <td>manager.securityService.ingress.enabled</td>
+                    <td><b>true</b>/false</td>
+                    <td>Adding ingress for security service access (e.g. for oauth2 handshake)</td>
+                </tr>
+                <tr>
+                    <td>spacedeck.auth.enabled</td>
+                    <td>true/<b>false</b></td>
+                    <td>SpaceDeck authentication enabled</td>
+                </tr>
+                <tr>
+                    <td>manager.antiaffinity.enabled</td>
+                    <td>true/<b>false</b></td>
+                    <td>Smart Cache Manager anti-affinity </td>
+                </tr>
+                <tr>
+                    <td>manager.persistence.enabled</td>
+                    <td><b>true</b>/false</td>
+                    <td>Enable space persistency (Tiered Storage)</td>
+                </tr>
+                <tr>
+                    <td>manager.service.lrmi.enabled</td>
+                    <td>true/<b>false</b></td>
+                    <td>Ability to access space with lrmi protocol from external hosts</td>
+                </tr>
+                <tr>
+                    <td>operator.keystore.enabled</td>
+                    <td><b>true</b>/false</td>
+                    <td>Ability to inject admission controller certificate using a volume</td>
+                </tr>
+                <tr>
+                    <td>operator.autoCleanup.enabled</td>
+                    <td><b>true</b>/false</td>
+                    <td>Clean up PU’s when operator is uninstalled</td>
+                </tr>
+                <tr>
+                    <td>operator.statefulSetExtension.enabled</td>
+                    <td>true/<b>false</b></td>
+                    <td>Enable adding more objects to a PU (see statefulset extensions)</td>
+                </tr>
+                <tr>
+                    <td>dgw.enabled</td>
+                    <td>true/<b>false</b></td>
+                    <td>Adding data gateway for direct JDBC driver access</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Pods/Service/Ingress (Networking Configuration, H/A)</h2>
+        <h3>Network Configuration</h3>
+        <p>By default, all services are configured with the ClusterIP. The following services have to be accessed from outside the cluster:</p>
+        <ol>
+            <li>
+                <p>SpaceDeck - Used for running the UI of Smart DIH</p>
+            </li>
+            <li>
+                <p>XAP&#160;Security Service - For OAuth2.0 re-direction endpoint</p>
+            </li>
+            <li>
+                <p>Data Gateway - When enabled, needs JDBC&#160;access (TCP&#160;connection)</p>
+            </li>
+            <li>
+                <p>Kafka - To have to ability to connect directly to Kafka. For Smart DIH&#160;only.</p>
+            </li>
+        </ol>
+        <p>The table below lists the details of the services. <a href="#Nginx">Nginx configuration</a> is included for reference.</p>
+        <table style="width: 1276px;">
+            <col style="width: 411px;" />
+            <col style="width: 138px;" />
+            <col style="width: 264px;" />
+            <col style="width: 396px;" />
+            <thead>
+                <tr>
+                    <th>Service Name and Port</th>
+                    <th style="text-align: left;">Type</th>
+                    <th style="text-align: left;">Nginx Config ( if used)</th>
+                    <th style="text-align: left;"><MadCap:variable name="General.ProductNameIE" /> Product</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SpaceDeck: 3000</td>
+                    <td>http</td>
+                    <td>Using ingress manifest</td>
+                    <td>Smart DIH / Smart Cache</td>
+                </tr>
+                <tr>
+                    <td>xap-security-service :9000</td>
+                    <td>http</td>
+                    <td>Using ingress manifest</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>xap-dgw-service</td>
+                    <td>tcp</td>
+                    <td>Using TCP mapping</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td>kafka: 9092</td>
+                    <td>tcp</td>
+                    <td>Using TCP mapping</td>
+                    <td>Only Smart DIH</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Any of the services listed above can be modified to LoadBalancer, if it is supported by the Kubernetes cluster. Alternatively, for the http services listed, an ingress can be used. For SpaceDeck and the XAP Security Service these ingress manifests are installed with the Smart DIH&#160;Helm installation by default.</p>
+        <h3><a name="Nginx"></a>Nginx Configuration</h3>
+        <p>The Nginx controller can be used as a router for incoming traffic. As stated previously, another ingress controller or a Load Balancer can be used instead.</p>
+        <p>The controller is used for satisfying the following requirements:</p>
+        <p>TLS&#160;termination (this can be done outside as well)</p>
+        <p>Routing according to Kubernetes ingress declarations for HTTP&#160;traffic</p>
+        <p>TCP&#160;routing by setting TCP mapping in the Nginx configuration (using configmap). Refer to this <a href="https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/">Kubernetes guide</a> for specific TCP&#160;configuration.</p>
+        <h3>Nginx Deployment Example</h3>
+        <p>In the example value file to install nginx below, a single pod Nginx installation using a hostPort connection is shown. Replace the parameters according to the list below.</p>
+        <p><b>nginx-values.yaml</b>
+        </p><pre xml:space="preserve">controller:
+   ingressClassByName: true
+   hostPort:
+     enabled: true
+     ports: {}
+   nodeSelector:
+     eks.amazonaws.com/nodegroup: &lt;nginx-asg&gt;
+
+   service:
+     enabled: false
+     ports: {}
+     nodePorts:
+       http: &lt;node-port&gt;
+     internal:
+       ports: {}
+       targetPorts: {}
+    admissionWebhooks:
+        nodeSelector:
+          eks.amazonaws.com/nodegroup: &lt;nginx-asg&gt;
+tcp:
+  11701: &lt;dih-namespace&gt;/iidr-kafka:11701
+  3000:  &lt;dih-namespace&gt;/grafana:3000
+  5432:  &lt;dih-namespace&gt;/xap-dgw-service:5432
+  8090:  &lt;dih-namespace&gt;/xap-manager-service:8090
+  9092:  &lt;dih-namespace&gt;/stest/kafka:9092
+  9443:  &lt;dih-namespace&gt;/xap-manager-service:8090
+</pre>
+        <p><u style="font-weight: bold;">Legend</u>:</p>
+        <p><b>nginx-asg</b>: A dedicated node group for an nginx instance</p>
+        <p><b>dih-namespace</b>: The namespace where Smart DIH is installed</p>
+        <p><b>node-port</b>: The host port, for example 30820</p>
+        <p>Helm command used to install the Nginx controller calling the nginx-values.yaml:</p><pre xml:space="preserve">helm install nginx nginx/ingress-nginx -n ingress --version=4.6.0 --values=nginx-values.yaml</pre>
+        <h2>Space High Availability (H/A) and Partitioning</h2>
+        <p>The Space can be divided by two dimensions.</p>
+        <ol>
+            <li>
+                <p><b>Partition</b> - Adding more pods to extend the capacity of the Space</p>
+            </li>
+            <li>
+                <p><b>Replication</b> - Adding a backup pod per partition for H/A of the Space</p>
+            </li>
+        </ol>
+        <div class="tc-admon-note">
+            <p>The following parameters are not found in the manager, but rather in the PU&#160;customer resource.</p>
+        </div>
+        <table style="width: 1124px;">
+            <col style="width: 199px;" />
+            <col style="width: 157px;" />
+            <col style="width: 433px;" />
+            <thead>
+                <tr>
+                    <th>PU&#160;Parameter</th>
+                    <th style="text-align: left;">Values</th>
+                    <th style="text-align: left;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Partitions</td>
+                    <td>1 or more</td>
+                    <td>Divide the data among multiple pods</td>
+                </tr>
+                <tr>
+                    <td>H/A</td>
+                    <td>true/<b>false</b></td>
+                    <td>Setting additional replication for each partition.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Tiered Storage</h2>
+        <p>The following configuration must be completed to enable Tiered Storage:</p>
+        <ol>
+            <li>
+                <p>Ensure that you have a suitable driver which will satisfy the required persistent volume, which depends on the cloud or file-system. More details can be found in the <a href="https://kubernetes.io/docs/concepts/storage/volumes/">Kubernetes spec</a>. </p>
+            </li>
+            <li>
+                <p>Enable the volume for Tiered Storage at the CRD level, using the parameters listed in the table below.</p>
+            </li>
+            <li>
+                <p><a name="Build_"></a>Build a Smart Cache based image that includes a jar that is built according to the instructions found in this <a href="intelligent-tiering-details.html">Tiered Storage</a> page.</p>
+            </li>
+            <li>
+                <p>Follow the instructions for <a href="kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</a> to load the jar.</p>
+            </li>
+        </ol>
+        <p>The following parameters should be set in order to set the volume in the CRD level:</p>
+        <table style="width: 1124px;">
+            <col style="width: 199px;" />
+            <col style="width: 157px;" />
+            <col style="width: 433px;" />
+            <thead>
+                <tr>
+                    <th>PU&#160;Parameter</th>
+                    <th style="text-align: left;">Values</th>
+                    <th style="text-align: left;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>persistence.enabled</td>
+                    <td>true/false</td>
+                    <td>
+                        <p>Enable the persistence at the pod level</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>persistence.storageClassName</td>
+                    <td>One of the cloud's storage classes</td>
+                    <td>Storage Class Name (refer to Kubernetes documentation)</td>
+                </tr>
+                <tr>
+                    <td>persistence.accessMode</td>
+                    <td>ReadWriteOnce/ReadWriteMany</td>
+                    <td>Storage Access mode (refer to Kubernetes documentation)</td>
+                </tr>
+                <tr>
+                    <td>persistence.size</td>
+                    <td>Example: "1Gi"</td>
+                    <td>Depending on the expected amount of your total data (not cached data)</td>
+                </tr>
+                <tr>
+                    <td>properties[0].name</td>
+                    <td>Any key</td>
+                    <td>Key of a property passed to the space jar (refer to <a href="#Build_">number 3</a> above)</td>
+                </tr>
+                <tr>
+                    <td>properties[0].value</td>
+                    <td>Any value</td>
+                    <td>Value of key[0]</td>
+                </tr>
+                <tr>
+                    <td>properties[n].name</td>
+                    <td>Key #n</td>
+                    <td>For additional properties names</td>
+                </tr>
+                <tr>
+                    <td>properties[n].value</td>
+                    <td>Value #n</td>
+                    <td>For additional properties corresponding values</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Space Anti-Affinity</h2>
+        <p>In H/A mode, the partition replications have to be placed in separate nodes or zones.</p>
+        <table style="width: 1124px;">
+            <col style="width: 199px;" />
+            <col style="width: 157px;" />
+            <col style="width: 433px;" />
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th style="text-align: left;">Values</th>
+                    <th style="text-align: left;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>operator.antiAffinity.topology</td>
+                    <td><b>topology.kubernetes.io/zone</b>
+or
+topology.kubernetes.io/host
+</td>
+                    <td>The topology by which kubernetes activate the anti-affinity rule in the zone or the host
+
+</td>
+                </tr>
+            </tbody>
+        </table>
+        <table style="width: 1124px;">
+            <col style="width: 311px;" />
+            <col style="width: 326px;" />
+            <col style="width: 475px;" />
+            <thead>
+                <tr>
+                    <th>PU Parameter</th>
+                    <th style="text-align: left;">Values</th>
+                    <th style="text-align: left;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>antiAffinity.enabled</td>
+                    <td>true/<b>false</b></td>
+                    <td>Enabling the anti-affinity for the specific PU<![CDATA[
+]]></td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Manager Anti-Affinity</h2>
+        <p>In a manager H/A scenario, 3 managers have to be set up for anti-affinity mode.</p>
+        <table style="width: 1124px;">
+            <col style="width: 321px;" />
+            <col style="width: 307px;" />
+            <col style="width: 479px;" />
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th style="text-align: left;">Values</th>
+                    <th style="text-align: left;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>manager.ha</td>
+                    <td>true/<b>false</b></td>
+                    <td>Set up 3 managers (1 otherwise)
+
+<![CDATA[
+]]></td>
+                </tr>
+                <tr>
+                    <td>manager.affinity.enable</td>
+                    <td>true/<b>false</b></td>
+                    <td>Apply anti-affinity rule upon scheduling
+
+</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Configuration for Smart Cache Only (Migration from&#160;Service Grid or Advanced&#160;Users)</h1>
+        <h2>Environment and Properties that can be injected into a PU</h2>
+        <h3>Properties</h3>
+        <p>There are two ways to set properties:</p>
+        <ol>
+            <li>
+                <p>As an array by setting the <i>properties</i> value at the PU&#160;level</p>
+            </li>
+            <li>
+                <p>Using <code>valueFrom</code> enable to point to a specific value in a config map (or secret):</p>
+            </li><pre xml:space="preserve">properties:
+  - name: SPECIAL_LEVEL_KEY
+    valueFrom:
+      configMapKeyRef:
+        name: special-config
+        key: special.how</pre>
+            <li>
+                <p>Using propertiesFrom enable to reference a configmap or secret:</p><pre xml:space="preserve">propertiesFrom:
+  - configMapRef:
+      name: special-config</pre>
+            </li>
+        </ol>
+        <h3>Environment Variables</h3>
+        <p>Similar to properties, there are the same three options:</p>
+        <p>As an array of env variables (as in a container) using <b>env</b> parameter</p>
+        <p>Using <code>valueFrom</code> enable to point to a specific value in a config map (or secret)</p>
+        <p>Using <code>envFrom</code> enable to reference a configmap of a secret</p>
+        <h2>StatefulSet Extensions</h2>
+        <p>The <MadCap:variable name="General.ProductNameIE" /> operator creates a StatefulSet out of values given in the PU&#160;manifest. These values are used for handling the installation and various other conditions&#160;(for example, scale), by the operator. The user might want to have additional settings on the StatefulSet. These settings are integrated as-is to the created StatefulSet.</p>
+        <table style="width: 1124px;">
+            <col style="width: 199px;" />
+            <col style="width: 157px;" />
+            <col style="width: 433px;" />
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th style="text-align: left;">Values</th>
+                    <th style="text-align: left;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>statefulSetExtension.enabled</td>
+                    <td>true/<b>false</b></td>
+                    <td>Enable extension of the StatefulSet
+
+
+</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The list of fields listed below are those that are allowed to be added. They can be added in the <code>statefulSetExtension</code> area in the chart/value file. Fields that are not listed are ignored by the operator.</p>
+        <table style="width: 1276px;">
+            <col style="width: 371px;" />
+            <col style="width: 228px;" />
+            <col style="width: 264px;" />
+            <col style="width: 396px;" />
+            <thead>
+                <tr>
+                    <th>StatefulSet Field Path</th>
+                    <th style="text-align: left;">Description</th>
+                    <th style="text-align: left;">Merge Policy*
+
+</th>
+                    <th style="text-align: left;">Field-PK for Collision</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>spec.template.metadata.annotation</td>
+                    <td>StatefulSet annotations
+
+</td>
+                    <td>Merge with PU precedence</td>
+                    <td>key</td>
+                </tr>
+                <tr>
+                    <td>spec.template.metadata.finalizers</td>
+                    <td>Pod controlled deletion</td>
+                    <td>Merge with PU precedence</td>
+                    <td>whole object</td>
+                </tr>
+                <tr>
+                    <td>spec.template.metadata.labels</td>
+                    <td>Labels of pods </td>
+                    <td>Merge with PU precedence</td>
+                    <td>key</td>
+                </tr>
+                <tr>
+                    <td>spec.template.spec.containers</td>
+                    <td>Containers running in pod</td>
+                    <td>Merge with PU precedence</td>
+                    <td>name</td>
+                </tr>
+                <tr>
+                    <td>spec.template.spec.initContainers</td>
+                    <td>Containers initializing </td>
+                    <td>Merge with PU precedence</td>
+                    <td>name</td>
+                </tr>
+                <tr>
+                    <td>spec.template.spec.securityContext</td>
+                    <td>Security pod definitions</td>
+                    <td>Override</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>spec.template.spec.volumes</td>
+                    <td>Volumes for containers</td>
+                    <td>Merge with PU precedence</td>
+                    <td>name</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Probes</h2>
+        <p>Liveness and Readiness probes are the means for the Kubernetes and <MadCap:variable name="General.ProductNameIE" /> Manager to check the health of the PU. &#160;For a Space, the operator sets the default probes if they are not provided in the settings of the PU manifest. These defaults ensure that the manager has a way to detect a failing partition of the Space. &#160;If the user wishes to override this, for the case where there is additional logic that occurs at start-up of a PU, the probes can be set and support the URL. It is important to note that these endpoints still need to reflect the Space readiness. </p>
+        <table style="width: 1124px;">
+            <col style="width: 311px;" />
+            <col style="width: 326px;" />
+            <col style="width: 475px;" />
+            <thead>
+                <tr>
+                    <th>PU Parameter</th>
+                    <th style="text-align: left;">Values</th>
+                    <th style="text-align: left;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>livenessProbe</td>
+                    <td>Same as kubernetes spec</td>
+                    <td>See <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/">Probes Spec</a>. Description above.</td>
+                </tr>
+                <tr>
+                    <td>readinessProbe
+
+</td>
+                    <td>Same as kubernetes spec</td>
+                    <td>See <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/">Probes Spec</a>. Description above.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Security Settings</h1>
+        <p>The security server runs alongside the grid manager and is responsible for handling security related requests coming from inside or outside the cluster. The list below is for the security server cluster configuration. &#160;Details of the end-user operation related to security can be found in the <a href="../spacedeck/spacedeck-login.html">SpaceDeck Login</a> and <a href="../spacedeck/spacedeck-admin.html">SpaceDeck&#160;Roles Management</a> pages.</p>
+        <table style="width: 1124px;">
+            <col style="width: 311px;" />
+            <col style="width: 326px;" />
+            <col style="width: 475px;" />
+            <thead>
+                <tr>
+                    <th> Parameter</th>
+                    <th style="text-align: left;">Values</th>
+                    <th style="text-align: left;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>manager.securityServer.enabled</td>
+                    <td>true/<b>false</b></td>
+                    <td>Enable security at the backend</td>
+                </tr>
+                <tr>
+                    <td>manager.securityServer.ingress.enabled
+
+</td>
+                    <td><b>true</b>/false</td>
+                    <td>Adding an ingress to enable access from IDP
+
+</td>
+                </tr>
+                <tr>
+                    <td>manager.securityServer.secretKeyRef.name
+
+</td>
+                    <td>“<b>root-credentials</b>” or any secret name</td>
+                    <td>Reference to a secret that holds the root credentials
+
+</td>
+                </tr>
+                <tr>
+                    <td>manager.securityServer.rolesConfigMap
+
+</td>
+                    <td>“<b>roles-map</b>” or other cm that has the roles</td>
+                    <td>Reference to a configmap that holds the roles
+
+</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Roles and Policies Configuration</h2>
+        <p>A list of roles and their corresponding policies can be found in the "roles map" config map. In the example below, a user that has the role ROLE_ADMIN has specified policies that are defined for that role. &#160;Different roles, for example ROLE_MNGR, would have different policies defined.</p><pre xml:space="preserve">roles.ROLE_ADMIN: |
+  SystemPrivilege MANAGE_IDENTITY_PROVIDERS
+  , MonitorPrivilege MONITOR_PU
+  , MonitorPrivilege MONITOR_JVM
+  , GridPrivilege MANAGE_GRID
+  , GridPrivilege MANAGE_PU
+  , GridPrivilege PROVISION_PU
+  , SpacePrivilege EXECUTE
+  , SpacePrivilege ALTER
+  , SpacePrivilege WRITE
+  , SpacePrivilege READ
+  , SpacePrivilege NOT_SET
+  , SpacePrivilege TAKE
+  , SpacePrivilege CREATE
+  , SystemPrivilege MANAGE_ROLES
+  , SystemPrivilege MANAGE_USERS
+roles.ROLE_MNGR: |
+  MonitorPrivilege MONITOR_JVM
+  , MonitorPrivilege MONITOR_PU
+  , GridPrivilege PROVISION_PU</pre>
+        <h1>Smart DIH Settings</h1>
+        <h2>SpaceDeck Settings for Smart DIH</h2>
+        <p>Refer to the <a href="../spacedeck/spacedeck-overview.html">SpaceDeck</a> pages.</p>
+        <h2>Data Integration (DI) Settings</h2>
+        <p>Refer to the <a href="../landing-pages/AO-DataIntegration.htm">DI</a> pages.</p>
+        <h2>Service Creator Settings</h2>
+        <p>The following attributes are provided to the Service Creator Operator during the installation phase. The Service Creator Operator controls the creation of deployment, service and ingress of a <a href="../spacedeck/spacedeck-services.html">low-code service.</a></p>
+        <table style="width: 1124px;">
+            <col style="width: 311px;" />
+            <col style="width: 326px;" />
+            <col style="width: 475px;" />
+            <thead>
+                <tr>
+                    <th> Parameter</th>
+                    <th style="text-align: left;">Values</th>
+                    <th style="text-align: left;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>service-operator.operatorConfig.memoryLimit
+
+</td>
+                    <td><b>400Mi</b> or other memory capacity 
+
+</td>
+                    <td>Memory limit of a newly created low-code service
+
+</td>
+                </tr>
+                <tr>
+                    <td>service-operator.operatorConfig.cpuLimit
+
+</td>
+                    <td><b>1</b> or other cpu core number
+
+</td>
+                    <td>CPU limit of a newly created low-code service
+
+</td>
+                </tr>
+                <tr>
+                    <td>service-operator.operatorConfig.controllerClass
+
+</td>
+                    <td><b>nginx</b>
+                    </td>
+                    <td>The ingress controller class
+
+</td>
+                </tr>
+                <tr>
+                    <td>service-operator.operatorConfig.image
+
+</td>
+                    <td><b>gigaspaces/mcs-query-service</b>:1.2.3 or any other tag
+
+</td>
+                    <td>The low-code service image and tag
+
+</td>
+                </tr>
+                <tr>
+                    <td>service-operator.operatorConfig.host
+
+</td>
+                    <td><b>{current_namespace}.gigaspaces.net</b> or any other host name
+
+</td>
+                    <td>Host name (e.g. DNS)  that fills the ingress rule
+
+</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+    </body>
+</html>
