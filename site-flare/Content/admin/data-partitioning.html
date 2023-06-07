@@ -1,19 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
-        <h1>Data Partitioning</h1>
+        <h1>Data Partitioning In Practice</h1>
         <div class="tc-admon-note">
             <p>Some of the features discussed on this page are not part of the open-source edition, and are only available in the licensed editions (starting with <MadCap:variable name="General.ProductNameXAPPrem" />).</p>
         </div>
-        <p>Load balancing (data partitioning) is essential in any truly scalable architecture, as it enables scaling beyond the physical resources of a single-server machine. In <MadCap:variable name="General.ProductNameXAP" />, load balancing is the mechanism used by the clustered proxy to distribute space operations among the different cluster members. Each cluster member can run on a different physical or virtual machine.</p>
-        <p>A clustered proxy for a partitioned data grid holds logical references to all space members in the cluster. The references are "logical", in the sense that no active connection to a space member is opened until it is needed. This is illustrated in the following diagram:</p>
-        <div class="tc-align-center">
-            <p>
-                <img src="../Resources/Static/attachment_files/load_balancing_basic.gif" alt="load_balancing_basic.gif" class="tc-picture50" />
-            </p>
-        </div>
+        <p>For an explanation of Data Partitioning concepts, refer to <a href="../started/data-partitioning.html">Data Partitioning </a>page in our Architectural Overview section.</p>
         <h1><a name="hash-based-load-balancing"></a>Hash-Based Load Balancing</h1>
         <p>This is the <span class="tc-bold">default mode</span> and applicable for most of the application. When using a hash-based load balancing policy, the client proxy spreads new written space objects into relevant cluster space nodes. The relevant space to rout the operation is determined using a space object routing field (also called a routing index) value hash code. This value, together with the number of the cluster partitions, is used to calculate the target space for the operation.</p><pre><code class="language-java">Target partition space ID = safeABS(routing field hashcode) % (# of partitions)
 
