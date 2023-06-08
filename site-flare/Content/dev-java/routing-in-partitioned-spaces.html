@@ -8,9 +8,7 @@
         <p>Note that in such a configuration, the different spaces defined as partitions are not aware of each other ("Share Nothing") - the client proxy is the one that is aware of the partitioned space configuration.</p>
         <div class="tc-admon-note" MadCap:conditions="Version.15-8-born">
             <p>If an object has an expected total data capacity that is much smaller than a partition, and it is infrequently updated, it can be set as a <MadCap:xref href="broadcast-objects.html">Broadcast Object</MadCap:xref> for optimized JOIN performance.</p>
-        </div>
-        <p>&#160;</p>
-        <p>&#160;</p><a name="Defining"></a>
+        </div><a name="Defining"></a>
         <h1><a name="defining-a-routing-property"></a>Defining a Routing Property</h1>
         <p><span class="tc-bold">Partitioning</span> is used when the total data set is too big to be stored in a single space, and we want to divide the data into two or more groups (partitions). In order to do that, the proxy needs to know how to partition the data, i.e. which entry belongs in which partition.</p>
         <p>In order to accomplish that a <span class="tc-bold">routing property</span> can be defined on the entry type. When the proxy is asked to write an entry, it uses the entry's routing property's hash code to determine the relevant partition for it:</p><pre><code class="language-java">Target partition space ID = safeABS(routing field hashcode) % (number of partitions)

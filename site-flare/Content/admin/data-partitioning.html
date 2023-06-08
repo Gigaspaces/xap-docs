@@ -23,11 +23,11 @@ int partitionCount = admin.getSpaces().waitFor("MyDataGridName", 5, TimeUnit.SEC
         <div class="tc-admon-tip">
             <ul>
                 <li>It is recommended to use an Integer or a Long field type as the routing field.</li>
-                <li>The default routing field is the space ID field. In this case, make sure you have the @SpaceId using the <code>autoGenarate=false</code> mode.</li>
+                <li>The default routing field is the space ID field. In this case, make sure you have the @SpaceId using the <code>autoGenerate=false</code> mode.</li>
             </ul>
         </div>
         <div class="tc-admon-important">
-            <p>Converting a numeric value to a String and using the string representation as the routing key will give different load balancing in comparison to a numeric value.</p>
+            <p>Converting a numeric value to a String and using the string representation as the routing key will give different load balancing in comparison to a numeric value. This is due to the hashCode implementation of a String vs. a numeric value.</p>
         </div>
         <h1><a name="example"></a>Example</h1>
         <p>A cluster is defined with 3 partitions, where each partition has one primary and one backup space.</p>
