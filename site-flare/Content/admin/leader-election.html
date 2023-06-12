@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -24,8 +24,10 @@
                 <img src="../Resources/Static/attachment_files/cap.png" alt="image" class="tc-picture50" />
             </p>
         </div>
-        <p>As a result, you can have partition tolernace plus consistency, or partition tolerance plus availability. Gigaspaces provides two available implementations to support the approach that is best suited to your environment and business needs:</p>
-        <ul>
+        <p>As a result, you can have partition tolerance plus consistency, or partition tolerance plus availability. Gigaspaces provides two available implementations to support the approach that is best suited to your environment and business needs. </p>
+        <p MadCap:conditions="Version.16-3-born">Consistency based implementation is based on Apache Zookeeper, whereas availability based is based on the native Lookup Service:</p>
+        <MadCap:miniTocProxy style="mc-toc-depth: 1;" class="topic-content" MadCap:conditions="Version.16-3-born" />
+        <ul MadCap:conditions="Version.16-3-died">
             <li>
                 <p><a href="leader-election-consistency-biased.html">Consistency biased</a> - this implementation is based on Apache Zookeeper.</p>
             </li>

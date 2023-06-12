@@ -467,4 +467,87 @@ This architecture implementation is a set of Processing Units, with the followin
     <Definition
       Link="">Related to Data Tiering. The MemoryXtend (blobstore) storage model allows an external storage medium (one that does not reside on the JVM heap) to store the GigaSpaces Space data and is designed for operational workloads. It keeps all indexes in RAM for better performance.</Definition>
   </GlossaryEntry>
+  <GlossaryEntry
+    glossTerm="Glossary.Term40"
+    TermClass="Popup"
+    Stem=""
+    IgnoreCase="true">
+    <Terms>
+      <Term>Routing</Term>
+    </Terms>
+    <Definition
+      Link="">The mechanism that is in charge of routing the objects into and out of the corresponding partitions. The routing is based on a designated attribute inside the objects that are written to the Space, called the Routing Index.</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry
+    glossTerm="Glossary.Term41"
+    TermClass="Popup"
+    Stem=""
+    IgnoreCase="false">
+    <Terms>
+      <Term>Service Grid</Term>
+    </Terms>
+    <Definition
+      Link="">A built-in orchestration tool which contains a set of Grid Service Containers (GSCs) managed by a Grid Service Manager. The containers host various deployments of Processing Units and data grids. Each container can be run on a separate physical machine.  This orchestration is available for Smart Cache only. For Smart DIH, we recommend using our Kubernetes orchestration.</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry
+    glossTerm="Glossary.Term43"
+    TermClass="Popup"
+    Stem=""
+    IgnoreCase="false">
+    <Terms>
+      <Term>Processing Unit</Term>
+      <Term>PU</Term>
+    </Terms>
+    <Definition
+      Link="">A combination of clients and/or an embedded Space instance. This is the fundamental unit of deployment in the data grid. The Processing Unit itself is typically deployed onto the cluster. When a Processing Unit is deployed, a Processing Unit instance is the actual runtime entity.  The number of PU instances in a PU will be deployed according to the SLA defined.</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry
+    glossTerm="Glossary.Term44"
+    TermClass="Popup"
+    Stem=""
+    IgnoreCase="false"
+    conditions="Default.DoNotShow">
+    <Terms>
+      <Term>Service</Term>
+    </Terms>
+    <Definition
+      Link="">A service performs operations with the underlying data. There are several types of Services:
+1) Stateful PU/Service - space containing data and also might embed services related to that space's data.
+2) Stateless PU/Service - There are built-in services as mirror wan-GW, data-GW. In addition, there are custom services which are customer driven.
+3) Client Services - applications that interact with spaces.  In Smart DIH these include low-code micro services.</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry
+    glossTerm="Glossary.Term45"
+    TermClass="Popup"
+    Stem=""
+    IgnoreCase="false">
+    <Terms>
+      <Term>FIFO</Term>
+    </Terms>
+    <Definition
+      Link="">FIFO is an acronym for first in, first out, a method for organizing the manipulation of a data structure where the oldest entry, or "head" of the queue, is processed first.</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry
+    glossTerm="Glossary.Term46"
+    TermClass="Popup"
+    Stem=""
+    IgnoreCase="false">
+    <Terms>
+      <Term>POJO</Term>
+    </Terms>
+    <Definition
+      Link="">Plain Old Java Object
+A regular Java object with no special restrictions other than those forced by the Java Language Specification and does not require any classpath.</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry
+    glossTerm="Glossary.Term47"
+    TermClass="Popup"
+    Stem=""
+    IgnoreCase="false">
+    <Terms>
+      <Term>Quiesce Mode</Term>
+    </Terms>
+    <Definition
+      Link="">This feature adds support for "Quiesce state" (or maintenance mode) for a Processing Unit. If a space is quiesced, it rejects all data-related operations with an exception, allowing the user to perform maintenance operations.</Definition>
+  </GlossaryEntry>
 </CatapultGlossary>
