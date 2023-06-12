@@ -132,10 +132,9 @@ ul.menu._Skins_Section_Menu_2023.mc-component ul > li > a:hover {
   margin-left: 8px;
 }
 
-.title-bar-layout .header > ul > li > p
-{
-	margin: 0 9px;
-	padding: 9px 0 8px 0;
+.title-bar-layout .header > ul > li > p {
+  margin: 0 9px;
+  padding: 9px 0 8px 0;
 }
 
 .header ul ul li,
@@ -155,7 +154,7 @@ p.free-trial {
   position: relative;
   height: 42px;
   padding: 0 !important;
-  margin: 0px!important;
+  margin: 0px !important;
 }
 
 .header > ul > li > p.free-trial a {
@@ -170,7 +169,7 @@ p.free-trial {
 
 p.free-trial.blue-button {
   background-color: rgb(0, 192, 243);
-  width: 219px
+  width: 219px;
 }
 
 .header > ul > li > p.free-trial.blue-button a {
@@ -550,7 +549,8 @@ ul._Skins_Section_Menu_2023 > li > a {
   display: none;
 }
 
-ul._Skins_Section_Menu_2023 ul, div.image-tiles {
+ul._Skins_Section_Menu_2023 ul,
+div.image-tiles {
   display: flex;
   justify-content: flex-start;
   margin: 0 0px 0 -20px;
@@ -567,16 +567,17 @@ div.image-tiles img {
 
 div.image-tiles p {
   display: flex;
-	justify-content: center;
+  justify-content: center;
 }
 
 div.image-tiles p > a {
   display: flex;
   justify-content: center;
-  padding: 0 10px!important;
+  padding: 0 10px !important;
 }
 
-ul._Skins_Section_Menu_2023 ul > li, div.image-tiles p {
+ul._Skins_Section_Menu_2023 ul > li,
+div.image-tiles p {
   background: white;
   width: 200px;
   position: relative;
@@ -590,7 +591,8 @@ ul._Skins_Section_Menu_2023 ul > li, div.image-tiles p {
   display: none;
 }
 
-ul.menu._Skins_Section_Menu_2023.mc-component ul > li > a, div.image-tiles p > a {
+ul.menu._Skins_Section_Menu_2023.mc-component ul > li > a,
+div.image-tiles p > a {
   transition: 0.2s linear;
   position: absolute;
   width: 100%;
@@ -640,12 +642,11 @@ span#breadcrumb-home {
   padding-left: 20px;
 }
 
-._Skins_Toolbar_2023.mc-component .button.send-feedback-button .button-text
-{
-	padding-left: 8px;
+._Skins_Toolbar_2023.mc-component .button.send-feedback-button .button-text {
+  padding-left: 8px;
 }
 .topicToolbarProxy .button-group-container-left {
-  min-width: 60px;
+  min-width: 70px;
 }
 ._Skins_Toolbar_2023.mc-component .button .button-text:hover {
   color: #00c0f3;
@@ -730,6 +731,10 @@ span#breadcrumb-home {
 
 ul.sidenav > li {
   border-bottom: 1px solid #e6e5e5;
+}
+
+ul.sidenav ul ul ul ul ul > li > a {
+  margin-left: 100px;
 }
 
 .content .topic-container {
@@ -958,9 +963,10 @@ div#ipn-toggle-open:before {
 
 /* Mini toc */
 
-.miniToc p, .miniToc a {
-  color: #337ab7!important;
-  font-weight: 300!important;
+.miniToc p,
+.miniToc a {
+  color: #337ab7 !important;
+  font-weight: 300 !important;
 }
 
 .miniToc a:hover {
@@ -1154,13 +1160,13 @@ div#ipn-toggle-open:before {
 /* Last updated */
 
 #last-updated {
-	margin: 10px 10px 10px 0;
-	padding-left: 30px;
-	display: inline-block;
-	line-height: 31px;
-	background-image: url('images/last-updated.svg');
-	background-repeat: no-repeat;
-	background-position: center left;
+  margin: 10px 10px 10px 0;
+  padding-left: 30px;
+  display: inline-block;
+  line-height: 31px;
+  background-image: url("images/last-updated.svg");
+  background-repeat: no-repeat;
+  background-position: center left;
 }
 
 .searchTopic #last-updated,
@@ -1326,6 +1332,88 @@ div.clipboard {
 
 .tc-topic-banner.preview p {
   /* placeholder */
+}
+
+/* Glossary */
+
+MadCap|glossaryTerm {
+  mc-closed-image: none;
+  mc-closed-image-alt-text: none;
+  mc-open-image: none;
+  mc-open-image-alt-text: none;
+  mc-image-position: none;
+  color: #b2be92;
+}
+
+MadCap|glossaryProxy {
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+
+ul.MCGlossaryProxy_0  {
+  border-top: none!important;
+  display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+div.GlossaryPageHeading_0 {
+  border: none;
+  font-size: 26px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+a.MCTextPopupHotSpot,
+a.MCTextPopupHotSpot:link,
+a.MCTextPopupHotSpot:hover {
+  color: #b2be92;
+}
+
+a.MCTextPopupHotSpot:after {
+  content: " ";
+  width: 14px;
+  height: 18px;
+  display: inline-block;
+  background-image: url("../Custom/images/icons/Help-26.png");
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  background-position: 0px 1px;
+}
+
+.topic-content li.GlossaryPageEntry::before {
+  display: none !important;
+}
+
+a.GlossaryPageLink {
+  opacity: 1;
+  visibility: visible;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+a.GlossaryPageLink:hover {
+  text-decoration: none;
+  color: #006db8;
+}
+
+.GlossaryPageDefinition {
+  margin-bottom: 20px;
+}
+
+li.GlossaryPageEntry {
+  flex-basis: 48%;
+}
+
+.GlossaryPageHeading_0 {
+  flex-basis: 100%;
+  border: none;
+	font-size: 26px;
+	margin-bottom: 20px;
+	margin-top: 40px;
 }
 
 h2 {
@@ -1661,5 +1749,24 @@ h1 {
 
   .content .topic-container .topic-content {
     padding: 0 10px;
+  }
+}
+
+@media print {
+  .content .topic-container .ipn-content {
+    display: none;
+  }
+
+  .body-container {
+    overflow: visible;
+  }
+
+  .sidenav-layout,
+  .off-canvas-content,
+  .off-canvas-wrapper,
+  html,
+  body {
+    max-height: unset;
+    height: auto;
   }
 }
