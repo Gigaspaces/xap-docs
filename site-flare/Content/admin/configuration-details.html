@@ -6,12 +6,12 @@
         <h1 class="tc-pagetitle">Detailed Configuration:&#160;Smart Cache and Smart&#160;DIH</h1>
         <p>This topic contains detailed customization information required for the installation of Smart DIH and Smart&#160;Cache.</p>
         <div class="tc-admon-note">
-            <p>The parameters provided are Helm values that can be overridden using <code>-set</code> or by included them in a dedicated <code>values.yaml</code> file and overriding them by using the <code>-values helm</code> parameter.</p>
+            <p>The parameters provided are Helm values that can be overridden using <code>-set</code> or by including them in a dedicated <code>values.yaml</code> file and overriding them by using the <code>-values helm</code> parameter.</p>
         </div>
         <p>Helm values can be applied in the following two places:</p>
         <ol>
             <li>
-                <p>Initial deployment of Smart DIH or Smart Cache. This is the umbrella installation. Refer to <a href="smart-dih-with-kubernetes-overview.html">Smart DIH&#160;Installation</a> or <a href="kubernetes-s10-deploying-and-managing-gigaspaces.html">Smart Cache Installation</a> for comprehensive instructions.</p>
+                <p>Initial deployment of Smart DIH or Smart Cache. This is the umbrella installation. Refer to <a href="DIH-installation-kubernetes.html">Smart DIH&#160;Installation</a> or <a href="kubernetes-s10-deploying-and-managing-gigaspaces.html">Smart Cache Installation</a> for comprehensive instructions.</p>
             </li>
             <li>
                 <p>Deploying a Space (or PU) when you change the Space deployment in order to add features such as Tiered Storage, Resources and Probes. Refer to <a href="kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Customer Processing Unit</a> for more information. When the parameter belongs to the&#160;Space installation it is defined as a PU&#160;Parameter.</p>
@@ -139,7 +139,7 @@
                     <td>&#160;</td>
                 </tr>
                 <tr>
-                    <td>xap-dgw-service</td>
+                    <td>xap-dgw-service: 5432</td>
                     <td>tcp</td>
                     <td>Using TCP mapping</td>
                     <td>&#160;</td>
@@ -185,9 +185,7 @@ tcp:
   11701: &lt;dih-namespace&gt;/iidr-kafka:11701
   3000:  &lt;dih-namespace&gt;/grafana:3000
   5432:  &lt;dih-namespace&gt;/xap-dgw-service:5432
-  8090:  &lt;dih-namespace&gt;/xap-manager-service:8090
-  9092:  &lt;dih-namespace&gt;/stest/kafka:9092
-  9443:  &lt;dih-namespace&gt;/xap-manager-service:8090
+  9092:  &lt;dih-namespace&gt;/kafka:9092
 </pre>
         <p><u style="font-weight: bold;">Legend</u>:</p>
         <p><b>nginx-asg</b>: A dedicated node group for an nginx instance</p>
@@ -523,75 +521,6 @@ topology.kubernetes.io/host
                 </tr>
             </tbody>
         </table>
-        <h1>Security Settings</h1>
-        <p>The security server runs alongside the grid manager and is responsible for handling security related requests coming from inside or outside the cluster. The list below is for the security server cluster configuration. &#160;Details of the end-user operation related to security can be found in the <a href="../spacedeck/spacedeck-login.html">SpaceDeck Login</a> and <a href="../spacedeck/spacedeck-admin.html">SpaceDeck&#160;Roles Management</a> pages.</p>
-        <table style="width: 1124px;">
-            <col style="width: 311px;" />
-            <col style="width: 326px;" />
-            <col style="width: 475px;" />
-            <thead>
-                <tr>
-                    <th> Parameter</th>
-                    <th style="text-align: left;">Values</th>
-                    <th style="text-align: left;">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>manager.securityServer.enabled</td>
-                    <td>true/<b>false</b></td>
-                    <td>Enable security at the backend</td>
-                </tr>
-                <tr>
-                    <td>manager.securityServer.ingress.enabled
-
-</td>
-                    <td><b>true</b>/false</td>
-                    <td>Adding an ingress to enable access from IDP
-
-</td>
-                </tr>
-                <tr>
-                    <td>manager.securityServer.secretKeyRef.name
-
-</td>
-                    <td>“<b>root-credentials</b>” or any secret name</td>
-                    <td>Reference to a secret that holds the root credentials
-
-</td>
-                </tr>
-                <tr>
-                    <td>manager.securityServer.rolesConfigMap
-
-</td>
-                    <td>“<b>roles-map</b>” or other cm that has the roles</td>
-                    <td>Reference to a configmap that holds the roles
-
-</td>
-                </tr>
-            </tbody>
-        </table>
-        <h2>Roles and Policies Configuration</h2>
-        <p>A list of roles and their corresponding policies can be found in the "roles map" config map. In the example below, a user that has the role ROLE_ADMIN has specified policies that are defined for that role. &#160;Different roles, for example ROLE_MNGR, would have different policies defined.</p><pre xml:space="preserve">roles.ROLE_ADMIN: |
-  SystemPrivilege MANAGE_IDENTITY_PROVIDERS
-  , MonitorPrivilege MONITOR_PU
-  , MonitorPrivilege MONITOR_JVM
-  , GridPrivilege MANAGE_GRID
-  , GridPrivilege MANAGE_PU
-  , GridPrivilege PROVISION_PU
-  , SpacePrivilege EXECUTE
-  , SpacePrivilege ALTER
-  , SpacePrivilege WRITE
-  , SpacePrivilege READ
-  , SpacePrivilege NOT_SET
-  , SpacePrivilege TAKE
-  , SpacePrivilege CREATE
-  , SystemPrivilege MANAGE_ROLES
-  , SystemPrivilege MANAGE_USERS
-roles.ROLE_MNGR: |
-  MonitorPrivilege MONITOR_JVM
-  , MonitorPrivilege MONITOR_PU
-  , GridPrivilege PROVISION_PU</pre>
         <h1>Smart DIH Settings</h1>
         <h2>SpaceDeck Settings for Smart DIH</h2>
         <p>Refer to the <a href="../spacedeck/spacedeck-overview.html">SpaceDeck</a> pages.</p>
@@ -667,6 +596,72 @@ roles.ROLE_MNGR: |
                 </tr>
             </tbody>
         </table>
-        <p>&#160;</p>
+        <h2>Security Settings</h2>
+        <p>The security server runs alongside the grid manager and is responsible for handling security related requests coming from inside or outside the cluster. The list below is for the security server cluster configuration. &#160;Details of the end-user operation related to security can be found in the <a href="../spacedeck/spacedeck-login.html">SpaceDeck Login</a> and <a href="../spacedeck/spacedeck-admin.html">SpaceDeck&#160;Roles Management</a> pages.</p>
+        <table style="width: 1124px;">
+            <col style="width: 311px;">
+            </col>
+            <col style="width: 326px;">
+            </col>
+            <col style="width: 475px;">
+            </col>
+            <thead>
+                <tr>
+                    <th> Parameter</th>
+                    <th style="text-align: left;">Values</th>
+                    <th style="text-align: left;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>manager.securityServer.enabled</td>
+                    <td>true/<b>false</b></td>
+                    <td>Enable security at the backend</td>
+                </tr>
+                <tr>
+                    <td>manager.securityServer.ingress.enabled
+
+</td>
+                    <td><b>true</b>/false</td>
+                    <td>Adding an ingress to enable access from IDP
+
+</td>
+                </tr>
+                <tr>
+                    <td>manager.securityServer.secretKeyRef.name
+
+</td>
+                    <td>“<b>root-credentials</b>” or any secret name</td>
+                    <td>Reference to a secret that holds the root credentials
+
+</td>
+                </tr>
+                <tr>
+                    <td>manager.securityServer.rolesConfigMap
+
+</td>
+                    <td>“<b>roles-map</b>” or other cm that has the roles</td>
+                    <td>Reference to a configmap that holds the roles
+
+</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Roles and Policies Configuration</h2>
+        <p>A list of roles and their corresponding policies can be found in the "roles map" config map. In the example below, a user that has the role ROLE_ADMIN has specified policies that are defined for that role. &#160;Different roles, for example ROLE_MNGR, would have different policies defined.</p><pre xml:space="preserve">roles.ROLE_ADMIN: |
+  SystemPrivilege MANAGE_IDENTITY_PROVIDERS
+  , MonitorPrivilege MONITOR_PU
+  , MonitorPrivilege MONITOR_JVM
+  , GridPrivilege MANAGE_GRID
+  , GridPrivilege MANAGE_PU
+  , GridPrivilege PROVISION_PU
+  , SpacePrivilege EXECUTE
+  , SpacePrivilege ALTER
+  , SpacePrivilege WRITE
+  , SpacePrivilege READ
+  , SpacePrivilege NOT_SET
+  , SpacePrivilege TAKE
+  , SpacePrivilege CREATE
+  , SystemPrivilege MANAGE_ROLES</pre>
     </body>
 </html>
