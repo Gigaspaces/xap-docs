@@ -7,7 +7,34 @@ $(document).ready(function(){
   if($('.gs-banner').length) {
     $('.gs-banner').insertBefore('#last-updated');
   }
+  if ($("#Glossary").length) {
+    var glossaryAlphabetDiv = $('<div class="glossary-alphabet"></div>');
+    
+    var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var bookmarkedLetters = [];
   
+    $('.GlossaryPageHeading_0').each(function() {
+      var headingText = $(this).text().trim();
+      var headingId = 'alphabet-' + headingText;
+      $(this).attr('id', headingId);
+      bookmarkedLetters.push(headingText.toUpperCase());
+    });
+    for (var i = 0; i < alphabet.length; i++) {
+      var letter = alphabet[i];
+      var uppercaseLetter = letter.toUpperCase();
+      var bookmarked = bookmarkedLetters.includes(uppercaseLetter);
+      if (i > 0) {
+        glossaryAlphabetDiv.append('<span class="pipe"> | </span>');
+      }
+      if (bookmarked) {
+        var hyperlink = '<a href="#alphabet-' + uppercaseLetter + '">' + uppercaseLetter + '</a>';
+        glossaryAlphabetDiv.append(hyperlink);
+      } else {
+        glossaryAlphabetDiv.append('<span>' + uppercaseLetter + '</span>');
+      }
+    }
+    glossaryAlphabetDiv.insertAfter('h1#Glossary');
+}
   $('html').addClass('show');
 });
 
