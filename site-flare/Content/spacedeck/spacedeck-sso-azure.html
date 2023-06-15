@@ -14,11 +14,11 @@
 https://s3.amazonaws.com/resources.gigaspaces.com/helm-charts-dih
 helm repo update dih
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-help repo update ingress-nginx</pre>
-        <p>Install Ingress:</p><pre xml:space="preserve">help upgrade --install ingress-nginx ingress-nginx/ingress-nginx -f DIH/helm/ingress-controller-tcp.yaml</pre>
+helm repo update ingress-nginx</pre>
+        <p>Install Ingress:</p><pre xml:space="preserve">helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx -f DIH/helm/ingress-controller-tcp.yaml</pre>
         <p>Output of ingress-controller-tcp.yaml:</p><pre xml:space="preserve">tcp:
   8090: "default/xap-manager-service:8090"
-  3030: "default/grafana:3030"
+  3030: "default/grafana:3000"
   3000: "default/spacedeck:3000"
   8080: "default/redpanda:8080"
   6080: "default/di-manager:6080"
