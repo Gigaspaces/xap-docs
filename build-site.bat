@@ -68,7 +68,7 @@ if not defined GS_FLARE_BIN for /f "delims=" %%F in ('dir /b /s "%GS_FLARE_HOME%
 if not defined GS_FLARE_BIN echo Aborting - Flare not found under %GS_FLARE_HOME% && exit /b 1
 if not exist "%GS_FLARE_BIN%" echo Aborting - Flare not found at %GS_FLARE_BIN% && exit /b 1
 echo GS_FLARE_BIN=%GS_FLARE_BIN%
-"%GS_FLARE_BIN%" -project site-flare\XAP-Import-Test-1.flprj -batch "InsightEdge-batch-%DOCS_BUILD_PROFILE%"
+"%GS_FLARE_BIN%" -project site-flare\GS-TechDocs.flprj -batch "InsightEdge-batch-%DOCS_BUILD_PROFILE%"
 echo build-flare completed with errorlevel=%ERRORLEVEL%
 rem Ignore errorlevel == 7 (missing link warning)
 if %ERRORLEVEL%==7 exit /b 0
