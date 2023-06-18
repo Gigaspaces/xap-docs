@@ -14,7 +14,7 @@
         <div class="tc-admon-important">
             <p>Smart DIH is protected by license. The initial step of this installation is signing up and agreeing to the terms and conditions found in the Free Trial (Smart DIH) link found at the top of each page of the <a href="../landing-new.html">documentation site</a>. After signing up, you will receive a token. This token should be used, when requested, in the installation steps below.</p>
             <p>&#160;</p>
-            <p>Contact <a href="mailto:support@gigaspaces.com">customer support</a> to obtain a license for IIDR and for assistance for this installation.</p>
+            <p>Contact <a href="mailto:support@gigaspaces.com">customer support</a> to obtain a license for IIDR (<code class="language-bash">gsSecret.yaml</code>) and for assistance for this installation.</p>
         </div>
         <h1>Prerequisites</h1>
         <p>Following are the prerequisites required for deploying Smart&#160;DIH using&#160;Kubernetes.</p>
@@ -51,9 +51,9 @@ helm repo update dih
 </pre>
             <li>
                 <p>Fully install Smart DIH:</p>
-            </li><pre xml:space="preserve">helm install dih dih/dih -n dih --version 16.3.0 </pre>
+            </li><pre xml:space="preserve">helm install dih dih/dih dih --version 16.3.0 </pre>
             <li>
-                <p>Set the following flags:</p><pre xml:space="preserve">spacedeck.auth.enabled=true
+                <p>Set the following flags:</p><pre xml:space="preserve">helm upgrade dih dih/dih --version  spacedeck.auth.enabled=true
 manager.securityService.enabled=true
 spacedeck.ingress.host=myhost.com 
 tags.iidr=true
@@ -82,6 +82,7 @@ tags.iidr=true
         <p>An ingress controller is required as part of the Smart DIH&#160;installation. Instructions for NGINX controller installation can be found through this link: </p>
         <p><a href="https://docs.nginx.com/nginx-controller/admin-guides/install/install-nginx-controller/">https://docs.nginx.com/nginx-controller/admin-guides/install/install-nginx-controller/</a>
         </p>
+        <p>It is best practice to install NGINX in a different name-space.</p>
         <p>&#160;</p>
     </body>
 </html>
