@@ -3,20 +3,6 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Detailed Configuration:&#160;Smart DIH</h1>
-        <p>This topic contains detailed customization information required for the installation of Smart DIH </p>
-        <div class="tc-admon-note">
-            <p>The parameters provided are Helm values that can be overridden using <code>-set</code> or by including them in a dedicated <code>values.yaml</code> file and overriding them by using the <code>-values helm</code> parameter.</p>
-        </div>
-        <p>Helm values can be applied in the following two places:</p>
-        <ol>
-            <li>
-                <p>Initial deployment of Smart DIH. This is the umbrella installation. Refer to <a href="../../admin/DIH-installation-kubernetes.html">Smart DIH&#160;Installation</a>  for comprehensive instructions.</p>
-            </li>
-            <li>
-                <p>Deploying a Space (or PU) when you change the Space deployment in order to add features such as Tiered Storage, Resources and Probes. Refer to <a href="../../admin/kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Customer Processing Unit</a> for more information. When the parameter belongs to the&#160;Space installation it is defined as a PU&#160;Parameter.</p>
-            </li>
-        </ol>
         <h1>Setup </h1>
         <h2>Feature Flags</h2>
         <p>Default values are shown in bold.</p>
@@ -57,7 +43,7 @@
                     <td>true/<b>false</b></td>
                     <td>SpaceDeck authentication enabled</td>
                 </tr>
-                <tr MadCap:conditions="Default.DoNotShow">
+                <tr MadCap:conditions="">
                     <td>manager.antiaffinity.enabled</td>
                     <td>true/<b>false</b></td>
                     <td>Smart Cache Manager anti-affinity </td>
@@ -108,7 +94,7 @@
                 <p>Data Gateway - When enabled, needs JDBC&#160;access (TCP&#160;connection)</p>
             </li>
             <li>
-                <p>Kafka - To have to ability to connect directly to Kafka. </p>
+                <p MadCap:conditions="SnippetConditions.SnippetCondition01">Kafka - To have to ability to connect directly to Kafka. </p>
             </li>
         </ol>
         <p>The table below lists the details of the services. <a href="#Nginx">Nginx configuration</a> is included for reference.</p>
@@ -139,7 +125,7 @@
                     <td>tcp</td>
                     <td>Using TCP mapping</td>
                 </tr>
-                <tr>
+                <tr MadCap:conditions="SnippetConditions.SnippetCondition01">
                     <td>kafka: 9092</td>
                     <td>tcp</td>
                     <td>Using TCP mapping</td>
@@ -176,11 +162,10 @@
         nodeSelector:
           eks.amazonaws.com/nodegroup: &lt;nginx-asg&gt;
 tcp:
-  11701: &lt;dih-namespace&gt;/iidr-kafka:11701
+  11701: &lt;dih-namespace&gt;/iidr-kafka:11701 #Smart DIH&#160;only
   3000:  &lt;dih-namespace&gt;/grafana:3000
   5432:  &lt;dih-namespace&gt;/xap-dgw-service:5432
-  9092:  &lt;dih-namespace&gt;/kafka:9092
-</pre>
+  9092:  &lt;dih-namespace&gt;/kafka:9092  #Smart DIH&#160;only</pre>
         <p><u style="font-weight: bold;">Legend</u>:</p>
         <p><b>nginx-asg</b>: A dedicated node group for an nginx instance</p>
         <p><b>dih-namespace</b>: The namespace where Smart DIH is installed</p>
@@ -516,8 +501,8 @@ topology.kubernetes.io/host
         </table>
         <h2>SpaceDeck Settings </h2>
         <p>Refer to the <a href="../../spacedeck/spacedeck-overview.html">SpaceDeck</a> pages.</p>
-        <h2>Data Integration (DI) Settings</h2>
-        <p>Refer to the <a href="../../landing-pages/AO-DataIntegration.htm">DI</a> pages.</p>
+        <h2 MadCap:conditions="SnippetConditions.SnippetCondition01">Data Integration (DI) Settings</h2>
+        <p MadCap:conditions="SnippetConditions.SnippetCondition01">Refer to the <a href="../../landing-pages/AO-DataIntegration.htm">DI</a> pages.</p>
         <h2>Service Creator Settings</h2>
         <p>The following attributes are provided to the Service Creator Operator during the installation phase. The Service Creator Operator controls the creation of deployment, service and ingress of a <a href="../../spacedeck/spacedeck-services.html">low-code service.</a></p>
         <table style="width: 1124px;">
