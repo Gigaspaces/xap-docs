@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:fileTags="File Tags/FileTagSetStatus.HasScreenshot">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Detailed Configuration:&#160;Smart Cache and Smart&#160;DIH</h1>
-        <p>This topic contains detailed customization information required for the installation of Smart DIH and Smart&#160;Cache.</p>
+        <h1 class="tc-pagetitle">Detailed Configuration:&#160;Smart DIH</h1>
+        <p>This topic contains detailed customization information required for the installation of Smart DIH </p>
         <div class="tc-admon-note">
             <p>The parameters provided are Helm values that can be overridden using <code>-set</code> or by including them in a dedicated <code>values.yaml</code> file and overriding them by using the <code>-values helm</code> parameter.</p>
         </div>
         <p>Helm values can be applied in the following two places:</p>
         <ol>
             <li>
-                <p>Initial deployment of Smart DIH or Smart Cache. This is the umbrella installation. Refer to <a href="DIH-installation-kubernetes.html">Smart DIH&#160;Installation</a> or <a href="kubernetes-s10-deploying-and-managing-gigaspaces.html">Smart Cache Installation</a> for comprehensive instructions.</p>
+                <p>Initial deployment of Smart DIH. This is the umbrella installation. Refer to <a href="../../admin/DIH-installation-kubernetes.html">Smart DIH&#160;Installation</a>  for comprehensive instructions.</p>
             </li>
             <li>
-                <p>Deploying a Space (or PU) when you change the Space deployment in order to add features such as Tiered Storage, Resources and Probes. Refer to <a href="kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Customer Processing Unit</a> for more information. When the parameter belongs to the&#160;Space installation it is defined as a PU&#160;Parameter.</p>
+                <p>Deploying a Space (or PU) when you change the Space deployment in order to add features such as Tiered Storage, Resources and Probes. Refer to <a href="../../admin/kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Customer Processing Unit</a> for more information. When the parameter belongs to the&#160;Space installation it is defined as a PU&#160;Parameter.</p>
             </li>
         </ol>
-        <h1>Common Setup (Both&#160;Smart Cache and Smart DIH)</h1>
+        <h1>Setup </h1>
         <h2>Feature Flags</h2>
         <p>Default values are shown in bold.</p>
         <table style="width: 1276px;">
@@ -57,7 +57,7 @@
                     <td>true/<b>false</b></td>
                     <td>SpaceDeck authentication enabled</td>
                 </tr>
-                <tr>
+                <tr MadCap:conditions="Default.DoNotShow">
                     <td>manager.antiaffinity.enabled</td>
                     <td>true/<b>false</b></td>
                     <td>Smart Cache Manager anti-affinity </td>
@@ -99,7 +99,7 @@
         <p>By default, all services are configured with the ClusterIP. The following services have to be accessed from outside the cluster:</p>
         <ol>
             <li>
-                <p>SpaceDeck - Used for running the UI of Smart DIH</p>
+                <p>SpaceDeck - Used for running the UI </p>
             </li>
             <li>
                 <p>XAP&#160;Security Service - For OAuth2.0 re-direction endpoint</p>
@@ -108,21 +108,19 @@
                 <p>Data Gateway - When enabled, needs JDBC&#160;access (TCP&#160;connection)</p>
             </li>
             <li>
-                <p>Kafka - To have to ability to connect directly to Kafka. For Smart DIH&#160;only.</p>
+                <p>Kafka - To have to ability to connect directly to Kafka. </p>
             </li>
         </ol>
         <p>The table below lists the details of the services. <a href="#Nginx">Nginx configuration</a> is included for reference.</p>
-        <table style="width: 1276px;">
-            <col style="width: 411px;" />
-            <col style="width: 138px;" />
-            <col style="width: 264px;" />
-            <col style="width: 396px;" />
+        <table style="width: 1173px;">
+            <col style="width: 297px;" />
+            <col style="width: 137px;" />
+            <col style="width: 739px;" />
             <thead>
                 <tr>
                     <th>Service Name and Port</th>
                     <th style="text-align: left;">Type</th>
                     <th style="text-align: left;">Nginx Config ( if used)</th>
-                    <th style="text-align: left;"><MadCap:variable name="General.ProductNameIE" /> Product</th>
                 </tr>
             </thead>
             <tbody>
@@ -130,25 +128,21 @@
                     <td>SpaceDeck: 3000</td>
                     <td>http</td>
                     <td>Using ingress manifest</td>
-                    <td>Smart DIH / Smart Cache</td>
                 </tr>
                 <tr>
                     <td>xap-security-service :9000</td>
                     <td>http</td>
                     <td>Using ingress manifest</td>
-                    <td>&#160;</td>
                 </tr>
                 <tr>
                     <td>xap-dgw-service: 5432</td>
                     <td>tcp</td>
                     <td>Using TCP mapping</td>
-                    <td>&#160;</td>
                 </tr>
                 <tr>
                     <td>kafka: 9092</td>
                     <td>tcp</td>
                     <td>Using TCP mapping</td>
-                    <td>Only Smart DIH</td>
                 </tr>
             </tbody>
         </table>
@@ -239,10 +233,10 @@ tcp:
                 <p>Enable the volume for Tiered Storage at the CRD level, using the parameters listed in the table below.</p>
             </li>
             <li>
-                <p><a name="Build_"></a>Build a Smart Cache based image that includes a jar that is built according to the instructions found in this <a href="intelligent-tiering-details.html">Tiered Storage</a> page.</p>
+                <p><a name="Build_"></a>Build an image that includes a jar that is built according to the instructions found in this <a href="../../admin/intelligent-tiering-details.html">Tiered Storage</a> page.</p>
             </li>
             <li>
-                <p>Follow the instructions for <a href="kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</a> to load the jar.</p>
+                <p>Follow the instructions for <a href="../../admin/kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</a> to load the jar.</p>
             </li>
         </ol>
         <p>The following parameters should be set in order to set the volume in the CRD level:</p>
@@ -343,8 +337,8 @@ topology.kubernetes.io/host
                 <tr>
                     <td>antiAffinity.enabled</td>
                     <td>true/<b>false</b></td>
-                    <td>Enabling the anti-affinity for the specific PU<![CDATA[
-]]></td>
+                    <td>Enabling the anti-affinity for the specific PU
+</td>
                 </tr>
             </tbody>
         </table>
@@ -367,8 +361,8 @@ topology.kubernetes.io/host
                     <td>true/<b>false</b></td>
                     <td>Set up 3 managers (1 otherwise)
 
-<![CDATA[
-]]></td>
+
+</td>
                 </tr>
                 <tr>
                     <td>manager.affinity.enable</td>
@@ -379,7 +373,6 @@ topology.kubernetes.io/host
                 </tr>
             </tbody>
         </table>
-        <h1>Configuration for Smart Cache Only (Migration from&#160;Service Grid or Advanced&#160;Users)</h1>
         <h2>Environment and Properties that can be injected into a PU</h2>
         <h3>Properties</h3>
         <p>There are two ways to set properties:</p>
@@ -521,13 +514,12 @@ topology.kubernetes.io/host
                 </tr>
             </tbody>
         </table>
-        <h1>Smart DIH Settings</h1>
-        <h2>SpaceDeck Settings for Smart DIH</h2>
-        <p>Refer to the <a href="../spacedeck/spacedeck-overview.html">SpaceDeck</a> pages.</p>
+        <h2>SpaceDeck Settings </h2>
+        <p>Refer to the <a href="../../spacedeck/spacedeck-overview.html">SpaceDeck</a> pages.</p>
         <h2>Data Integration (DI) Settings</h2>
-        <p>Refer to the <a href="../landing-pages/AO-DataIntegration.htm">DI</a> pages.</p>
+        <p>Refer to the <a href="../../landing-pages/AO-DataIntegration.htm">DI</a> pages.</p>
         <h2>Service Creator Settings</h2>
-        <p>The following attributes are provided to the Service Creator Operator during the installation phase. The Service Creator Operator controls the creation of deployment, service and ingress of a <a href="../spacedeck/spacedeck-services.html">low-code service.</a></p>
+        <p>The following attributes are provided to the Service Creator Operator during the installation phase. The Service Creator Operator controls the creation of deployment, service and ingress of a <a href="../../spacedeck/spacedeck-services.html">low-code service.</a></p>
         <table style="width: 1124px;">
             <col style="width: 311px;" />
             <col style="width: 326px;" />
@@ -597,7 +589,7 @@ topology.kubernetes.io/host
             </tbody>
         </table>
         <h2>Security Settings</h2>
-        <p>The security server runs alongside the grid manager and is responsible for handling security related requests coming from inside or outside the cluster. The list below is for the security server cluster configuration. &#160;Details of the end-user operation related to security can be found in the <a href="../spacedeck/spacedeck-login.html">SpaceDeck Login</a> and <a href="../spacedeck/spacedeck-admin.html">SpaceDeck&#160;Roles Management</a> pages.</p>
+        <p>The security server runs alongside the grid manager and is responsible for handling security related requests coming from inside or outside the cluster. The list below is for the security server cluster configuration. &#160;Details of the end-user operation related to security can be found in the <a href="../../spacedeck/spacedeck-login.html">SpaceDeck Login</a> and <a href="../../spacedeck/spacedeck-admin.html">SpaceDeck&#160;Roles Management</a> pages.</p>
         <table style="width: 1124px;">
             <col style="width: 311px;">
             </col>
