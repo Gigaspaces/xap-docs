@@ -94,7 +94,7 @@
                 <p>Data Gateway - When enabled, needs JDBC&#160;access (TCP&#160;connection)</p>
             </li>
             <li>
-                <p MadCap:conditions="SnippetConditions.SnippetCondition01">Kafka - To have to ability to connect directly to Kafka. </p>
+                <p MadCap:conditions="SnippetConditions.SnippetConditionDIHOnly">Kafka - To have to ability to connect directly to Kafka. </p>
             </li>
         </ol>
         <p>The table below lists the details of the services. <a href="#Nginx">Nginx configuration</a> is included for reference.</p>
@@ -125,7 +125,7 @@
                     <td>tcp</td>
                     <td>Using TCP mapping</td>
                 </tr>
-                <tr MadCap:conditions="SnippetConditions.SnippetCondition01">
+                <tr MadCap:conditions="SnippetConditions.SnippetConditionDIHOnly">
                     <td>kafka: 9092</td>
                     <td>tcp</td>
                     <td>Using TCP mapping</td>
@@ -178,7 +178,7 @@ tcp:
                 <p><b>Partition</b> - Adding more pods to extend the capacity of the Space</p>
             </li>
             <li>
-                <p><b>Replication</b> - Adding a backup pod per partition for H/A of the Space</p>
+                <p><b>Replication</b> - Adding a backup pod per partition for h/a of the Space</p>
             </li>
         </ol>
         <div class="tc-admon-note">
@@ -197,14 +197,19 @@ tcp:
             </thead>
             <tbody>
                 <tr>
-                    <td>Partitions</td>
+                    <td>partitions</td>
                     <td>1 or more</td>
                     <td>Divide the data among multiple pods</td>
                 </tr>
                 <tr>
-                    <td>H/A</td>
+                    <td>h/a</td>
                     <td>true/<b>false</b></td>
                     <td>Setting additional replication for each partition.</td>
+                </tr>
+                <tr>
+                    <td>antiAffinity</td>
+                    <td>true/<b>false</b></td>
+                    <td>When h/a is true, primary and backup pods will run in different hosts.</td>
                 </tr>
             </tbody>
         </table>
@@ -501,78 +506,80 @@ topology.kubernetes.io/host
         </table>
         <h2>SpaceDeck Settings </h2>
         <p>Refer to the <a href="../../spacedeck/spacedeck-overview.html">SpaceDeck</a> pages.</p>
-        <h2 MadCap:conditions="SnippetConditions.SnippetCondition01">Data Integration (DI) Settings</h2>
-        <p MadCap:conditions="SnippetConditions.SnippetCondition01">Refer to the <a href="../../landing-pages/AO-DataIntegration.htm">DI</a> pages.</p>
-        <h2>Service Creator Settings</h2>
-        <p>The following attributes are provided to the Service Creator Operator during the installation phase. The Service Creator Operator controls the creation of deployment, service and ingress of a <a href="../../spacedeck/spacedeck-services.html">low-code service.</a></p>
-        <table style="width: 1124px;">
-            <col style="width: 311px;" />
-            <col style="width: 326px;" />
-            <col style="width: 475px;" />
-            <thead>
-                <tr>
-                    <th> Parameter</th>
-                    <th style="text-align: left;">Values</th>
-                    <th style="text-align: left;">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>service-operator.operatorConfig.memoryLimit
+        <h2 MadCap:conditions="SnippetConditions.SnippetConditionDIHOnly">Data Integration (DI) Settings</h2>
+        <p MadCap:conditions="SnippetConditions.SnippetConditionDIHOnly">Refer to the <a href="../../landing-pages/AO-DataIntegration.htm">DI</a> pages.</p>
+        <div MadCap:conditions="SnippetConditions.SnippetConditionDIHOnly">
+            <h2>Service Creator Settings</h2>
+            <p>The following attributes are provided to the Service Creator Operator during the installation phase. The Service Creator Operator controls the creation of deployment, service and ingress of a <a href="../../spacedeck/spacedeck-services.html">low-code service.</a></p>
+            <table style="width: 1124px;">
+                <col style="width: 311px;" />
+                <col style="width: 326px;" />
+                <col style="width: 475px;" />
+                <thead>
+                    <tr>
+                        <th> Parameter</th>
+                        <th style="text-align: left;">Values</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>service-operator.operatorConfig.memoryLimit
 
 </td>
-                    <td><b>400Mi</b> or other memory capacity 
+                        <td><b>400Mi</b> or other memory capacity 
 
 </td>
-                    <td>Memory limit of a newly created low-code service
+                        <td>Memory limit of a newly created low-code service
 
 </td>
-                </tr>
-                <tr>
-                    <td>service-operator.operatorConfig.cpuLimit
+                    </tr>
+                    <tr>
+                        <td>service-operator.operatorConfig.cpuLimit
 
 </td>
-                    <td><b>1</b> or other cpu core number
+                        <td><b>1</b> or other cpu core number
 
 </td>
-                    <td>CPU limit of a newly created low-code service
+                        <td>CPU limit of a newly created low-code service
 
 </td>
-                </tr>
-                <tr>
-                    <td>service-operator.operatorConfig.controllerClass
+                    </tr>
+                    <tr>
+                        <td>service-operator.operatorConfig.controllerClass
 
 </td>
-                    <td><b>nginx</b>
-                    </td>
-                    <td>The ingress controller class
+                        <td><b>nginx</b>
+                        </td>
+                        <td>The ingress controller class
 
 </td>
-                </tr>
-                <tr>
-                    <td>service-operator.operatorConfig.image
+                    </tr>
+                    <tr>
+                        <td>service-operator.operatorConfig.image
 
 </td>
-                    <td><b>gigaspaces/mcs-query-service</b>:1.2.3 or any other tag
+                        <td><b>gigaspaces/mcs-query-service</b>:1.2.3 or any other tag
 
 </td>
-                    <td>The low-code service image and tag
+                        <td>The low-code service image and tag
 
 </td>
-                </tr>
-                <tr>
-                    <td>service-operator.operatorConfig.host
+                    </tr>
+                    <tr>
+                        <td>service-operator.operatorConfig.host
 
 </td>
-                    <td><b>{current_namespace}.gigaspaces.net</b> or any other host name
+                        <td><b>{current_namespace}.gigaspaces.net</b> or any other host name
 
 </td>
-                    <td>Host name (e.g. DNS)  that fills the ingress rule
+                        <td>Host name (e.g. DNS)  that fills the ingress rule
 
 </td>
-                </tr>
-            </tbody>
-        </table>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <h2>Security Settings</h2>
         <p>The security server runs alongside the grid manager and is responsible for handling security related requests coming from inside or outside the cluster. The list below is for the security server cluster configuration. &#160;Details of the end-user operation related to security can be found in the <a href="../../spacedeck/spacedeck-login.html">SpaceDeck Login</a> and <a href="../../spacedeck/spacedeck-admin.html">SpaceDeck&#160;Roles Management</a> pages.</p>
         <table style="width: 1124px;">
