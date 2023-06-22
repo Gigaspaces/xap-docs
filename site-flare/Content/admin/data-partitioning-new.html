@@ -4,8 +4,10 @@
     </head>
     <body>
         <h1>Data Partitioning: Routing In Partitioned Spaces</h1>
-        <p>A <a href="../overview/terminology.html">partitioned space</a> provides the ability to perform space operations against multiple spaces from a single proxy transparently. The primary goal of the partitioned space is to provide unlimited In-Memory space storage size and group objects into the same partition to speed up performance. The initial intention is to write data into the partitioned space, and route query operations based on the template data.</p>
-        <p>Note that in such a configuration, the different spaces defined as partitions are not aware of each other ("Share Nothing") - the client proxy is the one that is aware of the partitioned space configuration.</p>
+        <p MadCap:conditions="Default.DoNotShow">A <a href="../overview/terminology.html">partitioned space</a> provides the ability to perform space operations against multiple spaces from a single proxy transparently. The primary goal of the partitioned space is to provide unlimited In-Memory space storage size and group objects into the same partition to speed up performance. The initial intention is to write data into the partitioned space, and route query operations based on the template data.</p>
+        <p MadCap:conditions="Default.DoNotShow">Note that in such a configuration, the different spaces defined as partitions are not aware of each other ("Share Nothing") - the client proxy is the one that is aware of the partitioned space configuration.</p>
+        <p>A Space can be viewed as an abstraction related to a dataset divided over several JVMs, with each JVM holding a <a href="../overview/terminology.html">Space</a> instance. Each Space instance represents the primary or backup of one data partition which is a subset of the data. Having one Space divided into partitions allows scaling both in data capacity and performance.</p>
+        <p>Client operations use a Space proxy which knows how to route the operations to the correct partitions, meaning the client application can ignore the underlying partitions. The way the data is divided between the partitions is determined by a routing property defined in each entity.</p>
         <div class="tc-admon-note" MadCap:conditions="Version.15-8-born">
             <p>If an object has an expected total data capacity that is much smaller than a partition, and it is infrequently updated, it can be set as a <MadCap:xref href="../dev-java/broadcast-objects.html">Broadcast Object</MadCap:xref> for optimized JOIN performance.</p>
         </div>
@@ -51,8 +53,7 @@ public class Account
     ...
 }
 </code></pre>
-            <p style="text-align: left;">The <code>accountID</code> field value is used by the space client proxy together with the number partitions in the following manner to determine the target space for the write, read, or take operations:</p><pre style="text-align: left;"><code class="language-java">Target Space number = (accountID hashCode value) modulo (Partitions Amount)
-</code></pre>
+            <p style="text-align: left;">The <code>accountID</code> field value is used by the space client proxy together with the number partitions in the following manner to determine the target space for the write, read, or take operations. Target Space Where GigaSpaces data is stored. It is the cache instance that holds data objects in memory and might also hold them in layered in tiering. Data is hosted from multiple SoRs, consilidated as a unified data model:</p><pre style="text-align: left;"><code class="language-java">Target Space number = (accountID hashCode value) modulo (Partitions Amount)</code></pre>
             <p style="text-align: left;">If we will write 30 Account space objects with different <code>accountID</code> values into the cluster, the space objects will be routed into the 3 partitions in the following manner:</p>
             <div class="tc-align-center">
                 <img src="../Resources/Static/attachment_files/load_balancing2.jpg" alt="load_balancing2.jpg" class="tc-picture50" />
@@ -66,8 +67,6 @@ public class Account
         <div class="tc-admon-refer">
             <p>See the section about <a href="clustered-vs-non-clustered-proxies.html#writing-new-objects-from-co-located-business-logic">Writing New Objects from Co-located Business Logic</a>  on the Clustered vs Non-Clustered Proxies page for details.</p>
         </div>
-        <p><a name="Writing"></a>
-        </p>
         <h1><a name="writing-to-a-partitioned-space"></a>Writing To a Partitioned Space</h1>
         <p>As explained above, in <a href="#defining-a-routing-property">Defining a Routing Property</a>, when a proxy is asked to write an entry it extracts the routing property value to determine the relevant partition ID and forwards the entry to that partition. If the routing property value is not null, an exception will be thrown indicating the proxy cannot write the entry because it does not know the target partition.</p>
         <p>When an entry is being updated, the proxy uses the routing property to route the update request to the relevant partition.</p>
@@ -111,7 +110,7 @@ public class Account
                 <tr>
                     <td align="left">readMultiple</td>
                     <td align="left">YES</td>
-                    <td align="left">Integer.MAX_VALUE</td>
+                    <td align="left">limited</td>
                     <td align="left"><span class="tc-bold">Serial</span>
                     </td>
                     <td align="left">Returns when found enough matching space objects</td>
@@ -119,14 +118,14 @@ public class Account
                 <tr>
                     <td align="left">readMultiple</td>
                     <td align="left">n/a</td>
-                    <td align="left">Integer. MAX_VALUE</td>
+                    <td align="left">limited</td>
                     <td align="left">Parallel</td>
                     <td align="left">Returns when all spaces completed their operation</td>
                 </tr>
                 <tr>
                     <td align="left">takeMultiple</td>
                     <td align="left">n/a</td>
-                    <td align="left">Integer.MAX_VALUE</td>
+                    <td align="left">limited</td>
                     <td align="left"><span class="tc-bold">Serial</span>
                     </td>
                     <td align="left">Returns when all spaces completed their operation</td>
@@ -134,7 +133,7 @@ public class Account
                 <tr>
                     <td align="left">takeMultiple</td>
                     <td align="left">n/a</td>
-                    <td align="left">Integer.MAX_VALUE</td>
+                    <td align="left">limited</td>
                     <td align="left">Parallel</td>
                     <td align="left">Returns when all spaces completed their operation</td>
                 </tr>
@@ -157,7 +156,10 @@ public class Account
         <ul>
             <li>A Parallel operation on the client means that the partition proxy will run a thread against each of its constituent partition proxies, each thread executing the operation (take , read). Corollary: every partition will experience a read/take multiple. No partition can guarantee that it will supply objects that the application client obtains in its result.</li>
             <li>A Serial operation on the client means that the partition proxy will execute one read/take multiple on each partition, the partitions being accessed in partition number order, 0 through max partition number. The readMultiple/takeMultiple will complete as soon as the requisite number of objects has been read/taken, or all partitions accessed, whichever comes soonest. Corollary: only partition 0 can guarantee that it will experience a readMultiple/takeMultiple - i.e. according to the member ID - Each partition has a numeric running ID associated with it and the processing done according their order(0 to N).</li>
-            <li>When executing custom queries against partitioned space (triggers the space filter) you should use the takeMultiple or readMultiple with Integer.MAX_VALUE as the max values to execute the filter operation in parallel across the partitions.</li>
+            <li MadCap:conditions="Default.DoNotShow">When executing custom queries against partitioned space (triggers the space filter) you should use the takeMultiple or readMultiple with Integer.MAX_VALUE as the max values to execute the filter operation in parallel across the partitions.</li>
+            <li>
+                <p>When executing custom queries against partitioned space (triggers the space filter) you should use the takeMultiple or readMultiple with Integer.MAX_VALUE as the max values to execute the filter operation in parallel across the partitions, since when the results use limited execution they will be performed starting from the first partition and  will stop once reaching the required amount of results.</p>
+            </li>
             <li>WriteMultipe/UpdateMultiple with a transaction executed in parallel manner.</li>
             <li>When calling any of the batch operations with a template and set the routing id in the template (making sure all the space objects go to the same physical space in a cluster) you do not need to use jini transaction. Local transaction will suffice.</li>
             <li>readMultiple/takeMultiple against any single partition is a synchronous call in the associated partition specific client proxy. The space operation is a synchronous operation. It will return as many requested objects as are currently present in the space, up to the number requested. If no objects are matched an empty array is returned.</li>
