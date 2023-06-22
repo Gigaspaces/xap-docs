@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -74,7 +74,7 @@ using GigaSpaces.Core.Metadata;
         <p>Partitioning is used when the total number of objects is too big to be stored in a single Space. In this case we will divide the data into several partitions. By designating an attribute on the Space class as a partitioning key, the Space proxy will then know to which partition a particular instance of the Space class belongs to. The Space proxy uses the entry's routing attribute hash code to determine the corresponding partition for it.</p>
         <div class="tc-admon-note">
             <p>The routing attribute can be explicitly set using the <code>[SpaceRouting]</code> annotation for PONO entries or via the SpaceTypeDescriptorBuilder for document entries. If the routing attribute is not explicitly set, the Space id attribute is used for routing. If the Space id attribute is not defined, the first indexed attribute (alphabetically) is used for routing, otherwise the first attribute (alphabetically) is used for routing.</p>
-            <p>For more information, see the <a href="../admin/data-partitioning.html">Data Partitioning</a> page in the Administration guide.</p>
+            <p>For more information, see the <a href="../admin/data-partitioning-practical.html">Data Partitioning</a> page in the <MadCap:conditionalText MadCap:conditions="Version.16-3-born">Developer</MadCap:conditionalText> <MadCap:conditionalText MadCap:conditions="Version.16-3-died">Administration</MadCap:conditionalText> guide.</p>
         </div>
         <h1><a name="space-document"></a>Space Document</h1>
         <p>The <MadCap:variable name="General.ProductNameXAP" /> document API exposes the Space as Document Store. A document, which is represented by the class SpaceDocument, is essentially a collection of key-value pairs, where the keys are strings and the values are primitives, String, Date, other documents, or collections thereof. Unlike PONOs, which force users to design a fixed data schema (in the form of a class definition) and adhere to it, a document is much more dynamic, users can add and remove properties at runtime as necessary. A Document always belongs to a certain type, represented by the class SpaceTypeDescriptor.</p>

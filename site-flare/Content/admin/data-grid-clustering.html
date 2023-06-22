@@ -9,7 +9,7 @@
         <p><span class="tc-bold">Scalability</span>
         </p>
         <ul>
-            <li>Data is segmented into <a href="data-partitioning.html">partitions</a>. Each partition includes a primary instance and ZERO or more backup instances. A partition (primary or a backup) is hosted within a single <a href="the-runtime-environment.html">Grid Service Container (GSC)</a>.</li>
+            <li>Data is segmented into <a href="../started/data-partitioning.html">partitions</a>. Each partition includes a primary instance and ZERO or more backup instances. A partition (primary or a backup) is hosted within a single <a href="the-runtime-environment.html">Grid Service Container (GSC)</a>.</li>
             <li>Data access is load balanced across the different partitions, using a routing field or a <a href="../dev-java/routing-in-partitioned-spaces.html">routing value</a> specified as part of the Space object or as part of the read/execute request. This allows the application to control the data distribution in a transparent manner.</li>
             <li>Some operations, such as batch read or <a href="../dev-java/task-execution-overview.html">execute</a>, support <a href="../dev-java/space-based-remoting-overview.html">map-reduce</a> behavior. This allows the application to access multiple partitions in parallel.</li>
             <li>The maximum partition  size is the GSC heap size. <MadCap:variable name="General.ProductNameXAP" /> supports a large heap size (up to 100GB in RAM). A GSC may host multiple partitions (primary or backup instances).</li>

@@ -5,6 +5,46 @@
     <body>
         <h1 class="tc-pagetitle"> Cheat Sheet for GigaSpaces Documentation</h1>
         <p id="YES-TOC">&#160;</p>
+        <h1>Different Tabs&#160;in the same page example (only viewable in preview):</h1>
+        <p>&#160;</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Task " style="padding:10px"><pre><code class="language-java">public class MerchantUserTask implements Task&lt;HashSet&lt;Integer&gt;&gt; {
+						private Long merchantId;
+
+						@TaskGigaSpace
+						private transient GigaSpace space;
+
+						public MerchantUserTask(Long merchantId) {
+						this.merchantId = merchantId;
+						}
+
+						public HashSet&lt;Integer&gt; execute() throws Exception {
+						SQLQuery&lt;Payment&gt; query = new SQLQuery&lt;Payment&gt;(Payment.class,"receivingMerchantId = ? ");
+						query.setParameter(1, merchantId);
+
+						Payment[] payments = space.readMultiple(query, Integer.MAX_VALUE);
+						HashSet&lt;Integer&gt; userIds = new HashSet&lt;Integer&gt;();
+
+						// Eliminate duplicate UserId
+						if (payments != null) {
+						for (int i = 0; i &lt; payments.length; i++) {
+						userIds.add(payments[i].getPayingAccountId());
+						}
+						}
+						return userIds;
+						}
+						}
+				</code></pre>
+            </div>
+            <div title="  Execution " style="padding:10px"><pre><code class="language-java">public void executeTask() throws InterruptedException, ExecutionException {
+						MerchantUserTask task = new MerchantUserTask(1L);
+
+						AsyncFuture&lt;HashSet&lt;Integer&gt;&gt; result = space.execute(task);
+						HashSet&lt;Integer&gt; hashSet = result.get();
+						}
+				</code></pre>
+            </div>
+        </div>
         <h1>TOC Marker</h1>
         <p>&#160;</p>
         <!--   -->
@@ -179,9 +219,9 @@ int count = gigaSpace.count(template);
         <div class="tc-admon-note">
             <p>This is useful information that the user will definitely find helpful, but it's a side point to the main information in the paragraph above it.</p>
         </div>
-		<div class="tc-admon-feature">
-			<p>This is information regarding new features</p>
-		</div>
+        <div class="tc-admon-feature">
+            <p>This is information regarding new features</p>
+        </div>
         <div class="tc-admon-attention">
             <p>This is important information that the user should know because it may affect application performance.</p>
         </div>
