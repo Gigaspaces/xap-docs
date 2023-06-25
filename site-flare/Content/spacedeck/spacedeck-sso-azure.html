@@ -56,15 +56,11 @@ helm repo update ingress-nginx</pre>
             <img src="../Resources/Images/SpaceDeck/spacedeck_sso_3.png" style="width: 705px;height: 343px;" />
         </p>
         <h2>SpaceDeck Configuration</h2>
-        <p>For details about the Connection fields refer to <a href="spacedeck-admin.html#GeneralSetup">SpaceDeck Administration </a></p>
-        <ul>
-            <li>
-                <p>Open SpaceDeck using the ingress IP (https://&lt;INGRESS_IP&gt;/) and provide Settings-&gt;OpenID connection parameters (login with root/password).</p>
-            </li>
-            <li>
-                <p>Populate with the following:</p>
-            </li>
-        </ul>
+        <div class="tc-admon-important">
+            <p>For details about the Connection fields refer to <a href="spacedeck-admin.html#GeneralSetup">SpaceDeck Administration </a></p>
+        </div>
+        <p>Open SpaceDeck using the ingress IP (https://&lt;INGRESS_IP&gt;/) and provide Settings-&gt;OpenID connection parameters (login with root/password).</p>
+        <p>Go to the Generial Setup page to the Connection section and populate with the following:</p>
         <ol>
             <li>
                 <p><b>Redirect URI</b>: https://&lt;INGRESS_IP&gt;/security/oauth2/authorization-code/callback</p>
@@ -90,7 +86,7 @@ helm repo update ingress-nginx</pre>
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Login4a.png" style="width: 511px;height: 378px;" />
         </p>
-        <p>Your Microsoft credentials will be requested, then you will see your organizations authentication page. &#160;Upon successful login, it will redirect back to the&#160;SpaceDeck main page.</p>
+        <p>Your Microsoft credentials will be requested, then you will see your organizations authentication page. &#160;Upon successful login, you will redirected back to the&#160;SpaceDeck main page.</p>
         <p>&#160;</p>
     </body>
 </html>
