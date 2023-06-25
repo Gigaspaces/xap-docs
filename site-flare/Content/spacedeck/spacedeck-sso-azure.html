@@ -33,7 +33,7 @@ helm repo update ingress-nginx</pre>
         <p>Install the DIH Kubernetes Umbrella:</p><pre xml:space="preserve">helm install dih dih/dih --version <MadCap:variable name="Versions.helm-version-MX" /> --set tags.iidr=false -f dih-umbrella.yaml</pre>
         <p>Output of dih-umbrella-yaml:</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/spacedeck_sso_1.png" style="width: 678px;height: 398px;" />
+            <img src="../Resources/Images/SpaceDeck/sd_ss04.png" style="width: 607px;height: 356px;" />
         </p>
         <p>Generate a self-sign certificate</p><pre xml:space="preserve">openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout certs/ingress-tls.key -out certs/ingress-tls.crt</pre>
         <p>Create Kubernetes secret using <code>server.key</code> and<code> server.crt</code></p><pre xml:space="preserve">kubectl create secret tls ingress-cert --key=certs/ingress-tls.key --cert=certs/ingress-tls.crt -o yaml</pre>
