@@ -34,7 +34,15 @@
         <h2><a name="service-properties"></a>Service Properties</h2>
         <p>To view a service properties, right-click it and select <span class="tc-bold">Properties</span>, or simply double-click it. A dialog window with the service properties will appear.</p>
         <h2><a name="configuration"></a>Configuration</h2>
+        <p>Once the service has been created, the configuration is located in a specific directory. The example below is for version 16.3.0:</p>
+        <p>
+            <img src="../Resources/Images/dotnet_gs_service1.png" />
+        </p>
         <p>The Service Properties window shows the name of the service configuration file. Either Click the configuration label to open the configuration file using your default XML viewer, or click the location label to open the service folder, then edit the configuration file using your favorite XML editor.</p>
+        <p>The following screen-shot shows where the <b>GigaSpacesServiceHost-gs-agent.exe.config</b> XML needs to be modified in order for the agent to start the components (see line 10):</p>
+        <p>
+            <img src="../Resources/Images/dotnet_gs_service-2.png" style="width: 1015px;height: 463px;" />
+        </p>
         <div class="tc-admon-note">
             <p> In order for configuration changes to take effect, the service needs to be stopped and restarted.</p>
         </div>
