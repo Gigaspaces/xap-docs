@@ -48,6 +48,7 @@
                 <p>Storage Optimization Mode must be defined on the Object (class) level.</p>
             </div>
             <p>Storage Optimization is specified at the class level with either Direct (Selective) optimization (the default), or Sequential (Non-Selective) optimization.</p>
+            <p>Example for POJO:</p>
             <div class="easyui-tabs" plain="true">
                 <div title="POJO Annotate Class with Direct Layout"><pre><code class="language-java">			
 @SpaceClass
@@ -57,6 +58,19 @@ public class TestObject {
 }
 </code></pre>
                 </div>
+                <div title="POJO Annotate Class with Sequential Layout"><pre><code class="language-java">			
+@SpaceClass
+@SpaceClassBinaryStorage(layout = ClassBinaryStorageLayout.<b>SEQUENTIAL</b>)
+public class TestObject {
+…
+}
+</code></pre>
+                </div>
+            </div>
+        </div>
+        <div>
+            <p>Example for SpaceDocument:</p>
+            <div class="easyui-tabs" plain="true">
                 <div title="SpaceDocument Annotate Class with Direct Layout"><pre><code class="language-java">			
 SpaceTypeDescriptor typeDescriptorDoc1 = new SpaceTypeDescriptorBuilder("Doc1").supportsDynamicProperties(false)
 .idProperty("id")
@@ -65,14 +79,6 @@ SpaceTypeDescriptor typeDescriptorDoc1 = new SpaceTypeDescriptorBuilder("Doc1").
 .addFixedProperty("id", Integer.class)
 .binaryStorage(ClassBinaryStorageLayout.DIRECTL).create();
 					</code></pre>
-                </div>
-                <div title="POJO Annotate Class with Sequential Layout"><pre><code class="language-java">			
-@SpaceClass
-@SpaceClassBinaryStorage(layout = ClassBinaryStorageLayout.<b>SEQUENTIAL</b>)
-public class TestObject {
-    …
-}
-</code></pre>
                 </div>
                 <div title="SpaceDocument Annotate Class with Sequential Layout"><pre><code class="language-java">			
 SpaceTypeDescriptor typeDescriptorDoc1 = new SpaceTypeDescriptorBuilder("Doc1").supportsDynamicProperties(false)
