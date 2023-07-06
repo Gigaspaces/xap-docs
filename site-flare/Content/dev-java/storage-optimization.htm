@@ -47,9 +47,9 @@
             <div class="tc-admon-note">
                 <p>Storage Optimization Mode must be defined on the Object (class) level.</p>
             </div>
-            <p>Storage Optimization is specified at the class level with either Direct optimization (the default), or Sequential optimization.</p>
+            <p>Storage Optimization is specified at the class level with either Direct (Selective) optimization (the default), or Sequential (Non-Selective) optimization.</p>
             <div class="easyui-tabs" plain="true">
-                <div title="Annotate Class with Selective (Direct) Layout"><pre><code class="language-java">			
+                <div title="POJO Annotate Class with Direct Layout"><pre><code class="language-java">			
 @SpaceClass
 @SpaceClassBinaryStorage(layout = ClassBinaryStorageLayout.<b>DIRECT</b>)
 public class TestObject {
@@ -57,12 +57,30 @@ public class TestObject {
 }
 </code></pre>
                 </div>
-                <div title="Annotate Class with Non-Selective (Sequential) Layout"><pre><code class="language-java">			
+                <div title="SpaceDocument Annotate Class with Direct Layout"><pre><code class="language-java">			
+SpaceTypeDescriptor typeDescriptorDoc1 = new SpaceTypeDescriptorBuilder("Doc1").supportsDynamicProperties(false)
+.idProperty("id")
+.addFixedProperty("info", String.class, StorageType.OBJECT)
+.addFixedProperty("type", String.class)
+.addFixedProperty("id", Integer.class)
+.binaryStorage(ClassBinaryStorageLayout.DIRECTL).create();
+					</code></pre>
+                </div>
+                <div title="POJO Annotate Class with Sequential Layout"><pre><code class="language-java">			
 @SpaceClass
 @SpaceClassBinaryStorage(layout = ClassBinaryStorageLayout.<b>SEQUENTIAL</b>)
 public class TestObject {
     …
 }
+</code></pre>
+                </div>
+                <div title="SpaceDocument Annotate Class with Sequential Layout"><pre><code class="language-java">			
+SpaceTypeDescriptor typeDescriptorDoc1 = new SpaceTypeDescriptorBuilder("Doc1").supportsDynamicProperties(false)
+.idProperty("id")
+.addFixedProperty("info", String.class, StorageType.OBJECT)
+.addFixedProperty("type", String.class)
+.addFixedProperty("id", Integer.class)
+.binaryStorage(ClassBinaryStorageLayout.SEQUENTIAL).create();
 </code></pre>
                 </div>
             </div>
