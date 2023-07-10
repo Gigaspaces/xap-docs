@@ -108,5 +108,40 @@ public class Location {
         <div class="tc-admon-note">
             <p>You should make an effort to choose the optimal index. For example, If both <code>location</code> and <code>price</code> are indexed, the index which appears first in the query is the one that will be used. This may significantly affect the performance of your query, so it's recommended to estimate which index is most efficient for each query and put it first.</p>
         </div>
+        <p>PU Example</p><pre><code class="language-xml">
+				&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+				&lt;beans xmlns="http://www.springframework.org/schema/beans"
+					xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				xmlns:os-core="http://www.openspaces.org/schema/core"
+					xsi:schemaLocation="Index of /schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd
+					http://www.openspaces.org/schema/core http://www.openspaces.org/schema/core/openspaces-core.xsd"&gt;
+				
+				&lt;bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"&gt;
+					&lt;property name="properties"&gt;
+						&lt;props&gt;
+							&lt;prop key="dataGridName"&gt;dataGrid&lt;/prop&gt;
+							&lt;prop key="strategy"&gt;BBox&lt;/prop&gt;
+							&lt;prop key="directoryType"&gt;RAMDirectory&lt;/prop&gt;
+							&lt;prop key="spatialContext"&gt;Spatial4J&lt;/prop&gt;
+							&lt;prop key="spatialContextGeo"&gt;true&lt;/prop&gt;
+						&lt;/props&gt;
+					&lt;/property&gt;
+				&lt;/bean&gt;
+
+				&lt;bean id="luceneSpatialQueryExtensionProvider" class="org.openspaces.spatial.spi.LuceneSpatialQueryExtensionProvider"&gt;
+					&lt;constructor-arg name="customProperties"&gt;
+						&lt;props&gt;
+							&lt;prop key="lucene.strategy"&gt;${strategy}&lt;/prop&gt;
+							&lt;prop key="lucene.storage.directory-type"&gt;${directoryType}&lt;/prop&gt;
+							&lt;prop key="context"&gt;${spatialContext}&lt;/prop&gt;
+							&lt;prop key="context.geo"&gt;${spatialContextGeo}&lt;/prop&gt;
+						&lt;/props&gt;
+					&lt;/constructor-arg&gt;
+				&lt;/bean&gt;
+				&lt;os-core:space id="space" url="/./${dataGridName}"&gt;
+					&lt;os-core:query-extension-provider ref="luceneSpatialQueryExtensionProvider"/&gt;
+				&lt;/os-core:space&gt;
+				&lt;/beans&gt;
+		</code></pre>
     </body>
 </html>
