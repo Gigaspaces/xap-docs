@@ -57,7 +57,7 @@ ou: PROVISION_PU
             <div>
                 <h2>Roles Definition in the LDIF File</h2>
                 <p>As you can see (open the file and read the documented comments for a deeper explanation), we have added an organizational unit (hereinafter ou) called <b>groups</b>. This organizational unit will hold domain names (hereinafter <b>dn</b>) that will define the different roles and their permissions, for example:</p><pre><code>dn: cn=ROLE_MNGR,ou=groups,dc=example,dc=org<br />objectclass: top<br />objectclass: groupOfNames<br />cn: ROLE_MNGR<br />member: uid=gs-mngr,ou=people,dc=example,dc=org<br />ou: MONITOR_JVM<br />ou: MONITOR_PU<br />ou: SPACE_READ</code></pre>
-                <p>We can see here that this dn has a Common Name (hereinafter <b>cn</b>) called ROLE_ANALYST, it is under the groups ou and it has three child ous: MONITOR_JVM, MONITOR_PU and SPACE_READ.</p>
+                <p>We can see here that this dn has a Common Name (hereinafter <b>cn</b>) called ROLE_MNGR, it is under the groups ou and it has three child ous: MONITOR_JVM, MONITOR_PU and SPACE_READ.</p>
                 <p>These children ou define the privileges granted for this specific role.</p>
                 <p>In addition, the dn can include members (in our example it is anna) that define which users have this role.</p>
                 <p>You can add as many roles, members and privileges as you need.</p>
