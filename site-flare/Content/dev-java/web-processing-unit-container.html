@@ -1,68 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-<head></head>
-<body>
-<h1>Web Processing Unit Container</h1>
-  
-
-<p><MadCap:variable name="General.ProductNameXAP" />'s integration with the Service Grid allows you to deploy web applications (packaged as a WAR file) onto the Service Grid. The integration is built on top of the <a href="deploying-onto-the-service-grid.html">Service Grid Processing Unit Container</a>.</p>
-
-<p>The integration allows you to make use of the following Service Grid features:</p>
-
-<ul>
-<li>Dynamic allocation of several instances of a web application (probably fronted by a load balancer).</li>
-<li>Management of the instances running (if a GSC fails, the web application instances running on it will be instantiated on a different GSC).</li>
-<li>SLA monitor based dynamic allocation and de-allocation of web application instances.</li>
-</ul>
-
-<p>The web application itself is a pure, JEE based, web application. The application can be the most generic web application, and automatically make use of the Service Grid features. The web application can define a Space (either embedded or remote) very easily (either using Spring or not).</p>
-
-<p>The web container used behind the scenes is <a href="http://www.eclipse.org/jetty/" target="_blank" >Jetty</a> (with other containers coming in the near future). This page will list the common usage and configuration of web containers. Jetty specific configuration and usage can be found <a href="web-jetty-processing-unit-container.html">here</a>.</p>
-
-<h1><a name="deployment"></a>Deployment</h1>
-
-<p>The integration can either deploy a packaged WAR file or an exploded WAR file. In order to deploy packaged WAR file, it can be specified using one of the deployment mechanisms (UI/CLI/Programmatic, see more <a href="deploying-onto-the-service-grid.html#deployDirections">here</a>). When deploying a WAR file, it goes through the following steps until it gets to the GSC:</p>
-
-<div class="tc-admon-note">
-  
-  <p>Note that the deploy client, the GSMs, and the GSCs can run on different machines.</p>
-</div>
-
-<ol>
-<li>Point the deployment tool to the WAR file (UI/CLI/Programmatic).</li>
-<li>The WAR file itself is uploaded to the chosen GSM (which will act as the primary GSM of the deployment).</li>
-<li>The WAR is extracted under the GSM deploy directory with the provided processing unit name. The default directory location is <code>GSRoot/deploy/[processing unit name]</code>.</li>
-<li>The GSM decides (based on the SLA) how many instances of the web application need to be deployed, and deploys them to the available GSCs.</li>
-<li>Each GSC that is supposed to run an instance of the web application, downloads the web application into its own local file system. By default, it downloads it into <code>GSRoot/work/deployed-processing-units/[processing unit name]_[unique identifier]</code>.</li>
-<li>The appropriate web container is configured to run the web application using the local file system location.</li>
-</ol>
-
-<p>Deploying an exploded WAR is similar to deploying a packaged WAR. Here are the steps:</p>
-
-<ol>
-<li>The exploded WAR file should be copied (manually) over to all the GSMs deploy directory. The default location is <code>GSRoot/deploy</code>.</li>
-<li>A deploy command is issued with the processing unit name (the name of the directory under the deploy directory).</li>
-<li>The GSM decides (based on the SLA) how many instances of the web application needs to be deployed, and deploys them to the available GSCs.</li>
-<li>Each GSC that is supposed to run an instance of the web application, downloads the web application into its own local file system. By default, it downloads it into <code>GSRoot/work/deployed-processing-units/[processing unit name]_[unique identifier]</code>.</li>
-<li>The appropriate web container is configured to run the web application using the local file system location.</li>
-</ol>
-
-<div class="tc-admon-note">
-  
-  <p>The directory where the web applications are extracted (up to the <code>work</code> directory) on the GSC side can be controlled using the <code>com.gs.work</code> system property.</p>
-
-<p>The deploy directory location (up to the <code>deploy</code> directory) used on the GSM side can be controlled using the <code>com.gs.deploy</code> system property.</p>
-</div>
-
-<h1><a name="web-application-structure"></a>Web Application Structure</h1>
-
-<p>A Web Application deployed into the Service Grid is, at the end of the day, just another type of a processing unit. This means that it inherits all the options that a processing unit has, among which is the ability to define an optional <code>META-INF/spring/pu.xml</code> configuration file as any other processing unit. Note however that class definitions and libraries on which the web application depends are placed in their standard JEE web application location (i.e. <code>WEB-INF/classes</code> and <code>WEB-INF/lib</code> respectively).</p>
-
-<h1><a name="class-loaders"></a>Class Loaders</h1>
-
-<p>Here is the structure of the class loaders when several web applications are deployed on the Service Grid:</p>
-
-<pre><code class="language-java">              Bootstrap (Java)
+    <head>
+    </head>
+    <body>
+        <h1>Web Processing Unit Container</h1>
+        <p><MadCap:variable name="General.ProductNameXAP" />'s integration with the Service Grid allows you to deploy web applications (packaged as a WAR file) onto the Service Grid. The integration is built on top of the <a href="deploying-onto-the-service-grid.html">Service Grid Processing Unit Container</a>.</p>
+        <p>The integration allows you to make use of the following Service Grid features:</p>
+        <ul>
+            <li>Dynamic allocation of several instances of a web application (probably fronted by a load balancer).</li>
+            <li>Management of the instances running (if a GSC fails, the web application instances running on it will be instantiated on a different GSC).</li>
+            <li>SLA monitor based dynamic allocation and de-allocation of web application instances.</li>
+        </ul>
+        <p>The web application itself is a pure, JEE based, web application. The application can be the most generic web application, and automatically make use of the Service Grid features. The web application can define a Space (either embedded or remote) very easily (either using Spring or not).</p>
+        <p>The web container used behind the scenes is <a href="http://www.eclipse.org/jetty/" target="_blank">Jetty</a> (with other containers coming in the near future). This page will list the common usage and configuration of web containers. Jetty specific configuration and usage can be found <a href="web-jetty-processing-unit-container.html">here</a>.</p>
+        <h1><a name="deployment"></a>Deployment</h1>
+        <p>The integration can either deploy a packaged WAR file or an exploded WAR file. In order to deploy packaged WAR file, it can be specified using one of the deployment mechanisms (UI/CLI/Programmatic, see more <a href="deploying-onto-the-service-grid.html#deployDirections">here</a>). When deploying a WAR file, it goes through the following steps until it gets to the GSC:</p>
+        <div class="tc-admon-note">
+            <p>Note that the deploy client, the GSMs, and the GSCs can run on different machines.</p>
+        </div>
+        <ol>
+            <li>Point the deployment tool to the WAR file (UI/CLI/Programmatic).</li>
+            <li>The WAR file itself is uploaded to the chosen GSM (which will act as the primary GSM of the deployment).</li>
+            <li>The WAR is extracted under the GSM deploy directory with the provided processing unit name. The default directory location is <code>GSRoot/deploy/[processing unit name]</code>.</li>
+            <li>The GSM decides (based on the SLA) how many instances of the web application need to be deployed, and deploys them to the available GSCs.</li>
+            <li>Each GSC that is supposed to run an instance of the web application, downloads the web application into its own local file system. By default, it downloads it into <code>GSRoot/work/deployed-processing-units/[processing unit name]_[unique identifier]</code>.</li>
+            <li>The appropriate web container is configured to run the web application using the local file system location.</li>
+        </ol>
+        <p>Deploying an exploded WAR is similar to deploying a packaged WAR. Here are the steps:</p>
+        <ol>
+            <li>The exploded WAR file should be copied (manually) over to all the GSMs deploy directory. The default location is <code>GSRoot/deploy</code>.</li>
+            <li>A deploy command is issued with the processing unit name (the name of the directory under the deploy directory).</li>
+            <li>The GSM decides (based on the SLA) how many instances of the web application needs to be deployed, and deploys them to the available GSCs.</li>
+            <li>Each GSC that is supposed to run an instance of the web application, downloads the web application into its own local file system. By default, it downloads it into <code>GSRoot/work/deployed-processing-units/[processing unit name]_[unique identifier]</code>.</li>
+            <li>The appropriate web container is configured to run the web application using the local file system location.</li>
+        </ol>
+        <div class="tc-admon-note">
+            <p>The directory where the web applications are extracted (up to the <code>work</code> directory) on the GSC side can be controlled using the <code>com.gs.work</code> system property.</p>
+            <p>The deploy directory location (up to the <code>deploy</code> directory) used on the GSM side can be controlled using the <code>com.gs.deploy</code> system property.</p>
+        </div>
+        <h1><a name="web-application-structure"></a>Web Application Structure</h1>
+        <p>A Web Application deployed into the Service Grid is, at the end of the day, just another type of a processing unit. This means that it inherits all the options that a processing unit has, among which is the ability to define an optional <code>META-INF/spring/pu.xml</code> configuration file as any other processing unit. Note however that class definitions and libraries on which the web application depends are placed in their standard JEE web application location (i.e. <code>WEB-INF/classes</code> and <code>WEB-INF/lib</code> respectively).</p>
+        <h1><a name="class-loaders"></a>Class Loaders</h1>
+        <p>Here is the structure of the class loaders when several web applications are deployed on the Service Grid:</p><pre><code class="language-java">              Bootstrap (Java)
                   |
                System (Java)
                   |
@@ -72,95 +51,77 @@
              /        \
         WebApp1     WebApp2
 </code></pre>
-
-<p>The following table shows which user controlled locations end up in which class loader, and the important JAR files that exist within each one:</p>
-
-<table>
-<thead>
-<tr>
-<th align="left">Class Loader</th>
-<th align="left">User Locations</th>
-<th align="left">Built in Jar Files</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="left">Common</td>
-<td align="left">[GSRoot]/lib/platform/ext/*.jar</td>
-<td align="left">xap-datagrid.jar</td>
-</tr>
-
-<tr>
-<td align="left">JEE Container</td>
-<td align="left">JEE container specific jars</td>
-<td align="left">[GSRoot]/lib/optional/jetty/*.jar</td>
-</tr>
-
-<tr>
-<td align="left">Webapp</td>
-<td align="left">[PU]/WEB-INF/classes, [PU]/WEB-INF/lib/*.jar</td>
-<td align="left">xap-openspaces.jar, spring/*.jar</td>
-</tr>
-</tbody>
-</table>
-
-<p>The idea behind the class loaders is to create a completely self sufficient web application. All relevant jar files or classes should exists within the web application (as if running it standalone) and then deploying it into the Service Grid will be a seamless experience.</p>
-
-<p>A special case happen with <code>xap-datagrid.jar</code> which is automatically removed from <code>WEB-INF/lib</code> if it exists there since it has already been defined in the common class loader.</p>
-
-<p>In terms of class loader delegation model, the web application class loader uses a parent last delegation mode. This means that the web application will first try and load classes from its own class loader, and only if they are not found, will delegate up to the parent class loader. This is the recommended way to work with this class loader model.</p>
-
-<div class="tc-admon-note">
-  
-  <p>Where has the Service Class Loader gone? The Service Class Loader is still used in order to load the JEE container, but it is hidden from the user. The web application class loader is created with its parent class loader being the JEE container specific class loader and not the Service Class loader. Users should not worry in this case about the Service Class Loader and how it is used, as the above class loader model provides exactly the same semantics as a plain web container class loader model.</p>
-</div>
-
-<div class="tc-admon-note">
-  
-  <p>The JEE Class Loader is created lazily when the first web application deployed into the GSC. This avoids the overhead involved when creating none-web processing units. There can also be several JEE class loaders per web container type, allowing to support both jetty and tomcat (for example) in the future quite easily.</p>
-</div>
-
-<h3><a name="sharing-libraries-between-multiple-processing-units"></a>Sharing Libraries Between Multiple Processing Units</h3>
-
-<div class="tc-admon-refer">
-  
-  <p>In some cases, multiple Processing Units use the same JAR files.In such cases it makes sense to place these JAR files in a central location accessible by all the Processing Units rather than packaging them individually with each of the Processing Units. <a href="the-processing-unit-structure-and-configuration.html#sharing-libraries-between-multiple-processing-units">Read more</a></p>
-</div>
-
-<h1><a name="bootstrap-context-listener"></a>Bootstrap Context Listener</h1>
-
-<p>When deploying a web application onto GigaSpaces Service Grid the <code>web.xml</code> of the web application will be automatically changed to include a <code>BootstrapWebApplicationContextListener</code>. The Bootstrap Context Listener provides the following services:</p>
-
-<ul>
-<li><p>It will automatically put the <code>ClusterInfo</code> and <code>BeanLevelProperties</code> that the system was deployed with into the web application <code>ServletContext</code>. The <code>ClusterInfo</code> class will be put under a context attribute <code>clusterInfo</code>, and the <code>BeanLevelProperties</code> will be put under a context attribute named <code>beanLevelProperties</code>.</p></li>
-
-<li><p>If there is a <code>META-INF/spring/pu.xml</code>, it will load it using Spring (that is why the spring and openspaces jars are automatically added to the web application class loader). The <code>ApplicationContext</code> created is put in the Servlet Context under an attribute named <code>applicationContext</code>. All the beans defined within the <code>META-INF/spring/pu.xml</code> which can be instantiated (i.e. are not abstract or require additional arguments to be created) will be bound to the <code>ServletContext</code> as well. Each bean name will be the <code>ServletContext</code> attribute name, and each bean will be the attribute value.</p></li>
-
-<li><p>If there is a <code>org.springframework.web.context.ContextLoaderListener</code> it will automatically be replaced with <code>ProcessingUnitContextLoaderListener</code>. The <code>ProcessingUnitContextLoaderListener</code> is exactly the same as the Spring one, except for the fact that it uses the (optional) <code>ApplicationContext</code> loaded from the <code>META-INF/spring/pu.xml</code> as the parent of the created Application Context. It will also add the <code>ClusterInfo</code> and <code>BeanLevelProperties</code> post processors to the created <code>ApplicationContext</code> so they can be injected to any bean requiring it (such as the embedded Space bean).</p></li>
-</ul>
-
-<h1><a name="using-a-space"></a>Using a Space</h1>
-
-<p>There are several ways that a Space (and other components) can be used, and configured within a web application. Some common scenarios are listed below.</p>
-
-<h2><a name="pure-remote-space"></a>Pure Remote Space</h2>
-
-<p>A typical usage pattern is connecting remotely to a Space. Here is an example (either using Spring within the web application Spring context file, or using pure Java code):</p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Spring Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:space-proxy id="space" space-name="mySpace"/&gt;
+        <p>The following table shows which user controlled locations end up in which class loader, and the important JAR files that exist within each one:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th align="left">Class Loader</th>
+                    <th align="left">User Locations</th>
+                    <th align="left">Built in Jar Files</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left">Common</td>
+                    <td align="left">[GSRoot]/lib/platform/ext/*.jar</td>
+                    <td align="left">xap-datagrid.jar</td>
+                </tr>
+                <tr>
+                    <td align="left">JEE Container</td>
+                    <td align="left">JEE container specific jars</td>
+                    <td align="left">[GSRoot]/lib/optional/jetty/*.jar</td>
+                </tr>
+                <tr>
+                    <td align="left">Webapp</td>
+                    <td align="left">[PU]/WEB-INF/classes, [PU]/WEB-INF/lib/*.jar</td>
+                    <td align="left">xap-openspaces.jar, spring/*.jar</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>The idea behind the class loaders is to create a completely self sufficient web application. All relevant jar files or classes should exists within the web application (as if running it standalone) and then deploying it into the Service Grid will be a seamless experience.</p>
+        <p>A special case happen with <code>xap-datagrid.jar</code> which is automatically removed from <code>WEB-INF/lib</code> if it exists there since it has already been defined in the common class loader.</p>
+        <p>In terms of class loader delegation model, the web application class loader uses a parent last delegation mode. This means that the web application will first try and load classes from its own class loader, and only if they are not found, will delegate up to the parent class loader. This is the recommended way to work with this class loader model.</p>
+        <div class="tc-admon-note">
+            <p>Where has the Service Class Loader gone? The Service Class Loader is still used in order to load the JEE container, but it is hidden from the user. The web application class loader is created with its parent class loader being the JEE container specific class loader and not the Service Class loader. Users should not worry in this case about the Service Class Loader and how it is used, as the above class loader model provides exactly the same semantics as a plain web container class loader model.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>The JEE Class Loader is created lazily when the first web application deployed into the GSC. This avoids the overhead involved when creating none-web processing units. There can also be several JEE class loaders per web container type, allowing to support both jetty and tomcat (for example) in the future quite easily.</p>
+        </div>
+        <h3><a name="sharing-libraries-between-multiple-processing-units"></a>Sharing Libraries Between Multiple Processing Units</h3>
+        <div class="tc-admon-refer">
+            <p>In some cases, multiple Processing Units use the same JAR files.In such cases it makes sense to place these JAR files in a central location accessible by all the Processing Units rather than packaging them individually with each of the Processing Units. <a href="the-processing-unit-structure-and-configuration.html#sharing-libraries-between-multiple-processing-units">Read more</a></p>
+        </div>
+        <h1><a name="bootstrap-context-listener"></a>Bootstrap Context Listener</h1>
+        <p>When deploying a web application onto GigaSpaces Service Grid the <code>web.xml</code> of the web application will be automatically changed to include a <code>BootstrapWebApplicationContextListener</code>. The Bootstrap Context Listener provides the following services:</p>
+        <ul>
+            <li>
+                <p>It will automatically put the <code>ClusterInfo</code> and <code>BeanLevelProperties</code> that the system was deployed with into the web application <code>ServletContext</code>. The <code>ClusterInfo</code> class will be put under a context attribute <code>clusterInfo</code>, and the <code>BeanLevelProperties</code> will be put under a context attribute named <code>beanLevelProperties</code>.</p>
+            </li>
+            <li>
+                <p>If there is a <code>META-INF/spring/pu.xml</code>, it will load it using Spring (that is why the spring and openspaces jars are automatically added to the web application class loader). The <code>ApplicationContext</code> created is put in the Servlet Context under an attribute named <code>applicationContext</code>. All the beans defined within the <code>META-INF/spring/pu.xml</code> which can be instantiated (i.e. are not abstract or require additional arguments to be created) will be bound to the <code>ServletContext</code> as well. Each bean name will be the <code>ServletContext</code> attribute name, and each bean will be the attribute value.</p>
+            </li>
+            <li>
+                <p>If there is a <code>org.springframework.web.context.ContextLoaderListener</code> it will automatically be replaced with <code>ProcessingUnitContextLoaderListener</code>. The <code>ProcessingUnitContextLoaderListener</code> is exactly the same as the Spring one, except for the fact that it uses the (optional) <code>ApplicationContext</code> loaded from the <code>META-INF/spring/pu.xml</code> as the parent of the created Application Context. It will also add the <code>ClusterInfo</code> and <code>BeanLevelProperties</code> post processors to the created <code>ApplicationContext</code> so they can be injected to any bean requiring it (such as the embedded Space bean).</p>
+            </li>
+        </ul>
+        <h1><a name="using-a-space"></a>Using a Space</h1>
+        <p>There are several ways that a Space (and other components) can be used, and configured within a web application. Some common scenarios are listed below.</p>
+        <h2><a name="pure-remote-space"></a>Pure Remote Space</h2>
+        <p>A typical usage pattern is connecting remotely to a Space. Here is an example (either using Spring within the web application Spring context file, or using pure Java code):</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Spring Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:space-proxy id="space" space-name="mySpace"/&gt;
 &lt;os-core:giga-space id="gigaSpace" space="space"/&gt;
 </code></pre>
-</div>
-<div title="  Spring Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
+            </div>
+            <div title="  Spring Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.SpaceProxyFactoryBean"&gt;
     &lt;property name="name" value="space" /&gt;
 &lt;/bean&gt;
 &lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
     &lt;property name="space" ref="space" /&gt;
 &lt;/bean&gt;
 </code></pre>
-</div>
-<div title="  Code " style="padding:10px"><pre><code class="language-java">EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("space");
+            </div>
+            <div title="  Code " style="padding:10px"><pre><code class="language-java">EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("space");
 
 GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();
 
@@ -169,20 +130,17 @@ GigaSpace gigaSpace = new GigaSpaceConfigurer(configurer).gigaSpace();
 // shutting down / closing the Space
 spaceConfigurer.destroy();
 </code></pre>
-</div>
-</div>
-
-<h2><a name="using-pu-xml"></a>Using pu.xml</h2>
-
-<p>A web application is still just a processing unit. This means that a <span class="tc-bold">META-INF/spring/pu.xml</span> can be added, which can be used to define a <a href="the-space-configuration.html">Space</a>. Accessing the beans is relatively simple as they are automatically added to the web application context and can be accessed from there. The key they are stored under is the bean id that each bean corresponds to.</p>
-
-<p>Here is an example that starts an embedded Space as part of the web application within the <code>pu.xml</code>. The following is the content of the <code>pu.xml</code></p>
-
-<div class="easyui-tabs" plain="true" data-options=""><div title="  Spring Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
+            </div>
+        </div>
+        <h2><a name="using-pu-xml"></a>Using pu.xml</h2>
+        <p>A web application is still just a processing unit. This means that a <span class="tc-bold">META-INF/spring/pu.xml</span> can be added, which can be used to define a <a href="the-space-configuration.html">Space</a>. Accessing the beans is relatively simple as they are automatically added to the web application context and can be accessed from there. The key they are stored under is the bean id that each bean corresponds to.</p>
+        <p>Here is an example that starts an embedded Space as part of the web application within the <code>pu.xml</code>. The following is the content of the <code>pu.xml</code></p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="  Spring Namespace " style="padding:10px"><pre><code class="language-xml">&lt;os-core:embedded-space id="space" space-name="mySpace"/&gt;
 &lt;os-core:giga-space id="clusteredGigaSpace" space="space" clustered="true"/&gt;
 </code></pre>
-</div>
-<div title="  Spring Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
+            </div>
+            <div title="  Spring Plain XML " style="padding:10px"><pre><code class="language-xml">&lt;bean id="space" class="org.openspaces.core.space.EmbeddedSpaceFactoryBean"&gt;
     &lt;property name="name" value="space" /&gt;
 &lt;/bean&gt;
 &lt;bean id="gigaSpace" class="org.openspaces.core.GigaSpaceFactoryBean"&gt;
@@ -193,27 +151,16 @@ spaceConfigurer.destroy();
     &lt;property name="clustered" ref="true" /&gt;
 &lt;/bean&gt;
 </code></pre>
-</div>
-</div>
-
-<p>Here is an example of a simple JSP that uses it:</p>
-
-<pre><code class="language-java">GigaSpace gigaSpace = (GigaSpace) getServletContext().getAttribute("clusteredGigaSpace");
+            </div>
+        </div>
+        <p>Here is an example of a simple JSP that uses it:</p><pre><code class="language-java">GigaSpace gigaSpace = (GigaSpace) getServletContext().getAttribute("clusteredGigaSpace");
 </code></pre>
-
-<h1><a name="embedded-space"></a>Embedded Space</h1>
-
-<p>The previous section described several options of how to start an embedded Space within the web application. The recommended way to work with embedded Space, is to work with its clustered proxy (the <code>clustered</code> flag in GigaSpace set to <code>true</code>) for interactions that originate from a web request. This is mainly since the load balancer does not know about routing specific classes to each cluster member.</p>
-
-<p>Note, event driven operations should still work with non clustered embedded Space (usually). For example, a web request that results in writing an Order (using the clustered proxy) to the Space, and a polling container that picks it up and processes it asynchronously. The polling container should work with the non clustered, collocated, proxy of the cluster member space.</p>
-
-<h1><a name="load-balancer"></a>Load Balancer</h1>
-
-<p>When deploying a highly available web site, usually a load balancer is used to load balance requests between at least two instances of a web container that actually runs the web application. When using GigaSpaces in order to deploy a web application, running more than one instance of a web application becomes a snap, as well as the manageability and virtualized nature of running web applications.</p>
-
-<p>In order to create a single point of view, in terms of clients connecting to a server, a load balancer is usually used. While there are many different types of load balancers (both hardware and software), solving the load balancing problem is not new (i.e. it is not something that is introduced because the web application is deployed on GigaSpaces). Examples of how to configure load balancers can be found in specific web container sections.</p>
-
-<p>GigaSpaces also comes with a built in integration with Apache httpd load balancer as described in the <a href="apache-load-balancer-agent.html">Apache Load Balancer Agent</a> section.</p>
-
-</body>
+        <h1><a name="embedded-space"></a>Embedded Space</h1>
+        <p>The previous section described several options of how to start an embedded Space within the web application. The recommended way to work with embedded Space, is to work with its clustered proxy (the <code>clustered</code> flag in GigaSpace set to <code>true</code>) for interactions that originate from a web request. This is mainly since the load balancer does not know about routing specific classes to each cluster member.</p>
+        <p>Note, event driven operations should still work with non clustered embedded Space (usually). For example, a web request that results in writing an Order (using the clustered proxy) to the Space, and a polling container that picks it up and processes it asynchronously. The polling container should work with the non clustered, collocated, proxy of the cluster member space.</p>
+        <h1><a name="load-balancer"></a>Load Balancer</h1>
+        <p>When deploying a highly available web site, usually a load balancer is used to load balance requests between at least two instances of a web container that actually runs the web application. When using GigaSpaces in order to deploy a web application, running more than one instance of a web application becomes a snap, as well as the manageability and virtualized nature of running web applications.</p>
+        <p>In order to create a single point of view, in terms of clients connecting to a server, a load balancer is usually used. While there are many different types of load balancers (both hardware and software), solving the load balancing problem is not new (i.e. it is not something that is introduced because the web application is deployed on GigaSpaces). Examples of how to configure load balancers can be found in specific web container sections.</p>
+        <p>GigaSpaces also comes with a built in integration with Apache httpd load balancer as described in the <a href="apache-load-balancer-agent.html">Apache Load Balancer Agent</a> section.</p>
+    </body>
 </html>

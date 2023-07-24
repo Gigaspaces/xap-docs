@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -36,7 +36,8 @@
             <li>The appropriate web container is configured to run the web application using the local file system location.</li>
         </ol>
         <div class="tc-admon-note">
-            <p>The directory where the web applications are extracted (up to the <code>work</code> directory) on the GSC side can be controlled using the <code>com.gs.work</code> system property. The deploy directory location (up to the <code>deploy</code> directory) used on the GSM side can be controlled using the <code>com.gs.deploy</code> system property.</p>
+            <p>The directory where the web applications are extracted (up to the <code>work</code> directory) on the GSC side can be controlled using the <code>com.gs.work</code> system property. </p>
+            <p>The deploy directory location (up to the <code>deploy</code> directory) used on the GSM side can be controlled using the <code>com.gs.deploy</code> system property.</p>
         </div>
         <h1><a name="web-application-structure"></a>Web Application Structure</h1>
         <p>A web application deployed to the Service Grid is just another type of Processing Unit. As such, it inherits all the options that a Processing Unit has, including the ability to define an optional <code>META-INF/spring/pu.xml</code> configuration file as any other Processing Unit. However, that class definitions and libraries that the web application depends on are placed in their standard JEE web application location (i.e. <code>WEB-INF/classes</code> and <code>WEB-INF/lib</code> respectively).</p>
