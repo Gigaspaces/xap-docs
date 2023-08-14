@@ -20,7 +20,7 @@
         <h2>Performance</h2>
         <p>As with any&#160;Java application, the Garbage Collector (GC) should be fine-tuned and care should be taken to select a GC algorithm that meets requirements.</p>
         <p>It is recommended to set verbose GC and analyze GC files to optimally tune the system.</p>
-        <div MadCap:conditions="Version.14-0-born">
+        <div MadCap:conditions="Version.14-0-died">
             <p>Starting from Java 9, the default GC was changed from Parallel GC to G1 (see <a href="http://openjdk.java.net/jeps/248" target="_blank">JEP 248</a>). This change has performance implications, as described in the JEP motivation:</p>
             <p>“<em>Limiting GC pause times is, in general, more important than maximizing throughput. Switching to a low-pause collector such as G1 should provide a better overall experience, for most users, than a throughput-oriented collector such as the Parallel GC, which is currently the default.</em>”</p>
             <p>In other words, the Parallel GC is optimized for throughput at the expense of longer GC pauses, whereas the new default G1 GC is optimized for shorter GC pauses at the expense of lower throughput.</p>
