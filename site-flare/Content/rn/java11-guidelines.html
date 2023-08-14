@@ -3,33 +3,43 @@
     <head>
     </head>
     <body>
-        <h1 class="tc-pagetitle">Java 11 Guidelines</h1>
+        <h1 class="tc-pagetitle">Java Guidelines</h1>
         <MadCap:snippetBlock src="../Resources/Snippets/gs-banner.flsnp" />
         <p>The <MadCap:variable name="General.ProductNameIEP" /> and <MadCap:variable name="General.ProductNameXAP" /> data grid support Java 11 starting from release 14.0.1. We strongly recommend reviewing the provided guidelines so you can fine-tune your Java implementation to achieve optimal system behavior and performance for applications based on GigaSpaces products.</p>
+        <p>&#160;</p>
+        <div class="tc-admon-note">
+            <p>The product (source code) is compiled with Java 8, but is compatible with a runtime of Java 11. From version 16.3.0 <MadCap:variable name="General.CompanyName" />docker image comes with Java 11 run-time.</p>
+        </div>
         <h2>Java Distributions</h2>
-        <p>Oracle has made a number of significant changes to their terms and conditions regarding Java 11 usage and support, and have also aligned their releases with OpenJDK. Starting from Java 11, GigaSpaces products are tested on OpenJDK, which is the de facto baseline for all popular JDK distributions on the market.</p>
+        <p>Oracle has made a number of significant changes to their terms and conditions regarding Java 11 usage and support, and have also aligned their releases with OpenJDK. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">Starting from Java 11,</MadCap:conditionalText> GigaSpaces products are tested on OpenJDK, which is the de facto baseline for all popular JDK distributions on the market. The version of OpenJDK that<MadCap:variable name="General.CompanyName" /> are using is openjdk_11_0_18.</p>
         <h2>Modules and Classpath</h2>
         <p>The JPMS (Java Platform Module System) was introduced in Java 9. JPMS is a modern alternative to the previous modularity architecture based on JARs and classpath. However, JPMS is still fairly new and adoption in the ecosystem is slow. As such, classpath is still fully supported and not deprecated in Java 11. GigaSpaces products currently continue to use the classpath system.</p>
         <p>Additionally, as part of remodeling the Java code and attempting to reduce its size and complexity, some Java EE technologies have been excluded from the standard Java package and are instead available as independent modules. Applications that use these modules can include the relevant ones explicitly, instead of the Java distribution implicitly containing all of them. GigaSpaces products use some of those dependencies, which have been packaged under <code><MadCap:variable name="General.HomePath" />/lib/platform/javax</code> and are automatically included in the classpath.</p>
         <h2>Memory Footprint</h2>
         <p>Starting from Java 9, string implementation has been enhanced to use less memory in common use cases (see <a href="http://openjdk.java.net/jeps/254" target="_blank">JEP 254</a>). In a nutshell, in earlier Java versions each character in the string used at least two bytes, whereas from Java 9 and up common characters use only a single byte. This means that most strings consume ~50% less RAM in Java 11 environments, which may be significant for applications storing a lot of strings in the Space.</p>
         <h2>Performance</h2>
-        <p>Starting from Java 9, the default garbage collector (GC)&#160;was changed from Parallel GC to G1 (see <a href="http://openjdk.java.net/jeps/248" target="_blank">JEP 248</a>). This change has performance implications, as described in the JEP motivation:</p>
-        <p>“<em>Limiting GC pause times is, in general, more important than maximizing throughput. Switching to a low-pause collector such as G1 should provide a better overall experience, for most users, than a throughput-oriented collector such as the Parallel GC, which is currently the default.</em>”</p>
-        <p>In other words, the Parallel GC is optimized for throughput at the expense of longer GC pauses, whereas the new default G1 GC is optimized for shorter GC pauses at the expense of lower throughput.</p>
-        <p>GigaSpaces benchmarking confirms this assertion. We evaluated GigaSpaces products with the following Java configurations and results:</p>
-        <ul>
-            <li>Java 11 and no GC configuration: throughput is lower.</li>
-            <li>Java 11 and Parallel GC: throughput is the same as in systems using Java 8.</li>
-            <li>Java 8 and G1 GC: throughput is the same as in systems using Java 11 with the default GC.</li>
-        </ul>
-        <p>Use the following Java options to explicitly set a garbage collector:</p>
-        <ul>
-            <li>Parallel GC: <code>-XX:+UseParallelGC</code></li>
-            <li>G1 GC: <code>-XX:+UseG1GC</code></li>
-        </ul>
+        <p>As with any&#160;Java application, the Garbage Collector (GC) should be fine-tuned and care should be taken to select a GC algorithm that meets requirements.</p>
+        <p>It is recommended to set verbose GC and analyze GC files to optimally tune the system.</p>
+        <div MadCap:conditions="Default.DoNotShow">
+            <p>Starting from Java 9, the default GC was changed from Parallel GC to G1 (see <a href="http://openjdk.java.net/jeps/248" target="_blank">JEP 248</a>). This change has performance implications, as described in the JEP motivation:</p>
+            <p>“<em>Limiting GC pause times is, in general, more important than maximizing throughput. Switching to a low-pause collector such as G1 should provide a better overall experience, for most users, than a throughput-oriented collector such as the Parallel GC, which is currently the default.</em>”</p>
+            <p>In other words, the Parallel GC is optimized for throughput at the expense of longer GC pauses, whereas the new default G1 GC is optimized for shorter GC pauses at the expense of lower throughput.</p>
+            <p>GigaSpaces benchmarking confirms this assertion. We evaluated GigaSpaces products with the following Java configurations and results:</p>
+            <ul>
+                <li>Java 11 and no GC configuration: throughput is lower.</li>
+                <li MadCap:conditions="Default.DoNotShow">Java 11 and Parallel GC: throughput is the same as in systems using Java 8.</li>
+                <li>Java 8 and G1 GC: throughput is the same as in systems using Java 11 with the default GC.</li>
+            </ul>
+            <p>Use the following Java option to explicitly set a garbage collector:</p>
+            <ul>
+                <li MadCap:conditions="Default.DoNotShow">Parallel GC: <code>-XX:+UseParallelGC</code></li>
+                <li>G1 GC: <code>-XX:+UseG1GC</code></li>
+            </ul>
+        </div>
         <p>For more information about garbage collection in Java-based systems, see Oracle’s <a href="https://docs.oracle.com/en/java/javase/11/gctuning/" target="_blank">Garbage Collection Tuning Guide</a> for Java 11.</p>
-        <p><b>Conclusion</b>: When upgrading to Java 11, it is important to be aware of the new default GC mechanism, and to choose the one that best serves your application requirements. If your configuration already explicitly sets the GC mechanism, this GC will be the one used with Java 11.</p>
+        <div class="tc-admon-important">
+            <p>When upgrading to Java 11, it is important to be aware of the new default GC mechanism, and to choose the one that best serves your application requirements. If your configuration already explicitly sets the GC mechanism, this GC will be the one used with Java 11.</p>
+        </div>
         <h1>Security</h1>
         <p>Support for TLS 1.3 was added in Java 11. This version of TLS is not directly compatible with previous TLS versions, and is currently not supported in the <MadCap:variable name="General.ProductNameIEP" /> or the <MadCap:variable name="General.ProductNameXAP" /> data grid. When configuring TLS usage for GigaSpaces products using the <code>com.gs.lrmi.filter.security.protocol </code>system property, the default is to choose the latest TLS available. In Java 11 this is TLS&#160;1.3  and it will fail. To prevent this from happening, explicitly specify the requested TLS version, such as “TLSv1.2”.</p>
         <p>For example, instead of: <code>-Dcom.gs.lrmi.filter.security.protocol=TLS</code>, specify <code>-Dcom.gs.lrmi.filter.security.protocol=TLSv1.2</code>.</p>
