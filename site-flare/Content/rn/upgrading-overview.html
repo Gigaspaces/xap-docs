@@ -1,66 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Version.16-3-born">
+<html>
     <head>
     </head>
     <body>
-        <div class="product-bar">
-            <p><a>Smart Cache</a>
+        <div MadCap:conditions="Version.16-3-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+            <div class="product-bar">
+                <p><a>Smart Cache</a>
+                </p>
+            </div>
+            <h1 class="tc-pagetitle">Upgrading:&#160;Smart Grid to Smart&#160;Grid</h1>
+            <p>If you are currently using a previous version of  <MadCap:variable name="General.ProductNameIE" />&#160;Smart Cache, you can download the newest version from the download tab in the support portal.</p>
+            <h1><a name="backwards-compatibility"></a>Backwards Compatibility</h1>
+            <p> For information about GigaSpaces' backwards compatibility policy, refer to the <MadCap:xref href="lifecycle.html">Product Life Cycle and End-of-Life Policy</MadCap:xref> page.</p>
+            <p>Regarding the node, if a change </p>
+            <div class="tc-admon-important" MadCap:conditions="Version.14-2-born">
+                <p>A change operation from a version including and older than 14.0.1 to a newer version might cause some issues in certain scenarios. See this <a href="https://insightedge.atlassian.net/browse/GS-14352">Jira</a> issue for more details.</p>
+            </div>
+            <h1>Recommended Upgrade Steps</h1>
+            <p>Follow this suggested upgrade procedure for performing a regular upgrade:</p>
+            <ol>
+                <li>
+                    <p>First try to compile minimal code with the current maven artifacts (comment out hibernate &amp; jetty integrations). Go to : <a href="../started/installation-maven-overview.html">Maven Doc.</a></p>
+                </li>
+                <li>
+                    <p>Change PU xmls and remove version so version will be taken automatically from gs version running the PU. e.g., copy from blueprint.</p>
+                </li>
+                <li>
+                    <p>Change variables: <a href="../started/common-environment-variables.html">Env Variables</a> in <code class="language-bash">setenv-overrides</code> script if needed.</p>
+                </li>
+                <li>
+                    <p>If the manager was not used before use the gs-agent script to start the grid similar to the way it was done for the previous version.</p>
+                </li>
+                <li>
+                    <p>Fix the hibernate PUs to use the latest hibernate version.</p>
+                </li>
+                <li>
+                    <p>Fix web-PUs to use the current version of  jetty, After all PUs are updated and all the code compiles try to deploy all PUs. Remember that the default service limit is 1 and start the GSCs accordingly (or change the default which is not recommended).</p>
+                </li>
+                <li>
+                    <p>Deploy the applications manually.</p>
+                </li>
+                <li>
+                    <p>Run your tests to validate behaviour.</p>
+                </li>
+                <li>
+                    <p>Move to use xap-manager instead of the deprecated gs-agent script, if you did not use xap-manager previously - see <a href="../admin/xap-manager.html">Manager Doc.</a></p>
+                </li>
+                <li>
+                    <p>Fix scripts to use the new CLI or new Rest API.</p>
+                </li>
+                <li>
+                    <p>Add new features to improve performance and reduce memory footprint and monitoring.</p>
+                </li>
+                <li>
+                    <p>Retest and validate behaviour.</p>
+                </li>
+            </ol>
+        </div>
+        <div>
+            <h1>Flush Redolog to Disk Upon System Shutdown</h1>
+            <div class="tc-admon-note">
+                <p>This is only relevant when the redolog swap type is sqlite.</p>
+            </div>
+            <p>Part of the redo log is stored in memory. If the log is larger than memory capacity then it also gets saved to disk.   If the database goes down the redo log keeps growing and part of it is stored in memory. However, If entire system shuts down then everything in memory is lost. Therefore, there is now an option to save all to disk so that is can all be recovered. These are system parameters are required to set it:</p>
+            <p><code>com.gs.redolog.flush.notify.class class that implements RedologFlushNotifier</code>
             </p>
+            <p><code>void notifyOnFlush(String fullSpaceName, String spaceName, long redolosize, Path redologPath  );</code>
+            </p>
+            <h3>Shutdown Parameters</h3>
+            <p>Shutdown will be called in the case of undeploy. In the case of GSC termination or an explicit agent shutdown, it will be triggered by the shutdown hook.</p>
+            <p><code>com.gs.redolog.flush.on.shutdown</code> should be set to true to flush the redolog to disk.</p>
+            <p><code>com.gs.shutdownhook.timeout</code> - the default is set to 10 seconds. &#160;This can be increased to allow the shutdown process enough time to perform the flush.</p>
+            <h3>BigDecimal</h3>
+            <p><code>com.gs.strip-trailing-zeros</code> </p>
+            <p>By default this is set to true which means the trailing zeros of big decimals are being dropped. &#160;To change this, it needs to be set explicitly to false in both the client and server.</p>
         </div>
-        <h1 class="tc-pagetitle">Upgrading:&#160;Smart Grid to Smart&#160;Grid</h1>
-        <p>If you are currently using a previous version of  <MadCap:variable name="General.ProductNameIE" />&#160;Smart Cache, you can download the newest version from the download tab in the support portal.</p>
-        <h1><a name="backwards-compatibility"></a>Backwards Compatibility</h1>
-        <p> For information about GigaSpaces' backwards compatibility policy, refer to the <MadCap:xref href="lifecycle.html">Product Life Cycle and End-of-Life Policy</MadCap:xref> page.</p>
-        <p>Regarding the node, if a change </p>
-        <div class="tc-admon-important" MadCap:conditions="Version.14-2-born">
-            <p>A change operation from a version including and older than 14.0.1 to a newer version might cause some issues in certain scenarios. See this <a href="https://insightedge.atlassian.net/browse/GS-14352">Jira</a> issue for more details.</p>
+        <div MadCap:conditions="Version.16-3-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+            <h1>Hot Upgrade Overview</h1>
+            <p>Hot Upgrade is required in order to perform changes without downtime, allowing the application users to keep working,</p>
+            <p>If there is no change in replication mechanism. GigaSpaces version hot upgrade is possible.</p>
+            <p>In order to upgrade to a new <MadCap:variable name="General.ProductNameIE" />version without downtime, we have to allow a cluster with both new and old version to run simultaneously.</p>
+            <p>The hot upgrade feature is guaranteed only in the case of upgrading from the same major version, (e.g upgrade from 16.3 to 16.3.1 )</p>
+            <p>It is not guaranteed in case of different major versions.</p>
+            <p>For more information: <a href="hot-upgrade.html">Hot Upgrade</a></p>
         </div>
-        <h1>Recommended Upgrade Steps</h1>
-        <p>Follow this suggested upgrade procedure for performing a regular upgrade:</p>
-        <ol>
-            <li>
-                <p>First try to compile minimal code with the current maven artifacts (comment out hibernate &amp; jetty integrations). Go to : <a href="../started/installation-maven-overview.html">Maven Doc.</a></p>
-            </li>
-            <li>
-                <p>Change PU xmls and remove version so version will be taken automatically from gs version running the PU. e.g., copy from blueprint.</p>
-            </li>
-            <li>
-                <p>Change variables: <a href="../started/common-environment-variables.html">Env Variables</a> in <code class="language-bash">setenv-overrides</code> script if needed.</p>
-            </li>
-            <li>
-                <p>If the manager was not used before use the gs-agent script to start the grid similar to the way it was done for the previous version.</p>
-            </li>
-            <li>
-                <p>Fix the hibernate PUs to use the latest hibernate version.</p>
-            </li>
-            <li>
-                <p>Fix web-PUs to use the current version of  jetty, After all PUs are updated and all the code compiles try to deploy all PUs. Remember that the default service limit is 1 and start the GSCs accordingly (or change the default which is not recommended).</p>
-            </li>
-            <li>
-                <p>Deploy the applications manually.</p>
-            </li>
-            <li>
-                <p>Run your tests to validate behaviour.</p>
-            </li>
-            <li>
-                <p>Move to use xap-manager instead of the deprecated gs-agent script, if you did not use xap-manager previously - see <a href="../admin/xap-manager.html">Manager Doc.</a></p>
-            </li>
-            <li>
-                <p>Fix scripts to use the new CLI or new Rest API.</p>
-            </li>
-            <li>
-                <p>Add new features to improve performance and reduce memory footprint and monitoring.</p>
-            </li>
-            <li>
-                <p>Retest and validate behaviour.</p>
-            </li>
-        </ol>
-        <h1>Hot Upgrade Overview</h1>
-        <p>Hot Upgrade is required in order to perform changes without downtime, allowing the application users to keep working,</p>
-        <p>If there is no change in replication mechanism. GigaSpaces version hot upgrade is possible.</p>
-        <p>In order to upgrade to a new <MadCap:variable name="General.ProductNameIE" />version without downtime, we have to allow a cluster with both new and old version to run simultaneously.</p>
-        <p>The hot upgrade feature is guaranteed only in the case of upgrading from the same major version, (e.g upgrade from 16.3 to 16.3.1 )</p>
-        <p>It is not guaranteed in case of different major versions.</p>
-        <p>For more information: <a href="hot-upgrade.html">Hot Upgrade</a></p>
     </body>
 </html>
