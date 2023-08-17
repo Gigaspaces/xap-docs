@@ -60,18 +60,22 @@
         <div>
             <h1>Flush Redolog to Disk Upon System Shutdown</h1>
             <div class="tc-admon-note">
-                <p>This is only relevant when the redolog swap type is sqlite.</p>
+                <p>This is only relevant when the redolog swap type is SQLite.</p>
             </div>
-            <p>Part of the redo log is stored in memory. If the log is larger than memory capacity then it also gets saved to disk.   If the database goes down the redo log keeps growing and part of it is stored in memory. However, If entire system shuts down then everything in memory is lost. Therefore, there is now an option to save all to disk so that is can all be recovered. These are system parameters are required to set it:</p>
-            <p><code>com.gs.redolog.flush.notify.class class that implements RedologFlushNotifier</code>
-            </p>
-            <p><code>void notifyOnFlush(String fullSpaceName, String spaceName, long redolosize, Path redologPath  );</code>
-            </p>
-            <h3>Shutdown Parameters</h3>
+            <p>When a Space needs to be undeployed or when there is a system shutdown while the redolog is <b>not</b> empty, the system will try to replicate to the targets. However, if the target is not available, or after timeout, the system will continue in shutdown.</p>
+            <p>In order to avoid loss of data, an option has been added to flush the memory portion onto the disk and also notify the application that the Space was shutdown with redolog.</p>
+            <p>In order to enable this feature <code>com.gs.redolog.flush.on.shutdown</code> should be set to true</p>
+            <h2>Implement Notification Interface</h2>
+            <p><code>com.gigaspaces.utils.RedologFlushNotifier</code> - in this method you will get the fullspacename including container, Space name, the redolog size, and the path to where this redolog is stored. This will enable the file to be saved to a safe place in order to use it to recover from if required. </p>
+            <p>After implementing the interface <code>set:com.gs.redolog.flush.notify.class</code> with the related class name, and place the jar containing it under <i>gs-home/platform/ext</i></p>
+            <h2>Shutdown Hook Timeout</h2>
+            <p>In order to allow enough time for shutdown to perform the above actions, the shutdown hook timeout should be increased. The default is 10 seconds. The parameter to be updated is <code>com.gs.shutdownhook.timeout</code> (defined in seconds).</p>
+            <h3>Example </h3>
+            <p>A full example, including recovery steps can be found here in <a href="https://github.com/GigaSpaces-ProfessionalServices/xap-persist-training/tree/37c8a[…]f42058910c2ea034a010ba6f6105c/xap-persist-training-lab9-redolog">Git</a>. </p>
             <p>Shutdown will be called in the case of undeploy. In the case of GSC termination or an explicit agent shutdown, it will be triggered by the shutdown hook.</p>
             <p><code>com.gs.redolog.flush.on.shutdown</code> should be set to true to flush the redolog to disk.</p>
             <p><code>com.gs.shutdownhook.timeout</code> - the default is set to 10 seconds. &#160;This can be increased to allow the shutdown process enough time to perform the flush.</p>
-            <h3>BigDecimal</h3>
+            <h1>BigDecimal</h1>
             <p><code>com.gs.strip-trailing-zeros</code> </p>
             <p>By default this is set to true which means the trailing zeros of big decimals are being dropped. &#160;To change this, it needs to be set explicitly to false in both the client and server.</p>
         </div>
