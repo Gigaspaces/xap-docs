@@ -98,7 +98,8 @@ image.tag=latest
 </code></pre>
             </div>
         </div>
-        <div MadCap:conditions="Version.16-3-born"><pre><code class="language-bash">helm install custom-pu gigaspaces/xap-pu --set instances=1,partitions=0,resourceUrl=pu.jar,image.repository=my-pu-stateless,image.tag=latest</code></pre>
+        <div><pre><code class="language-bash">helm install custom-pu gigaspaces/xap-pu --set instances=1,partitions=0,resourceUrl=pu.jar,image.repository=my-pu-stateless,image.tag=latest<![CDATA[					
+]]></code></pre>
         </div>
         <p>Enter the command <code>kubectl get pods</code> to see the result:</p><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
 ]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b>
