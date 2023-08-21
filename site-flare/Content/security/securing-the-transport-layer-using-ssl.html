@@ -111,6 +111,7 @@ However, when you wish to run this code with SSL encryption, you should run it w
         </div>
         <p>It is also possible to select the encryption protocol (<code>TLSv1.1</code>, <code>TLSv1.2</code> etc) by setting the <code>com.gs.lrmi.filter.security.protocol</code> system property to the required protocol.
 In case this property is not set <MadCap:variable name="General.ProductNameXAP" /> will use the generic <code>TLS</code> protocol.</p>
+        <p>This is also true for Java 8 version 8u261 +.</p>
         <div class="tc-admon-tip">
             <p>In your production environment, you should have the SSLFilterFactory password (or any other secured user access information) protected by passing its value at the deploy time into the pu.xml (where the actual property using a variable) or at the start-up time as an argument to a wrapper script starting the GigaSpaces agent and not place such secured data on file.</p>
         </div>
