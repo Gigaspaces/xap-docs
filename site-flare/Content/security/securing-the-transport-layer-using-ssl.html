@@ -97,11 +97,18 @@ However, when you wish to run this code with SSL encryption, you should run it w
 -Dcom.gs.lrmi.filter.security.password=password
 </code></pre>
         <div class="tc-admon-note">
+            <p>Regarding <code class="language-bash">com.gigaspaces.lrmi.nio.filters.</code><b>SSLFilterFactory</b> - It is possible to implement your own filter and indicate the class name here. See information regarding TLS 1.3 <a href="#choosing-the-encryption-protocol">below</a>.</p>
+        </div>
+        <div class="tc-admon-note">
             <p>You can find an example of using <code>SSLFilterFactory</code> with self signed certs <a href="/sbp/ssl-self-signed-cert-example.html">here</a>.</p>
         </div>
         <p>Alternatively if you do not need authentication and just wish to encrypt the data you can omit the key store and the password and the server will generate the SSL keys on the fly.</p><pre><code class="language-bash">-Dcom.gs.lrmi.filter.factory=com.gigaspaces.lrmi.nio.filters.SSLFilterFactory
 </code></pre>
         <h1><a name="choosing-the-encryption-protocol"></a>Choosing the Encryption Protocol</h1>
+        <p>Support for TLS 1.3 was added in Java 11. </p>
+        <div class="tc-admon-attention">
+            <p>TLS 1.3 is not directly compatible with previous TLS versions, and is currently not supported in the <MadCap:variable name="General.ProductNameIEP" /> or the <MadCap:variable name="General.ProductNameXAP" /> data grid. When configuring TLS usage for GigaSpaces products using the <code>com.gs.lrmi.filter.security.protocol </code>system property, the default is to choose the latest TLS available. In Java 11 this is TLS&#160;1.3  and it will fail. To prevent this from happening, explicitly specify the requested TLS version, such as “TLSv1.2”. For example, instead of: <code>-Dcom.gs.lrmi.filter.security.protocol=TLS</code>, specify <code>-Dcom.gs.lrmi.filter.security.protocol=TLSv1.2</code>.</p>
+        </div>
         <p>It is also possible to select the encryption protocol (<code>TLSv1.1</code>, <code>TLSv1.2</code> etc) by setting the <code>com.gs.lrmi.filter.security.protocol</code> system property to the required protocol.
 In case this property is not set <MadCap:variable name="General.ProductNameXAP" /> will use the generic <code>TLS</code> protocol.</p>
         <div class="tc-admon-tip">
