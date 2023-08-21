@@ -57,21 +57,12 @@
                 </li>
             </ol>
         </div>
-        <div MadCap:conditions="Version.16-4-born" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
-            <h1>Flush Redolog to Disk Upon System Shutdown</h1>
+        <div>
+            <h1>Flush Redo log to Disk Upon System Shutdown</h1>
             <div class="tc-admon-note">
-                <p>This is only relevant when the redolog swap type is SQLite.</p>
+                <p>This is only relevant when the redo log swap type is SQLite.</p>
             </div>
-            <p>When a Space needs to be undeployed or when there is a system shutdown while the redolog is <b>not</b> empty, the system will try to replicate to the targets. However, if the target is not available, or after timeout, the system will continue in shutdown.</p>
-            <p>In order to avoid loss of data, an option has been added to flush the memory portion onto the disk and also notify the application that the Space was shutdown with redolog.</p>
-            <p>In order to enable this feature <code>com.gs.redolog.flush.on.shutdown</code> should be set to true</p>
-            <h2>Implement Notification Interface</h2>
-            <p><code>com.gigaspaces.utils.RedologFlushNotifier</code> - in this method you will get the fullspacename including container, Space name, the redolog size, and the path to where this redolog is stored. This will enable the file to be saved to a safe place in order to use it to recover from if required. </p>
-            <p>After implementing the interface <code>set:com.gs.redolog.flush.notify.class</code> with the related class name, and place the jar containing it under <i>gs-home/platform/ext</i></p>
-            <h2>Shutdown Hook Timeout</h2>
-            <p>In order to allow enough time for shutdown to perform the above actions, the shutdown hook timeout should be increased. The default is 10 seconds. The parameter to be updated is <code>com.gs.shutdownhook.timeout</code> (defined in seconds).</p>
-            <h3>Example </h3>
-            <p>A full example, including recovery steps can be found here in <a href="https://github.com/GigaSpaces-ProfessionalServices/xap-persist-training/tree/37c8a[…]f42058910c2ea034a010ba6f6105c/xap-persist-training-lab9-redolog">Git</a>. </p>
+            <p>For more information, see <MadCap:xref href="../admin/flush-redolog-to-disk.htm" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">Flush Redo Log to Disk</MadCap:xref></p>
             <h1>BigDecimal</h1>
             <p><code>com.gs.strip-trailing-zeros</code> </p>
             <p>By default this is set to true which means the trailing zeros of big decimals are being dropped. &#160;To change this, it needs to be set explicitly to false in both the client and server.</p>

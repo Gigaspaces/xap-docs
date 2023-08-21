@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1 class="tc-pagetitle">Flush Redo Log to Disk</h1>
+        <div class="tc-admon-note">
+            <p>This is only relevant when the redo log swap type is SQLite.</p>
+        </div>
+        <div MadCap:conditions="Version.16-2-1-born">
+            <h1>Upon Forced Shutdown</h1>
+            <p>If the database is offline or you notice that you memory allocation is nearing its limit, you can force a shutdown.</p>
+            <p>The instructions on how to achieve this can be found in this <a href="https://github.com/GigaSpaces-ProfessionalServices/xap-persist-training/blob/updates_v15/xap-persist-training-lab9-redolog/redolog-client/src/main/java/com/gs/FlushRedoLogTask.java">Git</a>.</p>
+        </div>
+        <div>
+            <h1>Upon System Shutdown</h1>
+            <p>When a Space needs to be undeployed or when there is a system shutdown while the redo log is <b>not</b> empty, the system will try to replicate to the targets. However, if the target is not available, or after timeout, the system will continue in shutdown.</p>
+            <p>In order to avoid loss of data, an option has been added to flush the memory portion onto the disk and also notify the application that the Space was shutdown with redo log.</p>
+            <p>In order to enable this feature <code>com.gs.redolog.flush.on.shutdown</code> should be set to true</p>
+            <h2>Implement Notification Interface</h2>
+            <p><code>com.gigaspaces.utils.RedologFlushNotifier</code> - in this method you will get the fullspacename including container, Space name, the redo log size, and the path to where this redo log is stored. This will enable the file to be saved to a safe place in order to use it to recover from if required. </p>
+            <p>After implementing the interface <code>set:com.gs.redolog.flush.notify.class</code> with the related class name, and place the jar containing it under <i>gs-home/platform/ext</i></p>
+            <h2>Shutdown Hook Timeout</h2>
+            <p>In order to allow enough time for shutdown to perform the above actions, the shutdown hook timeout should be increased. The default is 10 seconds. The parameter to be updated is <code>com.gs.shutdownhook.timeout</code> (defined in seconds).</p>
+            <h3>Example </h3>
+            <p>A full example, including recovery steps can be found here in <a href="https://github.com/GigaSpaces-ProfessionalServices/xap-persist-training/tree/37c8a[…]f42058910c2ea034a010ba6f6105c/xap-persist-training-lab9-redolog">Git</a>. </p>
+        </div>
+    </body>
+</html>
