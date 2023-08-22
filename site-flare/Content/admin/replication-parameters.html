@@ -61,7 +61,12 @@
                 </tr>
                 <tr MadCap:conditions="">
                     <td align="left">com.gs.redolog.flush.on.shutdown</td>
-                    <td align="left">This is only relevant when the redo log storage type is <code>sqlite</code>. It enables. In order to avoid loss of data, an option has been added to flush the memory portion onto the disk and also notify the application that the Space was shutdown with redo log.</td>
+                    <td align="left">This is only relevant when the redo log storage type is <code>sqlite</code>.  In order to avoid loss of data, an option has been added to flush the memory portion onto the disk and also notify the application that the Space was shutdown with redo log.</td>
+                    <td align="left">false</td>
+                </tr>
+                <tr MadCap:conditions="">
+                    <td align="left">com.gs.redolog.flush.notify.class</td>
+                    <td align="left">This is only relevant when the redo log storage type is <code>sqlite</code> and <code>com.gs.redolog.flush.on.shutdown</code> is set to true. This specifies a class implementing <code>com.gigaspaces.utils.RedologFlushNotifier</code> to receive notification when there is a Space instance shutdown with a Redo Log that is not empty.</td>
                     <td align="left">false</td>
                 </tr>
             </tbody>

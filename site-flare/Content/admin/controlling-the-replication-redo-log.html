@@ -12,6 +12,11 @@
         </div>
         <p>A replication packet is either a single non-transactional "destructive" (write/take/update) operation, or a group of these operations that are done under the same transaction. The redo log contains a single list that is kept for all the targets, and for each target a different state is maintained, which represents its position in the redo log. When the cluster is in a normal state, this redo log should remain at some low constant size. However, in certain common scenarios, such as a momentary network disconnection or a burst of high load, the redo log keeps all the pending events that need to be replicated until the source member manages to re-establish connection with the target, or until the replication target manages to catch up with the temporary load. As a result, the redo log size increases and can become quite large, depending on the different cluster usage, which affects the rate of creating replicated events.</p>
         <h1><a name="configuring-the-redo-log-capacity"></a>Format of the Redo Log</h1>
+        <p>The redo log per target can be limited to in-memory only or both in-memory and disk according to how it is configured.</p>
+        <p>If the redo log grows beyond the configured redo log memory capacity limit, the following formats can be used.</p>
+        <div class="tc-admon-note">
+            <p>Naturally, writing the redo log to the file-system has a performance impact. Therefore, it is recommended to configure the redo log to save to disk only for targets that cannot fully recover from the Space as mirror targets, and to use the appropriate disk.</p>
+        </div>
         <p>
             <MadCap:xref href="replication-parameters.html#Optional_values:_byte-buffer,_sqlite." class="two-options-are-available">Two options are available</MadCap:xref> for the format of the redo log: </p>
         <ul>
