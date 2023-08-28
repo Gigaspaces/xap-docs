@@ -95,6 +95,9 @@ Connecting the data grid through JDBC is done using a connection string as shown
             </p>
             <h2>Embedding the Query Processor Within the Application</h2>
             <p>Query processing can either be done at the server side or at the client side. By default it is done on the server. To override the default behavior and run embedded within the application process (client side), set the following property when acquiring the connection. It is also possible to set the same property as a System property.</p>
+            <div class="tc-admon-important">
+                <p>It is recommended to use embedded QP true. This will mean that the cache for the execution plan will be saved in the client side and required joins will be performed there. It is important to allocate sufficient resources to enable this.</p>
+            </div>
             <h3>Acquire a Connection Using V3 and Enabling Embedded Query processing:</h3>
             <p><code>Properties props = new Properties();</code>
             </p>
@@ -128,6 +131,11 @@ Connecting the data grid through JDBC is done using a connection string as shown
             </p>
             <p><code>com.gs.jdbc.v3.support.collocated_filter  = true</code>
             </p>
+            <h2>Fine Turning (from 16.3 - check with Ester)</h2>
+            <h3>Explain Analyze For</h3>
+            <p>It is recommended to use prepared statements and to check the analyzed output in order to verify the expected execution time. &#160;When multiple joins are used, the optimization phase might take a long time. This is mitigated by using a prepared statement, which will ensure that the plan is only calculated for the first run and then cached.</p>
+            <p><code>com.gs.jdbc.v3.queryCache.expiration_time_minutes</code> - How long to keep in cache</p>
+            <p><code>com.gs.queryCache.cacheSize</code> - how many  are cached</p>
             <h2>Table Names</h2>
             <p>Table names are equivalent to the full class names of the data model in the Space. The class name should also be enclosed by quotation marks like in the following example:</p>
             <p><code>SELECT * FROM “com.mycompany.model.MyData”</code>
