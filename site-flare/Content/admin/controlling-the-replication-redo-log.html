@@ -24,14 +24,14 @@
                 <p><code>byte-buffer</code> is the default format and consists of data in a binary format. </p>
             </li>
             <li>
-                <p><code>sqlite</code> format writes the redo log data into a SQLite database located in the work directory. </p>
+                <p><code>SQLite</code> format writes the redo log data into a SQLite database located in the work directory. </p>
             </li>
         </ul>
-        <p>The <code>sqlite</code> format allows the user to browse through the redo log data using a <a href="https://sqlitebrowser.org/">SQLite JDBC viewer.</a></p>
+        <p>The <code>SQLite</code> format allows the user to browse through the redo log data using a <a href="https://sqlitebrowser.org/">SQLite JDBC viewer.</a></p>
         <p>
             <img src="../Resources/Static/images/redo-log-sqlite.png" style="width: 1043px;height: 535px;" />
         </p>
-        <p>If the redo type is SQLite, then there is an option to <MadCap:xref href="flush-redolog-to-disk.htm">Flush Redo Log to Disk</MadCap:xref>.</p>
+        <p MadCap:conditions="Version.16-2-1-born">If the redo type is SQLite, then there is an option to <MadCap:xref href="flush-redolog-to-disk.htm">Flush Redo Log to Disk</MadCap:xref>.</p>
         <h1><a name="configuring-the-redo-log-capacity"></a>Configuring the Redo Log Capacity</h1>
         <div class="tc-admon-note">
             <p>The configuration parameters described in this topic have a significant effect on the behavior of the replication mechanism and the overall and performance of the Space cluster. You should carefully evaluate every change you make to their default values, and consult the GigaSpaces support team if needed.</p>

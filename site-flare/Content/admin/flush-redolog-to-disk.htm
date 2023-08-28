@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Version.16-2-1-born">
     <head>
     </head>
     <body>
@@ -13,7 +13,7 @@
             <p>com.gigaspaces.utils.RedologFlushNotifier - Using this method the full Space name will be included.</p>
             <p>The instructions on how to achieve this can be found in this <a href="https://github.com/GigaSpaces-ProfessionalServices/xap-persist-training/blob/updates_v15/xap-persist-training-lab9-redolog/redolog-client/src/main/java/com/gs/FlushRedoLogTask.java">Git</a>.</p>
         </div>
-        <div>
+        <div MadCap:conditions="Version.16-4-born">
             <h1>Upon System Shutdown</h1>
             <p>When a Space needs to be undeployed or when there is a system shutdown while the redo log is <b>not</b> empty, the system will try to replicate to the targets. However, if the target is not available, or after timeout, the system will continue in shutdown.</p>
             <p>In order to avoid loss of data, an option has been added to flush the memory portion onto the disk.</p>
