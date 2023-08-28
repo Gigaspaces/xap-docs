@@ -98,7 +98,7 @@ fi
 </code></pre>
             <p>Perform a Docker build operation, in the directory that has <code>Dockerfile </code>and the <code>jar </code>file. This will create a Docker image.</p><pre><code class="language-bash"> docker build -t my-pu-stateless .</code></pre>
             <div class="tc-admon-note">
-                <p>You might need to push the image to a remote docker registry if your cluster cannot access the local one</p>
+                <p>You might need to push the image to a remote docker registry if your cluster cannot access the local one. If you do create a remote docker registry you will need to add the name to the command to deploy the Docker image (e.g., update what is in bold: pu-jar-image.repository=<b>my-pu-stateless</b>)</p>
             </div>
             <p>Deploy the Docker image in GigaSpaces.</p>
             <div MadCap:conditions="Version.16-3-died"><pre><code class="language-bash">					
