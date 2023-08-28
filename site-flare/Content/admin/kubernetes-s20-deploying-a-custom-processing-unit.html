@@ -22,6 +22,18 @@
                 <p>Maven 3.2.5 or higher</p>
             </li>
             <li>
+                <p>Docker</p>
+            </li>
+            <li>
+                <p>Docker image repository</p>
+            </li>
+            <li>
+                <p>kubectl installed and connected to the DIH&#160;Kubernetes cluster</p>
+            </li>
+            <li>
+                <p>Helm</p>
+            </li>
+            <li>
                 <p>GigaSpaces <MadCap:xref href="../started/installation.html" class="unzipped-and-installed">unzipped and installed</MadCap:xref></p>
             </li>
         </ul>
@@ -57,7 +69,7 @@
 mvn clean install -DskipTests
 </code></pre>
             <h1>Create a Docker Image</h1>
-            <p>Copy the created jar file from the <code>target </code>folder to the local folder.</p>
+            <p MadCap:conditions="Default.DoNotShow">Copy the created jar file from the <code>target </code>folder to the local folder.</p>
             <p>Create a docker file named <code>Dockerfile</code>, with the following content:</p><pre MadCap:conditions="Version.16-3-died"><code class="language-bash">
 FROM gigaspaces/xap-enterprise:<MadCap:variable name="Versions.product-version-long" />
 ADD target/my-pu-stateless-0.1.jar /opt/gigaspaces/bin/pu.jar
@@ -84,10 +96,10 @@ fi
 
 /opt/gigaspaces/bin/gs.sh $*
 </code></pre>
-            <p>Perform a Docker build operation, in the directory that has <code>Dockerfile </code>and the <code>jar </code>file. This will create a Docker image.</p>
+            <p>Perform a Docker build operation, in the directory that has <code>Dockerfile </code>and the <code>jar </code>file. This will create a Docker image.</p><pre><code class="language-bash"> docker build -t my-pu-stateless .</code></pre>
             <div class="tc-admon-note">
                 <p>You might need to push the image to a remote docker registry if your cluster cannot access the local one</p>
-            </div><pre><code class="language-bash"> docker build -t my-pu-stateless .</code></pre>
+            </div>
             <p>Deploy the Docker image in GigaSpaces.</p>
             <div MadCap:conditions="Version.16-3-died"><pre><code class="language-bash">					
 helm install custom-pu ./xap-pu/ --set manager.name=xap,
