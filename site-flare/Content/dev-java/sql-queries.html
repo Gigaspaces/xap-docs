@@ -126,22 +126,23 @@ Connecting the data grid through JDBC is done using a connection string as shown
             <p>Property:</p>
             <p><code>com.gs.jdbc.v3.support.explain_plan = true</code>
             </p>
-            <h3>Support for Collocated JOIN</h3>
-            <p><code>com.gs.jdbc.v3.support.collocated_join  = true</code>
-            </p>
-            <p><code>com.gs.jdbc.v3.support.collocated_filter  = true</code>
-            </p>
-            <h2>Fine Turning (from 16.3 - check with Ester)</h2>
-            <h3>Explain Analyze For</h3>
-            <p>It is recommended to use prepared statements and to check the analyzed output in order to verify the expected execution time. &#160;When multiple joins are used, the optimization phase might take a long time. This is mitigated by using a prepared statement, which will ensure that the plan is only calculated for the first run and then cached.</p>
-            <p><code>com.gs.jdbc.v3.queryCache.expiration_time_minutes</code> - How long to keep in cache</p>
-            <p><code>com.gs.queryCache.cacheSize</code> - how many  are cached</p>
+            <div MadCap:conditions="Default.DoNotShow">
+                <h3>Support for Collocated JOIN</h3>
+                <p><code>com.gs.jdbc.v3.support.collocated_join  = true</code>
+                </p>
+                <p><code>com.gs.jdbc.v3.support.collocated_filter  = true</code>
+                </p>
+            </div>
             <h2>Table Names</h2>
             <p>Table names are equivalent to the full class names of the data model in the Space. The class name should also be enclosed by quotation marks like in the following example:</p>
             <p><code>SELECT * FROM “com.mycompany.model.MyData”</code>
             </p>
             <h2><a name="Query"></a>Query Analysis</h2>
             <p>Use<code> EXPLAIN PLAN FOR SELECT …</code> to give us a better understanding of why a specific query fails. The physical plan of the query is written to the log under the name <code>com.gigaspaces.jdbc.v3</code> and will assist us in troubleshooting failures.</p>
+            <h3>Explain Analyze For</h3>
+            <p>It is recommended to use prepared statements and to check the analyzed output in order to verify the expected execution time. &#160;When multiple joins are used, the optimization phase might take a long time. This is mitigated by using a prepared statement, which will ensure that the plan is only calculated for the first run and then cached.</p>
+            <p><code>com.gs.jdbc.v3.queryCache.expiration_time_minutes</code> - How long to keep in cache</p>
+            <p><code>com.gs.queryCache.cacheSize</code> - how many  are cached</p>
             <h2>Simple Query Example</h2>
             <p><code>Properties props = new Properties();
 <br />props.put("com.gs.embeddedQP.enabled", "true");
