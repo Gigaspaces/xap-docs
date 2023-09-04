@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>IIDR&#160;Source&#160;Database Agent</td>
+                        <td>CDC (IIIDR)&#160;Source&#160;Database Agent</td>
                         <td>Captures the changes from the source System of Records. For example Oracle,&#160;DB2, MSSQL.</td>
                         <td>
                             <p>IIDR Source database agent is a java application that usually installed on a source database server.
@@ -136,25 +136,38 @@ IIDR publishes changes to the Kafka topic and theDI Processor (Flink job) consum
                 <img src="../Resources/Images/DI-Data-Flow.png" />
             </p>
             <h2>DI&#160;Subscription&#160;Manager</h2>
+            <p>DI Subscription Manager is a web service that exposes a set of APIs on a port. Its unified API has control over CDC components. Only CDC components are in direct contact with the SoR. </p>
+            <p>&#160;</p>
             <p style="text-align: center;">
                 <img src="../Resources/Images/DI-sub-mgr.png" style="width: 372px;height: 397px;" />
             </p>
             <p>&#160;</p>
-            <p>DI Subscription Manager is a web service that exposes a set of APIs on a port.</p>
-            <p>DI Subscription Manager is a microservice that is responsible for providing the following services:</p>
-            <p>1. Unified API that controls various  CDC engines to implement the GigaSpaces pluggable connector vision.</p>
+            <p>DI Subscription Manager is a micro-service that is responsible for providing the following functionality:</p>
+            <p>1. Unified API that controls various  CDC engines to implement the GigaSpaces pluggable connector vision. &#160;It creates and updates IIDR entities.</p>
             <ul>
                 <li>
-                    <p>Defines CDC flows and entities</p>
+                    <p>Defines CDC flows and entities.&#160;Defines a new subscription.</p>
                 </li>
                 <li>
-                    <p>Start / Stop CDC subscription or stream</p>
+                    <p>Start / Stop  subscription data flow via IIDR</p>
                 </li>
                 <li>
-                    <p>Monitors CDC components</p>
+                    <p>Monitors the status of the IIDR components</p>
                 </li>
             </ul>
             <p>2. Unified method to extract data dictionary from various sources, such as the CDC engine , source database , schema registry or enterprise data catalog and populate the DI data dictionary internal repository (MDM)</p>
+            <p>3. Data dictionary extraction from the IIDR.</p>
+            <ul>
+                <li>
+                    <p>Significantly simplifies DI&#160;operations</p>
+                </li>
+                <li>
+                    <p>Only IIDR&#160;components connect to the source database</p>
+                </li>
+                <li>
+                    <p>There is a unified data dictionary extraction, regardless of the source database type</p>
+                </li>
+            </ul>
         </div>
     </body>
 </html>

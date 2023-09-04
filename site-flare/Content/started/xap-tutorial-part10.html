@@ -144,6 +144,9 @@ Note that the monitoring is secured only by the "tooling' (CLI/UI).</p>
         <div class="tc-admon-attention">
             <p>This security feature is only available with the commercial (licensed) editions.</p>
         </div>
+        <div class="tc-admon-note">
+            <p>FSM based security, is NOT the default security in Service Grid orchestration. &#160;The default is <a href="../security/spring-security-bridge.html">spring based security</a>.</p>
+        </div>
         <p>You can create new roles and users with a configuration file or with the Admin UI. Here is an example how you use the Admin UI to create/update roles. Lets create a role called "training" that can access and interact with our xapTutorialSpace, but does not have monitoring authority.
 Start the Admin UI:</p><pre><code class="language-bash">GS_HOME\bin\gs-ui.sh
 </code></pre>
@@ -189,6 +192,9 @@ Start the Admin UI:</p><pre><code class="language-bash">GS_HOME\bin\gs-ui.sh
         <h1><a name="managing-users"></a>Managing Users and Roles - File Based Security (GS-UI)</h1>
         <div class="tc-admon-attention">
             <p>This security feature is only available with the commercial (licensed) editions.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>File based security, is NOT the default security in Service Grid orchestration. &#160;The default is <a href="../security/spring-security-bridge.html">spring based security</a>.</p>
         </div>
         <p>A user is assigned roles. You can create new roles and users with a configuration file or with the Admin UI. Here is an example how you use the Admin UI to create/update users. Lets create a user called student and assign the role training we have just created in the step above. A user can have multiple roles.</p>
         <table class="tc-borderless">
