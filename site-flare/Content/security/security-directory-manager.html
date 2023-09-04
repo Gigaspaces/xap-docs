@@ -3,7 +3,7 @@
     <head>
     </head>
     <body>
-        <h1>Directory Management</h1>
+        <h1>Directory Management:&#160;File Based Security</h1>
         <p>The users <code>UserDetails</code> are to be stored in some kind of storage. Usually this storage provides tooling for managing the user data. The <code>SecurityManager.authenticate(UserDetails userDetails)</code> method tries to authenticate the user by accessing this storage, populating the <code>Authentication</code> result with the user authorities. This is specific to how the user's details and authority privileges are stored.</p>
         <p><MadCap:variable name="General.ProductNameXAP" /> provides an abstraction (<code>DirectoryManager</code>) which may be used to ease implementation. However, this is *<span class="tc-bold">not mandatory</span> and is up to the implementor of the <code>SecurityManager</code> to decide.</p>
         <h2><a name="directory-manager-interface"></a>Directory Manager interface</h2>

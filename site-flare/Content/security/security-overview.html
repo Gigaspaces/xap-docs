@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Security Overview</h1>
+        <p>For both Service Grid and Kubernetes Orchestration, Security is made up of <span class="tc-italic">Authentication</span> and <span class="tc-italic">Authorization</span>. Security provides comprehensive support for securing your data and services.</p>
+        <h2><a name="authentication"></a>Authentication</h2>
+        <p>Authentication is the process of establishing and confirming the authenticity of a principal. A principal in GigaSpaces terms, means a user (human or software) performing an action in your application. A principal in <MadCap:variable name="General.DataGrid" /> terms means a user (human or software) performing an action in your application. <MadCap:variable name="General.DataGridInitCap" /> Security is equipped with standard encryption algorithms (such as AES and MD5), which can be easily configured and replaced. The authentication layer is provided with a default implementation, which can be customized to integrate with other security standards. This layer is also known as the authentication manager. You can integrated the authentication layer through Spring Security to use LDAP or Data Base authentication.</p>
+        <h2><a name="authorization"></a>Authorization</h2>
+        <p>Authorization refers to the process of deciding whether a principal is allowed to perform a certain action. The authorization decision layer is totally independent from the authentication layer. The authorization decision manager is internal to <MadCap:variable name="General.DataGrid" /> components and is used to intercept unauthorized access/operations to data and services. This layer uses roles that are made up of authorities which contain a set of permissions.</p>
+        <h1><a name="role-based-security"></a>Role-Based Security</h1>
+        <p><MadCap:variable name="General.DataGridInitCap" />'s authorization implementation is based on roles. A role is comprised of a collection of <span class="tc-italic">authorities</span> where an authority has a set of <span class="tc-italic">permissions</span>. </p>
+        <p MadCap:conditions="Version.16-3-died">There are four categories of user authorities; System, Grid, Space and Monitoring.</p>
+        <p MadCap:conditions="Version.16-4-born">There are six categories of user authorities; System, Grid, Space and Monitoring.</p>
+        <h2><a name="system-authority"></a>System Authority</h2>
+        <p>The System Authority defines the distinction between a user who is allowed to define roles and a user which is only allowed to assign user's to predefined roles.
+In general, one can have both management capabilities, but in some organizations this separation may be required.:</p>
+        <table>
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th style="text-align: left;">Privilege</th>
+                    <th style="text-align: left;">Description</th>
+                    <th style="text-align: left;">Orchestration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Manage Roles</td>
+                    <td>Define roles (a set of privileges assigned to a logical role name).</td>
+                    <td>Service Grid, Kubernetes</td>
+                </tr>
+                <tr>
+                    <td>Manage Users</td>
+                    <td>Assign users to predefined roles, or assign user-specific privileges.</td>
+                    <td>Service Grid, Kubernetes</td>
+                </tr>
+                <tr MadCap:conditions="Version.16-4-born">
+                    <td>Manage Identity Providers</td>
+                    <td>Allows users to create Identity Provider (IDP) settings and to view the current as well as historical IDP settings.</td>
+                    <td>Kubernetes</td>
+                </tr>
+                <tr MadCap:conditions="Version.16-4-born">
+                    <td>Manage Root User Details</td>
+                    <td>Manages root user details.</td>
+                    <td>Kubernetes</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="grid-authority"></a>Grid Authority</h2>
+        <p>The Grid Authority consists of privileges for managing the Grid and its Services (cluster components).</p>
+        <table>
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th>Privilege</th>
+                    <th style="text-align: left;">Description</th>
+                    <th style="text-align: left;">Orchestration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Provision PU</td>
+                    <td>Deploy, Un-deploy of processing units.</td>
+                    <td>Service Grid</td>
+                </tr>
+                <tr>
+                    <td>Manage PU</td>
+                    <td>Scale up/down, Relocate, Restart PU instance, Destroy PU instance.</td>
+                    <td>Service Grid</td>
+                </tr>
+                <tr>
+                    <td>Manage Grid</td>
+                    <td>Start, Terminate, Restart of all cluster components.</td>
+                    <td>Service Grid</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="space-authority"></a>Space Authority</h2>
+        <p>The Space Authority consists of privileges for operations on space data.</p>
+        <table>
+            <col MadCap:conditions="" style="width: 202px;" />
+            <col style="width: 598px;" />
+            <col style="width: 415px;" />
+            <col />
+            <thead>
+                <tr>
+                    <th>Privilege</th>
+                    <th style="text-align: left;">Description</th>
+                    <th style="text-align: left;">Description V3 Driver</th>
+                    <th>Orchestration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Write</td>
+                    <td>Write and Update operations.</td>
+                    <td>
+                        <p>Insert into Employee (id, name) value (1, 'First');</p>
+                    </td>
+                    <td>
+                        <p>Service Grid, </p>
+                        <p>Kubernetes</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Create</td>
+                    <td>Write only (no Update) operations.</td>
+                    <td>&#160;</td>
+                    <td>
+                        <p>Service Grid, </p>
+                        <p>Kubernetes</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Read</td>
+                    <td>Read, Count and Notify operations.</td>
+                    <td>
+                        <p>select * from Employee;</p>
+                        <p>Read + Write: update Employee set name = 'new name';</p>
+                        <p>Read +&#160;Take: delete from Employee;</p>
+                    </td>
+                    <td>
+                        <p>Service Grid, </p>
+                        <p>Kubernetes</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Take</td>
+                    <td>Take and Clear operations.</td>
+                    <td>&#160;</td>
+                    <td>
+                        <p>Service Grid, </p>
+                        <p>Kubernetes</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Alter</td>
+                    <td>Register type descriptor, Clean and Drop-Class operations.</td>
+                    <td>
+                        <p>CREATE&#160;TABLE Employee (id INT4, name VARCHAR (32), primary key (id));</p>
+                        <p>DROP&#160;TABLE&#160;Employee;</p>
+                    </td>
+                    <td>
+                        <p>Service Grid, </p>
+                        <p>Kubernetes</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Execute</td>
+                    <td>Execute tasks.</td>
+                    <td>&#160;</td>
+                    <td>
+                        <p>Service Grid, </p>
+                        <p>Kubernetes</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><a name="monitoring-authority"></a>Monitoring Authority</h2>
+        <p>The Monitor Authority consists of privileges for monitoring the Grid and its Processing Units.
+Note that the monitoring is secured only by the "tooling' (CLI/UI).</p>
+        <table>
+            <col style="width: 198px;" />
+            <col style="width: 1020px;" />
+            <col />
+            <thead>
+                <tr>
+                    <th>Privilege</th>
+                    <th style="text-align: left;">Description</th>
+                    <th>Orchestration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Monitor JVM</td>
+                    <td>Monitoring of JVM statistics. Capable of generating a dump of JVM.</td>
+                    <td>Service Grid, Kubernetes</td>
+                </tr>
+                <tr>
+                    <td>Monitor PU</td>
+                    <td>Monitoring of Processing Units (classes, connections, statistics, etc.).</td>
+                    <td>Service Grid, Kubernetes</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="tc-admon-note">
+            <p>For more information about role-based security, see the <a href="security-authorities.html">Authorities and Privileges</a> page in the Security section of the Administration guide.</p>
+        </div>
+        <div MadCap:conditions="Version.16-4-born">
+            <h2><a name="Pipeline"></a>Pipeline Authority</h2>
+            <table>
+                <col style="width: 196px;" />
+                <col style="width: 1027px;" />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Privilege</th>
+                        <th style="text-align: left;">Description</th>
+                        <th style="text-align: left;">Orchestration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Create</td>
+                        <td>Allows the creation of a pipeline using a predefined data source.</td>
+                        <td>Smart DIH&#160;Kubernetes</td>
+                    </tr>
+                    <tr>
+                        <td>Edit</td>
+                        <td>This is included as a mandatory extra for the Create privilege. It allows the management of data source tables when creating a pipeline. It can also be assigned independently in the case where it is required to enable table editing for the existing pipelines.</td>
+                        <td>Smart DIH&#160;Kubernetes</td>
+                    </tr>
+                    <tr>
+                        <td>Start_Stop</td>
+                        <td>Allows the stopping or starting of any of the existing pipelines.</td>
+                        <td>Smart DIH&#160;Kubernetes</td>
+                    </tr>
+                    <tr>
+                        <td>Delete</td>
+                        <td>Allows the deletion of any stopped pipelines. If a pipeline is in an active state it cannot be deleted unless it has first been stopped.</td>
+                        <td>Smart DIH&#160;Kubernetes</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2><a name="Service"></a>Service Authority</h2>
+            <table>
+                <col style="width: 195px;" />
+                <col style="width: 1031px;" />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Privilege</th>
+                        <th style="text-align: left;">Description</th>
+                        <th style="text-align: left;">Orchestration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Manage Service</td>
+                        <td>This enables deploy and undeploy service operations.</td>
+                        <td>Kubernetes</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

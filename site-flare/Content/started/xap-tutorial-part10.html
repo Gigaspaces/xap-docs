@@ -3,129 +3,144 @@
     <head>
     </head>
     <body>
-        <h1>Security</h1>
-        <p>In this part of the tutorial we will introduce you to <MadCap:variable name="General.DataGrid" /> security, where it fits in the <MadCap:variable name="General.DataGrid" /> architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements.
+        <h1>Security for Smart Cache Service Grid</h1>
+        <p>This is an introduction to <MadCap:variable name="General.DataGrid" /> security, where it fits in the <MadCap:variable name="General.DataGrid" /> architecture, which components can be secured, and how to configure and customize the security depending on your application security requirements.
 <MadCap:variable name="General.DataGridInitCap" /> Security provides comprehensive support for securing your data and services.</p>
         <div class="tc-admon-note">
             <p>Some security features are part of the open source edition, while others are only available with the commercial (licensed) editions.</p>
         </div>
-        <h1><a name="security-in-xap"></a>Security in Data Grid</h1>
-        <p>Security is made up of <span class="tc-italic">Authentication</span> and <span class="tc-italic">Authorization</span>.</p>
-        <h2><a name="authentication"></a>Authentication</h2>
-        <p>Authentication is the process of establishing and confirming the authenticity of a principal. A principal in GigaSpaces terms, means a user (human or software) performing an action in your application. A principal in <MadCap:variable name="General.DataGrid" /> terms means a user (human or software) performing an action in your application. <MadCap:variable name="General.DataGridInitCap" /> Security is equipped with standard encryption algorithms (such as AES and MD5), which can be easily configured and replaced. The authentication layer is provided with a default implementation, which can be customized to integrate with other security standards. This layer is also known as the authentication manager. You can integrated the authentication layer through Spring Security to use LDAP or Data Base authentication.</p>
-        <h2><a name="authorization"></a>Authorization</h2>
-        <p>Authorization refers to the process of deciding whether a principal is allowed to perform a certain action. The authorization decision layer is totally independent from the authentication layer. The authorization decision manager is internal to <MadCap:variable name="General.DataGrid" /> components and is used to intercept unauthorized access/operations to data and services. This layer uses roles that are made up of authorities which contain a set of permissions.</p>
-        <h1><a name="role-based-security"></a>Role-Based Security</h1>
-        <p><MadCap:variable name="General.DataGridInitCap" />'s authorization implementation is based on roles. A role is comprised of a collection of <span class="tc-italic">authorities</span> where an authority has a set of <span class="tc-italic">permissions</span>. There are four categories of user authorities; System, Grid, Space and Monitoring.</p>
-        <h2><a name="system-authority"></a>System Authority</h2>
-        <p>The System Authority consists of two privileges:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Privilege</th>
-                    <th style="text-align: left;">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Manage Roles</td>
-                    <td>Define roles (a set of privileges assigned to a logical role name)</td>
-                </tr>
-                <tr>
-                    <td>Manage Users</td>
-                    <td>Assign users to pre-defined roles, or assign user-specific privileges</td>
-                </tr>
-                <tr MadCap:conditions="Version.16-3-born">
-                    <td>Manage Identity Providers</td>
-                    <td>Allows users to create Identity Provider (IdP) settings and to view the current as well as historical IdP settings</td>
-                </tr>
-            </tbody>
-        </table>
-        <h2><a name="grid-authority"></a>Grid Authority</h2>
-        <p>The Grid Authority consists of privileges for managing the Grid and its Services (GSMs, GSCs, Processing Units).</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Privilege</th>
-                    <th style="text-align: left;">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Provision PU</td>
-                    <td>Deploy, Un-deploy of processing units</td>
-                </tr>
-                <tr>
-                    <td>Manage PU</td>
-                    <td>Scale up/down, Relocate, Restart PU instance, Destroy PU instance</td>
-                </tr>
-                <tr>
-                    <td>Manage Grid</td>
-                    <td>Start, Terminate, Restart of GSC/GSM/LUS via GSA</td>
-                </tr>
-            </tbody>
-        </table>
-        <h2><a name="space-authority"></a>Space Authority</h2>
-        <p>The Space Authority consists of privileges for operations on space data.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Privilege</th>
-                    <th style="text-align: left;">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Write</td>
-                    <td>Write and Update operations</td>
-                </tr>
-                <tr>
-                    <td>Create</td>
-                    <td>Write only (no Update) operations</td>
-                </tr>
-                <tr>
-                    <td>Read</td>
-                    <td>Read, Count and Notify operations</td>
-                </tr>
-                <tr>
-                    <td>Take</td>
-                    <td>Take and Clear operations</td>
-                </tr>
-                <tr>
-                    <td>Alter</td>
-                    <td>Register type descriptor, Clean and Drop-Class operations</td>
-                </tr>
-                <tr>
-                    <td>Execute</td>
-                    <td>Execute tasks</td>
-                </tr>
-            </tbody>
-        </table>
-        <h2><a name="monitoring-authority"></a>Monitoring Authority</h2>
-        <p>The Monitor Authority consists of privileges for monitoring the Grid and its Processing Units.
-Note that the monitoring is secured only by the "tooling' (CLI/UI).</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Privilege</th>
-                    <th style="text-align: left;">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Monitor JVM</td>
-                    <td>Monitoring of JVM statistics</td>
-                </tr>
-                <tr>
-                    <td>Monitor PU</td>
-                    <td>Monitoring of Processing Units (classes, connections, statistics, etc.)</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="tc-admon-note">
-            <p>For more information about role-based security, see the <a href="../security/security-authorities.html">Authorities and Privileges</a> page in the Security section of the Administration guide.</p>
+        <p>&#160;</p>
+        <div>
+            <h1><a name="securing-xap-components"></a>Securing Data Grid Components</h1>
+            <div class="tc-admon-attention">
+                <p>This security feature is only available with the commercial (licensed) editions.</p>
+            </div>
+            <p><MadCap:variable name="General.DataGridInitCap" /> has security built over the major component, GSA, GSM, GSC and Processing Unit with Space data. Each one of these components can be configured according to your application security requirements.</p>
+            <div class="tc-align-center">
+                <img src="../Resources/Static/attachment_files/qsg/security_ovreview.jpg" class="tc-picture100" />
+            </div>
         </div>
-        <h1><a name="managing-roles"></a>Managing Roles</h1>
+        <p>&#160;</p>
+        <p>For information about Authentication, Authorization and Security Roles (Privileges) refer to the <a href="../security/security-overview.html">Security Overview</a> page.</p>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1><a name="security-in-xap"></a>Security in Data Grid</h1>
+            <p>Security is made up of <span class="tc-italic">Authentication</span> and <span class="tc-italic">Authorization</span>.</p>
+            <h2><a name="authentication"></a>Authentication</h2>
+            <p>Authentication is the process of establishing and confirming the authenticity of a principal. A principal in GigaSpaces terms, means a user (human or software) performing an action in your application. A principal in <MadCap:variable name="General.DataGrid" /> terms means a user (human or software) performing an action in your application. <MadCap:variable name="General.DataGridInitCap" /> Security is equipped with standard encryption algorithms (such as AES and MD5), which can be easily configured and replaced. The authentication layer is provided with a default implementation, which can be customized to integrate with other security standards. This layer is also known as the authentication manager. You can integrated the authentication layer through Spring Security to use LDAP or Data Base authentication.</p>
+            <h2><a name="authorization"></a>Authorization</h2>
+            <p>Authorization refers to the process of deciding whether a principal is allowed to perform a certain action. The authorization decision layer is totally independent from the authentication layer. The authorization decision manager is internal to <MadCap:variable name="General.DataGrid" /> components and is used to intercept unauthorized access/operations to data and services. This layer uses roles that are made up of authorities which contain a set of permissions.</p>
+            <h1><a name="role-based-security"></a>Role-Based Security</h1>
+            <p><MadCap:variable name="General.DataGridInitCap" />'s authorization implementation is based on roles. A role is comprised of a collection of <span class="tc-italic">authorities</span> where an authority has a set of <span class="tc-italic">permissions</span>. There are four categories of user authorities; System, Grid, Space and Monitoring.</p>
+            <h2><a name="system-authority"></a>System Authority</h2>
+            <p>The System Authority consists of two privileges:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Privilege</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Manage Roles</td>
+                        <td>Define roles (a set of privileges assigned to a logical role name)</td>
+                    </tr>
+                    <tr>
+                        <td>Manage Users</td>
+                        <td>Assign users to pre-defined roles, or assign user-specific privileges</td>
+                    </tr>
+                    <tr MadCap:conditions="Version.16-3-born">
+                        <td>Manage Identity Providers</td>
+                        <td>Allows users to create Identity Provider (IdP) settings and to view the current as well as historical IdP settings</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2><a name="grid-authority"></a>Grid Authority</h2>
+            <p>The Grid Authority consists of privileges for managing the Grid and its Services (GSMs, GSCs, Processing Units).</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Privilege</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Provision PU</td>
+                        <td>Deploy, Un-deploy of processing units</td>
+                    </tr>
+                    <tr>
+                        <td>Manage PU</td>
+                        <td>Scale up/down, Relocate, Restart PU instance, Destroy PU instance</td>
+                    </tr>
+                    <tr>
+                        <td>Manage Grid</td>
+                        <td>Start, Terminate, Restart of GSC/GSM/LUS via GSA</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2><a name="space-authority"></a>Space Authority</h2>
+            <p>The Space Authority consists of privileges for operations on space data.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Privilege</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Write</td>
+                        <td>Write and Update operations</td>
+                    </tr>
+                    <tr>
+                        <td>Create</td>
+                        <td>Write only (no Update) operations</td>
+                    </tr>
+                    <tr>
+                        <td>Read</td>
+                        <td>Read, Count and Notify operations</td>
+                    </tr>
+                    <tr>
+                        <td>Take</td>
+                        <td>Take and Clear operations</td>
+                    </tr>
+                    <tr>
+                        <td>Alter</td>
+                        <td>Register type descriptor, Clean and Drop-Class operations</td>
+                    </tr>
+                    <tr>
+                        <td>Execute</td>
+                        <td>Execute tasks</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2><a name="monitoring-authority"></a>Monitoring Authority</h2>
+            <p>The Monitor Authority consists of privileges for monitoring the Grid and its Processing Units.
+Note that the monitoring is secured only by the "tooling' (CLI/UI).</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Privilege</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monitor JVM</td>
+                        <td>Monitoring of JVM statistics</td>
+                    </tr>
+                    <tr>
+                        <td>Monitor PU</td>
+                        <td>Monitoring of Processing Units (classes, connections, statistics, etc.)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="tc-admon-note">
+                <p>For more information about role-based security, see the <a href="../security/security-authorities.html">Authorities and Privileges</a> page in the Security section of the Administration guide.</p>
+            </div>
+        </div>
+        <h1><a name="managing-roles"></a>Managing Roles - FSM&#160;Based Security (GS-UI)</h1>
         <div class="tc-admon-attention">
             <p>This security feature is only available with the commercial (licensed) editions.</p>
         </div>
@@ -171,7 +186,7 @@ Start the Admin UI:</p><pre><code class="language-bash">GS_HOME\bin\gs-ui.sh
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../admin/tools-desktop-ui.html">GigaSpaces Management Center</a> page in the Administration guide.</p>
         </div>
-        <h1><a name="managing-users"></a>Managing Users</h1>
+        <h1><a name="managing-users"></a>Managing Users and Roles - File Based Security (GS-UI)</h1>
         <div class="tc-admon-attention">
             <p>This security feature is only available with the commercial (licensed) editions.</p>
         </div>
@@ -234,15 +249,17 @@ Start the Admin UI:</p><pre><code class="language-bash">GS_HOME\bin\gs-ui.sh
         <div class="tc-admon-note">
             <p>For more information, see the <a href="../admin/tools-desktop-ui.html">GigaSpaces Management Center</a> page in the Administration guide.</p>
         </div>
-        <h1><a name="securing-xap-components"></a>Securing Data Grid Components</h1>
-        <div class="tc-admon-attention">
-            <p>This security feature is only available with the commercial (licensed) editions.</p>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1><a name="securing-xap-components"></a>Securing Data Grid Components</h1>
+            <div class="tc-admon-attention">
+                <p>This security feature is only available with the commercial (licensed) editions.</p>
+            </div>
+            <p><MadCap:variable name="General.DataGridInitCap" /> has security built over the major component, GSA, GSM, GSC and Processing Unit with Space data. Each one of these components can be configured according to your application security requirements.</p>
+            <div class="tc-align-center">
+                <img src="../Resources/Static/attachment_files/qsg/security_ovreview.jpg" class="tc-picture100" />
+            </div>
         </div>
-        <p><MadCap:variable name="General.DataGridInitCap" /> has security built over the major component, GSA, GSM, GSC and Processing Unit with Space data. Each one of these components can be configured according to your application security requirements.</p>
-        <div class="tc-align-center">
-            <img src="../Resources/Static/attachment_files/qsg/security_ovreview.jpg" class="tc-picture100" />
-        </div>
-        <h2><a name="data-security"></a>Data Security</h2>
+        <h2>How to Access a Secured Space</h2>
         <p>A secured embedded Space protects access (to data) which is granted only to users with sufficient privileges. Here is an example how to create a secure space with no internal services:.</p>
         <div class="easyui-tabs" plain="true" data-options="">
             <div title="  Java " style="padding:10px"><pre><code class="language-java">EmbeddedSpaceConfigurer configurer = new EmbeddedSpaceConfigurer("xapTutorialSpace").secured(true);
