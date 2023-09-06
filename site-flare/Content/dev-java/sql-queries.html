@@ -106,6 +106,9 @@ Connecting the data grid through JDBC is done using a connection string as shown
             </p>
             <h2><a name="JDBC"></a>JDBC v3 Configuration Extensions</h2>
             <p>For enhanced flexibility of query parsing and to allow quick migration from different SQL dialect, we provide the following extensions that need to be set as part of the context properties of the Space, or as System properties at the client side when running an embedded query processor. Note that using those extensions may have some performance impact, that can be avoided by modifying the original query to meet our native SQL dialect.</p>
+            <div class="tc-admon-note">
+                <p>For additional configuration details, refer to the <b>CalciteDefaults</b> class in <a href="https://resources.gigaspaces.com/api/[%=Versions.product-version-long%]/java/index.html" target="_blank">Javadocs</a>.</p>
+            </div>
             <h3>Change Inequality Operator</h3>
             <p>Change the default<b> </b><code style="font-weight: bold;">&lt;&gt;</code> inequality operator to <code style="font-weight: bold;">!=</code></p>
             <p>Property:</p>

@@ -126,7 +126,7 @@ In general, one can have both management capabilities, but in some organizations
             <tbody>
                 <tr>
                     <td>Write</td>
-                    <td>Use to write and update operations.</td>
+                    <td>Use to write or update operations.</td>
                     <td>
                         <p>Insert into Employee (id, name) value (1, 'First');</p>
                     </td>
@@ -137,7 +137,7 @@ In general, one can have both management capabilities, but in some organizations
                 </tr>
                 <tr>
                     <td>Create</td>
-                    <td>Write only with WriteModifiers WRITE_ONLY.</td>
+                    <td>Write only (not update). In order to create, use a WRITE_ONLY modifier with the write operation.</td>
                     <td>&#160;</td>
                     <td>
                         <p>Service Grid, </p>
@@ -159,7 +159,7 @@ In general, one can have both management capabilities, but in some organizations
                 </tr>
                 <tr>
                     <td>Take</td>
-                    <td>Use to take and clear operations. Delete from table.</td>
+                    <td>Delete from table. Use for take and clear operations. Take returns the objects that were deleted. Clear returns the number of objects deleted.</td>
                     <td>&#160;</td>
                     <td>
                         <p>Service Grid, </p>
@@ -180,7 +180,7 @@ In general, one can have both management capabilities, but in some organizations
                 </tr>
                 <tr>
                     <td>Execute</td>
-                    <td>Execute tasks. For more information refer to <a href="../dev-java/task-execution-overview.html">task-execution-overview.html</a></td>
+                    <td>Execute tasks. For more information refer to the <a href="../dev-java/task-execution-overview.html">task execution overview</a> page.</td>
                     <td>&#160;</td>
                     <td>
                         <p>Service Grid, </p>
@@ -248,7 +248,7 @@ Note that the monitoring is secured only by the "tooling' (CLI/UI).</p>
             </tbody>
         </table>
         <div class="tc-admon-note">
-            <p>For more information about role-based security for Smart Cache on Service&#160;Grid, see the <a href="security-authorities.html">Authorities and Privileges</a> page in the Security section of the Administration guide.</p>
+            <p>For more information about role-based security for Smart Cache on Service&#160;Grid, refer to the <a href="security-authorities.html">Authorities and Privileges for Smart Cache Service Grid</a> page in the Security section of the Administration guide.</p>
         </div>
     </body>
 </html>
