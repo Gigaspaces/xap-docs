@@ -103,7 +103,8 @@ In general, one can have both management capabilities, but in some organizations
                     <tr>
                         <td>Manage Service</td>
                         <td>Deploy and undeploy of service operations.</td>
-                        <td style="font-weight: bold;">Kubernetes</td>
+                        <td style="font-weight: bold;"><span style="font-weight: normal;">Kubernetes</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -113,7 +114,7 @@ In general, one can have both management capabilities, but in some organizations
         <table>
             <col MadCap:conditions="" style="width: 202px;" />
             <col style="width: 598px;" />
-            <col style="width: 415px;" />
+            <col style="width: 649px;" />
             <col />
             <thead>
                 <tr>
@@ -192,8 +193,8 @@ In general, one can have both management capabilities, but in some organizations
         <h2><a name="grid-authority"></a>Grid Authority</h2>
         <p>The Grid Authority consists of privileges for managing the Grid and its Services (cluster components).</p>
         <table>
-            <col />
-            <col />
+            <col style="width: 202px;" />
+            <col style="width: 1063px;" />
             <col />
             <thead>
                 <tr>
@@ -249,6 +250,67 @@ Note that the monitoring is secured only by the "tooling' (CLI/UI).</p>
         </table>
         <div class="tc-admon-note">
             <p>For more information about role-based security for Smart Cache on Service&#160;Grid, refer to the <a href="security-authorities.html">Authorities and Privileges for Smart Cache Service Grid</a> page in the Security section of the Administration guide.</p>
+        </div>
+        <div MadCap:conditions="Version.16-4-born">
+            <div class="tc-admon-note">
+                <p>Pipeline and Low-Code Authorities are relevant for Smart DIH&#160;only</p>
+            </div>
+            <h2><a name="pipeline-authority"></a>Pipeline Authority</h2>
+            <table>
+                <col style="width: 196px;" />
+                <col style="width: 1027px;" />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Privilege</th>
+                        <th style="text-align: left;">Description</th>
+                        <th style="text-align: left;">Orchestration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Create</td>
+                        <td>Allows the creation of a pipeline using a predefined data source.</td>
+                        <td>Smart DIH&#160;Kubernetes</td>
+                    </tr>
+                    <tr>
+                        <td>Edit</td>
+                        <td>This is included as a mandatory extra for the Create privilege. It allows the management of data source tables when creating a pipeline. It can also be assigned independently in the case where it is required to enable table editing for the existing pipelines.</td>
+                        <td>Smart DIH&#160;Kubernetes</td>
+                    </tr>
+                    <tr>
+                        <td>Start_Stop</td>
+                        <td>Allows the stopping or starting of any of the existing pipelines.</td>
+                        <td>Smart DIH&#160;Kubernetes</td>
+                    </tr>
+                    <tr>
+                        <td>Delete</td>
+                        <td>Allows the deletion of any stopped pipelines. If a pipeline is in an active state it cannot be deleted unless it has first been stopped.</td>
+                        <td>Smart DIH&#160;Kubernetes</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2><a name="service-authority"></a>Low-Code Service Authority</h2>
+            <table>
+                <col style="width: 195px;" />
+                <col style="width: 1031px;" />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Privilege</th>
+                        <th style="text-align: left;">Description</th>
+                        <th style="text-align: left;">Orchestration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Manage Service</td>
+                        <td>Deploy and undeploy of service operations.</td>
+                        <td style="font-weight: bold;"><span style="font-weight: normal;">Kubernetes</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </body>
 </html>
