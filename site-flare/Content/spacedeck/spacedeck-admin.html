@@ -13,20 +13,27 @@
         <p>If a user is defined as an Admin, the Administration options can be accessed via the cog at the bottom left hand corner.</p>
         <p>
             <div class="tc-admon-attention">
-                <p>In order to create, delete or update Connection (Identify Provider) or Roles Management settings, the user should be assigned the appropriate role. These are specified below.<br />An explanation of all the available permissions can be found on the <a href="../started/xap-tutorial-part10.html">Role-Based Security</a> page.</p>
+                <p>In order to create, delete or update Connection (Identify Provider) or Roles Management settings, the user should be assigned the appropriate role. These are specified below.<br />An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
             </div>
         </p>
-        <p>
+        <p MadCap:conditions="Version.16-3-only">
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin1.png" style="width: 930px;height: 453px;" />
         </p>
+        <p MadCap:conditions="Version.16-4-born">
+            <img src="../Resources/Images/SpaceDeck/16.4/MainMenu.png" style="width: 939px;height: 436px;" />
+        </p>
+        <p>&#160;</p>
         <p id="YES-TOC">.</p>
         <h1><a name="GeneralSetup"></a>General&#160;Setup </h1>
         <p>Populate the Connection fields in order to configure SSO. Once they are populated, click <b>Apply</b>.</p>
         <div class="tc-admon-attention">
-            <p>In order to be able to configure the <b>Connection (Identify Provider)</b>fields the user has to be assigned the specific permission of <b>Manager Identify Providers</b>, otherwise an error 403 (Forbidden) response will be displayed. <br />An explanation of all the available permissions can be found on the <a href="../started/xap-tutorial-part10.html">Role-Based Security</a> page.</p>
+            <p>In order to be able to configure the <b>Connection (Identify Provider)</b>fields the user has to be assigned the specific permission of <b>Manager Identify Providers</b>, otherwise an error 403 (Forbidden) response will be displayed. <br />An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
         </div>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin2.png" style="width: 1135px;height: 292px;" />
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin2.png" style="width: 1135px;height: 292px;" MadCap:conditions="Version.16-3-only" />
+        </p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/16.4/Admin_Main.png" style="width: 1135px;height: 309px;" MadCap:conditions="Version.16-4-born" />
         </p>
         <h2>Connection Fields</h2>
         <ul>
@@ -59,35 +66,71 @@
         <p>If there is no configuration in the config map (this is <b>not</b> recommended), there are two default roles that are included with the installation which cannot be edited: ROLE_ADMIN and ROLE_MNGR.</p>
         <p>To see which roles are applied to each role, click the role name: </p>
         <p> <img src="../Resources/Images/SpaceDeck/SpaceDeck-Login4_default.png" style="width: 907px;height: 159px;" /></p>
+        <div MadCap:conditions="Version.16-4-born">
+            <p>Roles applied for ROLE_ADMIN at Monitor System Level:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/Resource_Mgmt_Admin_Role.png" style="width: 904px;height: 403px;" />
+            </p>
+        </div>
+        <p>&#160;</p>
         <p>Create a new role by clicking  <b>New +</b> to access the role setup page.</p>
         <div class="tc-admon-attention">
-            <p>In order to create, delete or update the <b>Roles Management</b> settings, the user has to be assigned the specific permission of <b>Manage Roles</b>, otherwise an error 403 (Forbidden) response will be displayed. <br />An explanation of all the available permissions can be found on the <a href="../started/xap-tutorial-part10.html">Role-Based Security</a> page.</p>
+            <p>In order to create, delete or update the <b>Roles Management</b> settings, the user has to be assigned the specific permission of <b>Manage Roles</b>, otherwise an error 403 (Forbidden) response will be displayed. <br />An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
         </div>
-        <p>On the setup page:</p>
-        <ol>
-            <li>
-                <p>Provide a name for the new role. In our example it is ROLE_DEMO_USER.</p>
-            </li>
-            <li>
-                <p>Provide a description of the role.</p>
-            </li>
-            <li>
-                <p>Select which permissions the role should have by selecting from the list and using the right-arrow to move the role into the list on the right.</p>
-            </li>
-            <li>
-                <p>An explanation of all the available permissions can be found on the <a href="../started/xap-tutorial-part10.html">Role-Based Security</a> page.</p>
-            </li>
-            <li>
-                <p>Click <b>Apply</b></p>
-            </li>
-        </ol>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/99.png" style="width: 830px;height: 412px;" />
-        </p>
-        <p>&#160;</p>
-        <p>Once apply is click the following screen is displayed, where you can see the new role has now been added.</p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/12.png" style="width: 929px;height: 194px;" />
-        </p>
+        <div MadCap:conditions="Version.16-3-only">
+            <p>On the setup page:</p>
+            <ol>
+                <li>
+                    <p>Provide a name for the new role. In our example it is ROLE_DEMO_USER.</p>
+                </li>
+                <li>
+                    <p>Provide a description of the role.</p>
+                </li>
+                <li>
+                    <p>Select which permissions the role should have by selecting from the list and using the right-arrow to move the role into the list on the right.</p>
+                </li>
+                <li>
+                    <p>An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
+                </li>
+                <li>
+                    <p>Click <b>Apply</b></p>
+                </li>
+            </ol>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/99.png" style="width: 830px;height: 412px;" />
+            </p>
+        </div>
+        <div MadCap:conditions="Version.16-4-born">
+            <p>On the setup page:</p>
+            <ol>
+                <li>
+                    <p>Provide a name for the new role. In our example it is ROLE_DEMO_USER.</p>
+                </li>
+                <li>
+                    <p>Provide a description of the role.</p>
+                </li>
+                <li>
+                    <p>Click <b>Create Role</b></p>
+                </li>
+            </ol>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/Admin_Add_Role.png" style="width: 980px;height: 371px;" />
+            </p>
+            <ol>
+                <li>
+                    <p>TBD</p>
+                </li>
+                <li>
+                    <p>An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
+                </li>
+                <li>
+                    <p>Click <b>Apply</b></p>
+                </li>
+            </ol>
+            <p>Once apply is click the following screen is displayed, where you can see the new role has now been added.</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/12.png" style="width: 929px;height: 194px;" />
+            </p>
+        </div>
     </body>
 </html>

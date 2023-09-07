@@ -10,6 +10,7 @@
         </map>
         <h1 class="tc-pagetitle">SpaceDeck – Services</h1>
         <p>This part of the system allows you to create and execute low code data services. A query service will trigger a space query every time a request is made. </p>
+        <p> Create service will deploy a REST service that will ruin the query. For use in client services, which are applications that interact with Spaces.</p>
         <div MadCap:conditions="Default.DoNotShow">
             <h1>Service Creator</h1>
             <p>ServiceCreator service, which exposes the REST&#160;endpoints, is deployed in the environment via the Kubernetes orchestration. Any new service creation request generates a new resource of the kind QueryService by submitting a request to the ServiceCreator service. Via the SpringBoot REST&#160;application, ServiceCreator service exposes the following APIs:</p>
@@ -28,11 +29,29 @@
                 </li>
             </ul>
         </div>
+        <div MadCap:conditions="Version.16-4-born">
+            <h1>Security Roles &amp;&#160;Permissions</h1>
+            <ul>
+                <li>
+                    <p>Security Roles and Permissions:</p>
+                    <ul>
+                        <li>
+                            <p>Deploy/Undeploy actions will require special permission. A regular user without permission can only create a service.  In order to deploy or undeploy it they will require Manage Service permission. Refer to <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> for more details. </p>
+                        </li>
+                        <li>
+                            <p>Create/Delete will not require special permissions.</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
         <h1>View List of Services</h1>
-        <p>The main screen displays a list of services. &#160;For our example, there have been three services created which have different statuses:</p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services1a.png" />
-        </p>
+        <div MadCap:conditions="Version.16-3-only">
+            <p>The main screen displays a list of services. &#160;For our example, there have been three services created which have different statuses:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services1a.png" />
+            </p>
+        </div>
         <h2>Services&#160;Fields</h2>
         <ul>
             <li>
@@ -56,13 +75,19 @@
                 <p><b>SPACE&#160;NAME</b> – The name of the space to which the service is associated.</p>
             </li>
             <li>
-                <p><b>URL</b> – The URL of the service.</p>
+                <p MadCap:conditions="Version.16-3-only"><b>URL</b> – The URL of the service.</p>
+            </li>
+            <li>
+                <p MadCap:conditions="Version.16-4-born"><b>SWAGGER&#160;LINK</b> - The link to Swagger UI</p>
             </li>
             <li>
                 <p><b>DESCRIPTION</b> – a free-format description of the service</p>
             </li>
             <li>
-                <p><b>REPLICAS</b> – The amount of replicas. If it is a large service, it is recommended to define more than 1 so it can be balanced over multiple instances.</p>
+                <p MadCap:conditions="Version.16-3-only"><b>REPLICAS</b> – The amount of replicas. If it is a large service, it is recommended to define more than 1 so it can be balanced over multiple instances.</p>
+            </li>
+            <li>
+                <p MadCap:conditions="Version.16-4-born"><b>REPLICAS (ACTUAL/PLANNED)</b> – The amount of replicas. If it is a large service, it is recommended to define more than 1 so it can be balanced over multiple instances.</p>
             </li>
         </ul>
         <h2>Create a Service - Configuration</h2>
