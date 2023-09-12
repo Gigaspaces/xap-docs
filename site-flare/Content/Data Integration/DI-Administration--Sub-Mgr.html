@@ -4,9 +4,9 @@
     </head>
     <body style="text-align: left;">
         <div>
-            <h1 class="tc-pagetitle" style="text-align: left;">Pipeline Setup Via Subscription Manager and SpaceDeck</h1>
+            <h1 class="tc-pagetitle" style="text-align: left;">Pipeline Setup Via <MadCap:conditionalText MadCap:conditions="Version.16-3-only">Subscription Manager and</MadCap:conditionalText> SpaceDeck</h1>
             <p style="text-align: left;">Setting up a DI&#160;pipeline requires the configuration of several components in the following order:</p>
-            <ol>
+            <ol MadCap:conditions="Version.16-3-only">
                 <li>
                     <p style="text-align: left;">Prepare the Kubernetes cluster</p>
                 </li>
@@ -17,6 +17,20 @@
                     <p style="text-align: left;">Create a pipeline using SpaceDeck UI</p>
                 </li>
             </ol>
+            <ol MadCap:conditions="Version.16-4-born">
+                <li>
+                    <p style="text-align: left;">Prepare the Kubernetes cluster</p>
+                </li>
+                <li>
+                    <p>Create the Space</p>
+                </li>
+                <li>
+                    <p>Create the data source</p>
+                </li>
+                <li>
+                    <p>Create and start the pipeline</p>
+                </li>
+            </ol>
             <h2>Step 1: Prepare the Kubernetes Cluster</h2>
             <ol>
                 <li>
@@ -25,7 +39,9 @@
 kubectl create secret docker-registry myregistrysecret --docker-server=https://index.docker.io/v1/ 
 --docker-username=dihcustomers --docker-password=dckr_pat_NYcQySRyhRFZ6eUQAwLsYm314QA 
 --docker-email=dih-customers@gigaspaces.com
-</pre>
+</pre><pre xml:space="preserve">
+kubectl create secret generic datastore-credentials --from-literal=username='system' --from-literal=password='admin11'
+				</pre>
                 <li>
                     <p>Add Smart DIH repo and update</p>
                 </li><pre xml:space="preserve">
@@ -35,45 +51,62 @@ helm repo update;
                 <li>
                     <p>Install the Smart DIH&#160;umbrella</p>
                     <div class="tc-admon-attention">
-                        <p>In order to install the Smart DIH&#160;umbrella, the ingress URL of the Kuberenetes cluster where the umbrella is going to be installed must be correctly indentified.</p>
-                        <p>The example outlined below does the following:</p>
-                        <p>1) Install a deployment named dih</p>
-                        <p>2) Has the version of the installed umbrella</p>
+                        <p>In order to install the Smart DIH&#160;umbrella, the ingress URL of the Kubernetes cluster where the umbrella is going to be installed must be correctly indentified.</p>
+                    </div>
+                    <p>The example outlined below does the following:</p>
+                    <p>1) Installs a deployment named dih</p>
+                    <p>2) Has the version of the installed umbrella</p>
+                    <div MadCap:conditions="Version.16-3-only">
                         <p>3) Sets the following configuration parameters:</p>
                         <p style="text-indent: 0.5in;">a. tags.iidr=true - this installs iidr as a part of the umbrella</p>
                         <p style="text-indent: 0.5in;">b. manager.license=" ..." - this submits the license for xap deployment</p>
                         <p style="text-indent: 0.5in;">c. operator.license=" ..." - this submits the license for xap deployment</p>
                         <p style="text-indent: 0.5in;">d. global.iidrKafkaHost="team1.gigaspaces.net"</p>
                     </div>
-                </li><pre xml:space="preserve">
+                    <div MadCap:conditions="Version.16-4-born">
+                        <p>3) Sets the following configuration parameters:</p>
+                        <p style="text-indent: 0.5in;">a. global.security.enabled=false - this disabled global security</p>
+                        <p style="text-indent: 0.5in;">b. tags.iidr=true - this installs iidr related components as a part of the umbrella</p>
+                        <p style="text-indent: 0.5in;">c. manager.license=" ..." - this submits the license for xap deployment</p>
+                        <p style="text-indent: 0.5in;">d. operator.license=" ..." - this submits the license for xap deployment</p>
+                        <p style="text-indent: 0.5in;">e. global.iidrKafkaHost= (ingress hosts of iidrKafka agent, e.g., team1.gigaspaces.net)</p>
+                        <p style="text-indent: 0.5in;">f. global.s3.enabled=true - set to true to enable s3 support (PaaS only)</p>
+                        <p style="text-indent: 0.5in;">g. global.s3.defaultS3Bucket.bucket=&lt;default-bucket-name&gt; (PaaS only)</p>
+                        <p style="text-indent: 0.5in;">h. global.flink.highAvailability.bucket=&lt;bucket-name&gt; - this is the bucket name used to store flink high availability data</p>
+                    </div>
+                </li><pre xml:space="preserve" MadCap:conditions="Version.16-3-only">
 helm install dih dih/dih --version 16.3.0-rc3 --set tags.iidr=true,manager.license="Product=XAP;Version=16.3;
 Type=PREMIUM;Customer=evaluation;Expiration=2023-May-03;Hash=NYrMXNRqPCRStyRyP7GN",operator.license="Product=XAP;
 Version=16.3;Type=PREMIUM;Customer=evaluation;Expiration=2023-May-03;Hash=NYrMXNRqPCRStyRyP7GN",
-global.iidrKafkaHost=team1.gigaspaces.net</pre>
-                <li>
+global.iidrKafkaHost=team1.gigaspaces.net</pre><pre xml:space="preserve" MadCap:conditions="Version.16-4-only">
+helm install dih dih/dih --version 16.4.0-m8 --set global.security.enabled=false,tags.iidr=true,global.s3.enabled=true,
+global.s3.defaultS3Bucket.bucket=&lt;DEFAULT-BUCKET-NAME&gt;,global.flink.highAvailability.bucket=&lt;BUCKET-NAME&gt;,
+manager.license="Product=InsightEdge;Version=16.4;Type=ENTERPRISE;Customer=Gigaspaces_R&amp;D_DI_DEV;Expiration=2025-Dec-31;Hash=QROtPGzkRIRPMV84YXOU",
+operator.license="Product=InsightEdge;Version=16.4;Type=ENTERPRISE;Customer=Gigaspaces_R&amp;D_DI_DEV;Expiration=2025-Dec-31;Hash=QROtPGzkRIRPMV84YXOU"</pre>
+                <li MadCap:conditions="Version.16-3-only">
                     <p>Install a demo space</p>
-                </li><pre xml:space="preserve">
+                </li><pre xml:space="preserve" MadCap:conditions="Version.16-3-only">
 helm install demo dih/xap-pu --version 16.3.0-rc3 --set ha=true</pre>
             </ol>
-            <h2>Step 2: IIDR&#160;Subscription Setup Via DI-Subscription-Manager</h2>
-            <div class="tc-admon-attention">
+            <h2 MadCap:conditions="Version.16-3-only">Step 2: IIDR&#160;Subscription Setup Via DI-Subscription-Manager</h2>
+            <div class="tc-admon-attention" MadCap:conditions="Version.16-3-only">
                 <p>If encounter the error <code class="language-sql">"Error creating bean with name 'scopedTarget.embeddedScriptExecutor' defined in URL [jar:file:/home/gsods/app.jar!/BOOT-INF/classes!/com/gigaspaces/di/subscriptionmanager/EmbeddedScriptExecutor.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.gigaspaces.di.subscriptionmanager.EmbeddedScriptExecutor]: Constructor threw exception; nested exception is com.datamirror.ea.api.ApiException: Your account has been locked because the number of consecutive log-in failures exceeded the maximum allowed. Please contact your IBM InfoSphere Data Replication administrator for assistance."</code>, then just execute</p>
                 <p><code class="language-sql">kubectl exec svc/iidr-as -- /home/gsods/di-api/unlock_as_user.sh</code>
                 </p>
             </div>
-            <p>Port forward DI&#160;Subscription Manager: kubectl port-forward svc/di-subscription-manager 6082</p>
-            <p>Open postman collection via <a href="https://elements.getpostman.com/redirect?entityId=22986763-e09fd09c-01da-47f9-892e-66e6783bc547&amp;entityType=collection">https://elements.getpostman.com/redirect?entityId=22986763-e09fd09c-01da-47f9-892e-66e6783bc547&amp;entityType=collection</a> and use it from your local postman or open the swagger via <a href="http://localhost:6082/swagger-ui/index.html#/">http://localhost:6082/swagger-ui/index.html#/</a> and execute following requests:</p>
-            <ol>
+            <p MadCap:conditions="Version.16-3-only">Port forward DI&#160;Subscription Manager: kubectl port-forward svc/di-subscription-manager 6082</p>
+            <p MadCap:conditions="Version.16-3-only">Open postman collection via <a href="https://elements.getpostman.com/redirect?entityId=22986763-e09fd09c-01da-47f9-892e-66e6783bc547&amp;entityType=collection">https://elements.getpostman.com/redirect?entityId=22986763-e09fd09c-01da-47f9-892e-66e6783bc547&amp;entityType=collection</a> and use it from your local postman or open the swagger via <a href="http://localhost:6082/swagger-ui/index.html#/">http://localhost:6082/swagger-ui/index.html#/</a> and execute following requests:</p>
+            <ol MadCap:conditions="Version.16-3-only">
                 <li>
                     <p>Execute createDataStore method in Postman or POST <a href="http:///api/v1/datastores ">/api/v1/datastores</a> in Swagger</p>
                 </li>
             </ol>
-            <ol style="list-style-type: lower-alpha;">
+            <ol style="list-style-type: lower-alpha;" MadCap:conditions="Version.16-3-only">
                 <li>
                     <p>Request body:</p>
                 </li>
             </ol>
-            <ol><pre xml:space="preserve">
+            <ol MadCap:conditions="Version.16-3-only"><pre xml:space="preserve">
 {
    "sorName": "ORACLE",
    "dbProvider": "ORACLE",
@@ -98,8 +131,8 @@ helm install demo dih/xap-pu --version 16.3.0-rc3 --set ha=true</pre>
 
 </p>
             </ol>
-            <p>b. Sample output:</p>
-            <ol><pre xml:space="preserve">
+            <p MadCap:conditions="Version.16-3-only">b. Sample output:</p>
+            <ol MadCap:conditions="Version.16-3-only"><pre xml:space="preserve">
 {  
     "name": "ORACLE",
     "hostName": "10.0.0.1",
@@ -111,9 +144,9 @@ helm install demo dih/xap-pu --version 16.3.0-rc3 --set ha=true</pre>
 }
 </pre>
             </ol>
-            <p>2. Execute getDataStoreList method in Postman or GET <a href="http:// /api/v1/datastores">/api/v1/datastores</a> in Swagger</p>
-            <p>a. Expected output:</p>
-            <ol><pre xml:space="preserve">
+            <p MadCap:conditions="Version.16-3-only">2. Execute getDataStoreList method in Postman or GET <a href="http:// /api/v1/datastores">/api/v1/datastores</a> in Swagger</p>
+            <p MadCap:conditions="Version.16-3-only">a. Expected output:</p>
+            <ol MadCap:conditions="Version.16-3-only"><pre xml:space="preserve">
 [
      {
         "name": "KAFKA",   
@@ -136,7 +169,7 @@ helm install demo dih/xap-pu --version 16.3.0-rc3 --set ha=true</pre>
 ]
 </pre>
             </ol>
-            <div>
+            <div MadCap:conditions="Version.16-3-only">
                 <p>3. Execute createSubscription method in Postman or POST <a href="http:///api/v1/{sourceDataStore}/subscriptions/">/api/v1/{sourceDataStore}/subscriptions/</a> in Swagger</p>
                 <p>a. Parameters:</p>
                 <ol><pre xml:space="preserve">sourceDataStore: ORACLE</pre>
@@ -160,7 +193,7 @@ helm install demo dih/xap-pu --version 16.3.0-rc3 --set ha=true</pre>
 }</pre>
                 </ol>
             </div>
-            <div>
+            <div MadCap:conditions="Version.16-3-only">
                 <p>4. Execute getSubscriptionsList method in Postman or GET <a href="http:///api/v1/{sourceDataStore}/subscriptions/">/api/v1/{sourceDataStore}/subscriptions/</a> in Swagger</p>
                 <p>a. Parameters:</p>
                 <ol><pre xml:space="preserve">sourceDataStore: ORACLE</pre>
@@ -178,7 +211,7 @@ helm install demo dih/xap-pu --version 16.3.0-rc3 --set ha=true</pre>
 ]</pre>
                 </ol>
             </div>
-            <div>
+            <div MadCap:conditions="Version.16-3-only">
                 <p>5. Execute addTableToSubscription method in Postman or POST <a href="http:///api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/tables">/api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/tables</a> in Swagger</p>
                 <p>a. Parameters:</p>
                 <ol><pre xml:space="preserve">sourceDataStore: ORACLE
@@ -201,7 +234,7 @@ subscriptionName:&#160;DEMO</pre>
 }</pre>
                 </ol>
             </div>
-            <div>
+            <div MadCap:conditions="Version.16-3-only">
                 <p>6. Execute getSubscriptionTableMappings method in Postman or GET <a href="http:///api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/tables">/api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/tables</a> in Swagger</p>
                 <p>a. Parameters:</p>
                 <ol><pre xml:space="preserve">sourceDataStore: ORACLE
@@ -220,7 +253,7 @@ subscriptionName:&#160;DEMO</pre>
 ]</pre>
                 </ol>
             </div>
-            <div>
+            <div MadCap:conditions="Version.16-3-only">
                 <p>7. Execute startSubscription method in Postman or POST <a href="http:///api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/start">/api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/start</a> in Swagger</p>
                 <p>a. Parameters:</p>
                 <ol><pre xml:space="preserve">sourceDataStore: ORACLE
@@ -237,7 +270,7 @@ subscriptionName:&#160;DEMO</pre>
 }</pre>
                 </ol>
             </div>
-            <div>
+            <div MadCap:conditions="Version.16-3-only">
                 <p>8. Execute getSubscriptionStatus method in Postman <a href="http:// /api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/status"> /api/v1/{sourceDataStore}/subscriptions/{subscriptionName}/status</a> in Swagger</p>
                 <p>a. Parameters</p>
                 <ol><pre xml:space="preserve">sourceDataStore: ORACLE
@@ -251,10 +284,37 @@ subscriptionName:&#160;DEMO</pre>
 }</pre>
                 </ol>
             </div>
-            <h2>Step 3:&#160;Pipeline Creation Using SpaceDeck</h2>
+            <div MadCap:conditions="Version.16-4-born">
+                <h2>Step 2: Create a Space using SpaceDeck</h2>
+                <p>For creating a Space, follow the procedure as explained in the  <MadCap:xref href="../spacedeck/spacedeck-spaces-adding-a-space.html">SpaceDeck – Spaces - Adding a Space</MadCap:xref> page.</p>
+                <h2>Step 3: Create a Data Source using SpaceDeck</h2>
+                <p>For creating a new data source, follow the procedure as explained in the <MadCap:xref href="../spacedeck/spacedeck-data-sources.html">SpaceDeck – Data Sources</MadCap:xref> page, using the following attributes:</p>
+                <ul>
+                    <li>
+                        <p><b>Data Source Name</b>:&#160;ORACLE&#160;(name of your choice)</p>
+                    </li>
+                    <li>
+                        <p><b>Data Source Type</b>:&#160;select ORACLE from the dropdown menu</p>
+                    </li>
+                    <li>
+                        <p><b>URL</b>: iidr://di-oracledb:11001 (iidr://&lt;hostname of oracle agent&gt;:&lt;port&gt;)</p>
+                    </li>
+                    <li>
+                        <p><b>Username</b>:&#160;system</p>
+                    </li>
+                    <li>
+                        <p><b>Password</b>:&#160;admin 11</p>
+                    </li>
+                </ul>
+                <div class="tc-admon-note" MadCap:conditions="Version.15-2-died">
+                    <p>It is forbidden to create multiple data sources for a single iidr-agent</p>
+                </div>
+            </div>
+            <h2 MadCap:conditions="Version.16-3-only">Step 3:&#160;Create a Pipeline using SpaceDeck</h2>
+            <h2 MadCap:conditions="Version.16-4-born">Step 4:&#160;Create a Pipeline using SpaceDeck</h2>
             <ol>
                 <li>
-                    <p>For creating a Pipeline in&#160;SpaceDeck, follow the procedure in the <MadCap:xref href="../spacedeck/spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref> page using the following attributes in the Pipeline Configuration screen:</p>
+                    <p>For creating a Pipeline in&#160;SpaceDeck, follow the procedure as explained in the <MadCap:xref href="../spacedeck/spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref> page using the following attributes in the Pipeline Configuration screen:</p>
                 </li>
             </ol>
             <ul>
@@ -265,31 +325,59 @@ subscriptionName:&#160;DEMO</pre>
                     <p>Space name: demo</p>
                 </li>
                 <li>
-                    <p>Connector type:&#160;IIDR</p>
+                    <p MadCap:conditions="Version.16-3-only">Connector type:&#160;IIDR</p>
                 </li>
                 <li>
                     <p>Data Source Connection: ORACLE</p>
                 </li>
                 <li>
-                    <p>CDC&#160;Kafka Topic:&#160;DEMO</p>
+                    <p MadCap:conditions="Version.16-3-only">CDC&#160;Kafka Topic:&#160;DEMO</p>
                 </li>
                 <li>
-                    <p>Select the RETAIL_DEMO.ORDERS table</p>
+                    <p MadCap:conditions="Version.16-3-only">Select the RETAIL_DEMO.ORDERS table</p>
                 </li>
             </ul>
+            <div MadCap:conditions="Version.16-4-born">
+                <p>2. Create the Pipeline</p>
+                <p>3. Add a new table to the demo1 Pipeline</p>
+                <ul>
+                    <li>
+                        <p>After clicking Select Tables, select the RETAIL_DEMO schema.</p>
+                    </li>
+                    <li>
+                        <p>Select the CUSTOMERS table</p>
+                    </li>
+                </ul>
+            </div>
             <p>2. Start the Pipeline, select Point in time: EARLIEST</p>
-            <p>3. Verify that all the data from ORACLE appears in the Space</p>
-            <ol style="list-style-type: lower-alpha;">
-                <li>
-                    <p>Add a new row to the ORDERS table (for example, via DBeaver)</p>
-                </li>
-                <li>
-                    <p>Using SpaceDeck Data Query screen (see <MadCap:xref href="../spacedeck/spacedeck-data-query.html">SpaceDeck – Data Query</MadCap:xref>) type the query "SELECT * FROM&#160;ORDERS" and click "Run Query".</p>
-                </li>
-                <li>
-                    <p>Verify that all the data from&#160;Oracle is displayed.</p>
-                </li>
-            </ol>
+            <div MadCap:conditions="Version.16-3-only">
+                <p>3. Verify that all the data from ORACLE appears in the Space</p>
+                <ol style="list-style-type: lower-alpha;">
+                    <li>
+                        <p>Add a new row to the ORDERS table (for example, via DBeaver)</p>
+                    </li>
+                    <li>
+                        <p>Using SpaceDeck Data Query screen (see <MadCap:xref href="../spacedeck/spacedeck-data-query.html">SpaceDeck – Data Query</MadCap:xref>) type the query "SELECT * FROM&#160;ORDERS" and click "Run Query".</p>
+                    </li>
+                    <li>
+                        <p>Verify that all the data from&#160;Oracle is displayed.</p>
+                    </li>
+                </ol>
+            </div>
+            <div MadCap:conditions="Version.16-4-born">
+                <p>3. Verify that all the data from ORACLE appears in the Space</p>
+                <ol style="list-style-type: lower-alpha;">
+                    <li>
+                        <p>Add a new row to the ORDERS table (for example, via DBeaver)</p>
+                    </li>
+                    <li>
+                        <p>Using SpaceDeck Data Query screen (see <MadCap:xref href="../spacedeck/spacedeck-data-query.html">SpaceDeck – Data Query</MadCap:xref>) type the query "SELECT count(*) FROM&#160;CUSTOMERS" and click "Run Query".</p>
+                    </li>
+                    <li>
+                        <p>Verify that all the data from&#160;Oracle is displayed.</p>
+                    </li>
+                </ol>
+            </div>
         </div>
     </body>
 </html>

@@ -42,10 +42,20 @@ services
         <p><b>ZOOKEEPER_HOST</b> -  set to the host of the server to connect zookeeper (ie. <code>http://localhost</code>).</p>
         <p><b>AUTH</b> - set to <code>on </code>to enable authentication. </p>
         <h2>Operation</h2>
-        <p>After GigaSpaces is deployed, SpaceDeck is accessible by port 3000.</p>
-        <p style="font-weight: bold;">Example:</p><code class="language-bash">kubectl port-forward spacedeck.&lt;namespace&gt; 3000:3000</code>
-        <p MadCap:conditions="Default.DoNotShow">SpaceDeck is now available now in browser by open the following URL: <code>http://localhost:3000/</code> (edited)</p>
-        <p>Use the GigaSpaces URL with port 3000 to start SpaceDeck.</p>
+        <div MadCap:conditions="Version.16-3-only">
+            <p>After GigaSpaces is deployed, SpaceDeck is accessible by port 3000.</p>
+            <p style="font-weight: bold;">Example:</p>
+            <p><code class="language-bash">kubectl port-forward spacedeck.&lt;namespace&gt; 3000:3000</code>
+            </p>
+            <p>Use the GigaSpaces URL with port 3000 to start SpaceDeck.</p>
+        </div>
+        <div MadCap:conditions="Version.16-4-born">
+            <p>After GigaSpaces is deployed, SpaceDeck is accessible by port 4200.</p>
+            <p style="font-weight: bold;">Example:</p>
+            <p><code class="language-bash">kubectl port-forward spacedeck.&lt;namespace&gt; 4200:4200</code>
+            </p>
+            <p>Use the GigaSpaces URL with port 4200 to start SpaceDeck.</p>
+        </div>
         <p>&#160;</p>
         <p>See <MadCap:xref href="spacedeck-overview.html">SpaceDeck Overview</MadCap:xref> and the containing links for details on how to configure and operate SpaceDeck.</p>
     </body>

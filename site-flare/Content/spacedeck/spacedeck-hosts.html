@@ -9,24 +9,24 @@
             <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
         </map>
         <h1 class="tc-pagetitle">SpaceDeck – Hosts</h1>
-        <p>These screens allow the user view hosts information and generate dump logs.</p>
+        <p>This menu displays hosts information and generate dump logs.</p>
         <h1>Main Hosts page</h1>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts1.png" style="width: 1037px;height: 583px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/MainScreen.png" style="width: 945px;height: 440px;" />
         </p>
         <h2>Hosts Fields</h2>
         <ul>
             <li>
-                <p><b>HOST&#160;NAME</b> – The host name in the machine.</p>
+                <p><b>HOST&#160;NAME</b> – The Kubernetes host name in the machine.</p>
             </li>
             <li>
-                <p><b>HOST&#160;IP&#160;ADDRESS</b> – The host IP address is a unique label assigned to a machine.</p>
+                <p><b>HOST&#160;IP&#160;ADDRESS</b> – The Kubernetes node IP&#160;address.</p>
             </li>
             <li>
-                <p><b>GRID&#160;COMPONENTS</b> – The number of grid components in the host.</p>
+                <p><b>GRID&#160;COMPONENTS</b> – The number of pods related to this node.</p>
             </li>
             <li>
-                <p><b>%CPU </b> – Refers to the percentage of a machine's CPU that is being used at a given time.</p>
+                <p><b>%CPU </b> – Refers to the percentage of a machine's CPU (Central Processing Unit) that is being used at a given time.</p>
             </li>
             <li>
                 <p><b>DAILY&#160;AVERAGE&#160;%&#160;CPU</b> – Refers to the average percentage of a machine's CPU over a 24 hour period. Used to understand how much CPU is typical for a system over time.</p>
@@ -41,13 +41,8 @@
         <h2>Generate Dumps</h2>
         <p>There is the ability to generate log dump files, that are saved locally, that include information about the runtime environment.</p>
         <p>Log dumps can be generated in three different ways:</p>
+        <p>Log dump of a single host: Selecting a single host:<br /><img src="../Resources/Images/SpaceDeck/16.4/Hosts_GenerateLogs.png" style="width: 1204px;height: 220px;" /></p>
         <ol>
-            <li>
-                <p>Log dump of a single host: Selecting a single host </p>
-                <p>
-                    <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts2a.png" style="width: 1005px;height: 549px;" />
-                </p>
-            </li>
             <li>
                 <p>Log dump of selected hosts: Select more than one and clicking the <b>Generate Selected Dump</b> situated above the table</p>
                 <p>
@@ -62,23 +57,23 @@
             </li>
         </ol>
         <h1>Hosts Details</h1>
-        <p>Click on a host name to view details of that host. &#160;Two tabs are available: System Information and Containers.</p>
-        <p>.<img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts9.png" /></p>
+        <p>Click on a host name to view details of that host. &#160;Two tabs are available: System Information and Pods.</p>
+        <p>.<img src="../Resources/Images/SpaceDeck/16.4/Hosts_DetailsMain.png" style="width: 429px;height: 187px;" /></p>
         <h2>View Hosts Details - System Information Tab</h2>
         <p>The System Information tab displays information relating to the architecture of the machine. In addition the services running on this host are displayed, including heap used, percentage of CPU and number of threads:</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts5a.png" style="width: 858px;height: 484px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/Hosts_SystemInfo_GeneralInfo.png" style="width: 1054px;height: 429px;" />
         </p>
         <p>On the right side of the screen there are two metrics displayed: the memory and CPU utilization of this host. It is possible to change the view of the time measure:</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts5b.png" style="width: 859px;height: 483px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/Hosts_SystemInfo_Graphs.png" style="width: 1051px;height: 431px;" />
         </p>
-        <h2>View Hosts Details - Containers Tab</h2>
-        <p>The Containers tab displays the containers of the host.</p>
+        <h2>View Hosts Details - Pods Tab</h2>
+        <p>The Pods tab displays the Pods of the host.</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts6.png" style="width: 861px;height: 477px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/Hosts_Pods.png" style="width: 1027px;height: 353px;" />
         </p>
-        <h2>Containers Fields</h2>
+        <h2>Pods Fields</h2>
         <ul>
             <li>
                 <p><b>CONTAINER&#160;ID</b> – Identifier of the container.</p>
@@ -105,11 +100,18 @@
                 <p><b>THREADS</b> – The number threads running on this container.</p>
             </li>
         </ul>
-        <h2>Container Actions</h2>
+        <h2>Pods Actions</h2>
         <p>By selecting the kebab menu (vertical three-dot menu) on the far right, two options will be displayed:</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts6a.png" style="width: 868px;height: 508px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/Hosts_GenerateLogs.png" style="width: 1105px;height: 202px;" />
         </p>
+        <p>&#160;</p>
+        <p>Can generate selected or all logs from the options at the top of the table:</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/16.4/Hosts_SelectedLogs.png" />
+        </p>
+        <p>&#160;</p>
+        <p>&#160;</p>
         <p><b>View Logs:</b> Opens a searchable log from a selected container:</p>
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts7.png" style="width: 868px;height: 488px;" />
