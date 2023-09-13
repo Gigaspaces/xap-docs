@@ -47,7 +47,7 @@
                 <p><b>Redirect URIs</b> – Upon successful sign-in, this endpoing in our server will receive the data from the IDP,</p>
             </li>
             <li>
-                <p><b>Issue&#160;URL</b> – URL&#160;of the IDP&#160;issuer. &#160;For example, Okta, JumpCloud, AWS, Github.</p>
+                <p><b>Issue&#160;URL</b> – URL&#160;of the IDP&#160;issuer. &#160;For example, Okta, JumpCloud, AWS Azure, Github.</p>
             </li>
             <li>
                 <p><b>Client Id</b> – Unlike the Provider ID, this ID serves as a unique identifier which the IDP generates to the user so they can identify with it,</p>
@@ -60,23 +60,29 @@
             </li>
         </ul>
         <p>Once the connection details are entered, click <b>Apply</b>. </p>
-        <h1>Roles Management</h1>
-        <p>Each role that is configured will have certain roles assigned to it.</p>
-        <p>Before the service-grid launch, the roles should be configured by the company IT&#160;manager in the config map of the Kubernetes environment</p>
-        <p>If there is no configuration in the config map (this is <b>not</b> recommended), there are two default roles that are included with the installation which cannot be edited: ROLE_ADMIN and ROLE_MNGR.</p>
-        <p>To see which roles are applied to each role, click the role name: </p>
+        <h1>Role Management</h1>
+        <p>Each role that is configured will have certain privileges (permissions) assigned to it.</p>
+        <p>The roles should be configured by the company IT&#160;manager in the config map of the Kubernetes environment.</p>
+        <h2>Default Roles</h2>
+        <p>If there is no configuration in the config map (this is <b>not</b> recommended), there are two default roles that are included with the installation which cannot be edited via SpaceDeck: ROLE_ADMIN and ROLE_MNGR.</p>
+        <p>To see which privileges (permissions) are applied to each role, click the role name: </p>
         <p> <img src="../Resources/Images/SpaceDeck/SpaceDeck-Login4_default.png" style="width: 907px;height: 159px;" /></p>
+        <div class="tc-admon-note">
+            <p>The permissions for the two default roles cannot be edited, nor can the roles be deleted.</p>
+        </div>
         <div MadCap:conditions="Version.16-4-born">
-            <p>Roles applied for ROLE_ADMIN at Monitor System Level:</p>
+            <p> Below is a screenshot showing the permissions applied for the default ROLE_ADMIN at Monitor System Level. </p>
+            <p>An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/Resource_Mgmt_Admin_Role.png" style="width: 904px;height: 403px;" />
             </p>
         </div>
-        <p>&#160;</p>
-        <p>Create a new role by clicking  <b>New +</b> to access the role setup page.</p>
-        <div class="tc-admon-attention">
-            <p>In order to create, delete or update the <b>Roles Management</b> settings, the user has to be assigned the specific permission of <b>Manage Roles</b>, otherwise an error 403 (Forbidden) response will be displayed. <br />An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
+        <h2>Creating a new Role</h2>
+        <div class="tc-admon-attention" MadCap:conditions="Version.16-4-born">
+            <p>In order to create, delete or update the <b>Roles Management</b> settings, the user has to be assigned the specific permission of <b>Manage Roles</b>, otherwise an error 403 (Forbidden) response will be displayed in the log. <br />An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
         </div>
+        <p MadCap:conditions="Version.16-3-only">Create a new role by clicking  <b>New +</b> to access the role setup page.</p>
+        <p MadCap:conditions="Version.16-4-born">From the Role Management page, click <b>New +</b> to access the role setup page.</p>
         <div MadCap:conditions="Version.16-3-only">
             <p>On the setup page:</p>
             <ol>
@@ -101,10 +107,10 @@
             </p>
         </div>
         <div MadCap:conditions="Version.16-4-born">
-            <p>On the setup page:</p>
+            <p>On the Add Role popout:</p>
             <ol>
                 <li>
-                    <p>Provide a name for the new role. In our example it is ROLE_DEMO_USER.</p>
+                    <p>Provide a name for the new role. In our example it is DEMO_USER.</p>
                 </li>
                 <li>
                     <p>Provide a description of the role.</p>
@@ -116,21 +122,25 @@
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/Admin_Add_Role.png" style="width: 980px;height: 371px;" />
             </p>
-            <ol>
-                <li>
-                    <p>TBD</p>
-                </li>
-                <li>
-                    <p>An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
-                </li>
-                <li>
-                    <p>Click <b>Apply</b></p>
-                </li>
-            </ol>
-            <p>Once apply is click the following screen is displayed, where you can see the new role has now been added.</p>
+            <p>Once the role is created, the Resource Management screen is displayed where permissions will be assigned for the newly created role. &#160;</p>
+            <p>The role will also be displayed in the Role Management screen.</p>
+            <h2>Apply Permissions for the Role</h2>
+            <p>In the Resource Management menu, select your newly created role from the Roles drop-down and apply the System and Resources level roles</p>
+            <p>An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
             <p>
-                <img src="../Resources/Images/SpaceDeck/12.png" style="width: 929px;height: 194px;" />
+                <img src="../Resources/Images/SpaceDeck/16.4/ResourceMgmt-RolesSetup.png" style="width: 955px;height: 358px;" />
             </p>
+            <p>Click <b>Apply</b> to apply the permissions.</p>
+            <div class="tc-admon-note">
+                <p>The permissions can be updated during run-time without the need to restart the any of the components</p>
+            </div>
+            <h2>Deleting a Role</h2>
+            <p>A role can simply be deleted by accessing the Roles Management page and clicking the kebab menu next to the role name and selecting.</p>
+            <p>As mentioned previously, there is no option to delete a default role.</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/Role-delete.png" style="width: 1341px;height: 153px;" />
+            </p>
+            <p>&#160;</p>
         </div>
     </body>
 </html>

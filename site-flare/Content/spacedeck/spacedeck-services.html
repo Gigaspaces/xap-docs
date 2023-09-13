@@ -36,7 +36,7 @@
                     <p>Security Roles and Permissions:</p>
                     <ul>
                         <li>
-                            <p>Deploy/Undeploy actions will require special permission. A regular user without permission can only create a service.  In order to deploy or undeploy it they will require Manage Service permission. Refer to <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> for more details. </p>
+                            <p>Deploy/Undeploy actions will require special permission. A regular user without permission can only create a service.  In order to deploy or undeploy it they will require Manage Service permission. Refer to <MadCap:xref href="../security/security-overview.html#service-authority">Security Overview</MadCap:xref> for more details. </p>
                         </li>
                         <li>
                             <p>Create/Delete will not require special permissions.</p>
@@ -45,117 +45,215 @@
                 </li>
             </ul>
         </div>
-        <h1>View List of Services</h1>
+        <div MadCap:conditions="Version.16-4-born">
+            <h1>Service Main Page</h1>
+            <p>If there are no services currently defined, the Service screen will look like this:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/Service1.png" style="width: 1110px;height: 373px;" />
+            </p>
+            <h2>Services&#160;Fields</h2>
+            <ul>
+                <li>
+                    <p><b>SERVICE NAME</b> – the name you define to the data source</p>
+                </li>
+                <li>
+                    <p><b>STATUS</b> – The status of the service:</p>
+                    <ul style="list-style-type: circle;">
+                        <li>
+                            <p><b>Undeployed</b>: a service that has been deployed and is not undeployed for edit purposes.</p>
+                        </li>
+                        <li>
+                            <p><b>Deployed:</b> Ready for external execution</p>
+                        </li>
+                        <li>
+                            <p><b>Created:</b> a service that has not been deployed and can still be edited,</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><b>SPACE&#160;NAME</b> – The name of the space to which the service is associated.</p>
+                </li>
+                <li>
+                    <p><b>SWAGGER&#160;LINK</b> - The link to Swagger UI</p>
+                </li>
+                <li>
+                    <p><b>DESCRIPTION</b> – a free-format description of the service</p>
+                </li>
+                <li>
+                    <p><b>REPLICAS (ACTUAL/PLANNED)</b> – The amount of replicas. If it is a large service, it is recommended to define more than 1 so it can be balanced over multiple instances.</p>
+                </li>
+            </ul>
+            <h1>Create a New Service</h1>
+            <p>From the main screen, click <b>Create New Service +</b> </p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/Service2.png" />
+            </p>
+            <p>The following configuration screen is displayed:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/Service3b.png" style="width: 1278px;height: 494px;" />
+            </p>
+            <h2>Services Configuration Parameters</h2>
+            <ol>
+                <li>
+                    <p><b>(Source drop-down list)</b> – Select which GigaSpaces Space object the service should be executed against.</p>
+                </li>
+                <li>
+                    <p><b>Service Name</b> - Provide a unique name for the new service.</p>
+                </li>
+                <li>
+                    <p><b>Replicas</b> - The number of replicas being used.</p>
+                </li>
+                <li>
+                    <p><b>Description:</b>&#160;Write a short description of the service being created.</p>
+                </li>
+                <li>
+                    <p><b>(Body of the service)</b> – Create a SQL-99 compliant service. Initially there is an example query service displayed in gray, As soon as you click on that area, it is replaced by a blank screen ready for you to create your service. The results of the example service are also displayed (SAMPLE_FIELD_1, SAMPLE_FIELD_2).</p>
+                </li>
+                <li>
+                    <p><b>Retrieve first</b> – limit the query response to the desired number of rows. A maximum of 10,000 rows can be retrieved.</p>
+                </li>
+                <li>
+                    <p><b>Run Query</b>: Click to test the query. The query results will be displayed. If there is a problem with the query a Query validation failed error will be displayed at the bottom of the screen.</p>
+                </li>
+                <li>
+                    <p><b>Create Service</b>: Click to create the service. It will now be displayed on the main screen with the status <b>Created</b>:</p>
+                </li>
+                <li>
+                    <p><b>Saved Queries:</b> A list of previously saved queries</p>
+                </li>
+                <li>
+                    <p><b>Save Query</b>: Save the query which will then be accessible via the <b>Saved Queries</b> drop-down.</p>
+                </li>
+            </ol>
+            <h2>Create Service&#160;Example</h2>
+            <p>&#160;</p>
+            <h2>Service Main Page with Services Defined</h2>
+            <p>&#160;</p>
+            <h2>Service Execution through Swagger UI</h2>
+            <p>There are two options to execute a service query. Either through the service URL&#160;endpoint or using Swagger UI (in the case where the SQL query has parameter placeholders). Through&#160;Swagger UI, enter the value for each parameter. In the case where there are no parameters, there will be no option to enter parameters. In the example below, the Parameters and values supplied are id2 and id1:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/Swagger1.png" style="width: 832px;height: 411px;" />
+            </p>
+            <p>Execution Results:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/Swagger2.png" style="width: 832px;height: 560px;" />
+            </p>
+            <p>&#160;</p>
+            <h2>API&#160;Docs: Registering a Query Service to an API&#160;GW</h2>
+            <p>&#160;</p>
+            <h2>Change Log Level Dynamically</h2>
+            <p>Currently the ability to change the log level is not available through SpaceDeck. &#160;However, this can be achieved through CURL or using Postman.</p>
+            <p>&#160;</p>
+            <h2>&#160;</h2>
+        </div>
         <div MadCap:conditions="Version.16-3-only">
             <p>The main screen displays a list of services. &#160;For our example, there have been three services created which have different statuses:</p>
             <p>
                 <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services1a.png" />
             </p>
         </div>
-        <h2>Services&#160;Fields</h2>
-        <ul>
-            <li>
-                <p><b>SERVICE NAME</b> – the name you define to the data source</p>
-            </li>
-            <li>
-                <p><b>STATUS</b> – The status of the service:</p>
-                <ul style="list-style-type: circle;">
-                    <li>
-                        <p><b>Undeployed</b>: a service that has been deployed and is not undeployed for edit purposes.</p>
-                    </li>
-                    <li>
-                        <p><b>Deployed:</b> Ready for external execution</p>
-                    </li>
-                    <li>
-                        <p><b>Created:</b> a service that has not been deployed and can still be edited,</p>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <p><b>SPACE&#160;NAME</b> – The name of the space to which the service is associated.</p>
-            </li>
-            <li>
-                <p MadCap:conditions="Version.16-3-only"><b>URL</b> – The URL of the service.</p>
-            </li>
-            <li>
-                <p MadCap:conditions="Version.16-4-born"><b>SWAGGER&#160;LINK</b> - The link to Swagger UI</p>
-            </li>
-            <li>
-                <p><b>DESCRIPTION</b> – a free-format description of the service</p>
-            </li>
-            <li>
-                <p MadCap:conditions="Version.16-3-only"><b>REPLICAS</b> – The amount of replicas. If it is a large service, it is recommended to define more than 1 so it can be balanced over multiple instances.</p>
-            </li>
-            <li>
-                <p MadCap:conditions="Version.16-4-born"><b>REPLICAS (ACTUAL/PLANNED)</b> – The amount of replicas. If it is a large service, it is recommended to define more than 1 so it can be balanced over multiple instances.</p>
-            </li>
-        </ul>
-        <h2>Create a Service - Configuration</h2>
-        <p>From the main Services screen, click  <b>New +</b></p>
-        <p>The following configuration screen is displayed - the mandatory fields are outlined in red:</p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services5.png" style="width: 850px;height: 535px;" />
-        </p>
-        <h2>Services Configuration Parameters</h2>
-        <ul>
-            <li>
-                <p><b>(Source drop-down list)</b> – Select which GigaSpaces Space object the service should be executed against.</p>
-            </li>
-            <li>
-                <p><b>Load Query</b>: Displays a list of previously saved and run queries.</p>
-            </li>
-            <li>
-                <p><b>Service Name:</b> Provide a unique name for the service.</p>
-                <div class="tc-admon-note">
-                    <p>The service name must be in lower case and can contain numbers, but only one hyphen "-"</p>
-                </div>
-            </li>
-            <li>
-                <p><b>Replicas:</b> How many replicas are being used.</p>
-            </li>
-            <li>
-                <p><b>Description:</b>&#160;Description of the service you are creating.</p>
-            </li>
-            <li>
-                <p><b>(Body of the service)</b> – enter a SQL-99 compliant service. Initially there is an example query service displayed in gray, As soon as you lick on that area, it is replaced by a blank screen ready for you to create your service. The results of the example service are also displayed (MIN_AGE, MAX_AGE).</p>
-                <p><b>Retrieve first</b> – limit the query response to the desired number of rows. A maximum of 10,000 rows can be retrieved.</p>
-            </li>
-        </ul>
-        <h2>Run or Save the Query and Create the Service</h2>
-        <p>Click <b>Run Query</b> to test the query. The query results will be displayed. If there is a problem with the query a Query validation failed error will be displayed at the bottom of the screen.</p>
-        <p>Click <b>Save query</b> to save the query which will then be accessible via the <b>Load Query</b> drop-down.</p>
-        <p>Click <b>Create Service</b> to create a service. It will now be displayed on the main screen with the status <b>Created</b>:</p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services6.png" style="width: 378px;height: 302px;" />
-        </p>
-        <h2><a name="DeployService"></a>Deploy the Service</h2>
-        <p>Click the new service name and then to deploy the service, click <b>Deploy</b>:</p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services7.png" style="width: 761px;height: 434px;" />
-        </p>
-        <p>The newly created service will now be displayed on the main screen with the status <b>Deployed</b>:</p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services8.png" style="width: 396px;height: 322px;" />
-        </p>
-        <h2>Undeploy the Service</h2>
-        <p>A deployed service can be undeployed by clicking the SERVICE&#160;NAME and clicking <b>Undeploy</b>:</p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services9.png" style="width: 764px;height: 504px;" />
-        </p>
-        <p>The undeployed service will now be displayed on the main screen with the status <b>Undeployed</b>:</p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services10.png" style="width: 408px;height: 342px;" />
-        </p>
-        <div>
-            <h2>Delete a Service</h2>
-            <p>There is an option to Undeploy and then Delete a service by clicking the kebab menu (vertical three-dot menu) on the far right of the main Services Fields:</p>
+        <div MadCap:conditions="Version.16-3-only">
+            <h2>Services&#160;Fields</h2>
+            <ul>
+                <li>
+                    <p><b>SERVICE NAME</b> – the name you define to the data source</p>
+                </li>
+                <li>
+                    <p><b>STATUS</b> – The status of the service:</p>
+                    <ul style="list-style-type: circle;">
+                        <li>
+                            <p><b>Undeployed</b>: a service that has been deployed and is not undeployed for edit purposes.</p>
+                        </li>
+                        <li>
+                            <p><b>Deployed:</b> Ready for external execution</p>
+                        </li>
+                        <li>
+                            <p><b>Created:</b> a service that has not been deployed and can still be edited,</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p><b>SPACE&#160;NAME</b> – The name of the space to which the service is associated.</p>
+                </li>
+                <li>
+                    <p><b>URL</b> – The URL of the service.</p>
+                </li>
+                <li>
+                    <p><b>DESCRIPTION</b> – a free-format description of the service</p>
+                </li>
+                <li>
+                    <p><b>REPLICAS</b> – The amount of replicas. If it is a large service, it is recommended to define more than 1 so it can be balanced over multiple instances.</p>
+                </li>
+            </ul>
+            <h2>Create a Service - Configuration</h2>
+            <p>From the main Services screen, click  <b>New +</b></p>
+            <p>The following configuration screen is displayed - the mandatory fields are outlined in red:</p>
             <p>
-                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services1b.png" style="width: 908px;height: 135px;" />
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services5.png" style="width: 850px;height: 535px;" />
             </p>
-            <p>Then select <b>Undeploy</b> and then <b>Delete</b> the service: </p>
+            <h2>Services Configuration Parameters</h2>
+            <ul>
+                <li>
+                    <p><b>(Source drop-down list)</b> – Select which GigaSpaces Space object the service should be executed against.</p>
+                </li>
+                <li>
+                    <p><b>Load Query</b>: Displays a list of previously saved and run queries.</p>
+                </li>
+                <li>
+                    <p><b>Service Name:</b> Provide a unique name for the service.</p>
+                    <div class="tc-admon-note">
+                        <p>The service name must be in lower case and can contain numbers, but only one hyphen "-"</p>
+                    </div>
+                </li>
+                <li>
+                    <p><b>Replicas:</b> How many replicas are being used.</p>
+                </li>
+                <li>
+                    <p><b>Description:</b>&#160;Description of the service you are creating.</p>
+                </li>
+                <li>
+                    <p><b>(Body of the service)</b> – enter a SQL-99 compliant service. Initially there is an example query service displayed in gray, As soon as you lick on that area, it is replaced by a blank screen ready for you to create your service. The results of the example service are also displayed (MIN_AGE, MAX_AGE).</p>
+                    <p><b>Retrieve first</b> – limit the query response to the desired number of rows. A maximum of 10,000 rows can be retrieved.</p>
+                </li>
+            </ul>
+        </div>
+        <div MadCap:conditions="Version.16-3-only">
+            <h2>Run or Save the Query and Create the Service</h2>
+            <p>Click <b>Run Query</b> to test the query. The query results will be displayed. If there is a problem with the query a Query validation failed error will be displayed at the bottom of the screen.</p>
+            <p>Click <b>Save query</b> to save the query which will then be accessible via the <b>Load Query</b> drop-down.</p>
+            <p>Click <b>Create Service</b> to create a service. It will now be displayed on the main screen with the status <b>Created</b>:</p>
             <p>
-                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services11a.png" />
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services6.png" style="width: 378px;height: 302px;" />
             </p>
+            <h2><a name="DeployService"></a>Deploy the Service</h2>
+            <p>Click the new service name and then to deploy the service, click <b>Deploy</b>:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services7.png" style="width: 761px;height: 434px;" />
+            </p>
+            <p>The newly created service will now be displayed on the main screen with the status <b>Deployed</b>:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services8.png" style="width: 396px;height: 322px;" />
+            </p>
+            <h2>Undeploy the Service</h2>
+            <p>A deployed service can be undeployed by clicking the SERVICE&#160;NAME and clicking <b>Undeploy</b>:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services9.png" style="width: 764px;height: 504px;" />
+            </p>
+            <p>The undeployed service will now be displayed on the main screen with the status <b>Undeployed</b>:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services10.png" style="width: 408px;height: 342px;" />
+            </p>
+            <div>
+                <h2>Delete a Service</h2>
+                <p>There is an option to Undeploy and then Delete a service by clicking the kebab menu (vertical three-dot menu) on the far right of the main Services Fields:</p>
+                <p>
+                    <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services1b.png" style="width: 908px;height: 135px;" />
+                </p>
+                <p>Then select <b>Undeploy</b> and then <b>Delete</b> the service: </p>
+                <p>
+                    <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services11a.png" />
+                </p>
+            </div>
         </div>
         <div MadCap:conditions="Default.DoNotShow">
             <h2>Behind the Scenes</h2>
