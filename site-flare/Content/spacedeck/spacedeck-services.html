@@ -10,6 +10,7 @@
         </map>
         <h1 class="tc-pagetitle">SpaceDeck – Services</h1>
         <p>This part of the system allows you to create and test queries via JDBC v3 format and then  create and execute low code data micro-services. Create service will deploy a REST service that will ruin the query. These services are used in client services, which are applications that interact with Spaces.</p>
+        <p>&#160;</p>
         <div MadCap:conditions="Version.16-4-born">
             <h1>Service Creator</h1>
             <p>ServiceCreator service, which exposes the REST&#160;endpoints, is deployed in the environment via the Kubernetes orchestration. Any new service creation request generates a new resource of the kind QueryService by submitting a request to the ServiceCreator service. Via the SpringBoot REST&#160;application, ServiceCreator service exposes the following APIs:</p>
@@ -97,7 +98,10 @@
                     <p><b>(Source drop-down list)</b> – Select which GigaSpaces Space object the service should be executed against.</p>
                 </li>
                 <li>
-                    <p><b>Service Name</b> - Provide a unique name for the new service.</p>
+                    <p><b>Service Name</b> - Provide a unique name for the new service. </p>
+                    <div class="tc-admon-note">
+                        <p>Only lowercase and numbers can be used including one hyphen and it has to start and end with a letter. </p>
+                    </div>
                 </li>
                 <li>
                     <p><b>Replicas</b> - The number of replicas being used.</p>
