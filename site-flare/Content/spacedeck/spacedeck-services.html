@@ -159,6 +159,9 @@
             <p>In some cases, services can return multiple rows from a Space.  If the goal is to display the data in some web application, the pagination approach is often used. This avoids all the data being displayed on one long page, which is not practical. Instead the data is divided into smaller pages.</p>
             <p>It is often required that services support this approach also on the back-end side because it is not practical to bring large amounts of data  to the front-end only to then divide it into smaller pages.  In many cases a developer will prefer to fetch relevant amounts of information for a given page from the front end. </p>
             <p>Pagination is now possible thanks to a new feature in the SQL engine called OFFSET.  The combination of LIMIT and OFFSET provides a solution for pagination. For LIMIT the page size is defined, and for OFFSET a basic calculation is performed of page number minus one multiplied by page size. This will results in a request that returns data that is relevant for a given page instead of returned all the data.</p>
+            <div class="tc-admon-attention">
+                <p>TFor pagination support, the query must include the ORDER_BY clause. This&#160;is because........ From the server side the query is executed each time for a new page from the beginning, providing the information requested by the query to the client. </p>
+            </div>
             <p>Example:</p>
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/Pagination.png" style="width: 753px;height: 297px;" />
