@@ -7,6 +7,7 @@
         <div MadCap:conditions="Version.16-3-only">
             <h3 id="dfb_force-toc_here" MadCap:conditions="Version.16-2-1-only" class="skip-toc">Release Date: April-27-2023</h3>
             <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
+            <p>&#160;</p>
             <div>
                 <h1>Introducing SpaceDeck</h1>
                 <p><a href="../spacedeck/spacedeck-overview.html">SpaceDeck</a>, GigaSpaces new User Interface, is now fully available for use in our Smart DIH&#160;product via <a href="../admin/DIH-installation-kubernetes.html">Kubernetes installation</a>. </p>
@@ -165,6 +166,9 @@
                 <p><a href="../spacedeck/spacedeck-admin.html">Security: Authentication, Authorization and Roles Management </a>
                 </p>
                 <p>Space security settings per instance</p>
+                <h1>Data Integration (DI)</h1>
+                <p>There is now no need to manually configure IIDR subscription via the DI&#160;Subscription&#160;Manager. This is now performed automatically.</p>
+                <p>For more information refer to <MadCap:xref href="../Data Integration/DI-Administration--Sub-Mgr.html">Pipeline Setup Via Subscription Manager and SpaceDeck</MadCap:xref>.</p>
                 <div MadCap:conditions="Default.DoNotShow">
                     <h1>SpaceDeck for Smart Cache</h1>
                     <p>SpaceDeck is now available for Smart Cache installations using Kubernetes</p>
@@ -184,44 +188,6 @@
                     </li>
                     <li>
                         <p>Cassandra was upgraded to v1.2.5</p>
-                    </li>
-                </ul>
-                <p>&#160;</p>
-                <p>&#160;</p>
-                <p><a href="../spacedeck/spacedeck-overview.html">SpaceDeck</a>, GigaSpaces new User Interface, is now fully available for use in our Smart DIH&#160;product via <a href="../admin/DIH-installation-kubernetes.html">Kubernetes installation</a>. </p>
-                <p>SpaceDeck is an intuitive, streamlined user interface to manage and control the GigaSpaces environment.</p>
-                <p>Using SpaceDeck, you can define the tools to bring legacy System of Record (SoR) databases into the in-memory data grid that is the core of the GigaSpaces system.</p>
-                <div class="tc-admon-note">
-                    <p>&#160;For Smart DIH SpaceDeck does not yet cover all functionality. Our  <a href="../admin/gs-ops-manager-overview.html">Ops Manager UI</a> is still used to manage <a href="platform-feature-access.html">certain functionality</a>. SpaceDeck is available for Smart Cache and SmartDIH installations on Kubernetes, and will be extended in future releases to eventually replace the older UIs.</p>
-                </div>
-                <p>SpaceDeck includes the following features:</p>
-                <ul>
-                    <li>
-                        <p MadCap:conditions="Default.DoNotShow"><a href="../spacedeck/spacedeck-hosts.html" style="text-decoration: none;">Hosts</a>: displays hosts information with ability to drill-down for additional details such as System Information and Containers.</p>
-                    </li>
-                    <li>
-                        <p><a href="../spacedeck/spacedeck-admin.html">Admin:</a> Provides security authentication, user management and connection via IDP.</p>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <p>
-                            <MadCap:xref href="../spacedeck/16-2-spacedeck-spaces.html" class="spaces">Spaces</MadCap:xref>: displays status, monitoring and resource usage of Spaces and related partitions.</p>
-                    </li>
-                    <li>
-                        <p>
-                            <MadCap:xref href="../spacedeck/spacedeck-data-sources.html" class="data-sources">Data Sources</MadCap:xref>: specifies the data source that will be used to provide data in a data pipeline. </p>
-                        <p>
-                            <MadCap:xref href="../spacedeck/spacedeck-data-pipeline-overview.html" class="data-pipeline">Data Pipeline</MadCap:xref>: displays data pipeline details such as monitoring, source table/s in the System of Record, resulting Object in GigaSpaces, and parameters of the data connection. Also allows quick one-click creation of new data pipelines.</p>
-                    </li>
-                    <li>
-                        <div class="tc-admon-feature">
-                            <p><a href="../spacedeck/spacedeck-services.html" style="text-decoration: none;">Services</a>: used for creating and testing queries via JDBC v3 format and creating services out of it. Create service will deploy a REST service that will ruin the query. For use in client services, which are applications that interact with Spaces.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <p>
-                            <MadCap:xref href="../spacedeck/spacedeck-data-query.html" class="data-query-2">Data Query</MadCap:xref>: querying the data using SQL commands, supporting full ANSI SQL-99 syntax. </p>
                     </li>
                 </ul>
             </div>
