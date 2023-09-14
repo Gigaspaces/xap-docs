@@ -9,9 +9,8 @@
             <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
         </map>
         <h1 class="tc-pagetitle">SpaceDeck – Services</h1>
-        <p>This part of the system allows you to create and execute low code data services. A query service will trigger a space query every time a request is made. </p>
-        <p> Create service will deploy a REST service that will ruin the query. For use in client services, which are applications that interact with Spaces.</p>
-        <div MadCap:conditions="Default.DoNotShow">
+        <p>This part of the system allows you to create and test queries via JDBC v3 format and then  create and execute low code data micro-services. Create service will deploy a REST service that will ruin the query. These services are used in client services, which are applications that interact with Spaces.</p>
+        <div MadCap:conditions="Version.16-4-born">
             <h1>Service Creator</h1>
             <p>ServiceCreator service, which exposes the REST&#160;endpoints, is deployed in the environment via the Kubernetes orchestration. Any new service creation request generates a new resource of the kind QueryService by submitting a request to the ServiceCreator service. Via the SpringBoot REST&#160;application, ServiceCreator service exposes the following APIs:</p>
             <ul>
