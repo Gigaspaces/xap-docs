@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <map id="map1">
+            <area shape="rectangle" coords="31,228,438,655" dragDirection="0" />
+            <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
+            <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
+        </map>
+        <h1 class="tc-pagetitle">SpaceDeck SSO&#160;IDP&#160;Setup</h1>
+        <p>For configuring SSO&#160;(Secure Sign-On) for SpaceDeck, several IDPs can be used. <MadCap:variable name="General.CompanyName" /> provide examples below of how this setup is achieved through <b>AWS&#160;Azure</b> and <b>Okta</b>.</p>
+        <div class="easyui-tabs" plain="true">
+            <div title="Okta IDP Setup">
+                <ol>
+                    <li>
+                        <p>Create a developer account in <a href="https://developer.okta.com/signup/">OKTA</a></p>
+                    </li>
+                    <li>
+                        <p>Once created, log in to the account and from the left-side menu, select <b>Applications</b>:</p>
+                    </li>
+                    <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA1.png" style="width: 274px;height: 390px;" />
+                    <li>
+                        <p>Click <b>Create App Integration</b>:</p>
+                    </li>
+                    <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA2.png" style="width: 734px;height: 274px;" />
+                    <li>
+                        <p>From the pop-out menu, select Sign-in method <b>OIDC - OpenID Connect</b> and Application type <b>Web Application</b>and click <b>Next</b>:</p>
+                    </li>
+                    <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA3.png" style="width: 568px;height: 494px;" />
+                    <li>
+                        <p>In the New Web App Integration screen:</p>
+                        <ul>
+                            <li>
+                                <p style="text-indent: 0.1in;">Provide an <b>App integration name</b>. In the example below it is Test Demo&#160;App.</p>
+                            </li>
+                            <li>
+                                <p style="text-indent: 0.1in;">From <b>Grant type</b> select <b>Authorization Code</b> from the <b>Client acting on behalf of a user</b> section.</p>
+                            </li>
+                            <li>
+                                <p style="text-indent: 0.1in;">From <b>Sign-in redirect&#160;URIs</b> set up a redirect URI -&gt; URI&#160;to security service callback.</p>
+                            </li>
+                        </ul>
+                    </li>
+                    <blockquote>
+                        <ol> <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA4.png" style="width: 576px;height: 505px;" /></ol>
+                    </blockquote>
+                    <li>
+                        <p>Controlled access is customizable according to each client's requirements. &#160;GigaSpaces tested it with the following setting:</p>
+                    </li>
+                    <ol>
+                        <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA5.png" style="width: 578px;height: 280px;" />
+                    </ol>
+                    <li>
+                        <p>Click Save. Okta will provide a Client ID and client Secret.</p>
+                    </li>
+                </ol>
+            </div>
+            <div title="AWS Azure IDP Setup">
+                <p>AWS Azure IDP is set up..........</p>
+            </div>
+        </div>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>
