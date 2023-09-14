@@ -130,7 +130,7 @@
             <h2>Service Main Page with Services Defined</h2>
             <p>&#160;</p>
             <h2>Service Execution through Swagger UI</h2>
-            <p>There are two options to execute a service query. Either through the service URL&#160;endpoint or using Swagger UI (in the case where the SQL query has parameter placeholders). Through&#160;Swagger UI, enter the value for each parameter. In the case where there are no parameters, there will be no option to enter parameters. In the example below, the Parameters and values supplied are id2 and id1:</p>
+            <p>There are two options to execute a service query. Either through the service URL&#160;endpoint or using Swagger UI (in the case where the SQL query has parameter placeholders). Through&#160;Swagger UI, a value must be entered for each parameter. In the case where there are no parameters, there will be no option given to enter parameters. In the example below, the Parameters and values supplied are id2 and id1:</p>
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/Swagger1.png" style="width: 832px;height: 411px;" />
             </p>
@@ -140,11 +140,68 @@
             </p>
             <p>&#160;</p>
             <h2>API&#160;Docs: Registering a Query Service to an API&#160;GW</h2>
-            <p>&#160;</p>
+            <p>Once a service has been deployed the endpoint will be accessible. </p>
+            <ol>
+                <li>
+                    <p>Through the kebab menu there is an option to Go to API&#160;Docs. This will open a JSON in Open API format which is used to register to an API Gateway.</p>
+                </li>
+                <img src="../Resources/Images/SpaceDeck/16.4/Service_APIGW1.png" style="width: 1207px;height: 151px;" />
+                <li>
+                    <p>Copy the contents of that page.</p>
+                </li>
+                <li>
+                    <p>For our example we are using the AWS&#160;GW. Open this API&#160;GW and click <b>Create API</b>:</p>
+                </li>
+                <img src="../Resources/Images/SpaceDeck/16.4/Service_APIGW2.png" style="width: 1216px;height: 93px;" />
+                <li>
+                    <p>Select REST&#160;API&#160;and click import:</p>
+                </li>
+                <img src="../Resources/Images/SpaceDeck/16.4/Service_APIGW3.png" style="width: 1226px;height: 255px;" />
+                <li>
+                    <p>Select the option of <b>Import from Swagger or Open API 3</b> and paste the output of the API&#160;Docs (copied previously). Then click <b>Import</b>:</p>
+                </li>
+                <img src="../Resources/Images/SpaceDeck/16.4/Service_APIGW4.png" style="width: 1218px;height: 282px;" />
+                <li>
+                    <p>Under the single endpoint of the query, configure the following parameters:</p>
+                </li>
+                <img src="../Resources/Images/SpaceDeck/16.4/Service_APIGW5.png" style="width: 1015px;height: 502px;" />
+            </ol>
+            <ul>
+                <li>
+                    <p><b>Integration type</b>: VPC&#160;Link</p>
+                </li>
+                <li>
+                    <p><b>Use Proxy Integration</b>: check this option</p>
+                </li>
+                <li>
+                    <p><b>Method</b>: GET</p>
+                </li>
+                <li>
+                    <p><b>Endpoint URL</b>: </p>
+                </li>
+                <li>
+                    <p><b>Use Default Timeout</b>:&#160;check this option</p>
+                </li>
+            </ul>
             <h2>Change Log Level Dynamically</h2>
-            <p>Currently the ability to change the log level is not available through SpaceDeck. &#160;However, this can be achieved through CURL or using Postman.</p>
+            <p>The default log level is configured to "INFO". Currently the ability to change the log level is not available through SpaceDeck. However, this can be achieved through CURL or using Postman.</p>
+            <h3>Through Postman:</h3>
+            <ol>
+                <li>
+                    <p>In the service's endpoint go the string <code>/actuator/loggers/com.gigaspaces.mcs.service.query</code>. </p>
+                </li>
+                <li>
+                    <p>Configure the request body <code>{"configuredLevel": "DEBUG"}</code>. </p>
+                </li>
+            </ol>
+            <p>In the example below the name of the service is "get-people-by-id-range":</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/Service+LogLevel1.png" style="width: 1435px;height: 265px;" />
+            </p>
+            <h3>Through CURL:</h3>
+            <p><code>curl -X POST -H "Content-Type: application/json" -d '{"configuredLevel": "DEBUG"}' http://team77.gigaspaces.net/api/get-people-by-id-range/actuator/loggers/com.gigaspaces.mcs.service.query</code>
+            </p>
             <p>&#160;</p>
-            <h2>&#160;</h2>
         </div>
         <div MadCap:conditions="Version.16-3-only">
             <p>The main screen displays a list of services. &#160;For our example, there have been three services created which have different statuses:</p>
