@@ -199,8 +199,17 @@
                 </div>
                 <h1>Redo Log Update</h1>
                 <p>Now there is the ability to <a href="../admin/flush-redolog-to-disk.htm">flush the redo log to disk</a> upon shutdown. </p>
-                <h1>Disclaimer</h1>
-                <p>Self-signed certificate has been removed in favor of the BouncyCastle package (org.bouncycastle v1.50) which is now bundled with the product. &#160;Due to the missing "sun.security.provider.Sun" in the newer JDK versions, users of IBM JDK are required to have this package in the classpath. For more information, refer to <MadCap:xref href="../security/securing-the-transport-layer-using-ssl.html">Securing the Transport Layer</MadCap:xref>.</p>
+                <h1>Disclaimers</h1>
+                <ul>
+                    <li>
+                        <p><b>Self-signed certificate</b> has been removed in favor of the BouncyCastle package (org.bouncycastle v1.50) which is now bundled with the product. &#160;Due to the missing "sun.security.provider.Sun" in the newer JDK versions, users of IBM JDK are required to have this package in the classpath. For more information, refer to <MadCap:xref href="../security/securing-the-transport-layer-using-ssl.html">Securing the Transport Layer</MadCap:xref>.</p>
+                    </li>
+                    <li>
+                        <p><b>ASM</b> (Java bytecode manipulation framework): Until version 16.3.0, <MadCap:variable name="General.CompanyName" />bundles ASM v3.3.1.</p>
+                        <p>Starting with ASM v4.0, there was a breaking change made to their API, specifically converting interfaces to classes, e.g., ClassVisitor and Method Visitor.</p>
+                        <p>In <MadCap:variable name="General.CompanyName" /><MadCap:variable name="Versions.product-version-short" />, the bundle was updated to include ASM v9.5, mainly to support future upgrades to Java 11. For more information  refer to <MadCap:xref href="third-party.html#ASM">Third-Party License Agreements</MadCap:xref></p>
+                    </li>
+                </ul>
             </div>
         </div>
     </body>

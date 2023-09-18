@@ -9,7 +9,7 @@
             <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
         </map>
         <h1 class="tc-pagetitle">SpaceDeck – Services</h1>
-        <p>This part of the system allows you to create and test queries via JDBC v3 format and then  create and execute low code data micro-services. Create service will deploy a REST service that will ruin the query. These services are used in client services, which are applications that interact with Spaces.</p>
+        <p>This part of the system allows you to create and test queries using JDBC v3 format to  create and execute SQL-99 compliant low code data micro-services. Create a service by optionally defining parameters will that will be supplied on invocation of the exposed REST endpoint of that service. These services are used in client services, which are applications that interact with Spaces.</p>
         <p>Refer to the <a href="../admin/deploying-services.html"> deploying services</a> page for information about Service Creator which is the service driving service creation and management.</p>
         <div MadCap:conditions="Version.16-4-born">
             <h1><a name="SecurityRoles"></a>Security Roles &amp;&#160;Permissions</h1>
@@ -18,7 +18,7 @@
                     <p>Security Roles and Permissions:</p>
                     <ul>
                         <li>
-                            <p>Deploy/Undeploy actions will require special permission. A user without this permission can only create a service.  In order to deploy or undeploy it they will require <b>Manage Service</b> permission. Refer to <MadCap:xref href="../security/security-overview.html#service-authority">Security Overview</MadCap:xref> for more details. </p>
+                            <p>Deploy/Undeploy actions will require special permission. A user without this permission can create or delete a service.  In order to deploy or undeploy it they will require <b>Manage Service</b> permission. Refer to <MadCap:xref href="../security/security-overview.html#service-authority">Security Overview</MadCap:xref> for more details. </p>
                         </li>
                         <li>
                             <p>Create/Delete does not require special permissions.</p>
@@ -36,19 +36,22 @@
             <h2>Services&#160;Fields</h2>
             <ul>
                 <li>
-                    <p><b>SERVICE NAME</b> – the name you define to the data source</p>
+                    <p><b>SERVICE NAME</b> – The name of the service.</p>
+                    <div class="tc-admon-note">
+                        <p>The Service name must be in lower case and can contain numbers and one hyphen (-).</p>
+                    </div>
                 </li>
                 <li>
                     <p><b>STATUS</b> – The status of the service:</p>
                     <ul style="list-style-type: circle;">
                         <li>
-                            <p><b>Undeployed</b> - A service that has been deployed or is not undeployed for editing purposes.</p>
+                            <p><b>Undeployed</b> - A service that has been created, deployed and is now undeployed. It can also be edited in this state.</p>
                         </li>
                         <li>
-                            <p><b>Deployed</b> - Ready for external execution</p>
+                            <p><b>Deployed</b> - Ready for external execution.</p>
                         </li>
                         <li>
-                            <p><b>Created</b> - A service that has not been deployed and can still be edited,</p>
+                            <p><b>Created</b> - A service that has  been created but not yet deployed and can still be edited.</p>
                         </li>
                     </ul>
                 </li>
@@ -62,7 +65,7 @@
                     <p><b>DESCRIPTION</b> – a free-format description of the service</p>
                 </li>
                 <li>
-                    <p><b>REPLICAS (ACTUAL/PLANNED)</b> – The amount of replicas. If it is a large service, it is recommended to define more than 1 so it can be balanced over multiple instances.</p>
+                    <p><b>REPLICAS (ACTUAL/PLANNED)</b> – The amount of running replicas vs. requested replicas. If it is a large service, it is recommended to define more than 1 so it can be balanced over multiple instances.</p>
                 </li>
             </ul>
             <h1>Create a New Service</h1>
@@ -70,14 +73,14 @@
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/Service2.png" />
             </p>
-            <p>The following configuration screen is displayed:</p>
+            <p>The following configuration screen is displayed. The fields <span class="tc-textred">outlined in red</span> are mandatory. </p>
             <p>
-                <img src="../Resources/Images/SpaceDeck/16.4/Service3b.png" style="width: 1278px;height: 494px;" />
+                <img src="../Resources/Images/SpaceDeck/16.4/Service3c.png" style="width: 1040px;height: 685px;" />
             </p>
             <h2>Services Configuration Parameters</h2>
             <ol>
                 <li>
-                    <p><b>(Source drop-down list)</b> – Select which GigaSpaces Space object the service should be executed against.</p>
+                    <p><b>(Source drop-down list)</b> – Select which GigaSpaces Space object the service should be executed against. If there is more than one Source, then the specific source will have to be defined. If there is just one Source, this is defined automatically.</p>
                 </li>
                 <li>
                     <p><b>Service Name</b> - Provide a unique name for the new service. </p>
@@ -92,13 +95,16 @@
                     <p><b>Description:</b>&#160;Write a short description of the service being created.</p>
                 </li>
                 <li>
-                    <p><b>(Body of the service)</b> – Create a SQL-99 compliant service. Initially there is an example query service displayed in gray, As soon as you click on that area, it is replaced by a blank screen ready for you to create your service. The results of the example service are also displayed (SAMPLE_FIELD_1, SAMPLE_FIELD_2).</p>
+                    <p><b>(Body of the service)</b> – Create a SQL-99 compliant service. Initially there is an example query service displayed in gray, As soon as you click on that area, it is replaced by a blank screen ready for you to create your service. The results of the example service are also displayed (in our example, these are SAMPLE_FIELD_1, SAMPLE_FIELD_2).</p>
                 </li>
                 <li>
                     <p><b>Retrieve first</b> – limit the query response to the desired number of rows. A maximum of 10,000 rows can be retrieved.</p>
                 </li>
                 <li>
-                    <p><b>Run Query</b> -Click to test the query. The query results will be displayed. If there is a problem with the query a Query validation failed error will be displayed at the bottom of the screen.</p>
+                    <p><b>Run Query</b> -Click to test the query. The query results will be displayed. If there is a problem with the query a Query validation failed error will be displayed at the bottom of the screen, like this:</p>
+                    <p>
+                        <img src="../Resources/Images/SpaceDeck/16.4/ServiceCreateFail.png" />
+                    </p>
                 </li>
                 <li>
                     <p><b>Create Service</b> - Click to create the service. It will now be displayed on the main screen with the status <b>Created</b>:</p>
@@ -154,7 +160,7 @@
             </p>
             <ol>
                 <li>
-                    <p>Once the service is deployed, there in a option from this screen to <b>Underploy</b> the service.</p>
+                    <p>Once the service is deployed, there in a option from this screen to <b>Undeploy</b> the service.</p>
                 </li>
                 <li>
                     <p>Once deployed, use this kebab menu to either <b>Download Logs</b>, <b>Undeploy Service</b> or <b>Go to API&#160;Docs</b>. </p>
@@ -163,20 +169,20 @@
                 </li>
             </ol>
             <h1>Service Main Page with Services Defined</h1>
-            <p>The main Services screen displays a list of services. &#160;For our example, there have been three services created which have different statuses.</p>
+            <p>The main Services screen displays a list of services. &#160;For our example, three services have been created all with different statuses.</p>
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/Services6b.png" style="width: 1227px;height: 226px;" />
             </p>
             <ol>
                 <li>
-                    <p><b>SERVICE NAME</b> – click this to get to the configuration screen</p>
+                    <p><b>SERVICE NAME</b> – click this to get to the configuration screen.</p>
                 </li>
                 <li>
-                    <p><b>STATUS</b> – The status of each of the three defined services</p>
+                    <p><b>STATUS</b> – The status of defined services.</p>
                 </li>
                 <ul>
                     <li>
-                        <p><b>Deployed</b> - a service ready for external execution</p>
+                        <p><b>Deployed</b> - a service ready for external execution.</p>
                     </li>
                     <li>
                         <p><b>Undeployed</b>- a service that has been deployed or has been undeployed for editing purposes.</p>
@@ -218,7 +224,7 @@
         </div>
         <div MadCap:conditions="Version.16-4-born">
             <h1><a name="Swagger"></a>Service Execution through Swagger UI</h1>
-            <p>There are two options to execute a service query. Either through the service URL&#160;endpoint or using Swagger UI (in the case where the SQL query has parameter placeholders). Through&#160;Swagger UI, a value must be entered for each parameter. In the case where there are no parameters, there will be no option given to enter parameters. In the example below, the Parameters and values supplied are id2 and id1:</p>
+            <p>There are two options to execute a service query. Either through the service URL&#160;endpoint or using Swagger UI (in the case where the SQL query has parameter placeholders there will be values to fill in. &#160;If not, there will be no parameter values listed). Through&#160;Swagger UI, a value must be entered for each parameter. In the case where there are no parameters, there will be no option given to enter parameters. In the example below, the Parameters and values supplied are id2 and id1:</p>
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/Swagger1.png" style="width: 832px;height: 411px;" />
             </p>
@@ -228,7 +234,7 @@
             </p>
             <p>&#160;</p>
             <h1><a name="API-Docs"></a>API&#160;Docs: Registering a Query Service to an API&#160;GW</h1>
-            <p>Once a service has been deployed the endpoint will be accessible. </p>
+            <p>Only once a service has been deployed and the uri is accessible (responds with 200 status) will the URL of the API Docs be clickable.</p>
             <ol>
                 <li>
                     <p>Through the kebab menu there is an option to Go to API&#160;Docs. This will open a JSON in Open API format which is used to register to an API Gateway.</p>
@@ -256,7 +262,7 @@
             </ol>
             <ul>
                 <li>
-                    <p><b>Integration type</b>: VPC&#160;Link</p>
+                    <p><b>Integration type</b>: HTTP</p>
                 </li>
                 <li>
                     <p><b>Use Proxy Integration</b>: check this option</p>
@@ -279,7 +285,7 @@
             <h2>Through Postman:</h2>
             <ol>
                 <li>
-                    <p>In the service's endpoint go the string <code>/actuator/loggers/com.gigaspaces.mcs.service.query</code>. </p>
+                    <p>In the service's endpoint go the relative path: <code>/actuator/loggers/com.gigaspaces.mcs.service.query</code>. </p>
                 </li>
                 <li>
                     <p>Configure the request body <code>{"configuredLevel": "DEBUG"}</code>. </p>
@@ -290,7 +296,7 @@
                 <img src="../Resources/Images/SpaceDeck/16.4/Service+LogLevel1.png" style="width: 1435px;height: 265px;" />
             </p>
             <h2>Through CURL</h2>
-            <p><code>curl -X POST -H "Content-Type: application/json" -d '{"configuredLevel": "DEBUG"}' http://team77.gigaspaces.net/api/get-people-by-id-range/actuator/loggers/com.gigaspaces.mcs.service.query</code>
+            <p><code>curl -X POST -H "Content-Type: application/json" -d '{"configuredLevel": "DEBUG"}' http://&lt;IP&#160;of cluster&gt;/api/get-people-by-id-range/actuator/loggers/com.gigaspaces.mcs.service.query</code>
             </p>
             <p>&#160;</p>
         </div>
