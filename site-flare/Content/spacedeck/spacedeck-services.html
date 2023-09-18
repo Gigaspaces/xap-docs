@@ -118,7 +118,7 @@
             </ol>
             <h2>Create Service&#160;Example</h2>
             <p>
-                <img src="../Resources/Images/SpaceDeck/16.4/Services4.png" style="width: 1280px;height: 648px;" />
+                <img src="../Resources/Images/SpaceDeck/16.4/Services4a.png" style="width: 1002px;height: 570px;" />
             </p>
             <ol>
                 <li>
@@ -137,19 +137,18 @@
                     <p><b>Save</b> the query.</p>
                 </li>
                 <li>
-                    <p><b>Deploy</b> the query as a service. </p>
+                    <p><b>Deploy</b> or <b>Undeploy</b> the query as a service. Depending on whether the status is Created or Deployed.</p>
                 </li>
                 <li>
-                    <p>Once created, use this kebab menu to either <b>Deploy</b> or <b>Delete</b> the service. </p>
+                    <p>If the service is created, use this kebab menu to either <b>Deploy</b> or <b>Delete</b> the service. If the service is deployed, use this kebab menu to either <b>Download Logs</b>, <b>Undeploy Service</b> or <b>Go to API&#160;Docs</b>.</p>
                 </li>
             </ol>
             <h2><a name="Pagination"></a>Support for Service Results Pagination</h2>
             <p>In some cases, services can return multiple rows from a Space.  If the goal is to display the data in some web application, the pagination approach is often used. This avoids all the data being displayed on one long page, which is not practical. Instead the data is divided into smaller pages.</p>
             <p>It is often required that services support this approach also on the back-end side because it is not practical to bring large amounts of data  to the front-end only to then divide it into smaller pages.  In many cases a developer will prefer to fetch relevant amounts of information for a given page from the front end. </p>
-            <p>Pagination is now possible thanks to a new feature in the SQL engine called OFFSET.  The combination of LIMIT and OFFSET provides a solution for pagination. For LIMIT the page size is defined, and for OFFSET a basic calculation is performed of page number minus one multiplied by page size. This will results in a request that returns data that is relevant for a given page instead of returned all the data.</p>
-            <div class="tc-admon-attention">
-                <p>For pagination support, the query must include the ORDER_BY clause. This&#160;is because........ From the server side the query is executed each time for a new page from the beginning, providing the information requested by the query to the client. </p>
-            </div>
+            <p>Pagination is now possible using a combination of service parameters together with <b>LIMIT</b> and <b>OFFSET</b> and <b>ORDER&#160;BY</b> SQL keywords.</p>
+            <p> LIMIT defines the page size. OFFSET defines the first row for a given page. &#160;For OFFSET, a basic calculation is performed of page number minus one multiplied by page size. This will results in a request that returns data that is relevant for a given page instead of returned all the data.</p>
+            <p>When using LIMIT, it is important to use an ORDER BY clause that constrains the result rows into a unique order. Otherwise you will get an unpredictable subset of the query's rows.</p>
             <p>Example:</p>
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/Pagination.png" style="width: 753px;height: 297px;" />
@@ -257,8 +256,10 @@
                 <img src="../Resources/Images/SpaceDeck/16.4/Service_APIGW4.png" style="width: 1218px;height: 282px;" />
                 <li>
                     <p>Under the single endpoint of the query, configure the following parameters:</p>
+                    <p style="text-align: left;">
+                        <img src="../Resources/Images/SpaceDeck/16.4/Service_APIGW5a.png" style="width: 943px;height: 393px;" />
+                    </p>
                 </li>
-                <img src="../Resources/Images/SpaceDeck/16.4/Service_APIGW5.png" style="width: 1015px;height: 502px;" />
             </ol>
             <ul>
                 <li>

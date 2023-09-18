@@ -23,14 +23,15 @@ EXPLAIN ANALYZE
         </p><pre>|DESCRIBE [ STATEMENT ] { query }</pre>
         <p class="p_1">&#160;</p>
         <p><b>query:</b>
-        </p><pre> values
+        </p><pre xml:space="preserve"> values
 | WITH withItem [ , withItem ]* query
 |{
     select
    | selectWithoutFrom
    }
    [ ORDER BY orderItem [, orderItem ]* ]
-   [ LIMIT [ start, ] { count | ALL } ]</pre>
+   [ LIMIT [ start, ] { count | ALL } ]
+   [ OFFSET start ]</pre>
         <p class="p_7">&#160;&#160;&#160;&#160; </p>
         <p><b>withItem:</b>
         </p><pre> name
