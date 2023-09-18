@@ -32,7 +32,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Function</th>
+                    <th style="text-align: left;">Function</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,6 +56,21 @@
         </table>
         <h2>Service Creator </h2>
         <p>Services creation is managed by a Service&#160;Creator operator which uses a service which exposes REST&#160;endpoints.</p>
+        <p>The ServiceCreator service manages service creation. The service exposes the REST&#160;endpoints, and is deployed in the environment via the Kubernetes orchestration. Any new service creation request generates a new resource of the kind QueryService by submitting a request to the ServiceCreator service. Via the SpringBoot REST&#160;application, ServiceCreator service exposes the following APIs:</p>
+        <ul>
+            <li>
+                <p>Create Query Service given Spec.</p>
+            </li>
+            <li>
+                <p>Get service spec-parameters given its ID.</p>
+            </li>
+            <li>
+                <p>Get list of available services of this kind (queryService).</p>
+            </li>
+            <li>
+                <p>Delete service.</p>
+            </li>
+        </ul>
         <h3>Flow</h3>
         <p>
             <img src="../Resources/Images/CreateService.png" />

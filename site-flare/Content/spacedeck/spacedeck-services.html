@@ -10,25 +10,7 @@
         </map>
         <h1 class="tc-pagetitle">SpaceDeck – Services</h1>
         <p>This part of the system allows you to create and test queries via JDBC v3 format and then  create and execute low code data micro-services. Create service will deploy a REST service that will ruin the query. These services are used in client services, which are applications that interact with Spaces.</p>
-        <p>&#160;</p>
-        <div MadCap:conditions="Version.16-4-born">
-            <h1>Service Creator</h1>
-            <p>ServiceCreator service, which exposes the REST&#160;endpoints, is deployed in the environment via the Kubernetes orchestration. Any new service creation request generates a new resource of the kind QueryService by submitting a request to the ServiceCreator service. Via the SpringBoot REST&#160;application, ServiceCreator service exposes the following APIs:</p>
-            <ul>
-                <li>
-                    <p>Create Query Service given Spec.</p>
-                </li>
-                <li>
-                    <p>Get service spec-parameters given its ID.</p>
-                </li>
-                <li>
-                    <p>Get list of available services of this kind (queryService).</p>
-                </li>
-                <li>
-                    <p>Delete service.</p>
-                </li>
-            </ul>
-        </div>
+        <p>Refer to the <a href="../admin/deploying-services.html"> deploying services</a> page for information about Service Creator with is the service driving service creation and management.</p>
         <div MadCap:conditions="Version.16-4-born">
             <h1><a name="SecurityRoles"></a>Security Roles &amp;&#160;Permissions</h1>
             <ul>
@@ -160,7 +142,7 @@
             <p>It is often required that services support this approach also on the back-end side because it is not practical to bring large amounts of data  to the front-end only to then divide it into smaller pages.  In many cases a developer will prefer to fetch relevant amounts of information for a given page from the front end. </p>
             <p>Pagination is now possible thanks to a new feature in the SQL engine called OFFSET.  The combination of LIMIT and OFFSET provides a solution for pagination. For LIMIT the page size is defined, and for OFFSET a basic calculation is performed of page number minus one multiplied by page size. This will results in a request that returns data that is relevant for a given page instead of returned all the data.</p>
             <div class="tc-admon-attention">
-                <p>TFor pagination support, the query must include the ORDER_BY clause. This&#160;is because........ From the server side the query is executed each time for a new page from the beginning, providing the information requested by the query to the client. </p>
+                <p>For pagination support, the query must include the ORDER_BY clause. This&#160;is because........ From the server side the query is executed each time for a new page from the beginning, providing the information requested by the query to the client. </p>
             </div>
             <p>Example:</p>
             <p>
@@ -420,10 +402,6 @@
                     <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services11a.png" />
                 </p>
             </div>
-        </div>
-        <div MadCap:conditions="Default.DoNotShow">
-            <h2>Behind the Scenes</h2>
-            <p>The ServiceCreator service, which exposes REST endpoints, is deployed in the environment. &#160;In addition, the ServiceCreator operator is deployed. A new service request generates a new resource of type QueryService by submitting a request to the ServiceCreator service. More information about <a href="../admin/deploying-services.html">Deploying Services</a>.</p>
         </div>
         <p>&#160;</p>
     </body>

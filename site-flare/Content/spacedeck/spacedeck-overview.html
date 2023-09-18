@@ -12,33 +12,116 @@
         <h1>Overview</h1>
         <p>SpaceDeck is an intuitive, streamlined user interface to manage and control the GigaSpaces environment. </p>
         <p>Using SpaceDeck, you can define the tools to bring legacy System of Record (SoR) databases into the in-memory data grid that is the core of the GigaSpaces system.</p>
-        <p>&#160;</p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Main.png" style="width: 794px;height: 390px;" MadCap:conditions="Version.16-3-only" />
-        </p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/16.4/MainScreen.png" style="width: 818px;height: 380px;" MadCap:conditions="Version.16-4-born" />
-        </p>
-        <p MadCap:conditions="Default.DoNotShow">SpaceDeck also includes a set of command line interface (CLI) tools to manage the GigaSpaces system.</p>
-        <p>SpaceDeck has the following features:</p>
+        <p>SpaceDeck has the following advantages:</p>
         <ul>
             <li>
                 <p><i>No-code</i> functionality – the environment can be set up and monitored using the user-friendly SpaceDeck screens, eliminating the need for writing or customizing code</p>
             </li>
             <li>
-                <p>The ability for you to create and execute low code data services.</p>
+                <p>The ability for you to create and execute low-code SQL  micro-services.</p>
             </li>
             <li>
-                <p>A full complement of data and system monitoring tools, built into the environment</p>
+                <p>A full complement of data and system monitoring tools.</p>
             </li>
         </ul>
+        <p>&#160;</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Main.png" style="width: 794px;height: 390px;" MadCap:conditions="Version.16-3-only" />
+        </p>
+        <h1>Getting Started</h1>
+        <p MadCap:conditions="Version.16-4-born">
+            <img src="../Resources/Images/SpaceDeck/16.4/MainOverview1.png" style="width: 1192px;height: 559px;" />
+        </p>
+        <table style="width: 1000px;" class="tc-standard">
+            <col style="width: 60px;" />
+            <col style="width: 214px;" />
+            <col style="width: 726px;" />
+            <thead>
+                <tr>
+                    <th style="text-align: center;font-weight: bold;">#</th>
+                    <th style="text-align: left;font-weight: bold;">Menu</th>
+                    <th style="text-align: left;font-weight: bold;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center;">1</td>
+                    <td>Administration</td>
+                    <td>
+                        <p><a href="spacedeck-admin.html#GeneralSetup">Settings of IDP for enabling SSO</a>
+                        </p>
+                        <p><a href="spacedeck-admin.html#Roles-Mangement">Roles&#160;Management</a>
+                        </p>
+                        <p><a href="spacedeck-admin.html#Resource-Management">Resources Management</a>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">2</td>
+                    <td>Management</td>
+                    <td>Management section of SpaceDeck</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">3</td>
+                    <td>Hosts</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">4</td>
+                    <td>Spaces</td>
+                    <td>
+                        <p><a href="spacedeck-spaces-adding-a-space.html">Deploy and undeploy</a>
+                        </p>
+                        <p><a href="spacedeck-spaces-status-details.html">View dynamic metrics</a>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">5 </td>
+                    <td>Data Sources</td>
+                    <td><a href="spacedeck-data-sources.html">Choose which databases to import to the IMDG</a>. These data sources will be used to configure the data pipeline</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">6 </td>
+                    <td>Data Pipeline</td>
+                    <td>
+                        <p><a href="spacedeck-data-pipeline-new-pipeline.html">Choose which tables and fields to use</a>
+                        </p>
+                        <p>View dynamic metrics and start/stop the pipeline</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">7</td>
+                    <td>Services</td>
+                    <td>
+                        <p>Low-Code Data Service</p>
+                        <p>Create and execute</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">8</td>
+                    <td>Data&#160;Queries</td>
+                    <td>Perform SQL&#160;queries on the Space or pipeline data</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">9</td>
+                    <td>Stream SQL</td>
+                    <td>&#160;</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">10</td>
+                    <td>Exit SpaceDeck</td>
+                    <td>&#160;</td>
+                </tr>
+            </tbody>
+        </table>
         <div class="tc-admon-note">
-            <p>This version of SpaceDeck does not yet cover all functionality. On <MadCap:xref href="../rn/platform-access.html">Platform&#160;Feature Access</MadCap:xref> page explains which of our UIs manage each of our main platform operations. SpaceDeck is initially available as part of our Smart DIH Kubernetes installation.</p>
+            <p>SpaceDeck does not yet cover all functionality of our previous UIs. Refer to the <MadCap:xref href="../rn/platform-access.html">Platform&#160;Feature Access</MadCap:xref> page which explains which of our UIs manage each of our main platform operations. SpaceDeck is initially available as part of our Smart DIH Kubernetes installation.</p>
         </div>
-        <h1>Who Can Use SpaceDeck?</h1>
+        <h1>Typical SpaceDeck&#160;Users</h1>
         <p>SpaceDeck can be used by various user types ("personas") as follows:</p>
-        <p><b>System Integrators</b> – integrate data from Systems of Record into the Smart DIH, using data pipelines</p>
-        <p><b>Data Engineers</b> – study the data unified in a Space using data queries. Integrate data from Systems of Record into the Smart DIH, using data pipelines</p>
+        <p><b>System Integrators</b> – integrate data from Systems of Record into Smart DIH, using data pipelines</p>
+        <p><b>Data Engineers</b> – study the data unified in a Space using data queries. Integrate data from Systems of Record into Smart DIH, using data pipelines</p>
         <p><b>System Admins</b> – manage day-to-day operations of the system; inspect and monitor its components</p>
         <div MadCap:conditions="Default.DoNotShow">
             <h1>Why Do I Need SpaceDeck?</h1>
@@ -107,110 +190,66 @@
                 </li>
             </ul>
         </div>
-        <h1>Getting&#160;Started</h1>
-        <p> </p>
-        <p>Hosts: </p>
-        <p>Spaces: </p>
-        <ul>
-            <li>
-                <p><a href="spacedeck-spaces-adding-a-space.html">Deploy and undeploy</a>
-                </p>
-            </li>
-            <li>
-                <p><a href="spacedeck-spaces-status-details.html">View dynamic metrics</a>
-                </p>
-            </li>
-        </ul>
-        <p>Data Sources: </p>
-        <ul>
-            <li>
-                <p><a href="spacedeck-data-sources.html">Choose which databases to import to the IMDG</a>. These data sources will be used to configure the data pipeline</p>
-            </li>
-        </ul>
-        <p>Data Pipeline: </p>
-        <ul>
-            <li>
-                <p><a href="spacedeck-data-pipeline-new-pipeline.html">Choose which tables and fields to use</a> and decide which Spaces will contain this data</p>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <p>View dynamic metrics and start/stop the pipeline</p>
-            </li>
-        </ul>
-        <p>Low-Code Data Service: </p>
-        <ul>
-            <li>
-                <p>Create and execute</p>
-            </li>
-        </ul>
-        <p>SQL&#160;Queries: </p>
-        <ul>
-            <li>
-                <p>Perform SQL&#160;queries on the Space or pipeline data.</p>
-            </li>
-        </ul>
-        <p>&#160;</p>
-        <p>
-            <br />
-        </p>
-        <table style="width: 100%;border-top-left-radius: 3px;border-top-right-radius: 3px;border-bottom-right-radius: 3px;border-bottom-left-radius: 3px;border-left-style: solid;border-left-width: 1px;border-left-color: #a4aab3;border-right-style: solid;border-right-width: 1px;border-right-color: #a4aab3;border-top-style: solid;border-top-width: 1px;border-top-color: #a4aab3;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #a4aab3;margin-left: 0;margin-right: auto;">
-            <col style="width: 20%;" />
-            <col style="width: 20%;" />
-            <col style="width: 20%;" />
-            <col style="width: 20%;" />
-            <col style="width: 20%;" />
-            <thead>
-                <tr>
-                    <th style="text-align: center; vertical-align: top;">Define/Modify/Monitor a Space</th>
-                    <th>Define/Modify the Data Sources from the System or Record</th>
-                    <th style="text-align: center; vertical-align: top;">Define/Modify/Monitor a Data Pipeline</th>
-                    <th style="vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 1px;border-left-color: #e0e0e0;">Create and execute low-code data services</th>
-                    <th style="text-align: center; vertical-align: top;">Perform SQL queries on Space/Pipeline data</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="text-align: left; vertical-align: top;">Deploy and undeploy Spaces  – <MadCap:xref href="spacedeck-spaces-adding-a-space.html">SpaceDeck – Spaces - Adding a Space</MadCap:xref></td>
-                    <td>
-                        <p>Choose <b>which databases</b> to import into the in-memory data grid – <MadCap:xref href="spacedeck-data-sources.html">SpaceDeck – Data Sources </MadCap:xref></p>
-                        <p>These data source will be used in the configuration of the data pipeline.</p>
-                    </td>
-                    <td style="text-align: left; vertical-align: top;">Choose <b>which tables and fields</b> to use, and decide which Spaces will contain this data – <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref></td>
-                    <td>Create and execute low-code services: <MadCap:xref href="spacedeck-services.html">SpaceDeck – Services</MadCap:xref></td>
-                    <td style="text-align: left;vertical-align: top;">Perform <b>SQL queries</b> – <MadCap:xref href="spacedeck-data-query.html">SpaceDeck – Data Query</MadCap:xref></td>
-                </tr>
-                <tr MadCap:conditions="">
-                    <td style="text-align: left; vertical-align: top;">
-                        <p>View dynamic metrics - <MadCap:xref href="spacedeck-spaces-status-details.html">SpaceDeck – Spaces Status - Details</MadCap:xref> </p>
-                    </td>
-                    <td>&#160;</td>
-                    <td style="text-align: left; vertical-align: top;">View dynamic metrics and start/stop the pipeline – <MadCap:xref href="spacedeck-data-pipeline-details.html">SpaceDeck – Data Pipeline – Monitoring Pipelines</MadCap:xref></td>
-                    <td>&#160;</td>
-                    <td style="text-align: left;vertical-align: top;">&#160;</td>
-                </tr>
-                <tr>
-                    <td style="vertical-align: top;text-align: center;" colspan="5">(Click to enlarge the images below)</td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;">
-                        <img class="tc-thumbnail" src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces2b.png" />
-                    </td>
-                    <td style="text-align: center;">
-                        <img class="tc-thumbnail" src="../Resources/Static/images/spacedeck-overview-thumbnail-data-sources-2.png" />
-                    </td>
-                    <td style="text-align: center;">
-                        <img class="tc-thumbnail" src="../Resources/Static/images/spacedeck-overview-thumbnail-data-pipeline-new-1.png" />
-                    </td>
-                    <td style="text-align: center;">
-                        <img class="tc-thumbnail" src="../Resources/Images/SpaceDeck/SpaceDeck-Services5.png" />
-                    </td>
-                    <td style="text-align: center;">
-                        <img class="tc-thumbnail" src="../Resources/Images/SpaceDeck/DataQuery_Thumbnail.png" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div MadCap:conditions="Version.16-3-only">
+            <h1>Getting&#160;Started</h1>
+            <table style="width: 100%;border-top-left-radius: 3px;border-top-right-radius: 3px;border-bottom-right-radius: 3px;border-bottom-left-radius: 3px;border-left-style: solid;border-left-width: 1px;border-left-color: #a4aab3;border-right-style: solid;border-right-width: 1px;border-right-color: #a4aab3;border-top-style: solid;border-top-width: 1px;border-top-color: #a4aab3;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #a4aab3;margin-left: 0;margin-right: auto;">
+                <col style="width: 20%;" />
+                <col style="width: 20%;" />
+                <col style="width: 20%;" />
+                <col style="width: 20%;" />
+                <col style="width: 20%;" />
+                <thead>
+                    <tr>
+                        <th style="text-align: center; vertical-align: top;">Define/Modify/Monitor a Space</th>
+                        <th>Define/Modify the Data Sources from the System or Record</th>
+                        <th style="text-align: center; vertical-align: top;">Define/Modify/Monitor a Data Pipeline</th>
+                        <th style="vertical-align: top;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;border-left-style: solid;border-left-width: 1px;border-left-color: #e0e0e0;">Create and execute low-code data services</th>
+                        <th style="text-align: center; vertical-align: top;">Perform SQL queries on Space/Pipeline data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: left; vertical-align: top;">Deploy and undeploy Spaces  – <MadCap:xref href="spacedeck-spaces-adding-a-space.html">SpaceDeck – Spaces - Adding a Space</MadCap:xref></td>
+                        <td>
+                            <p>Choose <b>which databases</b> to import into the in-memory data grid – <MadCap:xref href="spacedeck-data-sources.html">SpaceDeck – Data Sources </MadCap:xref></p>
+                            <p>These data source will be used in the configuration of the data pipeline.</p>
+                        </td>
+                        <td style="text-align: left; vertical-align: top;">Choose <b>which tables and fields</b> to use, and decide which Spaces will contain this data – <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref></td>
+                        <td>Create and execute low-code services: <MadCap:xref href="spacedeck-services.html">SpaceDeck – Services</MadCap:xref></td>
+                        <td style="text-align: left;vertical-align: top;">Perform <b>SQL queries</b> – <MadCap:xref href="spacedeck-data-query.html">SpaceDeck – Data Query</MadCap:xref></td>
+                    </tr>
+                    <tr MadCap:conditions="">
+                        <td style="text-align: left; vertical-align: top;">
+                            <p>View dynamic metrics - <MadCap:xref href="spacedeck-spaces-status-details.html">SpaceDeck – Spaces Status - Details</MadCap:xref> </p>
+                        </td>
+                        <td>&#160;</td>
+                        <td style="text-align: left; vertical-align: top;">View dynamic metrics and start/stop the pipeline – <MadCap:xref href="spacedeck-data-pipeline-details.html">SpaceDeck – Data Pipeline – Monitoring Pipelines</MadCap:xref></td>
+                        <td>&#160;</td>
+                        <td style="text-align: left;vertical-align: top;">&#160;</td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top;text-align: center;" colspan="5">(Click to enlarge the images below)</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+                            <img class="tc-thumbnail" src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces2b.png" />
+                        </td>
+                        <td style="text-align: center;">
+                            <img class="tc-thumbnail" src="../Resources/Static/images/spacedeck-overview-thumbnail-data-sources-2.png" />
+                        </td>
+                        <td style="text-align: center;">
+                            <img class="tc-thumbnail" src="../Resources/Static/images/spacedeck-overview-thumbnail-data-pipeline-new-1.png" />
+                        </td>
+                        <td style="text-align: center;">
+                            <img class="tc-thumbnail" src="../Resources/Images/SpaceDeck/SpaceDeck-Services5.png" />
+                        </td>
+                        <td style="text-align: center;">
+                            <img class="tc-thumbnail" src="../Resources/Images/SpaceDeck/DataQuery_Thumbnail.png" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <p>&#160;</p>
         <p>This topic includes the following sections explaining all of SpaceDeck operations in the order they should be carried out in.</p>
         <MadCap:miniTocProxy style="mc-toc-depth: 1;" class="topic-content" />
