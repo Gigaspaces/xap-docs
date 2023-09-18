@@ -14,18 +14,27 @@
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces4a.png" style="width: 988px;height: 313px;" />
         </p>
-        <p>The resulting screen has three tabs: <MadCap:xref href="#View" class="monitoring">Monitoring</MadCap:xref>, <MadCap:xref href="#View2" class="Objects-Types">Objects-Types</MadCap:xref>, and <MadCap:xref href="#View3" class="Partitions">Partitions.</MadCap:xref></p>
-        <p>A log can be generated or a space can be undeployed by selecting the kebab menu (vertical three-dot menu) on the far top right:</p>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services10a.png" style="width: 1214px;height: 146px;" />
-        </p>
+        <div MadCap:conditions="Version.16-3-only">
+            <p>The resulting screen has three tabs: <MadCap:xref href="#View" class="monitoring">Monitoring</MadCap:xref>, <MadCap:xref href="#View2" class="Objects-Types">Space-Types</MadCap:xref>, and <MadCap:xref href="#View3" class="Partitions">Partitions.</MadCap:xref></p>
+            <p>A log can be generated or a space can be undeployed by selecting the kebab menu (vertical three-dot menu) on the far top right:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services10a.png" style="width: 1214px;height: 146px;" />
+            </p>
+        </div>
+        <div MadCap:conditions="Version.16-4-born">
+            <p>The resulting screen has three tabs: <MadCap:xref href="#View" class="monitoring">Monitoring</MadCap:xref>, <MadCap:xref href="#View2" class="Objects-Types">Space-Types</MadCap:xref>, and <MadCap:xref href="#View3" class="Partitions">Partitions.</MadCap:xref></p>
+            <p>A log can be generated or a space can be undeployed by selecting the kebab menu (vertical three-dot menu) on the far top right:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/Spaces4.png" style="width: 1249px;height: 123px;" />
+            </p>
+        </div>
         <p>Then select either<b>Generate Logs </b>or<b> Undeploy Space</b>:</p>
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces21.png" />
         </p>
-        <h2><a name="View"></a>View Space Details – Monitoring</h2>
+        <h2><a name="SpaceMonitoring"></a>View Space Details – Monitoring</h2>
         <p>The <b>Monitoring</b> tab displays graphs showing various Space-related statistics. </p>
-        <p>Note that a dropdown list on the right side of the screen allows you to change the reported time interval:</p>
+        <p>Note that a drop-down list on the right side of the screen allows you to change the reported time interval:</p>
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces9.png" />
         </p>
@@ -82,7 +91,7 @@
         </p>
         <h3>Redo Log – Redo Log Size</h3>
         <p>This graph shows the size of the redo log over time. </p>
-        <p>Note that you can click the dropdown list (<b>total</b> in this example) to specify a specific instance.</p>
+        <p>Note that you can click the drop-down list (<b>total</b> in this example) to specify a specific instance.</p>
         <p>
             <img src="../Resources/Static/images/spacedeck-monitoring-graph-redo-log-size-packets.png" style="width: 879px;height: 599px;" />
         </p>
@@ -146,19 +155,38 @@
             <li><b>HITS IN %</b> — The percent each index is used, compared to the overall queries of the specific object type.</li>
         </ul>
         <h2><a name="View3"></a>View Space Details – Partitions</h2>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces8a.png" style="width: 1002px;height: 193px;" />
-        </p>
-        <p>The Partitions tab displays details about the partitions where the Space data is stored.</p>
-        <ul>
-            <li><b>PARTITION</b> — Partition Name</li>
-            <li><b>INSTANCE&#160;ID</b> — Each instance has its own instance ID</li>
-            <li><b>TYPE</b> — Can be PRIMARY&#160;or BACKUP</li>
-            <li><b>STATUS</b> — Can be Active or Error</li>
-            <li><b>CONTAINER&#160;ID</b> – The Kubernetes container ID</li>
-            <li><b>MEMORY</b> – Current memory utilization</li>
-            <li><b>CPU</b> — Current CPU utilization </li>
-        </ul>
+        <div MadCap:conditions="Version.16-3-only">
+            <p>
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Spaces8a.png" style="width: 1002px;height: 193px;" />
+            </p>
+            <p>The Partitions tab displays details about the partitions where the Space data is stored.</p>
+            <ul>
+                <li><b>PARTITION</b> — Partition Name</li>
+                <li><b>INSTANCE&#160;ID</b> — Each instance has its own instance ID</li>
+                <li><b>TYPE</b> — Can be PRIMARY&#160;or BACKUP</li>
+                <li><b>STATUS</b> — Can be Active or Error</li>
+                <li><b>CONTAINER&#160;ID</b> – The Kubernetes container ID</li>
+                <li><b>MEMORY</b> – Current memory utilization</li>
+                <li><b>CPU</b> — Current CPU utilization </li>
+            </ul>
+        </div>
+        <div MadCap:conditions="Version.16-4-born">
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/Spaces5.png" style="width: 1213px;height: 174px;" />
+            </p>
+            <p>The Partitions tab displays details about the partitions where the Space data is stored.</p>
+            <ul>
+                <li><b>PARTITION</b> — Partition Name</li>
+                <li><b>INSTANCE&#160;ID</b> — Each instance has its own instance ID</li>
+                <li><b>TYPE</b> — Can be PRIMARY&#160;or BACKUP</li>
+                <li><b>STATUS</b> — Can be Active or Error</li>
+                <li><b>CONTAINER&#160;ID</b> – The Kubernetes container ID</li>
+                <li><b>MEMORY USED</b> – Current memory utilization</li>
+                <li><b>TOTAL&#160;MEMORY</b> - Total available memory</li>
+                <li><b>MEMORY</b> - Current memory used by percentage</li>
+                <li><b>CPU</b> — Current CPU utilization </li>
+            </ul>
+        </div>
         <p>&#160;</p>
         <p>For more information:<br></br></p>
         <p>
