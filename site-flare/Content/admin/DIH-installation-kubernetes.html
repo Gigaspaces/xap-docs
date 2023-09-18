@@ -23,18 +23,36 @@
             </li>
             <li>
                 <p>At least a total of 20GB and 10 vCPU</p>
-            </li>
-            <li>
-                <p>Kubectl Controller installed and configured:</p>
-                <ul style="list-style-type: circle;">
+                <ul>
                     <li>
-                        <p>Ingress controller installed (see <a href="#AppendixA">Appendix A</a>) in order to connect to the SpaceDeck UI.</p>
-                    </li>
-                    <li>
-                        <p>A load balancer that is securely exposed to the internet and connected to the ingress controller</p>
-                    </li>
-                    <li>
-                        <p>DNS setup with a certificate for a secure connection. The instructions below assume the host name to be <b>myhost.com</b>.</p>
+                        <p>Kubectl Controller installed and configured:</p>
+                        <ul>
+                            <li>
+                                <p>See <a href="#AppendixA">Appendix A</a> for:</p>
+                                <ul>
+                                    <li>
+                                        <p>Certificate manager deployment</p>
+                                    </li>
+                                    <li>
+                                        <p>Metrics-service deployment</p>
+                                    </li>
+                                    <li>
+                                        <p>Ingress controller installation in order to connect to the SpaceDeck UI.</p>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul style="list-style-type: circle;">
+                            <li>
+                                <p>Ingress controller installed (see <a href="#AppendixA">Appendix A</a>) in order to connect to the SpaceDeck UI.</p>
+                            </li>
+                            <li>
+                                <p>A load balancer that is securely exposed to the internet and connected to the ingress controller</p>
+                            </li>
+                            <li>
+                                <p>DNS setup with a certificate for a secure connection. The instructions below assume the host name to be <b>myhost.com</b>.</p>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </li>
@@ -50,13 +68,14 @@ helm repo update dih
 </pre>
             <li>
                 <p>Fully install Smart DIH (including Ingress, H/A for SpaceDeck and IIDR):</p>
-            </li><pre xml:space="preserve">helm install dih dih/dih dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com, tags.iidr=true</pre>
+            </li><pre xml:space="preserve">helm install dih dih/dih dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com, tags.iidr=true, 
+global.password=rootpassword</pre>
             <li>
                 <p>If IIDR installation is NOT included then use this:</p><pre xml:space="preserve">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com  
 </pre>
             </li>
             <li>
-                <p>Smart DIH is now installed in H/A mode. The following pods should be up and ready (with IIDR):</p>
+                <p>Smart DIH is now installed in H/A mode. Wait for all pods to be ready:</p>
                 <p>
                     <img src="../Resources/Images/K8s_Install.png" />
                 </p>
@@ -72,14 +91,23 @@ helm repo update dih
             </li>
             <li>
                 <p>Use <a href="../spacedeck/spacedeck-overview.html">SpaceDeck</a> to define spaces, data sources and pipelines. </p>
+                <div class="tc-admon-important">
+                    <p>By default, the root user has root/password credentials. &#160;<b>This must be changed before installation.</b></p>
+                </div>
             </li>
         </ol>
         <h1><a name="AppendixA"></a>Appendix A</h1>
-        <p>An ingress controller is required as part of the Smart DIH&#160;installation. Instructions for NGINX controller installation can be found through this link: </p>
-        <p><a href="https://docs.nginx.com/nginx-controller/admin-guides/install/install-nginx-controller/">https://docs.nginx.com/nginx-controller/admin-guides/install/install-nginx-controller/</a>
-        </p>
-        <p>It is best practice to install NGINX in a different name-space.</p>
-        <p>&#160;</p>
+        <ul>
+            <li>
+                <p>Certificate manager deployment. &#160;Follow <a href="https://cert-manager.io/docs/installation/helm/">these instructions</a> (external link).</p>
+            </li>
+            <li>
+                <p>Metrics-service deployment. Follow <a href="https://artifacthub.io/packages/helm/metrics-server/metrics-server">these instructions</a> (external link).</p>
+            </li>
+            <li>
+                <p>An ingress controller is required as part of the Smart DIH&#160;installation. <a href="https://docs.nginx.com/nginx-controller/admin-guides/install/install-nginx-controller/">Follow these Instructions</a> for NGINX controller installation (external link). It is best practice to install NGINX in a different name-space.</p>
+            </li>
+        </ul>
         <div class="tc-admon-note" MadCap:conditions="Version.16-3-born">
             <p>For detailed configuration refer to the <a href="config-details-smart-dih.htm">Detailed Configuration:&#160;Smart DIH</a> page </p>
         </div>
