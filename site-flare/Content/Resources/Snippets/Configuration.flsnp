@@ -78,6 +78,11 @@
                     <td>true/<b>false</b></td>
                     <td>Adding data gateway for direct JDBC driver access</td>
                 </tr>
+                <tr MadCap:conditions="Version.16-4-born">
+                    <td>global.security.enabled</td>
+                    <td><b>true</b>/false</td>
+                    <td>Secure mode for the entire system</td>
+                </tr>
             </tbody>
         </table>
         <h2>Pods/Service/Ingress (Networking Configuration, H/A)</h2>
@@ -599,7 +604,7 @@ topology.kubernetes.io/host
             <tbody>
                 <tr>
                     <td>manager.securityServer.enabled</td>
-                    <td>true/<b>false</b></td>
+                    <td><b>true</b>/false</td>
                     <td>Enable security at the backend</td>
                 </tr>
                 <tr>

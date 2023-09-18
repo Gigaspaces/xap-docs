@@ -42,12 +42,12 @@
                 </tr>
                 <tr>
                     <td>Service Operator</td>
-                    <td>Captures the knowledge of deploying and underploying a Query Service</td>
+                    <td>Captures the knowledge of deploying and undeploying a Query Service</td>
                 </tr>
                 <tr>
                     <td>Query Service</td>
                     <td>
-                        <p><b>Deployment:</b> A stateless application running on a pod with the ability to scale based on the replica count</p>
+                        <p><b>Deployment:</b> A stateless application running on a pod. The application will be deployed with x amount of replicas regardless of usage.</p>
                         <p><b>Service:</b> Exposes a single outward-facing endpoint to this application on the cluster (internal network)</p>
                         <p><b>Ingress:</b> Makes the HTTP (or HTTPS) network service available using protocol aware URIs, for example and external network</p>
                     </td>
@@ -55,11 +55,13 @@
             </tbody>
         </table>
         <h2>Service Creator </h2>
-        <p>Services creation is managed by a Service&#160;Creator operator which uses a service which exposes REST&#160;endpoints.</p>
-        <p>The ServiceCreator service manages service creation. The service exposes the REST&#160;endpoints, and is deployed in the environment via the Kubernetes orchestration. Any new service creation request generates a new resource of the kind QueryService by submitting a request to the ServiceCreator service. Via the SpringBoot REST&#160;application, ServiceCreator service exposes the following APIs:</p>
+        <p>Services creation is managed by a Service&#160;Creator which, functioning as a RESTful application, manages the entire service deployment cycle.</p>
+        <p>The ServiceCreator service manages service creation. The service exposes the REST&#160;endpoints, and is deployed in the environment via the Kubernetes orchestration.</p>
+        <p> Any new service creation request generates a new resource of the kind QueryService by submitting a request to the ServiceCreator service <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">Via the SpringBoot REST&#160;application</MadCap:conditionalText>.</p>
+        <p>ServiceCreator service exposes the following APIs:</p>
         <ul>
             <li>
-                <p>Create Query Service given Spec.</p>
+                <p>Deploy Query Service given Spec.</p>
             </li>
             <li>
                 <p>Get service spec-parameters given its ID.</p>
@@ -69,6 +71,9 @@
             </li>
             <li>
                 <p>Delete service.</p>
+            </li>
+            <li>
+                <p MadCap:conditions="Version.16-4-born">Download logs of the service (using path <code>/{serviceId}/logs</code></p>
             </li>
         </ul>
         <h3>Flow</h3>
