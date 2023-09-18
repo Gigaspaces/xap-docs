@@ -14,10 +14,10 @@
             <div title="Okta IDP Setup">
                 <ol>
                     <li>
-                        <p>Create a developer account in <a href="https://developer.okta.com/signup/">OKTA</a></p>
+                        <p>Create a developer account in <a href="https://developer.okta.com/signup/">Okta</a></p>
                     </li>
                     <li>
-                        <p>Once created, log in to the account and from the left-side menu, select <b>Applications</b>:</p>
+                        <p>Once created, log in to the account and from the left side menu, select <b>Applications</b>:</p>
                     </li>
                     <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA1.png" style="width: 274px;height: 390px;" />
                     <li>
@@ -25,7 +25,7 @@
                     </li>
                     <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA2.png" style="width: 734px;height: 274px;" />
                     <li>
-                        <p>From the pop-out menu, select Sign-in method <b>OIDC - OpenID Connect</b> and Application type <b>Web Application</b>and click <b>Next</b>:</p>
+                        <p>From the pop-out menu, select <b>Sign-in method </b>OIDC - OpenID Connect and <b>Application type</b> Web Application. Then click <b>Next</b>:</p>
                     </li>
                     <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA3.png" style="width: 568px;height: 494px;" />
                     <li>
@@ -46,17 +46,89 @@
                         <ol> <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA4.png" style="width: 576px;height: 505px;" /></ol>
                     </blockquote>
                     <li>
-                        <p>Controlled access is customizable according to each client's requirements. &#160;GigaSpaces tested it with the following setting:</p>
+                        <p>Controlled access is customizable according to each client's requirements. &#160;GigaSpaces has tested it with the following setting:</p>
                     </li>
                     <ol>
                         <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA5.png" style="width: 578px;height: 280px;" />
                     </ol>
                     <li>
-                        <p>Click Save. Okta will provide a Client ID and client Secret.</p>
+                        <p>Click Save. Okta will provide a Client ID and Client Secret.</p>
+                    </li>
+                    <li>
+                        <p>On the left side menu, select <b>Security</b> then <b>API</b> where you will find the <b>Issuer URI</b> that should be provided to SpaceDeck when you are setting up the IDP. Here the client has the option to customize and create a new authorization server. In this specific example, it was tested using the default:</p>
+                        <p>
+                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA6a.png" style="width: 829px;height: 592px;" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>In SpaceDeck, the <b>Client ID</b>, <b>Client Secret</b> and <b>Issuer URI</b> are populated as follow:</p>
+                        <p>
+                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA7.png" style="width: 838px;height: 301px;" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>To manager users in Okta, on the left side menu, select <b>Directory</b> then <b>People</b>:</p>
+                        <p>
+                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA8.png" style="width: 842px;height: 274px;" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>To manage groups in Okta (which are translated as roles in SpaceDeck), on the left side menu go to <b>Directory</b> then <b>Groups</b>. By default in Smart DIH the role of ROLE_ADMIN has all privileges. It is customizable and can be changed via the config map. &#160;However, to follow the default behavior and to use the ROLE_ADMIN in SMART&#160;DIH, a ROLE_ADMIN group has to be created in OKTA and people assigned to this group. &#160;This group will contain administrators and will have all privileges. To create a group in Okta, on the left side menu, go to <b>Directory</b> then <b>Groups</b> and click <b>Add group</b>, supply the name <b>ROLE_ADMIN</b> and then click <b>Save</b>.</p>
+                        <p>
+                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA9.png" style="width: 769px;height: 317px;" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>From the drop-down of <b>Group source type</b>, select <b>Okta groups</b>.&#160;The ROLE_ADMIN group will be in the list.</p>
+                        <p>
+                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA10a.png" style="width: 775px;height: 387px;" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>To assign users to ROLE_ADMIN (or any other created group) on the left side menu, go to <b>Directory</b> then <b>People</b> and choose users from the list of users. Click the user. To switch the users groups, type the group name and then click enter.</p>
+                        <p>
+                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA11.png" style="width: 617px;height: 358px;" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>Now the <b>access token claims</b> have to be customized so it will have groups used in Smart DIH. &#160;To accomplish this, on the left side menu go to <b>Security</b> then <b>API</b> and on the API screen, <b>Authorization Servers</b>:</p>
+                        <p>
+                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA12.png" style="width: 684px;height: 472px;" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>Select the server that is being used and go to the <b>Claims</b> tabs then <b>Access</b>:</p>
+                        <p>
+                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA13.png" style="width: 703px;height: 382px;" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>Click <b>Add Claim</b> and input a name for the Claim. In the <b>Value type</b> drop-down select <b>Groups</b>. For <b>Filter</b>, provide the filter to be applied. In this example, only groups with the ROLE_ prefix should be used. Click <b>Create</b>.</p>
+                        <div class="tc-admon-note">
+                            <p>The name of the claim will be used in SpaceDeck in the IDP Setup, for the setting of <a href="spacedeck-admin.html#IDPConnectionFields">Authorization Grant Type</a></p>
+                        </div>
+                        <p>
+                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA14.png" style="width: 503px;height: 397px;" />
+                        </p>
+                        <p>In SpaceDeck:</p>
+                        <p>
+                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA15.png" style="width: 694px;height: 238px;" />
+                        </p>
+                    </li>
+                    <li>
+                        <p>In order to bind the IDP that has been created above, the root user has to login to SpaceDeck with the correct username/password and then populate all the <a href="spacedeck-admin.html#IDPConnectionFields">Connection fields</a> in the Administration/General Setup menu. </p>
+                        <div class="tc-admon-important">
+                            <p>By default, the root user has root/password credentials. &#160;<b>This must be changed before installation.</b></p>
+                        </div>
                     </li>
                 </ol>
             </div>
             <div title="AWS Azure IDP Setup">
+                <blockquote>
+                    <p>
+                        <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA16.png" style="width: 491px;height: 357px;" />
+                    </p>
+                </blockquote>
                 <p>AWS Azure IDP is set up..........</p>
             </div>
         </div>
