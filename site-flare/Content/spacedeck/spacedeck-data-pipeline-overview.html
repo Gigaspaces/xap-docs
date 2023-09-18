@@ -13,7 +13,10 @@
         <h1>Data Pipelines - Main Screen</h1>
         <p>The Data Pipeline main screen shows the status of the existing data pipelines. You can see details of a pipeline by clicking on its name in the list. </p>
         <p>&#160;</p>
-        <p><a href="../Resources/Images/SpaceDeck/SpaceDeck-Pipeline1a.png"><img src="../Resources/Images/SpaceDeck/SpaceDeck-Pipeline1a.png" style="width: 909px;height: 282px;"></img></a>
+        <p MadCap:conditions="Version.16-3-only"><a href="../Resources/Images/SpaceDeck/SpaceDeck-Pipeline1a.png"><img src="../Resources/Images/SpaceDeck/SpaceDeck-Pipeline1a.png" style="width: 909px;height: 282px;"></img></a>
+        </p>
+        <p MadCap:conditions="Version.16-4-born">
+            <img src="../Resources/Images/SpaceDeck/16.4/Pipeline1.png" style="width: 914px;height: 275px;" />
         </p>
         <h2>Data Pipelines - Main Screen - Fields</h2>
         <p><b>Data Pipeline Status:</b>
@@ -40,6 +43,9 @@
             </li>
             <li>
                 <p><b>NAME</b> –  name assigned to the pipeline</p>
+                <div class="tc-admon-note">
+                    <p>The Pipeline name has no naming limitations</p>
+                </div>
             </li>
             <li>
                 <p><b>STATUS</b> –  one of the following conditions: started/stopped/not starting/restarting/not found</p>
@@ -51,6 +57,12 @@
             </li>
             <li>
                 <p><b>ORIGIN</b> –  data source type from the System of Record, e.g. Oracle</p>
+            </li>
+            <li>
+                <p MadCap:conditions="Version.16-4-born"><b>DESTINATION&#160;SPACE</b>- </p>
+            </li>
+            <li>
+                <p MadCap:conditions="Version.16-4-born"><b>SUBSCRIPTION&#160;NAME</b> - </p>
             </li>
             <li>
                 <p><b>TOTAL&#160;OPERATIONS&#160;(LAST 24 HOURS)</b> – number of operations performed by the pipeline in the last 24 hours</p>

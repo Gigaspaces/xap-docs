@@ -181,7 +181,7 @@
                             <td align="left">Data Grid</td>
                         </tr>
                         <tr MadCap:conditions="Version.16-4-born">
-                            <td align="left"><a href="http://asm.objectweb.org/doc/tutorial.html">ASM</a>
+                            <td align="left"><a href="http://asm.objectweb.org/doc/tutorial.html">ASM (see <MadCap:xref href="#ASM" class="Note">Note</MadCap:xref> below)</a>
                             </td>
                             <td align="left">9.5</td>
                             <td align="left"><a href="http://asm.objectweb.org/license.html">INRIA</a>
@@ -514,6 +514,11 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="tc-admon-note">
+                    <p><a name="ASM"></a>ASM (Java bytecode manipulation framework): Until version 16.3.0, <MadCap:variable name="General.CompanyName" />bundles ASM v3.3.1.</p>
+                    <p>Starting with ASM v4.0, there was a breaking change made to their API, specifically converting interfaces to classes, e.g., ClassVisitor and Method Visitor.</p>
+                    <p>In <MadCap:variable name="General.CompanyName" /><MadCap:variable name="Versions.product-version-short" />, the bundle was updated to include ASM v9.5, mainly to support future upgrades to Java 11.</p>
+                </div>
             </div>
             <div title="Integrations" style="padding:10px">
                 <table>
@@ -527,7 +532,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr MadCap:conditions="Version.15-8-born,Version.16-2-1-died">
+                        <tr MadCap:conditions="Version.15-8-born,Version.16-4-died">
                             <td align="left"><a href="http://www.snakeyaml.org/">SnakeYaml (sub-dependency of Kubernetes)</a>
                             </td>
                             <td align="left">1.27</td>
@@ -627,7 +632,17 @@
                             <td align="left"><a href="https://grafana.com/docs/grafana/latest/">Grafana</a>
                             </td>
                         </tr>
-                        <tr>
+                        <tr MadCap:conditions="Version.16-4-born">
+                            <td align="left"><a href="http://cassandra.apache.org/">Cassandra</a>
+                            </td>
+                            <td align="left">1.2.5</td>
+                            <td align="left"><a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache2</a>
+                            </td>
+                            <td align="left">Persistency</td>
+                            <td align="left"><a href="../dev-java/cassandra.html">Cassandra Integration</a>
+                            </td>
+                        </tr>
+                        <tr MadCap:conditions="Version.16-4-died">
                             <td align="left"><a href="http://cassandra.apache.org/">Cassandra</a>
                             </td>
                             <td align="left">1.1.6</td>

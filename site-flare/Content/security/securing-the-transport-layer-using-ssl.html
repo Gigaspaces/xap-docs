@@ -99,8 +99,11 @@ However, when you wish to run this code with SSL encryption, you should run it w
         <div class="tc-admon-note">
             <p>Regarding <code class="language-bash">com.gigaspaces.lrmi.nio.filters.</code><b>SSLFilterFactory</b> - It is possible to implement your own filter and indicate the class name here. See information regarding TLS 1.3 <a href="#choosing-the-encryption-protocol">below</a>.</p>
         </div>
-        <div class="tc-admon-note">
+        <div class="tc-admon-note" MadCap:conditions="Version.16-4-died">
             <p>You can find an example of using <code>SSLFilterFactory</code> with self signed certs <a href="/sbp/ssl-self-signed-cert-example.html">here</a>.</p>
+        </div>
+        <div class="tc-admon-note" MadCap:conditions="Version.16-4-born">
+            <p>Self-signed certificate has been removed in favor of the BouncyCastle package (org.bouncycastle v1.50) which is now bundled with the product. &#160;Due to the missing "sun.security.provider.Sun" in the newer JDK versions, users of IBM JDK are required to have this package in the classpath.</p>
         </div>
         <div class="tc-admon-tip">
             <p>In your production environment, you should have the SSLFilterFactory password (or any other secured user access information) protected by passing its value at the deploy time into the pu.xml (where the actual property using a variable) or at the start-up time as an argument to a wrapper script starting the GigaSpaces agent and not place such secured data on file.</p>
