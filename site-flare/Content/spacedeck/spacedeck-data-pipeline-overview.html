@@ -10,13 +10,17 @@
         </map>
         <h1 class="tc-pagetitle">SpaceDeck – Data Pipelines Overview</h1>
         <p> Data Pipelines are flexible, configurable, no-code components that gather data from a mix of System of Record databases and tables. This data is loaded into the extremely high speed GigaSpaces data grid, where it can be accessed on a read/write basis.</p>
+        <div MadCap:conditions="Version.16-4-born">
+            <h1><a name="SecurityRoles"></a>Security Roles &amp;&#160;Permissions</h1>
+            <p>SpaceDeck is now secure. Refer to <MadCap:xref href="../security/security-overview.html#pipeline-authority">Security Overview</MadCap:xref> for details about the security privileges that are required for the various Pipeline related activities. </p>
+        </div>
         <h1>Data Pipelines - Main Screen</h1>
         <p>The Data Pipeline main screen shows the status of the existing data pipelines. You can see details of a pipeline by clicking on its name in the list. </p>
         <p>&#160;</p>
         <p MadCap:conditions="Version.16-3-only"><a href="../Resources/Images/SpaceDeck/SpaceDeck-Pipeline1a.png"><img src="../Resources/Images/SpaceDeck/SpaceDeck-Pipeline1a.png" style="width: 909px;height: 282px;"></img></a>
         </p>
         <p MadCap:conditions="Version.16-4-born">
-            <img src="../Resources/Images/SpaceDeck/16.4/Pipeline1.png" style="width: 914px;height: 275px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/Spaces6.png" style="width: 1171px;height: 408px;" />
         </p>
         <h2>Data Pipelines - Main Screen - Fields</h2>
         <p><b>Data Pipeline Status:</b>
@@ -39,7 +43,7 @@
                 <p><b>Group by Status</b> –  toggle to show the pipelines grouped  status</p>
             </li>
             <li>
-                <p><b>New +</b> – select this to configure a new pipeline. See <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref> for instructions on how to define a new pipeline.</p>
+                <p><b>Create New +</b> – click this to configure a new pipeline. See <MadCap:xref href="spacedeck-data-pipeline-new-pipeline.html">SpaceDeck – Data Pipeline – Create New Pipeline</MadCap:xref> for instructions on how to define a new pipeline.</p>
             </li>
             <li>
                 <p><b>NAME</b> –  name assigned to the pipeline</p>
@@ -62,13 +66,18 @@
                 <p MadCap:conditions="Version.16-4-born"><b>DESTINATION&#160;SPACE</b>- the Space that has been defined</p>
             </li>
             <li>
+                <p MadCap:conditions="Version.16-4-born"><b>SUBSCRIPTION&#160;NAME</b> - </p>
+            </li>
+            <li>
                 <p><b>TOTAL&#160;OPERATIONS&#160;(LAST 24 HOURS)</b> – number of operations performed by the pipeline in the last 24 hours</p>
             </li>
             <li>
                 <p><b>TOTAL&#160;ERRORS&#160;(LAST 24 HOURS)</b> –  number of error operations performed by the pipeline in the last 24 hours</p>
             </li>
+            <li MadCap:conditions="Version.16-4-born"><b>Search</b> It is also possible to filter a search. Once the filters are set, click <b>Apply</b>:</li>
+            <p> <img src="../Resources/Images/SpaceDeck/16.4/Spaces7.png" style="width: 426px;height: 428px;" /></p>
             <li>
-                <p><b>Kebab menu</b>  (vertical three-dot menu) on the far right - Option to start or delete a pipeline</p>
+                <p MadCap:conditions="Version.16-4-born">Once a Pipeline has been defined,  the <b>kebab menu</b> on the far right can be used to either <b>Start</b> or <b>Delete</b> a pipeline</p>
             </li>
         </ul>
         <p>&#160;</p>
