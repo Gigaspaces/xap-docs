@@ -71,7 +71,8 @@ helm repo update dih
             </li><pre xml:space="preserve">helm install dih dih/dih dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com, tags.iidr=true, 
 global.password=rootpassword</pre>
             <li>
-                <p>If IIDR installation is NOT included then use this:</p><pre xml:space="preserve">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com  
+                <p>If IIDR installation is NOT included then use this:</p><pre xml:space="preserve" MadCap:conditions="Version.16-3-only">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com  
+</pre><pre xml:space="preserve" MadCap:conditions="Version.16-4-born">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set global.ingressHost=myhost.com  
 </pre>
             </li>
             <li>
