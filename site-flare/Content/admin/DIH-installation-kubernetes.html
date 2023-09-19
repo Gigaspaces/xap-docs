@@ -68,7 +68,7 @@ helm repo update dih
 </pre>
             <li>
                 <p>Fully install Smart DIH (including Ingress, H/A for SpaceDeck and IIDR):</p>
-            </li><pre xml:space="preserve">helm install dih dih/dih dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com, tags.iidr=true, 
+            </li><pre xml:space="preserve">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com, tags.iidr=true, 
 global.password=rootpassword</pre>
             <li>
                 <p>If IIDR installation is NOT included then use this:</p><pre xml:space="preserve" MadCap:conditions="Version.16-3-only">helm install dih dih/dih --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com  
