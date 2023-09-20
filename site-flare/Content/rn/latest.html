@@ -96,14 +96,36 @@
             <h3> Release Date: September-2023</h3>
             <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
             <h1>SpaceDeck Updates</h1>
-            <p>There have been several updates made to our SpaceDeck UI. See below and refer to the <a href="../spacedeck/spacedeck-overview.html">SpaceDeck User Guide</a> for more details about each section.</p>
+            <p>There have been several updates made to our SpaceDeck UI. See below and refer to the <a href="../spacedeck/spacedeck-overview.html">SpaceDeck User Guide</a> for more details.</p>
+            <h1>SpaceDeck: Security Updates</h1>
+            <ul>
+                <li>
+                    <p><a href="../spacedeck/spacedeck-admin.html">Authentication, Authorization and Roles Management. </a>
+                    </p>
+                    <ul>
+                        <li>
+                            <p>Our SpaceDeck is now securely managed. Refer to <MadCap:xref href="../security/security-overview.html#role-based-security">Security Overview</MadCap:xref> for more details.</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <p>Space security settings can be set per instance.&#160;Per cluster roles are managed through RBAC.</p>
+                        </li>
+                        <li>
+                            <p>IDP&#160;Integration for SSO for SpaceDeck. <MadCap:variable name="General.CompanyName" /> supports using any IDP that supports OpenID Connect (OIDC).</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
             <div>
                 <h1>SpaceDeck: Service Creator</h1>
                 <p>
                     <img src="../Resources/Images/Product/SmartDIH.png" style="width: 101px;height: 39px;" />
                 </p>
-                <p>Low code development of data micro-services provide our clients with the ability to deploy and execute data services efficiently. &#160;This assumes that the micro-service runs a query on the Space data. It enables the user to define endpoints that, per request, will run the predefined query using the supplied required parameters to get the results. This is easily achievable via our&#160;<a href="../spacedeck/spacedeck-services.html"><a href="../spacedeck/spacedeck-services.html">SpaceDeck</a></a>. </p>
-                <h3>New&#160;Features </h3>
+                <p>Low code development of data micro-services provide our clients with the ability to deploy and execute data services efficiently. &#160;This assumes that the micro-service runs a query on the Space data. It enables the user to define endpoints that, per request, will run the predefined query using the supplied required parameters to get the results. This is easily achievable via our&#160;<a href="../spacedeck/spacedeck-services.html"><a href="../spacedeck/spacedeck-services.html">SpaceDeck</a></a>. &#160;For additional information about Service Creator refer to <MadCap:xref href="../admin/deploying-services.html">Deploying Services</MadCap:xref></p>
+                <div class="tc-admon-feature">
+                    <p>Overview of new Service Creator features</p>
+                </div>
                 <ul>
                     <li>
                         <p> New Endpoints added for each service created:</p>
@@ -128,7 +150,7 @@
                                 <p>Create/Delete will not require special permissions.</p>
                             </li>
                             <li>
-                                <p>Refer to <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> for more details.</p>
+                                <p>Refer to <MadCap:xref href="../security/security-overview.html#service-authority">Security Overview</MadCap:xref> for more details.</p>
                             </li>
                         </ul>
                     </li>
@@ -138,7 +160,7 @@
                         <p>SpaceDeck Enhancements</p>
                         <ul>
                             <li>
-                                <p>Presenting only relevant actions for any given state (for example, no delete option displayed for deployed service)</p>
+                                <p>Only relevant actions are presented for any given state. For example, there is no delete option displayed for a deployed service.</p>
                             </li>
                             <li>
                                 <p><a href="../spacedeck/spacedeck-services.html#ServiceMonitoring">Service Monitoring Page</a>
@@ -167,44 +189,46 @@
                         </p>
                     </li>
                 </ul>
-                <h1>SpaceDeck: Stream&#160;SQL</h1>
-                <div class="tc-admon-feature">
-                    <p>Stream SQL......</p>
-                </div>
-                <h1>SpaceDeck: Security Updates</h1>
-                <ul>
-                    <li>
-                        <p><a href="../spacedeck/spacedeck-admin.html">Authentication, Authorization and Roles Management. </a>
-                        </p>
-                        <ul>
-                            <li>
-                                <p>The SpaceDeck is now securely managed. Refer to <MadCap:xref href="../security/security-overview.html#role-based-security">Security Overview</MadCap:xref> for more details.</p>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>
-                                <p>Space security settings can be set per instance.&#160;Per cluster roles are managed through RBAC.</p>
-                            </li>
-                            <li>
-                                <p>IDP&#160;Integration for SSO. </p>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                <h1>SpaceDeck for Smart Cache</h1>
+                <p>SpaceDeck is now available for Smart Cache installations that use Kubernetes orchestration.</p>
+                <p>For more details.....&lt;TBD&#160;PAGE&#160;ABOUT&#160;SpaceDeck Smart Cache&gt;.</p>
                 <h1>Data Integration (DI) Updates</h1>
                 <p>
                     <img src="../Resources/Images/Product/SmartDIH.png" style="width: 101px;height: 39px;" />
                 </p>
-                <p>There is now no need to manually configure IIDR subscription via the DI&#160;Subscription&#160;Manager. This is now performed automatically.</p>
-                <p>For more information refer to <MadCap:xref href="../Data Integration/DI-Administration--Sub-Mgr.html">Pipeline Setup Via Subscription Manager and SpaceDeck</MadCap:xref>.</p>
-                <p>S3....</p>
-                <div MadCap:conditions="Default.DoNotShow">
-                    <h1>SpaceDeck for Smart Cache</h1>
-                    <p>SpaceDeck is now available for Smart Cache installations using Kubernetes</p>
-                    <p>For more details.....</p>
-                </div>
+                <ol>
+                    <li>
+                        <p>There is now no need to manually configure IIDR subscription via the DI&#160;Subscription&#160;Manager as this is now performed automatically.</p>
+                        <p>For more information refer to <MadCap:xref href="../Data Integration/DI-Administration--Sub-Mgr.html">Pipeline Setup Via Subscription Manager and SpaceDeck</MadCap:xref>.</p>
+                    </li>
+                    <li>
+                        <div class="tc-admon-feature">
+                            <p><b>Express Upload</b>. For Smart DIH&#160;As-A-Service customers only. &#160;For additional details, please contact our <a href="mailto:support@gigaspaces.com">Customer Support team</a>.</p>
+                        </div>
+                    </li>
+                    <p class="tc-admon-feature">
+                        <p>Responding to a growing need to be able to import data into <MadCap:variable name="General.CompanyName" />Smart DIH&#160;platform from simple sources such as .csv or .json files, we are now proud to introduce our new <b>Express Upload</b> option.  This ability adds:</p>
+                    </p>
+                    <ul>
+                        <li>
+                            <p><b>VALUE</b> - our end user can now define data services for the digital application consumption</p>
+                        </li>
+                        <li>
+                            <p><b>USER&#160;EXPERIENCE</b> - the user journey for our end users using our SpaceDeck will be far simpler</p>
+                        </li>
+                        <li>
+                            <p><b>SPEED AND&#160;INDEPENDENCE</b> - our as-a-Service end users will quickly and simply be able to create data services via self-service</p>
+                        </li>
+                    </ul>
+                    <li>
+                        <div class="tc-admon-feature">
+                            <p>Stream SQL</p>
+                        </div>
+                        <p> Today the “out of the box” DI implementation heavily relies on IIDR (CDC part of the DI) to bring data mostly from relational databases. Recently this capability has been extended to bring data not only from relational database but rather from Kafka directly using SteamSQL. For information about using Stream SQL in SpaceDeck refer to &lt;TBD&#160;PAGE&#160;ABOUT&#160;SpaceDeck Stream SQL&gt;.</p>
+                    </li>
+                </ol>
                 <h1>Redo Log Update</h1>
-                <p>Now there is the ability to <a href="../admin/flush-redolog-to-disk.htm">flush the redo log to disk</a> upon shutdown. </p>
+                <p>Redo capabilities have been enhanced and you now have the ability to <a href="../admin/flush-redolog-to-disk.htm">flush the redo log to disk</a> upon shutdown. </p>
                 <h1>Disclaimers</h1>
                 <ul>
                     <li>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
@@ -39,7 +39,8 @@ The GSA is a process manager that can spawn and manage service grid processes (O
         <p>In order to create a data grid, you need to first deploy it onto the GigaSpaces infrastructure. It's easy to write some code that connects to an existing data grid, or deploy a new one if the data grid does not exist. In the GigaSpace lingo, a data grid is called a Space, and a data grid node is called a Space Instance. The space is hosted within a Processing Unit (PU), which is the GigaSpaces unit of deployment.</p>
         <p>There are several ways you can deploy a new Data Grid; by command line, with C# code embedded in your application and the admin UI. The following snippets shows how to deploy a data grid.</p>
         <p>We want to deploy a data grid that has two primary partitions and one backup for each primary partition.
-Here is the gs command that you would execute to achieve this:</p><pre><code class="language-bash">GS_HOME\bin\gs-cli deploy-space  -cluster schema=partitioned total_members=2,1  xapTutorialSpace
+Here is the gs command that you would execute to achieve this:</p><pre MadCap:conditions="Default.DoNotShow"><code class="language-bash">GS_HOME\bin\gs-cli deploy-space  -cluster schema=partitioned total_members=2,1  xapTutorialSpace
+</code></pre><pre><code class="language-bash">C:\GigaSpaces\XAP.NET-&lt;version&gt;\NET v4.0\Bin\Gs.exe space deploy --partitions=2 --ha xapTutorialSpace
 </code></pre>
         <p>This command will start a space called xapTutorialSpace with two primary partitions and a backup for failover for each primary.</p>
         <p>You can also deploy the space via C# code. Here is an example:</p><pre><code class="language-csharp">using System;
