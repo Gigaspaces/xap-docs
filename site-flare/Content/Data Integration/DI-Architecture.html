@@ -168,6 +168,28 @@ IIDR publishes changes to the Kafka topic and theDI Processor (Flink job) consum
                     <p>There is a unified data dictionary extraction, regardless of the source database type</p>
                 </li>
             </ul>
+            <div MadCap:conditions="Version.16-4-born">
+                <h2>StreamSQL</h2>
+                <p>StreamSQL allows Smart DIH users to implement a low code (SQL) approach to define and operate with ad-hoc data flows, such as read from Kafka and write directly to the Space or read from one Kafka topic and write to another Kafka topic.</p>
+                <p>Behind the scenes StreamSQL utilizes powerful low-code Flink capabilities to define a schema via SQL CREATE TABLE API.</p>
+                <p>&#160;</p>
+                <p>StreamSQL operation activities can be defined using SQL statements, for example:</p>
+                <ol>
+                    <li>
+                        <p>Define structure of messages in a Kafka topic as a table (CREATE TABLE)</p>
+                    </li>
+                    <li>
+                        <p>Define a data flow (stream of data or pipeline) as INSERT AS SELECT statement</p>
+                    </li>
+                    <li>
+                        <p>Perform a join of data flow from different Kafka topics using a standard SQL join statement</p>
+                    </li>
+                </ol>
+                <p>&#160;</p>
+                <p>One of the useful StreamSQL use cases is IoT when continuous flow of sensors data changes is consumed  from Kafka, aggregated into a summary table and pushed the aggregated summary to space for data services consumption.</p>
+                <h3>SpaceDeck</h3>
+                <p>For information about how StreamSQL is implemented in SpaceDeck refer to <a href="../spacedeck/spacedeck-streamSQL.html">StreamSQL</a>.</p>
+            </div>
         </div>
     </body>
 </html>
