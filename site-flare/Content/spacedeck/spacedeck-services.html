@@ -285,7 +285,7 @@
                 <p>Once a service has been undeployed the log is erased. Once the service is stopped and started the log level resets as there is a new internal ID created for the service. If there is more than one replica defined, they are contained in the single .zip file that is produced. &#160;</p>
             </div>
             <p>The default log level is configured to "INFO". Currently the ability to change the log level is not available through SpaceDeck. However, this can be achieved through CURL or using Postman.</p>
-            <h2>Through Postman:</h2>
+            <h2><a name="Postman-Logs"></a>Through Postman:</h2>
             <ol>
                 <li>
                     <p>In the service's endpoint go the relative path: <code>/actuator/loggers/com.gigaspaces.mcs.service.query</code>. </p>
@@ -298,7 +298,7 @@
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/Service+LogLevel1.png" style="width: 1435px;height: 265px;" />
             </p>
-            <h2>Through CURL</h2>
+            <h2><a name="Curl-Logs"></a>Through CURL</h2>
             <p><code>curl -X POST -H "Content-Type: application/json" -d '{"configuredLevel": "DEBUG"}' http://&lt;IP&#160;of cluster&gt;/api/get-people-by-id-range/actuator/loggers/com.gigaspaces.mcs.service.query</code>
             </p>
             <p>&#160;</p>
