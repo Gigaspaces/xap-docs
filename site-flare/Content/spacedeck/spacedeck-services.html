@@ -174,20 +174,20 @@
             </p>
             <ol>
                 <li>
-                    <p><b>SERVICE NAME</b> – click this to get to the configuration screen.</p>
+                    <p><b>SERVICE NAME</b> – Click this to get to the configuration screen.</p>
                 </li>
                 <li>
                     <p><b>STATUS</b> – The status of defined services.</p>
                 </li>
                 <ul>
                     <li>
-                        <p><b>Deployed</b> - a service ready for external execution.</p>
+                        <p><b>Deployed</b> - A service ready for external execution.</p>
                     </li>
                     <li>
-                        <p><b>Undeployed</b>- a service that has been deployed or has been undeployed for editing purposes.</p>
+                        <p><b>Undeployed</b>- A service that has been deployed or has been undeployed for editing purposes.</p>
                     </li>
                     <li>
-                        <p><b>Created</b> - a service that has not been deployed and can still be edited.</p>
+                        <p><b>Created</b> - A service that has not been deployed and can still be edited.</p>
                     </li>
                 </ul>
                 <li>
@@ -211,13 +211,13 @@
             <h2>Monitoring Types</h2>
             <ul>
                 <li>
-                    <p><b>Execution response trend over time</b> - monitored by Request Succeeded, Bad Request and Server Error</p>
+                    <p><b>Execution response trend over time</b> - Monitored by Request Succeeded, Bad Request and Server Error</p>
                 </li>
                 <li>
-                    <p><b>New execution response</b> - different view of Request Succeeded, Bad Request and Server Error</p>
+                    <p><b>New execution response</b> - Different view of Request Succeeded, Bad Request and Server Error</p>
                 </li>
                 <li>
-                    <p><b>Execution latency in milliseconds</b> - displaying the service execution latency in milliseconds</p>
+                    <p><b>Execution latency in milliseconds</b> - Displaying the service execution latency in milliseconds</p>
                 </li>
             </ul>
         </div>
@@ -268,7 +268,7 @@
                     <p><b>Integration type</b>: HTTP</p>
                 </li>
                 <li>
-                    <p><b>Use Proxy Integration</b>: check this option</p>
+                    <p><b>Use Proxy Integration</b>: Check this option</p>
                 </li>
                 <li>
                     <p><b>Method</b>: GET</p>
@@ -277,7 +277,7 @@
                     <p><b>Endpoint URL</b>:The endpoint of the service. In the example, it is the URI of the service without any additional query parameters.</p>
                 </li>
                 <li>
-                    <p><b>Use Default Timeout</b>:&#160;check this option</p>
+                    <p><b>Use Default Timeout</b>:&#160;Check this option</p>
                 </li>
             </ul>
             <h1><a name="Logs"></a>Logs and Changing the Log Level Dynamically</h1>
@@ -313,19 +313,19 @@
             <h2>Services&#160;Fields</h2>
             <ul>
                 <li>
-                    <p><b>SERVICE NAME</b> – the name you define to the data source</p>
+                    <p><b>SERVICE NAME</b> – The name you define to the data source</p>
                 </li>
                 <li>
                     <p><b>STATUS</b> – The status of the service:</p>
                     <ul style="list-style-type: circle;">
                         <li>
-                            <p><b>Undeployed</b>: a service that has been deployed and is not undeployed for edit purposes.</p>
+                            <p><b>Undeployed</b> - A service that has been deployed and is not undeployed for edit purposes.</p>
                         </li>
                         <li>
-                            <p><b>Deployed:</b> Ready for external execution</p>
+                            <p><b>Deployed</b> - Ready for external execution</p>
                         </li>
                         <li>
-                            <p><b>Created:</b> a service that has not been deployed and can still be edited,</p>
+                            <p><b>Created</b> - A service that has not been deployed and can still be edited,</p>
                         </li>
                     </ul>
                 </li>
@@ -336,7 +336,7 @@
                     <p><b>URL</b> – The URL of the service.</p>
                 </li>
                 <li>
-                    <p><b>DESCRIPTION</b> – a free-format description of the service</p>
+                    <p><b>DESCRIPTION</b> – A free-format description of the service</p>
                 </li>
                 <li>
                     <p><b>REPLICAS</b> – The amount of replicas. If it is a large service, it is recommended to define more than 1 so it can be balanced over multiple instances.</p>
@@ -354,34 +354,42 @@
                     <p><b>(Source drop-down list)</b> – Select which GigaSpaces Space object the service should be executed against.</p>
                 </li>
                 <li>
-                    <p><b>Load Query</b>: Displays a list of previously saved and run queries.</p>
+                    <p><b>Load Query</b> - Displays a list of previously saved and run queries.</p>
                 </li>
                 <li>
-                    <p><b>Service Name:</b> Provide a unique name for the service.</p>
+                    <p><b>Service Name</b> - Provide a unique name for the service.</p>
                     <div class="tc-admon-note">
                         <p>The service name must be in lower case and can contain numbers, but only one hyphen "-"</p>
                     </div>
                 </li>
                 <li>
-                    <p><b>Replicas:</b> How many replicas are being used.</p>
+                    <p><b>Replicas</b> - How many replicas are being used.</p>
                 </li>
                 <li>
-                    <p><b>Description:</b>&#160;Description of the service you are creating.</p>
+                    <p><b>Description</b>&#160;- Description of the service you are creating.</p>
                 </li>
                 <li>
-                    <p><b>(Body of the service)</b> – enter a SQL-99 compliant service. Initially there is an example query service displayed in gray, As soon as you lick on that area, it is replaced by a blank screen ready for you to create your service. The results of the example service are also displayed (MIN_AGE, MAX_AGE).</p>
-                    <p><b>Retrieve first</b> – limit the query response to the desired number of rows. A maximum of 10,000 rows can be retrieved.</p>
+                    <p><b>(Body of the service)</b> – Enter a SQL-99 compliant service. Initially there is an example query service displayed in gray, As soon as you lick on that area, it is replaced by a blank screen ready for you to create your service. The results of the example service are also displayed (MIN_AGE, MAX_AGE).</p>
+                    <p><b>Retrieve first</b> – Limit the query response to the desired number of rows. A maximum of 10,000 rows can be retrieved.</p>
                 </li>
             </ul>
         </div>
         <div MadCap:conditions="Version.16-3-only">
             <h2>Run or Save the Query and Create the Service</h2>
-            <p>Click <b>Run Query</b> to test the query. The query results will be displayed. If there is a problem with the query a Query validation failed error will be displayed at the bottom of the screen.</p>
-            <p>Click <b>Save query</b> to save the query which will then be accessible via the <b>Load Query</b> drop-down.</p>
-            <p>Click <b>Create Service</b> to create a service. It will now be displayed on the main screen with the status <b>Created</b>:</p>
-            <p>
-                <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services6.png" style="width: 378px;height: 302px;" />
-            </p>
+            <ul>
+                <li>
+                    <p>Click <b>Run Query</b> to test the query. The query results will be displayed. If there is a problem with the query a Query validation failed error will be displayed at the bottom of the screen.</p>
+                </li>
+                <li>
+                    <p>Click <b>Save query</b> to save the query which will then be accessible via the <b>Load Query</b> drop-down.</p>
+                </li>
+                <li>
+                    <p>Click <b>Create Service</b> to create a service. It will now be displayed on the main screen with the status <b>Created</b>:</p>
+                    <p>
+                        <img src="../Resources/Images/SpaceDeck/SpaceDeck-Services6.png" style="width: 378px;height: 302px;" />
+                    </p>
+                </li>
+            </ul>
             <h2><a name="DeployService"></a>Deploy the Service</h2>
             <p>Click the new service name and then to deploy the service, click <b>Deploy</b>:</p>
             <p>

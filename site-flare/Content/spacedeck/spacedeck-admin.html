@@ -10,10 +10,10 @@
         </map>
         <h1 class="tc-pagetitle">SpaceDeck – Administration</h1>
         <h1>Access the Administration Screen</h1>
-        <p>If a user is defined as an Admin, the Administration options can be accessed via the cog at the bottom left hand corner.</p>
+        <p>If a user role is defined as an Admin, the Administration screens can be accessed via the cog at the bottom left hand corner.</p>
         <p>
             <div class="tc-admon-attention">
-                <p>In order to create, delete or update Connection (Identify Provider) or Roles Management settings, the user should be assigned the appropriate role. These are specified below.<br />An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
+                <p>In order to create, delete or update Connection (Identify Provider) or Roles Management settings, the user should be assigned the appropriate role. These are specified below. <br />An explanation of all the available permissions can be found in the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
             </div>
         </p>
         <p MadCap:conditions="Version.16-3-only">
@@ -24,19 +24,19 @@
         </p>
         <div MadCap:conditions="Version.16-4-born">
             <p>Once in the Administration menu, version and license details will be displayed at the bottom right hand corner. </p>
+            <p>The License Expiration appears <span class="tc-textred">in red</span> if the date is coming up soon.</p>
             <p>
-                <img src="../Resources/Images/SpaceDeck/16.4/Admin-details.png" />
+                <img src="../Resources/Images/SpaceDeck/16.4/admin-details1.png" />
             </p>
-            <p>The License Expiration appears in red if the date is coming up soon..</p>
         </div>
         <h1><a name="GeneralSetup"></a>General&#160;Setup </h1>
         <p>Populate the Connection fields in order to configure SSO login using a predefined IDP.</p>
         <div class="tc-admon-note">
-            <p>Refer to <MadCap:xref href="spacedeck-idp-details.html">SpaceDeck SSO&#160;IDP&#160;Setup</MadCap:xref> for examples of IDP setup through <b>AWS Azure</b> and <b>Okta</b></p>
+            <p>Refer to <MadCap:xref href="spacedeck-idp-details.html">SpaceDeck SSO&#160;IDP&#160;Setup</MadCap:xref> for examples of IDP setup through <b>Okta</b> and <b>Azure Active Directory</b>.</p>
         </div>
         <div class="tc-admon-attention">
             <p>In order to be able to configure the <b>Connection (Identify Provider)</b> fields the user has to be assigned the specific permission of <b>Manager Identify Providers</b>, otherwise an error 403 (Forbidden) response will be displayed. </p>
-            <p>An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
+            <p>An explanation of all the available roles and permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
         </div>
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Admin2.png" style="width: 1135px;height: 292px;" MadCap:conditions="Version.16-3-only" />
@@ -47,13 +47,13 @@
         <h2><a name="IDPConnectionFields"></a>Connection Fields</h2>
         <ul>
             <li>
-                <p><b>Provider type</b> – The protocol the IDP supports. Currently <MadCap:variable name="General.ProductNameIE" /> supports OpenID.</p>
+                <p><b>Provider type</b> – The protocol the IDP supports. Currently <MadCap:variable name="General.ProductNameIE" /> supports using any IDP that supports OpenID Connect (OIDC).</p>
             </li>
             <li>
                 <p><b>Provider id</b> – This is a generic ID that will be used as a name for the auth-config creator.</p>
             </li>
             <li>
-                <p><b>Redirect URIs</b> – Upon successful sign-in, this endpoing in our server will receive the data from the IDP,</p>
+                <p><b>Redirect URIs</b> – Upon successful sign-in, this endpoing in our server will receive the data from the IDP.</p>
             </li>
             <li>
                 <p><b>Issue&#160;URL</b> – URL&#160;of the IDP&#160;issuer. &#160;For example, Okta, JumpCloud, AWS Azure, Github.</p>
@@ -71,17 +71,17 @@
         <p>Once the connection details are entered, click <b>Apply</b>. </p>
         <h1><a name="Roles-Mangement"></a>Role Management</h1>
         <p>Each role that is configured will have certain privileges (permissions) assigned to it.</p>
-        <p>The roles should be configured by the company IT&#160;manager in the config map of the Kubernetes environment.</p>
+        <p>The roles should be configured by the company IT&#160;manager in the config map of the Kubernetes environment or through IDP&#160;setup.</p>
         <h2>Default Roles</h2>
-        <p>If there is no configuration in the config map (this is <b>not</b> recommended), there are two default roles that are included with the installation which cannot be edited via SpaceDeck: ROLE_ADMIN and ROLE_MNGR.</p>
-        <p>To see which privileges (permissions) are applied to each role, click the role name: </p>
-        <p> <img src="../Resources/Images/SpaceDeck/SpaceDeck-Login4_default.png" style="width: 907px;height: 159px;" /></p>
+        <p>If there is no configuration in the config map (this is <b>not</b> recommended), there is one default roles that is included with the installation which cannot be edited via SpaceDeck and this is ROLE_ADMIN.</p>
+        <p>To see which privileges (permissions) are applied to a role, click the role name: </p>
+        <p> <img src="../Resources/Images/SpaceDeck/16.4/Roles-main1.png" style="width: 897px;height: 166px;" /></p>
         <div class="tc-admon-note">
-            <p>The permissions for the two default roles cannot be edited, nor can the roles be deleted.</p>
+            <p>The permissions for the default role cannot be edited, nor can the role be deleted.</p>
         </div>
         <div MadCap:conditions="Version.16-4-born">
-            <p> Below is a screenshot showing the permissions applied for the default ROLE_ADMIN at Monitor System Level. </p>
-            <p>An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
+            <p> Below is a screenshot showing the <b>Resource Management</b> menu which displays all the permissions applied for the default ROLE_ADMIN at Monitor System Level. </p>
+            <p>An explanation of all the available permissions can be found n the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/Resource_Mgmt_Admin_Role.png" style="width: 904px;height: 403px;" />
             </p>
@@ -116,7 +116,7 @@
             </p>
         </div>
         <div MadCap:conditions="Version.16-4-born">
-            <p>On the Add Role pop-out:</p>
+            <p>On the <b>Add Role</b> pop-out:</p>
             <ol>
                 <li>
                     <p>Provide a name for the new role. In our example it is DEMO_USER.</p>
@@ -131,10 +131,10 @@
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/Admin_Add_Role.png" style="width: 980px;height: 371px;" />
             </p>
-            <p>Once the role is created, the Resource Management screen is displayed where permissions will be assigned for the newly created role. &#160;</p>
-            <p>The role will also be displayed in the Role Management screen.</p>
-            <h2>Apply Permissions for the Role</h2>
-            <p>In the Resource Management menu, select your newly created role from the Roles drop-down and apply the System and Resources level roles</p>
+            <p>Once the role is created, the <b>Resource Management</b> screen is displayed where permissions will be assigned for the newly created role. &#160;</p>
+            <p>The role will now also be displayed in the Role Management screen.</p>
+            <h2><a name="ResourceManagement"></a>Resource Management: Applying Permissions for the Role</h2>
+            <p>In the <b>Resource Management</b> select your newly created role from the Roles drop-down list and apply the System and Resources level permissions.</p>
             <p>An explanation of all the available permissions can be found on the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/ResourceMgmt-RolesSetup.png" style="width: 955px;height: 358px;" />
@@ -149,7 +149,6 @@
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/Role-delete.png" style="width: 1341px;height: 153px;" />
             </p>
-            <h1><a name="Resource-Management"></a>Resource Management</h1>
         </div>
     </body>
 </html>
