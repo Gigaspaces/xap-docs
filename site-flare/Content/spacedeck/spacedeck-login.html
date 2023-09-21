@@ -13,26 +13,35 @@
             <p MadCap:conditions="Default.DoNotShow">If the environmental variable <code>AUTH=on</code>, the login screen will display to begin using SpaceDeck.</p>
         </div>
         <div class="tc-admon-note">
-            <p MadCap:conditions="Default.DoNotShow">See <MadCap:xref href="../admin/gigaspaces-management-center-ui-security.html#managing-users-and-roles" class="Managing-Users-and-Roles">Managing Users and Roles</MadCap:xref> for a discussion of GigaSpaces security procedures.</p>
+            <p MadCap:conditions="Version.16-4-born">See <MadCap:xref href="../admin/gigaspaces-management-center-ui-security.html#managing-users-and-roles" class="Managing-Users-and-Roles">Managing Users and Roles</MadCap:xref> for a discussion of GigaSpaces security procedures.</p>
         </div>
         <h2>Post-Installation First-Time Login - Configuring SSO</h2>
         <p>The owner (superuser) of the system should initially login via the password option with details provided by <MadCap:variable name="General.ProductNameIE" /> as part of the installation. </p>
         <div class="tc-admon-important">
-            <p>This step must be completed in order for the superuser to configure SSO&#160;(Single sign-on). </p>
+            <p>This step must be completed in order for the ROLE_ADMIN user to configure SSO&#160;(Single sign-on). </p>
         </div>
         <div class="tc-admon-note">
-            <p>For an explanation of configuring the SSO using Azure Active Directory refer to this <a href="spacedeck-sso-azure.html">SpaceDeck SSO Azure</a> page.</p>
+            <p>For an explanation about setting up your IDP to enable Secure SSO login refer to <a href="spacedeck-idp-details.html">IDP Details</a></p>
         </div>
+        <li>
+            <p>In order to bind the IDP that has been created, the root user has to login to SpaceDeck with the correct username/password and then populate all the <a href="spacedeck-admin.html#IDPConnectionFields">Connection fields</a> in the Administration/General Setup menu. </p>
+            <div class="tc-admon-important" MadCap:conditions="Version.16-4-born">
+                <p>By default, the root user has root/password credentials. &#160;<b>This must be changed before installation</b> using the parameter of <b>global.password</b> seen in step 3 of the <a href="../admin/DIH-installation-kubernetes.html#InstructionsK8s">Instructions</a> for Smart DIH&#160;Installation using Kubernetes.</p>
+            </div>
+        </li>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Login2.png" style="width: 576px;height: 474px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA16.png" style="width: 491px;height: 357px;" />
         </p>
         <h2>Standard User Login (through SSO)</h2>
-        <p>Standard users enter their user credentials to login to Space Deck using SSO&#160;(Single Sign-On). Click <b>Login</b></p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA16a.png" style="width: 492px;height: 369px;" />
+        </p>
+        <p>Standard users enter their user credentials to login to SpaceDeck using SSO&#160;(Single Sign-On). Click <b>Login</b></p>
         <p>If SSO has not been configured, this will be displayed:</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck-Login4a.png" style="width: 589px;height: 436px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/SSO-signon-error.png" style="width: 701px;height: 591px;" />
         </p>
-        <p>If SSO has been configured, then a single-sign on screen will be displayed (in our example this is through OKTA)</p>
+        <p>If SSO has been configured, then a single-sign on screen will be displayed (in our example this is through OKTA). Complete this procedure to access SpaceDeck.</p>
         <p>
             <img src="../Resources/Images/SpaceDeck/SpaceDeck-Login4.png" style="width: 300px;height: 425px;" />
         </p>
