@@ -19,7 +19,8 @@ helm repo update ingress-nginx</pre>
         <p>Output of ingress-controller-tcp.yaml:</p><pre xml:space="preserve">tcp:
   8090: "default/xap-manager-service:8090"
   3030: "default/grafana:3000"
-  3000: "default/spacedeck:3000"
+  <MadCap:conditionalText MadCap:conditions="Version.16-4-died">3000: "default/spacedeck:3000"</MadCap:conditionalText>
+  <MadCap:conditionalText MadCap:conditions="Version.16-4-born">4200: "default/spacedeck:4200"</MadCap:conditionalText>
   8080: "default/redpanda:8080"
   6080: "default/di-manager:6080"
   6081: "default/di-mdm:6081"
