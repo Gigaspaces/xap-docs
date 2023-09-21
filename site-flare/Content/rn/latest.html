@@ -97,7 +97,7 @@
             <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
             <p>&#160;</p>
             <h1>SpaceDeck Updates</h1>
-            <p>There have been several updates made to our SpaceDeck UI.</p>
+            <p>Updates of the functionality of several key features  have resulted in  changes to our SpaceDeck UI. These are outlined below.</p>
             <h2>Security </h2>
             <ul>
                 <li>
@@ -123,7 +123,8 @@
                 <p>
                     <img src="../Resources/Images/Product/SmartDIH.png" style="width: 101px;height: 39px;" />
                 </p>
-                <p>Low code development of data micro-services provide our clients with the ability to deploy and execute data services efficiently. &#160;This assumes that the micro-service runs a query on the Space data. It enables the user to define endpoints that, per request, will run the predefined query using the supplied required parameters to get the results. This is easily achievable via our&#160;<a href="../spacedeck/spacedeck-services.html"><a href="../spacedeck/spacedeck-services.html">SpaceDeck UI</a></a>. &#160;For additional information about Service Creator refer to <MadCap:xref href="../admin/deploying-services.html">Deploying Services.</MadCap:xref></p>
+                <p>Through our <a href="../spacedeck/spacedeck-services.html">SpaceDeck UI</a>, low code development of data micro-services provide our clients with the ability to deploy and execute data services efficiently. &#160;</p>
+                <p>For additional information about Service Creator refer to <MadCap:xref href="../admin/deploying-services.html">Deploying Services.</MadCap:xref></p>
                 <div class="tc-admon-feature">
                     <p>Overview of new Service Creator features</p>
                 </div>
@@ -142,7 +143,7 @@
                 </ul>
                 <ul>
                     <li>
-                        <h3><a href="../spacedeck/spacedeck-services.html#SecurityRoles">Security Roles and Permissions</a>:</h3>
+                        <h3>Security Roles and Permissions:</h3>
                         <ul>
                             <li>
                                 <p>Deploy/Undeploy actions will require special permission. A regular user without permission can only create a service.  In order to deploy or undeploy it they will require Manage Service permission.  </p>
@@ -151,7 +152,7 @@
                                 <p>Create/Delete will not require special permissions.</p>
                             </li>
                             <li>
-                                <p>Refer to <MadCap:xref href="../security/security-overview.html#service-authority">Security Overview</MadCap:xref> for more details.</p>
+                                <p>Refer to the <a href="../spacedeck/spacedeck-services.html#SecurityRoles">SpaceDeck Services</a> page for more details.</p>
                             </li>
                         </ul>
                     </li>
@@ -176,7 +177,7 @@
                 </ul>
                 <ul>
                     <li>
-                        <h2>Integrations</h2>
+                        <h3>Integrations</h3>
                         <ul>
                             <li>
                                 <p>Integration with <a href="../spacedeck/spacedeck-services.html#API-Docs">AWS API Gateway</a> tested. Planned to test with other Gateways in the future.</p>
@@ -186,7 +187,7 @@
                 </ul>
                 <ul>
                     <li>
-                        <h2>Pagination</h2>
+                        <h3>Pagination Support</h3>
                         <p>
                             <ul>
                                 <li> In some cases, services can return multiple rows from a Space. To avoids all the data being displayed on one long page, which is not practical we have introduced <a href="../spacedeck/spacedeck-services.html#Pagination">Pagination</a> which allows the data to be divided into smaller, more manageable pages.</li>
@@ -203,10 +204,6 @@
                 </p>
                 <ol>
                     <li>
-                        <p>There is now no need to manually configure IIDR subscription via the DI&#160;Subscription&#160;Manager as this is now performed automatically.</p>
-                        <p>For more information refer to <MadCap:xref href="../Data Integration/DI-Administration--Sub-Mgr.html">Pipeline Setup Via Subscription Manager and SpaceDeck</MadCap:xref>.</p>
-                    </li>
-                    <li>
                         <div class="tc-admon-feature">
                             <p>Express Upload. For <a href="https://go.gigaspaces.com/smart-dih-as-a-service-early-adopters">Smart DIH&#160;As-A-Service</a> customers only. &#160;For additional details, please contact our <a href="mailto:support@gigaspaces.com">Customer Support team</a>.</p>
                         </div>
@@ -219,6 +216,9 @@
                             <p>Stream SQL</p>
                         </div>
                         <p><MadCap:variable name="General.CompanyName" /> has added the ability to bring data not only from relational database but rather from Kafka directly using StreamSQL. For information about using Stream SQL in <b>SpaceDeck</b> refer to <MadCap:xref href="../spacedeck/spacedeck-streamSQL.html">SpaceDeck – Stream&#160;SQL</MadCap:xref>.</p>
+                    </li>
+                    <li>
+                        <p>There is now no need to manually configure IIDR subscription via the DI&#160;Subscription&#160;Manager as this is now performed automatically. For more information refer to <MadCap:xref href="../Data Integration/DI-Administration--Sub-Mgr.html">Pipeline Setup Via Subscription Manager and SpaceDeck</MadCap:xref>.</p>
                     </li>
                 </ol>
                 <h1>Redo Log Update</h1>
