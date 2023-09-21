@@ -96,13 +96,18 @@
             <h3> Release Date: September-2023</h3>
             <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
             <p>&#160;</p>
-            <h1>SpaceDeck Updates</h1>
-            <p>Updates of the functionality of several key features  have resulted in  changes to our SpaceDeck UI. These are outlined below.</p>
+            <h1>Updates</h1>
+            <p>Updates of the functionality of several key features  have resulted in  changes to our SpaceDeck UI. These features are described below.</p>
             <h2>Security </h2>
             <ul>
                 <li>
                     <p><a href="../spacedeck/spacedeck-admin.html">Authentication, Authorization and Roles Management. </a>
                     </p>
+                    <ul>
+                        <li>
+                            <p>Security is now set as default in our <a href="../admin/config-details-smart-dih.htm">Kubernetes orchestration</a> (see Security Settings section). </p>
+                        </li>
+                    </ul>
                     <ul>
                         <li>
                             <p>Our SpaceDeck is now securely managed. Refer to <MadCap:xref href="../security/security-overview.html#role-based-security">Security Overview</MadCap:xref> for more details.</p>
@@ -114,6 +119,7 @@
                         </li>
                         <li>
                             <p>IDP&#160;Integration for SSO for login to SpaceDeck. <MadCap:variable name="General.CompanyName" /> supports using any IDP that supports OpenID Connect (OIDC). For additional information refer to <MadCap:xref href="../spacedeck/spacedeck-idp-details.html">SpaceDeck - SSO&#160;IDP&#160;Setup</MadCap:xref>.</p>
+                            <p>&#160;</p>
                         </li>
                     </ul>
                 </li>
@@ -209,13 +215,13 @@
                         </div>
                     </li>
                     <p class="tc-admon-feature">
-                        <p>SpaceDeck now offers a far simpler user journey using the new <b>Express Upload</b> option which supports basic  importing of data into <MadCap:variable name="General.CompanyName" /> Smart DIH&#160;as-a-Service platform from standard data formats such as .csv or .json files.  The advantages of this are exemplified by users having a quicker and simpler user experience by being fully self-service whilst using common standards of data migration to create data services. </p>
+                        <p>SpaceDeck now offers a far simpler user journey using the new <b>Express Upload</b> option, through our SpaceDeck UI, which supports basic  importing of data into <MadCap:variable name="General.CompanyName" /> Smart DIH&#160;as-a-Service platform from standard data formats such as .csv or .json files.  The advantages of this are exemplified by users having a quicker and simpler user experience by being fully self-service whilst using common standards of data migration to create data services. </p>
                     </p>
                     <li>
                         <div class="tc-admon-feature">
                             <p>Stream SQL</p>
                         </div>
-                        <p><MadCap:variable name="General.CompanyName" /> has added the ability to bring data not only from relational database but rather from Kafka directly using StreamSQL. For information about using Stream SQL in <b>SpaceDeck</b> refer to <MadCap:xref href="../spacedeck/spacedeck-streamSQL.html">SpaceDeck – Stream&#160;SQL</MadCap:xref>.</p>
+                        <p><MadCap:variable name="General.CompanyName" /> has added the ability to bring data not only from relational database but rather from Kafka directly using StreamSQL. For information about using Stream SQL in SpaceDeck refer to <MadCap:xref href="../spacedeck/spacedeck-streamSQL.html">SpaceDeck – Stream&#160;SQL</MadCap:xref>.</p>
                     </li>
                     <li>
                         <p>There is now no need to manually configure IIDR subscription via the DI&#160;Subscription&#160;Manager as this is now performed automatically. For more information refer to <MadCap:xref href="../Data Integration/DI-Administration--Sub-Mgr.html">Pipeline Setup Via Subscription Manager and SpaceDeck</MadCap:xref>.</p>
