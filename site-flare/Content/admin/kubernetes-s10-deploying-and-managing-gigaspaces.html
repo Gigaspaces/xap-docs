@@ -13,73 +13,162 @@
             <p>The topics in this section assume basic knowledge of the GigaSpaces platform. If you aren't familiar with GigaSpaces, review the contents of the general <a href="../started/next-level-getting-started-with-smart-cache.html">Getting Started</a> section before performing the tasks described here.</p>
         </div>
         <h1>Prerequisites</h1>
+        <p>Following are the prerequisites required for deploying Smart&#160;DIH using&#160;Kubernetes.</p>
         <ul>
             <li>
-                <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Working kubernetes deployment (locally or remote)</a>
-                </p>
+                <p>Kubernetes cluster version &gt;1.22</p>
             </li>
             <li>
-                <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Helm</a>
-                </p>
-            </li>
-            <li>
-                <p>kubectl</p>
+                <p>At least a total of 20GB and 10 vCPU</p>
+                <ul>
+                    <li>
+                        <p>Kubectl Controller installed and configured:</p>
+                        <ul>
+                            <li>
+                                <p>See <a href="#AppendixA">Appendix A</a> for:</p>
+                                <ul>
+                                    <li>
+                                        <p>Certificate manager deployment</p>
+                                    </li>
+                                    <li>
+                                        <p>Metrics-service deployment</p>
+                                    </li>
+                                    <li>
+                                        <p>Ingress controller installation in order to connect to the SpaceDeck UI.</p>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul style="list-style-type: circle;">
+                            <li>
+                                <p>Ingress controller installed (see <a href="#AppendixA">Appendix A</a>) in order to connect to the SpaceDeck UI.</p>
+                            </li>
+                            <li>
+                                <p>A load balancer that is securely exposed to the internet and connected to the ingress controller</p>
+                            </li>
+                            <li>
+                                <p>DNS setup with a certificate for a secure connection. The instructions below assume the host name to be <b>myhost.com</b>.</p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </li>
         </ul>
-        <p>This topic describes how to do basic and intermediate-level deployment tasks for the Space and the GigaSpaces platform, using simple Helm commands. </p>
-        <div MadCap:conditions="NewSet.JustAColorForDivs">
-            <h1>Deploying Smart Cache</h1>
-            <p>In order to prepare the environment for use, first the Platform Manager must be deployed. This deploys two pods: the Manager pod, and the Operator pod.</p>
-            <p>Note that Platform Manager is deployed by using a Helm chart, and further operations can also be performed using the UI, CLI or REST-API tools.</p>
-            <p MadCap:conditions="Default.DoNotShow">Type the following Helm command to create a Management Pod called <code class="language-bash">testmanager</code> that deploys Manager and Operator pods:</p>
-            <h1>Create a local repository from the Helm server and install Smart Cache</h1>
-            <div class="tc-admon-note">
-                <p>The <code style="font-weight: bold;">xap</code> chart used in the following example is an "umbrella" chart that references more than one Helm chart.</p>
-            </div>
-            <p>Update the GigaSpaces repo locally:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
-helm repo update</code></pre>
-            <p>Unpack the GigaSpaces charts:</p><pre><code class="language-bash">helm pull gigaspaces/xap --version=<MadCap:variable name="Versions.product-version-long" /> --untar</code></pre>
-            <p>Deploy the GigaSpaces Manager and Operator pods:</p><pre MadCap:conditions="Default.DoNotShow"><code class="language-bash">helm install xap ./xap </code><MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><code class="language-bash">--set manager.resources.limits.memory=700Mi</code></MadCap:conditionalText></pre><pre><code class="language-bash">helm install xap ./xap</code></pre>
-            <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command.</h2>
-            <div class="tc-admon-note">
-                <p><b>Monitoring the Cluster in Kubernetes</b>
-                </p>
-                <div MadCap:conditions="NewSet.JustAColorForDivs">
-                    <p>After running the commands show below, you can monitor the cluster you deployed using the following administration tools.</p>
-                    <ul>
-                        <li><b>Helm</b>: Run the following command to print the status of the xap deployment in the command window.</li>
-                    </ul><pre><code class="language-bash">helm status xap</code></pre>
-                    <div MadCap:conditions="Default.DoNotShow">
-                        <ul>
-                            <li>Kubernetes dashboard: run the following command to open a dashboard in your browser, where you can see all the Pods and services by clicking the various tabs. For example, if you're using minikube:</li>
-                        </ul><pre><code class="language-bash">minikube dashboard</code></pre>
-                    </div>
-                    <ul>
-                        <li><b>Kubectl</b>: run the following command to print the name, description, and status of the Pods in the command window. A list of events is also printed, which can be used for troubleshooting purposes. For example, if you detected a problem in one of the Pods, you can see the Pod termination reason and exit code.</li>
-                    </ul><pre><code class="language-bash">kubectl get pods</code></pre>
+        <h1><a name="InstructionsK8s"></a>Instructions</h1>
+        <ol>
+            <li> Get the Smart&#160;Cache Helm repo and update:</li><pre xml:space="preserve">helm repo add cache <a href="https://resources.gigaspaces.com/helm-charts-dih">https://resources.gigaspaces.com/helm-charts-dih</a> 
+
+helm repo update cache
+</pre>
+            <li>
+                <p>Fully install Smart Cache (including Ingress and H/A for SpaceDeck):</p>
+            </li><pre xml:space="preserve">helm install cache cache/cache --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com, 
+global.password=rootpassword</pre>
+            <li>
+                <p>If IIDR installation is NOT included then use this:</p><pre xml:space="preserve" MadCap:conditions="Version.16-3-only">helm install cache cache/cache --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com  
+</pre><pre xml:space="preserve" MadCap:conditions="Version.16-4-born">helm install cache cache/cache --version <MadCap:variable name="Versions.product-version-long" /> --set global.ingressHost=myhost.com  
+</pre>
+            </li>
+            <li>
+                <p>Smart Cache is now installed in H/A mode. Wait for all pods to be ready.</p>
+            </li>
+            <li>
+                <p>Connect to the SpaceDeck at <code class="language-bash">https://myhost.com/</code></p>
+            </li>
+        </ol>
+        <h1>Next Steps</h1>
+        <ol>
+            <li>
+                <p>Use <a href="../spacedeck/spacedeck-overview.html">SpaceDeck</a> to define <span style="background-color: #ffff00;">[TBD]</span></p>
+                <div class="tc-admon-important">
+                    <p>By default, the root user has root/password credentials. &#160;This must be changed before installation using the parameter of <b>global.password</b> seen in step 2 of the <a href="#InstructionsK8s">Instructions</a> section above.</p>
                 </div>
-            </div>
-            <div class="tc-admon-note">
-                <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
-            </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
+            </li>
+        </ol>
+        <h1><a name="AppendixA"></a>Appendix A</h1>
+        <ul>
+            <li>
+                <p>Certificate manager deployment. &#160;Follow <a href="https://cert-manager.io/docs/installation/helm/">these instructions</a> (external link).</p>
+            </li>
+            <li>
+                <p>Metrics-service deployment. Follow <a href="https://artifacthub.io/packages/helm/metrics-server/metrics-server">these instructions</a> (external link).</p>
+            </li>
+            <li>
+                <p>An ingress controller is required as part of the Smart&#160;Cache installation. <a href="https://docs.nginx.com/nginx-controller/admin-guides/install/install-nginx-controller/">Follow these Instructions</a> for NGINX controller installation (external link). It is best practice to install NGINX in a different name-space.</p>
+            </li>
+        </ul>
+        <div class="tc-admon-note" MadCap:conditions="Version.16-3-born">
+            <p>For detailed configuration information refer to the <a href="config-details-smart-cache.htm">Detailed Configuration:&#160;Smart Cache</a> page </p>
+        </div>
+        <div MadCap:conditions="Default.DoNotShow">
+            <h1>Prerequisites</h1>
+            <ul>
+                <li>
+                    <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Working kubernetes deployment (locally or remote)</a>
+                    </p>
+                </li>
+                <li>
+                    <p><a href="https://docs.helm.sh/using_helm/#quickstart-guide">Helm</a>
+                    </p>
+                </li>
+                <li>
+                    <p>kubectl</p>
+                </li>
+            </ul>
+            <p>This topic describes how to do basic and intermediate-level deployment tasks for the Space and the GigaSpaces platform, using simple Helm commands. </p>
+            <div MadCap:conditions="NewSet.JustAColorForDivs">
+                <h1>Deploying Smart Cache</h1>
+                <p>In order to prepare the environment for use, first the Platform Manager must be deployed. This deploys two pods: the Manager pod, and the Operator pod.</p>
+                <p>Note that Platform Manager is deployed by using a Helm chart, and further operations can also be performed using the UI, CLI or REST-API tools.</p>
+                <p MadCap:conditions="Default.DoNotShow">Type the following Helm command to create a Management Pod called <code class="language-bash">testmanager</code> that deploys Manager and Operator pods:</p>
+                <h1>Create a local repository from the Helm server and install Smart Cache</h1>
+                <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
+                    <p>The <code style="font-weight: bold;">xap</code> chart used in the following example is an "umbrella" chart that references more than one Helm chart.</p>
+                </div>
+                <p>Update the GigaSpaces repo locally:</p><pre><code class="language-bash">helm repo add gigaspaces https://resources.gigaspaces.com/helm-charts
+helm repo update</code></pre>
+                <p>Unpack the GigaSpaces charts:</p><pre><code class="language-bash">helm pull gigaspaces/xap --version=<MadCap:variable name="Versions.product-version-long" /> --untar</code></pre>
+                <p>Deploy the GigaSpaces Manager and Operator pods:</p><pre MadCap:conditions="Default.DoNotShow"><code class="language-bash">helm install xap ./xap </code><MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><code class="language-bash">--set manager.resources.limits.memory=700Mi</code></MadCap:conditionalText></pre><pre><code class="language-bash">helm install xap ./xap</code></pre>
+                <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command.</h2>
+                <div class="tc-admon-note">
+                    <p><b>Monitoring the Cluster in Kubernetes</b>
+                    </p>
+                    <div MadCap:conditions="NewSet.JustAColorForDivs">
+                        <p>After running the commands show below, you can monitor the cluster you deployed using the following administration tools.</p>
+                        <ul>
+                            <li><b>Helm</b>: Run the following command to print the status of the xap deployment in the command window.</li>
+                        </ul><pre><code class="language-bash">helm status xap</code></pre>
+                        <div MadCap:conditions="Default.DoNotShow">
+                            <ul>
+                                <li>Kubernetes dashboard: run the following command to open a dashboard in your browser, where you can see all the Pods and services by clicking the various tabs. For example, if you're using minikube:</li>
+                            </ul><pre><code class="language-bash">minikube dashboard</code></pre>
+                        </div>
+                        <ul>
+                            <li><b>Kubectl</b>: run the following command to print the name, description, and status of the Pods in the command window. A list of events is also printed, which can be used for troubleshooting purposes. For example, if you detected a problem in one of the Pods, you can see the Pod termination reason and exit code.</li>
+                        </ul><pre><code class="language-bash">kubectl get pods</code></pre>
+                    </div>
+                </div>
+                <div class="tc-admon-note">
+                    <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
+                </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
 ]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b>
 xap-grafana-5574c8bcd5-v2xsr    1/1     Running   0          5m14s
 xap-influxdb-0                  1/1     Running   0          5m14s
 xap-operator-57d9d445ff-slsrr   1/1     Running   0          5m14s
 xap-xap-manager-0               1/1     Running   0          5m14s		</tt><![CDATA[		
 				]]></code></pre>
-            <ul>
-                <li>
-                    <p><code style="font-weight: bold;">grafana</code> and <code style="font-weight: bold;">influxdb</code>, installed by default, provide the metrics and database engine to create <code>grafana</code> dashboards for the system.</p>
-                </li>
-                <li>
-                    <p><code style="font-weight: bold;">operator</code> allows Kubernetes to create custom GigaSpaces resources, such as processing units (pus).</p>
-                </li>
-                <li>
-                    <p><code style="font-weight: bold;">xap-manager</code> is the central processing and management module of the GigaSpaces environment.</p>
-                </li>
-            </ul>
-            <h2>Find the external Kubernetes URL in the CLI via the<code style="font-weight: bold;"> kubectl get services</code> command:</h2><pre><code class="language-bash">kubectl get services</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
+                <ul>
+                    <li>
+                        <p><code style="font-weight: bold;">grafana</code> and <code style="font-weight: bold;">influxdb</code>, installed by default, provide the metrics and database engine to create <code>grafana</code> dashboards for the system.</p>
+                    </li>
+                    <li>
+                        <p><code style="font-weight: bold;">operator</code> allows Kubernetes to create custom GigaSpaces resources, such as processing units (pus).</p>
+                    </li>
+                    <li>
+                        <p><code style="font-weight: bold;">xap-manager</code> is the central processing and management module of the GigaSpaces environment.</p>
+                    </li>
+                </ul>
+                <h2>Find the external Kubernetes URL in the CLI via the<code style="font-weight: bold;"> kubectl get services</code> command:</h2><pre><code class="language-bash">kubectl get services</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
 ]]><b>NAME                      TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                                        AGE</b>
 kubernetes                ClusterIP      10.96.0.1        &lt;none&gt;        443/TCP                                        3h50m
 webhook-server            ClusterIP      10.98.86.137     &lt;none&gt;        443/TCP                                        2m36s
@@ -90,23 +179,23 @@ xap-xap-manager-service   <b>LoadBalancer</b> 10.101.178.201   <b>localhost</b> 
 xap-xap-pu-hs             ClusterIP      None             &lt;none&gt;        &lt;none&gt;                                         2m36s</tt></code></MadCap:conditionalText><code class="language-bash"><tt><![CDATA[
 					]]></tt><![CDATA[		
 				]]></code></pre>
-            <p>The externally accessible URL is type <b>LoadBalancer</b>. In this example, it is <code>localhost</code>.</p>
-            <h2>View the result via the Ops Manager URL<br /></h2>
-            <div class="tc-admon-note">
-                <p>The general format for the URL is <code>&lt;<b>LoadBalancer External-IP</b>&gt;:8090/</code>services.</p>
+                <p>The externally accessible URL is type <b>LoadBalancer</b>. In this example, it is <code>localhost</code>.</p>
+                <h2>View the result via the Ops Manager URL<br /></h2>
+                <div class="tc-admon-note">
+                    <p>The general format for the URL is <code>&lt;<b>LoadBalancer External-IP</b>&gt;:8090/</code>services.</p>
+                </div>
+                <p>In this example, the URL is <code style="font-weight: bold;">localhost:8090/services</code></p>
+                <p>
+                    <img src="../Resources/Static/images/kubernetes-landing-page-ss-1.png" />
+                </p>
             </div>
-            <p>In this example, the URL is <code style="font-weight: bold;">localhost:8090/services</code></p>
-            <p>
-                <img src="../Resources/Static/images/kubernetes-landing-page-ss-1.png" />
-            </p>
-        </div>
-        <h1>Install a Space called "demo"</h1>
-        <p>In this example, we install a processing unit with one partition. Data can be stored in the partition.</p><pre><code class="language-bash">helm pull gigaspaces/xap-pu --version=<MadCap:variable name="Versions.product-version-long     " /> --untar
+            <h1>Install a Space called "demo"</h1>
+            <p>In this example, we install a processing unit with one partition. Data can be stored in the partition.</p><pre><code class="language-bash">helm pull gigaspaces/xap-pu --version=<MadCap:variable name="Versions.product-version-long     " /> --untar
 helm install demo ./xap-pu/ --set manager.name=xap,partitions=1</code></pre>
-        <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command:</h2>
-        <div class="tc-admon-note">
-            <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
-        </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
+            <h2>View the result in the CLI via the<code style="font-weight: bold;"> kubectl get pods</code> command:</h2>
+            <div class="tc-admon-note">
+                <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
+            </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
 ]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b>
 
 xap-grafana-5574c8bcd5-v2xsr    1/1     Running   0          7m34s
@@ -116,12 +205,12 @@ xap-xap-manager-0               1/1     Running   0          7m34s
 demo-xap-pu-0                   1/1     Running   0          15s
 				</tt><![CDATA[		
 				]]></code></pre>
-        <h1>Install a Microservice</h1>
-        <p>In this example, we install an additional processing unit with no partitions, only code. See <MadCap:xref href="kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</MadCap:xref> for details on how to run the microservice Docker image.</p><pre><code class="language-bash">helm install pu ./xap-pu/</code></pre>
-        <h2>View the result in the CLI via the<code style="font-weight: bold;">kubectl get pods</code> command:</h2>
-        <div class="tc-admon-note">
-            <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
-        </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
+            <h1>Install a Microservice</h1>
+            <p>In this example, we install an additional processing unit with no partitions, only code. See <MadCap:xref href="kubernetes-s20-deploying-a-custom-processing-unit.html">Deploying a Custom Processing Unit</MadCap:xref> for details on how to run the microservice Docker image.</p><pre><code class="language-bash">helm install pu ./xap-pu/</code></pre>
+            <h2>View the result in the CLI via the<code style="font-weight: bold;">kubectl get pods</code> command:</h2>
+            <div class="tc-admon-note">
+                <p>Repeat the <code>get pods</code> command shown below, until all of the Status fields are "Running".</p>
+            </div><pre><code class="language-bash">kubectl get pods</code></pre><pre><code class="language-bash"><![CDATA[					]]><tt><![CDATA[
 ]]><b>NAME                            READY   STATUS    RESTARTS   AGE</b>
 demo-xap-pu-0                   1/1     Running   0          4m52s
 pu-xap-pu-0                     1/1     Running   0          3m5s
@@ -131,48 +220,49 @@ xap-operator-57d9d445ff-zhlp2   1/1     Running   0          17m
 xap-xap-manager-0               1/1     Running   0          17m
 				</tt><![CDATA[		
 				]]></code></pre>
-        <h2>View the result via the Ops Manager URL<br /></h2>
-        <div class="tc-admon-note">
-            <p>The general format for the URL is <code>&lt;<b>LoadBalancer External-IP</b>&gt;:8090/</code>services.</p>
+            <h2>View the result via the Ops Manager URL<br /></h2>
+            <div class="tc-admon-note">
+                <p>The general format for the URL is <code>&lt;<b>LoadBalancer External-IP</b>&gt;:8090/</code>services.</p>
+            </div>
+            <p>In this example, the URL is <code style="font-weight: bold;">localhost:8090/services</code></p>
+            <p>
+                <img src="../Resources/Static/images/kubernetes-landing-page-ss-2.png" />
+            </p>
+            <h1>Configuration Options</h1>
+            <p>The following configuration options can be specified when using the charts.</p>
+            <p>For the <code>xap-pu</code> chart:</p>
+            <ul MadCap:conditions="Default.DoNotShow">
+                <li>
+                    <p><b>partitions=2</b> — scale out/in to change the number of partitions.</p>
+                </li>
+                <li>
+                    <p><b>ha=true/false</b> — each primary Data Pod has one backup Data Pod. Default is <code>false</code>.</p>
+                </li>
+                <li>
+                    <p><b>antiAffinity.enabled=true/false</b> — spread the partitions across <MadCap:conditionalText MadCap:conditions="Version.16-2-died">nodes</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-2-born">zones or nodes</MadCap:conditionalText>. Default is <code>false</code>.</p>
+                </li>
+                <li MadCap:conditions="Version.16-2-born">
+                    <div class="tc-admon-note">
+                        <p>Anti affinity can operate in two ways: </p>
+                        <ul>
+                            <li>
+                                <p>Deploy primary and backup partitions on separate <b>Kubernetes zones</b> (default).</p>
+                            </li>
+                            <li>
+                                <p>Deploy these two partitions on separate <b>servers</b>, but not necessarily on different zones.<br />For this second option, you must also specify the following parameter when deploying the operator: <br /><code>--set antiAffinity.topology=kubernetes.io/<i>hostname</i></code></p>
+                            </li>
+                        </ul>
+                        <p>&#160;</p>
+                    </div>
+                </li>
+                <li>
+                    <p>For the <code>xap</code> umbrella chart:</p>
+                </li>
+                <li>
+                    <p><b>metrics.enabled=true/false</b> — enable or disable Grafana metrics. Default is <code>true</code>.</p>
+                </li>
+            </ul>
         </div>
-        <p>In this example, the URL is <code style="font-weight: bold;">localhost:8090/services</code></p>
-        <p>
-            <img src="../Resources/Static/images/kubernetes-landing-page-ss-2.png" />
-        </p>
-        <h1>Configuration Options</h1>
-        <p>The following configuration options can be specified when using the charts.</p>
-        <p>For the <code>xap-pu</code> chart:</p>
-        <ul>
-            <li>
-                <p><b>partitions=2</b> — scale out/in to change the number of partitions.</p>
-            </li>
-            <li>
-                <p><b>ha=true/false</b> — each primary Data Pod has one backup Data Pod. Default is <code>false</code>.</p>
-            </li>
-            <li>
-                <p><b>antiAffinity.enabled=true/false</b> — spread the partitions across <MadCap:conditionalText MadCap:conditions="Version.16-2-died">nodes</MadCap:conditionalText><MadCap:conditionalText MadCap:conditions="Version.16-2-born">zones or nodes</MadCap:conditionalText>. Default is <code>false</code>.</p>
-            </li>
-            <li MadCap:conditions="Version.16-2-born">
-                <div class="tc-admon-note">
-                    <p>Anti affinity can operate in two ways: </p>
-                    <ul>
-                        <li>
-                            <p>Deploy primary and backup partitions on separate <b>Kubernetes zones</b> (default).</p>
-                        </li>
-                        <li>
-                            <p>Deploy these two partitions on separate <b>servers</b>, but not necessarily on different zones.<br />For this second option, you must also specify the following parameter when deploying the operator: <br /><code>--set antiAffinity.topology=kubernetes.io/<i>hostname</i></code></p>
-                        </li>
-                    </ul>
-                    <p>&#160;</p>
-                </div>
-            </li>
-            <li>
-                <p>For the <code>xap</code> umbrella chart:</p>
-            </li>
-            <li>
-                <p><b>metrics.enabled=true/false</b> — enable or disable Grafana metrics. Default is <code>true</code>.</p>
-            </li>
-        </ul>
         <h1>Next Steps...</h1>
         <p>The following topics illustrate additional features of GigaSpaces.</p>
         <ul>
@@ -192,7 +282,7 @@ xap-xap-manager-0               1/1     Running   0          17m
                 </p>
             </li>
         </ul>
-        <div class="tc-admon-note" MadCap:conditions="Version.16-3-born">
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
             <p>For detailed configuration refer to the <a href="config-details-smart-cache.htm">Detailed Configuration:&#160;Smart Cache</a> page </p>
         </div>
         <div MadCap:conditions="Default.DoNotShow">

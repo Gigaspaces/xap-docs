@@ -209,7 +209,7 @@ tcp:
                 <tr>
                     <td>partitions</td>
                     <td>1 or more</td>
-                    <td>Divide the data among multiple pods</td>
+                    <td>Divide the data among multiple pods.</td>
                 </tr>
                 <tr>
                     <td>h/a</td>
@@ -221,8 +221,21 @@ tcp:
                     <td>true/<b>false</b></td>
                     <td>When h/a is true, primary and backup pods will run in different hosts.</td>
                 </tr>
+                <tr MadCap:conditions="SnippetConditions.SnippetConditionCacheOnly">
+                    <td>set antiAffinity.topology</td>
+                    <td>topology.kubernetes.io/&lt;zone&gt;</td>
+                    <td>See note below.</td>
+                </tr>
             </tbody>
         </table>
+        <li MadCap:conditions="Version.16-2-born">
+            <div class="tc-admon-note">
+                <p><b>Anti Affinity</b> can operate in two ways: </p>
+                <p>Deploy primary and backup partitions on separate <b>Kubernetes zones</b> (default).</p>
+                <p>Deploy these two partitions on separate <b>servers</b>, but not necessarily on different zones.<br />For this second option, <code>set.antiAffinity.topology</code> must be set.</p>
+                <p>&#160;</p>
+            </div>
+        </li>
         <h2>Tiered Storage</h2>
         <p>The following configuration must be completed to enable Tiered Storage:</p>
         <ol>
