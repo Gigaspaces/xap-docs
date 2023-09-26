@@ -74,10 +74,10 @@
         <p>The roles should be configured by the company IT&#160;manager in the config map of the Kubernetes environment or through IDP&#160;setup.</p>
         <h2>Default Roles</h2>
         <p>If there is no configuration in the config map (this is <b>not</b> recommended), there is one default roles that is included with the installation which cannot be edited via SpaceDeck and this is ROLE_ADMIN.</p>
-        <p>To see which privileges (permissions) are applied to a role, click the role name: </p>
+        <p>To see which privileges (permissions) are applied to a role (in this case ROLE_ADMIN), click the role name: </p>
         <p> <img src="../Resources/Images/SpaceDeck/16.4/Roles-main1.png" style="width: 897px;height: 166px;" /></p>
         <div class="tc-admon-note">
-            <p>The permissions for the default role cannot be edited, nor can the role be deleted.</p>
+            <p>From the IDP side the default role of ROLE_ADMIN will not be created automatically during launch. Therefore, the admin should manually create a group (role) in the IDP with the same name as the default role name in the config map.</p>
         </div>
         <div MadCap:conditions="Version.16-4-born">
             <p> Below are two screen-shots showing the <b>Resource Management</b> menu which displays all the permissions applied for the default <b>ROLE_ADMIN</b> at Monitor System Level and at Resources Level. &#160;Note that at Resources level, permissions can be applied per Space and Pipeline.</p>
