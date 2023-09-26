@@ -56,7 +56,7 @@
                 <p><b>Redirect URIs</b> – Upon successful sign-in, this endpoing in our server will receive the data from the IDP.</p>
             </li>
             <li>
-                <p><b>Issue&#160;URL</b> – URL&#160;of the IDP&#160;issuer. &#160;For example, Okta, JumpCloud, AWS Azure, Github.</p>
+                <p><b>Issue&#160;URL</b> – URL&#160;of the IDP&#160;issuer. &#160;For example, Okta, JumpCloud, Azure Active Directory, Github.</p>
             </li>
             <li>
                 <p><b>Client Id</b> – Unlike the Provider ID, this ID serves as a unique identifier which the IDP generates to the user so they can identify with it,</p>
@@ -80,11 +80,18 @@
             <p>The permissions for the default role cannot be edited, nor can the role be deleted.</p>
         </div>
         <div MadCap:conditions="Version.16-4-born">
-            <p> Below is a screenshot showing the <b>Resource Management</b> menu which displays all the permissions applied for the default ROLE_ADMIN at Monitor System Level. </p>
-            <p>An explanation of all the available permissions can be found n the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
+            <p> Below are two screen-shots showing the <b>Resource Management</b> menu which displays all the permissions applied for the default <b>ROLE_ADMIN</b> at Monitor System Level and at Resources Level. &#160;Note that at Resources level, permissions can be applied per Space and Pipeline.</p>
+            <p>An explanation of all the available permissions for each level can be found n the <MadCap:xref href="../security/security-overview.html">Security Overview</MadCap:xref> page.</p>
+            <p>&#160;</p>
+            <p><b>System Level</b> - Monitor with permissions for MONITOR_PU and MONITOR_JVM:</p>
             <p>
-                <img src="../Resources/Images/SpaceDeck/16.4/Resource_Mgmt_Admin_Role.png" style="width: 904px;height: 403px;" />
+                <img src="../Resources/Images/SpaceDeck/16.4/Resource_Mgmt_Admin_Role1.png" style="width: 862px;height: 311px;" />
             </p>
+            <p><b>Resources Level</b> - Pipeline with permissions for START_STOP, CREATE, EDIT and DELETE:</p>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/Resource_Mgmt_Admin_Role2.png" style="width: 872px;height: 320px;" />
+            </p>
+            <p>&#160;</p>
         </div>
         <h2>Creating a new Role</h2>
         <div class="tc-admon-attention" MadCap:conditions="Version.16-4-born">
@@ -141,7 +148,7 @@
             </p>
             <p>Click <b>Apply</b> to apply the permissions.</p>
             <div class="tc-admon-note">
-                <p>The permissions can be updated during run-time without the need to restart the any of the components</p>
+                <p>The permissions can be updated during run-time without the need to restart any of the components</p>
             </div>
             <h2>Deleting a Role</h2>
             <p>A role can simply be deleted by accessing the Roles Management page and clicking the kebab menu next to the role name and selecting.</p>
@@ -149,6 +156,7 @@
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/Role-delete.png" style="width: 1341px;height: 153px;" />
             </p>
+            <p>&#160;</p>
         </div>
     </body>
 </html>
