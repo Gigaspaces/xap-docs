@@ -19,7 +19,7 @@
                 <p>Kubernetes cluster version &gt;1.22</p>
             </li>
             <li>
-                <p>At least a total of 20GB and 10 vCPU</p>
+                <p>At least a total of 10GB and 5 vCPU</p>
                 <ul>
                     <li>
                         <p>Kubectl Controller installed and configured:</p>
@@ -62,13 +62,8 @@ helm repo update cache
 </pre>
             <li>
                 <p>Fully install Smart Cache (including Ingress and H/A for SpaceDeck):</p>
-            </li><pre xml:space="preserve">helm install cache cache/cache --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com, 
+            </li><pre xml:space="preserve">helm install cache cache/smart-cache --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com, 
 global.password=rootpassword</pre>
-            <li>
-                <p>If IIDR installation is NOT included then use this:</p><pre xml:space="preserve" MadCap:conditions="Version.16-3-only">helm install cache cache/cache --version <MadCap:variable name="Versions.product-version-long" /> --set spacedeck.ingress.host=myhost.com  
-</pre><pre xml:space="preserve" MadCap:conditions="Version.16-4-born">helm install cache cache/cache --version <MadCap:variable name="Versions.product-version-long" /> --set global.ingressHost=myhost.com  
-</pre>
-            </li>
             <li>
                 <p>Smart Cache is now installed in H/A mode. Wait for all pods to be ready.</p>
             </li>
@@ -263,8 +258,8 @@ xap-xap-manager-0               1/1     Running   0          17m
                 </li>
             </ul>
         </div>
-        <h1>Next Steps...</h1>
-        <p>The following topics illustrate additional features of GigaSpaces.</p>
+        <h1>Next Steps Configuring Smart Cache</h1>
+        <p>The following topics outline additional steps in the Smart Cache setup.</p>
         <ul>
             <li>
                 <p>

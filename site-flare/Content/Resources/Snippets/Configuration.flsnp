@@ -217,13 +217,13 @@ tcp:
                     <td>Setting additional replication for each partition.</td>
                 </tr>
                 <tr>
-                    <td>antiAffinity</td>
+                    <td>antiAffinity,enabled</td>
                     <td>true/<b>false</b></td>
                     <td>When h/a is true, primary and backup pods will run in different hosts.</td>
                 </tr>
                 <tr MadCap:conditions="SnippetConditions.SnippetConditionCacheOnly">
-                    <td>set antiAffinity.topology</td>
-                    <td>topology.kubernetes.io/&lt;zone&gt;</td>
+                    <td>antiAffinity.topology</td>
+                    <td>topology.kubernetes.io/zone</td>
                     <td>See note below.</td>
                 </tr>
             </tbody>
@@ -232,7 +232,7 @@ tcp:
             <div class="tc-admon-note">
                 <p><b>Anti Affinity</b> can operate in two ways: </p>
                 <p>Deploy primary and backup partitions on separate <b>Kubernetes zones</b> (default).</p>
-                <p>Deploy these two partitions on separate <b>servers</b>, but not necessarily on different zones.<br />For this second option, <code>set.antiAffinity.topology</code> must be set.</p>
+                <p>Deploy these two partitions on separate <b>servers</b>, but not necessarily on different zones.<br />For this second option, <code>set.antiAffinity.topology</code> must be set to <code>kubernetes.io/hostname</code>.</p>
                 <p>&#160;</p>
             </div>
         </li>
@@ -310,7 +310,7 @@ tcp:
             </tbody>
         </table>
         <h2>Space Anti-Affinity</h2>
-        <p>In H/A mode, the partition replications have to be placed in separate nodes or zones.</p>
+        <p>In h/a mode, the partition replications have to be placed in separate nodes or zones.</p>
         <table style="width: 1124px;">
             <col style="width: 199px;" />
             <col style="width: 157px;" />
@@ -356,7 +356,7 @@ topology.kubernetes.io/host
             </tbody>
         </table>
         <h2>Manager Anti-Affinity</h2>
-        <p>In a manager H/A scenario, 3 managers have to be set up for anti-affinity mode.</p>
+        <p>In a manager h/a scenario, 3 managers have to be set up for anti-affinity mode.</p>
         <table style="width: 1124px;">
             <col style="width: 321px;" />
             <col style="width: 307px;" />
