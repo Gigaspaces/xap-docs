@@ -13,7 +13,7 @@
         <p>Although the Space is a NoSQL data store, it exposes an SQL interface which is used for Data Queries.</p>
         <h1>Define the Query</h1>
         <p>Fill in the data query parameters, as shown below.</p>
-        <div MadCap:conditions="Version.16-3-only">
+        <div MadCap:conditions="Version.16-4-died">
             <p>
                 <img src="../Resources/Images/SpaceDeck/SpaceDeck_DQ1.png" style="width: 867px;height: 403px;" />
             </p>
@@ -39,26 +39,42 @@
                 </li>
             </ol>
         </div>
-        <p>
-            <img src="../Resources/Images/SpaceDeck/16.4/DataQuery2.png" style="width: 1128px;height: 510px;" />
-        </p>
-        <h2>Data Query Parameters</h2>
-        <ol>
-            <li>
-                <p><b>(Source drop-down list)</b> – Select which GigaSpaces Space object the service should be executed against. If there is more than one Space, then the specific source will have to be defined. If there is just one Space, this is defined automatically.</p>
-            </li>
-            <li>
-                <p><b>(Body of the query)</b> – Create a SQL-99 compliant query. Initially there is an example query service displayed in gray, As soon as you click on that area, it is replaced by a blank screen ready for you to create your service. </p>
-            </li>
-            <li>
-                <p><b>Retrieve first</b> – limit the query response to the desired number of rows. A maximum of 10,000 rows can be retrieved.</p>
-            </li>
-            <li><b>Saved Queries</b> - A list of previously saved queries. If one is selected, then the option of <b>Run Query</b>.will be displayed.</li>
-            <li><b>Run Query</b> -Click to test the query. The query results will be displayed. If there is a problem with the query a Query validation failed error will be displayed at the bottom of the screen, like this:<p><img src="../Resources/Images/SpaceDeck/16.4/ServiceCreateFail.png"></img></p></li>
-            <li>
-                <p><b>Save Query</b> - Save the query which will then be accessible via the <b>Saved Queries</b> drop-down.</p>
-            </li>
-        </ol>
+        <div MadCap:conditions="Version.16-4-born">
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/DataQuery2.png" style="width: 1128px;height: 510px;" />
+            </p>
+            <h2>Data Query Parameters</h2>
+            <ol>
+                <li>
+                    <p><b>(Source drop-down list)</b> – Select which GigaSpaces Space object the service should be executed against. If there is more than one Space, then the specific source will have to be defined. If there is just one Space, this is defined automatically.</p>
+                </li>
+                <li>
+                    <p><b>(Body of the query)</b> – Create a SQL-99 compliant query. Initially there is an example query service displayed in gray, As soon as you click on that area, it is replaced by a blank screen ready for you to create your query. </p>
+                </li>
+                <p>
+                    <div class="tc-admon-attention">
+                        <p>For <b>Smart Cache</b>, first create a table and then insert data. &#160;</p>
+                        <p>An sample SQL used for creating a table:</p>
+                        <p> <code class="language-sql">Create table in Smart Cache SpaceDeck via Data Query:</code><code class="language-sql">CREATE TABLE Person(Id INTEGER PRIMARY KEY,FirstName VARCHAR(20),LastName VARCHAR(30),Age INTEGER)</code></p>
+                        <p>An sample SQL used for inserting data:
+                
+                    </p>
+                        <p><code class="language-sql">INSERT INTO Person VALUES(20,'test1',1, 'test1')</code>
+                        </p>
+                    </div>
+                </p>
+                <li>
+                    <p><b>Retrieve first</b> – limit the query response to the desired number of rows. A maximum of 10,000 rows can be retrieved.</p>
+                </li>
+                <li><b>Saved Queries</b> - A list of previously saved queries. If one is selected, then the option of <b>Run Query</b>.will be displayed.</li>
+                <li><b>Run Query</b> -Click to test the query. The query results will be displayed. If there is a problem with the query a Query validation failed error will be displayed at the bottom of the screen, like this:<p><img src="../Resources/Images/SpaceDeck/16.4/ServiceCreateFail.png" /></p></li>
+                <li>
+                    <div>
+                        <p><b>Save Query</b> - Save the query which will then be accessible via the <b>Saved Queries</b> drop-down.</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
         <h1>Run the Query</h1>
         <p>Click <b>Run Query</b> to execute the query. The query results will appear as shown below.</p>
         <p>
@@ -70,7 +86,13 @@
                 <p><b>Export</b> – Export the query result locally to a csv-format file</p>
             </li>
             <li>
-                <p><b>Deploy</b> – Allows a service to be created  and deployed from a data query as an API&#160;endpoint, that will then appear in the list of Services in the Service menu. When clicking <b>Deploy</b> the following screen is displayed:</p>
+                <p><b>Deploy</b> – Allows a service to be created  and deployed from a data query as an API&#160;endpoint, that will then appear in the list of Services in the Service menu.</p>
+                <p>
+                    <div class="tc-admon-attention">
+                        <p>For <b>Smart Cache</b> the Deploy option is not relevant.</p>
+                    </div>
+                </p>
+                <p> When clicking <b>Deploy</b> the following screen is displayed:</p>
                 <p>
                     <img src="../Resources/Images/SpaceDeck/SpaceDeck_DQ4b.png" style="width: 496px;height: 365px;" />
                 </p>
