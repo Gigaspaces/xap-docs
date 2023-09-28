@@ -96,13 +96,12 @@
             <h3> Release Date: September-2023</h3>
             <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
             <p>&#160;</p>
-            <h1>Updates</h1>
-            <p>Updates of the functionality of several key features  have resulted in  changes to our SpaceDeck UI. These features are described below.</p>
+            <h1>SpaceDeck Related Updates</h1>
+            <p>We have made significant updates in the functionality of several key features. These are reflected through several updates to our SpaceDeck UI. These features are described below.</p>
             <h2>Security </h2>
             <ul>
                 <li>
-                    <p><a href="../spacedeck/spacedeck-admin.html">Authentication, Authorization and Roles Management. </a>
-                    </p>
+                    <p><a href="../spacedeck/spacedeck-admin.html">Authentication, Authorization and Roles Management.</a>                 </p>
                     <ul>
                         <li>
                             <p>Securing your data is paramount! To this end, security is now set as default in our <a href="../admin/config-details-smart-dih.htm">Kubernetes orchestration</a> (see Security Settings section). </p>
@@ -110,7 +109,7 @@
                     </ul>
                     <ul>
                         <li>
-                            <p>Our SpaceDeck is now securely managed. Refer to <MadCap:xref href="../security/security-overview.html#role-based-security">Security Overview</MadCap:xref> for more details.</p>
+                            <p>Our <a href="../spacedeck/spacedeck-admin.html">SpaceDeck</a> is now securely managed. Refer to <MadCap:xref href="../security/security-overview.html#role-based-security">Security Overview</MadCap:xref> for additional details.</p>
                         </li>
                     </ul>
                     <ul>
@@ -118,7 +117,7 @@
                             <p>To enhance usability, Space security settings can be set per instance.&#160;Per cluster roles are managed through RBAC.</p>
                         </li>
                         <li>
-                            <p>For SSO login to SpaceDeck. <MadCap:variable name="General.CompanyName" /> supports using any IDP that supports OpenID Connect (OIDC). For additional information refer to <MadCap:xref href="../spacedeck/spacedeck-idp-details.html">SpaceDeck - SSO&#160;IDP&#160;Setup</MadCap:xref>.</p>
+                            <p>For <a href="../spacedeck/spacedeck-admin.html#IDPConnectionFields">SSO login to SpaceDeck</a>. <MadCap:variable name="General.CompanyName" /> supports using any IDP that supports OpenID Connect (OIDC). For additional information refer to <MadCap:xref href="../spacedeck/spacedeck-idp-details.html">SpaceDeck - SSO&#160;IDP&#160;Setup</MadCap:xref>.</p>
                             <p>&#160;</p>
                         </li>
                     </ul>
@@ -130,7 +129,7 @@
                     <img src="../Resources/Images/Product/SmartDIH.png" style="width: 101px;height: 39px;" />
                 </p>
                 <p>Through our <a href="../spacedeck/spacedeck-services.html">SpaceDeck UI</a>, low code development of data micro-services provide our clients with the ability to deploy and execute data services efficiently. &#160;</p>
-                <p>For additional information about Service Creator refer to <MadCap:xref href="../admin/deploying-services.html">Deploying Services.</MadCap:xref></p>
+                <p>For additional details about Service Creator refer to <MadCap:xref href="../admin/deploying-services.html">Deploying Services.</MadCap:xref></p>
                 <div class="tc-admon-feature">
                     <p>Overview of new Service Creator features</p>
                 </div>
@@ -191,8 +190,6 @@
                             </li>
                         </ul>
                     </li>
-                </ul>
-                <ul>
                     <li>
                         <h3>Pagination Support</h3>
                         <p>
@@ -201,13 +198,22 @@
                             </ul> </p>
                     </li>
                 </ul>
-                <h1>SpaceDeck - Hosts</h1>
+                <h2>Hosts Menu</h2>
                 <div class="tc-admon-feature">
                     <p>Hosts</p>
                 </div>
                 <p>Through&#160;SpaceDeck you can now view information about specific hosts. In addition, single or multiple logs can be generated. Hosts can be used to monitor the health of all your hosts to ensure that if limits are being reached, there is an opportunity to reorganize data or increase the amount of RAM&#160;or nodes.</p>
+                <h2>Stream SQL Menu</h2>
+                <div class="tc-admon-feature">
+                    <p>Stream&#160;SQL</p>
+                </div>
+                <p>Through SpacDeck you can now bring data not only from relational database but rather from Kafka directly using StreamSQL. </p>
+                <p>Refer to the Data Integration (DI)&#160;<a href="#StreamSQL">Stream SQL</a> section below for details.</p>
                 <h1>SpaceDeck for Smart Cache</h1>
-                <p>SpaceDeck is now available for Smart Cache installations that use Kubernetes orchestration. This is initially a limited iteration. In the future there will be more features added. For a reminder of which UIs are used for which operations refer to our <a href="platform-feature-access.html">Platform&#160;Feature Access</a> page.</p>
+                <div class="tc-admon-feature">
+                    <p>SpaceDeck for Smart Cache</p>
+                </div>
+                <p>SpaceDeck is now available for the first time for Smart Cache installations that use <a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html">Kubernetes orchestration</a>. In the future there will be more features added. For a reminder of which UIs are used for which operations refer to our <a href="platform-feature-access.html">Platform&#160;Feature Access</a> page.</p>
                 <p>The features currently available are: </p>
                 <ul>
                     <li>
@@ -215,13 +221,13 @@
                         </p>
                     </li>
                     <li>
-                        <p><a href="../spacedeck/spacedeck-hosts.html">Hosts</a>: This menu displays specific hosts information and can be used to generate logs</p>
+                        <p><a href="../spacedeck/spacedeck-hosts.html">Hosts</a>: This menu displays specific hosts information and can be used to generate logs.</p>
                     </li>
                     <li>
                         <p><a href="../spacedeck/spacedeck-spaces-adding-a-space.html">Spaces</a>: Deploy, undeploy and view dynamic metrics of Spaces.</p>
                     </li>
                     <li>
-                        <p><a href="../spacedeck/spacedeck-data-query.html">Data Query</a>: Execute SQL queries against the data in the Space</p>
+                        <p><a href="../spacedeck/spacedeck-data-query.html">Data Query</a>: Execute SQL queries against the data in the Space.</p>
                     </li>
                 </ul>
                 <h1>Data Integration (DI) Updates</h1>
@@ -239,7 +245,7 @@
                     </p>
                     <li>
                         <div class="tc-admon-feature">
-                            <p>Stream SQL</p>
+                            <p>Stream SQL<a name="StreamSQL"></a></p>
                         </div>
                         <p><MadCap:variable name="General.CompanyName" /> has added the ability to bring data not only from relational database but rather from Kafka directly using StreamSQL. For information about using Stream SQL in SpaceDeck refer to <MadCap:xref href="../spacedeck/spacedeck-streamSQL.html">SpaceDeck – Stream&#160;SQL</MadCap:xref>.</p>
                     </li>
