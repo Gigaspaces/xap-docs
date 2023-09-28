@@ -27,38 +27,29 @@
             </li>
             <li>
                 <p>At least a total of 20GB and 10 vCPU</p>
+            </li>
+            <li>
+                <p>Kubectl and helm applications installed.</p>
+            </li>
+            <li>
+                <p>See <a href="#AppendixA">Appendix A</a> for:</p>
                 <ul>
                     <li>
-                        <p>Kubectl Controller installed and configured:</p>
-                        <ul>
-                            <li>
-                                <p>See <a href="#AppendixA">Appendix A</a> for:</p>
-                                <ul>
-                                    <li>
-                                        <p>Certificate manager deployment</p>
-                                    </li>
-                                    <li>
-                                        <p>Metrics-service deployment</p>
-                                    </li>
-                                    <li>
-                                        <p>Ingress controller installation in order to connect to the SpaceDeck UI.</p>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul style="list-style-type: circle;">
-                            <li>
-                                <p>Ingress controller installed (see <a href="#AppendixA">Appendix A</a>) in order to connect to the SpaceDeck UI.</p>
-                            </li>
-                            <li>
-                                <p>A load balancer that is securely exposed to the internet and connected to the ingress controller</p>
-                            </li>
-                            <li>
-                                <p>DNS setup with a certificate for a secure connection. The instructions below assume the host name to be <b>myhost.com</b>.</p>
-                            </li>
-                        </ul>
+                        <p>Certificate manager deployment</p>
+                    </li>
+                    <li>
+                        <p>Metrics-service deployment</p>
+                    </li>
+                    <li>
+                        <p>Ingress controller installation in order to connect to the SpaceDeck UI.</p>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <p>A load balancer that is securely exposed to the internet and connected to the ingress controller</p>
+            </li>
+            <li>
+                <p>DNS setup with a certificate for a secure connection. The instructions below assume the host name to be <b>myhost.com</b>.</p>
             </li>
         </ul>
         <h1><a name="InstructionsK8s"></a>Instructions</h1>
