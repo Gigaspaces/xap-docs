@@ -9,12 +9,13 @@
             <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
         </map>
         <h1 class="tc-pagetitle">SpaceDeck – Hosts</h1>
-        <p>This menu displays specific hosts information and can be used to generate logs. The menu can be used to monitor the health of the hosts to ensure that if limits are being reached, there is an opportunity to rearrange data or increase the amount of RAM&#160;or nodes.</p>
-        <h1>Main Hosts page</h1>
+        <p>This menu allows you to view information about specific hosts. In addition, single or multiple logs can be generated. Hosts can be used to monitor the health of all your hosts to ensure that if limits are being reached, there is an opportunity to reorganize data or increase the amount of RAM&#160;or nodes.</p>
+        <h1>Main Hosts Page</h1>
+        <p>This is a view of the main hosts page:</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/16.4/MainScreen.png" style="width: 945px;height: 440px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/HostsMainScreen.png" style="width: 1044px;height: 328px;" />
         </p>
-        <h2>Hosts Fields</h2>
+        <h3>Hosts Fields</h3>
         <ul>
             <li>
                 <p><b>HOST&#160;NAME</b> – The Kubernetes host name in the machine.</p>
@@ -41,18 +42,22 @@
         <h2>Generate Dumps</h2>
         <p>There is the ability to generate log dump files, that are saved locally, that include information about the runtime environment.</p>
         <p>Log dumps can be generated in three different ways:</p>
-        <p>Log dump of a single host: Selecting a single host:<br /><img src="../Resources/Images/SpaceDeck/16.4/Hosts_GenerateLogs.png" style="width: 1204px;height: 220px;" /></p>
+        <p>Log dump of a single host: Selecting a single host:</p>
+        <p>
+            <br />
+            <img src="../Resources/Images/SpaceDeck/16.4/HostsMenu2.png" style="width: 1053px;height: 402px;" />
+        </p>
         <ol>
             <li>
                 <p>Log dump of selected hosts: Select more than one and clicking the <b>Generate Selected Log</b> situated above the table</p>
                 <p>
-                    <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts3a.png" style="width: 1004px;height: 560px;" />
+                    <img src="../Resources/Images/SpaceDeck/16.4/HostsMenu3.png" style="width: 1018px;height: 380px;" />
                 </p>
             </li>
             <li>
                 <p>Log dump of all hosts: Clicking the <b>Generate All Logs</b> option situated above the table</p>
                 <p>
-                    <img src="../Resources/Images/SpaceDeck/SpaceDeck-Hosts1a.png" style="width: 1005px;height: 490px;" />
+                    <img src="../Resources/Images/SpaceDeck/16.4/HostsMenu4.png" style="width: 1024px;height: 383px;" />
                 </p>
             </li>
         </ol>
@@ -62,33 +67,55 @@
         <h2>View Hosts Details - System Information Tab</h2>
         <p>The System Information tab displays information relating to the architecture of the machine. In addition the services running on this host are displayed, including heap used, percentage of CPU and number of threads:</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/16.4/Hosts_SystemInfo_GeneralInfo.png" style="width: 1054px;height: 429px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/HostsMenu5.png" style="width: 1043px;height: 485px;" />
         </p>
-        <p>On the right side of the screen there are two metrics displayed: the memory and CPU utilization of this host. It is possible to change the view of the time measure:</p>
+        <h3>General Information Fields</h3>
+        <ul>
+            <li>
+                <p><b>Host Name</b> - Name of the cluster.</p>
+            </li>
+            <li>
+                <p><b>IP&#160;address</b> - IP&#160;address of the cluster.</p>
+            </li>
+            <li>
+                <p><b>Processor architecture</b> - Processor of the machine being used.</p>
+            </li>
+            <li>
+                <p><b>Number of processors</b> - Number of processors in the machine.</p>
+            </li>
+            <li>
+                <p><b>Operating system</b> - Operating system of the K8s cluster.</p>
+            </li>
+            <li>
+                <p><b>Physical memory</b> - Physical memory of the cluster.</p>
+            </li>
+        </ul>
+        <p>&#160;</p>
+        <p>On the right side of the screen there are two metrics displayed: the memory and CPU utilization of this host. It is also possible to change the view of the time measure by selecting the time drop-down menu and selecting the appropriate choice:</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/16.4/Hosts_SystemInfo_Graphs.png" style="width: 1051px;height: 431px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/HostsMenu6.png" style="width: 1056px;height: 487px;" />
         </p>
         <h2>View Hosts Details - Pods Tab</h2>
         <p>The Pods tab displays the Pods of the host.</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/16.4/Hosts_Pods.png" style="width: 1027px;height: 353px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/HostsMenu7.png" style="width: 1062px;height: 442px;" />
         </p>
-        <h2>Pods Fields</h2>
+        <h3>Pods Fields</h3>
         <ul>
             <li>
                 <p><b>CONTAINER&#160;ID</b> – Identifier of the container.</p>
             </li>
             <li>
-                <p><b>SERVICE&#160;ID</b> – The service on this container.</p>
+                <p><b>POD ID</b> – The POD&#160;ID in this container.</p>
             </li>
             <li>
-                <p><b>TYPE</b> – Primary or Backup.</p>
+                <p MadCap:conditions="Default.DoNotShow"><b>TYPE</b> – Primary or Backup.</p>
             </li>
             <li>
                 <p><b>STATUS </b> – This will display Active or Error.</p>
             </li>
             <li>
-                <p><b>ZONES</b> - This is displayed if the user defines a zone name of this container.</p>
+                <p MadCap:conditions="Default.DoNotShow"><b>ZONES</b> - This is displayed if the user defines a zone name of this container.</p>
             </li>
             <li>
                 <p><b>USED&#160;HEAP&#160;(MB) </b> – Refers to the heap used, in MB.</p>
@@ -97,7 +124,7 @@
                 <p><b>CPU </b> – Refers to the percentage of a machine's CPU that the container is using.</p>
             </li>
             <li>
-                <p><b>THREADS</b> – The number threads running on this container.</p>
+                <p MadCap:conditions="Default.DoNotShow"><b>THREADS</b> – The number threads running on this container.</p>
             </li>
         </ul>
         <div MadCap:conditions="Default.DoNotShow">
