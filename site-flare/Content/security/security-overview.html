@@ -14,6 +14,38 @@
         <p MadCap:conditions="Version.16-4-died">There are four categories of user authorities; System, Grid, Space and Monitoring.</p>
         <p>There are two categories of user authorities: System for the entire system or Resource level (for example different authorities for the same user for different Spaces).</p>
         <p>Authorities are related to monitoring, managing and performing operations on the various resources. Some authorities can be defined only in system level, and some can be configured per resource. If they are configured per resources, the permissions can only be added to the relevant system authority. For example, if the system authority allows <b>read</b> operations for a user, a <b>read</b> cannot be restricted on a specific space for this user, but <b>write</b> can be added for that space.</p>
+        <table style="width: 383px;" class="tc-standard" MadCap:conditions="Version.16-4-born">
+            <col style="width: 142px;" />
+            <col style="width: 172px;" />
+            <thead>
+                <tr>
+                    <th>Level</th>
+                    <th style="text-align: left;">Authorities</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>System</td>
+                    <td>
+                        <p><a href="#monitoring-authority">Monitor</a>
+                            <p><a href="#grid-authority">Grid</a>
+                            </p>
+                            <p><a href="#system-authority">System</a>
+                            </p>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Resources</td>
+                    <td><a href="#space-authority">Spaces</a>
+                        <p><a href="#pipeline-authority">Pipelines</a>
+                        </p>
+                        <p><a href="#pipeline-authority">Services</a>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <h2><a name="system-authority"></a>System Authority</h2>
         <p>The System Authority defines the distinction between a user who is allowed to define roles and a user which is only allowed to assign user's to predefined roles.
 In general, one can have both management capabilities, but in some organizations this separation may be required.:</p>

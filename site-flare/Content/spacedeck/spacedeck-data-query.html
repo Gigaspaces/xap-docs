@@ -13,34 +13,56 @@
         <p>Although the Space is a NoSQL data store, it exposes an SQL interface which is used for Data Queries.</p>
         <h1>Define the Query</h1>
         <p>Fill in the data query parameters, as shown below.</p>
+        <div MadCap:conditions="Version.16-3-only">
+            <p>
+                <img src="../Resources/Images/SpaceDeck/SpaceDeck_DQ1.png" style="width: 867px;height: 403px;" />
+            </p>
+            <h2>Data Query Parameters</h2>
+            <ol>
+                <li>
+                    <p><b>(Source drop-down list)</b> – Select which GigaSpaces Space object the query should be executed against.</p>
+                </li>
+                <li>
+                    <p><b>(Load Query drop-down)</b> - If there have been previous queries saved, they can be accessed from here.</p>
+                </li>
+                <li>
+                    <p><b>(Body of the query)</b> – Enter a SQL-99 compliant query. What is displayed initially is sample syntax.</p>
+                </li>
+                <li>
+                    <p><b>Retrieve first</b> – Limit the query response to the desired number of rows. A maximum of 10,000 rows can be retrieved.</p>
+                </li>
+                <li>
+                    <p><b>Run Query</b> - Run the query</p>
+                </li>
+                <li>
+                    <p><b>Save Query</b> - Save the query to be used in the Load Query drop-down</p>
+                </li>
+            </ol>
+        </div>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck_DQ1.png" style="width: 867px;height: 403px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/DataQuery2.png" style="width: 1128px;height: 510px;" />
         </p>
         <h2>Data Query Parameters</h2>
         <ol>
             <li>
-                <p><b>(Source drop-down list)</b> – Select which GigaSpaces Space object the query should be executed against.</p>
+                <p><b>(Source drop-down list)</b> – Select which GigaSpaces Space object the service should be executed against. If there is more than one Space, then the specific source will have to be defined. If there is just one Space, this is defined automatically.</p>
             </li>
             <li>
-                <p><b>(Load Query drop-down)</b> - If there have been previous queries saved, they can be accessed from here.</p>
+                <p><b>(Body of the query)</b> – Create a SQL-99 compliant query. Initially there is an example query service displayed in gray, As soon as you click on that area, it is replaced by a blank screen ready for you to create your service. </p>
             </li>
             <li>
-                <p><b>(Body of the query)</b> – Enter a SQL-99 compliant query. What is displayed initially is sample syntax.</p>
+                <p><b>Retrieve first</b> – limit the query response to the desired number of rows. A maximum of 10,000 rows can be retrieved.</p>
             </li>
+            <li><b>Saved Queries</b> - A list of previously saved queries. If one is selected, then the option of <b>Run Query</b>.will be displayed.</li>
+            <li><b>Run Query</b> -Click to test the query. The query results will be displayed. If there is a problem with the query a Query validation failed error will be displayed at the bottom of the screen, like this:<p><img src="../Resources/Images/SpaceDeck/16.4/ServiceCreateFail.png"></img></p></li>
             <li>
-                <p><b>Retrieve first</b> – Limit the query response to the desired number of rows. A maximum of 10,000 rows can be retrieved.</p>
-            </li>
-            <li>
-                <p><b>Run Query</b> - Run the query</p>
-            </li>
-            <li>
-                <p><b>Save Query</b> - Save the query to be used in the Load Query drop-down</p>
+                <p><b>Save Query</b> - Save the query which will then be accessible via the <b>Saved Queries</b> drop-down.</p>
             </li>
         </ol>
         <h1>Run the Query</h1>
         <p>Click <b>Run Query</b> to execute the query. The query results will appear as shown below.</p>
         <p>
-            <img src="../Resources/Images/SpaceDeck/SpaceDeck_DQ3.png" style="width: 487px;height: 279px;" />
+            <img src="../Resources/Images/SpaceDeck/16.4/DataQuery3.png" />
         </p>
         <p>When viewing the query results, additional options is available:</p>
         <ol>
@@ -56,7 +78,7 @@
                 <p>
                     <img src="../Resources/Images/SpaceDeck/SpaceDeck_DQ5.png" style="width: 405px;height: 310px;" />
                 </p>
-                <p>For details about the next step of service deployment, see <MadCap:xref href="spacedeck-services.html" title="Deploy the Service section">SpaceDeck – Services</MadCap:xref></p>
+                <p>For details about the next steps of service deployment, refer to <MadCap:xref href="spacedeck-services.html" title="Deploy the Service section">SpaceDeck – Services</MadCap:xref></p>
                 <p>&#160;</p>
             </li>
         </ol>
