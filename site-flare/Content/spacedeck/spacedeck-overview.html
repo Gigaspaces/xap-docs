@@ -24,13 +24,212 @@
                 <p>A full complement of data and system monitoring tools.</p>
             </li>
         </ul>
-        <MadCap:snippetBlock src="../Resources/Snippets/SpaceDeck-Overview.flsnp" />
         <div class="tc-admon-note" MadCap:conditions="Version.16-4-died">
             <p>SpaceDeck does not yet cover all functionality of our previous UIs. Refer to the <MadCap:xref href="../rn/platform-access.html">Platform&#160;Feature Access</MadCap:xref> page which explains which of our UIs manage each of our main platform operations. SpaceDeck is initially available as part of our Smart DIH Kubernetes installation.</p>
         </div>
         <div class="tc-admon-note" MadCap:conditions="Version.16-4-born">
             <p>SpaceDeck does not yet cover all functionality of our previous UIs. Refer to the <MadCap:xref href="../rn/platform-access.html">Platform&#160;Feature Access</MadCap:xref> page which explains which of our UIs manage each of our main platform operations. SpaceDeck is  part of our <a href="../admin/kubernetes-s10-deploying-and-managing-gigaspaces.html">Smart Cache</a> and <a href="../admin/DIH-installation-kubernetes.html">Smart DIH</a> Kubernetes installations.</p>
         </div>
+        <h1 class="tc-pagetitle">Main Screen</h1>
+        <p>The SpaceDeck main screen is described below for Smart DIH and Smart Cache.</p>
+        <div class="easyui-tabs" plain="true" data-options="">
+            <div title="Smart DIH SpaceDeck" style="padding:10px">
+                <p>
+                    <img src="../Resources/Images/SpaceDeck/SpaceDeck-Main.png" style="width: 1347px;height: 663px;" MadCap:conditions="Version.16-4-died" />
+                </p>
+                <p MadCap:conditions="Version.16-4-born">
+                    <img src="../Resources/Images/SpaceDeck/16.4/MainOverview1.png" style="width: 1192px;height: 559px;">
+                    </img>
+                </p>
+                <table style="width: 1000px;" class="tc-standard" MadCap:conditions="Version.16-4-born">
+                    <col style="width: 60px;" />
+                    <col style="width: 214px;" />
+                    <col style="width: 726px;" />
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;font-weight: bold;">#</th>
+                            <th style="text-align: left;font-weight: bold;">Menu</th>
+                            <th style="text-align: left;font-weight: bold;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center;">1</td>
+                            <td><a href="spacedeck-admin.html">Administration</a>
+                            </td>
+                            <td>
+                                <p>For users who have an ADMIN security role, this leads to the Administration menus which consist of:</p>
+                                <p><a href="spacedeck-admin.html#GeneralSetup">General Setup: Settings of IDP for enabling SSO</a>
+                                </p>
+                                <p><a href="spacedeck-admin.html#Roles-Mangement">Roles&#160;Management</a>
+                                </p>
+                                <p><a href="spacedeck-admin.html#Resource-Management">Resources Management</a>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">2</td>
+                            <td>Management</td>
+                            <td>Management section of SpaceDeck</td>
+                        </tr>
+                        <tr MadCap:conditions="Version.16-4-born">
+                            <td style="text-align: center;">3</td>
+                            <td><a href="spacedeck-hosts.html">Hosts</a>
+                            </td>
+                            <td>The menu can be used to monitor the health of the hosts to ensure that if limits are being reached, there is an opportunity to rearrange data or increase the amount of RAM&#160;or nodes</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">4</td>
+                            <td><a href="spacedeck-spaces-status-overview.html">Spaces</a>
+                            </td>
+                            <td>
+                                <p><a href="spacedeck-spaces-adding-a-space.html">Deploy and undeploy</a>
+                                </p>
+                                <p><a href="spacedeck-spaces-status-details.html">View dynamic metrics</a>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">5 </td>
+                            <td><a href="spacedeck-data-sources.html">Data Sources</a>
+                            </td>
+                            <td><a href="spacedeck-data-sources.html">Choose which databases to import to the IMDG</a>. These data sources will be used to configure the data pipeline</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">6 </td>
+                            <td><a href="spacedeck-data-pipeline-overview.html">Data Pipeline</a>
+                            </td>
+                            <td>
+                                <p><a href="spacedeck-data-pipeline-new-pipeline.html">Choose which tables and fields to use</a>
+                                </p>
+                                <p>View dynamic metrics and start/stop the pipeline</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">7</td>
+                            <td><a href="spacedeck-services.html">Services</a>
+                            </td>
+                            <td>
+                                <p>Low-Code Data Service</p>
+                                <p>Create and execute</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">8</td>
+                            <td><a href="spacedeck-data-query.html">Data&#160;Queries</a>
+                            </td>
+                            <td>Perform SQL&#160;queries on the Space or pipeline data</td>
+                        </tr>
+                        <tr MadCap:conditions="Version.16-4-born">
+                            <td style="text-align: center;">9</td>
+                            <td><a href="spacedeck-streamSQL.html">Stream SQL</a>
+                            </td>
+                            <td>StreamSQL allows to SpaceDeck to implement a low code (SQL) approach to define and operate with ad-hoc data flows, such as read from Kafka and write directly to Space or read from one Kafka topic and write to another Kafka topic.</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">10</td>
+                            <td>Exit SpaceDeck</td>
+                            <td>Click this to exit SpaceDeck</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div title="Smart Cache SpaceDeck" style="padding:10px" MadCap:conditions="Version.16-4-born">
+            <p> <img src="../Resources/Images/SpaceDeck/16.4/Smart Cache/MainScreen.png" style="width: 1251px;height: 582px;" /></p>
+        </div>
+        <table style="width: 1000px;" class="tc-standard" MadCap:conditions="Version.16-4-born">
+            <col style="width: 60px;" />
+            <col style="width: 214px;" />
+            <col style="width: 726px;" />
+            <thead>
+                <tr>
+                    <th style="text-align: center;font-weight: bold;">#</th>
+                    <th style="text-align: left;font-weight: bold;">Menu</th>
+                    <th style="text-align: left;font-weight: bold;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center;">1</td>
+                    <td><a href="spacedeck-admin.html">Administration</a>
+                    </td>
+                    <td>
+                        <p>For users who have an ADMIN security role, this leads to the Administration menus which consist of:</p>
+                        <p><a href="spacedeck-admin.html#GeneralSetup">General Setup: Settings of IDP for enabling SSO</a>
+                        </p>
+                        <p><a href="spacedeck-admin.html#Roles-Mangement">Roles&#160;Management</a>
+                        </p>
+                        <p><a href="spacedeck-admin.html#Resource-Management">Resources Management</a>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">2</td>
+                    <td>Management</td>
+                    <td>Management section of SpaceDeck</td>
+                </tr>
+                <tr MadCap:conditions="Version.16-4-born">
+                    <td style="text-align: center;">3</td>
+                    <td><a href="spacedeck-hosts.html">Hosts</a>
+                    </td>
+                    <td>The menu can be used to monitor the health of the hosts to ensure that if limits are being reached, there is an opportunity to rearrange data or increase the amount of RAM&#160;or nodes</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">4</td>
+                    <td><a href="spacedeck-spaces-status-overview.html">Spaces</a>
+                    </td>
+                    <td>
+                        <p><a href="spacedeck-spaces-adding-a-space.html">Deploy and undeploy</a>
+                        </p>
+                        <p><a href="spacedeck-spaces-status-details.html">View dynamic metrics</a>
+                        </p>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Default.DoNotShow">
+                    <td style="text-align: center;">5 </td>
+                    <td><a href="spacedeck-data-sources.html">Data Sources</a>
+                    </td>
+                    <td><a href="spacedeck-data-sources.html">Choose which databases to import to the IMDG</a>. These data sources will be used to configure the data pipeline</td>
+                </tr>
+                <tr MadCap:conditions="Default.DoNotShow">
+                    <td style="text-align: center;">6 </td>
+                    <td><a href="spacedeck-data-pipeline-overview.html">Data Pipeline</a>
+                    </td>
+                    <td>
+                        <p><a href="spacedeck-data-pipeline-new-pipeline.html">Choose which tables and fields to use</a>
+                        </p>
+                        <p>View dynamic metrics and start/stop the pipeline</p>
+                    </td>
+                </tr>
+                <tr MadCap:conditions="Default.DoNotShow">
+                    <td style="text-align: center;">7</td>
+                    <td><a href="spacedeck-services.html">Services</a>
+                    </td>
+                    <td>
+                        <p>Low-Code Data Service</p>
+                        <p>Create and execute</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">5</td>
+                    <td><a href="spacedeck-data-query.html">Data&#160;Queries</a>
+                    </td>
+                    <td>Perform SQL&#160;queries on the Space or pipeline data</td>
+                </tr>
+                <tr MadCap:conditions="Version.16-4-born,Default.DoNotShow">
+                    <td style="text-align: center;">9</td>
+                    <td><a href="spacedeck-streamSQL.html">Stream SQL</a>
+                    </td>
+                    <td>StreamSQL allows to SpaceDeck to implement a low code (SQL) approach to define and operate with ad-hoc data flows, such as read from Kafka and write directly to Space or read from one Kafka topic and write to another Kafka topic.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">6</td>
+                    <td>Exit SpaceDeck</td>
+                    <td>Click this to exit SpaceDeck</td>
+                </tr>
+            </tbody>
+        </table>
         <h1>Typical SpaceDeck&#160;Users</h1>
         <p>SpaceDeck can be used by various user types ("personas") as follows:</p>
         <p><b>System Integrators</b> – integrate data from Systems of Record into Smart DIH, using data pipelines</p>
