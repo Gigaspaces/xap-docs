@@ -56,13 +56,13 @@ CREATE TABLE AGGDATA (sensor_id VARCHAR,
                 <p>From the main Stream SQL&#160;menu screen, click <a href="#Create_New_Stream_+"><b>Create New&#160;Stream +</b></a> to create a new stream. </p>
             </li>
             <li>
-                <p>Provide the Stream Name and Description</p>
+                <p>Provide the Stream Name and Description:</p>
             </li>
             <p>
                 <img src="../Resources/Images/SpaceDeck/16.4/StreamSQL6a.png" style="width: 824px;height: 415px;" />
             </p>
             <li>
-                <p>In the text window of the Stream SQL, create the following SQL&#160;queries.</p>
+                <p>In the text window of the Stream SQL, create the following SQL&#160;queries (7, 8 and 9 below).</p>
             </li>
             <div class="tc-admon-note">
                 <p>All SQL&#160;statements should be submitted together with a semicolon delimiter.</p>
@@ -106,7 +106,7 @@ group by TUMBLE(ts, INTERVAL '5' SECOND),deviceId,sensor_id,unit; </code><![CDAT
             </p>
         </ol>
         <p><span class="tc-textred">1</span>
-            Write the query in the Stream SQL text window.</p>
+            Write the query in the StreamSQL text window.</p>
         <p><span class="tc-textred">2</span>
             Run the Query.</p>
         <p><span class="tc-textred">3</span>
@@ -115,7 +115,7 @@ group by TUMBLE(ts, INTERVAL '5' SECOND),deviceId,sensor_id,unit; </code><![CDAT
         <p>In this example, temperature data from sensors is consumed from a Kafka topic. This is aggregated using a standard SQL statement. An alert is raised only if the average temperature is above a certain threshold. An alert is a message that is published to a dedicated alerts topic in Kafka.</p>
         <ol>
             <li>
-                <p>From the main Stream SQL&#160;menu screen, click <a href="#Create_New_Stream_+"><b>Create New&#160;Stream +</b></a> to create a new stream. </p>
+                <p>From the main StreamSQL&#160;menu screen, click <a href="#Create_New_Stream_+"><b>Create New&#160;Stream +</b></a> to create a new stream. </p>
             </li>
             <li>
                 <p>In the text window of the StreamSQL, create the following SQL&#160;queries.</p>
