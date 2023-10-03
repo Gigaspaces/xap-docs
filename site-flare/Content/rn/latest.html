@@ -93,12 +93,9 @@
             </div>
         </div>
         <div MadCap:conditions="Version.16-4-only">
-            <h3> Release Date: September-2023</h3>
+            <h3> Release Date: October-2023</h3>
             <p>This page describes product changes, along with new features and functionality for <MadCap:variable name="General.ProductNameXAP" /> release <MadCap:variable name="Versions.product-version-short" />.</p>
-            <p>&#160;</p>
-            <h1>SpaceDeck Related Updates</h1>
-            <p>We have made significant updates in the functionality of several key features. These are reflected through several updates to our SpaceDeck UI. These features are described below.</p>
-            <h2>Security </h2>
+            <h1>Security </h1>
             <ul>
                 <li>
                     <p><a href="../spacedeck/spacedeck-admin.html">Authentication, Authorization and Roles Management.</a>
@@ -115,7 +112,7 @@
                     </ul>
                     <ul>
                         <li>
-                            <p>To enhance usability, Space security settings can be set per instance.&#160;Per cluster roles are managed through RBAC.</p>
+                            <p>To enhance usability, Space security settings can be set per instance.&#160;Per cluster roles are managed through the RBAC model.</p>
                         </li>
                         <li>
                             <p>For <a href="../spacedeck/spacedeck-admin.html#IDPConnectionFields">SSO login to SpaceDeck</a>. <MadCap:variable name="General.CompanyName" /> supports using any IDP that supports OpenID Connect (OIDC). For additional information refer to <MadCap:xref href="../spacedeck/spacedeck-idp-details.html">SpaceDeck - SSO&#160;IDP&#160;Setup</MadCap:xref>.</p>
@@ -124,92 +121,110 @@
                 </li>
             </ul>
             <div>
-                <h2>Service Creator</h2>
+                <h1>Data Integration (DI) Updates</h1>
+                <p>
+                    <img src="../Resources/Images/Product/SmartDIH.png" style="width: 101px;height: 39px;">
+                    </img>
+                </p>
+                <ol>
+                    <li>
+                        <div class="tc-admon-feature">
+                            <p>Express Upload. For <a href="https://go.gigaspaces.com/smart-dih-as-a-service-early-adopters">Smart DIH&#160;As-A-Service</a> customers only. &#160;For additional details, please contact our <a href="mailto:support@gigaspaces.com">Customer Support team</a>.</p>
+                        </div>
+                    </li>
+                    <p class="tc-admon-feature">
+                        <ul>
+                            <li>
+                                <p>Our SpaceDeck UI now offers a far simpler user journey using the new <b>Express Upload</b> option. </p>
+                            </li>
+                            <li>
+                                <p>The advantages of this are exemplified by users having a quicker and simpler user experience by being fully self-service whilst using common standards of data migration to create data services. </p>
+                            </li>
+                            <li>
+                                <p>This features supports the basic  importing of data into <MadCap:variable name="General.CompanyName" /> Smart DIH&#160;as-a-Service platform from standard data formats of .csv or .json files.  This data can be imported from an Amazon S3 bucket. Using this data, through&#160;SpaceDeck, a Data Source can be defined as well as a Space, and a new Pipeline can be created and schemas/tables selected . After the data setup and configuration, queries can be run and services created. </p>
+                            </li>
+                        </ul>
+                    </p>
+                    <li>
+                        <div class="tc-admon-feature">
+                            <p>Stream SQL<a name="StreamSQL"></a></p>
+                        </div>
+                        <p><MadCap:variable name="General.CompanyName" /> has added the ability to bring data not only from relational database but rather from Kafka directly using StreamSQL. For information about using Stream SQL in SpaceDeck refer to the <a href="../spacedeck/spacedeck-streamSQL-overview.html">StreamSQL Overview</a> and <a href="../spacedeck/spacedeck-streamSQL-implementation.html">StreamSQL Implementation</a> pages..</p>
+                    </li>
+                    <li>
+                        <p>There is now no need to manually configure IIDR subscription via the DI&#160;Subscription&#160;Manager as this is now performed automatically. For more information refer to <MadCap:xref href="../Data Integration/DI-Administration--Sub-Mgr.html">Pipeline Setup Via Subscription Manager and SpaceDeck</MadCap:xref>.</p>
+                    </li>
+                </ol>
+                <h1>Services</h1>
                 <p>
                     <img src="../Resources/Images/Product/SmartDIH.png" style="width: 101px;height: 39px;" />
                 </p>
                 <p>Through our <a href="../spacedeck/spacedeck-services.html">SpaceDeck UI</a>, low code development of data micro-services provide our clients with the ability to deploy and execute data services efficiently. &#160;</p>
                 <p>For additional details about Service Creator refer to <MadCap:xref href="../admin/deploying-services.html">Deploying Services.</MadCap:xref></p>
                 <div class="tc-admon-feature">
-                    <p>Overview of new Service Creator features</p>
+                    <p>SQL Pagination Support</p>
+                </div>
+                <p>
+                    <p>In some cases, services can return multiple rows from a Space. In order to avoid all the data being displayed on one long page, which is not practical we have introduced <a href="../spacedeck/spacedeck-services.html#Pagination">pagination</a> which allows the data to be divided into smaller, more manageable pages.</p>
+                </p>
+                <div class="tc-admon-feature">
+                    <p>Service Auto Discovery</p>
+                </div>
+                <p>Discovery of Endpoints for Viewing Documentation:</p>
+                <ul>
+                    <li>
+                        <p><a href="../spacedeck/spacedeck-services.html#Swagger">Swagger UI</a> for is now available for each service.</p>
+                    </li>
+                    <li>
+                        <p><a href="../spacedeck/spacedeck-services.html#API-Docs">API docs</a> in Open API format is now available for each service.</p>
+                    </li>
+                </ul>
+                <div class="tc-admon-feature">
+                    <p>Security Roles and Permissions</p>
                 </div>
                 <ul>
                     <li>
-                        <h3> New Endpoints added for each service created:</h3>
-                        <ul>
-                            <li>
-                                <p><a href="../spacedeck/spacedeck-services.html#Swagger">Swagger UI</a> for is now available for each service.</p>
-                            </li>
-                            <li>
-                                <p><a href="../spacedeck/spacedeck-services.html#API-Docs">API docs</a> in Open API format is now available for each service.</p>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <h3>Security Roles and Permissions:</h3>
-                        <ul>
-                            <li>
-                                <p>Deploy/Undeploy actions will require special permission. A regular user without permission can only create a service.  In order to deploy or undeploy it they will require Manage Service permission.  </p>
-                            </li>
-                            <li>
-                                <p>Create/Delete will not require special permissions.</p>
-                            </li>
-                            <li>
-                                <p>Refer to the <a href="../spacedeck/spacedeck-services.html#SecurityRoles">SpaceDeck Services</a> page for more details.</p>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <h3>Enhancements</h3>
-                        <ul>
-                            <li>
-                                <p><a href="../spacedeck/spacedeck-services.html#ServiceMonitoring">Service Monitoring</a> - For each deployed service, there is monitoring supplied through SpaceDeck.</p>
-                            </li>
-                            <li>
-                                <p><a href="../spacedeck/spacedeck-services.html#Logs">Download Service Logs</a> - Service logs can now be downloaded from  SpaceDeck. </p>
-                            </li>
-                            <li>
-                                <p>Update Log Level - The ability to update the log level through <a href="../spacedeck/spacedeck-services.html#Postman-Logs">Postman</a> or <a href="../spacedeck/spacedeck-services.html#Curl-Logs">CURL</a>.</p>
-                            </li>
-                            <li>
-                                <p>Only relevant actions are presented for any given state. For example, there is no delete option displayed for a deployed service.</p>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <h3>Integrations</h3>
-                        <ul>
-                            <li>
-                                <p>Integration with <a href="../spacedeck/spacedeck-services.html#API-Docs">AWS API Gateway</a> to register a query service is now supported. Other Gateways will be tested in the future. </p>
-                            </li>
-                        </ul>
+                        <p>A regular user without permissions can only create or delete a service as this function is currently created and stored on the UI server side only.  </p>
                     </li>
                     <li>
-                        <h3>Pagination Support</h3>
-                        <p>
-                            <ul>
-                                <li> In some cases, services can return multiple rows from a Space. To avoids all the data being displayed on one long page, which is not practical we have introduced <a href="../spacedeck/spacedeck-services.html#Pagination">pagination</a> which allows the data to be divided into smaller, more manageable pages.</li>
-                            </ul> </p>
+                        <p>In order to deploy or undeploy a service, the user will require Manage Service permission, as these operations make backend calls.  Refer to the <a href="../spacedeck/spacedeck-services.html#SecurityRoles">SpaceDeck Services</a> page for more details.</p>
+                    </li>
+                    <li>
+                        <p>Refer to <MadCap:xref href="../security/security-overview.html#service-authority">Security Overview</MadCap:xref> for more details. </p>
                     </li>
                 </ul>
-                <h2>Hosts Menu</h2>
                 <div class="tc-admon-feature">
-                    <p>Hosts</p>
+                    <p>SpaceDeck Enhancements for Services</p>
+                </div>
+                <ul>
+                    <li>
+                        <p>
+                            <p><a href="../spacedeck/spacedeck-services.html#ServiceMonitoring">Service Monitoring</a> - For each deployed service, there is monitoring supplied through SpaceDeck.</p>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <p><a href="../spacedeck/spacedeck-services.html#Logs">Download Service Logs</a> - Service logs can now be downloaded from  SpaceDeck. </p>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <p>Update Log Level - The ability to update the log level through <a href="../spacedeck/spacedeck-services.html#Postman-Logs">Postman</a> or <a href="../spacedeck/spacedeck-services.html#Curl-Logs">CURL</a>.</p>
+                        </p>
+                    </li>
+                    <li>
+                        <p>Only relevant actions are presented for any given state. For example, there is no delete option displayed for a deployed service.</p>
+                    </li>
+                </ul>
+                <div class="tc-admon-feature">
+                    <p>Integrations</p>
+                </div>
+                <p><MadCap:variable name="General.ProductNameXAP" /> have a supported reference integration with <a href="../spacedeck/spacedeck-services.html#API-Docs">AWS API Gateway</a> to register a query service. Additional reference integrations will be added in the future.</p>
+                <h1> SpaceDeck&#160;Enhancements</h1>
+                <div class="tc-admon-feature">
+                    <p>Hosts Menu</p>
                 </div>
                 <p>Through&#160;SpaceDeck you can now view information about specific hosts. In addition, single or multiple logs can be generated. Hosts can be used to monitor the health of all your hosts to ensure that if limits are being reached, there is an opportunity to reorganize data or increase the amount of RAM&#160;or nodes.</p>
-                <h2>Stream SQL Menu</h2>
-                <div class="tc-admon-feature">
-                    <p>Stream&#160;SQL</p>
-                </div>
-                <p>Through SpacDeck you can now bring data not only from relational database but rather from Kafka directly using StreamSQL. </p>
-                <p>Refer to the Data Integration (DI)&#160;<a href="#StreamSQL">Stream SQL</a> section below for details.</p>
-                <p>&#160;</p>
                 <h1>SpaceDeck for Smart Cache</h1>
                 <div class="tc-admon-feature">
                     <p>SpaceDeck for Smart Cache</p>
@@ -231,29 +246,6 @@
                         <p><a href="../spacedeck/spacedeck-data-query.html">Data Query</a>: Execute SQL queries against the data in the Space.</p>
                     </li>
                 </ul>
-                <h1>Data Integration (DI) Updates</h1>
-                <p>
-                    <img src="../Resources/Images/Product/SmartDIH.png" style="width: 101px;height: 39px;" />
-                </p>
-                <ol>
-                    <li>
-                        <div class="tc-admon-feature">
-                            <p>Express Upload. For <a href="https://go.gigaspaces.com/smart-dih-as-a-service-early-adopters">Smart DIH&#160;As-A-Service</a> customers only. &#160;For additional details, please contact our <a href="mailto:support@gigaspaces.com">Customer Support team</a>.</p>
-                        </div>
-                    </li>
-                    <p class="tc-admon-feature">
-                        <p>Our SpaceDeck UI now offers a far simpler user journey using the new <b>Express Upload</b> option. This supports the basic  importing of data into <MadCap:variable name="General.CompanyName" /> Smart DIH&#160;as-a-Service platform from standard data formats of .csv or .json files.  The advantages of this are exemplified by users having a quicker and simpler user experience by being fully self-service whilst using common standards of data migration to create data services. </p>
-                    </p>
-                    <li>
-                        <div class="tc-admon-feature">
-                            <p>Stream SQL<a name="StreamSQL"></a></p>
-                        </div>
-                        <p><MadCap:variable name="General.CompanyName" /> has added the ability to bring data not only from relational database but rather from Kafka directly using StreamSQL. For information about using Stream SQL in SpaceDeck refer to <MadCap:xref href="../spacedeck/spacedeck-streamSQL-implementation.html">SpaceDeck – Stream&#160;SQL</MadCap:xref>.</p>
-                    </li>
-                    <li>
-                        <p>There is now no need to manually configure IIDR subscription via the DI&#160;Subscription&#160;Manager as this is now performed automatically. For more information refer to <MadCap:xref href="../Data Integration/DI-Administration--Sub-Mgr.html">Pipeline Setup Via Subscription Manager and SpaceDeck</MadCap:xref>.</p>
-                    </li>
-                </ol>
                 <h1>Redo Log Update</h1>
                 <p>Redo capabilities now include the ability to <a href="../admin/flush-redolog-to-disk.htm">flush the redo log to disk</a> upon shutdown. </p>
                 <h1>Disclaimers</h1>
