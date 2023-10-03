@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <div>
+            <h1 class="tc-pagetitle" style="text-align: left;">StreamSQL</h1>
+            <p>StreamSQL allows to implement a low code (SQL) approach to define and operate with ad-hoc data flows, such as read from Kafka and write directly to Space or read from one Kafka topic and write to another Kafka topic.</p>
+            <p>Behind the scenes StreamSQL utilizes a powerful low code Flink capabilities to define a schema via Flink SQL CREATE TABLE API.</p>
+            <p>StreamSQL operation activities can be defined using standard SQL statements, such as:</p>
+            <ul>
+                <li>
+                    <p>Define structure of messages in a Kafka topic as a table (CREATE TABLE)</p>
+                </li>
+                <li>
+                    <p>Define a data flow (stream of data or pipeline) as INSERT AS SELECT statement</p>
+                </li>
+                <li>
+                    <p>Perform a join of data flow from different Kafka topics using a standard SQL join statement</p>
+                </li>
+            </ul>
+            <p>&#160;</p>
+            <p>One of the useful StreamSQL use cases can be IoT when continuous flow of sensors data changes is consumed  from Kafka, aggregated into a summary table and pushed the aggregated summary to space for data services consumption.</p>
+            <p style="text-align: left;">&#160;</p>
+            <p style="text-align: left;">For an overview of the StreamSQL menu in SpaceDeck, refer to <a href="../spacedeck/spacedeck-streamSQL-overview.html">SpaceDeck StreamSQL Overview </a>page.</p>
+            <p style="text-align: left;">For examples of statements used for <b>Kafka to Space with Aggregation</b> and&#160;<b>Kafka to Kafka with Aggregation,</b> refer to the <a href="../spacedeck/spacedeck-streamSQL-implementation.html">StreamSQL Implementation</a> page.</p>
+            <ol>
+                <p>&#160;</p>
+            </ol>
+        </div>
+    </body>
+</html>

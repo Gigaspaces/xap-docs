@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Version.16-4-born">
+    <head>
+    </head>
+    <body>
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <map id="map1">
+            <area shape="rectangle" coords="31,228,438,655" dragDirection="0" />
+            <area shape="rectangle" coords="486,228,891,656" dragDirection="0" href="gs-ops-manager-cluster-overview.html" />
+            <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
+        </map>
+        <h1 class="tc-pagetitle">SpaceDeck – StreamSQL Implementation</h1>
+        <p>StreamSQL allows to SpaceDeck to implement a low code (SQL) approach to define and operate with ad-hoc data flows, such as read from Kafka and write directly to Space or read from one Kafka topic and write to another Kafka topic.</p>
+        <p>StreamSQL operations activities can be defined using SQL statements, for example:</p>
+        <ul>
+            <li>
+                <p>Define structure of messages in a Kafka topic as a table - CREATE TABLE.</p>
+            </li>
+            <li>
+                <p>Define a data flow (stream of data or pipeline) as INSERT AS SELECT statement.</p>
+            </li>
+            <li>
+                <p>Perform a join of data flow from different Kafka topics using a standard SQL join statement.</p>
+            </li>
+        </ul>
+        <p>For additional information refer to the <a href="../Data Integration/DI-StreamSQL.html">DI StreamSQL</a> page.</p>
+        <p>For an StreamSQL overview refer to the <a href="spacedeck-streamSQL-overview.html">streamSQL overview </a>page.</p>
+        <h2>Example 1: Kafka to Space with Aggregation</h2>
+        <ol>
+            <li>
+                <p>Go to the <a href="spacedeck-data-query.html">Data Query</a> menu.</p>
+            </li>
+            <li>
+                <p>Run the following CREATE&#160;TABLE&#160;statement:</p>
+            </li><pre><code class="language-sql">
+CREATE TABLE AGGDATA (sensor_id VARCHAR,
+							    deviceId VARCHAR,
+							    avgt FLOAT, 
+							    maxt FLOAT, 
+							    mint FLOAT, 
+							    unit VARCHAR, 
+							    ts Timestamp)	</code><![CDATA[	]]></pre>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/StreamSQL3.png" style="width: 997px;height: 520px;" />
+            </p>
+            <li>
+                <p>From the Space menu, validate via <a href="spacedeck-spaces-status-details.html#SpaceDetails">Space Details - Space Types</a> that the object in the Space has been created correctly - in this example AGGDATA:</p>
+                <p>
+                    <img src="../Resources/Images/SpaceDeck/16.4/StreamSQL3b.png" style="width: 1013px;height: 547px;" />
+                </p>
+            </li>
+            <li>
+                <p>From the main Stream SQL&#160;menu screen, click <a href="#Create_New_Stream_+"><b>Create New&#160;Stream +</b></a> to create a new stream. </p>
+            </li>
+            <li>
+                <p>Provide the Stream Name and Description</p>
+            </li>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/StreamSQL6a.png" style="width: 824px;height: 415px;" />
+            </p>
+            <li>
+                <p>In the text window of the Stream SQL, create the following SQL&#160;queries.</p>
+            </li>
+            <div class="tc-admon-note">
+                <p>All SQL&#160;statements should be submitted together with a semicolon delimiter.</p>
+            </div>
+            <li>
+                <p>Use a CREATE&#160;TABLE statement to define the Kafka topic as a table. All properties are defined as columns and Kafka details are also provided:</p>
+            </li><pre><code class="language-sql">
+CREATE TABLE KSOURCE (sensor_id STRING,deviceId STRING, ts TIMESTAMP(3) METADATA FROM 'timestamp',reading FLOAT,unit STRING,WATERMARK FOR ts AS ts - INTERVAL '5' SECOND) 
+WITH ('connector' = 'kafka',
+	      'topic' = 'test',
+	      'properties.bootstrap.servers' = 'kafka:9092',
+	      'properties.group.id' = 'testGroup',
+	      'scan.startup.mode' = 'latest-offset','format' = 'json');	</code><![CDATA[	]]></pre>
+            <li>
+                <p>Use a CREATE&#160;TABLE statement to define a Space as a target:</p>
+            </li><pre><code class="language-sql">
+CREATE TABLE SpaceTable (sensor_id VARCHAR,deviceId VARCHAR,avgt FLOAT,mint FLOAT, maxt FLOAT, unit VARCHAR, ts Timestamp) 
+WITH ('connector' = 'jdbc', 
+		'url' = 'jdbc:postgresql://xap-dgw-service:5432/demo?user=&lt;username&gt;, &amp;password=&lt;password&gt;'
+		'table-name' = 'AGGDATA'); </code><![CDATA[	]]></pre>
+            <div class="tc-admon-note">
+                <p>Make sure that the correct username and password credentials are used to connect to the xap dgw.</p>
+            </div>
+            <li>
+                <p>Use an INSERT&#160;SELECT statement to define a continuous flow of events from Kafka to the&#160;Space:</p>
+            </li><pre><code class="language-sql">
+insert into SpaceTable (ts,deviceId,sensor_id,avgt,maxt,mint,unit) select TUMBLE_START(ts, INTERVAL '5' SECOND) AS ts,deviceId,sensor_id,avg(reading),max(reading),min(reading),unit 
+from KSOURCE 
+group by TUMBLE(ts, INTERVAL '5' SECOND),deviceId,sensor_id,unit; </code><![CDATA[	]]></pre>
+            <li>
+                <p>After the statements above have all been written together to the StreamSQL text window, click <b>Create&#160;Stream</b>:</p>
+            </li>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/StreamSQL7a.png" style="width: 948px;height: 455px;" />
+            </p>
+            <li>
+                <p>From the <b>StreamSQL</b> menu, run an SQL&#160;Query to query the aggregation data in the Space. For the example above, run:</p>
+            </li><pre><code class="language-sql">SELECT&#160;* from AGGDATA order to ts desc </code><![CDATA[	]]></pre>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/StreamSQL9b.png" style="width: 1021px;height: 591px;" />
+            </p>
+        </ol>
+        <p><span class="tc-textred">1</span>
+            Write the query in the Stream SQL text window.</p>
+        <p><span class="tc-textred">2</span>
+            Run the Query.</p>
+        <p><span class="tc-textred">3</span>
+            Results of the Query.</p>
+        <h2>Example 2: Kafka to Kafka with Aggregation</h2>
+        <p>In this example, temperature data from sensors is consumed from a Kafka topic. This is aggregated using a standard SQL statement. An alert is raised only if the average temperature is above a certain threshold. An alert is a message that is published to a dedicated alerts topic in Kafka.</p>
+        <ol>
+            <li>
+                <p>From the main Stream SQL&#160;menu screen, click <a href="#Create_New_Stream_+"><b>Create New&#160;Stream +</b></a> to create a new stream. </p>
+            </li>
+            <li>
+                <p>In the text window of the StreamSQL, create the following SQL&#160;queries.</p>
+            </li>
+            <div class="tc-admon-note">
+                <p>All SQL&#160;statements should be submitted together with a semicolon delimiter.</p>
+            </div>
+            <li>
+                <p>Use a CREATE&#160;TABLE statement to define the Kafka source topic as a source table. All properties are defined as columns and Kafka details are also provided:</p>
+            </li><pre><code class="language-sql">
+CREATE TABLE KSOURCE (sensor_id STRING,deviceId STRING, ts TIMESTAMP(3) METADATA FROM 'timestamp',reading FLOAT,unit STRING,WATERMARK FOR ts AS ts - INTERVAL '1' SECOND) 
+WITH ('connector' = 'kafka',
+	      'topic' = 'test',
+	      'properties.bootstrap.servers' = 'kafka:9092',
+	      'properties.group.id' = 'testGroup2',
+	      'scan.startup.mode' = 'latest-offset',
+	      'format' = 'json');	</code><![CDATA[	]]></pre>
+            <li>
+                <p>Use a CREATE&#160;TABLE statement to define a Kafka alerts topics as a target table:</p>
+            </li><pre><code class="language-sql">
+CREATE TABLE KALERTS(deviceId STRING, sensor_id STRING, ts TIMESTAMP(3), avgt FLOAT, PRIMARY KEY (ts) NOT&#160;ENFORCED)
+WITH ('connector' = 'upsert-kafka',
+	      'topic' = 'sensorsAlertsAvgTemp',
+	      'properties.bootstrap.servers' = 'kafka:9092',
+	      'properties.group.id' = 'testGroup2',
+	      'key.format' = 'json',
+	      'value.format' = 'json');	</code><![CDATA[	]]></pre>
+            <li>
+                <p>Use an INSERT&#160;SELECT statement to define a continuous flow of events from the Kafka source topic to the Kafka target topic. All events have an average temperature above 36.6:</p>
+            </li><pre><code class="language-sql">
+insert into KALERTS (ts,deviceId,sensor_id,avgt) select TUMBLE_START(ts, INTERVAL '5' SECOND) AS ts,deviceId,sensor_id,avg(reading) as avgt 
+from KSOURCE 
+group by TUMBLE(ts, INTERVAL '5' SECOND),deviceId,sensor_id,unit 
+having avg(reading) &gt; 36.6;	</code><![CDATA[	]]></pre>
+            <li>
+                <p>After the statements above have all been written together to the StreamSQL text window, click <b>Create&#160;Stream</b>:</p>
+            </li>
+            <p>
+                <img src="../Resources/Images/SpaceDeck/16.4/StreamSQL10a.png" style="width: 968px;height: 457px;" />
+            </p>
+        </ol>
+        <p>&#160;</p>
+    </body>
+</html>
