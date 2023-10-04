@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <div>
+            <h1 class="tc-pagetitle" style="text-align: left;">Db2 z/OS Source Prerequisites</h1>
+            <p>The IIDR Db2 z/OS agent can be installed on a remote Linux machine without a need to install any IIDR software on the z/OS machine itself. </p>
+            <p>However, there is a need to create users on a z/OS machine itself in order to ensure a transparent connectivity of the IIDR z/OS agent to the Db2 on z/OS.</p>
+            <p>The recommended approach is to create two different users on a z/OS side with each having a different set of privileges, as outlined in the table below:</p>
+            <table style="width: 100%;" class="tc-standard">
+                <col style="width: 87px;" />
+                <col />
+                <col />
+                <col style="width: 489px;" />
+                <col />
+                <thead>
+                    <tr>
+                        <th>User #</th>
+                        <th style="text-align: left;">User Type</th>
+                        <th style="text-align: left;">User Name</th>
+                        <th style="text-align: left;">Privileges</th>
+                        <th style="text-align: left;">Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            <p>IIDR&#160;Administrator User.</p>
+                            <p>Does not need to be used to run CDC Replication.</p>
+                        </td>
+                        <td>GSHI</td>
+                        <td>Owns an extended set of privileges. All of the privileges for installing the external stored procedure.</td>
+                        <td>
+                            <p>Required for IIDR agent configuration during the installation process.</p>
+                            <p>Only used one time during the setup phase. Owns an extended set of privileges.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>
+                            <p>IIDR&#160;User for Continuous Operations. </p>
+                            <p>CDC&#160;Replications User.</p>
+                        </td>
+                        <td>GSLO</td>
+                        <td>Required for ongoing IIDR Agent operations only. Does not require any privileges for installing the external stored procedure.</td>
+                        <td>Ongoing IIDR&#160;Agent operations.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>A CDC Replication instance can be created with using the User&#160;ID that has the most privileges and then reconfigured with the user ID that has the least privileges.</p>
+            <h2>GSHI&#160;User Prerequisites</h2>
+            <ul>
+                <li>
+                    <p>TSO logon</p>
+                </li>
+                <li>
+                    <p>OMVS logon</p>
+                </li>
+                <li>
+                    <p>Read (r) and write (w) access to the OMVS /tmp directory</p>
+                </li>
+                <li>
+                    <p>ALTER access on a high-level qualifier</p>
+                </li>
+                <li>
+                    <p>UPDATE access on the catalog</p>
+                </li>
+                <li>
+                    <p>READ access on SCEELKED (often CEE.SCEELKED)</p>
+                </li>
+                <li>
+                    <p>READ access on SCEELKEX (often CEE.SCEELKEX)</p>
+                </li>
+                <li>
+                    <p>READ access on SCEECPP (often CEE.SCEECPP)</p>
+                </li>
+                <li>
+                    <p>READ access on SYS1.CSSLIB</p>
+                </li>
+                <li>
+                    <p>UPDATE access on an APF-authorized library  unless you use the <a href="https://www.ibm.com/docs/en/idr/11.4.0?topic=options-staging-configuration-option">staging configuration option</a></p>
+                </li>
+                <li>
+                    <p>UPDATE access on a staging library if you use the staging configuration option</p>
+                </li>
+                <li>
+                    <p>READ access on subsystem.WLM_REFRESH.wlm_environment_name in CLASS(DSNR) where subsystem is the  Db2 group or Db2 subsystem ID and wlm_environment_name is the WLM environment for CDC Replication</p>
+                </li>
+                <li>
+                    <p>For Db2 database required privileges for the user GSHI, refer to <a href="https://github.com/Gigaspaces/TechDocRef/blob/main/DB2-ZOS-Schema-Privileges">Db2 ZOS Schema Privileges</a></p>
+                </li>
+            </ul>
+            <h2>Generic Prerequisites</h2>
+            <table style="width: 100%;" class="tc-standard">
+                <col style="width: 287px;" />
+                <col />
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th style="text-align: left;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>hostname</td>
+                        <td>
+                            <p>The hostname or IP address for the Db2 for z/OS system. The host name can be either a host name or an IP address. This host must be accessible from the Linux machine where IIDR z/OS agent is installed.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>name (LOCATION)</td>
+                        <td>
+                            <p>The Name field is the location name of the Db2 instance. Please provide the Db2 location name. The location (LOCATION) and corresponding TCP/IP port for database connections (TCPPORT) can be obtained with the Db2 command -DISPLAY DDF.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Db2 Port</td>
+                        <td>Db2 port - the TCP/IP port number for Db2 database connections. This can be either an unencrypted port or a port with TLS encryption.</td>
+                    </tr>
+                    <tr>
+                        <td>SSH&#160;Port</td>
+                        <td>SSH must be configured to allow remote connections from the system where IIDR will be installed, except when choosing the manual configuration option. The IIDR automatic configuration will transfer files with SFTP and execute the LINK command using the tso utility through SSH. Please provide the TCP/IP port number for SSH (default is 22).</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Configuration User </p>
+                            <p>(GSHI)</p>
+                        </td>
+                        <td>
+                            <p>This could be the existing user account of the person who will be the IIDR administrator. The account does not need to be that of a TSO interactive user but requires the ability to issue TSO commands through SSH. This user ID will also be used as the product’s schema within Db2, which will need to exist beforehand.
+
+</p>
+                            <p style="font-style: italic;">IIDR will copy pre-compiled object modules onto z/OS using SFTP (over SSH) into a temporary partitioned data set under the IIDR user’s high-level qualifier. IIDR will link-edit the object modules to create the load module for the external stored procedure into the specified WLM load library.
+</p>
+                            <p><![CDATA[
+]]><i>IIDR will refresh the WLM environment after creating the external stored procedure. The IIDR user must be granted permission to execute the SYSPROC.WLM_REFRESH stored procedure with the WLM environment.</i></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Continuous Operation User (GSLO)</td>
+                        <td>For continuous operation, IDR only needs access to Db2.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>WLM&#160;(Workload Manager) Special Prerequisites</h2>
+            <p>IIDR will remotely install and execute an external stored procedure. The stored procedure will run in a Workload Manager (WLM) environment. </p>
+            <p>The WLM environment must be dedicated to a single instance of IIDR to avoid interactions with other applications. </p>
+            <p>The WLM environment can be created by following the Db2 documentation. Please provide the name of the WLM environment.</p>
+            <p>OMVS access and segment need to be granted to user GSLO and create a home directory.</p>
+            <h3>Process</h3>
+            <ol>
+                <li>
+                    <p>Create a new WLM environment  (POM.M.12)</p>
+                </li>
+                <li>
+                    <p>Define the RACF resource DB2.CDBG.gscdcenv   uacc(READ) class(server)</p>
+                </li>
+                <li>
+                    <p>Give the permission to DB2.CDBG.gscdcenv to default STC user</p>
+                </li>
+                <li>
+                    <p>RACF refresh the CLASS</p>
+                </li>
+                <li>
+                    <p>Create the JCL procedure in the relevant PROCLIB</p><pre xml:space="preserve"><code class="language-bash">@ USER.Z24C.PROCLIB(GSCDC1)
+DB2.DBCG.GSCDCENV</code>
+</pre>
+                </li>
+                <li>
+                    <p>IIDR cannot start the WLM environment. Use the VARY command to start (resume) the WLM environment.</p><pre xml:space="preserve"><code class="language-bash">/v wlm,applenv=GSCDCENV,resume<br />/d wlm,applenv=GSCDCENV</code>
+</pre>
+                </li>
+            </ol>
+            <h2>APF Authorized Libraries Prerequisites</h2>
+            <p>The WLM address space must be APF-authorized. The JCL for the WLM address space must have an APF-authorized load library in its STEPLIB concatenation and the library must be created prior to configuring the product. Also, the user ID under which the WLM address space runs must be granted EXECUTE permission to that load library.</p>
+            <p>For ease of use, provide the fully-qualified name of the APF-authorized load library to the IIDR administrator (GSHI). The product will automatically update the stored procedure’s load module in that library and refresh the WLM environment as needed. No administrative steps are needed on z/OS or Db2 with new maintenance - the updated stored procedure will be in effect immediately. The user credentials are stored on disk and must be protected from unauthorized access since writing to an APF-authorized library is a powerful capability.</p>
+            <p>For added security, provide the fully-qualified name of a staging library to the IIDR administrator. The product will update the stored procedure's load module in that library but will fail to start. The IIDR administrator will need your help to copy CHCRLRSP from the staging library to the APF-authorized library associated with the WLM environment. The IIDR administrator will be able to start the product after the copy is complete. This manual copy step will be required every time the IDR administrator applies a patch to IDR.</p>
+            <p>&#160;</p>
+            <p>APF authorized libraries dynamically or permanently (in PROGxx)</p><pre xml:space="preserve"><code class="language-bash">/setprog apf,add,dsname=G00.IIDR.LOAD,volume=GWK001<br />/setprog apf,add,dsname=G00.IIDR.LOAD,SMS</code>
+</pre>
+            <h2>OMVS&#160;Access</h2>
+            <p>Verify OMVS access to the user GSLO.</p>
+            <p>&#160;</p>
+            <p>&#160;</p>
+        </div>
+    </body>
+</html>
