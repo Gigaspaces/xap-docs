@@ -23,19 +23,22 @@
         <h2>Data Query Parameters</h2>
         <ol>
             <li>
-                <p><b><a name="Create_New_Stream_+"></a>Create New Stream +</b> - Click this to create a new stream</p>
+                <p><b><a name="Create_New_Stream_+"></a>Create New Stream +</b> - Click this to create a new stream.</p>
             </li>
             <li>
-                <p><b>Import</b> - </p>
+                <p><b>Export</b> - export the query result locally to a json file.</p>
             </li>
             <li>
-                <p><b>Export</b> - export the query result locally to a csv-format file</p>
+                <p><b>Import</b> - import the query result from a json file.</p>
             </li>
         </ol>
         <p>Table Columns:</p>
         <ul>
             <li>
-                <p><b>STREAM&#160;NAME</b> - the name of the StreamSQL</p>
+                <p><b>STREAM&#160;NAME</b> - the name of the StreamSQL. </p>
+                <div class="tc-admon-note">
+                    <p>The Stream name is not case sensitive and has no limits for naming but must not exceed a length of 63 characters.</p>
+                </div>
             </li>
             <li>
                 <p><b>STATUS</b> - </p>
@@ -53,13 +56,16 @@
         <p>The fields with<span class="tc-textred">red</span> comments are mandatory.</p>
         <ol>
             <li>
-                <p><b>Stream Name</b> – export the query result locally to a csv-format file. Mandatory field.</p>
+                <p><b>Stream Name</b> –  Mandatory field.</p>
+                <div class="tc-admon-note">
+                    <p>The Stream name is not case sensitive and has no limits for naming but must not exceed a length of 63 characters.</p>
+                </div>
             </li>
             <li>
                 <p><b>Description</b> – Write a short description of the stream SQL being created.</p>
             </li>
             <li>
-                <p><b>(Body of the query)</b> – enter a SQL-99 compliant query. What is displayed initially is sample syntax. Mandatory field.</p>
+                <p><b>(Body of the query)</b> – enter an SQL-99 compliant query. What is displayed initially is sample syntax. Mandatory field.</p>
             </li>
             <li>
                 <p><b>Saved Queries</b> - a list of previously saved queries.</p>

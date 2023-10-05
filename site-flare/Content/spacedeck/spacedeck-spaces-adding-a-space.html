@@ -27,7 +27,7 @@
             <li>
                 <p><b>Space Name</b> –Select which <MadCap:variable name="General.CompanyName" />Space object the query should be executed against. </p>
                 <div class="tc-admon-note">
-                    <p>The Space name must be in lower case and can contain numbers</p>
+                    <p>The Space name must be in lower case and can contain numbers. It can only contain special characters of "-" or "." and must not exceed a length of 63 characters.</p>
                 </div>
             </li>
             <li>
@@ -43,11 +43,28 @@
                 <p><b>Create Space</b> - Click this to create the Space.</p>
             </li>
         </ul>
-        <h1>Undeploy a Space</h1>
+        <h1><a name="UndeploySpace"></a>Undeploy a Space</h1>
         <p>A space can be undeployed by selecting the kebab menu (vertical three-dot menu) on the far right and selecting <b>Undeploy Space</b>:</p>
         <p>
             <img src="../Resources/Images/SpaceDeck/16.4/Spaces2.png" style="width: 1134px;height: 409px;" />
         </p>
+        <p>The following popup is displayed:</p>
+        <p>
+            <img src="../Resources/Images/SpaceDeck/16.4/Space_undeploy.png" style="width: 494px;height: 494px;" />
+        </p>
+        <p>Drain mode specifies the desired drain behavior on shutdown&#160;The options are:</p>
+        <ul>
+            <li>
+                <p><b>NONE</b> - This is the default which specifies no drain before undeploy.</p>
+            </li>
+            <li>
+                <p><b>REQUIRED</b> - Undeploy even if drain did not complete in timeout.</p>
+            </li>
+            <li>
+                <p><b>ATTEMPT</b> - Undeploy only if drain succeeded in timeout.</p>
+                <p>&#160;</p>
+            </li>
+        </ul>
         <p>For more information:</p>
         <p>
             <MadCap:xref href="spacedeck-spaces-status-overview.html">SpaceDeck – Spaces Status Overview</MadCap:xref>
