@@ -2287,8 +2287,33 @@
                             </td>
                             <td>CLI</td>
                         </tr>
+                        <tr MadCap:conditions="Version.14-5-born">
+                            <td align="left">
+                                <p align="left">Calcite </p>
+                                <p align="left">(see note below)</p>
+                            </td>
+                            <td align="left">1.25.0</td>
+                            <td align="left"><a href="https://github.com/apache/calcite">Apache</a>
+                            </td>
+                            <td>REST</td>
+                        </tr>
                     </tbody>
                 </table>
+                <div class="tc-admon-note" MadCap:conditions="Version.16-4-born">
+                    <p> Calcite 1.25.0 known vulnerabilities are <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-39135">CVE-2022-39135</a> and <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-13955">CVE-2020-13955.</a></p>
+                    <ul>
+                        <li>
+                            <p><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-39135">CVE-2022-39135</a> is an XML&#160;External Entity (XEE) vulnerability that allows an SQL query to read the contents of files via the SQL functions of EXISTS_NODE, EXTRACT_XML, XML_TRANSFORM or EXTRACT_VALUE.</p>
+                        </li>
+                    </ul>
+                    <p><MadCap:variable name="General.CompanyName" style="font-weight: bold;" /><b> Analysis</b>: <MadCap:variable name="General.CompanyName" /> are NOT&#160;affected by this vulnerability as we do not expose these SQL operators to clients.</p>
+                    <ul>
+                        <li>
+                            <p><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-13955">CVE-2020-13955</a> is a vulnerability which exploits a utility class provided by Apache Calcite (HttpUtils#getURLConnection) to create vulnerable HTTPS connections for other applications by disabling verification.</p>
+                        </li>
+                    </ul>
+                    <p><MadCap:variable name="General.CompanyName" style="font-weight: bold;" /><b> Analysis</b>: <MadCap:variable name="General.CompanyName" /> does not use this utility method to create HTTP&#160;connections, using instead the default JVM&#160;truststore.</p>
+                </div>
             </div>
             <div title="  Python " style="padding:10px" MadCap:conditions="Version.15-2-born,Version.16-2-1-died">
                 <table>
