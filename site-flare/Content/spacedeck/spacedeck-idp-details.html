@@ -17,7 +17,7 @@
             <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
         </map>
         <h1 class="tc-pagetitle">SpaceDeck - SSO&#160;IDP&#160;Setup</h1>
-        <p>For configuring SSO&#160;(Secure Sign-On) for SpaceDeck, <MadCap:variable name="General.CompanyName" /> supports using any IDP that supports OpenID Connect (OIDC) including Okta, Azure Active Directory, Amazon Cognito and Keycloak.  We provide examples below of how to configure this using <b>Okta</b> and <b>Azure Active Directory</b>.</p>
+        <p>For configuring SSO&#160;(Secure Sign-On) for SpaceDeck, <MadCap:variable name="General.CompanyName" /> supports using any IDP that supports OpenID Connect (OIDC) including Okta, <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">Azure Active Directory</MadCap:conditionalText> Amazon Cognito and Keycloak.  We provide examples below of how to configure this using <b>Okta.</b><MadCap:conditionalText MadCap:conditions="Default.DoNotShow">and <b>Azure Active Directory</b></MadCap:conditionalText>.</p>
         <div class="easyui-tabs" plain="true">
             <div title="Okta IDP Setup">
                 <ol>
@@ -146,7 +146,7 @@
                     </li>
                 </ol>
             </div>
-            <div title="Azure Active Directory IDP Setup">
+            <div title="Azure Active Directory IDP Setup" MadCap:conditions="Default.DoNotShow">
                 <p>Coming Soon</p>
             </div>
         </div>
