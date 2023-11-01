@@ -18,8 +18,9 @@
   '14.2': { 'url': '/14.2/index.html', 'label': '14.2', 'topicBanner': 'old' },
   '14.0': { 'url': '/xap/14.0', 'label': '14.0', 'topicBanner': 'old' },
   '12.3': { 'url': '/xap/12.3', 'topicBanner': 'old' },
-  'Archive': { 'url': '/latest/admin/Archive.html' }
-	
+  'Archive': { 'url': '/admin/Archive.html' }
+
+	//	'Archive': { 'url': '/latest/admin/Archive.html' } // wrong url with latest
 	//	'16.3': { 'url': '/16.3/landing.html', 'label': '16.3 Early Access', 'topicBanner': 'preview' }, // early access
 	//	'16.2': { 'url': '/16.2/landing.html', 'label': '16.2 Early Access', 'topicBanner': 'preview' },
 	//	'16.0': { 'url': '/16.0/landing.html', 'label': '16.0', 'topicBanner': 'preview' },
