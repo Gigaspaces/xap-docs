@@ -54,6 +54,9 @@
         <p>In some cases, multiple Processing Units use the same JAR files. In such cases it makes sense to place these JAR files in a central location accessible by all the Processing Units rather than packaging them individually with each of the Processing Units. Note that this is also useful for decreasing the deployment time in case your Processing Units contain a lot of 3rd party JARs files, since it saves a lot of the network overhead associated with downloading these JARs to each of the GSCs.</p>
         <p>There are three options to achieve this:</p>
         <h2><a name="lib-optional-pu-common-directory"></a>lib/optional/pu-common Directory</h2>
+        <div class="tc-admon-note">
+            <p>This is a suggested place to add any 3rd party dependencies that are used by your POJOs as this directory is added to the classpath of the UI&#160;tools.</p>
+        </div>
         <p>JAR files placed in the <code><MadCap:variable name="General.HomePath" />/lib/optional/pu-common</code> directory will be loaded by each Processing Unit instance in its own separate classloader (called the Service Classloader, <a href="#classloaders">see the</a> section below).</p>
         <p>This means they are not shared between Processing Units on the same JVM, which provides an isolation quality often required for JARs containing the application's proprietary business-logic. On the other hand this option consumes more PermGen memory (due to potentially multiple instances per JVM).</p>
         <p>You can place these JARs in each <MadCap:variable name="General.ProductNameXAP" /> installation in your network, but it is more common to share this folder on your network and point the <code>pu-common</code> directory to the shared location by specifying this location in the <code>com.gs.pu-common</code> system property in each of the GSCs on your network.</p>
