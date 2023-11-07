@@ -62,17 +62,21 @@ gs.bat host run-agent --manager --gsc=2
 ./gs.sh host run-agent --custom=lus=1 --custom=gsm=1
 # Starts a LUS, GSM and 2 GSCs:<br />./gs.sh host run-agent --custom=lus=1 --custom=gsm=1 --custom=gcs=2</code></pre>
             </div>
-            <div title="Windows" style="padding:10px"><pre><code class="language-bash">REM Starts a LUS and GSM:<br />gs.bat host run-agent --custom=lus=1 --custom=gsm=1
-REM Starts a LUS, GSM and 2 GSCs:<br />gs.bat <code class="language-bash">host run-agent --custom=lus=1 --custom=gsm=1 --custom=gcs=2</code><![CDATA[
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash">REM Starts a LUS and GSM:
+gs.bat host run-agent --custom=lus=1 --custom=gsm=1
+REM Starts a LUS, GSM and 2 GSCs:
+gs.bat <code class="language-bash">host run-agent --custom=lus=1 --custom=gsm=1 --custom=gcs=2</code><![CDATA[
 ]]></code></pre>
             </div>
         </div>
         <p>Alternatively, if your environment supports multicast and you prefer a more dynamic approach, you can use the <code>global</code> prefix to indicate that GSMs and LUSs will be automatically started and managed by the collective of gs-agents, instead of explicitly on a specific hosts. For example, to start two global GSM and LUS components across a set of hosts, as well as 2 GSCs on each host, you can use the following command:</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Linux" style="padding:10px"><pre><code class="language-bash"># Starts a LUS, GSM and 2 GSCs:<br />./gs.sh host run-agent --custom=global.lus=2 --custom=global.gsm=2 --custom=global.gsc=2
+            <div title="Linux" style="padding:10px"><pre><code class="language-bash"># Starts a LUS, GSM and 2 GSCs:
+./gs.sh host run-agent --custom=global.lus=2 --custom=global.gsm=2 --custom=global.gsc=2
 </code></pre>
             </div>
-            <div title="Windows" style="padding:10px"><pre><code class="language-bash">REM Starts a LUS, GSM and 2 GSCs:<br />gs.bat host run-agent --custom=global.lus=2 --custom=global.gsm=2 --custom=global.gsc=2
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash">REM Starts a LUS, GSM and 2 GSCs: 
+gs.bat host run-agent --custom=global.lus=2 --custom=global.gsm=2 --custom=global.gsc=2
 </code></pre>
             </div>
         </div>
