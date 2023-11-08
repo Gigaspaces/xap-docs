@@ -32,8 +32,9 @@
 ./gs.sh host run-agent --auto --gsc=2
 </code></pre>
             </div>
-            <div title="Windows" style="padding:10px"><pre><code class="language-bash">REM Starts a local manager:<br />gs.bat host run-agent --auto
-REM Starts a local manager and 2 GSCs:
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"># REM Starts a local manager:
+gs.bat host run-agent --auto
+# REM Starts a local manager and 2 GSCs:
 gs.bat host run-agent --auto --gsc=2
 </code></pre>
             </div>
@@ -45,9 +46,9 @@ gs.bat host run-agent --auto --gsc=2
 # Starts a manager and 2 GSCs:<br />./gs.sh host run-agent --manager --gsc=2
 </code></pre>
             </div>
-            <div title="Windows" style="padding:10px"><pre><code class="language-bash">REM Starts a manager:
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"># REM Starts a manager:
 gs.bat host run-agent --manager
-REM Starts a manager and 2 GSCs:
+# REM Starts a manager and 2 GSCs:
 gs.bat host run-agent --manager --gsc=2
 </code></pre>
             </div>
@@ -62,9 +63,9 @@ gs.bat host run-agent --manager --gsc=2
 ./gs.sh host run-agent --custom=lus=1 --custom=gsm=1
 # Starts a LUS, GSM and 2 GSCs:<br />./gs.sh host run-agent --custom=lus=1 --custom=gsm=1 --custom=gcs=2</code></pre>
             </div>
-            <div title="Windows" style="padding:10px"><pre><code class="language-bash">REM Starts a LUS and GSM:
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"># REM Starts a LUS and GSM:
 gs.bat host run-agent --custom=lus=1 --custom=gsm=1
-REM Starts a LUS, GSM and 2 GSCs:
+# REM Starts a LUS, GSM and 2 GSCs:
 gs.bat <code class="language-bash">host run-agent --custom=lus=1 --custom=gsm=1 --custom=gcs=2</code><![CDATA[
 ]]></code></pre>
             </div>
@@ -75,19 +76,18 @@ gs.bat <code class="language-bash">host run-agent --custom=lus=1 --custom=gsm=1 
 ./gs.sh host run-agent --custom=global.lus=2 --custom=global.gsm=2 --custom=global.gsc=2
 </code></pre>
             </div>
-            <div title="Windows" style="padding:10px"><pre><code class="language-bash">REM Starts a LUS, GSM and 2 GSCs: 
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"># REM Starts a LUS, GSM and 2 GSCs: 
 gs.bat host run-agent --custom=global.lus=2 --custom=global.gsm=2 --custom=global.gsc=2
 </code></pre>
             </div>
         </div>
-        <p>This configuration is convenient for new users, so it is also the default - running <MadCap:variable name="General.CompanyName" /> Agent without any arguments creates the same environment. If you want to disable the default configuration and start a data grid without any components, run the <MadCap:variable name="General.CompanyName" /> Agent with <MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><code>--zero-defaults</code> or <code>-z</code>.</MadCap:conditionalText> no arguments. This can be useful if you're planning to use the  REST&#160;Manager API from another host to add or remove containers.</p>
+        <p>This configuration is convenient for new users, so it is also the default - running <MadCap:variable name="General.CompanyName" /> Agent without any arguments creates the same environment. <MadCap:conditionalText MadCap:conditions="Default.DoNotShow">If you want to disable the default configuration and start a data grid without any components</MadCap:conditionalText> If you want to start a data grid without any components, run the <MadCap:variable name="General.CompanyName" /> Agent with <MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><code>--zero-defaults</code> or <code>-z</code>.</MadCap:conditionalText> no arguments. This can be useful if you're planning to use the  REST&#160;Manager API from another host to add or remove containers.</p>
         <div class="easyui-tabs" plain="true" data-options="">
-            <div title="Linux" style="padding:10px"><pre xml:space="preserve">
-<code class="language-bash">Run ./gs.sh host run-agent (no arguments) if you intend to use the agent to start other service grid components later.<br /></code><MadCap:conditionalText MadCap:conditions="Default.DoNotShow"><code class="language-bash">./gs-agent.sh -z
-</code></MadCap:conditionalText></pre>
+            <div title="Linux" style="padding:10px"><pre><code class="language-bash"># Run the command below if you intend to use the agent to start other service grid components later:
+./gs.sh host run-agent (no arguments) </code></pre>
             </div>
-            <div title="Windows" style="padding:10px"><pre><code class="language-bash">Run gs.bat host run-agent (no arguments) if you intend to use the agent to start other service grid components later.<![CDATA[
-]]></code></pre>
+            <div title="Windows" style="padding:10px"><pre><code class="language-bash"># Run the command below if you intend to use the agent to start other service grid components later:
+gs.bat host run-agent (no arguments) </code></pre>
             </div>
         </div>
         <h1>Configuring the Service Grid</h1>
