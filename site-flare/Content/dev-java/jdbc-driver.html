@@ -5,7 +5,7 @@
     <body>
         <h1>JDBC V1 Driver - In-Memory Data Grid</h1>
         <p>The <MadCap:variable name="General.ProductNameXAP" /> JDBC interface allows database-driven applications to interact with Spaces via SQL queries and commands. A query processor transparently translates SQL queries into legal Space operations. No integration is required - all you need to do is point the application to the <MadCap:variable name="General.ProductNameXAP" /> JDBC driver like any other JDBC driver.</p>
-        <p>This jdbc is intended for very high performance simple queries. While JDBC V3 is a bit heavier it does offer full sql 99 coverage.</p>
+        <p>This JDBC is intended for very high performance simple queries. While JDBC V3 is a bit heavier it does offer full sql 99 coverage.</p>
         <div class="tc-admon-note">
             <p>This JDBC driver is not ANS-SQL-compliant. ANSI-SQL-compliant query functionality is available in the <MadCap:variable name="General.ProductNameIE" /> Enterprise edition. Refer to the SQLQuery and <MadCap:xref href="insight-edge-legacy-jdbc-driver.html">[%=General.ProductNameIE%] JDBC&#160;Driver</MadCap:xref> topics in the Developer Guide.</p>
         </div>
@@ -21,7 +21,7 @@
         <h2><a name="using-existing-sql-code-and-porting-to-external-systems"></a>Using Existing SQL Code and Porting to External Systems</h2>
         <p>The JDBC interface is mostly used to enable access to the Space through standard SQL tools and programming interfaces. You can write SQL commands against the Space, and the same code will in many (simple) cases be compatible with other SQL implementations.</p>
         <p>Porting existing JDBC code to the Space is certainly doable (but would require some level of adaptation depending on the specifics of the case and the complexity of the SQL queries). For legacy applications, it may still be easier than porting existing code to leverage the space technology directly. The SQL support is limited, therefore this path should be taken with caution.</p>
-        <h1><a name="getting-the-xap-jdbc-connection"></a>Getting the <MadCap:variable name="General.ProductNameXAP" /> JDBC Connection</h1>
+        <h1><a name="getting-the-xap-jdbc-connection"></a>Getting the <MadCap:variable name="General.ProductNameXAP" /> JDBC V1 Connection</h1>
         <p>In order to get the JDBC connection you should use the following JDBC Driver classname:</p><pre><code class="language-java">Class.forName("com.j_spaces.jdbc.driver.GDriver");
 </code></pre>
         <p>The connection URL should include :<code>jdbc:gigaspaces:url:&lt;Space URL&gt;</code> – e.g.:</p><pre><code class="language-java">Connection con = DriverManager.getConnection("jdbc:gigaspaces:url:jini://*/*/mySpace");
@@ -99,7 +99,7 @@ Properties props = new Properties();
 props.put("gs.tx_manager_type", "distributed");
 Connection conn = DriverManager.getConnection("jdbc:gigaspaces:url:jini://*/*/mySpace", props);
 </code></pre>
-        <h1><a name="getting-the-jdbc-connection-from-a-space-proxy"></a>Getting the JDBC Connection from a Space Proxy</h1>
+        <h1><a name="getting-the-jdbc-connection-from-a-space-proxy"></a>Getting the JDBC V1 Connection from a Space Proxy</h1>
         <p>You can get an <MadCap:variable name="General.ProductNameXAP" /> JDBC connection from a Space proxy using the <code>com.j_spaces.jdbc.driver.GConnection</code>. See the following example:</p><pre><code class="language-java">IJSpace gsSpaceProxy;  //your space proxy. You can get it using GigaSpace.getSpace()
 GConnection connection = GConnection.getInstance(gsSpaceProxy);
 connection.setUseSingleSpace(true); //false = cluster, true=single
@@ -344,7 +344,7 @@ int result = stmt.executeUpdate("UPDATE PERSON SET VERSION = VERSION + 1 WHERE I
             <li>All JDBC basic types including Blob and Clob.</li>
         </ul>
         <h1><a name="regular-expression"></a>Regular Expression</h1>
-        <p><MadCap:variable name="General.ProductNameXAP" /> supports query using regular expression. You may use <code>like</code> or <code>rlike</code> expressions with your JDBC queries.</p>
+        <p><MadCap:variable name="General.ProductNameXAP" /> supports query using regular expression. You may use <code>like</code> or <code>rlike</code> expressions with your JDBC V1 queries.</p>
         <div class="tc-admon-note">
             <p>It is important to index <code>String</code> type fields used with regular expression queries. Not indexing these fields may result slow query execution and garbage creation.</p>
         </div>
@@ -374,12 +374,12 @@ ResultSet rs = st.executeQuery();
         <h1><a name="partitioning-support"></a>Partitioning Support</h1>
         <p>In order to partition the data and route operations to the correct partition, specify a "routing column" for each table. The "routing column" is specified through one of three mechanisms:</p>
         <ol>
-            <li>A POJO with a <a href="modeling-your-data.html">@SpaceRouting</a> field can be sent to the space via the <code>snapshot</code> call prior to calling the JDBC API.</li>
+            <li>A POJO with a <a href="modeling-your-data.html">@SpaceRouting</a> field can be sent to the space via the <code>snapshot</code> call prior to calling the JDBC V1 API.</li>
             <li>Create the table through JDBC; the first index as part of the CREATE TABLE statement will be the routing field.</li>
             <li>If there is no indexed column, the first column as part of the CREATE TABLE will be the routing field.</li>
         </ol>
         <h1><a name="nested-field-query"></a>Nested Field Query</h1>
-        <p>You may use as part of the JDBC select statement nested fields. These could be a Map type fields or user-defined data type fields within the Space object. See the following example of a Space class with a nested Map and a nested object fields. Both are indexed:</p><pre><code class="language-java">public class MyData implements Serializable{
+        <p>You may use as part of the JDBC V1 select statement nested fields. These could be a Map type fields or user-defined data type fields within the Space object. See the following example of a Space class with a nested Map and a nested object fields. Both are indexed:</p><pre><code class="language-java">public class MyData implements Serializable{
 
     public MyData(){}
     String data1;
@@ -439,7 +439,7 @@ public class MyClass {
     }
 }
 </code></pre>
-        <p>The following is an example for a JDBC query call you can use with the above Space object. Both the nested Map and nested object fields are used with the JDBC query below:</p><pre><code class="language-sql">String queryString =
+        <p>The following is an example for a JDBC V1 query call you can use with the above Space object. Both the nested Map and nested object fields are used with the JDBC V1 query below:</p><pre><code class="language-sql">String queryString =
 "select uid,
 map.key1.data1, map.key1.data2,
 map.key2.data1, map.key2.data2,
@@ -460,7 +460,7 @@ while (rs.next()) {
 }
 </code></pre>
         <h1><a name="unsupported-features"></a>Unsupported Features</h1>
-        <p>The <MadCap:variable name="General.ProductNameXAP" /> JDBC Driver does not support the following:</p>
+        <p>The <MadCap:variable name="General.ProductNameXAP" /> JDBC V1 Driver does not support the following:</p>
         <ul>
             <li>The SQL statements: <code>HAVING</code>, <code>VIEW</code>, <code>TRIGGERS</code>, <code>EXISTS</code>, <code>BETWEEN</code> in collections, <code>NOT</code>, <code>CREATE USER</code>, <code>GRANT</code>, <code>REVOKE</code>, <code>SET PASSWORD</code>,  <code>CONNECT USER</code>, <code>ON</code>.</li>
             <li><code>CREATE</code> Database.</li>
@@ -482,12 +482,35 @@ while (rs.next()) {
             </li>
             <li>Statement::setFetchSize()</li>
         </ul>
-        <div class="tc-admon-note">
+        <h3>Joins with JDBC&#160;V1</h3>
+        <p>When using Joins it is preferable to use <a href="sql-supported-syntax.html">JDBC V3</a> as this ensures that the Joins are performed more efficiently. In addition, more Join options are supported with JDBC V3.</p>
+        <div class="tc-admon-attention">
+            <p>For a LEFT Join, the LEFT parameter must be coded on the left side of the equation, before the ON parameter, for example:</p><code class="language-sql">SELECT first_name, last_name, order_date, amount</code>
+            <br /><code class="language-sql">FROM orders o</code>
+            <br /><code class="language-sql">LEFT JOIN customers c</code>
+            <br /><code class="language-sql">ON o.customer_id = c.customer_id;</code>
+        </div>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-8-born">
+            <p>For a LEFT Join, joining more than one table is not supported.<br />For example, the following statement is not supported in JDBC&#160;V1, however it is supported in JDBC V3:</p><code class="language-sql">SELECT first_name, last_name, order_date, amount</code>
+            <br /><code class="language-sql">FROM orders o</code>
+            <br /><code class="language-sql">LEFT JOIN customers c</code>
+            <br /><code class="language-sql">ON o.customer_id = c.customer_id</code>
+            <br /><code class="language-sql">LEFT JOIN products p</code>
+            <br /><code class="language-sql">ON o.product_id = p.product_id;</code>
+            <br />
+        </div>
+        <div class="tc-admon-attention" MadCap:conditions="Version.15-8-born">
+            <p>For a LEFT Join, fields in the <code>ON </code>clause must reference the second table, the table coded to the <b>right</b> of the <code>LEFT JOIN</code> parameter.<br />For example, the following statement is not supported in JDBC&#160;V1, however it is supported in JDBC V3:</p><code class="language-sql">SELECT first_name, last_name, order_date, amount</code>
+            <br /><code class="language-sql">FROM orders o</code>
+            <br /><code class="language-sql">LEFT JOIN customers c</code>
+            <br /><code class="language-sql">ON o.customer_id = c.customer_id AND <span class="tc-textred">o.amount &lt;&gt; 234.56</span>;</code>
+            <br />This example is not supported because of the reference to <code>o.amount</code>. Only fields in the first table (<code>customers c</code>) can be referenced in the ON clause.<br /><br /></div>
+        <div class="tc-admon-note" MadCap:conditions="Default.DoNotShow">
             <p>When having <code>SELECT count (*) FROM myClass</code> JDBC query – <code>myClass</code> sub classes object count are not taken into consideration when processing the query result. The <code>SELECT count (*) FROM myClass WHERE X=Y</code> and <code>SELECT (*) from myClass</code> do take into consideration <code>myClass</code> sub classes objects when processing the result. Future versions will resolve this inconsistency.
 As a workaround, construct a JDBC query that includes a relevant <code>WHERE</code> part.</p>
         </div>
-        <h1><a name="jdbc-reserved-words"></a>JDBC Reserved Words</h1>
-        <p>This section lists the JDBC reserved keywords, data types, separators and operators.</p>
+        <h1><a name="jdbc-reserved-words"></a>JDBC V1 Reserved Words</h1>
+        <p>This section lists the JDBC V1 reserved keywords, data types, separators and operators.</p>
         <h2><a name="keywords"></a>Keywords</h2><pre><code class="language-bash">ALTER ADD AND ASC BETWEEN BY CREATE CALL DROP DEFAULT_NULL DESC DISTINCT
 END FROM GROUP IN IS LIKE RLIKE MAX MIN NOT NULL OR ORDER SELECT SUBSTR SUM SYSDATE
 UPPER WHERE COUNT DELETE EXCEPTION ROWNUM INDEX INSERT INTO SET TABLE TO_CHAR
@@ -499,7 +522,7 @@ char timestamp long clob blob empty_clob() empty_blob() lob true false
         <h2><a name="separators-and-operators"></a>Separators and Operators</h2><pre><code class="language-bash">:=  || ; . ROWTYPE ~ &lt; &lt;= &gt;  &gt;= =&gt; != &lt;&gt; \(+\) ( ) \* / + - ? \{ \}
 </code></pre>
         <h1><a name="configuration"></a>Configuration</h1>
-        <p>The JDBC Driver should be configured using the following properties. These should be part of the <a href="the-space-configuration.html#proxy">The Space Component</a> configuration when deployed:</p>
+        <p>The JDBC V1 Driver should be configured using the following properties. These should be part of the <a href="the-space-configuration.html#proxy">The Space Component</a> configuration when deployed:</p>
         <table>
             <thead>
                 <tr>
@@ -575,8 +598,8 @@ char timestamp long clob blob empty_clob() empty_blob() lob true false
     &lt;/os-core:properties&gt;
 &lt;/os-core:embedded-space&gt;
 </code></pre>
-        <h1><a name="jdbc-error-codes"></a>JDBC Error Codes</h1>
-        <p>The following is a list of JDBC error codes and their descriptions:</p><pre><code class="language-bash">
+        <h1><a name="jdbc-error-codes"></a>JDBC V1 Error Codes</h1>
+        <p>The following is a list of JDBC V1 error codes and their descriptions:</p><pre><code class="language-bash">
 `100`: No (more) data
 `0`: Successful Completion
 

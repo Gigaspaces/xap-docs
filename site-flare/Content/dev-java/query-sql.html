@@ -61,7 +61,7 @@ results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num
                 <p>EventSession</p>
             </li>
             <li>
-                <p>GSIterator</p>
+                <p>Space Iterator</p>
             </li>
         </ul>
         <h1><a name="supported-sql-features"></a>Supported SQL Features</h1>
@@ -142,27 +142,6 @@ results = gigaSpace.readMultiple(new SQLQuery&lt;MyClass&gt;(MyClass.class, "num
                 <p>INNER JOIN</p>
             </li>
         </ul>
-        <div class="tc-admon-attention">
-            <p>For a LEFT Join, the LEFT parameter must be coded on the left side of the equation, before the ON parameter, for example:</p><code class="language-sql">SELECT first_name, last_name, order_date, amount</code>
-            <br /><code class="language-sql">FROM orders o</code>
-            <br /><code class="language-sql">LEFT JOIN customers c</code>
-            <br /><code class="language-sql">ON o.customer_id = c.customer_id;</code>
-        </div>
-        <div class="tc-admon-attention" MadCap:conditions="Version.15-8-born">
-            <p>For a LEFT Join, joining more than one table is not supported.<br />For example, the following statement is not supported:</p><code class="language-sql">SELECT first_name, last_name, order_date, amount</code>
-            <br /><code class="language-sql">FROM orders o</code>
-            <br /><code class="language-sql">LEFT JOIN customers c</code>
-            <br /><code class="language-sql">ON o.customer_id = c.customer_id</code>
-            <br /><code class="language-sql">LEFT JOIN products p</code>
-            <br /><code class="language-sql">ON o.product_id = p.product_id;</code>
-            <br />
-        </div>
-        <div class="tc-admon-attention" MadCap:conditions="Version.15-8-born">
-            <p>For a LEFT Join, fields in the <code>ON </code>clause must reference the second table, the table coded to the <b>right</b> of the <code>LEFT JOIN</code> parameter.<br />For example, the following statement is not supported:</p><code class="language-sql">SELECT first_name, last_name, order_date, amount</code>
-            <br /><code class="language-sql">FROM orders o</code>
-            <br /><code class="language-sql">LEFT JOIN customers c</code>
-            <br /><code class="language-sql">ON o.customer_id = c.customer_id AND <span class="tc-textred">o.amount &lt;&gt; 234.56</span>;</code>
-            <br />This example is not supported because of the reference to <code>o.amount</code>. Only fields in the first table (<code>customers c</code>) can be referenced in the ON clause.<br /><br /></div>
         <h1><a name="comparing-null-values"></a>Comparing Null Values</h1>
         <p><code>SQLQuery</code> comparisons evaluate the non-null values for a field. If you want to include objects with null values in a <code>SQLQuery</code> you must add another condition to your clause.</p>
         <p>For example, if you have an object with a property named message of type <code>String</code> that is set to <code>null</code> and you write it to the Space, then write a <code>SQLQuery</code> with the where clause is:
