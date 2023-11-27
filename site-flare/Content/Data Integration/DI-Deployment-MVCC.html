@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <h1 class="tc-pagetitle" style="text-align: left;">Multiversion Concurrency Control (MVCC)</h1>
+        <h1>Introduction</h1>
+        <p>Multiversion concurrency control (MVCC) is a concurrency control method used to provide a concurrent and consistent view of data distributed across partitions. <MadCap:variable name="General.CompanyName" /> keep multiple versions of modified entries to ensure that any queries have a view that is consistent with the SoR.</p>
+        <p>Processing a large number of simultaneous transactions in Smart DIH requires an extreme write throughput that cannot be paused. In order to maintain transactions in the platform, Space objects must not be locked. The MVCC mechanism provides an elegant solution, allowing massive updates while maintaining consistency in the Space with the systems of record. In this manner, the ACID properties of transactions are maintained, ensuring the consistency and integrity of the database before and after each transaction, even in highly available distributed systems.</p>
+        <p>For more information about  the MVCC&#160;mechanism and how it is used in Smart DIH, read our blog on <a href="https://www.gigaspaces.com/blog/acid-distributed-transactions">How to Achieve ACID&#160;Compliance on Distributed, Highly Available Systems</a> (search for MVCC).</p>
+        <div class="tc-admon-note">
+            <p>The configuration settings for MVCC can be modified to tweak the impact on memory consumption.</p>
+        </div>
+        <h1>MVCC&#160;Configuration Properties</h1>
+        <table style="width: 1362px;">
+            <col style="width: 466px;" />
+            <col />
+            <col />
+            <col />
+            <thead>
+                <tr>
+                    <th align="left">Name</th>
+                    <th align="left">Type</th>
+                    <th>Default Value</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td align="left" style="font-weight: bold;">space-config.mvcc.enabled</td>
+                    <td align="left">Boolean</td>
+                    <td>false</td>
+                    <td>MVCC is enabled for the Space</td>
+                </tr>
+                <tr>
+                    <td align="left" style="font-weight: bold;">space-config.mvcc.space-config.mvcc.historical_entry_lifetime</td>
+                    <td align="left">Integer</td>
+                    <td>5</td>
+                    <td>Time limit for holding entry version in the cache. Main measure for “should particular entry version be cleaned or not“</td>
+                </tr>
+                <tr>
+                    <td align="left" style="font-weight: bold;">space-config.mvcc.historical_entry_lifetime_timeunit</td>
+                    <td align="left">TimeUnit</td>
+                    <td>m</td>
+                    <td>Measure of time limit (millis(ms), seconds(s), minutes(m)…)</td>
+                </tr>
+                <tr>
+                    <td align="left" style="font-weight: bold;">space-config.mvcc.historical_entries_limit</td>
+                    <td align="left">Integer</td>
+                    <td>5</td>
+                    <td>Max allowed limit for historical entries number per UID. <b>CANNOT BE 0</b>. Data lifetime take precedence over this criteria. (if number in cache &lt; limit, but some entries are too old - purge them)</td>
+                </tr>
+                <tr>
+                    <td align="left" style="font-weight: bold;">space-config.mvcc.fixed_cleanup_delay_millis</td>
+                    <td align="left">Integer</td>
+                    <td>1000000</td>
+                    <td>Timeout between cleanup iterations.
+
+To enable dynamic delay based on previous cleanups set to 0.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Configuring a Space for MVCC</h1>
+        <div class="tc-admon-important">
+            <p>MVCC cannot be configured for a Space that is already Active. &#160;To enable MVCC a Space has to be created from new.</p>
+        </div>
+        <p>To enable a Space for MVCC, perform the following:</p>
+        <ol>
+            <li>
+                <p>Add a new Space by following steps as outlined in the <a href="../spacedeck/spacedeck-spaces-adding-a-space.html">User Guide:&#160;SpaceDeck -&#160;Spaces -&#160;Adding a Space</a></p>
+            </li>
+            <li>
+                <p>In the Adding a New Space Parameters section, to enable MVCC add the following Context Properties/Property Name: <b>space-config.mvcc.enabled=true</b></p>
+            </li>
+            <p>
+                <img src="../Resources/Images/DI/MVCC.png" style="width: 333px;height: 381px;" />
+            </p>
+            <li>
+                <p>To change any of the other default parameters, additional Properties Names should to be added.</p>
+            </li>
+            <li>
+                <p>Once completed, click <b>Create Space</b>.</p>
+            </li>
+        </ol>
+        <h1>Querying an MVCC&#160;Enabled Space:&#160;</h1>
+        <ul>
+            <li>
+                <p>The MVCC enabled Space can be queried using the JDBCv3 compliant RESTful Service’s or using the Postgres SQL compliant data-gateway. To gain a consistent view, queries should be be part of an explicit transaction. Non-transactional queries will return eventually consistent data.</p>
+            </li>
+            <li>
+                <p>For developers, The MVCC enabled Space can also be queried using the Java proxy APIs - limited to basic APIs such as single operations by ID (write, read, take, update), read-multiple operations, read/take with template matching. Developers can also utilize the SQL JDBCv3 driver or SQLQuery Java API.</p>
+            </li>
+            <li>
+                <p>MVCC Space operations are required to be transactional. This is to ensure that committed data is consistently reflected when fetched.  A read operation without transaction is only allowed when specifying the <code>READ_COMMITTED</code> isolation level modifier. Transactional reads can be performed with isolation levels such as: <code>DIRTY_READ</code>, <code>REPEATABLE_READ</code>, or the default <code>READ_COMMITTED</code> modifier for MVCC.</p>
+            </li>
+        </ul>
+        <h1>Limitations - Partial Support</h1>
+        <ul>
+            <li>
+                <p>MVCC is limited to All-in-cache and is not supported for other cache policies such as LRU, Tiered-Storage and cache topologies such as: Local Cache/View.</p>
+            </li>
+            <li>
+                <p>Secondary unique index will not be allowed.</p>
+            </li>
+            <li>
+                <p>More than one data pipeline per table is not supported.</p>
+            </li>
+        </ul>
+        <h1>Performance Impact</h1>
+        <ul>
+            <li>
+                <p>Throughput is impacted by a decrease of 5-7%.</p>
+            </li>
+            <li>
+                <p>RAM is impacted by an increase of 90-150%.</p>
+            </li>
+        </ul>
+        <p style="text-align: left;">&#160;</p>
+    </body>
+</html>
