@@ -5,8 +5,8 @@
     <body style="text-align: left;">
         <h1 class="tc-pagetitle" style="text-align: left;">Multiversion Concurrency Control (MVCC)</h1>
         <h1>Introduction</h1>
-        <p>Multiversion concurrency control (MVCC) is a concurrency control method used to provide a concurrent and consistent view of data distributed across partitions. <MadCap:variable name="General.CompanyName" /> keep multiple versions of modified entries to ensure that any queries have a view that is consistent with the SoR.</p>
-        <p>Processing a large number of simultaneous transactions in Smart DIH requires an extreme write throughput that cannot be paused. In order to maintain transactions in the platform, Space objects must not be locked. The MVCC mechanism provides an elegant solution, allowing massive updates while maintaining consistency in the Space with the systems of record. In this manner, the ACID properties of transactions are maintained, ensuring the consistency and integrity of the database before and after each transaction, even in highly available distributed systems.</p>
+        <p>Multiversion concurrency control (MVCC) is method that allows a user to have a concurrent and persistent view of distributed transactions across partitions. <MadCap:variable name="General.CompanyName" /> keep multiple versions of modified entries to ensure that a user has a persistent view of the data that is consistent with the SoR.</p>
+        <p>Processing a large number of simultaneous transactions in Smart DIH requires an extreme write throughput that cannot be paused. In order to maintain transactions in the platform, Space objects must not be locked. The MVCC mechanism provides an efficient solution, allowing massive updates while maintaining consistency in the Space with the systems of record (SoR). In this manner, the ACID properties of transactions are maintained, ensuring the consistency and integrity of the data before and after each update, even in highly available distributed systems.</p>
         <p>For more information about  the MVCC&#160;mechanism and how it is used in Smart DIH, read our blog on <a href="https://www.gigaspaces.com/blog/acid-distributed-transactions">How to Achieve ACID&#160;Compliance on Distributed, Highly Available Systems</a> (search for MVCC).</p>
         <div class="tc-admon-note">
             <p>The configuration settings for MVCC can be modified to tweak the impact on memory consumption.</p>
@@ -62,9 +62,9 @@ To enable dynamic delay based on previous cleanups set to 0.</td>
         </table>
         <h1>Configuring a Space for MVCC</h1>
         <div class="tc-admon-important">
-            <p>MVCC cannot be configured for a Space that is already Active. &#160;To enable MVCC a Space has to be created from new.</p>
+            <p>MVCC cannot be configured for a Space that is already Active. &#160;To enable MVCC a new Space has to be created.</p>
         </div>
-        <p>To enable a Space for MVCC, perform the following:</p>
+        <p>To enable a Space for MVCC, perform the following steps:</p>
         <ol>
             <li>
                 <p>Add a new Space by following steps as outlined in the <a href="../spacedeck/spacedeck-spaces-adding-a-space.html">User Guide:&#160;SpaceDeck -&#160;Spaces -&#160;Adding a Space</a></p>
@@ -76,7 +76,7 @@ To enable dynamic delay based on previous cleanups set to 0.</td>
                 <img src="../Resources/Images/DI/MVCC.png" style="width: 333px;height: 381px;" />
             </p>
             <li>
-                <p>To change any of the other default parameters, additional Properties Names should to be added.</p>
+                <p>To change any of the other default parameters, additional <b>Properties Names</b> should to be added.</p>
             </li>
             <li>
                 <p>Once completed, click <b>Create Space</b>.</p>
@@ -85,7 +85,7 @@ To enable dynamic delay based on previous cleanups set to 0.</td>
         <h1>Querying an MVCC&#160;Enabled Space:&#160;</h1>
         <ul>
             <li>
-                <p>The MVCC enabled Space can be queried using the JDBCv3 compliant RESTful Service’s or using the Postgres SQL compliant data-gateway. To gain a consistent view, queries should be be part of an explicit transaction. Non-transactional queries will return eventually consistent data.</p>
+                <p>The MVCC enabled Space can be queried using the JDBCv3 compliant RESTful Services or using the Postgres SQL compliant data-gateway. It is recommended for a persistent view, that queries should be part of an explicit transaction. This is because the consistently of the data for non-transactional queries cannot be guaranteed.</p>
             </li>
             <li>
                 <p>For developers, The MVCC enabled Space can also be queried using the Java proxy APIs - limited to basic APIs such as single operations by ID (write, read, take, update), read-multiple operations, read/take with template matching. Developers can also utilize the SQL JDBCv3 driver or SQLQuery Java API.</p>
@@ -97,22 +97,25 @@ To enable dynamic delay based on previous cleanups set to 0.</td>
         <h1>Limitations - Partial Support</h1>
         <ul>
             <li>
-                <p>MVCC is limited to All-in-cache and is not supported for other cache policies such as LRU, Tiered-Storage and cache topologies such as: Local Cache/View.</p>
+                <p>MVCC is limited to ALL&#160;IN&#160;CACHE configuration.</p>
+            </li>
+            <li>
+                <p>There is no support for other cache policies such as LRU, Tiered-Storage and cache topologies such as: Local Cache/View.</p>
             </li>
             <li>
                 <p>Secondary unique index will not be allowed.</p>
             </li>
             <li>
-                <p>More than one data pipeline per table is not supported.</p>
+                <p>More than one data pipeline per table is not supported. &#160;Each object type in the&#160;Space must be populated through one specific pipeline.</p>
             </li>
         </ul>
         <h1>Performance Impact</h1>
         <ul>
             <li>
-                <p>Throughput is impacted by a decrease of 5-7%.</p>
+                <p>The number of transactions (throughput) is decreased by 5-7%.</p>
             </li>
             <li>
-                <p>RAM is impacted by an increase of 90-150%.</p>
+                <p>MVCC adds on average a 25% RAM overhead.</p>
             </li>
         </ul>
         <p style="text-align: left;">&#160;</p>
