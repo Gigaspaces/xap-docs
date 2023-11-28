@@ -17,14 +17,14 @@
             <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
         </map>
         <h1 class="tc-pagetitle">SpaceDeck - SSO&#160;IDP&#160;Setup</h1>
-        <p>For configuring SSO&#160;(Secure Sign-On) for SpaceDeck, <MadCap:variable name="General.CompanyName" /> supports using any IDP that supports OpenID Connect (OIDC) including Okta, Azure Active Directory Amazon Cognito and Keycloak.  We provide examples below of how to configure this using <b>Okta</b> and <b>Azure Active Directory</b>.</p>
+        <p>For configuring SSO&#160;(Secure Sign-On) for SpaceDeck, <MadCap:variable name="General.CompanyName" /> supports using any IDP that supports OpenID Connect (OIDC) including Okta, Azure Active Directory, Amazon Cognito and Keycloak.  We provide examples below of how to configure this using <b>Okta</b> and <b>Azure Active Directory</b>.</p>
         <p>For user management through the IDP, roles and groups are created and then certain roles can be assigned to the user, for example admin. Via Spacedeck roles are then created with the same name which was created in the IDP  and <a href="spacedeck-admin.html#ResourceManagement">permissions</a> are then assigned accordingly for each role.</p>
         <p>&#160;</p>
         <div class="easyui-tabs" plain="true">
             <div title="Okta IDP Setup">
                 <ol>
                     <li>
-                        <p>Create a developer account in <a href="https://developer.okta.com/signup/">Okta</a> or Azure Active Directory.<a href="https://developer.okta.com/signup/"> </a></p>
+                        <p>Create a developer account in <a href="https://developer.okta.com/signup/">Okta</a> or Azure Active Directory.</p>
                     </li>
                     <li>
                         <p>Once created, log in to the account and from the left side menu, select <b>Applications</b>:</p>
@@ -46,6 +46,9 @@
                             </li>
                             <li>
                                 <p style="text-indent: 0.1in;">From <b>Grant type</b> select <b>Authorization Code</b> from the <b>Client acting on behalf of a user</b> section.</p>
+                                <div class="tc-admon-note">
+                                    <p>If you want to use the refresh token mechanism,  <b>Refresh Token</b>  should also be selected.</p>
+                                </div>
                             </li>
                             <li>
                                 <p style="text-indent: 0.1in;">From <b>Sign-in redirect&#160;URIs</b> set up a redirect URI -&gt; URI&#160;to security service callback.</p>
@@ -58,11 +61,9 @@
                     <li>
                         <p>Controlled access is customizable according to each client's requirements. &#160;GigaSpaces has tested it with the following setting:</p>
                     </li>
-                    <ol>
-                        <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA5.png" style="width: 578px;height: 280px;" />
-                    </ol>
+                    <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA5.png" style="width: 578px;height: 280px;" />
                     <li>
-                        <p>Click Save. Okta will provide a Client ID and Client Secret.</p>
+                        <p>Click <b>Save</b>. Okta will provide a Client ID and Client Secret.</p>
                     </li>
                     <li>
                         <p>On the left side menu, select <b>Security</b> then <b>API</b> where you will find the <b>Issuer URI</b> that should be provided to SpaceDeck when you are setting up the IDP. Here the client has the option to customize and create a new authorization server. In this specific example, it was tested using the default:</p>
@@ -71,7 +72,7 @@
                         </p>
                     </li>
                     <li>
-                        <p>In SpaceDeck, the <b>Client ID</b>, <b>Client Secret</b> and <b>Issuer URI</b> are populated as follow:</p>
+                        <p>In the SpaceDeck, the <b>Client ID</b>, <b>Client Secret</b> and <b>Issuer URI</b> are populated as followed:</p>
                         <p>
                             <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA7.png" style="width: 838px;height: 301px;" />
                         </p>
@@ -326,7 +327,7 @@
                     <li>
                         <p>Click <b>Add user/group</b>:</p>
                         <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD23.png" style="width: 554px;height: 399px;" />
+                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD23a.png" style="width: 521px;height: 278px;" />
                         </p>
                     </li>
                     <li>
@@ -336,7 +337,7 @@
                         </p>
                     </li>
                     <li>
-                        <p>In the SpaceDeck, in the <a href="spacedeck-admin.html#Roles-Mangement">Administration/Role Management menu</a> enter <b>roles</b> for the <b>Authority Grant&#160;Type</b> field:</p>
+                        <p>In the SpaceDeck, in the <a href="spacedeck-admin.html#Roles-Mangement">Administration/Role Management menu</a> enter <b>roles</b> for the <b>Authorization Grant&#160;Type</b> field:</p>
                         <p>
                             <img src="../Resources/Images/SpaceDeck/16.5/AzureADGrantType.png" style="width: 1099px;height: 324px;" />
                         </p>
