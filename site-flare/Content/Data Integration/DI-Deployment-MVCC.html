@@ -8,9 +8,6 @@
         <p>Multiversion concurrency control (MVCC) is method that allows a user to have a concurrent and persistent view of distributed transactions across partitions. <MadCap:variable name="General.CompanyName" /> keep multiple versions of modified entries to ensure that a user has a persistent view of the data that is consistent with the SoR.</p>
         <p>Processing a large number of simultaneous transactions in Smart DIH requires an extreme write throughput that cannot be paused. In order to maintain transactions in the platform, Space objects must not be locked. The MVCC mechanism provides an efficient solution, allowing massive updates while maintaining consistency in the Space with the systems of record (SoR). In this manner, the ACID properties of transactions are maintained, ensuring the consistency and integrity of the data before and after each update, even in highly available distributed systems.</p>
         <p>For more information about  the MVCC&#160;mechanism and how it is used in Smart DIH, read our blog on <a href="https://www.gigaspaces.com/blog/acid-distributed-transactions">How to Achieve ACID&#160;Compliance on Distributed, Highly Available Systems</a> (search for MVCC).</p>
-        <div class="tc-admon-note">
-            <p>The configuration settings for MVCC can be modified to tweak the impact on memory consumption.</p>
-        </div>
         <h1>MVCC&#160;Configuration Properties</h1>
         <table style="width: 1362px;">
             <col style="width: 466px;" />
@@ -56,10 +53,13 @@
                     <td>1000000</td>
                     <td>Timeout between cleanup iterations.
 
-To enable dynamic delay based on previous cleanups set to 0.</td>
+<b>To enable dynamic delay based on previous cleanups set to 0</b>.</td>
                 </tr>
             </tbody>
         </table>
+        <div class="tc-admon-note">
+            <p>The configuration settings for MVCC can be modified to tweak the impact on memory consumption.</p>
+        </div>
         <h1>Configuring a Space for MVCC</h1>
         <div class="tc-admon-important">
             <p>MVCC cannot be configured for a Space that is already Active. &#160;To enable MVCC a new Space has to be created.</p>
@@ -73,7 +73,7 @@ To enable dynamic delay based on previous cleanups set to 0.</td>
                 <p>In the Adding a New Space Parameters section, to enable MVCC add the following Context Properties/Property Name: <b>space-config.mvcc.enabled=true</b></p>
             </li>
             <p>
-                <img src="../Resources/Images/DI/MVCC.png" style="width: 333px;height: 381px;" />
+                <img src="../Resources/Images/DI/MVCC.png" style="width: 619px;height: 708px;" />
             </p>
             <li>
                 <p>To change any of the other default parameters, additional <b>Properties Names</b> should to be added.</p>
@@ -96,6 +96,9 @@ To enable dynamic delay based on previous cleanups set to 0.</td>
         </ul>
         <h1>Limitations - Partial Support</h1>
         <ul>
+            <li>
+                <p>Space operations such as dropClass, asyncRead, readIfExistsById, readIfExists, takeByIds, asyncTake, takeIfExistsById, takeIfExists, takeMultiple, writeMultiple, iterator, execute, executorBuilder, count, clear, aggregate, change, asyncChange and asyncLoad are not supported.</p>
+            </li>
             <li>
                 <p>MVCC is limited to ALL&#160;IN&#160;CACHE configuration.</p>
             </li>
