@@ -62,10 +62,10 @@
                 <p><b>Provider id</b> – This is a generic ID that will be used as a name for the auth-config creator.</p>
             </li>
             <li>
-                <p><b>Redirect URIs</b> – Upon successful sign-in, this endpoing in our server will receive the data from the IDP.</p>
+                <p><b>Redirect URIs</b> – Upon successful sign-in, this endpoint in our server will receive the data from the IDP.</p>
             </li>
             <li>
-                <p><b>Issue&#160;URL</b> – URL&#160;of the IDP&#160;issuer. &#160;For example, Okta, JumpCloud, Azure Active Directory, Github.</p>
+                <p><b>Issue&#160;URL</b> – URL&#160;of the IDP&#160;issuer. &#160;For example, Okta, JumpCloud, Azure Active Directory.</p>
             </li>
             <li>
                 <p><b>Client Id</b> – Unlike the Provider ID, this ID serves as a unique identifier which the IDP generates to the user so they can identify with it,</p>
@@ -77,7 +77,7 @@
                 <p><b>Authorization Grant Type</b> – Each IDP has rules regarding how roles are grouped. These rules have an arbitrary name provided by the IDP. The roles user must use this name to create the roles.</p>
             </li>
             <li MadCap:conditions="Version.16-3-died">
-                <p><b>Scope</b> - </p>
+                <p><b>Scope</b> - Azure AD can generate two versions of tokens v1.0 and v2.0 . However, using the default scope “openid” that <MadCap:variable name="General.CompanyName" /> use for all other identity providers (like Okta), Azure AD will only generates a token for v1.0. As <MadCap:variable name="General.CompanyName" /> require a token of v2.0, the contents of this custom Scope field is used to request that Azure AD generate a token version v2.0. See the <a href="spacedeck-idp-details.html">Azure AD IDP Setup</a> tab for more details.</p>
             </li>
         </ul>
         <p>Once the connection details are entered, click <b>Apply</b>. </p>
