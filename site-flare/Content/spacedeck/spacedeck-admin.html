@@ -39,9 +39,9 @@
         </div>
         <h1><a name="GeneralSetup"></a>General&#160;Setup </h1>
         <p>Populate the Connection fields in order to configure SSO login using a predefined IDP. </p>
-        <p>For user management through the IDP, roles and groups are created and then certain roles can be assigned to the user, for example admin. Via Spacedeck roles are then created with the same name which was created in the IDP  and <a href="spacedeck-admin.html#ResourceManagement">permissions</a> are then assigned accordingly for each role.</p>
+        <p>For user management through the IDP, roles and groups are created and then certain roles can be assigned to the user, for example admin. Via SpaceDeck roles are then created with the same name which was created in the IDP  and <a href="spacedeck-admin.html#ResourceManagement">permissions</a> are then assigned accordingly for each role.</p>
         <div class="tc-admon-note">
-            <p>Refer to <MadCap:xref href="spacedeck-idp-details.html">SpaceDeck SSO&#160;IDP&#160;Setup</MadCap:xref> for an example of IDP setup through <b>Okta</b> and <b>Azure Active Directory</b>.</p>
+            <p>Refer to <MadCap:xref href="spacedeck-idp-details.html">SpaceDeck SSO&#160;IDP&#160;Setup</MadCap:xref> for an example of IDP setup through <b>Okta</b> <MadCap:conditionalText MadCap:conditions="Version.16-3-died">and <b>Azure Active Directory</b></MadCap:conditionalText>.</p>
         </div>
         <div class="tc-admon-attention">
             <p>In order to be able to configure the <b>Connection (Identify Provider)</b> fields the user has to be assigned the specific permission of <b>Manager Identify Providers</b>, otherwise an error 403 (Forbidden) response will be displayed. </p>
@@ -75,6 +75,9 @@
             </li>
             <li>
                 <p><b>Authorization Grant Type</b> – Each IDP has rules regarding how roles are grouped. These rules have an arbitrary name provided by the IDP. The roles user must use this name to create the roles.</p>
+            </li>
+            <li MadCap:conditions="Version.16-3-died">
+                <p><b>Scope</b> - </p>
             </li>
         </ul>
         <p>Once the connection details are entered, click <b>Apply</b>. </p>

@@ -17,335 +17,337 @@
             <area shape="rectangle" coords="940,227,1349,656" dragDirection="0" />
         </map>
         <h1 class="tc-pagetitle">SpaceDeck - SSO&#160;IDP&#160;Setup</h1>
-        <p>For configuring SSO&#160;(Secure Sign-On) for SpaceDeck, <MadCap:variable name="General.CompanyName" /> supports using any IDP that supports OpenID Connect (OIDC) including Okta, Azure Active Directory, Amazon Cognito and Keycloak.  We provide examples below of how to configure this using <b>Okta</b> and <b>Azure Active Directory</b>.</p>
+        <p>For configuring SSO&#160;(Secure Sign-On) for SpaceDeck, <MadCap:variable name="General.CompanyName" /> supports using any IDP that supports OpenID Connect (OIDC) including Okta, Azure Active Directory, Amazon Cognito and Keycloak.  We provide examples below of how to configure this using <b>Okta</b> <MadCap:conditionalText MadCap:conditions="Version.16-3-died">and <b>Azure Active Directory</b>.</MadCap:conditionalText></p>
         <p>For user management through the IDP, roles and groups are created and then certain roles can be assigned to the user, for example admin. Via Spacedeck roles are then created with the same name which was created in the IDP  and <a href="spacedeck-admin.html#ResourceManagement">permissions</a> are then assigned accordingly for each role.</p>
         <p>&#160;</p>
-        <div class="easyui-tabs" plain="true">
-            <div title="Okta IDP Setup">
-                <ol>
-                    <li>
-                        <p>Create a developer account in <a href="https://developer.okta.com/signup/">Okta</a> or Azure Active Directory.</p>
-                    </li>
-                    <li>
-                        <p>Once created, log in to the account and from the left side menu, select <b>Applications</b>:</p>
-                    </li>
-                    <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA1.png" style="width: 274px;height: 390px;" />
-                    <li>
-                        <p>Click <b>Create App Integration</b>:</p>
-                    </li>
-                    <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA2.png" style="width: 734px;height: 274px;" />
-                    <li>
-                        <p>From the pop-out menu, select <b>Sign-in method </b>OIDC - OpenID Connect and <b>Application type</b> Web Application. Then click <b>Next</b>:</p>
-                    </li>
-                    <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA3.png" style="width: 568px;height: 494px;" />
-                    <li>
-                        <p>In the New Web App Integration screen:</p>
-                        <ul>
-                            <li>
-                                <p style="text-indent: 0.1in;">Provide an <b>App integration name</b>. In the example below it is Test Demo&#160;App.</p>
-                            </li>
-                            <li>
-                                <p style="text-indent: 0.1in;">From <b>Grant type</b> select <b>Authorization Code</b> from the <b>Client acting on behalf of a user</b> section.</p>
-                                <div class="tc-admon-note">
-                                    <p>If you want to use the refresh token mechanism,  <b>Refresh Token</b>  should also be selected.</p>
-                                </div>
-                            </li>
-                            <li>
-                                <p style="text-indent: 0.1in;">From <b>Sign-in redirect&#160;URIs</b> set up a redirect URI -&gt; URI&#160;to security service callback.</p>
-                            </li>
-                        </ul>
-                    </li>
-                    <blockquote>
-                        <ol> <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA4.png" style="width: 576px;height: 505px;" /></ol>
-                    </blockquote>
-                    <li>
-                        <p>Controlled access is customizable according to each client's requirements. &#160;GigaSpaces has tested it with the following setting:</p>
-                    </li>
-                    <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA5.png" style="width: 578px;height: 280px;" />
-                    <li>
-                        <p>Click <b>Save</b>. Okta will provide a Client ID and Client Secret.</p>
-                    </li>
-                    <li>
-                        <p>On the left side menu, select <b>Security</b> then <b>API</b> where you will find the <b>Issuer URI</b> that should be provided to SpaceDeck when you are setting up the IDP. Here the client has the option to customize and create a new authorization server. In this specific example, it was tested using the default:</p>
+        <div>
+            <div class="easyui-tabs" plain="true">
+                <div title="Okta IDP Setup">
+                    <ol>
+                        <li>
+                            <p>Create a developer account in <a href="https://developer.okta.com/signup/">Okta</a> <MadCap:conditionalText MadCap:conditions="Version.16-3-died">or Azure Active Directory</MadCap:conditionalText>.</p>
+                        </li>
+                        <li>
+                            <p>Once created, log in to the account and from the left side menu, select <b>Applications</b>:</p>
+                        </li>
+                        <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA1.png" style="width: 274px;height: 390px;" />
+                        <li>
+                            <p>Click <b>Create App Integration</b>:</p>
+                        </li>
+                        <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA2.png" style="width: 734px;height: 274px;" />
+                        <li>
+                            <p>From the pop-out menu, select <b>Sign-in method </b>OIDC - OpenID Connect and <b>Application type</b> Web Application. Then click <b>Next</b>:</p>
+                        </li>
+                        <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA3.png" style="width: 568px;height: 494px;" />
+                        <li>
+                            <p>In the New Web App Integration screen:</p>
+                            <ul>
+                                <li>
+                                    <p style="text-indent: 0.1in;">Provide an <b>App integration name</b>. In the example below it is Test Demo&#160;App.</p>
+                                </li>
+                                <li>
+                                    <p style="text-indent: 0.1in;">From <b>Grant type</b> select <b>Authorization Code</b> from the <b>Client acting on behalf of a user</b> section.</p>
+                                    <div class="tc-admon-note">
+                                        <p>If you want to use the refresh token mechanism,  <b>Refresh Token</b>  should also be selected.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p style="text-indent: 0.1in;">From <b>Sign-in redirect&#160;URIs</b> set up a redirect URI -&gt; URI&#160;to security service callback.</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <blockquote>
+                            <ol> <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA4.png" style="width: 576px;height: 505px;" /></ol>
+                        </blockquote>
+                        <li>
+                            <p>Controlled access is customizable according to each client's requirements. &#160;GigaSpaces has tested it with the following setting:</p>
+                        </li>
+                        <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA5.png" style="width: 578px;height: 280px;" />
+                        <li>
+                            <p>Click <b>Save</b>. Okta will provide a Client ID and Client Secret.</p>
+                        </li>
+                        <li>
+                            <p>On the left side menu, select <b>Security</b> then <b>API</b> where you will find the <b>Issuer URI</b> that should be provided to SpaceDeck when you are setting up the IDP. Here the client has the option to customize and create a new authorization server. In this specific example, it was tested using the default:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA6a.png" style="width: 829px;height: 592px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>In the SpaceDeck, the <b>Client ID</b>, <b>Client Secret</b> and <b>Issuer URI</b> are populated as followed:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA7.png" style="width: 838px;height: 301px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>To manager users in Okta, on the left side menu, select <b>Directory</b> then <b>People</b>:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA8.png" style="width: 842px;height: 274px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>To manage groups in Okta (which are translated as roles in SpaceDeck), on the left side menu go to <b>Directory</b> then <b>Groups</b>. By default in Smart DIH the role of ROLE_ADMIN has all privileges. It is customizable and can be changed via the config map. &#160;However, to follow the default behavior and to use the ROLE_ADMIN in SMART&#160;DIH, a ROLE_ADMIN group has to be created in OKTA and people assigned to this group. &#160;This group will contain administrators and will have all privileges. To create a group in Okta, on the left side menu, go to <b>Directory</b> then <b>Groups</b> and click <b>Add group</b>, supply the name <b>ROLE_ADMIN</b> and then click <b>Save</b>.</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA9.png" style="width: 769px;height: 317px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>From the drop-down of <b>Group source type</b>, select <b>Okta groups</b>.&#160;The ROLE_ADMIN group will be in the list.</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA10a.png" style="width: 775px;height: 387px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>To assign users to ROLE_ADMIN (or any other created group) on the left side menu, go to <b>Directory</b> then <b>People</b> and choose users from the list of users. Click the user. To switch the users groups, type the group name and then click enter.</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA11.png" style="width: 617px;height: 358px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Now the <b>access token claims</b> have to be customized so it will have groups used in Smart DIH. &#160;To accomplish this, on the left side menu go to <b>Security</b> then <b>API</b> and on the API screen, <b>Authorization Servers</b>:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA12.png" style="width: 684px;height: 472px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Select the server that is being used and go to the <b>Claims</b> tabs then <b>Access</b>:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA13.png" style="width: 703px;height: 382px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Click <b>Add Claim</b> and input a name for the Claim. In the <b>Value type</b> drop-down select <b>Groups</b>. For <b>Filter</b>, provide the filter to be applied. In this example, only groups with the ROLE_ prefix should be used. Click <b>Create</b>.</p>
+                            <div class="tc-admon-note">
+                                <p>The name of the claim will be used in SpaceDeck in the IDP Setup, for the setting of <a href="spacedeck-admin.html#IDPConnectionFields">Authorization Grant Type</a></p>
+                            </div>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA14.png" style="width: 503px;height: 397px;" />
+                            </p>
+                            <p>In SpaceDeck:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA15.png" style="width: 694px;height: 238px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>In order to bind the IDP that has been created above, the root user has to login to SpaceDeck with the correct username/password and then populate all the <a href="spacedeck-admin.html#IDPConnectionFields">Connection fields</a> in the Administration/General Setup menu. </p>
+                            <div class="tc-admon-important">
+                                <p>By default, the root user has root/password credentials. &#160;<b>This must be changed before installation</b> using the parameter of <b>global.password</b> seen in step 3 of the <a href="../admin/DIH-installation-kubernetes.html#InstructionsK8s">Instructions</a> for Smart DIH&#160;Installation using Kubernetes.</p>
+                            </div>
+                        </li>
                         <p>
-                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA6a.png" style="width: 829px;height: 592px;" />
+                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA16.png" style="width: 491px;height: 357px;" />
                         </p>
-                    </li>
-                    <li>
-                        <p>In the SpaceDeck, the <b>Client ID</b>, <b>Client Secret</b> and <b>Issuer URI</b> are populated as followed:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA7.png" style="width: 838px;height: 301px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>To manager users in Okta, on the left side menu, select <b>Directory</b> then <b>People</b>:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA8.png" style="width: 842px;height: 274px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>To manage groups in Okta (which are translated as roles in SpaceDeck), on the left side menu go to <b>Directory</b> then <b>Groups</b>. By default in Smart DIH the role of ROLE_ADMIN has all privileges. It is customizable and can be changed via the config map. &#160;However, to follow the default behavior and to use the ROLE_ADMIN in SMART&#160;DIH, a ROLE_ADMIN group has to be created in OKTA and people assigned to this group. &#160;This group will contain administrators and will have all privileges. To create a group in Okta, on the left side menu, go to <b>Directory</b> then <b>Groups</b> and click <b>Add group</b>, supply the name <b>ROLE_ADMIN</b> and then click <b>Save</b>.</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA9.png" style="width: 769px;height: 317px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>From the drop-down of <b>Group source type</b>, select <b>Okta groups</b>.&#160;The ROLE_ADMIN group will be in the list.</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA10a.png" style="width: 775px;height: 387px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>To assign users to ROLE_ADMIN (or any other created group) on the left side menu, go to <b>Directory</b> then <b>People</b> and choose users from the list of users. Click the user. To switch the users groups, type the group name and then click enter.</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA11.png" style="width: 617px;height: 358px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Now the <b>access token claims</b> have to be customized so it will have groups used in Smart DIH. &#160;To accomplish this, on the left side menu go to <b>Security</b> then <b>API</b> and on the API screen, <b>Authorization Servers</b>:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA12.png" style="width: 684px;height: 472px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Select the server that is being used and go to the <b>Claims</b> tabs then <b>Access</b>:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA13.png" style="width: 703px;height: 382px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Click <b>Add Claim</b> and input a name for the Claim. In the <b>Value type</b> drop-down select <b>Groups</b>. For <b>Filter</b>, provide the filter to be applied. In this example, only groups with the ROLE_ prefix should be used. Click <b>Create</b>.</p>
-                        <div class="tc-admon-note">
-                            <p>The name of the claim will be used in SpaceDeck in the IDP Setup, for the setting of <a href="spacedeck-admin.html#IDPConnectionFields">Authorization Grant Type</a></p>
-                        </div>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA14.png" style="width: 503px;height: 397px;" />
-                        </p>
-                        <p>In SpaceDeck:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA15.png" style="width: 694px;height: 238px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>In order to bind the IDP that has been created above, the root user has to login to SpaceDeck with the correct username/password and then populate all the <a href="spacedeck-admin.html#IDPConnectionFields">Connection fields</a> in the Administration/General Setup menu. </p>
-                        <div class="tc-admon-important">
-                            <p>By default, the root user has root/password credentials. &#160;<b>This must be changed before installation</b> using the parameter of <b>global.password</b> seen in step 3 of the <a href="../admin/DIH-installation-kubernetes.html#InstructionsK8s">Instructions</a> for Smart DIH&#160;Installation using Kubernetes.</p>
-                        </div>
-                    </li>
-                    <p>
-                        <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA16.png" style="width: 491px;height: 357px;" />
-                    </p>
-                    <li>
-                        <p>Once the IDP has been configured, users can now use SSO login to sign in securely by selecting the <b>Single sign-on</b> option:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA16a.png" style="width: 492px;height: 369px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>After clicking LOGIN, the user will be redirected to the Okta login form to provide credentials:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA17.png" />
-                        </p>
-                    </li>
-                </ol>
+                        <li>
+                            <p>Once the IDP has been configured, users can now use SSO login to sign in securely by selecting the <b>Single sign-on</b> option:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA16a.png" style="width: 492px;height: 369px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>After clicking LOGIN, the user will be redirected to the Okta login form to provide credentials:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.4/Admin-OKTA17.png" />
+                            </p>
+                        </li>
+                    </ol>
+                </div>
+                <div title="Azure Active Directory IDP Setup" MadCap:conditions="Version.16-3-died">
+                    <ol>
+                        <li>
+                            <p>Login to your Azure developer account.</p>
+                        </li>
+                        <li>
+                            <p>Select <b>Microsoft Entra ID</b>:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD1.png" style="width: 632px;height: 452px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Select <b>App registrations</b> from the left-side menu:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD2.png" style="width: 429px;height: 561px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Click <b>+&#160;New registration</b> from the middle top:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD3.png" style="width: 638px;height: 391px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Input the following:</p>
+                            <ol>
+                                <li>
+                                    <p>Your application name</p>
+                                </li>
+                                <li>
+                                    <p>Supported account types (can use the choice as per the screenshot below)</p>
+                                </li>
+                                <li>
+                                    <p>Redirect URI - Select Web from the drop-down menu and provide the redirect URI of your application</p>
+                                </li>
+                                <li>
+                                    <p>Click <b>Register</b></p>
+                                </li>
+                            </ol>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD4a.png" style="width: 636px;height: 742px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Select <b>App registrations</b> and select the App you have just registered. In the example below, this is named Test App:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD5.png" style="width: 477px;height: 424px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Click <b>Add a certificate or secret</b> from the right-hand side in order to create a client secret:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD6.png" style="width: 895px;height: 96px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Click <b>+&#160;New client secret</b>:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD7.png" style="width: 757px;height: 338px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Provide a secret description and select an expiration time from the drop-down menu. Then click <b>Add</b> which is found at the bottom of the screen:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD8.png" style="width: 755px;height: 199px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Once a client secret has been created, copy and save the <b>Value</b> of the secret:</p>
+                            <div class="tc-admon-important">
+                                <p>It is important to copy and save the value as you will NOT&#160;be able to view it later</p>
+                            </div>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD10.png" style="width: 613px;height: 198px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>The Client secret value should be pasted into the <b>Client Secret</b> field in the <a href="spacedeck-admin.html">SpaceDeck Administration</a>/General Setup menu during IDP&#160;setup:<img src="../Resources/Images/SpaceDeck/16.5/AzureADClientSecret.png" style="width: 1082px;height: 320px;" /></p>
+                        </li>
+                        <li>
+                            <p>From the Azure application, copy the for <b>Application (client) id</b>:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD11.png" style="width: 642px;height: 479px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>The Application (client) ID value should be pasted into the <b>Client Id</b> field in the <a href="spacedeck-admin.html">SpaceDeck Administration</a>/General Setup menu during IDP&#160;setup:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureADClientID.png" style="width: 1063px;height: 314px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>From the Azure application, select <b>Endpoints</b> from the middle top menu:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD13.png" style="width: 651px;height: 307px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>From the Endpoints list, find and copy the link <b>OpenID&#160;Connect metadata document</b> that ends with <b>/v2.0/.well-known/openid-configuration</b>. Paste this link into a browser and copy the issuer value from the response. This value should then be  pasted into the <b>Issue URL</b> field in the <a href="spacedeck-admin.html">SpaceDeck Administration</a>/General Setup menu during IDP&#160;setup:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureADIssueURL.png" style="width: 1094px;height: 322px;" /> </p>
+                        </li>
+                        <li>
+                            <p>Generate scope:</p>
+                            <ol>
+                                <li>
+                                    <p>From the Azure application, select <b>Expose an API</b></p>
+                                </li>
+                                <li>
+                                    <p>Click <b>Add</b> next to <b>Application ID&#160;URI</b>. &#160;You can use the default value. At the bottom of the screen, click <b>Save</b>.</p>
+                                </li>
+                                <li>
+                                    <p>Click <b>+Add a scope</b></p>
+                                    <p>
+                                        <img src="../Resources/Images/SpaceDeck/16.5/AzureAD15.png" style="width: 664px;height: 748px;" />
+                                    </p>
+                                </li>
+                            </ol>
+                            <ol>
+                                <li>
+                                    <p>Provide a <b>Scope name</b></p>
+                                </li>
+                                <li>
+                                    <p>For Who can consent? select <b>Admins and users</b></p>
+                                </li>
+                                <li>
+                                    <p>Populate the mandatory fields with your description, then click <b>Add scope</b> at the bottom of the screen.</p>
+                                    <p>
+                                        <img src="../Resources/Images/SpaceDeck/16.5/AzureAD16.png" style="width: 436px;height: 577px;" />
+                                    </p>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>
+                            <p>Copy the Scopes value:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD17.png" style="width: 664px;height: 423px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>This Scopes value should then be  pasted into the <b>scope</b> field in the <a href="spacedeck-admin.html">SpaceDeck Administration</a>/General Setup menu during IDP&#160;setup:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureADScope.png" style="width: 1101px;height: 325px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>To manage roles for your application (in this case SpaceDeck), go to the Azure application and select <b>App roles</b> and then click <b>+ Create app role</b>:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD18.png" style="width: 726px;height: 762px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Provide role details and then click <b>Apply</b> at the bottom of the screen. This is an example  of a role creation for ROLE_ADMIN:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD19.png" style="width: 530px;height: 622px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>To manage users for your application (in this case SpaceDeck), navigate to the <b>Microsoft Entra ID</b> screen and from the left-side <b>Manage</b> menu, select <b>Users</b>:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD20.png" style="width: 510px;height: 407px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>To assign users and groups (roles) for your application (in this case SpaceDeck), navigate to <b>Microsoft Entra ID</b> screen and select <b>Enterprise applications</b> from the left-side menu:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD21.png" style="width: 518px;height: 551px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Select your application and then on the next screen, click <b>Assign Users and Groups</b>:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD22.png" style="width: 549px;height: 518px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Click <b>Add user/group</b>:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD23a.png" style="width: 521px;height: 278px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>Select user and role and click <b>Assign</b> at the bottom of the screen:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureAD24.png" style="width: 561px;height: 286px;" />
+                            </p>
+                        </li>
+                        <li>
+                            <p>In the SpaceDeck, in the <a href="spacedeck-admin.html#Roles-Mangement">Administration/Role Management menu</a> enter <b>roles</b> for the <b>Authorization Grant&#160;Type</b> field:</p>
+                            <p>
+                                <img src="../Resources/Images/SpaceDeck/16.5/AzureADGrantType.png" style="width: 1099px;height: 324px;" />
+                            </p>
+                        </li>
+                    </ol>
+                </div>
             </div>
-            <div title="Azure Active Directory IDP Setup">
-                <ol>
-                    <li>
-                        <p>Login to your Azure developer account.</p>
-                    </li>
-                    <li>
-                        <p>Select <b>Microsoft Entra ID</b>:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD1.png" style="width: 632px;height: 452px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Select <b>App registrations</b> from the left-side menu:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD2.png" style="width: 429px;height: 561px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Click <b>+&#160;New registration</b> from the middle top:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD3.png" style="width: 638px;height: 391px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Input the following:</p>
-                        <ol>
-                            <li>
-                                <p>Your application name</p>
-                            </li>
-                            <li>
-                                <p>Supported account types (can use the choice as per the screenshot below)</p>
-                            </li>
-                            <li>
-                                <p>Redirect URI - Select Web from the drop-down menu and provide the redirect URI of your application</p>
-                            </li>
-                            <li>
-                                <p>Click <b>Register</b></p>
-                            </li>
-                        </ol>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD4a.png" style="width: 636px;height: 742px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Select <b>App registrations</b> and select the App you have just registered. In the example below, this is named Test App:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD5.png" style="width: 477px;height: 424px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Click <b>Add a certificate or secret</b> from the right-hand side in order to create a client secret:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD6.png" style="width: 895px;height: 96px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Click <b>+&#160;New client secret</b>:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD7.png" style="width: 757px;height: 338px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Provide a secret description and select an expiration time from the drop-down menu. Then click <b>Add</b> which is found at the bottom of the screen:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD8.png" style="width: 755px;height: 199px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Once a client secret has been created, copy and save the <b>Value</b> of the secret:</p>
-                        <div class="tc-admon-important">
-                            <p>It is important to copy and save the value as you will NOT&#160;be able to view it later</p>
-                        </div>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD10.png" style="width: 613px;height: 198px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>The Client secret value should be pasted into the <b>Client Secret</b> field in the <a href="spacedeck-admin.html">SpaceDeck Administration</a>/General Setup menu during IDP&#160;setup:<img src="../Resources/Images/SpaceDeck/16.5/AzureADClientSecret.png" style="width: 1082px;height: 320px;" /></p>
-                    </li>
-                    <li>
-                        <p>From the Azure application, copy the for <b>Application (client) id</b>:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD11.png" style="width: 642px;height: 479px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>The Application (client) ID value should be pasted into the <b>Client Id</b> field in the <a href="spacedeck-admin.html">SpaceDeck Administration</a>/General Setup menu during IDP&#160;setup:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureADClientID.png" style="width: 1063px;height: 314px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>From the Azure application, select <b>Endpoints</b> from the middle top menu:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD13.png" style="width: 651px;height: 307px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>From the Endpoints list, find and copy the link <b>OpenID&#160;Connect metadata document</b> that ends with <b>/v2.0/.well-known/openid-configuration</b>. Paste this link into a browser and copy the issuer value from the response. This value should then be  pasted into the <b>Issue URL</b> field in the <a href="spacedeck-admin.html">SpaceDeck Administration</a>/General Setup menu during IDP&#160;setup:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureADIssueURL.png" style="width: 1094px;height: 322px;" /> </p>
-                    </li>
-                    <li>
-                        <p>Generate scope:</p>
-                        <ol>
-                            <li>
-                                <p>From the Azure application, select <b>Expose an API</b></p>
-                            </li>
-                            <li>
-                                <p>Click <b>Add</b> next to <b>Application ID&#160;URI</b>. &#160;You can use the default value. At the bottom of the screen, click <b>Save</b>.</p>
-                            </li>
-                            <li>
-                                <p>Click <b>+Add a scope</b></p>
-                                <p>
-                                    <img src="../Resources/Images/SpaceDeck/16.5/AzureAD15.png" style="width: 664px;height: 748px;" />
-                                </p>
-                            </li>
-                        </ol>
-                        <ol>
-                            <li>
-                                <p>Provide a <b>Scope name</b></p>
-                            </li>
-                            <li>
-                                <p>For Who can consent? select <b>Admins and users</b></p>
-                            </li>
-                            <li>
-                                <p>Populate the mandatory fields with your description, then click <b>Add scope</b> at the bottom of the screen.</p>
-                                <p>
-                                    <img src="../Resources/Images/SpaceDeck/16.5/AzureAD16.png" style="width: 436px;height: 577px;" />
-                                </p>
-                            </li>
-                        </ol>
-                    </li>
-                    <li>
-                        <p>Copy the Scopes value:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD17.png" style="width: 664px;height: 423px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>This Scopes value should then be  pasted into the <b>scope</b> field in the <a href="spacedeck-admin.html">SpaceDeck Administration</a>/General Setup menu during IDP&#160;setup:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureADScope.png" style="width: 1101px;height: 325px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>To manage roles for your application (in this case SpaceDeck), go to the Azure application and select <b>App roles</b> and then click <b>+ Create app role</b>:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD18.png" style="width: 726px;height: 762px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Provide role details and then click <b>Apply</b> at the bottom of the screen. This is an example  of a role creation for ROLE_ADMIN:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD19.png" style="width: 530px;height: 622px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>To manage users for your application (in this case SpaceDeck), navigate to the <b>Microsoft Entra ID</b> screen and from the left-side <b>Manage</b> menu, select <b>Users</b>:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD20.png" style="width: 510px;height: 407px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>To assign users and groups (roles) for your application (in this case SpaceDeck), navigate to <b>Microsoft Entra ID</b> screen and select <b>Enterprise applications</b> from the left-side menu:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD21.png" style="width: 518px;height: 551px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Select your application and then on the next screen, click <b>Assign Users and Groups</b>:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD22.png" style="width: 549px;height: 518px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Click <b>Add user/group</b>:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD23a.png" style="width: 521px;height: 278px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>Select user and role and click <b>Assign</b> at the bottom of the screen:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureAD24.png" style="width: 561px;height: 286px;" />
-                        </p>
-                    </li>
-                    <li>
-                        <p>In the SpaceDeck, in the <a href="spacedeck-admin.html#Roles-Mangement">Administration/Role Management menu</a> enter <b>roles</b> for the <b>Authorization Grant&#160;Type</b> field:</p>
-                        <p>
-                            <img src="../Resources/Images/SpaceDeck/16.5/AzureADGrantType.png" style="width: 1099px;height: 324px;" />
-                        </p>
-                    </li>
-                </ol>
-            </div>
+            <p>&#160;</p>
         </div>
-        <p>&#160;</p>
         <p>&#160;</p>
     </body>
 </html>
