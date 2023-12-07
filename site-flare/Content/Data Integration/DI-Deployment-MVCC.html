@@ -97,7 +97,29 @@
         <h1>Limitations - Partial Support</h1>
         <ul>
             <li>
-                <p>There is no support for the following Space operators: dropClass, asyncRead, readIfExistsById, readIfExists, takeByIds, asyncTake, takeIfExistsById, takeIfExists, takeMultiple, writeMultiple, iterator, execute, executorBuilder, count, clear, aggregate, change, asyncChange and asyncLoad are not supported.</p>
+                <p>When using an MVCC&#160;Space, there is no support for the following Space operators: </p>
+                <ul>
+                    <li>
+                        <p><code>readIfExists, readIfExistsById, asyncRead</code>
+                        </p>
+                    </li>
+                    <li>
+                        <p><code>takeMultiple, takeByIds, takeIfExists, takeIfExistsById, asyncTake</code>
+                        </p>
+                    </li>
+                    <li>
+                        <p><code>writeMultiple</code>
+                        </p>
+                    </li>
+                    <li>
+                        <p><code>change, asyncChange</code>
+                        </p>
+                    </li>
+                    <li>
+                        <p><code>count, clear, aggregate, execute, iterator, dropClass, executorBuilder, asyncLoad</code>
+                        </p>
+                    </li>
+                </ul>
             </li>
             <li>
                 <p>MVCC is limited to ALL&#160;IN&#160;CACHE configuration.</p>
