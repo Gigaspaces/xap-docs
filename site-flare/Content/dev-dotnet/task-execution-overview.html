@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
     <head>
     </head>
     <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
         <h1>Task Execution</h1>
         <p><MadCap:variable name="General.ProductNameXAP" /> support executing tasks in a collocated Space (processing unit that started an embedded Space). Space tasks can be executed either directly on a specific cluster member using typical routing value. Space tasks can also be distributed, which means it is executed in a "broadcast" mode on all the primary cluster members concurrently and reduced to a single result on the client side, which is also known as the map reduce pattern which is used in many applications that does parallel processing. Space tasks are dynamic in terms of content, it contains user code that will be executed at the Space as is.</p>
         <h1><a name="space-task-api"></a>Space Task API</h1>

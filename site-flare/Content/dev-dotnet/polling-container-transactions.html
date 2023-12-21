@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
 <head></head>
 <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
 <h1>Transaction Support</h1>
   <p>Both the receive operation, and the actual event action can be configured to be performed under a transaction. Transaction support is required for example, when an exception occurs in the event listener, and the receive operation needs to be to rolled back (and the actual data event is returned to the space). Adding transaction support to the polling container is very simple. It is done by setting the <code>TransactionType</code> property. There are two transaction types: Distributed and Manual.</p>
 

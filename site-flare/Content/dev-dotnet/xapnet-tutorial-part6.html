@@ -3,6 +3,10 @@
     <head>
     </head>
     <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
         <h1 class="tc-pagetitle">Transactions and Concurrency</h1>
         <p>In this part of the tutorial we will introduce you to <MadCap:variable name="General.ProductNameXAP" />'s transaction processing capabilities.</p>
         <p>With the <MadCap:variable name="General.XAPNet" /> transaction model the developer is responsible for explicitly starting and managing the transaction. You obtain an object representing the underlying space transaction by calling <code>GigaSpacesFactory.CreateDistributedTransactionManager</code>. This call returns an implementation of the <code>ITransactionManager</code> interface used to create the transaction using the <code>ITransactionManager.Create()</code>.</p>

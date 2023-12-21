@@ -3,6 +3,10 @@
     <head>
     </head>
     <body>
+		<div class="product-bar">
+			<p><a>Smart Cache</a>
+			</p>
+		</div>
         <h1>Transactions</h1>
         <p>With the <MadCap:variable name="General.XAPNet" /> transaction model, the developer is responsible for explicitly starting and managing the transaction. You can obtain an object representing the underlying Space transaction by calling <code>GigaSpacesFactory.CreateDistributedTransactionManager</code>.  This call returns an implementation of the <code>ITransactionManager</code> interface used to create the transaction using the <code>ITransactionManager.Create()</code> call. This returns an <code>ITransaction</code> object that should be used with every Space operation that participates with the transaction. When you want to commit the transaction, call the <code>ITransaction.Commit()</code>.</p>
         <div class="tc-align-center">
