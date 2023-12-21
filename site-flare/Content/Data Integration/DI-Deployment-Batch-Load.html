@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body style="text-align: left;">
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
+        <h1 class="tc-pagetitle" style="text-align: left;">Batch Load</h1>
+        <h1>Introduction</h1>
+        <p><MadCap:variable name="General.CompanyName" /> now has the ability for Smart DIH to define batch loads via a standard pipeline interface. </p>
+        <p>Full batch and incremental batch loads  can now be performed as a "pull" functionality without requiring the use of "push" functionality used by a typical IIDR deployment.</p>
+        <p>The performance level will be 14K records per second.</p>
+        <h1>Supported Data Source and Loading Types. </h1>
+        <p>You will have the ability to perform batch load from the following data sources:</p>
+        <ul>
+            <li>
+                <p>Oracle</p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p>MSSQL</p>
+            </li>
+            <li>
+                <p>DB2 Z/OS</p>
+            </li>
+            <li>
+                <p>DB2 AS-400</p>
+            </li>
+            <li>
+                <p>DB2 LUW</p>
+            </li>
+        </ul>
+        <p>The following load types are supported:</p>
+        <ul>
+            <li>
+                <p>Full load</p>
+            </li>
+            <li>
+                <p>Incremental load base on certain fields, or combination of fields</p>
+            </li>
+        </ul>
+        <h1>User&#160;Flows: Creating a Pipeline using&#160;Batch Load</h1>
+        <div class="tc-admon-important">
+            <p>Batch Load cannot be configured for a pipeline that is configured and running with CDC (IIDR). &#160;To enable Batch Load a new pipeline has to be created.</p>
+        </div>
+        <h2>Oracle Database: Define Basic Full&#160;Batch Load Pipeline</h2>
+        <ol>
+            <li>
+                <p><a href="../spacedeck/spacedeck-login.html">Login to SpaceDeck</a> </p>
+            </li>
+            <li>
+                <p>Define <b>Oracle</b> as the <a href="../spacedeck/spacedeck-data-sources.html">Data Source</a> </p>
+            </li>
+            <li>
+                <p><a href="../spacedeck/spacedeck-data-pipeline-new-pipeline.html">Create new pipeline</a> and choose pipeline <b>type full batch load </b></p>
+                <ol>
+                    <li>
+                        <p>Choose table from available list (TABLE1 for example)</p>
+                    </li>
+                    <li>
+                        <p>Add table to the pipeline</p>
+                    </li>
+                    <li>
+                        <p>Save the pipeline</p>
+                    </li>
+                    <li>
+                        <p>Start the pipeline</p>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+        <div class="tc-admon-note">
+            <p>Full batch load ends after the full load is completed. The status should be <b>Finished Successfully</b>. This differs from a CDC pipeline.</p>
+        </div>
+        <h2>MSSQL&#160;Database: Define Incremental Batch Load Pipeline</h2>
+        <ol>
+            <li>
+                <p><a href="../spacedeck/spacedeck-login.html">Login to SpaceDeck</a>
+                </p>
+            </li>
+            <li>
+                <p>Define <b>MSSQL</b> as the <a href="../spacedeck/spacedeck-data-sources.html">Data Source</a></p>
+            </li>
+            <li>
+                <p><a href="../spacedeck/spacedeck-data-pipeline-new-pipeline.html">Create new pipeline</a> and choose pipeline type <b>incremental batch load</b></p>
+                <ol>
+                    <li>
+                        <p>Choose table from available list (TABLE1 for example)</p>
+                    </li>
+                    <li>
+                        <p>Define Base columns and PK column from a list of available columns</p>
+                    </li>
+                    <li>
+                        <p>Add table to the pipeline</p>
+                    </li>
+                    <li>
+                        <p>Save the pipeline</p>
+                    </li>
+                    <li>
+                        <p>Start the pipeline</p>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+        <div class="tc-admon-note">
+            <p>Base columns or PK columns can be a group of columns.</p>
+        </div>
+        <div class="tc-admon-note">
+            <p>Incremental batch load pipeline ends after it is completed. The status should be <b>Finished Successfully</b>. This differs from a CDC pipeline.</p>
+        </div>
+        <h2>DB2 AS/400 Database: Batch Load with FILTER and Columns Excluded</h2>
+        <ol>
+            <li>
+                <p><a href="../spacedeck/spacedeck-login.html">Login to SpaceDeck</a>
+                </p>
+            </li>
+            <li>
+                <p>Define <b>DB2 AS/400</b> as the <a href="../spacedeck/spacedeck-data-sources.html">Data Source</a></p>
+            </li>
+            <li>
+                <p><a href="../spacedeck/spacedeck-data-pipeline-new-pipeline.html">Create new pipeline</a> and choose pipeline type <b>full batch load</b></p>
+                <ol>
+                    <li>
+                        <p>Choose table from available list (TABLE1 for example)</p>
+                    </li>
+                    <li>
+                        <p>Define Exclude/Include columns (if needed)  from the COLUMNS list of the TABLE1</p>
+                    </li>
+                    <li>
+                        <p>Define FILTER (if needed) on a TABLE1 in the form of a WHERE clause</p>
+                    </li>
+                    <li>
+                        <p>Add table to the pipeline</p>
+                    </li>
+                    <li>
+                        <p>Save the pipeline</p>
+                    </li>
+                    <li>
+                        <p>Start the pipeline</p>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+        <h1>Creating a Pipeline using&#160;Batch Load</h1>
+        <div class="tc-admon-important">
+            <p>Batch Load cannot be configured for a pipeline that is configured and running with CDC (IIDR). &#160;To enable Batch Load a new pipeline has to be created.</p>
+        </div>
+        <p>To use Batch load when creating a Pipeline, perform the following steps:</p>
+        <ol>
+            <li>
+                <p>Add a new Pipeline by following steps as outlined in the <a href="../spacedeck/spacedeck-data-pipeline-new-pipeline.html">User Guide:&#160;SpaceDeck -&#160;Spaces -&#160;Adding a Pipeline</a></p>
+            </li>
+            <li>
+                <p>In the Adding a New Space Parameters section, to select full or partial batch load, select......</p>
+            </li>
+            <p>
+                <img src="../Resources/Images/DI/MVCC.png" style="width: 619px;height: 708px;" />
+            </p>
+        </ol>
+        <h1>Batch Load Statistics&#160;</h1>
+        <p>&#160;</p>
+        <p style="text-align: left;">&#160;</p>
+    </body>
+</html>

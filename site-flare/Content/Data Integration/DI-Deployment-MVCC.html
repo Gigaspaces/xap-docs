@@ -3,11 +3,32 @@
     <head>
     </head>
     <body style="text-align: left;">
+        <div class="product-bar">
+            <p><a>Smart DIH</a>
+            </p>
+        </div>
         <h1 class="tc-pagetitle" style="text-align: left;">Multiversion Concurrency Control (MVCC)</h1>
         <h1>Introduction</h1>
         <p>Multiversion concurrency control (MVCC) is method that allows a user to have a concurrent and persistent view of distributed transactions across partitions. <MadCap:variable name="General.CompanyName" /> keep multiple versions of modified entries to ensure that a user has a persistent view of the data that is consistent with the SoR.</p>
         <p>Processing a large number of simultaneous transactions in Smart DIH requires an extreme write throughput that cannot be paused. In order to maintain transactions in the platform, Space objects must not be locked. The MVCC mechanism provides an efficient solution, allowing massive updates while maintaining consistency in the Space with the systems of record (SoR). In this manner, the ACID properties of transactions are maintained, ensuring the consistency and integrity of the data before and after each update, even in highly available distributed systems.</p>
         <p>For more information about  the MVCC&#160;mechanism and how it is used in Smart DIH, read our blog on <a href="https://www.gigaspaces.com/blog/acid-distributed-transactions">How to Achieve ACID&#160;Compliance on Distributed, Highly Available Systems</a> (search for MVCC).</p>
+        <h1>MVCC&#160;Flow</h1>
+        <p>The diagram below shows the process of how an update that is coming from the SoR to a CDC stream travels through the DI&#160;Layer and is finally updated in the Space.&#160;&#160;</p>
+        <ul>
+            <li>
+                <p>In the Space, only the area written in pink would be visible to the user.</p>
+            </li>
+            <li>
+                <p>All the newer updates (in blue) would be occurring on top of the data and is not visible to the user. &#160;</p>
+            </li>
+            <li>
+                <p>When the update is applied (by the DI) then that data will be visible to the end user. And so the MVCC update cycle continues.</p>
+            </li>
+        </ul>
+        <p>&#160;</p>
+        <p>
+            <img src="../Resources/Images/DI/MVCC1.png" style="width: 1102px;height: 448px;" />
+        </p>
         <h1>MVCC&#160;Configuration Properties</h1>
         <table style="width: 1362px;">
             <col style="width: 466px;" />
@@ -60,7 +81,7 @@
         <div class="tc-admon-note">
             <p>The configuration settings for MVCC can be modified to tweak the impact on memory consumption.</p>
         </div>
-        <h1>Configuring a Space for MVCC</h1>
+        <h1><a name="ConfiguringSpaceMVCC"></a>Configuring a Space for MVCC</h1>
         <div class="tc-admon-important">
             <p>MVCC cannot be configured for a Space that is already Active. &#160;To enable MVCC a new Space has to be created.</p>
         </div>
@@ -82,7 +103,7 @@
                 <p>Once completed, click <b>Create Space</b>.</p>
             </li>
         </ol>
-        <h1>Querying an MVCC&#160;Enabled Space:&#160;</h1>
+        <h1>Querying an MVCC&#160;Enabled Space&#160;</h1>
         <ul>
             <li>
                 <p>The MVCC enabled Space can be queried using the JDBCv3 compliant RESTful Services or using the Postgres SQL compliant data-gateway. It is recommended for a persistent view, that queries should be part of an explicit transaction. This is because the consistently of the data for non-transactional queries cannot be guaranteed.</p>
